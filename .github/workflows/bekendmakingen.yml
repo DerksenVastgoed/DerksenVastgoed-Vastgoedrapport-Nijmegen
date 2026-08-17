@@ -27,7 +27,7 @@ jobs:
       - name: Bekendmakingen ophalen
         run: |
           mkdir -p digests
-          python bekendmakingen_nijmegen.py --dagen 30 --uit "digests/$(date +%F).md"
+          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$(date +%F).md"
 
       - name: Digest terugcommitten
         run: |
