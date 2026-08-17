@@ -1,0 +1,38 @@
+name: Bekendmakingen Nijmegen
+
+on:
+  schedule:
+    # 05:00 UTC op werkdagen = 07:00 in de zomer, 06:00 in de winter (NL-tijd).
+    - cron: "0 5 * * 1-5"
+  workflow_dispatch: {}   # laat je 'm ook met de hand starten via de Actions-tab
+
+permissions:
+  contents: write         # nodig om de digest terug te committen
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencies installeren
+        run: pip install -r requirements.txt
+
+      - name: Bekendmakingen ophalen
+        run: |
+          mkdir -p digests
+          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$(date +%F).md"
+
+      - name: Digest terugcommitten
+        run: |
+          git config user.name "bekendmakingen-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add digests/
+          git commit -m "Bekendmakingen $(date +%F)" || echo "Niets nieuws vandaag"
+          git push
