@@ -3,20 +3,17 @@
 Bekendmakingen-blok voor de Nijmegen Vastgoedmonitor.
 
 Haalt officiele bekendmakingen (gemeenteblad e.d.) van gemeente Nijmegen op via
-de KOOP SRU-API, filtert op de ring rond het Keizer Karelplein en op
-vastgoed-relevante types, en schrijft een dagelijkse digest weg als markdown.
+de KOOP SRU-API, filtert op de ring rond het Keizer Karelplein, gooit ruis weg,
+en splitst de rest in KERNSIGNALEN (splitsen, samenvoegen, transformatie e.d.)
+en OVERIGE relevante bekendmakingen. Schrijft het geheel weg als markdown.
 
 Bron:  https://repository.overheid.nl/sru   (collectie: officielepublicaties)
 Open data, geen sleutel nodig. Draai dit op een machine met internettoegang.
 
 Gebruik:
-    python bekendmakingen_nijmegen.py                 # laatste 2 dagen, print + schrijft digest
-    python bekendmakingen_nijmegen.py --dagen 7       # ruimere terugblik
-    python bekendmakingen_nijmegen.py --alles         # geen ringfilter, hele gemeente
-
-Let op: dit is v1, geschreven tegen de SRU-documentatie maar nog niet live
-getest. Draai het, en als er iets misgaat: plak de foutmelding of een stuk
-van de ruwe XML terug, dan scherpen we de parsing en de query samen aan.
+    python bekendmakingen_nijmegen.py
+    python bekendmakingen_nijmegen.py --dagen 7
+    python bekendmakingen_nijmegen.py --alles      # geen ringfilter
 """
 
 import argparse
@@ -33,37 +30,51 @@ import requests
 SRU_URL = "https://repository.overheid.nl/sru"
 GEMEENTE = "Nijmegen"
 
-# Ringfilter. Een bekendmaking wordt getoond als de titel een van deze
-# postcode-prefixes OF een van deze straatnamen bevat. Begin ruim, snoei later.
 RING_POSTCODES = ["6511", "6512", "6521", "6522", "6524", "6525", "6541", "6542"]
 
 RING_STRATEN = [
-    # eigen panden
     "Graafsedwarsstraat", "Eerste Oude Heselaan",
-    # acquisitietargets
     "Fransestraat", "Van Spaenstraat",
-    # kernstraten van de ring (uitbreidbaar na eerste echte output)
     "Bottendaalseweg", "Groesbeekseweg", "Berg en Dalseweg", "Sint Annastraat",
     "Graafseweg", "Voorstadslaan", "Waterstraat", "Biezenstraat",
 ]
 
-# Alleen deze publicatie-types tonen (vastgoed-relevant). Match op woorden in
-# titel of type. Leeg maken = alle types tonen.
-RELEVANTE_TREFWOORDEN = [
-    "omgevingsvergunning", "bouw", "sloop", "splits", "onttrekking",
-    "transformatie", "ruimtelijk plan", "omgevingsplan", "omgevingsdocument",
-    "bestemmingsplan", "kadastr", "aanvraag", "verleend", "monument",
+# 1. RUIS: bevat de titel een van deze woorden, dan valt het bericht weg.
+UITSLUITEN = [
+    "reclame", "uithangbord", "gevelbelettering", "naambord", "sticker",
+    "spandoek", "vlaggenmast", "dakkapel", "dakterras", "dakraam", "veranda",
+    "overkapping", "carport", "airco", "oprit", "inrit", "puinbak", "container",
+    "hekwerk", "erfafscheiding", "schutting", "schuur", "tuinhuis", "zwembad",
+    "alcohol", "leidinggevende", "exploitatievergunning", "terras", "evenement",
+    "standplaats", "kappen", "kapvergunning", "boom", "bomen",
+    "termijnverlenging", "buiten behandeling", "intrekking", "rectificatie",
 ]
 
-MAX_PER_PAGINA = 100  # SRU maximumRecords per call
+# 2. KERNSIGNALEN: de waardecreatie-bewegingen. Deze komen bovenaan.
+#    Kern wint altijd van de uitsluitlijst.
+KERN = [
+    "splits", "samenvoeg", "omzetten", "omgezet", "omzetting",
+    "zelfstandige woon", "zelfstandige wooneenhe", "zelfstandige woning",
+    "wooneenhe", "appartement", "transformatie", "herbestemm",
+    "kamerverhuur", "logiesfunctie", "logies", "bopa",
+    "nieuwbouw", "starters", "optoppen", "woningen",
+]
+
+# 3. OVERIG RELEVANT: vastgoed-ingrepen die er wel toe doen maar geen kern zijn.
+REL_BASIS = [
+    "verbouw", "renove", "verduurz", "sloop", "woning", "woon", "warmtepomp",
+    "monument", "pand", "klooster", "nokverhoging", "dakopbouw", "uitbouw",
+    "aanbouw", "kozijn", "pui", "gevel",
+]
+
+MAX_PER_PAGINA = 100
 # --------------------------------------------------------------------------
 
 
 def bouw_cql(vanaf_datum: str) -> str:
-    """CQL-query: gemeente Nijmegen, publicatiedatum vanaf, collectie officiele publicaties."""
     delen = [
-        'c.product-area==officielepublicaties',
-        'w.organisatietype==gemeente',
+        "c.product-area==officielepublicaties",
+        "w.organisatietype==gemeente",
         f'dt.creator=="{GEMEENTE}"',
         f'dt.date>="{vanaf_datum}"',
     ]
@@ -71,7 +82,6 @@ def bouw_cql(vanaf_datum: str) -> str:
 
 
 def haal_records(cql: str):
-    """Loop over alle SRU-pagina's en geef de ruwe <record>-elementen terug."""
     records = []
     start = 1
     while True:
@@ -86,23 +96,19 @@ def haal_records(cql: str):
         resp = requests.get(url, timeout=30)
         resp.raise_for_status()
         root = ET.fromstring(resp.content)
-
-        # namespace-agnostisch: pak alle elementen met local-name 'record'
         pagina = [el for el in root.iter() if _lokaal(el.tag) == "record"]
         if not pagina:
             break
         records.extend(pagina)
-
         totaal = _eerste_tekst(root, "numberOfRecords")
         totaal = int(totaal) if totaal and totaal.isdigit() else len(records)
         start += MAX_PER_PAGINA
-        if start > totaal or start > 4200:  # SRU-plafond
+        if start > totaal or start > 4200:
             break
     return records
 
 
 def _lokaal(tag: str) -> str:
-    """Strip de namespace van een XML-tag."""
     return tag.rsplit("}", 1)[-1] if "}" in tag else tag
 
 
@@ -114,7 +120,6 @@ def _eerste_tekst(element, local_name: str):
 
 
 def _url_uit_record(record):
-    """Zoek de voorkeurs-URL of eerste http-link in het record."""
     for el in record.iter():
         naam = _lokaal(el.tag)
         if naam in ("preferredUrl", "itemUrl") and el.text and el.text.startswith("http"):
@@ -131,7 +136,6 @@ def parse_record(record) -> dict:
         "titel": _eerste_tekst(record, "title") or "(geen titel)",
         "datum": _eerste_tekst(record, "date") or _eerste_tekst(record, "available") or "",
         "type": _eerste_tekst(record, "type") or "",
-        "creator": _eerste_tekst(record, "creator") or "",
         "url": _url_uit_record(record) or "",
     }
 
@@ -140,37 +144,56 @@ def in_ring(item: dict) -> bool:
     hooi = (item["titel"] + " " + item["type"]).lower()
     if any(pc in hooi for pc in RING_POSTCODES):
         return True
-    if any(straat.lower() in hooi for straat in RING_STRATEN):
-        return True
-    return False
+    return any(s.lower() in hooi for s in RING_STRATEN)
 
 
-def is_relevant(item: dict) -> bool:
-    if not RELEVANTE_TREFWOORDEN:
-        return True
+def classificeer(item: dict):
+    """Geeft 'kern', 'overige' of None terug."""
     hooi = (item["titel"] + " " + item["type"]).lower()
-    return any(tw in hooi for tw in RELEVANTE_TREFWOORDEN)
+    if any(w in hooi for w in KERN):
+        return "kern"
+    if any(w in hooi for w in UITSLUITEN):
+        return None
+    if any(w in hooi for w in REL_BASIS):
+        return "overige"
+    return None
 
 
-def render_digest(items: list, vanaf: str) -> str:
+def _regel(it: dict) -> str:
+    link = f"([bron]({it['url']}))" if it["url"] else ""
+    return f"- **{it['datum']}** . {it['titel']} {link}"
+
+
+def render_digest(kern: list, overige: list, vanaf: str) -> str:
     vandaag = dt.date.today().strftime("%d-%m-%Y")
-    regels = [f"# Bekendmakingen ring Keizer Karelplein - {vandaag}",
-              f"_Gemeente {GEMEENTE}, publicaties vanaf {vanaf}. {len(items)} relevante berichten._", ""]
-    if not items:
-        regels.append("Geen nieuwe relevante bekendmakingen in de ring. Rustige dag.")
-        return "\n".join(regels)
-    for it in sorted(items, key=lambda x: x["datum"], reverse=True):
-        titel = it["titel"]
-        link = f"([bron]({it['url']}))" if it["url"] else ""
-        regels.append(f"- **{it['datum']}** . {titel} {link}")
-    return "\n".join(regels)
+    r = [f"# Bekendmakingen ring Keizer Karelplein - {vandaag}",
+         f"_Gemeente {GEMEENTE}, publicaties vanaf {vanaf}. "
+         f"{len(kern)} kernsignalen, {len(overige)} overige._", ""]
+
+    r.append(f"## Kernsignalen ({len(kern)})")
+    r.append("_Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._")
+    r.append("")
+    if kern:
+        for it in sorted(kern, key=lambda x: x["datum"], reverse=True):
+            r.append(_regel(it))
+    else:
+        r.append("Geen kernsignalen in deze periode.")
+    r.append("")
+
+    if overige:
+        r.append(f"## Overige relevante bekendmakingen ({len(overige)})")
+        r.append("_Verbouw, renovatie, sloop, verduurzaming e.d._")
+        r.append("")
+        for it in sorted(overige, key=lambda x: x["datum"], reverse=True):
+            r.append(_regel(it))
+    return "\n".join(r)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dagen", type=int, default=2, help="terugblik in dagen")
-    ap.add_argument("--alles", action="store_true", help="geen ringfilter")
-    ap.add_argument("--uit", default="bekendmakingen_digest.md", help="uitvoerbestand")
+    ap.add_argument("--dagen", type=int, default=2)
+    ap.add_argument("--alles", action="store_true")
+    ap.add_argument("--uit", default="bekendmakingen_digest.md")
     args = ap.parse_args()
 
     vanaf = (dt.date.today() - dt.timedelta(days=args.dagen)).isoformat()
@@ -184,19 +207,22 @@ def main():
         sys.exit(1)
 
     items = [parse_record(r) for r in records]
-    items = [it for it in items if is_relevant(it)]
     if not args.alles:
         items = [it for it in items if in_ring(it)]
 
-    # dedup op titel+datum
-    gezien, uniek = set(), []
+    gezien, kern, overige = set(), [], []
     for it in items:
         sleutel = (it["titel"], it["datum"])
-        if sleutel not in gezien:
-            gezien.add(sleutel)
-            uniek.append(it)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        soort = classificeer(it)
+        if soort == "kern":
+            kern.append(it)
+        elif soort == "overige":
+            overige.append(it)
 
-    digest = render_digest(uniek, vanaf)
+    digest = render_digest(kern, overige, vanaf)
     print(digest)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(digest)
