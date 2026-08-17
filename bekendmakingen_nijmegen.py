@@ -2,22 +2,22 @@
 """
 Bekendmakingen-blok voor de Nijmegen Vastgoedmonitor.
 
-Haalt officiele bekendmakingen (gemeenteblad e.d.) van gemeente Nijmegen op via
-de KOOP SRU-API, filtert op de ring rond het Keizer Karelplein, gooit ruis weg,
-en splitst de rest in KERNSIGNALEN (splitsen, samenvoegen, transformatie e.d.)
-en OVERIGE relevante bekendmakingen. Schrijft het geheel weg als markdown.
+Haalt officiele bekendmakingen van gemeente Nijmegen op via de KOOP SRU-API,
+filtert op de ring rond het Keizer Karelplein, gooit ruis weg, splitst de rest
+in KERNSIGNALEN en OVERIGE, en zet bij elk bericht een korte duiding
+"wat betekent dit voor Derksen" via de Anthropic-API. Schrijft markdown weg.
 
-Bron:  https://repository.overheid.nl/sru   (collectie: officielepublicaties)
-Open data, geen sleutel nodig. Draai dit op een machine met internettoegang.
+Bronnen:
+  Bekendmakingen : https://repository.overheid.nl/sru  (open, geen sleutel)
+  Duiding        : https://api.anthropic.com/v1/messages (vereist ANTHROPIC_API_KEY)
 
-Gebruik:
-    python bekendmakingen_nijmegen.py
-    python bekendmakingen_nijmegen.py --dagen 7
-    python bekendmakingen_nijmegen.py --alles      # geen ringfilter
+Zonder ANTHROPIC_API_KEY werkt alles gewoon, alleen zonder de duiding-zin.
 """
 
 import argparse
 import datetime as dt
+import json
+import os
 import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -25,13 +25,12 @@ import xml.etree.ElementTree as ET
 import requests
 
 # --------------------------------------------------------------------------
-# CONFIG - dit is het enige wat je aanpast
+# CONFIG
 # --------------------------------------------------------------------------
 SRU_URL = "https://repository.overheid.nl/sru"
 GEMEENTE = "Nijmegen"
 
 RING_POSTCODES = ["6511", "6512", "6521", "6522", "6524", "6525", "6541", "6542"]
-
 RING_STRATEN = [
     "Graafsedwarsstraat", "Eerste Oude Heselaan",
     "Fransestraat", "Van Spaenstraat",
@@ -39,7 +38,6 @@ RING_STRATEN = [
     "Graafseweg", "Voorstadslaan", "Waterstraat", "Biezenstraat",
 ]
 
-# 1. RUIS: bevat de titel een van deze woorden, dan valt het bericht weg.
 UITSLUITEN = [
     "reclame", "uithangbord", "gevelbelettering", "naambord", "sticker",
     "spandoek", "vlaggenmast", "dakkapel", "dakterras", "dakraam", "veranda",
@@ -49,9 +47,6 @@ UITSLUITEN = [
     "standplaats", "kappen", "kapvergunning", "boom", "bomen",
     "termijnverlenging", "buiten behandeling", "intrekking", "rectificatie",
 ]
-
-# 2. KERNSIGNALEN: de waardecreatie-bewegingen. Deze komen bovenaan.
-#    Kern wint altijd van de uitsluitlijst.
 KERN = [
     "splits", "samenvoeg", "omzetten", "omgezet", "omzetting",
     "zelfstandige woon", "zelfstandige wooneenhe", "zelfstandige woning",
@@ -59,8 +54,6 @@ KERN = [
     "kamerverhuur", "logiesfunctie", "logies", "bopa",
     "nieuwbouw", "starters", "optoppen", "woningen",
 ]
-
-# 3. OVERIG RELEVANT: vastgoed-ingrepen die er wel toe doen maar geen kern zijn.
 REL_BASIS = [
     "verbouw", "renove", "verduurz", "sloop", "woning", "woon", "warmtepomp",
     "monument", "pand", "klooster", "nokverhoging", "dakopbouw", "uitbouw",
@@ -68,30 +61,33 @@ REL_BASIS = [
 ]
 
 MAX_PER_PAGINA = 100
+
+# --- Duiding via Anthropic ---
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+MODEL = "claude-sonnet-5"
+PROFIEL = """Je bent de vastgoedanalist van Derksen Vastgoed in Nijmegen. Context over de eigenaar:
+- Verhuurt woningen via een BV. Eigen panden: Graafsedwarsstraat 58-60 en Eerste Oude Heselaan 86-88A, in het Waterkwartier (Nijmegen-Oud-West).
+- Acquisitietargets: Fransestraat en Van Spaenstraat (Galgenveld, Nijmegen-Oost).
+- Focusgebied: de ring rond het Keizer Karelplein, oost en west.
+- Waardecreatie-model: oudere woningen kopen, bij huurderswisseling renoveren, energielabel omhoog, waar mogelijk splitsen of optoppen, daarna beter verhuren.
+Je krijgt een lijst bekendmakingen uit zijn ring. Geef per bekendmaking EEN bondige, zakelijke zin: wat betekent dit concreet voor Derksen. Denk aan nabijheid van eigen bezit of targets, of het een vergelijkbaar model is (splitsen/transformatie), of het een concurrent of belegger is, of een bredere buurtbeweging die zijn waarde raakt. Geen algemeenheden en geen slagen om de arm. Heeft iets weinig betekenis, zeg dat kort."""
 # --------------------------------------------------------------------------
 
 
 def bouw_cql(vanaf_datum: str) -> str:
-    delen = [
+    return " and ".join([
         "c.product-area==officielepublicaties",
         "w.organisatietype==gemeente",
         f'dt.creator=="{GEMEENTE}"',
         f'dt.date>="{vanaf_datum}"',
-    ]
-    return " and ".join(delen)
+    ])
 
 
 def haal_records(cql: str):
-    records = []
-    start = 1
+    records, start = [], 1
     while True:
-        params = {
-            "version": "2.0",
-            "operation": "searchRetrieve",
-            "query": cql,
-            "maximumRecords": MAX_PER_PAGINA,
-            "startRecord": start,
-        }
+        params = {"version": "2.0", "operation": "searchRetrieve", "query": cql,
+                  "maximumRecords": MAX_PER_PAGINA, "startRecord": start}
         url = SRU_URL + "?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
         resp = requests.get(url, timeout=30)
         resp.raise_for_status()
@@ -121,8 +117,7 @@ def _eerste_tekst(element, local_name: str):
 
 def _url_uit_record(record):
     for el in record.iter():
-        naam = _lokaal(el.tag)
-        if naam in ("preferredUrl", "itemUrl") and el.text and el.text.startswith("http"):
+        if _lokaal(el.tag) in ("preferredUrl", "itemUrl") and el.text and el.text.startswith("http"):
             return el.text.strip()
     for el in record.iter():
         for waarde in el.attrib.values():
@@ -137,6 +132,7 @@ def parse_record(record) -> dict:
         "datum": _eerste_tekst(record, "date") or _eerste_tekst(record, "available") or "",
         "type": _eerste_tekst(record, "type") or "",
         "url": _url_uit_record(record) or "",
+        "gevolg": "",
     }
 
 
@@ -148,7 +144,6 @@ def in_ring(item: dict) -> bool:
 
 
 def classificeer(item: dict):
-    """Geeft 'kern', 'overige' of None terug."""
     hooi = (item["titel"] + " " + item["type"]).lower()
     if any(w in hooi for w in KERN):
         return "kern"
@@ -159,9 +154,54 @@ def classificeer(item: dict):
     return None
 
 
+def _parse_annotaties(tekst: str, n: int) -> dict:
+    """Haalt {index: gevolg} uit het JSON-antwoord van het model."""
+    schoon = tekst.strip()
+    if schoon.startswith("```"):
+        schoon = schoon.split("```")[1]
+        if schoon.startswith("json"):
+            schoon = schoon[4:]
+    data = json.loads(schoon)
+    uit = {}
+    for rij in data:
+        i = rij.get("i")
+        if isinstance(i, int) and 0 <= i < n:
+            uit[i] = str(rij.get("gevolg", "")).strip()
+    return uit
+
+
+def verrijk(items: list):
+    """Zet bij elk item een duiding-zin via de Anthropic-API."""
+    if not ANTHROPIC_API_KEY or not items:
+        return
+    lijst = "\n".join(f"{i}. {it['titel']}" for i, it in enumerate(items))
+    prompt = (f"Bekendmakingen:\n{lijst}\n\n"
+              "Antwoord met ALLEEN een JSON-array, per bekendmaking een object "
+              '{"i": <index>, "gevolg": "<een zin>"}. Geen tekst eromheen.')
+    try:
+        resp = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={"x-api-key": ANTHROPIC_API_KEY,
+                     "anthropic-version": "2023-06-01",
+                     "content-type": "application/json"},
+            json={"model": MODEL, "max_tokens": 1200, "system": PROFIEL,
+                  "messages": [{"role": "user", "content": prompt}]},
+            timeout=60)
+        resp.raise_for_status()
+        tekst = "".join(b.get("text", "") for b in resp.json().get("content", []))
+        annotaties = _parse_annotaties(tekst, len(items))
+        for i, it in enumerate(items):
+            it["gevolg"] = annotaties.get(i, "")
+    except Exception as e:  # noqa
+        print(f"Duiding overgeslagen: {e}", file=sys.stderr)
+
+
 def _regel(it: dict) -> str:
     link = f"([bron]({it['url']}))" if it["url"] else ""
-    return f"- **{it['datum']}** . {it['titel']} {link}"
+    regel = f"- **{it['datum']}** . {it['titel']} {link}"
+    if it.get("gevolg"):
+        regel += f"\n  → _{it['gevolg']}_"
+    return regel
 
 
 def render_digest(kern: list, overige: list, vanaf: str) -> str:
@@ -169,7 +209,6 @@ def render_digest(kern: list, overige: list, vanaf: str) -> str:
     r = [f"# Bekendmakingen ring Keizer Karelplein - {vandaag}",
          f"_Gemeente {GEMEENTE}, publicaties vanaf {vanaf}. "
          f"{len(kern)} kernsignalen, {len(overige)} overige._", ""]
-
     r.append(f"## Kernsignalen ({len(kern)})")
     r.append("_Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._")
     r.append("")
@@ -179,7 +218,6 @@ def render_digest(kern: list, overige: list, vanaf: str) -> str:
     else:
         r.append("Geen kernsignalen in deze periode.")
     r.append("")
-
     if overige:
         r.append(f"## Overige relevante bekendmakingen ({len(overige)})")
         r.append("_Verbouw, renovatie, sloop, verduurzaming e.d._")
@@ -221,6 +259,8 @@ def main():
             kern.append(it)
         elif soort == "overige":
             overige.append(it)
+
+    verrijk(kern + overige)  # duiding voor alle getoonde items in een call
 
     digest = render_digest(kern, overige, vanaf)
     print(digest)
