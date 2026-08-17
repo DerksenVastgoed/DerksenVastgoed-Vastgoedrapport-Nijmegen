@@ -4,10 +4,10 @@ on:
   schedule:
     # 05:00 UTC op werkdagen = 07:00 in de zomer, 06:00 in de winter (NL-tijd).
     - cron: "0 5 * * 1-5"
-  workflow_dispatch: {}   # laat je 'm ook met de hand starten via de Actions-tab
+  workflow_dispatch: {}
 
 permissions:
-  contents: write         # nodig om de digest terug te committen
+  contents: write
 
 jobs:
   digest:
@@ -27,12 +27,33 @@ jobs:
       - name: Bekendmakingen ophalen
         run: |
           mkdir -p digests
-          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$(date +%F).md"
+          DATUM=$(date +%F)
+          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM.md"
+          echo "DATUM=$DATUM" >> "$GITHUB_ENV"
+          # digest inlezen als env-variabele voor de mailstap
+          {
+            echo "DIGEST<<__EINDE__"
+            cat "digests/$DATUM.md"
+            echo "__EINDE__"
+          } >> "$GITHUB_ENV"
 
       - name: Digest terugcommitten
         run: |
           git config user.name "bekendmakingen-bot"
           git config user.email "bot@users.noreply.github.com"
           git add digests/
-          git commit -m "Bekendmakingen $(date +%F)" || echo "Niets nieuws vandaag"
+          git commit -m "Bekendmakingen ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
+
+      - name: Brief mailen
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: Vastgoedbrief Nijmegen ${{ env.DATUM }}
+          body: ${{ env.DIGEST }}
