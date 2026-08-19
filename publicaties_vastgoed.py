@@ -21,10 +21,20 @@ from email.utils import parsedate_to_datetime
 import requests
 
 # --- CONFIG ---
+# Google News RSS-feeds. Elke zoekopdracht = 1 feed. Robuust en actueel.
+# Format: news.google.com/rss/search?q=<query>&hl=nl&gl=NL&ceid=NL:nl
+def _gnews(q):
+    from urllib.parse import quote
+    return f"https://news.google.com/rss/search?q={quote(q)}&hl=nl&gl=NL&ceid=NL:nl"
+
 FEEDS = [
-    ("Vastgoedjournaal", "https://vastgoedjournaal.nl/rss"),
-    ("Kadaster Vastgoedmarkt", "https://www.kadaster.nl/-/rss?p_l_id=17700&channelKey=vastgoedmarkt"),
-    ("CBS Bouwen en Wonen", "https://www.cbs.nl/nl-nl/rss/rss-feed?theme=bouwen+en+wonen"),
+    ("Woningmarkt NL", _gnews("Nederlandse woningmarkt")),
+    ("Wet betaalbare huur", _gnews('"wet betaalbare huur" OR "WWS"')),
+    ("Particuliere verhuur", _gnews("verhuurders OR particuliere huursector")),
+    ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
+    ("Verduurzaming huur", _gnews("verduurzaming huurwoning OR energielabel verhuur")),
+    ("Rente vastgoed", _gnews("hypotheekrente OR verhuurhypotheek")),
+    ("Box 3 vastgoed", _gnews('"box 3" vastgoed')),
 ]
 
 TREFWOORDEN = [
