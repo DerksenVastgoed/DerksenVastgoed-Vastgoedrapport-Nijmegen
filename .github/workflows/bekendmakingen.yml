@@ -66,6 +66,35 @@ jobs:
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
+      - name: Brief naar HTML converteren
+        run: |
+          pip install markdown
+          HTML_PAD="digests/${DATUM}-brief.html"
+          python -c "
+          import markdown, sys
+          md = open('${{ env.BRIEF_PAD }}', encoding='utf-8').read()
+          body = markdown.markdown(md, extensions=['tables', 'nl2br'])
+          css = '''
+          <style>
+            body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; color: #1a2830; line-height: 1.55; max-width: 780px; margin: 0 auto; padding: 20px; }
+            h1 { font-size: 22px; border-bottom: 2px solid #E0A458; padding-bottom: 6px; }
+            h2 { font-size: 17px; color: #12242c; margin-top: 28px; }
+            h3, h4 { font-size: 14px; margin-top: 18px; }
+            table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+            th, td { border: 1px solid #d0d7dc; padding: 6px 10px; text-align: left; font-size: 13px; }
+            th { background: #f2f5f7; }
+            a { color: #4a7a72; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            hr { border: none; border-top: 1px solid #d0d7dc; margin: 24px 0; }
+            em { color: #4a5b63; }
+            code { background: #f2f5f7; padding: 1px 4px; border-radius: 3px; }
+          </style>
+          '''
+          html = f'<!DOCTYPE html><html><head><meta charset=\"utf-8\">{css}</head><body>{body}</body></html>'
+          open('$HTML_PAD', 'w', encoding='utf-8').write(html)
+          "
+          echo "HTML_PAD=$HTML_PAD" >> "$GITHUB_ENV"
+
       - name: Digests + rentehistorie terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
@@ -85,4 +114,5 @@ jobs:
           from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
           subject: Vastgoedbrief Nijmegen ${{ env.DATUM }}
-          body: file://${{ env.BRIEF_PAD }}
+          html_body: file://${{ env.HTML_PAD }}
+          convert_markdown: false
