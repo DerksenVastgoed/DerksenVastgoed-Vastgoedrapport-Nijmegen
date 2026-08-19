@@ -36,6 +36,10 @@ jobs:
         run: |
           python buurten_tabel.py --uit "digests/${DATUM}-buurten.md" || echo "Tabel-stap overgeslagen"
 
+      - name: Rente ophalen
+        run: |
+          python rente_verhuurhypotheek.py --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
+
       - name: Brief samenstellen
         run: |
           BRIEF="digests/${DATUM}-brief.md"
@@ -46,6 +50,12 @@ jobs:
             echo ""
             echo "---"
             echo ""
+            if [ -f "digests/${DATUM}-rente.md" ]; then
+              cat "digests/${DATUM}-rente.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
             cat "digests/${DATUM}-bekendmakingen.md"
             echo ""
             echo "---"
@@ -60,11 +70,11 @@ jobs:
             echo "__EINDE__"
           } >> "$GITHUB_ENV"
 
-      - name: Digests terugcommitten
+      - name: Digests + rentehistorie terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add digests/
+          git add digests/ rente_historie.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
