@@ -2,7 +2,7 @@ name: Bekendmakingen Nijmegen
 
 on:
   schedule:
-    - cron: "0 5 * * 1-5"   # 05:00 UTC op werkdagen = 07:00 zomer / 06:00 winter NL
+    - cron: "0 5 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -40,6 +40,12 @@ jobs:
         run: |
           python rente_verhuurhypotheek.py --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
 
+      - name: Publicaties ophalen
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python publicaties_vastgoed.py --uit "digests/${DATUM}-publicaties.md" || echo "Publicaties-stap overgeslagen"
+
       - name: Brief samenstellen
         run: |
           BRIEF="digests/${DATUM}-brief.md"
@@ -60,6 +66,12 @@ jobs:
             echo ""
             echo "---"
             echo ""
+            if [ -f "digests/${DATUM}-publicaties.md" ]; then
+              cat "digests/${DATUM}-publicaties.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
             if [ -f "digests/${DATUM}-buurten.md" ]; then
               cat "digests/${DATUM}-buurten.md"
             fi
@@ -99,7 +111,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add digests/ rente_historie.json 2>/dev/null || true
+          git add digests/ rente_historie.json publicaties_gezien.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
