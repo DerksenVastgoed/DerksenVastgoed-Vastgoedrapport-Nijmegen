@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eigendomskaart ring Keizer Karelplein</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root{
+    --koop:#7FB0A5; --corp:#C9756B; --over:#D6A85C; --onbekend:#5a6b73;
+    --ink:#12242c; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  html,body{margin:0;height:100%;font-family:var(--sans)}
+  #map{position:absolute;inset:0}
+  .paneel{position:absolute;top:12px;left:12px;z-index:1000;background:#fff;
+    border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.18);padding:12px 14px;max-width:260px}
+  .paneel h1{font-size:15px;margin:0 0 3px}
+  .paneel p{font-size:12px;color:#4a5b63;margin:0}
+  .legenda{position:absolute;bottom:18px;left:12px;z-index:1000;background:#fff;
+    border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.18);padding:10px 12px;font-size:12.5px}
+  .legenda .rij{display:flex;align-items:center;gap:8px;margin:4px 0}
+  .sw{width:14px;height:14px;border-radius:3px}
+  .status{position:absolute;bottom:18px;right:12px;z-index:1000;background:#fff;
+    border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.18);padding:7px 11px;font-size:11.5px;color:#4a5b63}
+  .pop b{font-size:13px} .pop table{border-collapse:collapse;margin-top:6px;font-size:12px}
+  .pop td{padding:1px 6px 1px 0} .pop .num{font-family:var(--mono);text-align:right}
+  .dot{width:9px;height:9px;border-radius:2px;display:inline-block;margin-right:5px}
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<div class="paneel">
+  <h1>Eigendom per buurt</h1>
+  <p>Ring rond het Keizer Karelplein. Kleur = grootste eigenaarstype. Klik een buurt voor de percentages. Bron: CBS Wijk- en Buurtkaart via PDOK.</p>
+</div>
+
+<div class="legenda">
+  <div class="rij"><span class="sw" style="background:var(--koop)"></span> Koop overheerst</div>
+  <div class="rij"><span class="sw" style="background:var(--corp)"></span> Corporatie overheerst</div>
+  <div class="rij"><span class="sw" style="background:var(--over)"></span> Overige verhuur overheerst</div>
+  <div class="rij"><span class="sw" style="background:var(--onbekend)"></span> Onbekend / te klein</div>
+  <div class="rij" style="margin-top:6px"><span class="sw" style="background:#12242c;border-radius:50%"></span> Eigen pand</div>
+</div>
+
+<div class="status" id="status">Kaartgegevens laden...</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const KLEUR = {koop:"#7FB0A5", corp:"#C9756B", over:"#D6A85C", onbekend:"#5a6b73"};
+const KKP = [51.8422, 5.8556];
+
+// Jaar van de CBS-buurtkaart. Werkt een jaar niet, zet dit op het jaar ervoor.
+const JAAR = "2024";
+// Ruime bounding box rond het Keizer Karelplein: minLon,minLat,maxLon,maxLat (WGS84).
+const BBOX = "5.815,51.822,5.890,51.868";
+
+const map = L.map("map").setView(KKP, 14);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, attribution: "&copy; OpenStreetMap"
+}).addTo(map);
+L.circleMarker(KKP, {radius:5, color:"#111", weight:2, fillColor:"#E0A458", fillOpacity:1})
+  .addTo(map).bindTooltip("Keizer Karelplein");
+
+const statusEl = document.getElementById("status");
+function status(t){ statusEl.textContent = t; }
+
+// pak de eerste bestaande, geldige waarde uit een lijst mogelijke veldnamen
+function veld(props, namen){
+  for(const n of namen){
+    for(const key of [n, n.toUpperCase(), n.toLowerCase()]){
+      if(key in props){
+        let v = props[key];
+        if(v === null || v === undefined) continue;
+        if(typeof v === "string" && v.trim() === "") continue;
+        return v;
+      }
+    }
+  }
+  return null;
+}
+function pct(v){
+  if(v === null || v === undefined || v === "") return null;  // veld niet gevonden = onbekend
+  const n = Number(v);
+  if(!isFinite(n) || n < 0 || n > 100) return null;           // -99999999 e.d. = onbekend
+  return n;
+}
+
+function eigendom(props){
+  const koop = pct(veld(props, ["percentage_koopwoningen"]));
+  const corpHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_woningcorporaties"]));
+  const overHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_overige_verhuurders"]));
+  // De corp/over-percentages zijn van de huurvoorraad. Reken terug naar % van alle woningen.
+  const huur = koop === null ? null : 100 - koop;
+  const corp = (huur !== null && corpHuur !== null) ? Math.round(huur * corpHuur / 100) : null;
+  const over = (huur !== null && overHuur !== null) ? Math.round(huur * overHuur / 100) : null;
+  return {koop, corp, over};
+}
+function dominant(e){
+  const opties = [["koop",e.koop],["corp",e.corp],["over",e.over]].filter(o => o[1] !== null);
+  if(!opties.length) return "onbekend";
+  opties.sort((a,b) => b[1]-a[1]);
+  return opties[0][0];
+}
+
+function popupHtml(props, e){
+  const naam = veld(props, ["buurtnaam","bu_naam","naam"]) || "Buurt";
+  const won  = veld(props, ["aantal_woningen","woningvoorraad","woningen"]);
+  const woz  = veld(props, ["gemiddelde_woningwaarde","woningwaarde","wozwoning"]);
+  const rij = (label,val,kleur) => val===null ? "" :
+    `<tr><td><span class="dot" style="background:${kleur}"></span>${label}</td><td class="num">${val}%</td></tr>`;
+  let extra = "";
+  if(won && Number(won) > 0) extra += `<div style="margin-top:5px;color:#4a5b63">${Number(won).toLocaleString("nl-NL")} woningen`;
+  if(woz && Number(woz) > 0) extra += ` &middot; WOZ &euro;${Number(woz).toLocaleString("nl-NL")}`;
+  if(extra) extra += "</div>";
+  return `<div class="pop"><b>${naam}</b>
+    <table>
+      ${rij("Koop", e.koop, KLEUR.koop)}
+      ${rij("Corporatie", e.corp, KLEUR.corp)}
+      ${rij("Overige verhuur", e.over, KLEUR.over)}
+    </table>${extra}</div>`;
+}
+
+const url = `https://api.pdok.nl/cbs/wijken-en-buurten-${JAAR}/ogc/v1/collections/buurten/items`
+          + `?f=json&limit=500&bbox=${BBOX}`;
+
+fetch(url)
+  .then(r => { if(!r.ok) throw new Error("PDOK antwoord "+r.status); return r.json(); })
+  .then(geo => {
+    const feats = (geo.features || []).filter(f => {
+      const w = veld(f.properties||{}, ["water"]);
+      return !(w && String(w).toUpperCase().startsWith("J"));  // watervlakken weg
+    });
+    if(!feats.length) throw new Error("geen buurten in dit gebied");
+    L.geoJSON({type:"FeatureCollection", features:feats}, {
+      style: f => {
+        const e = eigendom(f.properties||{});
+        return {color:"#fff", weight:1, fillColor:KLEUR[dominant(e)], fillOpacity:0.55};
+      },
+      onEachFeature: (f, layer) => {
+        const e = eigendom(f.properties||{});
+        layer.bindPopup(popupHtml(f.properties||{}, e));
+        layer.on("mouseover", () => layer.setStyle({weight:3}));
+        layer.on("mouseout",  () => layer.setStyle({weight:1}));
+      }
+    }).addTo(map);
+    // zelfdiagnose: klopt de veldherkenning?
+    const p0 = feats[0].properties || {};
+    console.log("Beschikbare CBS-velden:", Object.keys(p0));
+    if(eigendom(p0).corp === null){
+      const k = Object.keys(p0).filter(x => /huur|koop|corp|verhuur|bezit|eigendom/i.test(x));
+      status("Let op: corporatie/overige niet herkend. Velden: " + (k.join(", ") || "geen"));
+    } else {
+      status(feats.length + " buurten geladen");
+    }
+  })
+  .catch(err => status("Buurten laden mislukt: " + err.message));
+
+// Eigen panden geocoden via de PDOK Locatieserver en als marker plaatsen
+const PANDEN = [
+  "Graafsedwarsstraat 58 Nijmegen",
+  "Graafsedwarsstraat 60 Nijmegen",
+  "Eerste Oude Heselaan 86 Nijmegen",
+  "Eerste Oude Heselaan 88 Nijmegen",
+];
+PANDEN.forEach(adres => {
+  const q = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
+          + "?q=" + encodeURIComponent(adres) + "&fq=type:adres&rows=1";
+  fetch(q).then(r => r.json()).then(d => {
+    const doc = d.response && d.response.docs && d.response.docs[0];
+    if(!doc || !doc.centroide_ll) return;
+    const m = doc.centroide_ll.match(/POINT\(([-\d.]+) ([-\d.]+)\)/);
+    if(!m) return;
+    const lon = parseFloat(m[1]), lat = parseFloat(m[2]);
+    L.circleMarker([lat, lon], {radius:7, color:"#111", weight:2, fillColor:"#12242c", fillOpacity:1})
+      .addTo(map).bindTooltip("Eigen pand: " + adres.replace(" Nijmegen",""));
+  }).catch(()=>{});
+});
+</script>
+</body>
+</html>
