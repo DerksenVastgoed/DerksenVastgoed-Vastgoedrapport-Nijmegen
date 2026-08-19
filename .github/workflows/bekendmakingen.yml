@@ -64,10 +64,12 @@ jobs:
               cat "digests/${DATUM}-buurten.md"
             fi
           } > "$BRIEF"
+          # Kies een uniek eindteken dat niet in de brief kan voorkomen
+          EOF_MARK="EOF_$(date +%s%N)"
           {
-            echo "BRIEF<<__EINDE__"
+            echo "BRIEF<<${EOF_MARK}"
             cat "$BRIEF"
-            echo "__EINDE__"
+            echo "${EOF_MARK}"
           } >> "$GITHUB_ENV"
 
       - name: Digests + rentehistorie terugcommitten
