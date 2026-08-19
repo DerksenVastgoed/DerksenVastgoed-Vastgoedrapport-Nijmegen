@@ -2,8 +2,7 @@ name: Bekendmakingen Nijmegen
 
 on:
   schedule:
-    # 05:00 UTC op werkdagen = 07:00 in de zomer, 06:00 in de winter (NL-tijd).
-    - cron: "0 5 * * 1-5"
+    - cron: "0 5 * * 1-5"   # 05:00 UTC op werkdagen = 07:00 zomer / 06:00 winter NL
   workflow_dispatch: {}
 
 permissions:
@@ -30,21 +29,43 @@ jobs:
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
-          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM.md"
+          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
-          # digest inlezen als env-variabele voor de mailstap
+
+      - name: Buurten-tabel bijwerken
+        run: |
+          python buurten_tabel.py --uit "digests/${DATUM}-buurten.md" || echo "Tabel-stap overgeslagen"
+
+      - name: Brief samenstellen
+        run: |
+          BRIEF="digests/${DATUM}-brief.md"
           {
-            echo "DIGEST<<__EINDE__"
-            cat "digests/$DATUM.md"
+            echo "# Vastgoedbrief Nijmegen - $(date +%d-%m-%Y)"
+            echo ""
+            echo "[Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html)"
+            echo ""
+            echo "---"
+            echo ""
+            cat "digests/${DATUM}-bekendmakingen.md"
+            echo ""
+            echo "---"
+            echo ""
+            if [ -f "digests/${DATUM}-buurten.md" ]; then
+              cat "digests/${DATUM}-buurten.md"
+            fi
+          } > "$BRIEF"
+          {
+            echo "BRIEF<<__EINDE__"
+            cat "$BRIEF"
             echo "__EINDE__"
           } >> "$GITHUB_ENV"
 
-      - name: Digest terugcommitten
+      - name: Digests terugcommitten
         run: |
-          git config user.name "bekendmakingen-bot"
+          git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
           git add digests/
-          git commit -m "Bekendmakingen ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
+          git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
       - name: Brief mailen
@@ -58,4 +79,4 @@ jobs:
           from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
           subject: Vastgoedbrief Nijmegen ${{ env.DATUM }}
-          body: ${{ env.DIGEST }}
+          body: ${{ env.BRIEF }}
