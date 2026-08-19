@@ -64,13 +64,7 @@ jobs:
               cat "digests/${DATUM}-buurten.md"
             fi
           } > "$BRIEF"
-          # Kies een uniek eindteken dat niet in de brief kan voorkomen
-          EOF_MARK="EOF_$(date +%s%N)"
-          {
-            echo "BRIEF<<${EOF_MARK}"
-            cat "$BRIEF"
-            echo "${EOF_MARK}"
-          } >> "$GITHUB_ENV"
+          echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
       - name: Digests + rentehistorie terugcommitten
         run: |
@@ -91,4 +85,4 @@ jobs:
           from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
           subject: Vastgoedbrief Nijmegen ${{ env.DATUM }}
-          body: ${{ env.BRIEF }}
+          body: file://${{ env.BRIEF_PAD }}
