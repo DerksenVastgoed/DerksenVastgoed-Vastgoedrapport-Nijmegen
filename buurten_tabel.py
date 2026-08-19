@@ -61,16 +61,17 @@ def _veld(p, namen):
 
 
 def _eigendom(p):
-    """Geeft koop, corp en over als % van ALLE woningen."""
+    """Geeft koop, corp, over en 'onbekend' als % van ALLE woningen."""
     koop = _pct(_veld(p, ["percentage_koopwoningen"]))
     corpH = _pct(_veld(p, ["perc_huurwoningen_in_bezit_woningcorporaties"]))
     overH = _pct(_veld(p, ["perc_huurwoningen_in_bezit_overige_verhuurders"]))
+    onb = _pct(_veld(p, ["percentage_woningen_met_eigendom_onbekend"]))
     if koop is None:
-        return None, None, None
+        return None, None, None, None
     huur = 100 - koop
     corp = round(huur * corpH / 100) if corpH is not None else None
     over = round(huur * overH / 100) if overH is not None else None
-    return round(koop), corp, over
+    return round(koop), corp, over, (round(onb) if onb is not None else None)
 
 
 def _buurt_props(feats, naam):
@@ -114,8 +115,8 @@ def render(rijen: list) -> str:
     kop = ["", "## Eigendom per buurt in je ring",
            f"_Bron: CBS Wijk- en Buurtkaart {JAAR_NU} via PDOK. "
            f"Trend = verschil met {JAAR_TREND} in procentpunten (koop-aandeel)._", "",
-           "| Buurt | Won. | Koop | Corp. | BV/overig | WOZ | Trend koop |",
-           "|---|---:|---:|---:|---:|---:|:--|"]
+           "| Buurt | Won. | Koop | Corp. | BV/overig | Onb. | WOZ | Trend koop |",
+           "|---|---:|---:|---:|---:|---:|---:|:--|"]
     for r in rijen:
         kop.append(
             f"| **{r['naam']}** ({r['zijde']}) "
@@ -123,7 +124,8 @@ def render(rijen: list) -> str:
             f"| {r['koop'] if r['koop'] is not None else '—'}% "
             f"| {r['corp'] if r['corp'] is not None else '—'}% "
             f"| {r['over'] if r['over'] is not None else '—'}% "
-            f"| {'€'+format(r['woz'],',').replace(',','.') if r['woz'] else '—'} "
+            f"| {r['onb'] if r['onb'] is not None else '—'}% "
+            f"| {'€'+format(r['woz']*1000,',').replace(',','.') if r['woz'] else '—'} "
             f"| {r['trend']} |"
         )
     kop += ["",
@@ -158,13 +160,13 @@ def main():
         if not p_nu:
             print(f"Waarschuwing: buurt {naam} niet gevonden in {JAAR_NU}", file=sys.stderr)
             continue
-        koop, corp, over = _eigendom(p_nu)
+        koop, corp, over, onb = _eigendom(p_nu)
         p_toen = _buurt_props(feats_toen, naam)
         koop_toen = _eigendom(p_toen)[0] if p_toen else None
         rijen.append({
             "naam": naam, "zijde": zijde,
             "won": _woningen(p_nu), "woz": _woz(p_nu),
-            "koop": koop, "corp": corp, "over": over,
+            "koop": koop, "corp": corp, "over": over, "onb": onb,
             "trend": _pijl(koop, koop_toen),
         })
 

@@ -91,11 +91,12 @@ function eigendom(props){
   const koop = pct(veld(props, ["percentage_koopwoningen"]));
   const corpHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_woningcorporaties"]));
   const overHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_overige_verhuurders"]));
+  const onbekend = pct(veld(props, ["percentage_woningen_met_eigendom_onbekend"]));
   // De corp/over-percentages zijn van de huurvoorraad. Reken terug naar % van alle woningen.
   const huur = koop === null ? null : 100 - koop;
   const corp = (huur !== null && corpHuur !== null) ? Math.round(huur * corpHuur / 100) : null;
   const over = (huur !== null && overHuur !== null) ? Math.round(huur * overHuur / 100) : null;
-  return {koop, corp, over};
+  return {koop, corp, over, onbekend};
 }
 function dominant(e){
   const opties = [["koop",e.koop],["corp",e.corp],["over",e.over]].filter(o => o[1] !== null);
@@ -112,13 +113,18 @@ function popupHtml(props, e){
     `<tr><td><span class="dot" style="background:${kleur}"></span>${label}</td><td class="num">${val}%</td></tr>`;
   let extra = "";
   if(won && Number(won) > 0) extra += `<div style="margin-top:5px;color:#4a5b63">${Number(won).toLocaleString("nl-NL")} woningen`;
-  if(woz && Number(woz) > 0) extra += ` &middot; WOZ &euro;${Number(woz).toLocaleString("nl-NL")}`;
+  if(woz && Number(woz) > 0){
+    // CBS geeft de WOZ in duizenden euro's (dus 394 = €394.000)
+    const bedrag = Number(woz) * 1000;
+    extra += ` &middot; WOZ &euro;${bedrag.toLocaleString("nl-NL")}`;
+  }
   if(extra) extra += "</div>";
   return `<div class="pop"><b>${naam}</b>
     <table>
       ${rij("Koop", e.koop, KLEUR.koop)}
       ${rij("Corporatie", e.corp, KLEUR.corp)}
       ${rij("Overige verhuur", e.over, KLEUR.over)}
+      ${rij("Eigendom onbekend", e.onbekend, KLEUR.onbekend)}
     </table>${extra}</div>`;
 }
 
