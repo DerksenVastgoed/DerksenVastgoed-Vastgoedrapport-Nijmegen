@@ -61,17 +61,18 @@ def _veld(p, namen):
 
 
 def _eigendom(p):
-    """Geeft koop, corp, over en 'onbekend' als % van ALLE woningen."""
+    """Geeft koop, corp, over en 'rest' als % van ALLE woningen; som is 100."""
     koop = _pct(_veld(p, ["percentage_koopwoningen"]))
     corpH = _pct(_veld(p, ["perc_huurwoningen_in_bezit_woningcorporaties"]))
     overH = _pct(_veld(p, ["perc_huurwoningen_in_bezit_overige_verhuurders"]))
-    onb = _pct(_veld(p, ["percentage_woningen_met_eigendom_onbekend"]))
     if koop is None:
         return None, None, None, None
     huur = 100 - koop
     corp = round(huur * corpH / 100) if corpH is not None else None
     over = round(huur * overH / 100) if overH is not None else None
-    return round(koop), corp, over, (round(onb) if onb is not None else None)
+    bekend = round(koop) + (corp or 0) + (over or 0)
+    rest = max(0, 100 - bekend)
+    return round(koop), corp, over, rest
 
 
 def _buurt_props(feats, naam):
@@ -115,7 +116,7 @@ def render(rijen: list) -> str:
     kop = ["", "## Eigendom per buurt in je ring",
            f"_Bron: CBS Wijk- en Buurtkaart {JAAR_NU} via PDOK. "
            f"Trend = verschil met {JAAR_TREND} in procentpunten (koop-aandeel)._", "",
-           "| Buurt | Won. | Koop | Corp. | BV/overig | Onb. | WOZ | Trend koop |",
+           "| Buurt | Won. | Koop | Corp. | BV/overig | Rest | WOZ | Trend koop |",
            "|---|---:|---:|---:|---:|---:|---:|:--|"]
     for r in rijen:
         kop.append(

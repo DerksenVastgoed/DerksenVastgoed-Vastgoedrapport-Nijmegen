@@ -91,11 +91,16 @@ function eigendom(props){
   const koop = pct(veld(props, ["percentage_koopwoningen"]));
   const corpHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_woningcorporaties"]));
   const overHuur = pct(veld(props, ["perc_huurwoningen_in_bezit_overige_verhuurders"]));
-  const onbekend = pct(veld(props, ["percentage_woningen_met_eigendom_onbekend"]));
   // De corp/over-percentages zijn van de huurvoorraad. Reken terug naar % van alle woningen.
   const huur = koop === null ? null : 100 - koop;
   const corp = (huur !== null && corpHuur !== null) ? Math.round(huur * corpHuur / 100) : null;
   const over = (huur !== null && overHuur !== null) ? Math.round(huur * overHuur / 100) : null;
+  // Onbekend = wat er overblijft, zodat de som altijd 100% is.
+  let onbekend = null;
+  if(koop !== null){
+    const bekend = koop + (corp || 0) + (over || 0);
+    onbekend = Math.max(0, 100 - bekend);
+  }
   return {koop, corp, over, onbekend};
 }
 function dominant(e){
@@ -124,7 +129,7 @@ function popupHtml(props, e){
       ${rij("Koop", e.koop, KLEUR.koop)}
       ${rij("Corporatie", e.corp, KLEUR.corp)}
       ${rij("Overige verhuur", e.over, KLEUR.over)}
-      ${rij("Eigendom onbekend", e.onbekend, KLEUR.onbekend)}
+      ${rij("Rest / onbekend", e.onbekend, KLEUR.onbekend)}
     </table>${extra}</div>`;
 }
 
