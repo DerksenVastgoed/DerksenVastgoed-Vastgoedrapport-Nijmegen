@@ -28,13 +28,22 @@ def _gnews(q):
     return f"https://news.google.com/rss/search?q={quote(q)}&hl=nl&gl=NL&ceid=NL:nl"
 
 FEEDS = [
+    # Markt en beleid
     ("Woningmarkt NL", _gnews("Nederlandse woningmarkt")),
     ("Wet betaalbare huur", _gnews('"wet betaalbare huur" OR "WWS"')),
     ("Particuliere verhuur", _gnews("verhuurders OR particuliere huursector")),
-    ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
-    ("Verduurzaming huur", _gnews("verduurzaming huurwoning OR energielabel verhuur")),
-    ("Rente vastgoed", _gnews("hypotheekrente OR verhuurhypotheek")),
     ("Box 3 vastgoed", _gnews('"box 3" vastgoed')),
+    # Regio
+    ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
+    # Verduurzaming
+    ("Verduurzaming huur", _gnews("verduurzaming huurwoning OR energielabel verhuur")),
+    # Financiering
+    ("Rente vastgoed", _gnews("hypotheekrente OR verhuurhypotheek")),
+    # Kwartaal-updates van grote spelers (vangen automatisch nieuwe rapporten)
+    ("Brainbay Woningwaarde-index", _gnews("Brainbay OR NVM woningmarktcijfers")),
+    ("Pararius huurmarkt", _gnews("Pararius huurprijs OR huurmarkt")),
+    ("Rabobank Woningmarkt", _gnews("Rabobank woningmarkt kwartaalbericht")),
+    ("ABN AMRO Woningmarkt", _gnews("ABN AMRO woningmarkt sector update")),
 ]
 
 TREFWOORDEN = [
@@ -47,7 +56,7 @@ TREFWOORDEN = [
     "opkoopbescherming", "huurbescherming",
     "energielabel", "verduurzaming", "isolatie", "warmtepomp", "warmtenet",
     "nijmegen", "arnhem-nijmegen", "arnhem", "gelderland",
-    "dynamis", "capital value", "nvm", "brainbay", "pararius",
+    "dynamis", "capital value", "nvm", "brainbay", "pararius", "rabobank", "abn amro", "woningmarktcijfers", "woningwaarde", "kwartaalbericht", "sector update",
     "abn amro woningmarkt", "rabobank woningmarkt", "dnb",
 ]
 
