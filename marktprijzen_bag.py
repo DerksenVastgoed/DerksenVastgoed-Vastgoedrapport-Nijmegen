@@ -144,22 +144,34 @@ def pdok_lookup(id_):
 
 
 def verrijk(woning, cache):
-    """Voeg oppervlakte, postcode, buurt toe uit BAG. Cache uses adres+plaats key."""
+    """Voeg oppervlakte, postcode, buurt toe uit BAG. Cache uses adres+plaats key.
+    Gefaalde entries worden bij volgende run opnieuw geprobeerd (niet permanent gecached)."""
     sleutel = f"{woning['adres']}|{woning['plaats']}"
-    if sleutel in cache:
+    if sleutel in cache and not cache[sleutel].get("gefaald"):
+        # Alleen succesvolle entries hergebruiken
         c = cache[sleutel]
         woning.update(c)
         return woning
-    # Nieuwe lookup
+    # Nieuwe of eerder gefaalde lookup - opnieuw proberen
     vrij = pdok_free(woning["adres"], woning["plaats"])
-    if not vrij or not vrij.get("id"):
-        cache[sleutel] = {"gefaald": True}
+    if not vrij:
+        print(f"  FAIL free: {woning['adres']} - geen respons", file=sys.stderr)
+        cache[sleutel] = {"gefaald": True, "reden": "free_geen_respons"}
+        return woning
+    if not vrij.get("id"):
+        print(f"  FAIL free: {woning['adres']} - geen id in respons", file=sys.stderr)
+        cache[sleutel] = {"gefaald": True, "reden": "free_geen_id", **vrij}
         return woning
     time.sleep(RATE_LIMIT_SEC)
     detail = pdok_lookup(vrij["id"])
     time.sleep(RATE_LIMIT_SEC)
     if not detail:
-        cache[sleutel] = {"gefaald": True, **vrij}
+        print(f"  FAIL lookup: {woning['adres']} - id={vrij['id']}", file=sys.stderr)
+        cache[sleutel] = {"gefaald": True, "reden": "lookup_geen_respons", **vrij}
+        return woning
+    if not detail.get("oppervlakte"):
+        print(f"  FAIL oppervlakte: {woning['adres']} - lookup ok maar geen opp", file=sys.stderr)
+        cache[sleutel] = {"gefaald": True, "reden": "geen_oppervlakte", **vrij, **detail}
         return woning
     verrijking = {**vrij, **detail}
     cache[sleutel] = verrijking
