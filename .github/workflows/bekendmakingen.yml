@@ -47,6 +47,8 @@ jobs:
           python publicaties_vastgoed.py --uit "digests/${DATUM}-publicaties.md" || echo "Publicaties-stap overgeslagen"
 
       - name: Marktprijzen (BAG) verrijken
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
         run: |
           python marktprijzen_bag.py --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
