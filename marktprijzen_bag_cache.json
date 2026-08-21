@@ -1,2030 +1,678 @@
 {
   "Mariënburg 20|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-74fec3252b8825b9e54b6fe996b04a14",
-    "postcode": "6511PS",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Mariënburg 20, 6511PS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Eilbrachtstraat 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b8adfe2122a8e124556057287e3e8cdb",
-    "postcode": "6511LX",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Eilbrachtstraat 6, 6511LX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Berchenstraat 28|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-3a0eb050ec2a3b8da621a7f135ad81ba",
-    "postcode": "6511BD",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "van Berchenstraat 28, 6511BD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Berchenstraat 28A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d6196fb726d9e770e8d92e3f7d7ad0f0",
-    "postcode": "6511BD",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "van Berchenstraat 28A, 6511BD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Nonnenplaats 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d11cd6fe4c4ce21cf88c997c4b552e7c",
-    "postcode": "6511VM",
-    "buurtnaam": "Benedenstad",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Nonnenplaats 6, 6511VM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Ziekerstraat 10H|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-181a5bcf7b9ae4dbaa409b2e687e54fe",
-    "postcode": "6511LH",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Ziekerstraat 10H, 6511LH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Kronenburgersingel 267A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c6dda993fa31eb38697c85439a378ada",
-    "postcode": "6511AS",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Kronenburgersingel 267A, 6511AS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bottelstraat 20|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0f44ca9bfa363b11b136cd60496eca13",
-    "postcode": "6511XB",
-    "buurtnaam": "Benedenstad",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Bottelstraat 20, 6511XB Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Molenstraat 41D|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-66cdff4b309801224e1354bdefcaab67",
-    "postcode": "6511HA",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Molenstraat 41D, 6511HA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Kronenburgerplaats 31|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-08f75d7323c3a2a94f44bb26aa224cc1",
-    "postcode": "6511AW",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Kronenburgerplaats 31, 6511AW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Karrengas 54|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9a5227e28dfeffa0dd4d11c88e43f745",
-    "postcode": "6511GS",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Karrengas 54, 6511GS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Hertogstraat 119A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-8cfeab7fa0ef4425d456d5149722bba6",
-    "postcode": "6511RX",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Hertogstraat 119A, 6511RX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groot Bethlehem 9|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-24a9e6dcf69e931ea2d3f27290322829",
-    "postcode": "6511CZ",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Groot Bethlehem 9, 6511CZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Plein 1944 168|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bbb17c03db9d54a2355af846ee97ecca",
-    "postcode": "6511JH",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Plein 1944 168, 6511JH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Priemstraat 17|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-14d976b46d5834cba3eed3d67cedea87",
-    "postcode": "6511WC",
-    "buurtnaam": "Benedenstad",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Priemstraat 17, 6511WC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Welderenstraat 18|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9713b2cc9541b04de6d4a74e310d1ab5",
-    "postcode": "6511ML",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "van Welderenstraat 18, 6511ML Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Arsenaalplaats 33|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-939aff31a5d26efa254df8adb284b714",
-    "postcode": "6511PD",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Arsenaalplaats 33, 6511PD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Hertogstraat 65|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-18a51a1f479150c424c217fe31e2be3a",
-    "postcode": "6511RW",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Hertogstraat 65, 6511RW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Ziekerstraat 10D|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bea6eaa144e72319be0032ac68d7b7de",
-    "postcode": "6511LH",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Ziekerstraat 10D, 6511LH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Nieuwe Marktstraat 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-27342dfd43295bedfcdcde4477122481",
-    "postcode": "6511AA",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Nieuwe Marktstraat 6, 6511AA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "St. Canisiussingel 14|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-1ea6fb6bfc31227b32220f614bdb946f",
-    "postcode": "6511TH",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "St. Canisiussingel 14, 6511TH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Molenstraat 41K|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-debd86895edf87acd93c0cea16decc31",
-    "postcode": "6511HA",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Molenstraat 41K, 6511HA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Molenstraat 49B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-55f1a1ede161a8cbf8169d6fa7b75f0d",
-    "postcode": "6511HA",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Molenstraat 49B, 6511HA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Eerste Walstraat 3B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-7772a9a416f0e78c418af11b0fd387b2",
-    "postcode": "6511GE",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Eerste Walstraat 3B, 6511GE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Plein 1944 86B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d8fd148c69a251857be3fb14f06b0927",
-    "postcode": "6511JE",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Plein 1944 86B, 6511JE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Nieuwe Markt 90|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-502ae805502addfb987faf1dfd0c74f4",
-    "postcode": "6511XM",
-    "buurtnaam": "Benedenstad",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Nieuwe Markt 90, 6511XM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Begijnenstraat 13|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d1b9b446c215d24c3312e335be3f7f6f",
-    "postcode": "6511WN",
-    "buurtnaam": "Benedenstad",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Begijnenstraat 13, 6511WN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Raadhuisstraat 20|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-805d29077ca29d9586f081c34d2d6fb8",
-    "postcode": "6511PV",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Raadhuisstraat 6A-20, 6511PV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Wintersoord 13|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6db3ced7cbc0307734cc3a6f3d5af37a",
-    "postcode": "6511RP",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Wintersoord 13, 6511RP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Smetiusstraat 4D|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-019f34e6ceb5588377bcc0eab8c53c34",
-    "postcode": "6511ES",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Smetiusstraat 4D, 6511ES Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Goorstraat 30|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-34c96cf65f80464d83911e91c36a7fd8",
-    "postcode": "6512ED",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Goorstraat 30, 6512ED Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Burg. Hustinxstraat 246|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c1fd8dd4b7891ea2644dd2edd360cd0e",
-    "postcode": "6512AC",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Burg. Hustinxstraat 246, 6512AC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Burg. Hustinxstraat 300|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b0f75d93127f16d2deb245d121f29118",
-    "postcode": "6512AC",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Burg. Hustinxstraat 300, 6512AC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "de Ruyterstraat 135|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-3b3bb14becd187ec1af0ef1bb150fe1c",
-    "postcode": "6512GC",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "de Ruyterstraat 135, 6512GC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "de Ruyterstraat 74|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b8eceafdc134a22df96000765cfbd07b",
-    "postcode": "6512GE",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "de Ruyterstraat 74, 6512GE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "de Ruyterstraat 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-f274ef3517d8d6923429469bd5ba15ad",
-    "postcode": "6512GE",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "de Ruyterstraat 6, 6512GE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "St. Stephanusstraat 6A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9f00a9036e828ac8fe657f4ff5a80d93",
-    "postcode": "6512HT",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "St. Stephanusstraat 6A, 6512HT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "St. Stephanusstraat 28|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6784912fe875a52ef388cef216305b03",
-    "postcode": "6512HV",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "St. Stephanusstraat 28, 6512HV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "St. Stephanusstraat 56|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-8f37249bb7c653fc55c1ab272b6390d0",
-    "postcode": "6512HW",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "St. Stephanusstraat 56, 6512HW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "St. Stephanusstraat 124|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-29de5ab25b947c82268c2e932135bdcc",
-    "postcode": "6512HX",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "St. Stephanusstraat 124, 6512HX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Vondelstraat 57A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-cea62f4b50cea4071fd589abc6ec204b",
-    "postcode": "6512BC",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Vondelstraat 57A, 6512BC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Graafseweg 35E|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0c1cc3b3f2c63d024ef2d51511c6c1f0",
-    "postcode": "6512BR",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Graafseweg 35E, 6512BR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Graafseweg 47K|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-f5624410d0ae827750717a0ba3420054",
-    "postcode": "6512BR",
-    "buurtnaam": "Bottendaal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Graafseweg 47K, 6512BR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Coehoornstraat 69|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4d46e14d83997d2509d7594fa41fca23",
-    "postcode": "6521CC",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Coehoornstraat 69, 6521CC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groesbeeksedwarsweg 78|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a617f01c31234650467fac5df10f4667",
-    "postcode": "6521DN",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Groesbeeksedwarsweg 78, 6521DN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groesbeeksedwarsweg 55|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-57e6feaa6a31838abd17237ed0057b40",
-    "postcode": "6521DA",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Groesbeeksedwarsweg 55, 6521DA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groesbeeksedwarsweg 211|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-48b7ea70137128f9cd20c191c5ada68a",
-    "postcode": "6521DH",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Groesbeeksedwarsweg 211, 6521DH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groesbeeksedwarsweg 133|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-cfde67f52ba21b69e85aac1a9818f764",
-    "postcode": "6521DD",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Groesbeeksedwarsweg 133, 6521DD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Rembrandtstraat 45|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-99d5a22b7ca09353dbc9fef9ebd6010a",
-    "postcode": "6521MB",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Rembrandtstraat 45, 6521MB Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bijleveldsingel 57|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bd308a3181f3bcfdc1159ebdb7f72b12",
-    "postcode": "6521AP",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Bijleveldsingel 57, 6521AP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prins Bernhardstraat 59|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c6de873fc058e937b4197fbd849499a7",
-    "postcode": "6521AD",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Prins Bernhardstraat 59, 6521AD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Ruisdaelstraat 38|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-ade94c8f188244cd21b4148995f888f4",
-    "postcode": "6521LE",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Ruisdaelstraat 38, 6521LE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Heutszstraat 55|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-27f559e58dd33412a6e1cef6e57f60ec",
-    "postcode": "6521CT",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Heutszstraat 55, 6521CT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Heutszstraat 57|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4be7db70a44b1303944672b07c55bb73",
-    "postcode": "6521CT",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Heutszstraat 57, 6521CT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prins Hendrikstraat 73|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a39afd625538f2b593e9e033c4f5fe46",
-    "postcode": "6521AX",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Prins Hendrikstraat 73, 6521AX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dommer van Poldersveldtweg 13|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2f89f2fc5c71983573918f3c6bf770bf",
-    "postcode": "6521ND",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Dommer van Poldersveldtweg 12A-13, 6521ND Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dommer van Poldersveldtweg 40|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9ce9b8a2f45bf87876de932ab63324e6",
-    "postcode": "6523DA",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Dommer van Poldersveldtweg 40, 6523DA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dommer van Poldersveldtweg 42|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a48a8b3b060e32eb028fb5c5968e0ff0",
-    "postcode": "6523DA",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Dommer van Poldersveldtweg 42, 6523DA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Nispenstraat 186|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-36380d67841544bccdccf5eafd304672",
-    "postcode": "6521KS",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Nispenstraat 186, 6521KS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Tooropstraat 133|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b03f5bd36f77ccda4c1937b689147a86",
-    "postcode": "6521NK",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Tooropstraat 133, 6521NK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Tooropstraat 161|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-fbd8aefb89fcd3dc0e8b4cf1f13f2763",
-    "postcode": "6521NL",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Tooropstraat 161, 6521NL Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Tooropstraat 168|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-360aebb229aabaef5db9cfc29bb57fd6",
-    "postcode": "6521NW",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Tooropstraat 168, 6521NW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Tooropstraat 201|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9deefac448d45d5305c50a9fe5baa950",
-    "postcode": "6521NN",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Tooropstraat 201, 6521NN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Tooropstraat 195|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4dd6d9fc0d052b858754e9c5484d8a76",
-    "postcode": "6521NM",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Tooropstraat 195, 6521NM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Hobbemastraat 5|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a24f1d03e698f9d71d0b10cfb65fbf13",
-    "postcode": "6521LH",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Hobbemastraat 5, 6521LH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Koolemans Beynenstraat 32|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-48289ec874197b67909e02c9e889ff07",
-    "postcode": "6521EV",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Koolemans Beynenstraat 32, 6521EV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Koolemans Beynenstraat 120|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9630915233a2c814dd29c820bc08937a",
-    "postcode": "6521EX",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Koolemans Beynenstraat 120, 6521EX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Acaciastraat 7|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a20f8dec7998802076edc202e5938b90",
-    "postcode": "6521NE",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Acaciastraat 7, 6521NE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van den Havestraat 95|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-af4d2814b57b3a4a6be28e26a81dee4c",
-    "postcode": "6521JR",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van den Havestraat 95, 6521JR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van den Havestraat 17|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c3d9d9f3235cb062515e36a385c1d565",
-    "postcode": "6521JN",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van den Havestraat 17, 6521JN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Heydenrijckstraat 10|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d4cbae4f3d074ebed06c03ce18a7d5aa",
-    "postcode": "6521LN",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Heydenrijckstraat 10, 6521LN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Heydenrijckstraat 74|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0d5340839ccf722ebbfc06978b44f522",
-    "postcode": "6521LR",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Heydenrijckstraat 74, 6521LR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Nispenstraat 23|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-69be51ebc3d8223ed0a593d16d625b22",
-    "postcode": "6521KJ",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Nispenstraat 23, 6521KJ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bijleveldsingel 20 Bb|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-30bffb433eee9cb315aa092cd4e7f143",
-    "postcode": "6521AT",
-    "buurtnaam": "Stadscentrum",
-    "wijknaam": "Nijmegen-Centrum",
-    "weergavenaam": "Bijleveldsingel 20B-B, 6521AT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prins Hendrikstraat 77|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d978921203fd87d23182f87c07a45307",
-    "postcode": "6521AX",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Prins Hendrikstraat 77, 6521AX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Staringstraat 25|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-ad59d408ad637b3267f84f6e514f3ce2",
-    "postcode": "6521AH",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Staringstraat 25, 6521AH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Daalseweg 185A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6c571653eb7b693be672d84f70000829",
-    "postcode": "6521GH",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Daalseweg 185A, 6521GH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Daalseweg 185C|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b0bcfee607b487c5357e6b995a04503f",
-    "postcode": "6521GH",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Daalseweg 185C, 6521GH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Daalseweg 232D|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-3bde375cae4b25ccd3048c67bc529591",
-    "postcode": "6521GR",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Daalseweg 232D, 6521GR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Daalseweg 238A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4c0cfa94c4d4e1734c4a96b8374cdbf3",
-    "postcode": "6521GR",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Daalseweg 238A, 6521GR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Gorisstraat 23|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-18e5ccd56330fa6eaf480cd8c429d201",
-    "postcode": "6521CG",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Gorisstraat 23, 6521CG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Ubbergseveldweg 17|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-424f33e31b46bf25a475b0618483df77",
-    "postcode": "6522HA",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Ubbergseveldweg 17, 6522HA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Berg en Dalseweg 218|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-74fe4dd7aadc5e998292122866aa93e0",
-    "postcode": "6522CE",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Berg en Dalseweg 218, 6522CE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Berg en Dalseweg 286|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-581965b06e9b89e27e8c5e9e1c3a55f9",
-    "postcode": "6522CN",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Berg en Dalseweg 286, 6522CN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Berg en Dalseweg 256|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-65b07d2b11fbb4154acf0c27dfe00fe9",
-    "postcode": "6522CL",
-    "buurtnaam": "Hengstdal",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Berg en Dalseweg 256, 6522CL Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Graadt van Roggenstraat 49|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0efc0177e10f700abd5306aabee7d0ee",
-    "postcode": "6522AW",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Graadt van Roggenstraat 49, 6522AW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Graadt van Roggenstraat 79|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bdfc28a9332c8446201d405dfeac7e96",
-    "postcode": "6522AW",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Graadt van Roggenstraat 79, 6522AW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Graadt van Roggenstraat 143|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bea950b2d73c64744b290d96fe14ce46",
-    "postcode": "6522AX",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Graadt van Roggenstraat 143, 6522AX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Jan van Goyenstraat 40|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-fe90541c3aa4d0f0ea8b65686756b46f",
-    "postcode": "6522EW",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Jan van Goyenstraat 40, 6522EW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Oude Ubbergseweg 35|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d61f99bb3f05d524f9bbe88d391f51bf",
-    "postcode": "6522KE",
-    "buurtnaam": "Ooyse Schependom",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Oude Ubbergseweg 35, 6522KE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Oude Ubbergseweg 41|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9689702694bcad960c4976b5a86b3a0a",
-    "postcode": "6522KE",
-    "buurtnaam": "Ooyse Schependom",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Oude Ubbergseweg 41, 6522KE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Caesarstraat 8|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-5fa6b4092fe0ff13beca0760770905d2",
-    "postcode": "6522LG",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Caesarstraat 8, 6522LG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Mr. Franckenstraat 40|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6d2f5cd3d1b92488279ac75fc95c832f",
-    "postcode": "6522AE",
-    "buurtnaam": "Hunnerberg",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Mr. Franckenstraat 40, 6522AE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prof. Molkenboerstraat 30|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-dc647a45f9a9a8814f724efa0df5afde",
-    "postcode": "6524RP",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Professor Molkenboerstraat 30, 6524RP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Fransestraat 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-76d35cc8a1d3c159dc78c6dbd5619d5f",
-    "postcode": "6524JA",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Fransestraat 6, 6524JA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Van Spaenstraat 20|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2665338e3ee42aa18d5fe9b0d0e14b06",
-    "postcode": "6524HM",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Spaenstraat 20, 6524HM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Van Spaenstraat 20A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c418a71171001255b94f3db2eec21d7c",
-    "postcode": "6524HM",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Spaenstraat 20A, 6524HM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Van Spaenstraat 20B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-74a7e33f66e14c4d53c677b8ac917efd",
-    "postcode": "6524HM",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Spaenstraat 20B, 6524HM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Borneostraat 1|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-ac2fd86990b4d0a9f3bfab60fcb7f472",
-    "postcode": "6524LA",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Borneostraat 1, 6524LA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Borneostraat 1A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-28a85e34caa49cd07f26094a97a5272e",
-    "postcode": "6524LA",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Borneostraat 1A, 6524LA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Borneostraat 1C|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c2321317187af0a70cd68038dc169807",
-    "postcode": "6524LA",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Borneostraat 1C, 6524LA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Borneostraat 3|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-98c7a23bbc446207ddec2b2a7e27e0fb",
-    "postcode": "6524LA",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Borneostraat 3, 6524LA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Molukkenstraat 168|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6bb369705ce681154899c66312049f9a",
-    "postcode": "6524NJ",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Molukkenstraat 168, 6524NJ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Delistraat 67|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6cde976b49d2f7f4228a364124a8bc53",
-    "postcode": "6524KN",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Delistraat 67, 6524KN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Timorstraat 6|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-7881c36c19b8b5ab0fbdd2c672c1d431",
-    "postcode": "6524KB",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Timorstraat 6, 6524KB Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Timorstraat 8|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c2790f01b1933f986338c8925f30975c",
-    "postcode": "6524KB",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Timorstraat 8, 6524KB Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Athlonestraat 2|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-927edccff5e5b3979a113d4b56cdc36e",
-    "postcode": "",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Athlonestraat 2A, Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Atjehstraat 15|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-575e1b164fb70ec33032dd5f86564aa3",
-    "postcode": "6524KT",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Atjehstraat 15, 6524KT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Atjehstraat 55|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0af75910a59b76ec6f6de9aaed9aa4d5",
-    "postcode": "6524KV",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Atjehstraat 55, 6524KV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Fagelstraat 44|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-79abf2af9ce76ee7546600ef674b87bc",
-    "postcode": "6524CG",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Fagelstraat 44, 6524CG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Fagelstraat 42|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c947edbae818d15bcbf224ef25200bd6",
-    "postcode": "6524CG",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Fagelstraat 42, 6524CG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Johannes Vijghstraat 6B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-84c37851fe96412b05d83d6ec956af9b",
-    "postcode": "6524BR",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Johannes Vijghstraat 6B, 6524BR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Johannes Vijghstraat 26|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-f151da51af94f6a87722c6f1b9fd49ac",
-    "postcode": "6524BS",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Johannes Vijghstraat 26, 6524BS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Slichtenhorststraat 38A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-e5bd18b500c28aa168cb47acc3dab89b",
-    "postcode": "6524JR",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Slichtenhorststraat 38A, 6524JR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Slichtenhorststraat 44|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-008238733938cd386b7daf80dcc0f20d",
-    "postcode": "6524JR",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Slichtenhorststraat 44, 6524JR Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "van Gentstraat 68|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a2fc22b51057ad1f8532762014d19353",
-    "postcode": "6524BE",
-    "buurtnaam": "Altrade",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "van Gentstraat 68, 6524BE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prof Hoogveldstraat 13|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-33667aa0b12c928ad708d7bf38418f0a",
-    "postcode": "6524PK",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Professor Hoogveldstraat 13, 6524PK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Sumatraplein 24|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-5b551e8e78de5c787856d45d02f29100",
-    "postcode": "6524KH",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Sumatraplein 24, 6524KH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Javastraat 84|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-7fcb443e21423284b9a47110242c314d",
-    "postcode": "6524MG",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Javastraat 84, 6524MG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Madoerastraat 1|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-92278d05c5d1a317134add2ed4935de3",
-    "postcode": "6524LG",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Madoerastraat 1, 6524LG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Madoerastraat 9|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-acf3cd3427bf3427df0fe4fa7299f8c3",
-    "postcode": "6524LG",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Madoerastraat 9, 6524LG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Prof Regoutstraat 1B|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-e073ee405c7a16e5e8bc67b0ae240f4e",
-    "postcode": "6524RV",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Professor Regoutstraat 1B, 6524RV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Groesbeekseweg 103D|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-ce036be9bafc65eeafdc4e2dc27d5ab6",
-    "postcode": "6524CS",
-    "buurtnaam": "Galgenveld",
-    "wijknaam": "Nijmegen-Oost",
-    "weergavenaam": "Groesbeekseweg 103D, 6524CS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Eerste Oude Heselaan 96|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9524b049247fbff2d8f61c1e13eb2717",
-    "postcode": "6541PC",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Eerste Oude Heselaan 96, 6541PC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Marialaan 111|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2a7b990bbf79f0c92e9bf5f5df142e3b",
-    "postcode": "6541RD",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Marialaan 111, 6541RD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Marialaan 131|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-eba264684099ce01567b46d88e2e9426",
-    "postcode": "6541RD",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Marialaan 131, 6541RD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Marialaan 73|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-88fbec2cd30e275c49c7f811757ef048",
-    "postcode": "6541RC",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Marialaan 73, 6541RC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Marialaan 151|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a8dc92beb1f882c0990c4264635b3b3b",
-    "postcode": "6541RE",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Marialaan 151, 6541RE Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Boomvalkstraat 13|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d889034d27ce5e5a04258d46ceea2a6c",
-    "postcode": "6541RV",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Boomvalkstraat 13, 6541RV Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Boomvalkstraat 18|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-40fa0ec8d8e4d09528208280779bc07e",
-    "postcode": "6541RT",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Boomvalkstraat 18, 6541RT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Waalbandijk 459|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-fde4c3a08042eca12737d8ec117c73b2",
-    "postcode": "6541AA",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Waalbandijk 459, 6541AA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Waalbandijk 177|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4c30470d310425e1f236f35d71a43bd2",
-    "postcode": "6541AA",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Waalbandijk 177, 6541AA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Waalbandijk 479|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-683295500576e644d915b22acad90afc",
-    "postcode": "6541AA",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Waalbandijk 479, 6541AA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Weurtseweg 252|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-b4bc554e41b672e7e2f0905c5c424788",
-    "postcode": "6541BD",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Weurtseweg 252, 6541BD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Biezendwarsstraat 48|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a591f29c4ce20ad71085850d3f8ee611",
-    "postcode": "6541ZH",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Biezendwarsstraat 48, 6541ZH Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Biezenstraat 31|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-e6d480b9ab7553a2c11c9c5079932d84",
-    "postcode": "6541ZN",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Biezenstraat 31, 6541ZN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dokstraat 43|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2f499a2c08bc81cd0a2de9ce6b8ee74d",
-    "postcode": "6541EZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Dokstraat 43, 6541EZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dokstraat 61|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-f36eaa5ef61c9d96ff12fe77c9dfec4b",
-    "postcode": "6541EZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Dokstraat 61, 6541EZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dokstraat 89|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6b5811cb4924e2c27b3ea232eddbc4a7",
-    "postcode": "6541EZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Dokstraat 89, 6541EZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dokstraat 91|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-9a430453dacacb728f36c8e48fc22346",
-    "postcode": "6541EZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Dokstraat 91, 6541EZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dokstraat 127|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-c263f899ff1c54f6b9c864a54586db8c",
-    "postcode": "6541EZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Dokstraat 127, 6541EZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Voorstadslaan 62|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-0fc00ad8b02f52b2eaea4a76b2fa02e3",
-    "postcode": "6541ST",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Voorstadslaan 62, 6541ST Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Voorstadslaan 14|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2b8f8fca38fcc736e74d5c60704b1f6e",
-    "postcode": "6541AC",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Voorstadslaan 2A-14, 6541AC Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Voorstadslaan 72|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-729ea9a29698aa744952e43962b382f6",
-    "postcode": "6541ST",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Voorstadslaan 72, 6541ST Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Albert Trouwborststraat 11|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-54c873e61323cd8a568de2cfb805c458",
-    "postcode": "6541GS",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Albert Trouwborststraat 11, 6541GS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Jan Nieraethstraat 84|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-5ec58bfaa2bb41065459f49dbd7c7936",
-    "postcode": "6541GA",
-    "buurtnaam": "Haven- en industrieterrein",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Jan Nieraethstraat 84, 6541GA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Waterstraat 24|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-451b0e8466c1e6b4743389d6219e9960",
-    "postcode": "6541TK",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Waterstraat 24, 6541TK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Waterstraat 162|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-acc2d2d5c99641300292a1febddc0c72",
-    "postcode": "6541TP",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Waterstraat 162, 6541TP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "IJsselstraat 11|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a99e72ba572254a5828522b71785a0e8",
-    "postcode": "6541XT",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "IJsselstraat 11, 6541XT Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Havenweg 34|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-f9b2006a5cc118068fb5802be3d6136d",
-    "postcode": "6541AD",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Havenweg 34, 6541AD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Havenweg 70|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-1d7bf856bbfc8f94ee5dda5977d9b50c",
-    "postcode": "6541AD",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Havenweg 70, 6541AD Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Zwaluwstraat 7|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2bcce705664f1202c89d6b23f695fb47",
-    "postcode": "6541NZ",
-    "buurtnaam": "Biezen",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Zwaluwstraat 7, 6541NZ Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Laan van Oost-Indië 327|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a53946846909154be6ba775140e03db0",
-    "postcode": "6541GX",
-    "buurtnaam": "Haven- en industrieterrein",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Laan van Oost-Indië 327, 6541GX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Patrijsstraat 48|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-1dfffa90dc83d7fecae80aac0ee77082",
-    "postcode": "6542TN",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Patrijsstraat 48, 6542TN Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosbesstraat 10|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d566846a31992f13955736be1825a589",
-    "postcode": "6542NS",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosbesstraat 10, 6542NS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosbesstraat 6E|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a3d77e0110091940dc53f9f31c927fb7",
-    "postcode": "6542NS",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosbesstraat 6E, 6542NS Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosbesstraat 21|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-d6fd00690e035710ea500fcc54478910",
-    "postcode": "6542NL",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosbesstraat 21, 6542NL Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosbesstraat 67|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-bfadbcf53103ddb42b9d3372e98143f4",
-    "postcode": "6542NM",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosbesstraat 67, 6542NM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosduifstraat 18|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-989388d52fa0f9e6fd6bf8b123f44d01",
-    "postcode": "6542TP",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosduifstraat 18, 6542TP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Bosduifstraat 16|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-91725d8041733d0fc3731c39dc718a1b",
-    "postcode": "6542TP",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Bosduifstraat 16, 6542TP Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Kamperfoeliestraat 30|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6b44e41f8bf6677307184b803949f4ec",
-    "postcode": "6542LX",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Kamperfoeliestraat 30, 6542LX Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Molenweg 42|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-73566851dc236519f75ae2dc01b8e4ab",
-    "postcode": "6542PW",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Molenweg 42, 6542PW Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dikkeboomweg 36|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-6f037434ac1b24a8ab9b43664404fe11",
-    "postcode": "6542RK",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Dikkeboomweg 36, 6542RK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Dikkeboomweg 40|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-a108ce75d73da7a84a3c406fd81105aa",
-    "postcode": "6542RK",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Dikkeboomweg 40, 6542RK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Zonnebloemstraat 36|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-2ec0679eb0e13dc11751bdf14b7f7099",
-    "postcode": "6542NG",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Zonnebloemstraat 36, 6542NG Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Koninginnelaan 97|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-355a48585e8d8b55db1d872a4649c92c",
-    "postcode": "6542ZK",
-    "buurtnaam": "Wolfskuil",
-    "wijknaam": "Nijmegen-Oud-West",
-    "weergavenaam": "Koninginnelaan 97, 6542ZK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Breehofstraat 17|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-25d84fd9195c7dce8a983dbc6224bf89",
-    "postcode": "6542RA",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Breehofstraat 17, 6542RA Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Schependomlaan 20A|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-4cf8dcd740bf5621b08831f1bb1b8287",
-    "postcode": "6542RM",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Schependomlaan 20A, 6542RM Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   },
   "Vlietstraat 19|Nijmegen": {
     "gefaald": true,
-    "reden": "geen_oppervlakte",
-    "id": "adr-822da93d9ddcde681c602836f0fdb80c",
-    "postcode": "6542SK",
-    "buurtnaam": "Hees",
-    "wijknaam": "Nijmegen-Nieuw-West",
-    "weergavenaam": "Vlietstraat 19, 6542SK Nijmegen",
-    "oppervlakte": null,
-    "gebruiksdoel": null,
-    "bouwjaar": null
+    "reden": "bag_geen_oppervlakte"
   }
 }
