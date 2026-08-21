@@ -228,7 +228,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:
     if r70 is not None:
         r.append(vertaal_bod(r70))
     r.append("")
-    r.append("_ING REF (jullie huisbank): geen openbaar tarief. Vraag actueel aan bij je contactpersoon._")
+
 
     if not grote_beweging:
         r.insert(2, "_Beweging < 10 bp deze week; markt is rustig._")

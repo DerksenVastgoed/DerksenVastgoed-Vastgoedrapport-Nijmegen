@@ -1,0 +1,188 @@
+# Marktdata voor het marktprijzen-blok.
+# Format per regel: adres | plaats | prijs | status
+# Status: 'verkocht', 'onder bod', 'te koop', 'nieuw'.
+# Regels met # zijn commentaar. Voeg periodiek nieuwe regels toe.
+# Bronnen (bij eerste versie): InBeeld, Hans Janssen, Hermsen, Kolmeijer via Funda-check aug 2026.
+
+# === Stadscentrum / Benedenstad (6511) ===
+Mariënburg 20 | Nijmegen | 629000 | te koop
+Eilbrachtstraat 6 | Nijmegen | 325000 | te koop
+van Berchenstraat 28 | Nijmegen | 325000 | verkocht
+van Berchenstraat 28A | Nijmegen | 455000 | verkocht
+Nonnenplaats 6 | Nijmegen | 398000 | verkocht
+Ziekerstraat 10H | Nijmegen | 389000 | verkocht
+Kronenburgersingel 267A | Nijmegen | 650000 | verkocht
+Bottelstraat 20 | Nijmegen | 595000 | verkocht
+Molenstraat 41D | Nijmegen | 185000 | verkocht
+Kronenburgerplaats 31 | Nijmegen | 365000 | verkocht
+Karrengas 54 | Nijmegen | 340000 | verkocht
+Hertogstraat 119A | Nijmegen | 350000 | verkocht
+Groot Bethlehem 9 | Nijmegen | 439000 | verkocht
+Plein 1944 168 | Nijmegen | 379000 | verkocht
+Priemstraat 17 | Nijmegen | 400000 | verkocht
+van Welderenstraat 18 | Nijmegen | 300000 | verkocht
+Arsenaalplaats 33 | Nijmegen | 435000 | verkocht
+Hertogstraat 65 | Nijmegen | 275000 | verkocht
+Ziekerstraat 10D | Nijmegen | 179500 | nieuw
+Nieuwe Marktstraat 6 | Nijmegen | 425000 | nieuw
+St. Canisiussingel 14 | Nijmegen | 365000 | verkocht
+Molenstraat 41K | Nijmegen | 240000 | verkocht
+Molenstraat 49B | Nijmegen | 295000 | verkocht
+Eerste Walstraat 3B | Nijmegen | 195000 | te koop
+Plein 1944 86B | Nijmegen | 495000 | te koop
+Nieuwe Markt 90 | Nijmegen | 575000 | te koop
+Begijnenstraat 13 | Nijmegen | 450000 | verkocht
+Raadhuisstraat 20 | Nijmegen | 359000 | verkocht
+Wintersoord 13 | Nijmegen | 375000 | verkocht
+Smetiusstraat 4D | Nijmegen | 225000 | te koop
+
+# === Bottendaal-noord (6512) ===
+van Goorstraat 30 | Nijmegen | 317500 | verkocht
+Burg. Hustinxstraat 246 | Nijmegen | 295000 | te koop
+Burg. Hustinxstraat 300 | Nijmegen | 315000 | verkocht
+de Ruyterstraat 135 | Nijmegen | 925000 | te koop
+de Ruyterstraat 74 | Nijmegen | 525000 | verkocht
+de Ruyterstraat 6 | Nijmegen | 350000 | verkocht
+St. Stephanusstraat 6A | Nijmegen | 285000 | verkocht
+St. Stephanusstraat 28 | Nijmegen | 498000 | verkocht
+St. Stephanusstraat 56 | Nijmegen | 450000 | verkocht
+St. Stephanusstraat 124 | Nijmegen | 459000 | verkocht
+Vondelstraat 57A | Nijmegen | 335000 | verkocht
+Graafseweg 35E | Nijmegen | 345000 | verkocht
+Graafseweg 47K | Nijmegen | 375000 | te koop
+
+# === Altrade (6521) ===
+Coehoornstraat 69 | Nijmegen | 509000 | verkocht
+Groesbeeksedwarsweg 78 | Nijmegen | 519000 | verkocht
+Groesbeeksedwarsweg 55 | Nijmegen | 469000 | verkocht
+Groesbeeksedwarsweg 211 | Nijmegen | 350000 | verkocht
+Groesbeeksedwarsweg 133 | Nijmegen | 539000 | verkocht
+Rembrandtstraat 45 | Nijmegen | 375000 | verkocht
+Bijleveldsingel 57 | Nijmegen | 399000 | verkocht
+Prins Bernhardstraat 59 | Nijmegen | 450000 | verkocht
+Ruisdaelstraat 38 | Nijmegen | 545000 | verkocht
+van Heutszstraat 55 | Nijmegen | 375000 | verkocht
+van Heutszstraat 57 | Nijmegen | 439000 | verkocht
+Prins Hendrikstraat 73 | Nijmegen | 379000 | verkocht
+Dommer van Poldersveldtweg 13 | Nijmegen | 650000 | verkocht
+Dommer van Poldersveldtweg 40 | Nijmegen | 729000 | verkocht
+Dommer van Poldersveldtweg 42 | Nijmegen | 369000 | verkocht
+van Nispenstraat 186 | Nijmegen | 445000 | verkocht
+Tooropstraat 133 | Nijmegen | 539000 | verkocht
+Tooropstraat 161 | Nijmegen | 515000 | verkocht
+Tooropstraat 168 | Nijmegen | 490000 | verkocht
+Tooropstraat 201 | Nijmegen | 579000 | verkocht
+Tooropstraat 195 | Nijmegen | 495000 | verkocht
+Hobbemastraat 5 | Nijmegen | 750000 | verkocht
+Koolemans Beynenstraat 32 | Nijmegen | 519000 | verkocht
+Koolemans Beynenstraat 120 | Nijmegen | 375000 | verkocht
+Acaciastraat 7 | Nijmegen | 662500 | verkocht
+van den Havestraat 95 | Nijmegen | 450000 | verkocht
+van den Havestraat 17 | Nijmegen | 460000 | verkocht
+Heydenrijckstraat 10 | Nijmegen | 550000 | verkocht
+Heydenrijckstraat 74 | Nijmegen | 745000 | verkocht
+van Nispenstraat 23 | Nijmegen | 435000 | verkocht
+Bijleveldsingel 20 Bb | Nijmegen | 375000 | verkocht
+Prins Hendrikstraat 77 | Nijmegen | 375000 | verkocht
+Staringstraat 25 | Nijmegen | 745000 | verkocht
+Daalseweg 185A | Nijmegen | 345000 | verkocht
+Daalseweg 185C | Nijmegen | 265000 | verkocht
+Daalseweg 232D | Nijmegen | 400000 | verkocht
+Daalseweg 238A | Nijmegen | 400000 | verkocht
+Gorisstraat 23 | Nijmegen | 495000 | verkocht
+
+# === Kwakkenberg / Hunnerberg (6522) ===
+Ubbergseveldweg 17 | Nijmegen | 825000 | te koop
+Berg en Dalseweg 218 | Nijmegen | 735000 | verkocht
+Berg en Dalseweg 286 | Nijmegen | 395000 | verkocht
+Berg en Dalseweg 256 | Nijmegen | 850000 | verkocht
+Graadt van Roggenstraat 49 | Nijmegen | 469000 | verkocht
+Graadt van Roggenstraat 79 | Nijmegen | 525000 | verkocht
+Graadt van Roggenstraat 143 | Nijmegen | 585000 | te koop
+Jan van Goyenstraat 40 | Nijmegen | 345000 | verkocht
+Oude Ubbergseweg 35 | Nijmegen | 450000 | verkocht
+Oude Ubbergseweg 41 | Nijmegen | 550000 | verkocht
+Caesarstraat 8 | Nijmegen | 550000 | verkocht
+Mr. Franckenstraat 40 | Nijmegen | 419000 | verkocht
+
+# === Galgenveld (6524) ===
+Prof. Molkenboerstraat 30 | Nijmegen | 429000 | te koop
+Fransestraat 6 | Nijmegen | 1100000 | verkocht
+Van Spaenstraat 20 | Nijmegen | 495000 | verkocht
+Van Spaenstraat 20A | Nijmegen | 395000 | verkocht
+Van Spaenstraat 20B | Nijmegen | 375000 | verkocht
+Borneostraat 1 | Nijmegen | 330000 | verkocht
+Borneostraat 1A | Nijmegen | 250000 | verkocht
+Borneostraat 1C | Nijmegen | 260000 | verkocht
+Borneostraat 3 | Nijmegen | 330000 | verkocht
+Molukkenstraat 168 | Nijmegen | 400000 | te koop
+Delistraat 67 | Nijmegen | 385000 | verkocht
+Timorstraat 6 | Nijmegen | 595000 | verkocht
+Timorstraat 8 | Nijmegen | 590000 | verkocht
+Athlonestraat 2 | Nijmegen | 685000 | verkocht
+Atjehstraat 15 | Nijmegen | 375000 | verkocht
+Atjehstraat 55 | Nijmegen | 419000 | verkocht
+Fagelstraat 44 | Nijmegen | 475000 | verkocht
+Fagelstraat 42 | Nijmegen | 519000 | verkocht
+Johannes Vijghstraat 6B | Nijmegen | 398000 | verkocht
+Johannes Vijghstraat 26 | Nijmegen | 475000 | verkocht
+van Slichtenhorststraat 38A | Nijmegen | 419000 | verkocht
+van Slichtenhorststraat 44 | Nijmegen | 750000 | verkocht
+van Gentstraat 68 | Nijmegen | 369000 | verkocht
+Prof Hoogveldstraat 13 | Nijmegen | 375000 | verkocht
+Sumatraplein 24 | Nijmegen | 849000 | verkocht
+Javastraat 84 | Nijmegen | 525000 | verkocht
+Madoerastraat 1 | Nijmegen | 1150000 | verkocht
+Madoerastraat 9 | Nijmegen | 745000 | verkocht
+Prof Regoutstraat 1B | Nijmegen | 235000 | te koop
+Groesbeekseweg 103D | Nijmegen | 235000 | te koop
+
+# === Biezen / Waterkwartier (6541) ===
+Eerste Oude Heselaan 96 | Nijmegen | 495000 | verkocht
+Marialaan 111 | Nijmegen | 335000 | te koop
+Marialaan 131 | Nijmegen | 315000 | verkocht
+Marialaan 73 | Nijmegen | 425000 | verkocht
+Marialaan 151 | Nijmegen | 375000 | verkocht
+Boomvalkstraat 13 | Nijmegen | 265000 | verkocht
+Boomvalkstraat 18 | Nijmegen | 275000 | te koop
+Waalbandijk 459 | Nijmegen | 698000 | verkocht
+Waalbandijk 177 | Nijmegen | 465000 | verkocht
+Waalbandijk 479 | Nijmegen | 625000 | te koop
+Weurtseweg 252 | Nijmegen | 719000 | verkocht
+Biezendwarsstraat 48 | Nijmegen | 385000 | verkocht
+Biezenstraat 31 | Nijmegen | 590000 | verkocht
+Dokstraat 43 | Nijmegen | 650000 | verkocht
+Dokstraat 61 | Nijmegen | 399000 | verkocht
+Dokstraat 89 | Nijmegen | 416000 | verkocht
+Dokstraat 91 | Nijmegen | 399000 | verkocht
+Dokstraat 127 | Nijmegen | 427000 | te koop
+Voorstadslaan 62 | Nijmegen | 525000 | verkocht
+Voorstadslaan 14 | Nijmegen | 350000 | verkocht
+Voorstadslaan 72 | Nijmegen | 335000 | verkocht
+Albert Trouwborststraat 11 | Nijmegen | 689000 | verkocht
+Jan Nieraethstraat 84 | Nijmegen | 925000 | verkocht
+Waterstraat 24 | Nijmegen | 525000 | verkocht
+Waterstraat 162 | Nijmegen | 550000 | verkocht
+IJsselstraat 11 | Nijmegen | 465000 | verkocht
+Havenweg 34 | Nijmegen | 825000 | te koop
+Havenweg 70 | Nijmegen | 690000 | onder bod
+Zwaluwstraat 7 | Nijmegen | 335000 | te koop
+Laan van Oost-Indië 327 | Nijmegen | 759000 | verkocht
+
+# === Wolfskuil (6542) ===
+Patrijsstraat 48 | Nijmegen | 385000 | te koop
+Bosbesstraat 10 | Nijmegen | 260000 | verkocht
+Bosbesstraat 6E | Nijmegen | 265000 | verkocht
+Bosbesstraat 21 | Nijmegen | 350000 | verkocht
+Bosbesstraat 67 | Nijmegen | 495000 | verkocht
+Bosduifstraat 18 | Nijmegen | 365000 | verkocht
+Bosduifstraat 16 | Nijmegen | 435000 | verkocht
+Kamperfoeliestraat 30 | Nijmegen | 409000 | verkocht
+Molenweg 42 | Nijmegen | 295000 | verkocht
+Dikkeboomweg 36 | Nijmegen | 450000 | te koop
+Dikkeboomweg 40 | Nijmegen | 395000 | verkocht
+Zonnebloemstraat 36 | Nijmegen | 339000 | verkocht
+Koninginnelaan 97 | Nijmegen | 495000 | verkocht
+Breehofstraat 17 | Nijmegen | 325000 | verkocht
+Schependomlaan 20A | Nijmegen | 495000 | verkocht
+Vlietstraat 19 | Nijmegen | 529000 | verkocht
