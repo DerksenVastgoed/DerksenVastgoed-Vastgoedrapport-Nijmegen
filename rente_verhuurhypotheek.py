@@ -193,14 +193,33 @@ def _nl(getal):
 
 
 def vertaal_bod(rente_pct: float) -> str:
-    """Vertaalregel: pand met €15k jaarhuur, LTV 70%, huidige rente."""
-    jaarhuur = VUISTREGEL_JAARHUUR
-    bod = jaarhuur * KOOPSOM_VUISTREGEL
-    lening = bod * LTV_STANDAARD / 100
-    rente_jaar = lening * rente_pct / 100
-    return (f"Voorbeeld: pand met €{_nl(jaarhuur)} jaarhuur = referentiebod €{_nl(bod)} (17× huur). "
-            f"Bij {LTV_STANDAARD}% LTV en {rente_pct:.2f}%: "
-            f"€{_nl(round(rente_jaar))} rentelast per jaar (aflossingsvrij, indicatief).")
+    """MSRE-lens: wat betekent deze rente voor een representatief pand in Marks segment.
+    Referentie-scenario: pand €1,5M waarde, €1M lening, €67.500 kale huur/jaar."""
+    waarde = 1_500_000
+    lening = 1_000_000
+    kale_huur = 67_500
+    ltv = lening / waarde * 100  # 66,7%
+    rentelast = lening * rente_pct / 100
+    icr = kale_huur / rentelast if rentelast > 0 else 0
+    opex_pct = 25  # realistisch voor vooroorlogs bezit
+    netto_huur = kale_huur * (1 - opex_pct / 100)
+    cashflow = netto_huur - rentelast
+    equity = waarde - lening
+    equity_rendement = cashflow / equity * 100 if equity > 0 else 0
+
+    return (
+        f"**Wat betekent {rente_pct:.2f}% voor een typisch pand?** "
+        f"Neem een representatief pand van €{_nl(waarde)} met €{_nl(lening)} hypotheek "
+        f"(LTV {ltv:.0f}%) en €{_nl(kale_huur)} kale huur per jaar. "
+        f"Rentelast: **€{_nl(round(rentelast))}/jaar**. "
+        f"Huur dekt rente {icr:.2f}× (banken willen minimaal 1,25×; je zit {'krap' if icr < 1.3 else 'ruim'}). "
+        f"Na 25% opex (onderhoud, leegstand, beheer) resteert €{_nl(round(netto_huur))} netto huur. "
+        f"Netto cashflow: **€{_nl(round(cashflow))}/jaar** op €{_nl(equity)} equity = "
+        f"{equity_rendement:.1f}% direct rendement."
+        + (f"\n\n_{'⚠️ Cashflow is negatief bij deze rente' if cashflow < 0 else 'Cashflow blijft positief maar mager'}. "
+           f"Rendement in dit segment moet komen uit mutatie-events: renovatie, huurverhoging bij nieuwe huurder, splitsen naar meerdere units. "
+           f"Elke 0,25% rentestijging kost €{_nl(round(lening * 0.0025))} extra rentelast per jaar._")
+    )
 
 
 def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:

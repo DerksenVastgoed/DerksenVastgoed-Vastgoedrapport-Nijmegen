@@ -271,6 +271,52 @@ def render(woningen):
                  f"€{int(med):,} | €{int(p75):,} | €{int(max(prijzen)):,} |".replace(",", "."))
     r.append("")
 
+    # Yield-analyse: wat betekent deze €/m² voor een investeerder tegen huidige rente
+    # Aannames: huurbenchmark €14/m²/maand voor Waterkwartier, €16 voor Oost, opex 25%, rente 5,75%
+    HUUR_M2_MND = {
+        "Stadscentrum": 16, "Benedenstad": 16, "Bottendaal": 15,
+        "Galgenveld": 15, "Altrade": 15, "Biezen": 14,
+    }
+    RENTE = 5.75  # huidige verhuurhypotheek indicatie
+    OPEX_PCT = 25
+    LTV = 66.7
+
+    r.append("### Yield en cashflow-analyse per buurt")
+    r.append(f"_Bij referentie-huur, rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}%, opex {OPEX_PCT}%._")
+    r.append("")
+    r.append("| Buurt | mediaan €/m² | ref. huur/m²/mnd | bruto yield | netto cashflow op €1M lening* |")
+    r.append("|---|---:|---:|---:|---:|")
+    for buurt in FOCUS_BUURTEN:
+        rijen = per_buurt.get(buurt, [])
+        if not rijen or buurt not in HUUR_M2_MND:
+            r.append(f"| {buurt} | — | — | — | — |")
+            continue
+        prijzen = sorted(p for p, _ in rijen)
+        med_m2 = st.median(prijzen)
+        huur_m2_jaar = HUUR_M2_MND[buurt] * 12
+        bruto_yield = huur_m2_jaar / med_m2 * 100
+        # Cashflow bij €1M lening, waarde afgeleid van LTV
+        waarde = 1_000_000 / (LTV / 100)  # ~€1,5M
+        m2_pand = waarde / med_m2  # hoeveel m² koop je voor die waarde
+        kale_huur = m2_pand * huur_m2_jaar
+        netto_huur = kale_huur * (1 - OPEX_PCT / 100)
+        rentelast = 1_000_000 * RENTE / 100
+        cashflow = netto_huur - rentelast
+        teken = "🔴" if cashflow < 0 else "🟢"
+        r.append(f"| {buurt} | €{int(med_m2):,} | €{HUUR_M2_MND[buurt]} | "
+                 f"{bruto_yield:.1f}% | {teken} €{int(cashflow):,}/jaar |".replace(",", "."))
+    r.append("")
+    r.append(f"*Aanname: pand ter waarde van ~€{int(1_000_000 / (LTV/100)):,}"
+             f" (LTV {LTV:.0f}%), grootte afgeleid uit mediane €/m². "
+             f"Bruto yield = kale huur / waarde. Netto cashflow = huur na opex minus rentelast.".replace(",", "."))
+    r.append("")
+    r.append("**Kern**: bij huidige rente (5,75%) is bruto yield in deze buurten 3-4%, "
+             "onder de rentelast. Wie hier koopt tegen deze cijfers, koopt niet voor cashflow "
+             "maar voor waardecreatie via mutatie-events (renovatie, huurverhoging bij nieuwe "
+             "huurder) en splitsing. Elke splitsing die de €/m² met €500 verhoogt levert per "
+             "100m² €50k impliciete waardestijging.")
+    r.append("")
+
     eigen_hits, acq_hits = [], []
     for w in woningen:
         for straat in EIGEN_STRATEN:
@@ -300,7 +346,6 @@ def render(woningen):
                          f"€{w['prijs']:,} ({opp}m² → {ppm2}) . _{w['status']}_".replace(",", "."))
             r.append("")
 
-    r.append("_Vuistregel Derksen: bod = 17× jaarhuur. Bij €12/m²/maand huur = €2.448/m² bod-referentie; bij €15/m²/maand = €3.060/m²._")
     return "\n".join(r)
 
 
