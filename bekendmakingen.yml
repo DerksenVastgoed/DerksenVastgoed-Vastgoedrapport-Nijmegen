@@ -57,24 +57,22 @@ jobs:
         run: |
           BRIEF="digests/${DATUM}-brief.md"
           {
-            echo "# Vastgoedbrief Nijmegen - $(date +%d-%m-%Y)"
-            echo ""
             echo "[Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html)"
             echo ""
             echo "---"
             echo ""
-            if [ -f "digests/${DATUM}-rente.md" ]; then
-              cat "digests/${DATUM}-rente.md"
-              echo ""
-              echo "---"
-              echo ""
-            fi
             cat "digests/${DATUM}-bekendmakingen.md"
             echo ""
             echo "---"
             echo ""
             if [ -f "digests/${DATUM}-publicaties.md" ]; then
               cat "digests/${DATUM}-publicaties.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            if [ -f "digests/${DATUM}-rente.md" ]; then
+              cat "digests/${DATUM}-rente.md"
               echo ""
               echo "---"
               echo ""

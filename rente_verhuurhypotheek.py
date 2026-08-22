@@ -226,9 +226,28 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:
     vandaag = dt.date.today().strftime("%d-%m-%Y")
     grote_beweging = any(abs(v["delta_bp"]) >= DREMPEL_BP for v in wijzigingen.values() if v)
 
-    r = ["", "## Rente verhuurhypotheek",
-         f"_Bron: [financieren.nl/rente]({BRON_URL}), {vandaag}. Scherpste tarief per LTV._", ""]
+    r = ["", "## Rente verhuurhypotheek"]
 
+    # Rustige dag: een regel, geen tabel. De volledige analyse verschijnt zodra er iets beweegt.
+    if not grote_beweging:
+        delen = []
+        for label, key in [("50%", "ltv50"), ("70%", "ltv70"), ("80%", "ltv80")]:
+            _, rente = scherpsten.get(key, (None, None))
+            if rente is not None:
+                delen.append(f"{rente:.2f}% bij {label} LTV")
+        _, r70 = scherpsten.get("ltv70", (None, None))
+        regel = "Onveranderd deze week: " + ", ".join(delen) + "."
+        if r70 is not None:
+            regel += (f" Op een lening van €1.000.000 is dat "
+                      f"€{_nl(round(1_000_000 * r70 / 100))} rentelast per jaar.")
+        r.append(regel)
+        r.append(f"_Bron: [financieren.nl/rente]({BRON_URL}), {vandaag}._")
+        r.append("")
+        return "\n".join(r)
+
+    # Er is beweging: volledige tabel en analyse
+    r.append(f"_Bron: [financieren.nl/rente]({BRON_URL}), {vandaag}. Scherpste tarief per LTV._")
+    r.append("")
     r.append("| LTV | Rente | Aanbieder | Beweging | Bron |")
     r.append("|---|---:|---|:--|:--|")
     for label, key in [("50%", "ltv50"), ("70%", "ltv70"), ("80%", "ltv80")]:
@@ -247,10 +266,6 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:
     if r70 is not None:
         r.append(vertaal_bod(r70))
     r.append("")
-
-
-    if not grote_beweging:
-        r.insert(2, "_Beweging < 10 bp deze week; markt is rustig._")
 
     return "\n".join(r)
 
