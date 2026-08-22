@@ -261,6 +261,8 @@ def render(woningen):
 
     per_buurt = defaultdict(list)
     beleggingen = []
+    stad_breed = []      # alle woningen met bruikbare data, ook buiten de focus-buurten
+    buiten_focus = 0
     for w in woningen:
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         opp = w.get("oppervlakte")
@@ -274,7 +276,9 @@ def render(woningen):
         if w.get("status", "").lower() == "belegging":
             beleggingen.append((ppm2, w))
             continue
+        stad_breed.append(ppm2)
         if not buurt or buurt not in FOCUS_BUURTEN:
+            buiten_focus += 1
             continue
         per_buurt[buurt].append((ppm2, w))
 
@@ -297,7 +301,17 @@ def render(woningen):
         r.append(f"| {buurt} | {n} | "
                  f"€{int(min(prijzen)):,} | €{int(p25):,} | "
                  f"€{int(med):,} | €{int(p75):,} | €{int(max(prijzen)):,} |".replace(",", "."))
+
+    # Referentieregel: heel Nijmegen, zodat je ziet of de ring boven of onder de stad zit
+    if len(stad_breed) >= 10:
+        sb = sorted(stad_breed)
+        n = len(sb)
+        r.append(f"| _Nijmegen totaal_ | {n} | "
+                 f"€{int(min(sb)):,} | €{int(sb[n//4]):,} | "
+                 f"€{int(st.median(sb)):,} | €{int(sb[3*n//4]):,} | €{int(max(sb)):,} |".replace(",", "."))
     r.append("")
+    if buiten_focus:
+        r.append(f"_{buiten_focus} panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._")
     r.append("_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). Beleggingspanden **in verhuurde staat** liggen 20-40% lager. Zie beleggingstabel hieronder._")
     r.append("")
 
