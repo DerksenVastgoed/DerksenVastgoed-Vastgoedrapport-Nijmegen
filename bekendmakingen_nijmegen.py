@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.parse
 import xml.etree.ElementTree as ET
 
@@ -69,12 +70,13 @@ MAX_PER_PAGINA = 100
 
 # --- Duiding via Anthropic ---
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
 MODEL = "claude-sonnet-5"
 PROFIEL = """Je bent vastgoedanalist voor een marktbrief over de binnenring van Nijmegen (rond het Keizer Karelplein, oost en west). Lezers zijn particuliere vastgoedinvesteerders en kleine ontwikkelaars. Denk als MSRE-professional, schrijf toegankelijk.
 
-Marktcontext (referentiepand in dit segment): waarde circa €1,5M, hypotheek €1M rond 5,75%, kale huur circa €67.500/jaar. Na 25% opex is de cashflow ongeveer nul. Rendement komt in dit segment dus niet uit huur, maar uit waardecreatie: uitponden, splitsen, renoveren bij mutatie, functie omzetten.
+Marktcontext: in dit segment is de lopende cashflow bij huidige rentestanden ongeveer nul. Rendement komt uit waardecreatie: uitponden, splitsen, renoveren bij mutatie, functie omzetten. Beoordeel signalen door die bril.
 
-Je krijgt bekendmakingen uit de ring. Geef per bekendmaking:
+Je krijgt bekendmakingen uit de ring, elk met de feiten die bekend zijn. Geef per bekendmaking:
 1. "strategie": voor welk type investeerder dit signaal relevant is. Kies EEN uit:
    uitponden | buy-and-hold | splitsen | kamerverhuur | transformatie | verduurzaming | geen
 
@@ -86,14 +88,21 @@ Je krijgt bekendmakingen uit de ring. Geef per bekendmaking:
    - isolatie, warmtepomp, label, zonnepanelen, gevelrenovatie -> verduurzaming
    - nieuwbouw of oplevering die het aanbod raakt -> uitponden
 
-2. "duiding": EEN zin met concrete marktbetekenis. Cijfers waar mogelijk.
+2. "duiding": EEN zin over wat dit mechanisch betekent voor de markt.
 
-Voorbeelden van goede duiding:
-- "9 kamers bij circa €650/maand geeft ruwweg €70k huurstroom; op deze panden ligt het bruto rendement rond 7%, duidelijk boven appartementsverhuur."
-- "Samenvoegen haalt units uit de voorraad; dat drukt aanbod in het kleine segment en steunt de m2-prijs van bestaande kleine units."
-- "Vergunde dakisolatie laat zien dat labelverbetering hier vergunbaar is; relevant voor wie op label C of slechter zit."
+ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Dit is de belangrijkste regel.
+- Je mag UITSLUITEND getallen noemen die letterlijk in de aangeleverde feiten staan.
+- Verzin NOOIT huurprijzen, koopsommen, rendementen, yields, percentages, investeringsbedragen of huurstromen. Die gegevens heb je niet.
+- Schrijf ook geen vage schattingen als "circa", "ruwweg" of "naar schatting" bij een bedrag. Als je het bedrag niet hebt gekregen, noem je het niet.
+- Staan er geen cijfers in de feiten? Dan is je duiding puur kwalitatief. Dat is prima en beter dan een gok.
 
-REGELS:
+Goede duiding gaat over het MECHANISME, niet over verzonnen bedragen:
+- "Samenvoegen haalt een unit uit de kleine voorraad, wat het aanbod in dat segment verkrapt."
+- "Vergunning bevestigt dat verkamering op deze locatie planologisch haalbaar is, relevant voor wie een vergelijkbaar pand overweegt."
+- "Vergunde isolatie laat zien dat labelverbetering aan de buitenzijde hier vergunbaar is, ook bij oudere bebouwing."
+- "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt."
+
+OVERIGE REGELS:
 - Geen geografisch commentaar over afstand of ligging. Het filter is al toegepast.
 - Geen algemeenheden zoals "bevestigt de trend" of "interessant signaal".
 - Komen meerdere gelijksoortige items voor, geef elk een EIGEN invalshoek. Nooit twee keer dezelfde zin.
@@ -182,6 +191,95 @@ def classificeer(item: dict):
     return None
 
 
+def _adres_uit_titel(titel: str):
+    """Haalt (straat, huisnummer, letter) uit een bekendmakingstitel.
+    Voorbeeld: '... aan St. Annastraat 240, 6525GZ Nijmegen' -> ('St. Annastraat','240',None)
+    Titels bevatten vaak eerder al het woord 'aan' ('aan de voorgevel'), dus we nemen
+    de LAATSTE 'aan' voor de postcode. Bij meerdere nummers ('51 en 53') het eerste."""
+    pc = re.search(r",?\s+\d{4}\s?[A-Z]{2}\s+Nijmegen", titel)
+    if not pc:
+        return None
+    kop = titel[:pc.start()]
+    delen = re.split(r"\baan\s+", kop, flags=re.IGNORECASE)
+    if len(delen) < 2:
+        return None
+    straatdeel = delen[-1].strip().rstrip(",").strip()
+    straatdeel = re.split(r"\s+en\s+\d", straatdeel)[0].strip()
+    a = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z])?\s*$", straatdeel)
+    if not a:
+        return None
+    return a.group(1).strip(), a.group(2), (a.group(3) or "").upper() or None
+
+
+def _kamers_uit_titel(titel: str):
+    """Haalt het aantal kamers uit bijvoorbeeld '(9 kamers)' of 'met 15 kamers'."""
+    m = re.search(r"(\d+)\s*kamers", titel, re.IGNORECASE)
+    return int(m.group(1)) if m else None
+
+
+def _bag_feiten(straat, huisnr, letter):
+    """Oppervlakte en bouwjaar uit de BAG. Geeft None terug zonder key of bij een misser."""
+    if not BAG_API_KEY:
+        return None
+    params = {
+        "openbareRuimteNaam": straat,
+        "huisnummer": huisnr,
+        "woonplaatsNaam": "Nijmegen",
+        "exacteMatch": "true",
+    }
+    if letter:
+        params["huisletter"] = letter
+    try:
+        r = requests.get(
+            "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2/adressenuitgebreid",
+            headers={"X-Api-Key": BAG_API_KEY,
+                     "Accept": "application/hal+json",
+                     "Accept-Crs": "epsg:28992"},
+            params=params, timeout=20)
+        if r.status_code != 200:
+            return None
+        adressen = r.json().get("_embedded", {}).get("adressen", [])
+        if not adressen:
+            return None
+        a = adressen[0]
+        bouwjaar = a.get("adresseerbaarObjectBouwjaar")
+        if isinstance(bouwjaar, list) and bouwjaar:
+            bouwjaar = bouwjaar[0]
+        return {"oppervlakte": a.get("oppervlakte"), "bouwjaar": bouwjaar}
+    except Exception as e:
+        print(f"  BAG-fout {straat} {huisnr}: {e}", file=sys.stderr)
+        return None
+
+
+def verrijk_met_bag(items: list):
+    """Zet harde feiten uit de BAG bij elk item. Deze cijfers zijn gemeten, niet geschat."""
+    if not BAG_API_KEY:
+        print("Geen BAG_API_KEY: bekendmakingen zonder oppervlakte-feiten", file=sys.stderr)
+        return
+    raak = 0
+    for it in items:
+        it["feiten"] = {}
+        adres = _adres_uit_titel(it["titel"])
+        if not adres:
+            continue
+        feiten = _bag_feiten(*adres)
+        time.sleep(1.1)  # BAG fair use
+        if not feiten:
+            continue
+        if feiten.get("oppervlakte"):
+            it["feiten"]["oppervlakte_m2"] = feiten["oppervlakte"]
+        if feiten.get("bouwjaar"):
+            it["feiten"]["bouwjaar"] = feiten["bouwjaar"]
+        kamers = _kamers_uit_titel(it["titel"])
+        if kamers:
+            it["feiten"]["kamers"] = kamers
+            if feiten.get("oppervlakte"):
+                it["feiten"]["m2_per_kamer"] = round(feiten["oppervlakte"] / kamers)
+        if it["feiten"]:
+            raak += 1
+    print(f"BAG-feiten gevonden voor {raak}/{len(items)} bekendmakingen", file=sys.stderr)
+
+
 def _parse_annotaties(tekst: str, n: int) -> dict:
     """Haalt {index: {strategie, duiding}} uit het JSON-antwoord.
     Bestand tegen afgekapte JSON: redt losse objecten uit een halve array."""
@@ -226,8 +324,18 @@ def verrijk(items: list):
         it["gevolg"] = ""
     if not ANTHROPIC_API_KEY or not items:
         return
-    lijst = "\n".join(f"{i}. {it['titel']}" for i, it in enumerate(items))
+    regels = []
+    for i, it in enumerate(items):
+        feiten = it.get("feiten") or {}
+        if feiten:
+            feitentekst = ", ".join(f"{k}={v}" for k, v in feiten.items())
+            regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: {feitentekst}")
+        else:
+            regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: geen")
+    lijst = "\n".join(regels)
     prompt = (f"Bekendmakingen:\n{lijst}\n\n"
+              "Gebruik uitsluitend de getallen onder BEKENDE FEITEN. Staat daar 'geen', "
+              "noem dan geen enkel cijfer in je duiding.\n\n"
               "Antwoord met ALLEEN een JSON-array, per bekendmaking een object "
               '{"i": <index>, "strategie": "<label>", "duiding": "<een zin>"}. '
               "Geen tekst eromheen.")
@@ -258,6 +366,19 @@ def verrijk(items: list):
 def _regel(it: dict) -> str:
     link = f"([bron]({it['url']}))" if it["url"] else ""
     regel = f"- **{it['datum']}** . {it['titel']} {link}"
+
+    feiten = it.get("feiten") or {}
+    if feiten:
+        delen = []
+        if feiten.get("oppervlakte_m2"):
+            delen.append(f"{feiten['oppervlakte_m2']} m²")
+        if feiten.get("bouwjaar"):
+            delen.append(f"bouwjaar {feiten['bouwjaar']}")
+        if feiten.get("m2_per_kamer"):
+            delen.append(f"{feiten['m2_per_kamer']} m² per kamer")
+        if delen:
+            regel += f"\n  `BAG: {' . '.join(delen)}`"
+
     strat = (it.get("strategie") or "").strip()
     duiding = (it.get("gevolg") or "").strip()
     if duiding:
@@ -324,6 +445,7 @@ def main():
         elif soort == "overige":
             overige.append(it)
 
+    verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
     verrijk(kern + overige)  # duiding voor alle getoonde items in een call
 
     digest = render_digest(kern, overige, vanaf)
