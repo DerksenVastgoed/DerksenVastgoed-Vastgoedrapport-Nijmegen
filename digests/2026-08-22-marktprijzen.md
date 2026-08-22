@@ -48,14 +48,3 @@ _Bron: Funda Business. Deze panden worden verhuurd aangeboden; yield is bruto op
 | St. Annastraat 28 (Galgenveld) | €1.695.000 | 367 | €4.618 | belegging |
 
 _€/m² beleggingsobjecten ligt meestal 20-40% onder mediaan-VoH. Verschil = potentiële uitpond-marge bij mutatie._
-
-### Transacties in eigen bezit-straten of acquisitietargets
-
-**Naast eigen bezit:**
-- Eerste Oude Heselaan 96 (6541PC): €495.000 (99m² → €5.000/m²) . _verkocht_
-
-**Acquisitietargets:**
-- Fransestraat 6 (6524JA): €1.100.000 (271m² → €4.059/m²) . _verkocht_
-- Van Spaenstraat 20 (6524HM): €495.000 (103m² → €4.805/m²) . _verkocht_
-- Van Spaenstraat 20A (6524HM): €395.000 (59m² → €6.694/m²) . _verkocht_
-- Van Spaenstraat 20B (6524HM): €375.000 (60m² → €6.250/m²) . _verkocht_
