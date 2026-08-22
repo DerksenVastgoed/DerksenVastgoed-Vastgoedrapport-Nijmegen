@@ -216,9 +216,33 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     if not embedded:
         return None
     a = embedded[0]
-    bouwjaar = a.get("adresseerbaarObjectBouwjaar")
-    if isinstance(bouwjaar, list) and bouwjaar:
-        bouwjaar = bouwjaar[0]
+    # Bouwjaar zit afhankelijk van de respons in verschillende velden.
+    bouwjaar = None
+    for veld in ("adresseerbaarObjectBouwjaar", "oorspronkelijkBouwjaar", "bouwjaar"):
+        waarde = a.get(veld)
+        if isinstance(waarde, list) and waarde:
+            waarde = waarde[0]
+        if waarde:
+            bouwjaar = waarde
+            break
+    if bouwjaar is None:
+        for sleutel_pand in ("panden", "pandIdentificaties", "_embedded"):
+            panden = a.get(sleutel_pand)
+            if isinstance(panden, dict):
+                panden = panden.get("panden", [])
+            if not isinstance(panden, list):
+                continue
+            for p in panden:
+                if not isinstance(p, dict):
+                    continue
+                waarde = p.get("oorspronkelijkBouwjaar") or p.get("bouwjaar")
+                if isinstance(waarde, list) and waarde:
+                    waarde = waarde[0]
+                if waarde:
+                    bouwjaar = waarde
+                    break
+            if bouwjaar:
+                break
     return {
         "oppervlakte": a.get("oppervlakte"),
         "bouwjaar": bouwjaar,
@@ -302,18 +326,18 @@ def render(woningen):
     geen_woonfunctie = 0
     belegging_buiten_ring = 0
 
+    # Gebruiksdoelen die nooit een woonbelegging zijn: garageboxen, opslag, bedrijfshallen.
+    NOOIT_BELEGGING = ["industrie", "overige gebruiksfunctie", "sport",
+                       "onderwijs", "gezondheidszorg", "cel"]
+
     for w in woningen:
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         opp = w.get("oppervlakte")
         if not opp or opp < 15:
             continue
 
-        # Harde filter op BAG-gebruiksdoel: garageboxen, bedrijfsunits en kantoren
-        # horen niet in een vergelijking van woonbeleggingen thuis.
-        doelen = w.get("gebruiksdoelen") or []
-        if doelen and not any("woon" in str(d).lower() for d in doelen):
-            geen_woonfunctie += 1
-            continue
+        doelen = [str(d).lower() for d in (w.get("gebruiksdoelen") or [])]
+        heeft_woonfunctie = any("woon" in d for d in doelen)
 
         try:
             ppm2 = w["prijs"] / opp
@@ -321,10 +345,22 @@ def render(woningen):
             continue
 
         if w.get("status", "").lower() == "belegging":
+            # Ruimer filter: gemengde panden (winkel of kantoor met woningen erboven)
+            # zijn juist interessant, dus die blijven staan. Alleen duidelijk
+            # niet-woongerelateerde objecten vallen af.
+            if doelen and not heeft_woonfunctie and any(
+                    any(n in d for n in NOOIT_BELEGGING) for d in doelen):
+                geen_woonfunctie += 1
+                continue
             if buurt in FOCUS_BUURTEN:
                 beleggingen.append((ppm2, w))
             else:
                 belegging_buiten_ring += 1
+            continue
+
+        # Voor de prijsindex wel streng: alleen woningen, anders vervuilt de €/m².
+        if doelen and not heeft_woonfunctie:
+            geen_woonfunctie += 1
             continue
 
         stad_breed.append(ppm2)
@@ -422,18 +458,22 @@ def render(woningen):
     # Beleggings-tabel (in verhuurde staat)
     if beleggingen:
         r.append("### Beleggingsobjecten in de ring (in verhuurde staat)")
-        r.append("_Bron: Funda Business. Alleen objecten met woonfunctie volgens de BAG._")
+        r.append("_Bron: Funda Business. Garageboxen en bedrijfsunits zijn eruit gefilterd. "
+                 "Gemengde panden (winkel of kantoor met woningen erboven) staan er bewust wel in; "
+                 "de kolom Functie toont wat de BAG registreert._")
         r.append("")
-        r.append("| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Bekendmakingen |")
-        r.append("|---|---|---:|---:|---:|---:|---|")
+        r.append("| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Functie | Bekendmakingen |")
+        r.append("|---|---|---:|---:|---:|---:|---|---|")
         for ppm2, w in sorted(beleggingen, key=lambda x: x[1]["prijs"]):
             buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
             bj = w.get("bouwjaar") or "?"
+            doelen = [str(d).replace("functie", "") for d in (w.get("gebruiksdoelen") or [])]
+            functie = ", ".join(doelen) if doelen else "?"
             sig = w.get("signalen") or []
             soorten = sorted({s for t in sig for s in t.get("soorten", [])})
             sigtekst = ", ".join(soorten) if soorten else "geen treffer"
             r.append(f"| {w['adres']} | {buurt} | €{w['prijs']:,} | {w.get('oppervlakte','?')} | "
-                     f"€{int(ppm2):,} | {bj} | {sigtekst} |".replace(",", "."))
+                     f"€{int(ppm2):,} | {bj} | {functie} | {sigtekst} |".replace(",", "."))
         r.append("")
         if belegging_buiten_ring:
             r.append(f"_{belegging_buiten_ring} beleggingsobjecten lagen buiten de ring en zijn niet getoond._")

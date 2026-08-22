@@ -96,6 +96,12 @@ ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Dit is de belangrijkste regel.
 - Schrijf ook geen vage schattingen als "circa", "ruwweg" of "naar schatting" bij een bedrag. Als je het bedrag niet hebt gekregen, noem je het niet.
 - Staan er geen cijfers in de feiten? Dan is je duiding puur kwalitatief. Dat is prima en beter dan een gok.
 
+NAUWKEURIG OVER DE JURIDISCHE STATUS. Even belangrijk.
+- Een MELDING (bijvoorbeeld brandveilig gebruik) is GEEN vergunning. Schrijf nooit "vergund" of "vergunbaar" bij een melding. Een melding betekent dat de eigenaar het gebruik heeft aangemeld.
+- Een AANVRAAG is nog geen besluit. Die kan geweigerd worden. Schrijf niet alsof het rond is.
+- Alleen bij een BESLUIT of VERLEENDE vergunning mag je zeggen dat iets is toegestaan.
+- Neem het woord uit de titel over: staat er "melding", schrijf dan melding. Staat er "aanvraag", schrijf dan aanvraag.
+
 Goede duiding gaat over het MECHANISME, niet over verzonnen bedragen:
 - "Samenvoegen haalt een unit uit de kleine voorraad, wat het aanbod in dat segment verkrapt."
 - "Vergunning bevestigt dat verkamering op deze locatie planologisch haalbaar is, relevant voor wie een vergelijkbaar pand overweegt."
