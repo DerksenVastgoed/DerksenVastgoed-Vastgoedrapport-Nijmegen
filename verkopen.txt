@@ -186,3 +186,11 @@ Koninginnelaan 97 | Nijmegen | 495000 | verkocht
 Breehofstraat 17 | Nijmegen | 325000 | verkocht
 Schependomlaan 20A | Nijmegen | 495000 | verkocht
 Vlietstraat 19 | Nijmegen | 529000 | verkocht
+
+# === Beleggingsobjecten in verhuurde staat (Funda Business, aug 2026) ===
+# Deze panden worden apart getoond in de brief. Yield en €/m² zijn indicatief.
+van Welderenstraat 5 | Nijmegen | 500000 | belegging
+van Welderenstraat 89 | Nijmegen | 934000 | belegging
+St. Annastraat 28 | Nijmegen | 1695000 | belegging
+Ziekerstraat 5 | Nijmegen | 450000 | belegging
+Koningstraat 4 | Nijmegen | 850000 | belegging

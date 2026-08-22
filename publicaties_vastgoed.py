@@ -33,6 +33,7 @@ FEEDS = [
     ("Wet betaalbare huur", _gnews('"wet betaalbare huur" OR "WWS"')),
     ("Particuliere verhuur", _gnews("verhuurders OR particuliere huursector")),
     ("Box 3 vastgoed", _gnews('"box 3" vastgoed')),
+    ("Uitponden", _gnews("uitponden OR uitpondstrategie OR leegwaarde")),
     # Regio
     ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
     # Verduurzaming
@@ -44,6 +45,9 @@ FEEDS = [
     ("Pararius huurmarkt", _gnews("Pararius huurprijs OR huurmarkt")),
     ("Rabobank Woningmarkt", _gnews("Rabobank woningmarkt kwartaalbericht")),
     ("ABN AMRO Woningmarkt", _gnews("ABN AMRO woningmarkt sector update")),
+    # Directe RSS van Vastgoed Insider (schrijft vaak relevant over uitponden/beleggers)
+    ("Vastgoed Insider", "https://vastgoedinsider.nl/feed/"),
+    ("Vastgoed Insider (Google News)", _gnews("site:vastgoedinsider.nl")),
 ]
 
 TREFWOORDEN = [
