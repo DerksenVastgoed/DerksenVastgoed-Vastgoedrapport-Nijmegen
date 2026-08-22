@@ -13,7 +13,7 @@ _Op basis van 174 recente transacties/aanbiedingen. Oppervlakte uit BAG. Bijgewe
 | _Nijmegen totaal_ | 162 | €1.494 | €4.241 | €4.980 | €5.479 | €8.392 |
 
 _37 panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._
-_6 objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._
+_3 objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._
 _**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). Beleggingspanden **in verhuurde staat** liggen 20-40% lager. Zie beleggingstabel hieronder._
 
 ### Yield en cashflow-analyse per buurt (bij aankoop VRIJ VAN HUURDER)
@@ -40,10 +40,13 @@ Vastgoedbeleggers rapporteren 20-40% verschil tussen **verhuurde staat** en **vr
 Dit is waar het rendement zit in dit segment, niet uit de lopende cashflow. De beleggingstabel hieronder toont concrete voorbeelden in verhuurde staat.
 
 ### Beleggingsobjecten in de ring (in verhuurde staat)
-_Bron: Funda Business. Alleen objecten met woonfunctie volgens de BAG._
+_Bron: Funda Business. Garageboxen en bedrijfsunits zijn eruit gefilterd. Gemengde panden (winkel of kantoor met woningen erboven) staan er bewust wel in; de kolom Functie toont wat de BAG registreert._
 
-| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Bekendmakingen |
-|---|---|---:|---:|---:|---:|---|
-| St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | ? | geen treffer |
+| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Functie | Bekendmakingen |
+|---|---|---:|---:|---:|---:|---|---|
+| Ziekerstraat 5 | Stadscentrum | €450.000 | 126 | €3.571 | ? | winkel | geen treffer |
+| van Welderenstraat 5 | Stadscentrum | €500.000 | 235 | €2.127 | ? | winkel | geen treffer |
+| Koningstraat 4 | Stadscentrum | €850.000 | 134 | €6.343 | ? | winkel | geen treffer |
+| St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | ? | woon | geen treffer |
 
 _€/m² beleggingsobjecten ligt meestal 20-40% onder mediaan-VoH. Verschil = potentiële uitpond-marge bij mutatie._
