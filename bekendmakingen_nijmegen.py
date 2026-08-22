@@ -77,6 +77,15 @@ Marktcontext (referentiepand in dit segment): waarde circa â‚¬1,5M, hypotheek â‚
 Je krijgt bekendmakingen uit de ring. Geef per bekendmaking:
 1. "strategie": voor welk type investeerder dit signaal relevant is. Kies EEN uit:
    uitponden | buy-and-hold | splitsen | kamerverhuur | transformatie | verduurzaming | geen
+
+   Gebruik "geen" alleen bij echt marktloze items (kozijnwijziging, garagegevel, administratieve correctie). Bij twijfel kies je het dichtstbijzijnde label. Richtlijn:
+   - samenvoegen, woningonttrekking, kadastrale splitsing -> splitsen
+   - tijdelijke verhuur, huisvestingsvergunning, verhuurvergunning -> buy-and-hold
+   - kamerverhuur, brandveilig gebruik, onzelfstandige woonruimte -> kamerverhuur
+   - functiewijziging, BOPA, kantoor of winkel naar wonen -> transformatie
+   - isolatie, warmtepomp, label, zonnepanelen, gevelrenovatie -> verduurzaming
+   - nieuwbouw of oplevering die het aanbod raakt -> uitponden
+
 2. "duiding": EEN zin met concrete marktbetekenis. Cijfers waar mogelijk.
 
 Voorbeelden van goede duiding:
@@ -87,7 +96,7 @@ Voorbeelden van goede duiding:
 REGELS:
 - Geen geografisch commentaar over afstand of ligging. Het filter is al toegepast.
 - Geen algemeenheden zoals "bevestigt de trend" of "interessant signaal".
-- Bij marginale items: strategie "geen" en een korte feitelijke zin.
+- Komen meerdere gelijksoortige items voor, geef elk een EIGEN invalshoek. Nooit twee keer dezelfde zin.
 - Nooit specifieke beleggers of portefeuilles benoemen. Schrijf onpersoonlijk over de markt.
 - Maximaal 30 woorden per duiding. Nederlands."""
 # --------------------------------------------------------------------------

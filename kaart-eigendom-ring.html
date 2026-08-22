@@ -41,7 +41,6 @@
   <div class="rij"><span class="sw" style="background:var(--corp)"></span> Corporatie overheerst</div>
   <div class="rij"><span class="sw" style="background:var(--over)"></span> Overige verhuur overheerst</div>
   <div class="rij"><span class="sw" style="background:var(--onbekend)"></span> Onbekend / te klein</div>
-  <div class="rij" style="margin-top:6px"><span class="sw" style="background:#12242c;border-radius:50%"></span> Eigen pand</div>
 </div>
 
 <div class="status" id="status">Kaartgegevens laden...</div>
@@ -167,27 +166,6 @@ fetch(url)
     }
   })
   .catch(err => status("Buurten laden mislukt: " + err.message));
-
-// Eigen panden geocoden via de PDOK Locatieserver en als marker plaatsen
-const PANDEN = [
-  "Graafsedwarsstraat 58 Nijmegen",
-  "Graafsedwarsstraat 60 Nijmegen",
-  "Eerste Oude Heselaan 86 Nijmegen",
-  "Eerste Oude Heselaan 88 Nijmegen",
-];
-PANDEN.forEach(adres => {
-  const q = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
-          + "?q=" + encodeURIComponent(adres) + "&fq=type:adres&rows=1";
-  fetch(q).then(r => r.json()).then(d => {
-    const doc = d.response && d.response.docs && d.response.docs[0];
-    if(!doc || !doc.centroide_ll) return;
-    const m = doc.centroide_ll.match(/POINT\(([-\d.]+) ([-\d.]+)\)/);
-    if(!m) return;
-    const lon = parseFloat(m[1]), lat = parseFloat(m[2]);
-    L.circleMarker([lat, lon], {radius:7, color:"#111", weight:2, fillColor:"#12242c", fillOpacity:1})
-      .addTo(map).bindTooltip("Eigen pand: " + adres.replace(" Nijmegen",""));
-  }).catch(()=>{});
-});
 </script>
 </body>
 </html>
