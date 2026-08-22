@@ -26,6 +26,7 @@ jobs:
       - name: Bekendmakingen ophalen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
@@ -46,6 +47,11 @@ jobs:
         run: |
           python publicaties_vastgoed.py --uit "digests/${DATUM}-publicaties.md" || echo "Publicaties-stap overgeslagen"
 
+      - name: Bekendmakingen-archief bijwerken
+        run: |
+          VANAF=$(date -d "-7 days" +%F)
+          python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -56,24 +62,22 @@ jobs:
         run: |
           BRIEF="digests/${DATUM}-brief.md"
           {
-            echo "# Vastgoedbrief Nijmegen - $(date +%d-%m-%Y)"
-            echo ""
             echo "[Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html)"
             echo ""
             echo "---"
             echo ""
-            if [ -f "digests/${DATUM}-rente.md" ]; then
-              cat "digests/${DATUM}-rente.md"
-              echo ""
-              echo "---"
-              echo ""
-            fi
             cat "digests/${DATUM}-bekendmakingen.md"
             echo ""
             echo "---"
             echo ""
             if [ -f "digests/${DATUM}-publicaties.md" ]; then
               cat "digests/${DATUM}-publicaties.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            if [ -f "digests/${DATUM}-rente.md" ]; then
+              cat "digests/${DATUM}-rente.md"
               echo ""
               echo "---"
               echo ""
@@ -123,7 +127,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json 2>/dev/null || true
+          git add digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
