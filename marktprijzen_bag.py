@@ -52,6 +52,29 @@ RATE_LIMIT_SEC = 1.1
 PDOK_FREE = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
 PDOK_HEADERS = {"User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
+ARCHIEF_PAD = "bekendmakingen_archief.json"
+
+
+def lees_archief():
+    """Archief van bekendmakingen per adres, gebouwd door bekendmakingen_archief.py."""
+    if not os.path.exists(ARCHIEF_PAD):
+        return {}
+    try:
+        with open(ARCHIEF_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def archief_sleutel(straat, huisnr):
+    """Zelfde normalisatie als in bekendmakingen_archief.py, anders matcht niets."""
+    s = straat.lower()
+    s = s.replace("sint ", "st ").replace("st. ", "st ")
+    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
+    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
+    s = re.sub(r"[^a-z0-9]", "", s)
+    return f"{s}{huisnr}"
+
 
 def lees_cache():
     if not os.path.exists(CACHE_PAD):
@@ -255,6 +278,19 @@ def normaliseer_buurt(buurtnaam):
 
 def render(woningen):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
+
+    # Bekendmakingen-signalen per pand opzoeken
+    archief = lees_archief()
+    if archief:
+        for w in woningen:
+            varianten = split_huisnummer(w["adres"])
+            if not varianten:
+                continue
+            straat, huisnr = varianten[0][0], varianten[0][1]
+            treffers = archief.get(archief_sleutel(straat, huisnr), [])
+            if treffers:
+                w["signalen"] = treffers
+
     r = ["", "## Marktprijzen koop per buurt",
          f"_Op basis van {len(woningen)} recente transacties/aanbiedingen. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
          ""]
@@ -263,19 +299,34 @@ def render(woningen):
     beleggingen = []
     stad_breed = []      # alle woningen met bruikbare data, ook buiten de focus-buurten
     buiten_focus = 0
+    geen_woonfunctie = 0
+    belegging_buiten_ring = 0
+
     for w in woningen:
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         opp = w.get("oppervlakte")
         if not opp or opp < 15:
             continue
+
+        # Harde filter op BAG-gebruiksdoel: garageboxen, bedrijfsunits en kantoren
+        # horen niet in een vergelijking van woonbeleggingen thuis.
+        doelen = w.get("gebruiksdoelen") or []
+        if doelen and not any("woon" in str(d).lower() for d in doelen):
+            geen_woonfunctie += 1
+            continue
+
         try:
             ppm2 = w["prijs"] / opp
         except (TypeError, ZeroDivisionError):
             continue
-        # Belegging apart houden
+
         if w.get("status", "").lower() == "belegging":
-            beleggingen.append((ppm2, w))
+            if buurt in FOCUS_BUURTEN:
+                beleggingen.append((ppm2, w))
+            else:
+                belegging_buiten_ring += 1
             continue
+
         stad_breed.append(ppm2)
         if not buurt or buurt not in FOCUS_BUURTEN:
             buiten_focus += 1
@@ -312,6 +363,8 @@ def render(woningen):
     r.append("")
     if buiten_focus:
         r.append(f"_{buiten_focus} panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._")
+    if geen_woonfunctie:
+        r.append(f"_{geen_woonfunctie} objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._")
     r.append("_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). Beleggingspanden **in verhuurde staat** liggen 20-40% lager. Zie beleggingstabel hieronder._")
     r.append("")
 
@@ -369,17 +422,45 @@ def render(woningen):
     # Beleggings-tabel (in verhuurde staat)
     if beleggingen:
         r.append("### Beleggingsobjecten in de ring (in verhuurde staat)")
-        r.append("_Bron: Funda Business. Deze panden worden verhuurd aangeboden; yield is bruto op basis van vraaghuur._")
+        r.append("_Bron: Funda Business. Alleen objecten met woonfunctie volgens de BAG._")
         r.append("")
-        r.append("| Adres | Prijs | m² | €/m² | Aandachtspunten |")
-        r.append("|---|---:|---:|---:|---|")
+        r.append("| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Bekendmakingen |")
+        r.append("|---|---|---:|---:|---:|---:|---|")
         for ppm2, w in sorted(beleggingen, key=lambda x: x[1]["prijs"]):
-            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or w.get("wijknaam", "?")
-            r.append(f"| {w['adres']} ({buurt}) | €{w['prijs']:,} | {w.get('oppervlakte', '?')} | "
-                     f"€{int(ppm2):,} | belegging |".replace(",", "."))
+            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+            bj = w.get("bouwjaar") or "?"
+            sig = w.get("signalen") or []
+            soorten = sorted({s for t in sig for s in t.get("soorten", [])})
+            sigtekst = ", ".join(soorten) if soorten else "geen treffer"
+            r.append(f"| {w['adres']} | {buurt} | €{w['prijs']:,} | {w.get('oppervlakte','?')} | "
+                     f"€{int(ppm2):,} | {bj} | {sigtekst} |".replace(",", "."))
         r.append("")
+        if belegging_buiten_ring:
+            r.append(f"_{belegging_buiten_ring} beleggingsobjecten lagen buiten de ring en zijn niet getoond._")
         r.append("_€/m² beleggingsobjecten ligt meestal 20-40% onder mediaan-VoH. "
                  "Verschil = potentiële uitpond-marge bij mutatie._")
+        r.append("")
+
+    # Panden waar ooit iets over gepubliceerd is
+    met_signaal = [w for w in woningen if w.get("signalen")]
+    if met_signaal:
+        r.append("### Panden met een bekendmaking in het archief")
+        r.append("")
+        for w in sorted(met_signaal, key=lambda x: x["adres"]):
+            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+            r.append(f"- **{w['adres']}** ({buurt}) . {w['status']}")
+            for t in w["signalen"][:3]:
+                soorten = ", ".join(t.get("soorten", []))
+                link = f" ([bron]({t['url']}))" if t.get("url") else ""
+                r.append(f"  `{t.get('datum','?')}` {soorten}: {t.get('titel','')}{link}")
+            if len(w["signalen"]) > 3:
+                r.append(f"  _en nog {len(w['signalen']) - 3} eerdere publicaties_")
+            r.append("")
+        r.append("_**Wat dit wel en niet zegt.** Een treffer betekent dat de gemeente ooit "
+                 "iets over dit adres publiceerde, niet dat er een geldige vergunning ligt: "
+                 "een aanvraag kan geweigerd of ingetrokken zijn. Geen treffer betekent "
+                 "evenmin dat er niets is, want het archief gaat maar enkele jaren terug. "
+                 "Gebruik dit als aanleiding om na te vragen, niet als bewijs._")
         r.append("")
 
     return "\n".join(r)
