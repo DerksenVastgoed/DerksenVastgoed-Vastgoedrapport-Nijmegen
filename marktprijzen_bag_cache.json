@@ -1822,5 +1822,61 @@
     "adresseerbaarObjectIdentificatie": "0268010000079547",
     "buurtnaam": "Hees",
     "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "van Welderenstraat 5|Nijmegen": {
+    "oppervlakte": 235,
+    "bouwjaar": null,
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511MA",
+    "adresseerbaarObjectIdentificatie": "0268010000074409",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Welderenstraat 89|Nijmegen": {
+    "oppervlakte": 182,
+    "bouwjaar": null,
+    "gebruiksdoelen": [
+      "overige gebruiksfunctie",
+      "winkelfunctie"
+    ],
+    "postcode": "6511ME",
+    "adresseerbaarObjectIdentificatie": "0268010000088015",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "St. Annastraat 28|Nijmegen": {
+    "oppervlakte": 367,
+    "bouwjaar": null,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524GC",
+    "adresseerbaarObjectIdentificatie": "0268010000025185",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Ziekerstraat 5|Nijmegen": {
+    "oppervlakte": 126,
+    "bouwjaar": null,
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511LJ",
+    "adresseerbaarObjectIdentificatie": "0268010000050492",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Koningstraat 4|Nijmegen": {
+    "oppervlakte": 134,
+    "bouwjaar": null,
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511LB",
+    "adresseerbaarObjectIdentificatie": "0268010000018500",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
   }
 }
