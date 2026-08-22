@@ -100,19 +100,37 @@ def lees_verkopen(pad):
 
 def split_huisnummer(adres):
     """
-    Splits 'Voorbeeldstraat 20A' -> ('Voorbeeldstraat', '20', 'A', None)
-    'Molenstraat 41K' -> ('Molenstraat', '41', 'K', None)
-    'Dommer van Poldersveldtweg 42' -> ('Dommer van Poldersveldtweg', '42', None, None)
-    'Bijleveldsingel 20 Bb' -> ('Bijleveldsingel', '20', 'B', 'B')
+    Splitst een adres in straat, huisnummer en achtervoegsel.
+    Geeft een LIJST van interpretaties terug, want een achtervoegsel kan in de BAG
+    een huisletter of een huisnummertoevoeging zijn. Beide worden geprobeerd.
+
+    'Voorbeeldstraat 20'    -> [('Voorbeeldstraat','20',None,None)]
+    'Voorbeeldstraat 20A'   -> [(...,'20','A',None), (...,'20',None,'A')]
+    'Voorbeeldstraat 1-B'   -> [(...,'1','B',None), (...,'1',None,'B')]
+    'Voorbeeldstraat 7A-12' -> [(...,'7','A','12')]
     """
-    m = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z])?\s*[\-]?\s*([A-Za-z0-9]{1,4})?\s*$", adres.strip())
+    s = adres.strip()
+    m = re.match(r"^(.+?)\s+(\d+)\s*[-\s]?\s*([A-Za-z])?\s*[-\s]?\s*([A-Za-z0-9]{1,4})?\s*$", s)
     if not m:
-        return adres, None, None, None
+        return []
     straat = m.group(1).strip()
     huisnr = m.group(2)
     letter = (m.group(3) or "").upper() or None
     toev = (m.group(4) or "").upper() or None
-    return straat, huisnr, letter, toev
+
+    if letter and toev:
+        return [(straat, huisnr, letter, toev)]
+    achter = letter or toev
+    if not achter:
+        return [(straat, huisnr, None, None)]
+    varianten = []
+    if len(achter) == 1 and achter.isalpha():
+        varianten.append((straat, huisnr, achter, None))   # huisletter
+        varianten.append((straat, huisnr, None, achter))   # toevoeging
+    else:
+        varianten.append((straat, huisnr, None, achter))
+        varianten.append((straat, huisnr, None, None))
+    return varianten
 
 
 def pdok_buurt(straat, huisnr, plaats):
@@ -193,17 +211,23 @@ def verrijk(woning, cache):
         woning.update(cache[sleutel])
         return woning
 
-    straat, huisnr, letter, toev = split_huisnummer(woning["adres"])
-    if not huisnr:
+    varianten = split_huisnummer(woning["adres"])
+    if not varianten:
         print(f"  FAIL parse: {woning['adres']}", file=sys.stderr)
         cache[sleutel] = {"gefaald": True, "reden": "parse"}
         return woning
 
-    bag = bag_adres_uitgebreid(straat, huisnr, letter, toev, woning["plaats"])
-    time.sleep(RATE_LIMIT_SEC)
+    bag = None
+    for straat, huisnr, letter, toev in varianten:
+        bag = bag_adres_uitgebreid(straat, huisnr, letter, toev, woning["plaats"])
+        time.sleep(RATE_LIMIT_SEC)
+        if bag and bag.get("oppervlakte"):
+            break
+        bag = None
 
-    # Retry zonder toevoeging als exact niet lukt
-    if not bag and (toev or letter):
+    # Laatste redmiddel: kaal huisnummer zonder achtervoegsel
+    if not bag:
+        straat, huisnr = varianten[0][0], varianten[0][1]
         bag = bag_adres_uitgebreid(straat, huisnr, None, None, woning["plaats"])
         time.sleep(RATE_LIMIT_SEC)
 
@@ -212,7 +236,7 @@ def verrijk(woning, cache):
         cache[sleutel] = {"gefaald": True, "reden": "bag_geen_oppervlakte"}
         return woning
 
-    pdok = pdok_buurt(straat, huisnr, woning["plaats"])
+    pdok = pdok_buurt(varianten[0][0], varianten[0][1], woning["plaats"])
     time.sleep(0.2)
 
     verrijking = {**bag, **pdok}
@@ -380,6 +404,23 @@ def main():
 
     schrijf_cache(cache)
     print(f"Verrijkt met oppervlakte: {ok}/{len(woningen)} (nieuw opgehaald: {nieuw})", file=sys.stderr)
+
+    # Ontdubbelen op het BAG-object. Hetzelfde pand kan meerdere keren in
+    # verkopen.txt staan (nieuwe kwartaalronde, andere schrijfwijze, status
+    # gewijzigd van 'te koop' naar 'verkocht'). De LAATSTE regel wint, want
+    # dat is de meest recente stand. Zonder dit telt een pand dubbel mee.
+    per_object, volgorde = {}, []
+    for w in woningen:
+        obj = w.get("adresseerbaarObjectIdentificatie")
+        sleutel = obj if obj else re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+        if sleutel not in per_object:
+            volgorde.append(sleutel)
+        per_object[sleutel] = w
+    ontdubbeld = [per_object[s] for s in volgorde]
+    weg = len(woningen) - len(ontdubbeld)
+    if weg:
+        print(f"Ontdubbeld: {weg} dubbele regels verwijderd, {len(ontdubbeld)} panden over", file=sys.stderr)
+    woningen = ontdubbeld
 
     md = render(woningen)
     print(md)
