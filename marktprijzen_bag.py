@@ -40,9 +40,6 @@ BUURT_ALIAS = {
     "Nijmegen-Oud-West": "Biezen",
 }
 
-EIGEN_STRATEN = ["Graafsedwarsstraat", "Eerste Oude Heselaan"]
-ACQUISITIE_STRATEN = ["Fransestraat", "Van Spaenstraat"]
-
 BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
 BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
 BAG_HEADERS = {
@@ -53,7 +50,7 @@ BAG_HEADERS = {
 RATE_LIMIT_SEC = 1.1
 
 PDOK_FREE = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
-PDOK_HEADERS = {"User-Agent": "DerksenVastgoedMonitor/1.0"}
+PDOK_HEADERS = {"User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
 
 def lees_cache():
@@ -103,7 +100,7 @@ def lees_verkopen(pad):
 
 def split_huisnummer(adres):
     """
-    Splits 'Van Spaenstraat 20A' -> ('Van Spaenstraat', '20', 'A', None)
+    Splits 'Voorbeeldstraat 20A' -> ('Voorbeeldstraat', '20', 'A', None)
     'Molenstraat 41K' -> ('Molenstraat', '41', 'K', None)
     'Dommer van Poldersveldtweg 42' -> ('Dommer van Poldersveldtweg', '42', None, None)
     'Bijleveldsingel 20 Bb' -> ('Bijleveldsingel', '20', 'B', 'B')
@@ -346,35 +343,6 @@ def render(woningen):
         r.append("_€/m² beleggingsobjecten ligt meestal 20-40% onder mediaan-VoH. "
                  "Verschil = potentiële uitpond-marge bij mutatie._")
         r.append("")
-
-    eigen_hits, acq_hits = [], []
-    for w in woningen:
-        for straat in EIGEN_STRATEN:
-            if straat.lower() in w["adres"].lower():
-                eigen_hits.append(w)
-        for straat in ACQUISITIE_STRATEN:
-            if straat.lower() in w["adres"].lower():
-                acq_hits.append(w)
-
-    if eigen_hits or acq_hits:
-        r.append("### Transacties in eigen bezit-straten of acquisitietargets")
-        r.append("")
-        if eigen_hits:
-            r.append("**Naast eigen bezit:**")
-            for w in eigen_hits:
-                opp = w.get("oppervlakte")
-                ppm2 = f"€{int(w['prijs']/opp):,}/m²".replace(",", ".") if opp else "?"
-                r.append(f"- {w['adres']} ({w.get('postcode','?')}): "
-                         f"€{w['prijs']:,} ({opp}m² → {ppm2}) . _{w['status']}_".replace(",", "."))
-            r.append("")
-        if acq_hits:
-            r.append("**Acquisitietargets:**")
-            for w in acq_hits:
-                opp = w.get("oppervlakte")
-                ppm2 = f"€{int(w['prijs']/opp):,}/m²".replace(",", ".") if opp else "?"
-                r.append(f"- {w['adres']} ({w.get('postcode','?')}): "
-                         f"€{w['prijs']:,} ({opp}m² → {ppm2}) . _{w['status']}_".replace(",", "."))
-            r.append("")
 
     return "\n".join(r)
 

@@ -3,7 +3,7 @@
 Publicaties-blok voor de Nijmegen Vastgoedmonitor.
 
 Haalt recente artikelen op uit RSS-feeds van vastgoedbronnen, filtert op
-relevantie voor Derksen Vastgoed, en genereert per bericht een samenvatting
+relevantie voor de Nijmeegse beleggingsmarkt, en genereert per bericht een samenvatting
 met vertaling naar de portefeuille.
 
 Zonder ANTHROPIC_API_KEY werkt alles gewoon, alleen zonder de duiding-zin.
@@ -70,31 +70,24 @@ HISTORIE_PAD = "publicaties_gezien.json"
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 MODEL = "claude-sonnet-5"
-PROFIEL = """Je bent de vastgoedanalist van Derksen Vastgoed in Nijmegen. Denk als MSRE-professional maar schrijf toegankelijk voor een startende vastgoedinvesteerder.
+PROFIEL = """Je bent vastgoedanalist voor een marktbrief over de binnenring van Nijmegen. Lezers zijn particuliere vastgoedinvesteerders en kleine ontwikkelaars. Denk als MSRE-professional, schrijf toegankelijk.
 
-Context Derksen:
-- Verhuurt woningen via BV. Bezit: Graafsedwarsstraat 58-60 en Eerste Oude Heselaan 86-88A (Waterkwartier).
-- Acquisitietargets: Fransestraat en Van Spaenstraat (Galgenveld).
-- Model: kopen, bij mutatie renoveren, splitsen waar kan, beter verhuren.
+Marktcontext (referentiepand in dit segment): waarde circa €1,5M, hypotheek €1M rond 5,75%, kale huur circa €67.500/jaar. Na 25% opex is de cashflow ongeveer nul. Rendement komt niet uit huur maar uit waardecreatie: uitponden, splitsen, renoveren bij mutatie, functie omzetten.
 
-Marktcontext (referentie-pand): waarde €1,5M, hypotheek €1M op 5,75% (rentelast €57.500/jaar), kale huur €67.500/jaar. Cashflow na 25% opex = licht negatief. Rendement moet uit mutatie/splitsing komen, niet uit cashflow.
+Je krijgt titels en samenvattingen van vastgoedpublicaties. Voor elk:
+1. "relevant": true of false. Institutioneel of retail buiten de regio is niet relevant.
+2. "strategie": voor welk type investeerder dit nieuws telt. Kies EEN uit:
+   uitponden | buy-and-hold | splitsen | kamerverhuur | transformatie | verduurzaming | financiering | fiscaal | algemeen
+3. "samenvatting": EEN zin met de kern van het artikel.
+4. "duiding": EEN zin met concrete betekenis voor investeerders in dit segment.
 
-Je krijgt titels + samenvattingen van vastgoedpublicaties. Voor elk:
-1. Beoordeel of het echt relevant is voor Derksen. Zo nee, "gevolg" = "-".
-2. Zo ja: geef in EEN zin een korte kern-samenvatting, in EEN zin de vertaling naar Derksen.
+De duiding moet concreet zijn. Denk aan effect op kosten van kapitaal, huurniveau en dus yield, exit-waarde bij verkoop, netto rendement na belasting, of vergunbaarheid van splitsen.
 
-De vertaling moet CONCREET zijn, in MSRE-taal maar toegankelijk. Denk in:
-- Rente/refinancieringsrisico: wat doet dit met kosten van kapitaal?
-- Huurregulering: wat doet dit met huurniveau en dus met yields?
-- Waardeontwikkeling: wat doet dit met exit-waarde en waardestapel?
-- Belasting (box 3, overdracht): wat doet dit met netto rendement?
-- Beleid: wat doet dit met concurrent-druk of splitsings-vergunbaarheid?
-
-STRIKTE REGELS:
-- Concrete cijfers waar mogelijk.
-- Toegankelijke uitleg voor starters.
-- Wees streng op relevantie. Institutioneel of retail buiten regio = niet relevant, gevolg "-".
-- Kort en scherp. Max 30 woorden per zin. Nederlands."""
+REGELS:
+- Cijfers waar mogelijk.
+- Geen algemeenheden.
+- Nooit specifieke beleggers of portefeuilles benoemen. Schrijf onpersoonlijk over de markt.
+- Maximaal 30 woorden per zin. Nederlands."""
 
 
 def haal_feed(bron):
@@ -189,6 +182,7 @@ def verrijk(items):
     for it in items:
         it["samenvatting"] = ""
         it["gevolg"] = ""
+        it["strategie"] = ""
     if not ANTHROPIC_API_KEY or not items:
         return
     lijst = "\n".join(
@@ -197,8 +191,8 @@ def verrijk(items):
     )
     prompt = (f"Berichten:\n{lijst}\n\n"
               'Antwoord met ALLEEN een JSON-array. Per bericht: '
-              '{"i": <index>, "samenvatting": "<1 zin, of leeg>", '
-              '"gevolg": "<1 zin gevolg voor Derksen, of \'-\' als niet relevant>"}. '
+              '{"i": <index>, "relevant": true/false, "strategie": "<label>", '
+              '"samenvatting": "<1 zin>", "duiding": "<1 zin>"}. '
               "Geen tekst eromheen.")
     try:
         resp = requests.post(
@@ -206,41 +200,74 @@ def verrijk(items):
             headers={"x-api-key": ANTHROPIC_API_KEY,
                      "anthropic-version": "2023-06-01",
                      "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 2000, "system": PROFIEL,
+            json={"model": MODEL, "max_tokens": 4000, "system": PROFIEL,
                   "messages": [{"role": "user", "content": prompt}]},
-            timeout=60,
+            timeout=90,
         )
         resp.raise_for_status()
-        tekst = "".join(b.get("text", "") for b in resp.json().get("content", []))
+        body = resp.json()
+        tekst = "".join(b.get("text", "") for b in body.get("content", []))
+        if body.get("stop_reason") == "max_tokens":
+            print("LET OP: antwoord afgekapt op max_tokens", file=sys.stderr)
         tekst = tekst.strip()
         if tekst.startswith("```"):
             tekst = tekst.split("```")[1]
             if tekst.startswith("json"):
                 tekst = tekst[4:]
-        data = json.loads(tekst)
+        tekst = tekst.strip()
+
+        try:
+            data = json.loads(tekst)
+        except json.JSONDecodeError:
+            data = []
+            for m in re.finditer(r"\{[^{}]*\}", tekst):
+                try:
+                    data.append(json.loads(m.group(0)))
+                except json.JSONDecodeError:
+                    continue
+            if not data:
+                raise
+
         for rij in data:
+            if not isinstance(rij, dict):
+                continue
             i = rij.get("i")
-            if isinstance(i, int) and 0 <= i < len(items):
-                items[i]["samenvatting"] = str(rij.get("samenvatting", "")).strip()
-                items[i]["gevolg"] = str(rij.get("gevolg", "")).strip()
+            if not (isinstance(i, int) and 0 <= i < len(items)):
+                continue
+            if rij.get("relevant") is False:
+                items[i]["gevolg"] = "-"
+                continue
+            items[i]["strategie"] = str(rij.get("strategie", "")).strip().lower()
+            items[i]["samenvatting"] = str(rij.get("samenvatting", "")).strip()
+            items[i]["gevolg"] = str(rij.get("duiding", rij.get("gevolg", ""))).strip()
     except Exception as e:
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
 
 
 def render(items):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
-    r = ["", "## Publicaties", f"_Vastgoedartikelen laatste 24u, met vertaling naar Derksen. {vandaag}._", ""]
+    r = ["", "## Publicaties", f"_Vastgoedartikelen laatste 24u, met marktduiding. {vandaag}._", ""]
     if not items:
         r.append("_Geen relevante publicaties gevonden._")
         return "\n".join(r)
     for it in items:
-        r.append(f"- **[{it['bron']}] {it['titel']}** ([bron]({it['link']}))")
+        strat = (it.get("strategie") or "").strip()
+        kop = f"**[{strat}]** " if strat and strat != "algemeen" else ""
+        r.append(f"- {kop}**{it['titel']}** ([bron]({it['link']}))")
         if it.get("samenvatting"):
             r.append(f"  {it['samenvatting']}")
         if it.get("gevolg") and it["gevolg"] not in ("-", ""):
-            r.append(f"  -> _{it['gevolg']}_")
+            r.append(f"  _{it['gevolg']}_")
         r.append("")
     return "\n".join(r)
+
+
+def _titel_sleutel(titel):
+    """Normaliseert een titel voor dedup: zelfde artikel via verschillende feeds."""
+    t = titel.lower()
+    t = re.sub(r"\s+-\s+[^-]+$", "", t)   # trailing " - Bronnaam" weghalen
+    t = re.sub(r"[^a-z0-9]+", "", t)
+    return t[:80]
 
 
 def main():
@@ -260,12 +287,17 @@ def main():
     kandidaten = [it for it in kandidaten if relevant_trefwoord(it)]
     print(f"Na trefwoordfilter: {len(kandidaten)}", file=sys.stderr)
 
-    gezien_batch, uniek = set(), []
+    gezien_batch, titels_batch, uniek = set(), set(), []
     for it in kandidaten:
         if it["link"] in gezien_batch:
             continue
+        tsleutel = _titel_sleutel(it["titel"])
+        if tsleutel in titels_batch:
+            continue
         gezien_batch.add(it["link"])
+        titels_batch.add(tsleutel)
         uniek.append(it)
+    print(f"Na dedup (url + titel): {len(uniek)}", file=sys.stderr)
 
     kandidaten = uniek[:MAX_ITEMS_LLM]
     verrijk(kandidaten)

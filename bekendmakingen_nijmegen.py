@@ -5,7 +5,7 @@ Bekendmakingen-blok voor de Nijmegen Vastgoedmonitor.
 Haalt officiele bekendmakingen van gemeente Nijmegen op via de KOOP SRU-API,
 filtert op de ring rond het Keizer Karelplein, gooit ruis weg, splitst de rest
 in KERNSIGNALEN en OVERIGE, en zet bij elk bericht een korte duiding
-"wat betekent dit voor Derksen" via de Anthropic-API. Schrijft markdown weg.
+een strategie-label en marktduiding via de Anthropic-API. Schrijft markdown weg.
 
 Bronnen:
   Bekendmakingen : https://repository.overheid.nl/sru  (open, geen sleutel)
@@ -18,6 +18,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -32,10 +33,14 @@ GEMEENTE = "Nijmegen"
 
 RING_POSTCODES = ["6511", "6512", "6521", "6522", "6524", "6525", "6541", "6542"]
 RING_STRATEN = [
-    "Graafsedwarsstraat", "Eerste Oude Heselaan",
-    "Fransestraat", "Van Spaenstraat",
-    "Bottendaalseweg", "Groesbeekseweg", "Berg en Dalseweg", "Sint Annastraat",
-    "Graafseweg", "Voorstadslaan", "Waterstraat", "Biezenstraat",
+    "Berg en Dalseweg", "Biezenstraat", "Bijleveldsingel", "Bottendaalseweg",
+    "Burghardt van den Berghstraat", "Coehoornstraat", "Daalseweg",
+    "Dommer van Poldersveldtweg", "Eerste Oude Heselaan", "Fransestraat",
+    "Graafsedwarsstraat", "Graafseweg", "Groenestraat", "Groesbeekseweg",
+    "Groesbeeksedwarsweg", "Hertogstraat", "Krayenhofflaan", "Marialaan",
+    "Molenstraat", "Prins Hendrikstraat", "Sint Annastraat", "Tooropstraat",
+    "van Nispenstraat", "Van Spaenstraat", "Voorstadslaan", "Waterstraat",
+    "Weurtseweg", "Wolfskuilseweg", "Ziekerstraat",
 ]
 
 UITSLUITEN = [
@@ -65,28 +70,26 @@ MAX_PER_PAGINA = 100
 # --- Duiding via Anthropic ---
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
 MODEL = "claude-sonnet-5"
-PROFIEL = """Je bent de vastgoedanalist van Derksen Vastgoed in Nijmegen. Denk als MSRE-professional maar schrijf toegankelijk voor een startende vastgoedinvesteerder.
+PROFIEL = """Je bent vastgoedanalist voor een marktbrief over de binnenring van Nijmegen (rond het Keizer Karelplein, oost en west). Lezers zijn particuliere vastgoedinvesteerders en kleine ontwikkelaars. Denk als MSRE-professional, schrijf toegankelijk.
 
-Context Derksen:
-- Verhuurt woningen via BV. Bezit: Graafsedwarsstraat 58-60 en Eerste Oude Heselaan 86-88A (Waterkwartier).
-- Acquisitietargets: Fransestraat en Van Spaenstraat (Galgenveld).
-- Model: kopen, bij mutatie renoveren, label omhoog, splitsen waar kan, beter verhuren.
+Marktcontext (referentiepand in dit segment): waarde circa €1,5M, hypotheek €1M rond 5,75%, kale huur circa €67.500/jaar. Na 25% opex is de cashflow ongeveer nul. Rendement komt in dit segment dus niet uit huur, maar uit waardecreatie: uitponden, splitsen, renoveren bij mutatie, functie omzetten.
 
-Marktcontext (referentie-pand): waarde €1,5M, hypotheek €1M op 5,75% (rentelast €57.500/jaar), kale huur €67.500/jaar. Cashflow na 25% opex = licht negatief. Rendement moet uit mutatie/splitsing komen, niet uit cashflow.
+Je krijgt bekendmakingen uit de ring. Geef per bekendmaking:
+1. "strategie": voor welk type investeerder dit signaal relevant is. Kies EEN uit:
+   uitponden | buy-and-hold | splitsen | kamerverhuur | transformatie | verduurzaming | geen
+2. "duiding": EEN zin met concrete marktbetekenis. Cijfers waar mogelijk.
 
-Je krijgt bekendmakingen uit zijn ring. Geef per bekendmaking EEN korte scherpe zin die het signaal vertaalt naar een concrete implicatie. Denk in:
-- Yield: wat is bruto/netto huurrendement bij dit pand, hoe verhoudt dat zich tot rente?
-- Cashflow: wat betekent het voor cash flow als je dit pand zou kopen tegen huidige tarieven?
-- Waardecreatie: welk waardestapel-signaal (splitsen, transformatie, kamerverhuur, verduurzaming) is dit?
-- Concurrent: welke partij pakt kans en wat leert dat over de markt?
+Voorbeelden van goede duiding:
+- "9 kamers bij circa €650/maand geeft ruwweg €70k huurstroom; op deze panden ligt het bruto rendement rond 7%, duidelijk boven appartementsverhuur."
+- "Samenvoegen haalt units uit de voorraad; dat drukt aanbod in het kleine segment en steunt de m2-prijs van bestaande kleine units."
+- "Vergunde dakisolatie laat zien dat labelverbetering hier vergunbaar is; relevant voor wie op label C of slechter zit."
 
-STRIKTE REGELS:
-- Concrete cijfers waar mogelijk: "€65-80k huurstroom, gross yield 7-9%" niet "hoog yield-potentieel".
-- Toegankelijke uitleg: bij "gross yield" één keer per brief kort uitleggen wat je bedoelt ("huur gedeeld door waarde").
-- NOOIT geografisch commentaar (filter is al toegepast).
-- NOOIT algemeenheden ("bevestigt trend", "interessant signaal").
-- Bij marginale items: benoem kort dat het geen marktimpact heeft.
-- Kort en scherp. Max 30 woorden per zin. Nederlands."""
+REGELS:
+- Geen geografisch commentaar over afstand of ligging. Het filter is al toegepast.
+- Geen algemeenheden zoals "bevestigt de trend" of "interessant signaal".
+- Bij marginale items: strategie "geen" en een korte feitelijke zin.
+- Nooit specifieke beleggers of portefeuilles benoemen. Schrijf onpersoonlijk over de markt.
+- Maximaal 30 woorden per duiding. Nederlands."""
 # --------------------------------------------------------------------------
 
 
@@ -171,43 +174,74 @@ def classificeer(item: dict):
 
 
 def _parse_annotaties(tekst: str, n: int) -> dict:
-    """Haalt {index: gevolg} uit het JSON-antwoord van het model."""
+    """Haalt {index: {strategie, duiding}} uit het JSON-antwoord.
+    Bestand tegen afgekapte JSON: redt losse objecten uit een halve array."""
     schoon = tekst.strip()
     if schoon.startswith("```"):
         schoon = schoon.split("```")[1]
         if schoon.startswith("json"):
             schoon = schoon[4:]
-    data = json.loads(schoon)
+    schoon = schoon.strip()
+
+    data = None
+    try:
+        data = json.loads(schoon)
+    except json.JSONDecodeError:
+        # Afgekapte respons: pak losse {...} objecten eruit
+        data = []
+        for m in re.finditer(r"\{[^{}]*\}", schoon):
+            try:
+                data.append(json.loads(m.group(0)))
+            except json.JSONDecodeError:
+                continue
+        if not data:
+            raise
+
     uit = {}
     for rij in data:
+        if not isinstance(rij, dict):
+            continue
         i = rij.get("i")
         if isinstance(i, int) and 0 <= i < n:
-            uit[i] = str(rij.get("gevolg", "")).strip()
+            uit[i] = {
+                "strategie": str(rij.get("strategie", "")).strip().lower(),
+                "duiding": str(rij.get("duiding", rij.get("gevolg", ""))).strip(),
+            }
     return uit
 
 
 def verrijk(items: list):
-    """Zet bij elk item een duiding-zin via de Anthropic-API."""
+    """Zet bij elk item een strategie-label en duiding via de Anthropic-API."""
+    for it in items:
+        it["strategie"] = ""
+        it["gevolg"] = ""
     if not ANTHROPIC_API_KEY or not items:
         return
     lijst = "\n".join(f"{i}. {it['titel']}" for i, it in enumerate(items))
     prompt = (f"Bekendmakingen:\n{lijst}\n\n"
               "Antwoord met ALLEEN een JSON-array, per bekendmaking een object "
-              '{"i": <index>, "gevolg": "<een zin>"}. Geen tekst eromheen.')
+              '{"i": <index>, "strategie": "<label>", "duiding": "<een zin>"}. '
+              "Geen tekst eromheen.")
     try:
         resp = requests.post(
             "https://api.anthropic.com/v1/messages",
             headers={"x-api-key": ANTHROPIC_API_KEY,
                      "anthropic-version": "2023-06-01",
                      "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 1200, "system": PROFIEL,
+            json={"model": MODEL, "max_tokens": 4000, "system": PROFIEL,
                   "messages": [{"role": "user", "content": prompt}]},
-            timeout=60)
+            timeout=90)
         resp.raise_for_status()
-        tekst = "".join(b.get("text", "") for b in resp.json().get("content", []))
+        body = resp.json()
+        tekst = "".join(b.get("text", "") for b in body.get("content", []))
+        if body.get("stop_reason") == "max_tokens":
+            print("LET OP: antwoord afgekapt op max_tokens", file=sys.stderr)
         annotaties = _parse_annotaties(tekst, len(items))
+        print(f"Duiding gelukt voor {len(annotaties)}/{len(items)} items", file=sys.stderr)
         for i, it in enumerate(items):
-            it["gevolg"] = annotaties.get(i, "")
+            a = annotaties.get(i, {})
+            it["strategie"] = a.get("strategie", "")
+            it["gevolg"] = a.get("duiding", "")
     except Exception as e:  # noqa
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
 
@@ -215,8 +249,13 @@ def verrijk(items: list):
 def _regel(it: dict) -> str:
     link = f"([bron]({it['url']}))" if it["url"] else ""
     regel = f"- **{it['datum']}** . {it['titel']} {link}"
-    if it.get("gevolg"):
-        regel += f"\n  → _{it['gevolg']}_"
+    strat = (it.get("strategie") or "").strip()
+    duiding = (it.get("gevolg") or "").strip()
+    if duiding:
+        if strat and strat != "geen":
+            regel += f"\n  **[{strat}]** _{duiding}_"
+        else:
+            regel += f"\n  _{duiding}_"
     return regel
 
 
