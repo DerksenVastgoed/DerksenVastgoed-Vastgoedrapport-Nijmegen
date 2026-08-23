@@ -162,6 +162,80 @@ def is_triple_respons(rijen):
     return bool(rijen) and isinstance(rijen[0], (list, tuple))
 
 
+
+def verzamel_uit_triples(rijen, alles):
+    """
+    De RCE levert linked data: het monument en zijn adres zijn losse objecten,
+    verbonden via relatie-objecten. We groeperen alle tripletjes per object,
+    zoeken de objecten die een adres dragen, en klimmen via de verwijzingen
+    terug omhoog naar het monument om nummer en functie op te halen.
+    Geeft het aantal toegevoegde adressen terug.
+    """
+    objecten, _ = groepeer_triples(rijen)
+
+    # Wie verwijst naar wie? Nodig om van adres terug naar monument te lopen.
+    verwijst_naar_mij = {}
+    for subject, obj in objecten.items():
+        for waarde in obj.values():
+            for v in (waarde if isinstance(waarde, list) else [waarde]):
+                if isinstance(v, str) and v.startswith("http"):
+                    verwijst_naar_mij.setdefault(v, set()).add(subject)
+
+    def monument_boven(subject, diepte=0):
+        """Zoekt omhoog naar een object met een rijksmonumentnummer."""
+        if diepte > 4:
+            return None
+        for ouder in verwijst_naar_mij.get(subject, ()):
+            obj = objecten.get(ouder, {})
+            if "rijksmonumentnummer" in obj:
+                return obj
+            gevonden = monument_boven(ouder, diepte + 1)
+            if gevonden:
+                return gevonden
+        return None
+
+    def enkel(waarde):
+        if isinstance(waarde, list):
+            for v in waarde:
+                if v and not str(v).startswith("http"):
+                    return str(v)
+            return str(waarde[0]) if waarde else ""
+        return str(waarde or "")
+
+    toegevoegd = 0
+    for subject, obj in objecten.items():
+        straat = enkel(obj.get("openbareRuimte"))
+        huisnr = enkel(obj.get("huisnummer"))
+        if not straat or not huisnr:
+            # Soms staat het volledige adres in een enkel veld
+            volledig = enkel(obj.get("volledigAdres"))
+            gesplitst = split_adres(volledig, "")
+            if not gesplitst:
+                continue
+            straat, huisnr = gesplitst
+        if not huisnr.isdigit():
+            continue
+
+        mon = monument_boven(subject) or {}
+        letter = enkel(obj.get("huisletter"))
+        adres_tekst = f"{straat} {huisnr}{letter}".strip()
+
+        item = {
+            "adres": adres_tekst,
+            "nummer": enkel(mon.get("rijksmonumentnummer")),
+            "postcode": enkel(obj.get("postcode")),
+            "functie": enkel(mon.get("heeftFunctieNaam")) or enkel(mon.get("hoofdfunctie")),
+            "naam": enkel(mon.get("naam")) or enkel(mon.get("prefLabel")),
+        }
+        k = sleutel(straat, huisnr)
+        alles.setdefault(k, [])
+        if not any(b.get("adres") == item["adres"] and b.get("nummer") == item["nummer"]
+                   for b in alles[k]):
+            alles[k].append(item)
+            toegevoegd += 1
+    return toegevoegd
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plaats", default="Nijmegen")
@@ -178,7 +252,7 @@ def main():
     gemeld_triples = False
 
     netwerkfout = False
-    for pagina in range(1, 60):
+    for pagina in range(1, 200):
         rijen = haal_pagina(args.plaats, pagina, args.debug and pagina == 1)
         if rijen is None:
             netwerkfout = True
@@ -187,46 +261,42 @@ def main():
             break
         totaal += len(rijen)
 
-        # Linked-data-antwoord: tripletjes omzetten naar objecten
         if is_triple_respons(rijen):
-            objecten, eigenschappen = groepeer_triples(rijen)
             if not gemeld_triples:
                 gemeld_triples = True
-                print(f"  Antwoord bestaat uit RDF-tripletjes. "
-                      f"{len(rijen)} feiten over {len(objecten)} objecten.", file=sys.stderr)
-                print(f"  Aangetroffen eigenschappen: "
-                      f"{sorted(eigenschappen.keys())}", file=sys.stderr)
-                voorbeeld = next(iter(objecten.values()), {})
-                print(f"  Voorbeeldobject: "
-                      f"{json.dumps(voorbeeld, ensure_ascii=False)[:800]}", file=sys.stderr)
-            rijen = list(objecten.values())
-        for rij in rijen:
-            if eerste_record is None:
-                eerste_record = rij
-            if not isinstance(rij, dict):
-                geen_object += 1
-                continue
-            volledig = _pak(rij, VELD_ADRES)
-            straat_veld = _pak(rij, VELD_STRAAT)
-            gesplitst = split_adres(volledig, straat_veld)
-            if not gesplitst:
-                zonder_adres += 1
-                continue
-            k = sleutel(*gesplitst)
-            item = {
-                "adres": volledig or f"{gesplitst[0]} {gesplitst[1]}",
-                "nummer": _pak(rij, VELD_NUMMER),
-                "postcode": _pak(rij, VELD_POSTCODE),
-                "functie": _pak(rij, VELD_FUNCTIE),
-                "aard": _pak(rij, VELD_AARD),
-            }
-            alles.setdefault(k, [])
-            if not any(b.get("nummer") == item["nummer"] for b in alles[k]):
-                alles[k].append(item)
-        print(f"  pagina {pagina}: {len(rijen)} records", file=sys.stderr)
-        if len(rijen) < PAGINA_GROOTTE:
-            break
-        time.sleep(0.5)
+                objecten, eigenschappen = groepeer_triples(rijen)
+                print(f"  Linked data: {len(rijen)} feiten over {len(objecten)} objecten "
+                      f"op pagina 1", file=sys.stderr)
+            nieuw_op_pagina = verzamel_uit_triples(rijen, alles)
+            print(f"  pagina {pagina}: {len(rijen)} feiten, "
+                  f"{nieuw_op_pagina} nieuwe adressen (totaal {len(alles)})", file=sys.stderr)
+        else:
+            for rij in rijen:
+                if eerste_record is None:
+                    eerste_record = rij
+                if not isinstance(rij, dict):
+                    geen_object += 1
+                    continue
+                volledig = _pak(rij, VELD_ADRES)
+                straat_veld = _pak(rij, VELD_STRAAT)
+                gesplitst = split_adres(volledig, straat_veld)
+                if not gesplitst:
+                    zonder_adres += 1
+                    continue
+                k = sleutel(*gesplitst)
+                item = {
+                    "adres": volledig or f"{gesplitst[0]} {gesplitst[1]}",
+                    "nummer": _pak(rij, VELD_NUMMER),
+                    "postcode": _pak(rij, VELD_POSTCODE),
+                    "functie": _pak(rij, VELD_FUNCTIE),
+                    "aard": _pak(rij, VELD_AARD),
+                }
+                alles.setdefault(k, [])
+                if not any(b.get("nummer") == item["nummer"] for b in alles[k]):
+                    alles[k].append(item)
+            print(f"  pagina {pagina}: {len(rijen)} records", file=sys.stderr)
+
+        time.sleep(0.4)
 
     if netwerkfout and not alles:
         print("De RCE-API was niet bereikbaar. Bestaand bestand blijft ongewijzigd.",
