@@ -472,6 +472,11 @@ def render(woningen):
         if not rijen or buurt not in HUUR_M2_MND:
             r.append(f"| {buurt} | — | — | — | — |")
             continue
+        if len(rijen) < 10:
+            # Zelfde drempel als in de boxplot: onder tien waarnemingen is de
+            # mediaan te wankel om er een rendement op te baseren.
+            r.append(f"| {buurt} | te weinig data (N={len(rijen)}) | — | — | — |")
+            continue
         prijzen = sorted(p for p, _ in rijen)
         med_m2 = st.median(prijzen)
         huur_m2_jaar = HUUR_M2_MND[buurt] * 12
