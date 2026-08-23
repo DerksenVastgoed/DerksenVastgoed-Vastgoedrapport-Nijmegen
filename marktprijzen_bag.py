@@ -55,6 +55,18 @@ PDOK_FREE = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
 PDOK_HEADERS = {"User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
 ARCHIEF_PAD = "bekendmakingen_archief.json"
+MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
+
+
+def lees_monumenten():
+    """Rijksmonumenten per adres, opgehaald door rijksmonumenten.py."""
+    if not os.path.exists(MONUMENTEN_PAD):
+        return {}
+    try:
+        with open(MONUMENTEN_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
 
 
 def lees_archief():
@@ -336,17 +348,24 @@ def normaliseer_buurt(buurtnaam):
 def render(woningen):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
 
-    # Bekendmakingen-signalen per pand opzoeken
+    # Bekendmakingen-signalen en monumentenstatus per pand opzoeken
     archief = lees_archief()
-    if archief:
+    monumenten = lees_monumenten()
+    if archief or monumenten:
         for w in woningen:
             varianten = split_huisnummer(w["adres"])
             if not varianten:
                 continue
             straat, huisnr = varianten[0][0], varianten[0][1]
-            treffers = archief.get(archief_sleutel(straat, huisnr), [])
-            if treffers:
-                w["signalen"] = treffers
+            k = archief_sleutel(straat, huisnr)
+            if archief:
+                treffers = archief.get(k, [])
+                if treffers:
+                    w["signalen"] = treffers
+            if monumenten:
+                mon = monumenten.get(k, [])
+                if mon:
+                    w["monument"] = mon[0]
 
     r = ["", "## Marktprijzen koop per buurt",
          f"_Op basis van {len(woningen)} recente transacties/aanbiedingen. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
@@ -548,13 +567,17 @@ def render(woningen):
                  "Gemengde panden (winkel of kantoor met woningen erboven) staan er bewust wel in; "
                  "de kolom Functie toont wat de BAG registreert._")
         r.append("")
-        # Bouwjaar-kolom alleen tonen als de BAG hem daadwerkelijk levert
+        # Kolommen alleen tonen als er daadwerkelijk data is
         toon_bouwjaar = any(w.get("bouwjaar") for _, w in beleggingen)
+        toon_monument = any(w.get("monument") for _, w in beleggingen)
         kop = "| Adres | Buurt | Prijs | m² | €/m² |"
         streep = "|---|---|---:|---:|---:|"
         if toon_bouwjaar:
             kop += " Bouwjaar |"
             streep += "---:|"
+        if toon_monument:
+            kop += " Monument |"
+            streep += "---|"
         kop += " Functie | Bekendmakingen |"
         streep += "---|---|"
         r.append(kop)
@@ -572,6 +595,9 @@ def render(woningen):
                      f"{w.get('oppervlakte','?')} | €{ppm2_s} |")
             if toon_bouwjaar:
                 regel += f" {w.get('bouwjaar') or '?'} |"
+            if toon_monument:
+                mon = w.get("monument")
+                regel += f" {'rijksmonument' if mon else 'nee'} |"
             regel += f" {functie} | {sigtekst} |"
             r.append(regel)
         r.append("")
@@ -601,6 +627,36 @@ def render(woningen):
                  "een aanvraag kan geweigerd of ingetrokken zijn. Geen treffer betekent "
                  "evenmin dat er niets is, want het archief gaat maar enkele jaren terug. "
                  "Gebruik dit als aanleiding om na te vragen, niet als bewijs._")
+        r.append("")
+
+    # Rijksmonumenten in de lijst
+    monument_hits = [w for w in woningen if w.get("monument")]
+    if monument_hits:
+        r.append("### Rijksmonumenten in de lijst")
+        r.append("")
+        for w in sorted(monument_hits, key=lambda x: x["adres"]):
+            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+            mon = w["monument"]
+            extra = []
+            if mon.get("nummer"):
+                extra.append(f"monumentnr {mon['nummer']}")
+            if mon.get("functie"):
+                extra.append(f"oorspronkelijk {mon['functie'].lower()}")
+            staart = f" ({', '.join(extra)})" if extra else ""
+            r.append(f"- **{w['adres']}** ({buurt}) . {w['status']}{staart}")
+        r.append("")
+        r.append("_Wat dit betekent voor de rekensom: een rijksmonument kent geen "
+                 "energielabelplicht en dus geen label-eis bij verhuur, maar wel "
+                 "vergunningplicht voor ingrepen aan het monument, wat verbouwen en "
+                 "splitsen trager en duurder maakt. Daartegenover staan eigen subsidie- "
+                 "en financieringsroutes voor onderhoud en restauratie. "
+                 "Bron: Rijksdienst voor het Cultureel Erfgoed._")
+        r.append("")
+    elif monumenten:
+        r.append("_Geen rijksmonumenten in deze lijst. Let op: gemeentelijke monumenten en "
+                 "panden binnen een beschermd stadsgezicht staan hier niet bij, want die "
+                 "zitten niet in het landelijke register. "
+                 "Bron: Rijksdienst voor het Cultureel Erfgoed._")
         r.append("")
 
     return "\n".join(r)
