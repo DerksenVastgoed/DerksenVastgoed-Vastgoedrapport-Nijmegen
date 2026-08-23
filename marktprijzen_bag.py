@@ -41,6 +41,8 @@ BUURT_ALIAS = {
 }
 
 BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
+DEBUG = False        # met --debug: toont welke velden de BAG teruggeeft
+_DEBUG_TELLER = [0]  # beperkt de debug-uitvoer tot de eerste paar adressen
 BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
 BAG_HEADERS = {
     "X-Api-Key": BAG_API_KEY,
@@ -182,6 +184,9 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     """
     Roept BAG /adressenuitgebreid aan. Retourneert oppervlakte, bouwjaar,
     gebruiksdoelen, postcode.
+
+    Het bouwjaar (oorspronkelijkBouwjaar) hoort bij het PAND, niet bij het adres,
+    dus vragen we het pand mee op met expand.
     """
     if not BAG_API_KEY:
         return None
@@ -190,6 +195,7 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
         "huisnummer": huisnr,
         "woonplaatsNaam": plaats,
         "exacteMatch": "true",
+        "expand": "panden",
     }
     if letter:
         params["huisletter"] = letter
@@ -201,11 +207,16 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
         if r.status_code == 404:
             return None
         if r.status_code == 401:
-            print(f"  BAG 401: API-key ongeldig?", file=sys.stderr)
+            print("  BAG 401: API-key ongeldig?", file=sys.stderr)
             return None
+        if r.status_code == 400 and "expand" in r.text.lower():
+            # Sommige omgevingen accepteren expand=panden niet; opnieuw zonder.
+            params.pop("expand", None)
+            r = requests.get(f"{BAG_BASE}/adressenuitgebreid",
+                             headers=BAG_HEADERS, params=params, timeout=20)
         r.raise_for_status()
         data = r.json()
-    except requests.HTTPError as e:
+    except requests.HTTPError:
         print(f"  BAG HTTP {r.status_code}: {straat} {huisnr}{letter or ''}", file=sys.stderr)
         return None
     except Exception as e:
@@ -216,40 +227,62 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     if not embedded:
         return None
     a = embedded[0]
-    # Bouwjaar zit afhankelijk van de respons in verschillende velden.
-    bouwjaar = None
-    for veld in ("adresseerbaarObjectBouwjaar", "oorspronkelijkBouwjaar", "bouwjaar"):
-        waarde = a.get(veld)
+
+    if DEBUG and _DEBUG_TELLER[0] < 2:
+        _DEBUG_TELLER[0] += 1
+        print(f"  DEBUG {straat} {huisnr}: velden op adresniveau = "
+              f"{sorted(a.keys())}", file=sys.stderr)
+        inner = a.get("_embedded")
+        if isinstance(inner, dict):
+            for naam, waarde in inner.items():
+                if isinstance(waarde, list) and waarde and isinstance(waarde[0], dict):
+                    print(f"  DEBUG   _embedded.{naam}[0] = {sorted(waarde[0].keys())}",
+                          file=sys.stderr)
+                elif isinstance(waarde, dict):
+                    print(f"  DEBUG   _embedded.{naam} = {sorted(waarde.keys())}",
+                          file=sys.stderr)
+
+    return {
+        "oppervlakte": a.get("oppervlakte"),
+        "bouwjaar": _bouwjaar_uit(a),
+        "gebruiksdoelen": a.get("gebruiksdoelen", []),
+        "postcode": a.get("postcode", ""),
+        "adresseerbaarObjectIdentificatie": a.get("adresseerbaarObjectIdentificatie", ""),
+    }
+
+
+def _bouwjaar_uit(a):
+    """
+    Zoekt het bouwjaar in de adres-respons. Officieel heet het veld
+    oorspronkelijkBouwjaar en hoort het bij het pand, maar afhankelijk van
+    expand zit het op verschillende plekken. Daarom breed zoeken.
+    """
+    def eerste(waarde):
         if isinstance(waarde, list) and waarde:
-            waarde = waarde[0]
+            return waarde[0]
+        return waarde
+
+    for veld in ("oorspronkelijkBouwjaar", "adresseerbaarObjectBouwjaar", "bouwjaar"):
+        waarde = eerste(a.get(veld))
         if waarde:
-            bouwjaar = waarde
-            break
-    if bouwjaar is None:
-        for sleutel_pand in ("panden", "pandIdentificaties", "_embedded"):
-            panden = a.get(sleutel_pand)
+            return waarde
+
+    # Via expand komt het pand mee onder _embedded
+    inner = a.get("_embedded")
+    if isinstance(inner, dict):
+        for naam in ("panden", "pand"):
+            panden = inner.get(naam)
             if isinstance(panden, dict):
-                panden = panden.get("panden", [])
+                panden = [panden]
             if not isinstance(panden, list):
                 continue
             for p in panden:
                 if not isinstance(p, dict):
                     continue
-                waarde = p.get("oorspronkelijkBouwjaar") or p.get("bouwjaar")
-                if isinstance(waarde, list) and waarde:
-                    waarde = waarde[0]
+                waarde = eerste(p.get("oorspronkelijkBouwjaar") or p.get("bouwjaar"))
                 if waarde:
-                    bouwjaar = waarde
-                    break
-            if bouwjaar:
-                break
-    return {
-        "oppervlakte": a.get("oppervlakte"),
-        "bouwjaar": bouwjaar,
-        "gebruiksdoelen": a.get("gebruiksdoelen", []),
-        "postcode": a.get("postcode", ""),
-        "adresseerbaarObjectIdentificatie": a.get("adresseerbaarObjectIdentificatie", ""),
-    }
+                    return waarde
+    return None
 
 
 def verrijk(woning, cache):
@@ -373,7 +406,7 @@ def render(woningen):
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
 
-    r.append("| Buurt | N | min €/m² | p25 | mediaan | p75 | max |")
+    r.append("| Buurt | N | p10 €/m² | p25 | mediaan | p75 | p90 |")
     r.append("|---|---:|---:|---:|---:|---:|---:|")
     for buurt in FOCUS_BUURTEN:
         rijen = per_buurt.get(buurt, [])
@@ -382,26 +415,38 @@ def render(woningen):
             continue
         prijzen = sorted(p for p, _ in rijen)
         n = len(prijzen)
+        if n < 10:
+            # Te weinig waarnemingen voor percentielen; alleen de mediaan zegt nog iets.
+            r.append(f"| {buurt} | {n} | — | — | €{int(st.median(prijzen)):,} | — | — |".replace(",", "."))
+            continue
+        p10 = prijzen[int(n * 0.10)]
         p25 = prijzen[n // 4]
         p75 = prijzen[3 * n // 4]
-        med = st.median(prijzen)
+        p90 = prijzen[min(n - 1, int(n * 0.90))]
         r.append(f"| {buurt} | {n} | "
-                 f"€{int(min(prijzen)):,} | €{int(p25):,} | "
-                 f"€{int(med):,} | €{int(p75):,} | €{int(max(prijzen)):,} |".replace(",", "."))
+                 f"€{int(p10):,} | €{int(p25):,} | "
+                 f"€{int(st.median(prijzen)):,} | €{int(p75):,} | €{int(p90):,} |".replace(",", "."))
 
     # Referentieregel: heel Nijmegen, zodat je ziet of de ring boven of onder de stad zit
     if len(stad_breed) >= 10:
         sb = sorted(stad_breed)
         n = len(sb)
         r.append(f"| _Nijmegen totaal_ | {n} | "
-                 f"€{int(min(sb)):,} | €{int(sb[n//4]):,} | "
-                 f"€{int(st.median(sb)):,} | €{int(sb[3*n//4]):,} | €{int(max(sb)):,} |".replace(",", "."))
+                 f"€{int(sb[int(n*0.10)]):,} | €{int(sb[n//4]):,} | "
+                 f"€{int(st.median(sb)):,} | €{int(sb[3*n//4]):,} | "
+                 f"€{int(sb[min(n-1,int(n*0.90))]):,} |".replace(",", "."))
+    r.append("")
+    r.append("_p10 en p90 in plaats van laagste en hoogste: één verkeerd gekoppeld adres "
+             "verpest een minimum of maximum, de percentielen niet. Bij minder dan tien "
+             "waarnemingen tonen we alleen de mediaan._")
     r.append("")
     if buiten_focus:
         r.append(f"_{buiten_focus} panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._")
     if geen_woonfunctie:
         r.append(f"_{geen_woonfunctie} objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._")
-    r.append("_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). Beleggingspanden **in verhuurde staat** liggen 20-40% lager. Zie beleggingstabel hieronder._")
+    r.append("_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). "
+             "Beleggingspanden in verhuurde staat liggen doorgaans lager; hoeveel precies "
+             "staat verderop, berekend op de eigen data._")
     r.append("")
 
     # Yield-analyse: wat betekent deze €/m² voor een investeerder tegen huidige rente
@@ -414,10 +459,13 @@ def render(woningen):
     OPEX_PCT = 25
     LTV = 66.7
 
-    r.append("### Yield en cashflow-analyse per buurt (bij aankoop VRIJ VAN HUURDER)")
-    r.append(f"_Bij referentie-huur (nieuwe verhuring), rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}%, opex {OPEX_PCT}%._")
+    r.append("### Yield en cashflow bij aankoop vrij van huurder")
+    r.append(f"_De mediaan €/m² is gemeten. De huur per m² is een **aanname** van €{min(HUUR_M2_MND.values())} "
+             f"tot €{max(HUUR_M2_MND.values())} per maand, niet gemeten, want er is geen open bron met "
+             f"actuele huurprijzen per Nijmeegse buurt. Alles rechts van die kolom hangt dus aan die aanname. "
+             f"Verder gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
     r.append("")
-    r.append("| Buurt | mediaan €/m² | ref. huur/m²/mnd | bruto yield | netto cashflow op €1M lening* |")
+    r.append("| Buurt | mediaan €/m² (gemeten) | huur/m²/mnd (aanname) | bruto yield | netto cashflow op €1M lening |")
     r.append("|---|---:|---:|---:|---:|")
     for buurt in FOCUS_BUURTEN:
         rijen = per_buurt.get(buurt, [])
@@ -441,18 +489,51 @@ def render(woningen):
     r.append("")
 
     # Waardecreatie: uitpond-marge concreet maken
-    r.append("### Waardecreatie via uitponden: de kern van de business case")
+    r.append("### Waardecreatie via uitponden")
     r.append("")
-    r.append("Vastgoedbeleggers rapporteren 20-40% verschil tussen **verhuurde staat** en **vrij van huurder**. "
-             "Concreet voorbeeld op basis van bovenstaande data:")
+    if len(beleggingen) >= 3 and per_buurt:
+        bel_prijzen = sorted(p for p, _ in beleggingen)
+        bel_med = st.median(bel_prijzen)
+        # Vrij van huurder: mediaan over dezelfde buurten waar beleggingen in staan
+        bel_buurten = {normaliseer_buurt(w.get("buurtnaam", "")) for _, w in beleggingen}
+        voh = [p for b in bel_buurten for p, _ in per_buurt.get(b, [])]
+        if len(voh) >= 5:
+            voh_med = st.median(voh)
+            marge = voh_med - bel_med
+            pct = marge / voh_med * 100 if voh_med else 0
+            r.append(f"Berekend op de {len(beleggingen)} beleggingsobjecten en {len(voh)} "
+                     f"verkopen vrij van huurder in dezelfde buurten:")
+            r.append("")
+            r.append("- Mediaan in **verhuurde staat**: €"
+                     + f"{int(bel_med):,}".replace(",", ".") + "/m²")
+            r.append("- Mediaan **vrij van huurder**: €"
+                     + f"{int(voh_med):,}".replace(",", ".") + "/m²")
+            if marge > 0:
+                marge_s = f"{int(marge):,}".replace(",", ".")
+                totaal_s = f"{int(marge*100):,}".replace(",", ".")
+                r.append(f"- **Verschil: €{marge_s}/m², oftewel {pct:.0f}%**. "
+                         f"Op 100 m² is dat €{totaal_s} bruto.")
+            else:
+                marge_s = f"{int(abs(marge)):,}".replace(",", ".")
+                r.append(f"- **Verschil: geen korting zichtbaar.** De beleggingen liggen "
+                         f"€{marge_s}/m² hóger dan de verkopen vrij van huurder. "
+                         f"Dat komt bij zo'n kleine steekproef voor, bijvoorbeeld door "
+                         f"gemengde panden met een commerciële plint.")
+            r.append("")
+            r.append(f"_Let op de steekproefgrootte: {len(beleggingen)} beleggingen is weinig. "
+                     f"Dit cijfer beweegt sterk zolang die lijst kort is. "
+                     f"Het is een richting, geen taxatie._")
+        else:
+            r.append("_Te weinig verkopen vrij van huurder in dezelfde buurten om een "
+                     "betrouwbaar verschil te berekenen._")
+    else:
+        r.append(f"_Nog te weinig beleggingsobjecten in de lijst ({len(beleggingen)}) om het "
+                 f"verschil tussen verhuurde staat en vrij van huurder te berekenen. "
+                 f"Vanaf drie objecten verschijnt hier een cijfer op basis van de eigen data._")
     r.append("")
-    r.append("- Koop belegging in verhuurde staat: ~€3.500/m² (25% korting op mediaan)")
-    r.append("- Huurder gaat weg, pand wordt gerenoveerd en verkocht vrij van huurder: ~€5.000/m²")
-    r.append("- **Uitpond-marge: €1.500/m²**. Op een pand van 100m² is dat €150.000 bruto waardestijging.")
-    r.append("- Bij splitsing (bijv. 3× 40m²) haal je vaak €500-1.500/m² extra op de kleinere units (schaarste-premie).")
-    r.append("")
-    r.append("Dit is waar het rendement zit in dit segment, niet uit de lopende cashflow. "
-             "De beleggingstabel hieronder toont concrete voorbeelden in verhuurde staat.")
+    r.append("De kern blijft: bij de huidige rente komt het rendement in dit segment niet uit "
+             "de lopende cashflow, maar uit het verschil tussen aankoop in verhuurde staat en "
+             "verkoop vrij van huurder na mutatie, renovatie of splitsing.")
     r.append("")
 
     # Beleggings-tabel (in verhuurde staat)
@@ -462,23 +543,37 @@ def render(woningen):
                  "Gemengde panden (winkel of kantoor met woningen erboven) staan er bewust wel in; "
                  "de kolom Functie toont wat de BAG registreert._")
         r.append("")
-        r.append("| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Functie | Bekendmakingen |")
-        r.append("|---|---|---:|---:|---:|---:|---|---|")
+        # Bouwjaar-kolom alleen tonen als de BAG hem daadwerkelijk levert
+        toon_bouwjaar = any(w.get("bouwjaar") for _, w in beleggingen)
+        kop = "| Adres | Buurt | Prijs | m² | €/m² |"
+        streep = "|---|---|---:|---:|---:|"
+        if toon_bouwjaar:
+            kop += " Bouwjaar |"
+            streep += "---:|"
+        kop += " Functie | Bekendmakingen |"
+        streep += "---|---|"
+        r.append(kop)
+        r.append(streep)
         for ppm2, w in sorted(beleggingen, key=lambda x: x[1]["prijs"]):
             buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
-            bj = w.get("bouwjaar") or "?"
             doelen = [str(d).replace("functie", "") for d in (w.get("gebruiksdoelen") or [])]
             functie = ", ".join(doelen) if doelen else "?"
             sig = w.get("signalen") or []
             soorten = sorted({s for t in sig for s in t.get("soorten", [])})
             sigtekst = ", ".join(soorten) if soorten else "geen treffer"
-            r.append(f"| {w['adres']} | {buurt} | €{w['prijs']:,} | {w.get('oppervlakte','?')} | "
-                     f"€{int(ppm2):,} | {bj} | {functie} | {sigtekst} |".replace(",", "."))
+            prijs_s = f"{w['prijs']:,}".replace(",", ".")
+            ppm2_s = f"{int(ppm2):,}".replace(",", ".")
+            regel = (f"| {w['adres']} | {buurt} | €{prijs_s} | "
+                     f"{w.get('oppervlakte','?')} | €{ppm2_s} |")
+            if toon_bouwjaar:
+                regel += f" {w.get('bouwjaar') or '?'} |"
+            regel += f" {functie} | {sigtekst} |"
+            r.append(regel)
         r.append("")
         if belegging_buiten_ring:
             r.append(f"_{belegging_buiten_ring} beleggingsobjecten lagen buiten de ring en zijn niet getoond._")
-        r.append("_€/m² beleggingsobjecten ligt meestal 20-40% onder mediaan-VoH. "
-                 "Verschil = potentiële uitpond-marge bij mutatie._")
+        r.append("_Deze panden worden in verhuurde staat aangeboden. Het verschil met de "
+                 "mediaan vrij van huurder staat hierboven, berekend op deze lijst._")
         r.append("")
 
     # Panden waar ooit iets over gepubliceerd is
@@ -510,7 +605,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="marktprijzen_digest.md")
     ap.add_argument("--input", default=INPUT_PAD)
+    ap.add_argument("--debug", action="store_true",
+                    help="toon de velden die de BAG teruggeeft, voor het eerste adres")
     args = ap.parse_args()
+
+    global DEBUG
+    DEBUG = args.debug
 
     if not BAG_API_KEY:
         print("WAARSCHUWING: BAG_API_KEY ontbreekt", file=sys.stderr)
