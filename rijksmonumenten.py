@@ -27,7 +27,7 @@ import requests
 
 API = "https://api.linkeddata.cultureelerfgoed.nl/queries/rce/rest-api-rijksmonumenten/run"
 UIT_PAD = "rijksmonumenten_nijmegen.json"
-PAGINA_GROOTTE = 500
+PAGINA_GROOTTE = 200
 HEADERS = {"Accept": "application/json",
            "User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
@@ -83,13 +83,22 @@ def haal_pagina(plaats, pagina, debug=False):
         "page": pagina,
         "pageSize": PAGINA_GROOTTE,
     }
-    try:
-        r = requests.get(API, params=params, headers=HEADERS, timeout=60)
-        r.raise_for_status()
-        data = r.json()
-    except Exception as e:
-        print(f"  fout bij pagina {pagina}: {e}", file=sys.stderr)
-        return []
+    laatste_fout = None
+    for poging in range(1, 4):
+        try:
+            r = requests.get(API, params=params, headers=HEADERS, timeout=(20, 90))
+            r.raise_for_status()
+            data = r.json()
+            break
+        except Exception as e:
+            laatste_fout = e
+            if poging < 3:
+                wacht = poging * 5
+                print(f"  poging {poging} mislukt, opnieuw over {wacht}s", file=sys.stderr)
+                time.sleep(wacht)
+    else:
+        print(f"  pagina {pagina} definitief mislukt: {laatste_fout}", file=sys.stderr)
+        return None  # None = netwerkprobleem, [] = geen resultaten
 
     # De respons kan een lijst zijn, of een object met de lijst erin
     if isinstance(data, dict):
@@ -120,8 +129,12 @@ def main():
     zonder_adres = 0
     totaal = 0
 
-    for pagina in range(1, 30):
+    netwerkfout = False
+    for pagina in range(1, 60):
         rijen = haal_pagina(args.plaats, pagina, args.debug and pagina == 1)
+        if rijen is None:
+            netwerkfout = True
+            break
         if not rijen:
             break
         totaal += len(rijen)
@@ -149,6 +162,13 @@ def main():
         if len(rijen) < PAGINA_GROOTTE:
             break
         time.sleep(0.5)
+
+    if netwerkfout and not alles:
+        print("De RCE-API was niet bereikbaar. Bestaand bestand blijft ongewijzigd.",
+              file=sys.stderr)
+        print("Tip: draai dit script een keer op je eigen computer en commit het "
+              "resultaat. Het monumentenregister verandert nauwelijks.", file=sys.stderr)
+        sys.exit(0)
 
     with open(args.uit, "w", encoding="utf-8") as f:
         json.dump(alles, f, ensure_ascii=False, indent=1, sort_keys=True)
