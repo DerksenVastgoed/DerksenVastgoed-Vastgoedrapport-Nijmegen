@@ -11,4 +11,4 @@ _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-08-21** . Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-396306.html))
   `BAG: 125 m²`
-  **[buy-and-hold]** _Aanvraag voor tijdelijke verhuur van 125 m² duidt op overbrugging richting verkoop of verbouwing, nog geen besluit genomen._
+  **[buy-and-hold]** _Aanvraag voor tijdelijke verhuur van dit pand van 125 m² wijst op overbrugging richting verkoop of verbouwing, nog geen definitief besluit._

@@ -1,0 +1,1882 @@
+{
+  "Mariënburg 20|Nijmegen": {
+    "oppervlakte": 123,
+    "bouwjaar": "2001",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PS",
+    "adresseerbaarObjectIdentificatie": "0268010000084377",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Eilbrachtstraat 6|Nijmegen": {
+    "oppervlakte": 75,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511LX",
+    "adresseerbaarObjectIdentificatie": "0268010000071992",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Berchenstraat 28|Nijmegen": {
+    "oppervlakte": 88,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511BD",
+    "adresseerbaarObjectIdentificatie": "0268010000061895",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Berchenstraat 28A|Nijmegen": {
+    "oppervlakte": 111,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511BD",
+    "adresseerbaarObjectIdentificatie": "0268010000055820",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Nonnenplaats 6|Nijmegen": {
+    "oppervlakte": 72,
+    "bouwjaar": "1984",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511VM",
+    "adresseerbaarObjectIdentificatie": "0268010000018201",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Ziekerstraat 10H|Nijmegen": {
+    "oppervlakte": 74,
+    "bouwjaar": "1882",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511LH",
+    "adresseerbaarObjectIdentificatie": "0268010000046493",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Kronenburgersingel 267A|Nijmegen": {
+    "oppervlakte": 191,
+    "bouwjaar": "1992",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511AS",
+    "adresseerbaarObjectIdentificatie": "0268010000014085",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Bottelstraat 20|Nijmegen": {
+    "oppervlakte": 107,
+    "bouwjaar": "2019",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511XB",
+    "adresseerbaarObjectIdentificatie": "0268010000099347",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Molenstraat 41D|Nijmegen": {
+    "oppervlakte": 25,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511HA",
+    "adresseerbaarObjectIdentificatie": "0268010000046936",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Kronenburgerplaats 31|Nijmegen": {
+    "oppervlakte": 63,
+    "bouwjaar": "1996",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511AW",
+    "adresseerbaarObjectIdentificatie": "0268010000064049",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Karrengas 54|Nijmegen": {
+    "oppervlakte": 63,
+    "bouwjaar": "1880",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GS",
+    "adresseerbaarObjectIdentificatie": "0268010000068329",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Hertogstraat 119A|Nijmegen": {
+    "oppervlakte": 60,
+    "bouwjaar": "1880",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511RX",
+    "adresseerbaarObjectIdentificatie": "0268010000111724",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Groot Bethlehem 9|Nijmegen": {
+    "oppervlakte": 98,
+    "bouwjaar": "2009",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511CZ",
+    "adresseerbaarObjectIdentificatie": "0268010000064919",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Plein 1944 168|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Priemstraat 17|Nijmegen": {
+    "oppervlakte": 78,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WC",
+    "adresseerbaarObjectIdentificatie": "0268010000029911",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Welderenstraat 18|Nijmegen": {
+    "oppervlakte": 79,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ML",
+    "adresseerbaarObjectIdentificatie": "0268010000055091",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Arsenaalplaats 33|Nijmegen": {
+    "oppervlakte": 88,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PD",
+    "adresseerbaarObjectIdentificatie": "0268010000084727",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Hertogstraat 65|Nijmegen": {
+    "oppervlakte": 184,
+    "bouwjaar": "1953",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511RW",
+    "adresseerbaarObjectIdentificatie": "0268010000011183",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Ziekerstraat 10D|Nijmegen": {
+    "oppervlakte": 28,
+    "bouwjaar": "1882",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511LH",
+    "adresseerbaarObjectIdentificatie": "0268010000050129",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Nieuwe Marktstraat 6|Nijmegen": {
+    "oppervlakte": 83,
+    "bouwjaar": "1992",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511AA",
+    "adresseerbaarObjectIdentificatie": "0268010000020307",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "St. Canisiussingel 14|Nijmegen": {
+    "oppervlakte": 90,
+    "bouwjaar": "1959",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511TH",
+    "adresseerbaarObjectIdentificatie": "0268010000031363",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Molenstraat 41K|Nijmegen": {
+    "oppervlakte": 40,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511HA",
+    "adresseerbaarObjectIdentificatie": "0268010000046940",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Molenstraat 49B|Nijmegen": {
+    "oppervlakte": 59,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511HA",
+    "adresseerbaarObjectIdentificatie": "0268010000082406",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Eerste Walstraat 3B|Nijmegen": {
+    "oppervlakte": 29,
+    "bouwjaar": "1880",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GG",
+    "adresseerbaarObjectIdentificatie": "0268010000066872",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Plein 1944 86B|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Nieuwe Markt 90|Nijmegen": {
+    "oppervlakte": 158,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511XM",
+    "adresseerbaarObjectIdentificatie": "0268010000021120",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Begijnenstraat 13|Nijmegen": {
+    "oppervlakte": 131,
+    "bouwjaar": "1878",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WN",
+    "adresseerbaarObjectIdentificatie": "0268010000060192",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Raadhuisstraat 20|Nijmegen": {
+    "oppervlakte": 72,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PV",
+    "adresseerbaarObjectIdentificatie": "0268010000050613",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Wintersoord 13|Nijmegen": {
+    "oppervlakte": 79,
+    "bouwjaar": "1958",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511RP",
+    "adresseerbaarObjectIdentificatie": "0268010000041559",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Smetiusstraat 4D|Nijmegen": {
+    "oppervlakte": 33,
+    "bouwjaar": "2009",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ER",
+    "adresseerbaarObjectIdentificatie": "0268010000047984",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Goorstraat 30|Nijmegen": {
+    "oppervlakte": 87,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512ED",
+    "adresseerbaarObjectIdentificatie": "0268010000036805",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Burg. Hustinxstraat 246|Nijmegen": {
+    "oppervlakte": 61,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512AC",
+    "adresseerbaarObjectIdentificatie": "0268010000081975",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Burg. Hustinxstraat 300|Nijmegen": {
+    "oppervlakte": 61,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512AC",
+    "adresseerbaarObjectIdentificatie": "0268010000007790",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "de Ruyterstraat 135|Nijmegen": {
+    "oppervlakte": 199,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GC",
+    "adresseerbaarObjectIdentificatie": "0268010000084115",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "de Ruyterstraat 74|Nijmegen": {
+    "oppervlakte": 110,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GE",
+    "adresseerbaarObjectIdentificatie": "0268010000085629",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "de Ruyterstraat 6|Nijmegen": {
+    "oppervlakte": 100,
+    "bouwjaar": "1900",
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6512GE",
+    "adresseerbaarObjectIdentificatie": "0268010000066323",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "St. Stephanusstraat 6A|Nijmegen": {
+    "oppervlakte": 57,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512HT",
+    "adresseerbaarObjectIdentificatie": "0268010000103069",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "St. Stephanusstraat 28|Nijmegen": {
+    "oppervlakte": 120,
+    "bouwjaar": "1923",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512HV",
+    "adresseerbaarObjectIdentificatie": "0268010000056523",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "St. Stephanusstraat 56|Nijmegen": {
+    "oppervlakte": 108,
+    "bouwjaar": "1910",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512HW",
+    "adresseerbaarObjectIdentificatie": "0268010000025117",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "St. Stephanusstraat 124|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "1906",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512HX",
+    "adresseerbaarObjectIdentificatie": "0268010000026821",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Vondelstraat 57A|Nijmegen": {
+    "oppervlakte": 68,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512BC",
+    "adresseerbaarObjectIdentificatie": "0268010000071537",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Graafseweg 35E|Nijmegen": {
+    "oppervlakte": 59,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512BP",
+    "adresseerbaarObjectIdentificatie": "0268010000093056",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Graafseweg 47K|Nijmegen": {
+    "oppervlakte": 68,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512CH",
+    "adresseerbaarObjectIdentificatie": "0268010000049502",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Coehoornstraat 69|Nijmegen": {
+    "oppervlakte": 138,
+    "bouwjaar": "1923",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CC",
+    "adresseerbaarObjectIdentificatie": "0268010000009641",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Groesbeeksedwarsweg 78|Nijmegen": {
+    "oppervlakte": 111,
+    "bouwjaar": "1906",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DN",
+    "adresseerbaarObjectIdentificatie": "0268010000055758",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Groesbeeksedwarsweg 55|Nijmegen": {
+    "oppervlakte": 109,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DA",
+    "adresseerbaarObjectIdentificatie": "0268010000055250",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Groesbeeksedwarsweg 211|Nijmegen": {
+    "oppervlakte": 59,
+    "bouwjaar": "1926",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DH",
+    "adresseerbaarObjectIdentificatie": "0268010000101432",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Groesbeeksedwarsweg 133|Nijmegen": {
+    "oppervlakte": 99,
+    "bouwjaar": "1904",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DD",
+    "adresseerbaarObjectIdentificatie": "0268010000079047",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Rembrandtstraat 45|Nijmegen": {
+    "oppervlakte": 67,
+    "bouwjaar": "1904",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521MB",
+    "adresseerbaarObjectIdentificatie": "0268010000047206",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Bijleveldsingel 57|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1978",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AP",
+    "adresseerbaarObjectIdentificatie": "0268010000007312",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Prins Bernhardstraat 59|Nijmegen": {
+    "oppervlakte": 79,
+    "bouwjaar": "1904",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AD",
+    "adresseerbaarObjectIdentificatie": "0268010000026910",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Ruisdaelstraat 38|Nijmegen": {
+    "oppervlakte": 119,
+    "bouwjaar": "1926",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521LE",
+    "adresseerbaarObjectIdentificatie": "0268010000068101",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Heutszstraat 55|Nijmegen": {
+    "oppervlakte": 94,
+    "bouwjaar": "1937",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CT",
+    "adresseerbaarObjectIdentificatie": "0268010000032655",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Heutszstraat 57|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "1937",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CT",
+    "adresseerbaarObjectIdentificatie": "0268010000032656",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Prins Hendrikstraat 73|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1982",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AX",
+    "adresseerbaarObjectIdentificatie": "0268010000029099",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Dommer van Poldersveldtweg 13|Nijmegen": {
+    "oppervlakte": 118,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521ND",
+    "adresseerbaarObjectIdentificatie": "0268010000010285",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Dommer van Poldersveldtweg 40|Nijmegen": {
+    "oppervlakte": 166,
+    "bouwjaar": "1927",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523DA",
+    "adresseerbaarObjectIdentificatie": "0268010000010105",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Dommer van Poldersveldtweg 42|Nijmegen": {
+    "oppervlakte": 67,
+    "bouwjaar": "1913",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523DA",
+    "adresseerbaarObjectIdentificatie": "0268010000056669",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Nispenstraat 186|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "1902",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521KS",
+    "adresseerbaarObjectIdentificatie": "0268010000112188",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Tooropstraat 133|Nijmegen": {
+    "oppervlakte": 108,
+    "bouwjaar": "1999",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NK",
+    "adresseerbaarObjectIdentificatie": "0268010000043466",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Tooropstraat 161|Nijmegen": {
+    "oppervlakte": 107,
+    "bouwjaar": "1934",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NL",
+    "adresseerbaarObjectIdentificatie": "0268010000031663",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Tooropstraat 168|Nijmegen": {
+    "oppervlakte": 110,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NW",
+    "adresseerbaarObjectIdentificatie": "0268010000031823",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Tooropstraat 201|Nijmegen": {
+    "oppervlakte": 140,
+    "bouwjaar": "1923",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NN",
+    "adresseerbaarObjectIdentificatie": "0268010000031995",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Tooropstraat 195|Nijmegen": {
+    "oppervlakte": 129,
+    "bouwjaar": "1934",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NM",
+    "adresseerbaarObjectIdentificatie": "0268010000031991",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Hobbemastraat 5|Nijmegen": {
+    "oppervlakte": 205,
+    "bouwjaar": "1927",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521LH",
+    "adresseerbaarObjectIdentificatie": "0268010000053876",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Koolemans Beynenstraat 32|Nijmegen": {
+    "oppervlakte": 140,
+    "bouwjaar": "1927",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521EV",
+    "adresseerbaarObjectIdentificatie": "0268010000014571",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Koolemans Beynenstraat 120|Nijmegen": {
+    "oppervlakte": 117,
+    "bouwjaar": "1935",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521EX",
+    "adresseerbaarObjectIdentificatie": "0268010000019390",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Acaciastraat 7|Nijmegen": {
+    "oppervlakte": 137,
+    "bouwjaar": "1900",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521NE",
+    "adresseerbaarObjectIdentificatie": "0268010000002924",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van den Havestraat 95|Nijmegen": {
+    "oppervlakte": 97,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521JR",
+    "adresseerbaarObjectIdentificatie": "0268010000033648",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van den Havestraat 17|Nijmegen": {
+    "oppervlakte": 105,
+    "bouwjaar": "1901",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521JN",
+    "adresseerbaarObjectIdentificatie": "0268010000030266",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Heydenrijckstraat 10|Nijmegen": {
+    "oppervlakte": 164,
+    "bouwjaar": "1950",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521LN",
+    "adresseerbaarObjectIdentificatie": "0268010000055113",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Heydenrijckstraat 74|Nijmegen": {
+    "oppervlakte": 187,
+    "bouwjaar": "1920",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521LR",
+    "adresseerbaarObjectIdentificatie": "0268010000013117",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Nispenstraat 23|Nijmegen": {
+    "oppervlakte": 85,
+    "bouwjaar": "1952",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521KJ",
+    "adresseerbaarObjectIdentificatie": "0268010000036885",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Bijleveldsingel 20 Bb|Nijmegen": {
+    "oppervlakte": 74,
+    "bouwjaar": "1983",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AT",
+    "adresseerbaarObjectIdentificatie": "0268010000081987",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Prins Hendrikstraat 77|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1982",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AX",
+    "adresseerbaarObjectIdentificatie": "0268010000029100",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Staringstraat 25|Nijmegen": {
+    "oppervlakte": 191,
+    "bouwjaar": "1923",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AH",
+    "adresseerbaarObjectIdentificatie": "0268010000027052",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Daalseweg 185A|Nijmegen": {
+    "oppervlakte": 54,
+    "bouwjaar": "1891",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521GH",
+    "adresseerbaarObjectIdentificatie": "0268010000092191",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Daalseweg 185C|Nijmegen": {
+    "oppervlakte": 42,
+    "bouwjaar": "1891",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521GH",
+    "adresseerbaarObjectIdentificatie": "0268010000092193",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Daalseweg 232D|Nijmegen": {
+    "oppervlakte": 78,
+    "bouwjaar": "2004",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521GR",
+    "adresseerbaarObjectIdentificatie": "0268010000061242",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Daalseweg 238A|Nijmegen": {
+    "oppervlakte": 78,
+    "bouwjaar": "1921",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521GR",
+    "adresseerbaarObjectIdentificatie": "0268010000055804",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Gorisstraat 23|Nijmegen": {
+    "oppervlakte": 99,
+    "bouwjaar": "1905",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CG",
+    "adresseerbaarObjectIdentificatie": "0268010000012626",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Ubbergseveldweg 17|Nijmegen": {
+    "oppervlakte": 200,
+    "bouwjaar": "1927",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522HA",
+    "adresseerbaarObjectIdentificatie": "0268010000031715",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Berg en Dalseweg 218|Nijmegen": {
+    "oppervlakte": 177,
+    "bouwjaar": "1888",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522CE",
+    "adresseerbaarObjectIdentificatie": "0268010000079018",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Berg en Dalseweg 286|Nijmegen": {
+    "oppervlakte": 207,
+    "bouwjaar": "1925",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522CN",
+    "adresseerbaarObjectIdentificatie": "0268010000059559",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Berg en Dalseweg 256|Nijmegen": {
+    "oppervlakte": 119,
+    "bouwjaar": "1924",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522CL",
+    "adresseerbaarObjectIdentificatie": "0268010000002868",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Graadt van Roggenstraat 49|Nijmegen": {
+    "oppervlakte": 124,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AW",
+    "adresseerbaarObjectIdentificatie": "0268010000008227",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Graadt van Roggenstraat 79|Nijmegen": {
+    "oppervlakte": 109,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AW",
+    "adresseerbaarObjectIdentificatie": "0268010000008236",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Graadt van Roggenstraat 143|Nijmegen": {
+    "oppervlakte": 124,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AX",
+    "adresseerbaarObjectIdentificatie": "0268010000008383",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Jan van Goyenstraat 40|Nijmegen": {
+    "oppervlakte": 56,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522EW",
+    "adresseerbaarObjectIdentificatie": "0268010000077215",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Oude Ubbergseweg 35|Nijmegen": {
+    "oppervlakte": 94,
+    "bouwjaar": "1911",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522KE",
+    "adresseerbaarObjectIdentificatie": "0268010000023401",
+    "buurtnaam": "Ooyse Schependom",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Oude Ubbergseweg 41|Nijmegen": {
+    "oppervlakte": 136,
+    "bouwjaar": "1911",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522KE",
+    "adresseerbaarObjectIdentificatie": "0268010000023403",
+    "buurtnaam": "Ooyse Schependom",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Caesarstraat 8|Nijmegen": {
+    "oppervlakte": 127,
+    "bouwjaar": "1995",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522LG",
+    "adresseerbaarObjectIdentificatie": "0268010000044971",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Mr. Franckenstraat 40|Nijmegen": {
+    "oppervlakte": 80,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AE",
+    "adresseerbaarObjectIdentificatie": "0268010000022846",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Prof. Molkenboerstraat 30|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Fransestraat 6|Nijmegen": {
+    "oppervlakte": 271,
+    "bouwjaar": "1902",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JA",
+    "adresseerbaarObjectIdentificatie": "0268010000015051",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Van Spaenstraat 20|Nijmegen": {
+    "oppervlakte": 103,
+    "bouwjaar": "1902",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HM",
+    "adresseerbaarObjectIdentificatie": "0268010000114908",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Van Spaenstraat 20A|Nijmegen": {
+    "oppervlakte": 59,
+    "bouwjaar": "1902",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HM",
+    "adresseerbaarObjectIdentificatie": "0268010000114909",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Van Spaenstraat 20B|Nijmegen": {
+    "oppervlakte": 60,
+    "bouwjaar": "1902",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HM",
+    "adresseerbaarObjectIdentificatie": "0268010000114910",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Borneostraat 1|Nijmegen": {
+    "oppervlakte": 61,
+    "bouwjaar": "1919",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LA",
+    "adresseerbaarObjectIdentificatie": "0268010000045986",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Borneostraat 1A|Nijmegen": {
+    "oppervlakte": 48,
+    "bouwjaar": "1919",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LA",
+    "adresseerbaarObjectIdentificatie": "0268010000004829",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Borneostraat 1C|Nijmegen": {
+    "oppervlakte": 41,
+    "bouwjaar": "1919",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LA",
+    "adresseerbaarObjectIdentificatie": "0268010000051152",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Borneostraat 3|Nijmegen": {
+    "oppervlakte": 69,
+    "bouwjaar": "1919",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LA",
+    "adresseerbaarObjectIdentificatie": "0268010000004831",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Molukkenstraat 168|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524NJ",
+    "adresseerbaarObjectIdentificatie": "0268010000025822",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Delistraat 67|Nijmegen": {
+    "oppervlakte": 62,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KN",
+    "adresseerbaarObjectIdentificatie": "0268010000048855",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Timorstraat 6|Nijmegen": {
+    "oppervlakte": 138,
+    "bouwjaar": "1932",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KB",
+    "adresseerbaarObjectIdentificatie": "0268010000056718",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Timorstraat 8|Nijmegen": {
+    "oppervlakte": 158,
+    "bouwjaar": "1932",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KB",
+    "adresseerbaarObjectIdentificatie": "0268010000034853",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Athlonestraat 2|Nijmegen": {
+    "oppervlakte": 140,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "",
+    "adresseerbaarObjectIdentificatie": "0268010000085405",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Atjehstraat 15|Nijmegen": {
+    "oppervlakte": 62,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KT",
+    "adresseerbaarObjectIdentificatie": "0268010000076441",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Atjehstraat 55|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KV",
+    "adresseerbaarObjectIdentificatie": "0268010000000322",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Fagelstraat 44|Nijmegen": {
+    "oppervlakte": 112,
+    "bouwjaar": "1910",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524CG",
+    "adresseerbaarObjectIdentificatie": "0268010000006143",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Fagelstraat 42|Nijmegen": {
+    "oppervlakte": 113,
+    "bouwjaar": "1910",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524CG",
+    "adresseerbaarObjectIdentificatie": "0268010000006142",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Johannes Vijghstraat 6B|Nijmegen": {
+    "oppervlakte": 80,
+    "bouwjaar": "1910",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524BR",
+    "adresseerbaarObjectIdentificatie": "0268010000095238",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Johannes Vijghstraat 26|Nijmegen": {
+    "oppervlakte": 135,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524BS",
+    "adresseerbaarObjectIdentificatie": "0268010000077917",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Slichtenhorststraat 38A|Nijmegen": {
+    "oppervlakte": 78,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JR",
+    "adresseerbaarObjectIdentificatie": "0268010000071004",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Slichtenhorststraat 44|Nijmegen": {
+    "oppervlakte": 186,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JR",
+    "adresseerbaarObjectIdentificatie": "0268010000034213",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "van Gentstraat 68|Nijmegen": {
+    "oppervlakte": 71,
+    "bouwjaar": "1990",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524BE",
+    "adresseerbaarObjectIdentificatie": "0268010000031108",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Prof Hoogveldstraat 13|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Sumatraplein 24|Nijmegen": {
+    "oppervlakte": 217,
+    "bouwjaar": "1926",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KH",
+    "adresseerbaarObjectIdentificatie": "0268010000077157",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Javastraat 84|Nijmegen": {
+    "oppervlakte": 148,
+    "bouwjaar": "1927",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524MG",
+    "adresseerbaarObjectIdentificatie": "0268010000017686",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Madoerastraat 1|Nijmegen": {
+    "oppervlakte": 250,
+    "bouwjaar": "1935",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LG",
+    "adresseerbaarObjectIdentificatie": "0268010000021047",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Madoerastraat 9|Nijmegen": {
+    "oppervlakte": 166,
+    "bouwjaar": "1936",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LG",
+    "adresseerbaarObjectIdentificatie": "0268010000021052",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Prof Regoutstraat 1B|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Groesbeekseweg 103D|Nijmegen": {
+    "oppervlakte": 28,
+    "bouwjaar": "1906",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523PB",
+    "adresseerbaarObjectIdentificatie": "0268010000102789",
+    "buurtnaam": "Groenewoud",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Eerste Oude Heselaan 96|Nijmegen": {
+    "oppervlakte": 99,
+    "bouwjaar": "1911",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541PC",
+    "adresseerbaarObjectIdentificatie": "0268010000055805",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Marialaan 111|Nijmegen": {
+    "oppervlakte": 70,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RD",
+    "adresseerbaarObjectIdentificatie": "0268010000026483",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Marialaan 131|Nijmegen": {
+    "oppervlakte": 70,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RD",
+    "adresseerbaarObjectIdentificatie": "0268010000026397",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Marialaan 73|Nijmegen": {
+    "oppervlakte": 83,
+    "bouwjaar": "1957",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RC",
+    "adresseerbaarObjectIdentificatie": "0268010000080749",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Marialaan 151|Nijmegen": {
+    "oppervlakte": 70,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RE",
+    "adresseerbaarObjectIdentificatie": "0268010000026403",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Boomvalkstraat 13|Nijmegen": {
+    "oppervlakte": 40,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RV",
+    "adresseerbaarObjectIdentificatie": "0268010000050547",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Boomvalkstraat 18|Nijmegen": {
+    "oppervlakte": 40,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RT",
+    "adresseerbaarObjectIdentificatie": "0268010000064055",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Waalbandijk 459|Nijmegen": {
+    "oppervlakte": 111,
+    "bouwjaar": "2023",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "adresseerbaarObjectIdentificatie": "0268010000103381",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Waalbandijk 177|Nijmegen": {
+    "oppervlakte": 99,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "adresseerbaarObjectIdentificatie": "0268010000047126",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Waalbandijk 479|Nijmegen": {
+    "oppervlakte": 90,
+    "bouwjaar": "2023",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "adresseerbaarObjectIdentificatie": "0268010000103391",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Weurtseweg 252|Nijmegen": {
+    "oppervlakte": 144,
+    "bouwjaar": "2019",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541BD",
+    "adresseerbaarObjectIdentificatie": "0268010000100070",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Biezendwarsstraat 48|Nijmegen": {
+    "oppervlakte": 77,
+    "bouwjaar": "1929",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ZH",
+    "adresseerbaarObjectIdentificatie": "0268010000005629",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Biezenstraat 31|Nijmegen": {
+    "oppervlakte": 122,
+    "bouwjaar": "1935",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ZN",
+    "adresseerbaarObjectIdentificatie": "0268010000006346",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Dokstraat 43|Nijmegen": {
+    "oppervlakte": 128,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000097184",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Dokstraat 61|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000097193",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Dokstraat 89|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000097207",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Dokstraat 91|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000097208",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Dokstraat 127|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000097226",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Voorstadslaan 62|Nijmegen": {
+    "oppervlakte": 105,
+    "bouwjaar": "1912",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ST",
+    "adresseerbaarObjectIdentificatie": "0268010000036533",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Voorstadslaan 14|Nijmegen": {
+    "oppervlakte": 78,
+    "bouwjaar": "1932",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AC",
+    "adresseerbaarObjectIdentificatie": "0268010000035336",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Voorstadslaan 72|Nijmegen": {
+    "oppervlakte": 52,
+    "bouwjaar": "1925",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ST",
+    "adresseerbaarObjectIdentificatie": "0268010000112329",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Albert Trouwborststraat 11|Nijmegen": {
+    "oppervlakte": 158,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541GS",
+    "adresseerbaarObjectIdentificatie": "0268010000095742",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Jan Nieraethstraat 84|Nijmegen": {
+    "oppervlakte": 181,
+    "bouwjaar": "2020",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541GA",
+    "adresseerbaarObjectIdentificatie": "0268010000101087",
+    "buurtnaam": "Haven- en industrieterrein",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Waterstraat 24|Nijmegen": {
+    "oppervlakte": 111,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541TK",
+    "adresseerbaarObjectIdentificatie": "0268010000036641",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Waterstraat 162|Nijmegen": {
+    "oppervlakte": 135,
+    "bouwjaar": "1928",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541TP",
+    "adresseerbaarObjectIdentificatie": "0268010000054527",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "IJsselstraat 11|Nijmegen": {
+    "oppervlakte": 104,
+    "bouwjaar": "1994",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541XT",
+    "adresseerbaarObjectIdentificatie": "0268010000016785",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Havenweg 34|Nijmegen": {
+    "oppervlakte": 152,
+    "bouwjaar": "2022",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AD",
+    "adresseerbaarObjectIdentificatie": "0268010000111874",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Havenweg 70|Nijmegen": {
+    "oppervlakte": 135,
+    "bouwjaar": "2022",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AD",
+    "adresseerbaarObjectIdentificatie": "0268010000111892",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Zwaluwstraat 7|Nijmegen": {
+    "oppervlakte": 86,
+    "bouwjaar": "1977",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541NZ",
+    "adresseerbaarObjectIdentificatie": "0268010000042713",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Laan van Oost-Indië 327|Nijmegen": {
+    "oppervlakte": 183,
+    "bouwjaar": "2017",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541GX",
+    "adresseerbaarObjectIdentificatie": "0268010000096815",
+    "buurtnaam": "Haven- en industrieterrein",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Patrijsstraat 48|Nijmegen": {
+    "oppervlakte": 94,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TN",
+    "adresseerbaarObjectIdentificatie": "0268010000024198",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosbesstraat 10|Nijmegen": {
+    "oppervlakte": 42,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NS",
+    "adresseerbaarObjectIdentificatie": "0268010000004605",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosbesstraat 6E|Nijmegen": {
+    "oppervlakte": 43,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NS",
+    "adresseerbaarObjectIdentificatie": "0268010000004599",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosbesstraat 21|Nijmegen": {
+    "oppervlakte": 68,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NL",
+    "adresseerbaarObjectIdentificatie": "0268010000005065",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosbesstraat 67|Nijmegen": {
+    "oppervlakte": 97,
+    "bouwjaar": "1948",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NM",
+    "adresseerbaarObjectIdentificatie": "0268010000005096",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosduifstraat 18|Nijmegen": {
+    "oppervlakte": 84,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TP",
+    "adresseerbaarObjectIdentificatie": "0268010000005320",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Bosduifstraat 16|Nijmegen": {
+    "oppervlakte": 80,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TP",
+    "adresseerbaarObjectIdentificatie": "0268010000005318",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Kamperfoeliestraat 30|Nijmegen": {
+    "oppervlakte": 84,
+    "bouwjaar": "1940",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542LX",
+    "adresseerbaarObjectIdentificatie": "0268010000016649",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Molenweg 42|Nijmegen": {
+    "oppervlakte": 77,
+    "bouwjaar": "1961",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542PW",
+    "adresseerbaarObjectIdentificatie": "0268010000020383",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Dikkeboomweg 36|Nijmegen": {
+    "oppervlakte": 119,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542RK",
+    "adresseerbaarObjectIdentificatie": "0268010000077182",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Dikkeboomweg 40|Nijmegen": {
+    "oppervlakte": 98,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542RK",
+    "adresseerbaarObjectIdentificatie": "0268010000077183",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Zonnebloemstraat 36|Nijmegen": {
+    "oppervlakte": 86,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NG",
+    "adresseerbaarObjectIdentificatie": "0268010000072423",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Koninginnelaan 97|Nijmegen": {
+    "oppervlakte": 97,
+    "bouwjaar": "1896",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542ZK",
+    "adresseerbaarObjectIdentificatie": "0268010000013445",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "Breehofstraat 17|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "1989",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542RA",
+    "adresseerbaarObjectIdentificatie": "0268010000044123",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Schependomlaan 20A|Nijmegen": {
+    "oppervlakte": 88,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542RM",
+    "adresseerbaarObjectIdentificatie": "0268010000088031",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "Vlietstraat 19|Nijmegen": {
+    "oppervlakte": 105,
+    "bouwjaar": "1963",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542SK",
+    "adresseerbaarObjectIdentificatie": "0268010000079547",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West"
+  },
+  "van Welderenstraat 5|Nijmegen": {
+    "oppervlakte": 235,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511MA",
+    "adresseerbaarObjectIdentificatie": "0268010000074409",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "van Welderenstraat 89|Nijmegen": {
+    "oppervlakte": 182,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "overige gebruiksfunctie",
+      "winkelfunctie"
+    ],
+    "postcode": "6511ME",
+    "adresseerbaarObjectIdentificatie": "0268010000088015",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "St. Annastraat 28|Nijmegen": {
+    "oppervlakte": 367,
+    "bouwjaar": "1889",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524GC",
+    "adresseerbaarObjectIdentificatie": "0268010000025185",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "Ziekerstraat 5|Nijmegen": {
+    "oppervlakte": 126,
+    "bouwjaar": "1951",
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511LJ",
+    "adresseerbaarObjectIdentificatie": "0268010000050492",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  },
+  "Koningstraat 4|Nijmegen": {
+    "oppervlakte": 134,
+    "bouwjaar": "1952",
+    "gebruiksdoelen": [
+      "winkelfunctie"
+    ],
+    "postcode": "6511LB",
+    "adresseerbaarObjectIdentificatie": "0268010000018500",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum"
+  }
+}

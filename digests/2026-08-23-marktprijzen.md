@@ -24,7 +24,7 @@ _De mediaan €/m² is gemeten. De huur per m² is een **aanname** van €17 tot
 | Buurt | mediaan €/m² (gemeten) | huur/m²/mnd (aanname) | bruto yield | netto cashflow op €1M lening |
 |---|---:|---:|---:|---:|
 | Stadscentrum | €5.090 | €20 | 4.7% | 🔴 €-4.488/jaar |
-| Benedenstad | €5.128 | €20 | 4.7% | 🔴 €-4.876/jaar |
+| Benedenstad | te weinig data (N=5) | — | — | — |
 | Bottendaal | €4.776 | €18 | 4.5% | 🔴 €-6.656/jaar |
 | Galgenveld | €5.007 | €18 | 4.3% | 🔴 €-8.992/jaar |
 | Altrade | €4.852 | €17 | 4.2% | 🔴 €-10.233/jaar |
@@ -45,11 +45,11 @@ De kern blijft: bij de huidige rente komt het rendement in dit segment niet uit 
 ### Beleggingsobjecten in de ring (in verhuurde staat)
 _Bron: Funda Business. Garageboxen en bedrijfsunits zijn eruit gefilterd. Gemengde panden (winkel of kantoor met woningen erboven) staan er bewust wel in; de kolom Functie toont wat de BAG registreert._
 
-| Adres | Buurt | Prijs | m² | €/m² | Functie | Bekendmakingen |
-|---|---|---:|---:|---:|---|---|
-| Ziekerstraat 5 | Stadscentrum | €450.000 | 126 | €3.571 | winkel | geen treffer |
-| van Welderenstraat 5 | Stadscentrum | €500.000 | 235 | €2.127 | winkel | geen treffer |
-| Koningstraat 4 | Stadscentrum | €850.000 | 134 | €6.343 | winkel | geen treffer |
-| St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | woon | geen treffer |
+| Adres | Buurt | Prijs | m² | €/m² | Bouwjaar | Functie | Bekendmakingen |
+|---|---|---:|---:|---:|---:|---|---|
+| Ziekerstraat 5 | Stadscentrum | €450.000 | 126 | €3.571 | 1951 | winkel | geen treffer |
+| van Welderenstraat 5 | Stadscentrum | €500.000 | 235 | €2.127 | 1933 | winkel | geen treffer |
+| Koningstraat 4 | Stadscentrum | €850.000 | 134 | €6.343 | 1952 | winkel | geen treffer |
+| St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | 1889 | woon | geen treffer |
 
 _Deze panden worden in verhuurde staat aangeboden. Het verschil met de mediaan vrij van huurder staat hierboven, berekend op deze lijst._
