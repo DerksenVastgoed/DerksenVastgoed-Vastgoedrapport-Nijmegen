@@ -128,6 +128,7 @@ def main():
     alles = {}
     zonder_adres = 0
     totaal = 0
+    eerste_record = None
 
     netwerkfout = False
     for pagina in range(1, 60):
@@ -141,6 +142,8 @@ def main():
         for rij in rijen:
             if not isinstance(rij, dict):
                 continue
+            if eerste_record is None:
+                eerste_record = rij
             volledig = _pak(rij, VELD_ADRES)
             straat_veld = _pak(rij, VELD_STRAAT)
             gesplitst = split_adres(volledig, straat_veld)
@@ -176,9 +179,14 @@ def main():
     print(f"Opgehaald: {totaal} records voor {args.plaats}", file=sys.stderr)
     print(f"Zonder bruikbaar huisnummer: {zonder_adres}", file=sys.stderr)
     print(f"Weggeschreven: {len(alles)} adressen naar {args.uit}", file=sys.stderr)
-    if totaal and not alles:
-        print("LET OP: records opgehaald maar geen adressen herkend. "
-              "Draai met --debug om de veldnamen te zien.", file=sys.stderr)
+    if totaal and not alles and eerste_record is not None:
+        print("", file=sys.stderr)
+        print("LET OP: records opgehaald maar geen adressen herkend.", file=sys.stderr)
+        print("De veldnamen wijken af van wat dit script verwacht. Hieronder het "
+              "eerste record, zodat de juiste namen zichtbaar zijn:", file=sys.stderr)
+        print(f"  VELDNAMEN: {sorted(eerste_record.keys())}", file=sys.stderr)
+        print(f"  INHOUD: {json.dumps(eerste_record, ensure_ascii=False)[:1200]}",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
