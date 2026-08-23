@@ -33,12 +33,16 @@ HEADERS = {"Accept": "application/json",
 
 # Mogelijke veldnamen in de respons. De API is JSON-LD, dus de sleutels kunnen
 # per query verschillen. We proberen ze op volgorde.
-VELD_ADRES = ["volledigAdres", "adres", "volledigadres"]
-VELD_STRAAT = ["straat", "straatnaam", "openbareRuimteNaam"]
-VELD_POSTCODE = ["postcode"]
-VELD_NUMMER = ["rijksmonumentnummer", "monumentnummer"]
-VELD_FUNCTIE = ["oorspronkelijkeFunctie", "functie"]
-VELD_AARD = ["monumentaard", "aard"]
+VELD_ADRES = ["volledigAdres", "adres", "volledigadres", "adresLabel",
+              "heeftAdres", "fullAddress", "adresseringLabel"]
+VELD_STRAAT = ["straat", "straatnaam", "openbareRuimteNaam", "straatLabel",
+               "openbareRuimte", "thoroughfare"]
+VELD_POSTCODE = ["postcode", "postcodeLabel", "postalCode"]
+VELD_NUMMER = ["rijksmonumentnummer", "monumentnummer", "monumentnummerLabel",
+               "identificatie", "nummer"]
+VELD_FUNCTIE = ["oorspronkelijkeFunctie", "functie", "oorspronkelijkeFunctieLabel",
+                "heeftOorspronkelijkeFunctie"]
+VELD_AARD = ["monumentaard", "aard", "monumentaardLabel", "type"]
 
 
 def _pak(rij, namen):
@@ -117,6 +121,47 @@ def haal_pagina(plaats, pagina, debug=False):
     return data
 
 
+
+def _waarde(term):
+    """Haalt de waarde uit een RDF-term ({'termType':..., 'value':...})."""
+    if isinstance(term, dict):
+        return term.get("value", "")
+    return str(term)
+
+
+def groepeer_triples(rijen):
+    """
+    De API geeft RDF-tripletjes terug: [onderwerp, eigenschap, waarde].
+    Hier groeperen we ze per onderwerp tot een object met eigenschappen,
+    zodat we er alsnog adressen uit kunnen halen.
+    """
+    per_subject = {}
+    eigenschappen = {}
+    for rij in rijen:
+        if not (isinstance(rij, (list, tuple)) and len(rij) >= 3):
+            continue
+        subject = _waarde(rij[0])
+        predicaat = _waarde(rij[1])
+        waarde = _waarde(rij[2])
+        if not subject:
+            continue
+        kort = predicaat.rsplit("#", 1)[-1].rsplit("/", 1)[-1]
+        eigenschappen[kort] = eigenschappen.get(kort, 0) + 1
+        obj = per_subject.setdefault(subject, {})
+        if kort in obj:
+            if isinstance(obj[kort], list):
+                obj[kort].append(waarde)
+            else:
+                obj[kort] = [obj[kort], waarde]
+        else:
+            obj[kort] = waarde
+    return per_subject, eigenschappen
+
+
+def is_triple_respons(rijen):
+    return bool(rijen) and isinstance(rijen[0], (list, tuple))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--plaats", default="Nijmegen")
@@ -130,6 +175,7 @@ def main():
     geen_object = 0
     totaal = 0
     eerste_record = None
+    gemeld_triples = False
 
     netwerkfout = False
     for pagina in range(1, 60):
@@ -140,6 +186,20 @@ def main():
         if not rijen:
             break
         totaal += len(rijen)
+
+        # Linked-data-antwoord: tripletjes omzetten naar objecten
+        if is_triple_respons(rijen):
+            objecten, eigenschappen = groepeer_triples(rijen)
+            if not gemeld_triples:
+                gemeld_triples = True
+                print(f"  Antwoord bestaat uit RDF-tripletjes. "
+                      f"{len(rijen)} feiten over {len(objecten)} objecten.", file=sys.stderr)
+                print(f"  Aangetroffen eigenschappen: "
+                      f"{sorted(eigenschappen.keys())}", file=sys.stderr)
+                voorbeeld = next(iter(objecten.values()), {})
+                print(f"  Voorbeeldobject: "
+                      f"{json.dumps(voorbeeld, ensure_ascii=False)[:800]}", file=sys.stderr)
+            rijen = list(objecten.values())
         for rij in rijen:
             if eerste_record is None:
                 eerste_record = rij
