@@ -53,3 +53,5 @@ _Bron: Funda Business. Garageboxen en bedrijfsunits zijn eruit gefilterd. Gemeng
 | St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | 1889 | woon | geen treffer |
 
 _Deze panden worden in verhuurde staat aangeboden. Het verschil met de mediaan vrij van huurder staat hierboven, berekend op deze lijst._
+
+_Geen rijksmonumenten in deze lijst. Let op: gemeentelijke monumenten en panden binnen een beschermd stadsgezicht staan hier niet bij, want die zitten niet in het landelijke register. Bron: Rijksdienst voor het Cultureel Erfgoed._
