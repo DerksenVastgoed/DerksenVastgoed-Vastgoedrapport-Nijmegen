@@ -52,6 +52,14 @@ jobs:
           VANAF=$(date -d "-7 days" +%F)
           python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
 
+      - name: Rijksmonumenten bijwerken (maandelijks genoeg)
+        run: |
+          if [ ! -f rijksmonumenten_nijmegen.json ] || [ $(date +%d) = "01" ]; then
+            python rijksmonumenten.py || echo "Monumenten-stap overgeslagen"
+          else
+            echo "Monumentenbestand bestaat al, overslaan"
+          fi
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -127,7 +135,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json 2>/dev/null || true
+          git add digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
