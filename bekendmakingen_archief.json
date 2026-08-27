@@ -1,4 +1,14 @@
 {
+ "bronsgeeststraat11": [
+  {
+   "datum": "2026-08-27",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-404973/1/html/gmb-2026-404973.html"
+  }
+ ],
  "bronsgeeststraat51": [
   {
    "datum": "2026-08-20",
@@ -50,6 +60,17 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-399583/1/html/gmb-2026-399583.html"
   }
  ],
+ "hugodegrootstraat72": [
+  {
+   "datum": "2026-08-26",
+   "soorten": [
+    "kamerverhuur",
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding melding brandveilig gebruik voor een kamerverhuurpand., aan Hugo de Grootstraat 72, 6522DH Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-400884/1/html/gmb-2026-400884.html"
+  }
+ ],
  "kanunnikvanosstraat53": [
   {
    "datum": "2026-08-21",
@@ -98,6 +119,17 @@
    ],
    "titel": "Aanvraag omgevingsvergunning voor het splitsen van de bestaande bovenwoning naar twee appartementen, aan Stockumstraat 17, 6511TN Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-399072/1/html/gmb-2026-399072.html"
+  }
+ ],
+ "vanpeltlaan132": [
+  {
+   "datum": "2026-08-26",
+   "soorten": [
+    "kamerverhuur",
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik kamerverhuurpand (5 bewoners), aan Van Peltlaan 132, 6533ZP Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-401292/1/html/gmb-2026-401292.html"
   }
  ],
  "waalbandijk14": [
