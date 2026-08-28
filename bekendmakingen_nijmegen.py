@@ -179,11 +179,56 @@ def parse_record(record) -> dict:
     }
 
 
+
+# Straten die ver buiten de ring doorlopen. Zonder postcode in de titel is het
+# huisnummer de enige aanwijzing. Boven deze grens ligt het adres buiten de ring.
+LANGE_STRATEN_MAXNUMMER = {
+    "graafseweg": 200,
+    "groenestraat": 150,
+    "berg en dalseweg": 300,
+    "daalseweg": 300,
+    "groesbeekseweg": 200,
+    "st. annastraat": 300,
+    "sint annastraat": 300,
+    "hatertseweg": 100,
+    "molenstraat": 150,
+    "voorstadslaan": 250,
+    "weurtseweg": 300,
+    "waalbandijk": 200,
+}
+
+
 def in_ring(item: dict) -> bool:
+    """
+    Bepaalt of een bekendmaking binnen de ring valt.
+
+    De postcode is doorslaggevend. Staat er een Nijmeegse postcode in de titel
+    en valt die buiten de ring, dan telt de bekendmaking niet mee, ook niet als
+    de straatnaam op de lijst staat. Dat is nodig omdat straten als de Graafseweg
+    en de Groenestraat kilometers buiten de ring doorlopen.
+
+    Alleen als er helemaal geen postcode in de titel staat, valt de filter terug
+    op de straatnaam.
+    """
     hooi = (item["titel"] + " " + item["type"]).lower()
-    if any(pc in hooi for pc in RING_POSTCODES):
-        return True
-    return any(s.lower() in hooi for s in RING_STRATEN)
+
+    postcodes = re.findall(r"\b(\d{4})\s?[a-z]{2}\b", hooi)
+    if postcodes:
+        return any(pc in RING_POSTCODES for pc in postcodes)
+
+    # Geen postcode in de titel: terugvallen op straatnaam
+    if not any(s.lower() in hooi for s in RING_STRATEN):
+        return False
+
+    # Sommige straten lopen kilometers door buiten de ring. Zonder postcode is
+    # het huisnummer de enige aanwijzing: hoge nummers liggen aan het uiteinde.
+    adres = _adres_uit_titel(item["titel"])
+    if adres:
+        straat, huisnr, _ = adres
+        grens = LANGE_STRATEN_MAXNUMMER.get(straat.lower())
+        if grens and huisnr.isdigit() and int(huisnr) > grens:
+            return False
+    return True
 
 
 def classificeer(item: dict):
@@ -198,23 +243,45 @@ def classificeer(item: dict):
 
 
 def _adres_uit_titel(titel: str):
-    """Haalt (straat, huisnummer, letter) uit een bekendmakingstitel.
-    Voorbeeld: '... aan St. Annastraat 240, 6525GZ Nijmegen' -> ('St. Annastraat','240',None)
-    Titels bevatten vaak eerder al het woord 'aan' ('aan de voorgevel'), dus we nemen
-    de LAATSTE 'aan' voor de postcode. Bij meerdere nummers ('51 en 53') het eerste."""
+    """
+    Haalt (straat, huisnummer, letter) uit een bekendmakingstitel.
+
+    Twee vormen komen voor:
+      '... aan St. Annastraat 240, 6525GZ Nijmegen'
+      '... op de locatie Graafseweg 451 te Nijmegen'   (geen postcode)
+
+    Titels bevatten vaak eerder al 'aan' ('aan de voorgevel'), dus we nemen de
+    LAATSTE aanduiding. Bij meerdere nummers ('51 en 53') het eerste.
+    """
+    # Alles na de plaatsnaam of postcode is niet meer relevant
     pc = re.search(r",?\s+\d{4}\s?[A-Z]{2}\s+Nijmegen", titel)
-    if not pc:
-        return None
-    kop = titel[:pc.start()]
-    delen = re.split(r"\baan\s+", kop, flags=re.IGNORECASE)
-    if len(delen) < 2:
-        return None
-    straatdeel = delen[-1].strip().rstrip(",").strip()
+    if pc:
+        kop = titel[:pc.start()]
+    else:
+        plaats = re.search(r"\s+(?:te|in)\s+Nijmegen", titel, re.IGNORECASE)
+        kop = titel[:plaats.start()] if plaats else titel
+
+    # Splitsen op het laatste voorzetsel dat een adres inleidt
+    delen = re.split(r"\b(?:aan|op\s+de\s+locatie|locatie|ter\s+hoogte\s+van)\s+",
+                     kop, flags=re.IGNORECASE)
+    straatdeel = delen[-1].strip().rstrip(",").strip() if len(delen) > 1 else ""
+
+    # Zonder voorzetsel: pak de staart van de titel en hoop op 'Straat 12'
+    if not straatdeel:
+        staart = re.search(r"([A-Za-zÀ-ÿ.'\- ]+?\s+\d+\s*[A-Za-z]?)\s*$", kop.strip())
+        if not staart:
+            return None
+        straatdeel = staart.group(1).strip()
+
     straatdeel = re.split(r"\s+en\s+\d", straatdeel)[0].strip()
     a = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z])?\s*$", straatdeel)
     if not a:
         return None
-    return a.group(1).strip(), a.group(2), (a.group(3) or "").upper() or None
+    straat = a.group(1).strip()
+    # 'de bestaande bovenwoning naar twee appartementen' is geen straatnaam
+    if len(straat) < 3 or len(straat.split()) > 5:
+        return None
+    return straat, a.group(2), (a.group(3) or "").upper() or None
 
 
 def _kamers_uit_titel(titel: str):
