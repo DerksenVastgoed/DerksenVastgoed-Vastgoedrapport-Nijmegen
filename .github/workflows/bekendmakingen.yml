@@ -52,15 +52,17 @@ jobs:
           VANAF=$(date -d "-7 days" +%F)
           python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
 
-      - name: Rijksmonumenten bijwerken (maandelijks genoeg)
+      - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
         run: |
-          # Ook opnieuw proberen als het bestand bestaat maar leeg is, bijvoorbeeld
-          # na een eerdere mislukte run die '{}' wegschreef.
+          # Deze stap duurt ongeveer drie kwartier, want de RCE levert linked data
+          # die pagina voor pagina doorlopen moet worden. Het register verandert
+          # nauwelijks, dus we halen het alleen op als het bestand er niet is.
+          # Wil je handmatig verversen: verwijder rijksmonumenten_nijmegen.json.
           GROOTTE=0
           if [ -f rijksmonumenten_nijmegen.json ]; then
             GROOTTE=$(wc -c < rijksmonumenten_nijmegen.json)
           fi
-          if [ "$GROOTTE" -lt 200 ] || [ $(date +%d) = "01" ]; then
+          if [ "$GROOTTE" -lt 200 ]; then
             echo "Monumentenbestand ontbreekt of is leeg ($GROOTTE bytes), ophalen"
             python rijksmonumenten.py || echo "Monumenten-stap overgeslagen"
           else
@@ -70,6 +72,7 @@ jobs:
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
           python marktprijzen_bag.py --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
