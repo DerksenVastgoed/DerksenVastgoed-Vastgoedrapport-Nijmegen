@@ -192,6 +192,91 @@ def pdok_buurt(straat, huisnr, plaats):
         return {}
 
 
+EP_API_KEY = os.environ.get("EP_API_KEY", "")
+EP_BASE = "https://public.ep-online.nl/api/v5/PandEnergielabel"
+EP_HEADERS = {"Authorization": EP_API_KEY, "Accept": "application/json"}
+
+
+def _ep_eerste(data):
+    """De API geeft soms een lijst, soms een enkel object terug."""
+    if isinstance(data, list):
+        return data[0] if data else None
+    if isinstance(data, dict):
+        for sleutelnaam in ("results", "data", "items"):
+            binnen = data.get(sleutelnaam)
+            if isinstance(binnen, list) and binnen:
+                return binnen[0]
+        return data
+    return None
+
+
+def _ep_veld(rec, namen):
+    """Veldnamen verschillen per versie; probeer meerdere schrijfwijzen."""
+    for naam in namen:
+        for sleutel_ in (naam, naam.lower(), naam.replace("_", "")):
+            for k, v in rec.items():
+                if k.lower().replace("_", "") == sleutel_.lower().replace("_", ""):
+                    if v not in (None, ""):
+                        return v
+    return None
+
+
+def ep_energielabel(vbo_id, postcode, huisnr, letter, toev):
+    """
+    Haalt het energielabel op uit EP-Online.
+    Bij voorkeur op VBO-id (exact), anders op postcode plus huisnummer.
+    Geeft None terug als er geen key is of niets gevonden wordt.
+    """
+    if not EP_API_KEY:
+        return None
+
+    pogingen = []
+    if vbo_id:
+        pogingen.append((f"{EP_BASE}/AdresseerbaarObject/{vbo_id}", None))
+    if postcode and huisnr:
+        params = {"postcode": postcode.replace(" ", ""), "huisnummer": huisnr}
+        if letter:
+            params["huisletter"] = letter
+        if toev:
+            params["huisnummertoevoeging"] = toev
+        pogingen.append((f"{EP_BASE}/Adres", params))
+
+    for url, params in pogingen:
+        try:
+            r = requests.get(url, headers=EP_HEADERS, params=params, timeout=20)
+            if r.status_code in (401, 403):
+                print("  EP-Online: key geweigerd of nog niet actief", file=sys.stderr)
+                return None
+            if r.status_code == 404:
+                continue
+            r.raise_for_status()
+            rec = _ep_eerste(r.json())
+        except Exception as e:
+            print(f"  EP-Online-fout: {e}", file=sys.stderr)
+            continue
+        if not isinstance(rec, dict) or not rec:
+            continue
+
+        prive = _ep_veld(rec, ["Pand_energielabel_is_prive", "isPrive", "prive"])
+        if str(prive) in ("1", "True", "true"):
+            return {"label": None, "prive": True}
+
+        label = _ep_veld(rec, ["Pand_energieklasse", "energieklasse", "labelLetter",
+                               "Pand_labelletter", "energielabel", "labelletter"])
+        if not label:
+            continue
+        return {
+            "label": str(label).strip(),
+            "registratiedatum": str(_ep_veld(rec, ["Pand_registratiedatum",
+                                                   "registratiedatum"]) or "")[:10],
+            "geldig_tot": str(_ep_veld(rec, ["Meting_geldig_tot", "geldigTot",
+                                             "metingGeldigTot"]) or "")[:10],
+            "gebouwklasse": _ep_veld(rec, ["Pand_gebouwklasse", "gebouwklasse"]) or "",
+            "prive": False,
+        }
+    return None
+
+
 def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     """
     Roept BAG /adressenuitgebreid aan. Retourneert oppervlakte, bouwjaar,
@@ -332,6 +417,18 @@ def verrijk(woning, cache):
     time.sleep(0.2)
 
     verrijking = {**bag, **pdok}
+
+    # Energielabel uit EP-Online, bij voorkeur op het VBO-id uit de BAG
+    if EP_API_KEY:
+        straat, huisnr, letter, toev = varianten[0]
+        ep = ep_energielabel(
+            verrijking.get("adresseerbaarObjectIdentificatie"),
+            verrijking.get("postcode") or pdok.get("postcode"),
+            huisnr, letter, toev)
+        time.sleep(0.3)
+        if ep:
+            verrijking["energielabel"] = ep
+
     cache[sleutel] = verrijking
     woning.update(verrijking)
     return woning
@@ -343,6 +440,19 @@ def normaliseer_buurt(buurtnaam):
     if buurtnaam in FOCUS_BUURTEN:
         return buurtnaam
     return BUURT_ALIAS.get(buurtnaam, buurtnaam)
+
+
+
+def _labeltekst(ep):
+    """Toont het label met het registratiejaar, zodat een oud label opvalt."""
+    if not ep:
+        return "onbekend"
+    if ep.get("prive"):
+        return "afgeschermd"
+    label = ep.get("label") or "?"
+    datum = ep.get("registratiedatum") or ""
+    jaar = datum[:4]
+    return f"{label} ({jaar})" if jaar else label
 
 
 def render(woningen):
@@ -570,11 +680,15 @@ def render(woningen):
         # Kolommen alleen tonen als er daadwerkelijk data is
         toon_bouwjaar = any(w.get("bouwjaar") for _, w in beleggingen)
         toon_monument = any(w.get("monument") for _, w in beleggingen)
+        toon_label = any(w.get("energielabel") for _, w in beleggingen)
         kop = "| Adres | Buurt | Prijs | m² | €/m² |"
         streep = "|---|---|---:|---:|---:|"
         if toon_bouwjaar:
             kop += " Bouwjaar |"
             streep += "---:|"
+        if toon_label:
+            kop += " Label |"
+            streep += "---|"
         if toon_monument:
             kop += " Monument |"
             streep += "---|"
@@ -595,6 +709,8 @@ def render(woningen):
                      f"{w.get('oppervlakte','?')} | €{ppm2_s} |")
             if toon_bouwjaar:
                 regel += f" {w.get('bouwjaar') or '?'} |"
+            if toon_label:
+                regel += f" {_labeltekst(w.get('energielabel'))} |"
             if toon_monument:
                 mon = w.get("monument")
                 regel += f" {'rijksmonument' if mon else 'nee'} |"
@@ -605,6 +721,11 @@ def render(woningen):
             r.append(f"_{belegging_buiten_ring} beleggingsobjecten lagen buiten de ring en zijn niet getoond._")
         r.append("_Deze panden worden in verhuurde staat aangeboden. Het verschil met de "
                  "mediaan vrij van huurder staat hierboven, berekend op deze lijst._")
+        if toon_label:
+            r.append("_Label met registratiejaar tussen haakjes. Een label is tien jaar "
+                     "geldig vanaf de opnamedatum, dus bij een oud jaartal loopt het af. "
+                     "'Afgeschermd' betekent dat de eigenaar het label niet openbaar heeft "
+                     "staan, niet dat het ontbreekt. Bron: EP-Online, RVO._")
         r.append("")
 
     # Panden waar ooit iets over gepubliceerd is
