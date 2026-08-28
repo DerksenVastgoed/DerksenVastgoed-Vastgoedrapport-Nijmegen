@@ -135,6 +135,37 @@ def lees_verkopen(pad):
     return resultaat
 
 
+
+AFKORTINGEN = [
+    ("prof. ", "professor "), ("prof ", "professor "),
+    ("st. ", "sint "), ("st ", "sint "),
+    ("burg. ", "burgemeester "), ("burg ", "burgemeester "),
+    ("dr. ", "doctor "), ("dr ", "doctor "),
+    ("gen. ", "generaal "), ("mr. ", "meester "),
+    ("v. ", "van "), ("v.d. ", "van de "),
+]
+
+
+def straatvarianten(straat):
+    """Geeft schrijfwijzen van een straatnaam die de BAG kan hanteren."""
+    varianten = [straat]
+    laag = straat.lower()
+    for kort, lang in AFKORTINGEN:
+        if laag.startswith(kort):
+            varianten.append(lang.capitalize() + straat[len(kort):])
+            break
+        if laag.startswith(lang):
+            for k, l in AFKORTINGEN:
+                if l == lang:
+                    varianten.append(k.capitalize() + straat[len(lang):])
+                    break
+            break
+    # Punt weglaten of juist toevoegen
+    if "." in straat:
+        varianten.append(straat.replace(".", ""))
+    return list(dict.fromkeys(varianten))
+
+
 def split_huisnummer(adres):
     """
     Splitst een adres in straat, huisnummer en achtervoegsel.
@@ -147,6 +178,11 @@ def split_huisnummer(adres):
     'Voorbeeldstraat 7A-12' -> [(...,'7','A','12')]
     """
     s = adres.strip()
+    # Straten met een getal in de naam ('Plein 1944 168'): pak het laatste getal
+    jaartal = re.match(r"^(.+?\s+\d{4})\s+(\d+)\s*([A-Za-z])?\s*$", s)
+    if jaartal:
+        return [(jaartal.group(1).strip(), jaartal.group(2),
+                 (jaartal.group(3) or "").upper() or None, None)]
     m = re.match(r"^(.+?)\s+(\d+)\s*[-\s]?\s*([A-Za-z])?\s*[-\s]?\s*([A-Za-z0-9]{1,4})?\s*$", s)
     if not m:
         return []
@@ -385,7 +421,21 @@ def _bouwjaar_uit(a):
 def verrijk(woning, cache):
     sleutel = f"{woning['adres']}|{woning['plaats']}"
     if sleutel in cache and not cache[sleutel].get("gefaald"):
-        woning.update(cache[sleutel])
+        gegevens = cache[sleutel]
+        # Energielabel ontbreekt nog in oudere cache-regels: alleen die ophalen,
+        # de BAG-gegevens zijn al bekend en hoeven niet opnieuw.
+        if EP_API_KEY and "energielabel" not in gegevens:
+            varianten = split_huisnummer(woning["adres"])
+            letter = toev = None
+            huisnr = ""
+            if varianten:
+                _, huisnr, letter, toev = varianten[0]
+            ep = ep_energielabel(gegevens.get("adresseerbaarObjectIdentificatie"),
+                                 gegevens.get("postcode"), huisnr, letter, toev)
+            time.sleep(0.3)
+            gegevens["energielabel"] = ep  # ook None bewaren, anders elke run opnieuw
+            cache[sleutel] = gegevens
+        woning.update(gegevens)
         return woning
 
     varianten = split_huisnummer(woning["adres"])
@@ -396,11 +446,14 @@ def verrijk(woning, cache):
 
     bag = None
     for straat, huisnr, letter, toev in varianten:
-        bag = bag_adres_uitgebreid(straat, huisnr, letter, toev, woning["plaats"])
-        time.sleep(RATE_LIMIT_SEC)
-        if bag and bag.get("oppervlakte"):
+        for straatnaam in straatvarianten(straat):
+            bag = bag_adres_uitgebreid(straatnaam, huisnr, letter, toev, woning["plaats"])
+            time.sleep(RATE_LIMIT_SEC)
+            if bag and bag.get("oppervlakte"):
+                break
+            bag = None
+        if bag:
             break
-        bag = None
 
     # Laatste redmiddel: kaal huisnummer zonder achtervoegsel
     if not bag:
