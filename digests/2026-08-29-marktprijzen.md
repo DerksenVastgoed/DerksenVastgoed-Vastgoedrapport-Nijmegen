@@ -5,14 +5,14 @@ _174 panden gevolgd. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Benedenstad**
-_1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €334.000 . WOZ €3.064/m² bij 109 m² gemiddeld (eigen aanbod)<br>77% appartementen . 320 studenten_
+_1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €334.000 . WOZ €3.064/m² bij 109 m² gemiddeld (eigen aanbod)<br>77% appartementen . 320 studenten (12% van de inwoners, 4% van alle studenten in de ring)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
 | [Nieuwe Markt 90](https://www.google.com/maps/search/?api=1&query=Nieuwe+Markt+90%2C+Nijmegen) | woning | €575.000 | 158 | €3.639 | 🟢 -27% (heel Nijmegen) | D (2026) | — |
 
 **Biezen**
-_5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €358.000 . WOZ €3.849/m² bij 93 m² gemiddeld (eigen aanbod)<br>62% appartementen . 920 studenten_
+_5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €358.000 . WOZ €3.849/m² bij 93 m² gemiddeld (eigen aanbod)<br>62% appartementen . 920 studenten (9% van de inwoners, 11% van alle studenten in de ring)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -27,13 +27,13 @@ _5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €3
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">52 m² . label B (2026)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag tot splitsen van een woning van 52 m2 haalt een kleine zelfstandige unit uit de voorraad, wat aanbod in dit segment beperkt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag tot splitsen van een woning van 52 m² kan de kleine voorraad in dit segment doen groeien, mits vergund.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-27 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 
 **Galgenveld**
-_2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €553.000 . WOZ €4.533/m² bij 122 m² gemiddeld (eigen aanbod)<br>54% appartementen . 1.640 studenten_
+_2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €553.000 . WOZ €4.533/m² bij 122 m² gemiddeld (eigen aanbod)<br>54% appartementen . 1.640 studenten (23% van de inwoners, 20% van alle studenten in de ring)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -43,15 +43,15 @@ _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €55
 | [Prof Regoutstraat 1B](https://www.google.com/maps/search/?api=1&query=Prof+Regoutstraat+1B%2C+Nijmegen) | woning | €235.000 | 35 | €6.714 | 🔴 +40% | C (2026) | — |
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html" style="color:#12242c;text-decoration:none">Melding sloopmelding van binnenwanden en het vervangen van kozijnen , aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html" style="color:#12242c;text-decoration:none">Melding sloopmelding van binnenwanden en het vervangen van kozijnen , aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">250 m² . label E (2017)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding van kozijnvervanging en sloop van binnenwanden wijst op renovatie die de labelstap richting energiezuiniger pand kan ondersteunen.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloop van binnenwanden en kozijnvervanging is een interne verbouwing zonder directe marktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-27 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 
 **Stadscentrum**
-_4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €356.000 . WOZ €4.000/m² bij 89 m² gemiddeld (eigen aanbod)<br>93% appartementen . 3.030 studenten_
+_4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €356.000 . WOZ €4.000/m² bij 89 m² gemiddeld (eigen aanbod)<br>93% appartementen . 3.030 studenten (30% van de inwoners, 37% van alle studenten in de ring)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -69,7 +69,7 @@ _4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €3
 | [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) | commercieel | €850.000 | 134 | €6.343 | te weinig vergelijking | C (2026) | — |
 
 **Bottendaal**
-_2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €394.000 . WOZ €4.062/m² bij 97 m² gemiddeld (eigen aanbod)<br>77% appartementen . 1.150 studenten_
+_2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €394.000 . WOZ €4.062/m² bij 97 m² gemiddeld (eigen aanbod)<br>77% appartementen . 1.150 studenten (23% van de inwoners, 14% van alle studenten in de ring)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|

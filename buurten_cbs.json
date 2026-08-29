@@ -1,6 +1,7 @@
 {
  "Altrade": {
   "corp": 14,
+  "inwoners": 6525,
   "koop": 47,
   "leegstand": null,
   "meergezins": 69,
@@ -14,6 +15,7 @@
  },
  "Benedenstad": {
   "corp": 46,
+  "inwoners": 2720,
   "koop": 13,
   "leegstand": null,
   "meergezins": 77,
@@ -27,6 +29,7 @@
  },
  "Biezen": {
   "corp": 35,
+  "inwoners": 9785,
   "koop": 30,
   "leegstand": null,
   "meergezins": 62,
@@ -40,6 +43,7 @@
  },
  "Bottendaal": {
   "corp": 21,
+  "inwoners": 5010,
   "koop": 34,
   "leegstand": null,
   "meergezins": 77,
@@ -53,6 +57,7 @@
  },
  "Galgenveld": {
   "corp": 9,
+  "inwoners": 7065,
   "koop": 55,
   "leegstand": null,
   "meergezins": 54,
@@ -66,6 +71,7 @@
  },
  "Stadscentrum": {
   "corp": 14,
+  "inwoners": 9990,
   "koop": 25,
   "leegstand": null,
   "meergezins": 93,
