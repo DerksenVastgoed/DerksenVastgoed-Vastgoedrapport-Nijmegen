@@ -92,7 +92,7 @@ def haal_tekst(bericht):
     return regels
 
 
-def parse_objecten(regels, status):
+def parse_objecten(regels, basis_status):
     """
     Haalt objecten uit de regels van een attenderingsmail.
     Twee vormen:
@@ -126,17 +126,49 @@ def parse_objecten(regels, status):
             continue
 
         prijs = None
+        soort = None   # 'koop', 'maand' of 'pm2jr'
         for p in range(i + 1, min(len(regels), i + 8)):
             laag = regels[p].lower()
             if "aanvraag" in laag or "n.o.t.k" in laag:
                 break
             pm = RE_PRIJS.search(regels[p])
-            if pm and "." in pm.group(1) and len(pm.group(1).replace(".", "")) >= 5:
-                prijs = pm.group(1).replace(".", "")
+            if not pm:
+                continue
+            ruw = pm.group(1).replace(".", "")
+            if not ruw.isdigit():
+                continue
+            bedrag = int(ruw)
+
+            # Huur per m2 per jaar, komt voor bij bedrijfsruimte
+            if re.search(r"/\s*m.?\s*/\s*jaar|per\s*m.?\s*per\s*jaar", laag):
+                if 20 <= bedrag <= 2000:
+                    prijs, soort = bedrag, "pm2jr"
+                    break
+                continue
+
+            # Maandhuur
+            if re.search(r"per\s*maand|p/?m\b|/\s*mnd|per\s*mnd", laag):
+                if 300 <= bedrag <= 25000:
+                    prijs, soort = bedrag, "maand"
+                    break
+                continue
+
+            # Koopsom: minimaal vijf cijfers en een duizendtalscheiding
+            if "." in pm.group(1) and len(ruw) >= 5:
+                prijs, soort = bedrag, "koop"
                 break
+
         if not prijs:
             overgeslagen.append(f"{adres} (geen prijs gevonden)")
             continue
+
+        # De status hangt af van wat voor prijs we vonden
+        if soort == "maand":
+            status = "te huur"
+        elif soort == "pm2jr":
+            status = "te huur pm2"
+        else:
+            status = basis_status
 
         sleutel = (adres.lower(), prijs)
         if sleutel in gezien:

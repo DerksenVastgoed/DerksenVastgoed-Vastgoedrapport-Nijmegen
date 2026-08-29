@@ -615,6 +615,43 @@ def render_looptijd(woningen):
     return r
 
 
+
+def huur_per_m2_maand(w):
+    """
+    Rekent een huuraanbieding om naar euro per m2 per maand.
+    Twee vormen komen binnen:
+      'te huur'      prijs is de maandhuur van het hele object
+      'te huur pm2'  prijs is de huur per m2 per JAAR, gedeeld door 12
+    Beide zijn exacte omrekeningen, geen aannames.
+    """
+    status = (w.get("status") or "").lower()
+    opp = w.get("oppervlakte")
+    try:
+        if status == "te huur pm2":
+            return w["prijs"] / 12
+        if status == "te huur" and opp and opp >= 15:
+            return w["prijs"] / opp
+    except (TypeError, ZeroDivisionError):
+        return None
+    return None
+
+
+def gemeten_huren(huur_aanbod):
+    """Mediane huur per m2 per maand, per buurt en per assetklasse."""
+    per_buurt_klasse = defaultdict(list)
+    per_klasse = defaultdict(list)
+    for w in huur_aanbod:
+        hm2 = huur_per_m2_maand(w)
+        if not hm2 or hm2 < 4 or hm2 > 80:
+            continue  # buiten dit bereik is het vrijwel zeker een leesfout
+        klasse = assetklasse(w)
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        per_klasse[klasse].append(hm2)
+        if buurt:
+            per_buurt_klasse[(klasse, buurt)].append(hm2)
+    return per_buurt_klasse, per_klasse
+
+
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
     """
     Al het aanbod in een overzicht, elk pand afgezet tegen de mediaan van zijn
@@ -735,6 +772,7 @@ def render(woningen):
 
     per_buurt = defaultdict(list)
     beleggingen = []
+    huur_aanbod = []
     stad_breed = []      # alle woningen met bruikbare data, ook buiten de focus-buurten
     buiten_focus = 0
     geen_woonfunctie = 0
@@ -756,6 +794,11 @@ def render(woningen):
         try:
             ppm2 = w["prijs"] / opp
         except (TypeError, ZeroDivisionError):
+            continue
+
+        # Huuraanbod telt niet mee in de koopprijs-statistiek
+        if w.get("status", "").lower().startswith("te huur"):
+            huur_aanbod.append(w)
             continue
 
         if w.get("status", "").lower() == "belegging":
@@ -842,39 +885,70 @@ def render(woningen):
     OPEX_PCT = 25
     LTV = 66.7
 
+    # Gemeten huren waar we ze hebben, aanname alleen waar die ontbreekt
+    huur_bk, huur_k = gemeten_huren(huur_aanbod)
+
     r.append("### Yield en cashflow bij aankoop vrij van huurder")
-    r.append(f"_De mediaan €/m² is gemeten. De huur per m² is een **aanname** van €{min(HUUR_M2_MND.values())} "
-             f"tot €{max(HUUR_M2_MND.values())} per maand, niet gemeten, want er is geen open bron met "
-             f"actuele huurprijzen per Nijmeegse buurt. Alles rechts van die kolom hangt dus aan die aanname. "
-             f"Verder gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+    aantal_gemeten = sum(len(v) for v in huur_k.values())
+    if aantal_gemeten:
+        r.append(f"_Huur per m² is waar mogelijk **gemeten** uit {aantal_gemeten} "
+                 f"huuraanbiedingen; waar die ontbreken staat een aanname. "
+                 f"Gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+    else:
+        r.append(f"_De mediaan €/m² is gemeten. De huur per m² is nog een **aanname**, "
+                 f"want er zijn nog geen huuraanbiedingen verzameld. "
+                 f"Gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
     r.append("")
-    r.append("| Buurt | mediaan €/m² (gemeten) | huur/m²/mnd (aanname) | bruto yield | netto cashflow op €1M lening |")
-    r.append("|---|---:|---:|---:|---:|")
+    r.append("| Buurt | mediaan €/m² | huur/m²/mnd | bron huur | bruto yield | netto cashflow op €1M lening |")
+    r.append("|---|---:|---:|---|---:|---:|")
     for buurt in FOCUS_BUURTEN:
         rijen = per_buurt.get(buurt, [])
         if not rijen or buurt not in HUUR_M2_MND:
-            r.append(f"| {buurt} | — | — | — | — |")
+            r.append(f"| {buurt} | — | — | — | — | — |")
             continue
         if len(rijen) < 10:
-            # Zelfde drempel als in de boxplot: onder tien waarnemingen is de
-            # mediaan te wankel om er een rendement op te baseren.
-            r.append(f"| {buurt} | te weinig data (N={len(rijen)}) | — | — | — |")
+            r.append(f"| {buurt} | te weinig data (N={len(rijen)}) | — | — | — | — |")
             continue
         prijzen = sorted(p for p, _ in rijen)
         med_m2 = st.median(prijzen)
-        huur_m2_jaar = HUUR_M2_MND[buurt] * 12
+
+        # Eerst de eigen buurt, dan stadsbreed, dan pas de aanname
+        reeks = huur_bk.get(("woning", buurt), [])
+        bron = f"gemeten (N={len(reeks)})"
+        if len(reeks) < 3:
+            reeks = huur_k.get("woning", [])
+            bron = f"stad (N={len(reeks)})"
+        if len(reeks) < 3:
+            huur_m2 = HUUR_M2_MND[buurt]
+            bron = "aanname"
+        else:
+            huur_m2 = st.median(reeks)
+
+        huur_m2_jaar = huur_m2 * 12
         bruto_yield = huur_m2_jaar / med_m2 * 100
-        # Cashflow bij €1M lening, waarde afgeleid van LTV
-        waarde = 1_000_000 / (LTV / 100)  # ~€1,5M
-        m2_pand = waarde / med_m2  # hoeveel m² koop je voor die waarde
+        waarde = 1_000_000 / (LTV / 100)
+        m2_pand = waarde / med_m2
         kale_huur = m2_pand * huur_m2_jaar
         netto_huur = kale_huur * (1 - OPEX_PCT / 100)
         rentelast = 1_000_000 * RENTE / 100
         cashflow = netto_huur - rentelast
         teken = "🔴" if cashflow < 0 else "🟢"
-        r.append(f"| {buurt} | €{int(med_m2):,} | €{HUUR_M2_MND[buurt]} | "
+        r.append(f"| {buurt} | €{int(med_m2):,} | €{huur_m2:.0f} | {bron} | "
                  f"{bruto_yield:.1f}% | {teken} €{int(cashflow):,}/jaar |".replace(",", "."))
     r.append("")
+
+    # Huurniveaus per assetklasse, zodra er iets gemeten is
+    if huur_k:
+        regels_klasse = []
+        for klasse, waarden in sorted(huur_k.items()):
+            if len(waarden) < 3:
+                continue
+            regels_klasse.append(f"{klasse}: €{st.median(waarden):.0f}/m²/mnd (N={len(waarden)})")
+        if regels_klasse:
+            r.append("**Gemeten huurniveaus per assetklasse:** " + " . ".join(regels_klasse))
+            r.append("_Commerciële huur wordt vaak per m² per jaar geadverteerd; "
+                     "die is hier door twaalf gedeeld zodat alles vergelijkbaar is._")
+            r.append("")
 
     # Waardecreatie: uitpond-marge concreet maken
     r.append("### Waardecreatie via uitponden")
