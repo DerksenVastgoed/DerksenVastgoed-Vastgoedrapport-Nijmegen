@@ -2,8 +2,9 @@ name: Bekendmakingen Nijmegen
 
 on:
   schedule:
-    - cron: "0 5 * * 1-5"   # werkdagen: korte brief
-    - cron: "0 6 * * 0"     # zondag: uitgebreide brief
+    - cron: "17 4 * * 1-5"  # werkdagen: korte brief (niet op het hele uur,
+                            # want dan staat de wachtrij bij GitHub vol)
+    - cron: "23 5 * * 0"    # zondag: uitgebreide brief
   workflow_dispatch: {}
 
 permissions:
@@ -99,12 +100,33 @@ jobs:
             echo ""
             echo "---"
             echo ""
-            cat "digests/${DATUM}-bekendmakingen.md"
-            echo ""
-            echo "---"
-            echo ""
+            # Per gebied: aanbod met de gemeentelijke berichten erbij
+            if [ -s "digests/${DATUM}-marktprijzen.md" ]; then
+              cat "digests/${DATUM}-marktprijzen.md"
+              echo ""
+              echo "---"
+              echo ""
+            else
+              # Vangnet: is het aanbodblok er niet, toon dan de bekendmakingen los
+              cat "digests/${DATUM}-bekendmakingen.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            # Algemeen nieuws, met daarachter de berichten zonder herkenbare buurt
             if [ -s "digests/${DATUM}-publicaties.md" ]; then
               cat "digests/${DATUM}-publicaties.md"
+              if [ -s overige_berichten.md ]; then
+                echo ""
+                cat overige_berichten.md
+              fi
+              echo ""
+              echo "---"
+              echo ""
+            elif [ -s overige_berichten.md ]; then
+              echo "## Publicaties"
+              echo ""
+              cat overige_berichten.md
               echo ""
               echo "---"
               echo ""
@@ -112,16 +134,7 @@ jobs:
             if [ -s "digests/${DATUM}-rente.md" ]; then
               cat "digests/${DATUM}-rente.md"
               echo ""
-              echo "---"
-              echo ""
             fi
-            if [ -s "digests/${DATUM}-marktprijzen.md" ]; then
-              cat "digests/${DATUM}-marktprijzen.md"
-              echo ""
-              echo "---"
-              echo ""
-            fi
-            :
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
@@ -163,7 +176,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt buurten_cbs.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt buurten_cbs.json bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
