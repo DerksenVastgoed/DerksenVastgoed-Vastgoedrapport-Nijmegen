@@ -1,6 +1,6 @@
 
 ## Marktprijzen koop per buurt
-_Op basis van 174 recente transacties/aanbiedingen. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
+_Op basis van 174 panden. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
 
 | Buurt | N | p10 €/m² | p25 | mediaan | p75 | p90 |
 |---|---:|---:|---:|---:|---:|---:|
