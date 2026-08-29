@@ -15,6 +15,7 @@ import json
 import os
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 
@@ -97,13 +98,35 @@ OVERIGE REGELS:
 
 
 def haal_feed(bron):
+    """
+    Haalt een feed op. Google News knijpt af bij te veel verzoeken achter elkaar,
+    dus bij een 429 of 503 wachten we en proberen we opnieuw.
+    """
     naam, url = bron
-    try:
-        r = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
-        r.raise_for_status()
-    except Exception as e:
-        print(f"Feed {naam} mislukt: {e}", file=sys.stderr)
+    r = None
+    for poging in range(1, 4):
+        try:
+            r = requests.get(url, timeout=25, headers={"User-Agent": "Mozilla/5.0"})
+            if r.status_code in (429, 503):
+                if poging < 3:
+                    wacht = poging * 8
+                    print(f"Feed {naam}: {r.status_code}, opnieuw over {wacht}s",
+                          file=sys.stderr)
+                    time.sleep(wacht)
+                    continue
+                print(f"Feed {naam} afgeknepen na {poging} pogingen", file=sys.stderr)
+                return []
+            r.raise_for_status()
+            break
+        except Exception as e:
+            if poging < 3:
+                time.sleep(poging * 5)
+                continue
+            print(f"Feed {naam} mislukt: {e}", file=sys.stderr)
+            return []
+    if r is None:
         return []
+
     try:
         root = ET.fromstring(r.content)
     except ET.ParseError as e:
@@ -282,7 +305,9 @@ def main():
     args = ap.parse_args()
 
     alle = []
-    for bron in FEEDS:
+    for i, bron in enumerate(FEEDS):
+        if i:
+            time.sleep(2)  # Google News niet overvragen
         alle.extend(haal_feed(bron))
     print(f"Opgehaald: {len(alle)} items uit {len(FEEDS)} feeds", file=sys.stderr)
 
