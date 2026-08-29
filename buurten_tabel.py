@@ -17,6 +17,8 @@ import urllib.parse
 import requests
 
 # --- CONFIG ---
+CBS_PAD = "buurten_cbs.json"
+
 BUURTEN = [
     ("Stadscentrum",     "oost"),
     ("Benedenstad",      "oost"),
@@ -176,6 +178,15 @@ def main():
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)
     print(f"\nTabel opgeslagen in {args.uit}", file=sys.stderr)
+
+    # Ook als los gegevensbestand wegschrijven. Het marktprijzen-script toont
+    # deze cijfers per buurt, maar alleen bij buurten waar aanbod in staat.
+    import json as _json
+    gegevens = {r["naam"]: {k: r[k] for k in ("won", "woz", "koop", "corp", "over", "trend")}
+                for r in rijen}
+    with open(CBS_PAD, "w", encoding="utf-8") as f:
+        _json.dump(gegevens, f, ensure_ascii=False, indent=1, sort_keys=True)
+    print(f"Buurtgegevens opgeslagen in {CBS_PAD}", file=sys.stderr)
 
 
 if __name__ == "__main__":

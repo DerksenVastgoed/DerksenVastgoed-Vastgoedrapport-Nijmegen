@@ -511,6 +511,40 @@ COMMERCIEEL = ["winkel", "kantoor", "horeca", "bijeenkomst", "industrie", "logie
 
 
 
+
+CBS_PAD = "buurten_cbs.json"
+
+
+def lees_cbs():
+    """Buurtcijfers uit het CBS, weggeschreven door buurten_tabel.py."""
+    if not os.path.exists(CBS_PAD):
+        return {}
+    try:
+        with open(CBS_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def buurtregel(naam, cbs):
+    """Een regel met de kenmerken van een buurt, alleen als we ze hebben."""
+    g = cbs.get(naam)
+    if not g:
+        return ""
+    delen = []
+    if g.get("won"):
+        delen.append(f"{g['won']:,}".replace(",", ".") + " woningen")
+    if g.get("koop") is not None:
+        delen.append(f"{g['koop']}% koop")
+    if g.get("corp") is not None:
+        delen.append(f"{g['corp']}% corporatie")
+    if g.get("over") is not None:
+        delen.append(f"{g['over']}% overige verhuurders")
+    if g.get("woz"):
+        delen.append("WOZ €" + f"{g['woz'] * 1000:,}".replace(",", "."))
+    return " . ".join(delen)
+
+
 def kaartlink(adres, plaats="Nijmegen", bron=""):
     """
     Adres als verwijzing naar Google Maps. Kennen we ook de oorspronkelijke
@@ -724,32 +758,51 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
     if not kandidaten:
         return r
 
-    r.append("### Aanbod beoordeeld binnen de eigen assetklasse")
+    cbs = lees_cbs()
+
+    # Per buurt groeperen. Buurten zonder aanbod komen niet voor.
+    per_buurt_aanbod = defaultdict(list)
+    for kandidaat in kandidaten:
+        w = kandidaat[-1]
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "Overig"
+        per_buurt_aanbod[buurt].append(kandidaat)
+
+    # Buurt met het scherpst geprijsde pand bovenaan
+    volgorde = sorted(per_buurt_aanbod.items(),
+                      key=lambda kv: min(k[0] for k in kv[1]))
+
+    r.append("### Aanbod per buurt, beoordeeld binnen de eigen assetklasse")
     r.append("")
-    r.append("| Adres | Buurt | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
-    r.append("|---|---|---|---:|---:|---:|---:|---|---:|")
-    for _, ppm2, klasse, afwijking, basis, w in sorted(kandidaten, key=lambda x: x[0]):
-        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
-        prijs_s = f"{w['prijs']:,}".replace(",", ".")
-        ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-        if afwijking is None:
-            oordeel = "te weinig vergelijking"
-        else:
-            merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
-            staart = "" if basis == buurt else f" ({basis})"
-            oordeel = f"{merk} {afwijking:+.0f}%{staart}"
-        dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
-        r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | "
-                 f"{klasse} | €{prijs_s} | {w['oppervlakte']} | "
-                 f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
-                 f"{dagen if dagen is not None else '—'} |")
-    r.append("")
+    for buurt, rijen_buurt in volgorde:
+        r.append(f"**{buurt}** ({len(rijen_buurt)} in aanbod)")
+        kenmerken = buurtregel(buurt, cbs)
+        if kenmerken:
+            r.append(f"_{kenmerken}_")
+        r.append("")
+        r.append("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
+        r.append("|---|---|---:|---:|---:|---:|---|---:|")
+        for _, ppm2, klasse, afwijking, basis, w in sorted(rijen_buurt, key=lambda x: x[0]):
+            prijs_s = f"{w['prijs']:,}".replace(",", ".")
+            ppm2_s = f"{int(ppm2):,}".replace(",", ".")
+            if afwijking is None:
+                oordeel = "te weinig vergelijking"
+            else:
+                merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
+                staart = "" if basis == buurt else f" ({basis})"
+                oordeel = f"{merk} {afwijking:+.0f}%{staart}"
+            dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
+            r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
+                     f"{klasse} | €{prijs_s} | {w['oppervlakte']} | "
+                     f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
+                     f"{dagen if dagen is not None else '—'} |")
+        r.append("")
+
     r.append("_Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een "
              "winkelpand en een woning zijn verschillende producten. Lukt dat niet in de "
              "eigen buurt, dan tegen heel Nijmegen; staan er ook stadsbreed te weinig "
              f"vergelijkbare objecten (minder dan {MINIMUM}), dan volgt er geen oordeel._")
     r.append("_Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan "
-             "10% erboven._")
+             "10% erboven. De buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
 
     # Hoeveel objecten per klasse hebben we eigenlijk?
     tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
