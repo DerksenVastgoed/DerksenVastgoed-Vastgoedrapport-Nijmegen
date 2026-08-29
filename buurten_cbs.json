@@ -1,0 +1,50 @@
+{
+ "Altrade": {
+  "corp": 14,
+  "koop": 47,
+  "over": 14,
+  "trend": "—",
+  "won": 2993,
+  "woz": 436
+ },
+ "Benedenstad": {
+  "corp": 46,
+  "koop": 13,
+  "over": 29,
+  "trend": "—",
+  "won": 1639,
+  "woz": 334
+ },
+ "Biezen": {
+  "corp": 35,
+  "koop": 30,
+  "over": 14,
+  "trend": "—",
+  "won": 5152,
+  "woz": 358
+ },
+ "Bottendaal": {
+  "corp": 21,
+  "koop": 34,
+  "over": 22,
+  "trend": "—",
+  "won": 2193,
+  "woz": 394
+ },
+ "Galgenveld": {
+  "corp": 9,
+  "koop": 55,
+  "over": 12,
+  "trend": "—",
+  "won": 2749,
+  "woz": 553
+ },
+ "Stadscentrum": {
+  "corp": 14,
+  "koop": 25,
+  "over": 42,
+  "trend": "—",
+  "won": 4335,
+  "woz": 356
+ }
+}
