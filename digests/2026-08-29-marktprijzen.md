@@ -1,6 +1,31 @@
 
-## Marktprijzen koop per buurt
-_Op basis van 174 panden. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
+## Aanbod en marktprijzen
+_174 panden gevolgd. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
+
+### Aanbod beoordeeld tegen de buurt
+
+| Adres | Buurt | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
+|---|---|---:|---:|---:|---:|---|---:|
+| van Welderenstraat 5 | Stadscentrum | €500.000 | 235 | €2.127 | 🟢 -58% | C (2026) | — |
+| Ziekerstraat 5 | Stadscentrum | €450.000 | 126 | €3.571 | 🟢 -30% | E (2026) | — |
+| Nieuwe Markt 90 | Benedenstad | €575.000 | 158 | €3.639 | 🟢 -27% (Nijmegen) | D (2026) | — |
+| Dikkeboomweg 36 | Hees | €450.000 | 119 | €3.781 | 🟢 -24% (Nijmegen) | A (2017) | — |
+| Zwaluwstraat 7 | Biezen | €335.000 | 86 | €3.895 | 🟢 -23% | B (2024) | — |
+| Prof. Molkenboerstraat 30 | Galgenveld | €429.000 | 110 | €3.900 | 🟢 -19% | D (2026) | — |
+| Patrijsstraat 48 | Wolfskuil | €385.000 | 94 | €4.095 | 🟢 -18% (Nijmegen) | C (2026) | — |
+| Ubbergseveldweg 17 | Hunnerberg | €825.000 | 200 | €4.125 | 🟢 -17% (Nijmegen) | E (2026) | — |
+| Eilbrachtstraat 6 | Stadscentrum | €325.000 | 75 | €4.333 | 🟢 -15% | B (2026) | — |
+| Burg. Hustinxstraat 246 | Stadscentrum | €295.000 | 61 | €4.836 | 🟡 -5% | E (2026) | — |
+| Graadt van Roggenstraat 143 | Hunnerberg | €585.000 | 124 | €4.717 | 🟡 -5% (Nijmegen) | B (2022) | — |
+| Marialaan 111 | Biezen | €335.000 | 70 | €4.785 | 🟡 -5% | E (2026) | — |
+| St. Annastraat 28 | Galgenveld | €1.695.000 | 367 | €4.618 | 🟡 -4% | C (2025) | — |
+| de Ruyterstraat 135 | Bottendaal | €925.000 | 199 | €4.648 | 🟡 -3% | A+++ (2026) | — |
+| Mariënburg 20 | Stadscentrum | €629.000 | 123 | €5.113 | 🟡 -0% | B (2020) | — |
+
+_16 panden niet getoond. Gesorteerd op prijs per m² ten opzichte van de buurtmediaan, scherpst geprijsd bovenaan._
+_Groen is meer dan 10% onder de mediaan, rood meer dan 10% erboven. Staat er een buurtnaam achter het percentage, dan waren er te weinig waarnemingen in de eigen buurt en is met heel Nijmegen vergeleken._
+
+### Referentie: prijspeil per buurt
 
 | Buurt | N | p10 €/m² | p25 | mediaan | p75 | p90 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -12,11 +37,7 @@ _Op basis van 174 panden. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
 | Biezen | 28 | €4.360 | €4.729 | €5.039 | €6.288 | €6.671 |
 | _Nijmegen totaal_ | 167 | €3.782 | €4.241 | €4.986 | €5.508 | €6.388 |
 
-_p10 en p90 in plaats van laagste en hoogste: één verkeerd gekoppeld adres verpest een minimum of maximum, de percentielen niet. Bij minder dan tien waarnemingen tonen we alleen de mediaan._
-
-_37 panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._
-_3 objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._
-_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). Beleggingspanden in verhuurde staat liggen doorgaans lager; hoeveel precies staat verderop, berekend op de eigen data._
+_p10 en p90 in plaats van uitersten, want één verkeerd gekoppeld adres verpest een minimum. Onder tien waarnemingen alleen de mediaan. 37 panden buiten de focus-buurten, alleen in de totaalregel. 3 objecten zonder woonfunctie weggelaten. prijzen zijn vrij van huurder; verhuurde staat ligt lager._
 
 ### Yield en cashflow bij aankoop vrij van huurder
 _De mediaan €/m² is gemeten. De huur per m² is een **aanname** van €17 tot €20 per maand, niet gemeten, want er is geen open bron met actuele huurprijzen per Nijmeegse buurt. Alles rechts van die kolom hangt dus aan die aanname. Verder gerekend met rente 5.75% aflossingsvrij, LTV 67% en 25% opex._
