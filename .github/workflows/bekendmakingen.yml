@@ -27,6 +27,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
@@ -51,6 +52,13 @@ jobs:
         run: |
           VANAF=$(date -d "-7 days" +%F)
           python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
+
+      - name: Funda-attenderingen uitlezen
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: |
+          python funda_mail.py --dagen 3 || echo "Funda-mail-stap overgeslagen"
 
       - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
         run: |
@@ -145,7 +153,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
