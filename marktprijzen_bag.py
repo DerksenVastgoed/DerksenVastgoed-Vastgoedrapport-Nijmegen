@@ -661,7 +661,22 @@ def buurtregel(naam, cbs, opp_uit_bag=None):
             wozm2 = round(g["woz"] * 1000 / opp)
             delen.append(f"WOZ €{wozm2:,}".replace(",", ".")
                          + f"/m² bij {opp} m² gemiddeld ({herkomst})")
-    return " . ".join(delen)
+
+    # Kenmerken die raken aan splitsen, renoveren en kamerverhuur
+    tweede = []
+    if g.get("meergezins") is not None:
+        tweede.append(f"{g['meergezins']}% appartementen")
+    if g.get("voor2000") is not None:
+        tweede.append(f"{g['voor2000']}% van voor 2000")
+    if g.get("studenten"):
+        tweede.append(f"{g['studenten']:,}".replace(",", ".") + " studenten")
+    if g.get("leegstand") is not None and g["leegstand"] > 0:
+        tweede.append(f"{g['leegstand']}% leegstand")
+
+    regel = " . ".join(delen)
+    if tweede:
+        regel += "<br>" + " . ".join(tweede)
+    return regel
 
 
 def gemiddelde_oppervlakte_per_buurt(woningen):

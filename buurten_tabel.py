@@ -113,6 +113,20 @@ OPPERVLAKTE_VELDEN = [
 ]
 
 
+def _getal(p, namen, minimum=None, maximum=None):
+    """Haalt een getal op en controleert of het binnen een zinnig bereik valt."""
+    v = _veld(p, namen)
+    try:
+        v = float(v)
+    except (TypeError, ValueError):
+        return None
+    if minimum is not None and v < minimum:
+        return None
+    if maximum is not None and v > maximum:
+        return None
+    return round(v)
+
+
 def _oppervlakte(p):
     v = _veld(p, OPPERVLAKTE_VELDEN)
     try:
@@ -134,11 +148,14 @@ def _pijl(nu, toen):
 
 
 def render(rijen: list) -> str:
+    """
+    De trendkolom is vervallen: de CBS-kaart van 2021 is niet meer op te halen,
+    en het aanbod vergelijken we tegenwoordig tegen de actuele markt.
+    """
     kop = ["", "## Eigendom per buurt in je ring",
-           f"_Bron: CBS Wijk- en Buurtkaart {JAAR_NU} via PDOK. "
-           f"Trend = verschil met {JAAR_TREND} in procentpunten (koop-aandeel)._", "",
-           "| Buurt | Won. | Koop | Corp. | BV/overig | Rest | WOZ | Trend koop |",
-           "|---|---:|---:|---:|---:|---:|---:|:--|"]
+           f"_Bron: CBS Wijk- en Buurtkaart {JAAR_NU} via PDOK._", "",
+           "| Buurt | Won. | Koop | Corp. | BV/overig | Rest | WOZ | Meergezins | Voor 2000 | Studenten |",
+           "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for r in rijen:
         kop.append(
             f"| **{r['naam']}** ({r['zijde']}) "
@@ -148,13 +165,17 @@ def render(rijen: list) -> str:
             f"| {r['over'] if r['over'] is not None else '—'}% "
             f"| {r['onb'] if r['onb'] is not None else '—'}% "
             f"| {'€'+format(r['woz']*1000,',').replace(',','.') if r['woz'] else '—'} "
-            f"| {r['trend']} |"
+            f"| {str(r.get('meergezins'))+'%' if r.get('meergezins') is not None else '—'} "
+            f"| {str(r.get('voor2000'))+'%' if r.get('voor2000') is not None else '—'} "
+            f"| {r.get('studenten') or '—'} |"
         )
     kop += ["",
             f"[Bekijk op de kaart]({KAART_URL})",
             "",
-            "_Let op: de 'trend'-kolom vergelijkt binnen dezelfde CBS-definitie (2021 en later). "
-            "Langere reeksen zijn onbetrouwbaar door een definitiewijziging in 2021._"]
+            "_Meergezins is het aandeel appartementen in de voorraad, een indicatie of "
+            "splitsen hier gebruikelijk is. Voor 2000 is het aandeel oudere voorraad, "
+            "wat samenhangt met de renovatie- en labelopgave. Studenten is het aantal "
+            "hbo- en wo-studenten dat in de buurt woont._"]
     return "\n".join(kop)
 
 
@@ -189,6 +210,12 @@ def main():
             "naam": naam, "zijde": zijde,
             "won": _woningen(p_nu), "woz": _woz(p_nu),
             "opp": _oppervlakte(p_nu),
+            # Kenmerken die raken aan splitsen, renoveren en kamerverhuur
+            "meergezins": _getal(p_nu, ["percentage_meergezinswoning"], 0, 100),
+            "voor2000": _getal(p_nu, ["percentage_bouwjaarklasse_tot_2000"], 0, 100),
+            "studenten": (_getal(p_nu, ["aantal_studenten_wo"], 0) or 0)
+                         + (_getal(p_nu, ["aantal_studenten_hbo"], 0) or 0),
+            "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
             "koop": koop, "corp": corp, "over": over, "onb": onb,
             "trend": _pijl(koop, koop_toen),
         })
@@ -209,7 +236,8 @@ def main():
     # deze cijfers per buurt, maar alleen bij buurten waar aanbod in staat.
     import json as _json
     gegevens = {r["naam"]: {k: r.get(k) for k in
-                            ("won", "woz", "koop", "corp", "over", "trend", "opp")}
+                            ("won", "woz", "koop", "corp", "over", "trend", "opp",
+                             "meergezins", "voor2000", "studenten", "leegstand")}
                 for r in rijen}
     with open(CBS_PAD, "w", encoding="utf-8") as f:
         _json.dump(gegevens, f, ensure_ascii=False, indent=1, sort_keys=True)
