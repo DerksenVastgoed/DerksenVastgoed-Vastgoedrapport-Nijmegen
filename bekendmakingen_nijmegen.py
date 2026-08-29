@@ -106,6 +106,8 @@ Goede duiding gaat over het MECHANISME, niet over verzonnen bedragen:
 - "Samenvoegen haalt een unit uit de kleine voorraad, wat het aanbod in dat segment verkrapt."
 - "Vergunning bevestigt dat verkamering op deze locatie planologisch haalbaar is, relevant voor wie een vergelijkbaar pand overweegt."
 - "Vergunde isolatie laat zien dat labelverbetering aan de buitenzijde hier vergunbaar is, ook bij oudere bebouwing."
+- "Bij label E telt verkamering zwaarder mee in de WWS-punten dan bij label A, wat de maximale huur beperkt."
+- "Rijksmonument: ingrepen zijn vergunningplichtig, wat splitsen trager en duurder maakt."
 - "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt."
 
 OVERIGE REGELS:
@@ -242,6 +244,79 @@ def classificeer(item: dict):
     return None
 
 
+
+EP_API_KEY = os.environ.get("EP_API_KEY", "")
+EP_BASE = "https://public.ep-online.nl/api/v5/PandEnergielabel"
+MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
+
+
+def _mon_sleutel(straat, huisnr):
+    """Zelfde normalisatie als in de andere scripts, anders matcht niets."""
+    s = straat.lower()
+    s = s.replace("sint ", "st ").replace("st. ", "st ")
+    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
+    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
+    s = re.sub(r"[^a-z0-9]", "", s)
+    return f"{s}{huisnr}"
+
+
+def lees_monumenten():
+    if not os.path.exists(MONUMENTEN_PAD):
+        return {}
+    try:
+        with open(MONUMENTEN_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _ep_veld(rec, namen):
+    for naam in namen:
+        for k, v in rec.items():
+            if k.lower().replace("_", "") == naam.lower().replace("_", ""):
+                if v not in (None, ""):
+                    return v
+    return None
+
+
+def ep_energielabel(vbo_id, postcode, huisnr, letter):
+    """Energielabel uit EP-Online, bij voorkeur op VBO-id."""
+    if not EP_API_KEY:
+        return None
+    headers = {"Authorization": EP_API_KEY, "Accept": "application/json"}
+    pogingen = []
+    if vbo_id:
+        pogingen.append((f"{EP_BASE}/AdresseerbaarObject/{vbo_id}", None))
+    if postcode and huisnr:
+        params = {"postcode": postcode.replace(" ", ""), "huisnummer": huisnr}
+        if letter:
+            params["huisletter"] = letter
+        pogingen.append((f"{EP_BASE}/Adres", params))
+
+    for url, params in pogingen:
+        try:
+            r = requests.get(url, headers=headers, params=params, timeout=20)
+            if r.status_code in (401, 403, 404):
+                continue
+            r.raise_for_status()
+            data = r.json()
+        except Exception:
+            continue
+        rec = data[0] if isinstance(data, list) and data else data
+        if not isinstance(rec, dict) or not rec:
+            continue
+        prive = _ep_veld(rec, ["Pand_energielabel_is_prive", "isPrive"])
+        if str(prive) in ("1", "True", "true"):
+            return {"label": None, "prive": True}
+        label = _ep_veld(rec, ["Pand_energieklasse", "energieklasse",
+                               "labelLetter", "energielabel"])
+        if not label:
+            continue
+        datum = str(_ep_veld(rec, ["Pand_registratiedatum", "registratiedatum"]) or "")
+        return {"label": str(label).strip(), "registratiedatum": datum[:10], "prive": False}
+    return None
+
+
 def _adres_uit_titel(titel: str):
     """
     Haalt (straat, huisnummer, letter) uit een bekendmakingstitel.
@@ -318,27 +393,54 @@ def _bag_feiten(straat, huisnr, letter):
         bouwjaar = a.get("adresseerbaarObjectBouwjaar")
         if isinstance(bouwjaar, list) and bouwjaar:
             bouwjaar = bouwjaar[0]
-        return {"oppervlakte": a.get("oppervlakte"), "bouwjaar": bouwjaar}
+        return {"oppervlakte": a.get("oppervlakte"), "bouwjaar": bouwjaar,
+                "vbo": a.get("adresseerbaarObjectIdentificatie", ""),
+                "postcode": a.get("postcode", "")}
     except Exception as e:
         print(f"  BAG-fout {straat} {huisnr}: {e}", file=sys.stderr)
         return None
 
 
 def verrijk_met_bag(items: list):
-    """Zet harde feiten uit de BAG bij elk item. Deze cijfers zijn gemeten, niet geschat."""
+    """Zet harde feiten uit de BAG, EP-Online en het monumentenregister bij elk item.
+    Deze gegevens zijn gemeten of geregistreerd, niet geschat."""
     if not BAG_API_KEY:
         print("Geen BAG_API_KEY: bekendmakingen zonder oppervlakte-feiten", file=sys.stderr)
         return
+    monumenten = lees_monumenten()
     raak = 0
     for it in items:
         it["feiten"] = {}
         adres = _adres_uit_titel(it["titel"])
         if not adres:
             continue
+
+        # Monumentenstatus is een lokale opzoeking en kost niets
+        if monumenten:
+            mon = monumenten.get(_mon_sleutel(adres[0], adres[1]))
+            if mon:
+                it["feiten"]["rijksmonument"] = True
+                nummer = mon[0].get("nummer")
+                if nummer:
+                    it["feiten"]["monumentnr"] = nummer
+
         feiten = _bag_feiten(*adres)
         time.sleep(1.1)  # BAG fair use
         if not feiten:
             continue
+
+        # Energielabel uit EP-Online
+        if EP_API_KEY:
+            ep = ep_energielabel(feiten.get("vbo"), feiten.get("postcode"),
+                                 adres[1], adres[2])
+            time.sleep(0.3)
+            if ep:
+                if ep.get("prive"):
+                    it["feiten"]["energielabel"] = "afgeschermd"
+                elif ep.get("label"):
+                    jaar = (ep.get("registratiedatum") or "")[:4]
+                    it["feiten"]["energielabel"] = (
+                        f"{ep['label']} ({jaar})" if jaar else ep["label"])
         if feiten.get("oppervlakte"):
             it["feiten"]["oppervlakte_m2"] = feiten["oppervlakte"]
         if feiten.get("bouwjaar"):
@@ -449,8 +551,13 @@ def _regel(it: dict) -> str:
             delen.append(f"bouwjaar {feiten['bouwjaar']}")
         if feiten.get("m2_per_kamer"):
             delen.append(f"{feiten['m2_per_kamer']} m² per kamer")
+        if feiten.get("energielabel"):
+            delen.append(f"label {feiten['energielabel']}")
+        if feiten.get("rijksmonument"):
+            nr = feiten.get("monumentnr")
+            delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
         if delen:
-            regel += f"\n  `BAG: {' . '.join(delen)}`"
+            regel += f"\n  `{' . '.join(delen)}`"
 
     strat = (it.get("strategie") or "").strip()
     duiding = (it.get("gevolg") or "").strip()
