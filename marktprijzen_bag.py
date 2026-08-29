@@ -632,11 +632,14 @@ def lees_cbs():
         return {}
 
 
-def buurtregel(naam, cbs, opp_uit_bag=None):
+def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None):
     """
     Een regel met de kenmerken van een buurt, alleen als we ze hebben.
     Toont ook de WOZ per m2, want dat is beter vergelijkbaar tussen buurten
     dan een gemiddelde WOZ: die hangt sterk af van de woninggrootte.
+    Studentenaantallen krijgen twee noemers: het aandeel van de inwoners
+    (hoe studentikoos is de buurt) en het aandeel van alle studenten in de
+    ring (waar zit de vraag). Een absoluut aantal zegt op zichzelf te weinig.
     """
     g = cbs.get(naam)
     if not g:
@@ -669,7 +672,16 @@ def buurtregel(naam, cbs, opp_uit_bag=None):
     if g.get("voor2000") is not None:
         tweede.append(f"{g['voor2000']}% van voor 2000")
     if g.get("studenten"):
-        tweede.append(f"{g['studenten']:,}".replace(",", ".") + " studenten")
+        stuk = f"{g['studenten']:,}".replace(",", ".") + " studenten"
+        noemers = []
+        if g.get("inwoners"):
+            noemers.append(f"{round(g['studenten'] / g['inwoners'] * 100)}% van de inwoners")
+        if studenten_ring:
+            noemers.append(f"{round(g['studenten'] / studenten_ring * 100)}% van alle "
+                           f"studenten in de ring")
+        if noemers:
+            stuk += " (" + ", ".join(noemers) + ")"
+        tweede.append(stuk)
     if g.get("leegstand") is not None and g["leegstand"] > 0:
         tweede.append(f"{g['leegstand']}% leegstand")
 
@@ -906,6 +918,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
     cbs = lees_cbs()
     opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
+    # Noemer voor het studentenaandeel: alle studenten in de focus-buurten samen
+    studenten_ring = sum((cbs.get(b) or {}).get("studenten") or 0 for b in FOCUS_BUURTEN)
 
     # Per buurt groeperen. Buurten zonder aanbod komen niet voor.
     per_buurt_aanbod = defaultdict(list)
@@ -939,7 +953,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
     r.append("")
     for buurt, rijen_buurt in volgorde:
         r.append(f"**{buurt}**")
-        kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt))
+        kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt), studenten_ring)
         if kenmerken:
             r.append(f"_{kenmerken}_")
         r.append("")

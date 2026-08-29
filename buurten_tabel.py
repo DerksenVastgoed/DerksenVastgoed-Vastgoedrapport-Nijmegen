@@ -215,6 +215,7 @@ def main():
             "voor2000": _getal(p_nu, ["percentage_bouwjaarklasse_tot_2000"], 0, 100),
             "studenten": (_getal(p_nu, ["aantal_studenten_wo"], 0) or 0)
                          + (_getal(p_nu, ["aantal_studenten_hbo"], 0) or 0),
+            "inwoners": _getal(p_nu, ["aantal_inwoners"], 0),
             "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
             "koop": koop, "corp": corp, "over": over, "onb": onb,
             "trend": _pijl(koop, koop_toen),
@@ -237,7 +238,8 @@ def main():
     import json as _json
     gegevens = {r["naam"]: {k: r.get(k) for k in
                             ("won", "woz", "koop", "corp", "over", "trend", "opp",
-                             "meergezins", "voor2000", "studenten", "leegstand")}
+                             "meergezins", "voor2000", "studenten", "leegstand",
+                             "inwoners")}
                 for r in rijen}
     with open(CBS_PAD, "w", encoding="utf-8") as f:
         _json.dump(gegevens, f, ensure_ascii=False, indent=1, sort_keys=True)
