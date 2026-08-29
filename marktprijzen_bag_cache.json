@@ -3041,5 +3041,20 @@
       "gebouwklasse": "Utiliteitsbouw",
       "prive": false
     }
+  },
+  "bm:Panovenlaan 1|Nijmegen": {
+    "postcode": "6525DZ",
+    "buurtnaam": "Groenewoud",
+    "wijknaam": "Nijmegen-Oost"
+  },
+  "bm:Bronsgeeststraat 11|Nijmegen": {
+    "postcode": "6541ZJ",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West"
+  },
+  "bm:van Spaenstraat 7|Nijmegen": {
+    "postcode": "6524HH",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost"
   }
 }
