@@ -833,7 +833,8 @@ def gemeten_huren(huur_aanbod):
     return per_buurt_klasse, per_klasse
 
 
-def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_overig=None):
+def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
+                        bm_overig=None, kort=False):
     """
     Al het aanbod in een overzicht, elk pand afgezet tegen de mediaan van zijn
     EIGEN assetklasse. Een winkelpand vergelijken met woningen levert een
@@ -903,6 +904,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_o
     # Alle buurten waar iets speelt: aanbod, een bekendmaking, of allebei
     alle_buurten = set(per_buurt_aanbod) | set(bm)
 
+    # Doordeweeks alleen de eigen ring. Buurten daarbuiten zijn nuttig als
+    # referentie, maar niet als dagelijkse leesstof.
+    buiten_ring = 0
+    if kort:
+        buiten = [b for b in alle_buurten if b not in FOCUS_BUURTEN]
+        buiten_ring = sum(len(per_buurt_aanbod.get(b, [])) for b in buiten)
+        alle_buurten = {b for b in alle_buurten if b in FOCUS_BUURTEN}
+        if not alle_buurten:
+            return []
+
     def sorteer(buurt):
         rijen_buurt = per_buurt_aanbod.get(buurt, [])
         return min((k[0] for k in rijen_buurt), default=500)
@@ -945,6 +956,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_o
              f"vergelijkbare objecten (minder dan {MINIMUM}), dan volgt er geen oordeel._")
     r.append("_Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan "
              "10% erboven. De buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
+    if kort and buiten_ring:
+        r.append(f"_{buiten_ring} panden staan in buurten buiten de ring. Die staan in de "
+                 f"uitgebreide brief van zondag, waar ze als vergelijkingsmateriaal dienen._")
 
     # Hoeveel objecten per klasse hebben we eigenlijk?
     tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
@@ -1051,7 +1065,8 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         return "\n".join(r)
 
     # Het aanbod eerst, de tabel eronder als meetlat
-    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig))
+    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt,
+                                 bm_overig, kort=kort))
 
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
