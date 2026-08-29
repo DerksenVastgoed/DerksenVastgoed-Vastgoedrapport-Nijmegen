@@ -5,7 +5,7 @@ _174 panden gevolgd. Oppervlakte uit BAG. Bijgewerkt 29-08-2026._
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Benedenstad**
-_1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €334.000_
+_1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €334.000 . WOZ €3.064/m² bij 109 m² gemiddeld (eigen aanbod)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -18,7 +18,7 @@ _1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €3
 | [Dikkeboomweg 36](https://www.google.com/maps/search/?api=1&query=Dikkeboomweg+36%2C+Nijmegen) | woning | €450.000 | 119 | €3.781 | 🟢 -24% (heel Nijmegen) | A (2017) | — |
 
 **Biezen**
-_5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €358.000_
+_5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €358.000 . WOZ €3.849/m² bij 93 m² gemiddeld (eigen aanbod)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -30,9 +30,13 @@ _5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €3
 | [Boomvalkstraat 18](https://www.google.com/maps/search/?api=1&query=Boomvalkstraat+18%2C+Nijmegen) | woning | €275.000 | 40 | €6.875 | 🔴 +36% | C (2020) | — |
 | [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) | woning | €625.000 | 90 | €6.944 | 🔴 +38% | A++ (2023) | — |
 
-- `2026-08-27` **[splitsen]** Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html))
-  `52 m² . label B (2026)`
-  _Aanvraag tot splitsen van een woning van 52 m2 met label B toont dat kleinschalig splitsen hier wordt onderzocht._
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">52 m² . label B (2026)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag tot splitsen van een woning van 52 m2 wijst op verdere verdichting van een toch al kleine unit.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-27 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
 
 **Wolfskuil**
 
@@ -41,7 +45,7 @@ _5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €3
 | [Patrijsstraat 48](https://www.google.com/maps/search/?api=1&query=Patrijsstraat+48%2C+Nijmegen) | woning | €385.000 | 94 | €4.095 | 🟢 -20% | C (2026) | — |
 
 **Galgenveld**
-_2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €553.000_
+_2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €553.000 . WOZ €4.533/m² bij 122 m² gemiddeld (eigen aanbod)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -50,9 +54,13 @@ _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €55
 | [Molukkenstraat 168](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+168%2C+Nijmegen) | woning | €400.000 | 73 | €5.479 | 🔴 +14% | C (2026) | — |
 | [Prof Regoutstraat 1B](https://www.google.com/maps/search/?api=1&query=Prof+Regoutstraat+1B%2C+Nijmegen) | woning | €235.000 | 35 | €6.714 | 🔴 +40% | C (2026) | — |
 
-- `2026-08-27` Melding sloopmelding van binnenwanden en het vervangen van kozijnen , aan van Spaenstraat 7, 6524HH Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html))
-  `250 m² . label E (2017)`
-  _Sloopmelding van binnenwanden en kozijnen betreft een interne verbouwing zonder directe marktrelevantie._
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html" style="color:#12242c;text-decoration:none">Melding sloopmelding van binnenwanden en het vervangen van kozijnen , aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">250 m² . label E (2017)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloopmelding voor binnenwanden en kozijnen is een bouwkundige aanpassing zonder directe relevantie voor waardecreatie-strategieën.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-27 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
 
 **Hunnerberg**
 
@@ -62,7 +70,7 @@ _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €55
 | [Graadt van Roggenstraat 143](https://www.google.com/maps/search/?api=1&query=Graadt+van+Roggenstraat+143%2C+Nijmegen) | woning | €585.000 | 124 | €4.717 | 🟡 +4% | B (2022) | — |
 
 **Stadscentrum**
-_4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €356.000_
+_4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €356.000 . WOZ €4.000/m² bij 89 m² gemiddeld (eigen aanbod)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -80,7 +88,7 @@ _4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €3
 | [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) | commercieel | €850.000 | 134 | €6.343 | te weinig vergelijking | C (2026) | — |
 
 **Bottendaal**
-_2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €394.000_
+_2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €394.000 . WOZ €4.062/m² bij 97 m² gemiddeld (eigen aanbod)_
 
 | Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |
 |---|---|---:|---:|---:|---:|---|---:|
@@ -93,9 +101,13 @@ _2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €3
 |---|---|---:|---:|---:|---:|---|---:|
 | [Groesbeekseweg 103D](https://www.google.com/maps/search/?api=1&query=Groesbeekseweg+103D%2C+Nijmegen) | woning | €235.000 | 28 | €8.392 | 🔴 +69% (heel Nijmegen) | G (2026) | — |
 
-- `2026-08-28` **[transformatie]** Besluit (met BOPA) voor het tijdelijk inrichten van een depotlocatie voor twee jaar, aan Panovenlaan 1, 6525DZ Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-405526.html))
-  `2617 m² . label F (2017)`
-  _BOPA voor tijdelijk depotgebruik toont dat afwijkend gebruik hier planologisch haalbaar is, relevant voor herbestemming van het pand._
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-405526.html" style="color:#12242c;text-decoration:none">Besluit (met BOPA) voor het tijdelijk inrichten van een depotlocatie voor twee jaar, aan Panovenlaan 1, 6525DZ Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">2617 m² . label F (2017)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Tijdelijke depotbestemming voor twee jaar wijst op interim-gebruik, geen signaal voor woningtransformatie op deze locatie.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-405526.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
 
 _Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een winkelpand en een woning zijn verschillende producten. Lukt dat niet in de eigen buurt, dan tegen heel Nijmegen; staan er ook stadsbreed te weinig vergelijkbare objecten (minder dan 8), dan volgt er geen oordeel._
 _Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan 10% erboven. De buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._
