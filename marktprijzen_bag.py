@@ -740,7 +740,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
     return r
 
 
-def render(woningen):
+def render(woningen, modus="weekelijks"):
+    """
+    In de dagelijkse brief tonen we alleen wat beweegt: prijswijzigingen,
+    looptijd en het actuele aanbod met zijn positie ten opzichte van de markt.
+    De referentietabellen horen in de weekbrief, want die veranderen nauwelijks.
+    """
+    kort = (modus == "dagelijks")
     vandaag = dt.date.today().strftime("%d-%m-%Y")
 
     # Bekendmakingen-signalen en monumentenstatus per pand opzoeken
@@ -762,7 +768,8 @@ def render(woningen):
                 if mon:
                     w["monument"] = mon[0]
 
-    r = ["", "## Aanbod en marktprijzen",
+    kop = "## Aanbod" if kort else "## Aanbod en marktprijzen"
+    r = ["", kop,
          f"_{len(woningen)} panden gevolgd. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
          ""]
 
@@ -832,6 +839,16 @@ def render(woningen):
 
     # Het aanbod eerst, de tabel eronder als meetlat
     r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed))
+
+    if kort:
+        # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
+        # en beleggingstabel staan in de zondagsbrief.
+        if len(r) <= 4:
+            return ""  # niets bewogen en geen aanbod: blok helemaal weglaten
+        r.append("_Referentietabellen, rendement en de beleggingslijst staan in de "
+                 "uitgebreide brief van zondag._")
+        r.append("")
+        return "\n".join(r)
 
     r.append("### Referentie: prijspeil per buurt")
     r.append("")
@@ -1115,6 +1132,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="marktprijzen_digest.md")
     ap.add_argument("--input", default=INPUT_PAD)
+    ap.add_argument("--modus", choices=["dagelijks", "weekelijks"], default="weekelijks",
+                    help="dagelijks toont alleen wat beweegt, weekelijks het volledige beeld")
     ap.add_argument("--debug", action="store_true",
                     help="toon de velden die de BAG teruggeeft, voor het eerste adres")
     args = ap.parse_args()
@@ -1185,7 +1204,7 @@ def main():
               file=sys.stderr)
     woningen = ontdubbeld
 
-    md = render(woningen)
+    md = render(woningen, modus=args.modus)
     print(md)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)

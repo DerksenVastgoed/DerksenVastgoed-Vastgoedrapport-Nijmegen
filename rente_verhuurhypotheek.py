@@ -222,9 +222,14 @@ def vertaal_bod(rente_pct: float) -> str:
     )
 
 
-def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:
+def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks") -> str:
     vandaag = dt.date.today().strftime("%d-%m-%Y")
     grote_beweging = any(abs(v["delta_bp"]) >= DREMPEL_BP for v in wijzigingen.values() if v)
+
+    # Doordeweeks alleen melden als er iets is gebeurd. Staat de rente stil,
+    # dan hoort hij thuis in de zondagsbrief en niet elke ochtend opnieuw.
+    if modus == "dagelijks" and not grote_beweging:
+        return ""
 
     r = ["", "## Rente verhuurhypotheek"]
 
@@ -272,6 +277,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list) -> str:
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--modus", choices=["dagelijks", "weekelijks"], default="weekelijks")
     ap.add_argument("--uit", default="rente_digest.md")
     args = ap.parse_args()
 
@@ -297,7 +303,7 @@ def main():
         else:
             wijzigingen[k] = None
 
-    md = render(scherpsten, wijzigingen, data)
+    md = render(scherpsten, wijzigingen, data, modus=args.modus)
     print(md)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)
