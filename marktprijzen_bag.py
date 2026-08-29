@@ -515,6 +515,73 @@ COMMERCIEEL = ["winkel", "kantoor", "horeca", "bijeenkomst", "industrie", "logie
 CBS_PAD = "buurten_cbs.json"
 
 
+
+BEKENDMAKINGEN_PAD = "bekendmakingen_vandaag.json"
+
+
+def lees_bekendmakingen(cache):
+    """
+    Leest de bekendmakingen van vandaag en bepaalt per bericht in welke buurt
+    het adres ligt, zodat nieuws en aanbod per gebied bij elkaar komen.
+    De buurt-opzoeking gaat via de cache, dus meestal zonder extra verkeer.
+    """
+    if not os.path.exists(BEKENDMAKINGEN_PAD):
+        return {}, []
+    try:
+        with open(BEKENDMAKINGEN_PAD, encoding="utf-8") as f:
+            items = json.load(f)
+    except Exception:
+        return {}, []
+
+    per_buurt, zonder_buurt = defaultdict(list), []
+    for it in items:
+        straat, huisnr = it.get("straat", ""), it.get("huisnummer", "")
+        if not straat or not huisnr:
+            zonder_buurt.append(it)
+            continue
+        sleutel = f"bm:{straat} {huisnr}|Nijmegen"
+        gegevens = cache.get(sleutel)
+        if gegevens is None:
+            gegevens = pdok_buurt(straat, huisnr, "Nijmegen")
+            time.sleep(0.2)
+            cache[sleutel] = gegevens or {}
+        buurt = normaliseer_buurt((gegevens or {}).get("buurtnaam", ""))
+        if buurt:
+            it["buurt"] = buurt
+            per_buurt[buurt].append(it)
+        else:
+            zonder_buurt.append(it)
+    return per_buurt, zonder_buurt
+
+
+def bekendmakingregels(items):
+    """Compacte weergave van bekendmakingen onder een buurt."""
+    r = []
+    for it in sorted(items, key=lambda x: (not x.get("kern"), x.get("datum", "")), reverse=False):
+        link = f" ([bron]({it['url']}))" if it.get("url") else ""
+        strat = (it.get("strategie") or "").strip()
+        merk = f"**[{strat}]** " if strat and strat != "geen" else ""
+        r.append(f"- `{it.get('datum','')}` {merk}{it.get('titel','')}{link}")
+        feiten = it.get("feiten") or {}
+        delen = []
+        if feiten.get("oppervlakte_m2"):
+            delen.append(f"{feiten['oppervlakte_m2']} m²")
+        if feiten.get("bouwjaar"):
+            delen.append(f"bouwjaar {feiten['bouwjaar']}")
+        if feiten.get("m2_per_kamer"):
+            delen.append(f"{feiten['m2_per_kamer']} m² per kamer")
+        if feiten.get("energielabel"):
+            delen.append(f"label {feiten['energielabel']}")
+        if feiten.get("rijksmonument"):
+            nr = feiten.get("monumentnr")
+            delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
+        if delen:
+            r.append(f"  `{' . '.join(delen)}`")
+        if it.get("duiding"):
+            r.append(f"  _{it['duiding']}_")
+    return r
+
+
 def lees_cbs():
     """Buurtcijfers uit het CBS, weggeschreven door buurten_tabel.py."""
     if not os.path.exists(CBS_PAD):
@@ -703,7 +770,7 @@ def gemeten_huren(huur_aanbod):
     return per_buurt_klasse, per_klasse
 
 
-def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
+def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_overig=None):
     """
     Al het aanbod in een overzicht, elk pand afgezet tegen de mediaan van zijn
     EIGEN assetklasse. Een winkelpand vergelijken met woningen levert een
@@ -767,20 +834,28 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "Overig"
         per_buurt_aanbod[buurt].append(kandidaat)
 
-    # Buurt met het scherpst geprijsde pand bovenaan
-    volgorde = sorted(per_buurt_aanbod.items(),
-                      key=lambda kv: min(k[0] for k in kv[1]))
+    bm = bm_per_buurt or {}
 
-    r.append("### Aanbod per buurt, beoordeeld binnen de eigen assetklasse")
+    # Alle buurten waar iets speelt: aanbod, een bekendmaking, of allebei
+    alle_buurten = set(per_buurt_aanbod) | set(bm)
+
+    def sorteer(buurt):
+        rijen_buurt = per_buurt_aanbod.get(buurt, [])
+        return min((k[0] for k in rijen_buurt), default=500)
+
+    volgorde = [(b, per_buurt_aanbod.get(b, [])) for b in sorted(alle_buurten, key=sorteer)]
+
+    r.append("### Per gebied: aanbod en gemeentelijke berichten")
     r.append("")
     for buurt, rijen_buurt in volgorde:
-        r.append(f"**{buurt}** ({len(rijen_buurt)} in aanbod)")
+        r.append(f"**{buurt}**")
         kenmerken = buurtregel(buurt, cbs)
         if kenmerken:
             r.append(f"_{kenmerken}_")
         r.append("")
-        r.append("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
-        r.append("|---|---|---:|---:|---:|---:|---|---:|")
+        if rijen_buurt:
+            r.append("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
+            r.append("|---|---|---:|---:|---:|---:|---|---:|")
         for _, ppm2, klasse, afwijking, basis, w in sorted(rijen_buurt, key=lambda x: x[0]):
             prijs_s = f"{w['prijs']:,}".replace(",", ".")
             ppm2_s = f"{int(ppm2):,}".replace(",", ".")
@@ -796,6 +871,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
                      f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
                      f"{dagen if dagen is not None else '—'} |")
         r.append("")
+        if bm.get(buurt):
+            r.extend(bekendmakingregels(bm[buurt]))
+            r.append("")
 
     r.append("_Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een "
              "winkelpand en een woning zijn verschillende producten. Lukt dat niet in de "
@@ -811,7 +889,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
     return r
 
 
-def render(woningen, modus="weekelijks"):
+def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     """
     In de dagelijkse brief tonen we alleen wat beweegt: prijswijzigingen,
     looptijd en het actuele aanbod met zijn positie ten opzichte van de markt.
@@ -909,7 +987,7 @@ def render(woningen, modus="weekelijks"):
         return "\n".join(r)
 
     # Het aanbod eerst, de tabel eronder als meetlat
-    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed))
+    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig))
 
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
@@ -1275,7 +1353,19 @@ def main():
               file=sys.stderr)
     woningen = ontdubbeld
 
-    md = render(woningen, modus=args.modus)
+    bm_per_buurt, bm_overig = lees_bekendmakingen(cache)
+    schrijf_cache(cache)
+    md = render(woningen, modus=args.modus,
+                bm_per_buurt=bm_per_buurt, bm_overig=bm_overig)
+
+    # Berichten zonder herkenbare buurt horen bij het algemene nieuws
+    if bm_overig:
+        with open("overige_berichten.md", "w", encoding="utf-8") as f:
+            f.write("\n".join(bekendmakingregels(bm_overig)) + "\n")
+        print(f"{len(bm_overig)} berichten zonder buurt naar overige_berichten.md",
+              file=sys.stderr)
+    elif os.path.exists("overige_berichten.md"):
+        os.remove("overige_berichten.md")
     print(md)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)

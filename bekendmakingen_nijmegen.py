@@ -628,6 +628,30 @@ def main():
     verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
     verrijk(kern + overige)  # duiding voor alle getoonde items in een call
 
+    # Ook als gegevensbestand wegschrijven, zodat het aanbodblok de berichten
+    # per buurt kan tonen naast de panden die daar te koop staan.
+    export = []
+    for it in kern + overige:
+        adres = _adres_uit_titel(it["titel"])
+        export.append({
+            "datum": it.get("datum", ""),
+            "titel": it.get("titel", ""),
+            "url": it.get("url", ""),
+            "strategie": it.get("strategie", ""),
+            "duiding": it.get("gevolg", ""),
+            "feiten": it.get("feiten", {}),
+            "straat": adres[0] if adres else "",
+            "huisnummer": adres[1] if adres else "",
+            "kern": it in kern,
+        })
+    try:
+        with open("bekendmakingen_vandaag.json", "w", encoding="utf-8") as f:
+            json.dump(export, f, ensure_ascii=False, indent=1)
+        print(f"Weggeschreven: {len(export)} items naar bekendmakingen_vandaag.json",
+              file=sys.stderr)
+    except Exception as e:
+        print(f"Kon bekendmakingen_vandaag.json niet schrijven: {e}", file=sys.stderr)
+
     digest = render_digest(kern, overige, vanaf)
     print(digest)
     with open(args.uit, "w", encoding="utf-8") as f:
