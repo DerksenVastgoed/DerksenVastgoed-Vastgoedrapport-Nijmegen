@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Funda-verzamelaar voor verkopen.txt</title>
+<style>
+  body{font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;color:#1a2830;max-width:760px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:22px;border-bottom:2px solid #E0A458;padding-bottom:8px}
+  h2{font-size:17px;margin-top:34px}
+  .knop{display:inline-block;background:#12242c;color:#fff;text-decoration:none;padding:12px 22px;border-radius:8px;font-weight:700;font-size:16px;cursor:grab}
+  .vak{background:#f2f5f7;border:1px solid #d0d7dc;border-radius:8px;padding:16px 18px;margin:18px 0}
+  code{background:#e7ecef;padding:2px 6px;border-radius:4px;font-size:13px}
+  kbd{background:#12242c;color:#fff;padding:2px 7px;border-radius:4px;font-size:12px;font-family:inherit}
+  ol li,ul li{margin-bottom:8px}
+  details{margin-top:28px}
+  pre{background:#12242c;color:#e8eef0;padding:14px;border-radius:8px;overflow:auto;font-size:11px;line-height:1.45}
+  .waarschuw{border-left:3px solid #c0392b;background:#fdf3f2;padding:12px 16px;margin:18px 0}
+  .let{border-left:3px solid #E0A458;padding-left:14px;color:#4a5b63;font-size:14px}
+  button{padding:10px 16px;border:1px solid #12242c;background:#fff;border-radius:6px;cursor:pointer;font-size:14px}
+  button:hover{background:#12242c;color:#fff}
+  textarea{width:100%;height:70px;font:11px ui-monospace,Menlo,Consolas,monospace;border:1px solid #d0d7dc;border-radius:6px;padding:8px;box-sizing:border-box;margin-top:10px}
+  .melding{margin-left:10px;color:#4a7a72;font-size:13px}
+</style>
+</head>
+<body>
+
+<h1>Funda-verzamelaar</h1>
+<p>Haalt alle panden van een Funda-resultatenpagina op in het formaat van <code>verkopen.txt</code>, klaar om te plakken.</p>
+
+<div class="waarschuw">
+<strong>Plak de code nooit in de adresbalk.</strong> Chrome verwijdert daar het <code>javascript:</code>-deel, waarna je zoekopdracht naar Google gaat en je een foutmelding 400 krijgt. Gebruik een van de drie manieren hieronder.
+</div>
+
+<h2>Manier 1. Console. Snelst voor incidenteel gebruik</h2>
+<div class="vak">
+  <ol style="margin-bottom:10px">
+    <li>Open je Funda-zoekresultaten en scrol helemaal naar beneden.</li>
+    <li>Druk op <kbd>F12</kbd> en klik op het tabblad <strong>Console</strong>.</li>
+    <li>Klik hieronder op <em>Kopieer console-code</em>, plak in de console en druk op <kbd>Enter</kbd>.</li>
+  </ol>
+  <button id="kopieerConsole">Kopieer console-code</button>
+  <span class="melding" id="meldingConsole"></span>
+  <textarea id="codeConsole" readonly></textarea>
+  <p style="margin-bottom:0;font-size:13px;color:#4a5b63">Vraagt Chrome om <code>allow pasting</code> te typen? Doe dat een keer, daarna mag plakken.</p>
+</div>
+
+<h2>Manier 2. Bladwijzer. Handigst als je het vaker doet</h2>
+<div class="vak">
+  <ol style="margin-bottom:10px">
+    <li>Druk op <kbd>Ctrl+Shift+O</kbd> voor de bladwijzerbeheerder.</li>
+    <li>Klik rechtsboven op de drie puntjes en kies <strong>Nieuwe bladwijzer toevoegen</strong>.</li>
+    <li>Naam: <code>Verzamel panden</code>. Plak de code hieronder in het veld <strong>URL</strong>.</li>
+    <li>Opslaan. Maak je balk zichtbaar met <kbd>Ctrl+Shift+B</kbd> en klik de bladwijzer aan op Funda.</li>
+  </ol>
+  <button id="kopieerBm">Kopieer bladwijzer-code</button>
+  <span class="melding" id="meldingBm"></span>
+  <textarea id="codeBm" readonly></textarea>
+</div>
+
+<h2>Manier 3. Slepen</h2>
+<div class="vak">
+  <p style="margin-top:0">Sleep deze knop naar je bladwijzerbalk. Klikken doet hier niets, slepen is de bedoeling.</p>
+  <p style="margin-bottom:0"><a class="knop" href="javascript:%28function%28%29%7B%20var%20BUS%20%3D%20%2Fbusiness%2Fi.test%28location.hostname%29%20%7C%7C%20%2Fbusiness%2Fi.test%28location.pathname%29%3B%20var%20DEF%20%3D%20BUS%20%3F%20%22belegging%22%20%3A%20null%3B%20var%20RE_PC%20%3D%20%2F%5E%5Cs%2A%28%5Cd%7B4%7D%5Cs%3F%5BA-Z%5D%7B2%7D%29%5Cs%2B%28%5BA-Za-z%C3%80-%C3%BF%5C-%27%20%5D%2B%3F%29%5Cs%2A%24%2F%3B%20var%20RE_ADRES%20%3D%20%2F%5E%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF.%27%5C-%20%5D%2B%3F%5Cs%2B%5Cd%2B%5BA-Za-z%5D%3F%28%3F%3A-%5BA-Za-z0-9%5D%2B%29%3F%29%5Cs%2A%24%2F%3B%20var%20RE_KOMMA%20%3D%20%2F%5E%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF.%27%5C-%20%5D%2B%3F%5Cs%2B%5Cd%2B%5BA-Za-z%5D%3F%28%3F%3A-%5BA-Za-z0-9%5D%2B%29%3F%29%5Cs%2A%2C%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF%5C-%27%20%5D%2B%3F%29%5Cs%2A%24%2F%3B%20var%20RE_PRIJS%20%3D%20%2F%28%5B%5Cd%5D%5B%5Cd.%5D%7B2%2C%7D%29%2F%3B%20function%20statusUit%28arr%29%7B%20var%20b%20%3D%20arr.join%28%22%20%22%29.toLowerCase%28%29%3B%20if%28b.indexOf%28%22verkocht%20onder%20voorbehoud%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22verkocht%20o.v.%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22onder%20bod%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22verkocht%22%29%3E%3D0%29%20return%20%22verkocht%22%3B%20if%28b.indexOf%28%22verhuurd%22%29%3E%3D0%29%20return%20%22verhuurd%22%3B%20return%20%22te%20koop%22%3B%20%7D%20var%20regels%20%3D%20%28document.body.innerText%7C%7C%22%22%29.split%28%22%5Cn%22%29.map%28function%28s%29%7Breturn%20s.replace%28%2F%5Cs%2B%24%2F%2C%22%22%29%3B%7D%29%3B%20var%20uit%20%3D%20%5B%5D%2C%20zien%20%3D%20%7B%7D%2C%20over%20%3D%20%5B%5D%3B%20for%28var%20i%3D0%3Bi%3Cregels.length%3Bi%2B%2B%29%7B%20var%20adres%3Dnull%2C%20plaats%3Dnull%2C%20adresIdx%3Di%2C%20m%3DRE_PC.exec%28regels%5Bi%5D%29%3B%20if%28m%29%7B%20plaats%20%3D%20m%5B2%5D.trim%28%29%3B%20for%28var%20j%3Di-1%3Bj%3E%3D0%20%26%26%20j%3Ei-5%3Bj--%29%7B%20var%20a%20%3D%20RE_ADRES.exec%28regels%5Bj%5D%29%3B%20if%28a%29%7B%20adres%20%3D%20a%5B1%5D.trim%28%29%3B%20adresIdx%20%3D%20j%3B%20break%3B%20%7D%20%7D%20if%28%21adres%29%20continue%3B%20%7D%20else%20%7B%20var%20k%20%3D%20RE_KOMMA.exec%28regels%5Bi%5D%29%3B%20if%28%21k%29%20continue%3B%20adres%20%3D%20k%5B1%5D.trim%28%29%3B%20plaats%20%3D%20k%5B2%5D.trim%28%29%3B%20%7D%20var%20prijs%3Dnull%2C%20reden%3D%22geen%20prijs%20gevonden%22%3B%20for%28var%20p%3Di%2B1%3Bp%3Cregels.length%20%26%26%20p%3Ci%2B10%3Bp%2B%2B%29%7B%20var%20low%20%3D%20regels%5Bp%5D.toLowerCase%28%29%3B%20if%28low.indexOf%28%22aanvraag%22%29%3E%3D0%20%7C%7C%20low.indexOf%28%22n.o.t.k%22%29%3E%3D0%20%7C%7C%20low.indexOf%28%22notk%22%29%3E%3D0%29%7B%20reden%20%3D%20%22prijs%20op%20aanvraag%22%3B%20break%3B%20%7D%20var%20pm%20%3D%20RE_PRIJS.exec%28regels%5Bp%5D%29%3B%20if%28pm%20%26%26%20pm%5B1%5D.indexOf%28%22.%22%29%3E%3D0%20%26%26%20pm%5B1%5D.replace%28%2F%5C.%2Fg%2C%22%22%29.length%3E%3D5%29%7B%20prijs%20%3D%20pm%5B1%5D.replace%28%2F%5C.%2Fg%2C%22%22%29%3B%20break%3B%20%7D%20%7D%20if%28%21prijs%29%7B%20var%20sl0%20%3D%20adres.toLowerCase%28%29%3B%20if%28%21zien%5B%22over%3A%22%2Bsl0%5D%29%7B%20zien%5B%22over%3A%22%2Bsl0%5D%3D1%3B%20over.push%28adres%2B%22%20%28%22%2Breden%2B%22%29%22%29%3B%20%7D%20continue%3B%20%7D%20var%20sleutel%20%3D%20adres.toLowerCase%28%29%2B%22%7C%22%2Bprijs%3B%20if%28zien%5Bsleutel%5D%29%20continue%3B%20zien%5Bsleutel%5D%3D1%3B%20var%20venster%20%3D%20regels.slice%28Math.max%280%2CadresIdx-6%29%2C%20adresIdx%29%3B%20var%20status%20%3D%20DEF%20%7C%7C%20statusUit%28venster%29%3B%20var%20vandaag%20%3D%20new%20Date%28%29.toISOString%28%29.slice%280%2C10%29%3B%20uit.push%28adres%2B%22%20%7C%20%22%2Bplaats%2B%22%20%7C%20%22%2Bprijs%2B%22%20%7C%20%22%2Bstatus%2B%22%20%7C%20%22%2Bvandaag%29%3B%20%7D%20var%20KEY%3D%22dv_verzameling%22%3B%20var%20eerder%3D%5B%5D%3B%20try%7B%20eerder%20%3D%20JSON.parse%28sessionStorage.getItem%28KEY%29%7C%7C%22%5B%5D%22%29%3B%20%7Dcatch%28e%29%7B%7D%20var%20alles%20%3D%20eerder.slice%28%29%2C%20bekend%3D%7B%7D%3B%20alles.forEach%28function%28r%29%7B%20bekend%5Br%5D%3D1%3B%20%7D%29%3B%20var%20nieuw%3D0%3B%20uit.forEach%28function%28r%29%7B%20if%28%21bekend%5Br%5D%29%7B%20alles.push%28r%29%3B%20bekend%5Br%5D%3D1%3B%20nieuw%2B%2B%3B%20%7D%20%7D%29%3B%20try%7B%20sessionStorage.setItem%28KEY%2C%20JSON.stringify%28alles%29%29%3B%20%7Dcatch%28e%29%7B%7D%20var%20oud%3Ddocument.getElementById%28%22dv_overlay%22%29%3B%20if%28oud%29%20oud.remove%28%29%3B%20var%20d%3Ddocument.createElement%28%22div%22%29%3B%20d.id%3D%22dv_overlay%22%3B%20d.style.cssText%3D%22position%3Afixed%3Bz-index%3A2147483647%3Bright%3A16px%3Bbottom%3A16px%3Bwidth%3A440px%3Bmax-width%3A92vw%3Bbackground%3A%23fff%3Bborder%3A2px%20solid%20%2312242c%3Bborder-radius%3A10px%3Bpadding%3A12px%3Bfont%3A13px%20-apple-system%2CSegoe%20UI%2CRoboto%2Csans-serif%3Bbox-shadow%3A0%208px%2028px%20rgba%280%2C0%2C0%2C.28%29%3Bcolor%3A%231a2830%22%3B%20d.innerHTML%20%3D%20%22%3Cdiv%20style%3D%27font-weight%3A700%3Bmargin-bottom%3A6px%27%3EVerzameling%3A%20%22%2Balles.length%2B%22%20panden%22%2B%20%22%3Cspan%20style%3D%27font-weight%3A400%3Bcolor%3A%234a5b63%27%3E%20%28%22%2Bnieuw%2B%22%20nieuw%20op%20deze%20pagina%29%3C%2Fspan%3E%3C%2Fdiv%3E%22%2B%20%28over.length%20%3F%20%22%3Cdiv%20style%3D%27margin%3A-2px%200%208px%3Bpadding%3A7px%209px%3Bbackground%3A%23fdf6ec%3Bborder-left%3A3px%20solid%20%23E0A458%3Bfont-size%3A12px%3Bcolor%3A%234a5b63%27%3E%3Cstrong%3E%22%2Bover.length%2B%22%20overgeslagen%20op%20deze%20pagina%3A%3C%2Fstrong%3E%3Cbr%3E%22%2Bover.slice%280%2C8%29.join%28%22%3Cbr%3E%22%29%2B%28over.length%3E8%3F%22%3Cbr%3Een%20nog%20%22%2B%28over.length-8%29%2B%22...%22%3A%22%22%29%2B%22%3C%2Fdiv%3E%22%20%3A%20%22%22%29%2B%20%22%3Ctextarea%20id%3D%27dv_txt%27%20style%3D%27width%3A100%25%3Bheight%3A170px%3Bfont%3A12px%20ui-monospace%2CMenlo%2CConsolas%2Cmonospace%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bpadding%3A6px%3Bbox-sizing%3Aborder-box%27%3E%3C%2Ftextarea%3E%22%2B%20%22%3Cdiv%20style%3D%27margin-top%3A8px%3Bdisplay%3Aflex%3Bgap%3A6px%3Bflex-wrap%3Awrap%27%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_copy%27%20style%3D%27flex%3A1%3Bpadding%3A7px%2010px%3Bborder%3A0%3Bborder-radius%3A6px%3Bbackground%3A%2312242c%3Bcolor%3A%23fff%3Bcursor%3Apointer%27%3EKopieer%20alles%3C%2Fbutton%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_wis%27%20style%3D%27padding%3A7px%2010px%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bbackground%3A%23fff%3Bcursor%3Apointer%27%3EWis%3C%2Fbutton%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_dicht%27%20style%3D%27padding%3A7px%2010px%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bbackground%3A%23fff%3Bcursor%3Apointer%27%3ESluit%3C%2Fbutton%3E%22%2B%20%22%3C%2Fdiv%3E%22%2B%20%22%3Cdiv%20style%3D%27margin-top%3A6px%3Bcolor%3A%234a5b63%3Bfont-size%3A11px%27%3EBlader%20naar%20de%20volgende%20pagina%20en%20klik%20opnieuw.%20De%20verzameling%20groeit%20mee%20tot%20je%20dit%20tabblad%20sluit.%3C%2Fdiv%3E%22%3B%20document.body.appendChild%28d%29%3B%20var%20ta%3Ddocument.getElementById%28%22dv_txt%22%29%3B%20ta.value%20%3D%20alles.join%28%22%5Cn%22%29%3B%20document.getElementById%28%22dv_copy%22%29.onclick%3Dfunction%28%29%7B%20ta.select%28%29%3B%20var%20ok%3Dfalse%3B%20try%7B%20ok%3Ddocument.execCommand%28%22copy%22%29%3B%20%7Dcatch%28e%29%7B%7D%20if%28%21ok%20%26%26%20navigator.clipboard%29%7B%20navigator.clipboard.writeText%28ta.value%29%3B%20ok%3Dtrue%3B%20%7D%20this.textContent%20%3D%20ok%20%3F%20%22Gekopieerd%22%20%3A%20%22Selecteer%20handmatig%22%3B%20%7D%3B%20document.getElementById%28%22dv_wis%22%29.onclick%3Dfunction%28%29%7B%20try%7B%20sessionStorage.removeItem%28KEY%29%3B%20%7Dcatch%28e%29%7B%7D%20ta.value%3D%22%22%3B%20d.querySelector%28%22div%22%29.innerHTML%3D%22Verzameling%20gewist%22%3B%20%7D%3B%20document.getElementById%28%22dv_dicht%22%29.onclick%3Dfunction%28%29%7B%20d.remove%28%29%3B%20%7D%3B%20%7D%29%28%29%3B">Verzamel panden</a></p>
+</div>
+
+<div class="let">
+Op een telefoon werkt dit niet goed. Doe deze klus op een computer.
+</div>
+
+<h2>Gebruik</h2>
+<ol>
+  <li>Filter Funda op de ring: postcodes 6511, 6521, 6524, 6541, 6542.</li>
+  <li>Scrol de pagina helemaal uit zodat alle panden geladen zijn.</li>
+  <li>Draai de code. Rechtsonder verschijnt een venster met het resultaat.</li>
+  <li>Volgende pagina, weer uitscrollen, opnieuw draaien. De verzameling telt op.</li>
+  <li>Klaar? <strong>Kopieer alles</strong> en plak onderaan in <code>verkopen.txt</code>. Commit.</li>
+</ol>
+
+<h2>Wat het herkent</h2>
+<ul>
+  <li><strong>Regulier Funda</strong>: adres, plaats, prijs en status (te koop, onder bod, verkocht, verhuurd).</li>
+  <li><strong>Funda Business</strong>: krijgt automatisch de status <code>belegging</code>, zodat die panden in de aparte beleggingstabel landen.</li>
+  <li>Panden zonder prijs (<em>Prijs op aanvraag</em>, <em>n.o.t.k.</em>) worden overgeslagen, want zonder bedrag valt er geen prijs per m&sup2; te berekenen. Het venster meldt welke dat waren, zodat er niets stilletjes verdwijnt. Bij Funda Business komt dit vaak voor.</li>
+  <li>Dubbelingen worden gefilterd op adres plus prijs.</li>
+</ul>
+
+<h2>Goed om te weten</h2>
+<p>De verzameling zit in het geheugen van dat ene tabblad. Sluit je het tabblad, dan is hij weg, dus kopieer voordat je afsluit. De knop <strong>Wis</strong> begint een nieuwe ronde.</p>
+<p>Vergelijk de teller in het venstertje met het aantal dat Funda bovenaan meldt. Wijkt dat sterk af, dan heb je niet ver genoeg doorgescrold of is de opmaak van Funda veranderd.</p>
+
+<details>
+<summary>Leesbare broncode</summary>
+<pre>javascript:(function(){
+var BUS = /business/i.test(location.hostname) || /business/i.test(location.pathname);
+var DEF = BUS ? &quot;belegging&quot; : null;
+
+var RE_PC     = /^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-&#x27; ]+?)\s*$/;
+var RE_ADRES  = /^\s*([A-Za-zÀ-ÿ.&#x27;\- ]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*$/;
+var RE_KOMMA  = /^\s*([A-Za-zÀ-ÿ.&#x27;\- ]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*,\s*([A-Za-zÀ-ÿ\-&#x27; ]+?)\s*$/;
+var RE_PRIJS  = /([\d][\d.]{2,})/;
+
+function statusUit(arr){
+  var b = arr.join(&quot; &quot;).toLowerCase();
+  if(b.indexOf(&quot;verkocht onder voorbehoud&quot;)&gt;=0) return &quot;onder bod&quot;;
+  if(b.indexOf(&quot;verkocht o.v.&quot;)&gt;=0) return &quot;onder bod&quot;;
+  if(b.indexOf(&quot;onder bod&quot;)&gt;=0) return &quot;onder bod&quot;;
+  if(b.indexOf(&quot;verkocht&quot;)&gt;=0) return &quot;verkocht&quot;;
+  if(b.indexOf(&quot;verhuurd&quot;)&gt;=0) return &quot;verhuurd&quot;;
+  return &quot;te koop&quot;;
+}
+
+var regels = (document.body.innerText||&quot;&quot;).split(&quot;\n&quot;).map(function(s){return s.replace(/\s+$/,&quot;&quot;);});
+var uit = [], zien = {}, over = [];
+
+for(var i=0;i&lt;regels.length;i++){
+  var adres=null, plaats=null, adresIdx=i, m=RE_PC.exec(regels[i]);
+  if(m){
+    plaats = m[2].trim();
+    for(var j=i-1;j&gt;=0 &amp;&amp; j&gt;i-5;j--){
+      var a = RE_ADRES.exec(regels[j]);
+      if(a){ adres = a[1].trim(); adresIdx = j; break; }
+    }
+    if(!adres) continue;
+  } else {
+    var k = RE_KOMMA.exec(regels[i]);
+    if(!k) continue;
+    adres = k[1].trim(); plaats = k[2].trim();
+  }
+
+  var prijs=null, reden=&quot;geen prijs gevonden&quot;;
+  for(var p=i+1;p&lt;regels.length &amp;&amp; p&lt;i+10;p++){
+    var low = regels[p].toLowerCase();
+    if(low.indexOf(&quot;aanvraag&quot;)&gt;=0 || low.indexOf(&quot;n.o.t.k&quot;)&gt;=0 || low.indexOf(&quot;notk&quot;)&gt;=0){
+      reden = &quot;prijs op aanvraag&quot;; break;
+    }
+    var pm = RE_PRIJS.exec(regels[p]);
+    if(pm &amp;&amp; pm[1].indexOf(&quot;.&quot;)&gt;=0 &amp;&amp; pm[1].replace(/\./g,&quot;&quot;).length&gt;=5){
+      prijs = pm[1].replace(/\./g,&quot;&quot;); break;
+    }
+  }
+  if(!prijs){
+    var sl0 = adres.toLowerCase();
+    if(!zien[&quot;over:&quot;+sl0]){ zien[&quot;over:&quot;+sl0]=1; over.push(adres+&quot; (&quot;+reden+&quot;)&quot;); }
+    continue;
+  }
+
+  var sleutel = adres.toLowerCase()+&quot;|&quot;+prijs;
+  if(zien[sleutel]) continue;
+  zien[sleutel]=1;
+
+  var venster = regels.slice(Math.max(0,adresIdx-6), adresIdx);
+  var status = DEF || statusUit(venster);
+  var vandaag = new Date().toISOString().slice(0,10);
+  uit.push(adres+&quot; | &quot;+plaats+&quot; | &quot;+prijs+&quot; | &quot;+status+&quot; | &quot;+vandaag);
+}
+
+var KEY=&quot;dv_verzameling&quot;;
+var eerder=[];
+try{ eerder = JSON.parse(sessionStorage.getItem(KEY)||&quot;[]&quot;); }catch(e){}
+var alles = eerder.slice(), bekend={};
+alles.forEach(function(r){ bekend[r]=1; });
+var nieuw=0;
+uit.forEach(function(r){ if(!bekend[r]){ alles.push(r); bekend[r]=1; nieuw++; } });
+try{ sessionStorage.setItem(KEY, JSON.stringify(alles)); }catch(e){}
+
+var oud=document.getElementById(&quot;dv_overlay&quot;); if(oud) oud.remove();
+var d=document.createElement(&quot;div&quot;);
+d.id=&quot;dv_overlay&quot;;
+d.style.cssText=&quot;position:fixed;z-index:2147483647;right:16px;bottom:16px;width:440px;max-width:92vw;background:#fff;border:2px solid #12242c;border-radius:10px;padding:12px;font:13px -apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.28);color:#1a2830&quot;;
+d.innerHTML =
+ &quot;&lt;div style=&#x27;font-weight:700;margin-bottom:6px&#x27;&gt;Verzameling: &quot;+alles.length+&quot; panden&quot;+
+ &quot;&lt;span style=&#x27;font-weight:400;color:#4a5b63&#x27;&gt; (&quot;+nieuw+&quot; nieuw op deze pagina)&lt;/span&gt;&lt;/div&gt;&quot;+
+ (over.length ? &quot;&lt;div style=&#x27;margin:-2px 0 8px;padding:7px 9px;background:#fdf6ec;border-left:3px solid #E0A458;font-size:12px;color:#4a5b63&#x27;&gt;&lt;strong&gt;&quot;+over.length+&quot; overgeslagen op deze pagina:&lt;/strong&gt;&lt;br&gt;&quot;+over.slice(0,8).join(&quot;&lt;br&gt;&quot;)+(over.length&gt;8?&quot;&lt;br&gt;en nog &quot;+(over.length-8)+&quot;...&quot;:&quot;&quot;)+&quot;&lt;/div&gt;&quot; : &quot;&quot;)+
+ &quot;&lt;textarea id=&#x27;dv_txt&#x27; style=&#x27;width:100%;height:170px;font:12px ui-monospace,Menlo,Consolas,monospace;border:1px solid #d0d7dc;border-radius:6px;padding:6px;box-sizing:border-box&#x27;&gt;&lt;/textarea&gt;&quot;+
+ &quot;&lt;div style=&#x27;margin-top:8px;display:flex;gap:6px;flex-wrap:wrap&#x27;&gt;&quot;+
+ &quot;&lt;button id=&#x27;dv_copy&#x27; style=&#x27;flex:1;padding:7px 10px;border:0;border-radius:6px;background:#12242c;color:#fff;cursor:pointer&#x27;&gt;Kopieer alles&lt;/button&gt;&quot;+
+ &quot;&lt;button id=&#x27;dv_wis&#x27; style=&#x27;padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer&#x27;&gt;Wis&lt;/button&gt;&quot;+
+ &quot;&lt;button id=&#x27;dv_dicht&#x27; style=&#x27;padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer&#x27;&gt;Sluit&lt;/button&gt;&quot;+
+ &quot;&lt;/div&gt;&quot;+
+ &quot;&lt;div style=&#x27;margin-top:6px;color:#4a5b63;font-size:11px&#x27;&gt;Blader naar de volgende pagina en klik opnieuw. De verzameling groeit mee tot je dit tabblad sluit.&lt;/div&gt;&quot;;
+document.body.appendChild(d);
+
+var ta=document.getElementById(&quot;dv_txt&quot;);
+ta.value = alles.join(&quot;\n&quot;);
+document.getElementById(&quot;dv_copy&quot;).onclick=function(){
+  ta.select();
+  var ok=false;
+  try{ ok=document.execCommand(&quot;copy&quot;); }catch(e){}
+  if(!ok &amp;&amp; navigator.clipboard){ navigator.clipboard.writeText(ta.value); ok=true; }
+  this.textContent = ok ? &quot;Gekopieerd&quot; : &quot;Selecteer handmatig&quot;;
+};
+document.getElementById(&quot;dv_wis&quot;).onclick=function(){
+  try{ sessionStorage.removeItem(KEY); }catch(e){}
+  ta.value=&quot;&quot;; d.querySelector(&quot;div&quot;).innerHTML=&quot;Verzameling gewist&quot;;
+};
+document.getElementById(&quot;dv_dicht&quot;).onclick=function(){ d.remove(); };
+})();</pre>
+</details>
+
+<script>
+var HREF = "javascript:%28function%28%29%7B%20var%20BUS%20%3D%20%2Fbusiness%2Fi.test%28location.hostname%29%20%7C%7C%20%2Fbusiness%2Fi.test%28location.pathname%29%3B%20var%20DEF%20%3D%20BUS%20%3F%20%22belegging%22%20%3A%20null%3B%20var%20RE_PC%20%3D%20%2F%5E%5Cs%2A%28%5Cd%7B4%7D%5Cs%3F%5BA-Z%5D%7B2%7D%29%5Cs%2B%28%5BA-Za-z%C3%80-%C3%BF%5C-%27%20%5D%2B%3F%29%5Cs%2A%24%2F%3B%20var%20RE_ADRES%20%3D%20%2F%5E%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF.%27%5C-%20%5D%2B%3F%5Cs%2B%5Cd%2B%5BA-Za-z%5D%3F%28%3F%3A-%5BA-Za-z0-9%5D%2B%29%3F%29%5Cs%2A%24%2F%3B%20var%20RE_KOMMA%20%3D%20%2F%5E%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF.%27%5C-%20%5D%2B%3F%5Cs%2B%5Cd%2B%5BA-Za-z%5D%3F%28%3F%3A-%5BA-Za-z0-9%5D%2B%29%3F%29%5Cs%2A%2C%5Cs%2A%28%5BA-Za-z%C3%80-%C3%BF%5C-%27%20%5D%2B%3F%29%5Cs%2A%24%2F%3B%20var%20RE_PRIJS%20%3D%20%2F%28%5B%5Cd%5D%5B%5Cd.%5D%7B2%2C%7D%29%2F%3B%20function%20statusUit%28arr%29%7B%20var%20b%20%3D%20arr.join%28%22%20%22%29.toLowerCase%28%29%3B%20if%28b.indexOf%28%22verkocht%20onder%20voorbehoud%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22verkocht%20o.v.%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22onder%20bod%22%29%3E%3D0%29%20return%20%22onder%20bod%22%3B%20if%28b.indexOf%28%22verkocht%22%29%3E%3D0%29%20return%20%22verkocht%22%3B%20if%28b.indexOf%28%22verhuurd%22%29%3E%3D0%29%20return%20%22verhuurd%22%3B%20return%20%22te%20koop%22%3B%20%7D%20var%20regels%20%3D%20%28document.body.innerText%7C%7C%22%22%29.split%28%22%5Cn%22%29.map%28function%28s%29%7Breturn%20s.replace%28%2F%5Cs%2B%24%2F%2C%22%22%29%3B%7D%29%3B%20var%20uit%20%3D%20%5B%5D%2C%20zien%20%3D%20%7B%7D%2C%20over%20%3D%20%5B%5D%3B%20for%28var%20i%3D0%3Bi%3Cregels.length%3Bi%2B%2B%29%7B%20var%20adres%3Dnull%2C%20plaats%3Dnull%2C%20adresIdx%3Di%2C%20m%3DRE_PC.exec%28regels%5Bi%5D%29%3B%20if%28m%29%7B%20plaats%20%3D%20m%5B2%5D.trim%28%29%3B%20for%28var%20j%3Di-1%3Bj%3E%3D0%20%26%26%20j%3Ei-5%3Bj--%29%7B%20var%20a%20%3D%20RE_ADRES.exec%28regels%5Bj%5D%29%3B%20if%28a%29%7B%20adres%20%3D%20a%5B1%5D.trim%28%29%3B%20adresIdx%20%3D%20j%3B%20break%3B%20%7D%20%7D%20if%28%21adres%29%20continue%3B%20%7D%20else%20%7B%20var%20k%20%3D%20RE_KOMMA.exec%28regels%5Bi%5D%29%3B%20if%28%21k%29%20continue%3B%20adres%20%3D%20k%5B1%5D.trim%28%29%3B%20plaats%20%3D%20k%5B2%5D.trim%28%29%3B%20%7D%20var%20prijs%3Dnull%2C%20reden%3D%22geen%20prijs%20gevonden%22%3B%20for%28var%20p%3Di%2B1%3Bp%3Cregels.length%20%26%26%20p%3Ci%2B10%3Bp%2B%2B%29%7B%20var%20low%20%3D%20regels%5Bp%5D.toLowerCase%28%29%3B%20if%28low.indexOf%28%22aanvraag%22%29%3E%3D0%20%7C%7C%20low.indexOf%28%22n.o.t.k%22%29%3E%3D0%20%7C%7C%20low.indexOf%28%22notk%22%29%3E%3D0%29%7B%20reden%20%3D%20%22prijs%20op%20aanvraag%22%3B%20break%3B%20%7D%20var%20pm%20%3D%20RE_PRIJS.exec%28regels%5Bp%5D%29%3B%20if%28pm%20%26%26%20pm%5B1%5D.indexOf%28%22.%22%29%3E%3D0%20%26%26%20pm%5B1%5D.replace%28%2F%5C.%2Fg%2C%22%22%29.length%3E%3D5%29%7B%20prijs%20%3D%20pm%5B1%5D.replace%28%2F%5C.%2Fg%2C%22%22%29%3B%20break%3B%20%7D%20%7D%20if%28%21prijs%29%7B%20var%20sl0%20%3D%20adres.toLowerCase%28%29%3B%20if%28%21zien%5B%22over%3A%22%2Bsl0%5D%29%7B%20zien%5B%22over%3A%22%2Bsl0%5D%3D1%3B%20over.push%28adres%2B%22%20%28%22%2Breden%2B%22%29%22%29%3B%20%7D%20continue%3B%20%7D%20var%20sleutel%20%3D%20adres.toLowerCase%28%29%2B%22%7C%22%2Bprijs%3B%20if%28zien%5Bsleutel%5D%29%20continue%3B%20zien%5Bsleutel%5D%3D1%3B%20var%20venster%20%3D%20regels.slice%28Math.max%280%2CadresIdx-6%29%2C%20adresIdx%29%3B%20var%20status%20%3D%20DEF%20%7C%7C%20statusUit%28venster%29%3B%20var%20vandaag%20%3D%20new%20Date%28%29.toISOString%28%29.slice%280%2C10%29%3B%20uit.push%28adres%2B%22%20%7C%20%22%2Bplaats%2B%22%20%7C%20%22%2Bprijs%2B%22%20%7C%20%22%2Bstatus%2B%22%20%7C%20%22%2Bvandaag%29%3B%20%7D%20var%20KEY%3D%22dv_verzameling%22%3B%20var%20eerder%3D%5B%5D%3B%20try%7B%20eerder%20%3D%20JSON.parse%28sessionStorage.getItem%28KEY%29%7C%7C%22%5B%5D%22%29%3B%20%7Dcatch%28e%29%7B%7D%20var%20alles%20%3D%20eerder.slice%28%29%2C%20bekend%3D%7B%7D%3B%20alles.forEach%28function%28r%29%7B%20bekend%5Br%5D%3D1%3B%20%7D%29%3B%20var%20nieuw%3D0%3B%20uit.forEach%28function%28r%29%7B%20if%28%21bekend%5Br%5D%29%7B%20alles.push%28r%29%3B%20bekend%5Br%5D%3D1%3B%20nieuw%2B%2B%3B%20%7D%20%7D%29%3B%20try%7B%20sessionStorage.setItem%28KEY%2C%20JSON.stringify%28alles%29%29%3B%20%7Dcatch%28e%29%7B%7D%20var%20oud%3Ddocument.getElementById%28%22dv_overlay%22%29%3B%20if%28oud%29%20oud.remove%28%29%3B%20var%20d%3Ddocument.createElement%28%22div%22%29%3B%20d.id%3D%22dv_overlay%22%3B%20d.style.cssText%3D%22position%3Afixed%3Bz-index%3A2147483647%3Bright%3A16px%3Bbottom%3A16px%3Bwidth%3A440px%3Bmax-width%3A92vw%3Bbackground%3A%23fff%3Bborder%3A2px%20solid%20%2312242c%3Bborder-radius%3A10px%3Bpadding%3A12px%3Bfont%3A13px%20-apple-system%2CSegoe%20UI%2CRoboto%2Csans-serif%3Bbox-shadow%3A0%208px%2028px%20rgba%280%2C0%2C0%2C.28%29%3Bcolor%3A%231a2830%22%3B%20d.innerHTML%20%3D%20%22%3Cdiv%20style%3D%27font-weight%3A700%3Bmargin-bottom%3A6px%27%3EVerzameling%3A%20%22%2Balles.length%2B%22%20panden%22%2B%20%22%3Cspan%20style%3D%27font-weight%3A400%3Bcolor%3A%234a5b63%27%3E%20%28%22%2Bnieuw%2B%22%20nieuw%20op%20deze%20pagina%29%3C%2Fspan%3E%3C%2Fdiv%3E%22%2B%20%28over.length%20%3F%20%22%3Cdiv%20style%3D%27margin%3A-2px%200%208px%3Bpadding%3A7px%209px%3Bbackground%3A%23fdf6ec%3Bborder-left%3A3px%20solid%20%23E0A458%3Bfont-size%3A12px%3Bcolor%3A%234a5b63%27%3E%3Cstrong%3E%22%2Bover.length%2B%22%20overgeslagen%20op%20deze%20pagina%3A%3C%2Fstrong%3E%3Cbr%3E%22%2Bover.slice%280%2C8%29.join%28%22%3Cbr%3E%22%29%2B%28over.length%3E8%3F%22%3Cbr%3Een%20nog%20%22%2B%28over.length-8%29%2B%22...%22%3A%22%22%29%2B%22%3C%2Fdiv%3E%22%20%3A%20%22%22%29%2B%20%22%3Ctextarea%20id%3D%27dv_txt%27%20style%3D%27width%3A100%25%3Bheight%3A170px%3Bfont%3A12px%20ui-monospace%2CMenlo%2CConsolas%2Cmonospace%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bpadding%3A6px%3Bbox-sizing%3Aborder-box%27%3E%3C%2Ftextarea%3E%22%2B%20%22%3Cdiv%20style%3D%27margin-top%3A8px%3Bdisplay%3Aflex%3Bgap%3A6px%3Bflex-wrap%3Awrap%27%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_copy%27%20style%3D%27flex%3A1%3Bpadding%3A7px%2010px%3Bborder%3A0%3Bborder-radius%3A6px%3Bbackground%3A%2312242c%3Bcolor%3A%23fff%3Bcursor%3Apointer%27%3EKopieer%20alles%3C%2Fbutton%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_wis%27%20style%3D%27padding%3A7px%2010px%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bbackground%3A%23fff%3Bcursor%3Apointer%27%3EWis%3C%2Fbutton%3E%22%2B%20%22%3Cbutton%20id%3D%27dv_dicht%27%20style%3D%27padding%3A7px%2010px%3Bborder%3A1px%20solid%20%23d0d7dc%3Bborder-radius%3A6px%3Bbackground%3A%23fff%3Bcursor%3Apointer%27%3ESluit%3C%2Fbutton%3E%22%2B%20%22%3C%2Fdiv%3E%22%2B%20%22%3Cdiv%20style%3D%27margin-top%3A6px%3Bcolor%3A%234a5b63%3Bfont-size%3A11px%27%3EBlader%20naar%20de%20volgende%20pagina%20en%20klik%20opnieuw.%20De%20verzameling%20groeit%20mee%20tot%20je%20dit%20tabblad%20sluit.%3C%2Fdiv%3E%22%3B%20document.body.appendChild%28d%29%3B%20var%20ta%3Ddocument.getElementById%28%22dv_txt%22%29%3B%20ta.value%20%3D%20alles.join%28%22%5Cn%22%29%3B%20document.getElementById%28%22dv_copy%22%29.onclick%3Dfunction%28%29%7B%20ta.select%28%29%3B%20var%20ok%3Dfalse%3B%20try%7B%20ok%3Ddocument.execCommand%28%22copy%22%29%3B%20%7Dcatch%28e%29%7B%7D%20if%28%21ok%20%26%26%20navigator.clipboard%29%7B%20navigator.clipboard.writeText%28ta.value%29%3B%20ok%3Dtrue%3B%20%7D%20this.textContent%20%3D%20ok%20%3F%20%22Gekopieerd%22%20%3A%20%22Selecteer%20handmatig%22%3B%20%7D%3B%20document.getElementById%28%22dv_wis%22%29.onclick%3Dfunction%28%29%7B%20try%7B%20sessionStorage.removeItem%28KEY%29%3B%20%7Dcatch%28e%29%7B%7D%20ta.value%3D%22%22%3B%20d.querySelector%28%22div%22%29.innerHTML%3D%22Verzameling%20gewist%22%3B%20%7D%3B%20document.getElementById%28%22dv_dicht%22%29.onclick%3Dfunction%28%29%7B%20d.remove%28%29%3B%20%7D%3B%20%7D%29%28%29%3B";
+var CONSOLE = "(function(){\nvar BUS = /business/i.test(location.hostname) || /business/i.test(location.pathname);\nvar DEF = BUS ? \"belegging\" : null;\n\nvar RE_PC     = /^\\s*(\\d{4}\\s?[A-Z]{2})\\s+([A-Za-z\u00c0-\u00ff\\-' ]+?)\\s*$/;\nvar RE_ADRES  = /^\\s*([A-Za-z\u00c0-\u00ff.'\\- ]+?\\s+\\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\\s*$/;\nvar RE_KOMMA  = /^\\s*([A-Za-z\u00c0-\u00ff.'\\- ]+?\\s+\\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\\s*,\\s*([A-Za-z\u00c0-\u00ff\\-' ]+?)\\s*$/;\nvar RE_PRIJS  = /([\\d][\\d.]{2,})/;\n\nfunction statusUit(arr){\n  var b = arr.join(\" \").toLowerCase();\n  if(b.indexOf(\"verkocht onder voorbehoud\")>=0) return \"onder bod\";\n  if(b.indexOf(\"verkocht o.v.\")>=0) return \"onder bod\";\n  if(b.indexOf(\"onder bod\")>=0) return \"onder bod\";\n  if(b.indexOf(\"verkocht\")>=0) return \"verkocht\";\n  if(b.indexOf(\"verhuurd\")>=0) return \"verhuurd\";\n  return \"te koop\";\n}\n\nvar regels = (document.body.innerText||\"\").split(\"\\n\").map(function(s){return s.replace(/\\s+$/,\"\");});\nvar uit = [], zien = {}, over = [];\n\nfor(var i=0;i<regels.length;i++){\n  var adres=null, plaats=null, adresIdx=i, m=RE_PC.exec(regels[i]);\n  if(m){\n    plaats = m[2].trim();\n    for(var j=i-1;j>=0 && j>i-5;j--){\n      var a = RE_ADRES.exec(regels[j]);\n      if(a){ adres = a[1].trim(); adresIdx = j; break; }\n    }\n    if(!adres) continue;\n  } else {\n    var k = RE_KOMMA.exec(regels[i]);\n    if(!k) continue;\n    adres = k[1].trim(); plaats = k[2].trim();\n  }\n\n  var prijs=null, reden=\"geen prijs gevonden\";\n  for(var p=i+1;p<regels.length && p<i+10;p++){\n    var low = regels[p].toLowerCase();\n    if(low.indexOf(\"aanvraag\")>=0 || low.indexOf(\"n.o.t.k\")>=0 || low.indexOf(\"notk\")>=0){\n      reden = \"prijs op aanvraag\"; break;\n    }\n    var pm = RE_PRIJS.exec(regels[p]);\n    if(pm && pm[1].indexOf(\".\")>=0 && pm[1].replace(/\\./g,\"\").length>=5){\n      prijs = pm[1].replace(/\\./g,\"\"); break;\n    }\n  }\n  if(!prijs){\n    var sl0 = adres.toLowerCase();\n    if(!zien[\"over:\"+sl0]){ zien[\"over:\"+sl0]=1; over.push(adres+\" (\"+reden+\")\"); }\n    continue;\n  }\n\n  var sleutel = adres.toLowerCase()+\"|\"+prijs;\n  if(zien[sleutel]) continue;\n  zien[sleutel]=1;\n\n  var venster = regels.slice(Math.max(0,adresIdx-6), adresIdx);\n  var status = DEF || statusUit(venster);\n  var vandaag = new Date().toISOString().slice(0,10);\n  uit.push(adres+\" | \"+plaats+\" | \"+prijs+\" | \"+status+\" | \"+vandaag);\n}\n\nvar KEY=\"dv_verzameling\";\nvar eerder=[];\ntry{ eerder = JSON.parse(sessionStorage.getItem(KEY)||\"[]\"); }catch(e){}\nvar alles = eerder.slice(), bekend={};\nalles.forEach(function(r){ bekend[r]=1; });\nvar nieuw=0;\nuit.forEach(function(r){ if(!bekend[r]){ alles.push(r); bekend[r]=1; nieuw++; } });\ntry{ sessionStorage.setItem(KEY, JSON.stringify(alles)); }catch(e){}\n\nvar oud=document.getElementById(\"dv_overlay\"); if(oud) oud.remove();\nvar d=document.createElement(\"div\");\nd.id=\"dv_overlay\";\nd.style.cssText=\"position:fixed;z-index:2147483647;right:16px;bottom:16px;width:440px;max-width:92vw;background:#fff;border:2px solid #12242c;border-radius:10px;padding:12px;font:13px -apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.28);color:#1a2830\";\nd.innerHTML =\n \"<div style='font-weight:700;margin-bottom:6px'>Verzameling: \"+alles.length+\" panden\"+\n \"<span style='font-weight:400;color:#4a5b63'> (\"+nieuw+\" nieuw op deze pagina)</span></div>\"+\n (over.length ? \"<div style='margin:-2px 0 8px;padding:7px 9px;background:#fdf6ec;border-left:3px solid #E0A458;font-size:12px;color:#4a5b63'><strong>\"+over.length+\" overgeslagen op deze pagina:</strong><br>\"+over.slice(0,8).join(\"<br>\")+(over.length>8?\"<br>en nog \"+(over.length-8)+\"...\":\"\")+\"</div>\" : \"\")+\n \"<textarea id='dv_txt' style='width:100%;height:170px;font:12px ui-monospace,Menlo,Consolas,monospace;border:1px solid #d0d7dc;border-radius:6px;padding:6px;box-sizing:border-box'></textarea>\"+\n \"<div style='margin-top:8px;display:flex;gap:6px;flex-wrap:wrap'>\"+\n \"<button id='dv_copy' style='flex:1;padding:7px 10px;border:0;border-radius:6px;background:#12242c;color:#fff;cursor:pointer'>Kopieer alles</button>\"+\n \"<button id='dv_wis' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Wis</button>\"+\n \"<button id='dv_dicht' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Sluit</button>\"+\n \"</div>\"+\n \"<div style='margin-top:6px;color:#4a5b63;font-size:11px'>Blader naar de volgende pagina en klik opnieuw. De verzameling groeit mee tot je dit tabblad sluit.</div>\";\ndocument.body.appendChild(d);\n\nvar ta=document.getElementById(\"dv_txt\");\nta.value = alles.join(\"\\n\");\ndocument.getElementById(\"dv_copy\").onclick=function(){\n  ta.select();\n  var ok=false;\n  try{ ok=document.execCommand(\"copy\"); }catch(e){}\n  if(!ok && navigator.clipboard){ navigator.clipboard.writeText(ta.value); ok=true; }\n  this.textContent = ok ? \"Gekopieerd\" : \"Selecteer handmatig\";\n};\ndocument.getElementById(\"dv_wis\").onclick=function(){\n  try{ sessionStorage.removeItem(KEY); }catch(e){}\n  ta.value=\"\"; d.querySelector(\"div\").innerHTML=\"Verzameling gewist\";\n};\ndocument.getElementById(\"dv_dicht\").onclick=function(){ d.remove(); };\n})();";\n  if(b.indexOf(\"verkocht o.v.\")>=0) return \"onder bod\";\n  if(b.indexOf(\"onder bod\")>=0) return \"onder bod\";\n  if(b.indexOf(\"verkocht\")>=0) return \"verkocht\";\n  if(b.indexOf(\"verhuurd\")>=0) return \"verhuurd\";\n  return \"te koop\";\n}\n\nvar regels = (document.body.innerText||\"\").split(\"\\n\").map(function(s){return s.replace(/\\s+$/,\"\");});\nvar uit = [], zien = {}, over = [];\n\nfor(var i=0;i<regels.length;i++){\n  var adres=null, plaats=null, adresIdx=i, m=RE_PC.exec(regels[i]);\n  if(m){\n    plaats = m[2].trim();\n    for(var j=i-1;j>=0 && j>i-5;j--){\n      var a = RE_ADRES.exec(regels[j]);\n      if(a){ adres = a[1].trim(); adresIdx = j; break; }\n    }\n    if(!adres) continue;\n  } else {\n    var k = RE_KOMMA.exec(regels[i]);\n    if(!k) continue;\n    adres = k[1].trim(); plaats = k[2].trim();\n  }\n\n  var prijs=null, reden=\"geen prijs gevonden\";\n  for(var p=i+1;p<regels.length && p<i+10;p++){\n    var low = regels[p].toLowerCase();\n    if(low.indexOf(\"aanvraag\")>=0 || low.indexOf(\"n.o.t.k\")>=0 || low.indexOf(\"notk\")>=0){\n      reden = \"prijs op aanvraag\"; break;\n    }\n    var pm = RE_PRIJS.exec(regels[p]);\n    if(pm && pm[1].indexOf(\".\")>=0 && pm[1].replace(/\\./g,\"\").length>=5){\n      prijs = pm[1].replace(/\\./g,\"\"); break;\n    }\n  }\n  if(!prijs){\n    var sl0 = adres.toLowerCase();\n    if(!zien[\"over:\"+sl0]){ zien[\"over:\"+sl0]=1; over.push(adres+\" (\"+reden+\")\"); }\n    continue;\n  }\n\n  var sleutel = adres.toLowerCase()+\"|\"+prijs;\n  if(zien[sleutel]) continue;\n  zien[sleutel]=1;\n\n  var venster = regels.slice(Math.max(0,adresIdx-6), adresIdx);\n  var status = DEF || statusUit(venster);\n  uit.push(adres+\" | \"+plaats+\" | \"+prijs+\" | \"+status);\n}\n\nvar KEY=\"dv_verzameling\";\nvar eerder=[];\ntry{ eerder = JSON.parse(sessionStorage.getItem(KEY)||\"[]\"); }catch(e){}\nvar alles = eerder.slice(), bekend={};\nalles.forEach(function(r){ bekend[r]=1; });\nvar nieuw=0;\nuit.forEach(function(r){ if(!bekend[r]){ alles.push(r); bekend[r]=1; nieuw++; } });\ntry{ sessionStorage.setItem(KEY, JSON.stringify(alles)); }catch(e){}\n\nvar oud=document.getElementById(\"dv_overlay\"); if(oud) oud.remove();\nvar d=document.createElement(\"div\");\nd.id=\"dv_overlay\";\nd.style.cssText=\"position:fixed;z-index:2147483647;right:16px;bottom:16px;width:440px;max-width:92vw;background:#fff;border:2px solid #12242c;border-radius:10px;padding:12px;font:13px -apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.28);color:#1a2830\";\nd.innerHTML =\n \"<div style='font-weight:700;margin-bottom:6px'>Verzameling: \"+alles.length+\" panden\"+\n \"<span style='font-weight:400;color:#4a5b63'> (\"+nieuw+\" nieuw op deze pagina)</span></div>\"+\n (over.length ? \"<div style='margin:-2px 0 8px;padding:7px 9px;background:#fdf6ec;border-left:3px solid #E0A458;font-size:12px;color:#4a5b63'><strong>\"+over.length+\" overgeslagen op deze pagina:</strong><br>\"+over.slice(0,8).join(\"<br>\")+(over.length>8?\"<br>en nog \"+(over.length-8)+\"...\":\"\")+\"</div>\" : \"\")+\n \"<textarea id='dv_txt' style='width:100%;height:170px;font:12px ui-monospace,Menlo,Consolas,monospace;border:1px solid #d0d7dc;border-radius:6px;padding:6px;box-sizing:border-box'></textarea>\"+\n \"<div style='margin-top:8px;display:flex;gap:6px;flex-wrap:wrap'>\"+\n \"<button id='dv_copy' style='flex:1;padding:7px 10px;border:0;border-radius:6px;background:#12242c;color:#fff;cursor:pointer'>Kopieer alles</button>\"+\n \"<button id='dv_wis' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Wis</button>\"+\n \"<button id='dv_dicht' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Sluit</button>\"+\n \"</div>\"+\n \"<div style='margin-top:6px;color:#4a5b63;font-size:11px'>Blader naar de volgende pagina en klik opnieuw. De verzameling groeit mee tot je dit tabblad sluit.</div>\";\ndocument.body.appendChild(d);\n\nvar ta=document.getElementById(\"dv_txt\");\nta.value = alles.join(\"\\n\");\ndocument.getElementById(\"dv_copy\").onclick=function(){\n  ta.select();\n  var ok=false;\n  try{ ok=document.execCommand(\"copy\"); }catch(e){}\n  if(!ok && navigator.clipboard){ navigator.clipboard.writeText(ta.value); ok=true; }\n  this.textContent = ok ? \"Gekopieerd\" : \"Selecteer handmatig\";\n};\ndocument.getElementById(\"dv_wis\").onclick=function(){\n  try{ sessionStorage.removeItem(KEY); }catch(e){}\n  ta.value=\"\"; d.querySelector(\"div\").innerHTML=\"Verzameling gewist\";\n};\ndocument.getElementById(\"dv_dicht\").onclick=function(){ d.remove(); };\n})();";\n  if(b.indexOf(\"verkocht o.v.\")>=0) return \"onder bod\";\n  if(b.indexOf(\"onder bod\")>=0) return \"onder bod\";\n  if(b.indexOf(\"verkocht\")>=0) return \"verkocht\";\n  if(b.indexOf(\"verhuurd\")>=0) return \"verhuurd\";\n  return \"te koop\";\n}\n\nvar regels = (document.body.innerText||\"\").split(\"\\n\").map(function(s){return s.replace(/\\s+$/,\"\");});\nvar uit = [], zien = {};\n\nfor(var i=0;i<regels.length;i++){\n  var adres=null, plaats=null, adresIdx=i, m=RE_PC.exec(regels[i]);\n  if(m){\n    plaats = m[2].trim();\n    for(var j=i-1;j>=0 && j>i-5;j--){\n      var a = RE_ADRES.exec(regels[j]);\n      if(a){ adres = a[1].trim(); adresIdx = j; break; }\n    }\n    if(!adres) continue;\n  } else {\n    var k = RE_KOMMA.exec(regels[i]);\n    if(!k) continue;\n    adres = k[1].trim(); plaats = k[2].trim();\n  }\n\n  var prijs=null;\n  for(var p=i+1;p<regels.length && p<i+7;p++){\n    var low = regels[p].toLowerCase();\n    if(low.indexOf(\"aanvraag\")>=0 || low.indexOf(\"n.o.t.k\")>=0) break;\n    var pm = RE_PRIJS.exec(regels[p]);\n    if(pm && pm[1].indexOf(\".\")>=0 && pm[1].replace(/\\./g,\"\").length>=5){\n      prijs = pm[1].replace(/\\./g,\"\"); break;\n    }\n  }\n  if(!prijs) continue;\n\n  var sleutel = adres.toLowerCase()+\"|\"+prijs;\n  if(zien[sleutel]) continue;\n  zien[sleutel]=1;\n\n  var venster = regels.slice(Math.max(0,adresIdx-6), adresIdx);\n  var status = DEF || statusUit(venster);\n  uit.push(adres+\" | \"+plaats+\" | \"+prijs+\" | \"+status);\n}\n\nvar KEY=\"dv_verzameling\";\nvar eerder=[];\ntry{ eerder = JSON.parse(sessionStorage.getItem(KEY)||\"[]\"); }catch(e){}\nvar alles = eerder.slice(), bekend={};\nalles.forEach(function(r){ bekend[r]=1; });\nvar nieuw=0;\nuit.forEach(function(r){ if(!bekend[r]){ alles.push(r); bekend[r]=1; nieuw++; } });\ntry{ sessionStorage.setItem(KEY, JSON.stringify(alles)); }catch(e){}\n\nvar oud=document.getElementById(\"dv_overlay\"); if(oud) oud.remove();\nvar d=document.createElement(\"div\");\nd.id=\"dv_overlay\";\nd.style.cssText=\"position:fixed;z-index:2147483647;right:16px;bottom:16px;width:440px;max-width:92vw;background:#fff;border:2px solid #12242c;border-radius:10px;padding:12px;font:13px -apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.28);color:#1a2830\";\nd.innerHTML =\n \"<div style='font-weight:700;margin-bottom:6px'>Verzameling: \"+alles.length+\" panden\"+\n \"<span style='font-weight:400;color:#4a5b63'> (\"+nieuw+\" nieuw op deze pagina)</span></div>\"+\n \"<textarea id='dv_txt' style='width:100%;height:170px;font:12px ui-monospace,Menlo,Consolas,monospace;border:1px solid #d0d7dc;border-radius:6px;padding:6px;box-sizing:border-box'></textarea>\"+\n \"<div style='margin-top:8px;display:flex;gap:6px;flex-wrap:wrap'>\"+\n \"<button id='dv_copy' style='flex:1;padding:7px 10px;border:0;border-radius:6px;background:#12242c;color:#fff;cursor:pointer'>Kopieer alles</button>\"+\n \"<button id='dv_wis' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Wis</button>\"+\n \"<button id='dv_dicht' style='padding:7px 10px;border:1px solid #d0d7dc;border-radius:6px;background:#fff;cursor:pointer'>Sluit</button>\"+\n \"</div>\"+\n \"<div style='margin-top:6px;color:#4a5b63;font-size:11px'>Blader naar de volgende pagina en klik opnieuw. De verzameling groeit mee tot je dit tabblad sluit.</div>\";\ndocument.body.appendChild(d);\n\nvar ta=document.getElementById(\"dv_txt\");\nta.value = alles.join(\"\\n\");\ndocument.getElementById(\"dv_copy\").onclick=function(){\n  ta.select();\n  var ok=false;\n  try{ ok=document.execCommand(\"copy\"); }catch(e){}\n  if(!ok && navigator.clipboard){ navigator.clipboard.writeText(ta.value); ok=true; }\n  this.textContent = ok ? \"Gekopieerd\" : \"Selecteer handmatig\";\n};\ndocument.getElementById(\"dv_wis\").onclick=function(){\n  try{ sessionStorage.removeItem(KEY); }catch(e){}\n  ta.value=\"\"; d.querySelector(\"div\").innerHTML=\"Verzameling gewist\";\n};\ndocument.getElementById(\"dv_dicht\").onclick=function(){ d.remove(); };\n})();";
+document.getElementById("codeBm").value = HREF;
+document.getElementById("codeConsole").value = CONSOLE;
+
+function maakKopieer(knopId, veldId, meldingId, waarde){
+  document.getElementById(knopId).onclick = function(){
+    var ta = document.getElementById(veldId);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch(e){}
+    if(!ok && navigator.clipboard){ navigator.clipboard.writeText(waarde); ok = true; }
+    document.getElementById(meldingId).textContent = ok ? "Gekopieerd" : "Selecteer de tekst en kopieer handmatig";
+  };
+}
+maakKopieer("kopieerBm","codeBm","meldingBm",HREF);
+maakKopieer("kopieerConsole","codeConsole","meldingConsole",CONSOLE);
+</script>
+
+</body>
+</html>

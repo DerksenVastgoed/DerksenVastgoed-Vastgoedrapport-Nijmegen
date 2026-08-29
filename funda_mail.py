@@ -142,7 +142,8 @@ def parse_objecten(regels, status):
         if sleutel in gezien:
             continue
         gezien.add(sleutel)
-        gevonden.append(f"{adres} | {plaats} | {prijs} | {status}")
+        vandaag = dt.date.today().isoformat()
+        gevonden.append(f"{adres} | {plaats} | {prijs} | {status} | {vandaag}")
 
     return gevonden, overgeslagen
 
@@ -239,6 +240,8 @@ def main():
         toegevoegd = 0
         for regel in objecten:
             delen = [d.strip() for d in regel.split("|")]
+            # Adres plus prijs: staat het adres er al met een ANDERE prijs, dan is
+            # dat een prijswijziging en dus juist wel de moeite van vastleggen waard.
             sleutel = (delen[0].lower(), delen[2])
             if sleutel in bestaand:
                 continue

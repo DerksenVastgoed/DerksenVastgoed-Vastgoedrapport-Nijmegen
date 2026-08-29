@@ -1,6 +1,10 @@
 # Marktdata voor het marktprijzen-blok.
-# Format per regel: adres | plaats | prijs | status
-# Status: 'verkocht', 'onder bod', 'te koop', 'nieuw'.
+# Format per regel: adres | plaats | prijs | status | datum
+# Status: 'verkocht', 'onder bod', 'te koop', 'belegging'.
+# Datum (jjjj-mm-dd) is wanneer we dit object zagen. Optioneel; regels zonder
+# datum blijven werken, maar tellen niet mee voor looptijd en prijshistorie.
+# Staat een adres er al in met een andere prijs, laat de oude regel staan:
+# uit die twee regels volgt de prijswijziging.
 # Regels met # zijn commentaar. Voeg periodiek nieuwe regels toe.
 # Bronnen (bij eerste versie): InBeeld, Hans Janssen, Hermsen, Kolmeijer via Funda-check aug 2026.
 

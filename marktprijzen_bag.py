@@ -121,6 +121,11 @@ def lees_verkopen(pad):
                 continue
             adres, plaats, prijs_str = delen[0], delen[1], delen[2]
             status = delen[3] if len(delen) > 3 else "onbekend"
+            # Vijfde veld is de datum waarop we dit object zagen. Oude regels
+            # zonder datum blijven gewoon werken; die tellen als 'onbekend'.
+            datum = delen[4] if len(delen) > 4 else ""
+            if datum and not re.match(r"^\d{4}-\d{2}-\d{2}$", datum):
+                datum = ""
             try:
                 prijs = int(re.sub(r"[^\d]", "", prijs_str))
             except ValueError:
@@ -131,6 +136,8 @@ def lees_verkopen(pad):
                 "plaats": plaats,
                 "prijs": prijs,
                 "status": status,
+                "datum": datum,
+                "regelnr": lineno,
             })
     return resultaat
 
@@ -508,6 +515,82 @@ def _labeltekst(ep):
     return f"{label} ({jaar})" if jaar else label
 
 
+def _dagen_sinds(datum):
+    """Aantal dagen tussen een datum als jjjj-mm-dd en vandaag."""
+    if not datum:
+        return None
+    try:
+        return (dt.date.today() - dt.date.fromisoformat(datum)).days
+    except ValueError:
+        return None
+
+
+def render_prijswijzigingen(woningen):
+    """Panden waarvan de vraagprijs is veranderd sinds we ze voor het eerst zagen."""
+    r = []
+    gewijzigd = []
+    for w in woningen:
+        eerst = w.get("prijs_eerst")
+        if not eerst or eerst == w["prijs"]:
+            continue
+        verschil = w["prijs"] - eerst
+        pct = verschil / eerst * 100
+        gewijzigd.append((abs(pct), verschil, pct, w))
+
+    if not gewijzigd:
+        return r
+
+    r.append("### Prijswijzigingen")
+    r.append("")
+    r.append("| Adres | Buurt | Eerst | Nu | Verschil | Dagen in aanbod |")
+    r.append("|---|---|---:|---:|---:|---:|")
+    for _, verschil, pct, w in sorted(gewijzigd, reverse=True):
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+        eerst_s = f"{w['prijs_eerst']:,}".replace(",", ".")
+        nu_s = f"{w['prijs']:,}".replace(",", ".")
+        teken = "▼" if verschil < 0 else "▲"
+        versch_s = f"{abs(verschil):,}".replace(",", ".")
+        dagen = _dagen_sinds(w.get("datum_eerst"))
+        r.append(f"| {w['adres']} | {buurt} | €{eerst_s} | €{nu_s} | "
+                 f"{teken} €{versch_s} ({pct:+.1f}%) | {dagen if dagen is not None else '?'} |")
+    r.append("")
+    r.append("_Een verlaging na langere tijd in de markt is vaak het moment waarop "
+             "onderhandelen zin heeft. Dagen in aanbod telt vanaf de eerste keer dat "
+             "dit pand in de attendering verscheen, niet vanaf de plaatsing op Funda._")
+    r.append("")
+    return r
+
+
+def render_looptijd(woningen):
+    """Panden die het langst in de markt staan zonder prijsaanpassing."""
+    r = []
+    lang = []
+    for w in woningen:
+        if w.get("status", "").lower() not in ("te koop", "belegging"):
+            continue
+        dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
+        if dagen is None or dagen < 60:
+            continue
+        if w.get("prijs_eerst") and w["prijs_eerst"] != w["prijs"]:
+            continue  # die staan al bij de prijswijzigingen
+        lang.append((dagen, w))
+
+    if not lang:
+        return r
+
+    r.append("### Langst in de markt zonder prijsaanpassing")
+    r.append("")
+    for dagen, w in sorted(lang, reverse=True)[:8]:
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+        prijs_s = f"{w['prijs']:,}".replace(",", ".")
+        r.append(f"- **{w['adres']}** ({buurt}) . €{prijs_s} . {dagen} dagen")
+    r.append("")
+    r.append("_Lang stilstaan zonder aanpassing wijst op een vraagprijs die de markt "
+             "niet volgt. Dat is doorgaans het beste moment om te bieden._")
+    r.append("")
+    return r
+
+
 def render(woningen):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
 
@@ -531,8 +614,12 @@ def render(woningen):
                     w["monument"] = mon[0]
 
     r = ["", "## Marktprijzen koop per buurt",
-         f"_Op basis van {len(woningen)} recente transacties/aanbiedingen. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
+         f"_Op basis van {len(woningen)} panden. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
          ""]
+
+    # Bewegingen eerst: dat is het enige dat sinds gisteren veranderd kan zijn
+    r.extend(render_prijswijzigingen(woningen))
+    r.extend(render_looptijd(woningen))
 
     per_buurt = defaultdict(list)
     beleggingen = []
@@ -875,21 +962,39 @@ def main():
     schrijf_cache(cache)
     print(f"Verrijkt met oppervlakte: {ok}/{len(woningen)} (nieuw opgehaald: {nieuw})", file=sys.stderr)
 
-    # Ontdubbelen op het BAG-object. Hetzelfde pand kan meerdere keren in
-    # verkopen.txt staan (nieuwe kwartaalronde, andere schrijfwijze, status
-    # gewijzigd van 'te koop' naar 'verkocht'). De LAATSTE regel wint, want
-    # dat is de meest recente stand. Zonder dit telt een pand dubbel mee.
+    # Waarnemingen groeperen per BAG-object. Hetzelfde pand kan meerdere keren
+    # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
+    # We houden de volledige reeks bij, want daaruit volgt de prijshistorie.
     per_object, volgorde = {}, []
     for w in woningen:
         obj = w.get("adresseerbaarObjectIdentificatie")
         sleutel = obj if obj else re.sub(r"[^a-z0-9]", "", w["adres"].lower())
         if sleutel not in per_object:
             volgorde.append(sleutel)
-        per_object[sleutel] = w
-    ontdubbeld = [per_object[s] for s in volgorde]
+            per_object[sleutel] = []
+        per_object[sleutel].append(w)
+
+    ontdubbeld = []
+    for sleutel in volgorde:
+        reeks = per_object[sleutel]
+        # Op datum sorteren waar die bekend is, anders op volgorde in het bestand
+        reeks.sort(key=lambda x: (x.get("datum") or "", x.get("regelnr", 0)))
+        laatste = reeks[-1]
+        if len(reeks) > 1:
+            eerste = reeks[0]
+            laatste["historie"] = [
+                {"datum": r.get("datum", ""), "prijs": r["prijs"], "status": r["status"]}
+                for r in reeks
+            ]
+            laatste["prijs_eerst"] = eerste["prijs"]
+            laatste["datum_eerst"] = eerste.get("datum", "")
+            laatste["waarnemingen"] = len(reeks)
+        ontdubbeld.append(laatste)
+
     weg = len(woningen) - len(ontdubbeld)
     if weg:
-        print(f"Ontdubbeld: {weg} dubbele regels verwijderd, {len(ontdubbeld)} panden over", file=sys.stderr)
+        print(f"Samengevoegd: {weg} herhaalde waarnemingen, {len(ontdubbeld)} panden over",
+              file=sys.stderr)
     woningen = ontdubbeld
 
     md = render(woningen)
