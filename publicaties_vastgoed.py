@@ -48,21 +48,34 @@ FEEDS = [
     ("ABN AMRO Woningmarkt", _gnews("ABN AMRO woningmarkt sector update")),
     # Directe RSS van Vastgoed Insider (schrijft vaak relevant over uitponden/beleggers)
     ("Vastgoed Insider", "https://vastgoedinsider.nl/feed/"),
+    ("Kadaster woningmarkt", _gnews("Kadaster woningmarkt kwartaal")),
     ("Vastgoed Insider (Google News)", _gnews("site:vastgoedinsider.nl")),
 ]
 
 TREFWOORDEN = [
-    "woningmarkt", "verhuur", "verhuurders", "huurwoning", "koopwoning",
-    "particuliere verhuur", "belegger", "beleggers", "uitpond", "uitponding",
-    "corporatie", "corporaties", "woningcorporatie",
-    "prijsontwikkeling", "huizenprijzen", "huurprijs", "huurprijzen",
-    "wws", "woningwaardering", "wet betaalbare huur",
-    "box 3", "box3", "overdrachtsbelasting",
-    "opkoopbescherming", "huurbescherming",
+    # Markt en prijzen
+    "woningmarkt", "huizenmarkt", "vastgoed", "woningprijs", "huizenprijs",
+    "prijsontwikkeling", "woningwaarde", "transactie", "verkocht",
+    "makelaar", "taxatie", "woningaanbod", "krapte", "doorstroming",
+    # Verhuur
+    "verhuur", "verhuurder", "huurwoning", "huurprijs", "huurmarkt",
+    "huursector", "kamerverhuur", "studentenhuisvesting", "middenhuur",
+    "corporatie", "belegger", "uitpond", "leegwaarde",
+    # Beleid en fiscaal
+    "wws", "woningwaardering", "wet betaalbare huur", "huurbescherming",
+    "opkoopbescherming", "box 3", "box3", "overdrachtsbelasting",
+    "vergunning", "bestemmingsplan", "omgevingswet", "splits",
+    # Verduurzaming
     "energielabel", "verduurzaming", "isolatie", "warmtepomp", "warmtenet",
-    "nijmegen", "arnhem-nijmegen", "arnhem", "gelderland",
-    "dynamis", "capital value", "nvm", "brainbay", "pararius", "rabobank", "abn amro", "woningmarktcijfers", "woningwaarde", "kwartaalbericht", "sector update",
-    "abn amro woningmarkt", "rabobank woningmarkt", "dnb",
+    "fundering", "onderhoud", "renovatie",
+    # Financiering
+    "hypotheek", "rente", "financiering", "starterslening", "nhg",
+    # Regio
+    "nijmegen", "arnhem", "gelderland", "studentenstad",
+    # Bronnen
+    "kadaster", "cbs", "nvm", "brainbay", "pararius", "dynamis",
+    "capital value", "rabobank", "abn amro", "ing", "dnb",
+    "woningmarktcijfers", "kwartaalbericht", "sector update",
 ]
 
 MAX_LEEFTIJD_UREN = 30
