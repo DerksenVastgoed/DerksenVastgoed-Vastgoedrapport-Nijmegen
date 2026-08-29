@@ -286,20 +286,70 @@ def verrijk(items):
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
 
 
+KLEUREN = {
+    "uitponden": "#B8860B", "buy-and-hold": "#4a7a72", "splitsen": "#7B5EA7",
+    "kamerverhuur": "#C46A2F", "transformatie": "#2E6DA4", "verduurzaming": "#4E8C3A",
+    "financiering": "#8A5A44", "fiscaal": "#6B6B6B",
+}
+
+
+def chip(label):
+    """Klein gekleurd labeltje voor de strategie."""
+    if not label or label == "algemeen":
+        return ""
+    kleur = KLEUREN.get(label, "#4a5b63")
+    return (f'<span style="display:inline-block;background:{kleur};color:#fff;'
+            f'font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;'
+            f'border-radius:10px;margin-right:8px;vertical-align:middle">'
+            f'{label}</span>')
+
+
+def kaart(titel, link, samenvatting, duiding, strategie="", bronnaam=""):
+    """
+    Een bericht als kaartje in plaats van een opsommingsteken. Stijl staat op de
+    elementen zelf, want veel mailprogramma's negeren een stylesheet in de kop.
+    """
+    kop = f'<a href="{link}" style="color:#12242c;text-decoration:none">{titel}</a>' if link else titel
+    delen = [
+        '<div style="border-left:3px solid #E0A458;background:#f7f9fa;'
+        'border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">',
+        f'<div style="margin-bottom:6px">{chip(strategie)}'
+        f'<span style="font-weight:700;font-size:14px;line-height:1.35">{kop}</span></div>',
+    ]
+    if samenvatting:
+        delen.append(f'<div style="font-size:13px;color:#1a2830;margin-bottom:4px">'
+                     f'{samenvatting}</div>')
+    if duiding:
+        delen.append(f'<div style="font-size:13px;color:#4a5b63;font-style:italic">'
+                     f'{duiding}</div>')
+    voet = []
+    if bronnaam:
+        voet.append(bronnaam)
+    if link:
+        voet.append(f'<a href="{link}" style="color:#4a7a72;text-decoration:none">lezen</a>')
+    if voet:
+        delen.append(f'<div style="font-size:11px;color:#7a8a92;margin-top:8px">'
+                     f'{" . ".join(voet)}</div>')
+    delen.append("</div>")
+    return "\n".join(delen)
+
+
 def render(items):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
-    r = ["", "## Publicaties", f"_Vastgoedartikelen laatste 24u, met marktduiding. {vandaag}._", ""]
+    r = ["", "## Publicaties",
+         f"_Vastgoedartikelen laatste 24u, met marktduiding. {vandaag}._", ""]
     if not items:
         r.append("_Geen relevante publicaties gevonden._")
         return "\n".join(r)
     for it in items:
-        strat = (it.get("strategie") or "").strip()
-        kop = f"**[{strat}]** " if strat and strat != "algemeen" else ""
-        r.append(f"- {kop}**{it['titel']}** ([bron]({it['link']}))")
-        if it.get("samenvatting"):
-            r.append(f"  {it['samenvatting']}")
-        if it.get("gevolg") and it["gevolg"] not in ("-", ""):
-            r.append(f"  _{it['gevolg']}_")
+        r.append(kaart(
+            titel=it.get("titel", ""),
+            link=it.get("link", ""),
+            samenvatting=it.get("samenvatting", ""),
+            duiding=it.get("gevolg", "") if it.get("gevolg") not in ("-", "") else "",
+            strategie=(it.get("strategie") or "").strip(),
+            bronnaam=it.get("bron", ""),
+        ))
         r.append("")
     return "\n".join(r)
 

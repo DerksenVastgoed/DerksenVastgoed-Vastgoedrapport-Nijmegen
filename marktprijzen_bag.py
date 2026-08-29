@@ -554,14 +554,34 @@ def lees_bekendmakingen(cache):
     return per_buurt, zonder_buurt
 
 
+KLEUREN = {
+    "uitponden": "#B8860B", "buy-and-hold": "#4a7a72", "splitsen": "#7B5EA7",
+    "kamerverhuur": "#C46A2F", "transformatie": "#2E6DA4", "verduurzaming": "#4E8C3A",
+}
+
+
+def _chip(label):
+    """Klein gekleurd labeltje voor de strategie."""
+    if not label or label == "geen":
+        return ""
+    kleur = KLEUREN.get(label, "#4a5b63")
+    return (f'<span style="display:inline-block;background:{kleur};color:#fff;'
+            f'font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;'
+            f'margin-right:8px;vertical-align:middle">{label}</span>')
+
+
 def bekendmakingregels(items):
-    """Compacte weergave van bekendmakingen onder een buurt."""
+    """
+    Bekendmakingen als kaartjes onder een buurt. De stijl staat op de elementen
+    zelf, want veel mailprogramma's negeren een stylesheet in de kop.
+    """
     r = []
-    for it in sorted(items, key=lambda x: (not x.get("kern"), x.get("datum", "")), reverse=False):
-        link = f" ([bron]({it['url']}))" if it.get("url") else ""
-        strat = (it.get("strategie") or "").strip()
-        merk = f"**[{strat}]** " if strat and strat != "geen" else ""
-        r.append(f"- `{it.get('datum','')}` {merk}{it.get('titel','')}{link}")
+    for it in sorted(items, key=lambda x: (not x.get("kern"), x.get("datum", ""))):
+        titel = it.get("titel", "")
+        url = it.get("url", "")
+        kop = (f'<a href="{url}" style="color:#12242c;text-decoration:none">{titel}</a>'
+               if url else titel)
+
         feiten = it.get("feiten") or {}
         delen = []
         if feiten.get("oppervlakte_m2"):
@@ -575,10 +595,29 @@ def bekendmakingregels(items):
         if feiten.get("rijksmonument"):
             nr = feiten.get("monumentnr")
             delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
+
+        blok = ['<div style="border-left:3px solid #E0A458;background:#f7f9fa;'
+                'border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">',
+                f'<div style="margin-bottom:6px">'
+                f'{_chip((it.get("strategie") or "").strip())}'
+                f'<span style="font-weight:700;font-size:14px;line-height:1.35">'
+                f'{kop}</span></div>']
         if delen:
-            r.append(f"  `{' . '.join(delen)}`")
+            blok.append('<div style="font-size:12px;color:#12242c;background:#eef2f4;'
+                        'display:inline-block;padding:3px 8px;border-radius:4px;'
+                        'margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">'
+                        + " . ".join(delen) + "</div>")
         if it.get("duiding"):
-            r.append(f"  _{it['duiding']}_")
+            blok.append(f'<div style="font-size:13px;color:#4a5b63;font-style:italic">'
+                        f'{it["duiding"]}</div>')
+        voet = [v for v in [it.get("datum", ""),
+                            (f'<a href="{url}" style="color:#4a7a72;'
+                             f'text-decoration:none">bron</a>' if url else "")] if v]
+        blok.append(f'<div style="font-size:11px;color:#7a8a92;margin-top:8px">'
+                    f'{" . ".join(voet)}</div>')
+        blok.append("</div>")
+        r.append("\n".join(blok))
+        r.append("")
     return r
 
 
@@ -593,8 +632,12 @@ def lees_cbs():
         return {}
 
 
-def buurtregel(naam, cbs):
-    """Een regel met de kenmerken van een buurt, alleen als we ze hebben."""
+def buurtregel(naam, cbs, opp_uit_bag=None):
+    """
+    Een regel met de kenmerken van een buurt, alleen als we ze hebben.
+    Toont ook de WOZ per m2, want dat is beter vergelijkbaar tussen buurten
+    dan een gemiddelde WOZ: die hangt sterk af van de woninggrootte.
+    """
     g = cbs.get(naam)
     if not g:
         return ""
@@ -609,7 +652,27 @@ def buurtregel(naam, cbs):
         delen.append(f"{g['over']}% overige verhuurders")
     if g.get("woz"):
         delen.append("WOZ €" + f"{g['woz'] * 1000:,}".replace(",", "."))
+
+        # WOZ per m2: eerst de CBS-oppervlakte, anders ons eigen BAG-gemiddelde
+        opp, herkomst = g.get("opp"), "CBS"
+        if not opp and opp_uit_bag:
+            opp, herkomst = opp_uit_bag, "eigen aanbod"
+        if opp:
+            wozm2 = round(g["woz"] * 1000 / opp)
+            delen.append(f"WOZ €{wozm2:,}".replace(",", ".")
+                         + f"/m² bij {opp} m² gemiddeld ({herkomst})")
     return " . ".join(delen)
+
+
+def gemiddelde_oppervlakte_per_buurt(woningen):
+    """Gemiddelde BAG-oppervlakte per buurt uit de eigen lijst, als terugval."""
+    per_buurt = defaultdict(list)
+    for w in woningen:
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        opp = w.get("oppervlakte")
+        if buurt and opp and 15 <= opp <= 400:
+            per_buurt[buurt].append(opp)
+    return {b: round(st.mean(v)) for b, v in per_buurt.items() if len(v) >= 5}
 
 
 def kaartlink(adres, plaats="Nijmegen", bron=""):
@@ -826,6 +889,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_o
         return r
 
     cbs = lees_cbs()
+    opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
 
     # Per buurt groeperen. Buurten zonder aanbod komen niet voor.
     per_buurt_aanbod = defaultdict(list)
@@ -849,7 +913,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None, bm_o
     r.append("")
     for buurt, rijen_buurt in volgorde:
         r.append(f"**{buurt}**")
-        kenmerken = buurtregel(buurt, cbs)
+        kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt))
         if kenmerken:
             r.append(f"_{kenmerken}_")
         r.append("")
