@@ -503,6 +503,30 @@ def normaliseer_buurt(buurtnaam):
 
 
 
+
+COMMERCIEEL = ["winkel", "kantoor", "horeca", "bijeenkomst", "industrie", "logies"]
+
+
+def assetklasse(w):
+    """
+    Bepaalt de assetklasse uit het BAG-gebruiksdoel.
+    Vergelijken doe je binnen een klasse: een winkelpand van 2.100 per m2 is
+    niet goedkoop, het is gewoon een ander product dan een woning.
+    """
+    doelen = [str(d).lower() for d in (w.get("gebruiksdoelen") or [])]
+    if not doelen:
+        return "onbekend"
+    heeft_woon = any("woon" in d for d in doelen)
+    heeft_com = any(any(c in d for c in COMMERCIEEL) for d in doelen)
+    if heeft_woon and heeft_com:
+        return "gemengd"
+    if heeft_woon:
+        return "woning"
+    if heeft_com:
+        return "commercieel"
+    return "onbekend"
+
+
 def _labeltekst(ep):
     """Toont het label met het registratiejaar, zodat een oud label opvalt."""
     if not ep:
@@ -593,14 +617,30 @@ def render_looptijd(woningen):
 
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
     """
-    Het actuele aanbod, beoordeeld tegen de mediaan van de eigen buurt.
-    Dit is wat de buurtentabel bruikbaar maakt: niet het cijfer zelf,
-    maar de afstand van een concreet pand tot dat cijfer.
+    Al het aanbod in een overzicht, elk pand afgezet tegen de mediaan van zijn
+    EIGEN assetklasse. Een winkelpand vergelijken met woningen levert een
+    percentage op dat er scherp uitziet maar niets betekent.
     """
     r = []
-    medianen = {b: st.median([p for p, _ in rijen])
-                for b, rijen in per_buurt.items() if len(rijen) >= 10}
-    stad_mediaan = st.median(stad_breed) if len(stad_breed) >= 10 else None
+    MINIMUM = 8  # onder dit aantal is een mediaan te wankel om tegen af te zetten
+
+    # Medianen per klasse, en binnen een klasse per buurt
+    per_klasse, per_klasse_buurt = defaultdict(list), defaultdict(list)
+    for w in woningen:
+        opp = w.get("oppervlakte")
+        if not opp or opp < 15:
+            continue
+        try:
+            ppm2 = w["prijs"] / opp
+        except (TypeError, ZeroDivisionError):
+            continue
+        klasse = assetklasse(w)
+        if klasse == "onbekend":
+            continue
+        per_klasse[klasse].append(ppm2)
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        if buurt:
+            per_klasse_buurt[(klasse, buurt)].append(ppm2)
 
     kandidaten = []
     for w in woningen:
@@ -609,46 +649,56 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
         opp = w.get("oppervlakte")
         if not opp or opp < 15:
             continue
-        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         ppm2 = w["prijs"] / opp
-        vergelijk = medianen.get(buurt)
-        basis = buurt if vergelijk else "Nijmegen"
-        if not vergelijk:
-            vergelijk = stad_mediaan
-        if not vergelijk:
+        klasse = assetklasse(w)
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+
+        # Eerst de eigen klasse in de eigen buurt, dan de eigen klasse stadsbreed
+        reeks = per_klasse_buurt.get((klasse, buurt), [])
+        basis = buurt
+        if len(reeks) < MINIMUM:
+            reeks = per_klasse.get(klasse, [])
+            basis = "heel Nijmegen"
+        if len(reeks) < MINIMUM:
+            kandidaten.append((999, ppm2, klasse, None, None, w))
             continue
-        afwijking = (ppm2 - vergelijk) / vergelijk * 100
-        dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
-        kandidaten.append((afwijking, ppm2, basis, dagen, w))
+
+        mediaan = st.median(reeks)
+        afwijking = (ppm2 - mediaan) / mediaan * 100
+        kandidaten.append((afwijking, ppm2, klasse, afwijking, basis, w))
 
     if not kandidaten:
         return r
 
-    r.append("### Aanbod beoordeeld tegen de buurt")
+    r.append("### Aanbod beoordeeld binnen de eigen assetklasse")
     r.append("")
-    r.append("| Adres | Buurt | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
-    r.append("|---|---|---:|---:|---:|---:|---|---:|")
-    for afwijking, ppm2, basis, dagen, w in sorted(kandidaten)[:15]:
+    r.append("| Adres | Buurt | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
+    r.append("|---|---|---|---:|---:|---:|---:|---|---:|")
+    for _, ppm2, klasse, afwijking, basis, w in sorted(kandidaten, key=lambda x: x[0]):
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         prijs_s = f"{w['prijs']:,}".replace(",", ".")
         ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-        merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
-        basis_kort = "" if basis == buurt else f" ({basis})"
-        label = _labeltekst(w.get("energielabel"))
-        r.append(f"| {w['adres']} | {buurt} | €{prijs_s} | {w['oppervlakte']} | "
-                 f"€{ppm2_s} | {merk} {afwijking:+.0f}%{basis_kort} | {label} | "
+        if afwijking is None:
+            oordeel = "te weinig vergelijking"
+        else:
+            merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
+            staart = "" if basis == buurt else f" ({basis})"
+            oordeel = f"{merk} {afwijking:+.0f}%{staart}"
+        dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
+        r.append(f"| {w['adres']} | {buurt} | {klasse} | €{prijs_s} | {w['oppervlakte']} | "
+                 f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
                  f"{dagen if dagen is not None else '—'} |")
     r.append("")
-    if len(kandidaten) > 15:
-        r.append(f"_{len(kandidaten) - 15} panden niet getoond. "
-                 f"Gesorteerd op prijs per m² ten opzichte van de buurtmediaan, "
-                 f"scherpst geprijsd bovenaan._")
-    else:
-        r.append("_Gesorteerd op prijs per m² ten opzichte van de buurtmediaan, "
-                 "scherpst geprijsd bovenaan._")
-    r.append("_Groen is meer dan 10% onder de mediaan, rood meer dan 10% erboven. "
-             "Staat er een buurtnaam achter het percentage, dan waren er te weinig "
-             "waarnemingen in de eigen buurt en is met heel Nijmegen vergeleken._")
+    r.append("_Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een "
+             "winkelpand en een woning zijn verschillende producten. Lukt dat niet in de "
+             "eigen buurt, dan tegen heel Nijmegen; staan er ook stadsbreed te weinig "
+             f"vergelijkbare objecten (minder dan {MINIMUM}), dan volgt er geen oordeel._")
+    r.append("_Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan "
+             "10% erboven._")
+
+    # Hoeveel objecten per klasse hebben we eigenlijk?
+    tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
+    r.append(f"_Omvang per klasse in de dataset: {tellen}._")
     r.append("")
     return r
 
