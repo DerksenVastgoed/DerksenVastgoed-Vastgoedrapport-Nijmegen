@@ -591,6 +591,68 @@ def render_looptijd(woningen):
     return r
 
 
+def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
+    """
+    Het actuele aanbod, beoordeeld tegen de mediaan van de eigen buurt.
+    Dit is wat de buurtentabel bruikbaar maakt: niet het cijfer zelf,
+    maar de afstand van een concreet pand tot dat cijfer.
+    """
+    r = []
+    medianen = {b: st.median([p for p, _ in rijen])
+                for b, rijen in per_buurt.items() if len(rijen) >= 10}
+    stad_mediaan = st.median(stad_breed) if len(stad_breed) >= 10 else None
+
+    kandidaten = []
+    for w in woningen:
+        if w.get("status", "").lower() not in ("te koop", "nieuw", "onder bod", "belegging"):
+            continue
+        opp = w.get("oppervlakte")
+        if not opp or opp < 15:
+            continue
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        ppm2 = w["prijs"] / opp
+        vergelijk = medianen.get(buurt)
+        basis = buurt if vergelijk else "Nijmegen"
+        if not vergelijk:
+            vergelijk = stad_mediaan
+        if not vergelijk:
+            continue
+        afwijking = (ppm2 - vergelijk) / vergelijk * 100
+        dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
+        kandidaten.append((afwijking, ppm2, basis, dagen, w))
+
+    if not kandidaten:
+        return r
+
+    r.append("### Aanbod beoordeeld tegen de buurt")
+    r.append("")
+    r.append("| Adres | Buurt | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
+    r.append("|---|---|---:|---:|---:|---:|---|---:|")
+    for afwijking, ppm2, basis, dagen, w in sorted(kandidaten)[:15]:
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+        prijs_s = f"{w['prijs']:,}".replace(",", ".")
+        ppm2_s = f"{int(ppm2):,}".replace(",", ".")
+        merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
+        basis_kort = "" if basis == buurt else f" ({basis})"
+        label = _labeltekst(w.get("energielabel"))
+        r.append(f"| {w['adres']} | {buurt} | €{prijs_s} | {w['oppervlakte']} | "
+                 f"€{ppm2_s} | {merk} {afwijking:+.0f}%{basis_kort} | {label} | "
+                 f"{dagen if dagen is not None else '—'} |")
+    r.append("")
+    if len(kandidaten) > 15:
+        r.append(f"_{len(kandidaten) - 15} panden niet getoond. "
+                 f"Gesorteerd op prijs per m² ten opzichte van de buurtmediaan, "
+                 f"scherpst geprijsd bovenaan._")
+    else:
+        r.append("_Gesorteerd op prijs per m² ten opzichte van de buurtmediaan, "
+                 "scherpst geprijsd bovenaan._")
+    r.append("_Groen is meer dan 10% onder de mediaan, rood meer dan 10% erboven. "
+             "Staat er een buurtnaam achter het percentage, dan waren er te weinig "
+             "waarnemingen in de eigen buurt en is met heel Nijmegen vergeleken._")
+    r.append("")
+    return r
+
+
 def render(woningen):
     vandaag = dt.date.today().strftime("%d-%m-%Y")
 
@@ -613,8 +675,8 @@ def render(woningen):
                 if mon:
                     w["monument"] = mon[0]
 
-    r = ["", "## Marktprijzen koop per buurt",
-         f"_Op basis van {len(woningen)} panden. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
+    r = ["", "## Aanbod en marktprijzen",
+         f"_{len(woningen)} panden gevolgd. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
          ""]
 
     # Bewegingen eerst: dat is het enige dat sinds gisteren veranderd kan zijn
@@ -675,6 +737,11 @@ def render(woningen):
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
 
+    # Het aanbod eerst, de tabel eronder als meetlat
+    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed))
+
+    r.append("### Referentie: prijspeil per buurt")
+    r.append("")
     r.append("| Buurt | N | p10 €/m² | p25 | mediaan | p75 | p90 |")
     r.append("|---|---:|---:|---:|---:|---:|---:|")
     for buurt in FOCUS_BUURTEN:
@@ -705,17 +772,14 @@ def render(woningen):
                  f"€{int(st.median(sb)):,} | €{int(sb[3*n//4]):,} | "
                  f"€{int(sb[min(n-1,int(n*0.90))]):,} |".replace(",", "."))
     r.append("")
-    r.append("_p10 en p90 in plaats van laagste en hoogste: één verkeerd gekoppeld adres "
-             "verpest een minimum of maximum, de percentielen niet. Bij minder dan tien "
-             "waarnemingen tonen we alleen de mediaan._")
-    r.append("")
+    toelichting = ["p10 en p90 in plaats van uitersten, want één verkeerd gekoppeld "
+                   "adres verpest een minimum. Onder tien waarnemingen alleen de mediaan"]
     if buiten_focus:
-        r.append(f"_{buiten_focus} panden lagen buiten de focus-buurten. Die tellen alleen mee in de regel Nijmegen totaal._")
+        toelichting.append(f"{buiten_focus} panden buiten de focus-buurten, alleen in de totaalregel")
     if geen_woonfunctie:
-        r.append(f"_{geen_woonfunctie} objecten zonder woonfunctie volgens de BAG (garagebox, bedrijfsunit, kantoor) zijn buiten beschouwing gelaten._")
-    r.append("_**Let op**: dit zijn transacties **vrij van huurder** (regulier Funda). "
-             "Beleggingspanden in verhuurde staat liggen doorgaans lager; hoeveel precies "
-             "staat verderop, berekend op de eigen data._")
+        toelichting.append(f"{geen_woonfunctie} objecten zonder woonfunctie weggelaten")
+    toelichting.append("prijzen zijn vrij van huurder; verhuurde staat ligt lager")
+    r.append("_" + ". ".join(toelichting) + "._")
     r.append("")
 
     # Yield-analyse: wat betekent deze €/m² voor een investeerder tegen huidige rente
