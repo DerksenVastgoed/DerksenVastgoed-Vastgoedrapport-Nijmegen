@@ -103,6 +103,25 @@ def _woz(p):
         return None
 
 
+# Mogelijke namen voor de gemiddelde woningoppervlakte. Of het CBS dit per buurt
+# levert weten we niet zeker; vindt het script niets, dan logt het alle velden.
+OPPERVLAKTE_VELDEN = [
+    "gemiddelde_woningoppervlakte", "gemiddeld_woonoppervlak",
+    "gemiddelde_oppervlakte_woning", "gemiddeld_oppervlak_woning",
+    "woonoppervlakte_gemiddeld", "gemiddelde_gebruiksoppervlakte",
+    "gem_woonoppervlakte", "oppervlakte_wonen_gemiddeld",
+]
+
+
+def _oppervlakte(p):
+    v = _veld(p, OPPERVLAKTE_VELDEN)
+    try:
+        v = float(v)
+        return round(v) if 15 <= v <= 400 else None
+    except (TypeError, ValueError):
+        return None
+
+
 def _pijl(nu, toen):
     if nu is None or toen is None:
         return "—"
@@ -169,9 +188,16 @@ def main():
         rijen.append({
             "naam": naam, "zijde": zijde,
             "won": _woningen(p_nu), "woz": _woz(p_nu),
+            "opp": _oppervlakte(p_nu),
             "koop": koop, "corp": corp, "over": over, "onb": onb,
             "trend": _pijl(koop, koop_toen),
         })
+
+    if rijen and not any(r.get("opp") for r in rijen):
+        eerste = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        print("Geen gemiddelde woningoppervlakte gevonden in de CBS-gegevens.",
+              file=sys.stderr)
+        print(f"Beschikbare velden: {sorted(eerste.keys())}", file=sys.stderr)
 
     md = render(rijen)
     print(md)
@@ -182,7 +208,8 @@ def main():
     # Ook als los gegevensbestand wegschrijven. Het marktprijzen-script toont
     # deze cijfers per buurt, maar alleen bij buurten waar aanbod in staat.
     import json as _json
-    gegevens = {r["naam"]: {k: r[k] for k in ("won", "woz", "koop", "corp", "over", "trend")}
+    gegevens = {r["naam"]: {k: r.get(k) for k in
+                            ("won", "woz", "koop", "corp", "over", "trend", "opp")}
                 for r in rijen}
     with open(CBS_PAD, "w", encoding="utf-8") as f:
         _json.dump(gegevens, f, ensure_ascii=False, indent=1, sort_keys=True)
