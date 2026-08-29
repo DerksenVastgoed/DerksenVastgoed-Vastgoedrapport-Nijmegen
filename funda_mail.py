@@ -42,8 +42,16 @@ RE_PRIJS = re.compile(r"([\d][\d.]{2,})")
 
 
 def strip_html(tekst):
-    """Maakt van een HTML-mail leesbare regels."""
+    """
+    Maakt van een HTML-mail leesbare regels. De href van een link naar een
+    objectpagina wordt als aparte regel bewaard, zodat we later per pand de
+    oorspronkelijke advertentie kunnen meegeven.
+    """
     tekst = re.sub(r"(?is)<(script|style).*?</\1>", " ", tekst)
+    # Objectlinks markeren voordat de tags verdwijnen
+    tekst = re.sub(
+        r'(?is)<a[^>]+href=["\']([^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*)["\'][^>]*>',
+        lambda m: f"\n__LINK__{m.group(1)}\n", tekst)
     tekst = re.sub(r"(?i)<br\s*/?>", "\n", tekst)
     tekst = re.sub(r"(?i)</(p|div|tr|td|h\d|li)>", "\n", tekst)
     tekst = re.sub(r"<[^>]+>", " ", tekst)
@@ -102,6 +110,8 @@ def parse_objecten(regels, basis_status):
     gevonden, gezien, overgeslagen = [], set(), []
 
     for i, regel in enumerate(regels):
+        if regel.startswith("__LINK__"):
+            continue
         adres = plaats = None
         adres_idx = i
 
@@ -174,8 +184,19 @@ def parse_objecten(regels, basis_status):
         if sleutel in gezien:
             continue
         gezien.add(sleutel)
+
+        # Bron-URL zoeken vlak boven of onder het adres
+        bron = ""
+        for j in range(max(0, adres_idx - 4), min(len(regels), i + 4)):
+            if regels[j].startswith("__LINK__"):
+                bron = regels[j][len("__LINK__"):].split("?")[0].strip()
+                break
+
         vandaag = dt.date.today().isoformat()
-        gevonden.append(f"{adres} | {plaats} | {prijs} | {status} | {vandaag}")
+        regel_uit = f"{adres} | {plaats} | {prijs} | {status} | {vandaag}"
+        if bron:
+            regel_uit += f" | {bron}"
+        gevonden.append(regel_uit)
 
     return gevonden, overgeslagen
 

@@ -21,6 +21,7 @@ import re
 import statistics as st
 import sys
 import time
+import urllib.parse
 from collections import defaultdict
 
 import requests
@@ -124,6 +125,7 @@ def lees_verkopen(pad):
             # Vijfde veld is de datum waarop we dit object zagen. Oude regels
             # zonder datum blijven gewoon werken; die tellen als 'onbekend'.
             datum = delen[4] if len(delen) > 4 else ""
+            bron = delen[5] if len(delen) > 5 else ""
             if datum and not re.match(r"^\d{4}-\d{2}-\d{2}$", datum):
                 datum = ""
             try:
@@ -137,6 +139,7 @@ def lees_verkopen(pad):
                 "prijs": prijs,
                 "status": status,
                 "datum": datum,
+                "bron": bron,
                 "regelnr": lineno,
             })
     return resultaat
@@ -507,6 +510,19 @@ def normaliseer_buurt(buurtnaam):
 COMMERCIEEL = ["winkel", "kantoor", "horeca", "bijeenkomst", "industrie", "logies"]
 
 
+
+def kaartlink(adres, plaats="Nijmegen", bron=""):
+    """
+    Adres als verwijzing naar Google Maps. Kennen we ook de oorspronkelijke
+    advertentie, dan komt daar een tweede verwijzing achter.
+    """
+    zoek = urllib.parse.quote_plus(f"{adres}, {plaats}")
+    tekst = f"[{adres}](https://www.google.com/maps/search/?api=1&query={zoek})"
+    if bron and bron.startswith("http"):
+        tekst += f" [↗]({bron})"
+    return tekst
+
+
 def assetklasse(w):
     """
     Bepaalt de assetklasse uit het BAG-gebruiksdoel.
@@ -575,7 +591,7 @@ def render_prijswijzigingen(woningen):
         teken = "▼" if verschil < 0 else "▲"
         versch_s = f"{abs(verschil):,}".replace(",", ".")
         dagen = _dagen_sinds(w.get("datum_eerst"))
-        r.append(f"| {w['adres']} | {buurt} | €{eerst_s} | €{nu_s} | "
+        r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | €{eerst_s} | €{nu_s} | "
                  f"{teken} €{versch_s} ({pct:+.1f}%) | {dagen if dagen is not None else '?'} |")
     r.append("")
     r.append("_Een verlaging na langere tijd in de markt is vaak het moment waarop "
@@ -607,7 +623,8 @@ def render_looptijd(woningen):
     for dagen, w in sorted(lang, reverse=True)[:8]:
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         prijs_s = f"{w['prijs']:,}".replace(",", ".")
-        r.append(f"- **{w['adres']}** ({buurt}) . €{prijs_s} . {dagen} dagen")
+        r.append(f"- **{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
+                 f"({buurt}) . €{prijs_s} . {dagen} dagen")
     r.append("")
     r.append("_Lang stilstaan zonder aanpassing wijst op een vraagprijs die de markt "
              "niet volgt. Dat is doorgaans het beste moment om te bieden._")
@@ -722,7 +739,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed):
             staart = "" if basis == buurt else f" ({basis})"
             oordeel = f"{merk} {afwijking:+.0f}%{staart}"
         dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
-        r.append(f"| {w['adres']} | {buurt} | {klasse} | €{prijs_s} | {w['oppervlakte']} | "
+        r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | "
+                 f"{klasse} | €{prijs_s} | {w['oppervlakte']} | "
                  f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
                  f"{dagen if dagen is not None else '—'} |")
     r.append("")
@@ -1050,8 +1068,8 @@ def render(woningen, modus="weekelijks"):
             sigtekst = ", ".join(soorten) if soorten else "geen treffer"
             prijs_s = f"{w['prijs']:,}".replace(",", ".")
             ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-            regel = (f"| {w['adres']} | {buurt} | €{prijs_s} | "
-                     f"{w.get('oppervlakte','?')} | €{ppm2_s} |")
+            regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | "
+                     f"€{prijs_s} | {w.get('oppervlakte','?')} | €{ppm2_s} |")
             if toon_bouwjaar:
                 regel += f" {w.get('bouwjaar') or '?'} |"
             if toon_label:

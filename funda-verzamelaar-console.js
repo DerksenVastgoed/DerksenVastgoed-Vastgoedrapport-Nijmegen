@@ -59,7 +59,18 @@ for(var i=0;i<regels.length;i++){
   var venster = regels.slice(Math.max(0,adresIdx-6), adresIdx);
   var status = DEF || statusUit(venster);
   var vandaag = new Date().toISOString().slice(0,10);
-  uit.push(adres+" | "+plaats+" | "+prijs+" | "+status+" | "+vandaag);
+  var bron = "";
+  try {
+    var ankers = document.querySelectorAll("a[href]");
+    for (var q = 0; q < ankers.length; q++) {
+      var tekst = (ankers[q].textContent || "").replace(/\s+/g, " ").trim();
+      if (tekst.indexOf(adres) >= 0) {
+        var h = ankers[q].href || "";
+        if (h.indexOf("funda") >= 0) { bron = h.split("?")[0]; break; }
+      }
+    }
+  } catch(e) {}
+  uit.push(adres+" | "+plaats+" | "+prijs+" | "+status+" | "+vandaag + (bron ? " | "+bron : ""));
 }
 
 var KEY="dv_verzameling";
