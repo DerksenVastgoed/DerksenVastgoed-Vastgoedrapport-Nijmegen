@@ -2,7 +2,8 @@ name: Bekendmakingen Nijmegen
 
 on:
   schedule:
-    - cron: "0 5 * * 1-5"
+    - cron: "0 5 * * 1-5"   # werkdagen: korte brief
+    - cron: "0 6 * * 0"     # zondag: uitgebreide brief
   workflow_dispatch: {}
 
 permissions:
@@ -31,16 +32,24 @@ jobs:
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
+          # Zondag is dag 7. Dan de uitgebreide brief, doordeweeks de korte.
+          if [ "$(date +%u)" = "7" ]; then MODUS=weekelijks; else MODUS=dagelijks; fi
+          echo "MODUS=$MODUS" >> "$GITHUB_ENV"
+          echo "Modus: $MODUS"
           python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
 
-      - name: Buurten-tabel bijwerken
+      - name: Buurten-tabel bijwerken (alleen zondag)
         run: |
-          python buurten_tabel.py --uit "digests/${DATUM}-buurten.md" || echo "Tabel-stap overgeslagen"
+          if [ "$MODUS" = "weekelijks" ]; then
+            python buurten_tabel.py --uit "digests/${DATUM}-buurten.md" || echo "Tabel-stap overgeslagen"
+          else
+            echo "Doordeweeks: buurten-tabel overgeslagen"
+          fi
 
       - name: Rente ophalen
         run: |
-          python rente_verhuurhypotheek.py --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
+          python rente_verhuurhypotheek.py --modus "$MODUS" --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
 
       - name: Publicaties ophalen
         env:
@@ -82,7 +91,7 @@ jobs:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
-          python marktprijzen_bag.py --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
+          python marktprijzen_bag.py --modus "$MODUS" --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
       - name: Brief samenstellen
         run: |
@@ -96,25 +105,25 @@ jobs:
             echo ""
             echo "---"
             echo ""
-            if [ -f "digests/${DATUM}-publicaties.md" ]; then
+            if [ -s "digests/${DATUM}-publicaties.md" ]; then
               cat "digests/${DATUM}-publicaties.md"
               echo ""
               echo "---"
               echo ""
             fi
-            if [ -f "digests/${DATUM}-rente.md" ]; then
+            if [ -s "digests/${DATUM}-rente.md" ]; then
               cat "digests/${DATUM}-rente.md"
               echo ""
               echo "---"
               echo ""
             fi
-            if [ -f "digests/${DATUM}-marktprijzen.md" ]; then
+            if [ -s "digests/${DATUM}-marktprijzen.md" ]; then
               cat "digests/${DATUM}-marktprijzen.md"
               echo ""
               echo "---"
               echo ""
             fi
-            if [ -f "digests/${DATUM}-buurten.md" ]; then
+            if [ -s "digests/${DATUM}-buurten.md" ]; then
               cat "digests/${DATUM}-buurten.md"
             fi
           } > "$BRIEF"
@@ -148,6 +157,11 @@ jobs:
           open('$HTML_PAD', 'w', encoding='utf-8').write(html)
           "
           echo "HTML_PAD=$HTML_PAD" >> "$GITHUB_ENV"
+          if [ "$MODUS" = "weekelijks" ]; then
+            echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM} (weekoverzicht)" >> "$GITHUB_ENV"
+          else
+            echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM}" >> "$GITHUB_ENV"
+          fi
 
       - name: Digests + rentehistorie + cache terugcommitten
         run: |
@@ -167,6 +181,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
-          subject: Vastgoedbrief Nijmegen ${{ env.DATUM }}
+          subject: ${{ env.ONDERWERP }}
           html_body: file://${{ env.HTML_PAD }}
           convert_markdown: false
