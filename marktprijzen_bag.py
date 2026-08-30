@@ -723,6 +723,18 @@ WOZ_ONDERGRENS = 278_000
 WOZ_BOVENGRENS = 396_000
 
 
+
+# Rekenparameters voor rendement en cashflow. De huur per m2 is een aanname die
+# vervalt zodra er gemeten huuraanbiedingen binnenkomen.
+HUUR_M2_MND = {
+    "Stadscentrum": 20, "Benedenstad": 20, "Bottendaal": 18,
+    "Galgenveld": 18, "Altrade": 17, "Biezen": 18,
+}
+RENTE = 5.75      # indicatie verhuurhypotheek
+OPEX_PCT = 25     # onderhoud, leegstand, beheer
+LTV = 66.7        # standaard financieringsgraad
+
+
 def verkameren_signaal(prijs):
     """
     Richtinggevende zeef op basis van de vraagprijs. De WOZ zelf is niet vrij
@@ -882,6 +894,205 @@ def gemeten_huren(huur_aanbod):
     return per_buurt_klasse, per_klasse
 
 
+
+# ---------------------------------------------------------------------------
+# Zondagsbrief: geen lijst maar een handvol uitgewerkte investeringscases.
+# ---------------------------------------------------------------------------
+
+BELEID_UITGELICHT = [
+    ("Aangewezen wijk",
+     "In de aangewezen wijken, waaronder Benedenstad, Centrum, Bottendaal, "
+     "Galgenveld, Altrade, Hunnerberg, Biezen en Wolfskuil, is omzetting van "
+     "álle woonruimte vergunningplichtig, ongeacht de WOZ-waarde. De WOZ-band "
+     "bepaalt dus niet óf je een vergunning nodig hebt, maar of je er een kunt "
+     "krijgen."),
+    ("Drempel van drie",
+     "De vergunningplicht geldt bij omzetting naar drie of meer onzelfstandige "
+     "woonruimten én bij bewoning door drie of meer personen. Twee kamers met "
+     "drie bewoners valt er dus ook onder."),
+    ("Fietsenstalling",
+     "Een omzettingsvergunning wordt geweigerd als er geen stalling op eigen "
+     "terrein is: anderhalve vierkante meter per bewoner, niet hoger dan de "
+     "begane grond, in een afzonderlijke daartoe bestemde ruimte. Bij "
+     "vooroorlogse panden zonder achterom is dit vaak de kritieke eis."),
+    ("Maximaal twee naast elkaar",
+     "Er mogen niet meer dan twee direct naast, onder of boven elkaar gelegen "
+     "woningen kamergewijs bewoond zijn, en de omzetting mag geen zelfstandig "
+     "bewoonde woning insluiten. In een straat waar de buren al verkamerd zijn "
+     "kan het dus niet meer."),
+    ("Leefbaarheidstoets",
+     "Een ambtelijke adviesgroep beoordeelt of de vergunning leidt tot een "
+     "onaanvaardbare inbreuk op het woon- en leefklimaat. Staat het woonmilieu "
+     "van de straat al onder druk, dan is dat op zichzelf een weigeringsgrond."),
+    ("Boetes bij een BV",
+     "Omzetten zonder vergunning kost €5.000 als particulier en €10.000 bij "
+     "bedrijfsmatige exploitatie, bij herhaling €7.500 respectievelijk €15.000. "
+     "Verhuur je via een vennootschap, dan geldt de hogere staffel."),
+    ("Hospita-uitzondering",
+     "Vergunningvrij blijft de hospita-constructie: je woont zelf in het pand, "
+     "bent volledig eigenaar, gebruikt meer dan de helft zelf en verhuurt "
+     "maximaal twee kamers aan maximaal twee personen."),
+    ("Bouwbesluit bij verkamering",
+     "Na omzetting moeten de kamers voldoen aan de nieuwbouwnormen voor "
+     "luchtgeluidsisolatie en aan de eisen voor brandveilig gebruik. Dat is "
+     "bij een vooroorlogs pand zelden een kleine ingreep."),
+]
+
+
+def _beleid_van_de_week():
+    """Rouleert door de beleidsonderdelen op weeknummer, zodat elke week iets anders."""
+    week = dt.date.today().isocalendar()[1]
+    return BELEID_UITGELICHT[week % len(BELEID_UITGELICHT)]
+
+
+def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
+                             bm_per_buurt=None, aantal=3):
+    """
+    De zondagsbrief licht een paar panden uit en rekent ze door: positie in de
+    markt, rendement bij de huidige rente, uitpondpotentie en het gemeentelijk
+    beleid dat op dat pand van toepassing is.
+    """
+    r = []
+    bm = bm_per_buurt or {}
+
+    # Alleen woningen in de eigen ring, met een oordeel, scherpst eerst
+    geschikt = [k for k in kandidaten
+                if k[2] == "woning" and k[3] is not None
+                and normaliseer_buurt(k[-1].get("buurtnaam", "")) in FOCUS_BUURTEN]
+    if not geschikt:
+        return r
+    top = sorted(geschikt, key=lambda x: x[0])[:aantal]
+
+    r.append("## Uitgelicht: investeringscases")
+    r.append("")
+    r.append(f"_De {len(top)} scherpst geprijsde woningen in de ring, doorgerekend. "
+             f"Blijft een pand staan, dan blijft het hier staan tot het verkocht is "
+             f"of iets beters langskomt._")
+    r.append("")
+
+    for rang, (afwijking, ppm2, klasse, _a, basis, w) in enumerate(top, 1):
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+        g = cbs.get(buurt) or {}
+        opp = w["oppervlakte"]
+        prijs = w["prijs"]
+
+        def n(x):
+            return f"{int(x):,}".replace(",", ".")
+
+        r.append(f"### {rang}. {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}"
+                 f", {buurt}")
+        r.append("")
+
+        # Wat we van het pand weten
+        feiten = [f"€{n(prijs)}", f"{opp} m²", f"€{n(ppm2)}/m²"]
+        if w.get("bouwjaar"):
+            feiten.append(f"bouwjaar {w['bouwjaar']}")
+        lab = _labeltekst(w.get("energielabel"))
+        if lab != "onbekend":
+            feiten.append(f"label {lab}")
+        if w.get("monument"):
+            feiten.append("rijksmonument")
+        r.append("**Het pand.** " + " . ".join(feiten) + ".")
+
+        # Positie in de markt
+        rijen = per_buurt.get(buurt, [])
+        pos = [f"{afwijking:+.0f}% ten opzichte van de mediaan"
+               + ("" if basis == buurt else f" van {basis}")]
+        if len(rijen) >= 10:
+            prijzen = sorted(p for p, _ in rijen)
+            p25 = prijzen[len(prijzen) // 4]
+            p75 = prijzen[3 * len(prijzen) // 4]
+            waar = ("onder het eerste kwartiel" if ppm2 < p25 else
+                    "boven het derde kwartiel" if ppm2 > p75 else
+                    "binnen de middelste helft")
+            pos.append(f"{waar} van {buurt} (p25 €{n(p25)}, p75 €{n(p75)})")
+        if g.get("woz") and g.get("opp"):
+            wozm2 = g["woz"] * 1000 / g["opp"]
+            pos.append(f"{(ppm2 - wozm2) / wozm2 * 100:+.0f}% ten opzichte van de "
+                       f"WOZ per m² in de buurt")
+        r.append("**Positie in de markt.** " + ". ".join(pos) + ".")
+
+        # Rendement bij de huidige rente
+        lening = prijs * LTV / 100
+        rentelast = lening * RENTE / 100
+        reeks = huur_bk.get(("woning", buurt), [])
+        bron_huur = f"gemeten op {len(reeks)} aanbiedingen in {buurt}"
+        if len(reeks) < 3:
+            reeks = huur_k.get("woning", [])
+            bron_huur = f"gemeten op {len(reeks)} aanbiedingen stadsbreed"
+        if len(reeks) < 3:
+            huur_m2 = HUUR_M2_MND.get(buurt, 18)
+            bron_huur = "aanname, nog geen huurdata verzameld"
+        else:
+            huur_m2 = st.median(reeks)
+        jaarhuur = huur_m2 * 12 * opp
+        netto = jaarhuur * (1 - OPEX_PCT / 100)
+        cashflow = netto - rentelast
+        eigen = prijs - lening
+        r.append(f"**Rendement.** Bij {LTV:.0f}% financiering leen je €{n(lening)} en leg "
+                 f"je €{n(eigen)} eigen geld in. Tegen {RENTE}% is de rentelast "
+                 f"€{n(rentelast)} per jaar. Bij €{huur_m2:.0f}/m²/maand ({bron_huur}) "
+                 f"is de kale huur €{n(jaarhuur)}, na {OPEX_PCT}% opex €{n(netto)}. "
+                 f"Cashflow: **€{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} "
+                 f"per jaar** op €{n(eigen)} eigen geld. "
+                 f"Bruto aanvangsrendement {jaarhuur / prijs * 100:.1f}%.")
+
+        # Uitpondpotentie
+        if len(rijen) >= 10:
+            voh = st.median([p for p, _ in rijen])
+            marge = (voh - ppm2) * opp
+            if marge > 0:
+                r.append(f"**Uitponden.** Op de mediaan van {buurt} (€{n(voh)}/m²) is dit "
+                         f"pand €{n(marge)} waard boven de vraagprijs. Dat is de ruimte "
+                         f"vóór renovatie, overdrachtsbelasting en verkoopkosten.")
+            else:
+                r.append(f"**Uitponden.** De vraagprijs ligt al boven de mediaan van "
+                         f"{buurt}; de marge moet dan uit renovatie of splitsing komen.")
+
+        # Beleid toegepast op dit pand
+        beleid = []
+        signaal = verkameren_signaal(prijs)
+        if signaal == "niet toegestaan":
+            beleid.append("verkameren is uitgesloten: de vraagprijs ligt onder "
+                          f"€{n(WOZ_ONDERGRENS)}, en Nijmegen staat kamerverhuur onder "
+                          "die WOZ-grens niet toe")
+        elif signaal == "vermoedelijk vergunningplichtig":
+            beleid.append("verkameren is vermoedelijk vergunningplichtig; controleer de "
+                          "WOZ op wozwaardeloket.nl")
+        else:
+            beleid.append("de WOZ ligt vermoedelijk boven de band; controleer welk "
+                          "regime dan geldt")
+        if buurt in FOCUS_BUURTEN:
+            beleid.append(f"{buurt} is een aangewezen wijk, dus omzetting is daar sowieso "
+                          "vergunningplichtig")
+        if g.get("meergezins") is not None:
+            beleid.append(f"{g['meergezins']}% van de voorraad is appartement, wat iets "
+                          "zegt over hoe gebruikelijk splitsen hier is")
+        beleid[0] = beleid[0][0].upper() + beleid[0][1:]
+        r.append("**Beleid.** " + ". ".join(beleid) + ".")
+
+        # Wat de gemeente over dit adres publiceerde
+        eigen_bm = [b for b in bm.get(buurt, [])
+                    if b.get("straat", "").lower() in w["adres"].lower()
+                    and b.get("huisnummer", "") in w["adres"]]
+        if eigen_bm:
+            r.append("**Bekendmakingen op dit adres.** "
+                     + " ".join(f"{b.get('datum','')}: {b.get('titel','')}." for b in eigen_bm))
+        r.append("")
+
+    # Beleidsonderdeel van de week
+    titel, tekst = _beleid_van_de_week()
+    r.append(f"### Beleid uitgelicht: {titel.lower()}")
+    r.append("")
+    r.append(tekst)
+    r.append("")
+    r.append("_Uit de Huisvestingsverordening Nijmegen. Controleer de actuele versie "
+             "voordat je erop handelt; de verordening wordt periodiek herzien en "
+             "bedragen worden geïndexeerd._")
+    r.append("")
+    return r
+
+
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                         bm_overig=None, kort=False):
     """
@@ -936,7 +1147,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         kandidaten.append((afwijking, ppm2, klasse, afwijking, basis, w))
 
     if not kandidaten:
-        return r
+        return r, []
 
     cbs = lees_cbs()
     opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
@@ -963,7 +1174,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         buiten_ring = sum(len(per_buurt_aanbod.get(b, [])) for b in buiten)
         alle_buurten = {b for b in alle_buurten if b in FOCUS_BUURTEN}
         if not alle_buurten:
-            return []
+            return [], kandidaten
 
     def sorteer(buurt):
         rijen_buurt = per_buurt_aanbod.get(buurt, [])
@@ -1063,7 +1274,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"WOZ per pand is niet vrij op te vragen; controleer die zelf op "
                  f"wozwaardeloket.nl. Bedragen worden jaarlijks geïndexeerd._".replace(",", "."))
         r.append("")
-    return r
+    return r, kandidaten
 
 
 KAART_URL = ("https://derksenvastgoed.github.io/"
@@ -1227,9 +1438,11 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
 
-    # Het aanbod eerst, de tabel eronder als meetlat
-    r.extend(render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt,
-                                 bm_overig, kort=kort))
+    # Doordeweeks de volledige lijst per buurt, zondag uitgewerkte cases
+    aanbod_regels, kandidaten = render_nieuw_aanbod(
+        woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig, kort=kort)
+    if kort:
+        r.extend(aanbod_regels)
 
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
@@ -1240,6 +1453,11 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                  "uitgebreide brief van zondag._")
         r.append("")
         return "\n".join(r)
+
+    # Zondag: uitgewerkte investeringscases in plaats van de volledige lijst
+    huur_bk, huur_k = gemeten_huren(huur_aanbod)
+    r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
+                                      huur_bk, huur_k, bm_per_buurt))
 
     r.append("### Referentie: prijspeil per buurt")
     r.append("")
@@ -1285,16 +1503,6 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
 
     # Yield-analyse: wat betekent deze €/m² voor een investeerder tegen huidige rente
     # Referentie-huren op basis van Krayenhofflaan-cluster (Biezen €19-22/m²) en Pararius Q2 2026
-    HUUR_M2_MND = {
-        "Stadscentrum": 20, "Benedenstad": 20, "Bottendaal": 18,
-        "Galgenveld": 18, "Altrade": 17, "Biezen": 18,
-    }
-    RENTE = 5.75  # huidige verhuurhypotheek indicatie
-    OPEX_PCT = 25
-    LTV = 66.7
-
-    # Gemeten huren waar we ze hebben, aanname alleen waar die ontbreekt
-    huur_bk, huur_k = gemeten_huren(huur_aanbod)
 
     r.append("### Yield en cashflow bij aankoop vrij van huurder")
     aantal_gemeten = sum(len(v) for v in huur_k.values())
