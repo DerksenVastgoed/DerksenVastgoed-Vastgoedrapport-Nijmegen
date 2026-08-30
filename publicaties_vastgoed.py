@@ -35,6 +35,7 @@ FEEDS = [
     ("Particuliere verhuur", _gnews("verhuurders OR particuliere huursector")),
     ("Box 3 vastgoed", _gnews('"box 3" vastgoed')),
     ("Uitponden", _gnews("uitponden OR uitpondstrategie OR leegwaarde")),
+    ("Huurprijzen", _gnews("huurcommissie OR huurverlaging OR \"te hoge huur\"")),
     # Regio
     ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
     # Verduurzaming
@@ -58,7 +59,9 @@ TREFWOORDEN = [
     "prijsontwikkeling", "woningwaarde", "transactie", "verkocht",
     "makelaar", "taxatie", "woningaanbod", "krapte", "doorstroming",
     # Verhuur
-    "verhuur", "verhuurder", "huurwoning", "huurprijs", "huurmarkt",
+    "verhuur", "verhuurder", "huurder", "huurwoning", "huurprijs", "huurmarkt",
+    "huurcommissie", "huurverlaging", "huurverhoging", "puntensysteem",
+    "te hoge huur", "huurcontract", "servicekosten",
     "huursector", "kamerverhuur", "studentenhuisvesting", "middenhuur",
     "corporatie", "belegger", "uitpond", "leegwaarde",
     # Beleid en fiscaal

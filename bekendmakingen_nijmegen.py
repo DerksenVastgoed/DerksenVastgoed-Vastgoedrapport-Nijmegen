@@ -610,6 +610,24 @@ def main():
         sys.exit(1)
 
     items = [parse_record(r) for r in records]
+
+    # Beleidsstukken hebben geen adres en sneuvelen dus in de ringfilter, terwijl
+    # een wijziging van de huisvestingsverordening juist direct van belang is.
+    # Die vissen we er apart uit, voordat er op ligging wordt gefilterd.
+    BELEIDSWOORDEN = [
+        "huisvestingsverordening", "verordening", "beleidsregel", "beleidsregels",
+        "woonvisie", "woonagenda", "kamerverhuurbeleid", "omzettingsvergunning",
+        "onttrekkingsvergunning", "opkoopbescherming", "huisvestingswet",
+        "wijzigingsverordening", "nadere regels", "aanwijzingsbesluit",
+        "leefbaarheidstoets", "woonruimteverdeling", "splitsingsbeleid",
+        "verhuurdersvergunning", "goed verhuurderschap",
+    ]
+    beleid = []
+    for it in items:
+        hooi = (it["titel"] + " " + it.get("type", "")).lower()
+        if any(w in hooi for w in BELEIDSWOORDEN):
+            beleid.append(it)
+
     if not args.alles:
         items = [it for it in items if in_ring(it)]
 
@@ -625,8 +643,32 @@ def main():
         elif soort == "overige":
             overige.append(it)
 
+    # Beleidsitems ontdubbelen tegen wat al in kern of overige staat
+    reeds = {(it["titel"], it["datum"]) for it in kern + overige}
+    beleid = [it for it in beleid if (it["titel"], it["datum"]) not in reeds]
+
     verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
-    verrijk(kern + overige)  # duiding voor alle getoonde items in een call
+    verrijk(kern + overige + beleid)  # duiding voor alle getoonde items in een call
+
+    if beleid:
+        print(f"Beleidsstukken gevonden: {len(beleid)}", file=sys.stderr)
+        try:
+            with open("beleid_vandaag.md", "w", encoding="utf-8") as f:
+                f.write("\n## Beleid gemeente Nijmegen\n\n")
+                f.write("_Wijzigingen in verordeningen en beleidsregels die het "
+                        "verhuren, splitsen of verkameren raken._\n\n")
+                for it in beleid:
+                    link = f" ([bron]({it['url']}))" if it.get("url") else ""
+                    strat = (it.get("strategie") or "").strip()
+                    merk = f"**[{strat}]** " if strat and strat != "geen" else ""
+                    f.write(f"- `{it['datum']}` {merk}{it['titel']}{link}\n")
+                    if it.get("gevolg"):
+                        f.write(f"  _{it['gevolg']}_\n")
+                f.write("\n")
+        except Exception as e:
+            print(f"Kon beleid_vandaag.md niet schrijven: {e}", file=sys.stderr)
+    elif os.path.exists("beleid_vandaag.md"):
+        os.remove("beleid_vandaag.md")
 
     # Ook als gegevensbestand wegschrijven, zodat het aanbodblok de berichten
     # per buurt kan tonen naast de panden die daar te koop staan.
