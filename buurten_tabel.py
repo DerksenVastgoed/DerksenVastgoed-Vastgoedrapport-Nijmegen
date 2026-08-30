@@ -216,10 +216,31 @@ def main():
             "studenten": (_getal(p_nu, ["aantal_studenten_wo"], 0) or 0)
                          + (_getal(p_nu, ["aantal_studenten_hbo"], 0) or 0),
             "inwoners": _getal(p_nu, ["aantal_inwoners"], 0),
+            "nietwoningen": _getal(p_nu, ["aantal_niet_woningvoorraad"], 0),
+            "bedrijven": _getal(p_nu, ["aantal_bedrijfsvestigingen"], 0),
             "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
             "koop": koop, "corp": corp, "over": over, "onb": onb,
             "trend": _pijl(koop, koop_toen),
         })
+
+    # Stadstotalen: alles wat in de opgehaalde set als Nijmegen geregistreerd staat.
+    # Zo kun je de ring afzetten tegen de stad als geheel.
+    stad = {"woningen": 0, "nietwoningen": 0, "inwoners": 0,
+            "studenten": 0, "bedrijven": 0, "buurten": 0}
+    for f in feats_nu:
+        p = f.get("properties", {}) or {}
+        if str(p.get("gemeentenaam", "")).lower() != GEMEENTE.lower():
+            continue
+        stad["buurten"] += 1
+        stad["woningen"] += _getal(p, ["woningvoorraad", "aantal_woningen"], 0) or 0
+        stad["nietwoningen"] += _getal(p, ["aantal_niet_woningvoorraad"], 0) or 0
+        stad["inwoners"] += _getal(p, ["aantal_inwoners"], 0) or 0
+        stad["studenten"] += ((_getal(p, ["aantal_studenten_wo"], 0) or 0)
+                              + (_getal(p, ["aantal_studenten_hbo"], 0) or 0))
+        stad["bedrijven"] += _getal(p, ["aantal_bedrijfsvestigingen"], 0) or 0
+    print(f"Stadstotalen over {stad['buurten']} buurten: "
+          f"{stad['woningen']} woningen, {stad['inwoners']} inwoners, "
+          f"{stad['studenten']} studenten", file=sys.stderr)
 
     if rijen and not any(r.get("opp") for r in rijen):
         eerste = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
@@ -239,8 +260,9 @@ def main():
     gegevens = {r["naam"]: {k: r.get(k) for k in
                             ("won", "woz", "koop", "corp", "over", "trend", "opp",
                              "meergezins", "voor2000", "studenten", "leegstand",
-                             "inwoners")}
+                             "inwoners", "nietwoningen", "bedrijven")}
                 for r in rijen}
+    gegevens["_nijmegen"] = stad
     with open(CBS_PAD, "w", encoding="utf-8") as f:
         _json.dump(gegevens, f, ensure_ascii=False, indent=1, sort_keys=True)
     print(f"Buurtgegevens opgeslagen in {CBS_PAD}", file=sys.stderr)

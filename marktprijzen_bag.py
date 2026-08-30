@@ -951,47 +951,132 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
     r.append("### Per gebied: aanbod en gemeentelijke berichten")
     r.append("")
+
+    # De dagenkolom alleen tonen als er ergens een datum bekend is
+    toon_dagen = any(_dagen_sinds(k[-1].get("datum_eerst") or k[-1].get("datum")) is not None
+                     for rijen_buurt in per_buurt_aanbod.values() for k in rijen_buurt)
+
     for buurt, rijen_buurt in volgorde:
         r.append(f"**{buurt}**")
         kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt), studenten_ring)
         if kenmerken:
             r.append(f"_{kenmerken}_")
         r.append("")
-        if rijen_buurt:
-            r.append("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label | Dagen |")
-            r.append("|---|---|---:|---:|---:|---:|---|---:|")
-        for _, ppm2, klasse, afwijking, basis, w in sorted(rijen_buurt, key=lambda x: x[0]):
-            prijs_s = f"{w['prijs']:,}".replace(",", ".")
-            ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-            if afwijking is None:
-                oordeel = "te weinig vergelijking"
-            else:
+
+        # Panden zonder vergelijkingsmateriaal apart houden: vijf keer dezelfde
+        # mededeling in een tabel leest slecht.
+        beoordeeld = [k for k in rijen_buurt if k[3] is not None]
+        onbeoordeeld = [k for k in rijen_buurt if k[3] is None]
+
+        if beoordeeld:
+            kop = "| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label |"
+            streep = "|---|---|---:|---:|---:|---:|---|"
+            if toon_dagen:
+                kop += " Dagen |"
+                streep += "---:|"
+            r.append(kop)
+            r.append(streep)
+            for _, ppm2, klasse, afwijking, basis, w in sorted(beoordeeld, key=lambda x: x[0]):
+                prijs_s = f"{w['prijs']:,}".replace(",", ".")
+                ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
-                oordeel = f"{merk} {afwijking:+.0f}%{staart}"
-            dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
-            r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
-                     f"{klasse} | €{prijs_s} | {w['oppervlakte']} | "
-                     f"€{ppm2_s} | {oordeel} | {_labeltekst(w.get('energielabel'))} | "
-                     f"{dagen if dagen is not None else '—'} |")
-        r.append("")
+                regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
+                         f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
+                         f"{merk} {afwijking:+.0f}%{staart} | "
+                         f"{_labeltekst(w.get('energielabel'))} |")
+                if toon_dagen:
+                    dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
+                    regel += f" {dagen if dagen is not None else '—'} |"
+                r.append(regel)
+            r.append("")
+
+        if onbeoordeeld:
+            stukken = []
+            for _, ppm2, klasse, _a, _b, w in sorted(onbeoordeeld, key=lambda x: x[1]):
+                prijs_s = f"{w['prijs']:,}".replace(",", ".")
+                ppm2_s = f"{int(ppm2):,}".replace(",", ".")
+                stukken.append(f"{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                               f"€{prijs_s} ({w['oppervlakte']} m², €{ppm2_s}/m²)")
+            r.append(f"_Zonder vergelijking, te weinig {onbeoordeeld[0][2]} objecten in de "
+                     f"dataset: " + " . ".join(stukken) + "._")
+            r.append("")
+
         if bm.get(buurt):
             r.extend(bekendmakingregels(bm[buurt]))
             r.append("")
 
-    r.append("_Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een "
-             "winkelpand en een woning zijn verschillende producten. Lukt dat niet in de "
-             "eigen buurt, dan tegen heel Nijmegen; staan er ook stadsbreed te weinig "
-             f"vergelijkbare objecten (minder dan {MINIMUM}), dan volgt er geen oordeel._")
-    r.append("_Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan "
-             "10% erboven. De buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
     if kort and buiten_ring:
         r.append(f"_{buiten_ring} panden staan in buurten buiten de ring. Die staan in de "
-                 f"uitgebreide brief van zondag, waar ze als vergelijkingsmateriaal dienen._")
+                 f"uitgebreide brief van zondag._")
+        r.append("")
+    if not kort:
+        # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
+        r.append("_Elk pand is afgezet tegen de mediaan van zijn eigen assetklasse, want een "
+                 "winkelpand en een woning zijn verschillende producten. Lukt dat niet in de "
+                 "eigen buurt, dan tegen heel Nijmegen; staan er ook stadsbreed te weinig "
+                 f"vergelijkbare objecten (minder dan {MINIMUM}), dan volgt er geen oordeel. "
+                 "Groen is meer dan 10% onder de mediaan van de eigen klasse, rood meer dan "
+                 "10% erboven. Buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
+        tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
+        r.append(f"_Omvang per klasse in de dataset: {tellen}._")
+        r.append("")
+    return r
 
-    # Hoeveel objecten per klasse hebben we eigenlijk?
-    tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
-    r.append(f"_Omvang per klasse in de dataset: {tellen}._")
+
+def render_macro(cbs, kort=False):
+    """
+    Opening van macro naar micro: eerst Nijmegen als geheel, dan de ring,
+    dan pas de buurten. Zonder die noemers zeggen de buurtcijfers weinig.
+    """
+    stad = cbs.get("_nijmegen") or {}
+    if not stad.get("woningen"):
+        return []
+
+    ring = {"woningen": 0, "nietwoningen": 0, "inwoners": 0, "studenten": 0}
+    for buurt in FOCUS_BUURTEN:
+        g = cbs.get(buurt) or {}
+        ring["woningen"] += g.get("won") or 0
+        ring["nietwoningen"] += g.get("nietwoningen") or 0
+        ring["inwoners"] += g.get("inwoners") or 0
+        ring["studenten"] += g.get("studenten") or 0
+
+    def n(x):
+        return f"{x:,}".replace(",", ".")
+
+    def aandeel(deel, geheel):
+        return f"{round(deel / geheel * 100)}%" if geheel else "—"
+
+    r = ["### De ring in cijfers", ""]
+    r.append("| | Nijmegen | Ring | Aandeel |")
+    r.append("|---|---:|---:|---:|")
+    r.append(f"| Woningen | {n(stad['woningen'])} | {n(ring['woningen'])} | "
+             f"{aandeel(ring['woningen'], stad['woningen'])} |")
+    if stad.get("nietwoningen"):
+        r.append(f"| Niet-woningen (winkels, kantoren) | {n(stad['nietwoningen'])} | "
+                 f"{n(ring['nietwoningen'])} | "
+                 f"{aandeel(ring['nietwoningen'], stad['nietwoningen'])} |")
+    if stad.get("inwoners"):
+        r.append(f"| Inwoners | {n(stad['inwoners'])} | {n(ring['inwoners'])} | "
+                 f"{aandeel(ring['inwoners'], stad['inwoners'])} |")
+    if stad.get("studenten"):
+        r.append(f"| Studenten (woonachtig) | {n(stad['studenten'])} | "
+                 f"{n(ring['studenten'])} | "
+                 f"{aandeel(ring['studenten'], stad['studenten'])} |")
+    r.append("")
+
+    if stad.get("inwoners") and stad.get("studenten"):
+        stad_pct = round(stad["studenten"] / stad["inwoners"] * 100)
+        ring_pct = (round(ring["studenten"] / ring["inwoners"] * 100)
+                    if ring.get("inwoners") else None)
+        zin = (f"In Nijmegen is {stad_pct}% van de inwoners student")
+        if ring_pct is not None:
+            zin += f", in de ring {ring_pct}%"
+        r.append(f"_{zin}. Het CBS telt studenten op hun woonadres, dus dit is niet "
+                 f"het aantal ingeschrevenen bij de Radboud Universiteit en de HAN._")
+    if not kort:
+        r.append(f"_Stadscijfers opgeteld over {stad.get('buurten', 0)} Nijmeegse buurten "
+                 f"in het opgehaalde gebied._")
     r.append("")
     return r
 
@@ -1025,11 +1110,18 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                     w["monument"] = mon[0]
 
     kop = "## Aanbod" if kort else "## Aanbod en marktprijzen"
+    in_aanbod = sum(1 for w in woningen
+                    if (w.get("status") or "").lower() in
+                    ("te koop", "nieuw", "onder bod", "belegging"))
     r = ["", kop,
-         f"_{len(woningen)} panden gevolgd. Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
+         f"_{in_aanbod} panden in aanbod, afgezet tegen {len(woningen)} gevolgde panden. "
+         f"Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
          ""]
 
-    # Bewegingen eerst: dat is het enige dat sinds gisteren veranderd kan zijn
+    # Van macro naar micro: eerst de stad en de ring, dan pas de buurten
+    r.extend(render_macro(lees_cbs(), kort=kort))
+
+    # Bewegingen: het enige dat sinds gisteren veranderd kan zijn
     r.extend(render_prijswijzigingen(woningen))
     r.extend(render_looptijd(woningen))
 
