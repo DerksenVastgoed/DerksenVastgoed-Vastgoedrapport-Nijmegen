@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uitgelichte panden</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+ body{margin:0;font:14px -apple-system,Segoe UI,Roboto,sans-serif;color:#1a2830}
+ header{padding:14px 18px;border-bottom:2px solid #E0A458}
+ h1{margin:0;font-size:18px}
+ p{margin:4px 0 0;color:#4a5b63;font-size:13px}
+ #kaart{height:calc(100vh - 74px)}
+ .nr{background:#12242c;color:#fff;border-radius:50%;width:26px;height:26px;
+     line-height:26px;text-align:center;font-weight:700}
+</style></head><body>
+<header><h1>Uitgelichte panden</h1><p>Bijgewerkt 30-08-2026</p></header>
+<div id="kaart"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var punten = [{"rang": 2, "lat": 51.8447747, "lon": 5.84393142, "adres": "Zwaluwstraat 7", "buurt": "Biezen", "tekst": "€335.000 . 86 m² . €3.895/m²"}];
+var kaart = L.map('kaart');
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(kaart);
+var groep = [];
+punten.forEach(function(p){
+  var icoon = L.divIcon({html:'<div class="nr">'+p.rang+'</div>', className:'', iconSize:[26,26]});
+  var m = L.marker([p.lat,p.lon],{icon:icoon}).addTo(kaart)
+    .bindPopup('<b>'+p.adres+'</b><br>'+p.buurt+'<br>'+p.tekst);
+  groep.push([p.lat,p.lon]);
+});
+kaart.fitBounds(groep,{padding:[60,60]});
+if(punten.length===1){kaart.setView(groep[0],16);}
+</script></body></html>
