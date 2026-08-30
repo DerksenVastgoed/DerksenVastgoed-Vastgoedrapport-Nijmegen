@@ -1,10 +1,12 @@
 {
  "Altrade": {
+  "bedrijven": 975,
   "corp": 14,
   "inwoners": 6525,
   "koop": 47,
   "leegstand": null,
   "meergezins": 69,
+  "nietwoningen": 340,
   "opp": null,
   "over": 14,
   "studenten": 1240,
@@ -14,11 +16,13 @@
   "woz": 436
  },
  "Benedenstad": {
+  "bedrijven": 455,
   "corp": 46,
   "inwoners": 2720,
   "koop": 13,
   "leegstand": null,
   "meergezins": 77,
+  "nietwoningen": 189,
   "opp": null,
   "over": 29,
   "studenten": 320,
@@ -28,11 +32,13 @@
   "woz": 334
  },
  "Biezen": {
+  "bedrijven": 1170,
   "corp": 35,
   "inwoners": 9785,
   "koop": 30,
   "leegstand": null,
   "meergezins": 62,
+  "nietwoningen": 219,
   "opp": null,
   "over": 14,
   "studenten": 920,
@@ -42,11 +48,13 @@
   "woz": 358
  },
  "Bottendaal": {
+  "bedrijven": 765,
   "corp": 21,
   "inwoners": 5010,
   "koop": 34,
   "leegstand": null,
   "meergezins": 77,
+  "nietwoningen": 249,
   "opp": null,
   "over": 22,
   "studenten": 1150,
@@ -56,11 +64,13 @@
   "woz": 394
  },
  "Galgenveld": {
+  "bedrijven": 1095,
   "corp": 9,
   "inwoners": 7065,
   "koop": 55,
   "leegstand": null,
   "meergezins": 54,
+  "nietwoningen": 355,
   "opp": null,
   "over": 12,
   "studenten": 1640,
@@ -70,11 +80,13 @@
   "woz": 553
  },
  "Stadscentrum": {
+  "bedrijven": 2485,
   "corp": 14,
   "inwoners": 9990,
   "koop": 25,
   "leegstand": null,
   "meergezins": 93,
+  "nietwoningen": 1336,
   "opp": null,
   "over": 42,
   "studenten": 3030,
@@ -82,5 +94,13 @@
   "voor2000": null,
   "won": 4335,
   "woz": 356
+ },
+ "_nijmegen": {
+  "bedrijven": 24195,
+  "buurten": 43,
+  "inwoners": 187030,
+  "nietwoningen": 11045,
+  "studenten": 21530,
+  "woningen": 86404
  }
 }
