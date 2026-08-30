@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor het tijdelijk inrichten van een depotlocatie voor twee jaar, aan Panovenlaan 1, 6525DZ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-405526.html",
   "strategie": "transformatie",
-  "duiding": "BOPA voor tijdelijk gebruik toont dat functiewijziging op deze locatie planologisch bespreekbaar is, relevant bij toekomstige herbestemming.",
+  "duiding": "Tijdelijke functiewijziging naar depot toont dat afwijkend gebruik via BOPA haalbaar is, ook bij label F.",
   "feiten": {
    "energielabel": "F (2017)",
    "oppervlakte_m2": 2617
@@ -12,33 +12,5 @@
   "straat": "Panovenlaan",
   "huisnummer": "1",
   "kern": true
- },
- {
-  "datum": "2026-08-27",
-  "titel": "Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-404973.html",
-  "strategie": "splitsen",
-  "duiding": "Aanvraag tot splitsen van een woning van 52 m² kan de kleine voorraad in dit segment doen groeien, mits vergund.",
-  "feiten": {
-   "energielabel": "B (2026)",
-   "oppervlakte_m2": 52
-  },
-  "straat": "Bronsgeeststraat",
-  "huisnummer": "11",
-  "kern": true
- },
- {
-  "datum": "2026-08-27",
-  "titel": "Melding sloopmelding van binnenwanden en het vervangen van kozijnen , aan van Spaenstraat 7, 6524HH Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-404078.html",
-  "strategie": "geen",
-  "duiding": "Sloop van binnenwanden en kozijnvervanging is een interne verbouwing zonder directe marktimpact.",
-  "feiten": {
-   "energielabel": "E (2017)",
-   "oppervlakte_m2": 250
-  },
-  "straat": "van Spaenstraat",
-  "huisnummer": "7",
-  "kern": false
  }
 ]
