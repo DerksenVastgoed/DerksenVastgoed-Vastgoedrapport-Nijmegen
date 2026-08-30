@@ -6,4 +6,4 @@ _Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._
 
 - **2026-08-28** . Besluit (met BOPA) voor het tijdelijk inrichten van een depotlocatie voor twee jaar, aan Panovenlaan 1, 6525DZ Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-405526.html))
   `2617 m² . label F (2017)`
-  _Tijdelijk depotgebruik voor twee jaar raakt geen woonfunctie en is niet relevant voor woningbeleggers in dit segment._
+  _Tijdelijke depotbestemming voor twee jaar duidt op overbrugging van een leegstaand pand, zonder woonfunctie in zicht._
