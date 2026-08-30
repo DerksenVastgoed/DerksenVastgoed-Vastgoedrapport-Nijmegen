@@ -945,8 +945,105 @@ def _beleid_van_de_week():
     return BELEID_UITGELICHT[week % len(BELEID_UITGELICHT)]
 
 
+
+def coordinaten(straat, huisnr, plaats="Nijmegen"):
+    """Haalt de coordinaten van een adres op via PDOK, voor de kaart."""
+    try:
+        r = requests.get(PDOK_FREE, params={
+            "q": f"{straat} {huisnr} {plaats}", "fq": "type:adres", "rows": 1,
+            "fl": "centroide_ll weergavenaam",
+        }, headers=PDOK_HEADERS, timeout=15)
+        r.raise_for_status()
+        docs = r.json().get("response", {}).get("docs", [])
+        if not docs:
+            return None
+        punt = docs[0].get("centroide_ll", "")
+        m = re.match(r"POINT\(([-\d.]+) ([-\d.]+)\)", punt)
+        if not m:
+            return None
+        return float(m.group(2)), float(m.group(1))  # lat, lon
+    except Exception:
+        return None
+
+
+def streetview_link(adres, plaats="Nijmegen"):
+    """Link naar Street View. Een ingesloten foto vraagt een betaalde sleutel."""
+    zoek = urllib.parse.quote_plus(f"{adres}, {plaats}")
+    return f"https://www.google.com/maps/search/?api=1&query={zoek}&layer=c"
+
+
+def schrijf_top3_kaart(panden, pad="top3-kaart.html"):
+    """
+    Schrijft een kaartpagina met de uitgelichte panden. Die komt op GitHub Pages
+    te staan, zodat de brief er met een link naar kan verwijzen. Bij een nieuwe
+    top drie wordt de pagina overschreven.
+    """
+    punten = []
+    for rang, w in enumerate(panden, 1):
+        varianten = split_huisnummer(w["adres"])
+        if not varianten:
+            continue
+        coord = coordinaten(varianten[0][0], varianten[0][1], w.get("plaats", "Nijmegen"))
+        time.sleep(0.2)
+        if not coord:
+            continue
+        prijs = f"{w['prijs']:,}".replace(",", ".")
+        ppm2 = f"{int(w['prijs'] / w['oppervlakte']):,}".replace(",", ".")
+        punten.append({
+            "rang": rang, "lat": coord[0], "lon": coord[1],
+            "adres": w["adres"],
+            "buurt": normaliseer_buurt(w.get("buurtnaam", "")) or "",
+            "tekst": f"€{prijs} . {w['oppervlakte']} m² . €{ppm2}/m²",
+        })
+    if not punten:
+        return False
+
+    vandaag = dt.date.today().strftime("%d-%m-%Y")
+    html = """<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uitgelichte panden</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+ body{margin:0;font:14px -apple-system,Segoe UI,Roboto,sans-serif;color:#1a2830}
+ header{padding:14px 18px;border-bottom:2px solid #E0A458}
+ h1{margin:0;font-size:18px}
+ p{margin:4px 0 0;color:#4a5b63;font-size:13px}
+ #kaart{height:calc(100vh - 74px)}
+ .nr{background:#12242c;color:#fff;border-radius:50%;width:26px;height:26px;
+     line-height:26px;text-align:center;font-weight:700}
+</style></head><body>
+<header><h1>Uitgelichte panden</h1><p>Bijgewerkt __DATUM__</p></header>
+<div id="kaart"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var punten = __PUNTEN__;
+var kaart = L.map('kaart');
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(kaart);
+var groep = [];
+punten.forEach(function(p){
+  var icoon = L.divIcon({html:'<div class="nr">'+p.rang+'</div>', className:'', iconSize:[26,26]});
+  var m = L.marker([p.lat,p.lon],{icon:icoon}).addTo(kaart)
+    .bindPopup('<b>'+p.adres+'</b><br>'+p.buurt+'<br>'+p.tekst);
+  groep.push([p.lat,p.lon]);
+});
+kaart.fitBounds(groep,{padding:[60,60]});
+if(punten.length===1){kaart.setView(groep[0],16);}
+</script></body></html>"""
+    html = html.replace("__DATUM__", vandaag)
+    html = html.replace("__PUNTEN__", json.dumps(punten, ensure_ascii=False))
+    with open(pad, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Kaart met {len(punten)} panden weggeschreven naar {pad}", file=sys.stderr)
+    return True
+
+
+TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
+                  "DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html")
+
+
 def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
-                             bm_per_buurt=None, aantal=3):
+                             bm_per_buurt=None, beleggingen=None, aantal=3):
     """
     De zondagsbrief licht een paar panden uit en rekent ze door: positie in de
     markt, rendement bij de huidige rente, uitpondpotentie en het gemeentelijk
@@ -992,7 +1089,8 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             feiten.append(f"label {lab}")
         if w.get("monument"):
             feiten.append("rijksmonument")
-        r.append("**Het pand.** " + " . ".join(feiten) + ".")
+        r.append("**Het pand.** " + " . ".join(feiten)
+                 + f". [Bekijk op straatniveau]({streetview_link(w['adres'], w.get('plaats', 'Nijmegen'))})")
 
         # Positie in de markt
         rijen = per_buurt.get(buurt, [])
@@ -1079,6 +1177,28 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             r.append("**Bekendmakingen op dit adres.** "
                      + " ".join(f"{b.get('datum','')}: {b.get('titel','')}." for b in eigen_bm))
         r.append("")
+
+    # Kaart met de drie panden, en de uitpondmarge als context
+    if schrijf_top3_kaart([k[-1] for k in top]):
+        r.append(f"[Bekijk de drie panden op de kaart]({TOP3_KAART_URL})")
+        r.append("")
+
+    if beleggingen and len(beleggingen) >= 3:
+        bel = sorted(p for p, _ in beleggingen)
+        voh = []
+        for buurt in {normaliseer_buurt(w.get("buurtnaam", "")) for _, w in beleggingen}:
+            voh.extend(p for p, _ in per_buurt.get(buurt, []))
+        if len(voh) >= 5:
+            bel_med, voh_med = st.median(bel), st.median(voh)
+            marge = voh_med - bel_med
+            if marge > 0:
+                r.append(f"_Ter vergelijking: beleggingspanden in verhuurde staat gaan in "
+                         f"dezelfde buurten voor mediaan €{int(bel_med):,}/m², tegen "
+                         f"€{int(voh_med):,}/m² vrij van huurder. Dat verschil van "
+                         f"€{int(marge):,}/m² is de ruimte die uitponden oplevert, "
+                         f"gerekend op {len(beleggingen)} beleggingen en {len(voh)} "
+                         f"verkopen._".replace(",", "."))
+                r.append("")
 
     # Beleidsonderdeel van de week
     titel, tekst = _beleid_van_de_week()
@@ -1454,10 +1574,12 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         r.append("")
         return "\n".join(r)
 
-    # Zondag: uitgewerkte investeringscases in plaats van de volledige lijst
+    # Zondag: uitgewerkte investeringscases, en verder niets. De referentie-
+    # tabellen zaten hier eerder onder, maar die informatie zit nu in de cases.
     huur_bk, huur_k = gemeten_huren(huur_aanbod)
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
-                                      huur_bk, huur_k, bm_per_buurt))
+                                      huur_bk, huur_k, bm_per_buurt, beleggingen=beleggingen))
+    return "\n".join(r)
 
     r.append("### Referentie: prijspeil per buurt")
     r.append("")
