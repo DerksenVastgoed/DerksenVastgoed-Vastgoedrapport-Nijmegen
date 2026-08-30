@@ -714,6 +714,28 @@ def kaartlink(adres, plaats="Nijmegen", bron=""):
     return tekst
 
 
+
+# Kamerverhuurregels Nijmegen. Onder de ondergrens is verkameren niet toegestaan,
+# binnen de band is een omzettingsvergunning nodig bij drie kamers of meer.
+# Bedragen uit de evaluatie kamerverhuurbeleid 2024; de gemeente indexeert deze,
+# dus jaarlijks controleren op nijmegen.nl.
+WOZ_ONDERGRENS = 278_000
+WOZ_BOVENGRENS = 396_000
+
+
+def verkameren_signaal(prijs):
+    """
+    Richtinggevende zeef op basis van de vraagprijs. De WOZ zelf is niet vrij
+    op te vragen, maar de vraagprijs ligt vrijwel altijd boven de WOZ. Een
+    vraagprijs onder de ondergrens betekent dus vrijwel zeker een WOZ eronder.
+    """
+    if prijs < WOZ_ONDERGRENS:
+        return "niet toegestaan"
+    if prijs < WOZ_BOVENGRENS * 1.25:
+        return "vermoedelijk vergunningplichtig"
+    return "vermoedelijk boven de band"
+
+
 def assetklasse(w):
     """
     Bepaalt de assetklasse uit het BAG-gebruiksdoel.
@@ -1002,6 +1024,19 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"dataset: " + " . ".join(stukken) + "._")
             r.append("")
 
+        # Verkameren: welke panden vallen buiten de Nijmeegse WOZ-band
+        woningen_hier = [k[-1] for k in rijen_buurt if k[2] == "woning"]
+        if woningen_hier:
+            uitgesloten = [w for w in woningen_hier
+                           if verkameren_signaal(w["prijs"]) == "niet toegestaan"]
+            if uitgesloten:
+                namen = ", ".join(w["adres"] for w in uitgesloten)
+                r.append(f"_Verkameren uitgesloten bij {namen}: vraagprijs onder "
+                         f"€{WOZ_ONDERGRENS:,}".replace(",", ".")
+                         + ", dus vrijwel zeker ook de WOZ. Nijmegen staat kamerverhuur "
+                           "onder die grens niet toe._")
+                r.append("")
+
         if bm.get(buurt):
             r.extend(bekendmakingregels(bm[buurt]))
             r.append("")
@@ -1020,65 +1055,82 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  "10% erboven. Buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
         tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
         r.append(f"_Omvang per klasse in de dataset: {tellen}._")
+        r.append(f"_Kamerverhuur in Nijmegen: onder een WOZ van "
+                 f"€{WOZ_ONDERGRENS:,} niet toegestaan, tussen €{WOZ_ONDERGRENS:,} en "
+                 f"€{WOZ_BOVENGRENS:,} een omzettingsvergunning nodig bij drie kamers of "
+                 f"meer, en vanaf vijf kamers ook een melding brandveilig gebruik. "
+                 f"Corporatiebezit is vrijgesteld. Wij toetsen op de vraagprijs, want de "
+                 f"WOZ per pand is niet vrij op te vragen; controleer die zelf op "
+                 f"wozwaardeloket.nl. Bedragen worden jaarlijks geïndexeerd._".replace(",", "."))
         r.append("")
     return r
 
 
-def render_macro(cbs, kort=False):
-    """
-    Opening van macro naar micro: eerst Nijmegen als geheel, dan de ring,
-    dan pas de buurten. Zonder die noemers zeggen de buurtcijfers weinig.
-    """
-    stad = cbs.get("_nijmegen") or {}
-    if not stad.get("woningen"):
-        return []
+KAART_URL = ("https://derksenvastgoed.github.io/"
+             "DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html")
 
-    ring = {"woningen": 0, "nietwoningen": 0, "inwoners": 0, "studenten": 0}
-    for buurt in FOCUS_BUURTEN:
-        g = cbs.get(buurt) or {}
-        ring["woningen"] += g.get("won") or 0
-        ring["nietwoningen"] += g.get("nietwoningen") or 0
-        ring["inwoners"] += g.get("inwoners") or 0
-        ring["studenten"] += g.get("studenten") or 0
 
+def render_intro(cbs, woningen, kort=False):
+    """
+    De opening als lopende tekst in plaats van een tabel: eerst de stad,
+    dan de ring, dan wat er vandaag speelt. Cijfers horen in een zin,
+    niet in een raster dat je moet ontcijferen.
+    """
     def n(x):
         return f"{x:,}".replace(",", ".")
 
-    def aandeel(deel, geheel):
-        return f"{round(deel / geheel * 100)}%" if geheel else "—"
+    stad = cbs.get("_nijmegen") or {}
+    ring = {"won": 0, "niet": 0, "inw": 0, "stud": 0}
+    for buurt in FOCUS_BUURTEN:
+        g = cbs.get(buurt) or {}
+        ring["won"] += g.get("won") or 0
+        ring["niet"] += g.get("nietwoningen") or 0
+        ring["inw"] += g.get("inwoners") or 0
+        ring["stud"] += g.get("studenten") or 0
 
-    r = ["### De ring in cijfers", ""]
-    r.append("| | Nijmegen | Ring | Aandeel |")
-    r.append("|---|---:|---:|---:|")
-    r.append(f"| Woningen | {n(stad['woningen'])} | {n(ring['woningen'])} | "
-             f"{aandeel(ring['woningen'], stad['woningen'])} |")
-    if stad.get("nietwoningen"):
-        r.append(f"| Niet-woningen (winkels, kantoren) | {n(stad['nietwoningen'])} | "
-                 f"{n(ring['nietwoningen'])} | "
-                 f"{aandeel(ring['nietwoningen'], stad['nietwoningen'])} |")
-    if stad.get("inwoners"):
-        r.append(f"| Inwoners | {n(stad['inwoners'])} | {n(ring['inwoners'])} | "
-                 f"{aandeel(ring['inwoners'], stad['inwoners'])} |")
-    if stad.get("studenten"):
-        r.append(f"| Studenten (woonachtig) | {n(stad['studenten'])} | "
-                 f"{n(ring['studenten'])} | "
-                 f"{aandeel(ring['studenten'], stad['studenten'])} |")
-    r.append("")
+    in_aanbod = sum(1 for w in woningen
+                    if (w.get("status") or "").lower() in
+                    ("te koop", "nieuw", "onder bod", "belegging"))
+    vandaag = dt.date.today().strftime("%d %B %Y")
+    maanden = {"January": "januari", "February": "februari", "March": "maart",
+               "April": "april", "May": "mei", "June": "juni", "July": "juli",
+               "August": "augustus", "September": "september", "October": "oktober",
+               "November": "november", "December": "december"}
+    for en, nl in maanden.items():
+        vandaag = vandaag.replace(en, nl)
 
-    if stad.get("inwoners") and stad.get("studenten"):
+    zinnen = []
+    if stad.get("woningen") and ring["won"]:
+        aandeel = round(ring["won"] / stad["woningen"] * 100)
+        zin = (f"Nijmegen telt {n(stad['woningen'])} woningen")
+        if stad.get("inwoners"):
+            zin += f" en {n(stad['inwoners'])} inwoners"
+        zin += (f". De ring rond het Keizer Karelplein is daarvan {aandeel}%: "
+                f"{n(ring['won'])} woningen")
+        if ring["niet"]:
+            zin += f", {n(ring['niet'])} winkels en kantoren"
+        if ring["inw"]:
+            zin += f" en {n(ring['inw'])} inwoners"
+        zin += "."
+        zinnen.append(zin)
+
+    if stad.get("studenten") and ring["stud"] and ring["inw"] and stad.get("inwoners"):
+        aandeel_stud = round(ring["stud"] / stad["studenten"] * 100)
+        ring_pct = round(ring["stud"] / ring["inw"] * 100)
         stad_pct = round(stad["studenten"] / stad["inwoners"] * 100)
-        ring_pct = (round(ring["studenten"] / ring["inwoners"] * 100)
-                    if ring.get("inwoners") else None)
-        zin = (f"In Nijmegen is {stad_pct}% van de inwoners student")
-        if ring_pct is not None:
-            zin += f", in de ring {ring_pct}%"
-        r.append(f"_{zin}. Het CBS telt studenten op hun woonadres, dus dit is niet "
-                 f"het aantal ingeschrevenen bij de Radboud Universiteit en de HAN._")
-    if not kort:
-        r.append(f"_Stadscijfers opgeteld over {stad.get('buurten', 0)} Nijmeegse buurten "
-                 f"in het opgehaalde gebied._")
-    r.append("")
-    return r
+        zinnen.append(
+            f"Studenten wegen er zwaarder dan in de rest van de stad: {aandeel_stud}% "
+            f"van de {n(stad['studenten'])} Nijmeegse studenten woont in de ring, waar "
+            f"{ring_pct}% van de inwoners student is tegen {stad_pct}% stadsbreed "
+            f"(CBS telt studenten op hun woonadres).")
+
+    slot = f"Vandaag staan er **{in_aanbod} panden in aanbod**"
+    if len(woningen) > in_aanbod:
+        slot += f", afgezet tegen {n(len(woningen))} gevolgde panden"
+    slot += f". Bijgewerkt {vandaag}. [Bekijk de eigendomskaart]({KAART_URL})."
+    zinnen.append(slot)
+
+    return ["", " ".join(zinnen), ""]
 
 
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
@@ -1109,17 +1161,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                 if mon:
                     w["monument"] = mon[0]
 
-    kop = "## Aanbod" if kort else "## Aanbod en marktprijzen"
-    in_aanbod = sum(1 for w in woningen
-                    if (w.get("status") or "").lower() in
-                    ("te koop", "nieuw", "onder bod", "belegging"))
-    r = ["", kop,
-         f"_{in_aanbod} panden in aanbod, afgezet tegen {len(woningen)} gevolgde panden. "
-         f"Oppervlakte uit BAG. Bijgewerkt {vandaag}._",
-         ""]
-
-    # Van macro naar micro: eerst de stad en de ring, dan pas de buurten
-    r.extend(render_macro(lees_cbs(), kort=kort))
+    r = render_intro(lees_cbs(), woningen, kort=kort)
 
     # Bewegingen: het enige dat sinds gisteren veranderd kan zijn
     r.extend(render_prijswijzigingen(woningen))
