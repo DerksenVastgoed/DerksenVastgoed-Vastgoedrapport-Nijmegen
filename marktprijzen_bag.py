@@ -738,6 +738,33 @@ OPEX_PCT = 25     # onderhoud, leegstand, beheer
 LTV = 66.7        # standaard financieringsgraad
 
 
+
+def bod_cashflowneutraal(opp, huur_m2):
+    """
+    Bij welke koopprijs dekt de nettohuur precies de rentelast?
+    nettohuur = prijs * LTV% * rente%, dus prijs = nettohuur / (LTV% * rente%).
+    Dit is geen taxatie maar een rekengrens: erboven legt het pand elk jaar geld
+    toe, eronder houdt het zichzelf rond bij deze financiering.
+    """
+    if not opp or not huur_m2:
+        return None
+    netto = huur_m2 * 12 * opp * (1 - OPEX_PCT / 100)
+    noemer = (LTV / 100) * (RENTE / 100)
+    return netto / noemer if noemer else None
+
+
+def huur_voor_buurt(buurt, huur_bk, huur_k):
+    """Gemeten huur per m2 voor een buurt, met terugval op stad en aanname."""
+    reeks = huur_bk.get(("woning", buurt), [])
+    bron = f"gemeten, {len(reeks)} in {buurt}"
+    if len(reeks) < 3:
+        reeks = huur_k.get("woning", [])
+        bron = f"gemeten, {len(reeks)} stadsbreed"
+    if len(reeks) < 3:
+        return HUUR_M2_MND.get(buurt, 18), "aanname"
+    return st.median(reeks), bron
+
+
 def verkameren_signaal(prijs):
     """
     Richtinggevende zeef op basis van de vraagprijs. De WOZ zelf is niet vrij
@@ -1072,6 +1099,8 @@ Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de fe
 
 Bouw het memo zo op: waarom valt dit pand op, wat zeggen de cijfers over de positie in de markt, wat doet het rendement bij de huidige rente, wat is de meest voor de hand liggende route naar meer huur of waarde, en welk risico of welke beperking staat daartegenover. Sluit af met een oordeel in een zin.
 
+Staat er een "bod voor cashflow nul" bij de feiten, verwerk dat dan in je oordeel. Ligt dat bedrag onder de vraagprijs, benoem dan hoeveel eraf zou moeten voordat het pand zichzelf rondhoudt. Dat is geen taxatie maar een vertrekpunt voor onderhandeling; schrijf het ook zo op.
+
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS.
 - Gebruik UITSLUITEND getallen die letterlijk in de FEITEN staan.
 - Verzin nooit huurprijzen, rendementen, kosten, WOZ-waarden, WWS-punten of percentages die er niet staan.
@@ -1221,6 +1250,10 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
               f"kale huur: €{n(jaarhuur)} per jaar, na {OPEX_PCT}% opex €{n(netto)}",
               f"cashflow: €{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
               f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%"]
+        bod = bod_cashflowneutraal(opp, huur_m2)
+        if bod:
+            f.append(f"bod voor cashflow nul: €{n(bod)}, dat is "
+                     f"{(bod - prijs) / prijs * 100:+.0f}% ten opzichte van de vraagprijs")
 
         if len(rijen) >= 10:
             voh = st.median([p for p, _ in rijen])
@@ -1377,6 +1410,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
     cbs = lees_cbs()
     opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
+    huur_bk, huur_k = gemeten_huren(
+        [w for w in woningen if (w.get("status") or "").lower().startswith("te huur")])
     # Noemer voor het studentenaandeel: alle studenten in de focus-buurten samen
     studenten_ring = sum((cbs.get(b) or {}).get("studenten") or 0 for b in FOCUS_BUURTEN)
 
@@ -1428,8 +1463,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         onbeoordeeld = [k for k in rijen_buurt if k[3] is None]
 
         if beoordeeld:
-            kop = "| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | Label |"
-            streep = "|---|---|---:|---:|---:|---:|---|"
+            kop = ("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | "
+                   "Bod voor cashflow nul | Label |")
+            streep = "|---|---|---:|---:|---:|---:|---:|---|"
             if toon_dagen:
                 kop += " Dagen |"
                 streep += "---:|"
@@ -1440,9 +1476,18 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
+                huur_m2, _ = huur_voor_buurt(buurt, huur_bk, huur_k)
+                bod = bod_cashflowneutraal(w["oppervlakte"], huur_m2)
+                if bod:
+                    verschil = (bod - w["prijs"]) / w["prijs"] * 100
+                    teken = "🟢" if verschil >= 0 else ""
+                    bod_s = (teken + " €" + f"{int(bod):,}".replace(",", ".")
+                             + f" ({verschil:+.0f}%)")
+                else:
+                    bod_s = "—"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
-                         f"{merk} {afwijking:+.0f}%{staart} | "
+                         f"{merk} {afwijking:+.0f}%{staart} | {bod_s} | "
                          f"{_labeltekst(w.get('energielabel'))} |")
                 if toon_dagen:
                     dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
@@ -1468,10 +1513,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                            if verkameren_signaal(w["prijs"]) == "niet toegestaan"]
             if uitgesloten:
                 namen = ", ".join(w["adres"] for w in uitgesloten)
-                r.append(f"_Verkameren uitgesloten bij {namen}: vraagprijs onder "
+                r.append(f"_Verkameren valt af bij {namen}: de vraagprijs ligt onder "
                          f"€{WOZ_ONDERGRENS:,}".replace(",", ".")
-                         + ", dus vrijwel zeker ook de WOZ. Nijmegen staat kamerverhuur "
-                           "onder die grens niet toe._")
+                         + ", en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. "
+                           "Als gewone verhuur kunnen deze panden wel uitkomen; kijk "
+                           "daarvoor naar de kolom met het bod voor cashflow nul._")
                 r.append("")
 
         if bm.get(buurt):
@@ -1481,6 +1527,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
     if kort and buiten_ring:
         r.append(f"_{buiten_ring} panden staan in buurten buiten de ring. Die staan in de "
                  f"uitgebreide brief van zondag._")
+        r.append(f"_Bod voor cashflow nul: bij die prijs dekt de nettohuur precies de "
+                 f"rentelast, bij {LTV:.0f}% financiering, {RENTE}% rente en {OPEX_PCT}% "
+                 f"opex. Staat er een groen bolletje, dan ligt die grens boven de "
+                 f"vraagprijs en houdt het pand zichzelf rond. Geen taxatie, wel een "
+                 f"vertrekpunt voor een bod._")
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
