@@ -11,4 +11,4 @@ _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-08-31** . Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html))
   `351 m² . label C (2024)`
-  _Vervanging van kozijnen in de voorgevel is een cosmetische ingreep zonder invloed op indelingsmogelijkheden of verhuurstrategie._
+  _Vervangen van kozijnen in de voorgevel is een cosmetische ingreep zonder direct effect op waardecreatiestrategieën._
