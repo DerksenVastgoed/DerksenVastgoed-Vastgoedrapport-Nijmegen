@@ -27,7 +27,7 @@ from email.header import decode_header
 
 IMAP_HOST = "imap.gmail.com"
 VERKOPEN_PAD = "verkopen.txt"
-AFZENDERS = ["funda.nl", "funda.com"]
+AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com", "kamernet.nl"]
 
 GEBRUIKER = os.environ.get("MAIL_USERNAME", "")
 WACHTWOORD = os.environ.get("MAIL_PASSWORD", "")
@@ -283,9 +283,19 @@ def main():
 
         regels = haal_tekst(bericht)
         blob = " ".join(regels).lower()
-        # Business-attendering levert beleggingsobjecten, regulier Funda woningen
-        zakelijk = "funda in business" in blob or "bedrijfspanden" in blob
-        status_label = "belegging" if zakelijk else "te koop"
+        afzender = (bericht.get("From", "") or "").lower()
+
+        # Per bron een ander basisgeval. Kamernet gaat over onzelfstandige
+        # eenheden; die moeten apart blijven, anders trekken ze de huur per m2
+        # voor gewone woningen omhoog.
+        if "kamernet" in afzender or "kamernet" in blob:
+            soort_bron, status_label = "kamernet", "te huur kamer"
+        elif "pararius" in afzender or "pararius" in blob:
+            soort_bron, status_label = "pararius", "te huur"
+        elif "funda in business" in blob or "bedrijfspanden" in blob:
+            soort_bron, status_label = "business", "belegging"
+        else:
+            soort_bron, status_label = "regulier", "te koop"
 
         objecten, overgeslagen = parse_objecten(regels, status_label)
         alle_overgeslagen.extend(overgeslagen)
@@ -302,9 +312,16 @@ def main():
             nieuwe_regels.append(regel)
             toegevoegd += 1
 
-        soort = "business" if zakelijk else "regulier"
-        print(f"  [{soort}] {onderwerp[:60]}: {len(objecten)} objecten, "
+        print(f"  [{soort_bron}] {onderwerp[:60]}: {len(objecten)} objecten, "
               f"{toegevoegd} nieuw", file=sys.stderr)
+
+        # Niets herkend? Toon dan wat er in de mail stond, zodat we het formaat
+        # kunnen zien zonder een aparte diagnoseronde.
+        if not objecten:
+            print(f"    Geen objecten herkend. Eerste regels van deze mail:",
+                  file=sys.stderr)
+            for regel in [x for x in regels if x.strip()][:35]:
+                print(f"    | {regel[:110]}", file=sys.stderr)
 
         if not args.proef:
             try:

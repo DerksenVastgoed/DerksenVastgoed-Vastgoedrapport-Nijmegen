@@ -727,30 +727,51 @@ WOZ_BOVENGRENS = 396_000
 
 
 
-# Rekenparameters voor rendement en cashflow. De huur per m2 is een aanname die
-# vervalt zodra er gemeten huuraanbiedingen binnenkomen.
+# ---------------------------------------------------------------------------
+# KERNGETALLEN. Alles wat de brief rekent hangt hieraan. Pas ze hier aan; ze
+# worden onder elke berekening in de brief vermeld, zodat een lezer kan zien
+# waar een uitkomst op rust.
+# ---------------------------------------------------------------------------
+RENTE = 5.75              # verhuurhypotheek, aflossingsvrij
+LTV = 66.7                # financieringsgraad op de koopsom
+OPEX_PCT = 25             # onderhoud, leegstand, beheer, verzekering
+AANKOOPKOSTEN_PCT = 12    # overdrachtsbelasting, notaris, makelaar, taxatie
+DOEL_CASHFLOW = 0         # gewenste cashflow per jaar; 0 is precies rondlopen
+
+# Aanname voor de huur per m2 per maand, per buurt. Vervalt zodra er gemeten
+# huuraanbiedingen binnenkomen; in de brief staat per buurt welke bron geldt.
 HUUR_M2_MND = {
     "Stadscentrum": 20, "Benedenstad": 20, "Bottendaal": 18,
     "Galgenveld": 18, "Altrade": 17, "Biezen": 18,
 }
-RENTE = 5.75      # indicatie verhuurhypotheek
-OPEX_PCT = 25     # onderhoud, leegstand, beheer
-LTV = 66.7        # standaard financieringsgraad
 
 
 
-def bod_cashflowneutraal(opp, huur_m2):
+def richtprijs(opp, huur_m2):
     """
-    Bij welke koopprijs dekt de nettohuur precies de rentelast?
-    nettohuur = prijs * LTV% * rente%, dus prijs = nettohuur / (LTV% * rente%).
-    Dit is geen taxatie maar een rekengrens: erboven legt het pand elk jaar geld
-    toe, eronder houdt het zichzelf rond bij deze financiering.
+    De hoogste koopsom waarbij het pand nog de gewenste cashflow haalt.
+
+    De nettohuur moet de rentelast dekken plus DOEL_CASHFLOW overhouden:
+        huur * 12 * m2 * (1 - opex)  -  K * LTV% * rente%  >=  doel
+    Oplossen naar K geeft het plafond. Dit is dus geen taxatie en geen bod,
+    maar de bovengrens waarboven het pand jaarlijks geld kost.
+
+    Wat er NIET in zit: renovatie om de huur te halen, en de vraag of het
+    puntenstelsel die huur uberhaupt toestaat. Beide verlagen dit plafond.
     """
     if not opp or not huur_m2:
         return None
     netto = huur_m2 * 12 * opp * (1 - OPEX_PCT / 100)
     noemer = (LTV / 100) * (RENTE / 100)
-    return netto / noemer if noemer else None
+    if noemer <= 0:
+        return None
+    plafond = (netto - DOEL_CASHFLOW) / noemer
+    return plafond if plafond > 0 else None
+
+
+def eigen_inleg(koopsom):
+    """Eigen geld: het niet-gefinancierde deel plus de aankoopkosten."""
+    return koopsom * (1 - LTV / 100) + koopsom * AANKOOPKOSTEN_PCT / 100
 
 
 def huur_voor_buurt(buurt, huur_bk, huur_k):
@@ -901,6 +922,8 @@ def huur_per_m2_maand(w):
     try:
         if status == "te huur pm2":
             return w["prijs"] / 12
+        if status == "te huur kamer" and opp and opp >= 6:
+            return w["prijs"] / opp
         if status == "te huur" and opp and opp >= 15:
             return w["prijs"] / opp
     except (TypeError, ZeroDivisionError):
@@ -909,14 +932,26 @@ def huur_per_m2_maand(w):
 
 
 def gemeten_huren(huur_aanbod):
-    """Mediane huur per m2 per maand, per buurt en per assetklasse."""
+    """
+    Mediane huur per m2 per maand, per buurt en per klasse.
+    Onzelfstandige eenheden (kamers) krijgen een eigen klasse: die liggen per m2
+    hoger en zouden de huur voor gewone woningen anders scheeftrekken.
+    """
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
     for w in huur_aanbod:
         hm2 = huur_per_m2_maand(w)
-        if not hm2 or hm2 < 4 or hm2 > 80:
-            continue  # buiten dit bereik is het vrijwel zeker een leesfout
-        klasse = assetklasse(w)
+        if not hm2:
+            continue
+        status = (w.get("status") or "").lower()
+        if status == "te huur kamer":
+            klasse = "kamer"
+            if hm2 < 8 or hm2 > 150:   # kamers lopen per m2 verder uiteen
+                continue
+        else:
+            klasse = assetklasse(w)
+            if hm2 < 4 or hm2 > 80:
+                continue
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         per_klasse[klasse].append(hm2)
         if buurt:
@@ -1250,7 +1285,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
               f"kale huur: €{n(jaarhuur)} per jaar, na {OPEX_PCT}% opex €{n(netto)}",
               f"cashflow: €{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
               f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%"]
-        bod = bod_cashflowneutraal(opp, huur_m2)
+        bod = richtprijs(opp, huur_m2)
         if bod:
             f.append(f"bod voor cashflow nul: €{n(bod)}, dat is "
                      f"{(bod - prijs) / prijs * 100:+.0f}% ten opzichte van de vraagprijs")
@@ -1464,8 +1499,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         if beoordeeld:
             kop = ("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | "
-                   "Bod voor cashflow nul | Label |")
-            streep = "|---|---|---:|---:|---:|---:|---:|---|"
+                   "Richtprijs | Ruimte | Label |")
+            streep = "|---|---|---:|---:|---:|---:|---:|---:|---|"
             if toon_dagen:
                 kop += " Dagen |"
                 streep += "---:|"
@@ -1477,17 +1512,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
                 huur_m2, _ = huur_voor_buurt(buurt, huur_bk, huur_k)
-                bod = bod_cashflowneutraal(w["oppervlakte"], huur_m2)
-                if bod:
-                    verschil = (bod - w["prijs"]) / w["prijs"] * 100
-                    teken = "🟢" if verschil >= 0 else ""
-                    bod_s = (teken + " €" + f"{int(bod):,}".replace(",", ".")
-                             + f" ({verschil:+.0f}%)")
+                plafond = richtprijs(w["oppervlakte"], huur_m2)
+                if plafond:
+                    verschil = (plafond - w["prijs"]) / w["prijs"] * 100
+                    plafond_s = "€" + f"{int(plafond):,}".replace(",", ".")
+                    ruimte_s = f"{verschil:+.0f}%"
                 else:
-                    bod_s = "—"
+                    plafond_s = ruimte_s = "—"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
-                         f"{merk} {afwijking:+.0f}%{staart} | {bod_s} | "
+                         f"{merk} {afwijking:+.0f}%{staart} | {plafond_s} | {ruimte_s} | "
                          f"{_labeltekst(w.get('energielabel'))} |")
                 if toon_dagen:
                     dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
@@ -1527,11 +1561,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
     if kort and buiten_ring:
         r.append(f"_{buiten_ring} panden staan in buurten buiten de ring. Die staan in de "
                  f"uitgebreide brief van zondag._")
-        r.append(f"_Bod voor cashflow nul: bij die prijs dekt de nettohuur precies de "
-                 f"rentelast, bij {LTV:.0f}% financiering, {RENTE}% rente en {OPEX_PCT}% "
-                 f"opex. Staat er een groen bolletje, dan ligt die grens boven de "
-                 f"vraagprijs en houdt het pand zichzelf rond. Geen taxatie, wel een "
-                 f"vertrekpunt voor een bod._")
+        r.append(f"_**Richtprijs** is de hoogste koopsom waarbij de nettohuur de rentelast "
+                 f"nog dekt. **Ruimte** is het verschil met de vraagprijs: positief betekent "
+                 f"dat er speling zit, negatief dat er zoveel af zou moeten voordat het pand "
+                 f"zichzelf rondhoudt. Gerekend met {LTV:.0f}% financiering, {RENTE}% rente "
+                 f"aflossingsvrij, {OPEX_PCT}% opex en een gewenste cashflow van "
+                 f"€{DOEL_CASHFLOW:,}".replace(",", ".")
+                 + ". Aankoopkosten van "
+                 f"{AANKOOPKOSTEN_PCT}% zitten niet in de richtprijs maar wel in je eigen "
+                 f"inleg. Renovatie om die huur te halen en de vraag of het puntenstelsel "
+                 f"die huur toestaat zitten er evenmin in; beide verlagen dit plafond._")
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
@@ -1840,9 +1879,11 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                 continue
             regels_klasse.append(f"{klasse}: €{st.median(waarden):.0f}/m²/mnd (N={len(waarden)})")
         if regels_klasse:
-            r.append("**Gemeten huurniveaus per assetklasse:** " + " . ".join(regels_klasse))
-            r.append("_Commerciële huur wordt vaak per m² per jaar geadverteerd; "
-                     "die is hier door twaalf gedeeld zodat alles vergelijkbaar is._")
+            r.append("**Gemeten huurniveaus per klasse:** " + " . ".join(regels_klasse))
+            r.append("_Commerciële huur wordt vaak per m² per jaar geadverteerd; die is "
+                     "hier door twaalf gedeeld. Kamers staan apart, want onzelfstandige "
+                     "eenheden brengen per m² meer op en zouden de huur voor gewone "
+                     "woningen anders scheeftrekken._")
             r.append("")
 
     # Waardecreatie: uitpond-marge concreet maken
