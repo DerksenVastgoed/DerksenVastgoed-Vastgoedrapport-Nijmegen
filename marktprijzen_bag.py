@@ -221,7 +221,7 @@ def pdok_buurt(straat, huisnr, plaats):
     try:
         r = requests.get(PDOK_FREE, params={
             "q": q, "fq": "type:adres", "rows": 1,
-            "fl": "buurtnaam wijknaam postcode weergavenaam",
+            "fl": "id buurtnaam wijknaam postcode weergavenaam",
         }, headers=PDOK_HEADERS, timeout=15)
         r.raise_for_status()
         docs = r.json().get("response", {}).get("docs", [])
@@ -232,6 +232,9 @@ def pdok_buurt(straat, huisnr, plaats):
             "postcode": d.get("postcode", ""),
             "buurtnaam": d.get("buurtnaam", ""),
             "wijknaam": d.get("wijknaam", ""),
+            # Nummeraanduiding-id: hiermee kunnen we rechtstreeks naar het
+            # Digitaal Gebouwen Archief van de gemeente linken.
+            "nummeraanduiding": d.get("id", ""),
         }
     except Exception as e:
         print(f"  PDOK buurt-lookup '{q}': {e}", file=sys.stderr)
@@ -966,6 +969,23 @@ def coordinaten(straat, huisnr, plaats="Nijmegen"):
         return None
 
 
+
+DGA_BASIS = "https://app4.nijmegen.nl/DGD2/Bouwarchief/Index/"
+
+
+def bouwarchief_link(w):
+    """
+    Rechtstreekse link naar het Digitaal Gebouwen Archief van Nijmegen.
+    De pagina werkt op de BAG-nummeraanduiding, die we bij de adres-lookup
+    al ophalen. Daar staan de bouwtekeningen en constructiegegevens; je
+    selecteert de stukken en krijgt een downloadlink per mail.
+    """
+    nr = (w.get("nummeraanduiding") or "").strip()
+    if not nr or not nr.isdigit():
+        return ""
+    return DGA_BASIS + nr
+
+
 def streetview_link(adres, plaats="Nijmegen"):
     """Link naar Street View. Een ingesloten foto vraagt een betaalde sleutel."""
     zoek = urllib.parse.quote_plus(f"{adres}, {plaats}")
@@ -1038,6 +1058,76 @@ if(punten.length===1){kaart.setView(groep[0],16);}
     return True
 
 
+
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+MEMO_MODEL = "claude-sonnet-5"
+
+MEMO_PROFIEL = """Je schrijft de zondagseditie van een vastgoedbrief over de binnenring van Nijmegen. Lezers zijn particuliere investeerders en kleine ontwikkelaars.
+
+Je krijgt per pand een blok met FEITEN: alles is al berekend. Schrijf daarover een kort investeringsmemo in doorlopend Nederlands, twee tot drie alinea's per pand, dat toewerkt naar een oordeel.
+
+UITGANGSPUNT: het gewone geval is kopen en verhuren. Beoordeel een pand dus eerst als exploitatieobject: wat kost het, wat brengt het op, houdt het zichzelf rond bij deze rente. Een bescheiden ingreep die het energielabel verbetert telt mee in de WWS-punten en daarmee in de maximaal toegestane huur; dat is bij een matig label vaak de meest realistische route naar meer rendement.
+
+Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de feiten er aanleiding toe geven, bijvoorbeeld een grote oppervlakte, een hoog aandeel appartementen in de buurt of een aanzienlijke uitpondruimte. Presenteer ze nooit als vanzelfsprekend, en benoem dan ook meteen de beperking: in een aangewezen wijk is omzetting vergunningplichtig, en onder de WOZ-grens is verkameren simpelweg niet toegestaan.
+
+Bouw het memo zo op: waarom valt dit pand op, wat zeggen de cijfers over de positie in de markt, wat doet het rendement bij de huidige rente, wat is de meest voor de hand liggende route naar meer huur of waarde, en welk risico of welke beperking staat daartegenover. Sluit af met een oordeel in een zin.
+
+ABSOLUUT VERBOD OP VERZONNEN CIJFERS.
+- Gebruik UITSLUITEND getallen die letterlijk in de FEITEN staan.
+- Verzin nooit huurprijzen, rendementen, kosten, WOZ-waarden, WWS-punten of percentages die er niet staan.
+- Staat een gegeven er niet, benoem dan dat het onbekend is of laat het weg.
+- Noem bij een aanname dat het een aanname is; dat staat bij de feiten vermeld.
+
+STIJL:
+- Doorlopende zinnen, geen opsommingen, geen kopjes als "Het pand" of "Rendement".
+- Zakelijk en direct, zoals een analist die zijn eigen geld erin zou steken.
+- Geen aanprijzende taal, geen superlatieven. Een pand mag ook gewoon tegenvallen.
+- Geen gedachtestreepjes.
+- Maximaal 180 woorden per pand."""
+
+
+def schrijf_memos(feitenblokken):
+    """
+    Laat het model per pand een kort memo schrijven op basis van de berekende
+    feiten. Zonder sleutel of bij een fout geven we niets terug, en valt de
+    brief terug op de feitelijke weergave.
+    """
+    if not ANTHROPIC_API_KEY or not feitenblokken:
+        return {}
+    lijst = "\n\n".join(
+        f"PAND {i}\nFEITEN:\n" + "\n".join(f"- {r}" for r in blok)
+        for i, blok in enumerate(feitenblokken))
+    prompt = (f"{lijst}\n\nAntwoord met ALLEEN een JSON-array, per pand een object "
+              '{"i": <index>, "memo": "<twee tot drie alinea\'s, alinea\'s gescheiden '
+              'door \\n\\n>"}. Geen tekst eromheen.')
+    try:
+        resp = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={"x-api-key": ANTHROPIC_API_KEY,
+                     "anthropic-version": "2023-06-01",
+                     "content-type": "application/json"},
+            json={"model": MEMO_MODEL, "max_tokens": 4000, "system": MEMO_PROFIEL,
+                  "messages": [{"role": "user", "content": prompt}]},
+            timeout=120)
+        resp.raise_for_status()
+        body = resp.json()
+        tekst = "".join(b.get("text", "") for b in body.get("content", [])).strip()
+        if tekst.startswith("```"):
+            tekst = tekst.split("```")[1]
+            if tekst.startswith("json"):
+                tekst = tekst[4:]
+        data = json.loads(tekst.strip())
+        uit = {}
+        for rij in data:
+            if isinstance(rij, dict) and isinstance(rij.get("i"), int):
+                uit[rij["i"]] = str(rij.get("memo", "")).strip()
+        print(f"Memo's geschreven voor {len(uit)} panden", file=sys.stderr)
+        return uit
+    except Exception as e:
+        print(f"Memo's overgeslagen: {e}", file=sys.stderr)
+        return {}
+
+
 TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
                   "DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html")
 
@@ -1062,120 +1152,136 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
 
     r.append("## Uitgelicht: investeringscases")
     r.append("")
-    r.append(f"_De {len(top)} scherpst geprijsde woningen in de ring, doorgerekend. "
-             f"Blijft een pand staan, dan blijft het hier staan tot het verkocht is "
-             f"of iets beters langskomt._")
+    r.append(f"_De {len(top)} scherpst geprijsde woningen in de ring, beoordeeld als "
+             f"exploitatieobject: wat kost het, wat brengt het op, en wat is de meest "
+             f"realistische route naar meer huur of waarde. Blijft een pand staan, dan "
+             f"blijft het hier staan tot het verkocht is of iets beters langskomt._")
     r.append("")
 
+    # Eerst alle feiten per pand berekenen; het verhaal komt daarna
+    feitenblokken, panden = [], []
     for rang, (afwijking, ppm2, klasse, _a, basis, w) in enumerate(top, 1):
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         g = cbs.get(buurt) or {}
-        opp = w["oppervlakte"]
-        prijs = w["prijs"]
+        opp, prijs = w["oppervlakte"], w["prijs"]
 
         def n(x):
             return f"{int(x):,}".replace(",", ".")
 
-        r.append(f"### {rang}. {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}"
-                 f", {buurt}")
-        r.append("")
-
-        # Wat we van het pand weten
-        feiten = [f"€{n(prijs)}", f"{opp} m²", f"€{n(ppm2)}/m²"]
+        f = [f"adres: {w['adres']} in {buurt}",
+             f"vraagprijs: €{n(prijs)}",
+             f"oppervlakte: {opp} m2",
+             f"prijs per m2: €{n(ppm2)}"]
         if w.get("bouwjaar"):
-            feiten.append(f"bouwjaar {w['bouwjaar']}")
+            f.append(f"bouwjaar: {w['bouwjaar']}")
         lab = _labeltekst(w.get("energielabel"))
         if lab != "onbekend":
-            feiten.append(f"label {lab}")
+            f.append(f"energielabel: {lab}")
+            letter = (w.get("energielabel") or {}).get("label") or ""
+            if letter and letter[0].upper() in ("D", "E", "F", "G"):
+                f.append("labelstap: het label is matig; verbetering telt mee in de "
+                         "WWS-punten en verhoogt daarmee de maximaal toegestane huur")
         if w.get("monument"):
-            feiten.append("rijksmonument")
-        r.append("**Het pand.** " + " . ".join(feiten)
-                 + f". [Bekijk op straatniveau]({streetview_link(w['adres'], w.get('plaats', 'Nijmegen'))})")
+            f.append("rijksmonument: ja")
 
-        # Positie in de markt
+        f.append(f"positie: {afwijking:+.0f}% ten opzichte van de mediaan"
+                 + ("" if basis == buurt else f" van {basis}"))
         rijen = per_buurt.get(buurt, [])
-        pos = [f"{afwijking:+.0f}% ten opzichte van de mediaan"
-               + ("" if basis == buurt else f" van {basis}")]
         if len(rijen) >= 10:
             prijzen = sorted(p for p, _ in rijen)
             p25 = prijzen[len(prijzen) // 4]
             p75 = prijzen[3 * len(prijzen) // 4]
-            waar = ("onder het eerste kwartiel" if ppm2 < p25 else
-                    "boven het derde kwartiel" if ppm2 > p75 else
-                    "binnen de middelste helft")
-            pos.append(f"{waar} van {buurt} (p25 €{n(p25)}, p75 €{n(p75)})")
+            f.append(f"spreiding in {buurt}: p25 €{n(p25)}/m2, mediaan "
+                     f"€{n(st.median(prijzen))}/m2, p75 €{n(p75)}/m2")
         if g.get("woz") and g.get("opp"):
             wozm2 = g["woz"] * 1000 / g["opp"]
-            pos.append(f"{(ppm2 - wozm2) / wozm2 * 100:+.0f}% ten opzichte van de "
-                       f"WOZ per m² in de buurt")
-        r.append("**Positie in de markt.** " + ". ".join(pos) + ".")
+            f.append(f"WOZ per m2 in de buurt: €{n(wozm2)}, dit pand ligt daar "
+                     f"{(ppm2 - wozm2) / wozm2 * 100:+.0f}% boven of onder")
 
-        # Rendement bij de huidige rente
         lening = prijs * LTV / 100
         rentelast = lening * RENTE / 100
+        eigen = prijs - lening
         reeks = huur_bk.get(("woning", buurt), [])
-        bron_huur = f"gemeten op {len(reeks)} aanbiedingen in {buurt}"
+        bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen in {buurt}"
         if len(reeks) < 3:
             reeks = huur_k.get("woning", [])
-            bron_huur = f"gemeten op {len(reeks)} aanbiedingen stadsbreed"
+            bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen stadsbreed"
         if len(reeks) < 3:
             huur_m2 = HUUR_M2_MND.get(buurt, 18)
-            bron_huur = "aanname, nog geen huurdata verzameld"
+            bron_huur = "AANNAME, er is nog geen huurdata verzameld"
         else:
             huur_m2 = st.median(reeks)
         jaarhuur = huur_m2 * 12 * opp
         netto = jaarhuur * (1 - OPEX_PCT / 100)
         cashflow = netto - rentelast
-        eigen = prijs - lening
-        r.append(f"**Rendement.** Bij {LTV:.0f}% financiering leen je €{n(lening)} en leg "
-                 f"je €{n(eigen)} eigen geld in. Tegen {RENTE}% is de rentelast "
-                 f"€{n(rentelast)} per jaar. Bij €{huur_m2:.0f}/m²/maand ({bron_huur}) "
-                 f"is de kale huur €{n(jaarhuur)}, na {OPEX_PCT}% opex €{n(netto)}. "
-                 f"Cashflow: **€{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} "
-                 f"per jaar** op €{n(eigen)} eigen geld. "
-                 f"Bruto aanvangsrendement {jaarhuur / prijs * 100:.1f}%.")
+        f += [f"financiering: {LTV:.0f}% loan-to-value, lening €{n(lening)}, "
+              f"eigen inleg €{n(eigen)}",
+              f"rente: {RENTE}% aflossingsvrij, rentelast €{n(rentelast)} per jaar",
+              f"huur per m2 per maand: €{huur_m2:.0f} ({bron_huur})",
+              f"kale huur: €{n(jaarhuur)} per jaar, na {OPEX_PCT}% opex €{n(netto)}",
+              f"cashflow: €{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
+              f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%"]
 
-        # Uitpondpotentie
         if len(rijen) >= 10:
             voh = st.median([p for p, _ in rijen])
             marge = (voh - ppm2) * opp
             if marge > 0:
-                r.append(f"**Uitponden.** Op de mediaan van {buurt} (€{n(voh)}/m²) is dit "
-                         f"pand €{n(marge)} waard boven de vraagprijs. Dat is de ruimte "
-                         f"vóór renovatie, overdrachtsbelasting en verkoopkosten.")
+                f.append(f"uitpondruimte: €{n(marge)} tot de buurtmediaan, voor renovatie, "
+                         f"overdrachtsbelasting en verkoopkosten")
             else:
-                r.append(f"**Uitponden.** De vraagprijs ligt al boven de mediaan van "
-                         f"{buurt}; de marge moet dan uit renovatie of splitsing komen.")
+                f.append("uitpondruimte: geen, de vraagprijs ligt al boven de buurtmediaan")
 
-        # Beleid toegepast op dit pand
-        beleid = []
         signaal = verkameren_signaal(prijs)
         if signaal == "niet toegestaan":
-            beleid.append("verkameren is uitgesloten: de vraagprijs ligt onder "
-                          f"€{n(WOZ_ONDERGRENS)}, en Nijmegen staat kamerverhuur onder "
-                          "die WOZ-grens niet toe")
+            f.append(f"verkameren: uitgesloten, vraagprijs onder €{n(WOZ_ONDERGRENS)} en "
+                     f"Nijmegen staat kamerverhuur onder die WOZ-grens niet toe")
         elif signaal == "vermoedelijk vergunningplichtig":
-            beleid.append("verkameren is vermoedelijk vergunningplichtig; controleer de "
-                          "WOZ op wozwaardeloket.nl")
+            f.append("verkameren: vermoedelijk vergunningplichtig, WOZ zelf niet bekend")
         else:
-            beleid.append("de WOZ ligt vermoedelijk boven de band; controleer welk "
-                          "regime dan geldt")
+            f.append("verkameren: WOZ ligt vermoedelijk boven de band")
         if buurt in FOCUS_BUURTEN:
-            beleid.append(f"{buurt} is een aangewezen wijk, dus omzetting is daar sowieso "
-                          "vergunningplichtig")
+            f.append(f"{buurt} is een aangewezen wijk, omzetting is er hoe dan ook "
+                     f"vergunningplichtig")
         if g.get("meergezins") is not None:
-            beleid.append(f"{g['meergezins']}% van de voorraad is appartement, wat iets "
-                          "zegt over hoe gebruikelijk splitsen hier is")
-        beleid[0] = beleid[0][0].upper() + beleid[0][1:]
-        r.append("**Beleid.** " + ". ".join(beleid) + ".")
+            f.append(f"aandeel appartementen in {buurt}: {g['meergezins']}%")
+        if g.get("studenten") and g.get("inwoners"):
+            f.append(f"studenten in {buurt}: {g['studenten']}, "
+                     f"{round(g['studenten'] / g['inwoners'] * 100)}% van de inwoners")
 
-        # Wat de gemeente over dit adres publiceerde
         eigen_bm = [b for b in bm.get(buurt, [])
                     if b.get("straat", "").lower() in w["adres"].lower()
                     and b.get("huisnummer", "") in w["adres"]]
-        if eigen_bm:
-            r.append("**Bekendmakingen op dit adres.** "
-                     + " ".join(f"{b.get('datum','')}: {b.get('titel','')}." for b in eigen_bm))
+        for b in eigen_bm:
+            f.append(f"bekendmaking op dit adres: {b.get('datum','')} {b.get('titel','')}")
+
+        feitenblokken.append(f)
+        panden.append((rang, w, buurt, f))
+
+    memos = schrijf_memos(feitenblokken)
+
+    for i, (rang, w, buurt, f) in enumerate(panden):
+        r.append(f"### {rang}. {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}"
+                 f", {buurt}")
+        r.append("")
+        if memos.get(i):
+            for alinea in memos[i].split("\n\n"):
+                if alinea.strip():
+                    r.append(alinea.strip())
+                    r.append("")
+        else:
+            # Zonder memo terugvallen op de kale feiten
+            for regel in f:
+                r.append(f"- {regel}")
+            r.append("")
+        kern = [x for x in f if x.startswith(("vraagprijs", "oppervlakte", "prijs per m2",
+                                              "energielabel", "bouwjaar"))]
+        voet = ("_" + " . ".join(x.split(": ", 1)[1] for x in kern)
+                + f". [Bekijk op straatniveau]"
+                  f"({streetview_link(w['adres'], w.get('plaats', 'Nijmegen'))})")
+        dga = bouwarchief_link(w)
+        if dga:
+            voet += f" . [Bouwtekeningen opvragen]({dga})"
+        r.append(voet + "_")
         r.append("")
 
     # Kaart met de drie panden, en de uitpondmarge als context
