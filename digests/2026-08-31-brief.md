@@ -23,7 +23,7 @@ _5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €3
 | [Boomvalkstraat 18](https://www.google.com/maps/search/?api=1&query=Boomvalkstraat+18%2C+Nijmegen) | woning | €275.000 | 40 | €6.875 | 🔴 +36% | €168.958 | -39% | C (2020) |
 | [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) | woning | €625.000 | 90 | €6.944 | 🔴 +38% | €380.157 | -39% | A++ (2023) |
 
-_Verkameren valt af bij Boomvalkstraat 18: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom met het bod voor cashflow nul._
+_Verkameren valt af bij Boomvalkstraat 18: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom Richtprijs._
 
 **Galgenveld**
 _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €553.000 . WOZ €4.533/m² bij 122 m² gemiddeld (eigen aanbod)<br>54% appartementen . 1.640 studenten (23% van de inwoners, 20% van alle studenten in de ring)_
@@ -35,12 +35,12 @@ _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €55
 | [Molukkenstraat 168](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+168%2C+Nijmegen) | woning | €400.000 | 73 | €5.479 | 🔴 +14% | €308.350 | -23% | C (2026) |
 | [Prof Regoutstraat 1B](https://www.google.com/maps/search/?api=1&query=Prof+Regoutstraat+1B%2C+Nijmegen) | woning | €235.000 | 35 | €6.714 | 🔴 +40% | €147.839 | -37% | C (2026) |
 
-_Verkameren valt af bij Prof Regoutstraat 1B: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom met het bod voor cashflow nul._
+_Verkameren valt af bij Prof Regoutstraat 1B: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom Richtprijs._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">351 m² . label C (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervangen van kozijnen in de voorgevel is een cosmetische ingreep zonder direct effect op waardecreatiestrategieën.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervangen van kozijnen is een reguliere onderhoudsingreep zonder impact op woningaanbod of beleggingsstrategie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-31 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -60,7 +60,7 @@ _4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €3
 
 _Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [Eilbrachtstraat 6](https://www.google.com/maps/search/?api=1&query=Eilbrachtstraat+6%2C+Nijmegen) €325.000 (75 m², €4.333/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
 
-_Verkameren valt af bij Ziekerstraat 10D. Eerste Walstraat 3B. Smetiusstraat 4D: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom met het bod voor cashflow nul._
+_Verkameren valt af bij Ziekerstraat 10D. Eerste Walstraat 3B. Smetiusstraat 4D: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom Richtprijs._
 
 **Bottendaal**
 _2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €394.000 . WOZ €4.062/m² bij 97 m² gemiddeld (eigen aanbod)<br>77% appartementen . 1.150 studenten (23% van de inwoners, 14% van alle studenten in de ring)_
