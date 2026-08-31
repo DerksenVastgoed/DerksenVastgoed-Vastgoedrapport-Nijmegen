@@ -126,6 +126,10 @@ def lees_verkopen(pad):
             # zonder datum blijven gewoon werken; die tellen als 'onbekend'.
             datum = delen[4] if len(delen) > 4 else ""
             bron = delen[5] if len(delen) > 5 else ""
+            # Veld 7 en 8 komen uit de advertentie zelf. Bij huuraanbod zonder
+            # huisnummer is dat de enige bron voor oppervlakte en buurt.
+            opp_bron = delen[6] if len(delen) > 6 else ""
+            postcode_bron = delen[7] if len(delen) > 7 else ""
             if datum and not re.match(r"^\d{4}-\d{2}-\d{2}$", datum):
                 datum = ""
             try:
@@ -140,6 +144,8 @@ def lees_verkopen(pad):
                 "status": status,
                 "datum": datum,
                 "bron": bron,
+                "oppervlakte_bron": int(opp_bron) if opp_bron.isdigit() else None,
+                "postcode_bron": postcode_bron,
                 "regelnr": lineno,
             })
     return resultaat
@@ -214,6 +220,28 @@ def split_huisnummer(adres):
         varianten.append((straat, huisnr, None, achter))
         varianten.append((straat, huisnr, None, None))
     return varianten
+
+
+
+def pdok_buurt_postcode(postcode):
+    """Buurt bepalen uit een postcode, voor adressen zonder huisnummer."""
+    if not postcode:
+        return {}
+    try:
+        r = requests.get(PDOK_FREE, params={
+            "q": postcode, "fq": "type:postcode", "rows": 1,
+            "fl": "buurtnaam wijknaam postcode",
+        }, headers=PDOK_HEADERS, timeout=15)
+        r.raise_for_status()
+        docs = r.json().get("response", {}).get("docs", [])
+        if not docs:
+            return {}
+        d = docs[0]
+        return {"postcode": d.get("postcode", postcode),
+                "buurtnaam": d.get("buurtnaam", ""),
+                "wijknaam": d.get("wijknaam", "")}
+    except Exception:
+        return {}
 
 
 def pdok_buurt(straat, huisnr, plaats):
@@ -452,7 +480,18 @@ def verrijk(woning, cache):
         return woning
 
     varianten = split_huisnummer(woning["adres"])
+
+    # Adres zonder huisnummer, zoals Pararius bij huuraanbod toont. De advertentie
+    # gaf dan zelf de oppervlakte, en de buurt halen we uit de postcode.
     if not varianten:
+        if woning.get("oppervlakte_bron"):
+            gegevens = {"oppervlakte": woning["oppervlakte_bron"],
+                        "gebruiksdoelen": ["woonfunctie"]}
+            gegevens.update(pdok_buurt_postcode(woning.get("postcode_bron", "")))
+            time.sleep(0.2)
+            cache[sleutel] = gegevens
+            woning.update(gegevens)
+            return woning
         print(f"  FAIL parse: {woning['adres']}", file=sys.stderr)
         cache[sleutel] = {"gefaald": True, "reden": "parse"}
         return woning
@@ -1551,7 +1590,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                          f"€{WOZ_ONDERGRENS:,}".replace(",", ".")
                          + ", en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. "
                            "Als gewone verhuur kunnen deze panden wel uitkomen; kijk "
-                           "daarvoor naar de kolom met het bod voor cashflow nul._")
+                           "daarvoor naar de kolom Richtprijs._")
                 r.append("")
 
         if bm.get(buurt):

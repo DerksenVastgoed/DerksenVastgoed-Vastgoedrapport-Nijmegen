@@ -36,7 +36,12 @@ WACHTWOORD = os.environ.get("MAIL_PASSWORD", "")
 RE_ADRES_KOMMA = re.compile(
     r"^\s*([A-Za-zÀ-ÿ.'\-\s]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*,\s*"
     r"([A-Za-zÀ-ÿ\-' ]+?)\s*$")
-RE_POSTCODE = re.compile(r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*$")
+RE_POSTCODE = re.compile(
+    r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*(?:\([^)]*\))?\s*$")
+# Alleen een straatnaam, zonder huisnummer. Pararius doet dit bij huuraanbod.
+RE_STRAAT_ALLEEN = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\- ]{3,40})\s*$")
+# '112 m² · 3 kamers · ...' of '112 m2'
+RE_OPPERVLAKTE = re.compile(r"(\d{2,4})\s*m[²2]\b")
 RE_ADRES = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\-\s]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*$")
 RE_PRIJS = re.compile(r"([\d][\d.]{2,})")
 
@@ -115,6 +120,7 @@ def parse_objecten(regels, basis_status):
         adres = plaats = None
         adres_idx = i
 
+        postcode_gevonden = ""
         komma = RE_ADRES_KOMMA.match(regel)
         if komma:
             adres, plaats = komma.group(1).strip(), komma.group(2).strip()
@@ -123,11 +129,21 @@ def parse_objecten(regels, basis_status):
             if not pc:
                 continue
             plaats = pc.group(2).strip()
+            postcode_gevonden = pc.group(1).replace(" ", "")
             for j in range(i - 1, max(-1, i - 5), -1):
                 a = RE_ADRES.match(regels[j])
                 if a:
                     adres, adres_idx = a.group(1).strip(), j
                     break
+            # Pararius toont bij huuraanbod alleen de straatnaam. Dan pakken we
+            # de regel direct boven de postcode, mits die op een straat lijkt.
+            if not adres and i > 0:
+                st_alleen = RE_STRAAT_ALLEEN.match(regels[i - 1])
+                if st_alleen and not any(
+                        w in regels[i - 1].lower()
+                        for w in ("zoekopdracht", "woningen", "pararius", "bekijk",
+                                  "nieuwe", "jouw", "team", "groet", "kamernet")):
+                    adres, adres_idx = st_alleen.group(1).strip(), i - 1
             if not adres:
                 continue
 
@@ -192,11 +208,21 @@ def parse_objecten(regels, basis_status):
                 bron = regels[j][len("__LINK__"):].split("?")[0].strip()
                 break
 
+        # Oppervlakte staat vaak in de advertentieregel zelf. Bij een adres zonder
+        # huisnummer is dat de enige bron, want de BAG kan er dan niets mee.
+        opp = ""
+        for p in range(adres_idx, min(len(regels), i + 8)):
+            om = RE_OPPERVLAKTE.search(regels[p])
+            if om and 10 <= int(om.group(1)) <= 2000:
+                opp = om.group(1)
+                break
+
         vandaag = dt.date.today().isoformat()
         regel_uit = f"{adres} | {plaats} | {prijs} | {status} | {vandaag}"
-        if bron:
-            regel_uit += f" | {bron}"
-        gevonden.append(regel_uit)
+        regel_uit += f" | {bron}" if bron else " | "
+        regel_uit += f" | {opp}" if opp else " | "
+        regel_uit += f" | {postcode_gevonden}" if postcode_gevonden else " | "
+        gevonden.append(regel_uit.rstrip(" |") if regel_uit.endswith(" | ") else regel_uit)
 
     return gevonden, overgeslagen
 

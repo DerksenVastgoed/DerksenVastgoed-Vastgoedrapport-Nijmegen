@@ -1,5 +1,6 @@
 # Marktdata voor het marktprijzen-blok.
-# Format per regel: adres | plaats | prijs | status | datum
+# Format per regel: adres | plaats | prijs | status | datum | bron | m2 | postcode
+# Velden vanaf 'bron' zijn optioneel en worden automatisch gevuld door funda_mail.py.
 # Status: 'verkocht', 'onder bod', 'te koop', 'belegging'.
 # Datum (jjjj-mm-dd) is wanneer we dit object zagen. Optioneel; regels zonder
 # datum blijven werken, maar tellen niet mee voor looptijd en prijshistorie.
