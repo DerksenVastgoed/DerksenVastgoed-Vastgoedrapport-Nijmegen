@@ -830,21 +830,35 @@ def eigen_inleg(koopsom):
 
 def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
     """
-    Gemeten huur per m2. Eerst de eigen grootteklasse, want die verklaart het
-    meeste van de spreiding, dan de buurt, dan stadsbreed, dan de aanname.
+    Gemeten huur per m2.
+
+    Grootte en buurt verklaren allebei een deel van de spreiding, en ze los van
+    elkaar gebruiken gaat mis: de grootteklasse wordt gevuld met panden uit
+    duurdere buurten, en de buurt zelf heeft vaak te weinig waarnemingen om op
+    grootte te splitsen. Daarom nemen we de grootteklasse als vorm en schalen
+    die naar het niveau van de buurt.
     """
     band = groottebandje(opp)
-    reeks = huur_k.get((klasse, band), [])
-    if len(reeks) >= 3:
-        return st.median(reeks), f"gemeten, {len(reeks)} panden {band}"
+    band_reeks = huur_k.get((klasse, band), [])
+    buurt_reeks = huur_bk.get((klasse, buurt), [])
+    stad_reeks = huur_k.get(klasse, [])
 
-    reeks = huur_bk.get((klasse, buurt), [])
-    if len(reeks) >= 3:
-        return st.median(reeks), f"gemeten, {len(reeks)} in {buurt}"
+    # Buurtniveau ten opzichte van de stad, alleen bij genoeg waarnemingen
+    factor, factor_bron = 1.0, ""
+    if len(buurt_reeks) >= 2 and len(stad_reeks) >= 5:
+        factor = st.median(buurt_reeks) / st.median(stad_reeks)
+        factor = max(0.7, min(1.4, factor))  # extreme uitslagen dempen
+        factor_bron = f", geschaald naar {buurt} ({factor:.2f}x)"
 
-    reeks = huur_k.get(klasse, [])
-    if len(reeks) >= 3:
-        return st.median(reeks), f"gemeten, {len(reeks)} stadsbreed"
+    if len(band_reeks) >= 3:
+        return (st.median(band_reeks) * factor,
+                f"gemeten, {len(band_reeks)} panden {band}{factor_bron}")
+
+    if len(buurt_reeks) >= 3:
+        return st.median(buurt_reeks), f"gemeten, {len(buurt_reeks)} in {buurt}"
+
+    if len(stad_reeks) >= 3:
+        return st.median(stad_reeks) * factor, f"gemeten, {len(stad_reeks)} stadsbreed{factor_bron}"
 
     return HUUR_M2_MND.get(buurt, 18), "aanname"
 
