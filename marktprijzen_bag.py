@@ -1021,7 +1021,16 @@ def gemeten_huren(huur_aanbod):
     """
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
+    inclusief_weg = 0
     for w in huur_aanbod:
+        # Alleen kale huur telt. Servicekosten zijn doorbelasting van werkelijke
+        # kosten waar geen rendement uit komt, en het puntenstelsel toetst er
+        # ook niet op. Advertenties met een bedrag inclusief vaste lasten laten
+        # we daarom weg in plaats van er een aftrek op te verzinnen.
+        if (w.get("bron") or "").endswith("incl"):
+            inclusief_weg += 1
+            continue
+
         # Kamerhuur aftoppen op het wettelijk maximum voordat we er een
         # mediaan van maken; anders rekenen we met huur die niet is toegestaan.
         begrensd = dict(w)
@@ -1050,6 +1059,10 @@ def gemeten_huren(huur_aanbod):
         per_klasse[(klasse, groottebandje(w.get("oppervlakte")))].append(hm2)
         if buurt:
             per_buurt_klasse[(klasse, buurt)].append(hm2)
+    if inclusief_weg:
+        print(f"Huur: {inclusief_weg} advertenties inclusief vaste lasten weggelaten",
+              file=sys.stderr)
+        per_klasse["_inclusief_weggelaten"] = inclusief_weg
     return per_buurt_klasse, per_klasse
 
 
@@ -2042,6 +2055,12 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             regels_klasse.append(f"{klasse}: €{st.median(waarden):.0f}/m²/mnd (N={len(waarden)})")
         if regels_klasse:
             r.append("**Gemeten huurniveaus per klasse:** " + " . ".join(regels_klasse))
+            weg = huur_k.get("_inclusief_weggelaten")
+            if weg:
+                r.append(f"_{weg} advertenties met een bedrag inclusief vaste lasten zijn "
+                         f"weggelaten. Alleen kale huur telt: servicekosten zijn "
+                         f"doorbelasting van werkelijke kosten en het puntenstelsel "
+                         f"toetst er niet op._")
             r.append("_Commerciële huur wordt vaak per m² per jaar geadverteerd; die is "
                      "hier door twaalf gedeeld. Kamers staan apart, want onzelfstandige "
                      "eenheden brengen per m² meer op en zouden de huur voor gewone "
