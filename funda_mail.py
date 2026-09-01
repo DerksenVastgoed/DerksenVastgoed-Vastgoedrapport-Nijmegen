@@ -227,6 +227,170 @@ def parse_objecten(regels, basis_status):
     return gevonden, overgeslagen
 
 
+
+
+# Kamernet zet elk object over meerdere regels, zonder postcode:
+#   Lange Hezelstraat,
+#   Nijmegen
+#   25 m2
+#   kaal
+#   Kamer
+#   Vanaf 1 Sep 2026
+#   € 550
+#   /maand incl.
+RE_KN_STRAAT = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\-\d ]{3,45}),\s*$")
+RE_KN_PLAATS = re.compile(r"^\s*([A-Za-zÀ-ÿ\-' ]{3,30})\s*$")
+RE_KN_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2]\s*$")
+RE_KN_SOORT = re.compile(r"^\s*(Kamer|Appartement|Studio|Woonhuis|Anti-kraak)\s*$", re.I)
+RE_KN_PRIJS = re.compile(r"^\s*€\s*([\d.]+)\s*$")
+
+KN_PLAATSEN = ("nijmegen", "lent")
+
+
+def parse_kamernet(regels, basis_status="te huur kamer"):
+    """
+    Leest een Kamernet-overzicht. Kamers krijgen 'te huur kamer', zelfstandige
+    eenheden zoals appartement en studio krijgen gewoon 'te huur'.
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = dt.date.today().isoformat()
+
+    for i, regel in enumerate(regels):
+        st_m = RE_KN_STRAAT.match(regel)
+        if not st_m or i + 1 >= len(regels):
+            continue
+        pl_m = RE_KN_PLAATS.match(regels[i + 1])
+        if not pl_m:
+            continue
+        straat, plaats = st_m.group(1).strip(), pl_m.group(1).strip()
+        if plaats.lower() not in KN_PLAATSEN:
+            continue
+
+        opp = soort = prijs = None
+        inclusief = False
+        for j in range(i + 2, min(len(regels), i + 12)):
+            if opp is None:
+                om = RE_KN_OPP.match(regels[j])
+                if om:
+                    opp = int(om.group(1))
+                    continue
+            if soort is None:
+                sm = RE_KN_SOORT.match(regels[j])
+                if sm:
+                    soort = sm.group(1).lower()
+                    continue
+            pm = RE_KN_PRIJS.match(regels[j])
+            if pm:
+                prijs = int(pm.group(1).replace(".", ""))
+                if j + 1 < len(regels) and "incl" in regels[j + 1].lower():
+                    inclusief = True
+                break
+
+        if not (opp and soort and prijs):
+            overgeslagen.append(f"{straat} (onvolledig)")
+            continue
+
+        status = "te huur kamer" if soort == "kamer" else "te huur"
+        sleutel = (straat.lower(), prijs, opp)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+
+        # 'incl.' betekent inclusief servicekosten; dat vermelden we in de bron,
+        # zodat later duidelijk is dat dit geen kale huur is.
+        bron = "kamernet-incl" if inclusief else "kamernet"
+        gevonden.append(f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+                        f"| {bron} | {opp} | ")
+    return gevonden, overgeslagen
+
+
+
+
+# Pararius-overzicht. De buurt staat tussen haakjes achter de postcode, en waar
+# een kale en een totale huurprijs staan nemen we de kale: die telt voor het
+# rendement en voor het puntenstelsel.
+RE_PA_POSTCODE = re.compile(
+    r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*\(([^)]+)\)\s*$")
+RE_PA_PRIJS = re.compile(r"^\s*€\s*([\d.]+)\s*per maand\s*$")
+RE_PA_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2]\s*$")
+RE_PA_TITEL = re.compile(
+    r"^\s*(Appartement|Huis|Studio|Kamer|Woonboot|Bungalow)\s+(.+?)\s*$", re.I)
+
+# Leegstandbeheer is geen markthuur en hoort niet in een mediaan thuis.
+PA_UITSLUITEN = ("ad hoc", "camelot", "leegstandbeheer", "anti-kraak", "antikraak")
+
+
+def parse_pararius(regels):
+    """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = dt.date.today().isoformat()
+
+    for i, regel in enumerate(regels):
+        pc = RE_PA_POSTCODE.match(regel)
+        if not pc:
+            continue
+        postcode, plaats, buurt = (pc.group(1).replace(" ", ""),
+                                   pc.group(2).strip(), pc.group(3).strip())
+        if plaats.lower() not in ("nijmegen", "lent"):
+            continue
+
+        # Titel met soort en straat staat boven de postcode
+        soort = straat = None
+        for j in range(i - 1, max(-1, i - 6), -1):
+            tm = RE_PA_TITEL.match(regels[j])
+            if tm:
+                soort, straat = tm.group(1).lower(), tm.group(2).strip()
+                break
+        if not straat:
+            continue
+
+        # Kale huurprijs heeft voorrang boven de totale huurprijs
+        prijs = None
+        kale_gezien = False
+        for j in range(i + 1, min(len(regels), i + 12)):
+            if "kale huurprijs" in regels[j].lower():
+                kale_gezien = True
+                continue
+            if "totale huurprijs" in regels[j].lower() and prijs:
+                break  # kale huur al binnen, de rest negeren
+            pm = RE_PA_PRIJS.match(regels[j])
+            if pm and prijs is None:
+                prijs = int(pm.group(1).replace(".", ""))
+                if not kale_gezien:
+                    break  # er is maar een prijs, dus dat is de huur
+                break
+
+        opp = None
+        for j in range(i + 1, min(len(regels), i + 16)):
+            om = RE_PA_OPP.match(regels[j])
+            if om:
+                opp = int(om.group(1))
+                break
+
+        beheerder = ""
+        for j in range(i + 1, min(len(regels), i + 18)):
+            if RE_PA_POSTCODE.match(regels[j]) or RE_PA_TITEL.match(regels[j]):
+                break  # volgend object begint hier
+            if regels[j].strip() and not any(c.isdigit() for c in regels[j]):
+                beheerder = regels[j].strip().lower()
+        if any(u in beheerder for u in PA_UITSLUITEN):
+            overgeslagen.append(f"{straat} (leegstandbeheer)")
+            continue
+
+        if not (prijs and opp):
+            overgeslagen.append(f"{straat} (onvolledig)")
+            continue
+
+        status = "te huur kamer" if soort == "kamer" else "te huur"
+        sleutel = (straat.lower(), prijs, opp)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        gevonden.append(f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+                        f"| pararius | {opp} | {postcode}")
+    return gevonden, overgeslagen
+
+
 def bestaande_adressen(pad):
     """Adressen die al in verkopen.txt staan, om dubbelingen te vermijden."""
     bestaand = set()
@@ -323,7 +487,12 @@ def main():
         else:
             soort_bron, status_label = "regulier", "te koop"
 
-        objecten, overgeslagen = parse_objecten(regels, status_label)
+        if soort_bron == "kamernet":
+            objecten, overgeslagen = parse_kamernet(regels)
+        elif soort_bron == "pararius":
+            objecten, overgeslagen = parse_pararius(regels)
+        else:
+            objecten, overgeslagen = parse_objecten(regels, status_label)
         alle_overgeslagen.extend(overgeslagen)
 
         toegevoegd = 0

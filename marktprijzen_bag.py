@@ -813,16 +813,25 @@ def eigen_inleg(koopsom):
     return koopsom * (1 - LTV / 100) + koopsom * AANKOOPKOSTEN_PCT / 100
 
 
-def huur_voor_buurt(buurt, huur_bk, huur_k):
-    """Gemeten huur per m2 voor een buurt, met terugval op stad en aanname."""
-    reeks = huur_bk.get(("woning", buurt), [])
-    bron = f"gemeten, {len(reeks)} in {buurt}"
-    if len(reeks) < 3:
-        reeks = huur_k.get("woning", [])
-        bron = f"gemeten, {len(reeks)} stadsbreed"
-    if len(reeks) < 3:
-        return HUUR_M2_MND.get(buurt, 18), "aanname"
-    return st.median(reeks), bron
+def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
+    """
+    Gemeten huur per m2. Eerst de eigen grootteklasse, want die verklaart het
+    meeste van de spreiding, dan de buurt, dan stadsbreed, dan de aanname.
+    """
+    band = groottebandje(opp)
+    reeks = huur_k.get((klasse, band), [])
+    if len(reeks) >= 3:
+        return st.median(reeks), f"gemeten, {len(reeks)} panden {band}"
+
+    reeks = huur_bk.get((klasse, buurt), [])
+    if len(reeks) >= 3:
+        return st.median(reeks), f"gemeten, {len(reeks)} in {buurt}"
+
+    reeks = huur_k.get(klasse, [])
+    if len(reeks) >= 3:
+        return st.median(reeks), f"gemeten, {len(reeks)} stadsbreed"
+
+    return HUUR_M2_MND.get(buurt, 18), "aanname"
 
 
 def verkameren_signaal(prijs):
@@ -970,6 +979,40 @@ def huur_per_m2_maand(w):
     return None
 
 
+def groottebandje(opp):
+    """
+    Huur per m2 daalt sterk met de omvang: een studio brengt per m2 ruim het
+    dubbele op van een groot pand. Een enkele mediaan per buurt beoordeelt
+    kleine units daardoor te laag en grote panden te hoog.
+    """
+    if not opp:
+        return "onbekend"
+    if opp < 50:
+        return "klein"
+    if opp <= 100:
+        return "middel"
+    return "groot"
+
+
+def kamerhuur_binnen_wwso(w):
+    """
+    Geeft de vraaghuur terug, begrensd op het wettelijk maximum. Kamerhuur die
+    boven het puntenstelsel uitkomt mag een huurder laten terugzetten, dus die
+    telt niet mee als opbrengst waarop je een bod baseert.
+    """
+    if not wwso_bandbreedte or (w.get("status") or "").lower() != "te huur kamer":
+        return w.get("prijs")
+    opp = w.get("oppervlakte")
+    if not opp or opp < 4:
+        return w.get("prijs")
+    ep = w.get("energielabel") or {}
+    band = wwso_bandbreedte(opp, label=ep.get("label"), bouwjaar=w.get("bouwjaar"),
+                            monument=bool(w.get("monument")))
+    if not band:
+        return w.get("prijs")
+    return min(w["prijs"], band["hoog"])
+
+
 def gemeten_huren(huur_aanbod):
     """
     Mediane huur per m2 per maand, per buurt en per klasse.
@@ -979,20 +1022,32 @@ def gemeten_huren(huur_aanbod):
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
     for w in huur_aanbod:
-        hm2 = huur_per_m2_maand(w)
+        # Kamerhuur aftoppen op het wettelijk maximum voordat we er een
+        # mediaan van maken; anders rekenen we met huur die niet is toegestaan.
+        begrensd = dict(w)
+        begrensd["prijs"] = kamerhuur_binnen_wwso(w)
+        hm2 = huur_per_m2_maand(begrensd)
         if not hm2:
             continue
         status = (w.get("status") or "").lower()
+        bron = (w.get("bron") or "").lower()
         if status == "te huur kamer":
             klasse = "kamer"
-            if hm2 < 8 or hm2 > 150:   # kamers lopen per m2 verder uiteen
+            if hm2 < 8 or hm2 > 80:  # daarboven klopt de opgegeven oppervlakte niet
                 continue
         else:
+            # Zelfstandige eenheden op Kamernet zijn gemeubileerde shortstay met
+            # korte contracten. Die brengen per m2 veel meer op dan gewone verhuur
+            # en zouden de richtprijzen kunstmatig omhoog duwen.
+            if bron.startswith("kamernet"):
+                continue
             klasse = assetklasse(w)
             if hm2 < 4 or hm2 > 80:
                 continue
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         per_klasse[klasse].append(hm2)
+        # Ook per grootteklasse, want dat verklaart het meeste van de spreiding
+        per_klasse[(klasse, groottebandje(w.get("oppervlakte")))].append(hm2)
         if buurt:
             per_buurt_klasse[(klasse, buurt)].append(hm2)
     return per_buurt_klasse, per_klasse
@@ -1233,6 +1288,73 @@ def schrijf_memos(feitenblokken):
 
 TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
                   "DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html")
+
+
+
+# WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
+try:
+    from wwso import wwso_bandbreedte
+except Exception:  # noqa
+    wwso_bandbreedte = None
+
+
+def wwso_toets(huur_aanbod):
+    """
+    Toetst de vraaghuren van kamers aan het wettelijk maximum uit het WWSO.
+    Dat maximum hangt af van gegevens die niet in een advertentie staan, zoals
+    gemeenschappelijke ruimte en sanitair, dus we rekenen met een bandbreedte.
+    Boven de ruime variant haalt zelfs een gunstige telling het niet meer.
+    """
+    if not wwso_bandbreedte:
+        return []
+    treffers = []
+    for w in huur_aanbod:
+        if (w.get("status") or "").lower() != "te huur kamer":
+            continue
+        opp = w.get("oppervlakte")
+        if not opp or opp < 4:
+            continue
+        ep = w.get("energielabel") or {}
+        band = wwso_bandbreedte(opp, label=ep.get("label"),
+                                bouwjaar=w.get("bouwjaar"),
+                                monument=bool(w.get("monument")))
+        if not band:
+            continue
+        inclusief = (w.get("bron") or "").endswith("incl")
+        treffers.append({"w": w, "band": band, "inclusief": inclusief,
+                         "boven": w["prijs"] > band["hoog"]})
+    return treffers
+
+
+def render_wwso(huur_aanbod):
+    """Blok met de toets van kamerhuren aan het puntenstelsel."""
+    treffers = wwso_toets(huur_aanbod)
+    if not treffers:
+        return []
+    boven = [t for t in treffers if t["boven"]]
+    r = ["### Kamerhuren getoetst aan het puntenstelsel", ""]
+    r.append(f"_Van {len(treffers)} kamers in het aanbod vragen er {len(boven)} meer dan "
+             f"het WWSO toestaat, ook bij een gunstige telling._")
+    r.append("")
+    if boven:
+        r.append("| Adres | m² | Vraaghuur | Wettelijk maximum |")
+        r.append("|---|---:|---:|---:|")
+        for t in sorted(boven, key=lambda x: -(x["w"]["prijs"] - x["band"]["hoog"])):
+            w, b = t["w"], t["band"]
+            merk = " (incl. servicekosten)" if t["inclusief"] else ""
+            r.append(f"| {w['adres']} | {w.get('oppervlakte')} | "
+                     f"€{w['prijs']:,}{merk} | €{b['laag']:,.0f} tot €{b['hoog']:,.0f} |"
+                     .replace(",", "."))
+        r.append("")
+    r.append("_Onzelfstandige woonruimte valt altijd in de sociale sector en heeft dus "
+             "altijd huurprijsbescherming, ongeacht de afgesproken prijs. Een huurder kan "
+             "de aanvangshuurprijs binnen zes maanden laten toetsen, en de Huurcommissie "
+             "stelt een te hoge huur met terugwerkende kracht bij. Bedragen inclusief "
+             "servicekosten zijn niet zuiver vergelijkbaar met de kale huur waarop het "
+             "stelsel toetst. Bron: Beleidsboek waarderingsstelsel onzelfstandige "
+             "woonruimte, Huurcommissie, januari 2026._")
+    r.append("")
+    return r
 
 
 def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
@@ -1550,7 +1672,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
-                huur_m2, _ = huur_voor_buurt(buurt, huur_bk, huur_k)
+                huur_m2, _ = huur_voor_buurt(buurt, huur_bk, huur_k, w['oppervlakte'])
                 plafond = richtprijs(w["oppervlakte"], huur_m2)
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
@@ -1814,6 +1936,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     huur_bk, huur_k = gemeten_huren(huur_aanbod)
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
                                       huur_bk, huur_k, bm_per_buurt, beleggingen=beleggingen))
+    r.extend(render_wwso(huur_aanbod))
     return "\n".join(r)
 
     r.append("### Referentie: prijspeil per buurt")
