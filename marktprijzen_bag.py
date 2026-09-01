@@ -774,8 +774,13 @@ WOZ_BOVENGRENS = 396_000
 RENTE = 5.75              # verhuurhypotheek, aflossingsvrij
 LTV = 66.7                # financieringsgraad op de koopsom
 OPEX_PCT = 25             # onderhoud, leegstand, beheer, verzekering
-AANKOOPKOSTEN_PCT = 12    # overdrachtsbelasting, notaris, makelaar, taxatie
 DOEL_CASHFLOW = 0         # gewenste cashflow per jaar; 0 is precies rondlopen
+LOOPTIJD_JAAR = 30        # looptijd voor de annuiteit; 0 = alleen rente betalen
+
+# Aankoopkosten, apart zodat je ziet waar ze vandaan komen.
+OVERDRACHTSBELASTING_PCT = 10.4   # tarief beleggingsvastgoed; controleer jaarlijks
+BIJKOMENDE_KOSTEN_PCT = 2.0       # notaris, makelaar, taxatie, advies
+AANKOOPKOSTEN_PCT = OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT
 
 # Aanname voor de huur per m2 per maand, per buurt. Vervalt zodra er gemeten
 # huuraanbiedingen binnenkomen; in de brief staat per buurt welke bron geldt.
@@ -786,22 +791,32 @@ HUUR_M2_MND = {
 
 
 
+def jaarlast_factor():
+    """
+    Wat kost een euro lening per jaar? Bij LOOPTIJD_JAAR = 0 alleen rente,
+    anders een annuiteit waarin rente en aflossing samen zitten. Dat laatste is
+    de strengere lat: de huur moet dan ook de aflossing dragen.
+    """
+    r = RENTE / 100
+    if not LOOPTIJD_JAAR:
+        return r
+    return r / (1 - (1 + r) ** -LOOPTIJD_JAAR)
+
+
 def richtprijs(opp, huur_m2):
     """
     De hoogste koopsom waarbij het pand nog de gewenste cashflow haalt.
 
-    De nettohuur moet de rentelast dekken plus DOEL_CASHFLOW overhouden:
-        huur * 12 * m2 * (1 - opex)  -  K * LTV% * rente%  >=  doel
-    Oplossen naar K geeft het plafond. Dit is dus geen taxatie en geen bod,
-    maar de bovengrens waarboven het pand jaarlijks geld kost.
+    De nettohuur moet de jaarlast op de lening dekken plus DOEL_CASHFLOW:
+        huur * 12 * m2 * (1 - opex)  -  K * LTV% * jaarlastfactor  >=  doel
 
     Wat er NIET in zit: renovatie om de huur te halen, en de vraag of het
-    puntenstelsel die huur uberhaupt toestaat. Beide verlagen dit plafond.
+    puntenstelsel die huur toestaat. Beide verlagen dit plafond.
     """
     if not opp or not huur_m2:
         return None
     netto = huur_m2 * 12 * opp * (1 - OPEX_PCT / 100)
-    noemer = (LTV / 100) * (RENTE / 100)
+    noemer = (LTV / 100) * jaarlast_factor()
     if noemer <= 0:
         return None
     plafond = (netto - DOEL_CASHFLOW) / noemer
@@ -1438,7 +1453,11 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
 
         lening = prijs * LTV / 100
         rentelast = lening * RENTE / 100
-        eigen = prijs - lening
+        jaarlast = lening * jaarlast_factor()
+        aflossing = jaarlast - rentelast
+        ovb = prijs * OVERDRACHTSBELASTING_PCT / 100
+        bijkomend = prijs * BIJKOMENDE_KOSTEN_PCT / 100
+        eigen = prijs - lening + ovb + bijkomend
         reeks = huur_bk.get(("woning", buurt), [])
         bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen in {buurt}"
         if len(reeks) < 3:
@@ -1451,14 +1470,24 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             huur_m2 = st.median(reeks)
         jaarhuur = huur_m2 * 12 * opp
         netto = jaarhuur * (1 - OPEX_PCT / 100)
-        cashflow = netto - rentelast
-        f += [f"financiering: {LTV:.0f}% loan-to-value, lening €{n(lening)}, "
-              f"eigen inleg €{n(eigen)}",
-              f"rente: {RENTE}% aflossingsvrij, rentelast €{n(rentelast)} per jaar",
+        cashflow = netto - jaarlast
+        f += [f"financiering: {LTV:.0f}% loan-to-value, lening €{n(lening)}",
+              f"eigen vermogen: €{n(prijs - lening)} niet gefinancierd, plus "
+              f"€{n(ovb)} overdrachtsbelasting ({OVERDRACHTSBELASTING_PCT}%) en "
+              f"€{n(bijkomend)} notaris, makelaar en taxatie "
+              f"({BIJKOMENDE_KOSTEN_PCT}%), samen €{n(eigen)} in te leggen",
+              f"rente: {RENTE}%, rentelast €{n(rentelast)} per jaar",
+              f"aflossing: over {LOOPTIJD_JAAR} jaar annuitair, €{n(aflossing)} per jaar"
+              if LOOPTIJD_JAAR else "aflossing: geen, aflossingsvrij",
+              f"totale jaarlast op de lening: €{n(jaarlast)}",
               f"huur per m2 per maand: €{huur_m2:.0f} ({bron_huur})",
               f"kale huur: €{n(jaarhuur)} per jaar, na {OPEX_PCT}% opex €{n(netto)}",
-              f"cashflow: €{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
-              f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%"]
+              f"cashflow na rente en aflossing: "
+              f"€{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
+              f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%",
+              f"rendement op eigen vermogen: {cashflow / eigen * 100:.1f}%"
+              if eigen > 0 else ""]
+        f = [x for x in f if x]
         bod = richtprijs(opp, huur_m2)
         if bod:
             f.append(f"bod voor cashflow nul: €{n(bod)}, dat is "
@@ -1735,16 +1764,12 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
     if kort and buiten_ring:
         r.append(f"_{buiten_ring} panden staan in buurten buiten de ring. Die staan in de "
                  f"uitgebreide brief van zondag._")
-        r.append(f"_**Richtprijs** is de hoogste koopsom waarbij de nettohuur de rentelast "
-                 f"nog dekt. **Ruimte** is het verschil met de vraagprijs: positief betekent "
-                 f"dat er speling zit, negatief dat er zoveel af zou moeten voordat het pand "
-                 f"zichzelf rondhoudt. Gerekend met {LTV:.0f}% financiering, {RENTE}% rente "
-                 f"aflossingsvrij, {OPEX_PCT}% opex en een gewenste cashflow van "
-                 f"€{DOEL_CASHFLOW:,}".replace(",", ".")
-                 + ". Aankoopkosten van "
-                 f"{AANKOOPKOSTEN_PCT}% zitten niet in de richtprijs maar wel in je eigen "
-                 f"inleg. Renovatie om die huur te halen en de vraag of het puntenstelsel "
-                 f"die huur toestaat zitten er evenmin in; beide verlagen dit plafond._")
+        lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
+                     else "rente")
+        r.append(f"_**Richtprijs**: de hoogste koopsom waarbij de nettohuur {lastsoort} "
+                 f"nog dekt, bij {LTV:.0f}% financiering en {RENTE}% rente. "
+                 f"**Ruimte** is het verschil met de vraagprijs. "
+                 f"Volledige onderbouwing in de zondagsbrief._")
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
