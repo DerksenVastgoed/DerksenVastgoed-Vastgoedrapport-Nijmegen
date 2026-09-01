@@ -861,14 +861,37 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
     maand = huur_m2 * bruikbaar
 
     # Waarde per eenheid, om te toetsen aan de opkoopbescherming
-    rijen = None
     unit_waarde = w["prijs"] / aantal
     beschermd = unit_waarde < OPKOOPBESCHERMING_WOZ
+
+    # Puntentelling per nieuwe eenheid. Onder 187 punten is de huur wettelijk
+    # begrensd en is de marktprijs per m2 niet wat je mag vragen.
+    punten = segment = None
+    if wws_punten:
+        ep = w.get("energielabel") or {}
+        try:
+            r = wws_punten(unit_m2, unit_waarde, label=ep.get("label"),
+                           monument=bool(w.get("monument")), heeft_buiten=False)
+            punten, segment = r["punten"], r["segment"]
+            if r["gereguleerd"] and wws_max_huur:
+                # Onder 187 punten geldt een wettelijk maximum per eenheid. De
+                # marktkhuur mag dan niet gevraagd worden, dus we rekenen met
+                # het maximum. Dat is het bedrag waarop je een bod baseert.
+                maximum = wws_max_huur(punten)
+                if maximum:
+                    maand_wettelijk = maximum * aantal
+                    if maand_wettelijk < maand:
+                        maand = maand_wettelijk
+                        huur_m2 = maand / bruikbaar
+                        bron = f"wettelijk maximum, {punten} punten per eenheid"
+        except Exception:
+            pass
 
     return {"naam": f"splitsen in {aantal}", "huur_m2": huur_m2, "maand": maand,
             "opp": round(bruikbaar), "bron": bron, "aantal": aantal,
             "unit_m2": round(unit_m2), "unit_waarde": unit_waarde,
-            "beschermd": beschermd}
+            "beschermd": beschermd, "punten": punten, "segment": segment,
+            "gereguleerd": bool(segment and segment != "vrije sector")}
 
 
 def kies_scenario(w, huur_bk, huur_k, buurt):
@@ -1481,9 +1504,11 @@ TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
 
 # WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
 try:
-    from wwso import wwso_bandbreedte
+    from wwso import wwso_bandbreedte, wws_punten, wws_max_huur
 except Exception:  # noqa
     wwso_bandbreedte = None
+    wws_punten = None
+    wws_max_huur = None
 
 
 def wwso_toets(huur_aanbod):
@@ -1884,7 +1909,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     plafond_s = "—"
                 scenario = (f"{sc['naam']}, €" + f"{int(sc['maand']):,}".replace(",", ".")
                             + "/mnd") if sc else "—"
-                if sc and sc.get("beschermd"):
+                if sc and sc.get("gereguleerd"):
+                    scenario += f" ({sc['punten']} pt, {sc['segment']})"
+                elif sc and sc.get("beschermd"):
                     scenario += " ⚠"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
@@ -1966,8 +1993,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"{int(VERHUURBAAR_SPLITSING*100)}% van het vloeroppervlak verhuurbaar; "
                  f"dat zijn aannames, geen normen. Verbouwkosten zitten er niet in. "
                  f"Een ⚠ betekent dat de nieuwe eenheden onder €{OPKOOPBESCHERMING_WOZ:,} "
-                 f"uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden._"
-                 .replace(",", "."))
+                 f"uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden. Staat er "
+                 f"een puntenaantal bij, dan blijven de eenheden onder de 187 punten en is "
+                 f"de huur wettelijk begrensd; de getoonde marktkhuur mag dan niet gevraagd "
+                 f"worden. Punten zijn een ondergrens: verwarming en enkele rubrieken "
+                 f"ontbreken in onze telling._".replace(",", "."))
         r.append(f"_**Verhuurd als** toont het scenario dat is doorgerekend. Boven "
                  f"{MAX_M2_EEN_HUISHOUDEN} m² of €{MAX_HUUR_EEN_HUISHOUDEN:,} per maand "
                  f"rekenen we met kamers, want de markt betaalt zulke bedragen niet voor "

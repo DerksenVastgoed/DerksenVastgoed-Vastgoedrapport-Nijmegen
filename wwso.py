@@ -159,3 +159,309 @@ def wwso_bandbreedte(kamer_m2, label=None, bouwjaar=None, monument=False,
             "hoog": uit["ruim"]["huur"] * opslag,
             "punten_laag": uit["karig"]["punten"],
             "punten_hoog": uit["ruim"]["punten"]}
+
+
+# ---------------------------------------------------------------------------
+# WWS voor ZELFSTANDIGE woonruimte. Ander stelsel dan het WWSO hierboven.
+# Waarden per 1 januari 2026.
+# ---------------------------------------------------------------------------
+
+# Rubriek WOZ: een punt per bedrag aan WOZ, plus een punt per bedrag WOZ per m2.
+# Waardepeildatum 1 januari 2025.
+WOZ_PER_PUNT = 16_954
+WOZ_PER_M2_PER_PUNT = 268
+WOZ_MINIMUM = 85_806
+WOZ_CAP_AANDEEL = 0.33      # geldt alleen als de woning anders op 187+ uitkomt
+
+# Energielabel, punten voor een meergezinswoning (appartement). Een
+# eengezinswoning scoort hoger; bij splitsing ontstaan meestal appartementen.
+LABEL_PUNTEN_ZELFSTANDIG = {
+    "A++++": 48, "A+++": 44, "A++": 40, "A+": 36, "A": 32,
+    "B": 28, "C": 22, "D": 14, "E": -5, "F": -9, "G": -15,
+}
+
+GRENS_SOCIAAL = 143         # tot en met dit aantal: sociale huur
+GRENS_MIDDENHUUR = 186      # tot en met dit aantal: gereguleerde middenhuur
+HUUR_BIJ_186 = 1228.07      # maximale kale huur bij 186 punten, 2026
+
+
+def wws_punten(opp_m2, woz, label=None, monument=False, aanrecht_m=2.0,
+               sanitair_punten=7, buiten_m2=0.0, heeft_buiten=True,
+               overige_m2=0.0):
+    """
+    Puntentelling voor een zelfstandige woning. Geeft het totaal terug plus het
+    segment, want dat bepaalt of er een wettelijk maximum geldt.
+
+    Niet alle rubrieken zitten erin: verwarming, gemeenschappelijke ruimten en
+    bijzondere voorzieningen ontbreken. De uitkomst is dus een ondergrens.
+    """
+    punten = opp_m2 * 1.0 + overige_m2 * 0.75
+
+    # WOZ, met de wettelijke minimumwaarde
+    woz = max(woz or WOZ_MINIMUM, WOZ_MINIMUM)
+    woz_punten = woz / WOZ_PER_PUNT + (woz / opp_m2) / WOZ_PER_M2_PER_PUNT
+
+    # Energielabel
+    label_p = LABEL_PUNTEN_ZELFSTANDIG.get((label or "").upper(), 0)
+    if monument and label_p < 0:
+        label_p = 0
+    punten += label_p
+
+    # Keuken
+    if aanrecht_m >= 2:
+        punten += 7
+    elif aanrecht_m >= 1:
+        punten += 4
+
+    punten += sanitair_punten
+
+    # Buitenruimte
+    if heeft_buiten:
+        punten += min(15, 2 + 0.35 * buiten_m2)
+    else:
+        punten -= 5
+
+    totaal_ongecapt = punten + woz_punten
+    # De WOZ telt voor hoogstens een derde, maar alleen als de woning zonder
+    # die begrenzing op 187 punten of meer zou uitkomen.
+    if totaal_ongecapt >= 187:
+        max_woz = WOZ_CAP_AANDEEL * totaal_ongecapt
+        woz_punten = min(woz_punten, max_woz)
+
+    totaal = round(punten + woz_punten)
+    if totaal <= GRENS_SOCIAAL:
+        segment = "sociale huur"
+    elif totaal <= GRENS_MIDDENHUUR:
+        segment = "gereguleerde middenhuur"
+    else:
+        segment = "vrije sector"
+    return {"punten": totaal, "woz_punten": round(woz_punten, 1),
+            "label_punten": label_p, "segment": segment,
+            "gereguleerd": totaal <= GRENS_MIDDENHUUR}
+
+
+# Maximale huurprijsgrenzen zelfstandige woningen per 1 januari 2026.
+# Onder 40 punten geldt de grens bij 40 punten.
+WWS_TABEL = {
+    40: 250.26,
+    41: 256.53,
+    42: 262.75,
+    43: 269.02,
+    44: 275.27,
+    45: 281.50,
+    46: 287.78,
+    47: 294.03,
+    48: 300.29,
+    49: 306.54,
+    50: 312.80,
+    51: 319.02,
+    52: 325.30,
+    53: 331.54,
+    54: 337.80,
+    55: 344.05,
+    56: 350.35,
+    57: 356.53,
+    58: 362.79,
+    59: 369.09,
+    60: 375.32,
+    61: 381.55,
+    62: 387.83,
+    63: 394.06,
+    64: 400.32,
+    65: 406.58,
+    66: 412.85,
+    67: 419.10,
+    68: 425.33,
+    69: 431.56,
+    70: 437.81,
+    71: 444.09,
+    72: 450.36,
+    73: 456.57,
+    74: 462.86,
+    75: 469.09,
+    76: 475.36,
+    77: 481.60,
+    78: 487.89,
+    79: 494.10,
+    80: 500.38,
+    81: 507.22,
+    82: 514.08,
+    83: 520.96,
+    84: 527.81,
+    85: 534.70,
+    86: 541.56,
+    87: 548.41,
+    88: 555.29,
+    89: 562.13,
+    90: 569.03,
+    91: 575.87,
+    92: 582.71,
+    93: 589.61,
+    94: 596.45,
+    95: 603.32,
+    96: 610.19,
+    97: 617.08,
+    98: 623.94,
+    99: 630.82,
+    100: 637.67,
+    101: 644.53,
+    102: 651.36,
+    103: 658.24,
+    104: 665.12,
+    105: 671.95,
+    106: 678.85,
+    107: 685.70,
+    108: 692.56,
+    109: 699.44,
+    110: 706.32,
+    111: 713.20,
+    112: 720.05,
+    113: 726.90,
+    114: 733.79,
+    115: 740.66,
+    116: 747.51,
+    117: 754.37,
+    118: 761.21,
+    119: 768.08,
+    120: 774.94,
+    121: 781.85,
+    122: 788.71,
+    123: 795.56,
+    124: 802.44,
+    125: 809.30,
+    126: 816.14,
+    127: 823.02,
+    128: 829.94,
+    129: 836.74,
+    130: 843.62,
+    131: 850.49,
+    132: 857.33,
+    133: 864.24,
+    134: 871.06,
+    135: 877.97,
+    136: 884.79,
+    137: 891.67,
+    138: 898.56,
+    139: 905.39,
+    140: 912.26,
+    141: 919.14,
+    142: 925.98,
+    143: 932.93,
+    144: 939.73,
+    145: 946.61,
+    146: 953.45,
+    147: 960.33,
+    148: 967.18,
+    149: 974.05,
+    150: 980.91,
+    151: 987.78,
+    152: 994.63,
+    153: 1001.50,
+    154: 1008.35,
+    155: 1015.22,
+    156: 1022.07,
+    157: 1029.00,
+    158: 1035.81,
+    159: 1042.73,
+    160: 1049.57,
+    161: 1056.42,
+    162: 1063.32,
+    163: 1070.14,
+    164: 1077.00,
+    165: 1083.88,
+    166: 1090.76,
+    167: 1097.61,
+    168: 1104.46,
+    169: 1111.39,
+    170: 1118.23,
+    171: 1125.08,
+    172: 1131.94,
+    173: 1138.85,
+    174: 1145.69,
+    175: 1152.55,
+    176: 1159.40,
+    177: 1166.27,
+    178: 1173.15,
+    179: 1180.01,
+    180: 1186.84,
+    181: 1193.76,
+    182: 1200.61,
+    183: 1207.46,
+    184: 1214.31,
+    185: 1221.21,
+    186: 1228.07,
+    187: 1234.92,
+    188: 1241.81,
+    189: 1248.65,
+    190: 1255.53,
+    191: 1262.40,
+    192: 1269.25,
+    193: 1276.12,
+    194: 1283.00,
+    195: 1289.86,
+    196: 1296.70,
+    197: 1303.57,
+    198: 1310.46,
+    199: 1317.28,
+    200: 1324.18,
+    201: 1331.03,
+    202: 1337.89,
+    203: 1344.75,
+    204: 1351.63,
+    205: 1358.50,
+    206: 1365.34,
+    207: 1372.24,
+    208: 1379.09,
+    209: 1385.95,
+    210: 1392.84,
+    211: 1399.69,
+    212: 1406.56,
+    213: 1413.43,
+    214: 1420.28,
+    215: 1427.15,
+    216: 1433.99,
+    217: 1440.86,
+    218: 1447.71,
+    219: 1454.60,
+    220: 1461.49,
+    221: 1468.31,
+    222: 1475.19,
+    223: 1482.05,
+    224: 1488.95,
+    225: 1495.77,
+    226: 1502.67,
+    227: 1509.53,
+    228: 1516.40,
+    229: 1523.28,
+    230: 1530.12,
+    231: 1536.98,
+    232: 1543.85,
+    233: 1550.71,
+    234: 1557.56,
+    235: 1564.46,
+    236: 1571.31,
+    237: 1578.17,
+    238: 1585.01,
+    239: 1591.91,
+    240: 1598.76,
+    241: 1605.64,
+    242: 1612.52,
+    243: 1619.36,
+    244: 1626.24,
+    245: 1633.10,
+    246: 1639.96,
+    247: 1646.78,
+    248: 1653.70,
+    249: 1660.54,
+    250: 1667.40,
+}
+
+
+def wws_max_huur(punten):
+    """Maximale kale huurprijs bij een puntenaantal, zelfstandige woning."""
+    p = max(40, int(round(punten)))
+    if p in WWS_TABEL:
+        return WWS_TABEL[p]
+    # Boven 250 punten kent de tabel geen grens meer; de woning is dan
+    # sowieso vrije sector en er geldt geen wettelijk maximum.
+    return None
