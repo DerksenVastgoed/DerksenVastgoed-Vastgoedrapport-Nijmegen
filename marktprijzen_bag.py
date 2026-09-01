@@ -764,6 +764,11 @@ def kaartlink(adres, plaats="Nijmegen", bron=""):
 WOZ_ONDERGRENS = 278_000
 WOZ_BOVENGRENS = 396_000
 
+# Opkoopbescherming Nijmegen: onder deze WOZ mag een gekochte woning niet
+# zonder meer verhuurd worden. Bij splitsing geldt de grens per nieuwe woning:
+# blijven die eronder, dan mag je ze verkopen maar niet vrij verhuren.
+OPKOOPBESCHERMING_WOZ = 396_000
+
 
 
 # ---------------------------------------------------------------------------
@@ -915,6 +920,20 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
         return st.median(stad_reeks) * factor, f"gemeten, {len(stad_reeks)} stadsbreed{factor_bron}"
 
     return HUUR_M2_MND.get(buurt, 18), "aanname"
+
+
+def opkoop_signaal(prijs):
+    """
+    Valt dit pand onder de opkoopbescherming? De WOZ kennen we niet, maar de
+    vraagprijs ligt vrijwel altijd boven de WOZ. Ligt de vraagprijs al onder de
+    grens, dan de WOZ vrijwel zeker ook, en mag je het pand niet zonder meer
+    verhuren na aankoop.
+    """
+    if prijs < OPKOOPBESCHERMING_WOZ:
+        return "beschermd"
+    if prijs < OPKOOPBESCHERMING_WOZ * 1.25:
+        return "grensgeval"
+    return "vrij"
 
 
 def verkameren_signaal(prijs):
@@ -1810,6 +1829,26 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                f"€{prijs_s} ({w['oppervlakte']} m², €{ppm2_s}/m²)")
             r.append(f"_Zonder vergelijking, te weinig {onbeoordeeld[0][2]} objecten in de "
                      f"dataset: " + " . ".join(stukken) + "._")
+            r.append("")
+
+        # Opkoopbescherming: dit bepaalt of je het pand uberhaupt mag verhuren
+        beschermd = [k[-1] for k in rijen_buurt
+                     if opkoop_signaal(k[-1]["prijs"]) == "beschermd"]
+        grens = [k[-1] for k in rijen_buurt
+                 if opkoop_signaal(k[-1]["prijs"]) == "grensgeval"]
+        if beschermd:
+            namen = ", ".join(w["adres"] for w in beschermd)
+            r.append(f"_**Opkoopbescherming** bij {namen}: de vraagprijs ligt onder "
+                     f"€{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
+                     + ", dus de WOZ vrijwel zeker ook. Deze woningen mag je na aankoop "
+                       "niet zonder meer verhuren. De richtprijs hiernaast gaat uit van "
+                       "verhuur en is dus alleen relevant als een uitzondering geldt._")
+            r.append("")
+        elif grens:
+            namen = ", ".join(w["adres"] for w in grens)
+            r.append(f"_Grensgeval voor de opkoopbescherming: {namen}. Controleer de WOZ, "
+                     f"want onder €{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
+                     + " mag je niet zonder meer verhuren._")
             r.append("")
 
         # Verkameren: welke panden vallen buiten de Nijmeegse WOZ-band
