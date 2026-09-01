@@ -21,9 +21,9 @@ _**Opkoopbescherming** bij Prof Regoutstraat 1B: de vraagprijs ligt onder €396
 _Verkameren valt af bij Prof Regoutstraat 1B: de vraagprijs ligt onder €278.000, en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. Als gewone verhuur kunnen deze panden wel uitkomen; kijk daarvoor naar de kolom Richtprijs._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">351 m² . label C (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervanging van kozijnen in de voorgevel is een cosmetische ingreep zonder marktrelevante waardecreatie.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervangen van kozijnen in de voorgevel toont dat gevelrenovatie bij dit pand met label C vergunbaar is.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-31 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -43,7 +43,7 @@ _5.152 woningen . 30% koop . 35% corporatie . 14% overige verhuurders . WOZ €3
 | [Zwaluwstraat 7](https://www.google.com/maps/search/?api=1&query=Zwaluwstraat+7%2C+Nijmegen) | woning | €335.000 | 86 | €3.895 | 🟢 -23% | één woning, €2.029/mnd | €387.170 (+16%) | — |
 | [Marialaan 111](https://www.google.com/maps/search/?api=1&query=Marialaan+111%2C+Nijmegen) | woning | €335.000 | 70 | €4.785 | 🟡 -5% | één woning, €1.651/mnd | €315.138 (-6%) | — |
 | [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) | woning | €690.000 | 135 | €5.111 | 🟡 +1% | één woning, €2.327/mnd | €444.130 (-36%) | — |
-| [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) | woning | €825.000 | 152 | €5.427 | 🟡 +8% | kamers, mits vergunning, €3.212/mnd | €612.941 (-26%) | — |
+| [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) | woning | €825.000 | 152 | €5.427 | 🟡 +8% | één woning, €2.620/mnd ✱ | €500.058 (-39%) | — |
 | [Dokstraat 127](https://www.google.com/maps/search/?api=1&query=Dokstraat+127%2C+Nijmegen) | woning | €427.000 | 64 | €6.671 | 🔴 +32% | één woning, €1.510/mnd | €288.126 (-33%) | — |
 | [Boomvalkstraat 18](https://www.google.com/maps/search/?api=1&query=Boomvalkstraat+18%2C+Nijmegen) | woning | €275.000 | 40 | €6.875 | 🔴 +36% | één woning, €777/mnd | €148.286 (-46%) | — |
 | [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) | woning | €625.000 | 90 | €6.944 | 🔴 +38% | één woning, €2.123/mnd | €405.178 (-35%) | — |
@@ -85,6 +85,7 @@ _2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €3
 _**Opkoopbescherming** bij Graafseweg 47K: de vraagprijs ligt onder €396.000, dus de WOZ vrijwel zeker ook. Deze woningen mag je de eerste 4 jaar na levering niet verhuren zonder verhuurvergunning. De richtprijs hiernaast gaat uit van verhuur en is dus alleen relevant als een uitzondering geldt._
 
 _5 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
+_Een ✱ betekent dat de prijs per m² boven de buurtmediaan ligt. Verkameren wordt dan niet voorgesteld: je betaalt voor kwaliteit die een kamerhuurder niet vergoedt, en de leefbaarheidstoets loopt in zulke straten zelden goed af._
 _Splitsen wordt getoond zodra dat meer oplevert dan de andere routes. Nijmegen kent geen splitsingsvergunning. maar een omgevingsvergunning is wel nodig en het Bouwbesluit stelt eisen aan geluid. brandveiligheid en toegang. Gerekend met minimaal 40 m² per eenheid en 90% van het vloeroppervlak verhuurbaar; dat zijn aannames. geen normen. Verbouwkosten zitten er niet in. Een ⚠ betekent dat de nieuwe eenheden onder €396.000 uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden. Staat er een puntenaantal bij. dan blijven de eenheden onder de 187 punten en is de huur wettelijk begrensd; de getoonde marktkhuur mag dan niet gevraagd worden. Punten zijn een ondergrens: verwarming en enkele rubrieken ontbreken in onze telling._
 _**Verhuurd als** toont het scenario dat is doorgerekend. Boven 150 m² of €3.500 per maand rekenen we met kamers. want de markt betaalt zulke bedragen niet voor één huishouden. Bij kamers telt 79% van het vloeroppervlak als verhuurbaar; de rest is gang en trappenhuis. 'Mits vergunning' is geen formaliteit: omzetting is in de hele ring vergunningplichtig. **Richtprijs** is de hoogste koopsom waarbij de nettohuur rente en aflossing nog dekt. bij 67% financiering en 5.75% rente._
 
