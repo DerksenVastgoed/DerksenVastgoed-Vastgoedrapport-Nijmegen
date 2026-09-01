@@ -401,6 +401,82 @@ def _bag_feiten(straat, huisnr, letter):
         return None
 
 
+
+def haal_publicatietekst(url, maxlen=6000):
+    """
+    Haalt de tekst van een bekendmaking op. Zonder die tekst kan het model
+    alleen de titel herformuleren, en dat voegt niets toe.
+    """
+    if not url:
+        return ""
+    try:
+        r = requests.get(url, timeout=25,
+                         headers={"User-Agent": "NijmegenVastgoedMonitor/1.0"})
+        r.raise_for_status()
+        tekst = r.text
+    except Exception as e:
+        print(f"  Tekst ophalen mislukt: {e}", file=sys.stderr)
+        return ""
+    tekst = re.sub(r"(?is)<(script|style|nav|header|footer).*?</\1>", " ", tekst)
+    tekst = re.sub(r"(?i)</(p|div|li|tr|h\d)>", "\n", tekst)
+    tekst = re.sub(r"<[^>]+>", " ", tekst)
+    for k, v in {"&nbsp;": " ", "&amp;": "&", "&euro;": "€",
+                 "&quot;": '"', "&#39;": "'"}.items():
+        tekst = tekst.replace(k, v)
+    regels = [re.sub(r"[ \t]+", " ", x).strip() for x in tekst.split("\n")]
+    regels = [x for x in regels if len(x) > 30]
+    return "\n".join(regels)[:maxlen]
+
+
+BELEID_PROFIEL = """Je vat gemeentelijke beleidsstukken samen voor een vastgoedbrief over Nijmegen. Lezers zijn particuliere verhuurders en kleine ontwikkelaars.
+
+Je krijgt de titel en de tekst van een publicatie. Vat in twee tot drie zinnen samen WAT ER FEITELIJK IN STAAT en wat het praktisch verandert voor wie in Nijmegen verhuurt, splitst of verkamert.
+
+REGELS:
+- Herhaal niet de titel. Beschrijf de inhoud.
+- Noem concreet wat verandert: welke regel, per wanneer, voor wie.
+- Gebruik alleen wat in de tekst staat. Verzin geen bedragen, termijnen of gevolgen.
+- Is de tekst leeg of zegt hij niets inhoudelijks, schrijf dan: "De publicatie bevat geen inhoudelijke wijziging die uit de tekst blijkt."
+- Geen gedachtestreepjes. Nederlands. Maximaal 60 woorden."""
+
+
+def vat_beleid_samen(items):
+    """Laat het model per beleidsstuk de inhoud samenvatten, niet de titel."""
+    if not ANTHROPIC_API_KEY or not items:
+        return
+    for it in items:
+        it["samenvatting"] = ""
+    blokken = []
+    for i, it in enumerate(items):
+        tekst = haal_publicatietekst(it.get("url", ""))
+        time.sleep(0.3)
+        blokken.append(f"STUK {i}\nTITEL: {it['titel']}\nTEKST:\n{tekst or '(geen tekst)'}")
+    prompt = ("\n\n".join(blokken) +
+              '\n\nAntwoord met ALLEEN een JSON-array, per stuk '
+              '{"i": <index>, "samenvatting": "<twee tot drie zinnen>"}.')
+    try:
+        resp = requests.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={"x-api-key": ANTHROPIC_API_KEY,
+                     "anthropic-version": "2023-06-01",
+                     "content-type": "application/json"},
+            json={"model": MODEL, "max_tokens": 3000, "system": BELEID_PROFIEL,
+                  "messages": [{"role": "user", "content": prompt}]},
+            timeout=120)
+        resp.raise_for_status()
+        tekst = "".join(b.get("text", "") for b in resp.json().get("content", [])).strip()
+        if tekst.startswith("```"):
+            tekst = tekst.split("```")[1]
+            if tekst.startswith("json"):
+                tekst = tekst[4:]
+        for rij in json.loads(tekst.strip()):
+            i = rij.get("i")
+            if isinstance(i, int) and 0 <= i < len(items):
+                items[i]["samenvatting"] = str(rij.get("samenvatting", "")).strip()
+    except Exception as e:
+        print(f"Beleidssamenvatting overgeslagen: {e}", file=sys.stderr)
+
+
 def verrijk_met_bag(items: list):
     """Zet harde feiten uit de BAG, EP-Online en het monumentenregister bij elk item.
     Deze gegevens zijn gemeten of geregistreerd, niet geschat."""
@@ -652,19 +728,38 @@ def main():
 
     if beleid:
         print(f"Beleidsstukken gevonden: {len(beleid)}", file=sys.stderr)
+        vat_beleid_samen(beleid)
         try:
             with open("beleid_vandaag.md", "w", encoding="utf-8") as f:
                 f.write("\n## Beleid gemeente Nijmegen\n\n")
-                f.write("_Wijzigingen in verordeningen en beleidsregels die het "
-                        "verhuren, splitsen of verkameren raken._\n\n")
                 for it in beleid:
-                    link = f" ([bron]({it['url']}))" if it.get("url") else ""
+                    url = it.get("url", "")
+                    kop = (f'<a href="{url}" style="color:#12242c;text-decoration:none">'
+                           f'{it["titel"]}</a>' if url else it["titel"])
                     strat = (it.get("strategie") or "").strip()
-                    merk = f"**[{strat}]** " if strat and strat != "geen" else ""
-                    f.write(f"- `{it['datum']}` {merk}{it['titel']}{link}\n")
+                    chip = ""
+                    if strat and strat != "geen":
+                        chip = ('<span style="display:inline-block;background:#2E6DA4;'
+                                'color:#fff;font-size:11px;font-weight:700;padding:2px 8px;'
+                                'border-radius:10px;margin-right:8px;vertical-align:middle">'
+                                f'{strat}</span>')
+                    f.write('<div style="border-left:3px solid #E0A458;background:#f7f9fa;'
+                            'border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">\n')
+                    f.write(f'<div style="margin-bottom:6px">{chip}'
+                            f'<span style="font-weight:700;font-size:14px;line-height:1.35">'
+                            f'{kop}</span></div>\n')
+                    if it.get("samenvatting"):
+                        f.write(f'<div style="font-size:13px;color:#1a2830;margin-bottom:4px">'
+                                f'{it["samenvatting"]}</div>\n')
                     if it.get("gevolg"):
-                        f.write(f"  _{it['gevolg']}_\n")
-                f.write("\n")
+                        f.write(f'<div style="font-size:13px;color:#4a5b63;font-style:italic">'
+                                f'{it["gevolg"]}</div>\n')
+                    voet = it.get("datum", "")
+                    if url:
+                        voet += f' . <a href="{url}" style="color:#4a7a72;'\
+                                f'text-decoration:none">bron</a>'
+                    f.write(f'<div style="font-size:11px;color:#7a8a92;margin-top:8px">'
+                            f'{voet}</div>\n</div>\n\n')
         except Exception as e:
             print(f"Kon beleid_vandaag.md niet schrijven: {e}", file=sys.stderr)
     elif os.path.exists("beleid_vandaag.md"):

@@ -1864,10 +1864,6 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
 
     r = render_intro(lees_cbs(), woningen, kort=kort)
 
-    # Bewegingen: het enige dat sinds gisteren veranderd kan zijn
-    r.extend(render_prijswijzigingen(woningen))
-    r.extend(render_looptijd(woningen))
-
     per_buurt = defaultdict(list)
     beleggingen = []
     huur_aanbod = []
@@ -1933,6 +1929,9 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig, kort=kort)
     if kort:
         r.extend(aanbod_regels)
+        # Bewegingen onder het aanbod: het is aanvullende informatie, geen kop
+        r.extend(render_prijswijzigingen(woningen))
+        r.extend(render_looptijd(woningen))
 
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
@@ -2273,9 +2272,18 @@ def main():
     # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
     # We houden de volledige reeks bij, want daaruit volgt de prijshistorie.
     per_object, volgorde = {}, []
-    for w in woningen:
+    for i, w in enumerate(woningen):
         obj = w.get("adresseerbaarObjectIdentificatie")
-        sleutel = obj if obj else re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+        heeft_nummer = bool(re.search(r"\d", w["adres"]))
+        if obj:
+            sleutel = obj
+        elif heeft_nummer:
+            sleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+        else:
+            # Adres zonder huisnummer, zoals Pararius en Kamernet dat tonen.
+            # Die mogen niet samengevoegd worden: twee advertenties aan dezelfde
+            # straat zijn verschillende panden, geen prijswijziging.
+            sleutel = f"_los_{i}"
         if sleutel not in per_object:
             volgorde.append(sleutel)
             per_object[sleutel] = []
