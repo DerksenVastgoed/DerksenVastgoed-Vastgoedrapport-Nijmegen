@@ -1,5 +1,7 @@
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). Vandaag staan er **33 panden in aanbod**, afgezet tegen 203 gevolgde panden. Bijgewerkt 01 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+## Vandaag
+
+28 panden in beeld, 29 nieuw vandaag. Scherpst geprijsd is **Groesbeekseweg 85** in Galgenveld: €1.150.000 voor 320 m², -25% ten opzichte van de mediaan van zijn klasse. Als kamers, mits vergunning loopt het rond tot €1.292.284, dus +12% ten opzichte van de vraagprijs. 1 gemeentelijke bericht.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -21,7 +23,7 @@ _Verkameren valt af bij Prof Regoutstraat 1B: de vraagprijs ligt onder €278.00
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">351 m² . label C (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervanging van kozijnen en ramen is een gevelaanpassing zonder directe marktimpact op waardecreatie-strategieën.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervanging van kozijnen in de voorgevel is een cosmetische ingreep zonder marktrelevante waardecreatie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-31 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -85,5 +87,10 @@ _**Opkoopbescherming** bij Graafseweg 47K: de vraagprijs ligt onder €396.000, 
 _5 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
 _Splitsen wordt getoond zodra dat meer oplevert dan de andere routes. Nijmegen kent geen splitsingsvergunning. maar een omgevingsvergunning is wel nodig en het Bouwbesluit stelt eisen aan geluid. brandveiligheid en toegang. Gerekend met minimaal 40 m² per eenheid en 90% van het vloeroppervlak verhuurbaar; dat zijn aannames. geen normen. Verbouwkosten zitten er niet in. Een ⚠ betekent dat de nieuwe eenheden onder €396.000 uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden. Staat er een puntenaantal bij. dan blijven de eenheden onder de 187 punten en is de huur wettelijk begrensd; de getoonde marktkhuur mag dan niet gevraagd worden. Punten zijn een ondergrens: verwarming en enkele rubrieken ontbreken in onze telling._
 _**Verhuurd als** toont het scenario dat is doorgerekend. Boven 150 m² of €3.500 per maand rekenen we met kamers. want de markt betaalt zulke bedragen niet voor één huishouden. Bij kamers telt 79% van het vloeroppervlak als verhuurbaar; de rest is gang en trappenhuis. 'Mits vergunning' is geen formaliteit: omzetting is in de hele ring vergunningplichtig. **Richtprijs** is de hoogste koopsom waarbij de nettohuur rente en aflossing nog dekt. bij 67% financiering en 5.75% rente._
+
+
+### Achtergrond
+
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 203 panden, waarvan er 33 nu in aanbod zijn. Bijgewerkt 01 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._
