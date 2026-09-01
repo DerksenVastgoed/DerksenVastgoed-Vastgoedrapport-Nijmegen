@@ -609,7 +609,7 @@ def _chip(label):
     kleur = KLEUREN.get(label, "#4a5b63")
     return (f'<span style="display:inline-block;background:{kleur};color:#fff;'
             f'font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;'
-            f'margin-right:8px;vertical-align:middle">{label}</span>')
+            f'margin-right:8px;vertical-align:middle">{label}</span> ')
 
 
 def bekendmakingregels(items):
@@ -875,7 +875,7 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
             punten, segment = r["punten"], r["segment"]
             if r["gereguleerd"] and wws_max_huur:
                 # Onder 187 punten geldt een wettelijk maximum per eenheid. De
-                # marktkhuur mag dan niet gevraagd worden, dus we rekenen met
+                # markthuur mag dan niet gevraagd worden, dus we rekenen met
                 # het maximum. Dat is het bedrag waarop je een bod baseert.
                 maximum = wws_max_huur(punten)
                 if maximum:
@@ -923,6 +923,9 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
     # die wel meebetaalt. Ligt de prijs per m2 boven de buurtmediaan, dan koop
     # je die meters duur in en is verkameren zelden de juiste route. Ook de
     # leefbaarheidstoets loopt in zulke straten vrijwel altijd stuk.
+    # Vergelijken binnen dezelfde grootteklasse: grote panden hebben altijd een
+    # lagere prijs per m2, dus toetsen aan de buurtmediaan zou hen ten onrechte
+    # goedkoop laten lijken.
     duur_ingekocht = False
     if mediaan_m2 and opp:
         duur_ingekocht = (w["prijs"] / opp) > mediaan_m2
@@ -941,6 +944,11 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
     verhuurbaar = round(opp * VERHUURBAAR_AANDEEL)
     maand_k = huur_k_m2 * verhuurbaar
     naam = "kamers" if kamerpand else "kamers, mits vergunning"
+    if not kamerpand:
+        # Omzetten van een eengezinswoning is geen formaliteit: de
+        # leefbaarheidstoets en de regel van maximaal twee kamergewijs bewoonde
+        # woningen naast elkaar sneuvelen juist in rustige straten.
+        naam = "kamers, mits vergunning"
 
     # Duur ingekochte meters: verkameren afraden tenzij het pand het al is
     if duur_ingekocht and not kamerpand:
@@ -1093,6 +1101,16 @@ def _labeltekst(ep):
     datum = ep.get("registratiedatum") or ""
     jaar = datum[:4]
     return f"{label} ({jaar})" if jaar else label
+
+
+def pct(x, cijfers=2):
+    """Percentage met een komma, zoals het in het Nederlands hoort."""
+    return f"{x:.{cijfers}f}".replace(".", ",").rstrip("0").rstrip(",")
+
+
+def eu(x):
+    """Bedrag met punten als duizendtalscheiding."""
+    return f"{int(x):,}".replace(",", ".")
 
 
 def _dagen_sinds(datum):
@@ -1574,8 +1592,7 @@ def render_wwso(huur_aanbod):
             w, b = t["w"], t["band"]
             merk = " (incl. servicekosten)" if t["inclusief"] else ""
             r.append(f"| {w['adres']} | {w.get('oppervlakte')} | "
-                     f"€{w['prijs']:,}{merk} | €{b['laag']:,.0f} tot €{b['hoog']:,.0f} |"
-                     .replace(",", "."))
+                     f"€{eu(w['prijs'])}{merk} | €{eu(b['laag'])} tot €{eu(b['hoog'])} |")
         r.append("")
     r.append("_Onzelfstandige woonruimte valt altijd in de sociale sector en heeft dus "
              "altijd huurprijsbescherming, ongeacht de afgesproken prijs. Een huurder kan "
@@ -1679,7 +1696,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
               f"€{n(ovb)} overdrachtsbelasting ({OVERDRACHTSBELASTING_PCT}%) en "
               f"€{n(bijkomend)} notaris, makelaar en taxatie "
               f"({BIJKOMENDE_KOSTEN_PCT}%), samen €{n(eigen)} in te leggen",
-              f"rente: {RENTE}%, rentelast €{n(rentelast)} per jaar",
+              f"rente: {pct(RENTE)}%, rentelast €{n(rentelast)} per jaar",
               f"aflossing: over {LOOPTIJD_JAAR} jaar annuitair, €{n(aflossing)} per jaar"
               if LOOPTIJD_JAAR else "aflossing: geen, aflossingsvrij",
               f"totale jaarlast op de lening: €{n(jaarlast)}",
@@ -1773,11 +1790,11 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             marge = voh_med - bel_med
             if marge > 0:
                 r.append(f"_Ter vergelijking: beleggingspanden in verhuurde staat gaan in "
-                         f"dezelfde buurten voor mediaan €{int(bel_med):,}/m², tegen "
-                         f"€{int(voh_med):,}/m² vrij van huurder. Dat verschil van "
-                         f"€{int(marge):,}/m² is de ruimte die uitponden oplevert, "
+                         f"dezelfde buurten voor mediaan €{eu(bel_med)}/m², tegen "
+                         f"€{eu(voh_med)}/m² vrij van huurder. Dat verschil van "
+                         f"€{eu(marge)}/m² is de ruimte die uitponden oplevert, "
                          f"gerekend op {len(beleggingen)} beleggingen en {len(voh)} "
-                         f"verkopen._".replace(",", "."))
+                         f"verkopen._")
                 r.append("")
 
     # Beleidsonderdeel van de week
@@ -1917,8 +1934,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
-                rijen_b = per_buurt.get(buurt, [])
-                med_b = st.median([p for p, _ in rijen_b]) if len(rijen_b) >= 10 else None
+                # Mediaan binnen dezelfde grootteklasse, eerst in de buurt en
+                # anders stadsbreed, want grootte bepaalt de prijs per m2 sterk
+                band = groottebandje(w["oppervlakte"])
+                zelfde_band = [p for p, x in per_buurt.get(buurt, [])
+                               if groottebandje(x.get("oppervlakte")) == band]
+                if len(zelfde_band) < 4:
+                    zelfde_band = [p for b, rijen_x in per_buurt.items()
+                                   for p, x in rijen_x
+                                   if groottebandje(x.get("oppervlakte")) == band]
+                med_b = st.median(zelfde_band) if len(zelfde_band) >= 4 else None
                 sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b)
                 w["_scenario"] = sc
                 plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
@@ -1965,18 +1990,18 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                         if opkoop_signaal(k[-1]) == "voortzetting"]
         if beschermd:
             namen = ", ".join(w["adres"] for w in beschermd)
+            grens = f"{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
             r.append(f"_**Opkoopbescherming** bij {namen}: de vraagprijs ligt onder "
-                     f"€{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
-                     + ", dus de WOZ vrijwel zeker ook. Deze woningen mag je de eerste "
-                       f"{OPKOOPBESCHERMING_JAAR} jaar na levering niet verhuren zonder "
-                       "verhuurvergunning. De richtprijs hiernaast gaat uit van verhuur en "
-                       "is dus alleen relevant als een uitzondering geldt._")
+                     f"€{grens}, dus de WOZ vrijwel zeker ook. Deze woningen mag je de "
+                     f"eerste {OPKOOPBESCHERMING_JAAR} jaar na levering niet verhuren "
+                     f"zonder verhuurvergunning. De richtprijs hiernaast gaat uit van "
+                     f"verhuur en is dus alleen relevant als een uitzondering geldt._")
             r.append("")
         elif grens:
             namen = ", ".join(w["adres"] for w in grens)
+            grens = f"{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
             r.append(f"_Grensgeval voor de opkoopbescherming: {namen}. Controleer de WOZ, "
-                     f"want onder €{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
-                     + " mag je niet zonder meer verhuren._")
+                     f"want onder €{grens} mag je niet zonder meer verhuren._")
             r.append("")
         if voortzetting:
             namen = ", ".join(w["adres"] for w in voortzetting)
@@ -1993,11 +2018,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                            if verkameren_signaal(w["prijs"]) == "niet toegestaan"]
             if uitgesloten:
                 namen = ", ".join(w["adres"] for w in uitgesloten)
+                ondergrens = f"{WOZ_ONDERGRENS:,}".replace(",", ".")
                 r.append(f"_Verkameren valt af bij {namen}: de vraagprijs ligt onder "
-                         f"€{WOZ_ONDERGRENS:,}".replace(",", ".")
-                         + ", en onder die WOZ-grens staat Nijmegen kamerverhuur niet toe. "
-                           "Als gewone verhuur kunnen deze panden wel uitkomen; kijk "
-                           "daarvoor naar de kolom Richtprijs._")
+                         f"€{ondergrens}, en onder die WOZ-grens staat Nijmegen "
+                         f"kamerverhuur niet toe. Als gewone verhuur kunnen deze panden "
+                         f"wel uitkomen; kijk daarvoor naar de kolom Richtprijs._")
                 r.append("")
 
         if bm.get(buurt):
@@ -2009,31 +2034,50 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"uitgebreide brief van zondag._")
         lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
                      else "rente")
-        r.append("_Een ✱ betekent dat de prijs per m² boven de buurtmediaan ligt. "
-                 "Verkameren wordt dan niet voorgesteld: je betaalt voor kwaliteit die "
-                 "een kamerhuurder niet vergoedt, en de leefbaarheidstoets loopt in zulke "
-                 "straten zelden goed af._")
+        r.append("_Staat er **kamers, mits vergunning**, dan is dat een rekenscenario "
+                 "en geen advies. Het model kent alleen oppervlakte en prijs, en kan een "
+                 "eengezinswoning niet onderscheiden van een pand dat er zich voor leent. "
+                 "Beoordeel zelf of het past: verkameren verzilvert vierkante meters en "
+                 "niet de kwaliteit waarvoor je bij een duur pand betaalt, de "
+                 "leefbaarheidstoets sneuvelt juist in rustige straten, er mogen niet "
+                 "meer dan twee kamergewijs bewoonde woningen naast elkaar liggen, en een "
+                 "verkamerd pand verkoop je niet meer aan een gezin. Een ✱ betekent dat "
+                 "de prijs per m² boven het gemiddelde van vergelijkbaar grote panden "
+                 "ligt, wat een extra reden tot terughoudendheid is._")
         r.append(f"_Splitsen wordt getoond zodra dat meer oplevert dan de andere routes. "
                  f"Nijmegen kent geen splitsingsvergunning, maar een omgevingsvergunning "
                  f"is wel nodig en het Bouwbesluit stelt eisen aan geluid, brandveiligheid "
                  f"en toegang. Gerekend met minimaal {MIN_UNIT_M2} m² per eenheid en "
                  f"{int(VERHUURBAAR_SPLITSING*100)}% van het vloeroppervlak verhuurbaar; "
                  f"dat zijn aannames, geen normen. Verbouwkosten zitten er niet in. "
-                 f"Een ⚠ betekent dat de nieuwe eenheden onder €{OPKOOPBESCHERMING_WOZ:,} "
+                 f"Een ⚠ betekent dat de nieuwe eenheden onder €{eu(OPKOOPBESCHERMING_WOZ)} "
                  f"uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden. Staat er "
                  f"een puntenaantal bij, dan blijven de eenheden onder de 187 punten en is "
-                 f"de huur wettelijk begrensd; de getoonde marktkhuur mag dan niet gevraagd "
+                 f"de huur wettelijk begrensd; de getoonde markthuur mag dan niet gevraagd "
                  f"worden. Punten zijn een ondergrens: verwarming en enkele rubrieken "
                  f"ontbreken in onze telling._".replace(",", "."))
+        # Diagnose: welke huren liggen er onder de berekening?
+        stukken = []
+        for band in ("klein", "middel", "groot"):
+            reeks = huur_k.get(("woning", band), [])
+            if reeks:
+                stukken.append(f"{band} €{st.median(reeks):.0f} (n={len(reeks)})")
+        kamers_r = huur_k.get("kamer", [])
+        if kamers_r:
+            stukken.append(f"kamers €{st.median(kamers_r):.0f} (n={len(kamers_r)})")
+        if stukken:
+            r.append("_Gemeten huur per m² per maand: " + " . ".join(stukken)
+                     + ". Wijkt dit sterk af van wat je in de markt ziet, dan klopt er "
+                       "iets niet in de huurgegevens en zijn de richtprijzen onbetrouwbaar._")
         r.append(f"_**Verhuurd als** toont het scenario dat is doorgerekend. Boven "
-                 f"{MAX_M2_EEN_HUISHOUDEN} m² of €{MAX_HUUR_EEN_HUISHOUDEN:,} per maand "
+                 f"{MAX_M2_EEN_HUISHOUDEN} m² of €{eu(MAX_HUUR_EEN_HUISHOUDEN)} per maand "
                  f"rekenen we met kamers, want de markt betaalt zulke bedragen niet voor "
                  f"één huishouden. Bij kamers telt {int(VERHUURBAAR_AANDEEL*100)}% van het "
                  f"vloeroppervlak als verhuurbaar; de rest is gang en trappenhuis. "
                  f"'Mits vergunning' is geen formaliteit: omzetting is in de hele ring "
                  f"vergunningplichtig. **Richtprijs** is de hoogste koopsom waarbij de "
                  f"nettohuur {lastsoort} nog dekt, bij {LTV:.0f}% financiering en "
-                 f"{RENTE}% rente._".replace(",", "."))
+                 f"{pct(RENTE)}% rente._")
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
@@ -2052,10 +2096,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"maar blijft de omgevingsvergunning gelden. Vanaf vijf kamers ook een "
                  f"melding brandveilig gebruik. Verhuur aan maximaal twee personen is "
                  f"vergunningvrij. Let op: de opkoopbescherming gaat hieraan vooraf, want "
-                 f"onder €{OPKOOPBESCHERMING_WOZ:,} mag je een gekocht pand sowieso niet "
+                 f"onder €{eu(OPKOOPBESCHERMING_WOZ)} mag je een gekocht pand sowieso niet "
                  f"zonder meer verhuren. Wij toetsen op de vraagprijs; controleer de WOZ "
                  f"zelf op wozwaardeloket.nl. Bedragen worden jaarlijks "
-                 f"opnieuw vastgesteld._".replace(",", "."))
+                 f"opnieuw vastgesteld._")
         r.append("")
     return r, kandidaten
 
@@ -2075,8 +2119,10 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True):
 
     zinnen = []
     aanbod = [k for k in kandidaten if k[3] is not None]
+    in_beeld = {id(k[-1]) for k in aanbod}
     nieuw = [w for w in woningen
-             if _dagen_sinds(w.get("datum_eerst") or w.get("datum")) == 0]
+             if id(w) in in_beeld
+             and _dagen_sinds(w.get("datum_eerst") or w.get("datum")) == 0]
     gewijzigd = [w for w in woningen
                  if w.get("prijs_eerst") and w["prijs_eerst"] != w["prijs"]]
 
@@ -2358,11 +2404,11 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     if aantal_gemeten:
         r.append(f"_Huur per m² is waar mogelijk **gemeten** uit {aantal_gemeten} "
                  f"huuraanbiedingen; waar die ontbreken staat een aanname. "
-                 f"Gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
     else:
         r.append(f"_De mediaan €/m² is gemeten. De huur per m² is nog een **aanname**, "
                  f"want er zijn nog geen huuraanbiedingen verzameld. "
-                 f"Gerekend met rente {RENTE}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
     r.append("")
     r.append("| Buurt | mediaan €/m² | huur/m²/mnd | bron huur | bruto yield | netto cashflow op €1M lening |")
     r.append("|---|---:|---:|---|---:|---:|")

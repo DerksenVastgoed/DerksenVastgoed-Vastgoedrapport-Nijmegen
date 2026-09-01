@@ -742,7 +742,7 @@ def main():
                         chip = ('<span style="display:inline-block;background:#2E6DA4;'
                                 'color:#fff;font-size:11px;font-weight:700;padding:2px 8px;'
                                 'border-radius:10px;margin-right:8px;vertical-align:middle">'
-                                f'{strat}</span>')
+                                f'{strat}</span> ')
                     f.write('<div style="border-left:3px solid #E0A458;background:#f7f9fa;'
                             'border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">\n')
                     f.write(f'<div style="margin-bottom:6px">{chip}'

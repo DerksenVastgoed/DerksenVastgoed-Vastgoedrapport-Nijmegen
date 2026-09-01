@@ -304,7 +304,7 @@ def chip(label):
     return (f'<span style="display:inline-block;background:{kleur};color:#fff;'
             f'font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;'
             f'border-radius:10px;margin-right:8px;vertical-align:middle">'
-            f'{label}</span>')
+            f'{label}</span> ')
 
 
 def kaart(titel, link, samenvatting, duiding, strategie="", bronnaam=""):
