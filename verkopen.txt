@@ -226,3 +226,7 @@ Weurtseweg | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 119 | 6541AT
 Straalmanstraat 26 | Nijmegen | 4500 | te huur | 2026-09-01 | pararius | 294 | 6521JM
 Groesbeeksedwarsweg | Nijmegen | 649 | te huur kamer | 2026-09-01 | pararius | 16 | 6521DG
 Villandry 62 | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 143 | 6523NZ
+
+# Automatisch toegevoegd uit Funda-attendering op 01-09-2026
+Groesbeekseweg 85 | Nijmegen | 1150000 | te koop | 2026-09-01 |  | 228 | 6524CS
+Gerard Noodtstraat 71 | Nijmegen | 450000 | te koop | 2026-09-01 |  | 104 | 6511SV

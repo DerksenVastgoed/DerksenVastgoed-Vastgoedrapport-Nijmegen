@@ -1,0 +1,24 @@
+
+## Publicaties
+_Vastgoedartikelen laatste 24u, met marktduiding. 01-09-2026._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMi4wFBVV95cUxNR0Z3bDZGa1FkOXdaWVdxM0s4N2h4Nm0zV0NLUDVMWVN0SEhCVTF6N1pvakZQNV9vSFQ5QkpGd3gtSlc4XzdJS2JpQm9aSUkta0RuQ1NxU3VGLXVvX2xZQ1BNa0p0Ylc1ZXJHWXFYTE0zRWMwX2tjMGxKVDlRUlAzZWhMY3otSGxXZXV1elJ4VHJWSFBocll4SzRXUWxNZEpXek1ZQXNCN3UySkF4S0MyQ2g1R015OEpURDNJQjBKTDJFaTdwVEZSR3VOYTBFTW43ZElTN0NtUTRoYXhSODFyREV4dw?oc=5" style="color:#12242c;text-decoration:none">Bontenbal pleit voor debat over afschaffen hypotheekrenteaftrek: ’We moeten de discussie durven voeren’ - De Telegraaf</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Bontenbal pleit voor een politiek debat over het afschaffen van de hypotheekrenteaftrek.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Een eventuele afschaffing raakt primair eigenaar-bewoners, maar kan via lagere koopprijzen ook de exit-waarde van verhuurpanden beïnvloeden.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Rente vastgoed . <a href="https://news.google.com/rss/articles/CBMi4wFBVV95cUxNR0Z3bDZGa1FkOXdaWVdxM0s4N2h4Nm0zV0NLUDVMWVN0SEhCVTF6N1pvakZQNV9vSFQ5QkpGd3gtSlc4XzdJS2JpQm9aSUkta0RuQ1NxU3VGLXVvX2xZQ1BNa0p0Ylc1ZXJHWXFYTE0zRWMwX2tjMGxKVDlRUlAzZWhMY3otSGxXZXV1elJ4VHJWSFBocll4SzRXUWxNZEpXek1ZQXNCN3UySkF4S0MyQ2g1R015OEpURDNJQjBKTDJFaTdwVEZSR3VOYTBFTW43ZElTN0NtUTRoYXhSODFyREV4dw?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#8A5A44;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">financiering</span><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQMUVVZXRqVEozb3MzNV9sX1BOVkdnczFZaGwzVkVCa3VETXg3MjEwNTEzMWFZU085NS10Z0hkaEg0Tm1zWmVJb2JjZ0R6bkVjaUJscHpPTnB4T3Jia1hEWkdITXFxMFNEcFZDdERudEVPaVltSVhnY1FISG1qek5FQ1Y0bkY2MjJIc014X0FYR05BUDdaZGtPY0Q0d1pJa2lWYlQ1MjBwbDBUS1pzQVFlb01hdVdsLXY0d1E?oc=5" style="color:#12242c;text-decoration:none">Stoppen hogere hypotheekrentes de stijging van de huizenprijzen, of wint de woningkrapte? - debelegger.nl</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het artikel onderzoekt of hogere hypotheekrentes de stijging van huizenprijzen afremmen of dat woningkrapte toch dominant blijft.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Blijft de rente hoog terwijl krapte aanhoudt, dan stijgen financieringskosten sneller dan de exit-waarde, wat de marge op waardecreatie verkleint.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Rente vastgoed . <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQMUVVZXRqVEozb3MzNV9sX1BOVkdnczFZaGwzVkVCa3VETXg3MjEwNTEzMWFZU085NS10Z0hkaEg0Tm1zWmVJb2JjZ0R6bkVjaUJscHpPTnB4T3Jia1hEWkdITXFxMFNEcFZDdERudEVPaVltSVhnY1FISG1qek5FQ1Y0bkY2MjJIc014X0FYR05BUDdaZGtPY0Q0d1pJa2lWYlQ1MjBwbDBUS1pzQVFlb01hdVdsLXY0d1E?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/matthijs-korevaar-lage-corporatiehuren-drukken-investeringsruimte-en-doorstroming-naar-private-verhuur/" style="color:#12242c;text-decoration:none">Matthijs Korevaar: lage corporatiehuren drukken investeringsruimte en doorstroming naar private verhuur – Corporaties lopen 4 miljard euro per jaar mis</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Lage corporatiehuren beperken volgens onderzoeker Korevaar de investeringsruimte van corporaties en de doorstroming naar de private huursector.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Minder doorstroming vanuit corporaties kan de vraag naar particuliere huurwoningen in de binnenring vergroten en zo huurniveaus ondersteunen.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/matthijs-korevaar-lage-corporatiehuren-drukken-investeringsruimte-en-doorstroming-naar-private-verhuur/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>

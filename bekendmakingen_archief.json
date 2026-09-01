@@ -29,6 +29,16 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-394246/1/html/gmb-2026-394246.html"
   }
  ],
+ "burghardtvandenberghstraat36": [
+  {
+   "datum": "2026-09-01",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding melding brandveilig gebruik, aan Burghardt van den Berghstraat 36, 6512DM Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-410667/1/html/gmb-2026-410667.html"
+  }
+ ],
  "coehoornstraat89": [
   {
    "datum": "2026-08-20",
@@ -118,6 +128,17 @@
    ],
    "titel": "Aanvraag omzettingsvergunning voor geschakelde woning: kamerverhuurvergunning aanvragen (omzettingsvergunning), aan Lankforst 3101, 6538JH Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-387970/1/html/gmb-2026-387970.html"
+  }
+ ],
+ "marterstraat6": [
+  {
+   "datum": "2026-09-01",
+   "soorten": [
+    "kamerverhuur",
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik kamerverhuurpand (6 kamers/bewoners), aan Marterstraat 6, 6531KB Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-410701/1/html/gmb-2026-410701.html"
   }
  ],
  "stannastraat240": [

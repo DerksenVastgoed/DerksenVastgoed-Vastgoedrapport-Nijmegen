@@ -3061,5 +3061,308 @@
     "postcode": "6524CP",
     "buurtnaam": "Galgenveld",
     "wijknaam": "Nijmegen-Oost"
+  },
+  "Lange Hezelstraat|Nijmegen": {
+    "oppervlakte": 25,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Pastoor van Blitterwijckstraat|Nijmegen": {
+    "oppervlakte": 20,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Varenstraat|Nijmegen": {
+    "oppervlakte": 18,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Berg en Dalseweg|Nijmegen": {
+    "oppervlakte": 15,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "Oude Molenweg|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Jan de Wittstraat|Nijmegen": {
+    "oppervlakte": 31,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Dr. Claas Noorduijnstraat|Nijmegen": {
+    "oppervlakte": 25,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "St. Annastraat|Nijmegen": {
+    "oppervlakte": 26,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Schepenenstraat|Nijmegen": {
+    "oppervlakte": 9,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Graafseweg|Nijmegen": {
+    "oppervlakte": 20,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Waalhaven|Nijmegen": {
+    "oppervlakte": 112,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AG",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Fagelstraat 34|Nijmegen": {
+    "oppervlakte": 130,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524CE",
+    "adresseerbaarObjectIdentificatie": "0268010000057039",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-e22ddca03fd7ae08b2df9855fb1f495f",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2023-05-01",
+      "geldig_tot": "2033-04-18",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Wachterslaan 13|Nijmegen": {
+    "oppervlakte": 100,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523RS",
+    "adresseerbaarObjectIdentificatie": "0268010000075210",
+    "buurtnaam": "Hengstdal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-dfe79b26600910ecbebbfaff7864a2bb",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2016-11-25",
+      "geldig_tot": "2026-11-25",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Welderenstraat 121 B|Nijmegen": {
+    "oppervlakte": 82,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511MH",
+    "adresseerbaarObjectIdentificatie": "0268010000060929",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-c74838ab04e58e4ad82bc4712690c92b",
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2018-02-02",
+      "geldig_tot": "2028-02-02",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Plein 1944 7 6|Nijmegen": {
+    "oppervlakte": 158,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511JB",
+    "adresseerbaarObjectIdentificatie": "0268010000055132",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-280ff894f7fcec40ca9b811e4b8d4809",
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2019-11-27",
+      "geldig_tot": "2029-11-18",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Niek Engelschmanlaan|Nijmegen": {
+    "oppervlakte": 74,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6532CP",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Atjehstraat|Nijmegen": {
+    "oppervlakte": 68,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KV",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "van Trieststraat 5|Nijmegen": {
+    "oppervlakte": 50,
+    "bouwjaar": "1888",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512CW",
+    "adresseerbaarObjectIdentificatie": "0268010000110690",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-5e87eaa265083e674b6138fe4f419549",
+    "energielabel": {
+      "label": "A+",
+      "registratiedatum": "2026-01-19",
+      "geldig_tot": "2035-12-12",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Welderenstraat 119|Nijmegen": {
+    "oppervlakte": 84,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511MH",
+    "adresseerbaarObjectIdentificatie": "0268010000109637",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-2086c3ee12b2b822de77a5a038487131",
+    "energielabel": {
+      "label": "A+++",
+      "registratiedatum": "2025-10-15",
+      "geldig_tot": "2035-07-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Willemsweg|Nijmegen": {
+    "oppervlakte": 13,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6531DB",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Plein 1944|Nijmegen": {
+    "gefaald": true,
+    "reden": "bag_geen_oppervlakte"
+  },
+  "Weurtseweg|Nijmegen": {
+    "oppervlakte": 119,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AT",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Straalmanstraat 26|Nijmegen": {
+    "oppervlakte": 294,
+    "bouwjaar": "1896",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521JM",
+    "adresseerbaarObjectIdentificatie": "0268010000048600",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-38ed6b0681e71fc407b81e5f69215f0c"
+  },
+  "Groesbeeksedwarsweg|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DG",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Villandry 62|Nijmegen": {
+    "oppervlakte": 134,
+    "bouwjaar": "1998",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523NZ",
+    "adresseerbaarObjectIdentificatie": "0268010000044202",
+    "buurtnaam": "Kwakkenberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-3b0e72c4f1192f73ecd9475001e70a0a",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2025-12-04",
+      "geldig_tot": "2035-11-24",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Groesbeekseweg 85|Nijmegen": {
+    "oppervlakte": 320,
+    "bouwjaar": "1893",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524CS",
+    "adresseerbaarObjectIdentificatie": "0268010000013418",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-11c28da5ce9fdd6d7eb16d06db6008de",
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-08-05",
+      "geldig_tot": "2036-07-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Gerard Noodtstraat 71|Nijmegen": {
+    "oppervlakte": 101,
+    "bouwjaar": "1996",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511SV",
+    "adresseerbaarObjectIdentificatie": "0268010000006178",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-6962516327157686845e02edac38122e",
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-01-30",
+      "geldig_tot": "2036-01-23",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }
