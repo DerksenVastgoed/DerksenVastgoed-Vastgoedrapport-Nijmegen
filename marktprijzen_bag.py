@@ -1900,6 +1900,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
                 sc = kies_scenario(w, huur_bk, huur_k, buurt)
+                w["_scenario"] = sc
                 plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
@@ -2037,11 +2038,73 @@ KAART_URL = ("https://derksenvastgoed.github.io/"
              "DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html")
 
 
+
+def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True):
+    """
+    Opening met wat er vandaag speelt, niet met achtergrondcijfers. Alles hier
+    volgt uit wat elders in de brief staat; er komt geen nieuwe bron bij.
+    """
+    def n(x):
+        return f"{int(x):,}".replace(",", ".")
+
+    zinnen = []
+    aanbod = [k for k in kandidaten if k[3] is not None]
+    nieuw = [w for w in woningen
+             if _dagen_sinds(w.get("datum_eerst") or w.get("datum")) == 0]
+    gewijzigd = [w for w in woningen
+                 if w.get("prijs_eerst") and w["prijs_eerst"] != w["prijs"]]
+
+    kop = f"{len(aanbod)} panden in beeld"
+    if nieuw:
+        kop += f", {len(nieuw)} nieuw vandaag"
+    if gewijzigd:
+        kop += f", {len(gewijzigd)} met een prijswijziging"
+    zinnen.append(kop + ".")
+
+    # Het scherpst geprijsde pand, met het scenario erbij
+    if aanbod:
+        beste = sorted(aanbod, key=lambda x: x[0])[0]
+        afw, ppm2, klasse, _a, basis, w = beste
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+        zin = (f"Scherpst geprijsd is **{w['adres']}** in {buurt}: €{n(w['prijs'])} "
+               f"voor {w['oppervlakte']} m², {afw:+.0f}% ten opzichte van de mediaan "
+               f"van zijn klasse")
+        sc = w.get("_scenario")
+        if sc:
+            plafond = richtprijs(sc["opp"], sc["huur_m2"])
+            if plafond:
+                ruimte = (plafond - w["prijs"]) / w["prijs"] * 100
+                zin += (f". Als {sc['naam']} loopt het rond tot €{n(plafond)}, "
+                        f"dus {ruimte:+.0f}% ten opzichte van de vraagprijs")
+        zinnen.append(zin + ".")
+
+    # Bewegingen benoemen, want dat is het enige dat sinds gisteren veranderde
+    if gewijzigd:
+        w = sorted(gewijzigd, key=lambda x: (x["prijs"] - x["prijs_eerst"]))[0]
+        verschil = w["prijs"] - w["prijs_eerst"]
+        if verschil < 0:
+            zinnen.append(f"Grootste verlaging: **{w['adres']}** ging €{n(abs(verschil))} "
+                          f"omlaag naar €{n(w['prijs'])}.")
+
+    # Gemeentelijke berichten
+    bm = bm_per_buurt or {}
+    aantal_bm = sum(len(v) for v in bm.values())
+    if aantal_bm:
+        kern = sum(1 for v in bm.values() for b in v if b.get("kern"))
+        zin = f"{aantal_bm} gemeentelijke bericht" + ("en" if aantal_bm > 1 else "")
+        if kern:
+            zin += f", waarvan {kern} over splitsen, verkameren of transformatie"
+        zinnen.append(zin + ".")
+
+    if not zinnen:
+        return []
+    return ["", "## Vandaag", "", " ".join(zinnen), ""]
+
+
 def render_intro(cbs, woningen, kort=False):
     """
-    De opening als lopende tekst in plaats van een tabel: eerst de stad,
-    dan de ring, dan wat er vandaag speelt. Cijfers horen in een zin,
-    niet in een raster dat je moet ontcijferen.
+    Achtergrondcijfers over de stad en de ring. Dit is context, geen nieuws,
+    en staat daarom onderaan de brief in plaats van bovenaan.
     """
     def n(x):
         return f"{x:,}".replace(",", ".")
@@ -2091,13 +2154,12 @@ def render_intro(cbs, woningen, kort=False):
             f"{ring_pct}% van de inwoners student is tegen {stad_pct}% stadsbreed "
             f"(CBS telt studenten op hun woonadres).")
 
-    slot = f"Vandaag staan er **{in_aanbod} panden in aanbod**"
-    if len(woningen) > in_aanbod:
-        slot += f", afgezet tegen {n(len(woningen))} gevolgde panden"
-    slot += f". Bijgewerkt {vandaag}. [Bekijk de eigendomskaart]({KAART_URL})."
+    slot = (f"De brief volgt {n(len(woningen))} panden, waarvan er {in_aanbod} nu "
+            f"in aanbod zijn. Bijgewerkt {vandaag}. "
+            f"[Bekijk de eigendomskaart]({KAART_URL}).")
     zinnen.append(slot)
 
-    return ["", " ".join(zinnen), ""]
+    return ["", "### Achtergrond", "", " ".join(zinnen), ""]
 
 
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
@@ -2128,7 +2190,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                 if mon:
                     w["monument"] = mon[0]
 
-    r = render_intro(lees_cbs(), woningen, kort=kort)
+    r = ["", ""]   # samenvatting wordt hierna ingevoegd, zodra we de kandidaten hebben
 
     per_buurt = defaultdict(list)
     beleggingen = []
@@ -2194,10 +2256,13 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     aanbod_regels, kandidaten = render_nieuw_aanbod(
         woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig, kort=kort)
     if kort:
-        r.extend(aanbod_regels)
-        # Bewegingen onder het aanbod: het is aanvullende informatie, geen kop
-        r.extend(render_prijswijzigingen(woningen))
-        r.extend(render_looptijd(woningen))
+        # Samenvatting vooraan, daarna het aanbod, dan de bewegingen en als
+        # laatste de achtergrondcijfers
+        r = (render_samenvatting(woningen, kandidaten, bm_per_buurt, kort=True)
+             + aanbod_regels
+             + render_prijswijzigingen(woningen)
+             + render_looptijd(woningen)
+             + render_intro(lees_cbs(), woningen, kort=True))
 
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
