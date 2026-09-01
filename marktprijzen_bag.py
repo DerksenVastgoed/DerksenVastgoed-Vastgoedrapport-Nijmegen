@@ -828,6 +828,48 @@ MAX_HUUR_EEN_HUISHOUDEN = 3500     # euro per maand
 # met 346 m2 verhuurbaar.
 VERHUURBAAR_AANDEEL = 0.79
 
+# Splitsen: aannames, want hier is geen openbare norm voor. Nijmegen kent geen
+# splitsingsvergunning, dus de rem zit in het Bouwbesluit en het omgevingsplan.
+MIN_UNIT_M2 = 40            # praktische ondergrens per zelfstandige eenheid
+VERHUURBAAR_SPLITSING = 0.90  # verlies aan gedeelde entree en trappenhuis
+MAX_UNITS = 6               # boven dit aantal is het geen splitsing meer
+
+
+
+def splitsscenario(w, huur_bk, huur_k, buurt):
+    """
+    Wat levert het op om dit pand bouwkundig te splitsen in zelfstandige
+    woningen? Nijmegen kent geen splitsingsvergunning, dus de rem zit in het
+    Bouwbesluit, het omgevingsplan en de verbouwing zelf.
+
+    De winst zit erin dat kleine zelfstandige eenheden per m2 fors meer huur
+    opbrengen dan een grote woning. De rem zit in de opkoopbescherming: komt
+    een nieuwe eenheid onder de WOZ-grens uit, dan mag je die vier jaar lang
+    niet verhuren zonder vergunning.
+    """
+    opp = w.get("oppervlakte")
+    if not opp:
+        return None
+    bruikbaar = opp * VERHUURBAAR_SPLITSING
+    aantal = int(bruikbaar // MIN_UNIT_M2)
+    if aantal < 2:
+        return None
+    aantal = min(aantal, MAX_UNITS)
+
+    unit_m2 = bruikbaar / aantal
+    huur_m2, bron = huur_voor_buurt(buurt, huur_bk, huur_k, unit_m2, "woning")
+    maand = huur_m2 * bruikbaar
+
+    # Waarde per eenheid, om te toetsen aan de opkoopbescherming
+    rijen = None
+    unit_waarde = w["prijs"] / aantal
+    beschermd = unit_waarde < OPKOOPBESCHERMING_WOZ
+
+    return {"naam": f"splitsen in {aantal}", "huur_m2": huur_m2, "maand": maand,
+            "opp": round(bruikbaar), "bron": bron, "aantal": aantal,
+            "unit_m2": round(unit_m2), "unit_waarde": unit_waarde,
+            "beschermd": beschermd}
+
 
 def kies_scenario(w, huur_bk, huur_k, buurt):
     """
@@ -853,7 +895,12 @@ def kies_scenario(w, huur_bk, huur_k, buurt):
     geschikt_woning = (opp <= MAX_M2_EEN_HUISHOUDEN
                        and maand_w <= MAX_HUUR_EEN_HUISHOUDEN)
 
+    sp = splitsscenario(w, huur_bk, huur_k, buurt)
+
     if geschikt_woning and not kamerpand:
+        # Levert splitsen aantoonbaar meer op, dan tonen we dat
+        if sp and sp["maand"] > maand_w * 1.1:
+            return sp
         return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
                 "opp": opp, "bron": bron_w}
 
@@ -868,6 +915,9 @@ def kies_scenario(w, huur_bk, huur_k, buurt):
         return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
                 "opp": opp, "bron": bron_w}
 
+    # Bij grote panden is splitsen vaak het alternatief voor verkameren
+    if sp and sp["maand"] > maand_k:
+        return sp
     return {"naam": naam, "huur_m2": huur_k_m2, "maand": maand_k,
             "opp": verhuurbaar, "bron": bron_k}
 
@@ -1834,6 +1884,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     plafond_s = "—"
                 scenario = (f"{sc['naam']}, €" + f"{int(sc['maand']):,}".replace(",", ".")
                             + "/mnd") if sc else "—"
+                if sc and sc.get("beschermd"):
+                    scenario += " ⚠"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
                          f"{merk} {afwijking:+.0f}%{staart} | {scenario} | {plafond_s} |")
@@ -1907,6 +1959,15 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"uitgebreide brief van zondag._")
         lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
                      else "rente")
+        r.append(f"_Splitsen wordt getoond zodra dat meer oplevert dan de andere routes. "
+                 f"Nijmegen kent geen splitsingsvergunning, maar een omgevingsvergunning "
+                 f"is wel nodig en het Bouwbesluit stelt eisen aan geluid, brandveiligheid "
+                 f"en toegang. Gerekend met minimaal {MIN_UNIT_M2} m² per eenheid en "
+                 f"{int(VERHUURBAAR_SPLITSING*100)}% van het vloeroppervlak verhuurbaar; "
+                 f"dat zijn aannames, geen normen. Verbouwkosten zitten er niet in. "
+                 f"Een ⚠ betekent dat de nieuwe eenheden onder €{OPKOOPBESCHERMING_WOZ:,} "
+                 f"uitkomen en dus vier jaar lang niet vrij verhuurd mogen worden._"
+                 .replace(",", "."))
         r.append(f"_**Verhuurd als** toont het scenario dat is doorgerekend. Boven "
                  f"{MAX_M2_EEN_HUISHOUDEN} m² of €{MAX_HUUR_EEN_HUISHOUDEN:,} per maand "
                  f"rekenen we met kamers, want de markt betaalt zulke bedragen niet voor "
