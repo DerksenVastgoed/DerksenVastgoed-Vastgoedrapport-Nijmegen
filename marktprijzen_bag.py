@@ -922,18 +922,29 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
     return HUUR_M2_MND.get(buurt, 18), "aanname"
 
 
-def opkoop_signaal(prijs):
+def opkoop_signaal(w):
     """
     Valt dit pand onder de opkoopbescherming? De WOZ kennen we niet, maar de
     vraagprijs ligt vrijwel altijd boven de WOZ. Ligt de vraagprijs al onder de
-    grens, dan de WOZ vrijwel zeker ook, en mag je het pand niet zonder meer
-    verhuren na aankoop.
+    grens, dan de WOZ vrijwel zeker ook.
+
+    Uitzondering die er in de praktijk het meest toe doet: koop je een pand dat
+    al verhuurd wordt en in verhuurde staat wordt geleverd, dan mag je de
+    verhuur voortzetten. Wordt het leeg opgeleverd, dan niet. Voor panden met
+    een kamerverhuurvergunning geldt daarbij de eis van minstens zes maanden
+    verhuur voorafgaand aan de levering.
     """
+    prijs = w["prijs"] if isinstance(w, dict) else w
+    verhuurd = (isinstance(w, dict)
+                and (w.get("status") or "").lower() == "belegging")
+
+    if prijs >= OPKOOPBESCHERMING_WOZ * 1.25:
+        return "vrij"
+    if verhuurd:
+        return "voortzetting"
     if prijs < OPKOOPBESCHERMING_WOZ:
         return "beschermd"
-    if prijs < OPKOOPBESCHERMING_WOZ * 1.25:
-        return "grensgeval"
-    return "vrij"
+    return "grensgeval"
 
 
 def verkameren_signaal(prijs):
@@ -945,8 +956,10 @@ def verkameren_signaal(prijs):
     if prijs < WOZ_ONDERGRENS:
         return "niet toegestaan"
     if prijs < WOZ_BOVENGRENS * 1.25:
-        return "vermoedelijk vergunningplichtig"
-    return "vermoedelijk boven de band"
+        return "omzettingsvergunning nodig"
+    # Boven de bovengrens is geen omzettingsvergunning nodig; de omgevings-
+    # vergunning voor drie of meer kamers blijft wel gelden.
+    return "geen omzettingsvergunning nodig"
 
 
 def assetklasse(w):
@@ -1833,9 +1846,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         # Opkoopbescherming: dit bepaalt of je het pand uberhaupt mag verhuren
         beschermd = [k[-1] for k in rijen_buurt
-                     if opkoop_signaal(k[-1]["prijs"]) == "beschermd"]
+                     if opkoop_signaal(k[-1]) == "beschermd"]
         grens = [k[-1] for k in rijen_buurt
-                 if opkoop_signaal(k[-1]["prijs"]) == "grensgeval"]
+                 if opkoop_signaal(k[-1]) == "grensgeval"]
+        voortzetting = [k[-1] for k in rijen_buurt
+                        if opkoop_signaal(k[-1]) == "voortzetting"]
         if beschermd:
             namen = ", ".join(w["adres"] for w in beschermd)
             r.append(f"_**Opkoopbescherming** bij {namen}: de vraagprijs ligt onder "
@@ -1849,6 +1864,14 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             r.append(f"_Grensgeval voor de opkoopbescherming: {namen}. Controleer de WOZ, "
                      f"want onder €{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
                      + " mag je niet zonder meer verhuren._")
+            r.append("")
+        if voortzetting:
+            namen = ", ".join(w["adres"] for w in voortzetting)
+            r.append(f"_{namen} wordt in verhuurde staat aangeboden. Dan mag de verhuur "
+                     f"worden voortgezet, ook onder de WOZ-grens. Bij kamerverhuur geldt "
+                     f"daarbij dat het pand minstens zes maanden verhuurd moet zijn "
+                     f"geweest en in verhuurde staat wordt geleverd; bij lege oplevering "
+                     f"vervalt die route._")
             r.append("")
 
         # Verkameren: welke panden vallen buiten de Nijmeegse WOZ-band
@@ -1894,13 +1917,17 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  "10% erboven. Buurtkenmerken komen uit de CBS Wijk- en Buurtkaart._")
         tellen = ", ".join(f"{k}: {len(v)}" for k, v in sorted(per_klasse.items()))
         r.append(f"_Omvang per klasse in de dataset: {tellen}._")
-        r.append(f"_Kamerverhuur in Nijmegen: onder een WOZ van "
-                 f"€{WOZ_ONDERGRENS:,} niet toegestaan, tussen €{WOZ_ONDERGRENS:,} en "
-                 f"€{WOZ_BOVENGRENS:,} een omzettingsvergunning nodig bij drie kamers of "
-                 f"meer, en vanaf vijf kamers ook een melding brandveilig gebruik. "
-                 f"Corporatiebezit is vrijgesteld. Wij toetsen op de vraagprijs, want de "
-                 f"WOZ per pand is niet vrij op te vragen; controleer die zelf op "
-                 f"wozwaardeloket.nl. Bedragen worden jaarlijks geïndexeerd._".replace(",", "."))
+        r.append(f"_Kamerverhuur in Nijmegen, op WOZ-waarde: onder €{WOZ_ONDERGRENS:,} "
+                 f"niet toegestaan. Tussen €{WOZ_ONDERGRENS:,} en €{WOZ_BOVENGRENS:,} een "
+                 f"omzettingsvergunning nodig bij drie of meer kamers of drie of meer "
+                 f"bewoners die geen huishouden vormen. Daarboven vervalt die vergunning, "
+                 f"maar blijft de omgevingsvergunning gelden. Vanaf vijf kamers ook een "
+                 f"melding brandveilig gebruik. Verhuur aan maximaal twee personen is "
+                 f"vergunningvrij. Let op: de opkoopbescherming gaat hieraan vooraf, want "
+                 f"onder €{OPKOOPBESCHERMING_WOZ:,} mag je een gekocht pand sowieso niet "
+                 f"zonder meer verhuren. Wij toetsen op de vraagprijs; controleer de WOZ "
+                 f"zelf op wozwaardeloket.nl. Bedragen worden jaarlijks "
+                 f"opnieuw vastgesteld._".replace(",", "."))
         r.append("")
     return r, kandidaten
 
