@@ -803,6 +803,60 @@ def jaarlast_factor():
     return r / (1 - (1 + r) ** -LOOPTIJD_JAAR)
 
 
+
+# Boven deze oppervlakte is verhuur aan een enkel huishouden niet realistisch:
+# de maandhuur loopt dan op tot bedragen die de markt niet betaalt.
+MAX_M2_EEN_HUISHOUDEN = 150
+MAX_HUUR_EEN_HUISHOUDEN = 3500     # euro per maand
+# Aandeel van het vloeroppervlak dat bij verkamering verhuurbaar is; de rest is
+# gang, trappenhuis en gedeelde ruimte. Ontleend aan een pand van 439 m2 bvo
+# met 346 m2 verhuurbaar.
+VERHUURBAAR_AANDEEL = 0.79
+
+
+def kies_scenario(w, huur_bk, huur_k, buurt):
+    """
+    Bepaalt hoe een pand realistisch verhuurd wordt en tegen welke huur.
+
+    Een groot pand verhuur je niet aan een huishouden maar per kamer, en een
+    klein appartement kun je niet verkameren. De keuze volgt dus uit de omvang,
+    en uit signalen dat er al kamerverhuur plaatsvindt.
+    """
+    opp = w.get("oppervlakte")
+    if not opp:
+        return None
+
+    # Aanwijzingen dat het pand al als kamerverhuur draait
+    tekst = " ".join(str(w.get(k, "")) for k in ("adres", "status", "bron")).lower()
+    signalen = w.get("signalen") or []
+    kamerpand = (any("kamerverhuur" in (s.get("soorten") or []) for s in signalen)
+                 or "kamer" in tekst)
+
+    huur_w, bron_w = huur_voor_buurt(buurt, huur_bk, huur_k, opp, "woning")
+    maand_w = huur_w * opp
+
+    geschikt_woning = (opp <= MAX_M2_EEN_HUISHOUDEN
+                       and maand_w <= MAX_HUUR_EEN_HUISHOUDEN)
+
+    if geschikt_woning and not kamerpand:
+        return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
+                "opp": opp, "bron": bron_w}
+
+    # Kamerverhuur: alleen het verhuurbare deel telt, tegen de kamerhuur
+    huur_k_m2, bron_k = huur_voor_buurt(buurt, huur_bk, huur_k, 20, "kamer")
+    verhuurbaar = round(opp * VERHUURBAAR_AANDEEL)
+    maand_k = huur_k_m2 * verhuurbaar
+    naam = "kamers" if kamerpand else "kamers, mits vergunning"
+
+    # Is verhuur aan een huishouden toch gunstiger, dan tonen we dat
+    if geschikt_woning and maand_w >= maand_k:
+        return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
+                "opp": opp, "bron": bron_w}
+
+    return {"naam": naam, "huur_m2": huur_k_m2, "maand": maand_k,
+            "opp": verhuurbaar, "bron": bron_k}
+
+
 def richtprijs(opp, huur_m2):
     """
     De hoogste koopsom waarbij het pand nog de gewenste cashflow haalt.
@@ -1728,18 +1782,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
-                huur_m2, _ = huur_voor_buurt(buurt, huur_bk, huur_k, w['oppervlakte'])
-                plafond = richtprijs(w["oppervlakte"], huur_m2)
+                sc = kies_scenario(w, huur_bk, huur_k, buurt)
+                plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
                     plafond_s = ("€" + f"{int(plafond):,}".replace(",", ".")
                                  + f" ({verschil:+.0f}%)")
                 else:
                     plafond_s = "—"
-                # Zichtbaar maken welk scenario is doorgerekend en tegen welke huur
-                maand = huur_m2 * w["oppervlakte"]
-                scenario = ("één woning, €" + f"{int(maand):,}".replace(",", ".")
-                            + "/mnd")
+                scenario = (f"{sc['naam']}, €" + f"{int(sc['maand']):,}".replace(",", ".")
+                            + "/mnd") if sc else "—"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
                          f"{merk} {afwijking:+.0f}%{staart} | {scenario} | {plafond_s} |")
@@ -1783,13 +1835,15 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"uitgebreide brief van zondag._")
         lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
                      else "rente")
-        r.append(f"_**Verhuurd als** toont het doorgerekende scenario en de huur die "
-                 f"daarbij hoort. Alles staat op gewone verhuur van het hele pand; "
-                 f"verkameren zit er niet in, want dat vraagt een vergunning en een "
-                 f"verbouwing. **Richtprijs** is de hoogste koopsom waarbij de nettohuur "
-                 f"{lastsoort} nog dekt, bij {LTV:.0f}% financiering en {RENTE}% rente, "
-                 f"met het verschil met de vraagprijs erachter. Volledige onderbouwing in "
-                 f"de zondagsbrief._")
+        r.append(f"_**Verhuurd als** toont het scenario dat is doorgerekend. Boven "
+                 f"{MAX_M2_EEN_HUISHOUDEN} m² of €{MAX_HUUR_EEN_HUISHOUDEN:,} per maand "
+                 f"rekenen we met kamers, want de markt betaalt zulke bedragen niet voor "
+                 f"één huishouden. Bij kamers telt {int(VERHUURBAAR_AANDEEL*100)}% van het "
+                 f"vloeroppervlak als verhuurbaar; de rest is gang en trappenhuis. "
+                 f"'Mits vergunning' is geen formaliteit: omzetting is in de hele ring "
+                 f"vergunningplichtig. **Richtprijs** is de hoogste koopsom waarbij de "
+                 f"nettohuur {lastsoort} nog dekt, bij {LTV:.0f}% financiering en "
+                 f"{RENTE}% rente._".replace(",", "."))
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
