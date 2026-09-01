@@ -3066,19 +3066,22 @@
     "oppervlakte": 25,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Pastoor van Blitterwijckstraat|Nijmegen": {
     "oppervlakte": 20,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Varenstraat|Nijmegen": {
     "oppervlakte": 18,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Berg en Dalseweg|Nijmegen": {
     "oppervlakte": 15,
@@ -3091,13 +3094,15 @@
     "oppervlakte": 16,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Jan de Wittstraat|Nijmegen": {
     "oppervlakte": 31,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Dr. Claas Noorduijnstraat|Nijmegen": {
     "oppervlakte": 25,
@@ -3110,19 +3115,22 @@
     "oppervlakte": 26,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Schepenenstraat|Nijmegen": {
     "oppervlakte": 9,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Graafseweg|Nijmegen": {
     "oppervlakte": 20,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Waalhaven|Nijmegen": {
     "oppervlakte": 112,
@@ -3131,7 +3139,8 @@
     ],
     "postcode": "6541AG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Fagelstraat 34|Nijmegen": {
     "oppervlakte": 130,
@@ -3216,7 +3225,8 @@
     ],
     "postcode": "6532CP",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Atjehstraat|Nijmegen": {
     "oppervlakte": 68,
@@ -3225,7 +3235,8 @@
     ],
     "postcode": "6524KV",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "van Trieststraat 5|Nijmegen": {
     "oppervlakte": 50,
@@ -3272,7 +3283,8 @@
     ],
     "postcode": "6531DB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Plein 1944|Nijmegen": {
     "gefaald": true,
@@ -3285,7 +3297,8 @@
     ],
     "postcode": "6541AT",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Straalmanstraat 26|Nijmegen": {
     "oppervlakte": 294,
@@ -3297,7 +3310,8 @@
     "adresseerbaarObjectIdentificatie": "0268010000048600",
     "buurtnaam": "Hunnerberg",
     "wijknaam": "Nijmegen-Oost",
-    "nummeraanduiding": "adr-38ed6b0681e71fc407b81e5f69215f0c"
+    "nummeraanduiding": "adr-38ed6b0681e71fc407b81e5f69215f0c",
+    "energielabel": null
   },
   "Groesbeeksedwarsweg|Nijmegen": {
     "oppervlakte": 16,
@@ -3306,7 +3320,8 @@
     ],
     "postcode": "6521DG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Villandry 62|Nijmegen": {
     "oppervlakte": 134,
