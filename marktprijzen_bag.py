@@ -1702,8 +1702,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         if beoordeeld:
             kop = ("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | "
-                   "Richtprijs | Ruimte | Label |")
-            streep = "|---|---|---:|---:|---:|---:|---:|---:|---|"
+                   "Verhuurd als | Richtprijs |")
+            streep = "|---|---|---:|---:|---:|---:|---|---:|"
             if toon_dagen:
                 kop += " Dagen |"
                 streep += "---:|"
@@ -1718,14 +1718,17 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 plafond = richtprijs(w["oppervlakte"], huur_m2)
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
-                    plafond_s = "€" + f"{int(plafond):,}".replace(",", ".")
-                    ruimte_s = f"{verschil:+.0f}%"
+                    plafond_s = ("€" + f"{int(plafond):,}".replace(",", ".")
+                                 + f" ({verschil:+.0f}%)")
                 else:
-                    plafond_s = ruimte_s = "—"
+                    plafond_s = "—"
+                # Zichtbaar maken welk scenario is doorgerekend en tegen welke huur
+                maand = huur_m2 * w["oppervlakte"]
+                scenario = ("één woning, €" + f"{int(maand):,}".replace(",", ".")
+                            + "/mnd")
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
-                         f"{merk} {afwijking:+.0f}%{staart} | {plafond_s} | {ruimte_s} | "
-                         f"{_labeltekst(w.get('energielabel'))} |")
+                         f"{merk} {afwijking:+.0f}%{staart} | {scenario} | {plafond_s} |")
                 if toon_dagen:
                     dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
                     regel += f" {dagen if dagen is not None else '—'} |"
@@ -1766,10 +1769,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"uitgebreide brief van zondag._")
         lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
                      else "rente")
-        r.append(f"_**Richtprijs**: de hoogste koopsom waarbij de nettohuur {lastsoort} "
-                 f"nog dekt, bij {LTV:.0f}% financiering en {RENTE}% rente. "
-                 f"**Ruimte** is het verschil met de vraagprijs. "
-                 f"Volledige onderbouwing in de zondagsbrief._")
+        r.append(f"_**Verhuurd als** toont het doorgerekende scenario en de huur die "
+                 f"daarbij hoort. Alles staat op gewone verhuur van het hele pand; "
+                 f"verkameren zit er niet in, want dat vraagt een vergunning en een "
+                 f"verbouwing. **Richtprijs** is de hoogste koopsom waarbij de nettohuur "
+                 f"{lastsoort} nog dekt, bij {LTV:.0f}% financiering en {RENTE}% rente, "
+                 f"met het verschil met de vraagprijs erachter. Volledige onderbouwing in "
+                 f"de zondagsbrief._")
         r.append("")
     if not kort:
         # De spelregels horen in de weekbrief, niet elke ochtend opnieuw
