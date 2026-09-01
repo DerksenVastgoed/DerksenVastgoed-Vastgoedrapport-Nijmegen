@@ -894,7 +894,7 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
             "gereguleerd": bool(segment and segment != "vrije sector")}
 
 
-def kies_scenario(w, huur_bk, huur_k, buurt):
+def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
     """
     Bepaalt hoe een pand realistisch verhuurd wordt en tegen welke huur.
 
@@ -918,6 +918,15 @@ def kies_scenario(w, huur_bk, huur_k, buurt):
     geschikt_woning = (opp <= MAX_M2_EEN_HUISHOUDEN
                        and maand_w <= MAX_HUUR_EEN_HUISHOUDEN)
 
+    # Verkameren verzilvert vierkante meters, geen kwaliteit. Een kamerhuurder
+    # betaalt niet extra voor een tuin, de ligging of de afwerking, terwijl je
+    # die wel meebetaalt. Ligt de prijs per m2 boven de buurtmediaan, dan koop
+    # je die meters duur in en is verkameren zelden de juiste route. Ook de
+    # leefbaarheidstoets loopt in zulke straten vrijwel altijd stuk.
+    duur_ingekocht = False
+    if mediaan_m2 and opp:
+        duur_ingekocht = (w["prijs"] / opp) > mediaan_m2
+
     sp = splitsscenario(w, huur_bk, huur_k, buurt)
 
     if geschikt_woning and not kamerpand:
@@ -932,6 +941,15 @@ def kies_scenario(w, huur_bk, huur_k, buurt):
     verhuurbaar = round(opp * VERHUURBAAR_AANDEEL)
     maand_k = huur_k_m2 * verhuurbaar
     naam = "kamers" if kamerpand else "kamers, mits vergunning"
+
+    # Duur ingekochte meters: verkameren afraden tenzij het pand het al is
+    if duur_ingekocht and not kamerpand:
+        if sp and sp["maand"] > maand_w:
+            return sp
+        return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
+                "opp": opp, "bron": bron_w,
+                "let_op": "prijs per m² ligt boven de buurtmediaan; verkameren "
+                          "verzilvert oppervlakte, niet kwaliteit"}
 
     # Is verhuur aan een huishouden toch gunstiger, dan tonen we dat
     if geschikt_woning and maand_w >= maand_k:
@@ -1899,7 +1917,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
                 merk = "🟢" if afwijking <= -10 else ("🟡" if afwijking < 10 else "🔴")
                 staart = "" if basis == buurt else f" ({basis})"
-                sc = kies_scenario(w, huur_bk, huur_k, buurt)
+                rijen_b = per_buurt.get(buurt, [])
+                med_b = st.median([p for p, _ in rijen_b]) if len(rijen_b) >= 10 else None
+                sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b)
                 w["_scenario"] = sc
                 plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
                 if plafond:
@@ -1910,6 +1930,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     plafond_s = "—"
                 scenario = (f"{sc['naam']}, €" + f"{int(sc['maand']):,}".replace(",", ".")
                             + "/mnd") if sc else "—"
+                if sc and sc.get("let_op"):
+                    scenario += " ✱"
                 if sc and sc.get("gereguleerd"):
                     scenario += f" ({sc['punten']} pt, {sc['segment']})"
                 elif sc and sc.get("beschermd"):
@@ -1987,6 +2009,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"uitgebreide brief van zondag._")
         lastsoort = ("rente en aflossing" if LOOPTIJD_JAAR
                      else "rente")
+        r.append("_Een ✱ betekent dat de prijs per m² boven de buurtmediaan ligt. "
+                 "Verkameren wordt dan niet voorgesteld: je betaalt voor kwaliteit die "
+                 "een kamerhuurder niet vergoedt, en de leefbaarheidstoets loopt in zulke "
+                 "straten zelden goed af._")
         r.append(f"_Splitsen wordt getoond zodra dat meer oplevert dan de andere routes. "
                  f"Nijmegen kent geen splitsingsvergunning, maar een omgevingsvergunning "
                  f"is wel nodig en het Bouwbesluit stelt eisen aan geluid, brandveiligheid "
