@@ -764,10 +764,20 @@ def kaartlink(adres, plaats="Nijmegen", bron=""):
 WOZ_ONDERGRENS = 278_000
 WOZ_BOVENGRENS = 396_000
 
-# Opkoopbescherming Nijmegen: onder deze WOZ mag een gekochte woning niet
-# zonder meer verhuurd worden. Bij splitsing geldt de grens per nieuwe woning:
-# blijven die eronder, dan mag je ze verkopen maar niet vrij verhuren.
+# Opkoopbescherming Nijmegen, Huisvestingsverordening 2024 artikel 19.
+# Het verbod geldt vier jaar na inschrijving van de leveringsakte, en alleen
+# voor woonruimte die op dat moment vrij van huur was, korter dan zes maanden
+# verhuurd, of verhuurd met een verhuurvergunning opkoopbescherming. Een pand
+# dat langer dan zes maanden verhuurd was en in verhuurde staat wordt geleverd
+# is dus geen beschermde woonruimte.
 OPKOOPBESCHERMING_WOZ = 396_000
+OPKOOPBESCHERMING_JAAR = 4
+
+# Nijmegen kent geen splitsings- of woningvormingsvergunning: die begrippen
+# komen in de verordening niet voor. Voor bouwkundig splitsen is wel een
+# omgevingsvergunning nodig, maar er gelden geen minimumoppervlaktes vanuit
+# de huisvestingsverordening.
+SPLITSINGSVERGUNNING_NODIG = False
 
 
 
@@ -1855,9 +1865,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             namen = ", ".join(w["adres"] for w in beschermd)
             r.append(f"_**Opkoopbescherming** bij {namen}: de vraagprijs ligt onder "
                      f"€{OPKOOPBESCHERMING_WOZ:,}".replace(",", ".")
-                     + ", dus de WOZ vrijwel zeker ook. Deze woningen mag je na aankoop "
-                       "niet zonder meer verhuren. De richtprijs hiernaast gaat uit van "
-                       "verhuur en is dus alleen relevant als een uitzondering geldt._")
+                     + ", dus de WOZ vrijwel zeker ook. Deze woningen mag je de eerste "
+                       f"{OPKOOPBESCHERMING_JAAR} jaar na levering niet verhuren zonder "
+                       "verhuurvergunning. De richtprijs hiernaast gaat uit van verhuur en "
+                       "is dus alleen relevant als een uitzondering geldt._")
             r.append("")
         elif grens:
             namen = ", ".join(w["adres"] for w in grens)
@@ -1867,11 +1878,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             r.append("")
         if voortzetting:
             namen = ", ".join(w["adres"] for w in voortzetting)
-            r.append(f"_{namen} wordt in verhuurde staat aangeboden. Dan mag de verhuur "
-                     f"worden voortgezet, ook onder de WOZ-grens. Bij kamerverhuur geldt "
-                     f"daarbij dat het pand minstens zes maanden verhuurd moet zijn "
-                     f"geweest en in verhuurde staat wordt geleverd; bij lege oplevering "
-                     f"vervalt die route._")
+            r.append(f"_{namen} wordt in verhuurde staat aangeboden. Was het pand op de "
+                     f"leveringsdatum al langer dan zes maanden verhuurd, dan is het geen "
+                     f"beschermde woonruimte en geldt de vergunningplicht niet. Bij lege "
+                     f"oplevering of een kortere verhuurperiode vervalt die route._")
             r.append("")
 
         # Verkameren: welke panden vallen buiten de Nijmeegse WOZ-band
