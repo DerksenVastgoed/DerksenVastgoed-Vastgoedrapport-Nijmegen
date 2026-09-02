@@ -1,16 +1,54 @@
 [
  {
+  "datum": "2026-09-02",
+  "titel": "Besluit voor Het verbouwen en uitbreiden van een woning over twee bouwlagen, aan Brakkensteinweg 26, 6525RP Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411432.html",
+  "strategie": "geen",
+  "duiding": "Verbouwing en uitbreiding van een bestaande woning heeft geen directe marktimplicatie voor aanbod of segmentatie.",
+  "feiten": {
+   "oppervlakte_m2": 125
+  },
+  "straat": "Brakkensteinweg",
+  "huisnummer": "26",
+  "kern": false
+ },
+ {
   "datum": "2026-08-31",
   "titel": "Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html",
   "strategie": "verduurzaming",
-  "duiding": "Vervanging van kozijnen in de voorgevel toont dat gevelingrepen hier vergunningplichtig maar uitvoerbaar zijn, relevant voor labelverbetering.",
+  "duiding": "Vervanging van kozijnen in de voorgevel ondersteunt behoud van het huidige energielabel C bij dit pand.",
   "feiten": {
    "energielabel": "C (2024)",
    "oppervlakte_m2": 351
   },
   "straat": "Groesbeekseweg",
   "huisnummer": "63",
+  "kern": false
+ },
+ {
+  "datum": "2026-09-02",
+  "titel": "Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html",
+  "strategie": "geen",
+  "duiding": "Kozijnvervanging op de eerste verdieping is een routinematige gevelaanpassing zonder marktrelevantie.",
+  "feiten": {},
+  "straat": "Bottelstraat 29 &",
+  "huisnummer": "33",
+  "kern": false
+ },
+ {
+  "datum": "2026-09-02",
+  "titel": "Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html",
+  "strategie": "verduurzaming",
+  "duiding": "Renovatie van dit gemeentelijk monument met energielabel E kan aanleiding geven tot labelverbetering, al blijven ingrepen vergunningplichtig.",
+  "feiten": {
+   "energielabel": "E (2022)",
+   "oppervlakte_m2": 226
+  },
+  "straat": "van Welderenstraat",
+  "huisnummer": "102",
   "kern": false
  }
 ]

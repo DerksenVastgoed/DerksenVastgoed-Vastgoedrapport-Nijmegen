@@ -3379,5 +3379,119 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Groesbeeksedwarsweg 99|Nijmegen": {
+    "oppervlakte": 109,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "winkelfunctie",
+      "woonfunctie"
+    ],
+    "postcode": "6521DC",
+    "adresseerbaarObjectIdentificatie": "0268010000015759",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-a6bed47edfc04232a391dad78db387c3",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-07-10",
+      "geldig_tot": "2036-07-01",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Dulckenstraat 47|Nijmegen": {
+    "oppervlakte": 170,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512DS",
+    "adresseerbaarObjectIdentificatie": "0268010000101872",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-7fdfbc5971ec56bebee67c048b868781",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2019-02-27",
+      "geldig_tot": "2029-02-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Kaapstander 264|Nijmegen": {
+    "oppervlakte": 143,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EX",
+    "adresseerbaarObjectIdentificatie": "0268010000093955",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-dbde0a40507c23911b6b24c247771974",
+    "energielabel": {
+      "label": "A+",
+      "registratiedatum": "2026-07-14",
+      "geldig_tot": "2036-07-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Schoolstraat 135|Nijmegen": {
+    "oppervlakte": 82,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512JE",
+    "adresseerbaarObjectIdentificatie": "0268010000068121",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-553d0e794d39ccc8b28757470babc0f5",
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-06-09",
+      "geldig_tot": "2036-06-04",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Vondelstraat 63|Nijmegen": {
+    "oppervlakte": 124,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512BC",
+    "adresseerbaarObjectIdentificatie": "0268010000057103",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-5c415b47522b317e6af1ba34127fa192",
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2016-10-09",
+      "geldig_tot": "2026-10-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Brakkensteinweg 26|Nijmegen": {
+    "postcode": "6525RP",
+    "buurtnaam": "Brakkenstein",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-c6e0441d41ad30ebb503b968f2065b64"
+  },
+  "bm:Bottelstraat 29 & 33|Nijmegen": {
+    "postcode": "6511XA",
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-a2234ef0e2aa192687a93d1252a0cd4e"
+  },
+  "bm:van Welderenstraat 102|Nijmegen": {
+    "postcode": "6511MS",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-49521e56ff704ddabcb43eaa08d75f41"
   }
 }

@@ -230,3 +230,10 @@ Villandry 62 | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 143 | 6523NZ
 # Automatisch toegevoegd uit Funda-attendering op 01-09-2026
 Groesbeekseweg 85 | Nijmegen | 1150000 | te koop | 2026-09-01 |  | 228 | 6524CS
 Gerard Noodtstraat 71 | Nijmegen | 450000 | te koop | 2026-09-01 |  | 104 | 6511SV
+
+# Automatisch toegevoegd uit Funda-attendering op 02-09-2026
+Groesbeeksedwarsweg 99 | Nijmegen | 495000 | te koop | 2026-09-02 |  | 93 | 6521DC
+van Dulckenstraat 47 | Nijmegen | 945000 | te koop | 2026-09-02 |  | 171 | 6512DS
+Kaapstander 264 | Nijmegen | 1215000 | te koop | 2026-09-02 |  | 151 | 6541EX
+Schoolstraat 135 | Nijmegen | 405000 | te koop | 2026-09-02 |  | 80 | 6512JE
+Vondelstraat 63 | Nijmegen | 495000 | te koop | 2026-09-02 |  | 124 | 6512BC
