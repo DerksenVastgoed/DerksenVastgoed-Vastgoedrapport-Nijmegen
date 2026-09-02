@@ -20,3 +20,10 @@ Marialaan 111 | 312000 | 2026
 Boomvalkstraat 18 | 239000 | 2026
 Zwaluwstraat 7 | 342000 | 2026
 Prof. Molkenboerstraat 30 | 432000 | 2026
+
+# Toegevoegd op 2026-09-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+Dikkeboomweg 36 |  | 2026
+Gerard Noodtstraat 71 |  | 2026
+Molukkenstraat 168 |  | 2026
+Nieuwe Marktstraat 6 |  | 2026
+Schoolstraat 135 |  | 2026
