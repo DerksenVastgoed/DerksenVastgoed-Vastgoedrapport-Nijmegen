@@ -139,8 +139,22 @@ def haal_records(cql: str):
         params = {"version": "2.0", "operation": "searchRetrieve", "query": cql,
                   "maximumRecords": MAX_PER_PAGINA, "startRecord": start}
         url = SRU_URL + "?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
-        resp = requests.get(url, timeout=30)
-        resp.raise_for_status()
+
+        # De SRU van de overheid is met enige regelmaat traag of even weg.
+        # Drie pogingen met oplopende wachttijd vangt dat op.
+        resp = None
+        for poging in range(1, 4):
+            try:
+                resp = requests.get(url, timeout=(15, 60))
+                resp.raise_for_status()
+                break
+            except Exception as e:
+                if poging == 3:
+                    raise
+                wacht = poging * 10
+                print(f"  SRU-poging {poging} mislukt ({e}), opnieuw over {wacht}s",
+                      file=sys.stderr)
+                time.sleep(wacht)
         root = ET.fromstring(resp.content)
         pagina = [el for el in root.iter() if _lokaal(el.tag) == "record"]
         if not pagina:
@@ -687,8 +701,22 @@ def main():
     try:
         records = haal_records(cql)
     except Exception as e:  # noqa
-        print(f"Ophalen mislukt: {e}", file=sys.stderr)
-        sys.exit(1)
+        # De bron is even weg. Dat mag de hele brief niet tegenhouden: de andere
+        # blokken werken prima. We schrijven een lege sectie en stoppen netjes.
+        print(f"Ophalen mislukt na herhaalde pogingen: {e}", file=sys.stderr)
+        try:
+            with open(args.uit, "w", encoding="utf-8") as f:
+                f.write("\n## Bekendmakingen\n\n")
+                f.write("_De bekendmakingen konden vandaag niet worden opgehaald: "
+                        "de SRU van de overheid reageerde niet. Morgen staan de "
+                        "gemiste dagen er vanzelf weer bij, want we kijken altijd "
+                        "een aantal dagen terug._\n")
+        except Exception:
+            pass
+        for pad in ("bekendmakingen_vandaag.json",):
+            if os.path.exists(pad):
+                os.remove(pad)
+        sys.exit(0)
 
     items = [parse_record(r) for r in records]
 
