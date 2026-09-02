@@ -5,6 +5,11 @@
 # wozwaardeloket.nl en zet het hier neer. De brief rekent dan met de echte
 # waarde in plaats van met de vraagprijs als benadering, en dat bepaalt of de
 # opkoopbescherming en de kamerverhuurband gelden.
-#
-# Voorbeeld:
-# St. Annastraat 28 | 1400000
+
+# St. Annastraat 28 | 1021000
+# Dokstraat 127 | 416000
+# Graafseweg 47K | 380000
+# Marialaan 111 | 312000
+# Boomvalkstraat 18 |	239000
+# Zwaluwstraat 7 | 342000
+# Professor Molkenboerstraat 30 |	432000
