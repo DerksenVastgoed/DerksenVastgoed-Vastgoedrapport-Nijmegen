@@ -208,16 +208,16 @@ def vertaal_bod(rente_pct: float) -> str:
     equity_rendement = cashflow / equity * 100 if equity > 0 else 0
 
     return (
-        f"**Wat betekent {rente_pct:.2f}% voor een typisch pand?** "
+        f"**Wat betekent {_pct(rente_pct)}% voor een typisch pand?** "
         f"Neem een representatief pand van €{_nl(waarde)} met €{_nl(lening)} hypotheek "
         f"(LTV {ltv:.0f}%) en €{_nl(kale_huur)} kale huur per jaar. "
         f"Rentelast: **€{_nl(round(rentelast))}/jaar**. "
-        f"Huur dekt rente {icr:.2f}× (banken willen minimaal 1,25×; je zit {'krap' if icr < 1.3 else 'ruim'}). "
+        f"Huur dekt rente {_pct(icr)}× (banken willen minimaal 1,25×; je zit {'krap' if icr < 1.3 else 'ruim'}). "
         f"Na 25% opex (onderhoud, leegstand, beheer) resteert €{_nl(round(netto_huur))} netto huur. "
         f"Netto cashflow: **€{_nl(round(cashflow))}/jaar** op €{_nl(equity)} equity = "
-        f"{equity_rendement:.1f}% direct rendement."
+        f"{_pct(equity_rendement, 1)}% direct rendement."
         + (f"\n\n_{'⚠️ Cashflow is negatief bij deze rente' if cashflow < 0 else 'Cashflow blijft positief maar mager'}. "
-           f"Rendement in dit segment moet komen uit mutatie-events: renovatie, huurverhoging bij nieuwe huurder, splitsen naar meerdere units. "
+           f"Rendement in dit segment moet komen uit mutatie-events: renovatie, huurverhoging bij mutatie en labelverbetering. "
            f"Elke 0,25% rentestijging kost €{_nl(round(lening * 0.0025))} extra rentelast per jaar._")
     )
 
@@ -264,7 +264,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         pijl = _pijl(w["delta_bp"]) if w else "geen historie"
         link = aanbieder_link(naam)
         link_md = f"[bron]({link})" if link else "—"
-        r.append(f"| {label} | **{rente:.2f}%** | {naam} | {pijl} | {link_md} |")
+        r.append(f"| {label} | **{_pct(rente)}%** | {naam} | {pijl} | {link_md} |")
 
     r.append("")
     _, r70 = scherpsten.get("ltv70", (None, None))
@@ -308,6 +308,17 @@ def main():
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)
     schrijf_historie(hist)
+
+    # De rente bij 70% LTV wegschrijven, zodat het marktprijzen-script met de
+    # actuele stand rekent in plaats van met een vast ingesteld percentage.
+    _, r70_nu = scherpsten.get("ltv70", (None, None))
+    if r70_nu:
+        try:
+            with open("rente_actueel.json", "w", encoding="utf-8") as f:
+                json.dump({"ltv70": r70_nu, "datum": dt.date.today().isoformat()}, f)
+            print(f"Actuele rente weggeschreven: {r70_nu}%", file=sys.stderr)
+        except Exception as e:
+            print(f"Kon rente_actueel.json niet schrijven: {e}", file=sys.stderr)
     print(f"\nRente-digest opgeslagen in {args.uit}", file=sys.stderr)
 
 
