@@ -95,6 +95,11 @@ def haal_tabel() -> list:
     return p.rows
 
 
+def _fmt_pct(x, cijfers=2):
+    """Percentage met een komma, zoals het in het Nederlands hoort."""
+    return f"{x:.{cijfers}f}".replace(".", ",")
+
+
 def _pct(cel: str):
     """Trekt bv. 5,50% of 5.50% uit een cel; None als er niks staat."""
     m = re.search(r"(\d+[.,]\d+)\s*%", cel)
@@ -208,14 +213,14 @@ def vertaal_bod(rente_pct: float) -> str:
     equity_rendement = cashflow / equity * 100 if equity > 0 else 0
 
     return (
-        f"**Wat betekent {_pct(rente_pct)}% voor een typisch pand?** "
+        f"**Wat betekent {_fmt_pct(rente_pct)}% voor een typisch pand?** "
         f"Neem een representatief pand van €{_nl(waarde)} met €{_nl(lening)} hypotheek "
         f"(LTV {ltv:.0f}%) en €{_nl(kale_huur)} kale huur per jaar. "
         f"Rentelast: **€{_nl(round(rentelast))}/jaar**. "
-        f"Huur dekt rente {_pct(icr)}× (banken willen minimaal 1,25×; je zit {'krap' if icr < 1.3 else 'ruim'}). "
+        f"Huur dekt rente {_fmt_pct(icr)}× (banken willen minimaal 1,25×; je zit {'krap' if icr < 1.3 else 'ruim'}). "
         f"Na 25% opex (onderhoud, leegstand, beheer) resteert €{_nl(round(netto_huur))} netto huur. "
         f"Netto cashflow: **€{_nl(round(cashflow))}/jaar** op €{_nl(equity)} equity = "
-        f"{_pct(equity_rendement, 1)}% direct rendement."
+        f"{_fmt_pct(equity_rendement, 1)}% direct rendement."
         + (f"\n\n_{'⚠️ Cashflow is negatief bij deze rente' if cashflow < 0 else 'Cashflow blijft positief maar mager'}. "
            f"Rendement in dit segment moet komen uit mutatie-events: renovatie, huurverhoging bij mutatie en labelverbetering. "
            f"Elke 0,25% rentestijging kost €{_nl(round(lening * 0.0025))} extra rentelast per jaar._")
@@ -264,7 +269,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         pijl = _pijl(w["delta_bp"]) if w else "geen historie"
         link = aanbieder_link(naam)
         link_md = f"[bron]({link})" if link else "—"
-        r.append(f"| {label} | **{_pct(rente)}%** | {naam} | {pijl} | {link_md} |")
+        r.append(f"| {label} | **{_fmt_pct(rente)}%** | {naam} | {pijl} | {link_md} |")
 
     r.append("")
     _, r70 = scherpsten.get("ltv70", (None, None))
