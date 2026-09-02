@@ -89,6 +89,7 @@ jobs:
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python marktprijzen_bag.py --modus "$MODUS" --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
@@ -179,7 +180,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt woz.txt rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
