@@ -1063,13 +1063,24 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
 WOZ_PAD = "woz.txt"
 
 
+def _woz_sleutel(adres):
+    """Adressen matchen ongeacht punten, spaties en afkortingen."""
+    a = adres.lower()
+    a = a.replace("professor ", "prof").replace("prof. ", "prof")
+    a = a.replace("burgemeester ", "burg").replace("burg. ", "burg")
+    a = a.replace("sint ", "st").replace("st. ", "st")
+    return re.sub(r"[^a-z0-9]", "", a)
+
+
 def lees_woz():
     """
-    Handmatig ingevoerde WOZ-waarden. Formaat per regel: adres | woz.
-    De WOZ is niet vrij op te vragen: de officiele API vereist een
-    organisatiecertificaat. Zoek een pand op via wozwaardeloket.nl en zet het
-    hier neer; dan rekent de brief met de echte waarde in plaats van met de
-    vraagprijs als benadering.
+    Handmatig ingevoerde WOZ-waarden. Formaat per regel: adres | woz | jaar.
+    Het jaar is de waardepeildatum, want de WOZ wordt jaarlijks opnieuw
+    vastgesteld; zonder jaartal weet je later niet of een bedrag nog klopt.
+
+    De WOZ is niet vrij op te vragen: de officiele API van het Kadaster vereist
+    een organisatiecertificaat. Zoek een pand op via wozwaardeloket.nl.
+    Regels waar nog geen bedrag in staat worden overgeslagen.
     """
     if not os.path.exists(WOZ_PAD):
         return {}
@@ -1084,8 +1095,14 @@ def lees_woz():
                 if len(delen) < 2:
                     continue
                 bedrag = re.sub(r"[^\d]", "", delen[1])
-                if bedrag:
-                    uit[re.sub(r"[^a-z0-9]", "", delen[0].lower())] = int(bedrag)
+                if not bedrag or int(bedrag) < 10_000:
+                    continue   # nog niet ingevuld
+                jaar = None
+                if len(delen) > 2:
+                    j = re.sub(r"[^\d]", "", delen[2])
+                    if len(j) == 4:
+                        jaar = int(j)
+                uit[_woz_sleutel(delen[0])] = {"woz": int(bedrag), "jaar": jaar}
     except Exception:
         return {}
     return uit
@@ -1093,8 +1110,37 @@ def lees_woz():
 
 def woz_van(w, woz_tabel):
     """De bekende WOZ, anders None."""
-    sleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
-    return woz_tabel.get(sleutel)
+    return woz_tabel.get(_woz_sleutel(w["adres"]))
+
+
+def vul_woz_aan(kandidaten, woz_tabel):
+    """
+    Zet grensgevallen als lege regel in het WOZ-bestand, zodat er alleen nog
+    een bedrag ingevuld hoeft te worden. Alleen panden waar de WOZ het verschil
+    maakt tussen wel en niet mogen verhuren.
+    """
+    ontbreekt = []
+    for k in kandidaten:
+        w = k[-1]
+        if woz_van(w, woz_tabel):
+            continue
+        if opkoop_signaal(w) != "grensgeval":
+            continue
+        ontbreekt.append(w["adres"])
+    if not ontbreekt:
+        return 0
+    jaar = dt.date.today().year
+    try:
+        with open(WOZ_PAD, "a", encoding="utf-8") as f:
+            f.write(f"\n# Toegevoegd op {dt.date.today().isoformat()}: "
+                    f"grensgevallen, vul het bedrag in via wozwaardeloket.nl\n")
+            for adres in sorted(set(ontbreekt)):
+                f.write(f"{adres} |  | {jaar}\n")
+        print(f"{len(set(ontbreekt))} grensgevallen toegevoegd aan {WOZ_PAD}",
+              file=sys.stderr)
+    except Exception as e:
+        print(f"Kon {WOZ_PAD} niet aanvullen: {e}", file=sys.stderr)
+    return len(set(ontbreekt))
 
 
 def opkoop_signaal(w):
@@ -1110,13 +1156,15 @@ def opkoop_signaal(w):
     verhuur voorafgaand aan de levering.
     """
     prijs = w["prijs"] if isinstance(w, dict) else w
-    # Kennen we de echte WOZ, dan toetsen we daarop in plaats van op de vraagprijs
-    if isinstance(w, dict) and w.get("woz"):
+    # Kennen we de echte WOZ, dan toetsen we daarop en is er geen marge nodig:
+    # de grens is dan hard in plaats van een schatting op de vraagprijs.
+    zeker = isinstance(w, dict) and bool(w.get("woz"))
+    if zeker:
         prijs = w["woz"]
     verhuurd = (isinstance(w, dict)
                 and (w.get("status") or "").lower() == "belegging")
 
-    if prijs >= OPKOOPBESCHERMING_WOZ * 1.25:
+    if prijs >= OPKOOPBESCHERMING_WOZ * (1.0 if zeker else 1.25):
         return "vrij"
     if verhuurd:
         return "voortzetting"
@@ -1937,12 +1985,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
     cbs = lees_cbs()
     woz_tabel = lees_woz()
-    if woz_tabel:
-        for _k in kandidaten:
-            _w = _k[-1]
-            _woz = woz_van(_w, woz_tabel)
-            if _woz:
-                _w["woz"] = _woz
+    for _k in kandidaten:
+        _w = _k[-1]
+        _gegevens = woz_van(_w, woz_tabel)
+        if _gegevens:
+            _w["woz"] = _gegevens["woz"]
+            _w["woz_jaar"] = _gegevens.get("jaar")
+    vul_woz_aan(kandidaten, woz_tabel)
     opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
     huur_bk, huur_k = gemeten_huren(
         [w for w in woningen if (w.get("status") or "").lower().startswith("te huur")])
@@ -2072,6 +2121,18 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                f"€{prijs_s} ({w['oppervlakte']} m², €{ppm2_s}/m²)")
             r.append(f"_Zonder vergelijking, te weinig {onbeoordeeld[0][2]} objecten in de "
                      f"dataset: " + " . ".join(stukken) + "._")
+            r.append("")
+
+        met_woz = [k[-1] for k in rijen_buurt if k[-1].get("woz")]
+        if met_woz:
+            stukken = []
+            for w in met_woz:
+                jaar = w.get("woz_jaar")
+                oud = jaar and jaar < dt.date.today().year - 1
+                stukken.append(f"{w['adres']} €{eu(w['woz'])}"
+                               + (f" ({jaar}{', verouderd' if oud else ''})" if jaar else ""))
+            r.append("_Bekende WOZ-waarden: " + " . ".join(stukken)
+                     + ". Daar toetsen we op in plaats van op de vraagprijs._")
             r.append("")
 
         if verborgen:
