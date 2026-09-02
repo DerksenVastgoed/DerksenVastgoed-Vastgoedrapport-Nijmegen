@@ -50,6 +50,12 @@ FEEDS = [
     # Directe RSS van Vastgoed Insider (schrijft vaak relevant over uitponden/beleggers)
     ("Vastgoed Insider", "https://vastgoedinsider.nl/feed/"),
     ("Kadaster woningmarkt", _gnews("Kadaster woningmarkt kwartaal")),
+    # Primaire bronnen die zelf publiceren en niet altijd als nieuwssite worden
+    # geindexeerd. Een zoekopdracht op het domein vangt hun eigen berichten.
+    ("Pararius eigen berichten", _gnews("site:pararius.nl")),
+    ("Kadaster eigen berichten", _gnews("site:kadaster.nl woningmarkt")),
+    ("NVM en Brainbay", _gnews("site:nvm.nl OR site:brainbay.nl")),
+    ("Huurcommissie", _gnews("site:huurcommissie.nl OR huurcommissie uitspraak")),
     ("Vastgoed Insider (Google News)", _gnews("site:vastgoedinsider.nl")),
 ]
 
