@@ -1,0 +1,10 @@
+# WOZ-waarden, handmatig ingevuld. Formaat: adres | woz
+#
+# De WOZ is niet vrij op te vragen: de officiele API van het Kadaster vereist
+# een organisatiecertificaat en is bedoeld voor gemeenten. Zoek een pand op via
+# wozwaardeloket.nl en zet het hier neer. De brief rekent dan met de echte
+# waarde in plaats van met de vraagprijs als benadering, en dat bepaalt of de
+# opkoopbescherming en de kamerverhuurband gelden.
+#
+# Voorbeeld:
+# St. Annastraat 28 | 1400000

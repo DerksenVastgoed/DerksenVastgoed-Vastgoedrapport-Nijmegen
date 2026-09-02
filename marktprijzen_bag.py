@@ -477,6 +477,9 @@ def verrijk(woning, cache):
             gegevens["energielabel"] = ep  # ook None bewaren, anders elke run opnieuw
             cache[sleutel] = gegevens
         woning.update(gegevens)
+        if (woning.get("status") or "").lower().startswith("te huur") \
+                and woning.get("oppervlakte_bron"):
+            woning["oppervlakte"] = woning["oppervlakte_bron"]
         return woning
 
     varianten = split_huisnummer(woning["adres"])
@@ -522,6 +525,15 @@ def verrijk(woning, cache):
     time.sleep(0.2)
 
     verrijking = {**bag, **pdok}
+
+    # Bij huuraanbod telt de oppervlakte uit de advertentie, niet die uit de BAG.
+    # De advertentie beschrijft de verhuurde eenheid; de BAG geeft het hele
+    # verblijfsobject of zelfs het pand. Een studio van 36 m2 werd zo een object
+    # van ruim honderd meter, waardoor de huur per m2 volstrekt scheef uitviel.
+    if (woning.get("status") or "").lower().startswith("te huur") \
+            and woning.get("oppervlakte_bron"):
+        verrijking["oppervlakte"] = woning["oppervlakte_bron"]
+        verrijking["oppervlakte_bag"] = bag.get("oppervlakte")
 
     # Energielabel uit EP-Online, bij voorkeur op het VBO-id uit de BAG
     if EP_API_KEY:
@@ -663,6 +675,21 @@ def bekendmakingregels(items):
     return r
 
 
+def lees_actuele_rente():
+    """
+    De rente die het rente-script vandaag heeft gemeten. Zo rekenen de
+    richtprijzen met de werkelijke stand in plaats van met een vast getal.
+    """
+    if not os.path.exists("rente_actueel.json"):
+        return None
+    try:
+        with open("rente_actueel.json", encoding="utf-8") as f:
+            waarde = json.load(f).get("ltv70")
+        return float(waarde) if waarde and 1 < float(waarde) < 15 else None
+    except Exception:
+        return None
+
+
 def lees_cbs():
     """Buurtcijfers uit het CBS, weggeschreven door buurten_tabel.py."""
     if not os.path.exists(CBS_PAD):
@@ -786,7 +813,8 @@ SPLITSINGSVERGUNNING_NODIG = False
 # worden onder elke berekening in de brief vermeld, zodat een lezer kan zien
 # waar een uitkomst op rust.
 # ---------------------------------------------------------------------------
-RENTE = 5.75              # verhuurhypotheek, aflossingsvrij
+RENTE = 5.75              # verhuurhypotheek; wordt overschreven door de
+                          # actuele stand uit rente_actueel.json als die er is
 LTV = 66.7                # financieringsgraad op de koopsom
 OPEX_PCT = 25             # onderhoud, leegstand, beheer, verzekering
 DOEL_CASHFLOW = 0         # gewenste cashflow per jaar; 0 is precies rondlopen
@@ -1031,6 +1059,44 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
     return HUUR_M2_MND.get(buurt, 18), "aanname"
 
 
+
+WOZ_PAD = "woz.txt"
+
+
+def lees_woz():
+    """
+    Handmatig ingevoerde WOZ-waarden. Formaat per regel: adres | woz.
+    De WOZ is niet vrij op te vragen: de officiele API vereist een
+    organisatiecertificaat. Zoek een pand op via wozwaardeloket.nl en zet het
+    hier neer; dan rekent de brief met de echte waarde in plaats van met de
+    vraagprijs als benadering.
+    """
+    if not os.path.exists(WOZ_PAD):
+        return {}
+    uit = {}
+    try:
+        with open(WOZ_PAD, encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip()
+                if not regel or regel.startswith("#"):
+                    continue
+                delen = [d.strip() for d in regel.split("|")]
+                if len(delen) < 2:
+                    continue
+                bedrag = re.sub(r"[^\d]", "", delen[1])
+                if bedrag:
+                    uit[re.sub(r"[^a-z0-9]", "", delen[0].lower())] = int(bedrag)
+    except Exception:
+        return {}
+    return uit
+
+
+def woz_van(w, woz_tabel):
+    """De bekende WOZ, anders None."""
+    sleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+    return woz_tabel.get(sleutel)
+
+
 def opkoop_signaal(w):
     """
     Valt dit pand onder de opkoopbescherming? De WOZ kennen we niet, maar de
@@ -1044,6 +1110,9 @@ def opkoop_signaal(w):
     verhuur voorafgaand aan de levering.
     """
     prijs = w["prijs"] if isinstance(w, dict) else w
+    # Kennen we de echte WOZ, dan toetsen we daarop in plaats van op de vraagprijs
+    if isinstance(w, dict) and w.get("woz"):
+        prijs = w["woz"]
     verhuurd = (isinstance(w, dict)
                 and (w.get("status") or "").lower() == "belegging")
 
@@ -1867,6 +1936,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         return r, []
 
     cbs = lees_cbs()
+    woz_tabel = lees_woz()
+    if woz_tabel:
+        for _k in kandidaten:
+            _w = _k[-1]
+            _woz = woz_van(_w, woz_tabel)
+            if _woz:
+                _w["woz"] = _woz
     opp_bag = gemiddelde_oppervlakte_per_buurt(woningen)
     huur_bk, huur_k = gemeten_huren(
         [w for w in woningen if (w.get("status") or "").lower().startswith("te huur")])
@@ -1917,8 +1993,25 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         # Panden zonder vergelijkingsmateriaal apart houden: vijf keer dezelfde
         # mededeling in een tabel leest slecht.
+        # Panden die je niet mag verhuren tonen we niet dagelijks; ze blijven
+        # wel meetellen in de medianen waartegen we vergelijken.
+        verborgen = 0
+        if kort:
+            zichtbaar = []
+            for k in rijen_buurt:
+                if opkoop_signaal(k[-1]) == "beschermd":
+                    verborgen += 1
+                else:
+                    zichtbaar.append(k)
+            rijen_buurt = zichtbaar
+
         beoordeeld = [k for k in rijen_buurt if k[3] is not None]
         onbeoordeeld = [k for k in rijen_buurt if k[3] is None]
+        if not rijen_buurt and not bm.get(buurt):
+            r.pop()  # lege buurtregel weer weghalen
+            r.pop()
+            r.pop()
+            continue
 
         if beoordeeld:
             kop = ("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | "
@@ -1979,6 +2072,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                f"€{prijs_s} ({w['oppervlakte']} m², €{ppm2_s}/m²)")
             r.append(f"_Zonder vergelijking, te weinig {onbeoordeeld[0][2]} objecten in de "
                      f"dataset: " + " . ".join(stukken) + "._")
+            r.append("")
+
+        if verborgen:
+            r.append(f"_{verborgen} pand" + ("en" if verborgen > 1 else "")
+                     + " onder de WOZ-grens niet getoond: die mag je na aankoop niet "
+                       "verhuren. Ze tellen wel mee in de vergelijkingscijfers. "
+                       "In de zondagsbrief staan ze er wel bij._")
             r.append("")
 
         # Opkoopbescherming: dit bepaalt of je het pand uberhaupt mag verhuren
@@ -2642,6 +2742,13 @@ def main():
 
     global DEBUG
     DEBUG = args.debug
+
+    global RENTE
+    actueel = lees_actuele_rente()
+    if actueel and abs(actueel - RENTE) > 0.01:
+        print(f"Rente bijgesteld van {RENTE}% naar {actueel}% "
+              f"op basis van de gemeten stand", file=sys.stderr)
+        RENTE = actueel
 
     if not BAG_API_KEY:
         print("WAARSCHUWING: BAG_API_KEY ontbreekt", file=sys.stderr)

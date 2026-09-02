@@ -106,6 +106,11 @@ Goede duiding gaat over het MECHANISME, niet over verzonnen bedragen:
 - "Samenvoegen haalt een unit uit de kleine voorraad, wat het aanbod in dat segment verkrapt."
 - "Vergunning bevestigt dat verkamering op deze locatie planologisch haalbaar is, relevant voor wie een vergelijkbaar pand overweegt."
 - "Vergunde isolatie laat zien dat labelverbetering aan de buitenzijde hier vergunbaar is, ook bij oudere bebouwing."
+
+OVER ENERGIELABELS, want hier gaat het vaak mis:
+- Een energielabel is tien jaar geldig vanaf de opnamedatum. Een label uit 2024 loopt dus tot 2034 en hoeft niet "behouden" te worden.
+- Isolatie, nieuwe kozijnen, glas of een warmtepomp VERBETEREN het label. Schrijf nooit dat zo'n ingreep het label behoudt.
+- Een verbetering telt pas mee zodra er een nieuwe opname is; zonder nieuwe registratie verandert het label niet.
 - "Bij label E telt verkamering zwaarder mee in de WWS-punten dan bij label A, wat de maximale huur beperkt."
 - "Rijksmonument: ingrepen zijn vergunningplichtig, wat splitsen trager en duurder maakt."
 - "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt."
