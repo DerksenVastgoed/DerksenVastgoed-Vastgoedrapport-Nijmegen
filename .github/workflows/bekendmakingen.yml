@@ -37,7 +37,7 @@ jobs:
           if [ "$(date +%u)" = "7" ]; then MODUS=weekelijks; else MODUS=dagelijks; fi
           echo "MODUS=$MODUS" >> "$GITHUB_ENV"
           echo "Modus: $MODUS"
-          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md"
+          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md" || echo "Bekendmakingen-stap overgeslagen"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
 
       - name: Buurtcijfers verversen
