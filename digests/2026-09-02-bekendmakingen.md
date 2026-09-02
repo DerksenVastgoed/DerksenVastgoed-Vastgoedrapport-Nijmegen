@@ -11,12 +11,12 @@ _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-09-02** . Besluit voor Het verbouwen en uitbreiden van een woning over twee bouwlagen, aan Brakkensteinweg 26, 6525RP Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-411432.html))
   `125 m²`
-  _Uitbreiding over twee bouwlagen (125 m²) vergroot de bruikbare oppervlakte van de bestaande woning zonder functie- of eigendomswijziging._
+  _Uitbreiding over twee bouwlagen vergroot het woonoppervlak zonder wijziging van functie of aantal eenheden._
 - **2026-09-02** . Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html))
-  _Vervanging van vier ramen en kozijnen op de eerste verdieping betreft een beperkte gevelaanpassing zonder marktrelevante wijziging._
+  _Vervangen van vier ramen op de eerste verdieping is een beperkte gevelaanpassing zonder invloed op het aanbod._
 - **2026-09-02** . Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html))
   `226 m² . label E (2022)`
-  _Renovatie van een gemeentelijk monument (226 m²) valt onder extra vergunningseisen, wat toekomstige verbouw- of splitsingsplannen kan vertragen._
+  **[verduurzaming]** _Als gemeentelijk monument is renovatie vergunningplichtig, wat labelverbetering vanaf E trager en duurder maakt._
 - **2026-08-31** . Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html))
   `351 m² . label C (2024)`
-  _Kozijnvervanging in de voorgevel is een cosmetische ingreep die het bestaande label C (2024) niet automatisch verandert._
+  **[verduurzaming]** _Kozijnvervanging verbetert de isolatie, wat het huidige label C bij herregistratie verder kan optrekken._

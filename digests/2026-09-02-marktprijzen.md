@@ -13,18 +13,15 @@ _2.749 woningen . 55% koop . 9% corporatie . 12% overige verhuurders . WOZ €55
 | [Groesbeekseweg 85](https://www.google.com/maps/search/?api=1&query=Groesbeekseweg+85%2C+Nijmegen) | woning | €1.150.000 | 320 | €3.593 | 🟢 -25% | kamers, mits vergunning, €6.772/mnd | €1.328.173 (+15%) | 1 |
 | [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) | woning | €429.000 | 110 | €3.900 | 🟢 -18% | één woning, €1.946/mnd | €381.655 (-11%) | — |
 | [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) | woning | €1.695.000 | 367 | €4.618 | 🟡 -3% | één woning, €6.493/mnd ✱ | €1.273.341 (-25%) | — |
-| [Molukkenstraat 168](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+168%2C+Nijmegen) | woning | €400.000 | 73 | €5.479 | 🔴 +15% | één woning, €1.820/mnd | €356.928 (-11%) | — |
 
 _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026) . St. Annastraat 28 €1.021.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
-_1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Molukkenstraat 168. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
+_2 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">351 m² . label C (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnvervanging in de voorgevel is een cosmetische ingreep die het bestaande label C (2024) niet automatisch verandert.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnvervanging verbetert de isolatie, wat het huidige label C bij herregistratie verder kan optrekken.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-08-31 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -38,7 +35,7 @@ _1.639 woningen . 13% koop . 46% corporatie . 29% overige verhuurders . WOZ €3
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html" style="color:#12242c;text-decoration:none">Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen</a></span></div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervanging van vier ramen en kozijnen op de eerste verdieping betreft een beperkte gevelaanpassing zonder marktrelevante wijziging.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervangen van vier ramen op de eerste verdieping is een beperkte gevelaanpassing zonder invloed op het aanbod.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-02 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -65,12 +62,9 @@ _2.193 woningen . 34% koop . 21% corporatie . 22% overige verhuurders . WOZ €3
 |---|---|---:|---:|---:|---:|---|---:|---:|
 | [Vondelstraat 63](https://www.google.com/maps/search/?api=1&query=Vondelstraat+63%2C+Nijmegen) | woning | €495.000 | 124 | €3.991 | 🟢 -16% | één woning, €2.193/mnd | €430.229 (-13%) | 0 |
 | [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) | woning | €925.000 | 199 | €4.648 | 🟡 -3% | één woning, €3.520/mnd ✱ | €690.449 (-25%) | — |
-| [Schoolstraat 135](https://www.google.com/maps/search/?api=1&query=Schoolstraat+135%2C+Nijmegen) | woning | €405.000 | 82 | €4.939 | 🟡 +3% | één woning, €2.044/mnd | €400.933 (-1%) | 0 |
 | [van Dulckenstraat 47](https://www.google.com/maps/search/?api=1&query=van+Dulckenstraat+47%2C+Nijmegen) | woning | €945.000 | 170 | €5.558 | 🔴 +16% | één woning, €3.007/mnd ✱ | €589.831 (-38%) | 0 |
 
-_1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Schoolstraat 135. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
+_2 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Stadscentrum**
 _4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €356.000 . WOZ €4.140/m² bij 86 m² gemiddeld (eigen aanbod)<br>93% appartementen . 3.030 studenten (30% van de inwoners, 37% van alle studenten in de ring)_
@@ -79,21 +73,20 @@ _4.335 woningen . 25% koop . 14% corporatie . 42% overige verhuurders . WOZ €3
 |---|---|---:|---:|---:|---:|---|---:|---:|
 | [Gerard Noodtstraat 71](https://www.google.com/maps/search/?api=1&query=Gerard+Noodtstraat+71%2C+Nijmegen) | woning | €450.000 | 101 | €4.455 | 🟢 -11% | één woning, €2.501/mnd | €490.600 (+9%) | 1 |
 | [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) | woning | €629.000 | 123 | €5.113 | 🟡 +2% | één woning, €3.046/mnd | €597.464 (-5%) | — |
-| [Nieuwe Marktstraat 6](https://www.google.com/maps/search/?api=1&query=Nieuwe+Marktstraat+6%2C+Nijmegen) | woning | €425.000 | 83 | €5.120 | 🟡 +2% | één woning, €2.897/mnd | €568.152 (+34%) | — |
 | [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) | woning | €495.000 | 87 | €5.689 | 🔴 +13% | één woning, €3.036/mnd | €595.533 (+20%) | — |
 
 _Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
 
-_5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+_Bekende WOZ-waarden: Gerard Noodtstraat 71 €478.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
-_Grensgeval voor de opkoopbescherming: Nieuwe Marktstraat 6, Gerard Noodtstraat 71. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
+_6 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 _Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de leveringsdatum al langer dan zes maanden verhuurd, dan is het geen beschermde woonruimte en geldt de vergunningplicht niet. Bij lege oplevering of een kortere verhuurperiode vervalt die route._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">226 m² . label E (2022)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Renovatie van een gemeentelijk monument (226 m²) valt onder extra vergunningseisen, wat toekomstige verbouw- of splitsingsplannen kan vertragen.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Als gemeentelijk monument is renovatie vergunningplichtig, wat labelverbetering vanaf E trager en duurder maakt.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-02 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
