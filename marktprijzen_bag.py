@@ -922,6 +922,74 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
             "gereguleerd": bool(segment and segment != "vrije sector")}
 
 
+
+KAMERSIGNALEN = ("kamerverhuur", "omzetting", "onttrekking", "brandveilig gebruik")
+VERGUNNINGEN_PAD = "kamervergunningen.json"
+
+
+def lees_kamervergunningen():
+    """
+    Verleende vergunningen uit de overzichten van de gemeente: onttrekking,
+    omzetting en samenvoeging vanaf 2016, plus omgevingsvergunningen voor
+    verbouwing ten behoeve van kamerverhuur vanaf 2013.
+
+    Let op: oudere vergunningen staan er niet in, en veel bestaande kamerpanden
+    zijn ouder dan dat. Geen treffer is dus geen bewijs dat er niets ligt.
+    """
+    if not os.path.exists(VERGUNNINGEN_PAD):
+        return {}
+    try:
+        with open(VERGUNNINGEN_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def buren_met_kamerverhuur(adres, archief, vergunningen=None, straal=2):
+    """
+    Nijmegen staat niet meer dan twee direct naast, onder of boven elkaar
+    gelegen kamergewijs bewoonde woningen toe. Deze functie kijkt in het
+    bekendmakingen-archief of de buurpanden zo'n signaal hebben.
+
+    Beperking: het archief gaat maar enkele jaren terug. Een vergunning van
+    voor die tijd zien we niet. Geen treffer is dus geen vrijbrief.
+    """
+    if not archief and not vergunningen:
+        return []
+    m = re.match(r"^(.+?)\s+(\d+)", adres.strip())
+    if not m:
+        return []
+    straat, nummer = m.group(1), int(m.group(2))
+
+    treffers = []
+    for offset in range(-straal, straal + 1):
+        if offset == 0:
+            continue
+        buur = nummer + offset
+        if buur < 1:
+            continue
+        sleutel = archief_sleutel(straat, str(buur))
+
+        # De vergunningenlijst van de gemeente is hard bewijs en gaat voor
+        vlijst = (vergunningen or {}).get(sleutel, [])
+        if vlijst:
+            treffers.append({"adres": vlijst[0].get("adres", f"{straat} {buur}"),
+                             "datum": vlijst[0].get("datum", ""),
+                             "soort": vlijst[0].get("soort", "vergunning"),
+                             "hard": True})
+            continue
+
+        for t in (archief or {}).get(sleutel, []):
+            soorten = [x.lower() for x in (t.get("soorten") or [])]
+            if any(k in " ".join(soorten) for k in KAMERSIGNALEN):
+                treffers.append({"adres": f"{straat} {buur}",
+                                 "datum": t.get("datum", ""),
+                                 "soort": ", ".join(t.get("soorten") or []),
+                                 "url": t.get("url", ""), "hard": False})
+                break
+    return treffers
+
+
 def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
     """
     Bepaalt hoe een pand realistisch verhuurd wordt en tegen welke huur.
@@ -2134,6 +2202,36 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             r.append("_Bekende WOZ-waarden: " + " . ".join(stukken)
                      + ". Daar toetsen we op in plaats van op de vraagprijs._")
             r.append("")
+
+        # Buren met kamerverhuur: dat blokkeert een omzettingsvergunning
+        vergunningen = lees_kamervergunningen()
+        if archief or vergunningen:
+            for k in rijen_buurt:
+                w = k[-1]
+                sc = w.get("_scenario") or {}
+                if "kamers" not in (sc.get("naam") or ""):
+                    continue
+                # Heeft het pand zelf al een vergunning?
+                eigen = vergunningen.get(archief_sleutel(
+                    *(re.match(r"^(.+?)\s+(\d+)", w["adres"]).groups()
+                      if re.match(r"^(.+?)\s+(\d+)", w["adres"]) else ("", "0"))), [])
+                if eigen:
+                    r.append(f"_**{w['adres']}** heeft al een {eigen[0]['soort']}"
+                             f"svergunning uit {eigen[0]['datum'][:4]}. Dat scheelt een "
+                             f"vergunningtraject._")
+                    r.append("")
+                buren = buren_met_kamerverhuur(w["adres"], archief, vergunningen)
+                if buren:
+                    namen = ", ".join(f"{b['adres']} ({b['soort']}, {b['datum']})"
+                                      for b in buren)
+                    r.append(f"_**Let op bij {w['adres']}**: in het archief staan "
+                             f"vergunningsignalen op {namen}. Nijmegen staat niet meer "
+                             f"dan twee direct naast, onder of boven elkaar gelegen "
+                             f"kamergewijs bewoonde woningen toe, dus dit kan een "
+                             f"omzettingsvergunning in de weg staan. De vergunningenlijst "
+                             f"loopt van 2016 tot 2025; oudere vergunningen staan er niet "
+                             f"in, dus geen treffer is geen vrijbrief._")
+                    r.append("")
 
         if verborgen:
             r.append(f"_{verborgen} pand" + ("en" if verborgen > 1 else "")
