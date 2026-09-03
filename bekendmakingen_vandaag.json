@@ -4,7 +4,7 @@
   "titel": "Besluit voor het wijzigen van de bovenwoning naar drie zelfstandige woningen aan Plein 1944 142, 6511JH Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-415611.html",
   "strategie": "splitsen",
-  "duiding": "Omzetten van de bovenwoning naar drie zelfstandige eenheden van in totaal 53 m² vergroot het aanbod kleine zelfstandige units.",
+  "duiding": "Splitsing van de bovenwoning (53 m², label D) in drie zelfstandige woningen creëert meerdere verkoopbare of verhuurbare eenheden uit één unit.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 53
@@ -18,7 +18,7 @@
   "titel": "Besluit voor Het verbouwen en uitbreiden van een woning over twee bouwlagen, aan Brakkensteinweg 26, 6525RP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411432.html",
   "strategie": "geen",
-  "duiding": "Uitbreiding van een woning over twee bouwlagen naar 125 m² betreft een individuele verbouwing zonder functie- of eigendomswijziging.",
+  "duiding": "Uitbreiding over twee bouwlagen vergroot het vloeroppervlak naar 125 m², maar betreft louter een fysieke verbouwing zonder waardecreatie-mechanisme.",
   "feiten": {
    "oppervlakte_m2": 125
   },
@@ -31,7 +31,7 @@
   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Burchtstraat 71C, 6511RC Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413735.html",
   "strategie": "buy-and-hold",
-  "duiding": "Tijdelijke verhuur van deze 154 m² met label C wijst op overbrugging, het pand komt naar verwachting later op de markt.",
+  "duiding": "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand (154 m², label C) komt op termijn waarschijnlijk op de markt.",
   "feiten": {
    "energielabel": "C (2024)",
    "oppervlakte_m2": 154
@@ -45,7 +45,7 @@
   "titel": "Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html",
   "strategie": "geen",
-  "duiding": "Vervangen van ramen en kozijnen in de voorgevel is een cosmetische ingreep zonder marktrelevante gevolgen.",
+  "duiding": "Vervangen van ramen en kozijnen is een fysieke gevelaanpassing zonder functie- of eigendomswijziging die de markt raakt.",
   "feiten": {},
   "straat": "Bottelstraat 29 &",
   "huisnummer": "33",
@@ -56,7 +56,7 @@
   "titel": "Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html",
   "strategie": "verduurzaming",
-  "duiding": "Renovatie van dit gemeentelijk monument met label E uit 2022 biedt ruimte voor labelverbetering, al maakt de monumentenstatus ingrepen vergunningplichtig.",
+  "duiding": "Renovatie van het gemeentelijk monument (226 m², label E uit 2022) kan de bouwkundige staat verbeteren, al maakt de monumentenstatus ingrepen vergunningplichtig en trager.",
   "feiten": {
    "energielabel": "E (2022)",
    "oppervlakte_m2": 226
