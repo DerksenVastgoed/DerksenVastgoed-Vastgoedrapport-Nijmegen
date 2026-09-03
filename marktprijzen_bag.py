@@ -858,13 +858,16 @@ VERHUURBAAR_AANDEEL = 0.79
 
 # Splitsen: aannames, want hier is geen openbare norm voor. Nijmegen kent geen
 # splitsingsvergunning, dus de rem zit in het Bouwbesluit en het omgevingsplan.
-MIN_UNIT_M2 = 40            # praktische ondergrens per zelfstandige eenheid
+# Ondergrens per zelfstandige eenheid. Er is geen wettelijke norm; Nijmegen
+# verleende in september 2026 een vergunning voor eenheden van 53, 43 en 32 m2
+# (Plein 1944 142), dus 30 is realistischer dan de 40 die we eerst aanhielden.
+MIN_UNIT_M2 = 30
 VERHUURBAAR_SPLITSING = 0.90  # verlies aan gedeelde entree en trappenhuis
 MAX_UNITS = 6               # boven dit aantal is het geen splitsing meer
 
 
 
-def splitsscenario(w, huur_bk, huur_k, buurt):
+def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     """
     Wat levert het op om dit pand bouwkundig te splitsen in zelfstandige
     woningen? Nijmegen kent geen splitsingsvergunning, dus de rem zit in het
@@ -887,6 +890,17 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
     unit_m2 = bruikbaar / aantal
     huur_m2, bron = huur_voor_buurt(buurt, huur_bk, huur_k, unit_m2, "woning")
     maand = huur_m2 * bruikbaar
+
+    # Splitsen is in Nijmegen vooral een verkoopinstrument: de eenheden vallen
+    # onder de opkoopbescherming en het puntenstelsel begrenst de huur op
+    # sociaal niveau. De winst zit in het verschil tussen de prijs per m2 van
+    # een groot pand en die van kleine eenheden.
+    verkoop_per_m2 = None
+    if per_buurt_prijzen:
+        klein = [p for p, x in per_buurt_prijzen
+                 if groottebandje(x.get("oppervlakte")) == "klein"]
+        if len(klein) >= 4:
+            verkoop_per_m2 = st.median(klein)
 
     # Waarde per eenheid, om te toetsen aan de opkoopbescherming
     unit_waarde = w["prijs"] / aantal
@@ -915,7 +929,10 @@ def splitsscenario(w, huur_bk, huur_k, buurt):
         except Exception:
             pass
 
+    opbrengst = verkoop_per_m2 * bruikbaar if verkoop_per_m2 else None
     return {"naam": f"splitsen in {aantal}", "huur_m2": huur_m2, "maand": maand,
+            "verkoopwaarde": opbrengst,
+            "verkoopmarge": (opbrengst - w["prijs"]) if opbrengst else None,
             "opp": round(bruikbaar), "bron": bron, "aantal": aantal,
             "unit_m2": round(unit_m2), "unit_waarde": unit_waarde,
             "beschermd": beschermd, "punten": punten, "segment": segment,
@@ -990,7 +1007,8 @@ def buren_met_kamerverhuur(adres, archief, vergunningen=None, straal=2):
     return treffers
 
 
-def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
+def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
+                  _per_buurt_prijzen=None):
     """
     Bepaalt hoe een pand realistisch verhuurd wordt en tegen welke huur.
 
@@ -1026,7 +1044,7 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
     if mediaan_m2 and opp:
         duur_ingekocht = (w["prijs"] / opp) > mediaan_m2
 
-    sp = splitsscenario(w, huur_bk, huur_k, buurt)
+    sp = splitsscenario(w, huur_bk, huur_k, buurt, _per_buurt_prijzen)
 
     if geschikt_woning and not kamerpand:
         # Levert splitsen aantoonbaar meer op, dan tonen we dat
@@ -1048,12 +1066,22 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None):
 
     # Duur ingekochte meters: verkameren afraden tenzij het pand het al is
     if duur_ingekocht and not kamerpand:
-        if sp and sp["maand"] > maand_w:
+        # Splitsen als dat meer oplevert
+        if sp and sp["maand"] > max(maand_w, maand_k):
             return sp
-        return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
-                "opp": opp, "bron": bron_w,
-                "let_op": "prijs per m² ligt boven de buurtmediaan; verkameren "
-                          "verzilvert oppervlakte, niet kwaliteit"}
+        # Alleen terugvallen op één huishouden als dat ook realistisch is.
+        # Een pand van 367 m2 verhuur je niet aan een gezin voor €6.500.
+        if geschikt_woning:
+            return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
+                    "opp": opp, "bron": bron_w,
+                    "let_op": "prijs per m² ligt boven het gemiddelde van "
+                              "vergelijkbaar grote panden"}
+        # Te groot voor één huishouden: dan blijft kamers het scenario, met de
+        # waarschuwing dat de meters duur zijn ingekocht.
+        return {"naam": naam, "huur_m2": huur_k_m2, "maand": maand_k,
+                "opp": verhuurbaar, "bron": bron_k,
+                "let_op": "prijs per m² ligt boven het gemiddelde van "
+                          "vergelijkbaar grote panden"}
 
     # Is verhuur aan een huishouden toch gunstiger, dan tonen we dat
     if geschikt_woning and maand_w >= maand_k:
@@ -2154,7 +2182,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                    for p, x in rijen_x
                                    if groottebandje(x.get("oppervlakte")) == band]
                 med_b = st.median(zelfde_band) if len(zelfde_band) >= 4 else None
-                sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b)
+                sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b,
+                                   per_buurt.get(buurt, []))
                 w["_scenario"] = sc
                 plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
                 if plafond:
@@ -2165,6 +2194,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     plafond_s = "—"
                 scenario = (f"{sc['naam']}, €" + f"{int(sc['maand']):,}".replace(",", ".")
                             + "/mnd") if sc else "—"
+                if sc and sc.get("verkoopmarge"):
+                    marge = sc["verkoopmarge"]
+                    scenario += (f" . bij verkoop €{eu(sc['verkoopwaarde'])}"
+                                 f" ({'+' if marge > 0 else ''}{eu(marge)})")
                 if sc and sc.get("let_op"):
                     scenario += " ✱"
                 if sc and sc.get("gereguleerd"):
@@ -2314,7 +2347,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                  f"een puntenaantal bij, dan blijven de eenheden onder de 187 punten en is "
                  f"de huur wettelijk begrensd; de getoonde markthuur mag dan niet gevraagd "
                  f"worden. Punten zijn een ondergrens: verwarming en enkele rubrieken "
-                 f"ontbreken in onze telling._".replace(",", "."))
+                 f"ontbreken in onze telling._")
         # Diagnose: welke huren liggen er onder de berekening?
         stukken = []
         for band in ("klein", "middel", "groot"):
