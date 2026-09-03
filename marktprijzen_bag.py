@@ -2224,6 +2224,26 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"dataset: " + " . ".join(stukken) + "._")
             r.append("")
 
+            # Gemengde panden hebben een woonfunctie erbij en lenen zich vaak voor
+            # splitsing van de bovenverdiepingen. De commerciele plint drukt de
+            # prijs per m2, terwijl kleine appartementen er juist meer opbrengen.
+            gemengd = [k for k in onbeoordeeld if k[2] == "gemengd"]
+            for _a, ppm2, _k, _b, _c, w in gemengd:
+                sp = splitsscenario(w, huur_bk, huur_k, buurt,
+                                    per_buurt.get(buurt, []))
+                if not sp or not sp.get("verkoopwaarde"):
+                    continue
+                marge = sp["verkoopmarge"]
+                r.append(f"_**{w['adres']}** is een gemengd pand. Bij splitsing van de "
+                         f"woonlagen in {sp['aantal']} eenheden van circa "
+                         f"{sp['unit_m2']} m² is de verkoopwaarde €{eu(sp['verkoopwaarde'])}, "
+                         f"dus {'+' if marge > 0 else ''}{eu(marge)} ten opzichte van de "
+                         f"vraagprijs. Verbouwen mag naar het niveau van bestaande bouw, "
+                         f"wat bij vooroorlogse panden veel scheelt. Verhuur van de nieuwe "
+                         f"eenheden loopt vast op de opkoopbescherming en het "
+                         f"puntenstelsel; dit is dus een verkoopscenario._")
+                r.append("")
+
         met_woz = [k[-1] for k in rijen_buurt if k[-1].get("woz")]
         if met_woz:
             stukken = []
