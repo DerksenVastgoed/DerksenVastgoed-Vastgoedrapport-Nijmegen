@@ -3493,5 +3493,74 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-49521e56ff704ddabcb43eaa08d75f41"
+  },
+  "Eerste Oude Heselaan 170|Nijmegen": {
+    "oppervlakte": 32,
+    "bouwjaar": "1919",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541PD",
+    "adresseerbaarObjectIdentificatie": "0268010000089024",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-293e77dad5db46cdcbff845458e0f354",
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2022-01-21",
+      "geldig_tot": "2032-01-17",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Slichtenhorststraat 42|Nijmegen": {
+    "oppervlakte": 233,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JR",
+    "adresseerbaarObjectIdentificatie": "0268010000034212",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-a4aae3bcfea5c01875e19409358a6f28",
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2025-11-03",
+      "geldig_tot": "2035-10-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Houtstraat 31|Nijmegen": {
+    "oppervlakte": 58,
+    "bouwjaar": "1951",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511JK",
+    "adresseerbaarObjectIdentificatie": "0268010000016481",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-ddfa863e222cf3be5f83037002d950b8",
+    "energielabel": {
+      "label": "G",
+      "registratiedatum": "2026-08-30",
+      "geldig_tot": "2036-08-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Plein 1944 142|Nijmegen": {
+    "postcode": "6511JH",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-833e940c6af90369499e64ac684a5797"
+  },
+  "bm:Burchtstraat 71|Nijmegen": {
+    "postcode": "6511RC",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-2db390353d8de018e1ce0b22227a6f71"
   }
 }

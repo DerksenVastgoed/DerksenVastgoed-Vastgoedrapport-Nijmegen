@@ -237,3 +237,8 @@ van Dulckenstraat 47 | Nijmegen | 945000 | te koop | 2026-09-02 |  | 171 | 6512D
 Kaapstander 264 | Nijmegen | 1215000 | te koop | 2026-09-02 |  | 151 | 6541EX
 Schoolstraat 135 | Nijmegen | 405000 | te koop | 2026-09-02 |  | 80 | 6512JE
 Vondelstraat 63 | Nijmegen | 495000 | te koop | 2026-09-02 |  | 124 | 6512BC
+
+# Automatisch toegevoegd uit Funda-attendering op 03-09-2026
+Eerste Oude Heselaan 170 | Nijmegen | 250000 | te koop | 2026-09-03 |  | 31 | 6541PD
+van Slichtenhorststraat 42 | Nijmegen | 645000 | te koop | 2026-09-03 |  | 144 | 6524JR
+Houtstraat 31 | Nijmegen | 325000 | te koop | 2026-09-03 |  | 55 | 6511JK

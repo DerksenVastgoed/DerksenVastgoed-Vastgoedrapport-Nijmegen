@@ -1,10 +1,24 @@
 [
  {
+  "datum": "2026-09-03",
+  "titel": "Besluit voor het wijzigen van de bovenwoning naar drie zelfstandige woningen aan Plein 1944 142, 6511JH Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-415611.html",
+  "strategie": "splitsen",
+  "duiding": "Omzetten van de bovenwoning naar drie zelfstandige eenheden van in totaal 53 m² vergroot het aanbod kleine zelfstandige units.",
+  "feiten": {
+   "energielabel": "D (2025)",
+   "oppervlakte_m2": 53
+  },
+  "straat": "Plein 1944",
+  "huisnummer": "142",
+  "kern": true
+ },
+ {
   "datum": "2026-09-02",
   "titel": "Besluit voor Het verbouwen en uitbreiden van een woning over twee bouwlagen, aan Brakkensteinweg 26, 6525RP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411432.html",
   "strategie": "geen",
-  "duiding": "Uitbreiding en verbouwing van een bestaande woning heeft geen directe marktbrede impact op aanbod of segment.",
+  "duiding": "Uitbreiding van een woning over twee bouwlagen naar 125 m² betreft een individuele verbouwing zonder functie- of eigendomswijziging.",
   "feiten": {
    "oppervlakte_m2": 125
   },
@@ -13,25 +27,25 @@
   "kern": false
  },
  {
-  "datum": "2026-08-31",
-  "titel": "Besluit voor het vervangen van kozijnen en ramen in de voorgevel aan Groesbeekseweg 63, 6524CP Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-409505.html",
-  "strategie": "verduurzaming",
-  "duiding": "Kozijnvervanging in de voorgevel verbetert de isolatie, al telt dit pas mee bij een nieuwe labelopname na 2024.",
+  "datum": "2026-09-03",
+  "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Burchtstraat 71C, 6511RC Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413735.html",
+  "strategie": "buy-and-hold",
+  "duiding": "Tijdelijke verhuur van deze 154 m² met label C wijst op overbrugging, het pand komt naar verwachting later op de markt.",
   "feiten": {
    "energielabel": "C (2024)",
-   "oppervlakte_m2": 351
+   "oppervlakte_m2": 154
   },
-  "straat": "Groesbeekseweg",
-  "huisnummer": "63",
+  "straat": "Burchtstraat",
+  "huisnummer": "71",
   "kern": false
  },
  {
   "datum": "2026-09-02",
   "titel": "Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html",
-  "strategie": "verduurzaming",
-  "duiding": "Vervanging van kozijnen op de verdieping toont dat gevelaanpassingen ter verbetering van isolatie hier vergunbaar zijn.",
+  "strategie": "geen",
+  "duiding": "Vervangen van ramen en kozijnen in de voorgevel is een cosmetische ingreep zonder marktrelevante gevolgen.",
   "feiten": {},
   "straat": "Bottelstraat 29 &",
   "huisnummer": "33",
@@ -41,8 +55,8 @@
   "datum": "2026-09-02",
   "titel": "Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html",
-  "strategie": "splitsen",
-  "duiding": "Monumentstatus maakt renovatie vergunningplichtig, wat toekomstig splitsen of intensiever gebruik trager en duurder maakt.",
+  "strategie": "verduurzaming",
+  "duiding": "Renovatie van dit gemeentelijk monument met label E uit 2022 biedt ruimte voor labelverbetering, al maakt de monumentenstatus ingrepen vergunningplichtig.",
   "feiten": {
    "energielabel": "E (2022)",
    "oppervlakte_m2": 226
