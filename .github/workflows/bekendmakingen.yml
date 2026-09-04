@@ -180,7 +180,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt woz.txt kamervergunningen.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt woz.txt kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
