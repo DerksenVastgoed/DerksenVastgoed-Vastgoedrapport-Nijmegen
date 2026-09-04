@@ -23,31 +23,102 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
 AANHEF = os.environ.get("BRIEF_AANHEF", "Beste pa")
 
-PROFIEL = """Je schrijft een brief over de vastgoedmarkt in Nijmegen aan een lezer van 69 jaar die de stad goed kent en zijn leven lang met vastgoed te maken heeft gehad. Hij leest de brief rustig, met tijd, en wil weten wat er speelt.
+PROFIEL = """Je schrijft een brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven en is oprecht nieuwsgierig naar wat er speelt.
 
-Schrijf als een brief, niet als een rapport.
+Schrijf in de ik-vorm, alsof Mark het zelf schrijft. Spreek zijn vader aan met 'je' en 'jij', nooit met 'u'. Dat past niet bij hun manier van doen.
 
 VORM:
 - Begin met de aanhef die je krijgt aangeleverd, gevolgd door een komma.
-- Doorlopende alinea's. Geen tabellen, geen opsommingen, geen kopjes met streepjes.
-- Hooguit vier of vijf alinea's, elk over één onderwerp.
-- Korte zinnen. Geen vakjargon zonder uitleg. Schrijf 'de waarde die de gemeente aan een huis toekent' in plaats van alleen 'WOZ'.
-- Noem straten en buurten bij naam; die kent hij.
+- Doorlopende alinea's, vier tot zes stuks. Geen tabellen, geen opsommingen.
+- Schrijf zoals je praat: gewone zinnen, niet te lang.
+- Noem straten en buurten bij naam. Die kent hij, en dat maakt het levendig.
 - Geen gedachtestreepjes.
-- Sluit af met een gewone zin, geen ondertekening.
+- Sluit af met een gewone zin over iets waar je benieuwd naar bent of wat je volgende week verwacht. Geen ondertekening, geen vraag om een reactie.
+
+GEEN VAKJARGON. Deze woorden gebruik je niet: LTV, basispunten, cashflow, mediaan, yield, box 3, WWS, WOZ, forfait, rendement op eigen vermogen. Schrijf in plaats daarvan:
+- LTV of loan-to-value: 'als je twee derde leent'
+- basispunten: gewoon procenten
+- cashflow: 'wat er onder de streep overblijft'
+- mediaan: 'het gemiddelde' of 'wat vergelijkbare panden doen'
+- WOZ: 'de waarde die de gemeente aan het huis toekent'
+- box 3: 'de belasting op vermogen'
+- puntenstelsel of WWS: 'het puntenstelsel dat bepaalt wat je maximaal aan huur mag vragen'
 
 INHOUD, in deze volgorde:
-1. Wat er deze week opvalt aan het aanbod: welk pand, in welke straat, wat het kost en waarom het opvalt.
-2. Wat de gemeente heeft besloten over concrete panden, en wat dat betekent.
-3. De rente en wat die doet met de rekensom van een verhuurder.
-4. Eventueel een breder marktbericht.
+1. Wat er deze week te koop staat dat de moeite waard is om te volgen voor Derksen Vastgoed. Niet als koopadvies, maar als iets om in de gaten te houden.
+2. Wat de gemeente heeft besloten over concrete panden in de stad, en wat dat zegt over waar het heen gaat.
+3. De rente, en in gewone taal wat dat betekent voor iemand die verhuurt.
+4. Eventueel iets breders uit het nieuws, als het echt iets toevoegt.
 
 TOON:
-- Rustig en feitelijk, zoals je een geïnteresseerde vakgenoot bijpraat.
-- Geen opgewektheid die er niet is, maar ook geen somberheid. Als de cijfers tegenvallen, schrijf dat gewoon.
+- Rustig, feitelijk en persoonlijk. Zoals je iemand bijpraat die het vak kent maar er even niet middenin zit.
+- Geen opgewektheid die er niet is. Vallen de cijfers tegen, schrijf dat gewoon.
 - Verwijs nergens naar ziekte, behandeling of gezondheid. Dit is een brief over vastgoed.
 
-ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Gebruik alleen getallen die in de aangeleverde gegevens staan. Staat iets er niet, laat het weg."""
+ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan. Staat iets er niet, laat het weg."""
+
+
+def render_bijlage():
+    """
+    Cijfers per buurt en het actuele aanbod, als bijlage onder de brief.
+    Dit is materiaal om rustig doorheen te bladeren, niet om te beslissen.
+    """
+    def lees_json(pad):
+        try:
+            with open(pad, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+
+    cbs = lees_json("buurten_cbs.json")
+    verg = lees_json("vergunningen_per_buurt.json")
+    if not cbs:
+        return ""
+
+    volgorde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
+                "Altrade", "Biezen"]
+
+    def n(x):
+        return f"{int(x):,}".replace(",", ".")
+
+    regels = ["", "## De buurten in cijfers", "",
+              "_Ter aanvulling, om eens rustig door te kijken._", ""]
+    for buurt in volgorde:
+        g = cbs.get(buurt)
+        if not g:
+            continue
+        zinnen = []
+        eerste = f"**{buurt}** telt {n(g['won'])} woningen"
+        if g.get("koop") is not None:
+            eerste += (f", waarvan {g['koop']} procent koopwoning is en "
+                       f"{g.get('corp', 0)} procent van een woningcorporatie")
+        zinnen.append(eerste + ".")
+
+        if g.get("meergezins") is not None:
+            zin = f"{g['meergezins']} procent van de voorraad is appartement"
+            if g.get("woz"):
+                zin += (f", en een huis is er volgens de gemeente gemiddeld "
+                        f"{n(g['woz'] * 1000)} euro waard")
+            zinnen.append(zin + ".")
+        elif g.get("woz"):
+            zinnen.append(f"Een huis is er volgens de gemeente gemiddeld "
+                          f"{n(g['woz'] * 1000)} euro waard.")
+
+        if g.get("studenten") and g.get("inwoners"):
+            aandeel = round(g["studenten"] / g["inwoners"] * 100)
+            zinnen.append(f"Er wonen {n(g['studenten'])} studenten, ongeveer "
+                          f"{aandeel} van elke honderd inwoners.")
+
+        v = verg.get(buurt)
+        if v and g.get("won"):
+            zinnen.append(f"Sinds 2013 zijn er {v} vergunningen voor kamerverhuur "
+                          f"verleend, dat is "
+                          + f"{v / g['won'] * 100:.1f}".replace(".", ",")
+                          + " procent van "
+                          f"alle woningen daar.")
+        regels.append(" ".join(zinnen))
+        regels.append("")
+    return "\n".join(regels)
 
 
 def lees(pad):
@@ -130,6 +201,9 @@ def main():
         datum_nl = datum_nl.replace(en, nl)
 
     tekst = f"# Vastgoed in Nijmegen, {datum_nl}\n\n{brief}\n"
+    bijlage = render_bijlage()
+    if bijlage:
+        tekst += "\n" + bijlage
     uit = args.uit or f"digests/{d}-verhaal.md"
     os.makedirs(os.path.dirname(uit) or ".", exist_ok=True)
     with open(uit, "w", encoding="utf-8") as f:
