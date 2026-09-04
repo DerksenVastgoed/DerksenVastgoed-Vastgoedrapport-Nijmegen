@@ -30,12 +30,18 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
+          VERHAAL_ADRES: ${{ secrets.MAIL_TO_VERHAAL }}
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
           # Zondag is dag 7. Dan de uitgebreide brief, doordeweeks de korte.
           if [ "$(date +%u)" = "7" ]; then MODUS=weekelijks; else MODUS=dagelijks; fi
           echo "MODUS=$MODUS" >> "$GITHUB_ENV"
+          if [ -n "${VERHAAL_ADRES}" ]; then
+            echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
+          else
+            echo "HEEFT_VERHAAL=0" >> "$GITHUB_ENV"
+          fi
           echo "Modus: $MODUS"
           python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md" || echo "Bekendmakingen-stap overgeslagen"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
@@ -143,6 +149,7 @@ jobs:
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
       - name: Verhalende brief maken
+        if: env.HEEFT_VERHAAL == '1'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
@@ -193,7 +200,7 @@ jobs:
           git push
 
       - name: Verhalende brief naar HTML
-        if: ${{ hashFiles(format('digests/{0}-verhaal.md', env.DATUM)) != '' }}
+        if: env.HEEFT_VERHAAL == '1'
         run: |
           python - << 'EOF'
           import markdown, os
@@ -211,7 +218,8 @@ jobs:
           EOF
 
       - name: Verhalende brief mailen
-        if: ${{ hashFiles(format('digests/{0}-verhaal.html', env.DATUM)) != '' }}
+        if: env.HEEFT_VERHAAL == '1'
+        continue-on-error: true
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
