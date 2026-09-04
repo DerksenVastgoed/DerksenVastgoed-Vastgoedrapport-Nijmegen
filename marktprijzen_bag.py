@@ -2275,6 +2275,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         # Buren met kamerverhuur: dat blokkeert een omzettingsvergunning
         vergunningen = lees_kamervergunningen()
+        archief = lees_archief()
         if archief or vergunningen:
             for k in rijen_buurt:
                 w = k[-1]
