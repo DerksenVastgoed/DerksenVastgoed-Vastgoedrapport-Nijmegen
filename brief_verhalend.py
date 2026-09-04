@@ -16,6 +16,7 @@ import json
 import os
 import re
 import sys
+import time
 
 import requests
 
@@ -208,16 +209,28 @@ def schrijf_brief(bronnen):
         return ""
     prompt = (f"AANHEF: {AANHEF}\n\nGEGEVENS VAN VANDAAG:\n\n{inhoud}\n\n"
               f"Schrijf de brief. Alleen de brieftekst, niets eromheen.")
+    # Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
+    # met ruime wachttijd, want dit is de enige stap die de brief oplevert.
+    resp = None
+    for poging in range(1, 4):
+        try:
+            resp = requests.post(
+                "https://api.anthropic.com/v1/messages",
+                headers={"x-api-key": ANTHROPIC_API_KEY,
+                         "anthropic-version": "2023-06-01",
+                         "content-type": "application/json"},
+                json={"model": MODEL, "max_tokens": 16000, "system": PROFIEL,
+                      "messages": [{"role": "user", "content": prompt}]},
+                timeout=(30, 600))
+            resp.raise_for_status()
+            break
+        except Exception as e:
+            if poging == 3:
+                print(f"Brief schrijven mislukt na 3 pogingen: {e}", file=sys.stderr)
+                return ""
+            print(f"  poging {poging} mislukt ({e}), opnieuw", file=sys.stderr)
+            time.sleep(poging * 10)
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": ANTHROPIC_API_KEY,
-                     "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 16000, "system": PROFIEL,
-                  "messages": [{"role": "user", "content": prompt}]},
-            timeout=120)
-        resp.raise_for_status()
         body = resp.json()
         tekst = "".join(b.get("text", "")
                         for b in body.get("content", [])).strip()
@@ -231,7 +244,7 @@ def schrijf_brief(bronnen):
                   f"{len(tekst.split())} woorden", file=sys.stderr)
         return tekst
     except Exception as e:
-        print(f"Brief schrijven mislukt: {e}", file=sys.stderr)
+        print(f"Antwoord verwerken mislukt: {e}", file=sys.stderr)
         return ""
 
 
