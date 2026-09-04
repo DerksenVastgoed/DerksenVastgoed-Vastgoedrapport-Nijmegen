@@ -156,6 +156,11 @@ jobs:
         run: |
           python brief_verhalend.py --datum "$DATUM" \
             --uit "digests/${DATUM}-verhaal.md" || echo "Verhalende brief overgeslagen"
+          if [ -s "digests/${DATUM}-verhaal.md" ]; then
+            echo "Brief gemaakt: $(wc -w < "digests/${DATUM}-verhaal.md") woorden"
+          else
+            echo "LET OP: er is geen verhalende brief gemaakt"
+          fi
 
       - name: Brief naar HTML converteren
         run: |
@@ -201,7 +206,12 @@ jobs:
 
       - name: Verhalende brief naar HTML
         if: env.HEEFT_VERHAAL == '1'
+        continue-on-error: true
         run: |
+          if [ ! -s "digests/${DATUM}-verhaal.md" ]; then
+            echo "Geen verhalende brief gemaakt, HTML-stap overgeslagen"
+            exit 0
+          fi
           python - << 'EOF'
           import markdown, os
           d = os.environ["DATUM"]
@@ -223,7 +233,7 @@ jobs:
           EOF
 
       - name: Verhalende brief mailen
-        if: env.HEEFT_VERHAAL == '1'
+        if: ${{ env.HEEFT_VERHAAL == '1' && hashFiles(format('digests/{0}-verhaal.html', env.DATUM)) != '' }}
         continue-on-error: true
         uses: dawidd6/action-send-mail@v3
         with:
