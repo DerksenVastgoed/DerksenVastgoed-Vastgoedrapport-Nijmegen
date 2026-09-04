@@ -207,11 +207,16 @@ jobs:
           d = os.environ["DATUM"]
           md = open(f"digests/{d}-verhaal.md", encoding="utf-8").read()
           html = markdown.markdown(md, extensions=["extra"])
-          stijl = ("body{font:17px/1.7 Georgia,'Times New Roman',serif;color:#1a2830;"
-                   "max-width:640px;margin:0 auto;padding:28px}"
-                   "h1{font-size:20px;font-weight:normal;color:#4a5b63;"
+          stijl = ("body{font:17px/1.75 Georgia,'Times New Roman',serif;"
+                   "color:#1a2830;max-width:660px;margin:0 auto;padding:28px}"
+                   "h1{font-size:21px;font-weight:normal;color:#4a5b63;"
                    "border-bottom:2px solid #E0A458;padding-bottom:10px}"
-                   "p{margin:0 0 18px}")
+                   "h2{font-size:17px;color:#12242c;margin:32px 0 10px;"
+                   "border-bottom:1px solid #e3e8ea;padding-bottom:6px}"
+                   "h3{font-size:16px;color:#12242c;margin:26px 0 8px}"
+                   "p{margin:0 0 18px}"
+                   "a{color:#4a7a72}"
+                   "hr{border:0;border-top:1px solid #e3e8ea;margin:32px 0}")
           open(f"digests/{d}-verhaal.html", "w", encoding="utf-8").write(
               f"<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
               f"<style>{stijl}</style></head><body>{html}</body></html>")
