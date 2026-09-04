@@ -740,6 +740,11 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None):
         tweede.append(f"{g['meergezins']}% appartementen")
     if g.get("voor2000") is not None:
         tweede.append(f"{g['voor2000']}% van voor 2000")
+    vpb = lees_vergunningen_per_buurt().get(naam)
+    if vpb and g.get("won"):
+        tweede.append(f"{vpb} kamerverhuurvergunningen sinds 2013 "
+                      f"({vpb / g['won'] * 100:.1f}% van de voorraad)")
+
     if g.get("studenten"):
         stuk = f"{g['studenten']:,}".replace(",", ".") + " studenten"
         noemers = []
@@ -942,6 +947,18 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
 
 KAMERSIGNALEN = ("kamerverhuur", "omzetting", "onttrekking", "brandveilig gebruik")
 VERGUNNINGEN_PAD = "kamervergunningen.json"
+
+
+def lees_vergunningen_per_buurt():
+    """Aantal verleende kamerverhuurvergunningen per buurt, uit het eenmalige
+    koppelscript vergunningen_buurten.py."""
+    if not os.path.exists("vergunningen_per_buurt.json"):
+        return {}
+    try:
+        with open("vergunningen_per_buurt.json", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
 
 
 def lees_kamervergunningen():
