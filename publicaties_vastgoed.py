@@ -49,6 +49,9 @@ FEEDS = [
     ("ABN AMRO Woningmarkt", _gnews("ABN AMRO woningmarkt sector update")),
     # Directe RSS van Vastgoed Insider (schrijft vaak relevant over uitponden/beleggers)
     ("Vastgoed Insider", "https://vastgoedinsider.nl/feed/"),
+    # PropertyNL is een vakblad met een eigen feed, dus geen omweg via Google News
+    ("PropertyNL", "https://servicemodule.propertynl.com/api/export/"
+                   "GetRSSArticles?newsChannel=NL&ignoreSticky=true"),
     ("Kadaster woningmarkt", _gnews("Kadaster woningmarkt kwartaal")),
     # Primaire bronnen die zelf publiceren en niet altijd als nieuwssite worden
     # geindexeerd. Een zoekopdracht op het domein vangt hun eigen berichten.
@@ -70,6 +73,8 @@ TREFWOORDEN = [
     "te hoge huur", "huurcontract", "servicekosten",
     "huursector", "kamerverhuur", "studentenhuisvesting", "middenhuur",
     "corporatie", "belegger", "uitpond", "leegwaarde",
+    "studentenwoning", "studentenkamer", "onzelfstandige", "hospita",
+    "woningdelen", "kamerverhuur", "woningvorming", "onttrekking",
     # Beleid en fiscaal
     "wws", "woningwaardering", "wet betaalbare huur", "huurbescherming",
     "opkoopbescherming", "box 3", "box3", "overdrachtsbelasting",
@@ -206,6 +211,26 @@ def recent(item):
         return True
     leeftijd = dt.datetime.now(item["datum"].tzinfo) - item["datum"]
     return leeftijd <= dt.timedelta(hours=MAX_LEEFTIJD_UREN)
+
+
+
+# Politieke partijen en opiniekanalen. Hun standpunten zijn geen marktbericht,
+# en wat er wetgevend echt gebeurt komt binnen via de officiele bekendmakingen.
+# Dit is geen oordeel over de inhoud, wel over de bruikbaarheid als bron.
+UITGESLOTEN_BRONNEN = (
+    "forum voor democratie", "fvd", "pvv", "vvd.nl", "d66", "groenlinks", "pvda",
+    "cda.nl", "sp.nl", "denk", "ja21", "bbb", "volt", "christenunie", "sgp",
+    "partij voor de dieren", "nsc",
+    "tweedekamer.nl", "eerstekamer.nl",
+    "opiniez", "wynia", "welingelichtekringen", "welingelichte kringen",
+    "de dagelijkse standaard", "geenstijl", "blckbx", "ninefornews",
+)
+
+
+def politieke_bron(item):
+    """Is dit een partijkanaal of opiniesite in plaats van een marktbericht?"""
+    hooi = f"{item.get('titel','')} {item.get('bron','')} {item.get('link','')}".lower()
+    return any(b in hooi for b in UITGESLOTEN_BRONNEN)
 
 
 def relevant_trefwoord(item):
