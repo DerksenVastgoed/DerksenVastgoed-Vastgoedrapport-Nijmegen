@@ -58,6 +58,59 @@ TOON:
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan. Staat iets er niet, laat het weg."""
 
 
+
+def wist_je_dat(cbs, verg):
+    """
+    Elke dag een ander weetje uit de eigen cijfers. Rouleert op dagnummer,
+    zodat het niet elke ochtend hetzelfde is.
+    """
+    def n(x):
+        return f"{int(x):,}".replace(",", ".")
+
+    def pct(x, cijfers=1):
+        return f"{x:.{cijfers}f}".replace(".", ",")
+
+    weetjes = []
+    buurten = [b for b in cbs if not b.startswith("_")]
+
+    # Verkameringsgraad
+    met_verg = [(b, verg[b], cbs[b]["won"]) for b in buurten
+                if verg.get(b) and cbs[b].get("won")]
+    for b, v, won in sorted(met_verg, key=lambda x: -x[1] / x[2])[:3]:
+        weetjes.append(f"in {b} {pct(v / won * 100)} procent van alle woningen een "
+                       f"vergunning voor kamerverhuur heeft, {v} stuks op {n(won)} "
+                       f"woningen")
+
+    # Studentendichtheid
+    met_stud = [(b, cbs[b]["studenten"], cbs[b]["inwoners"]) for b in buurten
+                if cbs[b].get("studenten") and cbs[b].get("inwoners")]
+    for b, st_, inw in sorted(met_stud, key=lambda x: -x[1] / x[2])[:2]:
+        weetjes.append(f"in {b} bijna {round(st_ / inw * 100)} van elke honderd "
+                       f"inwoners student is")
+    totaal_stud = sum(x[1] for x in met_stud)
+    if met_stud and totaal_stud:
+        b, st_, _ = max(met_stud, key=lambda x: x[1])
+        weetjes.append(f"{round(st_ / totaal_stud * 100)} procent van alle studenten "
+                       f"in de ring in {b} woont")
+
+    # Eigendomsverhouding
+    for b in buurten:
+        g = cbs[b]
+        if g.get("corp", 0) >= 40:
+            weetjes.append(f"in {b} {g['corp']} procent van de woningen van een "
+                           f"woningcorporatie is, meer dan waar ook in de ring")
+        if g.get("meergezins", 0) >= 90:
+            weetjes.append(f"{g['meergezins']} procent van alle woningen in {b} een "
+                           f"appartement is")
+        if g.get("koop", 100) <= 15:
+            weetjes.append(f"in {b} maar {g['koop']} procent van de woningen een "
+                           f"koopwoning is")
+
+    if not weetjes:
+        return ""
+    return weetjes[dt.date.today().toordinal() % len(weetjes)]
+
+
 def render_bijlage():
     """
     Cijfers per buurt en het actuele aanbod, als bijlage onder de brief.
@@ -81,8 +134,11 @@ def render_bijlage():
     def n(x):
         return f"{int(x):,}".replace(",", ".")
 
-    regels = ["", "## De buurten in cijfers", "",
-              "_Ter aanvulling, om eens rustig door te kijken._", ""]
+    regels = ["", "## De buurten in cijfers", ""]
+    weetje = wist_je_dat(cbs, verg)
+    if weetje:
+        regels += [f"**Wist je dat** {weetje}?", ""]
+    regels += ["_Hieronder de rest, om eens rustig door te kijken._", ""]
     for buurt in volgorde:
         g = cbs.get(buurt)
         if not g:
