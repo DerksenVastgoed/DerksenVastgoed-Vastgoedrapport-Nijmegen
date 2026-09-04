@@ -142,6 +142,14 @@ jobs:
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
+      - name: Verhalende brief maken
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
+        run: |
+          python brief_verhalend.py --datum "$DATUM" \
+            --uit "digests/${DATUM}-verhaal.md" || echo "Verhalende brief overgeslagen"
+
       - name: Brief naar HTML converteren
         run: |
           pip install markdown
@@ -183,6 +191,38 @@ jobs:
           git add verkopen.txt woz.txt kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
+
+      - name: Verhalende brief naar HTML
+        if: ${{ hashFiles(format('digests/{0}-verhaal.md', env.DATUM)) != '' }}
+        run: |
+          python - << 'EOF'
+          import markdown, os
+          d = os.environ["DATUM"]
+          md = open(f"digests/{d}-verhaal.md", encoding="utf-8").read()
+          html = markdown.markdown(md, extensions=["extra"])
+          stijl = ("body{font:17px/1.7 Georgia,'Times New Roman',serif;color:#1a2830;"
+                   "max-width:640px;margin:0 auto;padding:28px}"
+                   "h1{font-size:20px;font-weight:normal;color:#4a5b63;"
+                   "border-bottom:2px solid #E0A458;padding-bottom:10px}"
+                   "p{margin:0 0 18px}")
+          open(f"digests/{d}-verhaal.html", "w", encoding="utf-8").write(
+              f"<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
+              f"<style>{stijl}</style></head><body>{html}</body></html>")
+          EOF
+
+      - name: Verhalende brief mailen
+        if: ${{ hashFiles(format('digests/{0}-verhaal.html', env.DATUM)) != '' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO_VERHAAL }}
+          subject: Vastgoed in Nijmegen, ${{ env.DATUM }}
+          html_body: file://digests/${{ env.DATUM }}-verhaal.html
 
       - name: Brief mailen
         uses: dawidd6/action-send-mail@v3
