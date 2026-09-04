@@ -214,12 +214,22 @@ def schrijf_brief(bronnen):
             headers={"x-api-key": ANTHROPIC_API_KEY,
                      "anthropic-version": "2023-06-01",
                      "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 8000, "system": PROFIEL,
+            json={"model": MODEL, "max_tokens": 16000, "system": PROFIEL,
                   "messages": [{"role": "user", "content": prompt}]},
             timeout=120)
         resp.raise_for_status()
-        return "".join(b.get("text", "")
-                       for b in resp.json().get("content", [])).strip()
+        body = resp.json()
+        tekst = "".join(b.get("text", "")
+                        for b in body.get("content", [])).strip()
+        reden = body.get("stop_reason")
+        if reden == "max_tokens":
+            print("LET OP: de brief is afgekapt omdat de limiet is bereikt. "
+                  "Verhoog max_tokens in dit bestand.", file=sys.stderr)
+        gebruikt = (body.get("usage") or {}).get("output_tokens")
+        if gebruikt:
+            print(f"Brief geschreven: {gebruikt} tokens, "
+                  f"{len(tekst.split())} woorden", file=sys.stderr)
+        return tekst
     except Exception as e:
         print(f"Brief schrijven mislukt: {e}", file=sys.stderr)
         return ""
