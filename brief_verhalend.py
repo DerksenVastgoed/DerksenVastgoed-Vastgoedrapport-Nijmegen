@@ -23,40 +23,46 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
 AANHEF = os.environ.get("BRIEF_AANHEF", "Beste pa")
 
-PROFIEL = """Je schrijft een brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven en is oprecht nieuwsgierig naar wat er speelt.
+PROFIEL = """Je schrijft een lange brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven.
 
-Schrijf in de ik-vorm, alsof Mark het zelf schrijft. Spreek zijn vader aan met 'je' en 'jij', nooit met 'u'. Dat past niet bij hun manier van doen.
+Hij heeft ruim de tijd om te lezen. Schrijf dus uitgebreid: liever te veel dan te weinig. Maar het moet wel prettig blijven lezen, dus doorlopende tekst en geen opsommingen van kale cijfers.
 
-VORM:
-- Begin met de aanhef die je krijgt aangeleverd, gevolgd door een komma.
-- Doorlopende alinea's, vier tot zes stuks. Geen tabellen, geen opsommingen.
-- Schrijf zoals je praat: gewone zinnen, niet te lang.
-- Noem straten en buurten bij naam. Die kent hij, en dat maakt het levendig.
-- Geen gedachtestreepjes.
-- Sluit af met een gewone zin over iets waar je benieuwd naar bent of wat je volgende week verwacht. Geen ondertekening, geen vraag om een reactie.
+Schrijf in de ik-vorm. Spreek hem aan met 'je' en 'jij', nooit met 'u'.
 
-GEEN VAKJARGON. Deze woorden gebruik je niet: LTV, basispunten, cashflow, mediaan, yield, box 3, WWS, WOZ, forfait, rendement op eigen vermogen. Schrijf in plaats daarvan:
-- LTV of loan-to-value: 'als je twee derde leent'
+OPBOUW:
+
+1. Een korte opening over wat er deze week het meest opvalt.
+
+2. Dan **per buurt een eigen kopje** met de buurtnaam. Neem alle buurten waarover gegevens zijn. Behandel per buurt:
+   - Een paar zinnen over wat voor buurt het is, met de cijfers erin verweven: hoeveel woningen, de verhouding koop en corporatiebezit, het aandeel appartementen, wat een huis er waard is volgens de gemeente, hoeveel studenten er wonen. Niet als lijstje maar als verhaal.
+   - Welke panden er te koop staan. Noem ze bij naam met de vraagprijs en de oppervlakte, en schrijf erbij of dat duur of goedkoop is voor die buurt en waarom. Behoud de links precies zoals ze in de gegevens staan, in de vorm [naam](adres), zodat hij kan doorklikken.
+   - Wat de gemeente over panden in die buurt heeft besloten, en wat dat zegt.
+   Sla een buurt over als er niets over te melden is.
+
+3. Een stuk over de rente en wat die betekent voor iemand die verhuurt.
+
+4. Een stuk over het nieuws, met de artikelen bij naam genoemd en de links behouden zoals ze zijn.
+
+5. Een slotalinea over wat je volgende week verwacht of waar je benieuwd naar bent.
+
+LINKS: laat elke link staan in de vorm [tekst](https://...). Verzin nooit een link en verander geen adres.
+
+GEEN VAKJARGON. Deze woorden gebruik je niet: LTV, basispunten, cashflow, mediaan, yield, box 3, WWS, WOZ, forfait, richtprijs. Schrijf in plaats daarvan:
+- LTV: 'als je twee derde leent'
 - basispunten: gewoon procenten
 - cashflow: 'wat er onder de streep overblijft'
-- mediaan: 'het gemiddelde' of 'wat vergelijkbare panden doen'
+- mediaan: 'wat vergelijkbare panden doen'
 - WOZ: 'de waarde die de gemeente aan het huis toekent'
 - box 3: 'de belasting op vermogen'
+- richtprijs: 'de prijs waarbij het zichzelf nog net rondbetaalt'
 - puntenstelsel of WWS: 'het puntenstelsel dat bepaalt wat je maximaal aan huur mag vragen'
 
-INHOUD, in deze volgorde:
-1. Wat er deze week te koop staat dat de moeite waard is om te volgen voor Derksen Vastgoed. Niet als koopadvies, maar als iets om in de gaten te houden.
-2. Wat de gemeente heeft besloten over concrete panden in de stad, en wat dat zegt over waar het heen gaat.
-3. De rente, en in gewone taal wat dat betekent voor iemand die verhuurt.
-4. Eventueel iets breders uit het nieuws, als het echt iets toevoegt.
-
 TOON:
-- Rustig, feitelijk en persoonlijk. Zoals je iemand bijpraat die het vak kent maar er even niet middenin zit.
+- Rustig, feitelijk en persoonlijk. Zoals je iemand bijpraat die het vak kent.
 - Geen opgewektheid die er niet is. Vallen de cijfers tegen, schrijf dat gewoon.
 - Verwijs nergens naar ziekte, behandeling of gezondheid. Dit is een brief over vastgoed.
 
-ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan. Staat iets er niet, laat het weg."""
-
+ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan."""
 
 
 def wist_je_dat(cbs, verg):
@@ -111,70 +117,59 @@ def wist_je_dat(cbs, verg):
     return weetjes[dt.date.today().toordinal() % len(weetjes)]
 
 
-def render_bijlage():
-    """
-    Cijfers per buurt en het actuele aanbod, als bijlage onder de brief.
-    Dit is materiaal om rustig doorheen te bladeren, niet om te beslissen.
-    """
+
+def buurtcijfers_tekst():
+    """De buurtcijfers als platte regels, zodat het model ze kan verwerken."""
+    try:
+        with open("buurten_cbs.json", encoding="utf-8") as f:
+            cbs = json.load(f)
+    except Exception:
+        return ""
+    try:
+        with open("vergunningen_per_buurt.json", encoding="utf-8") as f:
+            verg = json.load(f)
+    except Exception:
+        verg = {}
+
+    regels = []
+    for buurt in ("Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
+                  "Altrade", "Biezen"):
+        g = cbs.get(buurt)
+        if not g:
+            continue
+        d = [f"{buurt}: {g.get('won')} woningen"]
+        if g.get("koop") is not None:
+            d.append(f"{g['koop']}% koop")
+        if g.get("corp") is not None:
+            d.append(f"{g['corp']}% woningcorporatie")
+        if g.get("meergezins") is not None:
+            d.append(f"{g['meergezins']}% appartement")
+        if g.get("woz"):
+            d.append(f"gemiddelde waarde volgens de gemeente "
+                     f"{g['woz'] * 1000} euro")
+        if g.get("studenten"):
+            d.append(f"{g['studenten']} studenten")
+        if g.get("inwoners"):
+            d.append(f"{g['inwoners']} inwoners")
+        if verg.get(buurt):
+            d.append(f"{verg[buurt]} vergunningen voor kamerverhuur sinds 2013")
+        regels.append(", ".join(d))
+    return "\n".join(regels)
+
+
+def weetje_van_de_dag():
+    """Een weetje onder de brief, dat elke dag rouleert."""
     def lees_json(pad):
         try:
             with open(pad, encoding="utf-8") as f:
                 return json.load(f)
         except Exception:
             return {}
-
     cbs = lees_json("buurten_cbs.json")
     verg = lees_json("vergunningen_per_buurt.json")
     if not cbs:
         return ""
-
-    volgorde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-                "Altrade", "Biezen"]
-
-    def n(x):
-        return f"{int(x):,}".replace(",", ".")
-
-    regels = ["", "## De buurten in cijfers", ""]
-    weetje = wist_je_dat(cbs, verg)
-    if weetje:
-        regels += [f"**Wist je dat** {weetje}?", ""]
-    regels += ["_Hieronder de rest, om eens rustig door te kijken._", ""]
-    for buurt in volgorde:
-        g = cbs.get(buurt)
-        if not g:
-            continue
-        zinnen = []
-        eerste = f"**{buurt}** telt {n(g['won'])} woningen"
-        if g.get("koop") is not None:
-            eerste += (f", waarvan {g['koop']} procent koopwoning is en "
-                       f"{g.get('corp', 0)} procent van een woningcorporatie")
-        zinnen.append(eerste + ".")
-
-        if g.get("meergezins") is not None:
-            zin = f"{g['meergezins']} procent van de voorraad is appartement"
-            if g.get("woz"):
-                zin += (f", en een huis is er volgens de gemeente gemiddeld "
-                        f"{n(g['woz'] * 1000)} euro waard")
-            zinnen.append(zin + ".")
-        elif g.get("woz"):
-            zinnen.append(f"Een huis is er volgens de gemeente gemiddeld "
-                          f"{n(g['woz'] * 1000)} euro waard.")
-
-        if g.get("studenten") and g.get("inwoners"):
-            aandeel = round(g["studenten"] / g["inwoners"] * 100)
-            zinnen.append(f"Er wonen {n(g['studenten'])} studenten, ongeveer "
-                          f"{aandeel} van elke honderd inwoners.")
-
-        v = verg.get(buurt)
-        if v and g.get("won"):
-            zinnen.append(f"Sinds 2013 zijn er {v} vergunningen voor kamerverhuur "
-                          f"verleend, dat is "
-                          + f"{v / g['won'] * 100:.1f}".replace(".", ",")
-                          + " procent van "
-                          f"alle woningen daar.")
-        regels.append(" ".join(zinnen))
-        regels.append("")
-    return "\n".join(regels)
+    return wist_je_dat(cbs, verg)
 
 
 def lees(pad):
@@ -186,7 +181,7 @@ def lees(pad):
         return ""
 
 
-def strip_opmaak(tekst, maxlen=7000):
+def strip_opmaak(tekst, maxlen=14000):
     """Haalt tabellen en HTML eruit; het model krijgt de inhoud, niet de vorm."""
     tekst = re.sub(r"<[^>]+>", " ", tekst)
     regels = []
@@ -196,7 +191,7 @@ def strip_opmaak(tekst, maxlen=7000):
             continue
         if r.startswith("|"):
             r = " . ".join(x.strip() for x in r.strip("|").split("|") if x.strip())
-        r = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", r)   # links naar tekst
+        # Links laten staan: de lezer moet kunnen doorklikken naar het artikel
         r = r.replace("**", "").replace("_", "")
         if r:
             regels.append(r)
@@ -219,7 +214,7 @@ def schrijf_brief(bronnen):
             headers={"x-api-key": ANTHROPIC_API_KEY,
                      "anthropic-version": "2023-06-01",
                      "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 2000, "system": PROFIEL,
+            json={"model": MODEL, "max_tokens": 8000, "system": PROFIEL,
                   "messages": [{"role": "user", "content": prompt}]},
             timeout=120)
         resp.raise_for_status()
@@ -238,10 +233,11 @@ def main():
     d = args.datum
 
     bronnen = [
+        ("Cijfers per buurt", buurtcijfers_tekst()),
         ("Aanbod en buurten", strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))),
         ("Gemeentelijke besluiten", strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
-        ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 3000)),
-        ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 2000)),
+        ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
+        ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
     ]
     brief = schrijf_brief(bronnen)
     if not brief:
@@ -257,9 +253,9 @@ def main():
         datum_nl = datum_nl.replace(en, nl)
 
     tekst = f"# Vastgoed in Nijmegen, {datum_nl}\n\n{brief}\n"
-    bijlage = render_bijlage()
-    if bijlage:
-        tekst += "\n" + bijlage
+    weetje = weetje_van_de_dag()
+    if weetje:
+        tekst += f"\n---\n\n**Wist je dat** {weetje}?\n"
     uit = args.uit or f"digests/{d}-verhaal.md"
     os.makedirs(os.path.dirname(uit) or ".", exist_ok=True)
     with open(uit, "w", encoding="utf-8") as f:
