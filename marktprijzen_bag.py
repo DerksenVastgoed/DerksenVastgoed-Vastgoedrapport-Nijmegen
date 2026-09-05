@@ -472,7 +472,21 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     embedded = data.get("_embedded", {}).get("adressen", [])
     if not embedded:
         return None
-    a = embedded[0]
+
+    # Op hetzelfde adres kunnen meerdere verblijfsobjecten staan: de bestaande
+    # situatie met status "in gebruik", en een al geregistreerde splitsing met
+    # status "gevormd". Die laatste is nog niet gerealiseerd, dus we rekenen met
+    # het object dat in gebruik is. Bij Plein 1944 142 scheelde dat 163 om 53 m2.
+    in_gebruik = [x for x in embedded
+                  if "in gebruik" in str(x.get("adresseerbaarObjectStatus", "")).lower()]
+    gevormd = [x for x in embedded
+               if "gevormd" in str(x.get("adresseerbaarObjectStatus", "")).lower()]
+    a = (in_gebruik or embedded)[0]
+
+    if gevormd and in_gebruik:
+        print(f"  {straat} {huisnr}: splitsing geregistreerd maar nog niet in "
+              f"gebruik ({len(gevormd)} nieuwe objecten). We rekenen met de "
+              f"bestaande {a.get('oppervlakte')} m².", file=sys.stderr)
 
     if DEBUG and _DEBUG_TELLER[0] < 2:
         _DEBUG_TELLER[0] += 1
@@ -494,6 +508,14 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
         "gebruiksdoelen": a.get("gebruiksdoelen", []),
         "postcode": a.get("postcode", ""),
         "adresseerbaarObjectIdentificatie": a.get("adresseerbaarObjectIdentificatie", ""),
+        "pand": (a.get("pandIdentificaties") or [""])[0],
+        # Een geregistreerde maar nog niet gerealiseerde splitsing is een signaal:
+        # de eigenaar is er al mee bezig.
+        "splitsing_geregistreerd": [
+            {"adres": f"{x.get('openbareRuimteNaam','')} {x.get('huisnummer','')}"
+                      f"{x.get('huisletter','') or ''}",
+             "oppervlakte": x.get("oppervlakte")}
+            for x in gevormd] if gevormd else None,
     }
 
 
@@ -602,17 +624,6 @@ def verrijk(woning, cache):
     # pand of juist een enkel verblijfsobject. Bij gesplitste panden liep dat
     # ver uiteen: een bovenhuis van 144 m2 stond in de BAG als 233 m2, waardoor
     # het pand veel goedkoper per m2 leek dan het is.
-    # Deelt dit verblijfsobject zijn oppervlakte met meer adressen?
-    vbo = bag.get("adresseerbaarObjectIdentificatie")
-    if vbo and bag.get("oppervlakte"):
-        adressen = bag_adressen_op_object(vbo)
-        time.sleep(0.2)
-        if len(adressen) > 1:
-            verrijking["object_adressen"] = adressen
-            print(f"  {woning['adres']}: de BAG-oppervlakte van "
-                  f"{bag['oppervlakte']} m² geldt voor {len(adressen)} adressen "
-                  f"samen ({', '.join(adressen[:4])})", file=sys.stderr)
-
     if woning.get("oppervlakte_bron"):
         bag_opp = bag.get("oppervlakte")
         verrijking["oppervlakte"] = woning["oppervlakte_bron"]
@@ -2310,6 +2321,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     marge = sc["verkoopmarge"]
                     scenario += (f" . bij verkoop €{eu(sc['verkoopwaarde'])}"
                                  f" ({'+' if marge > 0 else ''}{eu(marge)})")
+                if w.get("splitsing_geregistreerd"):
+                    nieuw = w["splitsing_geregistreerd"]
+                    scenario += (f" . splitsing al geregistreerd in de BAG: "
+                                 + ", ".join(f"{x['adres']} {x['oppervlakte']} m²"
+                                             for x in nieuw))
                 if w.get("opp_onbetrouwbaar"):
                     scenario = ("oppervlakte onbekend: de BAG rekent "
                                 f"{w.get('oppervlakte')} m² voor "
