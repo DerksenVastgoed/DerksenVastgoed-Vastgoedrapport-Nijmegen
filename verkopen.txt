@@ -199,46 +199,7 @@ van Welderenstraat 89 | Nijmegen | 934000 | belegging
 St. Annastraat 28 | Nijmegen | 1695000 | belegging
 Ziekerstraat 5 | Nijmegen | 450000 | belegging
 Koningstraat 4 | Nijmegen | 850000 | belegging
-Lange Hezelstraat | Nijmegen | 550 | te huur kamer | 2026-09-01 | kamernet | 25
-Pastoor van Blitterwijckstraat | Nijmegen | 575 | te huur kamer | 2026-09-01 | kamernet-incl | 20
-Varenstraat | Nijmegen | 550 | te huur kamer | 2026-09-01 | kamernet-incl | 18
-Berg en Dalseweg | Nijmegen | 650 | te huur kamer | 2026-09-01 | kamernet-incl | 15
-Oude Molenweg | Nijmegen | 460 | te huur kamer | 2026-09-01 | kamernet-incl | 16
-Jan de Wittstraat | Nijmegen | 1075 | te huur kamer | 2026-09-01 | kamernet-incl | 31
-Dr. Claas Noorduijnstraat | Nijmegen | 715 | te huur kamer | 2026-09-01 | kamernet-incl | 25
-St. Annastraat | Nijmegen | 764 | te huur kamer | 2026-09-01 | kamernet | 26
-Dr. Claas Noorduijnstraat | Nijmegen | 565 | te huur kamer | 2026-09-01 | kamernet-incl | 19
-Schepenenstraat | Nijmegen | 660 | te huur kamer | 2026-09-01 | kamernet-incl | 9
-Graafseweg | Nijmegen | 750 | te huur kamer | 2026-09-01 | kamernet-incl | 20
-Berg en Dalseweg | Nijmegen | 2199 | te huur | 2026-09-01 | pararius | 64 | 6522BC
-Waalhaven | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 112 | 6541AG
-Fagelstraat 34 | Nijmegen | 2300 | te huur | 2026-09-01 | pararius | 130 | 6524CE
-Wachterslaan 13 | Nijmegen | 1995 | te huur | 2026-09-01 | pararius | 100 | 6523RS
-van Welderenstraat 121 B | Nijmegen | 1825 | te huur | 2026-09-01 | pararius | 82 | 6511MH
-Plein 1944 7 6 | Nijmegen | 1413 | te huur | 2026-09-01 | pararius | 35 | 6511JB
-Niek Engelschmanlaan | Nijmegen | 1845 | te huur | 2026-09-01 | pararius | 74 | 6532CP
-Atjehstraat | Nijmegen | 1750 | te huur | 2026-09-01 | pararius | 68 | 6524KV
-van Trieststraat 5 | Nijmegen | 1450 | te huur | 2026-09-01 | pararius | 45 | 6512CW
-van Welderenstraat 119 | Nijmegen | 1300 | te huur | 2026-09-01 | pararius | 36 | 6511MH
-Willemsweg | Nijmegen | 468 | te huur kamer | 2026-09-01 | pararius | 13 | 6531DB
-Plein 1944 | Nijmegen | 2650 | te huur | 2026-09-01 | pararius | 107 | 6511JE
-Weurtseweg | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 119 | 6541AT
-Straalmanstraat 26 | Nijmegen | 4500 | te huur | 2026-09-01 | pararius | 294 | 6521JM
-Groesbeeksedwarsweg | Nijmegen | 649 | te huur kamer | 2026-09-01 | pararius | 16 | 6521DG
-Villandry 62 | Nijmegen | 2250 | te huur | 2026-09-01 | pararius | 143 | 6523NZ
 
-# Automatisch toegevoegd uit Funda-attendering op 01-09-2026
-Groesbeekseweg 85 | Nijmegen | 1150000 | te koop | 2026-09-01 |  | 228 | 6524CS
-Gerard Noodtstraat 71 | Nijmegen | 450000 | te koop | 2026-09-01 |  | 104 | 6511SV
-
-# Automatisch toegevoegd uit Funda-attendering op 02-09-2026
-Groesbeeksedwarsweg 99 | Nijmegen | 495000 | te koop | 2026-09-02 |  | 93 | 6521DC
-van Dulckenstraat 47 | Nijmegen | 945000 | te koop | 2026-09-02 |  | 171 | 6512DS
-Kaapstander 264 | Nijmegen | 1215000 | te koop | 2026-09-02 |  | 151 | 6541EX
-Schoolstraat 135 | Nijmegen | 405000 | te koop | 2026-09-02 |  | 80 | 6512JE
-Vondelstraat 63 | Nijmegen | 495000 | te koop | 2026-09-02 |  | 124 | 6512BC
-
-# Automatisch toegevoegd uit Funda-attendering op 03-09-2026
-Eerste Oude Heselaan 170 | Nijmegen | 250000 | te koop | 2026-09-03 |  | 31 | 6541PD
-van Slichtenhorststraat 42 | Nijmegen | 645000 | te koop | 2026-09-03 |  | 144 | 6524JR
-Houtstraat 31 | Nijmegen | 325000 | te koop | 2026-09-03 |  | 55 | 6511JK
+# Handmatig gecorrigeerd: de BAG geeft 233 m2 voor het hele
+# pand, maar dit is het bovenhuis van 144 m2 volgens de advertentie.
+van Slichtenhorststraat 42 | Nijmegen | 645000 | te koop | 2026-09-03 |  | 144

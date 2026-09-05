@@ -354,6 +354,78 @@ def ep_energielabel(vbo_id, postcode, huisnr, letter, toev):
     return None
 
 
+
+
+def bag_dump(adres, plaats="Nijmegen"):
+    """
+    Toont de volledige BAG-respons voor een adres. Bedoeld om uit te zoeken
+    welk veld welke oppervlakte bevat: die van het verblijfsobject of die van
+    het pand. Gebruik: python marktprijzen_bag.py --bag "van Slichtenhorststraat 42"
+    """
+    varianten = split_huisnummer(adres)
+    if not varianten:
+        print(f"Kan {adres} niet splitsen in straat en huisnummer", file=sys.stderr)
+        return
+    straat, huisnr, letter, toev = varianten[0]
+    params = {"openbareRuimteNaam": straat, "huisnummer": huisnr,
+              "woonplaatsNaam": plaats, "exacteMatch": "true", "expand": "panden"}
+    if letter:
+        params["huisletter"] = letter
+    if toev:
+        params["huisnummertoevoeging"] = toev
+
+    for naam, extra in (("met expand=panden", params),
+                        ("zonder expand", {k: v for k, v in params.items()
+                                           if k != "expand"})):
+        print(f"\n=== {naam} ===")
+        try:
+            r = requests.get(f"{BAG_BASE}/adressenuitgebreid",
+                             headers=BAG_HEADERS, params=extra, timeout=20)
+            print(f"status {r.status_code}")
+            if r.status_code != 200:
+                print(r.text[:400])
+                continue
+            data = r.json().get("_embedded", {}).get("adressen", [])
+            print(f"adressen in respons: {len(data)}")
+            for i, a in enumerate(data):
+                print(f"\n--- adres {i} ---")
+                print(json.dumps(a, ensure_ascii=False, indent=1)[:3000])
+        except Exception as e:
+            print(f"fout: {e}")
+        time.sleep(0.5)
+
+
+def bag_adressen_op_object(vbo_id):
+    """
+    Hoeveel adressen hangen er aan dit verblijfsobject?
+
+    In de BAG kan een verblijfsobject meerdere nummeraanduidingen hebben, een
+    hoofdadres met nevenadressen. De oppervlakte die de API teruggeeft is dan
+    die van het hele object, niet van wat achter een enkel huisnummer zit. Bij
+    een pand dat is opgedeeld in een boven- en benedenhuis loopt dat ver uiteen.
+    """
+    if not BAG_API_KEY or not vbo_id:
+        return []
+    try:
+        r = requests.get(f"{BAG_BASE}/adressenuitgebreid", headers=BAG_HEADERS,
+                         params={"adresseerbaarObjectIdentificatie": vbo_id},
+                         timeout=20)
+        if r.status_code != 200:
+            return []
+        rijen = r.json().get("_embedded", {}).get("adressen", [])
+    except Exception:
+        return []
+    adressen = []
+    for a in rijen:
+        straat = a.get("openbareRuimteNaam", "")
+        nr = a.get("huisnummer", "")
+        letter = a.get("huisletter", "") or ""
+        toev = a.get("huisnummertoevoeging", "") or ""
+        if straat and nr:
+            adressen.append(f"{straat} {nr}{letter}{('-' + toev) if toev else ''}")
+    return adressen
+
+
 def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
     """
     Roept BAG /adressenuitgebreid aan. Retourneert oppervlakte, bouwjaar,
@@ -477,8 +549,7 @@ def verrijk(woning, cache):
             gegevens["energielabel"] = ep  # ook None bewaren, anders elke run opnieuw
             cache[sleutel] = gegevens
         woning.update(gegevens)
-        if (woning.get("status") or "").lower().startswith("te huur") \
-                and woning.get("oppervlakte_bron"):
+        if woning.get("oppervlakte_bron"):
             woning["oppervlakte"] = woning["oppervlakte_bron"]
         return woning
 
@@ -526,14 +597,32 @@ def verrijk(woning, cache):
 
     verrijking = {**bag, **pdok}
 
-    # Bij huuraanbod telt de oppervlakte uit de advertentie, niet die uit de BAG.
-    # De advertentie beschrijft de verhuurde eenheid; de BAG geeft het hele
-    # verblijfsobject of zelfs het pand. Een studio van 36 m2 werd zo een object
-    # van ruim honderd meter, waardoor de huur per m2 volstrekt scheef uitviel.
-    if (woning.get("status") or "").lower().startswith("te huur") \
-            and woning.get("oppervlakte_bron"):
+    # De oppervlakte uit de advertentie gaat voor op die uit de BAG. De
+    # advertentie beschrijft wat je koopt of huurt; de BAG geeft soms het hele
+    # pand of juist een enkel verblijfsobject. Bij gesplitste panden liep dat
+    # ver uiteen: een bovenhuis van 144 m2 stond in de BAG als 233 m2, waardoor
+    # het pand veel goedkoper per m2 leek dan het is.
+    # Deelt dit verblijfsobject zijn oppervlakte met meer adressen?
+    vbo = bag.get("adresseerbaarObjectIdentificatie")
+    if vbo and bag.get("oppervlakte"):
+        adressen = bag_adressen_op_object(vbo)
+        time.sleep(0.2)
+        if len(adressen) > 1:
+            verrijking["object_adressen"] = adressen
+            print(f"  {woning['adres']}: de BAG-oppervlakte van "
+                  f"{bag['oppervlakte']} m² geldt voor {len(adressen)} adressen "
+                  f"samen ({', '.join(adressen[:4])})", file=sys.stderr)
+
+    if woning.get("oppervlakte_bron"):
+        bag_opp = bag.get("oppervlakte")
         verrijking["oppervlakte"] = woning["oppervlakte_bron"]
-        verrijking["oppervlakte_bag"] = bag.get("oppervlakte")
+        verrijking["oppervlakte_bag"] = bag_opp
+        if bag_opp and abs(bag_opp - woning["oppervlakte_bron"]) / bag_opp > 0.20:
+            verrijking["opp_verschil"] = True
+            print(f"  Oppervlakte wijkt af bij {woning['adres']}: "
+                  f"advertentie {woning['oppervlakte_bron']} m², "
+                  f"BAG {bag_opp} m². We rekenen met de advertentie.",
+                  file=sys.stderr)
 
     # Energielabel uit EP-Online, bij voorkeur op het VBO-id uit de BAG
     if EP_API_KEY:
@@ -2089,6 +2178,12 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             kandidaten.append((999, ppm2, klasse, None, None, w))
             continue
 
+        # Klopt de oppervlakte niet, dan klopt de prijs per m2 ook niet en
+        # geven we geen oordeel. Het pand blijft wel zichtbaar.
+        if w.get("opp_onbetrouwbaar"):
+            kandidaten.append((999, ppm2, klasse, None, None, w))
+            continue
+
         mediaan = st.median(reeks)
         afwijking = (ppm2 - mediaan) / mediaan * 100
         kandidaten.append((afwijking, ppm2, klasse, afwijking, basis, w))
@@ -2215,6 +2310,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     marge = sc["verkoopmarge"]
                     scenario += (f" . bij verkoop €{eu(sc['verkoopwaarde'])}"
                                  f" ({'+' if marge > 0 else ''}{eu(marge)})")
+                if w.get("opp_onbetrouwbaar"):
+                    scenario = ("oppervlakte onbekend: de BAG rekent "
+                                f"{w.get('oppervlakte')} m² voor "
+                                f"{len(w['object_adressen'])} adressen samen")
+                elif w.get("object_adressen"):
+                    scenario += (f" (oppervlakte uit de advertentie; de BAG rekent "
+                                 f"{w.get('oppervlakte_bag')} m² voor "
+                                 f"{len(w['object_adressen'])} adressen samen)")
+                elif w.get("opp_verschil"):
+                    scenario += f" (BAG zegt {w.get('oppervlakte_bag')} m²)"
                 if sc and sc.get("let_op"):
                     scenario += " ✱"
                 if sc and sc.get("gereguleerd"):
@@ -2228,6 +2333,21 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
                     regel += f" {dagen if dagen is not None else '—'} |"
                 r.append(regel)
+            r.append("")
+
+        # Panden zonder oordeel splitsen naar reden: te weinig vergelijking,
+        # of een oppervlakte die niet klopt. Dat is iets heel anders.
+        onbetrouwbaar_hier = [k for k in onbeoordeeld if k[-1].get("opp_onbetrouwbaar")]
+        onbeoordeeld = [k for k in onbeoordeeld if not k[-1].get("opp_onbetrouwbaar")]
+
+        for _a, ppm2, _k, _b, _c, w in onbetrouwbaar_hier:
+            r.append(f"_**{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
+                     f"€{eu(w['prijs'])}: geen oordeel, want de oppervlakte klopt niet. "
+                     f"De BAG rekent {w.get('oppervlakte')} m² voor "
+                     f"{len(w['object_adressen'])} adressen samen "
+                     f"({', '.join(w['object_adressen'][:3])}), en kent geen cijfer per "
+                     f"huisnummer. Zet de oppervlakte uit de advertentie in verkopen.txt, "
+                     f"dan rekent de brief er wel mee._")
             r.append("")
 
         if onbeoordeeld:
@@ -2597,6 +2717,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     per_buurt = defaultdict(list)
     beleggingen = []
     huur_aanbod = []
+    onbetrouwbaar = []
     stad_breed = []      # alle woningen met bruikbare data, ook buiten de focus-buurten
     buiten_focus = 0
     geen_woonfunctie = 0
@@ -2623,6 +2744,16 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         # Huuraanbod telt niet mee in de koopprijs-statistiek
         if w.get("status", "").lower().startswith("te huur"):
             huur_aanbod.append(w)
+            continue
+
+        # De BAG kent geen oppervlakte per huisnummer, alleen per verblijfsobject.
+        # Hangen er meer adressen aan hetzelfde object en hebben we geen cijfer
+        # uit de advertentie, dan klopt de prijs per m2 niet en mag dit pand de
+        # mediaan niet beinvloeden. In het aanbod blijft het wel staan.
+        if (len(w.get("object_adressen") or []) > 1
+                and not w.get("oppervlakte_bron")):
+            w["opp_onbetrouwbaar"] = True
+            onbetrouwbaar.append(w)
             continue
 
         if w.get("status", "").lower() == "belegging":
@@ -2966,12 +3097,18 @@ def main():
     ap.add_argument("--input", default=INPUT_PAD)
     ap.add_argument("--modus", choices=["dagelijks", "weekelijks"], default="weekelijks",
                     help="dagelijks toont alleen wat beweegt, weekelijks het volledige beeld")
+    ap.add_argument("--bag", default="",
+                    help="toon de volledige BAG-respons voor een adres")
     ap.add_argument("--debug", action="store_true",
                     help="toon de velden die de BAG teruggeeft, voor het eerste adres")
     args = ap.parse_args()
 
     global DEBUG
     DEBUG = args.debug
+
+    if args.bag:
+        bag_dump(args.bag)
+        return
 
     global RENTE
     actueel = lees_actuele_rente()
@@ -3045,6 +3182,11 @@ def main():
             laatste["datum_eerst"] = eerste.get("datum", "")
             laatste["waarnemingen"] = len(reeks)
         ontdubbeld.append(laatste)
+
+    if onbetrouwbaar:
+        print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
+              f"de BAG-oppervlakte voor meerdere adressen samen geldt",
+              file=sys.stderr)
 
     weg = len(woningen) - len(ontdubbeld)
     if weg:
