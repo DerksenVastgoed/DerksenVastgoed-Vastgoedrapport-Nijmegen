@@ -2797,6 +2797,10 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             continue
         per_buurt[buurt].append((ppm2, w))
 
+    if onbetrouwbaar:
+        print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
+              f"de oppervlakte niet klopt met wat er te koop staat", file=sys.stderr)
+
     if not per_buurt and not beleggingen:
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
@@ -3160,11 +3164,6 @@ def main():
 
     schrijf_cache(cache)
     print(f"Verrijkt met oppervlakte: {ok}/{len(woningen)} (nieuw opgehaald: {nieuw})", file=sys.stderr)
-
-    if onbetrouwbaar:
-        print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
-              f"de BAG-oppervlakte voor meerdere adressen samen geldt",
-              file=sys.stderr)
 
     # Waarnemingen groeperen per BAG-object. Hetzelfde pand kan meerdere keren
     # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
