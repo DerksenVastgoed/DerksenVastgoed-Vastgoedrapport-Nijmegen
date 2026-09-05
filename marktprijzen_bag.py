@@ -801,7 +801,78 @@ def lees_cbs():
         return {}
 
 
-def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None):
+
+TREND_PAD = "prijstrend.json"
+
+
+def lees_trend():
+    """De opgeslagen prijshistorie per buurt."""
+    try:
+        with open(TREND_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def bewaar_prijspeil(per_buurt, stad_breed):
+    """
+    Legt de mediaan per buurt vast, zodat we later kunnen zien welke kant het
+    op gaat. Eens per week is genoeg: dagelijks opslaan levert alleen ruis op
+    bij zo'n kleine dataset.
+    """
+    try:
+        with open(TREND_PAD, encoding="utf-8") as f:
+            historie = json.load(f)
+    except Exception:
+        historie = {}
+
+    vandaag = dt.date.today()
+    week = f"{vandaag.isocalendar()[0]}-W{vandaag.isocalendar()[1]:02d}"
+    meting = {}
+    for buurt, rijen in per_buurt.items():
+        if len(rijen) >= 8:
+            meting[buurt] = round(st.median([p for p, _ in rijen]))
+    if len(stad_breed) >= 20:
+        meting["_nijmegen"] = round(st.median(stad_breed))
+    if not meting:
+        return historie
+
+    meting["_datum"] = vandaag.isoformat()
+    meting["_n"] = {b: len(r) for b, r in per_buurt.items() if len(r) >= 8}
+    historie[week] = meting
+    try:
+        with open(TREND_PAD, "w", encoding="utf-8") as f:
+            json.dump(historie, f, ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception as e:
+        print(f"Kon {TREND_PAD} niet schrijven: {e}", file=sys.stderr)
+    return historie
+
+
+def trendregel(buurt, historie):
+    """Hoe staat deze buurt er nu voor ten opzichte van eerder?"""
+    weken = sorted(w for w in historie if not w.startswith("_"))
+    if len(weken) < 2:
+        return ""
+    nu = historie[weken[-1]].get(buurt)
+    if not nu:
+        return ""
+    # Vergelijk met de oudste meting die we hebben, en met vier weken terug
+    stukken = []
+    for terug, label in ((4, "vier weken"), (13, "een kwartaal")):
+        if len(weken) > terug and historie[weken[-1 - terug]].get(buurt):
+            toen = historie[weken[-1 - terug]][buurt]
+            pct = (nu - toen) / toen * 100
+            stukken.append(f"{pct:+.1f}".replace(".", ",") + f"% in {label}")
+    oudste = historie[weken[0]].get(buurt)
+    if oudste and not stukken:
+        pct = (nu - oudste) / oudste * 100
+        stukken.append(f"{pct:+.1f}".replace(".", ",")
+                       + f"% sinds {historie[weken[0]].get('_datum', weken[0])}")
+    return ". ".join(stukken)
+
+
+def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
+               _trend_historie=None):
     """
     Een regel met de kenmerken van een buurt, alleen als we ze hebben.
     Toont ook de WOZ per m2, want dat is beter vergelijkbaar tussen buurten
@@ -840,6 +911,10 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None):
         tweede.append(f"{g['meergezins']}% appartementen")
     if g.get("voor2000") is not None:
         tweede.append(f"{g['voor2000']}% van voor 2000")
+    trend = trendregel(naam, _trend_historie or {})
+    if trend:
+        tweede.append(f"prijspeil {trend}")
+
     vpb = lees_vergunningen_per_buurt().get(naam)
     if vpb and g.get("won"):
         tweede.append(f"{vpb} kamerverhuurvergunningen sinds 2013 "
@@ -862,6 +937,10 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None):
     regel = " . ".join(delen)
     if tweede:
         regel += "<br>" + " . ".join(tweede)
+
+    mis = misdrijfregel(naam, lees_misdrijven(), g.get("inwoners"))
+    if mis:
+        regel += "<br>Misdrijven " + mis
     return regel
 
 
@@ -1047,6 +1126,62 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
 
 KAMERSIGNALEN = ("kamerverhuur", "omzetting", "onttrekking", "brandveilig gebruik")
 VERGUNNINGEN_PAD = "kamervergunningen.json"
+
+
+
+MISDRIJVEN_PAD = "misdrijven_per_buurt.json"
+
+# Wat er in de buurtregel komt te staan, en in welke volgorde. De rest staat
+# wel in het bestand maar zou de regel te lang maken.
+MISDRIJVEN_TONEN = ("woninginbraak", "vernieling", "drugs- en drankoverlast")
+
+
+def lees_misdrijven():
+    if not os.path.exists(MISDRIJVEN_PAD):
+        return {}
+    try:
+        with open(MISDRIJVEN_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def misdrijfregel(buurt, misdrijven, inwoners=None):
+    """
+    Misdrijven per buurt, afgezet tegen het aantal inwoners. Absolute aantallen
+    zeggen weinig: een grote buurt heeft er vanzelf meer.
+    """
+    per_buurt = misdrijven.get(buurt)
+    if not per_buurt:
+        return ""
+    jaren = sorted(per_buurt)
+    if not jaren:
+        return ""
+    laatst = per_buurt[jaren[-1]]
+    jaar = jaren[-1][:4]
+
+    stukken = []
+    for soort in MISDRIJVEN_TONEN:
+        n = laatst.get(soort)
+        if n is None:
+            continue
+        tekst = f"{n} {soort}"
+        if inwoners:
+            tekst += f" ({n / inwoners * 1000:.1f}".replace(".", ",") + " per 1.000)"
+        stukken.append(tekst)
+    if not stukken:
+        return ""
+
+    regel = f"in {jaar}: " + ", ".join(stukken)
+
+    # Beweging ten opzichte van het jaar ervoor, alleen bij genoeg gevallen
+    if len(jaren) > 1:
+        vorig = per_buurt[jaren[-2]]
+        nu, toen = laatst.get("totaal"), vorig.get("totaal")
+        if nu and toen and toen >= 50:
+            pct = (nu - toen) / toen * 100
+            regel += (f". totaal {f'{pct:+.0f}'}% ten opzichte van {jaren[-2][:4]}")
+    return regel
 
 
 def lees_vergunningen_per_buurt():
@@ -2254,7 +2389,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
     for buurt, rijen_buurt in volgorde:
         r.append(f"**{buurt}**")
-        kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt), studenten_ring)
+        kenmerken = buurtregel(buurt, cbs, opp_bag.get(buurt), studenten_ring,
+                               lees_trend())
         if kenmerken:
             r.append(f"_{kenmerken}_")
         r.append("")
@@ -2796,6 +2932,8 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             buiten_focus += 1
             continue
         per_buurt[buurt].append((ppm2, w))
+
+    historie = bewaar_prijspeil(per_buurt, stad_breed)
 
     if onbetrouwbaar:
         print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
