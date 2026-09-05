@@ -91,6 +91,12 @@ jobs:
             echo "Monumentenbestand aanwezig ($GROOTTE bytes), overslaan"
           fi
 
+      - name: BAG uitzoeken (tijdelijk, weghalen na gebruik)
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+        continue-on-error: true
+        run: python bag_uitzoeken.py
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
