@@ -46,6 +46,17 @@ jobs:
           python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md" || echo "Bekendmakingen-stap overgeslagen"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
 
+      - name: Misdrijfcijfers verversen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Jaarcijfers, dus eens per jaar ophalen is genoeg. Wil je verversen,
+          # verwijder dan misdrijven_per_buurt.json.
+          if [ ! -s misdrijven_per_buurt.json ]; then
+            python misdrijven_buurt.py --jaren 3 || echo "Misdrijven-stap overgeslagen"
+          else
+            echo "Misdrijfcijfers aanwezig, overslaan"
+          fi
+
       - name: Buurtcijfers verversen
         run: |
           # Levert buurten_cbs.json, dat het marktprijzen-script per buurt toont
@@ -206,7 +217,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt woz.txt kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt woz.txt misdrijven_per_buurt.json prijstrend.json kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
