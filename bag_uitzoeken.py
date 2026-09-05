@@ -28,7 +28,11 @@ import requests
 
 BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
 BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
-HEADERS = {"X-Api-Key": BAG_API_KEY, "Accept": "application/hal+json"}
+# Accept-Crs is verplicht zodra er geometrie in de respons kan zitten; zonder
+# deze header antwoordt de BAG met 412.
+HEADERS = {"X-Api-Key": BAG_API_KEY,
+           "Accept": "application/hal+json",
+           "Accept-Crs": "epsg:28992"}
 
 # Panden waarvan we weten dat de oppervlakte niet klopt, plus een gewoon pand
 # als vergelijking.
@@ -103,7 +107,7 @@ def bevraag(adres):
     for naam, params in varianten:
         try:
             r = requests.get(f"{BAG_BASE}/adressenuitgebreid",
-                             headers=HEADERS, params=params, timeout=25)
+                             headers=HEADERS, params=params, timeout=(15, 60))
         except Exception as e:
             print(f"  {naam}: fout {e}")
             continue
@@ -124,7 +128,7 @@ def bevraag(adres):
         try:
             r = requests.get(f"{BAG_BASE}/adressenuitgebreid", headers=HEADERS,
                              params={"adresseerbaarObjectIdentificatie": vbo},
-                             timeout=25)
+                             timeout=(15, 60))
             if r.status_code == 200:
                 for a in r.json().get("_embedded", {}).get("adressen", []):
                     print(f"    {a.get('openbareRuimteNaam','')} "
@@ -140,7 +144,7 @@ def bevraag(adres):
         print(f"\n  verblijfsobject {vbo} rechtstreeks:")
         try:
             r = requests.get(f"{BAG_BASE}/verblijfsobjecten/{vbo}",
-                             headers=HEADERS, timeout=25)
+                             headers=HEADERS, timeout=(15, 60))
             if r.status_code == 200:
                 body = r.json()
                 vb = body.get("verblijfsobject", body)

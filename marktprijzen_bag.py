@@ -3145,6 +3145,11 @@ def main():
     schrijf_cache(cache)
     print(f"Verrijkt met oppervlakte: {ok}/{len(woningen)} (nieuw opgehaald: {nieuw})", file=sys.stderr)
 
+    if onbetrouwbaar:
+        print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
+              f"de BAG-oppervlakte voor meerdere adressen samen geldt",
+              file=sys.stderr)
+
     # Waarnemingen groeperen per BAG-object. Hetzelfde pand kan meerdere keren
     # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
     # We houden de volledige reeks bij, want daaruit volgt de prijshistorie.
@@ -3182,11 +3187,6 @@ def main():
             laatste["datum_eerst"] = eerste.get("datum", "")
             laatste["waarnemingen"] = len(reeks)
         ontdubbeld.append(laatste)
-
-    if onbetrouwbaar:
-        print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
-              f"de BAG-oppervlakte voor meerdere adressen samen geldt",
-              file=sys.stderr)
 
     weg = len(woningen) - len(ontdubbeld)
     if weg:
