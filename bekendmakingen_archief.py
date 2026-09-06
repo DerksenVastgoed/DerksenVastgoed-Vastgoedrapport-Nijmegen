@@ -13,7 +13,15 @@ uitdrukkelijk NIET dat er geen vergunning is.
 
 Gebruik:
   python bekendmakingen_archief.py --vanaf 2026-05-01              # test, korte periode
-  python bekendmakingen_archief.py --vanaf 2023-01-01              # volledige backfill
+  python bekendmakingen_archief.py --vanaf 2012-01-01              # volledige backfill
+
+Voor de leefbaarheidstoets is een korte terugblik te weinig. De verordening
+noemt geen termijn; de ambtelijke adviesgroep beoordeelt of het woonmilieu al
+onder druk staat, en daar telt de opbouw over jaren in mee. Ga daarom zo ver
+terug als de bron toelaat. De officiele bekendmakingen van gemeenten lopen
+ongeveer terug tot 2012; eerder is er niets digitaal. Loopt de backfill
+vast, dan kun je hem in stukken draaien: eerst 2012 tot 2016, dan verder.
+Het archief wordt samengevoegd, dus meerdere keren draaien is veilig.
   python bekendmakingen_archief.py --vanaf 2026-08-01 --stil       # dagelijks bijwerken
 
 Het archief wordt samengevoegd, niet overschreven. Meerdere keren draaien is veilig.
@@ -48,6 +56,23 @@ SIGNAALWOORDEN = {
                       "kantoorfunctie naar", "winkelfunctie naar"],
     "onttrekking": ["onttrekking", "onttrekken"],
     "tijdelijke verhuur": ["tijdelijk verhuren", "tijdelijke verhuur"],
+
+    # Handhaving per adres. De politiecijfers gaan niet dieper dan de buurt,
+    # maar handhavingsbesluiten worden wel per pand gepubliceerd. Voor de
+    # leefbaarheidstoets en voor het risico bij aankoop is dat het enige
+    # openbare signaal op objectniveau.
+    "sluiting": ["sluiting van de woning", "sluiting van het pand", "woningsluiting",
+                 "artikel 13b", "13b opiumwet", "sluitingsbevel", "gesloten verklaard"],
+    "handhaving": ["last onder dwangsom", "last onder bestuursdwang", "bestuursdwang",
+                   "bestuurlijke boete", "invordering dwangsom", "handhavingsbesluit",
+                   "voornemen tot handhaving"],
+    "onrechtmatig gebruik": ["onrechtmatige bewoning", "illegale bewoning",
+                             "zonder vergunning verhuurd", "strijdig gebruik",
+                             "in strijd met het bestemmingsplan"],
+    "geluidsoverlast": ["geluidsoverlast", "geluidhinder", "geluidsklacht",
+                        "akoestisch onderzoek", "hogere waarde", "geluidsnorm",
+                        "wet geluidhinder", "geluidwerende", "geluidsisolatie",
+                        "horecaoverlast", "overlastmelding", "sluitingstijd"],
 }
 
 
