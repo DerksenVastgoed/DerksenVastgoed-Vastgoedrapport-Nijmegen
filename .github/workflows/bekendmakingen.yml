@@ -5,7 +5,12 @@ on:
     - cron: "17 3 * * 1-5"  # werkdagen: korte brief (niet op het hele uur,
                             # want dan staat de wachtrij bij GitHub vol)
     - cron: "23 4 * * 0"    # zondag: uitgebreide brief
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      backfill_vanaf:
+        description: "Eenmalige backfill van het bekendmakingen-archief, bijvoorbeeld 2012-01-01. Leeg laten voor een gewone run."
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -13,6 +18,7 @@ permissions:
 jobs:
   digest:
     runs-on: ubuntu-latest
+    timeout-minutes: 330
     steps:
       - name: Repo ophalen
         uses: actions/checkout@v4
@@ -72,6 +78,17 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           python publicaties_vastgoed.py --uit "digests/${DATUM}-publicaties.md" || echo "Publicaties-stap overgeslagen"
+
+      # Eenmalig een volledige backfill draaien voor de leefbaarheidstoets:
+      #   python bekendmakingen_archief.py --vanaf 2012-01-01
+      # Dat duurt lang en hoeft maar een keer; daarna volstaat de dagelijkse stap.
+      - name: Archief backfill (alleen bij handmatige start met een datum)
+        if: ${{ github.event.inputs.backfill_vanaf != '' }}
+        continue-on-error: true
+        run: |
+          echo "Backfill vanaf ${{ github.event.inputs.backfill_vanaf }}"
+          python bekendmakingen_archief.py \
+            --vanaf "${{ github.event.inputs.backfill_vanaf }}" --stil
 
       - name: Bekendmakingen-archief bijwerken
         run: |
@@ -217,7 +234,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt woz.txt misdrijven_per_buurt.json prijstrend.json kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
+          git add verkopen.txt woz.txt brief_gezien.json misdrijven_per_buurt.json prijstrend.json kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
           git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
           git push
 
