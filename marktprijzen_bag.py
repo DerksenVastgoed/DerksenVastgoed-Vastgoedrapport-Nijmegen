@@ -999,9 +999,109 @@ SPLITSINGSVERGUNNING_NODIG = False
 # ---------------------------------------------------------------------------
 RENTE = 5.75              # verhuurhypotheek; wordt overschreven door de
                           # actuele stand uit rente_actueel.json als die er is
+# Financieringsgraad. Let op twee dingen die de brief niet kan weten:
+#   1. Banken lenen op de LAAGSTE van koopsom en taxatiewaarde. Koop je onder
+#      de marktwaarde, dan telt de koopsom; koop je erboven, dan de taxatie.
+#   2. Bij verhuurd vastgoed taxeren ze op waarde in verhuurde staat, en die
+#      ligt lager dan vrij van huurder. Bij een pand met zittende huurders valt
+#      de lening dus lager uit dan dit percentage suggereert.
+# In de praktijk knelt bovendien vaak de rentedekking eerder dan de LTV: bij de
+# huidige rente haal je de eis van 1,25 keer al niet bij een lagere lening.
 LTV = 66.7                # financieringsgraad op de koopsom
-OPEX_PCT = 25             # onderhoud, leegstand, beheer, verzekering
-DOEL_CASHFLOW = 0         # gewenste cashflow per jaar; 0 is precies rondlopen
+# Exploitatiekosten als percentage van de kale huur, per scenario. Eén vast
+# percentage voor alles was te grof: kamerverhuur kent veel meer mutaties,
+# slijtage en beheer dan verhuur aan één huishouden.
+#
+# Dit zijn AANNAMES. Vervang ze door je eigen cijfers zodra je die hebt; dat
+# is het enige getal in deze brief waar je eigen administratie beter is dan
+# welke vuistregel ook.
+# WAT ER WEL IN ZIT: groot onderhoud, verzekering, gemeentelijke lasten,
+# beheer, leegstand en mutatiekosten.
+#
+# WAT ER NIET IN ZIT, omdat het via de servicekosten aan de huurder wordt
+# doorbelast: gas, water, licht, internet, schoonmaak van gemeenschappelijke
+# ruimten, tuinonderhoud en kleine reparaties daarin. Die kosten drukken dus
+# niet op jouw rendement. Dat is ook consistent met de rest van de brief: het
+# puntenstelsel begrenst de KALE huur, en daar horen servicekosten niet bij.
+OPEX_PER_SCENARIO = {
+    "woning": 20,
+    # Hoger dan bij een huishouden door meer slijtage, vaker mutatie en
+    # intensiever beheer, maar niet door de doorbelaste posten.
+    "kamers": 25,
+    # Iets hoger dan een gewone woning door gedeelde entree en installaties.
+    "splitsen": 22,
+}
+OPEX_PCT = OPEX_PER_SCENARIO["woning"]   # standaard, wordt per scenario gezet
+
+
+def opex_voor(scenario_naam):
+    """Het exploitatiepercentage dat bij dit scenario hoort."""
+    naam = (scenario_naam or "").lower()
+    if "kamer" in naam:
+        return OPEX_PER_SCENARIO["kamers"]
+    if "splitsen" in naam:
+        return OPEX_PER_SCENARIO["splitsen"]
+    return OPEX_PER_SCENARIO["woning"]
+DOEL_CASHFLOW = 0         # gewenst operationeel resultaat per jaar
+
+# Beschikbaar eigen vermogen. Staat in een omgevingsvariabele en niet in dit
+# bestand, want de repo is openbaar. Zonder waarde rekent de brief zonder
+# budgetgrens. Zet het secret EIGEN_VERMOGEN in GitHub.
+try:
+    EIGEN_VERMOGEN = float(os.environ.get("EIGEN_VERMOGEN", "") or 0)
+except ValueError:
+    EIGEN_VERMOGEN = 0
+
+# Rentedekking die banken eisen: nettohuur gedeeld door rentelast
+DEKKINGSEIS = 1.25
+
+# ---------------------------------------------------------------------------
+# AANLOOP EN RENOVATIE
+#
+# Een pand levert de eerste maanden niets op: je klust, je zoekt huurders, en
+# de rente loopt door. Daarna moet er geld in voordat je de huur haalt waarmee
+# de brief rekent.
+#
+# Banken financieren verbouwing bij verhuurd vastgoed doorgaans niet mee, dus
+# dit komt uit eigen vermogen. Het verhoogt je inleg en verlaagt daarmee zowel
+# je rendement als de prijs die je kunt betalen.
+#
+# DEZE BEDRAGEN ZIJN AANNAMES. Vervang ze door je eigen ervaringscijfers; jij
+# hebt gebouwd in Nijmegen en weet wat een vierkante meter kost.
+# ---------------------------------------------------------------------------
+AANLOOPMAANDEN = 3        # klussen, verhuurklaar maken en verhuren
+
+# Verbouwkosten per m2, inclusief materiaal en arbeid, naar energielabel. Een
+# pand met een goed label vraagt weinig; bij een slecht label komt de
+# verduurzaming erbij die je toch nodig hebt voor de huurpunten.
+RENOVATIE_PER_M2 = {
+    "A": 150, "B": 250, "C": 400, "D": 550, "E": 700, "F": 800, "G": 900,
+}
+RENOVATIE_ONBEKEND = 550  # als het label ontbreekt
+
+
+def renovatiekosten(opp, energielabel=None):
+    """Geschatte verbouwkosten, naar oppervlakte en energielabel."""
+    if not opp:
+        return 0
+    letter = ""
+    if isinstance(energielabel, dict):
+        letter = (energielabel.get("label") or "")[:1].upper()
+    per_m2 = RENOVATIE_PER_M2.get(letter, RENOVATIE_ONBEKEND)
+    return opp * per_m2
+
+
+def aanloopverlies(lening, netto_huur):
+    """
+    Wat de aanloopperiode kost: de rente loopt door terwijl er geen huur is.
+    De gemiste huur zelf is geen uitgave maar wel rendement dat je misloopt,
+    dus die tellen we apart.
+    """
+    maanden = AANLOOPMAANDEN / 12
+    return {
+        "rente": lening * RENTE / 100 * maanden,
+        "gemiste_huur": netto_huur * maanden,
+    }
 LOOPTIJD_JAAR = 30        # looptijd voor de annuiteit; 0 = alleen rente betalen
 
 # Aankoopkosten, apart zodat je ziet waar ze vandaan komen.
@@ -1379,7 +1479,92 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
             "opp": verhuurbaar, "bron": bron_k}
 
 
-def richtprijs(opp, huur_m2):
+
+def financiering(prijs, netto_huur, renovatie=0):
+    """
+    Rekent een aankoop door zoals een financier dat zou doen.
+
+    Gescheiden waar het gescheiden hoort: aflossing is geen kostenpost maar
+    vermogensopbouw, dus het operationeel resultaat is de nettohuur min de
+    rente. De aflossing komt daarna apart, want die verlaat je rekening wel
+    maar verdwijnt niet uit je vermogen.
+
+    De lening is het laagste van twee grenzen: de financieringsgraad en wat de
+    rentedekking toelaat. Bij de huidige rente knelt die tweede meestal eerder.
+    """
+    op_ltv = prijs * LTV / 100
+    op_dekking = (netto_huur / DEKKINGSEIS / (RENTE / 100)) if netto_huur else 0
+    lening = min(op_ltv, op_dekking) if op_dekking else op_ltv
+    knelpunt = "rentedekking" if op_dekking and op_dekking < op_ltv else "financieringsgraad"
+
+    ovb = prijs * OVERDRACHTSBELASTING_PCT / 100
+    bijkomend = prijs * BIJKOMENDE_KOSTEN_PCT / 100
+
+    # Verbouwing en aanloop komen uit eigen vermogen: de bank financiert ze
+    # bij verhuurd vastgoed doorgaans niet mee.
+    aanloop = aanloopverlies(lening, netto_huur)
+    investering = prijs + ovb + bijkomend + renovatie + aanloop["rente"]
+    eigen = investering - lening
+
+    rente = lening * RENTE / 100
+    jaarlast = lening * jaarlast_factor()
+    aflossing = jaarlast - rente
+
+    operationeel = netto_huur - rente          # wat het pand echt oplevert
+    na_aflossing = operationeel - aflossing    # wat er van je rekening af gaat
+
+    return {
+        "lening": lening, "knelpunt": knelpunt,
+        "ovb": ovb, "bijkomend": bijkomend,
+        "renovatie": renovatie,
+        "aanloop_rente": aanloop["rente"],
+        "gemiste_huur": aanloop["gemiste_huur"],
+        "investering": investering, "eigen": eigen,
+        "rente": rente, "aflossing": aflossing, "jaarlast": jaarlast,
+        "operationeel": operationeel, "na_aflossing": na_aflossing,
+        "bar": netto_huur / (1 - 0) / prijs * 100 if prijs else 0,
+        # Netto aanvangsrendement: nettohuur over de totale investering. Dit is
+        # waar taxateurs en beleggers op vergelijken, niet op de koopsom alleen.
+        "nar": netto_huur / investering * 100 if investering else 0,
+        "op_eigen": operationeel / eigen * 100 if eigen > 0 else 0,
+        "dekking": netto_huur / rente if rente else 0,
+    }
+
+
+def max_koopsom_bij_budget(netto_huur, budget=None, renovatie=0):
+    """
+    Hoeveel kun je maximaal kopen met het eigen vermogen dat je hebt?
+
+    Twee grenzen: het budget zelf, en wat de bank op deze huur wil lenen.
+    De strengste wint. Zonder budget geven we niets terug.
+    """
+    budget = EIGEN_VERMOGEN if budget is None else budget
+    if not budget:
+        return None
+    # Verbouwing gaat er als eerste af: dat geld is weg voordat je koopt
+    budget = budget - renovatie
+    if budget <= 0:
+        return {"max": 0, "knelpunt": "de verbouwing alleen al past niet"}
+    kosten = (OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT) / 100
+
+    # Grens 1: de financieringsgraad. eigen = K(1 + kosten - LTV)
+    noemer = 1 + kosten - LTV / 100
+    via_ltv = budget / noemer if noemer > 0 else 0
+
+    # Grens 2: de rentedekking. De lening staat dan vast op de huur.
+    via_dekking = None
+    if netto_huur:
+        lening = netto_huur / DEKKINGSEIS / (RENTE / 100)
+        via_dekking = (budget + lening) / (1 + kosten)
+
+    if via_dekking is None:
+        return {"max": via_ltv, "knelpunt": "financieringsgraad"}
+    if via_dekking < via_ltv:
+        return {"max": via_dekking, "knelpunt": "rentedekking"}
+    return {"max": via_ltv, "knelpunt": "financieringsgraad"}
+
+
+def richtprijs(opp, huur_m2, opex=None):
     """
     De hoogste koopsom waarbij het pand nog de gewenste cashflow haalt.
 
@@ -1391,7 +1576,7 @@ def richtprijs(opp, huur_m2):
     """
     if not opp or not huur_m2:
         return None
-    netto = huur_m2 * 12 * opp * (1 - OPEX_PCT / 100)
+    netto = huur_m2 * 12 * opp * (1 - (OPEX_PCT if opex is None else opex) / 100)
     noemer = (LTV / 100) * jaarlast_factor()
     if noemer <= 0:
         return None
@@ -2168,13 +2353,9 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             f.append(f"WOZ per m2 in de buurt: €{n(wozm2)}, dit pand ligt daar "
                      f"{(ppm2 - wozm2) / wozm2 * 100:+.0f}% boven of onder")
 
-        lening = prijs * LTV / 100
-        rentelast = lening * RENTE / 100
-        jaarlast = lening * jaarlast_factor()
-        aflossing = jaarlast - rentelast
-        ovb = prijs * OVERDRACHTSBELASTING_PCT / 100
-        bijkomend = prijs * BIJKOMENDE_KOSTEN_PCT / 100
-        eigen = prijs - lening + ovb + bijkomend
+        # Dezelfde rekenwijze als de dagelijkse brief, inclusief verbouwing en
+        # aanloopperiode, zodat de twee elkaar niet tegenspreken.
+        reno = renovatiekosten(opp, w.get("energielabel"))
         reeks = huur_bk.get(("woning", buurt), [])
         bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen in {buurt}"
         if len(reeks) < 3:
@@ -2186,23 +2367,49 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         else:
             huur_m2 = st.median(reeks)
         jaarhuur = huur_m2 * 12 * opp
-        netto = jaarhuur * (1 - OPEX_PCT / 100)
-        cashflow = netto - jaarlast
-        f += [f"financiering: {LTV:.0f}% loan-to-value, lening €{n(lening)}",
+        # Het scenario bepaalt de exploitatiekosten: kamerverhuur kost meer aan
+        # onderhoud, mutaties en beheer dan verhuur aan een huishouden.
+        sc_naam = (w.get("_scenario") or {}).get("naam", "één woning")
+        opex = opex_voor(sc_naam)
+        netto = jaarhuur * (1 - opex / 100)
+        fin = financiering(prijs, netto, reno)
+        lening, rentelast = fin["lening"], fin["rente"]
+        jaarlast, aflossing = fin["jaarlast"], fin["aflossing"]
+        ovb, bijkomend, eigen = fin["ovb"], fin["bijkomend"], fin["eigen"]
+        cashflow = fin["na_aflossing"]
+        f += [f"financiering: lening €{n(lening)}, begrensd door de {fin['knelpunt']} "
+              f"(financieringsgraad {LTV:.0f}%, dekkingseis {DEKKINGSEIS}x)",
+              f"verbouwing: €{n(reno)} geschat naar oppervlakte en energielabel, "
+              f"komt uit eigen vermogen want banken financieren dat bij verhuurd "
+              f"vastgoed doorgaans niet mee",
+              f"aanloop: {AANLOOPMAANDEN} maanden zonder huur, kost €{n(fin['aanloop_rente'])} "
+              f"aan rente en €{n(fin['gemiste_huur'])} aan gemiste huur",
               f"eigen vermogen: €{n(prijs - lening)} niet gefinancierd, plus "
-              f"€{n(ovb)} overdrachtsbelasting ({OVERDRACHTSBELASTING_PCT}%) en "
+              f"€{n(ovb)} overdrachtsbelasting ({OVERDRACHTSBELASTING_PCT}%), "
               f"€{n(bijkomend)} notaris, makelaar en taxatie "
-              f"({BIJKOMENDE_KOSTEN_PCT}%), samen €{n(eigen)} in te leggen",
+              f"({BIJKOMENDE_KOSTEN_PCT}%), €{n(reno)} verbouwing en "
+              f"€{n(fin['aanloop_rente'])} aanlooprente, samen €{n(eigen)} in te leggen",
               f"rente: {pct(RENTE)}%, rentelast €{n(rentelast)} per jaar",
               f"aflossing: over {LOOPTIJD_JAAR} jaar annuitair, €{n(aflossing)} per jaar"
               if LOOPTIJD_JAAR else "aflossing: geen, aflossingsvrij",
               f"totale jaarlast op de lening: €{n(jaarlast)}",
               f"huur per m2 per maand: €{huur_m2:.0f} ({bron_huur})",
-              f"kale huur: €{n(jaarhuur)} per jaar, na {OPEX_PCT}% opex €{n(netto)}",
-              f"cashflow na rente en aflossing: "
+              f"kale huur: €{n(jaarhuur)} per jaar, na {opex}% exploitatiekosten "
+              f"€{n(netto)}. Dat percentage hoort bij het scenario {sc_naam} en "
+              f"dekt groot onderhoud, verzekering, gemeentelijke lasten, beheer, "
+              f"leegstand en mutatie. Gas, water, licht en schoonmaak van "
+              f"gemeenschappelijke ruimten zitten er niet in: die worden via de "
+              f"servicekosten doorbelast en drukken dus niet op het rendement. "
+              f"Het is een aanname, geen gemeten cijfer",
+              f"operationeel resultaat: nettohuur min rente is "
+              f"€{n(fin['operationeel'])} per jaar",
+              f"aflossing: €{n(aflossing)} per jaar, geen kosten maar vermogensopbouw",
+              f"onder de streep: "
               f"€{n(cashflow) if cashflow >= 0 else '-' + n(abs(cashflow))} per jaar",
-              f"bruto aanvangsrendement: {jaarhuur / prijs * 100:.1f}%",
-              f"rendement op eigen vermogen: {cashflow / eigen * 100:.1f}%"
+              f"bruto aanvangsrendement over de koopsom: {jaarhuur / prijs * 100:.1f}%",
+              f"netto aanvangsrendement over de totale investering van "
+              f"€{n(fin['investering'])}: {fin['nar']:.1f}%",
+              f"operationeel rendement op eigen vermogen: {fin['op_eigen']:.1f}%"
               if eigen > 0 else ""]
         f = [x for x in f if x]
         bod = richtprijs(opp, huur_m2)
@@ -2544,7 +2751,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b,
                                    per_buurt.get(buurt, []))
                 w["_scenario"] = sc
-                plafond = richtprijs(sc["opp"], sc["huur_m2"]) if sc else None
+                plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
+                           if sc else None)
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
                     plafond_s = ("€" + f"{int(plafond):,}".replace(",", ".")
@@ -2600,6 +2808,45 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"({', '.join(w['object_adressen'][:3])}), en kent geen cijfer per "
                      f"huisnummer. Zet de oppervlakte uit de advertentie in verkopen.txt, "
                      f"dan rekent de brief er wel mee._")
+            r.append("")
+
+        # Wat je bij de vraagprijs moet inleggen. Alleen bij nieuwe of
+        # gewijzigde panden, anders staat het er elke dag opnieuw.
+        for _a, _p, _k, _afw, _b, w in sorted(vers, key=lambda x: x[0]):
+            prijs = w["prijs"]
+            sc = w.get("_scenario") or {}
+            netto = (sc.get("maand") or 0) * 12 * (1 - opex_voor(sc.get("naam")) / 100)
+            reno = renovatiekosten(w.get("oppervlakte"), w.get("energielabel"))
+            fin = financiering(prijs, netto, reno)
+
+            r.append(
+                f"_**{w['adres']}** bij de vraagprijs van €{eu(prijs)}: totale "
+                f"investering €{eu(fin['investering'])}, want er komt "
+                f"€{eu(fin['ovb'])} overdrachtsbelasting "
+                f"({pct(OVERDRACHTSBELASTING_PCT, 1)}%) en €{eu(fin['bijkomend'])} "
+                f"aan notaris, makelaar en taxatie bij, plus €{eu(fin['renovatie'])} "
+                f"verbouwing en €{eu(fin['aanloop_rente'])} rente over "
+                f"{AANLOOPMAANDEN} maanden waarin het pand nog niets opbrengt. "
+                f"De bank leent €{eu(fin['lening'])}, begrensd door de "
+                f"{fin['knelpunt']}, en financiert de verbouwing niet mee, dus je "
+                f"legt zelf **€{eu(fin['eigen'])}** in._")
+
+            r.append(
+                f"_Nettohuur €{eu(netto)} per jaar. Daarvan gaat €{eu(fin['rente'])} "
+                f"naar rente, zodat er **€{eu(fin['operationeel'])}** overblijft: "
+                f"{f"{fin['op_eigen']:.1f}".replace('.', ',')}% over je eigen inleg. De aflossing van "
+                f"€{eu(fin['aflossing'])} komt daar nog vanaf, maar dat is geen kosten "
+                f"maar vermogensopbouw; onder de streep gaat er "
+                f"€{eu(abs(fin['na_aflossing']))} per jaar "
+                f"{'bij' if fin['na_aflossing'] >= 0 else 'af'}. "
+                f"Netto aanvangsrendement {f"{fin['nar']:.1f}".replace('.', ',')}% over de totale "
+                f"investering._")
+
+            budget = max_koopsom_bij_budget(netto, renovatie=reno)
+            if budget and budget["max"] < prijs:
+                r.append(f"_Met het beschikbare eigen vermogen kom je hier tot "
+                         f"€{eu(budget['max'])}, begrensd door de {budget['knelpunt']}. "
+                         f"Dat is €{eu(prijs - budget['max'])} onder de vraagprijs._")
             r.append("")
 
         if oud:
@@ -3168,11 +3415,19 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     if aantal_gemeten:
         r.append(f"_Huur per m² is waar mogelijk **gemeten** uit {aantal_gemeten} "
                  f"huuraanbiedingen; waar die ontbreken staat een aanname. "
-                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en "
+                 f"{OPEX_PER_SCENARIO['woning']}% exploitatiekosten voor gewone verhuur en "
+                 f"{OPEX_PER_SCENARIO['kamers']}% bij kamerverhuur. Daarin zitten groot "
+                 f"onderhoud, verzekering, gemeentelijke lasten, beheer en mutatie, maar "
+                 f"niet de posten die via de servicekosten worden doorbelast._")
     else:
         r.append(f"_De mediaan €/m² is gemeten. De huur per m² is nog een **aanname**, "
                  f"want er zijn nog geen huuraanbiedingen verzameld. "
-                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en {OPEX_PCT}% opex._")
+                 f"Gerekend met rente {pct(RENTE)}% aflossingsvrij, LTV {LTV:.0f}% en "
+                 f"{OPEX_PER_SCENARIO['woning']}% exploitatiekosten voor gewone verhuur en "
+                 f"{OPEX_PER_SCENARIO['kamers']}% bij kamerverhuur. Daarin zitten groot "
+                 f"onderhoud, verzekering, gemeentelijke lasten, beheer en mutatie, maar "
+                 f"niet de posten die via de servicekosten worden doorbelast._")
     r.append("")
     r.append("| Buurt | mediaan €/m² | huur/m²/mnd | bron huur | bruto yield | netto cashflow op €1M lening |")
     r.append("|---|---:|---:|---|---:|---:|")
@@ -3204,7 +3459,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         waarde = 1_000_000 / (LTV / 100)
         m2_pand = waarde / med_m2
         kale_huur = m2_pand * huur_m2_jaar
-        netto_huur = kale_huur * (1 - OPEX_PCT / 100)
+        netto_huur = kale_huur * (1 - OPEX_PER_SCENARIO["woning"] / 100)
         rentelast = 1_000_000 * RENTE / 100
         cashflow = netto_huur - rentelast
         teken = "🔴" if cashflow < 0 else "🟢"
