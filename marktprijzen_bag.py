@@ -3412,7 +3412,8 @@ KAART_URL = ("https://derksenvastgoed.github.io/"
 
 
 
-def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True):
+def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
+                        gezien_vooraf=None):
     """
     Opening met wat er vandaag speelt, niet met achtergrondcijfers. Alles hier
     volgt uit wat elders in de brief staat; er komt geen nieuwe bron bij.
@@ -3422,22 +3423,27 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True):
 
     zinnen = []
     aanbod = [k for k in kandidaten if k[3] is not None]
+    # Nieuw telt op hetzelfde geheugen als de tabel, anders spreekt de
+    # samenvatting de rest van de brief tegen.
+    gezien_nu = gezien_vooraf if gezien_vooraf is not None else lees_gezien()
     in_beeld = {id(k[-1]) for k in aanbod}
     nieuw = [w for w in woningen
-             if id(w) in in_beeld
-             and _dagen_sinds(w.get("datum_eerst") or w.get("datum")) == 0]
+             if id(w) in in_beeld and is_nieuw_of_gewijzigd(w, gezien_nu)[0]]
     gewijzigd = [w for w in woningen
                  if w.get("prijs_eerst") and w["prijs_eerst"] != w["prijs"]]
 
     kop = f"{len(aanbod)} panden in beeld"
     if nieuw:
-        kop += f", {len(nieuw)} nieuw vandaag"
+        kop += (f", {len(nieuw)} nieuw of gewijzigd"
+                if len(nieuw) > 1 else ", 1 nieuw of gewijzigd")
+    else:
+        kop += ", geen mutaties sinds gisteren"
     if gewijzigd:
-        kop += f", {len(gewijzigd)} met een prijswijziging"
+        kop += f", waarvan {len(gewijzigd)} met een prijswijziging"
     zinnen.append(kop + ".")
 
     # Het scherpst geprijsde pand, met het scenario erbij
-    if aanbod:
+    if aanbod and nieuw:
         beste = sorted(aanbod, key=lambda x: x[0])[0]
         afw, ppm2, klasse, _a, basis, w = beste
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
@@ -3644,6 +3650,10 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
 
+    # Het geheugen lezen voordat het aanbod het bijwerkt, anders ziet de
+    # samenvatting alles als al gezien.
+    gezien_vooraf = lees_gezien()
+
     # Doordeweeks de volledige lijst per buurt, zondag uitgewerkte cases
     aanbod_regels, kandidaten = render_nieuw_aanbod(
         woningen, per_buurt, stad_breed, bm_per_buurt, bm_overig, kort=kort)
@@ -3651,7 +3661,8 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         # Samenvatting vooraan, daarna het aanbod, dan de bewegingen en als
         # laatste de achtergrondcijfers
         huur_bk_b, huur_k_b = gemeten_huren(huur_aanbod)
-        r = (render_samenvatting(woningen, kandidaten, bm_per_buurt, kort=True)
+        r = (render_samenvatting(woningen, kandidaten, bm_per_buurt, kort=True,
+                                 gezien_vooraf=gezien_vooraf)
              + aanbod_regels
              + render_bieden(woningen, huur_bk_b, huur_k_b, per_buurt)
              + render_prijswijzigingen(woningen)
