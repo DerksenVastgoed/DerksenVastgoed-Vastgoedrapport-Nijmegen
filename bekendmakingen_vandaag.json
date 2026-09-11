@@ -1,68 +1,28 @@
 [
  {
-  "datum": "2026-09-03",
-  "titel": "Besluit voor het wijzigen van de bovenwoning naar drie zelfstandige woningen aan Plein 1944 142, 6511JH Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-415611.html",
-  "strategie": "splitsen",
-  "duiding": "Omzetten van één bovenwoning (53 m²) in drie zelfstandige woningen vergroot het aantal verhuurbare eenheden en verkleint de voorraad grotere bovenwoningen.",
+  "datum": "2026-09-10",
+  "titel": "Melding melding brandveilig gebruik voor een kamerverhuurpand, aan St. Stephanusstraat 11, 6512HM Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-424572.html",
+  "strategie": "kamerverhuur",
+  "duiding": "Melding bevestigt bestaand kamerverhuurgebruik op 252 m2, wat geen nieuwe vergunning maar formalisering van het gebruik is.",
   "feiten": {
-   "energielabel": "D (2025)",
-   "oppervlakte_m2": 53
+   "oppervlakte_m2": 252
   },
-  "straat": "Plein 1944",
-  "huisnummer": "142",
+  "straat": "St. Stephanusstraat",
+  "huisnummer": "11",
   "kern": true
  },
  {
-  "datum": "2026-09-02",
-  "titel": "Besluit voor Het verbouwen en uitbreiden van een woning over twee bouwlagen, aan Brakkensteinweg 26, 6525RP Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411432.html",
-  "strategie": "geen",
-  "duiding": "Uitbreiding over twee bouwlagen (125 m²) betreft een individuele woninguitbreiding zonder direct effect op de beleggingsvoorraad.",
+  "datum": "2026-09-09",
+  "titel": "Melding brandveilig gebruik kamerverhuur, aan Biezenstraat 138, 6541ZX Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-422834.html",
+  "strategie": "kamerverhuur",
+  "duiding": "Melding brandveilig gebruik op 249 m2 toont dat dit pand al als kamerverhuur functioneert en dit nu wordt geformaliseerd.",
   "feiten": {
-   "oppervlakte_m2": 125
+   "oppervlakte_m2": 249
   },
-  "straat": "Brakkensteinweg",
-  "huisnummer": "26",
-  "kern": false
- },
- {
-  "datum": "2026-09-03",
-  "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Burchtstraat 71C, 6511RC Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413735.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Aanvraag voor tijdelijke verhuur van een woning met label C (2024) en 154 m² wijst op overbrugging vóór verkoop of herontwikkeling.",
-  "feiten": {
-   "energielabel": "C (2024)",
-   "oppervlakte_m2": 154
-  },
-  "straat": "Burchtstraat",
-  "huisnummer": "71",
-  "kern": false
- },
- {
-  "datum": "2026-09-02",
-  "titel": "Besluit voor het vervangen van 4 ramen en kozijnen op de eerste verdieping in de voorgevel aan Bottelstraat 29 & 33, 6511XA Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-411423.html",
-  "strategie": "geen",
-  "duiding": "Vervangen van ramen en kozijnen in de voorgevel is een cosmetische ingreep zonder marktrelevantie.",
-  "feiten": {},
-  "straat": "Bottelstraat 29 &",
-  "huisnummer": "33",
-  "kern": false
- },
- {
-  "datum": "2026-09-02",
-  "titel": "Besluit voor het renoveren van een gemeentelijk monument aan van Welderenstraat 102, 6511MS Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-413413.html",
-  "strategie": "verduurzaming",
-  "duiding": "Renovatie van een gemeentelijk monument (label E, 2022, 226 m²) toont dat gevelverbetering hier vergunbaar is, ook bij monumentale status.",
-  "feiten": {
-   "energielabel": "E (2022)",
-   "oppervlakte_m2": 226
-  },
-  "straat": "van Welderenstraat",
-  "huisnummer": "102",
-  "kern": false
+  "straat": "Biezenstraat",
+  "huisnummer": "138",
+  "kern": true
  }
 ]

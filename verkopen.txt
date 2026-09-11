@@ -203,3 +203,16 @@ Koningstraat 4 | Nijmegen | 850000 | belegging
 # Handmatig gecorrigeerd: de BAG geeft 233 m2 voor het hele
 # pand, maar dit is het bovenhuis van 144 m2 volgens de advertentie.
 van Slichtenhorststraat 42 | Nijmegen | 645000 | te koop | 2026-09-03 |  | 144
+
+# Automatisch toegevoegd uit Funda-attendering op 11-09-2026
+van Slichtenhorststraat 100 | Nijmegen | 630000 | te koop | 2026-09-11 |  | 137 | 6524JW
+St. Annastraat 96 | Nijmegen | 750000 | te koop | 2026-09-11 |  | 146 | 6524GJ
+de Ruyterstraat 37 | Nijmegen | 450000 | te koop | 2026-09-11 |  | 99 | 6512GA
+Braamhof 4 | Nijmegen | 525000 | te koop | 2026-09-11 |  | 107 | 6542JX
+Arsenaalplaats 6 | Nijmegen | 499000 | te koop | 2026-09-11 |  | 96 | 6511PC
+Beijensstraat 18 | Nijmegen | 419000 | te koop | 2026-09-11 |  | 77 | 6521EC
+Professor Cornelissenstraat 3 | Nijmegen | 370000 | te koop | 2026-09-11 |  | 73 | 6524PD
+Hofdijkstraat 17 | Nijmegen | 635000 | te koop | 2026-09-11 |  | 124 | 6531BR
+Dokstraat 425 | Nijmegen | 595000 | te koop | 2026-09-11 |  | 102 | 6541EZ
+Dominicanenstraat 30 | Nijmegen | 735000 | te koop | 2026-09-11 |  | 174 | 6521KD
+Ziekerstraat 36 | Nijmegen | 339000 | te koop | 2026-09-11 |  | 50 | 6511LH

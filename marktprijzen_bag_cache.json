@@ -3562,5 +3562,259 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-2db390353d8de018e1ce0b22227a6f71"
+  },
+  "van Slichtenhorststraat 100|Nijmegen": {
+    "oppervlakte": 137,
+    "bouwjaar": "1925",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JW",
+    "adresseerbaarObjectIdentificatie": "0268010000032621",
+    "pand": "0268100000029793",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-d5d4e45d7ece75453a2b039182a2b7f5",
+    "oppervlakte_bag": 149,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-08-31",
+      "geldig_tot": "2036-08-24",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "St. Annastraat 96|Nijmegen": {
+    "oppervlakte": 146,
+    "bouwjaar": "1960",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524GJ",
+    "adresseerbaarObjectIdentificatie": "0268010000029863",
+    "pand": "0268100000010272",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-d99db0d7d4c316e30ac0af9b84e7ed3a",
+    "oppervlakte_bag": 167,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-06-29",
+      "geldig_tot": "2036-06-26",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "de Ruyterstraat 37|Nijmegen": {
+    "oppervlakte": 99,
+    "bouwjaar": "1906",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GA",
+    "adresseerbaarObjectIdentificatie": "0268010000002736",
+    "pand": "0268100000010512",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-f1e683d61e5442c3f002186c1295b7a2",
+    "oppervlakte_bag": 109,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-08-18",
+      "geldig_tot": "2036-07-31",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Braamhof 4|Nijmegen": {
+    "oppervlakte": 107,
+    "bouwjaar": "2018",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542JX",
+    "adresseerbaarObjectIdentificatie": "0268010000093031",
+    "pand": "0268100000091048",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-36e5495da65ba822f0be468d064c877c",
+    "oppervlakte_bag": 106,
+    "energielabel": {
+      "label": "A+",
+      "registratiedatum": "2026-09-02",
+      "geldig_tot": "2036-08-31",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Arsenaalplaats 6|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "2004",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PC",
+    "adresseerbaarObjectIdentificatie": "0268010000054124",
+    "pand": "0268100000021461",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-f0a6ba534b2984948bbd967a6fcc13c1",
+    "oppervlakte_bag": 97,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-08-25",
+      "geldig_tot": "2036-08-24",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Beijensstraat 18|Nijmegen": {
+    "oppervlakte": 77,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521EC",
+    "adresseerbaarObjectIdentificatie": "0268010000000238",
+    "pand": "0268100000002177",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-3e2da1a63df4d5a0f092234cf67c9466",
+    "oppervlakte_bag": 85,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2022-04-04",
+      "geldig_tot": "2032-03-29",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Professor Cornelissenstraat 3|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1957",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524PD",
+    "adresseerbaarObjectIdentificatie": "0268010000080535",
+    "pand": "0268100000024632",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-07f17a018ad0b23801c0adebebe0e51e",
+    "oppervlakte_bag": 76,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2019-09-24",
+      "geldig_tot": "2029-09-24",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Hofdijkstraat 17|Nijmegen": {
+    "oppervlakte": 124,
+    "bouwjaar": "2012",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6531BR",
+    "adresseerbaarObjectIdentificatie": "0268010000086889",
+    "pand": "0268100000084175",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Nije Veld",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-f1f51f183f8cc93a9e1c0c1ffd52240e",
+    "oppervlakte_bag": 121,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2018-02-06",
+      "geldig_tot": "2028-02-06",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Dokstraat 425|Nijmegen": {
+    "oppervlakte": 102,
+    "bouwjaar": "2016",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "adresseerbaarObjectIdentificatie": "0268010000093808",
+    "pand": "0268100000088468",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-20a80301eb7f523eea84da9ca5eb401e",
+    "oppervlakte_bag": 103,
+    "energielabel": {
+      "label": "A+",
+      "registratiedatum": "2026-05-12",
+      "geldig_tot": "2036-05-08",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Dominicanenstraat 30|Nijmegen": {
+    "oppervlakte": 174,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521KD",
+    "adresseerbaarObjectIdentificatie": "0268010000010831",
+    "pand": "0268100000002488",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-639f2e91d805c9176dcae6a570ac9eb9",
+    "oppervlakte_bag": 175,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-04-08",
+      "geldig_tot": "2036-03-30",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Ziekerstraat 36|Nijmegen": {
+    "oppervlakte": 50,
+    "bouwjaar": "2009",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511LH",
+    "adresseerbaarObjectIdentificatie": "0268010000061399",
+    "pand": "0268100000003468",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-51261da25d9a895d43b4bcd3005d1262",
+    "oppervlakte_bag": 51,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-09-06",
+      "geldig_tot": "2036-09-05",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:St. Stephanusstraat 11|Nijmegen": {
+    "postcode": "6512HM",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-c0e3b0f1c3c4743a7a917f0db1a79d98"
+  },
+  "bm:Biezenstraat 138|Nijmegen": {
+    "postcode": "6541ZX",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-92985bf68e9d13bc07ae70abd20ffbcb"
   }
 }
