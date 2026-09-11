@@ -105,6 +105,58 @@ def _woz(p):
 
 # Mogelijke namen voor de gemiddelde woningoppervlakte. Of het CBS dit per buurt
 # levert weten we niet zeker; vindt het script niets, dan logt het alle velden.
+# Inkomen per buurt. Het CBS levert dit met ongeveer twee jaar vertraging en
+# onderdrukt het bij kleine buurten, dus een lege waarde is normaal.
+INKOMEN_VELDEN = [
+    "gemiddeld_inkomen_per_inwoner", "gemiddeld_inkomen_inwoner",
+    "gem_inkomen_per_inwoner", "inkomen_per_inwoner",
+]
+INKOMEN_ONTVANGER_VELDEN = [
+    "gemiddeld_inkomen_per_inkomensontvanger", "gem_inkomen_per_inkomensontvanger",
+    "inkomen_per_inkomensontvanger",
+]
+# Het CBS heeft "laag inkomen" en "sociaal minimum" vervangen door een nieuwe
+# armoededefinitie, ontwikkeld met Nibud en SCP. Beide reeksen staan erin,
+# zodat het werkt met de oude en de nieuwe tabel.
+LAAG_INKOMEN_VELDEN = [
+    "percentage_huishoudens_met_een_laag_inkomen", "perc_huishoudens_laag_inkomen",
+    "percentage_laag_inkomen", "perc_laag_inkomen",
+    "percentage_huishoudens_onder_de_armoedegrens", "percentage_armoede",
+    "perc_huishoudens_armoede", "percentage_huishoudens_in_armoede",
+]
+
+# Mediaan vermogen per buurt: het saldo van bezittingen en schulden. Dit is een
+# gemeten cijfer, niet afgeleid uit leeftijd of inkomen. Bij weinig huishoudens
+# onderdrukt het CBS de waarde.
+VERMOGEN_VELDEN = [
+    "mediaan_vermogen_particuliere_huishoudens", "mediaan_vermogen",
+    "med_vermogen_part_huish", "mediaan_vermogen_part_huishoudens",
+    "mediaan_vermogen_van_particuliere_huishoudens",
+]
+MINIMUM_VELDEN = [
+    "percentage_huishoudens_onder_of_rond_sociaal_minimum",
+    "perc_huishoudens_onder_of_rond_sociaal_minimum",
+    "percentage_onder_of_rond_sociaal_minimum",
+]
+
+# Huishoudenssamenstelling. Het aandeel alleenwonenden voorspelt de vraag naar
+# kleine eenheden, en dat is waar de huur per m2 het hoogst ligt.
+HUISHOUDENS_VELDEN = ["aantal_huishoudens", "aantal_particuliere_huishoudens"]
+EENPERSOONS_VELDEN = [
+    "percentage_eenpersoonshuishoudens", "perc_eenpersoonshuishoudens",
+    "percentage_eenpersoons_huishoudens",
+]
+ZONDER_KINDEREN_VELDEN = [
+    "percentage_huishoudens_zonder_kinderen", "perc_huishoudens_zonder_kinderen",
+]
+MET_KINDEREN_VELDEN = [
+    "percentage_huishoudens_met_kinderen", "perc_huishoudens_met_kinderen",
+]
+GROOTTE_VELDEN = [
+    "gemiddelde_huishoudsgrootte", "gemiddelde_huishoudensgrootte",
+    "gem_huishoudensgrootte", "gemiddelde_huishoudens_grootte",
+]
+
 OPPERVLAKTE_VELDEN = [
     "gemiddelde_woningoppervlakte", "gemiddeld_woonoppervlak",
     "gemiddelde_oppervlakte_woning", "gemiddeld_oppervlak_woning",
@@ -217,6 +269,18 @@ def main():
                          + (_getal(p_nu, ["aantal_studenten_hbo"], 0) or 0),
             "inwoners": _getal(p_nu, ["aantal_inwoners"], 0),
             "nietwoningen": _getal(p_nu, ["aantal_niet_woningvoorraad"], 0),
+            # Huishoudens: wie woont er alleen en wie met hoeveel
+            "huishoudens": _getal(p_nu, HUISHOUDENS_VELDEN, 0),
+            "eenpersoons": _getal(p_nu, EENPERSOONS_VELDEN, 0, 100),
+            "zonder_kinderen": _getal(p_nu, ZONDER_KINDEREN_VELDEN, 0, 100),
+            "met_kinderen": _getal(p_nu, MET_KINDEREN_VELDEN, 0, 100),
+            "huishoudgrootte": _getal(p_nu, GROOTTE_VELDEN, 1, 6),
+            # Inkomen zegt wat de buurt kan dragen aan huur
+            "inkomen": _getal(p_nu, INKOMEN_VELDEN, 0, 500),
+            "inkomen_ontvanger": _getal(p_nu, INKOMEN_ONTVANGER_VELDEN, 0, 500),
+            "laag_inkomen": _getal(p_nu, LAAG_INKOMEN_VELDEN, 0, 100),
+            "vermogen": _getal(p_nu, VERMOGEN_VELDEN, -500, 5000),
+            "sociaal_minimum": _getal(p_nu, MINIMUM_VELDEN, 0, 100),
             "bedrijven": _getal(p_nu, ["aantal_bedrijfsvestigingen"], 0),
             "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
             "koop": koop, "corp": corp, "over": over, "onb": onb,
@@ -242,6 +306,31 @@ def main():
           f"{stad['woningen']} woningen, {stad['inwoners']} inwoners, "
           f"{stad['studenten']} studenten", file=sys.stderr)
 
+    if rijen and not any(r.get("vermogen") for r in rijen):
+        eerste_v = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        vermogensachtig = sorted(k for k in eerste_v
+                                 if "vermogen" in k.lower() or "armoede" in k.lower())
+        print("Geen vermogensgegevens gevonden in de CBS-buurtkaart.", file=sys.stderr)
+        print(f"  Velden die op vermogen of armoede lijken: "
+              f"{vermogensachtig or 'geen'}", file=sys.stderr)
+
+    if rijen and not any(r.get("eenpersoons") for r in rijen):
+        eerste_h = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        huishoudachtig = sorted(k for k in eerste_h if "huishoud" in k.lower())
+        print("Geen huishoudensgegevens gevonden in de CBS-buurtkaart.",
+              file=sys.stderr)
+        print(f"  Velden die op huishoudens lijken: {huishoudachtig or 'geen'}",
+              file=sys.stderr)
+
+    if rijen and not any(r.get("inkomen") or r.get("laag_inkomen") for r in rijen):
+        eerste_i = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        inkomensachtig = sorted(k for k in eerste_i
+                                if "inkom" in k.lower() or "minimum" in k.lower()
+                                or "welvaart" in k.lower())
+        print("Geen inkomensgegevens gevonden in de CBS-buurtkaart.", file=sys.stderr)
+        print(f"  Velden die op inkomen lijken: {inkomensachtig or 'geen'}",
+              file=sys.stderr)
+
     if rijen and not any(r.get("opp") for r in rijen):
         eerste = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
         print("Geen gemiddelde woningoppervlakte gevonden in de CBS-gegevens.",
@@ -260,7 +349,10 @@ def main():
     gegevens = {r["naam"]: {k: r.get(k) for k in
                             ("won", "woz", "koop", "corp", "over", "trend", "opp",
                              "meergezins", "voor2000", "studenten", "leegstand",
-                             "inwoners", "nietwoningen", "bedrijven")}
+                             "inwoners", "nietwoningen", "bedrijven",
+                             "inkomen", "inkomen_ontvanger", "laag_inkomen",
+                             "sociaal_minimum", "vermogen", "huishoudens", "eenpersoons",
+                             "zonder_kinderen", "met_kinderen", "huishoudgrootte")}
                 for r in rijen}
     gegevens["_nijmegen"] = stad
     with open(CBS_PAD, "w", encoding="utf-8") as f:
