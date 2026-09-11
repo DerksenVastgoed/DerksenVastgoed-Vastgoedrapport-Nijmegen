@@ -98,6 +98,7 @@ ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Dit is de belangrijkste regel.
 
 NAUWKEURIG OVER DE JURIDISCHE STATUS. Even belangrijk.
 - Een MELDING (bijvoorbeeld brandveilig gebruik) is GEEN vergunning. Schrijf nooit "vergund" of "vergunbaar" bij een melding. Een melding betekent dat de eigenaar het gebruik heeft aangemeld.
+- MAAR: een melding brandveilig gebruik is verplicht vanaf vijf kamers en staat LOS van de omzettingsvergunning. Concludeer er dus NOOIT uit dat het pand zonder vergunning of zonder toestemming draait. Kijk bij de feiten naar het veld "vergunning": ligt er al een, noem die dan. Staat er dat hij niet gevonden is, schrijf dan dat de vergunning ouder kan zijn dan de gemeentelijke lijst of niet vereist is omdat de WOZ boven de grens ligt. Dat is iets anders dan "niet vergund".
 - Een AANVRAAG is nog geen besluit. Die kan geweigerd worden. Schrijf niet alsof het rond is.
 - Alleen bij een BESLUIT of VERLEENDE vergunning mag je zeggen dat iets is toegestaan.
 - Neem het woord uit de titel over: staat er "melding", schrijf dan melding. Staat er "aanvraag", schrijf dan aanvraag.
@@ -496,6 +497,49 @@ def vat_beleid_samen(items):
         print(f"Beleidssamenvatting overgeslagen: {e}", file=sys.stderr)
 
 
+
+VERGUNNINGEN_PAD = "kamervergunningen.json"
+
+
+def _verg_sleutel(straat, nr):
+    a = straat.lower()
+    for lang, kort in (("sint ", "st"), ("st. ", "st"), ("professor ", "prof"),
+                       ("prof. ", "prof"), ("burgemeester ", "burg"),
+                       ("burg. ", "burg"), ("doctor ", "dr"), ("dr. ", "dr")):
+        a = a.replace(lang, kort)
+    return re.sub(r"[^a-z0-9]", "", a) + str(nr)
+
+
+def verrijk_met_vergunning(items):
+    """
+    Zoekt per bekendmaking op of er al een vergunning op dat adres ligt.
+
+    Dat is nodig omdat een melding brandveilig gebruik niets zegt over de
+    vergunning: die melding is verplicht vanaf vijf kamers en staat los van de
+    omzettingsvergunning. Zonder deze opzoeking leest zo'n melding alsof het
+    pand zonder toestemming draait, en dat is meestal onjuist.
+    """
+    if not os.path.exists(VERGUNNINGEN_PAD):
+        return
+    try:
+        with open(VERGUNNINGEN_PAD, encoding="utf-8") as f:
+            lijst = json.load(f)
+    except Exception:
+        return
+
+    for it in items:
+        straat, nr = it.get("straat", ""), it.get("huisnummer", "")
+        if not straat or not nr:
+            continue
+        treffers = lijst.get(_verg_sleutel(straat, str(nr)), [])
+        if treffers:
+            t = treffers[0]
+            it["vergunning"] = (f"{t.get('soort', 'vergunning')}svergunning uit "
+                                f"{t.get('datum', '')[:4]}")
+        else:
+            it["vergunning"] = "geen"
+
+
 def verrijk_met_bag(items: list):
     """Zet harde feiten uit de BAG, EP-Online en het monumentenregister bij elk item.
     Deze gegevens zijn gemeten of geregistreerd, niet geschat."""
@@ -596,7 +640,15 @@ def verrijk(items: list):
         return
     regels = []
     for i, it in enumerate(items):
-        feiten = it.get("feiten") or {}
+        feiten = dict(it.get("feiten") or {})
+        # De vergunningstatus erbij, zodat een melding brandveilig gebruik niet
+        # wordt uitgelegd als een pand dat zonder toestemming draait.
+        verg = it.get("vergunning")
+        if verg == "geen":
+            feiten["vergunning"] = ("niet gevonden in de gemeentelijke lijst vanaf "
+                                    "2013; kan ouder zijn of niet vereist zijn")
+        elif verg:
+            feiten["vergunning"] = f"op dit adres ligt al een {verg}"
         if feiten:
             feitentekst = ", ".join(f"{k}={v}" for k, v in feiten.items())
             regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: {feitentekst}")
@@ -757,6 +809,7 @@ def main():
     beleid = [it for it in beleid if (it["titel"], it["datum"]) not in reeds]
 
     verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
+    verrijk_met_vergunning(kern + overige)
     verrijk(kern + overige + beleid)  # duiding voor alle getoonde items in een call
 
     if beleid:
