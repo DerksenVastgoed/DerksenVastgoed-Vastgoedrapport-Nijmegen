@@ -147,6 +147,14 @@
  ],
  "beijensstraat53": [
   {
+   "datum": "2026-04-14",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Besluit voor het legaliseren van de opsplitsing van de bovenwoning, aan Beijensstraat 53, 6521EB Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-174408/1/html/gmb-2026-174408.html"
+  },
+  {
    "datum": "2025-12-23",
    "soorten": [
     "splitsing"
@@ -2080,6 +2088,14 @@
    ],
    "titel": "Buiten behandelingstelling  woongebouw: het splitsen van een woning , aan Heydenrijckstraat 40, 6521LP Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-291376/1/html/gmb-2026-291376.html"
+  },
+  {
+   "datum": "2026-04-24",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor woongebouw: het splitsen van een woning , aan Heydenrijckstraat 40, 6521LP Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-198293/1/html/gmb-2026-198293.html"
   }
  ],
  "heyendaalseweg227": [
@@ -2301,6 +2317,14 @@
   }
  ],
  "koolemansbeynenstraat74": [
+  {
+   "datum": "2026-04-13",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Besluit voor het legaliseren van de opsplitsing van de bovenwoning in twee appartementen, aan Koolemans Beynenstraat 74, 6521EW Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-173162/1/html/gmb-2026-173162.html"
+  },
   {
    "datum": "2025-12-30",
    "soorten": [
@@ -3206,7 +3230,25 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-274282/1/html/gmb-2026-274282.html"
   }
  ],
+ "stannastraat198": [
+  {
+   "datum": "2026-04-14",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik Splendorfabriek aan St. Annastraat 198, 6525GX Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-175343/1/html/gmb-2026-175343.html"
+  }
+ ],
  "stannastraat219": [
+  {
+   "datum": "2026-04-16",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Besluit voor het  splitsen van een bestaand pand in 3 wooneenheden, aan St. Annastraat 219, 6525GN Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-179638/1/html/gmb-2026-179638.html"
+  },
   {
    "datum": "2025-12-15",
    "soorten": [
@@ -3544,6 +3586,14 @@
   }
  ],
  "triangelstraat59": [
+  {
+   "datum": "2026-04-16",
+   "soorten": [
+    "omzetting"
+   ],
+   "titel": "Besluit voor het omzetten van een eengezinswoning naar studentenwoning, aan Triangelstraat 59, 6544VH Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-182038/1/html/gmb-2026-182038.html"
+  },
   {
    "datum": "2026-02-23",
    "soorten": [
@@ -4070,6 +4120,16 @@
    ],
    "titel": "Aanvraag omgevingsvergunning voor het omzetten van een woon-werkpand naar drie zelfstandige woningen aan Wilhelminasingel 4, 6524AK Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2025/gmb-2025-344401/1/html/gmb-2025-344401.html"
+  }
+ ],
+ "wilhelminasingel44": [
+  {
+   "datum": "2026-04-02",
+   "soorten": [
+    "omzetting"
+   ],
+   "titel": "Besluit voor het omzetten van een woon-werkpand naar drie zelfstandige woningen aan Wilhelminasingel 4, 4a en 4b 6524AK Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-157249/1/html/gmb-2026-157249.html"
   }
  ],
  "wilhelminasingel7": [

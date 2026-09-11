@@ -6,7 +6,7 @@ _Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._
 
 - **2026-09-10** . Melding melding brandveilig gebruik voor een kamerverhuurpand, aan St. Stephanusstraat 11, 6512HM Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-424572.html))
   `252 m²`
-  **[kamerverhuur]** _Melding bevestigt bestaand kamerverhuurgebruik op 252 m2, wat geen nieuwe vergunning maar formalisering van het gebruik is._
+  **[kamerverhuur]** _Melding brandveilig gebruik toont dat dit pand als kamerverhuur in gebruik is, relevant voor vergelijkbare verkameringsplannen._
 - **2026-09-09** . Melding brandveilig gebruik kamerverhuur, aan Biezenstraat 138, 6541ZX Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-422834.html))
   `249 m²`
-  **[kamerverhuur]** _Melding brandveilig gebruik op 249 m2 toont dat dit pand al als kamerverhuur functioneert en dit nu wordt geformaliseerd._
+  **[kamerverhuur]** _Nieuwe melding brandveilig gebruik bevestigt operationele kamerverhuur, geen vergunning maar wel bewijs van praktijk in de buurt._
