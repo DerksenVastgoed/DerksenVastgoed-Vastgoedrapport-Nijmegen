@@ -44,6 +44,10 @@ GEMEENTE = "Nijmegen"
 ARCHIEF_PAD = "bekendmakingen_archief.json"
 MAX_PER_PAGINA = 100
 
+# Pauze tussen twee bevragingen. Bij een volledige backfill loopt dit op tot
+# honderden verzoeken; te snel achter elkaar levert 503-fouten op.
+PAUZE = float(os.environ.get("SRU_PAUZE", "1.0"))
+
 # Alleen bekendmakingen die iets zeggen over het gebruik van een pand.
 SIGNAALWOORDEN = {
     "kamerverhuur": ["kamerverhuur", "kamerbewoning", "onzelfstandige woonruimte",
@@ -111,12 +115,29 @@ def haal_periode(vanaf, tot, stil=False):
         params = {"version": "2.0", "operation": "searchRetrieve", "query": cql,
                   "maximumRecords": MAX_PER_PAGINA, "startRecord": start}
         url = SRU_URL + "?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
-        try:
-            resp = requests.get(url, timeout=45)
-            resp.raise_for_status()
-            root = ET.fromstring(resp.content)
-        except Exception as e:
-            print(f"  fout bij {vanaf}..{tot} vanaf record {start}: {e}", file=sys.stderr)
+        # De SRU gaat 503 geven als je te snel achter elkaar bevraagt. Bij een
+        # fout dus wachten en opnieuw, met oplopende pauze. Dat is de enige
+        # manier om de drukke maanden binnen te krijgen.
+        root = None
+        for poging in range(1, 5):
+            try:
+                resp = requests.get(url, timeout=(20, 90))
+                if resp.status_code == 503:
+                    raise RuntimeError("503 Service Unavailable")
+                resp.raise_for_status()
+                root = ET.fromstring(resp.content)
+                break
+            except Exception as e:
+                if poging == 4:
+                    print(f"  fout bij {vanaf}..{tot} vanaf record {start}: {e}",
+                          file=sys.stderr)
+                    break
+                wacht = poging * 20
+                if not stil:
+                    print(f"    {vanaf} record {start}: poging {poging} mislukt, "
+                          f"opnieuw over {wacht}s", file=sys.stderr)
+                time.sleep(wacht)
+        if root is None:
             break
         pagina = [el for el in root.iter() if _lokaal(el.tag) == "record"]
         if not pagina:
@@ -127,9 +148,10 @@ def haal_periode(vanaf, tot, stil=False):
         start += MAX_PER_PAGINA
         if start > totaal or start > 4000:
             break
-        time.sleep(0.3)
+        time.sleep(PAUZE)
     if not stil:
         print(f"  {vanaf}..{tot}: {len(records)} records", file=sys.stderr)
+    time.sleep(PAUZE * 2)   # adempauze voordat het volgende blok begint
     return records
 
 
