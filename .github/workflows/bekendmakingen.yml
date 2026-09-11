@@ -52,6 +52,17 @@ jobs:
           python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md" || echo "Bekendmakingen-stap overgeslagen"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
 
+      - name: Vergunningen aan buurten koppelen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Straten verhuizen niet, dus dit hoeft maar een keer. Verwijder
+          # vergunningen_per_buurt.json om opnieuw te koppelen.
+          if [ ! -s vergunningen_per_buurt.json ] && [ -s kamervergunningen.json ]; then
+            python vergunningen_buurten.py || echo "Buurtkoppeling overgeslagen"
+          else
+            echo "Buurtkoppeling aanwezig of geen vergunningenlijst, overslaan"
+          fi
+
       - name: Misdrijfcijfers verversen (alleen als het bestand ontbreekt)
         continue-on-error: true
         run: |
@@ -118,12 +129,6 @@ jobs:
           else
             echo "Monumentenbestand aanwezig ($GROOTTE bytes), overslaan"
           fi
-
-      - name: BAG uitzoeken (tijdelijk, weghalen na gebruik)
-        env:
-          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
-        continue-on-error: true
-        run: python bag_uitzoeken.py
 
       - name: Marktprijzen (BAG) verrijken
         env:
@@ -231,13 +236,62 @@ jobs:
             echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM}" >> "$GITHUB_ENV"
           fi
 
-      - name: Digests + rentehistorie + cache terugcommitten
+      - name: Digests + gegevensbestanden terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add verkopen.txt woz.txt brief_gezien.json misdrijven_per_buurt.json prijstrend.json kamervergunningen.json vergunningen_per_buurt.json straat_buurt_cache.json rente_actueel.json buurten_cbs.json top3-kaart.html bekendmakingen_vandaag.json digests/ rente_historie.json publicaties_gezien.json marktprijzen_bag_cache.json bekendmakingen_archief.json rijksmonumenten_nijmegen.json 2>/dev/null || true
-          git commit -m "Brief ${{ env.DATUM }}" || echo "Niets nieuws vandaag"
-          git push
+
+          # Alles wat de scripts wegschrijven en wat bewaard moet blijven.
+          # Staat een bestand hier niet in, dan is het na de run verdwenen.
+          BESTANDEN="
+            verkopen.txt
+            woz.txt
+            brief_gezien.json
+            prijstrend.json
+            misdrijven_per_buurt.json
+            kamervergunningen.json
+            vergunningen_per_buurt.json
+            straat_buurt_cache.json
+            rente_actueel.json
+            rente_historie.json
+            buurten_cbs.json
+            bekendmakingen_vandaag.json
+            bekendmakingen_archief.json
+            publicaties_gezien.json
+            marktprijzen_bag_cache.json
+            rijksmonumenten_nijmegen.json
+            top3-kaart.html
+            digests/
+          "
+          for f in $BESTANDEN; do
+            if [ -e "$f" ]; then
+              git add "$f" && echo "  toegevoegd: $f"
+            else
+              echo "  ONTBREEKT: $f"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd, niets te committen"
+            exit 0
+          fi
+
+          git commit -m "Brief ${{ env.DATUM }}"
+
+          # De repo kan intussen zijn veranderd, bijvoorbeeld door een upload.
+          # Dan eerst ophalen en opnieuw proberen, anders gaat de commit verloren.
+          for poging in 1 2 3; do
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            echo "Push mislukt, poging $poging; repo ophalen en opnieuw"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            sleep 5
+          done
+          echo "LET OP: terugcommitten is niet gelukt. De gegevensbestanden van"
+          echo "vandaag zijn daardoor verloren en morgen begint alles opnieuw."
+          exit 1
 
       - name: Verhalende brief naar HTML
         if: env.HEEFT_VERHAAL == '1'
