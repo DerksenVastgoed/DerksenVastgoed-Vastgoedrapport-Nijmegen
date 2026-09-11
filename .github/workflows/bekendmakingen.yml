@@ -11,6 +11,14 @@ on:
         description: "Eenmalige backfill van het bekendmakingen-archief, bijvoorbeeld 2012-01-01. Leeg laten voor een gewone run."
         required: false
         default: ""
+      backfill_tot:
+        description: "Einddatum van de backfill, bijvoorbeeld 2018-07-01. Leeg laten voor vandaag."
+        required: false
+        default: ""
+      sru_pauze:
+        description: "Seconden tussen bevragingen. Bij 503-fouten hoger zetten, bijvoorbeeld 3."
+        required: false
+        default: "1"
 
 permissions:
   contents: write
@@ -96,10 +104,18 @@ jobs:
       - name: Archief backfill (alleen bij handmatige start met een datum)
         if: ${{ github.event.inputs.backfill_vanaf != '' }}
         continue-on-error: true
+        env:
+          SRU_PAUZE: ${{ github.event.inputs.sru_pauze }}
         run: |
-          echo "Backfill vanaf ${{ github.event.inputs.backfill_vanaf }}"
-          python bekendmakingen_archief.py \
-            --vanaf "${{ github.event.inputs.backfill_vanaf }}" --stil
+          TOT="${{ github.event.inputs.backfill_tot }}"
+          echo "Backfill vanaf ${{ github.event.inputs.backfill_vanaf }} tot ${TOT:-vandaag}"
+          if [ -n "$TOT" ]; then
+            python bekendmakingen_archief.py \
+              --vanaf "${{ github.event.inputs.backfill_vanaf }}" --tot "$TOT"
+          else
+            python bekendmakingen_archief.py \
+              --vanaf "${{ github.event.inputs.backfill_vanaf }}" --stil
+          fi
 
       - name: Bekendmakingen-archief bijwerken
         run: |
