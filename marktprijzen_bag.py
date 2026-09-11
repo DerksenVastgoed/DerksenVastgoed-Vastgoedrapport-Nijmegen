@@ -920,6 +920,31 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
         tweede.append(f"{vpb} kamerverhuurvergunningen sinds 2013 "
                       f"({vpb / g['won'] * 100:.1f}% van de voorraad)")
 
+    # Wie woont er, en met hoeveel. Het aandeel alleenwonenden voorspelt de
+    # vraag naar kleine eenheden.
+    if g.get("eenpersoons") is not None:
+        stuk = f"{g['eenpersoons']}% woont alleen"
+        if g.get("met_kinderen") is not None:
+            stuk += f", {g['met_kinderen']}% is een huishouden met kinderen"
+        if g.get("huishoudgrootte"):
+            stuk += (f", gemiddeld "
+                     + f"{g['huishoudgrootte']:.1f}".replace(".", ",")
+                     + " personen per huishouden")
+        tweede.append(stuk)
+
+    # Inkomen zegt wat een buurt aan huur kan dragen. Ligt de gevraagde huur
+    # boven wat er verdiend wordt, dan is de doelgroep smaller dan hij lijkt.
+    if g.get("inkomen") or g.get("vermogen") is not None:
+        stukken_i = []
+        if g.get("inkomen"):
+            stukken_i.append(f"gemiddeld inkomen €{eu(g['inkomen'] * 1000)} per inwoner")
+        if g.get("vermogen") is not None:
+            stukken_i.append(f"mediaan vermogen €{eu(g['vermogen'] * 1000)} "
+                             f"per huishouden")
+        if g.get("laag_inkomen") is not None:
+            stukken_i.append(f"{g['laag_inkomen']}% met een laag inkomen")
+        tweede.append(", ".join(stukken_i))
+
     if g.get("studenten"):
         stuk = f"{g['studenten']:,}".replace(",", ".") + " studenten"
         noemers = []
@@ -936,7 +961,13 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
 
     regel = " . ".join(delen)
     if tweede:
-        regel += "<br>" + " . ".join(tweede)
+        # Bij meer dan drie onderdelen wordt de regel te lang om te scannen
+        if len(tweede) > 3:
+            helft = (len(tweede) + 1) // 2
+            regel += ("<br>" + " . ".join(tweede[:helft])
+                      + "<br>" + " . ".join(tweede[helft:]))
+        else:
+            regel += "<br>" + " . ".join(tweede)
 
     mis = misdrijfregel(naam, lees_misdrijven(), g.get("inwoners"))
     if mis:
@@ -1071,24 +1102,52 @@ DEKKINGSEIS = 1.25
 # ---------------------------------------------------------------------------
 AANLOOPMAANDEN = 3        # klussen, verhuurklaar maken en verhuren
 
-# Verbouwkosten per m2, inclusief materiaal en arbeid, naar energielabel. Een
-# pand met een goed label vraagt weinig; bij een slecht label komt de
-# verduurzaming erbij die je toch nodig hebt voor de huurpunten.
-RENOVATIE_PER_M2 = {
-    "A": 150, "B": 250, "C": 400, "D": 550, "E": 700, "F": 800, "G": 900,
+# De verbouwing bestaat uit twee posten die je niet moet mengen.
+#
+# 1. VERDUURZAMING naar een beter label. Hiervoor bestaat een onderbouwing:
+#    de kostenkentallen van RVO, gebaseerd op marktonderzoek, peildatum mei
+#    2025, te vinden op regelhulpenvoorbedrijven.nl/kostenkentallen.
+#    Let op bij het overnemen van die cijfers:
+#      - ze zijn exclusief btw; PBL rekent met gemiddeld 15% (9% arbeid,
+#        21% materiaal)
+#      - de werkelijke kosten wijken 20 tot 30% af door locatie, bouwkundige
+#        staat en complexiteit
+#      - asbest, funderingsherstel en slechte bouwkundige staat vallen er
+#        buiten, en dat is bij vooroorlogse panden geen detail
+#    Als particuliere verhuurder vraag je subsidie aan via SVOH, niet via ISDE.
+#
+# 2. VERHUURKLAAR MAKEN: keuken, badkamer, schilderwerk, vloeren, elektra.
+#    Hiervoor bestaat geen landelijk kental; dit is je eigen ervaringscijfer.
+#
+# De bedragen hieronder zijn nog aannames. Vul ze aan met de RVO-tabel voor de
+# eerste post en met je eigen cijfers voor de tweede.
+VERDUURZAMING_PER_M2 = {
+    # naar label B of beter; hoe slechter het startpunt, hoe meer er moet
+    "A": 0, "B": 0, "C": 150, "D": 275, "E": 400, "F": 475, "G": 550,
 }
-RENOVATIE_ONBEKEND = 550  # als het label ontbreekt
+VERDUURZAMING_ONBEKEND = 275
+VERHUURKLAAR_PER_M2 = 275     # keuken, badkamer, schilderwerk, vloeren
+BTW_OP_VERBOUWING = 15        # gemiddeld, want arbeid 9% en materiaal 21%
 
 
-def renovatiekosten(opp, energielabel=None):
-    """Geschatte verbouwkosten, naar oppervlakte en energielabel."""
+def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
+    """
+    Geschatte verbouwkosten: verduurzaming plus verhuurklaar maken, inclusief
+    btw. Uitsplitsen geeft de twee posten apart terug.
+    """
     if not opp:
-        return 0
+        return {"totaal": 0, "verduurzaming": 0, "verhuurklaar": 0} if uitsplitsen else 0
     letter = ""
     if isinstance(energielabel, dict):
         letter = (energielabel.get("label") or "")[:1].upper()
-    per_m2 = RENOVATIE_PER_M2.get(letter, RENOVATIE_ONBEKEND)
-    return opp * per_m2
+    duurzaam = opp * VERDUURZAMING_PER_M2.get(letter, VERDUURZAMING_ONBEKEND)
+    klaar = opp * VERHUURKLAAR_PER_M2
+    btw = 1 + BTW_OP_VERBOUWING / 100
+    if uitsplitsen:
+        return {"totaal": (duurzaam + klaar) * btw,
+                "verduurzaming": duurzaam * btw,
+                "verhuurklaar": klaar * btw}
+    return (duurzaam + klaar) * btw
 
 
 def aanloopverlies(lening, netto_huur):
@@ -2355,7 +2414,8 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
 
         # Dezelfde rekenwijze als de dagelijkse brief, inclusief verbouwing en
         # aanloopperiode, zodat de twee elkaar niet tegenspreken.
-        reno = renovatiekosten(opp, w.get("energielabel"))
+        reno_uit = renovatiekosten(opp, w.get("energielabel"), uitsplitsen=True)
+        reno = reno_uit["totaal"]
         reeks = huur_bk.get(("woning", buurt), [])
         bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen in {buurt}"
         if len(reeks) < 3:
@@ -2379,9 +2439,14 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         cashflow = fin["na_aflossing"]
         f += [f"financiering: lening €{n(lening)}, begrensd door de {fin['knelpunt']} "
               f"(financieringsgraad {LTV:.0f}%, dekkingseis {DEKKINGSEIS}x)",
-              f"verbouwing: €{n(reno)} geschat naar oppervlakte en energielabel, "
-              f"komt uit eigen vermogen want banken financieren dat bij verhuurd "
-              f"vastgoed doorgaans niet mee",
+              f"verbouwing: €{n(reno)} totaal, waarvan €{n(reno_uit['verduurzaming'])} "
+              f"verduurzaming naar de kostenkentallen van RVO en "
+              f"€{n(reno_uit['verhuurklaar'])} verhuurklaar maken. Inclusief btw. "
+              f"Asbest, funderingsherstel en slechte bouwkundige staat zitten er niet "
+              f"in en de werkelijke kosten wijken 20 tot 30% af. Komt uit eigen "
+              f"vermogen, want banken financieren verbouwing bij verhuurd vastgoed "
+              f"doorgaans niet mee. Subsidie loopt voor een particuliere verhuurder "
+              f"via SVOH, niet via ISDE",
               f"aanloop: {AANLOOPMAANDEN} maanden zonder huur, kost €{n(fin['aanloop_rente'])} "
               f"aan rente en €{n(fin['gemiste_huur'])} aan gemiste huur",
               f"eigen vermogen: €{n(prijs - lening)} niet gefinancierd, plus "
@@ -2565,6 +2630,195 @@ def werk_gezien_bij(w, gezien):
         "status": w.get("status") or "",
         "laatst": dt.date.today().isoformat(),
     }
+
+
+
+
+# Verhuurders eisen doorgaans dat het jaarinkomen minstens drie keer de
+# jaarhuur is. De huur mag dan hooguit een derde van het inkomen zijn.
+INKOMENSNORM = 3.0
+
+
+
+# ---------------------------------------------------------------------------
+# HUURTOESLAG 2026
+# Bedragen per 1 januari 2026. Jaarlijks controleren op rijksoverheid.nl.
+#
+# Twee wijzigingen in 2026 die ertoe doen: er is geen huurtoeslag meer over
+# servicekosten, dus alleen de kale huur telt. En de maximale huurgrens is geen
+# harde voorwaarde meer; boven die grens blijft een gedeeltelijke vergoeding
+# mogelijk, maar de toeslag wordt tot die grens berekend.
+# ---------------------------------------------------------------------------
+HT_MAX_HUUR = 932.93          # grens waarover toeslag wordt berekend
+HT_KWALITEITSKORTING = 498.20
+HT_AFTOPPING_LAAG = 713.02    # een- en tweepersoonshuishoudens
+HT_AFTOPPING_HOOG = 764.14    # drie personen of meer
+HT_VERMOGEN_ALLEEN = 38_479
+HT_VERMOGEN_PARTNERS = 76_958
+
+
+def huurtoeslag_positie(maandhuur, meerpersoons=False):
+    """
+    Waar valt deze kale huur in het huurtoeslagstelsel? Dat bepaalt hoe groot
+    je huurderspoule is: onder de aftoppingsgrens is de groep die toeslag
+    krijgt het grootst, erboven dunt hij snel uit.
+    """
+    if not maandhuur:
+        return None
+    aftopping = HT_AFTOPPING_HOOG if meerpersoons else HT_AFTOPPING_LAAG
+    if maandhuur <= HT_KWALITEITSKORTING:
+        segment = "onder de kwaliteitskortingsgrens"
+        uitleg = ("volledige vergoeding over dit deel, maar je laat huur liggen "
+                  "die de huurder toch vergoed zou krijgen")
+    elif maandhuur <= aftopping:
+        segment = "tussen kwaliteitskorting en aftoppingsgrens"
+        uitleg = ("hier is de huurderspoule het grootst: 65% van dit deel wordt "
+                  "vergoed en corporaties wijzen tot deze grens passend toe")
+    elif maandhuur <= HT_MAX_HUUR:
+        segment = "tussen aftoppings- en maximumgrens"
+        uitleg = ("boven de aftoppingsgrens wordt nog 40% vergoed, dus de huurder "
+                  "draagt zelf fors bij en de groep dunt uit")
+    else:
+        segment = "boven de maximale rekenhuur"
+        uitleg = ("de toeslag wordt tot €932,93 berekend; daarboven betaalt de "
+                  "huurder alles zelf, dus je richt je op huurders zonder toeslag")
+    return {"segment": segment, "uitleg": uitleg, "aftopping": aftopping,
+            "boven_aftopping": maandhuur > aftopping}
+
+
+
+# ---------------------------------------------------------------------------
+# BESCHERMD STADSGEZICHT
+#
+# Nijmegen kent twee rijksbeschermde stadsgezichten: de Benedenstad en de
+# negentiende-eeuwse schil rond de binnenstad. Daarnaast acht gemeentelijke
+# beschermde stadsbeelden. In zo'n gebied is voor wijzigingen aan het uiterlijk
+# een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn.
+#
+# De grenzen volgen niet de buurtgrenzen, dus dit is een waarschuwing en geen
+# uitsluitsel. Controleer per pand in de monumentenlijst van de gemeente.
+# ---------------------------------------------------------------------------
+BESCHERMD_GEZICHT = {
+    "Benedenstad": "rijksbeschermd stadsgezicht Benedenstad",
+    "Stadscentrum": "grotendeels rijksbeschermd stadsgezicht",
+    "Bottendaal": "deels de negentiende-eeuwse schil",
+    "Galgenveld": "deels de negentiende-eeuwse schil",
+    "Altrade": "deels de negentiende-eeuwse schil",
+}
+
+
+def gezichtswaarschuwing(buurt):
+    """Ligt deze buurt in of tegen een beschermd stadsgezicht?"""
+    return BESCHERMD_GEZICHT.get(buurt, "")
+
+
+def past_bij_buurt(sc, cbs_buurt):
+    """
+    Past het doorgerekende scenario bij het huishoudenstype in deze buurt?
+
+    Niet het aantal kamers is de vraag, maar of de eenheid aansluit bij wie er
+    woont. Een kleine eenheid in een buurt met veel alleenwonenden verhuurt
+    zichzelf; een grote woning in zo'n buurt zoekt langer naar een huurder.
+    """
+    if not sc or not cbs_buurt:
+        return ""
+    alleen = cbs_buurt.get("eenpersoons")
+    gezin = cbs_buurt.get("met_kinderen")
+    if alleen is None:
+        return ""
+    opp_per_eenheid = sc.get("unit_m2") or sc.get("opp")
+    naam = (sc.get("naam") or "").lower()
+    if "kamer" in naam:
+        return ""   # kamerverhuur richt zich per definitie op alleenwonenden
+
+    if opp_per_eenheid and opp_per_eenheid < 60 and alleen >= 55:
+        return (f"past bij de buurt: {alleen}% woont hier alleen, en dit is een "
+                f"kleine zelfstandige eenheid")
+    if opp_per_eenheid and opp_per_eenheid >= 100 and alleen >= 60:
+        return (f"let op: {alleen}% van de huishoudens hier woont alleen en maar "
+                f"{gezin if gezin is not None else '?'}% heeft kinderen. Voor een "
+                f"woning van deze omvang is de lokale vraag dun")
+    if opp_per_eenheid and opp_per_eenheid >= 100 and (gezin or 0) >= 20:
+        return (f"past bij de buurt: {gezin}% van de huishoudens hier heeft "
+                f"kinderen, en dit is een gezinswoning")
+    return ""
+
+
+def draagkracht(maandhuur, cbs_buurt):
+    """
+    Past de berekende huur bij wat er in deze buurt verdiend wordt?
+
+    Het CBS geeft besteedbaar inkomen per inwoner. Vermenigvuldigd met de
+    huishoudensgrootte geeft dat het gemiddelde huishoudinkomen terug, want zo
+    is dat cijfer opgebouwd. Verhuurders toetsen op bruto inkomen; die
+    omrekening laten we achterwege, dus dit is een strenge toets.
+    """
+    if not cbs_buurt or not maandhuur:
+        return None
+    inkomen_pp = cbs_buurt.get("inkomen")
+    grootte = cbs_buurt.get("huishoudgrootte")
+    if not inkomen_pp or not grootte:
+        return None
+    huishoudinkomen = inkomen_pp * 1000 * grootte
+    jaarhuur = maandhuur * 12
+    if huishoudinkomen <= 0:
+        return None
+    aandeel = jaarhuur / huishoudinkomen * 100
+    nodig = jaarhuur * INKOMENSNORM
+    return {
+        "huishoudinkomen": huishoudinkomen,
+        "aandeel": aandeel,
+        "nodig": nodig,
+        "haalbaar": aandeel <= 100 / INKOMENSNORM,
+    }
+
+
+def render_bieden(woningen, huur_bk, huur_k, per_buurt):
+    """
+    Panden die bij opbod worden aangeboden, zoals via Vendr. Er is geen
+    vraagprijs, dus geen vergelijking met de mediaan. Wat we wel kunnen geven
+    is het maximum dat je kunt bieden voordat het pand geld gaat kosten, en
+    dat is bij een biedplatform precies het getal dat telt.
+    """
+    panden = [w for w in woningen
+              if (w.get("status") or "").lower() == "bieden" and w.get("oppervlakte")]
+    if not panden:
+        return []
+
+    r = ["", "### Bij opbod aangeboden", "",
+         "_Geen vraagprijs, dus geen vergelijking met de markt. Wel het bedrag "
+         "waarboven het pand geld gaat kosten._", ""]
+    for w in sorted(panden, key=lambda x: -(x.get("oppervlakte") or 0)):
+        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or w.get("plaats", "")
+        sc = kies_scenario(w, huur_bk, huur_k, buurt, None, per_buurt.get(buurt, []))
+        if not sc:
+            continue
+        opex = opex_voor(sc["naam"])
+        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex)
+        if not plafond:
+            continue
+        reno = renovatiekosten(w["oppervlakte"], w.get("energielabel"))
+        # Verbouwing en kosten koper gaan van je maximale bod af
+        kosten = (OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT) / 100
+        max_bod = (plafond - reno) / (1 + kosten)
+
+        regel = (f"**{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}**"
+                 f" in {buurt}, {w['oppervlakte']} m²")
+        lab = _labeltekst(w.get("energielabel"))
+        if lab != "onbekend":
+            regel += f", label {lab}"
+        regel += (f". Als {sc['naam']} bij €{eu(sc['maand'])} huur per maand ligt de "
+                  f"grens op €{eu(plafond)}. Na aftrek van €{eu(reno)} verbouwing en "
+                  f"de kosten koper kun je tot ongeveer **€{eu(max_bod)}** bieden "
+                  f"voordat het pand geld gaat kosten.")
+        budget = max_koopsom_bij_budget(sc["maand"] * 12 * (1 - opex / 100),
+                                        renovatie=reno)
+        if budget and budget["max"] < max_bod:
+            regel += (f" Met het beschikbare eigen vermogen kom je tot "
+                      f"€{eu(budget['max'])}.")
+        r.append(regel)
+        r.append("")
+    return r
 
 
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
@@ -2816,7 +3070,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             prijs = w["prijs"]
             sc = w.get("_scenario") or {}
             netto = (sc.get("maand") or 0) * 12 * (1 - opex_voor(sc.get("naam")) / 100)
-            reno = renovatiekosten(w.get("oppervlakte"), w.get("energielabel"))
+            reno_uit = renovatiekosten(w.get("oppervlakte"), w.get("energielabel"),
+                                       uitsplitsen=True)
+            reno = reno_uit["totaal"]
             fin = financiering(prijs, netto, reno)
 
             r.append(
@@ -2825,7 +3081,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 f"€{eu(fin['ovb'])} overdrachtsbelasting "
                 f"({pct(OVERDRACHTSBELASTING_PCT, 1)}%) en €{eu(fin['bijkomend'])} "
                 f"aan notaris, makelaar en taxatie bij, plus €{eu(fin['renovatie'])} "
-                f"verbouwing en €{eu(fin['aanloop_rente'])} rente over "
+                f"verbouwing (€{eu(reno_uit['verduurzaming'])} verduurzaming naar RVO-"
+                f"kentallen en €{eu(reno_uit['verhuurklaar'])} verhuurklaar maken, "
+                f"beide inclusief btw) en €{eu(fin['aanloop_rente'])} rente over "
                 f"{AANLOOPMAANDEN} maanden waarin het pand nog niets opbrengt. "
                 f"De bank leent €{eu(fin['lening'])}, begrensd door de "
                 f"{fin['knelpunt']}, en financiert de verbouwing niet mee, dus je "
@@ -2841,6 +3099,53 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 f"{'bij' if fin['na_aflossing'] >= 0 else 'af'}. "
                 f"Netto aanvangsrendement {f"{fin['nar']:.1f}".replace('.', ',')}% over de totale "
                 f"investering._")
+
+            # Bij een zelfstandige eenheid: waar valt de huur in het
+            # huurtoeslagstelsel? Dat bepaalt hoe groot je huurderspoule is.
+            if "kamer" not in (sc.get("naam") or "").lower():
+                ht = huurtoeslag_positie(sc.get("maand"))
+                if ht and ht["boven_aftopping"]:
+                    r.append(f"_Huurtoeslag: met €{eu(sc['maand'])} per maand zit je "
+                             f"{ht['segment']}. De aftoppingsgrens ligt op "
+                             f"€{eu(ht['aftopping'])}. {ht['uitleg'].capitalize()}._")
+                    r.append("")
+                elif ht:
+                    r.append(f"_Huurtoeslag: €{eu(sc['maand'])} per maand valt "
+                             f"{ht['segment']}. {ht['uitleg'].capitalize()}._")
+                    r.append("")
+
+            match = past_bij_buurt(sc, cbs.get(buurt))
+            if match:
+                r.append(f"_Doelgroep: {match}._")
+                r.append("")
+
+            gezicht = gezichtswaarschuwing(buurt)
+            if gezicht:
+                r.append(f"_{buurt} is {gezicht}. Voor wijzigingen aan het uiterlijk "
+                         f"is dan een omgevingsvergunning nodig, ook als het pand zelf "
+                         f"geen monument is. Dat raakt gevelisolatie, kozijnen en "
+                         f"zonnepanelen aan de voorzijde. Controleer het pand in de "
+                         f"monumentenlijst van de gemeente._")
+                r.append("")
+
+            dk = draagkracht(sc.get("maand"), cbs.get(buurt))
+            if dk:
+                if dk["haalbaar"]:
+                    r.append(f"_De gevraagde huur is "
+                             + f"{dk['aandeel']:.0f}".replace(".", ",")
+                             + f"% van het gemiddelde huishoudinkomen in {buurt} "
+                             f"(€{eu(dk['huishoudinkomen'])}). Dat past binnen de eis "
+                             f"die verhuurders stellen, namelijk een inkomen van "
+                             f"minstens {INKOMENSNORM:.0f} keer de jaarhuur._")
+                else:
+                    r.append(f"_Let op de doelgroep: de gevraagde huur is "
+                             + f"{dk['aandeel']:.0f}".replace(".", ",")
+                             + f"% van het gemiddelde huishoudinkomen in {buurt} "
+                             f"(€{eu(dk['huishoudinkomen'])}). Voor de gebruikelijke "
+                             f"eis van {INKOMENSNORM:.0f} keer de jaarhuur is "
+                             f"€{eu(dk['nodig'])} nodig. Je huurder komt dan van "
+                             f"buiten de buurt, of het zijn twee inkomens._")
+                r.append("")
 
             budget = max_koopsom_bij_budget(netto, renovatie=reno)
             if budget and budget["max"] < prijs:
@@ -3341,8 +3646,10 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     if kort:
         # Samenvatting vooraan, daarna het aanbod, dan de bewegingen en als
         # laatste de achtergrondcijfers
+        huur_bk_b, huur_k_b = gemeten_huren(huur_aanbod)
         r = (render_samenvatting(woningen, kandidaten, bm_per_buurt, kort=True)
              + aanbod_regels
+             + render_bieden(woningen, huur_bk_b, huur_k_b, per_buurt)
              + render_prijswijzigingen(woningen)
              + render_looptijd(woningen)
              + render_intro(lees_cbs(), woningen, kort=True))
@@ -3362,6 +3669,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     huur_bk, huur_k = gemeten_huren(huur_aanbod)
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
                                       huur_bk, huur_k, bm_per_buurt, beleggingen=beleggingen))
+    r.extend(render_bieden(woningen, huur_bk, huur_k, per_buurt))
     r.extend(render_wwso(huur_aanbod))
     return "\n".join(r)
 
