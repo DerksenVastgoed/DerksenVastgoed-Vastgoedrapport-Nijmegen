@@ -1603,7 +1603,7 @@ def max_koopsom_bij_budget(netto_huur, budget=None, renovatie=0):
     # Verbouwing gaat er als eerste af: dat geld is weg voordat je koopt
     budget = budget - renovatie
     if budget <= 0:
-        return {"max": 0, "knelpunt": "de verbouwing alleen al past niet"}
+        return {"max": 0, "knelpunt": "verbouwing die het budget al opslokt"}
     kosten = (OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT) / 100
 
     # Grens 1: de financieringsgraad. eigen = K(1 + kosten - LTV)
@@ -3066,92 +3066,96 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         # Wat je bij de vraagprijs moet inleggen. Alleen bij nieuwe of
         # gewijzigde panden, anders staat het er elke dag opnieuw.
-        for _a, _p, _k, _afw, _b, w in sorted(vers, key=lambda x: x[0]):
-            prijs = w["prijs"]
-            sc = w.get("_scenario") or {}
-            netto = (sc.get("maand") or 0) * 12 * (1 - opex_voor(sc.get("naam")) / 100)
-            reno_uit = renovatiekosten(w.get("oppervlakte"), w.get("energielabel"),
-                                       uitsplitsen=True)
-            reno = reno_uit["totaal"]
-            fin = financiering(prijs, netto, reno)
+        # De financiering in een tabel in plaats van een alinea per pand. Bij
+        # meer dan een paar panden is doorlopende tekst niet te scannen.
+        if vers:
+            r.append("| Adres | Investering | Lening | Eigen inleg | Operationeel | NAR |")
+            r.append("|---|---:|---:|---:|---:|---:|")
+            for _a, _p, _k, _afw, _b, w in sorted(vers, key=lambda x: x[0]):
+                sc = w.get("_scenario") or {}
+                netto = ((sc.get("maand") or 0) * 12
+                         * (1 - opex_voor(sc.get("naam")) / 100))
+                reno_uit = renovatiekosten(w.get("oppervlakte"),
+                                           w.get("energielabel"), uitsplitsen=True)
+                fin = financiering(w["prijs"], netto, reno_uit["totaal"])
+                w["_fin"] = fin
+                w["_reno"] = reno_uit
+                r.append(
+                    f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                    f"| €{eu(fin['investering'])} | €{eu(fin['lening'])} "
+                    f"| €{eu(fin['eigen'])} | €{eu(fin['operationeel'])} | "
+                    + f"{fin['nar']:.1f}".replace(".", ",") + "% |")
+            r.append("")
+            knel = {(w.get("_fin") or {}).get("knelpunt")
+                    for _a, _p, _k, _afw, _b, w in vers
+                    if (w.get("_fin") or {}).get("knelpunt")}
+            r.append(f"_Investering is de koopsom plus "
+                     + f"{OVERDRACHTSBELASTING_PCT}".replace(".", ",") + "% "
+                     f"overdrachtsbelasting, "
+                     + f"{BIJKOMENDE_KOSTEN_PCT:.0f}" + "% notaris en "
+                     f"makelaar, de verbouwing en {AANLOOPMAANDEN} maanden rente zonder "
+                     f"huur. Operationeel is de nettohuur min de rente; de aflossing "
+                     f"staat daar los van, want dat is vermogensopbouw. NAR is het netto "
+                     f"aanvangsrendement over de hele investering. De lening is "
+                     f"begrensd door de "
+                     + " en de ".join(sorted(knel)) + "._")
+            r.append("")
 
-            r.append(
-                f"_**{w['adres']}** bij de vraagprijs van €{eu(prijs)}: totale "
-                f"investering €{eu(fin['investering'])}, want er komt "
-                f"€{eu(fin['ovb'])} overdrachtsbelasting "
-                f"({pct(OVERDRACHTSBELASTING_PCT, 1)}%) en €{eu(fin['bijkomend'])} "
-                f"aan notaris, makelaar en taxatie bij, plus €{eu(fin['renovatie'])} "
-                f"verbouwing (€{eu(reno_uit['verduurzaming'])} verduurzaming naar RVO-"
-                f"kentallen en €{eu(reno_uit['verhuurklaar'])} verhuurklaar maken, "
-                f"beide inclusief btw) en €{eu(fin['aanloop_rente'])} rente over "
-                f"{AANLOOPMAANDEN} maanden waarin het pand nog niets opbrengt. "
-                f"De bank leent €{eu(fin['lening'])}, begrensd door de "
-                f"{fin['knelpunt']}, en financiert de verbouwing niet mee, dus je "
-                f"legt zelf **€{eu(fin['eigen'])}** in._")
-
-            r.append(
-                f"_Nettohuur €{eu(netto)} per jaar. Daarvan gaat €{eu(fin['rente'])} "
-                f"naar rente, zodat er **€{eu(fin['operationeel'])}** overblijft: "
-                f"{f"{fin['op_eigen']:.1f}".replace('.', ',')}% over je eigen inleg. De aflossing van "
-                f"€{eu(fin['aflossing'])} komt daar nog vanaf, maar dat is geen kosten "
-                f"maar vermogensopbouw; onder de streep gaat er "
-                f"€{eu(abs(fin['na_aflossing']))} per jaar "
-                f"{'bij' if fin['na_aflossing'] >= 0 else 'af'}. "
-                f"Netto aanvangsrendement {f"{fin['nar']:.1f}".replace('.', ',')}% over de totale "
-                f"investering._")
-
-            # Bij een zelfstandige eenheid: waar valt de huur in het
-            # huurtoeslagstelsel? Dat bepaalt hoe groot je huurderspoule is.
-            if "kamer" not in (sc.get("naam") or "").lower():
-                ht = huurtoeslag_positie(sc.get("maand"))
-                if ht and ht["boven_aftopping"]:
-                    r.append(f"_Huurtoeslag: met €{eu(sc['maand'])} per maand zit je "
-                             f"{ht['segment']}. De aftoppingsgrens ligt op "
-                             f"€{eu(ht['aftopping'])}. {ht['uitleg'].capitalize()}._")
-                    r.append("")
-                elif ht:
-                    r.append(f"_Huurtoeslag: €{eu(sc['maand'])} per maand valt "
-                             f"{ht['segment']}. {ht['uitleg'].capitalize()}._")
-                    r.append("")
-
-            match = past_bij_buurt(sc, cbs.get(buurt))
-            if match:
-                r.append(f"_Doelgroep: {match}._")
-                r.append("")
-
-            gezicht = gezichtswaarschuwing(buurt)
-            if gezicht:
-                r.append(f"_{buurt} is {gezicht}. Voor wijzigingen aan het uiterlijk "
-                         f"is dan een omgevingsvergunning nodig, ook als het pand zelf "
-                         f"geen monument is. Dat raakt gevelisolatie, kozijnen en "
-                         f"zonnepanelen aan de voorzijde. Controleer het pand in de "
-                         f"monumentenlijst van de gemeente._")
-                r.append("")
-
-            dk = draagkracht(sc.get("maand"), cbs.get(buurt))
-            if dk:
-                if dk["haalbaar"]:
-                    r.append(f"_De gevraagde huur is "
-                             + f"{dk['aandeel']:.0f}".replace(".", ",")
-                             + f"% van het gemiddelde huishoudinkomen in {buurt} "
-                             f"(€{eu(dk['huishoudinkomen'])}). Dat past binnen de eis "
-                             f"die verhuurders stellen, namelijk een inkomen van "
-                             f"minstens {INKOMENSNORM:.0f} keer de jaarhuur._")
+            # Waar het budget knelt, alleen bij de panden waar dat speelt
+            krap = []
+            for _a, _p, _k, _afw, _b, w in sorted(vers, key=lambda x: x[0]):
+                sc = w.get("_scenario") or {}
+                netto = ((sc.get("maand") or 0) * 12
+                         * (1 - opex_voor(sc.get("naam")) / 100))
+                reno = (w.get("_reno") or {}).get("totaal", 0)
+                budget = max_koopsom_bij_budget(netto, renovatie=reno)
+                if budget and budget["max"] < w["prijs"]:
+                    krap.append((w["adres"], budget["max"]))
+            if krap:
+                if all(m < 50_000 for _a2, m in krap):
+                    r.append(f"_Met het beschikbare eigen vermogen komt geen van deze "
+                             f"panden in beeld: de verbouwing slokt het budget vrijwel "
+                             f"volledig op._")
                 else:
-                    r.append(f"_Let op de doelgroep: de gevraagde huur is "
-                             + f"{dk['aandeel']:.0f}".replace(".", ",")
-                             + f"% van het gemiddelde huishoudinkomen in {buurt} "
-                             f"(€{eu(dk['huishoudinkomen'])}). Voor de gebruikelijke "
-                             f"eis van {INKOMENSNORM:.0f} keer de jaarhuur is "
-                             f"€{eu(dk['nodig'])} nodig. Je huurder komt dan van "
-                             f"buiten de buurt, of het zijn twee inkomens._")
+                    delen = [f"{adres} tot €{eu(m)}" for adres, m in krap]
+                    r.append("_Met het beschikbare eigen vermogen kom je: "
+                             + " . ".join(delen) + "._")
                 r.append("")
 
-            budget = max_koopsom_bij_budget(netto, renovatie=reno)
-            if budget and budget["max"] < prijs:
-                r.append(f"_Met het beschikbare eigen vermogen kom je hier tot "
-                         f"€{eu(budget['max'])}, begrensd door de {budget['knelpunt']}. "
-                         f"Dat is €{eu(prijs - budget['max'])} onder de vraagprijs._")
+        boven_grens = [w["adres"] for _a, _p, _k, _afw, _b, w in vers
+                       if (w.get("_scenario") or {}).get("maand", 0) > HT_MAX_HUUR
+                       and "kamer" not in ((w.get("_scenario") or {}).get("naam") or "")]
+        if len(boven_grens) == len(vers) and vers:
+            r.append(f"_Alle panden hier komen bij de berekende huur boven de maximale "
+                     f"rekenhuur van €{HT_MAX_HUUR:.2f}".replace(".", ",")
+                     + " voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._")
+            r.append("")
+        elif boven_grens:
+            r.append(f"_Boven de huurtoeslaggrens: {', '.join(boven_grens)}. "
+                     f"Daar krijgt je huurder geen toeslag._")
+            r.append("")
+
+        # Waarschuwingen die voor de hele buurt gelden: eenmaal, niet per pand
+        gezicht = gezichtswaarschuwing(buurt)
+        if gezicht and vers:
+            r.append(f"_{buurt} is {gezicht}. Voor wijzigingen aan het uiterlijk is "
+                     f"een omgevingsvergunning nodig, ook bij panden die zelf geen "
+                     f"monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen "
+                     f"aan de voorzijde._")
+            r.append("")
+
+        # Doelgroep: alleen benoemen waar het scenario niet bij de buurt past
+        mismatch = []
+        for _a, _p, _k, _afw, _b, w in vers:
+            uit = past_bij_buurt(w.get("_scenario"), cbs.get(buurt))
+            if uit.startswith("let op"):
+                mismatch.append(w["adres"])
+        if mismatch:
+            g = cbs.get(buurt) or {}
+            r.append(f"_Doelgroep: {g.get('eenpersoons')}% van de huishoudens in "
+                     f"{buurt} woont alleen en {g.get('met_kinderen')}% heeft kinderen. "
+                     f"Voor {', '.join(mismatch)} is de lokale vraag naar een woning "
+                     f"van die omvang dus dun; je huurder komt van buiten de buurt._")
             r.append("")
 
         if oud:
@@ -3442,7 +3446,7 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True):
                f"van zijn klasse")
         sc = w.get("_scenario")
         if sc:
-            plafond = richtprijs(sc["opp"], sc["huur_m2"])
+            plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
             if plafond:
                 ruimte = (plafond - w["prijs"]) / w["prijs"] * 100
                 zin += (f". Als {sc['naam']} loopt het rond tot €{n(plafond)}, "
