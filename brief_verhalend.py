@@ -34,11 +34,15 @@ OPBOUW:
 
 1. Een korte opening over wat er deze week het meest opvalt.
 
-2. Dan **per buurt een eigen kopje** met de buurtnaam. Neem alle buurten waarover gegevens zijn. Behandel per buurt:
-   - Een paar zinnen over wat voor buurt het is, met de cijfers erin verweven: hoeveel woningen, de verhouding koop en corporatiebezit, het aandeel appartementen, wat een huis er waard is volgens de gemeente, hoeveel studenten er wonen. Niet als lijstje maar als verhaal.
-   - Welke panden er te koop staan. Noem ze bij naam met de vraagprijs en de oppervlakte, en schrijf erbij of dat duur of goedkoop is voor die buurt en waarom. Behoud de links precies zoals ze in de gegevens staan, in de vorm [naam](adres), zodat hij kan doorklikken.
-   - Wat de gemeente over panden in die buurt heeft besloten, en wat dat zegt.
-   Sla een buurt over als er niets over te melden is.
+2. Dan de buurten. LET OP: deze brief komt elke dag, dus herhaal niet elke dag dezelfde beschrijving van alle buurten. Werk zo:
+
+   - Buurten WAAR IETS GEBEURT (een pand dat opvalt, een prijswijziging, een gemeentelijk besluit) krijgen een eigen kopje en een paar alinea's. Noem de panden bij naam met vraagprijs en oppervlakte, schrijf of dat duur of goedkoop is voor die buurt, en behoud de links precies zoals ze in de gegevens staan, in de vorm [naam](adres).
+
+   - Voor de overige buurten schrijf je GEEN apart kopje en GEEN beschrijving. Vat ze samen in één of twee zinnen, bijvoorbeeld: in de andere buurten gebeurde deze week niets, met de prijs per meter tussen X en Y.
+
+   - Je krijgt de aanwijzing BUURT VAN DE DAG mee. Geef ALLEEN die ene buurt een achtergrondportret van een paar zinnen: wat voor buurt het is, wie er woont, wat men er verdient en bezit, hoe het staat met inbraak, vernieling en overlast. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen dat portret vandaag niet; die komen een andere dag aan de beurt.
+
+   - Ligt het aanbod stil en is er geen nieuws, houd de brief dan kort. Een korte brief is beter dan een lange die niets nieuws zegt.
 
 3. Een stuk over de rente en wat die betekent voor iemand die verhuurt.
 
@@ -115,7 +119,11 @@ def wist_je_dat(cbs, verg):
 
     if not weetjes:
         return ""
-    return weetjes[dt.date.today().toordinal() % len(weetjes)]
+    # De lijst is per onderwerp opgebouwd, waardoor dezelfde buurt meerdere
+    # dagen achter elkaar langskomt. Door met een stap door de lijst te lopen
+    # die geen deler is van de lengte, wisselt het onderwerp elke dag.
+    stap = 3 if len(weetjes) % 3 else 4
+    return weetjes[(dt.date.today().toordinal() * stap) % len(weetjes)]
 
 
 
@@ -131,6 +139,11 @@ def buurtcijfers_tekst():
             verg = json.load(f)
     except Exception:
         verg = {}
+    try:
+        with open("misdrijven_per_buurt.json", encoding="utf-8") as f:
+            misdrijven = json.load(f)
+    except Exception:
+        misdrijven = {}
 
     regels = []
     for buurt in ("Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
@@ -154,6 +167,38 @@ def buurtcijfers_tekst():
             d.append(f"{g['inwoners']} inwoners")
         if verg.get(buurt):
             d.append(f"{verg[buurt]} vergunningen voor kamerverhuur sinds 2013")
+
+        # Wie er woont, wat ze verdienen en bezitten
+        if g.get("eenpersoons") is not None:
+            d.append(f"{g['eenpersoons']}% woont alleen")
+        if g.get("met_kinderen") is not None:
+            d.append(f"{g['met_kinderen']}% van de huishoudens heeft kinderen")
+        if g.get("huishoudgrootte"):
+            d.append(f"gemiddeld {g['huishoudgrootte']} personen per huishouden")
+        if g.get("inkomen"):
+            d.append(f"gemiddeld inkomen {g['inkomen'] * 1000} euro per inwoner")
+        if g.get("vermogen") is not None:
+            d.append(f"mediaan vermogen {g['vermogen'] * 1000} euro per huishouden")
+        if g.get("laag_inkomen") is not None:
+            d.append(f"{g['laag_inkomen']}% met een laag inkomen")
+
+        # Misdrijven, afgezet tegen het aantal inwoners
+        mis = misdrijven.get(buurt)
+        if mis:
+            jaren = sorted(mis)
+            laatst = mis[jaren[-1]]
+            per = []
+            for soort in ("woninginbraak", "vernieling", "drugs- en drankoverlast",
+                          "fietsendiefstal"):
+                n = laatst.get(soort)
+                if n is None:
+                    continue
+                tekst = f"{n} {soort}"
+                if g.get("inwoners"):
+                    tekst += f" ({n / g['inwoners'] * 1000:.1f} per 1000 inwoners)"
+                per.append(tekst)
+            if per:
+                d.append(f"misdrijven in {jaren[-1][:4]}: " + ", ".join(per))
         regels.append(", ".join(d))
     return "\n".join(regels)
 
@@ -171,6 +216,34 @@ def weetje_van_de_dag():
     if not cbs:
         return ""
     return wist_je_dat(cbs, verg)
+
+
+
+AANHEF_WOORDEN = ("beste", "hoi", "hallo", "dag", "lieve", "pa", "pap", "papa",
+                  "vader", "hey", "hé")
+
+
+def zet_aanhef(brief, aanhef):
+    """
+    Vervangt de aanhef door de ingestelde. Het model neemt de opgegeven aanhef
+    niet altijd letterlijk over en maakt er soms Pap of Beste vader van; dat is
+    niet aan het model om te bepalen.
+    """
+    if not brief:
+        return brief
+    regels = brief.split("\n")
+    # Zoek de eerste niet-lege regel; is dat een aanhef, dan vervangen we hem
+    for i, regel in enumerate(regels):
+        if not regel.strip():
+            continue
+        eerste = regel.strip().rstrip(",.!").lower()
+        kort = len(eerste.split()) <= 4
+        if kort and any(eerste.startswith(w) for w in AANHEF_WOORDEN):
+            regels[i] = f"{aanhef},"
+            return "\n".join(regels)
+        # Geen aanhef gevonden: we zetten hem er alsnog voor
+        return f"{aanhef},\n\n" + brief
+    return brief
 
 
 def lees(pad):
@@ -207,7 +280,14 @@ def schrijf_brief(bronnen):
                          for naam, tekst in bronnen if tekst)
     if not inhoud.strip():
         return ""
-    prompt = (f"AANHEF: {AANHEF}\n\nGEGEVENS VAN VANDAAG:\n\n{inhoud}\n\n"
+    # Elke dag krijgt een andere buurt het achtergrondportret, zodat de brief
+    # niet elke ochtend dezelfde zes beschrijvingen herhaalt.
+    ronde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
+             "Altrade", "Biezen"]
+    buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
+    prompt = (f"AANHEF: {AANHEF}\n"
+              f"BUURT VAN DE DAG: {buurt_vandaag}\n\n"
+              f"GEGEVENS VAN VANDAAG:\n\n{inhoud}\n\n"
               f"Schrijf de brief. Alleen de brieftekst, niets eromheen.")
     # Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
     # met ruime wachttijd, want dit is de enige stap die de brief oplevert.
@@ -262,7 +342,7 @@ def main():
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
     ]
-    brief = schrijf_brief(bronnen)
+    brief = zet_aanhef(schrijf_brief(bronnen), AANHEF)
     if not brief:
         print("Geen brief gemaakt", file=sys.stderr)
         return
