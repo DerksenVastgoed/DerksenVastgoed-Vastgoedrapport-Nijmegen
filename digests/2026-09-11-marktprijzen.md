@@ -1,17 +1,19 @@
 
 ## Vandaag
 
-38 panden in beeld, 11 nieuw vandaag. Scherpst geprijsd is **Nieuwe Markt 90** in Benedenstad: €575.000 voor 158 m², -27% ten opzichte van de mediaan van zijn klasse. 2 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
+38 panden in beeld, geen mutaties sinds gisteren. 2 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Benedenstad**
+_mediaan €5.128/m² op 5 waarnemingen._
 
 _Stond er al, ongewijzigd: [Nieuwe Markt 90](https://www.google.com/maps/search/?api=1&query=Nieuwe+Markt+90%2C+Nijmegen) €575.000 (-27%)._
 
 **Biezen**
+_mediaan €5.078/m² op 29 waarnemingen._
 
-_Stond er al, ongewijzigd: [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+1%) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+7%) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+15%, 0 dagen) . [Dokstraat 127](https://www.google.com/maps/search/?api=1&query=Dokstraat+127%2C+Nijmegen) €427.000 (+31%) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+37%)._
+_5 panden zonder bijzonderheden, mediaan €5.833/m². Die tellen mee in de vergelijking maar vragen geen actie._
 
 _Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
@@ -20,26 +22,33 @@ _3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#C46A2F;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">kamerverhuur</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-422834.html" style="color:#12242c;text-decoration:none">Melding brandveilig gebruik kamerverhuur, aan Biezenstraat 138, 6541ZX Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">249 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding bevestigt bestaand kamerverhuurgebruik zonder dat dit een vergunningsbeslissing inhoudt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding brandveilig gebruik toont dat dit pand van 249 m² als kamerverhuur in gebruik is, zonder vergunningsstatus.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-09 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-422834.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 
 **Galgenveld**
+_mediaan €4.805/m² op 27 waarnemingen._
 
-_Stond er al, ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-19%) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-7%, 8 dagen) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-4%, 0 dagen) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-4%) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+7%, 0 dagen)._
+_3 panden zonder bijzonderheden, mediaan €4.598/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Stond er al, ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-19%) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-4%)._
 
 _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026) . St. Annastraat 28 €1.021.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
 _3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Altrade**
+_mediaan €4.852/m² op 38 waarnemingen._
 
-_Stond er al, ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-13%, 0 dagen) . [Beijensstraat 18](https://www.google.com/maps/search/?api=1&query=Beijensstraat+18%2C+Nijmegen) €419.000 (+12%, 0 dagen)._
+_2 panden zonder bijzonderheden, mediaan €4.832/m². Die tellen mee in de vergelijking maar vragen geen actie._
 
 **Stadscentrum**
+_mediaan €5.142/m² op 30 waarnemingen._
 
-_Stond er al, ongewijzigd: [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-1%) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (+1%, 0 dagen) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+11%)._
+_2 panden zonder bijzonderheden, mediaan €5.155/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Stond er al, ongewijzigd: [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+11%)._
 
 _Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
 
@@ -48,15 +57,16 @@ _7 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 _Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de leveringsdatum al langer dan zes maanden verhuurd, dan is het geen beschermde woonruimte en geldt de vergunningplicht niet. Bij lege oplevering of een kortere verhuurperiode vervalt die route._
 
 **Bottendaal**
+_mediaan €4.772/m² op 11 waarnemingen._
 
-_Stond er al, ongewijzigd: [de Ruyterstraat 37](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+37%2C+Nijmegen) €450.000 (-5%, 0 dagen) . [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) €925.000 (-3%)._
+_2 panden zonder bijzonderheden, mediaan €4.596/m². Die tellen mee in de vergelijking maar vragen geen actie._
 
 _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#C46A2F;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">kamerverhuur</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-424572.html" style="color:#12242c;text-decoration:none">Melding melding brandveilig gebruik voor een kamerverhuurpand, aan St. Stephanusstraat 11, 6512HM Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">252 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding brandveilig gebruik toont dat dit pand al voor kamerverhuur wordt geëxploiteerd, geen nieuwe vergunning.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding brandveilig gebruik bevestigt lopende kamerverhuurexploitatie op 252 m², maar is geen vergunning.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-10 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-424572.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
