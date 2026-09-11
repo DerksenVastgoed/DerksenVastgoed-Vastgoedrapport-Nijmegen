@@ -2821,6 +2821,54 @@ def render_bieden(woningen, huur_bk, huur_k, per_buurt):
     return r
 
 
+
+# ---------------------------------------------------------------------------
+# WAT VERDIENT AANDACHT
+#
+# Beleggingspanden komen met een huurstroom en vaak met een vergunning, dus
+# daar zit het werk al in. Gewone koopwoningen vragen een heel traject en zijn
+# vooral waardevol als vergelijkingsmateriaal. Ze komen alleen in beeld als er
+# een concrete aanleiding is.
+# ---------------------------------------------------------------------------
+DREMPEL_SCHERP = -15      # procent onder de mediaan van de eigen klasse
+
+
+def verdient_aandacht(w, afwijking, archief=None, vergunningen=None):
+    """
+    Waarom zou dit pand vandaag je aandacht krijgen? Geeft de reden terug, of
+    een lege tekst als er geen aanleiding is.
+    """
+    status = (w.get("status") or "").lower()
+
+    # Beleggingspanden altijd: verhuurd, vaak met vergunning, minder werk
+    if status == "belegging":
+        return "beleggingspand, wordt in verhuurde staat aangeboden"
+
+    # Een bestaande vergunning scheelt een heel traject
+    m = re.match(r"^(.+?)\s+(\d+)", w["adres"])
+    if m and vergunningen:
+        eigen = vergunningen.get(archief_sleutel(m.group(1), m.group(2)), [])
+        if eigen:
+            return (f"heeft al een {eigen[0]['soort']}svergunning uit "
+                    f"{eigen[0].get('datum', '')[:4]}")
+
+    # Prijswijziging: de verkoper beweegt
+    if w.get("prijs_eerst") and w["prijs"] < w["prijs_eerst"]:
+        verschil = w["prijs_eerst"] - w["prijs"]
+        return f"prijs verlaagd met €{eu(verschil)}"
+
+    # Fors onder de markt: dan is het de moeite van het bekijken waard
+    if afwijking is not None and afwijking <= DREMPEL_SCHERP:
+        return f"{afwijking:+.0f}% onder de mediaan van zijn klasse"
+
+    # Splitsings- of verkameringspotentie bij een groot pand
+    sc = w.get("_scenario") or {}
+    if "splitsen" in (sc.get("naam") or "") and sc.get("verkoopmarge", 0) > 100_000:
+        return f"splitsen levert op papier €{eu(sc['verkoopmarge'])} marge"
+
+    return ""
+
+
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                         bm_overig=None, kort=False):
     """
@@ -2942,10 +2990,19 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                lees_trend())
         if kenmerken and not kort:
             r.append(f"_{kenmerken}_")
-        elif kenmerken and kort:
-            trend = trendregel(buurt, lees_trend() or {})
+        elif kort:
+            # Doordeweeks is de tendens het enige buurtcijfer dat verandert
+            hist = lees_trend() or {}
+            trend = trendregel(buurt, hist)
+            rijen_b = per_buurt.get(buurt, [])
+            delen_t = []
+            if rijen_b:
+                delen_t.append(f"mediaan €{eu(st.median([p for p, _ in rijen_b]))}/m² "
+                               f"op {len(rijen_b)} waarnemingen")
             if trend:
-                r.append(f"_Prijspeil {trend}._")
+                delen_t.append(trend)
+            if delen_t:
+                r.append("_" + " . ".join(delen_t) + "._")
         r.append("")
 
         # Panden zonder vergelijkingsmateriaal apart houden: vijf keer dezelfde
@@ -2973,15 +3030,26 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         # Doordeweeks scheiden we wat nieuw is van wat er al stond. Anders is
         # driekwart van de brief elke ochtend hetzelfde.
         if kort:
-            vers = [k for k in beoordeeld if is_nieuw_of_gewijzigd(k[-1], gezien)[0]]
-            oud = [k for k in beoordeeld if not is_nieuw_of_gewijzigd(k[-1], gezien)[0]]
+            vergunningen_nu = lees_kamervergunningen()
+            vers, oud, stil = [], [], []
+            for k in beoordeeld:
+                w = k[-1]
+                reden = verdient_aandacht(w, k[3], vergunningen=vergunningen_nu)
+                if not reden:
+                    stil.append(k)          # telt mee, komt niet in beeld
+                elif is_nieuw_of_gewijzigd(w, gezien)[0]:
+                    w["_reden"] = reden
+                    vers.append(k)
+                else:
+                    w["_reden"] = reden
+                    oud.append(k)
         else:
-            vers, oud = beoordeeld, []
+            vers, oud, stil = beoordeeld, [], []
 
         if vers:
-            kop = ("| Adres | Klasse | Prijs | m² | €/m² | Tegen mediaan | "
+            kop = ("| Adres | Prijs | m² | €/m² | Tegen mediaan | Waarom | "
                    "Verhuurd als | Richtprijs |")
-            streep = "|---|---|---:|---:|---:|---:|---|---:|"
+            streep = "|---|---:|---:|---:|---:|---|---|---:|"
             if toon_dagen:
                 kop += " Dagen |"
                 streep += "---:|"
@@ -3041,8 +3109,9 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 elif sc and sc.get("beschermd"):
                     scenario += " ⚠"
                 regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
-                         f"{klasse} | €{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
-                         f"{merk} {afwijking:+.0f}%{staart} | {scenario} | {plafond_s} |")
+                         f"€{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
+                         f"{merk} {afwijking:+.0f}%{staart} | "
+                         f"{w.get('_reden', '')} | {scenario} | {plafond_s} |")
                 if toon_dagen:
                     dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
                     regel += f" {dagen if dagen is not None else '—'} |"
@@ -3156,6 +3225,14 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"{buurt} woont alleen en {g.get('met_kinderen')}% heeft kinderen. "
                      f"Voor {', '.join(mismatch)} is de lokale vraag naar een woning "
                      f"van die omvang dus dun; je huurder komt van buiten de buurt._")
+            r.append("")
+
+        if stil:
+            prijzen_stil = sorted(p for _a, p, _k, _afw, _b, _w in
+                                  [(k[0], k[1], k[2], k[3], k[4], k[5]) for k in stil])
+            r.append(f"_{len(stil)} pand" + ("en" if len(stil) > 1 else "")
+                     + f" zonder bijzonderheden, mediaan €{eu(st.median(prijzen_stil))}/m². "
+                     + "Die tellen mee in de vergelijking maar vragen geen actie._")
             r.append("")
 
         if oud:
@@ -3443,8 +3520,10 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
     zinnen.append(kop + ".")
 
     # Het scherpst geprijsde pand, met het scenario erbij
-    if aanbod and nieuw:
-        beste = sorted(aanbod, key=lambda x: x[0])[0]
+    # Panden die je niet mag verhuren horen niet als tip in de opening
+    toonbaar = [k for k in aanbod if opkoop_signaal(k[-1]) != "beschermd"]
+    if toonbaar and nieuw:
+        beste = sorted(toonbaar, key=lambda x: x[0])[0]
         afw, ppm2, klasse, _a, basis, w = beste
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         zin = (f"Scherpst geprijsd is **{w['adres']}** in {buurt}: €{n(w['prijs'])} "
