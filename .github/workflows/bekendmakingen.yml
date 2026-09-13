@@ -262,6 +262,7 @@ jobs:
           BESTANDEN="
             verkopen.txt
             woz.txt
+            huidige_huur.txt
             brief_gezien.json
             prijstrend.json
             misdrijven_per_buurt.json
