@@ -2214,7 +2214,12 @@ UITGANGSPUNT: het gewone geval is kopen en verhuren. Beoordeel een pand dus eers
 
 Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de feiten er aanleiding toe geven, bijvoorbeeld een grote oppervlakte, een hoog aandeel appartementen in de buurt of een aanzienlijke uitpondruimte. Presenteer ze nooit als vanzelfsprekend, en benoem dan ook meteen de beperking: in een aangewezen wijk is omzetting vergunningplichtig, en onder de WOZ-grens is verkameren simpelweg niet toegestaan.
 
-Bouw het memo zo op: waarom valt dit pand op, wat zeggen de cijfers over de positie in de markt, wat doet het rendement bij de huidige rente, wat is de meest voor de hand liggende route naar meer huur of waarde, en welk risico of welke beperking staat daartegenover. Sluit af met een oordeel in een zin.
+Bouw het memo zo op:
+1. Waarom valt dit pand op en wat zeggen de cijfers over de positie in de markt.
+2. Wat kost het en wat brengt het op bij de huidige rente: investering, eigen inleg, operationeel resultaat, netto aanvangsrendement.
+3. Wat de meest voor de hand liggende route is naar meer huur of waarde.
+4. OF HET UITVOERBAAR IS. Dit is geen bijzaak maar de kern van een investeringsvoorstel. Behandel: ligt er al een vergunning op het pand, zijn er kamerverhuurpanden in de straat en welke adressen, welke voorwaarden gelden er voor een omzettingsvergunning, staat er iets aan handhaving in de omgeving, en hoe staat het met veiligheid en overlast in de buurt. Noem de adressen en de cijfers die je krijgt aangeleverd; schrijf niet "mogelijk vergunningplichtig" als er concrete gegevens bij staan.
+5. Sluit af met een oordeel in een of twee zinnen: is dit het bekijken waard, en wat zou je als eerste uitzoeken voordat je een bod doet.
 
 Staat er een "bod voor cashflow nul" bij de feiten, verwerk dat dan in je oordeel. Ligt dat bedrag onder de vraagprijs, benoem dan hoeveel eraf zou moeten voordat het pand zichzelf rondhoudt. Dat is geen taxatie maar een vertrekpunt voor onderhandeling; schrijf het ook zo op.
 
@@ -2507,6 +2512,80 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         if g.get("studenten") and g.get("inwoners"):
             f.append(f"studenten in {buurt}: {g['studenten']}, "
                      f"{round(g['studenten'] / g['inwoners'] * 100)}% van de inwoners")
+
+        # Wat bepaalt of je dit plan ook mág uitvoeren
+        vergunningen_c = lees_kamervergunningen()
+        archief_c = lees_archief()
+
+        m_adres = re.match(r"^(.+?)\s+(\d+)", w["adres"])
+        if m_adres:
+            straat_c, nr_c = m_adres.group(1), int(m_adres.group(2))
+            eigen_v = vergunningen_c.get(archief_sleutel(straat_c, str(nr_c)), [])
+            if eigen_v:
+                f.append(f"vergunning op dit pand: {eigen_v[0].get('soort')} uit "
+                         f"{eigen_v[0].get('datum', '')[:4]}, dat scheelt een traject")
+            else:
+                f.append("vergunning op dit pand: niet in de gemeentelijke lijst "
+                         "vanaf 2013; kan ouder zijn of niet vereist")
+
+            # Kamerverhuur in de directe omgeving: bepaalt of omzetting nog mag
+            buren_v = []
+            for offset in range(-5, 6):
+                if offset == 0:
+                    continue
+                for v in vergunningen_c.get(archief_sleutel(straat_c,
+                                                            str(nr_c + offset)), []):
+                    buren_v.append(f"{v.get('adres')} ({v.get('soort')}, "
+                                   f"{v.get('datum','')[:4]})")
+                    break
+            if buren_v:
+                f.append(f"kamerverhuur in de straat: {', '.join(buren_v[:6])}. "
+                         f"Nijmegen staat niet meer dan twee direct naast, onder of "
+                         f"boven elkaar gelegen kamergewijs bewoonde woningen toe")
+            else:
+                f.append("kamerverhuur in de straat: geen vergunningen gevonden op de "
+                         "buurpanden vanaf 2013")
+
+            # Handhaving op of rond het pand
+            hh = handhaving_op_adres(w["adres"], archief_c, straal=3)
+            if hh:
+                f.append("handhaving in de omgeving: " + "; ".join(
+                    f"{t['adres']} {t['soort']} {t['datum']}" for t in hh[:4]))
+
+        # Voorwaarden die een omzettingsvergunning in de weg kunnen staan
+        if "kamer" in (sc_naam or "").lower():
+            f.append("voorwaarden omzettingsvergunning: leefbaarheidstoets door een "
+                     "ambtelijke adviesgroep, fietsenstalling op eigen terrein van "
+                     "1,5 m2 per bewoner op de begane grond in een afzonderlijke "
+                     "ruimte, contactgeluidsisolatie van 54 dB, geen insluiting van "
+                     "een zelfstandig bewoonde woning, en maximaal twee kamergewijs "
+                     "bewoonde woningen naast elkaar")
+            f.append("vanaf vijf kamers geldt daarnaast een melding brandveilig "
+                     "gebruik; boete bij omzetten zonder vergunning is 10.000 euro "
+                     "bij bedrijfsmatige exploitatie")
+
+        # Veiligheid en leefbaarheid van de buurt
+        mis = lees_misdrijven().get(buurt)
+        if mis:
+            jaren_m = sorted(mis)
+            laatst_m = mis[jaren_m[-1]]
+            delen_m = []
+            for soort in ("woninginbraak", "vernieling", "drugs- en drankoverlast"):
+                n_m = laatst_m.get(soort)
+                if n_m is not None and g.get("inwoners"):
+                    delen_m.append(f"{soort} {n_m} "
+                                   f"({n_m / g['inwoners'] * 1000:.1f} per 1000)")
+            if delen_m:
+                f.append(f"veiligheid in {buurt} in {jaren_m[-1][:4]}: "
+                         + ", ".join(delen_m)
+                         + ". Vernieling en overlast wegen mee in de "
+                           "leefbaarheidstoets")
+
+        gezicht_c = gezichtswaarschuwing(buurt)
+        if gezicht_c:
+            f.append(f"{buurt} is {gezicht_c}: wijzigingen aan het uiterlijk zijn "
+                     f"vergunningplichtig, wat gevelisolatie, kozijnen en "
+                     f"zonnepanelen aan de voorzijde raakt")
 
         eigen_bm = [b for b in bm.get(buurt, [])
                     if b.get("straat", "").lower() in w["adres"].lower()
@@ -2869,6 +2948,68 @@ def verdient_aandacht(w, afwijking, archief=None, vergunningen=None):
     return ""
 
 
+
+HUIDIGE_HUUR_PAD = "huidige_huur.txt"
+
+
+def lees_huidige_huur():
+    """
+    Werkelijke jaarhuur van panden die in verhuurde staat worden aangeboden.
+    Formaat per regel: adres | kale jaarhuur | aantal eenheden | peildatum
+
+    Bij een pand in verhuurde staat neem je de bestaande contracten over. Die
+    liggen vaak onder het maximum doordat er niet is geindexeerd. De huidige
+    huur bepaalt dan je cashflow; het WWSO-maximum bepaalt je potentie bij
+    mutatie. Het verschil is de ruimte die vrijkomt zodra een huurder vertrekt.
+    """
+    if not os.path.exists(HUIDIGE_HUUR_PAD):
+        return {}
+    uit = {}
+    try:
+        with open(HUIDIGE_HUUR_PAD, encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip()
+                if not regel or regel.startswith("#"):
+                    continue
+                d = [x.strip() for x in regel.split("|")]
+                if len(d) < 2:
+                    continue
+                bedrag = re.sub(r"[^\d]", "", d[1])
+                if not bedrag:
+                    continue
+                uit[_woz_sleutel(d[0])] = {
+                    "jaarhuur": int(bedrag),
+                    "eenheden": int(re.sub(r"[^\d]", "", d[2]) or 0)
+                                if len(d) > 2 else None,
+                    "peildatum": d[3] if len(d) > 3 else "",
+                }
+    except Exception:
+        return {}
+    return uit
+
+
+def huurpositie(w, sc, huidige):
+    """
+    Waar staat dit pand tussen de huidige huurstroom en het wettelijk maximum?
+    Geeft niets terug als we de huidige huur niet kennen.
+    """
+    gegevens = huidige.get(_woz_sleutel(w["adres"]))
+    if not gegevens or not sc:
+        return None
+    nu = gegevens["jaarhuur"]
+    maximaal = (sc.get("maand") or 0) * 12     # al afgetopt op het puntenstelsel
+    if maximaal <= 0:
+        return None
+    return {
+        "nu": nu,
+        "maximaal": maximaal,
+        "ruimte": maximaal - nu,
+        "pct": (maximaal - nu) / nu * 100 if nu else 0,
+        "eenheden": gegevens.get("eenheden"),
+        "peildatum": gegevens.get("peildatum", ""),
+    }
+
+
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                         bm_overig=None, kort=False):
     """
@@ -3072,7 +3213,18 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 med_b = st.median(zelfde_band) if len(zelfde_band) >= 4 else None
                 sc = kies_scenario(w, huur_bk, huur_k, buurt, med_b,
                                    per_buurt.get(buurt, []))
+                # Bij een pand in verhuurde staat telt de bestaande huurstroom
+                # voor de cashflow; het maximum is de potentie bij mutatie.
+                # Kennen we de werkelijke huur, dan rekenen we daarmee: een
+                # geschatte huur is nooit beter dan een gemeten huur.
+                hp0 = huurpositie(w, sc, lees_huidige_huur())
+                if hp0 and sc:
+                    sc = dict(sc)
+                    sc["maand"] = hp0["nu"] / 12
+                    sc["huur_m2"] = (sc["maand"] / sc["opp"]) if sc.get("opp") else 0
+                    sc["bron"] = "gemeten uit de verkoopgegevens"
                 w["_scenario"] = sc
+                w["_huurpositie"] = hp0
                 plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
                            if sc else None)
                 if plafond:
@@ -3087,6 +3239,13 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     marge = sc["verkoopmarge"]
                     scenario += (f" . bij verkoop €{eu(sc['verkoopwaarde'])}"
                                  f" ({'+' if marge > 0 else ''}{eu(marge)})")
+                hp = w.get("_huurpositie")
+                if hp and hp["ruimte"] > 0:
+                    scenario += (" . werkelijke huur, "
+                                 + f"{hp['pct']:.0f}".replace(".", ",")
+                                 + "% onder het puntenmaximum")
+                elif hp:
+                    scenario += " . werkelijke huur, al op of boven het puntenmaximum"
                 if w.get("splitsing_geregistreerd"):
                     nieuw = w["splitsing_geregistreerd"]
                     scenario += (f" . splitsing al geregistreerd in de BAG: "

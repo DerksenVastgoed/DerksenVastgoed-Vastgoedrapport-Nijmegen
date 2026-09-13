@@ -1,0 +1,14 @@
+# Werkelijke kale jaarhuur van panden die in verhuurde staat worden aangeboden.
+# Formaat: adres | kale jaarhuur | aantal eenheden | peildatum
+#
+# Waarom dit bestand bestaat: bij een pand in verhuurde staat neem je de
+# bestaande contracten over, en die liggen vaak onder het wettelijk maximum
+# doordat er niet is geindexeerd. De huidige huur bepaalt je cashflow van
+# vandaag; het puntenstelsel bepaalt wat je bij mutatie mag vragen. Het
+# verschil is de ruimte die vrijkomt zodra een huurder vertrekt.
+#
+# Bij een leeg pand vul je hier niets in: dan is het puntenstelsel leidend,
+# want je begint met nieuwe contracten.
+#
+# Voorbeeld, uit de verkoopbrochure:
+# St. Annastraat 28 | 106064 | 15 | 2026-07-01
