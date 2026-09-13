@@ -3816,5 +3816,138 @@
     "buurtnaam": "Biezen",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-92985bf68e9d13bc07ae70abd20ffbcb"
+  },
+  "In de Betouwstraat 35|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1883",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GB",
+    "adresseerbaarObjectIdentificatie": "0268010000111356",
+    "pand": "0268100000017545",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-666e9e2d5687f381448f88903d83de08",
+    "oppervlakte_bag": 86,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-07-08",
+      "geldig_tot": "2036-06-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "In de Betouwstraat 37|Nijmegen": {
+    "oppervlakte": 55,
+    "bouwjaar": "1883",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GB",
+    "adresseerbaarObjectIdentificatie": "0268010000111357",
+    "pand": "0268100000017545",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-c409862730d2c696f59cb941b168f332",
+    "oppervlakte_bag": 72,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-07-08",
+      "geldig_tot": "2036-06-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Scholenhof 8|Nijmegen": {
+    "oppervlakte": 89,
+    "bouwjaar": "2007",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511SG",
+    "adresseerbaarObjectIdentificatie": "0268010000047711",
+    "pand": "0268100000028182",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-ab44c920ed18ab0d050be2edd7009eb3",
+    "oppervlakte_bag": 89,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2019-12-09",
+      "geldig_tot": "2029-12-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Palembangstraat 44|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "1957",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KX",
+    "adresseerbaarObjectIdentificatie": "0268010000075491",
+    "pand": "0268100000029804",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-a7a0662d53dd3095b7cd9be692bbc6cf",
+    "oppervlakte_bag": 97,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-08-10",
+      "geldig_tot": "2036-08-03",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Zwaluwstraat 175|Nijmegen": {
+    "oppervlakte": 82,
+    "bouwjaar": "1978",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541NV",
+    "adresseerbaarObjectIdentificatie": "0268010000037623",
+    "pand": "0268100000019433",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-43021898848daceca68d2f95003bfb72",
+    "oppervlakte_bag": 86,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-08-18",
+      "geldig_tot": "2036-08-18",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Oude Koningstraat 28|Nijmegen": {
+    "oppervlakte": 59,
+    "bouwjaar": "1590",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WR",
+    "adresseerbaarObjectIdentificatie": "0268010000106335",
+    "pand": "0268100000012105",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-2816d168561c68c76f3e0c10c62d0eaa",
+    "oppervlakte_bag": 66,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2025-02-10",
+      "geldig_tot": "2035-01-20",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

@@ -11,11 +11,11 @@
  .nr{background:#12242c;color:#fff;border-radius:50%;width:26px;height:26px;
      line-height:26px;text-align:center;font-weight:700}
 </style></head><body>
-<header><h1>Uitgelichte panden</h1><p>Bijgewerkt 30-08-2026</p></header>
+<header><h1>Uitgelichte panden</h1><p>Bijgewerkt 13-09-2026</p></header>
 <div id="kaart"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-var punten = [{"rang": 2, "lat": 51.8447747, "lon": 5.84393142, "adres": "Zwaluwstraat 7", "buurt": "Biezen", "tekst": "€335.000 . 86 m² . €3.895/m²"}];
+var punten = [{"rang": 1, "lat": 51.84974779, "lon": 5.85778796, "adres": "Nieuwe Markt 90", "buurt": "Benedenstad", "tekst": "€575.000 . 158 m² . €3.639/m²"}, {"rang": 2, "lat": 51.8447747, "lon": 5.84393142, "adres": "Zwaluwstraat 7", "buurt": "Biezen", "tekst": "€335.000 . 86 m² . €3.895/m²"}, {"rang": 3, "lat": 51.82984929, "lon": 5.86794742, "adres": "Prof. Molkenboerstraat 30", "buurt": "Galgenveld", "tekst": "€429.000 . 110 m² . €3.900/m²"}];
 var kaart = L.map('kaart');
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
   {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(kaart);

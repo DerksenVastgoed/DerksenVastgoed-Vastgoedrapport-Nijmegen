@@ -216,3 +216,11 @@ Hofdijkstraat 17 | Nijmegen | 635000 | te koop | 2026-09-11 |  | 124 | 6531BR
 Dokstraat 425 | Nijmegen | 595000 | te koop | 2026-09-11 |  | 102 | 6541EZ
 Dominicanenstraat 30 | Nijmegen | 735000 | te koop | 2026-09-11 |  | 174 | 6521KD
 Ziekerstraat 36 | Nijmegen | 339000 | te koop | 2026-09-11 |  | 50 | 6511LH
+
+# Automatisch toegevoegd uit Funda-attendering op 13-09-2026
+In de Betouwstraat 35 | Nijmegen | 429000 | te koop | 2026-09-13 |  | 73 | 6511GB
+In de Betouwstraat 37 | Nijmegen | 369000 | te koop | 2026-09-13 |  | 55 | 6511GB
+Scholenhof 8 | Nijmegen | 550000 | te koop | 2026-09-13 |  | 89 | 6511SG
+Palembangstraat 44 | Nijmegen | 399000 | te koop | 2026-09-13 |  | 96 | 6524KX
+Zwaluwstraat 175 | Nijmegen | 349500 | te koop | 2026-09-13 |  | 82 | 6541NV
+Oude Koningstraat 28 | Nijmegen | 325000 | te koop | 2026-09-13 |  | 59 | 6511WR

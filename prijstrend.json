@@ -1,18 +1,18 @@
 {
  "2026-W37": {
   "Altrade": 4853,
-  "Biezen": 5078,
+  "Biezen": 5039,
   "Bottendaal": 4773,
-  "Galgenveld": 4806,
-  "Stadscentrum": 5142,
-  "_datum": "2026-09-11",
+  "Galgenveld": 4794,
+  "Stadscentrum": 5198,
+  "_datum": "2026-09-13",
   "_n": {
    "Altrade": 38,
-   "Biezen": 29,
+   "Biezen": 30,
    "Bottendaal": 11,
-   "Galgenveld": 27,
-   "Stadscentrum": 30
+   "Galgenveld": 28,
+   "Stadscentrum": 33
   },
-  "_nijmegen": 4991
+  "_nijmegen": 4993
  }
 }

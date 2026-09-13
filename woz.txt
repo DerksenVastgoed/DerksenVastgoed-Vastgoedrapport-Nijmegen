@@ -51,3 +51,9 @@ de Ruyterstraat 37 |  | 2026
 # Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
 Beijensstraat 18 |  | 2026
 de Ruyterstraat 37 |  | 2026
+
+# Toegevoegd op 2026-09-13: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+Beijensstraat 18 |  | 2026
+In de Betouwstraat 35 |  | 2026
+Palembangstraat 44 |  | 2026
+de Ruyterstraat 37 |  | 2026
