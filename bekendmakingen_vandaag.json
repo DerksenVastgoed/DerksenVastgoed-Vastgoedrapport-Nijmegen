@@ -4,7 +4,7 @@
   "titel": "Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html",
   "strategie": "splitsen",
-  "duiding": "Toevoegen van een derde appartement in de bovenverdieping splitst het pand van 184 m2 verder op, wat de kleine-eenhedenvoorraad vergroot.",
+  "duiding": "Toevoegen van een derde appartement op 184 m² vergroot het aantal verhuurbare units en verhoogt de opbrengstwaarde per pand.",
   "feiten": {
    "oppervlakte_m2": 184
   },
@@ -16,8 +16,8 @@
   "datum": "2026-09-14",
   "titel": "Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html",
-  "strategie": "geen",
-  "duiding": "Kozijnwijziging in de buitengevel is een esthetische ingreep zonder directe invloed op waardecreatie of eenheden.",
+  "strategie": "verduurzaming",
+  "duiding": "Kozijnvervanging in de buitengevel van dit 3553 m² pand met label A+++ (2026) toont dat gevelingrepen hier vergunbaar zijn, ook op grote schaal.",
   "feiten": {
    "energielabel": "A+++ (2026)",
    "oppervlakte_m2": 3553
@@ -31,7 +31,7 @@
   "titel": "Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html",
   "strategie": "geen",
-  "duiding": "Sloop van aanbouw en kozijn is een bouwtechnische voorbereiding zonder functiewijziging of eenhedentoename.",
+  "duiding": "Sloop van aanbouw en kozijn is een bouwkundige ingreep zonder directe koppeling aan functiewijziging of labelverbetering.",
   "feiten": {
    "energielabel": "E (2021)",
    "oppervlakte_m2": 163
