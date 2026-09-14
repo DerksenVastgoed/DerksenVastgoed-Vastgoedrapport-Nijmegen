@@ -69,6 +69,8 @@ TOON:
 - Geen opgewektheid die er niet is. Vallen de cijfers tegen, schrijf dat gewoon.
 - Verwijs nergens naar ziekte, behandeling of gezondheid. Dit is een brief over vastgoed.
 
+LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
+
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan."""
 
 

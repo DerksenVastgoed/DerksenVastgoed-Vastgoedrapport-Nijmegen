@@ -3002,8 +3002,8 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             r.append("_" + " . ".join(stukken) + "._")
         r.append("")
 
-        r.append("| Adres | Vraagprijs | m² | €/m² | Tegen mediaan | Scenario | "
-                 "Huur/mnd | Richtprijs | Verschil |")
+        r.append("| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan "
+                 "| Scenario | Huur/mnd | Richtprijs | Richtprijs t.o.v. vraagprijs |")
         r.append("|---|---:|---:|---:|---:|---|---:|---:|---:|")
         rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
                    if w in panden]
@@ -3026,10 +3026,12 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {verschil_s} |")
         r.append("")
 
-    r.append("_Richtprijs is de hoogste koopsom waarbij de nettohuur rente en "
-             "aflossing nog dekt. Verschil is die richtprijs afgezet tegen de "
-             "vraagprijs: positief betekent ruimte, negatief betekent te duur "
-             "voor verhuur._")
+    r.append("_Afwijking van de buurtmediaan vergelijkt de prijs per vierkante "
+             "meter met vergelijkbare panden in die buurt; het is geen "
+             "prijswijziging. Richtprijs is de hoogste koopsom waarbij de "
+             "nettohuur rente en aflossing nog dekt. De laatste kolom zet die "
+             "richtprijs af tegen de vraagprijs: positief betekent ruimte, "
+             "negatief betekent te duur voor verhuur._")
     return r
 
 
@@ -3429,8 +3431,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             vers, oud, stil = beoordeeld, [], []
 
         if vers:
-            kop = ("| Adres | Prijs | m² | €/m² | Tegen mediaan | Waarom | "
-                   "Verhuurd als | Richtprijs |")
+            kop = ("| Adres | Vraagprijs | m² | €/m² | Afwijking van de "
+                   "buurtmediaan | Waarom | Verhuurd als | Richtprijs |")
             streep = "|---|---:|---:|---:|---:|---|---|---:|"
             if toon_dagen:
                 kop += " Dagen |"
@@ -3654,9 +3656,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
                 stukken.append(
                     kaartlink(w["adres"], w.get("plaats", "Nijmegen"), w.get("bron", ""))
-                    + f" €{eu(w['prijs'])} ({afw:+.0f}%"
-                    + (f", {dagen} dagen" if dagen is not None else "") + ")")
-            r.append(f"_Stond er al, ongewijzigd: " + " . ".join(stukken) + "._")
+                    + f" €{eu(w['prijs'])} ({afw:+.0f}% t.o.v. de buurtmediaan"
+                    + (f", {dagen} dagen in aanbod" if dagen is not None else "") + ")")
+            r.append("_Stond er al, vraagprijs ongewijzigd: " + " . ".join(stukken)
+                     + ". Het percentage is de afwijking van de mediaanprijs per "
+                       "vierkante meter in die buurt, niet een prijswijziging._")
             r.append("")
 
         if onbeoordeeld:
