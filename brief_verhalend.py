@@ -22,7 +22,9 @@ import requests
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
-AANHEF = os.environ.get("BRIEF_AANHEF", "Beste pa")
+# Let op: een secret dat bestaat maar leeg is, geeft een lege tekst terug en
+# niet de standaardwaarde. Vandaar de or in plaats van een default.
+AANHEF = (os.environ.get("BRIEF_AANHEF") or "").strip() or "Beste pa"
 
 PROFIEL = """Je schrijft een lange brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven.
 
@@ -223,6 +225,28 @@ AANHEF_WOORDEN = ("beste", "hoi", "hallo", "dag", "lieve", "pa", "pap", "papa",
                   "vader", "hey", "hé")
 
 
+# De afsluiting kan op een of twee regels staan: "Groet, Mark" maar ook
+# "Met vriendelijke groet," met de naam eronder.
+ONDERTEKENING = re.compile(
+    r"\n+\s*(?:met vriendelijke groet(?:en)?|met hartelijke groet(?:en)?|"
+    r"groet(?:en)?|hartelijke groet(?:en)?|tot (?:morgen|volgende week|zondag|snel)|"
+    r"liefs|hoogachtend|vriendelijke groet(?:en)?)\b[^\n]*"
+    r"(?:\n[^\n]{0,40})?\s*$",
+    re.IGNORECASE)
+
+
+def haal_ondertekening_weg(brief):
+    """
+    Het model zet er soms toch een ondertekening onder. Die hoort er niet:
+    de mail komt van Mark, dus zijn naam eronder is dubbelop.
+    """
+    vorige = None
+    while brief != vorige:
+        vorige = brief
+        brief = ONDERTEKENING.sub("", brief).rstrip()
+    return brief
+
+
 def zet_aanhef(brief, aanhef):
     """
     Vervangt de aanhef door de ingestelde. Het model neemt de opgegeven aanhef
@@ -236,7 +260,13 @@ def zet_aanhef(brief, aanhef):
     for i, regel in enumerate(regels):
         if not regel.strip():
             continue
-        eerste = regel.strip().rstrip(",.!").lower()
+        kaal = regel.strip()
+        eerste = kaal.rstrip(",.!").lower()
+        # Een lege of bijna lege eerste regel is een mislukte aanhef: het model
+        # kreeg een lege aanhef aangeleverd en zette alleen de komma neer.
+        if len(eerste) <= 1:
+            regels[i] = f"{aanhef},"
+            return "\n".join(regels)
         kort = len(eerste.split()) <= 4
         if kort and any(eerste.startswith(w) for w in AANHEF_WOORDEN):
             regels[i] = f"{aanhef},"
@@ -342,7 +372,7 @@ def main():
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
     ]
-    brief = zet_aanhef(schrijf_brief(bronnen), AANHEF)
+    brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
         print("Geen brief gemaakt", file=sys.stderr)
         return
