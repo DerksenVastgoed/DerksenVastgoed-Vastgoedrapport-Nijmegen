@@ -205,7 +205,6 @@ jobs:
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
       - name: Verhalende brief maken
-        if: env.HEEFT_VERHAAL == '1'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
@@ -217,6 +216,60 @@ jobs:
           else
             echo "LET OP: er is geen verhalende brief gemaakt"
           fi
+
+      - name: Brief en bijlage samenvoegen tot een HTML
+        run: |
+          python - << 'EOF'
+          import markdown, os
+          d = os.environ["DATUM"]
+
+          def lees(pad):
+              try:
+                  with open(pad, encoding="utf-8") as f:
+                      return f.read().strip()
+              except Exception:
+                  return ""
+
+          verhaal = lees(f"digests/{d}-verhaal.md")
+          werk = lees(f"digests/{d}-brief.md")
+
+          # De brief bovenaan om rustig te lezen, de cijfers eronder als
+          # bijlage om in te duiken. Een mail in plaats van twee.
+          delen = []
+          if verhaal:
+              delen.append(markdown.markdown(verhaal, extensions=["extra"]))
+              if werk:
+                  delen.append('<hr><h1 id="bijlage">Bijlage: de cijfers</h1>'
+                               '<p class="inleiding">Het volledige overzicht per '
+                               'buurt, met de panden die nu worden aangeboden, de '
+                               'doorrekening en de gemeentelijke berichten.</p>')
+          if werk:
+              delen.append(markdown.markdown(werk, extensions=["extra", "tables"]))
+
+          stijl = (
+            "body{font:17px/1.75 Georgia,'Times New Roman',serif;color:#1a2830;"
+            "max-width:700px;margin:0 auto;padding:28px}"
+            "h1{font-size:21px;font-weight:normal;color:#4a5b63;"
+            "border-bottom:2px solid #E0A458;padding-bottom:10px;margin-top:40px}"
+            "h2{font-size:17px;color:#12242c;margin:32px 0 10px;"
+            "border-bottom:1px solid #e3e8ea;padding-bottom:6px}"
+            "h3{font-size:16px;color:#12242c;margin:26px 0 8px}"
+            "p{margin:0 0 18px}a{color:#4a7a72}"
+            "hr{border:0;border-top:2px solid #e3e8ea;margin:48px 0 8px}"
+            ".inleiding{color:#4a5b63;font-size:15px}"
+            "table{border-collapse:collapse;width:100%;font:14px/1.5 "
+            "-apple-system,Segoe UI,sans-serif;margin:0 0 18px}"
+            "th{text-align:left;border-bottom:2px solid #12242c;padding:6px 8px}"
+            "td{border-bottom:1px solid #e3e8ea;padding:6px 8px;vertical-align:top}"
+            "em{color:#4a5b63;font-size:15px}")
+
+          with open(f"digests/{d}-mail.html", "w", encoding="utf-8") as f:
+              f.write("<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
+                      f"<style>{stijl}</style></head><body>"
+                      + "".join(delen) + "</body></html>")
+          print(f"Mail samengesteld: verhaal {len(verhaal.split())} woorden, "
+                f"bijlage {len(werk.split())} woorden")
+          EOF
 
       - name: Brief naar HTML converteren
         run: |
@@ -310,37 +363,10 @@ jobs:
           echo "vandaag zijn daardoor verloren en morgen begint alles opnieuw."
           exit 1
 
-      - name: Verhalende brief naar HTML
-        if: env.HEEFT_VERHAAL == '1'
-        continue-on-error: true
-        run: |
-          if [ ! -s "digests/${DATUM}-verhaal.md" ]; then
-            echo "Geen verhalende brief gemaakt, HTML-stap overgeslagen"
-            exit 0
-          fi
-          python - << 'EOF'
-          import markdown, os
-          d = os.environ["DATUM"]
-          md = open(f"digests/{d}-verhaal.md", encoding="utf-8").read()
-          html = markdown.markdown(md, extensions=["extra"])
-          stijl = ("body{font:17px/1.75 Georgia,'Times New Roman',serif;"
-                   "color:#1a2830;max-width:660px;margin:0 auto;padding:28px}"
-                   "h1{font-size:21px;font-weight:normal;color:#4a5b63;"
-                   "border-bottom:2px solid #E0A458;padding-bottom:10px}"
-                   "h2{font-size:17px;color:#12242c;margin:32px 0 10px;"
-                   "border-bottom:1px solid #e3e8ea;padding-bottom:6px}"
-                   "h3{font-size:16px;color:#12242c;margin:26px 0 8px}"
-                   "p{margin:0 0 18px}"
-                   "a{color:#4a7a72}"
-                   "hr{border:0;border-top:1px solid #e3e8ea;margin:32px 0}")
-          open(f"digests/{d}-verhaal.html", "w", encoding="utf-8").write(
-              f"<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
-              f"<style>{stijl}</style></head><body>{html}</body></html>")
-          EOF
+          convert_markdown: false
 
-      - name: Verhalende brief mailen
-        if: ${{ env.HEEFT_VERHAAL == '1' && hashFiles(format('digests/{0}-verhaal.html', env.DATUM)) != '' }}
-        continue-on-error: true
+      - name: Mail versturen
+        if: ${{ hashFiles(format('digests/{0}-mail.html', env.DATUM)) != '' }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -349,11 +375,14 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
-          to: ${{ secrets.MAIL_TO_VERHAAL }}
+          to: ${{ secrets.MAIL_TO }}
+          cc: ${{ secrets.MAIL_TO_VERHAAL }}
           subject: Vastgoed in Nijmegen, ${{ env.DATUM }}
-          html_body: file://digests/${{ env.DATUM }}-verhaal.html
+          html_body: file://digests/${{ env.DATUM }}-mail.html
 
-      - name: Brief mailen
+      # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
+      - name: Mail versturen zonder verhaal
+        if: ${{ hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) != '' }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -361,8 +390,7 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          from: Vastgoedmonitor Nijmegen <${{ secrets.MAIL_USERNAME }}>
+          from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          subject: ${{ env.ONDERWERP }}
-          html_body: file://${{ env.HTML_PAD }}
-          convert_markdown: false
+          subject: Vastgoed in Nijmegen, ${{ env.DATUM }}
+          html_body: file://digests/${{ env.DATUM }}-brief.html
