@@ -1,0 +1,92 @@
+
+## Vandaag
+
+44 panden in beeld, geen mutaties sinds gisteren. 3 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
+
+### Per gebied: aanbod en gemeentelijke berichten
+
+**Benedenstad**
+_mediaan €5.318/m² op 6 waarnemingen._
+
+_Stond er al, ongewijzigd: [Nieuwe Markt 90](https://www.google.com/maps/search/?api=1&query=Nieuwe+Markt+90%2C+Nijmegen) €575.000 (-27%)._
+
+_1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+**Biezen**
+_mediaan €5.039/m² op 30 waarnemingen . +0,0% sinds 2026-09-13._
+
+_5 panden zonder bijzonderheden, mediaan €5.833/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
+
+_4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+**Galgenveld**
+_mediaan €4.794/m² op 28 waarnemingen . +0,0% sinds 2026-09-13._
+
+_4 panden zonder bijzonderheden, mediaan €4.538/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Stond er al, ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-18%) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-3%)._
+
+_Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026) . St. Annastraat 28 €1.021.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
+
+_3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html" style="color:#12242c;text-decoration:none">Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">163 m² . label E (2021)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloopmelding van aanbouw en kozijn is een fysieke aanpassing zonder direct effect op woningaanbod of segmentstrategie.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+**Altrade**
+_mediaan €4.852/m² op 38 waarnemingen . +0,0% sinds 2026-09-13._
+
+_2 panden zonder bijzonderheden, mediaan €4.832/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+**Stadscentrum**
+_mediaan €5.197/m² op 33 waarnemingen . +0,0% sinds 2026-09-13._
+
+_4 panden zonder bijzonderheden, mediaan €5.537/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Stond er al, ongewijzigd: [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+9%)._
+
+_Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
+
+_8 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+_Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de leveringsdatum al langer dan zes maanden verhuurd, dan is het geen beschermde woonruimte en geldt de vergunningplicht niet. Bij lege oplevering of een kortere verhuurperiode vervalt die route._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">3553 m² . label A+++ (2026)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging aan de buitengevel toont dat gevelingrepen op deze locatie vergunbaar zijn, relevant voor toekomstige labelverbetering.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+**Bottendaal**
+_mediaan €4.772/m² op 11 waarnemingen . +0,0% sinds 2026-09-13._
+
+_2 panden zonder bijzonderheden, mediaan €4.596/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html" style="color:#12242c;text-decoration:none">Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">184 m²</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Toevoegen van een derde appartement op de bovenverdieping vergroot het aantal zelfstandige units en verdicht de voorraad.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+_7 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
+_De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond verkameren en splitsen staan in de uitgebreide brief van zondag._
+
+
+### Achtergrond
+
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 192 panden, waarvan er 49 nu in aanbod zijn. Bijgewerkt 14 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+
+_Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

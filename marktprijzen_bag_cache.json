@@ -3949,5 +3949,23 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:van Dulckenstraat 44|Nijmegen": {
+    "postcode": "6512DV",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-82d34da0dad01136e93aefd860403afb"
+  },
+  "bm:Nassausingel 3|Nijmegen": {
+    "postcode": "6511EV",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-156b75adc4581fa2902b3b12948cda03"
+  },
+  "bm:Professor Schrijnenstraat 20|Nijmegen": {
+    "postcode": "6524RA",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-86717f7d02968eb10ce307dd821c23f8"
   }
 }

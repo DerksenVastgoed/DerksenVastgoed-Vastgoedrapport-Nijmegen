@@ -1,1 +1,43 @@
-[]
+[
+ {
+  "datum": "2026-09-14",
+  "titel": "Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html",
+  "strategie": "splitsen",
+  "duiding": "Toevoegen van een derde appartement op de bovenverdieping vergroot het aantal zelfstandige units en verdicht de voorraad.",
+  "feiten": {
+   "oppervlakte_m2": 184
+  },
+  "straat": "van Dulckenstraat",
+  "huisnummer": "44",
+  "kern": true
+ },
+ {
+  "datum": "2026-09-14",
+  "titel": "Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html",
+  "strategie": "verduurzaming",
+  "duiding": "Kozijnwijziging aan de buitengevel toont dat gevelingrepen op deze locatie vergunbaar zijn, relevant voor toekomstige labelverbetering.",
+  "feiten": {
+   "energielabel": "A+++ (2026)",
+   "oppervlakte_m2": 3553
+  },
+  "straat": "Nassausingel",
+  "huisnummer": "3",
+  "kern": false
+ },
+ {
+  "datum": "2026-09-14",
+  "titel": "Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html",
+  "strategie": "geen",
+  "duiding": "Sloopmelding van aanbouw en kozijn is een fysieke aanpassing zonder direct effect op woningaanbod of segmentstrategie.",
+  "feiten": {
+   "energielabel": "E (2021)",
+   "oppervlakte_m2": 163
+  },
+  "straat": "Professor Schrijnenstraat",
+  "huisnummer": "20",
+  "kern": false
+ }
+]
