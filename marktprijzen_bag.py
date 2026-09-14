@@ -2998,6 +2998,48 @@ def render_bieden(woningen, huur_bk, huur_k, per_buurt):
 DREMPEL_SCHERP = -15      # procent onder de mediaan van de eigen klasse
 
 
+
+def haalbare_routes(w, sc, vergunningen=None):
+    """
+    Welke routes staan voor dit pand open?
+
+    Kamerverhuur en splitsen worden allebei getoetst, want een pand dat op
+    artikel 15 vastloopt kan prima splitsbaar zijn, en omgekeerd. Gewone
+    verhuur kan altijd, maar levert bij de huidige rente zo weinig op dat het
+    op zichzelf geen reden is om een pand te tonen.
+
+    Geeft terug welke routes vrij zijn en waarom de andere niet.
+    """
+    if not toets_kamerverhuur:
+        return {"vrij": ["kamers", "splitsen"], "geblokkeerd": {}}
+
+    vrij, geblokkeerd = [], {}
+    opp = w.get("oppervlakte") or 0
+
+    # Kamerverhuur is alleen zinvol bij voldoende oppervlak
+    if opp >= 100:
+        kamers_n = max(3, round(opp * VERHUURBAAR_AANDEEL / 22))
+        regels = toets_kamerverhuur(w, aantal_kamers=kamers_n,
+                                    vergunningen=vergunningen, woz=w.get("woz"))
+        blok = [g for g, o, _t in regels if o == "voldoet niet"]
+        if blok:
+            geblokkeerd["kamers"] = ", ".join(blok)
+        else:
+            vrij.append("kamers")
+
+    # Splitsen vraagt ruimte voor minstens twee eenheden
+    if opp and opp * VERHUURBAAR_SPLITSING >= 2 * MIN_UNIT_M2:
+        units = int(opp * VERHUURBAAR_SPLITSING // MIN_UNIT_M2)
+        regels_s = toets_splitsing(w, aantal_units=units)
+        blok_s = [g for g, o, _t in regels_s if o == "voldoet niet"]
+        if blok_s:
+            geblokkeerd["splitsen"] = ", ".join(blok_s)
+        else:
+            vrij.append("splitsen")
+
+    return {"vrij": vrij, "geblokkeerd": geblokkeerd}
+
+
 def verdient_aandacht(w, afwijking, archief=None, vergunningen=None):
     """
     Waarom zou dit pand vandaag je aandacht krijgen? Geeft de reden terug, of
@@ -3026,10 +3068,18 @@ def verdient_aandacht(w, afwijking, archief=None, vergunningen=None):
     if afwijking is not None and afwijking <= DREMPEL_SCHERP:
         return f"{afwijking:+.0f}% onder de mediaan van zijn klasse"
 
-    # Splitsings- of verkameringspotentie bij een groot pand
-    sc = w.get("_scenario") or {}
-    if "splitsen" in (sc.get("naam") or "") and sc.get("verkoopmarge", 0) > 100_000:
-        return f"splitsen levert op papier €{eu(sc['verkoopmarge'])} marge"
+    # Staat er nog een route open die waarde toevoegt? Zo niet, dan is dit
+    # pand alleen nog vergelijkingsmateriaal en hoef je het niet te zien.
+    routes = haalbare_routes(w, w.get("_scenario"), vergunningen)
+    w["_routes"] = routes
+    if routes["vrij"]:
+        sc = w.get("_scenario") or {}
+        if "splitsen" in routes["vrij"] and sc.get("verkoopmarge", 0) > 100_000:
+            return (f"splitsen kan hier en levert op papier "
+                    f"€{eu(sc['verkoopmarge'])} marge")
+        if len(routes["vrij"]) == 2:
+            return "zowel verkameren als splitsen staat open"
+        return f"{routes['vrij'][0]} staat open als route"
 
     return ""
 
@@ -3485,9 +3535,22 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         if stil:
             prijzen_stil = sorted(p for _a, p, _k, _afw, _b, _w in
                                   [(k[0], k[1], k[2], k[3], k[4], k[5]) for k in stil])
-            r.append(f"_{len(stil)} pand" + ("en" if len(stil) > 1 else "")
-                     + f" zonder bijzonderheden, mediaan €{eu(st.median(prijzen_stil))}/m². "
-                     + "Die tellen mee in de vergelijking maar vragen geen actie._")
+            # Waarom ze niet in beeld komen: geen route, of gewoon niets bijzonders
+            geblokt = {}
+            for k in stil:
+                for route, reden in (k[-1].get("_routes") or {}).get(
+                        "geblokkeerd", {}).items():
+                    geblokt.setdefault(reden, set()).add(route)
+            regel_stil = (f"_{len(stil)} pand" + ("en" if len(stil) > 1 else "")
+                          + f" buiten beeld, mediaan "
+                          + f"€{eu(st.median(prijzen_stil))}/m². "
+                          + "Die tellen mee in de vergelijking maar vragen geen actie")
+            if geblokt:
+                delen_g = [f"{r} valt af op {reden}"
+                           for reden, routes in sorted(geblokt.items())
+                           for r in sorted(routes)]
+                regel_stil += ": " + ", ".join(delen_g[:3])
+            r.append(regel_stil + "._")
             r.append("")
 
         if oud:
