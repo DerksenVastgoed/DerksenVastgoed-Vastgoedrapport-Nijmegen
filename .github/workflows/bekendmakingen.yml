@@ -153,7 +153,10 @@ jobs:
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          python marktprijzen_bag.py --modus "$MODUS" --uit "digests/${DATUM}-marktprijzen.md" --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
+          python marktprijzen_bag.py --modus "$MODUS" \
+            --uit "digests/${DATUM}-marktprijzen.md" \
+            --bijlage "digests/${DATUM}-bijlage.md" \
+            --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
       - name: Brief samenstellen
         run: |
@@ -232,7 +235,8 @@ jobs:
                   return ""
 
           verhaal = lees(f"digests/{d}-verhaal.md")
-          werk = lees(f"digests/{d}-brief.md")
+          # De bijlage is de tabelversie; valt die weg, dan de hele werkbrief
+          werk = lees(f"digests/{d}-bijlage.md") or lees(f"digests/{d}-brief.md")
 
           # De brief bovenaan om rustig te lezen, de cijfers eronder als
           # bijlage om in te duiken. Een mail in plaats van twee.
