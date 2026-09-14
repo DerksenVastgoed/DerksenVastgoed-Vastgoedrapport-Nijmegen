@@ -317,6 +317,7 @@ jobs:
             woz.txt
             huidige_huur.txt
             brief_gezien.json
+            weetjes_gezien.json
             prijstrend.json
             misdrijven_per_buurt.json
             kamervergunningen.json
