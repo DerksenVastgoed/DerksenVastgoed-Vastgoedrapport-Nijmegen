@@ -218,6 +218,7 @@ jobs:
           fi
 
       - name: Brief en bijlage samenvoegen tot een HTML
+        continue-on-error: true
         run: |
           python - << 'EOF'
           import markdown, os
@@ -272,6 +273,7 @@ jobs:
           EOF
 
       - name: Brief naar HTML converteren
+        continue-on-error: true
         run: |
           pip install markdown
           HTML_PAD="digests/${DATUM}-brief.html"
