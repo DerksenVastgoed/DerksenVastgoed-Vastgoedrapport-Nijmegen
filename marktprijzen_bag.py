@@ -2938,6 +2938,101 @@ def draagkracht(maandhuur, cbs_buurt):
     }
 
 
+
+def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
+    """
+    De bijlage: cijfers in tabellen, zonder verhaal.
+
+    De brief zelf legt uit wat er speelt. Deze bijlage is om in te kijken:
+    per buurt de kengetallen op een rij, en daaronder elk pand dat wordt
+    aangeboden met wat het kost en wat het volgens de rekensom waard is.
+    """
+    if huur_bk is None or huur_k is None:
+        huur_bk, huur_k = gemeten_huren(
+            [w for w in woningen
+             if (w.get("status") or "").lower().startswith("te huur")])
+
+    cbs = lees_cbs()
+    verg = lees_vergunningen_per_buurt()
+    mis = lees_misdrijven()
+    trend = lees_trend()
+
+    r = ["", "## De cijfers per buurt", ""]
+
+    # Eerst een overzicht van alle buurten naast elkaar
+    r.append("| Buurt | Woningen | Koop | Corporatie | WOZ | Studenten | "
+             "Kamervergunningen | Mediaan €/m² |")
+    r.append("|---|---:|---:|---:|---:|---:|---:|---:|")
+    for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
+        g = cbs.get(buurt) or {}
+        rijen = per_buurt.get(buurt, [])
+        med = st.median([p for p, _ in rijen]) if rijen else None
+        r.append(
+            f"| {buurt} | {eu(g['won']) if g.get('won') else '—'} "
+            f"| {str(g.get('koop', '—')) + '%' if g.get('koop') is not None else '—'} "
+            f"| {str(g.get('corp', '—')) + '%' if g.get('corp') is not None else '—'} "
+            f"| {'€' + eu(g['woz'] * 1000) if g.get('woz') else '—'} "
+            f"| {eu(g['studenten']) if g.get('studenten') else '—'} "
+            f"| {verg.get(buurt, '—')} "
+            f"| {'€' + eu(med) if med else '—'} |")
+    r.append("")
+
+    # Dan per buurt de panden
+    for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
+        panden = [w for _p, w in per_buurt.get(buurt, [])
+                  if (w.get("status") or "").lower() not in ("verkocht", "transactie")]
+        if not panden:
+            continue
+
+        r.append(f"### {buurt}")
+        stukken = []
+        t = trendregel(buurt, trend)
+        if t:
+            stukken.append(f"prijspeil {t}")
+        m_b = mis.get(buurt)
+        if m_b and (cbs.get(buurt) or {}).get("inwoners"):
+            jaar = sorted(m_b)[-1]
+            inw = cbs[buurt]["inwoners"]
+            per_soort = [f"{s} {v} ({v / inw * 1000:.1f}".replace(".", ",") + " per 1.000)"
+                         for s, v in sorted(m_b[jaar].items())
+                         if s in ("woninginbraak", "vernieling", "drugs- en drankoverlast")]
+            if per_soort:
+                stukken.append(f"misdrijven {jaar[:4]}: " + ", ".join(per_soort))
+        if stukken:
+            r.append("_" + " . ".join(stukken) + "._")
+        r.append("")
+
+        r.append("| Adres | Vraagprijs | m² | €/m² | Tegen mediaan | Scenario | "
+                 "Huur/mnd | Richtprijs | Verschil |")
+        r.append("|---|---:|---:|---:|---:|---|---:|---:|---:|")
+        rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
+                   if w in panden]
+        med_b = st.median([p for p, _ in per_buurt.get(buurt, [])]) if per_buurt.get(buurt) else None
+        for ppm2, w in sorted(rijen_b, key=lambda x: x[0]):
+            sc = w.get("_scenario") or kies_scenario(
+                w, huur_bk, huur_k, buurt, None, per_buurt.get(buurt, []))
+            plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
+                       if sc else None)
+            afw = ((ppm2 - med_b) / med_b * 100) if med_b else None
+            verschil_s = (f"{(plafond - w['prijs']) / w['prijs'] * 100:+.0f}%"
+                          if plafond else "—")
+            r.append(
+                f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                f"| €{eu(w['prijs'])} | {w.get('oppervlakte') or '—'} | €{eu(ppm2)} "
+                f"| {f'{afw:+.0f}%' if afw is not None else '—'} "
+                f"| {sc['naam'] if sc else '—'} "
+                f"| {'€' + eu(sc['maand']) if sc else '—'} "
+                f"| {'€' + eu(plafond) if plafond else '—'} "
+                f"| {verschil_s} |")
+        r.append("")
+
+    r.append("_Richtprijs is de hoogste koopsom waarbij de nettohuur rente en "
+             "aflossing nog dekt. Verschil is die richtprijs afgezet tegen de "
+             "vraagprijs: positief betekent ruimte, negatief betekent te duur "
+             "voor verhuur._")
+    return r
+
+
 def render_bieden(woningen, huur_bk, huur_k, per_buurt):
     """
     Panden die bij opbod worden aangeboden, zoals via Vendr. Er is geen
@@ -4066,6 +4161,17 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
              + render_looptijd(woningen)
              + render_intro(lees_cbs(), woningen, kort=True))
 
+    # De bijlage: dezelfde cijfers, maar als tabellen zonder verhaal
+    pad_bijlage = globals().get("_BIJLAGE_PAD")
+    if pad_bijlage:
+        try:
+            regels_b = render_bijlage(woningen, per_buurt, stad_breed)
+            with open(pad_bijlage, "w", encoding="utf-8") as fb:
+                fb.write("\n".join(regels_b) + "\n")
+            print(f"Bijlage weggeschreven naar {pad_bijlage}", file=sys.stderr)
+        except Exception as e:
+            print(f"Bijlage maken mislukt: {e}", file=sys.stderr)
+
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
         # en beleggingstabel staan in de zondagsbrief.
@@ -4375,6 +4481,8 @@ def main():
     ap.add_argument("--input", default=INPUT_PAD)
     ap.add_argument("--modus", choices=["dagelijks", "weekelijks"], default="weekelijks",
                     help="dagelijks toont alleen wat beweegt, weekelijks het volledige beeld")
+    ap.add_argument("--bijlage", default="",
+                    help="schrijf daarnaast een bijlage met alleen tabellen")
     ap.add_argument("--bag", default="",
                     help="toon de volledige BAG-respons voor een adres")
     ap.add_argument("--debug", action="store_true",
@@ -4451,14 +4559,32 @@ def main():
         reeks.sort(key=lambda x: (x.get("datum") or "", x.get("regelnr", 0)))
         laatste = reeks[-1]
         if len(reeks) > 1:
-            eerste = reeks[0]
             laatste["historie"] = [
                 {"datum": r.get("datum", ""), "prijs": r["prijs"], "status": r["status"]}
                 for r in reeks
             ]
-            laatste["prijs_eerst"] = eerste["prijs"]
-            laatste["datum_eerst"] = eerste.get("datum", "")
             laatste["waarnemingen"] = len(reeks)
+
+            # Een prijswijziging bestaat alleen als het twee keer om hetzelfde
+            # gaat. Een huuradvertentie naast een koopadvertentie van hetzelfde
+            # pand is geen verlaging van zeven ton, en een verkochte woning
+            # naast een nieuw aanbod is geen prijsstijging.
+            def soort(w):
+                st_ = (w.get("status") or "").lower()
+                if st_.startswith("te huur"):
+                    return "huur"
+                if "belegging" in st_:
+                    return "belegging"
+                if "verkocht" in st_ or "transactie" in st_:
+                    return "verkocht"   # referentie, geen lopend aanbod
+                return "koop"
+
+            zelfde = [r for r in reeks if soort(r) == soort(laatste)]
+            if len(zelfde) > 1 and zelfde[0]["prijs"] != laatste["prijs"]:
+                laatste["prijs_eerst"] = zelfde[0]["prijs"]
+                laatste["datum_eerst"] = zelfde[0].get("datum", "")
+            else:
+                laatste["datum_eerst"] = reeks[0].get("datum", "")
         ontdubbeld.append(laatste)
 
     weg = len(woningen) - len(ontdubbeld)
@@ -4469,6 +4595,8 @@ def main():
 
     bm_per_buurt, bm_overig = lees_bekendmakingen(cache)
     schrijf_cache(cache)
+    if args.bijlage:
+        globals()["_BIJLAGE_PAD"] = args.bijlage
     md = render(woningen, modus=args.modus,
                 bm_per_buurt=bm_per_buurt, bm_overig=bm_overig)
 
