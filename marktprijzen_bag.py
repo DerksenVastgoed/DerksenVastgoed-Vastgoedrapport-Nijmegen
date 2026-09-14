@@ -2286,6 +2286,12 @@ TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
 
 # WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
 try:
+    from toets_artikel15 import (toets_kamerverhuur, toets_splitsing,
+                                 samenvatting as toets_samenvatting)
+except Exception:  # noqa
+    toets_kamerverhuur = toets_splitsing = toets_samenvatting = None
+
+try:
     from wwso import wwso_bandbreedte, wws_punten, wws_max_huur
 except Exception:  # noqa
     wwso_bandbreedte = None
@@ -2434,8 +2440,30 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         jaarhuur = huur_m2 * 12 * opp
         # Het scenario bepaalt de exploitatiekosten: kamerverhuur kost meer aan
         # onderhoud, mutaties en beheer dan verhuur aan een huishouden.
-        sc_naam = (w.get("_scenario") or {}).get("naam", "één woning")
+        # In de zondagsbrief is _scenario niet gevuld, dus berekenen we het hier.
+        sc_case = (w.get("_scenario")
+                   or kies_scenario(w, huur_bk, huur_k, buurt, None,
+                                    per_buurt.get(buurt, [])))
+        sc_naam = (sc_case or {}).get("naam", "één woning")
         opex = opex_voor(sc_naam)
+
+        # Splitsen kent een heel ander regime dan kamerverhuur: artikel 15 gaat
+        # over omzetting naar onzelfstandige woonruimte en geldt daar niet.
+        if toets_splitsing and "splitsen" in sc_naam.lower():
+            regels_s = toets_splitsing(w, aantal_units=(sc_case or {}).get("aantal"))
+            f.append("TOETS splitsing, " + toets_samenvatting(regels_s))
+            for grond, oordeel, toel in regels_s:
+                f.append(f"  {grond}: {oordeel}. {toel}")
+
+        # Bij een pand in verhuurde staat: huidige huur naast het maximum
+        hp_case = huurpositie(w, sc_case, lees_huidige_huur())
+        if hp_case:
+            f.append(f"huidige huurstroom: €{n(hp_case['nu'])} per jaar"
+                     + (f" over {hp_case['eenheden']} eenheden"
+                        if hp_case.get("eenheden") else ""))
+            f.append(f"wettelijk maximum volgens het puntenstelsel: "
+                     f"€{n(hp_case['maximaal'])} per jaar; het verschil van "
+                     f"€{n(hp_case['ruimte'])} komt vrij bij mutatie")
         netto = jaarhuur * (1 - opex / 100)
         fin = financiering(prijs, netto, reno)
         lening, rentelast = fin["lening"], fin["rente"]
@@ -2582,15 +2610,44 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
 
         # Voorwaarden die een omzettingsvergunning in de weg kunnen staan
         if "kamer" in (sc_naam or "").lower():
-            f.append("voorwaarden omzettingsvergunning: leefbaarheidstoets door een "
-                     "ambtelijke adviesgroep, fietsenstalling op eigen terrein van "
-                     "1,5 m2 per bewoner op de begane grond in een afzonderlijke "
-                     "ruimte, contactgeluidsisolatie van 54 dB, geen insluiting van "
-                     "een zelfstandig bewoonde woning, en maximaal twee kamergewijs "
-                     "bewoonde woningen naast elkaar")
+            # Puntsgewijze toets in plaats van een opsomming van de regels
+            if toets_kamerverhuur:
+                kamers_n = None
+                if sc_case and sc_case.get("opp"):
+                    kamers_n = max(2, round(sc_case["opp"] / 22))
+                regels_t = toets_kamerverhuur(w, aantal_kamers=kamers_n,
+                                              vergunningen=vergunningen_c,
+                                              woz=w.get("woz"))
+                f.append("TOETS artikel 15, " + toets_samenvatting(regels_t))
+                for grond, oordeel, toel in regels_t:
+                    f.append(f"  {grond}: {oordeel}. {toel}")
+
+            f.append("weigeringsgronden omzettingsvergunning, Huisvestingsverordening "
+                     "Nijmegen 2024 artikel 15. Altijd geweigerd bij een WOZ van "
+                     f"€{n(WOZ_ONDERGRENS)} of minder, en bij strijd met het "
+                     "omgevingsplan zonder omgevingsvergunning")
+            f.append("kan verder geweigerd worden bij: onaanvaardbare geluidhinder, "
+                     "waarbij het luchtgeluidniveauverschil volgens NEN 5077 niet "
+                     "kleiner mag zijn dan 52 dB en het contactgeluidniveau niet "
+                     "groter dan 54 dB; niet voldoen aan het Bouwbesluit voor "
+                     "bestaande bouw, voor kamergewijze verhuur en voor brandveilig "
+                     "gebruik; geen fietsenstalling op eigen terrein van 1,5 m2 per "
+                     "bewoner, niet hoger dan de begane grond en in een afzonderlijke "
+                     "daartoe bestemde ruimte; omzetting voor kortdurend verblijf "
+                     "vergelijkbaar met logies; het insluiten van een naast, onder of "
+                     "boven gelegen zelfstandig bewoonde woning; en meer dan twee "
+                     "direct naast, onder of boven elkaar gelegen kamergewijs "
+                     "bewoonde woningen")
+            f.append("LET OP: de leefbaarheidstoets door de ambtelijke adviesgroep "
+                     "vervalt. De gemeente trok op 9 september 2026 de Beleidsregels "
+                     "omzetting en onttrekking 2021 in, omdat die toets vervalt en "
+                     "goed verhuurderschap via de landelijke wet is geborgd. De "
+                     "intrekking gaat in zodra de gewijzigde Huisvestingsverordening "
+                     "2024 in werking treedt. De harde gronden hierboven blijven wel "
+                     "staan")
             f.append("vanaf vijf kamers geldt daarnaast een melding brandveilig "
-                     "gebruik; boete bij omzetten zonder vergunning is 10.000 euro "
-                     "bij bedrijfsmatige exploitatie")
+                     f"gebruik; boete bij omzetten zonder vergunning is €10.000 "
+                     f"bij bedrijfsmatige exploitatie, €15.000 bij herhaling")
 
         # Veiligheid en leefbaarheid van de buurt
         mis = lees_misdrijven().get(buurt)
@@ -2606,8 +2663,9 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             if delen_m:
                 f.append(f"veiligheid in {buurt} in {jaren_m[-1][:4]}: "
                          + ", ".join(delen_m)
-                         + ". Vernieling en overlast wegen mee in de "
-                           "leefbaarheidstoets")
+                         + ". Dit woog in de leefbaarheidstoets, die vervalt, maar "
+                           "het blijft relevant voor de verhuurbaarheid en voor wat "
+                           "een pand bij verkoop opbrengt")
 
         gezicht_c = gezichtswaarschuwing(buurt)
         if gezicht_c:
