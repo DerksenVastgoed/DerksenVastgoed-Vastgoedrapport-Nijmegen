@@ -510,6 +510,96 @@ def _verg_sleutel(straat, nr):
     return re.sub(r"[^a-z0-9]", "", a) + str(nr)
 
 
+
+ARCHIEF_PAD = "bekendmakingen_archief.json"
+
+# Een trend melden heeft alleen zin als hij ergens op rust. Onder deze grenzen
+# is een verschil gewoon toeval bij zulke kleine aantallen.
+TREND_MIN_AANTAL = 5      # minimaal aantal in de recente periode
+TREND_MIN_VERSCHIL = 60   # procent afwijking ten opzichte van het gemiddelde
+
+
+def trendsignaal(soorten=("kamerverhuur", "brandveilig gebruik", "omzetting",
+                          "splitsing", "sluiting", "handhaving"),
+                 venster_dagen=90):
+    """
+    Is er een waarneembare verschuiving in het soort bekendmakingen?
+
+    Vergelijkt de laatste drie maanden met het gemiddelde van de vier kwartalen
+    daarvoor. Alleen bij voldoende aantallen en een fors verschil melden we
+    iets: anders is het ruis, en ruis in een brief is erger dan stilte.
+    """
+    if not os.path.exists(ARCHIEF_PAD):
+        return []
+    try:
+        with open(ARCHIEF_PAD, encoding="utf-8") as f:
+            archief = json.load(f)
+    except Exception:
+        return []
+
+    vandaag = dt.date.today()
+    grens_nu = vandaag - dt.timedelta(days=venster_dagen)
+    grens_eerder = vandaag - dt.timedelta(days=venster_dagen * 5)
+
+    nu, eerder = {}, {}
+    for treffers in archief.values():
+        for t in treffers:
+            datum = (t.get("datum") or "")[:10]
+            if len(datum) != 10:
+                continue
+            try:
+                d = dt.date.fromisoformat(datum)
+            except ValueError:
+                continue
+            for soort in (t.get("soorten") or []):
+                s_l = soort.lower()
+                for sleutel in soorten:
+                    if sleutel in s_l:
+                        if d >= grens_nu:
+                            nu[sleutel] = nu.get(sleutel, 0) + 1
+                        elif d >= grens_eerder:
+                            eerder[sleutel] = eerder.get(sleutel, 0) + 1
+
+    uit = []
+    for sleutel in soorten:
+        recent = nu.get(sleutel, 0)
+        if recent < TREND_MIN_AANTAL:
+            continue
+        # Vier eerdere vensters, dus het gemiddelde per venster
+        gemiddeld = eerder.get(sleutel, 0) / 4
+        if gemiddeld < 1:
+            uit.append((sleutel, recent, gemiddeld,
+                        f"{recent} meldingen over {sleutel} in drie maanden, "
+                        f"terwijl daar in het jaar ervoor vrijwel niets over "
+                        f"binnenkwam"))
+            continue
+        verschil = (recent - gemiddeld) / gemiddeld * 100
+        if abs(verschil) < TREND_MIN_VERSCHIL:
+            continue
+        richting = "meer" if verschil > 0 else "minder"
+        uit.append((sleutel, recent, gemiddeld,
+                    f"{recent} meldingen over {sleutel} in de laatste drie "
+                    f"maanden, tegen gemiddeld {gemiddeld:.0f} per kwartaal in "
+                    f"het jaar daarvoor. Dat is {abs(verschil):.0f}% {richting}"))
+    return uit
+
+
+def render_trend():
+    """Alleen tonen als er echt iets is veranderd."""
+    signalen = trendsignaal()
+    if not signalen:
+        return []
+    r = ["", "### Verschuiving in de bekendmakingen", ""]
+    for _soort, _n, _g, tekst in signalen:
+        r.append(f"- {tekst}")
+    r.append("")
+    r.append("_Gemeten over het eigen archief. Een verschuiving kan betekenen "
+             "dat de gemeente actiever handhaaft of dat eigenaren anticiperen "
+             "op een regelwijziging; het zegt op zichzelf niet welk van de "
+             "twee._")
+    return r
+
+
 def verrijk_met_vergunning(items):
     """
     Zoekt per bekendmaking op of er al een vergunning op dat adres ligt.
@@ -716,11 +806,16 @@ def _regel(it: dict) -> str:
     return regel
 
 
-def render_digest(kern: list, overige: list, vanaf: str) -> str:
+def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) -> str:
     vandaag = dt.date.today().strftime("%d-%m-%Y")
     r = [f"# Bekendmakingen ring Keizer Karelplein - {vandaag}",
          f"_Gemeente {GEMEENTE}, publicaties vanaf {vanaf}. "
          f"{len(kern)} kernsignalen, {len(overige)} overige._", ""]
+    # Een kwartaaltrend hoort niet dagelijks herhaald te worden, en alleen
+    # als er werkelijk iets verschuift.
+    if trend:
+        r.extend(render_trend())
+
     r.append(f"## Kernsignalen ({len(kern)})")
     r.append("_Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._")
     r.append("")
@@ -875,7 +970,8 @@ def main():
     except Exception as e:
         print(f"Kon bekendmakingen_vandaag.json niet schrijven: {e}", file=sys.stderr)
 
-    digest = render_digest(kern, overige, vanaf)
+    digest = render_digest(kern, overige, vanaf,
+                           trend=(args.modus != "dagelijks"))
     print(digest)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(digest)

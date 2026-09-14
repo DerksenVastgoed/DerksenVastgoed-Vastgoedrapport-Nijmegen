@@ -121,11 +121,32 @@ def wist_je_dat(cbs, verg):
 
     if not weetjes:
         return ""
-    # De lijst is per onderwerp opgebouwd, waardoor dezelfde buurt meerdere
-    # dagen achter elkaar langskomt. Door met een stap door de lijst te lopen
-    # die geen deler is van de lengte, wisselt het onderwerp elke dag.
-    stap = 3 if len(weetjes) % 3 else 4
-    return weetjes[(dt.date.today().toordinal() * stap) % len(weetjes)]
+
+    # Niet op de datum vertrouwen maar bijhouden wat er al geweest is. Een
+    # rekentruc met het dagnummer gaat mis zodra de lijst van lengte verandert,
+    # en dan zie je hetzelfde weetje dagen achter elkaar.
+    pad = "weetjes_gezien.json"
+    try:
+        with open(pad, encoding="utf-8") as fh:
+            gezien = json.load(fh)
+    except Exception:
+        gezien = []
+
+    nieuw = [w for w in weetjes if w not in gezien]
+    if not nieuw:          # alles geweest: de ronde begint opnieuw
+        gezien, nieuw = [], weetjes
+    keuze = nieuw[0]
+
+    gezien.append(keuze)
+    # Alleen de laatste ronde onthouden, anders groeit het bestand eindeloos
+    gezien = gezien[-max(len(weetjes), 1):]
+    try:
+        with open(pad, "w", encoding="utf-8") as fh:
+            json.dump(gezien, fh, ensure_ascii=False, indent=1)
+    except Exception as e:
+        print(f"Kon {pad} niet schrijven: {e}", file=sys.stderr)
+    print(f"Weetje {len(gezien)} van {len(weetjes)}: {keuze[:60]}", file=sys.stderr)
+    return keuze
 
 
 
