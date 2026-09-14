@@ -72,7 +72,14 @@ TOON:
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan."""
 
 
-def wist_je_dat(cbs, verg):
+def met_laag_inkomen(cbs, buurten):
+    """De twee buurten met het hoogste aandeel lage inkomens."""
+    reeks = [(b, cbs[b].get("laag_inkomen")) for b in buurten
+             if cbs[b].get("laag_inkomen") is not None]
+    return sorted(reeks, key=lambda x: -x[1])[:2]
+
+
+def wist_je_dat(cbs, verg, misdrijven=None):
     """
     Elke dag een ander weetje uit de eigen cijfers. Rouleert op dagnummer,
     zodat het niet elke ochtend hetzelfde is.
@@ -86,18 +93,31 @@ def wist_je_dat(cbs, verg):
     weetjes = []
     buurten = [b for b in cbs if not b.startswith("_")]
 
-    # Verkameringsgraad
+    def per(b, veld):
+        return cbs[b].get(veld)
+
+    # --- Kamerverhuur en vergunningen ---
     met_verg = [(b, verg[b], cbs[b]["won"]) for b in buurten
                 if verg.get(b) and cbs[b].get("won")]
     for b, v, won in sorted(met_verg, key=lambda x: -x[1] / x[2])[:3]:
         weetjes.append(f"in {b} {pct(v / won * 100)} procent van alle woningen een "
                        f"vergunning voor kamerverhuur heeft, {v} stuks op {n(won)} "
                        f"woningen")
+    if len(met_verg) >= 2:
+        hoog = max(met_verg, key=lambda x: x[1] / x[2])
+        laag = min(met_verg, key=lambda x: x[1] / x[2])
+        weetjes.append(f"er in {hoog[0]} verhoudingsgewijs "
+                       f"{pct((hoog[1] / hoog[2]) / (laag[1] / laag[2]), 1)} keer zoveel "
+                       f"kamerverhuurvergunningen zijn als in {laag[0]}")
+    totaal_v = sum(v for _b, v, _w in met_verg)
+    if totaal_v:
+        weetjes.append(f"er in de ring sinds 2013 {totaal_v} vergunningen voor "
+                       f"kamerverhuur zijn verleend")
 
-    # Studentendichtheid
+    # --- Studenten ---
     met_stud = [(b, cbs[b]["studenten"], cbs[b]["inwoners"]) for b in buurten
                 if cbs[b].get("studenten") and cbs[b].get("inwoners")]
-    for b, st_, inw in sorted(met_stud, key=lambda x: -x[1] / x[2])[:2]:
+    for b, st_, inw in sorted(met_stud, key=lambda x: -x[1] / x[2])[:3]:
         weetjes.append(f"in {b} bijna {round(st_ / inw * 100)} van elke honderd "
                        f"inwoners student is")
     totaal_stud = sum(x[1] for x in met_stud)
@@ -105,8 +125,9 @@ def wist_je_dat(cbs, verg):
         b, st_, _ = max(met_stud, key=lambda x: x[1])
         weetjes.append(f"{round(st_ / totaal_stud * 100)} procent van alle studenten "
                        f"in de ring in {b} woont")
+        weetjes.append(f"er in de zes buurten samen {n(totaal_stud)} studenten wonen")
 
-    # Eigendomsverhouding
+    # --- Woningvoorraad en eigendom ---
     for b in buurten:
         g = cbs[b]
         if g.get("corp", 0) >= 40:
@@ -118,6 +139,85 @@ def wist_je_dat(cbs, verg):
         if g.get("koop", 100) <= 15:
             weetjes.append(f"in {b} maar {g['koop']} procent van de woningen een "
                            f"koopwoning is")
+        if g.get("koop", 0) >= 50:
+            weetjes.append(f"{b} met {g['koop']} procent koopwoningen de meest "
+                           f"eigen-bezit buurt van de ring is")
+    grootste = max((b for b in buurten if per(b, "won")),
+                   key=lambda b: per(b, "won"), default=None)
+    if grootste:
+        weetjes.append(f"{grootste} met {n(per(grootste, 'won'))} woningen de "
+                       f"grootste buurt van de ring is")
+    kleinste = min((b for b in buurten if per(b, "won")),
+                   key=lambda b: per(b, "won"), default=None)
+    if kleinste:
+        weetjes.append(f"{kleinste} met {n(per(kleinste, 'won'))} woningen juist de "
+                       f"kleinste is")
+
+    # --- Huishoudens ---
+    for b in buurten:
+        g = cbs[b]
+        if g.get("eenpersoons", 0) >= 60:
+            weetjes.append(f"in {b} {g['eenpersoons']} procent van de huishoudens uit "
+                           f"een persoon bestaat")
+        if g.get("met_kinderen", 100) <= 10:
+            weetjes.append(f"in {b} maar {g['met_kinderen']} procent van de "
+                           f"huishoudens kinderen heeft")
+    met_gr = [(b, per(b, "huishoudgrootte")) for b in buurten
+              if per(b, "huishoudgrootte")]
+    if met_gr:
+        b, gr = max(met_gr, key=lambda x: x[1])
+        weetjes.append(f"een huishouden in {b} gemiddeld uit {pct(gr, 1)} personen "
+                       f"bestaat, het hoogste van de ring")
+
+    # --- Inkomen, vermogen en waarde ---
+    met_ink = [(b, per(b, "inkomen")) for b in buurten if per(b, "inkomen")]
+    if len(met_ink) >= 2:
+        hoog = max(met_ink, key=lambda x: x[1])
+        laag = min(met_ink, key=lambda x: x[1])
+        weetjes.append(f"het gemiddelde inkomen per inwoner in {hoog[0]} "
+                       f"{n(hoog[1] * 1000)} euro is en in {laag[0]} "
+                       f"{n(laag[1] * 1000)} euro, een verschil van "
+                       f"{round((hoog[1] - laag[1]) / laag[1] * 100)} procent")
+    met_verm = [(b, per(b, "vermogen")) for b in buurten
+                if per(b, "vermogen") is not None]
+    if len(met_verm) >= 2:
+        hoog = max(met_verm, key=lambda x: x[1])
+        laag = min(met_verm, key=lambda x: x[1])
+        weetjes.append(f"het mediane vermogen van een huishouden in {hoog[0]} "
+                       f"{n(hoog[1] * 1000)} euro is, tegen {n(laag[1] * 1000)} euro "
+                       f"in {laag[0]}")
+    met_woz = [(b, per(b, "woz")) for b in buurten if per(b, "woz")]
+    if len(met_woz) >= 2:
+        hoog = max(met_woz, key=lambda x: x[1])
+        laag = min(met_woz, key=lambda x: x[1])
+        weetjes.append(f"een huis in {hoog[0]} volgens de gemeente gemiddeld "
+                       f"{n(hoog[1] * 1000)} euro waard is en in {laag[0]} "
+                       f"{n(laag[1] * 1000)} euro")
+    for b, v in met_laag_inkomen(cbs, buurten):
+        weetjes.append(f"in {b} {v} procent van de huishoudens een laag inkomen heeft")
+
+    # --- Veiligheid ---
+    for soort, omschrijving in (("woninginbraak", "woninginbraken"),
+                                ("vernieling", "gevallen van vernieling"),
+                                ("fietsendiefstal", "fietsendiefstallen"),
+                                ("drugs- en drankoverlast",
+                                 "meldingen van drugs- en drankoverlast")):
+        reeks = []
+        for b in buurten:
+            mis = misdrijven.get(b) if misdrijven else None
+            if not mis or not cbs[b].get("inwoners"):
+                continue
+            laatst = mis[sorted(mis)[-1]]
+            aantal = laatst.get(soort)
+            if aantal:
+                reeks.append((b, aantal, cbs[b]["inwoners"]))
+        if len(reeks) >= 2:
+            b, aantal, inw = max(reeks, key=lambda x: x[1] / x[2])
+            weetjes.append(f"{b} met {pct(aantal / inw * 1000)} {omschrijving} per "
+                           f"duizend inwoners het hoogste van de ring scoort")
+            b2, a2, i2 = min(reeks, key=lambda x: x[1] / x[2])
+            weetjes.append(f"{b2} juist het laagste scoort op {omschrijving}, met "
+                           f"{pct(a2 / i2 * 1000)} per duizend inwoners")
 
     if not weetjes:
         return ""
@@ -238,7 +338,12 @@ def weetje_van_de_dag():
     verg = lees_json("vergunningen_per_buurt.json")
     if not cbs:
         return ""
-    return wist_je_dat(cbs, verg)
+    try:
+        with open("misdrijven_per_buurt.json", encoding="utf-8") as f:
+            misdrijven = json.load(f)
+    except Exception:
+        misdrijven = {}
+    return wist_je_dat(cbs, verg, misdrijven)
 
 
 
