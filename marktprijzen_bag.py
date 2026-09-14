@@ -2538,13 +2538,41 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
                     buren_v.append(f"{v.get('adres')} ({v.get('soort')}, "
                                    f"{v.get('datum','')[:4]})")
                     break
+            # Ook de hele straat tellen: de directe buren bepalen of omzetting
+            # nog mag, maar het aantal in de straat zegt iets over hoe verzadigd
+            # het gebied is en dus over de leefbaarheidstoets.
+            straat_norm = _verg_straat(straat_c)
+            in_straat = []
+            for lijst_v in vergunningen_c.values():
+                for v in lijst_v:
+                    m_v = re.match(r"^(.+?)\s+(\d+)", v.get("adres", ""))
+                    if m_v and _verg_straat(m_v.group(1)) == straat_norm:
+                        in_straat.append((int(m_v.group(2)), v))
+                        break
+            in_straat.sort()
+
             if buren_v:
-                f.append(f"kamerverhuur in de straat: {', '.join(buren_v[:6])}. "
+                f.append(f"kamerverhuur naast dit pand: {', '.join(buren_v[:6])}. "
                          f"Nijmegen staat niet meer dan twee direct naast, onder of "
                          f"boven elkaar gelegen kamergewijs bewoonde woningen toe")
             else:
-                f.append("kamerverhuur in de straat: geen vergunningen gevonden op de "
-                         "buurpanden vanaf 2013")
+                f.append("kamerverhuur naast dit pand: geen vergunningen op de "
+                         "buurpanden in de lijst vanaf 2013")
+
+            if in_straat:
+                nummers = ", ".join(str(nr) for nr, _v in in_straat[:12])
+                jaren_v = sorted({v.get("datum", "")[:4] for _nr, v in in_straat
+                                  if v.get("datum")})
+                f.append(f"in de hele {straat_c} zijn sinds 2013 {len(in_straat)} "
+                         f"vergunningen verleend, op nummer {nummers}"
+                         + (f" ({jaren_v[0]} tot {jaren_v[-1]})" if jaren_v else "")
+                         + ". Hoe voller de straat, hoe zwaarder de "
+                           "leefbaarheidstoets weegt")
+            else:
+                f.append(f"in de hele {straat_c} staat geen enkele vergunning in de "
+                         f"lijst vanaf 2013. Dat betekent niet dat er geen "
+                         f"kamerverhuur is: oudere vergunningen en panden met een WOZ "
+                         f"boven de grens staan er niet in")
 
             # Handhaving op of rond het pand
             hh = handhaving_op_adres(w["adres"], archief_c, straal=3)
@@ -3008,6 +3036,16 @@ def huurpositie(w, sc, huidige):
         "eenheden": gegevens.get("eenheden"),
         "peildatum": gegevens.get("peildatum", ""),
     }
+
+
+def _verg_straat(straat):
+    """Straatnaam normaliseren, zodat schrijfwijzen op elkaar matchen."""
+    a = straat.lower()
+    for lang, kort in (("sint ", "st"), ("st. ", "st"), ("professor ", "prof"),
+                       ("prof. ", "prof"), ("burgemeester ", "burg"),
+                       ("burg. ", "burg"), ("doctor ", "dr"), ("dr. ", "dr")):
+        a = a.replace(lang, kort)
+    return re.sub(r"[^a-z0-9]", "", a)
 
 
 def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
