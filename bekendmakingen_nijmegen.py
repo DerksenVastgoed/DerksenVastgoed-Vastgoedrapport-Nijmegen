@@ -839,6 +839,9 @@ def main():
     ap.add_argument("--dagen", type=int, default=2)
     ap.add_argument("--alles", action="store_true")
     ap.add_argument("--uit", default="bekendmakingen_digest.md")
+    # De kwartaaltrend hoort niet dagelijks herhaald te worden
+    ap.add_argument("--modus", default="dagelijks",
+                    choices=["dagelijks", "weekelijks"])
     args = ap.parse_args()
 
     vanaf = (dt.date.today() - dt.timedelta(days=args.dagen)).isoformat()
