@@ -3967,5 +3967,56 @@
     "buurtnaam": "Galgenveld",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-86717f7d02968eb10ce307dd821c23f8"
+  },
+  "Pluvierstraat 21|Nijmegen": {
+    "oppervlakte": 72,
+    "bouwjaar": "1948",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TZ",
+    "adresseerbaarObjectIdentificatie": "0268010000024500",
+    "pand": "0268100000049400",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-605cc520d7392711af188cee69a7965e",
+    "oppervlakte_bag": 102,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2023-11-02",
+      "geldig_tot": "2033-10-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Bloemerstraat 107|Nijmegen": {
+    "oppervlakte": 63,
+    "bouwjaar": "1958",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511EG",
+    "adresseerbaarObjectIdentificatie": "0268010000051234",
+    "pand": "0268100000030000",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-eb5770de99e1dffc10e85f2230cf4dfa",
+    "oppervlakte_bag": 67,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2018-11-14",
+      "geldig_tot": "2028-11-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Wolfskuilseweg 257|Nijmegen": {
+    "postcode": "6542AA",
+    "buurtnaam": "Hees",
+    "wijknaam": "Nijmegen-Nieuw-West",
+    "nummeraanduiding": "adr-d0721c6a1859f19007dd13b4ef870878"
   }
 }

@@ -224,3 +224,7 @@ Scholenhof 8 | Nijmegen | 550000 | te koop | 2026-09-13 |  | 89 | 6511SG
 Palembangstraat 44 | Nijmegen | 399000 | te koop | 2026-09-13 |  | 96 | 6524KX
 Zwaluwstraat 175 | Nijmegen | 349500 | te koop | 2026-09-13 |  | 82 | 6541NV
 Oude Koningstraat 28 | Nijmegen | 325000 | te koop | 2026-09-13 |  | 59 | 6511WR
+
+# Automatisch toegevoegd uit Funda-attendering op 15-09-2026
+Pluvierstraat 21 | Nijmegen | 319000 | te koop | 2026-09-15 |  | 72 | 6542TZ
+Bloemerstraat 107 | Nijmegen | 336500 | te koop | 2026-09-15 |  | 63 | 6511EG
