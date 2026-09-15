@@ -57,7 +57,9 @@ jobs:
             echo "HEEFT_VERHAAL=0" >> "$GITHUB_ENV"
           fi
           echo "Modus: $MODUS"
-          python bekendmakingen_nijmegen.py --dagen 2 --uit "digests/$DATUM-bekendmakingen.md" || echo "Bekendmakingen-stap overgeslagen"
+          python bekendmakingen_nijmegen.py --dagen 2 --modus "$MODUS" \
+            --uit "digests/$DATUM-bekendmakingen.md" \
+            || echo "Bekendmakingen-stap overgeslagen"
           echo "DATUM=$DATUM" >> "$GITHUB_ENV"
 
       - name: Vergunningen aan buurten koppelen (alleen als het bestand ontbreekt)
@@ -159,6 +161,7 @@ jobs:
             --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
       - name: Brief samenstellen
+        continue-on-error: true
         run: |
           BRIEF="digests/${DATUM}-brief.md"
           {
