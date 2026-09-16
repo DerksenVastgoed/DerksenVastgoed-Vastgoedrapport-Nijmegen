@@ -101,6 +101,22 @@ KADERS = [
 ]
 
 
+# De nummering: de volgorde van BRONNEN bepaalt het cijfer. Zo staat er in de
+# tekst [3] en onderaan bij 3 dezelfde bron.
+NUMMER = {naam: i + 1 for i, (naam, *_rest) in enumerate(BRONNEN)}
+
+
+def verwijs(*namen):
+    """
+    Geeft de verwijzing bij een of meer bronnen, als [1] of [1,4,7].
+
+    Gebruik dit onder een tabel of achter een bewering, niet achter elk cijfer:
+    een brief vol cijfertjes leest niet meer.
+    """
+    nummers = sorted(NUMMER[n] for n in namen if n in NUMMER)
+    return f"[{','.join(str(x) for x in nummers)}]" if nummers else ""
+
+
 def bestandsdatum(pad):
     """Wanneer is dit gegevensbestand voor het laatst bijgewerkt?"""
     try:
@@ -122,10 +138,11 @@ def tel(pad, sleutel=None):
 def render(uitgebreid=True):
     """De bronnenlijst. Kort in de dagelijkse brief, volledig op zondag."""
     r = ["", "## Bronnen", "",
-         "_Waar de cijfers vandaan komen. Een registratie is vastgelegd door "
-         "een instantie, een meting is onze eigen waarneming uit advertenties, "
-         "en een aanname is door ons gekozen. Dat laatste is het zwakst en het "
-         "eerst te vervangen door eigen cijfers._", ""]
+         "_De cijfers in deze brief verwijzen met een nummer tussen haakjes "
+         "naar deze lijst. Een registratie is vastgelegd door een instantie, "
+         "een meting is onze eigen waarneming uit advertenties, en een aanname "
+         "is door ons gekozen. Dat laatste is het zwakst en het eerst te "
+         "vervangen door eigen cijfers._", ""]
 
     if not uitgebreid:
         per_soort = {}
@@ -136,16 +153,19 @@ def render(uitgebreid=True):
         for soort in ("registratie", "meting", "aanname"):
             if per_soort.get(soort):
                 r.append(f"**{meervoud[soort]}:** "
-                         + ", ".join(sorted(per_soort[soort])) + ".")
+                         + ", ".join(f"[{NUMMER[n]}] {n}"
+                                     for n in sorted(per_soort[soort],
+                                                     key=lambda x: NUMMER[x]))
+                         + ".")
         r.append("")
         r.append("_De volledige lijst met vindplaatsen staat in de brief van "
                  "zondag._")
         return r
 
-    r.append("| Bron | Aard | Wat het levert | Vindplaats | Actualiteit |")
-    r.append("|---|---|---|---|---|")
+    r.append("| # | Bron | Aard | Wat het levert | Vindplaats | Actualiteit |")
+    r.append("|---:|---|---|---|---|---|")
     for naam, soort, wat, waar, hoe in BRONNEN:
-        r.append(f"| {naam} | {soort} | {wat} | {waar} | {hoe} |")
+        r.append(f"| {NUMMER[naam]} | {naam} | {soort} | {wat} | {waar} | {hoe} |")
     r.append("")
 
     # Hoeveel waarnemingen liggen er inmiddels?

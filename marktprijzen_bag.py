@@ -972,6 +972,11 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
     mis = misdrijfregel(naam, lees_misdrijven(), g.get("inwoners"))
     if mis:
         regel += "<br>Misdrijven " + mis
+
+    bron = verwijs("Kerncijfers wijken en buurten", "Kamerverhuurvergunningen",
+                   "Politiedata")
+    if bron:
+        regel += f" {bron}"
     return regel
 
 
@@ -2290,6 +2295,12 @@ TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
 
 # WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
 try:
+    from bronnen import verwijs
+except Exception:  # noqa
+    def verwijs(*_namen):
+        return ""
+
+try:
     from toets_artikel15 import (toets_kamerverhuur, toets_splitsing,
                                  samenvatting as toets_samenvatting)
 except Exception:  # noqa
@@ -3030,6 +3041,12 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {verschil_s} |")
         r.append("")
 
+    r.append(f"_Bronnen: buurtcijfers uit de Kerncijfers wijken en buurten, "
+             f"vergunningen uit het gemeentelijk overzicht, misdrijven uit de "
+             f"politiedata, vraagprijzen uit de attenderingen en huren uit de "
+             f"gemeten advertenties. "
+             f"{verwijs('Kerncijfers wijken en buurten', 'Kamerverhuurvergunningen', 'Politiedata', 'Aanbod', 'Huurniveaus')}_")
+    r.append("")
     r.append("_Afwijking van de buurtmediaan vergelijkt de prijs per vierkante "
              "meter met vergelijkbare panden in die buurt; het is geen "
              "prijswijziging. Richtprijs is de hoogste koopsom waarbij de "
@@ -3541,6 +3558,12 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
 
         # Wat je bij de vraagprijs moet inleggen. Alleen bij nieuwe of
         # gewijzigde panden, anders staat het er elke dag opnieuw.
+        if vers:
+            r.append(f"_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit "
+                     f"de BAG, energielabel uit EP-Online, huur uit de gemeten "
+                     f"advertenties. {verwijs('Aanbod', 'BAG', 'EP-Online', 'Huurniveaus')}_")
+            r.append("")
+
         # De financiering in een tabel in plaats van een alinea per pand. Bij
         # meer dan een paar panden is doorlopende tekst niet te scannen.
         if vers:
@@ -3573,7 +3596,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"staat daar los van, want dat is vermogensopbouw. NAR is het netto "
                      f"aanvangsrendement over de hele investering. De lening is "
                      f"begrensd door de "
-                     + " en de ".join(sorted(knel)) + "._")
+                     + " en de ".join(sorted(knel))
+                     + f". {verwijs('Verhuurhypotheekrente', 'Verbouwkosten', 'Exploitatiekosten', 'Aanloopperiode')}_")
             r.append("")
 
             # Waar het budget knelt, alleen bij de panden waar dat speelt
@@ -3785,7 +3809,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"€{grens}, dus de WOZ vrijwel zeker ook. Deze woningen mag je de "
                      f"eerste {OPKOOPBESCHERMING_JAAR} jaar na levering niet verhuren "
                      f"zonder verhuurvergunning. De richtprijs hiernaast gaat uit van "
-                     f"verhuur en is dus alleen relevant als een uitzondering geldt._")
+                     f"verhuur en is dus alleen relevant als een uitzondering geldt. "
+                     f"Huisvestingsverordening Nijmegen 2024 art. 19._")
             r.append("")
         elif grens:
             namen = ", ".join(w["adres"] for w in grens)
@@ -3813,7 +3838,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 r.append(f"_Verkameren valt af bij {namen}: de vraagprijs ligt onder "
                          f"€{ondergrens}, en onder die WOZ-grens staat Nijmegen "
                          f"kamerverhuur niet toe. Als gewone verhuur kunnen deze panden "
-                         f"wel uitkomen; kijk daarvoor naar de kolom Richtprijs._")
+                         f"wel uitkomen; kijk daarvoor naar de kolom Richtprijs. "
+                         f"Huisvestingsverordening Nijmegen 2024 art. 15 lid 1._")
                 r.append("")
 
         if bm.get(buurt):
