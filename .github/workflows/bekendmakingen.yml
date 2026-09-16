@@ -94,6 +94,18 @@ jobs:
         run: |
           python rente_verhuurhypotheek.py --modus "$MODUS" --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
 
+      - name: Regelgeving controleren op wijzigingen
+        continue-on-error: true
+        run: |
+          # De verordeningen en wetten waarop de brief rekent. Wekelijks is
+          # genoeg: een verordening verandert niet dagelijks.
+          if [ "$MODUS" != "dagelijks" ] || [ ! -s regelgeving_status.json ]; then
+            python regelgeving_monitor.py --uit regelgeving_wijzigingen.md \
+              || echo "Regelgeving-stap overgeslagen"
+          else
+            echo "Regelgeving wordt op zondag gecontroleerd"
+          fi
+
       - name: Publicaties ophalen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -196,6 +208,13 @@ jobs:
               echo ""
               echo "---"
               echo ""
+            fi
+            if [ -s regelgeving_wijzigingen.md ]; then
+              cat regelgeving_wijzigingen.md
+              echo ""
+              echo "---"
+              echo ""
+              rm -f regelgeving_wijzigingen.md
             fi
             if [ -s beleid_vandaag.md ]; then
               cat beleid_vandaag.md
@@ -326,6 +345,7 @@ jobs:
             woz.txt
             huidige_huur.txt
             brief_gezien.json
+            regelgeving_status.json
             weetjes_gezien.json
             prijstrend.json
             misdrijven_per_buurt.json
