@@ -243,6 +243,23 @@ UITGESLOTEN_BRONNEN = (
 )
 
 
+
+def kale_domeinlink(item):
+    """
+    Wijst deze link naar een artikel of alleen naar een homepage?
+
+    Sommige feeds geven bij gebrek aan een artikel-URL het kale domein terug.
+    Daar kun je niet op doorklikken naar het bericht, dus zo'n item heeft geen
+    waarde: de lezer komt op een voorpagina en moet zelf gaan zoeken.
+    """
+    url = (item.get("link") or "").strip()
+    if not url:
+        return True
+    zonder = re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
+    # Alleen een domeinnaam over, of hooguit een taalsegment
+    return "/" not in zonder or len(zonder.split("/", 1)[1]) < 12
+
+
 def politieke_bron(item):
     """Is dit een partijkanaal of opiniesite in plaats van een marktbericht?"""
     hooi = f"{item.get('titel','')} {item.get('bron','')} {item.get('link','')}".lower()

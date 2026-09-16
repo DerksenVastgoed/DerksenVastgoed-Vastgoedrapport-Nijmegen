@@ -95,6 +95,54 @@ def haal_tabel() -> list:
     return p.rows
 
 
+
+# ECB Data Portal, open en zonder sleutel. De dagelijkse tienjaarsrente op
+# AAA-staatsobligaties in de eurozone is de basis waarop banken hun opslag
+# zetten. Het verschil met de verhuurhypotheek is de risico-opslag voor
+# vastgoedfinanciering, en die beweegt anders dan de kapitaalmarkt zelf.
+ECB_URL = ("https://data-api.ecb.europa.eu/service/data/YC/"
+           "B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y")
+
+
+def haal_kapitaalmarktrente():
+    """Meest recente tienjaars AAA-staatsrente uit het ECB Data Portal."""
+    try:
+        r = requests.get(ECB_URL,
+                         params={"lastNObservations": 1, "format": "csvdata"},
+                         headers={"User-Agent": "NijmegenVastgoedMonitor/1.0"},
+                         timeout=30)
+        r.raise_for_status()
+        regels = [x for x in r.text.strip().split("\n") if x.strip()]
+        if len(regels) < 2:
+            return None, None
+        kop = [k.strip().strip('"') for k in regels[0].split(",")]
+        waarden = [k.strip().strip('"') for k in regels[-1].split(",")]
+        rij = dict(zip(kop, waarden))
+        waarde = rij.get("OBS_VALUE")
+        datum = rij.get("TIME_PERIOD", "")
+        return (float(waarde), datum) if waarde else (None, None)
+    except Exception as e:
+        print(f"ECB-rente ophalen mislukt: {e}", file=sys.stderr)
+        return None, None
+
+
+def render_opslag(vastgoedrente):
+    """Het verschil tussen de verhuurhypotheek en de kapitaalmarkt."""
+    markt, datum = haal_kapitaalmarktrente()
+    if markt is None or not vastgoedrente:
+        return []
+    opslag = vastgoedrente - markt
+    r = ["", f"**Risico-opslag vastgoedfinanciering: {_fmt_pct(opslag)} procentpunt.** "
+             f"De verhuurhypotheek staat op {_fmt_pct(vastgoedrente)}%, de tienjaars "
+             f"AAA-staatsrente in de eurozone op {_fmt_pct(markt)}%"
+             + (f" ({datum})" if datum else "") + "."]
+    r.append("_Die opslag is wat banken rekenen voor het risico van verhuurd vastgoed. "
+             "Beweegt de hypotheekrente mee met de kapitaalmarkt, dan is het "
+             "monetair beleid; loopt de opslag op, dan schatten banken het risico "
+             "hoger in. Bron: ECB Data Portal._")
+    return r
+
+
 def _fmt_pct(x, cijfers=2):
     """Percentage met een komma, zoals het in het Nederlands hoort."""
     return f"{x:.{cijfers}f}".replace(".", ",")
@@ -231,10 +279,21 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
     vandaag = dt.date.today().strftime("%d-%m-%Y")
     grote_beweging = any(abs(v["delta_bp"]) >= DREMPEL_BP for v in wijzigingen.values() if v)
 
-    # Doordeweeks alleen melden als er iets is gebeurd. Staat de rente stil,
-    # dan hoort hij thuis in de zondagsbrief en niet elke ochtend opnieuw.
+    # Doordeweeks geen tabel en geen analyse als de rente stilstaat, maar wel
+    # de stand zelf. Zonder dat schrijft de brief dat er geen cijfers zijn,
+    # terwijl de rente gewoon bekend is en het getal is waar alles aan hangt.
     if modus == "dagelijks" and not grote_beweging:
-        return ""
+        delen_k = []
+        for label, key in (("50%", "ltv50"), ("70%", "ltv70"), ("80%", "ltv80")):
+            _, rente_k = scherpsten.get(key, (None, None))
+            if rente_k is not None:
+                delen_k.append(f"{rente_k:.2f}% bij {label} financiering"
+                               .replace(".", ","))
+        if not delen_k:
+            return ""
+        return ("\n## Rente verhuurhypotheek\n\n_Onveranderd: "
+                + ", ".join(delen_k)
+                + ". De volledige doorrekening staat in de brief van zondag._\n")
 
     r = ["", "## Rente verhuurhypotheek"]
 
@@ -276,6 +335,11 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
     if r70 is not None:
         r.append(vertaal_bod(r70))
     r.append("")
+
+    # De risico-opslag ten opzichte van de kapitaalmarkt
+    _, r70 = scherpsten.get("ltv70", (None, None))
+    if r70:
+        r.extend(render_opslag(r70))
 
     return "\n".join(r)
 
