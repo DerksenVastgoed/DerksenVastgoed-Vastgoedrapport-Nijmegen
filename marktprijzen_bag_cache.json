@@ -4018,5 +4018,93 @@
     "buurtnaam": "Hees",
     "wijknaam": "Nijmegen-Nieuw-West",
     "nummeraanduiding": "adr-d0721c6a1859f19007dd13b4ef870878"
+  },
+  "Burg. Hustinxstraat 208|Nijmegen": {
+    "oppervlakte": 51,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512AC",
+    "adresseerbaarObjectIdentificatie": "0268010000005159",
+    "pand": "0268100000027927",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-b70c4d9564d7465b748938d7b461e7fc",
+    "oppervlakte_bag": 56,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-09-09",
+      "geldig_tot": "2036-09-03",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Jacob Canisstraat 51|Nijmegen": {
+    "oppervlakte": 138,
+    "bouwjaar": "1896",
+    "gebruiksdoelen": [
+      "industriefunctie"
+    ],
+    "postcode": "6521HJ",
+    "adresseerbaarObjectIdentificatie": "0268010000011075",
+    "pand": "0268100000002095",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-afa3b3f80255f64bb1b41de9fcd20b64",
+    "oppervlakte_bag": 147,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-06-22",
+      "geldig_tot": "2036-06-15",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Pontanusstraat 19|Nijmegen": {
+    "oppervlakte": 135,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HB",
+    "adresseerbaarObjectIdentificatie": "0268010000067870",
+    "pand": "0268100000022122",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-0f5671ffc53d0302ff747462d4e194d9",
+    "oppervlakte_bag": 141,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-08-25",
+      "geldig_tot": "2036-08-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Veemarkt 213|Nijmegen": {
+    "oppervlakte": 65,
+    "bouwjaar": "1987",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ZJ",
+    "adresseerbaarObjectIdentificatie": "0268010000040628",
+    "pand": "0268100000005409",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-deacf28c734a97a5bcd8fb33567180eb",
+    "oppervlakte_bag": 64,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2024-11-27",
+      "geldig_tot": "2034-10-02",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

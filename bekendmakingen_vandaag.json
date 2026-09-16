@@ -4,7 +4,7 @@
   "titel": "Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html",
   "strategie": "splitsen",
-  "duiding": "Toevoegen van een derde appartement splitst het pand verder op, wat het aanbod kleine zelfstandige eenheden vergroot.",
+  "duiding": "Toevoeging van een derde appartement op de bovenverdieping splitst het pand verder op in verhuurbare units.",
   "feiten": {
    "oppervlakte_m2": 184
   },
@@ -13,11 +13,22 @@
   "kern": true
  },
  {
+  "datum": "2026-09-16",
+  "titel": "Aanvraag omgevingsvergunning voor transformatie van de voorgevel aan de Burchtstraat 35, 6511RB in Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435146.html",
+  "strategie": "geen",
+  "duiding": "Aanvraag voor voorgevelwijziging is nog geen besluit en betreft geen functiewijziging, dus beperkte marktrelevantie.",
+  "feiten": {},
+  "straat": "",
+  "huisnummer": "",
+  "kern": true
+ },
+ {
   "datum": "2026-09-15",
   "titel": "Besluit voor het wijzigen van plattegronden en gevels van een bestaand bedrijfspand, aan Wolfskuilseweg 257, 6542AA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-432766.html",
   "strategie": "geen",
-  "duiding": "Wijziging van plattegronden en gevel van een bedrijfspand betreft interne aanpassing zonder functiewijziging, dus beperkt marktsignaal.",
+  "duiding": "Wijziging van plattegronden en gevels houdt de bedrijfsfunctie in stand, zonder signaal voor woningtransformatie.",
   "feiten": {
    "oppervlakte_m2": 426
   },
@@ -29,8 +40,8 @@
   "datum": "2026-09-14",
   "titel": "Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html",
-  "strategie": "geen",
-  "duiding": "Kozijnwijziging in de buitengevel is een esthetische aanpassing zonder invloed op het al zeer hoge energielabel A+++.",
+  "strategie": "verduurzaming",
+  "duiding": "Vergunde kozijnwijziging bij een pand met energielabel A+++ toont dat gevelingrepen ook bij reeds hoogwaardige labels vergunbaar zijn.",
   "feiten": {
    "energielabel": "A+++ (2026)",
    "oppervlakte_m2": 3553
@@ -44,7 +55,7 @@
   "titel": "Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html",
   "strategie": "geen",
-  "duiding": "Sloop van aanbouw en kozijn is een fysieke voorbereidingsstap zonder aangekondigde vervolgbouw, dus nog geen concreet waardecreatiesignaal.",
+  "duiding": "Sloop van aanbouw en kozijn bij een pand met label E is voorbereidend, zonder vergunde herbouw beperkt duidend voor de markt.",
   "feiten": {
    "energielabel": "E (2021)",
    "oppervlakte_m2": 163

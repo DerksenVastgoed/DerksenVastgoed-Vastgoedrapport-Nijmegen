@@ -228,3 +228,9 @@ Oude Koningstraat 28 | Nijmegen | 325000 | te koop | 2026-09-13 |  | 59 | 6511WR
 # Automatisch toegevoegd uit Funda-attendering op 15-09-2026
 Pluvierstraat 21 | Nijmegen | 319000 | te koop | 2026-09-15 |  | 72 | 6542TZ
 Bloemerstraat 107 | Nijmegen | 336500 | te koop | 2026-09-15 |  | 63 | 6511EG
+
+# Automatisch toegevoegd uit Funda-attendering op 16-09-2026
+Burg. Hustinxstraat 208 | Nijmegen | 300000 | te koop | 2026-09-16 |  | 51 | 6512AC
+Jacob Canisstraat 51 | Nijmegen | 565000 | te koop | 2026-09-16 |  | 138 | 6521HJ
+Pontanusstraat 19 | Nijmegen | 539000 | te koop | 2026-09-16 |  | 135 | 6524HB
+Veemarkt 213 | Nijmegen | 370000 | te koop | 2026-09-16 |  | 65 | 6511ZJ

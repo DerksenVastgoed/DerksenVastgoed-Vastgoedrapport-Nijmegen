@@ -1,0 +1,53 @@
+{
+ "BWBR0002672": {
+  "bron": "landelijk",
+  "geldig_vanaf": "",
+  "gewijzigd": "2024-07-09",
+  "titel": "Wet op de vennootschapsbelasting 1969",
+  "url": "https://wetten.overheid.nl/BWBR0002672",
+  "waarom": "Uitvoeringsbesluit belastingen van rechtsverkeer"
+ },
+ "BWBR0002740": {
+  "bron": "landelijk",
+  "geldig_vanaf": "",
+  "gewijzigd": "2024-07-05",
+  "titel": "Wet op belastingen van rechtsverkeer",
+  "url": "https://wetten.overheid.nl/BWBR0002740",
+  "waarom": "Wet op belastingen van rechtsverkeer, de overdrachtsbelasting"
+ },
+ "BWBR0035303": {
+  "bron": "landelijk",
+  "geldig_vanaf": "",
+  "gewijzigd": "2018-01-05",
+  "titel": "Huisvestingswet 2014",
+  "url": "https://wetten.overheid.nl/BWBR0035303",
+  "waarom": "Huisvestingswet 2014"
+ },
+ "CVDR298201_1": {
+  "bron": "gemeente",
+  "geldig_tot": "2017-03-29",
+  "geldig_vanaf": "2013-05-03",
+  "gewijzigd": "2017-11-21",
+  "titel": "Verordening Ik Bouw Betaalbaar gemeente Nijmegen 2013",
+  "url": "",
+  "waarom": "Bouwverordening"
+ },
+ "CVDR372925_1": {
+  "bron": "gemeente",
+  "geldig_tot": "",
+  "geldig_vanaf": "2015-01-01",
+  "gewijzigd": "2017-11-21",
+  "titel": "Verordening voorzieningen huisvesting onderwijs gemeente Nijmegen 2015",
+  "url": "",
+  "waarom": "Huisvestingsverordening: opkoopbescherming, omzetting, onttrekking en de WOZ-grenzen voor kamerverhuur"
+ },
+ "CVDR43832_1": {
+  "bron": "gemeente",
+  "geldig_tot": "2015-01-01",
+  "geldig_vanaf": "2007-10-18",
+  "gewijzigd": "2007-10-18",
+  "titel": "Verordening voorzieningen huisvesting onderwijs",
+  "url": "",
+  "waarom": "Huisvestingsverordening: opkoopbescherming, omzetting, onttrekking en de WOZ-grenzen voor kamerverhuur"
+ }
+}
