@@ -71,7 +71,9 @@ TOON:
 
 LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
 
-ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan."""
+ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan.
+
+WAT ER NIET STAAT, BESTAAT NIET. Ontbreekt een cijfer in de gegevens, laat het dan weg. Maak er geen nul van, geen schatting en geen "geen gevallen geregistreerd". Dat een soort misdrijf niet wordt genoemd betekent dat wij dat cijfer niet hebben, niet dat het nul is. Hetzelfde geldt voor een ontbrekend energielabel, bouwjaar of oppervlakte: die laat je onbesproken."""
 
 
 def met_laag_inkomen(cbs, buurten):
@@ -316,6 +318,7 @@ def buurtcijfers_tekst():
             for soort in ("woninginbraak", "vernieling", "drugs- en drankoverlast",
                           "fietsendiefstal"):
                 n = laatst.get(soort)
+                # Een ontbrekend cijfer is geen nul: dan laten we het weg
                 if n is None:
                     continue
                 tekst = f"{n} {soort}"

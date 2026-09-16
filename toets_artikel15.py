@@ -35,6 +35,26 @@ VOLDOET_NIET = "voldoet niet"
 ONBEKEND = "niet te toetsen"
 
 
+def _getal(waarde):
+    """
+    Maakt er een getal van, of None.
+
+    Nodig omdat bouwjaar, oppervlakte en prijs uit verschillende bronnen komen
+    en soms als tekst binnenkomen: de BAG geeft het bouwjaar als string.
+    """
+    if waarde is None:
+        return None
+    if isinstance(waarde, (int, float)):
+        return waarde
+    cijfers = re.sub(r"[^\d.]", "", str(waarde))
+    if not cijfers:
+        return None
+    try:
+        return float(cijfers) if "." in cijfers else int(cijfers)
+    except ValueError:
+        return None
+
+
 def _sleutel(straat, nr):
     a = straat.lower()
     for lang, kort in (("sint ", "st"), ("st. ", "st"), ("professor ", "prof"),
@@ -74,10 +94,11 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
     (grond, oordeel, toelichting).
     """
     uit = []
-    opp = w.get("oppervlakte")
-    prijs = w.get("prijs") or 0
-    woz = woz or w.get("woz")
-    bouwjaar = w.get("bouwjaar")
+    opp = _getal(w.get("oppervlakte"))
+    prijs = _getal(w.get("prijs")) or 0
+    woz = _getal(woz) or _getal(w.get("woz"))
+    bouwjaar = _getal(w.get("bouwjaar"))
+    aantal_kamers = _getal(aantal_kamers)
 
     # 1. WOZ-ondergrens: absolute weigeringsgrond
     basis = woz or prijs
@@ -197,7 +218,8 @@ def toets_splitsing(w, aantal_units=None):
            ("splitsingsvergunning", VOLDOET,
             "Nijmegen kent die niet; de begrippen komen in de verordening niet voor")]
 
-    opp = w.get("oppervlakte")
+    opp = _getal(w.get("oppervlakte"))
+    aantal_units = _getal(aantal_units)
     if opp and aantal_units:
         per_unit = opp * 0.90 / aantal_units
         uit.append(("oppervlakte per eenheid", ONBEKEND,
@@ -214,7 +236,7 @@ def toets_splitsing(w, aantal_units=None):
                 "bij bestaande bouw geldt het van rechtens verkregen niveau, niet "
                 "de nieuwbouwnorm. Dat scheelt aanzienlijk bij vooroorlogse panden"))
 
-    prijs = w.get("prijs") or 0
+    prijs = _getal(w.get("prijs")) or 0
     if prijs and aantal_units:
         per_unit_waarde = prijs / aantal_units
         if per_unit_waarde < WOZ_BOVENGRENS:
