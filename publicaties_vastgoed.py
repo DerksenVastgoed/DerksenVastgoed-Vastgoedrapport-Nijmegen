@@ -56,6 +56,22 @@ FEEDS = [
     # Primaire bronnen die zelf publiceren en niet altijd als nieuwssite worden
     # geindexeerd. Een zoekopdracht op het domein vangt hun eigen berichten.
     ("Pararius eigen berichten", _gnews("site:pararius.nl")),
+    # Nijmeegse makelaars die zelf publiceren. Hun stukken gaan over deze markt
+    # en worden zelden door Google News opgepikt, dus we bevragen het domein.
+    ("Hans Janssen Zakelijk", _gnews("site:hansjanssen.nl")),
+    # De Rijksoverheid zelf: persberichten over wat er verandert. Dit is de
+    # primaire bron waar de vakpers uit put, en we lazen hem tot nu toe niet.
+    ("Rijksoverheid wonen", _gnews("site:rijksoverheid.nl huur OR verhuurder "
+                                   "OR woningmarkt")),
+    ("Rijksoverheid belastingen", _gnews("site:rijksoverheid.nl "
+                                         "overdrachtsbelasting OR box 3")),
+    # Volkshuisvesting Nederland publiceert de uitwerking van de Europese
+    # richtlijn EPBD IV, waaronder het nieuwe energielabel en de NTA 8800.
+    ("Volkshuisvesting Nederland", _gnews("site:volkshuisvestingnederland.nl")),
+    ("Energielabel en NTA 8800", _gnews("NTA 8800 OR energielabel wijziging "
+                                        "verhuur")),
+    ("Nijmeegse makelaars", _gnews("site:vangestel.nl OR site:hendriks.nl "
+                                   "OR site:vanhaarenmakelaars.nl")),
     ("Kadaster eigen berichten", _gnews("site:kadaster.nl woningmarkt")),
     ("NVM en Brainbay", _gnews("site:nvm.nl OR site:brainbay.nl")),
     ("Huurcommissie", _gnews("site:huurcommissie.nl OR huurcommissie uitspraak")),

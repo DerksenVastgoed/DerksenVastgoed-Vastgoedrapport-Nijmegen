@@ -151,6 +151,93 @@ def haal_landelijk():
     return gevonden
 
 
+
+# Landelijke wetgeving in wording. Een persbericht zegt wat het kabinet wil,
+# het Staatsblad zegt wat er is aangenomen. Dat verschil telt: een voorgesteld
+# tarief is geen tarief.
+RIJKSTERMEN = [
+    ("overdrachtsbelasting", "het tarief in de aankoopkosten"),
+    ("huurprijzen woonruimte", "het puntenstelsel en de huurgrenzen"),
+    ("huurtoeslag", "de grenzen waarbinnen je huurder toeslag krijgt"),
+    ("goed verhuurderschap", "verplichtingen voor verhuurders"),
+    ("betaalbare huur", "de regulering van de middenhuur"),
+    ("box 3", "de belasting op vermogen bij prive-bezit"),
+]
+
+
+def rijkspublicaties(dagen=7):
+    """
+    Wetgeving en regelingen op rijksniveau die deze portefeuille raken.
+
+    We zoeken in het Staatsblad en de Staatscourant, dus in wat daadwerkelijk
+    is gepubliceerd. Kamerstukken laten we buiten beschouwing: daar staat te
+    veel in dat nooit wet wordt.
+    """
+    vanaf = (dt.date.today() - dt.timedelta(days=dagen)).isoformat()
+    gevonden = []
+    for term, waarom in RIJKSTERMEN:
+        query = (f'c.product-area==officielepublicaties and '
+                 f'(dt.type=="Wet" or dt.type=="AMvB" or dt.type=="Regeling" or '
+                 f'dt.type=="Besluit") and '
+                 f'dt.title any "{term}" and dt.date>="{vanaf}"')
+        root = bevraag_sru(query)
+        for rec in records(root):
+            titel = _tekst(rec, "title")
+            if not titel:
+                continue
+            gevonden.append({
+                "titel": titel,
+                "datum": _tekst(rec, "date") or _tekst(rec, "available"),
+                "soort": _tekst(rec, "type"),
+                "waarom": waarom,
+                "url": _tekst(rec, "preferredUrl") or _tekst(rec, "publicatieurl"),
+            })
+        time.sleep(1)
+    # Ontdubbelen op titel
+    uniek = {}
+    for g in gevonden:
+        uniek.setdefault(g["titel"], g)
+    return list(uniek.values())
+
+
+def bevraag_sru(query, aantal=25):
+    """De SRU van de officiele bekendmakingen, dezelfde als voor de gemeente."""
+    params = {"version": "2.0", "operation": "searchRetrieve",
+              "query": query, "maximumRecords": aantal}
+    url = ("https://repository.overheid.nl/sru?"
+           + urllib.parse.urlencode(params, quote_via=urllib.parse.quote))
+    for poging in range(1, 4):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=(15, 60))
+            if r.status_code == 503:
+                raise RuntimeError("503")
+            r.raise_for_status()
+            return ET.fromstring(r.content)
+        except Exception as e:
+            if poging == 3:
+                print(f"  rijkspublicaties mislukt: {e}", file=sys.stderr)
+                return None
+            time.sleep(poging * 10)
+    return None
+
+
+def render_rijk(items):
+    """Alleen tonen als er iets is gepubliceerd."""
+    if not items:
+        return []
+    r = ["", "### Landelijke regelgeving gepubliceerd", ""]
+    for it in items:
+        r.append(f"- **{it['titel']}**"
+                 + (f" ({it['soort']}, {it['datum'][:10]})" if it.get("datum") else "")
+                 + (f" [bekijken]({it['url']})" if it.get("url") else ""))
+        r.append(f"  _Raakt {it['waarom']}._")
+    r.append("")
+    r.append("_Dit is wat er daadwerkelijk is gepubliceerd in het Staatsblad of de "
+             "Staatscourant, niet wat is voorgesteld. Een voorgesteld tarief is "
+             "geen tarief._")
+    return r
+
+
 def lees_status():
     if not os.path.exists(STATUS_PAD):
         return {}
@@ -228,7 +315,11 @@ def main():
 
     schrijf_status(huidig)
 
-    regels = render(wijzigingen, nieuw)
+    rijk = rijkspublicaties()
+    if rijk:
+        print(f"  {len(rijk)} landelijke publicaties gevonden", file=sys.stderr)
+
+    regels = render(wijzigingen, nieuw) + render_rijk(rijk)
     if regels:
         for r in regels:
             print(r)

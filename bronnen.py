@@ -38,6 +38,12 @@ BRONNEN = [
     ("CVDR en Basiswettenbestand", "registratie",
      "gemeentelijke verordeningen en landelijke wetgeving",
      "KOOP, zoekservice.overheid.nl", "dagelijks"),
+    ("Staatsblad en Staatscourant", "registratie",
+     "gepubliceerde wetten, besluiten en regelingen op rijksniveau",
+     "KOOP, repository.overheid.nl", "dagelijks"),
+    ("Rijksoverheid", "meting",
+     "persberichten over voorgenomen beleid en wetsvoorstellen",
+     "rijksoverheid.nl", "dagelijks"),
     ("Kamerverhuurvergunningen", "registratie",
      "verleende onttrekkings-, omzettings- en omgevingsvergunningen",
      "gemeente Nijmegen, Woo-verzoek", "2013 tot 2025, niet bijgewerkt"),
@@ -82,6 +88,11 @@ BRONNEN = [
 
 # Wettelijke kaders waarop de brief toetst, met de vindplaats
 KADERS = [
+    ("NTA 8800:2025 en EPBD IV",
+     "rekenmethodiek energielabel; nieuwe klasse A0 en labelplicht voor "
+     "monumenten bij verkoop of verhuur",
+     "geldt voor labels geregistreerd vanaf 29 mei 2026; oudere labels blijven "
+     "geldig"),
     ("Huisvestingsverordening gemeente Nijmegen 2024",
      "opkoopbescherming, omzetting, onttrekking, weigeringsgronden artikel 15",
      "geldend van 01-01-2024 tot en met 31-12-2027"),
