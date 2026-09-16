@@ -1164,7 +1164,11 @@ def aanloopverlies(lening, netto_huur):
 LOOPTIJD_JAAR = 30        # looptijd voor de annuiteit; 0 = alleen rente betalen
 
 # Aankoopkosten, apart zodat je ziet waar ze vandaan komen.
-OVERDRACHTSBELASTING_PCT = 10.4   # tarief beleggingsvastgoed; controleer jaarlijks
+# Overdrachtsbelasting voor woningen die niet als hoofdverblijf dienen.
+# Per 1 januari 2026 verlaagd van 10,4% naar 8%. Controleer dit jaarlijks:
+# het tarief is de afgelopen jaren meermaals gewijzigd en het is de grootste
+# post in de aankoopkosten.
+OVERDRACHTSBELASTING_PCT = 8.0   # tarief beleggingsvastgoed; controleer jaarlijks
 BIJKOMENDE_KOSTEN_PCT = 2.0       # notaris, makelaar, taxatie, advies
 AANKOOPKOSTEN_PCT = OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT
 
