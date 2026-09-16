@@ -175,7 +175,11 @@ WOZ_CAP_AANDEEL = 0.33      # geldt alleen als de woning anders op 187+ uitkomt
 
 # Energielabel, punten voor een meergezinswoning (appartement). Een
 # eengezinswoning scoort hoger; bij splitsing ontstaan meestal appartementen.
+# Sinds 29 mei 2026 kent de NTA 8800:2025 een klasse A0 voor bijna
+# emissievrije gebouwen. Die staat nog niet in de huurprijstabel; we waarderen
+# hem voorlopig als A++++ en passen dat aan zodra de Huurcommissie hem opneemt.
 LABEL_PUNTEN_ZELFSTANDIG = {
+    "A0": 48,
     "A++++": 48, "A+++": 44, "A++": 40, "A+": 36, "A": 32,
     "B": 28, "C": 22, "D": 14, "E": -5, "F": -9, "G": -15,
 }

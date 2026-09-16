@@ -1181,9 +1181,16 @@ AANLOOPMAANDEN = 3        # klussen, verhuurklaar maken en verhuren
 # De bedragen hieronder zijn nog aannames. Vul ze aan met de RVO-tabel voor de
 # eerste post en met je eigen cijfers voor de tweede.
 VERDUURZAMING_PER_M2 = {
-    # naar label B of beter; hoe slechter het startpunt, hoe meer er moet
-    "A": 0, "B": 0, "C": 150, "D": 275, "E": 400, "F": 475, "G": 550,
+    # naar label B of beter; hoe slechter het startpunt, hoe meer er moet.
+    # A0 is de klasse voor bijna emissievrije gebouwen uit de NTA 8800:2025,
+    # geldig voor labels die vanaf 29 mei 2026 zijn geregistreerd.
+    "A0": 0, "A": 0, "B": 0, "C": 150, "D": 275, "E": 400, "F": 475, "G": 550,
 }
+
+# Een energielabel opstellen kost geld, en sinds 29 mei 2026 is het ook bij
+# monumenten verplicht bij verkoop, verhuur of oplevering. De uitzondering die
+# daar decennialang gold, is vervallen door de Europese richtlijn EPBD IV.
+LABEL_PLICHT_VANAF = "2026-05-29"
 VERDUURZAMING_ONBEKEND = 275
 VERHUURKLAAR_PER_M2 = 275     # keuken, badkamer, schilderwerk, vloeren
 BTW_OP_VERBOUWING = 15        # gemiddeld, want arbeid 9% en materiaal 21%
@@ -3730,6 +3737,16 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         # Een pand dat feitelijk al is opgedeeld maar juridisch niet, of juist
         # wel: dat verschil bepaalt of je nog een vergunning nodig hebt.
         for _a, _p, _k, _afw, _b, w in vers:
+            # Monumenten moeten sinds 29 mei 2026 ook een energielabel hebben
+            if w.get("monument") and not (w.get("energielabel") or {}).get("label"):
+                r.append(f"_**{w['adres']}** is een monument zonder geregistreerd "
+                         f"energielabel. Sinds {LABEL_PLICHT_VANAF} is dat ook voor "
+                         f"monumenten verplicht bij verkoop, verhuur of oplevering; "
+                         f"de oude uitzondering is vervallen door de Europese "
+                         f"richtlijn EPBD IV. Verduurzamingseisen gelden nog steeds "
+                         f"niet, maar het label moet er zijn._")
+                r.append("")
+
             eenh = w.get("eenheden_in_pand") or []
             if len(eenh) > 1:
                 namen_e = ", ".join(f"{e['adres']}"
