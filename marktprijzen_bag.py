@@ -1419,6 +1419,24 @@ def lees_misdrijven():
         return {}
 
 
+def _bruikbare_soorten(misdrijven):
+    """
+    Welke misdrijfsoorten leveren werkelijk cijfers op?
+
+    Staat een soort in elke buurt op nul, dan krijgen we hem niet binnen en is
+    het geen bevinding maar een gat in de data. Die tonen we niet, want nul
+    suggereert dat het er niet gebeurt.
+    """
+    totalen = {}
+    for per_jaar in misdrijven.values():
+        if not per_jaar:
+            continue
+        laatst = per_jaar[sorted(per_jaar)[-1]]
+        for soort, aantal in laatst.items():
+            totalen[soort] = totalen.get(soort, 0) + (aantal or 0)
+    return {s for s, t in totalen.items() if t > 0}
+
+
 def misdrijfregel(buurt, misdrijven, inwoners=None):
     """
     Misdrijven per buurt, afgezet tegen het aantal inwoners. Absolute aantallen
@@ -1433,10 +1451,11 @@ def misdrijfregel(buurt, misdrijven, inwoners=None):
     laatst = per_buurt[jaren[-1]]
     jaar = jaren[-1][:4]
 
+    bruikbaar = _bruikbare_soorten(misdrijven)
     stukken = []
     for soort in MISDRIJVEN_TONEN:
         n = laatst.get(soort)
-        if n is None:
+        if n is None or soort not in bruikbaar:
             continue
         tekst = f"{n} {soort}"
         if inwoners:
@@ -1458,15 +1477,31 @@ def misdrijfregel(buurt, misdrijven, inwoners=None):
 
 
 def lees_vergunningen_per_buurt():
-    """Aantal verleende kamerverhuurvergunningen per buurt, uit het eenmalige
-    koppelscript vergunningen_buurten.py."""
+    """
+    Aantal verleende kamerverhuurvergunningen per buurt.
+
+    De buurtnamen uit PDOK wijken soms af van die in onze eigen lijst, met een
+    hoofdletter of een streepje verschil. Daarom matchen we op een genormali-
+    seerde naam en niet op de letterlijke tekst.
+    """
     if not os.path.exists("vergunningen_per_buurt.json"):
         return {}
     try:
         with open("vergunningen_per_buurt.json", encoding="utf-8") as f:
-            return json.load(f)
+            ruw = json.load(f)
     except Exception:
         return {}
+
+    def norm(naam):
+        return re.sub(r"[^a-z0-9]", "", str(naam).lower())
+
+    uit = dict(ruw)
+    for naam, aantal in ruw.items():
+        uit[norm(naam)] = aantal
+    for buurt in FOCUS_BUURTEN:
+        if buurt not in uit and norm(buurt) in uit:
+            uit[buurt] = uit[norm(buurt)]
+    return uit
 
 
 def lees_kamervergunningen():
@@ -3081,9 +3116,12 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
         if m_b and (cbs.get(buurt) or {}).get("inwoners"):
             jaar = sorted(m_b)[-1]
             inw = cbs[buurt]["inwoners"]
+            bruikbaar_b = _bruikbare_soorten(mis)
             per_soort = [f"{s} {v} ({v / inw * 1000:.1f}".replace(".", ",") + " per 1.000)"
                          for s, v in sorted(m_b[jaar].items())
-                         if s in ("woninginbraak", "vernieling", "drugs- en drankoverlast")]
+                         if s in ("woninginbraak", "vernieling",
+                                  "drugs- en drankoverlast")
+                         and s in bruikbaar_b]
             if per_soort:
                 stukken.append(f"misdrijven {jaar[:4]}: " + ", ".join(per_soort))
         if stukken:

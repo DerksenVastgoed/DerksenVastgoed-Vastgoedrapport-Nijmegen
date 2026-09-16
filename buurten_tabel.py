@@ -108,8 +108,10 @@ def _woz(p):
 # Inkomen per buurt. Het CBS levert dit met ongeveer twee jaar vertraging en
 # onderdrukt het bij kleine buurten, dus een lege waarde is normaal.
 INKOMEN_VELDEN = [
-    "gemiddeld_inkomen_per_inwoner", "gemiddeld_inkomen_inwoner",
-    "gem_inkomen_per_inwoner", "inkomen_per_inwoner",
+    "gemiddeld_inkomen_per_inwoner",
+    "gemiddeld_gestandaardiseerd_inkomen_van_huishoudens",
+    "gemiddeld_inkomen_inwoner", "gem_inkomen_per_inwoner",
+    "inkomen_per_inwoner",
 ]
 INKOMEN_ONTVANGER_VELDEN = [
     "gemiddeld_inkomen_per_inkomensontvanger", "gem_inkomen_per_inkomensontvanger",
@@ -129,6 +131,8 @@ LAAG_INKOMEN_VELDEN = [
 # gemeten cijfer, niet afgeleid uit leeftijd of inkomen. Bij weinig huishoudens
 # onderdrukt het CBS de waarde.
 VERMOGEN_VELDEN = [
+    # De naam die het CBS werkelijk gebruikt, afgekort en al
+    "mediaan_vermogen_van_particuliere_huish",
     "mediaan_vermogen_particuliere_huishoudens", "mediaan_vermogen",
     "med_vermogen_part_huish", "mediaan_vermogen_part_huishoudens",
     "mediaan_vermogen_van_particuliere_huishoudens",
@@ -276,10 +280,11 @@ def main():
             "met_kinderen": _getal(p_nu, MET_KINDEREN_VELDEN, 0, 100),
             "huishoudgrootte": _getal(p_nu, GROOTTE_VELDEN, 1, 6),
             # Inkomen zegt wat de buurt kan dragen aan huur
-            "inkomen": _getal(p_nu, INKOMEN_VELDEN, 0, 500),
+            # Ondergrens 1 in plaats van 0: het CBS zet -99999997 bij ontbrekend
+            "inkomen": _getal(p_nu, INKOMEN_VELDEN, 1, 500),
             "inkomen_ontvanger": _getal(p_nu, INKOMEN_ONTVANGER_VELDEN, 0, 500),
             "laag_inkomen": _getal(p_nu, LAAG_INKOMEN_VELDEN, 0, 100),
-            "vermogen": _getal(p_nu, VERMOGEN_VELDEN, -500, 5000),
+            "vermogen": _getal(p_nu, VERMOGEN_VELDEN, -400, 5000),
             "sociaal_minimum": _getal(p_nu, MINIMUM_VELDEN, 0, 100),
             "bedrijven": _getal(p_nu, ["aantal_bedrijfsvestigingen"], 0),
             "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
