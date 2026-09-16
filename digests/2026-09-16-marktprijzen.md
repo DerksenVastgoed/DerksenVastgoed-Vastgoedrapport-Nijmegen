@@ -37,7 +37,7 @@ _3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html" style="color:#12242c;text-decoration:none">Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">163 m² . label E (2021)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloop van aanbouw en achtergevelkozijn bij een pand met label E (2021) schept ruimte voor renovatie die het label kan verbeteren.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloop van aanbouw en kozijn in een pand van 163 m2 met label E opent de weg voor renovatie die de energieprestatie kan verbeteren.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -67,7 +67,7 @@ _Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de levering
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">3553 m² . label A+++ (2026)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging bij een pand met energielabel A+++ (2026) toont dat gevelrenovatie ook op grote panden vergunbaar blijft.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vergunde kozijnwijziging in een pand van 3553 m2 met label A+++ (2026) toont dat gevelrenovatie ook bij een al zeer hoog label vergunbaar blijft.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -86,7 +86,7 @@ _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html" style="color:#12242c;text-decoration:none">Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">184 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Besluit voegt op 184 m² bovenverdieping een derde zelfstandige eenheid toe, wat de woningvoorraad op deze locatie vergroot.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Toevoeging van een derde appartement in een pand van 184 m2 wijst op verdere opdeling naar kleinere zelfstandige eenheden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
