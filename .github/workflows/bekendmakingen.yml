@@ -172,6 +172,19 @@ jobs:
             --bijlage "digests/${DATUM}-bijlage.md" \
             --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
+      - name: Achtergrond en bronnen klaarzetten
+        continue-on-error: true
+        run: |
+          python bronnen.py --achtergrond --uit achtergrond_vandaag.md \
+            > /dev/null || echo "Achtergrond overgeslagen"
+          if [ "$MODUS" = "dagelijks" ]; then
+            python bronnen.py --kort --uit bronnen_vandaag.md > /dev/null \
+              || echo "Bronnen overgeslagen"
+          else
+            python bronnen.py --uit bronnen_vandaag.md > /dev/null \
+              || echo "Bronnen overgeslagen"
+          fi
+
       - name: Brief samenstellen
         continue-on-error: true
         run: |
@@ -225,6 +238,18 @@ jobs:
             if [ -s "digests/${DATUM}-rente.md" ]; then
               cat "digests/${DATUM}-rente.md"
               echo ""
+            fi
+            if [ -s achtergrond_vandaag.md ]; then
+              echo "## Achtergrond van de dag"
+              cat achtergrond_vandaag.md
+              echo ""
+              rm -f achtergrond_vandaag.md
+            fi
+            if [ -s bronnen_vandaag.md ]; then
+              echo ""
+              echo "---"
+              cat bronnen_vandaag.md
+              rm -f bronnen_vandaag.md
             fi
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
@@ -347,6 +372,7 @@ jobs:
             brief_gezien.json
             regelgeving_status.json
             weetjes_gezien.json
+            achtergrond_gezien.json
             prijstrend.json
             misdrijven_per_buurt.json
             kamervergunningen.json
