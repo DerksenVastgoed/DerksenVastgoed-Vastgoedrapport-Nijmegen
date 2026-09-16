@@ -395,6 +395,45 @@ def bag_dump(adres, plaats="Nijmegen"):
         time.sleep(0.5)
 
 
+
+def bag_eenheden_in_pand(pand_id):
+    """
+    Hoeveel zelfstandige eenheden kent de BAG in dit pand, en op welke adressen?
+
+    Dit onderscheidt een pand dat feitelijk is opgedeeld van een pand dat ook
+    juridisch is gesplitst. Twee keukens en twee voordeuren zeggen niets over
+    de registratie; twee nummeraanduidingen wel. Staat er maar een, dan is de
+    splitsing nog niet geregistreerd en heb je een omgevingsvergunning nodig.
+    """
+    if not BAG_API_KEY or not pand_id:
+        return []
+    try:
+        r = requests.get(f"{BAG_BASE}/adressenuitgebreid", headers=BAG_HEADERS,
+                         params={"pandIdentificatie": pand_id, "pageSize": 50},
+                         timeout=(15, 60))
+        if r.status_code != 200:
+            return []
+        rijen = r.json().get("_embedded", {}).get("adressen", [])
+    except Exception:
+        return []
+
+    uit = []
+    for a in rijen:
+        straat = a.get("openbareRuimteNaam", "")
+        nr = a.get("huisnummer", "")
+        letter = a.get("huisletter") or ""
+        toev = a.get("huisnummertoevoeging") or ""
+        if not straat or not nr:
+            continue
+        uit.append({
+            "adres": f"{straat} {nr}{letter}{('-' + toev) if toev else ''}",
+            "oppervlakte": a.get("oppervlakte"),
+            "gebruiksdoelen": a.get("gebruiksdoelen", []),
+            "status": a.get("adresseerbaarObjectStatus", ""),
+        })
+    return uit
+
+
 def bag_adressen_op_object(vbo_id):
     """
     Hoeveel adressen hangen er aan dit verblijfsobject?
@@ -618,6 +657,21 @@ def verrijk(woning, cache):
     time.sleep(0.2)
 
     verrijking = {**bag, **pdok}
+
+    # Hoeveel zelfstandige woningen kent de BAG in dit pand? Meer dan een
+    # betekent dat de splitsing al geregistreerd is; precies een betekent dat
+    # een feitelijke opdeling nog juridisch moet worden gemaakt.
+    pand_id = bag.get("pand")
+    if pand_id:
+        eenheden = bag_eenheden_in_pand(pand_id)
+        time.sleep(0.2)
+        woon = [e for e in eenheden
+                if "woonfunctie" in (e.get("gebruiksdoelen") or [])]
+        if len(woon) > 1:
+            verrijking["eenheden_in_pand"] = woon
+            print(f"  {woning['adres']}: het pand bevat {len(woon)} zelfstandige "
+                  f"woningen volgens de BAG "
+                  f"({', '.join(e['adres'] for e in woon[:4])})", file=sys.stderr)
 
     # De oppervlakte uit de advertentie gaat voor op die uit de BAG. De
     # advertentie beschrijft wat je koopt of huurt; de BAG geeft soms het hele
@@ -1238,6 +1292,18 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     if aantal < 2:
         return None
     aantal = min(aantal, MAX_UNITS)
+
+    # Het maximale aantal eenheden is zelden het realistische aantal. Bij een
+    # bovenwoning over twee etages is de natuurlijke splitsing er een per
+    # verdieping. Kent de BAG al meer eenheden in dit pand, dan is dat aantal
+    # het uitgangspunt: die opdeling is al geregistreerd.
+    al_bekend = len(w.get("eenheden_in_pand") or [])
+    if al_bekend > 1:
+        aantal = al_bekend
+    elif bruikbaar / aantal < 45 and bruikbaar >= 2 * 45:
+        # Eenheden onder 45 m2 zijn krap; twee ruimere etages is vaak
+        # realistischer dan vier kleine.
+        aantal = max(2, int(bruikbaar // 60))
 
     unit_m2 = bruikbaar / aantal
     huur_m2, bron = huur_voor_buurt(buurt, huur_bk, huur_k, unit_m2, "woning")
@@ -3510,6 +3576,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                  + "% onder het puntenmaximum")
                 elif hp:
                     scenario += " . werkelijke huur, al op of boven het puntenmaximum"
+                eenh = w.get("eenheden_in_pand") or []
+                if len(eenh) > 1:
+                    scenario += (f" . pand bevat al {len(eenh)} woningen volgens "
+                                 f"de BAG")
                 if w.get("splitsing_geregistreerd"):
                     nieuw = w["splitsing_geregistreerd"]
                     scenario += (f" . splitsing al geregistreerd in de BAG: "
@@ -3656,6 +3726,21 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"Voor {', '.join(mismatch)} is de lokale vraag naar een woning "
                      f"van die omvang dus dun; je huurder komt van buiten de buurt._")
             r.append("")
+
+        # Een pand dat feitelijk al is opgedeeld maar juridisch niet, of juist
+        # wel: dat verschil bepaalt of je nog een vergunning nodig hebt.
+        for _a, _p, _k, _afw, _b, w in vers:
+            eenh = w.get("eenheden_in_pand") or []
+            if len(eenh) > 1:
+                namen_e = ", ".join(f"{e['adres']}"
+                                    + (f" ({e['oppervlakte']} m²)"
+                                       if e.get("oppervlakte") else "")
+                                    for e in eenh[:4])
+                r.append(f"_**{w['adres']}** zit in een pand dat volgens de BAG al "
+                         f"{len(eenh)} zelfstandige woningen telt: {namen_e}. De "
+                         f"splitsing is dus geregistreerd en elke eenheid heeft een "
+                         f"eigen adres; je hoeft die niet meer aan te vragen._")
+                r.append("")
 
         if stil:
             prijzen_stil = sorted(p for _a, p, _k, _afw, _b, _w in
