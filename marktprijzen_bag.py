@@ -673,6 +673,16 @@ def verrijk(woning, cache):
                   f"woningen volgens de BAG "
                   f"({', '.join(e['adres'] for e in woon[:4])})", file=sys.stderr)
 
+    # Loopafstand tot de dichtstbijzijnde halte. Bij kamerverhuur en kleine
+    # eenheden verhuur je aan mensen zonder auto, dus dat bepaalt mede de
+    # verhuurbaarheid. Het buurtgemiddelde is daarvoor te grof.
+    if dichtstbijzijnde_halte:
+        punt = coordinaten(woning["adres"], woning.get("plaats", "Nijmegen"))
+        if punt:
+            halte = dichtstbijzijnde_halte(punt[0], punt[1])
+            if halte:
+                verrijking["ov_halte"] = halte
+
     # De oppervlakte uit de advertentie gaat voor op die uit de BAG. De
     # advertentie beschrijft wat je koopt of huurt; de BAG geeft soms het hele
     # pand of juist een enkel verblijfsobject. Bij gesplitste panden liep dat
@@ -2417,6 +2427,11 @@ TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
 
 # WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
 try:
+    from ov_haltes import dichtstbijzijnde_halte, omschrijf as omschrijf_halte
+except Exception:  # noqa
+    dichtstbijzijnde_halte = omschrijf_halte = None
+
+try:
     from bronnen import verwijs
 except Exception:  # noqa
     def verwijs(*_namen):
@@ -3143,8 +3158,9 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
         r.append("")
 
         r.append("| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan "
-                 "| Scenario | Huur/mnd | Richtprijs | Richtprijs t.o.v. vraagprijs |")
-        r.append("|---|---:|---:|---:|---:|---|---:|---:|---:|")
+                 "| OV | Scenario | Huur/mnd | Richtprijs "
+                 "| Richtprijs t.o.v. vraagprijs |")
+        r.append("|---|---:|---:|---:|---:|---:|---|---:|---:|---:|")
         rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
                    if w in panden]
         med_b = st.median([p for p, _ in per_buurt.get(buurt, [])]) if per_buurt.get(buurt) else None
@@ -3160,7 +3176,8 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                 f"| €{eu(w['prijs'])} | {w.get('oppervlakte') or '—'} | €{eu(ppm2)} "
                 f"| {f'{afw:+.0f}%' if afw is not None else '—'} "
-                f"| {sc['naam'] if sc else '—'} "
+                + (f"| {w['ov_halte']['meters']} m " if w.get("ov_halte") else "| — ")
+                + f"| {sc['naam'] if sc else '—'} "
                 f"| {'€' + eu(sc['maand']) if sc else '—'} "
                 f"| {'€' + eu(plafond) if plafond else '—'} "
                 f"| {verschil_s} |")
@@ -3789,6 +3806,15 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         # Een pand dat feitelijk al is opgedeeld maar juridisch niet, of juist
         # wel: dat verschil bepaalt of je nog een vergunning nodig hebt.
         for _a, _p, _k, _afw, _b, w in vers:
+            halte_w = w.get("ov_halte")
+            if halte_w and (halte_w["meters"] > 800
+                            or halte_w.get("omweg", 1) >= 2.0):
+                r.append(f"_**{w['adres']}** en het openbaar vervoer: "
+                         f"{omschrijf_halte(halte_w)}. Bij kamerverhuur en kleine "
+                         f"eenheden verhuur je aan mensen zonder auto, dus dat telt "
+                         f"mee in de verhuurbaarheid._")
+                r.append("")
+
             # Monumenten moeten sinds 29 mei 2026 ook een energielabel hebben
             if w.get("monument") and not (w.get("energielabel") or {}).get("label"):
                 r.append(f"_**{w['adres']}** is een monument zonder geregistreerd "
