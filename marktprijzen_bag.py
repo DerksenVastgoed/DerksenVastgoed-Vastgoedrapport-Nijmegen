@@ -986,6 +986,20 @@ def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
                      + " personen per huishouden")
         tweede.append(stuk)
 
+    if g.get("leeftijd"):
+        tweede.append(f"gemiddelde leeftijd "
+                      + f"{g['leeftijd']:.0f}".replace(".", ",") + " jaar")
+
+    # Bereikbaarheid: wat een huurder zonder auto aan het pand heeft
+    bereik = []
+    for soort, naam in (("trein", "station"), ("supermarkt", "supermarkt"),
+                        ("huisarts", "huisarts")):
+        km = g.get(f"afstand_{soort}")
+        if km:
+            bereik.append(f"{naam} op " + f"{km:.1f}".replace(".", ",") + " km")
+    if bereik:
+        tweede.append(", ".join(bereik))
+
     # Inkomen zegt wat een buurt aan huur kan dragen. Ligt de gevraagde huur
     # boven wat er verdiend wordt, dan is de doelgroep smaller dan hij lijkt.
     if g.get("inkomen") or g.get("vermogen") is not None:
