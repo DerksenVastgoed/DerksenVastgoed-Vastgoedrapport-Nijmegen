@@ -673,16 +673,6 @@ def verrijk(woning, cache):
                   f"woningen volgens de BAG "
                   f"({', '.join(e['adres'] for e in woon[:4])})", file=sys.stderr)
 
-    # Loopafstand tot de dichtstbijzijnde halte. Bij kamerverhuur en kleine
-    # eenheden verhuur je aan mensen zonder auto, dus dat bepaalt mede de
-    # verhuurbaarheid. Het buurtgemiddelde is daarvoor te grof.
-    if dichtstbijzijnde_halte:
-        punt = coordinaten(woning["adres"], woning.get("plaats", "Nijmegen"))
-        if punt:
-            halte = dichtstbijzijnde_halte(punt[0], punt[1])
-            if halte:
-                verrijking["ov_halte"] = halte
-
     # De oppervlakte uit de advertentie gaat voor op die uit de BAG. De
     # advertentie beschrijft wat je koopt of huurt; de BAG geeft soms het hele
     # pand of juist een enkel verblijfsobject. Bij gesplitste panden liep dat
@@ -4249,6 +4239,48 @@ def render_intro(cbs, woningen, kort=False):
     return ["", "### Achtergrond", "", " ".join(zinnen), ""]
 
 
+
+def vul_ov_afstand(woningen):
+    """
+    Loopafstand tot de dichtstbijzijnde halte, voor panden die hem nog missen.
+
+    Dit staat los van de BAG-verrijking, want die draait alleen voor panden die
+    nieuw zijn. Een pand dat al in de cache stond zou anders nooit een
+    loopafstand krijgen. De uitkomst wordt per coordinaat bewaard, dus dit kost
+    alleen de eerste keer tijd.
+    """
+    if not dichtstbijzijnde_halte:
+        return
+    haltes = lees_haltes_bestand()
+    if not haltes:
+        print("Geen haltebestand gevonden; loopafstanden overgeslagen",
+              file=sys.stderr)
+        return
+
+    nieuw = 0
+    for w in woningen:
+        if w.get("ov_halte") or (w.get("status") or "").lower() == "verkocht":
+            continue
+        punt = coordinaten(w["adres"], w.get("plaats", "Nijmegen"))
+        if not punt:
+            continue
+        halte = dichtstbijzijnde_halte(punt[0], punt[1], haltes)
+        if halte:
+            w["ov_halte"] = halte
+            nieuw += 1
+    if nieuw:
+        print(f"Loopafstand tot een halte bepaald voor {nieuw} panden",
+              file=sys.stderr)
+
+
+def lees_haltes_bestand():
+    try:
+        from ov_haltes import lees_haltes
+        return lees_haltes()
+    except Exception:
+        return []
+
+
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     """
     In de dagelijkse brief tonen we alleen wat beweegt: prijswijzigingen,
@@ -4355,6 +4387,9 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     if not per_buurt and not beleggingen:
         r.append("_Geen woningen met bruikbare data._")
         return "\n".join(r)
+
+    vul_ov_afstand([w for w in woningen
+                    if (w.get("status") or "").lower() != "verkocht"])
 
     # Het geheugen lezen voordat het aanbod het bijwerkt, anders ziet de
     # samenvatting alles als al gezien.
