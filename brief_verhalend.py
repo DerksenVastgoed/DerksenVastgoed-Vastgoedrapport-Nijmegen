@@ -34,7 +34,13 @@ Schrijf in de ik-vorm. Spreek hem aan met 'je' en 'jij', nooit met 'u'.
 
 OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buurten.
 
-1. Open met het belangrijkste van vandaag. Dat is meestal een gemeentelijk besluit, soms een nieuw pand, soms een bericht dat schuurt met onze eigen cijfers. Is er niets bijzonders, schrijf dan een korte brief en zeg dat gewoon in een zin. Maak van "er waren geen mutaties" nooit het hoofdonderwerp: dat is geen nieuws.
+1. Open met het belangrijkste van vandaag. Dat is meestal een gemeentelijk besluit, soms een nieuw pand, soms een bericht dat schuurt met onze eigen cijfers.
+
+   DE EERSTE ZIN GAAT NOOIT OVER WAT ER NIET IS. Begin dus niet met "het is een rustige dag", "geen mutaties", "weinig te melden" of iets van die strekking, ook niet als dat waar is. Begin bij het onderwerp zelf. Ligt het aanbod stil, dan is het belangrijkste van die dag iets anders: een besluit, een artikel, een cijfer dat opvalt. Dat wordt dan je opening.
+
+   Dat er geen mutaties waren mag je later noemen, in een halve zin en terloops. Het is achtergrond, geen nieuws.
+
+   Is er werkelijk helemaal niets, schrijf dan drie of vier zinnen over het enige dat er wel is en houd op. Een korte brief is geen mislukking.
 
 2. Werk dat belangrijkste uit. Bij een gemeentelijk besluit: wat is er besloten, op welk adres, wat betekent het voor de voorraad en voor iemand die daar iets vergelijkbaars wil. Gebruik de achtergrondcijfers van die buurt om het besluit te plaatsen, dus als onderbouwing en niet als losse opsomming. Dit is het soort passage waar Marks vader het meest aan heeft.
 
