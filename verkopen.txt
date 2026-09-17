@@ -234,3 +234,6 @@ Burg. Hustinxstraat 208 | Nijmegen | 300000 | te koop | 2026-09-16 |  | 51 | 651
 Jacob Canisstraat 51 | Nijmegen | 565000 | te koop | 2026-09-16 |  | 138 | 6521HJ
 Pontanusstraat 19 | Nijmegen | 539000 | te koop | 2026-09-16 |  | 135 | 6524HB
 Veemarkt 213 | Nijmegen | 370000 | te koop | 2026-09-16 |  | 65 | 6511ZJ
+
+# Automatisch toegevoegd uit Funda-attendering op 17-09-2026
+Derde Walstraat 108 | Nijmegen | 225000 | te koop | 2026-09-17 |  | 34 | 6511SP

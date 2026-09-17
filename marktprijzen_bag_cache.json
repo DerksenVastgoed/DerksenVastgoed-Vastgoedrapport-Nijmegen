@@ -4106,5 +4106,60 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Derde Walstraat 108|Nijmegen": {
+    "oppervlakte": 34,
+    "bouwjaar": "1887",
+    "gebruiksdoelen": [
+      "industriefunctie",
+      "woonfunctie"
+    ],
+    "postcode": "6511SP",
+    "adresseerbaarObjectIdentificatie": "0268010000005690",
+    "pand": "0268100000002866",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-d61c343ed9c45f730f597f950611d20d",
+    "eenheden_in_pand": [
+      {
+        "adres": "Derde Walstraat 108",
+        "oppervlakte": 60,
+        "gebruiksdoelen": [
+          "industriefunctie",
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Derde Walstraat 110",
+        "oppervlakte": 34,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 60,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-05-01",
+      "geldig_tot": "2036-04-15",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:de Voorstadslaan 211|Nijmegen": {
+    "postcode": "6541SN",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-20baf8418b7443f9c7ad7eceb0e75a24"
+  },
+  "bm:Grote Markt 36|Nijmegen": {
+    "postcode": "6511KA",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-8b191a76baafb8cd4abba2beb7ad0abf"
   }
 }

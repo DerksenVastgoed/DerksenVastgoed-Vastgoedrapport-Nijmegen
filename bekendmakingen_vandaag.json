@@ -1,23 +1,10 @@
 [
  {
-  "datum": "2026-09-14",
-  "titel": "Besluit voor het verbouwen van de bovenverdieping voor een derde  appartement, aan van Dulckenstraat 44, 6512DV Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430757.html",
-  "strategie": "splitsen",
-  "duiding": "Verbouwen van de bovenverdieping tot een derde appartement voegt een verhuurbare unit toe binnen hetzelfde pand.",
-  "feiten": {
-   "oppervlakte_m2": 184
-  },
-  "straat": "van Dulckenstraat",
-  "huisnummer": "44",
-  "kern": true
- },
- {
   "datum": "2026-09-16",
   "titel": "Aanvraag omgevingsvergunning voor transformatie van de voorgevel aan de Burchtstraat 35, 6511RB in Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435146.html",
   "strategie": "geen",
-  "duiding": "De aanvraag betreft alleen de voorgevel en is nog niet beoordeeld, dus zonder gevolgen tot een besluit volgt.",
+  "duiding": "Wijziging van de voorgevel betreft alleen de uiterlijke verschijningsvorm, zonder aanwijzing van functiewijziging of waardecreatie.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
@@ -28,7 +15,7 @@
   "titel": "Besluit voor het wijzigen van plattegronden en gevels van een bestaand bedrijfspand, aan Wolfskuilseweg 257, 6542AA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-432766.html",
   "strategie": "geen",
-  "duiding": "Wijziging van plattegronden en gevels van een bedrijfspand past de indeling aan zonder functieverandering.",
+  "duiding": "Wijziging van plattegronden en gevels van dit 426 m² bedrijfspand betreft interne aanpassing zonder aangegeven functiewijziging.",
   "feiten": {
    "oppervlakte_m2": 426
   },
@@ -37,31 +24,28 @@
   "kern": false
  },
  {
-  "datum": "2026-09-14",
-  "titel": "Besluit voor het wijzigen van de kozijnen in de buitengevels, aan Nassausingel 3, 6511EV Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-429227.html",
-  "strategie": "geen",
-  "duiding": "Met een energielabel A+++ uit 2026, geldig tot circa 2036, heeft deze kozijnwijziging geen invloed op de verduurzamingsstrategie.",
-  "feiten": {
-   "energielabel": "A+++ (2026)",
-   "oppervlakte_m2": 3553
-  },
-  "straat": "Nassausingel",
-  "huisnummer": "3",
+  "datum": "2026-09-17",
+  "titel": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-437682.html",
+  "strategie": "buy-and-hold",
+  "duiding": "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt.",
+  "feiten": {},
+  "straat": "de Voorstadslaan",
+  "huisnummer": "211",
   "kern": false
  },
  {
-  "datum": "2026-09-14",
-  "titel": "Melding sloopmelding het slopen van de bestaande aanbouw en het kozijn in de achtergevel, aan Professor Schrijnenstraat 20, 6524RA Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-430183.html",
-  "strategie": "verduurzaming",
-  "duiding": "Sloop van aanbouw en kozijn bij een pand met label E kan voorafgaan aan renovatie die het energielabel verbetert.",
+  "datum": "2026-09-17",
+  "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van horeca panden, aan Grote Markt 36, 6511KB Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435960.html",
+  "strategie": "geen",
+  "duiding": "Interne verbouwing van dit horecapand met label A (2020) op 232 m² betreft geen functiewijziging naar wonen.",
   "feiten": {
-   "energielabel": "E (2021)",
-   "oppervlakte_m2": 163
+   "energielabel": "A (2020)",
+   "oppervlakte_m2": 232
   },
-  "straat": "Professor Schrijnenstraat",
-  "huisnummer": "20",
+  "straat": "Grote Markt",
+  "huisnummer": "36",
   "kern": false
  }
 ]
