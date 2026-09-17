@@ -77,6 +77,25 @@ def _eigendom(p):
     return round(koop), corp, over, rest
 
 
+
+def _gemiddelde_leeftijd(props):
+    """
+    Gewogen gemiddelde leeftijd uit de leeftijdsgroepen van het CBS.
+
+    Het CBS publiceert geen gemiddelde leeftijd per buurt, wel het aantal
+    inwoners per groep. Met het middelpunt van elke groep als schatting komt
+    daar een bruikbaar gemiddelde uit. Het is een benadering, want binnen een
+    groep zijn de leeftijden niet gelijk verdeeld.
+    """
+    som, aantal = 0.0, 0
+    for velden, midden in LEEFTIJDSGROEPEN:
+        n = _getal(props, velden, 0, 100000)
+        if n:
+            som += n * midden
+            aantal += n
+    return round(som / aantal, 1) if aantal else None
+
+
 def _buurt_props(feats, naam):
     for f in feats:
         p = f.get("properties", {})
@@ -160,6 +179,29 @@ GROOTTE_VELDEN = [
     "gemiddelde_huishoudsgrootte", "gemiddelde_huishoudensgrootte",
     "gem_huishoudensgrootte", "gemiddelde_huishoudens_grootte",
 ]
+
+# Leeftijdsopbouw. Het CBS geeft inwoners per leeftijdsgroep; daar rekenen we
+# een gewogen gemiddelde uit. Het middelpunt van de open bovengroep zetten we
+# op 80, want daarboven wordt de groep snel dunner.
+LEEFTIJDSGROEPEN = [
+    (["aantal_inwoners_0_tot_15_jaar", "aantal_inwoners_0_tot_14_jaar"], 7.5),
+    (["aantal_inwoners_15_tot_25_jaar"], 20),
+    (["aantal_inwoners_25_tot_45_jaar"], 35),
+    (["aantal_inwoners_45_tot_65_jaar"], 55),
+    (["aantal_inwoners_65_jaar_en_ouder", "aantal_inwoners_65_jaar_of_ouder"], 75),
+]
+
+# Nabijheid van voorzieningen, in kilometers. Het CBS levert dit per buurt als
+# gemiddelde afstand van een inwoner tot de dichtstbijzijnde voorziening.
+AFSTAND_VELDEN = {
+    "trein": ["afstand_tot_belangrijk_overstapstation",
+              "afstand_tot_treinstation", "gemiddelde_afstand_tot_treinstation"],
+    "supermarkt": ["afstand_tot_grote_supermarkt",
+                   "gemiddelde_afstand_tot_grote_supermarkt"],
+    "huisarts": ["afstand_tot_huisartsenpraktijk",
+                 "gemiddelde_afstand_tot_huisartsenpraktijk"],
+    "school": ["afstand_tot_school", "gemiddelde_afstand_tot_school"],
+}
 
 OPPERVLAKTE_VELDEN = [
     "gemiddelde_woningoppervlakte", "gemiddeld_woonoppervlak",
@@ -273,6 +315,10 @@ def main():
                          + (_getal(p_nu, ["aantal_studenten_hbo"], 0) or 0),
             "inwoners": _getal(p_nu, ["aantal_inwoners"], 0),
             "nietwoningen": _getal(p_nu, ["aantal_niet_woningvoorraad"], 0),
+            # Leeftijd en bereikbaarheid
+            "leeftijd": _gemiddelde_leeftijd(p_nu),
+            **{f"afstand_{soort}": _getal(p_nu, velden, 0, 100)
+               for soort, velden in AFSTAND_VELDEN.items()},
             # Huishoudens: wie woont er alleen en wie met hoeveel
             "huishoudens": _getal(p_nu, HUISHOUDENS_VELDEN, 0),
             "eenpersoons": _getal(p_nu, EENPERSOONS_VELDEN, 0, 100),
@@ -310,6 +356,23 @@ def main():
     print(f"Stadstotalen over {stad['buurten']} buurten: "
           f"{stad['woningen']} woningen, {stad['inwoners']} inwoners, "
           f"{stad['studenten']} studenten", file=sys.stderr)
+
+    if rijen and not any(r.get("afstand_trein") for r in rijen):
+        eerste_a = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        afstandachtig = sorted(k for k in eerste_a
+                               if "afstand" in k.lower() or "nabij" in k.lower())
+        print("Geen afstandsgegevens gevonden in de CBS-buurtkaart.",
+              file=sys.stderr)
+        print(f"  Velden die op afstand lijken: {afstandachtig or 'geen'}",
+              file=sys.stderr)
+
+    if rijen and not any(r.get("leeftijd") for r in rijen):
+        eerste_l = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+        leeftijdachtig = sorted(k for k in eerste_l if "jaar" in k.lower())
+        print("Geen leeftijdsopbouw gevonden in de CBS-buurtkaart.",
+              file=sys.stderr)
+        print(f"  Velden die op leeftijd lijken: {leeftijdachtig or 'geen'}",
+              file=sys.stderr)
 
     if rijen and not any(r.get("vermogen") for r in rijen):
         eerste_v = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
@@ -357,7 +420,9 @@ def main():
                              "inwoners", "nietwoningen", "bedrijven",
                              "inkomen", "inkomen_ontvanger", "laag_inkomen",
                              "sociaal_minimum", "vermogen", "huishoudens", "eenpersoons",
-                             "zonder_kinderen", "met_kinderen", "huishoudgrootte")}
+                             "zonder_kinderen", "met_kinderen", "huishoudgrootte",
+                             "leeftijd", "afstand_trein", "afstand_supermarkt",
+                             "afstand_huisarts", "afstand_school")}
                 for r in rijen}
     gegevens["_nijmegen"] = stad
     with open(CBS_PAD, "w", encoding="utf-8") as f:
