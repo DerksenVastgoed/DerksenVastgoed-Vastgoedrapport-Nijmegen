@@ -218,6 +218,68 @@ def schrijf_historie(hist: dict):
         json.dump(hist, f, indent=2, ensure_ascii=False)
 
 
+
+def langere_terugblik(hist: dict, ltv_key: str = "ltv70"):
+    """
+    Hoe stond deze rente een maand, een kwartaal en een jaar geleden?
+
+    Nodig omdat een vergelijking met gisteren geen uitspraak toelaat over een
+    trend. Een artikel dat schrijft dat de rente stijgt, gaat over weken of
+    maanden; wie dat toetst aan de stand van gisteren concludeert ten onrechte
+    dat er niets gebeurt.
+    """
+    if not hist:
+        return []
+    vandaag = dt.date.today()
+    nu = None
+    for offset in range(0, 8):
+        datum = (vandaag - dt.timedelta(days=offset)).isoformat()
+        if datum in hist and hist[datum].get(ltv_key) is not None:
+            nu = hist[datum][ltv_key]
+            break
+    if nu is None:
+        return []
+
+    uit = []
+    for dagen, label in ((30, "een maand"), (90, "een kwartaal"),
+                         (365, "een jaar")):
+        # Zoek de dichtstbijzijnde meting rond dat punt
+        gevonden = None
+        for speling in range(0, 15):
+            for richting in (-1, 1):
+                datum = (vandaag - dt.timedelta(days=dagen + richting * speling)
+                         ).isoformat()
+                if datum in hist and hist[datum].get(ltv_key) is not None:
+                    gevonden = (hist[datum][ltv_key], datum)
+                    break
+            if gevonden:
+                break
+        if not gevonden:
+            continue
+        toen, datum = gevonden
+        uit.append({"label": label, "toen": toen, "nu": nu,
+                    "verschil_bp": _bp(nu, toen), "datum": datum})
+    return uit
+
+
+def render_terugblik(hist: dict):
+    """De rentebeweging over langere termijn, in een zin."""
+    punten = langere_terugblik(hist)
+    if not punten:
+        return ""
+    delen = []
+    for p in punten:
+        richting = "hoger" if p["verschil_bp"] > 0 else "lager"
+        if abs(p["verschil_bp"]) < 5:
+            delen.append(f"vrijwel gelijk aan {p['label']} geleden")
+        else:
+            delen.append(f"{abs(p['verschil_bp'])} basispunten {richting} dan "
+                         f"{p['label']} geleden")
+    return ("_Over langere termijn: " + ", ".join(delen)
+            + ". Een uitspraak over de renteontwikkeling vraagt deze vergelijking; "
+              "de stand van gisteren zegt daar niets over._")
+
+
 def week_geleden(hist: dict, ltv_key: str):
     """Rente van 5 tot 9 werkdagen geleden voor deze LTV, of None."""
     vandaag = dt.date.today()
@@ -291,9 +353,11 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
                                .replace(".", ","))
         if not delen_k:
             return ""
-        return ("\n## Rente verhuurhypotheek\n\n_Onveranderd: "
+        terug = render_terugblik(lees_historie())
+        return ("\n## Rente verhuurhypotheek\n\n_Onveranderd sinds gisteren: "
                 + ", ".join(delen_k)
-                + ". De volledige doorrekening staat in de brief van zondag._\n")
+                + ". De volledige doorrekening staat in de brief van zondag._\n"
+                + (f"\n{terug}\n" if terug else ""))
 
     r = ["", "## Rente verhuurhypotheek"]
 
