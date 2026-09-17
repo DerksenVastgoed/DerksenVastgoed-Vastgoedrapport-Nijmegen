@@ -160,6 +160,17 @@ jobs:
             echo "Monumentenbestand aanwezig ($GROOTTE bytes), overslaan"
           fi
 
+      - name: OV-haltes ophalen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Haltes verplaatsen zelden, dus dit hoeft maar een keer per jaar.
+          # Verwijder ov_haltes.json om opnieuw op te halen.
+          if [ ! -s ov_haltes.json ]; then
+            python ov_haltes.py --verversen || echo "Haltes-stap overgeslagen"
+          else
+            echo "Haltebestand aanwezig, overslaan"
+          fi
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -378,6 +389,8 @@ jobs:
             kamervergunningen.json
             vergunningen_per_buurt.json
             straat_buurt_cache.json
+            ov_haltes.json
+            ov_afstand_cache.json
             rente_actueel.json
             rente_historie.json
             buurten_cbs.json
