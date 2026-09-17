@@ -52,11 +52,19 @@ OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buu
 
 4. Panden die aandacht verdienen. Noem ze bij naam met vraagprijs en oppervlakte, en schrijf waarom ze opvallen. Behoud de links precies zoals ze in de gegevens staan, in de vorm [naam](adres). Staan er geen bijzondere panden, sla dit dan over.
 
-5. De rente, kort, en alleen als er iets aan veranderd is of als het iets verklaart.
+5. VERDIEPING. Je krijgt een achtergrondstuk mee dat aansluit bij het nieuws van vandaag. Gebruik dat niet als los blokje onderaan, maar verweef het waar het hoort: het artikel meldt iets, en dit legt uit hoe die regel precies werkt en wat hij voor ons betekent. Neem de inhoud over in je eigen woorden.
 
-6. BUURT VAN DE DAG: je krijgt een buurtnaam aangeleverd. Geef alleen die ene buurt een kort achtergrondportret van een paar zinnen, en alleen als het ergens bij aansluit. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen geen portret; die komen een andere dag.
+   Is er een onderwerp dat vandaag van meerdere kanten komt, bijvoorbeeld een bericht in de pers en een besluit van de gemeente over hetzelfde thema, maak daar dan het hoofdstuk van de brief van. Bekijk het van meerdere kanten: wat zegt het nieuws, wat zeggen onze eigen cijfers, wat zegt de regelgeving, en wat betekent het voor ons. Sluit af met wat je ervan vindt.
 
-7. Sluit af met een gewone zin over wat je volgende keer verwacht.
+   Is er geen duidelijk thema, houd het dan bij een paar zinnen verdieping bij het belangrijkste bericht.
+
+6. De rente, kort, en alleen als er iets aan veranderd is of als het iets verklaart.
+
+7. BUURT VAN DE DAG: je krijgt een buurtnaam aangeleverd. Geef alleen die ene buurt een kort achtergrondportret van een paar zinnen, en alleen als het ergens bij aansluit. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen geen portret; die komen een andere dag.
+
+   Noem je een pand of een besluit in een andere buurt, dan mag je daar wel één cijfer bij halen dat er iets over zegt, bijvoorbeeld het aantal inbraken of vernielingen per duizend inwoners als het over verhuurbaarheid gaat, of het aandeel kamerverhuurvergunningen als het over verkameren gaat. Eén cijfer, ter plaatse, niet een heel portret.
+
+8. Sluit af met een korte conclusie: wat je van het geheel vindt en waar je volgende keer op let. Bij een brief met een duidelijk hoofdstuk hoort daar een oordeel bij, niet alleen een vooruitblik.
 
 WAT JE NIET DOET:
 - Elke buurt langslopen omdat het nu eenmaal zes buurten zijn.
@@ -247,6 +255,27 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     print(f"Weetje {len(gezien)} van {len(weetjes)}: {keuze[:60]}", file=sys.stderr)
     return keuze
 
+
+
+def achtergrondtekst():
+    """
+    Het achtergrondstuk dat bij het nieuws van vandaag past.
+
+    Wordt aan de brief meegegeven in plaats van er los onder geplakt, zodat het
+    dienst kan doen als verdieping bij het bericht waar het bij hoort.
+    """
+    try:
+        from bronnen import achtergrond_van_de_dag
+    except Exception:
+        return ""
+    nieuws = ""
+    for pad in ("nieuws_vandaag.md",):
+        try:
+            with open(pad, encoding="utf-8") as f:
+                nieuws = f.read()
+        except Exception:
+            pass
+    return "\n".join(achtergrond_van_de_dag(nieuws)).strip()
 
 
 def buurtcijfers_tekst():
@@ -493,6 +522,7 @@ def main():
 
     bronnen = [
         ("Cijfers per buurt", buurtcijfers_tekst()),
+        ("Achtergrond bij het nieuws van vandaag", achtergrondtekst()),
         ("Aanbod en buurten", strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))),
         ("Gemeentelijke besluiten", strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
