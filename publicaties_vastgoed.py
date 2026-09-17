@@ -68,6 +68,15 @@ FEEDS = [
     # Volkshuisvesting Nederland publiceert de uitwerking van de Europese
     # richtlijn EPBD IV, waaronder het nieuwe energielabel en de NTA 8800.
     ("Volkshuisvesting Nederland", _gnews("site:volkshuisvestingnederland.nl")),
+    # Voorvallen in de eigen straten. De CBS-cijfers zijn jaartotalen per buurt;
+    # dit is de laag eronder, op adresniveau. Een brand of een woningsluiting in
+    # een straat waar je een pand hebt of overweegt, is relevanter dan het
+    # gemiddelde over het hele jaar.
+    ("Politie Nijmegen", _gnews("site:politie.nl Nijmegen")),
+    ("Nijmegen incidenten", _gnews("Nijmegen brand OR woningsluiting OR "
+                                   "drugspand OR hennepkwekerij OR overlast")),
+    ("Regionale pers Nijmegen", _gnews("site:gelderlander.nl OR "
+                                       "site:omroepgelderland.nl Nijmegen woning")),
     ("Energielabel en NTA 8800", _gnews("NTA 8800 OR energielabel wijziging "
                                         "verhuur")),
     ("Nijmeegse makelaars", _gnews("site:vangestel.nl OR site:hendriks.nl "
@@ -244,6 +253,39 @@ UITGESLOTEN_BRONNEN = (
 
 
 
+
+def straten_uit_portefeuille():
+    """
+    De straten die we volgen, uit het aanbodbestand en het vergunningenarchief.
+    Een bericht over een van deze straten raakt een pand dat we in beeld hebben.
+    """
+    straten = set()
+    for pad in ("verkopen.txt",):
+        try:
+            with open(pad, encoding="utf-8") as f:
+                for regel in f:
+                    if regel.startswith("#") or "|" not in regel:
+                        continue
+                    adres = regel.split("|")[0].strip()
+                    m = re.match(r"^(.+?)\s+\d", adres)
+                    if m and len(m.group(1)) > 4:
+                        straten.add(m.group(1).lower())
+        except Exception:
+            pass
+    return straten
+
+
+def raakt_eigen_straat(item, straten):
+    """Gaat dit bericht over een straat die we volgen?"""
+    if not straten:
+        return ""
+    tekst = f"{item.get('titel','')} {item.get('beschrijving','')}".lower()
+    for straat in straten:
+        if straat in tekst:
+            return straat
+    return ""
+
+
 def kale_domeinlink(item):
     """
     Wijst deze link naar een artikel of alleen naar een homepage?
@@ -399,6 +441,30 @@ def kaart(titel, link, samenvatting, duiding, strategie="", bronnaam=""):
                      f'{" . ".join(voet)}</div>')
     delen.append("</div>")
     return "\n".join(delen)
+
+
+def render_eigen_straat(items):
+    """
+    Berichten over straten die we volgen, apart en bovenaan.
+
+    Dit is de laag onder de misdrijfcijfers: die geven jaartotalen per buurt,
+    dit gaat over een voorval op een adres. Voor wie daar een pand heeft of
+    overweegt, is dat het bericht.
+    """
+    treffers = [it for it in items if it.get("eigen_straat")]
+    if not treffers:
+        return []
+    r = ["", "### In een straat die we volgen", ""]
+    for it in treffers:
+        r.append(f"- **{it.get('titel', '')}**"
+                 + (f" ([lezen]({it['link']}))" if it.get("link") else ""))
+        r.append(f"  _Speelt in de {it['eigen_straat'].title()}, waar we een pand "
+                 f"in beeld hebben._")
+    r.append("")
+    r.append("_Een voorval op een adres zegt meer over dat pand dan het "
+             "jaartotaal van de buurt. Het kan de verhuurbaarheid raken, en bij "
+             "een sluiting op grond van de Opiumwet ook de vergunbaarheid._")
+    return r
 
 
 def render(items):
