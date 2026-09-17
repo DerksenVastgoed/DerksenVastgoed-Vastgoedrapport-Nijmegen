@@ -44,7 +44,11 @@ OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buu
 
 2. Werk dat belangrijkste uit. Bij een gemeentelijk besluit: wat is er besloten, op welk adres, wat betekent het voor de voorraad en voor iemand die daar iets vergelijkbaars wil. Gebruik de achtergrondcijfers van die buurt om het besluit te plaatsen, dus als onderbouwing en niet als losse opsomming. Dit is het soort passage waar Marks vader het meest aan heeft.
 
-3. TOETS HET NIEUWS AAN DE CIJFERS. Staat er in een artikel een bewering over de markt, kijk dan of onze eigen gegevens dat bevestigen. Schrijft iemand dat de prijzen stijgen terwijl onze buurtmedianen stilstaan, dan is dat het vermelden waard. Komt het wel overeen, zeg dat dan in één zin. Dit is het waardevolste wat de brief kan doen: wij hebben cijfers die de schrijver van dat artikel niet had.
+3. TOETS HET NIEUWS AAN DE CIJFERS. Staat er in een artikel een bewering over de markt, kijk dan of onze eigen gegevens dat bevestigen. Komt het overeen, zeg dat in één zin. Wijkt het af, dan is dat een eigen bevinding. Dit is het waardevolste wat de brief kan doen: wij hebben cijfers die de schrijver van dat artikel niet had.
+
+   MAAR VERGELIJK OVER DE JUISTE PERIODE. Een artikel over een trend gaat over weken of maanden, niet over gisteren. Concludeer dus nooit dat een stijging "niet zichtbaar is in onze cijfers" op grond van een stand die sinds gisteren gelijk is. Kijk naar de terugblik over een maand, een kwartaal en een jaar als die erbij staat, en naar de prijstrend per buurt over vier weken en een kwartaal.
+
+   Staat die langere reeks er niet bij, trek dan geen conclusie over de trend. Schrijf dan dat je het op deze termijn niet kunt beoordelen. Dat is eerlijker dan een conclusie die op één dag rust.
 
 4. Panden die aandacht verdienen. Noem ze bij naam met vraagprijs en oppervlakte, en schrijf waarom ze opvallen. Behoud de links precies zoals ze in de gegevens staan, in de vorm [naam](adres). Staan er geen bijzondere panden, sla dit dan over.
 
