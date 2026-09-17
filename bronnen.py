@@ -13,6 +13,7 @@ Per bron staat er wat hij levert, hoe actueel hij is en waar hij vandaan komt.
 import datetime as dt
 import json
 import os
+import sys
 
 # De bronnen die de brief gebruikt, met hun aard. Drie soorten:
 #   registratie: officiele vastlegging, het hardst
@@ -230,6 +231,41 @@ def render(uitgebreid=True):
 # is, maar omdat de brief anders alleen uit cijfers bestaat. Het rouleert op
 # dezelfde manier als de weetjes: bijhouden wat geweest is.
 # ---------------------------------------------------------------------------
+# Per onderwerp de trefwoorden waarop het aansluit. Zo kiest het script het
+# stuk dat past bij het nieuws van die dag, in plaats van een willekeurig stuk.
+# Zonder aansluiting valt het terug op de volgorde: dan is er toch iets.
+ACHTERGROND_TREFWOORDEN = {
+    "Overdrachtsbelasting": ["overdrachtsbelasting", "belastingplan", "aankoop",
+                             "prinsjesdag", "miljoenennota", "fiscaal", "8%"],
+    "Rentedekking": ["rente", "hypotheek", "financiering", "bank", "lenen",
+                     "ecb", "kapitaalmarkt"],
+    "Aflossing is geen kostenpost": ["rendement", "cashflow", "aflossing",
+                                     "financiering"],
+    "Netto aanvangsrendement": ["rendement", "yield", "aanvangsrendement",
+                                "taxatie", "waardering"],
+    "Opkoopbescherming": ["opkoopbescherming", "zelfbewoningsplicht",
+                          "verhuurverbod", "huisvestingsverordening"],
+    "Het puntenstelsel voor kamers": ["kamerverhuur", "studenten",
+                                      "onzelfstandig", "puntenstelsel",
+                                      "verkameren"],
+    "Het puntenstelsel voor woningen": ["puntenstelsel", "betaalbare huur",
+                                        "middenhuur", "huurprijs",
+                                        "huurregulering", "wws"],
+    "Servicekosten": ["servicekosten", "energie", "gas", "warmte"],
+    "Leefbaarheidstoets": ["omzetting", "vergunning", "leefbaarheid",
+                           "verkameren", "overlast"],
+    "Splitsen in Nijmegen": ["splitsen", "splitsing", "woningvorming",
+                             "appartement", "transformatie"],
+    "Btw op verbouwing": ["btw", "verbouwing", "renovatie", "verduurzaming",
+                          "isolatie", "subsidie"],
+    "Vennootschapsbelasting": ["box 3", "vermogen", "vennootschapsbelasting",
+                               "belasting", "uitponden", "fiscaal"],
+    "Beschermd stadsgezicht": ["monument", "erfgoed", "stadsgezicht", "gevel",
+                               "kozijn", "welstand"],
+    "Waarom oppervlakte zo vaak misgaat": ["bag", "oppervlakte", "kadaster",
+                                           "woningwaardering"],
+}
+
 ACHTERGROND = [
     ("Overdrachtsbelasting",
      "Sinds 1 januari 2026 betaal je 8% overdrachtsbelasting voor een woning "
@@ -314,18 +350,44 @@ ACHTERGROND = [
 ]
 
 
-def achtergrond_van_de_dag():
-    """Een ander aspect per dag, dat bijhoudt wat al geweest is."""
+def achtergrond_van_de_dag(nieuwstekst=""):
+    """
+    Het achtergrondstuk dat aansluit bij het nieuws van vandaag.
+
+    Een los weetje naast het nieuws leest als een invuloefening. Sluit het aan
+    bij wat er speelt, dan wordt het een verdieping: het artikel meldt dat de
+    overdrachtsbelasting verandert, het stuk eronder legt uit hoe die precies
+    werkt bij doorverkoop binnen zes maanden.
+
+    Zonder aansluiting valt het terug op wat nog niet geweest is, zodat er toch
+    iedere dag iets staat.
+    """
     pad = "achtergrond_gezien.json"
     try:
         with open(pad, encoding="utf-8") as f:
             gezien = json.load(f)
     except Exception:
         gezien = []
+
     nieuw = [x for x in ACHTERGROND if x[0] not in gezien]
     if not nieuw:
         gezien, nieuw = [], ACHTERGROND
-    titel, tekst = nieuw[0]
+
+    # Welk onderwerp sluit het beste aan bij het nieuws van vandaag?
+    keuze = None
+    if nieuwstekst:
+        laag = nieuwstekst.lower()
+        beste_score = 0
+        for titel_k, tekst_k in nieuw:
+            woorden = ACHTERGROND_TREFWOORDEN.get(titel_k, [])
+            score = sum(1 for w in woorden if w in laag)
+            if score > beste_score:
+                beste_score, keuze = score, (titel_k, tekst_k)
+        if keuze:
+            print(f"Achtergrond gekozen op aansluiting bij het nieuws: "
+                  f"{keuze[0]}", file=sys.stderr)
+
+    titel, tekst = keuze or nieuw[0]
     gezien.append(titel)
     try:
         with open(pad, "w", encoding="utf-8") as f:
@@ -340,11 +402,23 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--kort", action="store_true")
     ap.add_argument("--uit", default="")
+    ap.add_argument("--nieuws", default="",
+                    help="bestand met het nieuws van vandaag, voor de aansluiting")
     ap.add_argument("--achtergrond", action="store_true",
                     help="alleen het achtergrondstukje van vandaag")
     args = ap.parse_args()
     if args.achtergrond:
-        regels = achtergrond_van_de_dag()
+        # Het nieuws van vandaag erbij, zodat het stuk erop aansluit
+        nieuws = ""
+        for pad in (args.nieuws, f"digests/{dt.date.today().isoformat()}-publicaties.md",
+                    f"digests/{dt.date.today().isoformat()}-bekendmakingen.md"):
+            if pad and os.path.exists(pad):
+                try:
+                    with open(pad, encoding="utf-8") as f:
+                        nieuws += f.read()
+                except Exception:
+                    pass
+        regels = achtergrond_van_de_dag(nieuws)
     else:
         regels = render(uitgebreid=not args.kort)
     tekst = "\n".join(regels) + "\n"
