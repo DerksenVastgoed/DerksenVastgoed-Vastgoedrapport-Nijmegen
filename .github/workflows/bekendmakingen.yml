@@ -15,6 +15,11 @@ on:
         description: "Einddatum van de backfill, bijvoorbeeld 2018-07-01. Leeg laten voor vandaag."
         required: false
         default: ""
+      alleen_naar_mij:
+        description: "Stuur de brief alleen naar jezelf, niet naar de kopie. Aanvinken bij een testrun."
+        type: boolean
+        required: false
+        default: false
       sru_pauze:
         description: "Seconden tussen bevragingen. Bij 503-fouten hoger zetten, bijvoorbeeld 3."
         required: false
@@ -468,8 +473,8 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          cc: ${{ secrets.MAIL_TO_VERHAAL }}
-          subject: Vastgoed in Nijmegen, ${{ env.DATUM }}
+          cc: ${{ github.event.inputs.alleen_naar_mij == 'true' && '' || secrets.MAIL_TO_VERHAAL }}
+          subject: ${{ github.event.inputs.alleen_naar_mij == 'true' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
       # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
