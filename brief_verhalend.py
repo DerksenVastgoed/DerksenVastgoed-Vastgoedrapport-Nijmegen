@@ -28,7 +28,9 @@ AANHEF = (os.environ.get("BRIEF_AANHEF") or "").strip() or "Beste pa"
 
 PROFIEL = """Je schrijft een lange brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven.
 
-Hij heeft ruim de tijd om te lezen. Schrijf dus uitgebreid: liever te veel dan te weinig. Maar het moet wel prettig blijven lezen, dus doorlopende tekst en geen opsommingen van kale cijfers.
+Je krijgt per brief een maximum aantal woorden mee. Houd je daaraan: een brief die in vier minuten uit is, wordt gelezen; een brief van drie kwartier niet. Doorlopende tekst, geen opsommingen van kale cijfers.
+
+ACTUALITEIT KRIJGT ALTIJD VOORRANG. Is er nieuws, dan gaat de brief daarover. Is er weinig nieuws, dan is er altijd een onderwerp dat verdieping verdient; dan wordt dat het hoofdstuk. Een lege brief bestaat niet, een gevulde brief wel: die moet je vermijden.
 
 Schrijf in de ik-vorm. Spreek hem aan met 'je' en 'jij', nooit met 'u'.
 
@@ -257,6 +259,50 @@ def wist_je_dat(cbs, verg, misdrijven=None):
 
 
 
+MAX_WOORDEN = 800
+
+
+def nieuwswaarde(bronnen):
+    """
+    Hoeveel valt er vandaag te melden?
+
+    Bepaalt of de actualiteit de brief vult of dat er ruimte is voor een
+    verdieping. Niet elke dag heeft nieuws, maar er is altijd wel een onderwerp
+    dat uitleg verdient; de vraag is alleen hoeveel ruimte dat krijgt.
+    """
+    tekst = " ".join(t for _naam, t in bronnen if t).lower()
+    punten = 0
+    punten += tekst.count("kernsignalen") and 2 or 0
+    punten += 3 * tekst.count("[splitsen]")
+    punten += 2 * tekst.count("[kamerverhuur]")
+    punten += 2 * tekst.count("prijs verlaagd")
+    punten += 2 * tekst.count("nieuw of gewijzigd")
+    punten += tekst.count("besluit voor")
+    punten += tekst.count("lezen]")          # ruwweg het aantal artikelen
+    return punten
+
+
+def schrijfruimte(punten):
+    """Hoeveel woorden krijgt de brief, en waar ligt de nadruk?"""
+    if punten >= 12:
+        return (MAX_WOORDEN,
+                "Er is vandaag veel te melden. Laat de actualiteit de brief "
+                "vullen en houd de verdieping bij een alinea. Kies streng: "
+                "liever drie onderwerpen goed dan zes vluchtig.")
+    if punten >= 5:
+        return (700,
+                "Er is vandaag genoeg te melden, maar niet overvloedig. "
+                "Behandel de actualiteit en geef daarna een echte verdieping "
+                "van een alinea of drie bij het onderwerp dat het meest speelt.")
+    return (600,
+            "Er is vandaag weinig actualiteit. Meld dat kort en maak van de "
+            "verdieping het hoofdstuk van de brief: behandel het aangeleverde "
+            "onderwerp grondig, van meerdere kanten, met de eigen cijfers en de "
+            "regelgeving erbij, en sluit af met wat het voor ons betekent. Dit "
+            "is geen opvulling maar de reden dat de brief vandaag de moeite "
+            "waard is.")
+
+
 def achtergrondtekst():
     """
     Het achtergrondstuk dat bij het nieuws van vandaag past.
@@ -470,8 +516,17 @@ def schrijf_brief(bronnen):
     ronde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
              "Altrade", "Biezen"]
     buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
+    punten = nieuwswaarde(bronnen)
+    woorden, sturing = schrijfruimte(punten)
+    print(f"Nieuwswaarde vandaag: {punten} punten, ruimte {woorden} woorden",
+          file=sys.stderr)
+
     prompt = (f"AANHEF: {AANHEF}\n"
-              f"BUURT VAN DE DAG: {buurt_vandaag}\n\n"
+              f"BUURT VAN DE DAG: {buurt_vandaag}\n"
+              f"MAXIMUM: {woorden} woorden. Dat is een harde grens, geen streven. "
+              f"Ga er niet overheen; schrap liever een onderwerp dan dat je alles "
+              f"half behandelt.\n"
+              f"NADRUK VANDAAG: {sturing}\n\n"
               f"GEGEVENS VAN VANDAAG:\n\n{inhoud}\n\n"
               f"Schrijf de brief. Alleen de brieftekst, niets eromheen.")
     # Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
@@ -504,9 +559,14 @@ def schrijf_brief(bronnen):
             print("LET OP: de brief is afgekapt omdat de limiet is bereikt. "
                   "Verhoog max_tokens in dit bestand.", file=sys.stderr)
         gebruikt = (body.get("usage") or {}).get("output_tokens")
+        n_woorden = len(tekst.split())
         if gebruikt:
-            print(f"Brief geschreven: {gebruikt} tokens, "
-                  f"{len(tekst.split())} woorden", file=sys.stderr)
+            print(f"Brief geschreven: {gebruikt} tokens, {n_woorden} woorden "
+                  f"(ruimte was {woorden})", file=sys.stderr)
+        if n_woorden > woorden * 1.2:
+            print(f"LET OP: de brief is {n_woorden - woorden} woorden langer dan "
+                  f"de ruimte. Scherp de sturing aan als dit vaker gebeurt.",
+                  file=sys.stderr)
         return tekst
     except Exception as e:
         print(f"Antwoord verwerken mislukt: {e}", file=sys.stderr)
