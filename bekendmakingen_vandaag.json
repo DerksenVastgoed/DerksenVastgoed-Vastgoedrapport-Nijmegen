@@ -4,31 +4,18 @@
   "titel": "Aanvraag omgevingsvergunning voor transformatie van de voorgevel aan de Burchtstraat 35, 6511RB in Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435146.html",
   "strategie": "geen",
-  "duiding": "Aanvraag betreft alleen de voorgevel, geen functiewijziging, dus beperkte relevantie voor waardecreatie-strategieën.",
+  "duiding": "Wijziging van de voorgevel is een bouwkundige aanpassing zonder aanwijzing voor functie- of energieverandering.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
   "kern": true
  },
  {
-  "datum": "2026-09-15",
-  "titel": "Besluit voor het wijzigen van plattegronden en gevels van een bestaand bedrijfspand, aan Wolfskuilseweg 257, 6542AA Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-432766.html",
-  "strategie": "geen",
-  "duiding": "Wijziging van plattegronden en gevels van een bedrijfspand van 426 m2 zonder vermelde functiewijziging naar wonen.",
-  "feiten": {
-   "oppervlakte_m2": 426
-  },
-  "straat": "Wolfskuilseweg",
-  "huisnummer": "257",
-  "kern": false
- },
- {
   "datum": "2026-09-17",
   "titel": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-437682.html",
   "strategie": "buy-and-hold",
-  "duiding": "Aanvraag tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt.",
+  "duiding": "Aanvraag voor tijdelijke verhuur wijst op overbrugging, het pand komt op termijn mogelijk op de markt voor verkoop of verbouwing.",
   "feiten": {},
   "straat": "de Voorstadslaan",
   "huisnummer": "211",
@@ -39,7 +26,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van horeca panden, aan Grote Markt 36, 6511KB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435960.html",
   "strategie": "geen",
-  "duiding": "Interne verbouwing van horecapanden van 232 m2 met label A uit 2020 betreft functiebehoud, niet transformatie naar wonen.",
+  "duiding": "Interne verbouwing van 232 m² horeca met energielabel A betreft functiebehoud, geen wijziging naar wonen of ander gebruik.",
   "feiten": {
    "energielabel": "A (2020)",
    "oppervlakte_m2": 232

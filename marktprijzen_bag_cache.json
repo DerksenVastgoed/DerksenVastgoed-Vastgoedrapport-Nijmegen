@@ -4161,5 +4161,83 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-8b191a76baafb8cd4abba2beb7ad0abf"
+  },
+  "Krayenhofflaan 104|Nijmegen": {
+    "oppervlakte": 135,
+    "bouwjaar": "1929",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541PW",
+    "adresseerbaarObjectIdentificatie": "0268010000019735",
+    "pand": "0268100000021318",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-d51328fbf3cbb8c2d266c14e1bfa4512",
+    "oppervlakte_bag": 153,
+    "energielabel": {
+      "label": "F",
+      "registratiedatum": "2017-11-19",
+      "geldig_tot": "2027-11-19",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Gulden Wagengas 1|Nijmegen": {
+    "oppervlakte": 49,
+    "bouwjaar": "1922",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511CV",
+    "adresseerbaarObjectIdentificatie": "0268010000070612",
+    "pand": "0268100000010300",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-61b3354d710b0b3ba092821e6c9bfd5e",
+    "eenheden_in_pand": [
+      {
+        "adres": "Gulden Wagengas 1",
+        "oppervlakte": 59,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Gulden Wagengas 1A",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Gulden Wagengas 1B",
+        "oppervlakte": 78,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Gulden Wagengas 1C",
+        "oppervlakte": 44,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 59,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2020-12-13",
+      "geldig_tot": "2030-12-13",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

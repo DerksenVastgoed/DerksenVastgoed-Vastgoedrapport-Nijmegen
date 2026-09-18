@@ -17,14 +17,16 @@
  },
  "2026-W38": {
   "Altrade": 4853,
-  "Biezen": 5039,
+  "Benedenstad": 5518,
+  "Biezen": 5000,
   "Bottendaal": 4773,
   "Galgenveld": 4783,
   "Stadscentrum": 5299,
-  "_datum": "2026-09-17",
+  "_datum": "2026-09-18",
   "_n": {
    "Altrade": 38,
-   "Biezen": 30,
+   "Benedenstad": 8,
+   "Biezen": 31,
    "Bottendaal": 11,
    "Galgenveld": 29,
    "Stadscentrum": 36

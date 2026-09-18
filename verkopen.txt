@@ -237,3 +237,7 @@ Veemarkt 213 | Nijmegen | 370000 | te koop | 2026-09-16 |  | 65 | 6511ZJ
 
 # Automatisch toegevoegd uit Funda-attendering op 17-09-2026
 Derde Walstraat 108 | Nijmegen | 225000 | te koop | 2026-09-17 |  | 34 | 6511SP
+
+# Automatisch toegevoegd uit Funda-attendering op 18-09-2026
+Krayenhofflaan 104 | Nijmegen | 575000 | te koop | 2026-09-18 |  | 135 | 6541PW
+Gulden Wagengas 1 | Nijmegen | 315000 | te koop | 2026-09-18 |  | 49 | 6511CV
