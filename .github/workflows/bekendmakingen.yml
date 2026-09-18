@@ -183,6 +183,14 @@ jobs:
             --bijlage "digests/${DATUM}-bijlage.md" \
             --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
+      - name: Onderwerpen zonder achtergrondstuk signaleren
+        if: env.MODUS != 'dagelijks'
+        continue-on-error: true
+        run: |
+          # Wekelijks kijken of er termen terugkeren waar we niets over zeggen.
+          # Het script schrijft alleen een voorstel; de tekst maken we zelf.
+          python onderwerpen_signaal.py || echo "Signaalstap overgeslagen"
+
       - name: Achtergrond en bronnen klaarzetten
         continue-on-error: true
         run: |
@@ -259,6 +267,13 @@ jobs:
               cat achtergrond_vandaag.md
               echo ""
               rm -f achtergrond_vandaag.md
+            fi
+            if [ -s onderwerpen_voorstel.md ] && [ "$MODUS" != "dagelijks" ]; then
+              echo ""
+              echo "---"
+              echo ""
+              cat onderwerpen_voorstel.md
+              echo ""
             fi
             if [ -s bronnen_vandaag.md ]; then
               echo ""
@@ -388,6 +403,8 @@ jobs:
             regelgeving_status.json
             weetjes_gezien.json
             achtergrond_gezien.json
+            onderwerpen_gezien.json
+            onderwerpen_voorstel.md
             prijstrend.json
             misdrijven_per_buurt.json
             kamervergunningen.json
