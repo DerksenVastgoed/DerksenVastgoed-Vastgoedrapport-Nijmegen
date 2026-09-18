@@ -405,6 +405,7 @@ jobs:
             achtergrond_gezien.json
             onderwerpen_gezien.json
             onderwerpen_volgen.json
+            onderwerpen_volgen.txt
             onderwerpen_voorstel.md
             prijstrend.json
             misdrijven_per_buurt.json
