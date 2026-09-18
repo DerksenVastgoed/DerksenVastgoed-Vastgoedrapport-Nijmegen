@@ -286,6 +286,33 @@ def raakt_eigen_straat(item, straten):
     return ""
 
 
+
+def gevolgde_termen():
+    """
+    Termen die het signaalscript heeft opgemerkt en die we nu actief volgen.
+
+    Zo sluit de lus: een regeling die in het nieuws terugkeert wordt herkend,
+    komt in onderwerpen_volgen.json, en vanaf de volgende run wordt er gericht
+    op gezocht. De uitleg erover blijft handwerk, het zoeken niet.
+    """
+    try:
+        with open("onderwerpen_volgen.json", encoding="utf-8") as f:
+            return sorted(json.load(f).keys())
+    except Exception:
+        return []
+
+
+def feeds_met_gevolgde_termen(basis):
+    """De vaste feeds, aangevuld met een zoekopdracht per gevolgde term."""
+    extra = []
+    for term in gevolgde_termen()[:12]:      # niet eindeloos uitdijen
+        extra.append((f"Gevolgd: {term}", _gnews(f'"{term}"')))
+    if extra:
+        print(f"Extra zoekopdrachten voor gevolgde termen: {len(extra)}",
+              file=sys.stderr)
+    return list(basis) + extra
+
+
 def kale_domeinlink(item):
     """
     Wijst deze link naar een artikel of alleen naar een homepage?
@@ -500,12 +527,13 @@ def main():
     ap.add_argument("--uit", default="publicaties_digest.md")
     args = ap.parse_args()
 
+    feeds = feeds_met_gevolgde_termen(FEEDS)
     alle = []
-    for i, bron in enumerate(FEEDS):
+    for i, bron in enumerate(feeds):
         if i:
             time.sleep(2)  # Google News niet overvragen
         alle.extend(haal_feed(bron))
-    print(f"Opgehaald: {len(alle)} items uit {len(FEEDS)} feeds", file=sys.stderr)
+    print(f"Opgehaald: {len(alle)} items uit {len(feeds)} feeds", file=sys.stderr)
 
     gezien = lees_gezien()
     kandidaten = [it for it in alle if recent(it) and it["link"] not in gezien]
