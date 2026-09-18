@@ -36,6 +36,29 @@ GEZIEN_PAD = "onderwerpen_gezien.json"
 # dat niet, en blijft handwerk.
 VOLGEN_PAD = "onderwerpen_volgen.json"
 
+# De lijst die jij beheert. Voorstellen landen hier uitgecommentarieerd; haal
+# het hekje weg en de term wordt gevolgd. Zo beslist een mens wat relevant is
+# en niet een patroon.
+KEUZE_PAD = "onderwerpen_volgen.txt"
+
+# Waar dit vak over gaat. Een gevonden term telt alleen mee als hij in dezelfde
+# omgeving staat als een van deze woorden. Dat houdt "Besluit standplaatsen
+# woonwagens" en "Wet maatschappelijke ondersteuning" buiten de deur zonder dat
+# we ze bij naam hoeven te kennen.
+EIGEN_VAKGEBIED = {
+    "huur", "verhuur", "verhuurder", "huurder", "woning", "woonruimte",
+    "wonen", "pand", "vastgoed", "belegger", "belegging", "koopwoning",
+    "vergunning", "omzetting", "onttrekking", "splitsen", "splitsing",
+    "verkameren", "kamerverhuur", "transformatie", "woningvoorraad",
+    "overdrachtsbelasting", "vennootschapsbelasting", "box 3", "btw",
+    "hypotheek", "financiering", "rendement", "energielabel", "verduurzaming",
+    "monument", "erfgoed", "opkoopbescherming", "puntenstelsel", "wws",
+    "huurprijs", "servicekosten", "woningmarkt", "makelaar", "taxatie",
+}
+
+# Hoe dicht een vakwoord bij de term moet staan om als context te tellen
+CONTEXTVENSTER = 220
+
 # Hoe vaak een term moet terugkeren voordat het een onderwerp is. Onder deze
 # grens is het toeval: één artikel over een onderwerp betekent niets.
 DREMPEL = 4
@@ -128,6 +151,13 @@ def vind_onderwerpen(tekst):
             woorden = [w for w in delen if w not in RUIS]
             if not woorden:
                 continue
+            # Staat de term in onze eigen omgeving? Zo niet, dan gaat hij over
+            # iets anders en telt hij niet mee.
+            start_c = max(0, m.start() - CONTEXTVENSTER)
+            omgeving = tekst[start_c:m.end() + CONTEXTVENSTER].lower()
+            if not any(w in omgeving for w in EIGEN_VAKGEBIED):
+                continue
+
             teller[term] += 1
             if term not in voorbeelden:
                 # De regel eromheen bewaren als context
@@ -168,6 +198,68 @@ def al_gedekt(term, titels, trefwoorden):
         if " " in w and w in term:
             return True
     return False
+
+
+def lees_keuze():
+    """
+    De termen die jij hebt goedgekeurd, uit onderwerpen_volgen.txt.
+
+    Een regel die met een hekje begint is een voorstel dat je nog niet hebt
+    aangenomen. Haal het hekje weg en de term wordt vanaf de volgende run
+    gevolgd in het nieuws.
+    """
+    goedgekeurd, voorgesteld = [], []
+    if not os.path.exists(KEUZE_PAD):
+        return goedgekeurd, voorgesteld
+    try:
+        with open(KEUZE_PAD, encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.rstrip("\n")
+                kaal = regel.lstrip("#").strip()
+                if not kaal or kaal.startswith("-"):
+                    continue
+                if regel.lstrip().startswith("#"):
+                    voorgesteld.append(kaal.lower())
+                else:
+                    goedgekeurd.append(kaal.lower())
+    except Exception:
+        pass
+    return goedgekeurd, voorgesteld
+
+
+def schrijf_keuze(nieuwe_voorstellen):
+    """Voorstellen onderaan bijschrijven, zonder te raken aan wat er staat."""
+    goedgekeurd, voorgesteld = lees_keuze()
+    bekend = set(goedgekeurd) | set(voorgesteld)
+    toe_te_voegen = [t for t in nieuwe_voorstellen if t.lower() not in bekend]
+    if not toe_te_voegen:
+        return 0
+
+    kop = []
+    if not os.path.exists(KEUZE_PAD):
+        kop = [
+            "# Onderwerpen die we volgen in het nieuws.",
+            "#",
+            "# Een regel zonder hekje wordt gevolgd: er komt een zoekopdracht",
+            "# voor, en artikelen erover halen de brief. Een regel met een hekje",
+            "# is een voorstel dat het script heeft opgemerkt; haal het hekje weg",
+            "# om hem aan te nemen, of laat hem staan om hem te negeren.",
+            "#",
+            "# Het script voegt alleen onderaan toe en verandert nooit iets aan",
+            "# wat er al staat. Jouw keuzes blijven dus staan.",
+            "",
+        ]
+    try:
+        with open(KEUZE_PAD, "a", encoding="utf-8") as f:
+            if kop:
+                f.write("\n".join(kop) + "\n")
+            f.write(f"\n# --- voorgesteld op {dt.date.today().isoformat()} ---\n")
+            for term in toe_te_voegen:
+                f.write(f"# {term}\n")
+    except Exception as e:
+        print(f"Kon {KEUZE_PAD} niet schrijven: {e}", file=sys.stderr)
+        return 0
+    return len(toe_te_voegen)
 
 
 def lees_volgen():
@@ -274,19 +366,30 @@ def main():
         f.write("\n".join(r) + "\n")
     schrijf_gezien({g[0] for g in gaten} | eerder_gemeld)
 
-    # De termen doorgeven aan de nieuwsverzameling, zodat er vanaf de volgende
-    # run gericht op gezocht wordt en artikelen erover door de filter komen.
+    # De voorstellen in de keuzelijst zetten. Alleen wat jij aanneemt wordt
+    # daadwerkelijk gevolgd; een patroon mag niet zelf bepalen wat relevant is.
+    nieuw_voorgesteld = schrijf_keuze([g[0] for g in gaten])
+    if nieuw_voorgesteld:
+        print(f"  {nieuw_voorgesteld} voorstellen toegevoegd aan {KEUZE_PAD}",
+              file=sys.stderr)
+
+    goedgekeurd, voorgesteld = lees_keuze()
     volgen = lees_volgen()
-    for term, aantal, _c in gaten:
+    for term in goedgekeurd:
         bestaand = volgen.get(term, {})
         volgen[term] = {
             "sinds": bestaand.get("sinds", dt.date.today().isoformat()),
-            "gezien": max(aantal, bestaand.get("gezien", 0)),
-            "laatst": dt.date.today().isoformat(),
+            "gezien": max(teller.get(term, 0), bestaand.get("gezien", 0)),
+            "laatst": (dt.date.today().isoformat() if teller.get(term)
+                       else bestaand.get("laatst", dt.date.today().isoformat())),
         }
+    # Termen die je hebt teruggezet naar voorstel, volgen we niet meer
+    for term in list(volgen):
+        if term not in goedgekeurd:
+            del volgen[term]
     schrijf_volgen(volgen)
-    print(f"  {len(volgen)} termen worden nu gevolgd in het nieuws",
-          file=sys.stderr)
+    print(f"  {len(goedgekeurd)} termen goedgekeurd, {len(voorgesteld)} in "
+          f"afwachting", file=sys.stderr)
 
     print(f"\nVoorstel weggeschreven naar {args.uit}:", file=sys.stderr)
     for term, aantal, _c in gaten[:8]:
