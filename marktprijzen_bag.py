@@ -3148,9 +3148,9 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
         r.append("")
 
         r.append("| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan "
-                 "| OV | Scenario | Huur/mnd | Richtprijs "
+                 "| Dagen te koop | OV | Scenario | Huur per maand | Richtprijs "
                  "| Richtprijs t.o.v. vraagprijs |")
-        r.append("|---|---:|---:|---:|---:|---:|---|---:|---:|---:|")
+        r.append("|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|")
         rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
                    if w in panden]
         med_b = st.median([p for p, _ in per_buurt.get(buurt, [])]) if per_buurt.get(buurt) else None
@@ -3166,6 +3166,8 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                 f"| €{eu(w['prijs'])} | {w.get('oppervlakte') or '—'} | €{eu(ppm2)} "
                 f"| {f'{afw:+.0f}%' if afw is not None else '—'} "
+                + (f"| {_dagen_sinds(w.get('datum_eerst') or w.get('datum'))} "
+                   if (w.get("datum_eerst") or w.get("datum")) else "| — ")
                 + (f"| {w['ov_halte']['meters']} m " if w.get("ov_halte") else "| — ")
                 + f"| {sc['naam'] if sc else '—'} "
                 f"| {'€' + eu(sc['maand']) if sc else '—'} "
@@ -3703,7 +3705,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         # De financiering in een tabel in plaats van een alinea per pand. Bij
         # meer dan een paar panden is doorlopende tekst niet te scannen.
         if vers:
-            r.append("| Adres | Investering | Lening | Eigen inleg | Operationeel | NAR |")
+            r.append("| Adres | Investering | Lening | Eigen inleg "
+                     "| Operationeel per jaar | NAR |")
             r.append("|---|---:|---:|---:|---:|---:|")
             for _a, _p, _k, _afw, _b, w in sorted(vers, key=lambda x: x[0]):
                 sc = w.get("_scenario") or {}
