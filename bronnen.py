@@ -264,6 +264,14 @@ ACHTERGROND_TREFWOORDEN = {
                                "kozijn", "welstand"],
     "Waarom oppervlakte zo vaak misgaat": ["bag", "oppervlakte", "kadaster",
                                            "woningwaardering"],
+    "Wet goed verhuurderschap": ["goed verhuurderschap", "verhuurder",
+                                 "huurcontract", "waarborgsom", "toezicht",
+                                 "handhaving", "servicekosten"],
+    "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
+                                         "omzetting", "studenten", "onzelfstandig"],
+    "Veiligheid en verhuurbaarheid": ["inbraak", "vernieling", "overlast",
+                                      "criminaliteit", "politie", "veiligheid",
+                                      "drugs"],
 }
 
 ACHTERGROND = [
@@ -341,6 +349,25 @@ ACHTERGROND = [
      "omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. "
      "Dat raakt precies de maatregelen waarmee je het energielabel verbetert: "
      "gevelisolatie, kozijnen en zonnepanelen aan de voorzijde."),
+    ("Wet goed verhuurderschap",
+     "Sinds 2023 gelden landelijke verplichtingen voor elke verhuurder: een "
+     "schriftelijke huurovereenkomst, een gespecificeerde servicekostenafrekening, "
+     "de waarborgsom van hooguit twee maanden huur en binnen veertien dagen na "
+     "einde huur terug, en informatie aan de huurder over zijn rechten. Nijmegen "
+     "heeft toezichthouders aangewezen die woningen mogen betreden om hierop te "
+     "controleren, zo nodig met machtiging."),
+    ("Verkameren en het risico daarvan",
+     "Verkameren verzilvert vierkante meters, maar het is geen route zonder "
+     "risico. Je verliest de verkoopbaarheid aan een gezin, de leefbaarheids"
+     "toets sneuvelt juist in rustige straten, meer dan twee kamerpanden naast "
+     "elkaar mag niet, en bij vijf kamers komt de brandveiligheid erbij. Boete "
+     "bij omzetten zonder vergunning: tienduizend euro, bij herhaling vijftien."),
+    ("Veiligheid en verhuurbaarheid",
+     "De politiecijfers gaan per buurt en per jaar, dus ze zeggen niets over een "
+     "straat. Wat ze wel doen is het verschil laten zien: Stadscentrum telt bijna "
+     "vijf keer zoveel vernielingen per duizend inwoners als Galgenveld. Dat "
+     "raakt je huurderspoule en je exitwaarde, ook nu de leefbaarheidstoets "
+     "vervalt."),
     ("Waarom oppervlakte zo vaak misgaat",
      "De BAG kent een oppervlakte per verblijfsobject, niet per huisnummer. "
      "Bij een pand dat is opgedeeld in een boven- en benedenhuis staat soms "
