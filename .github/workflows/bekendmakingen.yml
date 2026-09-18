@@ -106,6 +106,14 @@ jobs:
             echo "Regelgeving wordt op zondag gecontroleerd"
           fi
 
+      - name: Onderwerpen zonder achtergrondstuk signaleren
+        if: env.MODUS != 'dagelijks'
+        continue-on-error: true
+        run: |
+          # Wekelijks kijken of er termen terugkeren waar we niets over zeggen.
+          # Het script schrijft alleen een voorstel; de tekst maken we zelf.
+          python onderwerpen_signaal.py || echo "Signaalstap overgeslagen"
+
       - name: Publicaties ophalen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -182,14 +190,6 @@ jobs:
             --uit "digests/${DATUM}-marktprijzen.md" \
             --bijlage "digests/${DATUM}-bijlage.md" \
             --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
-
-      - name: Onderwerpen zonder achtergrondstuk signaleren
-        if: env.MODUS != 'dagelijks'
-        continue-on-error: true
-        run: |
-          # Wekelijks kijken of er termen terugkeren waar we niets over zeggen.
-          # Het script schrijft alleen een voorstel; de tekst maken we zelf.
-          python onderwerpen_signaal.py || echo "Signaalstap overgeslagen"
 
       - name: Achtergrond en bronnen klaarzetten
         continue-on-error: true
@@ -404,6 +404,7 @@ jobs:
             weetjes_gezien.json
             achtergrond_gezien.json
             onderwerpen_gezien.json
+            onderwerpen_volgen.json
             onderwerpen_voorstel.md
             prijstrend.json
             misdrijven_per_buurt.json
