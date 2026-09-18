@@ -1985,6 +1985,25 @@ def eu(x):
     return f"{int(x):,}".replace(",", ".")
 
 
+
+def eerste_datum(w):
+    """
+    Sinds wanneer kennen we dit pand?
+
+    Kijkt eerst naar datum_eerst, dat alleen wordt gezet bij meerdere
+    waarnemingen. Ontbreekt dat, dan naar de historie, en anders naar de datum
+    van de waarneming zelf. Zonder deze volgorde blijft "dagen te koop" leeg
+    bij panden die we maar een keer hebben gezien, terwijl ze er wel staan.
+    """
+    if w.get("datum_eerst"):
+        return w["datum_eerst"]
+    historie = w.get("historie") or []
+    for h in historie:
+        if h.get("datum"):
+            return h["datum"]
+    return w.get("datum") or ""
+
+
 def _dagen_sinds(datum):
     """Aantal dagen tussen een datum als jjjj-mm-dd en vandaag."""
     if not datum:
@@ -3166,8 +3185,8 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                 f"| €{eu(w['prijs'])} | {w.get('oppervlakte') or '—'} | €{eu(ppm2)} "
                 f"| {f'{afw:+.0f}%' if afw is not None else '—'} "
-                + (f"| {_dagen_sinds(w.get('datum_eerst') or w.get('datum'))} "
-                   if (w.get("datum_eerst") or w.get("datum")) else "| — ")
+                + (f"| {_dagen_sinds(eerste_datum(w))} "
+                   if eerste_datum(w) else "| — ")
                 + (f"| {w['ov_halte']['meters']} m " if w.get("ov_halte") else "| — ")
                 + f"| {sc['naam'] if sc else '—'} "
                 f"| {'€' + eu(sc['maand']) if sc else '—'} "
