@@ -28,6 +28,14 @@ import sys
 VOORSTEL_PAD = "onderwerpen_voorstel.md"
 GEZIEN_PAD = "onderwerpen_gezien.json"
 
+# Termen die we voortaan actief volgen in het nieuws. Dit bestand wordt door
+# publicaties_vastgoed.py gelezen, dat er zoekopdrachten van maakt.
+#
+# Zoeken is veilig te automatiseren: een extra zoekopdracht kan geen onjuiste
+# bewering opleveren. Het achtergrondstuk dat uitlegt hoe een regel werkt is
+# dat niet, en blijft handwerk.
+VOLGEN_PAD = "onderwerpen_volgen.json"
+
 # Hoe vaak een term moet terugkeren voordat het een onderwerp is. Onder deze
 # grens is het toeval: één artikel over een onderwerp betekent niets.
 DREMPEL = 4
@@ -162,6 +170,37 @@ def al_gedekt(term, titels, trefwoorden):
     return False
 
 
+def lees_volgen():
+    try:
+        with open(VOLGEN_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def schrijf_volgen(volgen):
+    """
+    Bewaart de termen die we volgen, met een opruiming.
+
+    Een term die een half jaar niet meer in het nieuws is geweest, houdt op
+    relevant te zijn. Anders groeit de lijst met zoekopdrachten eindeloos en
+    wordt elke run trager.
+    """
+    grens = (dt.date.today() - dt.timedelta(days=180)).isoformat()
+    opgeschoond = {t: g for t, g in volgen.items()
+                   if g.get("laatst", "") >= grens}
+    try:
+        with open(VOLGEN_PAD, "w", encoding="utf-8") as f:
+            json.dump(opgeschoond, f, ensure_ascii=False, indent=1,
+                      sort_keys=True)
+    except Exception as e:
+        print(f"Kon {VOLGEN_PAD} niet schrijven: {e}", file=sys.stderr)
+    weg = len(volgen) - len(opgeschoond)
+    if weg:
+        print(f"  {weg} termen losgelaten: een half jaar niet meer gezien",
+              file=sys.stderr)
+
+
 def lees_gezien():
     try:
         with open(GEZIEN_PAD, encoding="utf-8") as f:
@@ -234,6 +273,20 @@ def main():
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write("\n".join(r) + "\n")
     schrijf_gezien({g[0] for g in gaten} | eerder_gemeld)
+
+    # De termen doorgeven aan de nieuwsverzameling, zodat er vanaf de volgende
+    # run gericht op gezocht wordt en artikelen erover door de filter komen.
+    volgen = lees_volgen()
+    for term, aantal, _c in gaten:
+        bestaand = volgen.get(term, {})
+        volgen[term] = {
+            "sinds": bestaand.get("sinds", dt.date.today().isoformat()),
+            "gezien": max(aantal, bestaand.get("gezien", 0)),
+            "laatst": dt.date.today().isoformat(),
+        }
+    schrijf_volgen(volgen)
+    print(f"  {len(volgen)} termen worden nu gevolgd in het nieuws",
+          file=sys.stderr)
 
     print(f"\nVoorstel weggeschreven naar {args.uit}:", file=sys.stderr)
     for term, aantal, _c in gaten[:8]:
