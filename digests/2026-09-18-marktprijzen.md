@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-51 panden in beeld, 2 nieuw of gewijzigd. Scherpst geprijsd is **Nieuwe Markt 90** in Benedenstad: €575.000 voor 158 m², -34% ten opzichte van de mediaan van zijn klasse. 2 gemeentelijke berichten.
+51 panden in beeld, geen mutaties sinds gisteren. 4 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -15,25 +15,9 @@ _3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Biezen**
 _mediaan €5.000/m² op 31 waarnemingen . -0,8% sinds 2026-09-13._
 
-| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
-|---|---:|---:|---:|---:|---|---|---:|---:|
-| [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) | €575.000 | 135 | €4.259 | 🟢 -15% | kamers staat open als route | één woning, €2.430/mnd | €508.310 (-12%) | 0 |
-
-_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
-
-| Adres | Investering | Lening | Eigen inleg | Operationeel | NAR |
-|---|---:|---:|---:|---:|---:|
-| [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) | €753.603 | €339.316 | €414.286 | €4.665 | 3,1% |
-
-_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,21]_
-
-_Met het beschikbare eigen vermogen komt geen van deze panden in beeld: de verbouwing slokt het budget vrijwel volledig op._
-
-_Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
-
 _2 panden buiten beeld, mediaan €6.808/m². Die tellen mee in de vergelijking maar vragen geen actie: splitsen valt af op opkoopbescherming._
 
-_Stond er al, vraagprijs ongewijzigd: [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+2% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+9% t.o.v. de buurtmediaan) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+17% t.o.v. de buurtmediaan, 7 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-15% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+2% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+9% t.o.v. de buurtmediaan) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+17% t.o.v. de buurtmediaan, 7 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
@@ -41,7 +25,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-437682.html" style="color:#12242c;text-decoration:none">Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen</a></span></div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor tijdelijke verhuur wijst op overbrugging, het pand komt op termijn mogelijk op de markt voor verkoop of verbouwing.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Tijdelijke verhuur is pas aangevraagd en wijst op overbrugging richting verkoop of verbouwing, niet op langdurige verhuur.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-17 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-437682.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -66,6 +50,14 @@ _Zonder vergelijking, te weinig commercieel objecten in de dataset: [Jacob Canis
 
 _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-438099.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van een beneden-en bovenwoning naar 3 appartementen, aan Fagelstraat 46, 6524CG Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">79 m² . label D (2025)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Omzetten van een beneden-bovenwoning van 79 m2 naar 3 appartementen creëert extra verhuurbare eenheden uit één kadastraal object.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-18 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-438099.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
 **Stadscentrum**
 _mediaan €5.299/m² op 36 waarnemingen . +1,9% sinds 2026-09-13._
 
@@ -82,7 +74,7 @@ _Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de levering
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-435960.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het intern verbouwen van horeca panden, aan Grote Markt 36, 6511KB Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">232 m² . label A (2020)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van 232 m² horeca met energielabel A betreft functiebehoud, geen wijziging naar wonen of ander gebruik.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van horecapanden raakt de bedrijfsvoering, niet de woningvoorraad of het beleggingssegment.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-17 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-435960.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 

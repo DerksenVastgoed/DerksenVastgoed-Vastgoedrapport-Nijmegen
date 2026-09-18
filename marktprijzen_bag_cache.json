@@ -4239,5 +4239,17 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:Wolfskuilseweg 83|Nijmegen": {
+    "postcode": "6542JC",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-0db0c7112725c5078a64839844ac4758"
+  },
+  "bm:Fagelstraat 46|Nijmegen": {
+    "postcode": "6524CG",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-2522d80c10c247963bf58df1c11962f0"
   }
 }
