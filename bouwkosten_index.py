@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""
+Indexering van de verbouwkosten.
+
+De RVO-kostenkentallen hebben peildatum mei 2025. Bouwkosten staan niet stil,
+dus zonder indexering rekent de brief met cijfers die steeds verder achterlopen
+en schat hij elke verbouwing te laag in.
+
+BDB is de gangbare index in het vak, maar die zit achter een abonnement. Het
+CBS publiceert een bruikbaar alternatief: tabel 85728NED, de inputprijsindex
+bouwkosten nieuwbouwwoningen, basisjaar 2021. Die meet loon en materiaal apart,
+en dat is precies waar een verbouwing uit bestaat. Grondkosten, winst en risico
+zitten er niet in, wat voor onze toepassing juist klopt.
+
+Gebruik:
+  python bouwkosten_index.py            # haal de index op en toon de factor
+  python bouwkosten_index.py --vanaf 2025-05
+"""
+
+import argparse
+import datetime as dt
+import json
+import os
+import sys
+
+import requests
+
+TABEL = "85728NED"
+ODATA = f"https://opendata.cbs.nl/ODataApi/OData/{TABEL}/TypedDataSet"
+INDEX_PAD = "bouwkosten_index.json"
+
+# Peildatum van de RVO-kostenkentallen waarmee de brief rekent
+PEILDATUM = "2025-05"
+
+# Welke reeks we volgen. De totale bouwkosten zijn de gewogen optelling van
+# loon en materiaal, en dat komt het dichtst bij een verbouwing.
+REEKS = "BouwkostenTotaal"
+
+
+def _periode_naar_maand(code):
+    """CBS schrijft maanden als 2026MM07; daar maken we 2026-07 van."""
+    if not code or "MM" not in code:
+        return ""
+    jaar, maand = code.split("MM")
+    return f"{jaar}-{maand}"
+
+
+def haal_index():
+    """
+    De maandreeks van de inputprijsindex bouwkosten.
+
+    Geeft een dict van maand naar indexcijfer. Lukt het ophalen niet, dan geeft
+    het een lege dict terug; de aanroeper rekent dan zonder indexering en meldt
+    dat.
+    """
+    rijen, skip = {}, 0
+    for _ronde in range(20):                    # ruim genoeg voor acht jaar
+        try:
+            r = requests.get(ODATA, params={"$skip": skip}, timeout=(15, 60))
+            r.raise_for_status()
+            waarden = r.json().get("value", [])
+        except Exception as e:
+            print(f"Index ophalen mislukt: {e}", file=sys.stderr)
+            return rijen
+        if not waarden:
+            break
+        for rij in waarden:
+            maand = _periode_naar_maand((rij.get("Perioden") or "").strip())
+            if not maand:
+                continue                        # jaar- en kwartaalcijfers
+            cijfer = rij.get(REEKS)
+            if cijfer is None:
+                continue
+            rijen[maand] = float(cijfer)
+        skip += len(waarden)
+    return rijen
+
+
+def lees_index():
+    if not os.path.exists(INDEX_PAD):
+        return {}
+    try:
+        with open(INDEX_PAD, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def schrijf_index(reeks):
+    try:
+        with open(INDEX_PAD, "w", encoding="utf-8") as f:
+            json.dump(reeks, f, ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception as e:
+        print(f"Kon {INDEX_PAD} niet schrijven: {e}", file=sys.stderr)
+
+
+def indexfactor(vanaf=PEILDATUM, reeks=None):
+    """
+    Met welke factor moeten de kentallen vermenigvuldigd worden?
+
+    Geeft de factor, de gebruikte maanden en het percentage terug. Ontbreekt de
+    reeks, dan is de factor 1 en weet de aanroeper dat er niet geindexeerd is.
+    """
+    reeks = reeks if reeks is not None else lees_index()
+    if not reeks:
+        return {"factor": 1.0, "geindexeerd": False}
+
+    maanden = sorted(reeks)
+    if vanaf not in reeks:
+        # De dichtstbijzijnde maand die er wel is
+        eerder = [m for m in maanden if m <= vanaf]
+        vanaf = eerder[-1] if eerder else maanden[0]
+
+    laatste = maanden[-1]
+    basis, nu = reeks[vanaf], reeks[laatste]
+    if not basis:
+        return {"factor": 1.0, "geindexeerd": False}
+
+    factor = nu / basis
+    return {
+        "factor": round(factor, 4),
+        "geindexeerd": True,
+        "vanaf": vanaf,
+        "tot": laatste,
+        "pct": round((factor - 1) * 100, 1),
+    }
+
+
+def omschrijf(info):
+    """Een zin bij de indexering, voor in de brief."""
+    if not info.get("geindexeerd"):
+        return ("De verbouwkosten zijn niet geindexeerd: de bouwkostenindex "
+                "kon niet worden opgehaald. De bedragen hebben peildatum "
+                f"{PEILDATUM} en lopen dus achter.")
+    richting = "gestegen" if info["pct"] >= 0 else "gedaald"
+    return (f"Verbouwkosten geindexeerd van {info['vanaf']} naar "
+            f"{info['tot']}: de bouwkosten zijn in die periode "
+            + f"{abs(info['pct']):.1f}".replace(".", ",")
+            + f"% {richting}. Bron: CBS inputprijsindex bouwkosten "
+              f"nieuwbouwwoningen, tabel {TABEL}.")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--vanaf", default=PEILDATUM)
+    ap.add_argument("--verversen", action="store_true")
+    args = ap.parse_args()
+
+    reeks = lees_index()
+    vorige_maand = (dt.date.today().replace(day=1)
+                    - dt.timedelta(days=1)).strftime("%Y-%m")
+
+    # Verversen als het bestand ontbreekt of de laatste maand mist. Het CBS
+    # publiceert circa dertig dagen na de verslagmaand, dus twee maanden
+    # achterstand is normaal.
+    if args.verversen or not reeks or max(reeks, default="") < vorige_maand:
+        print(f"Bouwkostenindex ophalen (tabel {TABEL})", file=sys.stderr)
+        nieuw = haal_index()
+        if nieuw:
+            reeks = nieuw
+            schrijf_index(reeks)
+            print(f"  {len(reeks)} maanden, laatste: {max(reeks)}",
+                  file=sys.stderr)
+        else:
+            print("  niets opgehaald; de bestaande reeks blijft staan",
+                  file=sys.stderr)
+
+    info = indexfactor(args.vanaf, reeks)
+    print(omschrijf(info))
+    if info.get("geindexeerd"):
+        print(f"factor: {info['factor']}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
