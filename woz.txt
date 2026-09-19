@@ -106,3 +106,6 @@ In de Betouwstraat 35 | 222.000 | 2026
 Palembangstraat 44 | 466.000  | 2026
 de Ruyterstraat 37 | 514.000 | 2026
 Pontanusstraat 19 | 523.000 | 2026 
+
+# Toegevoegd op 2026-09-19: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+Marialaan 56 |  | 2026

@@ -1,0 +1,482 @@
+{
+ "51.82985,5.86795": {
+  "geschat": false,
+  "hemelsbreed": 322,
+  "meters": 461,
+  "naam": "Station Heyendaal",
+  "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.83031,5.86803": {
+  "geschat": false,
+  "hemelsbreed": 372,
+  "meters": 532,
+  "naam": "Station Heyendaal",
+  "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.83214,5.86258": {
+  "geschat": false,
+  "hemelsbreed": 312,
+  "meters": 757,
+  "naam": "Groenestraat",
+  "omweg": 2.43,
+  "soort": "bus"
+ },
+ "51.83344,5.86674": {
+  "geschat": false,
+  "hemelsbreed": 341,
+  "meters": 598,
+  "naam": "Archipelstraat",
+  "omweg": 1.75,
+  "soort": "bus"
+ },
+ "51.83364,5.85112": {
+  "geschat": false,
+  "hemelsbreed": 153,
+  "meters": 290,
+  "naam": "Thijmstraat",
+  "omweg": 1.9,
+  "soort": "bus"
+ },
+ "51.83543,5.86458": {
+  "geschat": false,
+  "hemelsbreed": 403,
+  "meters": 629,
+  "naam": "Fransestraat",
+  "omweg": 1.56,
+  "soort": "bus"
+ },
+ "51.83701,5.85938": {
+  "geschat": false,
+  "hemelsbreed": 412,
+  "meters": 577,
+  "naam": "Spoorkuil",
+  "omweg": 1.4,
+  "soort": "bus"
+ },
+ "51.83709,5.86472": {
+  "geschat": false,
+  "hemelsbreed": 220,
+  "meters": 255,
+  "naam": "Fransestraat",
+  "omweg": 1.16,
+  "soort": "bus"
+ },
+ "51.83758,5.86713": {
+  "geschat": false,
+  "hemelsbreed": 242,
+  "meters": 240,
+  "naam": "Fransestraat",
+  "omweg": 0.99,
+  "soort": "bus"
+ },
+ "51.83798,5.85757": {
+  "geschat": false,
+  "hemelsbreed": 356,
+  "meters": 605,
+  "naam": "Spoorkuil",
+  "omweg": 1.7,
+  "soort": "bus"
+ },
+ "51.83815,5.84661": {
+  "geschat": false,
+  "hemelsbreed": 212,
+  "meters": 481,
+  "naam": "Rozenstraat",
+  "omweg": 2.27,
+  "soort": "bus"
+ },
+ "51.83827,5.85479": {
+  "geschat": false,
+  "hemelsbreed": 279,
+  "meters": 341,
+  "naam": "Spoorkuil",
+  "omweg": 1.22,
+  "soort": "bus"
+ },
+ "51.83895,5.86167": {
+  "geschat": false,
+  "hemelsbreed": 155,
+  "meters": 289,
+  "naam": "Fransestraat",
+  "omweg": 1.86,
+  "soort": "bus"
+ },
+ "51.83900,5.86235": {
+  "geschat": false,
+  "hemelsbreed": 108,
+  "meters": 292,
+  "naam": "Fransestraat",
+  "omweg": 2.7,
+  "soort": "bus"
+ },
+ "51.83978,5.86004": {
+  "geschat": false,
+  "hemelsbreed": 261,
+  "meters": 1127,
+  "naam": "Fransestraat",
+  "omweg": 4.32,
+  "soort": "bus"
+ },
+ "51.84019,5.85579": {
+  "geschat": false,
+  "hemelsbreed": 341,
+  "meters": 874,
+  "naam": "Centrum Zuid",
+  "omweg": 2.56,
+  "soort": "bus"
+ },
+ "51.84031,5.83776": {
+  "geschat": false,
+  "hemelsbreed": 157,
+  "meters": 166,
+  "naam": "Fuchsiastraat",
+  "omweg": 1.06,
+  "soort": "bus"
+ },
+ "51.84055,5.87127": {
+  "geschat": false,
+  "hemelsbreed": 174,
+  "meters": 278,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.6,
+  "soort": "bus"
+ },
+ "51.84113,5.87317": {
+  "geschat": false,
+  "hemelsbreed": 164,
+  "meters": 170,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.04,
+  "soort": "bus"
+ },
+ "51.84211,5.88182": {
+  "geschat": false,
+  "hemelsbreed": 408,
+  "meters": 587,
+  "naam": "Hugo de Grootstraat",
+  "omweg": 1.44,
+  "soort": "bus"
+ },
+ "51.84218,5.87144": {
+  "geschat": false,
+  "hemelsbreed": 107,
+  "meters": 153,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.84297,5.86312": {
+  "geschat": false,
+  "hemelsbreed": 324,
+  "meters": 532,
+  "naam": "Smetiusstraat",
+  "omweg": 1.64,
+  "soort": "bus"
+ },
+ "51.84329,5.86352": {
+  "geschat": false,
+  "hemelsbreed": 339,
+  "meters": 573,
+  "naam": "Smetiusstraat",
+  "omweg": 1.69,
+  "soort": "bus"
+ },
+ "51.84332,5.84120": {
+  "geschat": false,
+  "hemelsbreed": 205,
+  "meters": 526,
+  "naam": "Fuchsiastraat",
+  "omweg": 2.57,
+  "soort": "bus"
+ },
+ "51.84338,5.86510": {
+  "geschat": false,
+  "hemelsbreed": 226,
+  "meters": 335,
+  "naam": "Hertogplein",
+  "omweg": 1.48,
+  "soort": "bus"
+ },
+ "51.84345,5.85669": {
+  "geschat": false,
+  "hemelsbreed": 156,
+  "meters": 206,
+  "naam": "Centrum Zuid",
+  "omweg": 1.32,
+  "soort": "bus"
+ },
+ "51.84358,5.86085": {
+  "geschat": false,
+  "hemelsbreed": 155,
+  "meters": 361,
+  "naam": "Smetiusstraat",
+  "omweg": 2.33,
+  "soort": "bus"
+ },
+ "51.84389,5.85869": {
+  "geschat": false,
+  "hemelsbreed": 22,
+  "meters": 10,
+  "naam": "Smetiusstraat",
+  "omweg": 0.45,
+  "soort": "bus"
+ },
+ "51.84391,5.85926": {
+  "geschat": false,
+  "hemelsbreed": 40,
+  "meters": 467,
+  "naam": "Smetiusstraat",
+  "omweg": 11.68,
+  "soort": "bus"
+ },
+ "51.84393,5.84441": {
+  "geschat": false,
+  "hemelsbreed": 83,
+  "meters": 130,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.57,
+  "soort": "bus"
+ },
+ "51.84393,5.85929": {
+  "geschat": false,
+  "hemelsbreed": 41,
+  "meters": 467,
+  "naam": "Smetiusstraat",
+  "omweg": 11.39,
+  "soort": "bus"
+ },
+ "51.84401,5.84686": {
+  "geschat": false,
+  "hemelsbreed": 224,
+  "meters": 229,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.02,
+  "soort": "bus"
+ },
+ "51.84428,5.84350": {
+  "geschat": false,
+  "hemelsbreed": 32,
+  "meters": 183,
+  "naam": "Zwaluwstraat",
+  "omweg": 5.72,
+  "soort": "bus"
+ },
+ "51.84429,5.87302": {
+  "geschat": false,
+  "hemelsbreed": 39,
+  "meters": 24,
+  "naam": "Meester Franckenstraat",
+  "omweg": 0.62,
+  "soort": "bus"
+ },
+ "51.84464,5.87529": {
+  "geschat": false,
+  "hemelsbreed": 75,
+  "meters": 191,
+  "naam": "Terwindtstraat",
+  "omweg": 2.55,
+  "soort": "bus"
+ },
+ "51.84475,5.86436": {
+  "geschat": false,
+  "hemelsbreed": 284,
+  "meters": 294,
+  "naam": "Hertogplein",
+  "omweg": 1.04,
+  "soort": "bus"
+ },
+ "51.84477,5.84393": {
+  "geschat": false,
+  "hemelsbreed": 30,
+  "meters": 45,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.5,
+  "soort": "bus"
+ },
+ "51.84485,5.86418": {
+  "geschat": false,
+  "hemelsbreed": 300,
+  "meters": 294,
+  "naam": "Hertogplein",
+  "omweg": 0.98,
+  "soort": "bus"
+ },
+ "51.84491,5.86893": {
+  "geschat": false,
+  "hemelsbreed": 35,
+  "meters": 213,
+  "naam": "Hertogplein",
+  "omweg": 6.09,
+  "soort": "bus"
+ },
+ "51.84495,5.86535": {
+  "geschat": false,
+  "hemelsbreed": 231,
+  "meters": 521,
+  "naam": "Hertogplein",
+  "omweg": 2.26,
+  "soort": "bus"
+ },
+ "51.84498,5.86375": {
+  "geschat": false,
+  "hemelsbreed": 220,
+  "meters": 189,
+  "naam": "Plein 1944",
+  "omweg": 0.86,
+  "soort": "bus"
+ },
+ "51.84540,5.86931": {
+  "geschat": false,
+  "hemelsbreed": 95,
+  "meters": 263,
+  "naam": "Hertogplein",
+  "omweg": 2.77,
+  "soort": "bus"
+ },
+ "51.84543,5.86633": {
+  "geschat": false,
+  "hemelsbreed": 214,
+  "meters": 469,
+  "naam": "Hertogplein",
+  "omweg": 2.19,
+  "soort": "bus"
+ },
+ "51.84545,5.86513": {
+  "geschat": false,
+  "hemelsbreed": 275,
+  "meters": 521,
+  "naam": "Hertogplein",
+  "omweg": 1.89,
+  "soort": "bus"
+ },
+ "51.84553,5.84645": {
+  "geschat": false,
+  "hemelsbreed": 218,
+  "meters": 331,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.52,
+  "soort": "bus"
+ },
+ "51.84559,5.86097": {
+  "geschat": false,
+  "hemelsbreed": 77,
+  "meters": 115,
+  "naam": "Plein 1944",
+  "omweg": 1.49,
+  "soort": "bus"
+ },
+ "51.84574,5.85475": {
+  "geschat": false,
+  "hemelsbreed": 211,
+  "meters": 660,
+  "naam": "Tunnelweg",
+  "omweg": 3.13,
+  "soort": "bus"
+ },
+ "51.84615,5.86238": {
+  "geschat": false,
+  "hemelsbreed": 46,
+  "meters": 56,
+  "naam": "Plein 1944",
+  "omweg": 1.22,
+  "soort": "bus"
+ },
+ "51.84623,5.84779": {
+  "geschat": false,
+  "hemelsbreed": 337,
+  "meters": 462,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.37,
+  "soort": "bus"
+ },
+ "51.84627,5.84925": {
+  "geschat": false,
+  "hemelsbreed": 397,
+  "meters": 599,
+  "naam": "Centraal Station",
+  "omweg": 1.51,
+  "soort": "bus"
+ },
+ "51.84843,5.85838": {
+  "geschat": false,
+  "hemelsbreed": 108,
+  "meters": 559,
+  "naam": "Joris Ivensplein",
+  "omweg": 5.18,
+  "soort": "bus"
+ },
+ "51.84884,5.85798": {
+  "geschat": false,
+  "hemelsbreed": 96,
+  "meters": 527,
+  "naam": "Joris Ivensplein",
+  "omweg": 5.49,
+  "soort": "bus"
+ },
+ "51.84906,5.86100": {
+  "geschat": false,
+  "hemelsbreed": 265,
+  "meters": 357,
+  "naam": "Waalkade",
+  "omweg": 1.35,
+  "soort": "bus"
+ },
+ "51.84966,5.85446": {
+  "geschat": false,
+  "hemelsbreed": 216,
+  "meters": 278,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.29,
+  "soort": "bus"
+ },
+ "51.84975,5.85779": {
+  "geschat": false,
+  "hemelsbreed": 168,
+  "meters": 302,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.8,
+  "soort": "bus"
+ },
+ "51.85016,5.85637": {
+  "geschat": false,
+  "hemelsbreed": 201,
+  "meters": 252,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.25,
+  "soort": "bus"
+ },
+ "51.85063,5.85527": {
+  "geschat": false,
+  "hemelsbreed": 273,
+  "meters": 398,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.46,
+  "soort": "bus"
+ },
+ "51.85077,5.84898": {
+  "geschat": false,
+  "hemelsbreed": 56,
+  "meters": 144,
+  "naam": "Havenweg",
+  "omweg": 2.57,
+  "soort": "bus"
+ },
+ "51.85175,5.84974": {
+  "geschat": false,
+  "hemelsbreed": 172,
+  "meters": 200,
+  "naam": "Havenweg",
+  "omweg": 1.16,
+  "soort": "bus"
+ },
+ "51.85176,5.84989": {
+  "geschat": false,
+  "hemelsbreed": 179,
+  "meters": 209,
+  "naam": "Havenweg",
+  "omweg": 1.17,
+  "soort": "bus"
+ }
+}

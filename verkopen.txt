@@ -241,3 +241,8 @@ Derde Walstraat 108 | Nijmegen | 225000 | te koop | 2026-09-17 |  | 34 | 6511SP
 # Automatisch toegevoegd uit Funda-attendering op 18-09-2026
 Krayenhofflaan 104 | Nijmegen | 575000 | te koop | 2026-09-18 |  | 135 | 6541PW
 Gulden Wagengas 1 | Nijmegen | 315000 | te koop | 2026-09-18 |  | 49 | 6511CV
+
+# Automatisch toegevoegd uit Funda-attendering op 19-09-2026
+Marialaan 56 | Nijmegen | 450000 | te koop | 2026-09-19 |  | 76 | 6541RM
+Bottelstraat 19 | Nijmegen | 395000 | te koop | 2026-09-19 |  | 93 | 6511XA
+Mr. Franckenstraat 46 | Nijmegen | 385000 | te koop | 2026-09-19 |  | 97 | 6522AE

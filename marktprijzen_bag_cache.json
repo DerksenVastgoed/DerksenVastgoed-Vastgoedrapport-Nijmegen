@@ -4251,5 +4251,182 @@
     "buurtnaam": "Altrade",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-2522d80c10c247963bf58df1c11962f0"
+  },
+  "Marialaan 56|Nijmegen": {
+    "oppervlakte": 76,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RM",
+    "adresseerbaarObjectIdentificatie": "0268010000021584",
+    "pand": "0268100000018837",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-9fc1d1f3fcf3574b20ef8dbc386b9cd9",
+    "eenheden_in_pand": [
+      {
+        "adres": "Marialaan 56",
+        "oppervlakte": 95,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Marialaan 58",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 95
+  },
+  "Bottelstraat 19|Nijmegen": {
+    "oppervlakte": 93,
+    "bouwjaar": "1935",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511XA",
+    "adresseerbaarObjectIdentificatie": "0268010000007147",
+    "pand": "0268100000047510",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-1114dc99a35a34e9b626ff4ec8108293",
+    "eenheden_in_pand": [
+      {
+        "adres": "Bottelstraat 19",
+        "oppervlakte": 111,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bottelstraat 21",
+        "oppervlakte": 120,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bottelstraat 25",
+        "oppervlakte": 87,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bottelstraat 27",
+        "oppervlakte": 101,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 111,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-09-07",
+      "geldig_tot": "2036-09-07",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Mr. Franckenstraat 46|Nijmegen": {
+    "oppervlakte": 97,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AE",
+    "adresseerbaarObjectIdentificatie": "0268010000048660",
+    "pand": "0268100000018587",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-f43b5f0db7b77fc834376f5e18cf64b6",
+    "eenheden_in_pand": [
+      {
+        "adres": "Mr. Franckenstraat 36",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 38",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 40",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 42",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 44",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 46",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 48",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 50",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 104,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-08-23",
+      "geldig_tot": "2036-08-20",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }
