@@ -53,18 +53,20 @@ def haal_index():
     het een lege dict terug; de aanroeper rekent dan zonder indexering en meldt
     dat.
     """
-    rijen, skip = {}, 0
-    for _ronde in range(20):                    # ruim genoeg voor acht jaar
+    # De ODataApi van het CBS kent geen $skip; die geeft zelf een nextLink mee
+    # zolang er meer rijen zijn. Dus die volgen we, in plaats van zelf te
+    # bladeren.
+    rijen, url = {}, ODATA
+    for _ronde in range(25):                    # ruim genoeg voor acht jaar
         try:
-            r = requests.get(ODATA, params={"$skip": skip}, timeout=(15, 60))
+            r = requests.get(url, timeout=(15, 60))
             r.raise_for_status()
-            waarden = r.json().get("value", [])
+            body = r.json()
         except Exception as e:
             print(f"Index ophalen mislukt: {e}", file=sys.stderr)
             return rijen
-        if not waarden:
-            break
-        for rij in waarden:
+
+        for rij in body.get("value", []):
             maand = _periode_naar_maand((rij.get("Perioden") or "").strip())
             if not maand:
                 continue                        # jaar- en kwartaalcijfers
@@ -72,7 +74,10 @@ def haal_index():
             if cijfer is None:
                 continue
             rijen[maand] = float(cijfer)
-        skip += len(waarden)
+
+        url = body.get("odata.nextLink") or body.get("@odata.nextLink")
+        if not url:
+            break
     return rijen
 
 
