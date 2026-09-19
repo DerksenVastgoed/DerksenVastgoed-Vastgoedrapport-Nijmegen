@@ -84,7 +84,8 @@ BRONNEN = [
      "eigen aanname, te vervangen door de eigen administratie", "vast"),
     ("Verbouwkosten", "aanname",
      "verduurzaming naar energielabel plus verhuurklaar maken, inclusief btw",
-     "RVO-kostenkentallen mei 2025 en eigen aanname",
+     "eigen aanname in bouwkosten_eigen.txt, anders een schatting van het "
+     "script; de RVO-kentallen zijn nog niet ingelezen",
      "peildatum mei 2025, geindexeerd naar nu"),
     ("Bouwkostenindex", "registratie",
      "inputprijsindex bouwkosten, loon en materiaal, om de kentallen te "
