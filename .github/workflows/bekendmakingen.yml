@@ -184,6 +184,13 @@ jobs:
             echo "Haltebestand aanwezig, overslaan"
           fi
 
+      - name: Bouwkostenindex bijwerken
+        continue-on-error: true
+        run: |
+          # Het CBS publiceert circa dertig dagen na de verslagmaand, dus
+          # het script vernieuwt alleen als er een maand bij kan zijn.
+          python bouwkosten_index.py || echo "Bouwkostenindex overgeslagen"
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -418,6 +425,7 @@ jobs:
             vergunningen_per_buurt.json
             straat_buurt_cache.json
             ov_haltes.json
+            bouwkosten_index.json
             ov_afstand_cache.json
             rente_actueel.json
             rente_historie.json
