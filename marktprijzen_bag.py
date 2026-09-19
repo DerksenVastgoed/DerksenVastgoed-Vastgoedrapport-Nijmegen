@@ -1210,6 +1210,23 @@ VERHUURKLAAR_PER_M2 = 275     # keuken, badkamer, schilderwerk, vloeren
 BTW_OP_VERBOUWING = 15        # gemiddeld, want arbeid 9% en materiaal 21%
 
 
+def _bouwkostenfactor():
+    """
+    Met welke factor de kentallen worden geindexeerd.
+
+    De RVO-cijfers hebben peildatum mei 2025. Zonder indexering loopt de
+    raming steeds verder achter, en dan schat de brief elke verbouwing te
+    laag in. Lukt het ophalen niet, dan rekenen we ongeindexeerd en zegt de
+    brief dat erbij.
+    """
+    if not indexfactor:
+        return {"factor": 1.0, "geindexeerd": False}
+    try:
+        return indexfactor()
+    except Exception:
+        return {"factor": 1.0, "geindexeerd": False}
+
+
 def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     """
     Geschatte verbouwkosten: verduurzaming plus verhuurklaar maken, inclusief
@@ -1223,11 +1240,17 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     duurzaam = opp * VERDUURZAMING_PER_M2.get(letter, VERDUURZAMING_ONBEKEND)
     klaar = opp * VERHUURKLAAR_PER_M2
     btw = 1 + BTW_OP_VERBOUWING / 100
+
+    # Indexeren naar nu, want de kentallen hebben peildatum mei 2025
+    idx = _bouwkostenfactor()
+    f = idx.get("factor", 1.0) * btw
+
     if uitsplitsen:
-        return {"totaal": (duurzaam + klaar) * btw,
-                "verduurzaming": duurzaam * btw,
-                "verhuurklaar": klaar * btw}
-    return (duurzaam + klaar) * btw
+        return {"totaal": (duurzaam + klaar) * f,
+                "verduurzaming": duurzaam * f,
+                "verhuurklaar": klaar * f,
+                "index": idx}
+    return (duurzaam + klaar) * f
 
 
 def aanloopverlies(lening, netto_huur):
@@ -2435,6 +2458,11 @@ TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
 
 
 # WWSO-teller. Ontbreekt het bestand, dan slaan we de toets gewoon over.
+try:
+    from bouwkosten_index import indexfactor, omschrijf as omschrijf_index
+except Exception:  # noqa
+    indexfactor = omschrijf_index = None
+
 try:
     from ov_haltes import dichtstbijzijnde_halte, omschrijf as omschrijf_halte
 except Exception:  # noqa
