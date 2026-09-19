@@ -84,7 +84,12 @@ BRONNEN = [
      "eigen aanname, te vervangen door de eigen administratie", "vast"),
     ("Verbouwkosten", "aanname",
      "verduurzaming naar energielabel plus verhuurklaar maken, inclusief btw",
-     "RVO-kostenkentallen mei 2025 en eigen aanname", "peildatum mei 2025"),
+     "RVO-kostenkentallen mei 2025 en eigen aanname",
+     "peildatum mei 2025, geindexeerd naar nu"),
+    ("Bouwkostenindex", "registratie",
+     "inputprijsindex bouwkosten, loon en materiaal, om de kentallen te "
+     "indexeren",
+     "CBS tabel 85728NED", "maandelijks, circa 30 dagen vertraging"),
     ("Aanloopperiode", "aanname",
      "drie maanden zonder huur bij aanvang",
      "eigen aanname", "vast"),
