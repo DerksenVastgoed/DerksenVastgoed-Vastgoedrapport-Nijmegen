@@ -1177,9 +1177,12 @@ AANLOOPMAANDEN = 3        # klussen, verhuurklaar maken en verhuren
 
 # De verbouwing bestaat uit twee posten die je niet moet mengen.
 #
-# 1. VERDUURZAMING naar een beter label. Hiervoor bestaat een onderbouwing:
-#    de kostenkentallen van RVO, gebaseerd op marktonderzoek, peildatum mei
-#    2025, te vinden op regelhulpenvoorbedrijven.nl/kostenkentallen.
+# 1. VERDUURZAMING naar een beter label. LET OP: de bedragen hieronder zijn
+#    NIET uit de RVO-kentallen overgenomen. Ze zijn door Claude gekozen als
+#    werkbare eerste schatting. De echte kentallen bestaan wel en zijn de
+#    juiste bron: marktonderzoek, peildatum mei 2025, te vinden op
+#    regelhulpenvoorbedrijven.nl/kostenkentallen. Zolang die niet zijn
+#    ingelezen, staat hier een aanname en geen meting.
 #    Let op bij het overnemen van die cijfers:
 #      - ze zijn exclusief btw; PBL rekent met gemiddeld 15% (9% arbeid,
 #        21% materiaal)
@@ -1227,6 +1230,68 @@ def _bouwkostenfactor():
         return {"factor": 1.0, "geindexeerd": False}
 
 
+
+BOUWKOSTEN_EIGEN_PAD = "bouwkosten_eigen.txt"
+
+
+def lees_eigen_bouwkosten():
+    """
+    Eigen ervaringscijfers per m2, als die er zijn.
+
+    Formaat per regel: soort | euro per m2 | peildatum | toelichting
+    Soorten: verduurzaming-<label> of verhuurklaar.
+
+    Deze gaan voor op de aannames in dit script, zoals de advertentie-
+    oppervlakte voorgaat op de BAG. Een getal uit de eigen administratie is
+    altijd beter dan een geschat kental, ook als het uit het hoofd komt.
+    """
+    if not os.path.exists(BOUWKOSTEN_EIGEN_PAD):
+        return {}
+    uit = {}
+    try:
+        with open(BOUWKOSTEN_EIGEN_PAD, encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip()
+                if not regel or regel.startswith("#") or "|" not in regel:
+                    continue
+                d = [x.strip() for x in regel.split("|")]
+                bedrag = re.sub(r"[^\d]", "", d[1]) if len(d) > 1 else ""
+                if not d[0] or not bedrag:
+                    continue
+                uit[d[0].lower()] = {
+                    "per_m2": int(bedrag),
+                    "peildatum": d[2] if len(d) > 2 else "",
+                    "toelichting": d[3] if len(d) > 3 else "",
+                }
+    except Exception:
+        return {}
+    return uit
+
+
+def _herkomst_verbouwing(uit):
+    """Waar komen deze bedragen vandaan? Eerlijk benoemen in de brief."""
+    eigen = uit.get("eigen") or {}
+    delen = []
+    if eigen.get("verduurzaming"):
+        delen.append("verduurzaming uit de eigen administratie")
+    else:
+        delen.append("verduurzaming is een aanname van het script, nog niet "
+                     "getoetst aan de kostenkentallen van RVO")
+    if eigen.get("verhuurklaar"):
+        delen.append("verhuurklaar maken uit de eigen administratie")
+    else:
+        delen.append("verhuurklaar maken is eveneens een aanname")
+
+    idx = uit.get("index") or {}
+    staart = (f"Inclusief {BTW_OP_VERBOUWING}% btw"
+              + (f" en geindexeerd "
+                 + f"{idx['pct']:+.1f}".replace(".", ",")
+                 + f"% van {idx['vanaf']} naar {idx['tot']} met de CBS "
+                   f"bouwkostenindex" if idx.get("geindexeerd") else "")
+              + ".")
+    return "Herkomst: " + "; ".join(delen) + ". " + staart
+
+
 def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     """
     Geschatte verbouwkosten: verduurzaming plus verhuurklaar maken, inclusief
@@ -1237,8 +1302,28 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     letter = ""
     if isinstance(energielabel, dict):
         letter = (energielabel.get("label") or "")[:1].upper()
-    duurzaam = opp * VERDUURZAMING_PER_M2.get(letter, VERDUURZAMING_ONBEKEND)
-    klaar = opp * VERHUURKLAAR_PER_M2
+    eigen = lees_eigen_bouwkosten()
+    gebruikt_eigen = {}
+
+    # Eigen cijfers gaan voor, per label en anders algemeen
+    tarief_d = None
+    for sleutel in (f"verduurzaming-{letter.lower()}", "verduurzaming"):
+        if sleutel in eigen:
+            tarief_d = eigen[sleutel]["per_m2"]
+            gebruikt_eigen["verduurzaming"] = eigen[sleutel]
+            break
+    if tarief_d is None:
+        tarief_d = VERDUURZAMING_PER_M2.get(letter, VERDUURZAMING_ONBEKEND)
+
+    tarief_k = None
+    if "verhuurklaar" in eigen:
+        tarief_k = eigen["verhuurklaar"]["per_m2"]
+        gebruikt_eigen["verhuurklaar"] = eigen["verhuurklaar"]
+    if tarief_k is None:
+        tarief_k = VERHUURKLAAR_PER_M2
+
+    duurzaam = opp * tarief_d
+    klaar = opp * tarief_k
     btw = 1 + BTW_OP_VERBOUWING / 100
 
     # Indexeren naar nu, want de kentallen hebben peildatum mei 2025
@@ -1249,7 +1334,10 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
         return {"totaal": (duurzaam + klaar) * f,
                 "verduurzaming": duurzaam * f,
                 "verhuurklaar": klaar * f,
-                "index": idx}
+                "per_m2_verduurzaming": tarief_d,
+                "per_m2_verhuurklaar": tarief_k,
+                "index": idx,
+                "eigen": gebruikt_eigen}
     return (duurzaam + klaar) * f
 
 
@@ -2661,9 +2749,13 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         cashflow = fin["na_aflossing"]
         f += [f"financiering: lening €{n(lening)}, begrensd door de {fin['knelpunt']} "
               f"(financieringsgraad {LTV:.0f}%, dekkingseis {DEKKINGSEIS}x)",
-              f"verbouwing: €{n(reno)} totaal, waarvan €{n(reno_uit['verduurzaming'])} "
-              f"verduurzaming naar de kostenkentallen van RVO en "
-              f"€{n(reno_uit['verhuurklaar'])} verhuurklaar maken. Inclusief btw. "
+              f"verbouwing: €{n(reno)} totaal. Opbouw: "
+              f"{opp} m2 x €{reno_uit['per_m2_verduurzaming']}/m2 = "
+              f"€{n(reno_uit['verduurzaming'])} verduurzaming bij label "
+              f"{_labeltekst(w.get('energielabel'))}, plus "
+              f"{opp} m2 x €{reno_uit['per_m2_verhuurklaar']}/m2 = "
+              f"€{n(reno_uit['verhuurklaar'])} verhuurklaar maken. "
+              + _herkomst_verbouwing(reno_uit) + " "
               f"Asbest, funderingsherstel en slechte bouwkundige staat zitten er niet "
               f"in en de werkelijke kosten wijken 20 tot 30% af. Komt uit eigen "
               f"vermogen, want banken financieren verbouwing bij verhuurd vastgoed "
