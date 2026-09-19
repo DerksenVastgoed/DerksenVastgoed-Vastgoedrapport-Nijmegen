@@ -4,7 +4,8 @@ Buurten-tabelblok voor de Nijmegen Vastgoedmonitor.
 
 Haalt per buurt (Stadscentrum, Benedenstad, Bottendaal, Galgenveld, Altrade,
 Biezen) de eigendomsverdeling op uit de CBS Wijk- en Buurtkaart via PDOK, en
-zet er de trend sinds 2021 naast. Schrijft een markdown-tabelblok weg dat
+zet er de trend naast tegen de oudste jaargang die PDOK nog levert. Schrijft
+een markdown-tabelblok weg dat
 onder de bekendmakingen in de dagelijkse brief kan.
 
 Bron: https://api.pdok.nl/cbs/wijken-en-buurten-{jaar}/ogc/v1/collections/buurten/items
@@ -29,7 +30,10 @@ BUURTEN = [
 ]
 GEMEENTE = "Nijmegen"
 JAAR_NU = "2024"
-JAAR_TREND = "2021"   # zelfde definitie als 2024 = eerlijke vergelijking
+# PDOK haalt oude jaargangen na verloop van tijd weg. Daarom proberen we
+# meerdere jaren, van het verst terug naar het dichtstbij: hoe langer de
+# periode, hoe betekenisvoller de trend. Het eerste jaar dat er nog is, wint.
+JAREN_TREND = ["2021", "2022", "2023"]
 PDOK_TMPL = ("https://api.pdok.nl/cbs/wijken-en-buurten-{jaar}"
              "/ogc/v1/collections/buurten/items?f=json&limit=2000"
              "&bbox=5.780,51.800,5.920,51.880")
@@ -286,11 +290,20 @@ def main():
         nu = _get(PDOK_TMPL.format(jaar=JAAR_NU))
     except Exception as e:  # noqa
         print(f"CBS {JAAR_NU} ophalen mislukt: {e}", file=sys.stderr); sys.exit(1)
-    try:
-        toen = _get(PDOK_TMPL.format(jaar=JAAR_TREND))
-    except Exception as e:  # noqa
-        print(f"CBS {JAAR_TREND} ophalen mislukt ({e}); trend uitgeschakeld.", file=sys.stderr)
-        toen = {"features": []}
+    toen, jaar_trend = {"features": []}, None
+    for jaar in JAREN_TREND:
+        try:
+            toen = _get(PDOK_TMPL.format(jaar=jaar))
+            jaar_trend = jaar
+            print(f"Trend tegen CBS {jaar}", file=sys.stderr)
+            break
+        except Exception as e:  # noqa
+            print(f"  CBS {jaar} niet beschikbaar ({str(e)[:60]})",
+                  file=sys.stderr)
+    if not jaar_trend:
+        print("Geen enkele oudere jaargang beschikbaar bij PDOK; trend "
+              "uitgeschakeld. Controleer welke jaren er zijn op "
+              "api.pdok.nl/cbs", file=sys.stderr)
 
     feats_nu = nu.get("features", [])
     feats_toen = toen.get("features", [])
