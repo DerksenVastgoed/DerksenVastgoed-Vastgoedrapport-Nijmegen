@@ -2482,6 +2482,12 @@ Bouw het memo zo op:
 4. OF HET UITVOERBAAR IS. Dit is geen bijzaak maar de kern van een investeringsvoorstel. Behandel: ligt er al een vergunning op het pand, zijn er kamerverhuurpanden in de straat en welke adressen, welke voorwaarden gelden er voor een omzettingsvergunning, staat er iets aan handhaving in de omgeving, en hoe staat het met veiligheid en overlast in de buurt. Noem de adressen en de cijfers die je krijgt aangeleverd; schrijf niet "mogelijk vergunningplichtig" als er concrete gegevens bij staan.
 5. Sluit af met een oordeel in een of twee zinnen: is dit het bekijken waard, en wat zou je als eerste uitzoeken voordat je een bod doet.
 
+LENGTE: maximaal 450 woorden per pand. Dat is een harde grens. Je krijgt veel meer feiten aangeleverd dan erin passen, en dat is opzet: kies.
+
+WAT ALTIJD MOET: de cijfers die het oordeel dragen, en elke blokkade. Loopt een route vast op de opkoopbescherming, op de WOZ-ondergrens of op twee kamerpanden naast elkaar, dan hoort dat erin, ook als de rest goed oogt.
+
+WAT MAG WEGVALLEN: gronden waar niets aan de hand is, cijfers die het oordeel niet veranderen, en achtergrond die in elke case hetzelfde zou zijn. Een opsomming van tien weigeringsgronden waarvan er negen in orde zijn, is geen analyse maar een afvinklijst.
+
 Staat er een "bod voor cashflow nul" bij de feiten, verwerk dat dan in je oordeel. Ligt dat bedrag onder de vraagprijs, benoem dan hoeveel eraf zou moeten voordat het pand zichzelf rondhoudt. Dat is geen taxatie maar een vertrekpunt voor onderhandeling; schrijf het ook zo op.
 
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS.
