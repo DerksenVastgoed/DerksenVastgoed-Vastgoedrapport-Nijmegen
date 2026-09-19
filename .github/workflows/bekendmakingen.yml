@@ -426,6 +426,7 @@ jobs:
             straat_buurt_cache.json
             ov_haltes.json
             bouwkosten_index.json
+            bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
             rente_historie.json
