@@ -1626,7 +1626,56 @@ def lees_vergunningen_per_buurt():
     for buurt in FOCUS_BUURTEN:
         if buurt not in uit and norm(buurt) in uit:
             uit[buurt] = uit[norm(buurt)]
+
+    # Levert het bestand niets op voor onze buurten, dan tellen we zelf: de
+    # vergunningenlijst plus de straat-naar-buurtcache hebben we toch al. Zo
+    # hangt de kolom niet af van een apart bestand dat verouderd kan zijn.
+    if not any(uit.get(b) for b in FOCUS_BUURTEN):
+        zelf = _tel_vergunningen_per_buurt()
+        if zelf:
+            print(f"Vergunningen per buurt zelf geteld: "
+                  + ", ".join(f"{b} {n}" for b, n in sorted(zelf.items())),
+                  file=sys.stderr)
+            uit.update(zelf)
+        else:
+            print("Geen vergunningen per buurt beschikbaar; kolom blijft leeg. "
+                  "Draai vergunningen_buurten.py om de koppeling te maken.",
+                  file=sys.stderr)
     return uit
+
+
+def _tel_vergunningen_per_buurt():
+    """
+    Tel de vergunningen per buurt uit de eigen bestanden.
+
+    Gebruikt de vergunningenlijst en de straat-naar-buurtcache die het
+    koppelscript eerder heeft opgebouwd. Ontbreekt die cache, dan kunnen we
+    niets tellen en blijft de kolom leeg.
+    """
+    try:
+        with open("straat_buurt_cache.json", encoding="utf-8") as f:
+            cache = json.load(f)
+    except Exception:
+        return {}
+    if not cache:
+        return {}
+
+    def norm_s(naam):
+        return re.sub(r"[^a-z0-9]", "", str(naam).lower())
+
+    straat_naar_buurt = {norm_s(k): v for k, v in cache.items() if v}
+
+    telling = {}
+    for lijst in lees_kamervergunningen().values():
+        for v in lijst:
+            m = re.match(r"^(.+?)\s+\d", v.get("adres", ""))
+            if not m:
+                continue
+            buurt = straat_naar_buurt.get(norm_s(m.group(1)))
+            if buurt in FOCUS_BUURTEN:
+                telling[buurt] = telling.get(buurt, 0) + 1
+            break
+    return telling
 
 
 def lees_kamervergunningen():
@@ -2878,8 +2927,11 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
                 nummers = ", ".join(str(nr) for nr, _v in in_straat[:12])
                 jaren_v = sorted({v.get("datum", "")[:4] for _nr, v in in_straat
                                   if v.get("datum")})
-                f.append(f"in de hele {straat_c} zijn sinds 2013 {len(in_straat)} "
-                         f"vergunningen verleend, op nummer {nummers}"
+                f.append(f"in de hele {straat_c} "
+                         + ("is sinds 2013 1 vergunning verleend"
+                            if len(in_straat) == 1 else
+                            f"zijn sinds 2013 {len(in_straat)} vergunningen verleend")
+                         + f", op nummer {nummers}"
                          + (f" ({jaren_v[0]} tot {jaren_v[-1]})" if jaren_v else "")
                          + ". Hoe voller de straat, hoe zwaarder de "
                            "leefbaarheidstoets weegt")
