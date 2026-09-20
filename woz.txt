@@ -109,3 +109,6 @@ Pontanusstraat 19 | 523.000 | 2026
 
 # Toegevoegd op 2026-09-19: grensgevallen, vul het bedrag in via wozwaardeloket.nl
 Marialaan 56 |  | 2026
+
+# Toegevoegd op 2026-09-20: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+Marialaan 56 |  | 2026

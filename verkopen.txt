@@ -246,3 +246,6 @@ Gulden Wagengas 1 | Nijmegen | 315000 | te koop | 2026-09-18 |  | 49 | 6511CV
 Marialaan 56 | Nijmegen | 450000 | te koop | 2026-09-19 |  | 76 | 6541RM
 Bottelstraat 19 | Nijmegen | 395000 | te koop | 2026-09-19 |  | 93 | 6511XA
 Mr. Franckenstraat 46 | Nijmegen | 385000 | te koop | 2026-09-19 |  | 97 | 6522AE
+
+# Automatisch toegevoegd uit Funda-attendering op 20-09-2026
+Staringstraat 21 | Nijmegen | 299000 | te koop | 2026-09-20 |  | 48 | 6521AG

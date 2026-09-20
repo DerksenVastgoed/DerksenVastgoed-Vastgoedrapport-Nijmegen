@@ -4283,7 +4283,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 95
+    "oppervlakte_bag": 95,
+    "energielabel": null
   },
   "Bottelstraat 19|Nijmegen": {
     "oppervlakte": 93,
@@ -4425,6 +4426,78 @@
       "label": "C",
       "registratiedatum": "2026-08-23",
       "geldig_tot": "2036-08-20",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Staringstraat 21|Nijmegen": {
+    "oppervlakte": 48,
+    "bouwjaar": "1907",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521AG",
+    "adresseerbaarObjectIdentificatie": "0268010000067630",
+    "pand": "0268100000002717",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-caf8a2ee3eaeea7eb595da0aae744145",
+    "eenheden_in_pand": [
+      {
+        "adres": "Staringstraat 21",
+        "oppervlakte": 46,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Staringstraat 21A",
+        "oppervlakte": 45,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Staringstraat 21B",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Staringstraat 21C",
+        "oppervlakte": 57,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Staringstraat 21D",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Staringstraat 21E",
+        "oppervlakte": 52,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 46,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-09-16",
+      "geldig_tot": "2036-09-14",
       "gebouwklasse": "Woningbouw",
       "prive": false
     }

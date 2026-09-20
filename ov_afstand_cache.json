@@ -167,6 +167,14 @@
   "omweg": 1.43,
   "soort": "bus"
  },
+ "51.84243,5.86853": {
+  "geschat": false,
+  "hemelsbreed": 99,
+  "meters": 153,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.55,
+  "soort": "bus"
+ },
  "51.84297,5.86312": {
   "geschat": false,
   "hemelsbreed": 324,

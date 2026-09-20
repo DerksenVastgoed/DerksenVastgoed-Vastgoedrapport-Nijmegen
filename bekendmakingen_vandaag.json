@@ -4,7 +4,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het wijzigen en uitbreiden van reguliere kamerverhuur van 7 naar 9 kamers, aan Wolfskuilseweg 83, 6542JC Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-439204.html",
   "strategie": "kamerverhuur",
-  "duiding": "Aanvraag (nog geen besluit) voor uitbreiding naar 9 kamers; met 19 m2 per kamer blijft ruimte boven het wettelijk minimum voor kamerverhuur.",
+  "duiding": "Aanvraag voor uitbreiding naar 9 kamers bij 19 m² per kamer toont dat verkamering hier planologisch wordt getoetst, nog geen besluit.",
   "feiten": {
    "energielabel": "C (2026)",
    "oppervlakte_m2": 174,
@@ -20,7 +20,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een beneden-en bovenwoning naar 3 appartementen, aan Fagelstraat 46, 6524CG Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-438099.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag om een beneden-bovenwoning van 79 m2 te splitsen in 3 appartementen, wat bij goedkeuring drie verkoopbare units oplevert.",
+  "duiding": "Omzetten van een beneden-bovenwoning naar 3 appartementen op 79 m² verkleint de gemiddelde unitgrootte en verhoogt de dichtheid in de voorraad.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 79
@@ -28,30 +28,5 @@
   "straat": "Fagelstraat",
   "huisnummer": "46",
   "kern": true
- },
- {
-  "datum": "2026-09-17",
-  "titel": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-437682.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Aanvraag tijdelijke verhuur wijst op overbrugging, mogelijk vooruitlopend op verkoop of verbouwing van het pand.",
-  "feiten": {},
-  "straat": "de Voorstadslaan",
-  "huisnummer": "211",
-  "kern": false
- },
- {
-  "datum": "2026-09-17",
-  "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van horeca panden, aan Grote Markt 36, 6511KB Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-435960.html",
-  "strategie": "geen",
-  "duiding": "Interne verbouwing van horecapanden raakt de bedrijfsruimte, niet de woningvoorraad, dus beperkt relevant voor woningbeleggers.",
-  "feiten": {
-   "energielabel": "A (2020)",
-   "oppervlakte_m2": 232
-  },
-  "straat": "Grote Markt",
-  "huisnummer": "36",
-  "kern": false
  }
 ]
