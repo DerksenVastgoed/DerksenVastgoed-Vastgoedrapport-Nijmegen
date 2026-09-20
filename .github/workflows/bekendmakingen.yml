@@ -324,8 +324,17 @@ jobs:
                   return ""
 
           verhaal = lees(f"digests/{d}-verhaal.md")
-          # De bijlage is de tabelversie; valt die weg, dan de hele werkbrief
-          werk = lees(f"digests/{d}-bijlage.md") or lees(f"digests/{d}-brief.md")
+
+          # Doordeweeks de tabelversie, want dan gaat het om de cijfers.
+          # Op zondag de volledige werkbrief, want daar staan de
+          # investeringscases, de referentietabellen, de beleggingslijst en de
+          # regelgevingsmonitor in. Die tabelversie kent die onderdelen niet.
+          modus = os.environ.get("MODUS", "dagelijks")
+          if modus == "dagelijks":
+              werk = lees(f"digests/{d}-bijlage.md") or lees(f"digests/{d}-brief.md")
+          else:
+              werk = lees(f"digests/{d}-brief.md") or lees(f"digests/{d}-bijlage.md")
+          print(f"Bijlage in de mail: {'tabellen' if modus == 'dagelijks' else 'volledige werkbrief'}")
 
           # De brief bovenaan om rustig te lezen, de cijfers eronder als
           # bijlage om in te duiken. Een mail in plaats van twee.
