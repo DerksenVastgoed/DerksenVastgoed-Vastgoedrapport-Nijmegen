@@ -176,14 +176,22 @@ def rijkspublicaties(dagen=7):
     vanaf = (dt.date.today() - dt.timedelta(days=dagen)).isoformat()
     gevonden = []
     for term, waarom in RIJKSTERMEN:
+        # "any" splitst de term op losse woorden, waardoor "box 3" matcht op
+        # elke titel met een 3 erin en "huurprijzen woonruimte" op alles met
+        # het woord woonruimte. Met "all" moeten alle woorden voorkomen.
         query = (f'c.product-area==officielepublicaties and '
                  f'(dt.type=="Wet" or dt.type=="AMvB" or dt.type=="Regeling" or '
                  f'dt.type=="Besluit") and '
-                 f'dt.title any "{term}" and dt.date>="{vanaf}"')
+                 f'dt.title all "{term}" and dt.date>="{vanaf}"')
         root = bevraag_sru(query)
         for rec in records(root):
             titel = _tekst(rec, "title")
             if not titel:
+                continue
+            # Alle woorden van de term moeten in de titel staan. De SRU is
+            # soms ruimhartig; zo houden we alleen de echte treffers over.
+            woorden_t = [w for w in term.lower().split() if len(w) > 2]
+            if woorden_t and not all(w in titel.lower() for w in woorden_t):
                 continue
             gevonden.append({
                 "titel": titel,
