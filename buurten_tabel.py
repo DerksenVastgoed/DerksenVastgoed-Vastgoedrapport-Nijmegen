@@ -17,6 +17,15 @@ import sys
 import urllib.parse
 import requests
 
+try:
+    from diagnose import leg_vast, wis
+except Exception:  # noqa
+    def leg_vast(*_a):
+        pass
+
+    def wis(*_a):
+        pass
+
 # --- CONFIG ---
 CBS_PAD = "buurten_cbs.json"
 
@@ -369,6 +378,35 @@ def main():
     print(f"Stadstotalen over {stad['buurten']} buurten: "
           f"{stad['woningen']} woningen, {stad['inwoners']} inwoners, "
           f"{stad['studenten']} studenten", file=sys.stderr)
+
+    wis("buurtcijfers")
+    eerste_d = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+
+    def _meld(veld, zoekwoorden, namen):
+        """Bestaat het veld maar is het leeg, of heet het anders?"""
+        if any(r.get(veld) is not None for r in rijen):
+            return
+        # Staat een van de verwachte namen er wel in, maar zonder bruikbare waarde?
+        aanwezig = [(n, eerste_d.get(n)) for n in namen if n in eerste_d]
+        if aanwezig:
+            leg_vast("buurtcijfers",
+                     f"{veld}: het veld bestaat wel, maar de waarde is "
+                     f"{aanwezig[0][1]!r}. Bij het CBS betekent een lege of "
+                     f"negatieve waarde meestal dat het cijfer voor dit jaar nog "
+                     f"niet gepubliceerd is.")
+            return
+        lijkt = sorted(k for k in eerste_d
+                       if any(z in k.lower() for z in zoekwoorden))[:8]
+        leg_vast("buurtcijfers",
+                 f"{veld}: niet gevonden onder de verwachte namen. Velden die erop "
+                 f"lijken: {', '.join(lijkt) if lijkt else 'geen'}.")
+
+    _meld("inkomen", ("inkom",), INKOMEN_VELDEN)
+    _meld("vermogen", ("vermogen",), VERMOGEN_VELDEN)
+    _meld("leeftijd", ("jaar", "leeftijd"),
+          [n for groep, _m in LEEFTIJDSGROEPEN for n in groep])
+    _meld("afstand_trein", ("afstand", "station", "trein"),
+          AFSTAND_VELDEN["trein"])
 
     if rijen and not any(r.get("afstand_trein") for r in rijen):
         eerste_a = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
