@@ -207,10 +207,23 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
 
 def toets_splitsing(w, aantal_units=None):
     """
-    Splitsen naar zelfstandige woningen valt niet onder artikel 15: het is geen
-    omzetting naar onzelfstandige woonruimte, en Nijmegen kent geen
-    splitsingsvergunning. Wat blijft is de omgevingsvergunning en het
-    Bouwbesluit, plus de opkoopbescherming per nieuwe eenheid.
+    Splitsen naar zelfstandige woningen, getoetst aan de Huisvestingsverordening
+    gemeente Nijmegen 2024.
+
+    Drie dingen die vaak door elkaar lopen:
+    - juridisch of kadastraal splitsen in appartementsrechten: een notariele
+      akte, ingeschreven in het Kadaster. Nijmegen vraagt daar geen vergunning
+      voor; de verordening regelt alleen onttrekken en omzetten (artikel 13).
+    - fysiek splitsen, woningvorming: van een woning meerdere zelfstandige
+      woningen maken. Geen huisvestingsvergunning, wel een omgevingsvergunning.
+    - omzetten of verkameren: van zelfstandig naar onzelfstandig. Dat is
+      artikel 13 en 15, en valt hier buiten.
+
+    De opkoopbescherming (artikel 19) toetst de WOZ van wat je koopt, op de
+    datum dat de akte van levering wordt ingeschreven. Niet de WOZ van de
+    eenheden die je daarna zelf maakt. Tot 21 september 2026 deed deze toets
+    dat per eenheid, en dat was fout: het verborg panden die je wel mag
+    splitsen en verhuren.
     """
     uit = [("artikel 15", VOLDOET,
             "niet van toepassing: splitsen naar zelfstandige woningen is geen "
@@ -236,19 +249,40 @@ def toets_splitsing(w, aantal_units=None):
                 "bij bestaande bouw geldt het van rechtens verkregen niveau, niet "
                 "de nieuwbouwnorm. Dat scheelt aanzienlijk bij vooroorlogse panden"))
 
-    prijs = _getal(w.get("prijs")) or 0
-    if prijs and aantal_units:
-        per_unit_waarde = prijs / aantal_units
-        if per_unit_waarde < WOZ_BOVENGRENS:
+    # De opkoopbescherming kijkt naar de WOZ van het pand dat je koopt, op de
+    # datum van inschrijving van de akte. Een bekende WOZ gaat voor; anders de
+    # vraagprijs als benadering, en dat zeggen we erbij.
+    woz = _getal(w.get("woz"))
+    waarde = woz or _getal(w.get("prijs")) or 0
+    bron = "WOZ" if woz else "vraagprijs als benadering van de WOZ"
+    grens = f"€{WOZ_BOVENGRENS:,}".replace(",", ".")
+    if waarde:
+        bedrag = f"€{waarde:,.0f}".replace(",", ".")
+        if waarde <= WOZ_BOVENGRENS:
             uit.append(("opkoopbescherming", VOLDOET_NIET,
-                        f"€{per_unit_waarde:,.0f}".replace(",", ".")
-                        + f" per eenheid ligt onder €{WOZ_BOVENGRENS:,}".replace(",", ".")
-                        + ". De nieuwe woningen mogen dan vier jaar na levering niet "
-                          "verhuurd worden zonder vergunning. Verkopen mag wel"))
+                        f"{bedrag} ({bron}) ligt op of onder {grens}. Koop je het "
+                        f"vrij van huur, dan mag je het vier jaar na inschrijving "
+                        f"van de akte niet verhuren zonder vergunning, gesplitst of "
+                        f"niet. Splitsen om te verkopen blijft mogelijk"))
         else:
             uit.append(("opkoopbescherming", VOLDOET,
-                        f"€{per_unit_waarde:,.0f}".replace(",", ".")
-                        + " per eenheid ligt boven de grens"))
+                        f"{bedrag} ({bron}) ligt boven {grens}. Dan is het geen "
+                        f"beschermde woonruimte. Splitsen na aankoop is geen nieuwe "
+                        f"levering aan jou, dus de eenheden die je zelf maakt vallen "
+                        f"er niet onder"))
+
+    # Wat wel verandert na fysiek splitsen: elke zelfstandige woning wordt een
+    # eigen WOZ-object (artikel 16 Wet WOZ), ook zonder appartementsrechten.
+    # Een lagere WOZ per eenheid geeft minder WWS-punten en dus een lagere
+    # maximale huur. Dat is geen verbod maar een rekenfactor.
+    if aantal_units and aantal_units > 1:
+        uit.append(("WOZ per eenheid", ONBEKEND,
+                    "na fysiek splitsen krijgt elke zelfstandige woning een eigen "
+                    "WOZ, ook zonder juridische splitsing. Een lagere WOZ per "
+                    "eenheid geeft minder punten in het woningwaarderingsstelsel "
+                    "en dus een lagere maximale huur. En wie later een eenheid van "
+                    f"jou koopt met een WOZ tot {grens}, valt zelf wel onder de "
+                    "opkoopbescherming; dat raakt de verkoopbaarheid aan beleggers"))
 
     uit.append(("parkeren", ONBEKEND,
                 "in gereguleerd gebied geldt geen parkeereis, maar de nieuwe "
