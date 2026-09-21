@@ -48,6 +48,23 @@ def diagnose(onderdeel):
     return " ".join(uniek)
 
 
+def automatische_keuzes():
+    """Alle keuzes die een script zelf heeft gemaakt, uit alle diagnoses."""
+    uit = []
+    if not os.path.isdir(DIAGNOSE_MAP):
+        return uit
+    for naam in sorted(os.listdir(DIAGNOSE_MAP)):
+        try:
+            with open(os.path.join(DIAGNOSE_MAP, naam), encoding="utf-8") as f:
+                for regel in f:
+                    regel = regel.strip()
+                    if regel.startswith("AUTOMATISCH") and regel not in uit:
+                        uit.append(regel.replace("AUTOMATISCH: ", ""))
+        except Exception:
+            continue
+    return uit
+
+
 def _kort(tekst, maximum=240):
     """Een diagnose inkorten tot iets wat in een bericht past."""
     if len(tekst) <= maximum:
@@ -333,6 +350,12 @@ def rapport(kort=False):
         goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
         if goed:
             r.append("[OK] " + ", ".join(goed))
+
+        # Automatische keuzes altijd tonen, ook als het onderdeel groen is.
+        # Juist dan: een automatisch gekozen veld dat verkeerd is, geeft geen
+        # fout maar een plausibel verkeerd getal.
+        for regel in automatische_keuzes():
+            r.append(f"[CONTROLEER] {regel}")
         return "\n".join(r)
 
     r = [f"# Gezondheidsrapport {VANDAAG.isoformat()}", "",
