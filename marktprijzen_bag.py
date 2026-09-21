@@ -3523,7 +3523,7 @@ def verdient_aandacht(w, afwijking, archief=None, vergunningen=None):
     w["_routes"] = routes
     if routes["vrij"]:
         sc = w.get("_scenario") or {}
-        if "splitsen" in routes["vrij"] and sc.get("verkoopmarge", 0) > 100_000:
+        if "splitsen" in routes["vrij"] and (sc.get("verkoopmarge") or 0) > 100_000:
             return (f"splitsen kan hier en levert op papier "
                     f"€{eu(sc['verkoopmarge'])} marge")
         if len(routes["vrij"]) == 2:
@@ -3958,7 +3958,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 r.append("")
 
         boven_grens = [w["adres"] for _a, _p, _k, _afw, _b, w in vers
-                       if (w.get("_scenario") or {}).get("maand", 0) > HT_MAX_HUUR
+                       if ((w.get("_scenario") or {}).get("maand") or 0) > HT_MAX_HUUR
                        and "kamer" not in ((w.get("_scenario") or {}).get("naam") or "")]
         if len(boven_grens) == len(vers) and vers:
             r.append(f"_Alle panden hier komen bij de berekende huur boven de maximale "
