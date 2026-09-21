@@ -19,7 +19,7 @@
 ## OK
 - **Aanbod**: 59 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3.529753074% (2026-09-18)
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,53% (2026-09-18), opslag bij 70% financiering 1,97 procentpunt
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 63 panden gerouteerd
 - **Bekendmakingen-archief**: 317 adressen, 445 publicaties

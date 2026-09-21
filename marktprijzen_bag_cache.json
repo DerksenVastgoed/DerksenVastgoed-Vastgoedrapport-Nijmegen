@@ -4509,7 +4509,8 @@
     ],
     "postcode": "6541AA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "van Welderenstraat|Nijmegen": {
     "oppervlakte": 27,
@@ -4518,6 +4519,7 @@
     ],
     "postcode": "6511MP",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   }
 }
