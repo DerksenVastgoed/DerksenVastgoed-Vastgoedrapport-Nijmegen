@@ -85,7 +85,11 @@ WAT JE NIET DOET:
 
 LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
 
+FISCAAL ONDERSCHEID DAT JE NIET MAG VERMENGEN. Het eigenwoningforfait, de hypotheekrenteaftrek en het box 1-regime gelden uitsluitend voor de woning waar iemand zelf woont. Ze gelden NIET voor verhuurd vastgoed. Mark en zijn broer houden hun panden in een BV: daar gelden de vennootschapsbelasting, de overdrachtsbelasting en de btw, en er is geen eigenwoningforfait en geen hypotheekrenteaftrek. Gaat een artikel over de eigen woning, zeg dan dat het de eigen woning betreft en niet de verhuurportefeuille, en trek er geen conclusie uit voor verhuurd vastgoed.
+
 LET OP DE EENHEID. Bedragen in de gegevens staan er met hun eenheid bij: per jaar of per maand. Neem die letterlijk over. Een operationeel resultaat per jaar is geen bedrag per maand. Staat er geen eenheid bij, noem het bedrag dan zonder eenheid in plaats van er een te kiezen.
+
+VERGELIJKINGEN. Zeg je dat een buurt "tussen" twee andere ligt, of "hoger" of "lager" dan een andere, controleer dan de getallen voordat je het opschrijft. Bij de buurtcijfers staat de rangorde er al bij, dus gebruik die liever dan zelf te vergelijken.
 
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan.
 
@@ -335,6 +339,39 @@ def achtergrondtekst():
     return "\n".join(achtergrond_van_de_dag(nieuws)).strip()
 
 
+def _mediaan_rang():
+    """
+    De rangorde van de buurten op prijs per vierkante meter.
+
+    Het model vergelijkt getallen niet betrouwbaar: het schreef dat Bottendaal
+    tussen Stadscentrum en Altrade lag, terwijl het onder allebei lag. Door de
+    rangorde zelf te berekenen en mee te geven hoeft het dat niet te doen.
+    """
+    try:
+        with open("prijstrend.json", encoding="utf-8") as f:
+            trend = json.load(f)
+    except Exception:
+        return {}
+    laatste = {}
+    for buurt, reeks in trend.items():
+        if isinstance(reeks, dict) and reeks:
+            laatste[buurt] = reeks[sorted(reeks)[-1]]
+    if len(laatste) < 2:
+        return {}
+    volgorde = sorted(laatste, key=lambda b: laatste[b])
+    n = len(volgorde)
+    uit = {}
+    for i, b in enumerate(volgorde):
+        if i == 0:
+            omschrijving = f"de laagste prijs per m2 van de {n}"
+        elif i == n - 1:
+            omschrijving = f"de hoogste prijs per m2 van de {n}"
+        else:
+            omschrijving = f"de {i + 1}e van {n} van laag naar hoog in prijs per m2"
+        uit[b] = omschrijving
+    return uit
+
+
 def buurtcijfers_tekst():
     """De buurtcijfers als platte regels, zodat het model ze kan verwerken."""
     try:
@@ -375,6 +412,10 @@ def buurtcijfers_tekst():
             d.append(f"{g['inwoners']} inwoners")
         if verg.get(buurt):
             d.append(f"{verg[buurt]} vergunningen voor kamerverhuur sinds 2013")
+
+        rang = _mediaan_rang().get(buurt)
+        if rang:
+            d.append(f"prijs per m2: {rang}")
 
         # Wie er woont, wat ze verdienen en bezitten
         if g.get("eenpersoons") is not None:
