@@ -511,9 +511,17 @@ def main():
     # actuele stand rekent in plaats van met een vast ingesteld percentage.
     _, r70_nu = scherpsten.get("ltv70", (None, None))
     if r70_nu:
+        # De kapitaalmarktrente erbij, zodat het gezondheidsrapport kan zien of
+        # de ECB-koppeling werkt. Zonder deze regel is dat alleen in de log te
+        # vinden, en daar kijkt niemand.
+        markt, mdatum = haal_kapitaalmarktrente()
+        actueel = {"ltv70": r70_nu, "datum": dt.date.today().isoformat()}
+        if markt is not None:
+            actueel["kapitaalmarkt"] = markt
+            actueel["kapitaalmarkt_datum"] = mdatum
         try:
             with open("rente_actueel.json", "w", encoding="utf-8") as f:
-                json.dump({"ltv70": r70_nu, "datum": dt.date.today().isoformat()}, f)
+                json.dump(actueel, f)
             print(f"Actuele rente weggeschreven: {r70_nu}%", file=sys.stderr)
         except Exception as e:
             print(f"Kon rente_actueel.json niet schrijven: {e}", file=sys.stderr)
