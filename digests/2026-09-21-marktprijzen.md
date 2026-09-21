@@ -15,9 +15,9 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Biezen**
 _mediaan €5.039/m² op 32 waarnemingen . +0,0% sinds 2026-09-13._
 
-_3 panden buiten beeld, mediaan €6.671/m². Die tellen mee in de vergelijking maar vragen geen actie: splitsen valt af op opkoopbescherming._
+_1 pand buiten beeld, mediaan €6.671/m². Die tellen mee in de vergelijking maar vragen geen actie._
 
-_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-15% t.o.v. de buurtmediaan, 3 dagen in aanbod) . [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+1% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+8% t.o.v. de buurtmediaan) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+16% t.o.v. de buurtmediaan, 10 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-15% t.o.v. de buurtmediaan, 3 dagen in aanbod) . [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+1% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+8% t.o.v. de buurtmediaan) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+16% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [Marialaan 56](https://www.google.com/maps/search/?api=1&query=Marialaan+56%2C+Nijmegen) €450.000 (+18% t.o.v. de buurtmediaan, 2 dagen in aanbod) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+38% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
@@ -26,9 +26,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Galgenveld**
 _mediaan €4.782/m² op 29 waarnemingen . -0,2% sinds 2026-09-13._
 
-_1 pand buiten beeld, mediaan €4.156/m². Die tellen mee in de vergelijking maar vragen geen actie: splitsen valt af op opkoopbescherming._
-
-_Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-17% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-15% t.o.v. de buurtmediaan, 5 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-5% t.o.v. de buurtmediaan, 18 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-2% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-2% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+9% t.o.v. de buurtmediaan, 10 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-17% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-15% t.o.v. de buurtmediaan, 5 dagen in aanbod) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-12% t.o.v. de buurtmediaan, 8 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-5% t.o.v. de buurtmediaan, 18 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-2% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-2% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+9% t.o.v. de buurtmediaan, 10 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026) . St. Annastraat 28 €1.021.000 (2026) . Palembangstraat 44 €466.000 (2026) . Pontanusstraat 19 €523.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
@@ -46,9 +44,7 @@ _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze
 **Stadscentrum**
 _mediaan €5.341/m² op 37 waarnemingen . +2,8% sinds 2026-09-13._
 
-_2 panden buiten beeld, mediaan €5.688/m². Die tellen mee in de vergelijking maar vragen geen actie: splitsen valt af op opkoopbescherming._
-
-_Stond er al, vraagprijs ongewijzigd: [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-3% t.o.v. de buurtmediaan) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+7% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-3% t.o.v. de buurtmediaan) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (-2% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+7% t.o.v. de buurtmediaan) . [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) €550.000 (+17% t.o.v. de buurtmediaan, 8 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
 
@@ -59,9 +55,7 @@ _Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de levering
 **Bottendaal**
 _mediaan €4.772/m² op 11 waarnemingen . +0,0% sinds 2026-09-13._
 
-_1 pand buiten beeld, mediaan €4.545/m². Die tellen mee in de vergelijking maar vragen geen actie: splitsen valt af op opkoopbescherming._
-
-_Stond er al, vraagprijs ongewijzigd: [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) €925.000 (-3% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [de Ruyterstraat 37](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+37%2C+Nijmegen) €450.000 (-5% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) €925.000 (-3% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: de Ruyterstraat 37 €514.000 (2026). Daar toetsen we op in plaats van op de vraagprijs._
 
