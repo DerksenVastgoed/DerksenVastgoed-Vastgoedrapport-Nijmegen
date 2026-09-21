@@ -25,6 +25,15 @@ import sys
 
 import requests
 
+try:
+    from diagnose import leg_vast, wis
+except Exception:  # noqa
+    def leg_vast(*_a):
+        pass
+
+    def wis(*_a):
+        pass
+
 TABEL = "85728NED"
 ODATA = f"https://opendata.cbs.nl/ODataApi/OData/{TABEL}/TypedDataSet"
 INDEX_PAD = "bouwkosten_index.json"
@@ -58,6 +67,7 @@ def haal_index():
     # bladeren.
     rijen, url = {}, ODATA
     kolom = None
+    wis("bouwkosten")
     for _ronde in range(25):                    # ruim genoeg voor acht jaar
         try:
             r = requests.get(url, timeout=(15, 60))
@@ -65,6 +75,8 @@ def haal_index():
             body = r.json()
         except Exception as e:
             print(f"Index ophalen mislukt: {e}", file=sys.stderr)
+            leg_vast("bouwkosten", f"Het CBS gaf een fout bij {url[:90]}: "
+                                   f"{str(e)[:200]}")
             return rijen
 
         waarden = body.get("value", [])
@@ -88,6 +100,9 @@ def haal_index():
                 else:
                     print(f"  geen kolom voor de totale bouwkosten gevonden. "
                           f"Beschikbaar: {sleutels}", file=sys.stderr)
+                    leg_vast("bouwkosten",
+                             f"Geen kolom voor de totale bouwkosten. Het CBS gaf "
+                             f"deze kolommen: {', '.join(sleutels)}")
                     return rijen
 
         for rij in waarden:
@@ -105,6 +120,15 @@ def haal_index():
         url = body.get("odata.nextLink") or body.get("@odata.nextLink")
         if not url:
             break
+
+    if not rijen:
+        perioden = sorted({(r.get("Perioden") or "") for r in waarden})[:6] \
+            if waarden else []
+        leg_vast("bouwkosten",
+                 f"Het CBS antwoordde, maar er zaten geen maandcijfers in. Kolom "
+                 f"gebruikt: {kolom}. Voorbeelden van perioden: "
+                 f"{', '.join(perioden) or 'geen'}. Maanden horen de vorm "
+                 f"2026MM07 te hebben.")
     return rijen
 
 
