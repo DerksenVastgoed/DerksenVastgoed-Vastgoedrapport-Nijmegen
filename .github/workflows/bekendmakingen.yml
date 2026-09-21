@@ -414,27 +414,13 @@ jobs:
             echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM}" >> "$GITHUB_ENV"
           fi
 
-      - name: Controle op de nieuwe onderdelen
-        if: env.MODUS != 'dagelijks'
+      - name: Gezondheidsrapport
         continue-on-error: true
         run: |
-          # Deze onderdelen draaien pas sinds kort. Hier zie je in een oogopslag
-          # of ze werkelijk iets hebben opgeleverd, in plaats van stil te falen.
-          echo "Zondagse onderdelen:"
-          for f in regelgeving_status.json onderwerpen_volgen.txt \
-                   bouwkosten_index.json ov_haltes.json; do
-            if [ -s "$f" ]; then
-              echo "  OK        $f ($(wc -c < "$f") bytes)"
-            else
-              echo "  LEEG      $f"
-            fi
-          done
-          if [ -s ov_haltes.json ]; then
-            echo "  haltes:   $(python -c "import json;print(len(json.load(open('ov_haltes.json'))))")"
-          fi
-          if [ -s bouwkosten_index.json ]; then
-            echo "  index:    $(python -c "import json;d=json.load(open('bouwkosten_index.json'));print(f'{len(d)} maanden, laatste {max(d)}')")"
-          fi
+          # Per onderdeel wat er werkelijk is opgeleverd, met de oorzaak bij een
+          # probleem. Kopieer dit blok om het samen te bekijken.
+          python gezondheid.py --uit "digests/${DATUM}-gezondheid.md" \
+            || echo "Gezondheidsrapport kon niet worden gemaakt"
 
       - name: Digests + gegevensbestanden terugcommitten
         run: |
