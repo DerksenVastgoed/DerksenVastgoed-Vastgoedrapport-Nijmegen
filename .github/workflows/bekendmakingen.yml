@@ -460,6 +460,7 @@ jobs:
             rijksmonumenten_nijmegen.json
             top3-kaart.html
             digests/
+            diagnose/
           "
           for f in $BESTANDEN; do
             if [ -e "$f" ]; then
