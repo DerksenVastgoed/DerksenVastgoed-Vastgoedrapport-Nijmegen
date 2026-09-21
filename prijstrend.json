@@ -32,5 +32,23 @@
    "Stadscentrum": 37
   },
   "_nijmegen": 5000
+ },
+ "2026-W39": {
+  "Altrade": 4853,
+  "Benedenstad": 5508,
+  "Biezen": 5039,
+  "Bottendaal": 4773,
+  "Galgenveld": 4783,
+  "Stadscentrum": 5341,
+  "_datum": "2026-09-21",
+  "_n": {
+   "Altrade": 38,
+   "Benedenstad": 9,
+   "Biezen": 32,
+   "Bottendaal": 11,
+   "Galgenveld": 29,
+   "Stadscentrum": 37
+  },
+  "_nijmegen": 5000
  }
 }
