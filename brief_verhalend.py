@@ -160,16 +160,16 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     # --- Woningvoorraad en eigendom ---
     for b in buurten:
         g = cbs[b]
-        if g.get("corp", 0) >= 40:
+        if (g.get("corp") or 0) >= 40:
             weetjes.append(f"in {b} {g['corp']} procent van de woningen van een "
                            f"woningcorporatie is, meer dan waar ook in de ring")
-        if g.get("meergezins", 0) >= 90:
+        if (g.get("meergezins") or 0) >= 90:
             weetjes.append(f"{g['meergezins']} procent van alle woningen in {b} een "
                            f"appartement is")
-        if g.get("koop", 100) <= 15:
+        if (g.get("koop") if g.get("koop") is not None else 100) <= 15:
             weetjes.append(f"in {b} maar {g['koop']} procent van de woningen een "
                            f"koopwoning is")
-        if g.get("koop", 0) >= 50:
+        if (g.get("koop") or 0) >= 50:
             weetjes.append(f"{b} met {g['koop']} procent koopwoningen de meest "
                            f"eigen-bezit buurt van de ring is")
     grootste = max((b for b in buurten if per(b, "won")),
@@ -186,10 +186,10 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     # --- Huishoudens ---
     for b in buurten:
         g = cbs[b]
-        if g.get("eenpersoons", 0) >= 60:
+        if (g.get("eenpersoons") or 0) >= 60:
             weetjes.append(f"in {b} {g['eenpersoons']} procent van de huishoudens uit "
                            f"een persoon bestaat")
-        if g.get("met_kinderen", 100) <= 10:
+        if (g.get("met_kinderen") if g.get("met_kinderen") is not None else 100) <= 10:
             weetjes.append(f"in {b} maar {g['met_kinderen']} procent van de "
                            f"huishoudens kinderen heeft")
     met_gr = [(b, per(b, "huishoudgrootte")) for b in buurten
@@ -561,6 +561,36 @@ def strip_opmaak(tekst, maxlen=14000):
     return "\n".join(regels)[:maxlen]
 
 
+def eerste_zin(tekst):
+    """De eerste zin na de aanhef."""
+    regels = [r.strip() for r in tekst.split("\n") if r.strip()]
+    # Aanhef en kop overslaan
+    inhoud = [r for r in regels
+              if not r.startswith("#") and not re.match(r"^(beste|lieve|hoi)\b",
+                                                         r, re.I)]
+    if not inhoud:
+        return ""
+    alinea = inhoud[0]
+    zin = re.split(r"(?<=[.!?:])\s", alinea, maxsplit=1)[0]
+    return zin.strip()
+
+
+# Openingen die over een afwezigheid gaan. Bewust op het begin van de zin: dat
+# er ergens verderop "geen" staat, is geen probleem.
+_AFWEZIG = re.compile(
+    r"^(vandaag\s+)?("
+    r"(weinig|geen|nauwelijks|amper)\b|"
+    r"(het\s+)?(is|was)\s+(vandaag\s+)?(een\s+)?(rustig|stil|kalm)|"
+    r"(een\s+)?(rustige|stille|kalme)\s+(dag|week)|"
+    r"er\s+(is|was|gebeurde|gebeurt)\s+(vandaag\s+)?(weinig|niets|niks|geen)|"
+    r"niets\b|niks\b|stilte\b)", re.I)
+
+
+def opent_met_afwezigheid(zin):
+    """Gaat deze openingszin over wat er niet is?"""
+    return bool(_AFWEZIG.search(zin.strip())) if zin else False
+
+
 def schrijf_brief(bronnen):
     if not ANTHROPIC_API_KEY:
         print("Geen ANTHROPIC_API_KEY", file=sys.stderr)
@@ -587,8 +617,44 @@ def schrijf_brief(bronnen):
               f"NADRUK VANDAAG: {sturing}\n\n"
               f"GEGEVENS VAN VANDAAG:\n\n{inhoud}\n\n"
               f"Schrijf de brief. Alleen de brieftekst, niets eromheen.")
-    # Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
-    # met ruime wachttijd, want dit is de enige stap die de brief oplevert.
+    tekst = _vraag([{"role": "user", "content": prompt}], woorden)
+    if not tekst:
+        return ""
+
+    # De opening controleren. Een instructie is geen garantie: ondanks de
+    # regel in hoofdletters opende de brief herhaaldelijk met "vandaag weinig
+    # beweging". Dus controleert het script het, en krijgt het model een keer
+    # de kans het te herstellen, met de foute zin erbij.
+    eerste = eerste_zin(tekst)
+    if opent_met_afwezigheid(eerste):
+        print(f"Opening gaat over wat er niet is: '{eerste[:90]}'. "
+              f"Een herstelronde.", file=sys.stderr)
+        correctie = (
+            f"Je eerste zin na de aanhef is: \"{eerste}\"\n\n"
+            f"Die gaat over wat er niet is gebeurd, en dat mag niet. Herschrijf "
+            f"alleen de openingsalinea zo dat de eerste zin begint bij het "
+            f"onderwerp waar de brief over gaat. Dat er weinig beweging was, mag "
+            f"hooguit later terloops. Laat de rest van de brief zo veel mogelijk "
+            f"staan. Geef de volledige brief terug, niets eromheen.")
+        herschreven = _vraag([{"role": "user", "content": prompt},
+                              {"role": "assistant", "content": tekst},
+                              {"role": "user", "content": correctie}], woorden)
+        if herschreven and not opent_met_afwezigheid(eerste_zin(herschreven)):
+            print("  opening hersteld", file=sys.stderr)
+            tekst = herschreven
+        else:
+            print("  herstel lukte niet; de eerste versie blijft staan",
+                  file=sys.stderr)
+    return tekst
+
+
+def _vraag(berichten, woorden):
+    """
+    Een aanroep naar het model, met drie pogingen.
+
+    Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
+    met ruime wachttijd, want dit is de enige stap die de brief oplevert.
+    """
     resp = None
     for poging in range(1, 4):
         try:
@@ -598,7 +664,7 @@ def schrijf_brief(bronnen):
                          "anthropic-version": "2023-06-01",
                          "content-type": "application/json"},
                 json={"model": MODEL, "max_tokens": 16000, "system": PROFIEL,
-                      "messages": [{"role": "user", "content": prompt}]},
+                      "messages": berichten},
                 timeout=(30, 600))
             resp.raise_for_status()
             break
@@ -660,7 +726,12 @@ def main():
         datum_nl = datum_nl.replace(en, nl)
 
     tekst = f"# Vastgoed in Nijmegen, {datum_nl}\n\n{brief}\n"
-    weetje = weetje_van_de_dag()
+    # Het weetje is een toegift. Faalt het, dan komt de brief er toch.
+    try:
+        weetje = weetje_van_de_dag()
+    except Exception as e:
+        print(f"Weetje overgeslagen door een fout: {e}", file=sys.stderr)
+        weetje = ""
     if weetje:
         tekst += f"\n---\n\n**Wist je dat** {weetje}?\n"
     uit = args.uit or f"digests/{d}-verhaal.md"
