@@ -354,12 +354,14 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         if not delen_k:
             return ""
         terug = render_terugblik(lees_historie())
-        return ("\n## Rente verhuurhypotheek\n\n_Onveranderd sinds gisteren: "
+        return ("\n## Marktrente verhuurhypotheek\n\n_Wat een bank nu rekent voor "
+                "een nieuwe verhuurhypotheek, niet de rente op het eigen bezit. "
+                "Onveranderd sinds gisteren: "
                 + ", ".join(delen_k)
                 + ". De volledige doorrekening staat in de brief van zondag._\n"
                 + (f"\n{terug}\n" if terug else ""))
 
-    r = ["", "## Rente verhuurhypotheek"]
+    r = ["", "## Marktrente verhuurhypotheek"]
 
     # Rustige dag: een regel, geen tabel. De volledige analyse verschijnt zodra er iets beweegt.
     if not grote_beweging:
