@@ -104,26 +104,73 @@ ECB_URL = ("https://data-api.ecb.europa.eu/service/data/YC/"
            "B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y")
 
 
-def haal_kapitaalmarktrente():
-    """Meest recente tienjaars AAA-staatsrente uit het ECB Data Portal."""
-    try:
-        r = requests.get(ECB_URL,
-                         params={"lastNObservations": 1, "format": "csvdata"},
-                         headers={"User-Agent": "NijmegenVastgoedMonitor/1.0"},
-                         timeout=30)
-        r.raise_for_status()
-        regels = [x for x in r.text.strip().split("\n") if x.strip()]
-        if len(regels) < 2:
-            return None, None
-        kop = [k.strip().strip('"') for k in regels[0].split(",")]
-        waarden = [k.strip().strip('"') for k in regels[-1].split(",")]
-        rij = dict(zip(kop, waarden))
-        waarde = rij.get("OBS_VALUE")
-        datum = rij.get("TIME_PERIOD", "")
-        return (float(waarde), datum) if waarde else (None, None)
-    except Exception as e:
-        print(f"ECB-rente ophalen mislukt: {e}", file=sys.stderr)
+# Het ECB Data Portal weigert soms met een 403, afhankelijk van hoe je vraagt:
+# een eigen User-Agent of een formaatparameter kan dat veroorzaken. We proberen
+# daarom een paar vormen, en onthouden in de log welke werkt.
+ECB_VARIANTEN = [
+    ("csv via Accept-kop", {"lastNObservations": 1},
+     {"Accept": "text/csv"}),
+    ("csv via formaatparameter", {"lastNObservations": 1, "format": "csvdata"},
+     {}),
+    ("json via Accept-kop", {"lastNObservations": 1},
+     {"Accept": "application/vnd.sdmx.data+json;version=1.0.0-wd"}),
+]
+
+
+def _lees_csv(tekst):
+    regels = [x for x in tekst.strip().split("\n") if x.strip()]
+    if len(regels) < 2:
         return None, None
+    kop = [k.strip().strip('"') for k in regels[0].split(",")]
+    waarden = [k.strip().strip('"') for k in regels[-1].split(",")]
+    rij = dict(zip(kop, waarden))
+    waarde = rij.get("OBS_VALUE")
+    return (float(waarde), rij.get("TIME_PERIOD", "")) if waarde else (None, None)
+
+
+def _lees_json(body):
+    """De SDMX-json-vorm: de laatste waarneming uit de reeks."""
+    try:
+        reeks = next(iter(body["dataSets"][0]["series"].values()))
+        waarnemingen = reeks["observations"]
+        laatste = max(waarnemingen, key=int)
+        waarde = waarnemingen[laatste][0]
+        tijden = body["structure"]["dimensions"]["observation"][0]["values"]
+        datum = tijden[int(laatste)].get("id", "")
+        return float(waarde), datum
+    except Exception:
+        return None, None
+
+
+def haal_kapitaalmarktrente():
+    """
+    Meest recente tienjaars AAA-staatsrente uit het ECB Data Portal.
+
+    Dit is de rente waarop banken hun hypotheekopslag zetten. Hij beweegt
+    eerst; de hypotheekrente volgt weken later. Daarom is hij een vooruitblik
+    op wat banken gaan doen.
+    """
+    fouten = []
+    for naam, params, kop in ECB_VARIANTEN:
+        try:
+            r = requests.get(ECB_URL, params=params, headers=kop, timeout=30)
+            if r.status_code != 200:
+                fouten.append(f"{naam}: {r.status_code}")
+                continue
+            if "json" in r.headers.get("Content-Type", ""):
+                waarde, datum = _lees_json(r.json())
+            else:
+                waarde, datum = _lees_csv(r.text)
+            if waarde is not None:
+                print(f"ECB-rente opgehaald via {naam}: {waarde}% ({datum})",
+                      file=sys.stderr)
+                return waarde, datum
+            fouten.append(f"{naam}: geen waarde in het antwoord")
+        except Exception as e:
+            fouten.append(f"{naam}: {str(e)[:50]}")
+    print("ECB-rente ophalen mislukt op alle manieren: " + "; ".join(fouten),
+          file=sys.stderr)
+    return None, None
 
 
 def render_opslag(vastgoedrente):
@@ -354,12 +401,28 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         if not delen_k:
             return ""
         terug = render_terugblik(lees_historie())
+
+        # De kapitaalmarkt beweegt eerst; de hypotheekrente volgt weken later.
+        # Juist bij een stilstaande hypotheekrente zegt die of er iets aankomt.
+        _, r70 = scherpsten.get("ltv70", (None, None))
+        markt, mdatum = haal_kapitaalmarktrente()
+        opslagregel = ""
+        if markt is not None and r70:
+            opslagregel = (f"\n_Kapitaalmarkt: de tienjaars AAA-staatsrente in de "
+                           f"eurozone staat op " + f"{markt:.2f}".replace(".", ",")
+                           + f"%{f' ({mdatum})' if mdatum else ''}. Banken rekenen "
+                           f"daar voor een verhuurhypotheek bij 70% financiering "
+                           + f"{r70 - markt:.2f}".replace(".", ",")
+                           + " procentpunt bovenop. De kapitaalmarkt beweegt eerst; "
+                             "de hypotheekrente volgt meestal weken later._\n")
+
         return ("\n## Marktrente verhuurhypotheek\n\n_Wat een bank nu rekent voor "
                 "een nieuwe verhuurhypotheek, niet de rente op het eigen bezit. "
                 "Onveranderd sinds gisteren: "
                 + ", ".join(delen_k)
                 + ". De volledige doorrekening staat in de brief van zondag._\n"
-                + (f"\n{terug}\n" if terug else ""))
+                + (f"\n{terug}\n" if terug else "")
+                + opslagregel)
 
     r = ["", "## Marktrente verhuurhypotheek"]
 
