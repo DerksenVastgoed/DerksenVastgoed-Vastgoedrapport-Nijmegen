@@ -199,6 +199,14 @@
   "omweg": 2.57,
   "soort": "bus"
  },
+ "51.84337,5.86511": {
+  "geschat": false,
+  "hemelsbreed": 226,
+  "meters": 336,
+  "naam": "Hertogplein",
+  "omweg": 1.49,
+  "soort": "bus"
+ },
  "51.84338,5.86510": {
   "geschat": false,
   "hemelsbreed": 226,
@@ -485,6 +493,14 @@
   "meters": 209,
   "naam": "Havenweg",
   "omweg": 1.17,
+  "soort": "bus"
+ },
+ "51.85373,5.84653": {
+  "geschat": false,
+  "hemelsbreed": 108,
+  "meters": 161,
+  "naam": "Ferry Portierstraat",
+  "omweg": 1.49,
   "soort": "bus"
  }
 }

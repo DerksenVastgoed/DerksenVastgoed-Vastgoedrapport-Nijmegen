@@ -4501,5 +4501,23 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Waalbandijk|Nijmegen": {
+    "oppervlakte": 91,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "van Welderenstraat|Nijmegen": {
+    "oppervlakte": 27,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511MP",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

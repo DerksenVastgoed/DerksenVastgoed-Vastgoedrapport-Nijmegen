@@ -249,3 +249,7 @@ Mr. Franckenstraat 46 | Nijmegen | 385000 | te koop | 2026-09-19 |  | 97 | 6522A
 
 # Automatisch toegevoegd uit Funda-attendering op 20-09-2026
 Staringstraat 21 | Nijmegen | 299000 | te koop | 2026-09-20 |  | 48 | 6521AG
+
+# Automatisch toegevoegd uit Funda-attendering op 21-09-2026
+Waalbandijk | Nijmegen | 2650 | te huur | 2026-09-21 | pararius | 91 | 6541AA
+van Welderenstraat | Nijmegen | 705 | te huur | 2026-09-21 | pararius | 27 | 6511MP
