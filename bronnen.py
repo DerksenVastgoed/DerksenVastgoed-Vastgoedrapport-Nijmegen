@@ -333,11 +333,17 @@ ACHTERGROND = [
      "van artikel 15: geluid, fietsenstalling, Bouwbesluit en maximaal twee "
      "kamergewijs bewoonde woningen naast elkaar."),
     ("Splitsen in Nijmegen",
-     "Nijmegen kent geen splitsingsvergunning; die begrippen komen in de "
-     "verordening niet voor. Voor de verbouwing is wel een omgevingsvergunning "
-     "nodig, maar bij bestaande bouw geldt het van rechtens verkregen niveau "
-     "in plaats van de nieuwbouwnorm. Dat scheelt aanzienlijk bij vooroorlogse "
-     "panden."),
+     "Splitsen betekent drie verschillende dingen. Juridisch of kadastraal "
+     "splitsen in appartementsrechten is een notariele akte die in het "
+     "Kadaster wordt ingeschreven; daar vraagt Nijmegen geen vergunning voor. "
+     "Fysiek splitsen, van een woning meerdere zelfstandige woningen maken, "
+     "vraagt geen huisvestingsvergunning maar wel een omgevingsvergunning, "
+     "waarbij voor bestaande bouw het van rechtens verkregen niveau geldt en "
+     "niet de nieuwbouwnorm. En verkameren is iets anders: dat is omzetten naar "
+     "onzelfstandige woonruimte, met een eigen vergunningplicht. Voor de WOZ "
+     "telt de fysieke situatie: elke zelfstandige woning krijgt een eigen WOZ, "
+     "ook zonder appartementsrechten, terwijl een verkamerd pand een WOZ houdt "
+     "omdat kamers geen eigen keuken, douche en toilet hebben."),
     ("Btw op verbouwing",
      "Woningverhuur is vrijgesteld van btw, dus de btw op de verbouwing kun je "
      "niet terugvorderen. Sinds 1 januari 2026 geldt bovendien een "
