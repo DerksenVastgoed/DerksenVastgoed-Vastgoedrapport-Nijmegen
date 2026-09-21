@@ -1,1 +1,0 @@
-Geen kolom voor de totale bouwkosten. Het CBS gaf deze kolommen: ID, Componenten, Perioden, InputprijsindexBouwkosten_1, OntwikkelingTOVEenJaarEerder_2
