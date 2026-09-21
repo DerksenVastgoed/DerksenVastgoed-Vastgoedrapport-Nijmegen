@@ -115,7 +115,11 @@ def controle_ecb():
                 "De ECB gaf geen antwoord. Zie stap 8, de regel 'ECB-rente'. Staat "
                 "er 'mislukt op alle manieren', dan blokkeert de ECB verzoeken "
                 "vanaf GitHub en helpt een andere vraagvorm niet.")
-    return (OK, f"tienjaars AAA-rente {markt}% ({d.get('kapitaalmarkt_datum', '')})", "")
+    rente = d.get("ltv70") or d.get("rente")
+    opslag = (f", opslag bij 70% financiering {rente - markt:.2f}".replace(".", ",")
+              + " procentpunt") if rente else ""
+    return (OK, f"tienjaars AAA-rente " + f"{markt:.2f}".replace(".", ",")
+            + f"% ({d.get('kapitaalmarkt_datum', '')}){opslag}", "")
 
 
 def controle_bouwkosten():
