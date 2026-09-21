@@ -41,9 +41,15 @@ INDEX_PAD = "bouwkosten_index.json"
 # Peildatum van de RVO-kostenkentallen waarmee de brief rekent
 PEILDATUM = "2025-05"
 
-# Welke reeks we volgen. De totale bouwkosten zijn de gewogen optelling van
-# loon en materiaal, en dat komt het dichtst bij een verbouwing.
-REEKS = "BouwkostenTotaal"
+# De kolom met het indexcijfer. De tabel heeft ook een kolom met de
+# verandering ten opzichte van een jaar eerder; die mogen we NIET pakken, want
+# dan rekenen we met een percentage in plaats van een indexniveau.
+REEKS = "InputprijsindexBouwkosten_1"
+VERBODEN_KOLOMMEN = ("ontwikkeling", "tov", "mutatie", "verandering")
+
+# De tabel geeft per maand een rij per component: loon, materiaal en totaal.
+# We willen het totaal.
+COMPONENTEN = f"https://opendata.cbs.nl/ODataApi/OData/{TABEL}/Componenten"
 
 
 def _periode_naar_maand(code):
@@ -52,6 +58,29 @@ def _periode_naar_maand(code):
         return ""
     jaar, maand = code.split("MM")
     return f"{jaar}-{maand}"
+
+
+def _totaal_component():
+    """
+    De sleutel van de component 'totaal' in de dimensie Componenten.
+
+    Zonder deze filter krijg je per maand drie rijen, en wint de laatste die
+    toevallig binnenkomt. Dan kan de index ongemerkt op materiaal of loon
+    uitkomen in plaats van op het totaal.
+    """
+    try:
+        r = requests.get(COMPONENTEN, timeout=(15, 60))
+        r.raise_for_status()
+        opties = r.json().get("value", [])
+    except Exception as e:
+        leg_vast("bouwkosten", f"De lijst met componenten kon niet worden "
+                               f"opgehaald: {str(e)[:120]}")
+        return None, []
+    titels = [(o.get("Key", "").strip(), o.get("Title", "")) for o in opties]
+    for sleutel, titel in titels:
+        if "totaal" in titel.lower():
+            return sleutel, titels
+    return None, titels
 
 
 def haal_index():
@@ -68,6 +97,9 @@ def haal_index():
     rijen, url = {}, ODATA
     kolom = None
     wis("bouwkosten")
+    totaal, componenten = _totaal_component()
+    if totaal:
+        print(f"  component totaal: {totaal}", file=sys.stderr)
     for _ronde in range(25):                    # ruim genoeg voor acht jaar
         try:
             r = requests.get(url, timeout=(15, 60))
@@ -89,10 +121,12 @@ def haal_index():
             if REEKS in sleutels:
                 kolom = REEKS
             else:
-                kandidaten = [k for k in sleutels
-                              if "totaal" in k.lower() and "bouwkosten" in k.lower()]
-                kandidaten = kandidaten or [k for k in sleutels
-                                            if "totaal" in k.lower()]
+                bruikbaar = [k for k in sleutels
+                             if not any(v in k.lower() for v in VERBODEN_KOLOMMEN)]
+                kandidaten = [k for k in bruikbaar
+                              if "index" in k.lower() and "bouwkosten" in k.lower()]
+                kandidaten = kandidaten or [k for k in bruikbaar
+                                            if "index" in k.lower()]
                 if kandidaten:
                     kolom = kandidaten[0]
                     print(f"  kolom '{REEKS}' niet gevonden, gebruik '{kolom}'",
@@ -109,6 +143,10 @@ def haal_index():
             maand = _periode_naar_maand((rij.get("Perioden") or "").strip())
             if not maand:
                 continue                        # jaar- en kwartaalcijfers
+            # Alleen de component totaal, anders overschrijven loon en
+            # materiaal elkaar per maand
+            if totaal and (rij.get("Componenten") or "").strip() != totaal:
+                continue
             cijfer = rij.get(kolom)
             if cijfer is None:
                 continue
@@ -121,6 +159,10 @@ def haal_index():
         if not url:
             break
 
+    if not rijen and componenten and not totaal:
+        leg_vast("bouwkosten",
+                 "Geen component 'totaal' gevonden. Beschikbaar: "
+                 + "; ".join(f"{k} = {t}" for k, t in componenten[:6]))
     if not rijen:
         perioden = sorted({(r.get("Perioden") or "") for r in waarden})[:6] \
             if waarden else []
