@@ -1,7 +1,7 @@
 {
  "Altrade": {
   "afstand_huisarts": 0.4,
-  "afstand_school": 0.5,
+  "afstand_school": 0.6,
   "afstand_supermarkt": 0.4,
   "afstand_trein": 1.8,
   "bedrijven": 975,
@@ -32,7 +32,7 @@
  },
  "Benedenstad": {
   "afstand_huisarts": 0.5,
-  "afstand_school": 0.4,
+  "afstand_school": 0.5,
   "afstand_supermarkt": 0.3,
   "afstand_trein": 1.2,
   "bedrijven": 455,
@@ -63,7 +63,7 @@
  },
  "Biezen": {
   "afstand_huisarts": 0.6,
-  "afstand_school": 0.6,
+  "afstand_school": 0.7,
   "afstand_supermarkt": 0.6,
   "afstand_trein": 1.4,
   "bedrijven": 1170,
@@ -94,7 +94,7 @@
  },
  "Bottendaal": {
   "afstand_huisarts": 0.4,
-  "afstand_school": 0.4,
+  "afstand_school": 0.5,
   "afstand_supermarkt": 0.4,
   "afstand_trein": 1.0,
   "bedrijven": 765,
@@ -156,7 +156,7 @@
  },
  "Stadscentrum": {
   "afstand_huisarts": 0.6,
-  "afstand_school": 0.6,
+  "afstand_school": 0.8,
   "afstand_supermarkt": 0.3,
   "afstand_trein": 0.9,
   "bedrijven": 2485,

@@ -1,4 +1,0 @@
-AUTOMATISCH: voor afstand_huisarts is het veld 'huisartsenpraktijk_gemiddelde_afstand_in_km' gekozen, omdat de verwachte naam niet bestond. Controleer of dat klopt.
-AUTOMATISCH: voor afstand_school is het veld 'buitenschoolse_opvang_gem_afstand_in_km' gekozen, omdat de verwachte naam niet bestond. Controleer of dat klopt.
-AUTOMATISCH: voor afstand_supermarkt is het veld 'grote_supermarkt_gemiddelde_afstand_in_km' gekozen, omdat de verwachte naam niet bestond. Controleer of dat klopt.
-AUTOMATISCH: voor afstand_trein is het veld 'treinstation_gemiddelde_afstand_in_km' gekozen, omdat de verwachte naam niet bestond. Controleer of dat klopt.
