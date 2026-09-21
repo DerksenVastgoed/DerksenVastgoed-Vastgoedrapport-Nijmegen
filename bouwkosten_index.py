@@ -57,6 +57,7 @@ def haal_index():
     # zolang er meer rijen zijn. Dus die volgen we, in plaats van zelf te
     # bladeren.
     rijen, url = {}, ODATA
+    kolom = None
     for _ronde in range(25):                    # ruim genoeg voor acht jaar
         try:
             r = requests.get(url, timeout=(15, 60))
@@ -66,14 +67,40 @@ def haal_index():
             print(f"Index ophalen mislukt: {e}", file=sys.stderr)
             return rijen
 
-        for rij in body.get("value", []):
+        waarden = body.get("value", [])
+
+        # De kolomnaam bij het CBS krijgt vaak een achtervoegsel, zoals _1.
+        # Staat de verwachte naam er niet in, dan zoeken we de kolom voor de
+        # totale bouwkosten zelf, en melden we welke we hebben gekozen.
+        if kolom is None and waarden:
+            sleutels = list(waarden[0].keys())
+            if REEKS in sleutels:
+                kolom = REEKS
+            else:
+                kandidaten = [k for k in sleutels
+                              if "totaal" in k.lower() and "bouwkosten" in k.lower()]
+                kandidaten = kandidaten or [k for k in sleutels
+                                            if "totaal" in k.lower()]
+                if kandidaten:
+                    kolom = kandidaten[0]
+                    print(f"  kolom '{REEKS}' niet gevonden, gebruik '{kolom}'",
+                          file=sys.stderr)
+                else:
+                    print(f"  geen kolom voor de totale bouwkosten gevonden. "
+                          f"Beschikbaar: {sleutels}", file=sys.stderr)
+                    return rijen
+
+        for rij in waarden:
             maand = _periode_naar_maand((rij.get("Perioden") or "").strip())
             if not maand:
                 continue                        # jaar- en kwartaalcijfers
-            cijfer = rij.get(REEKS)
+            cijfer = rij.get(kolom)
             if cijfer is None:
                 continue
-            rijen[maand] = float(cijfer)
+            try:
+                rijen[maand] = float(cijfer)
+            except (TypeError, ValueError):
+                continue
 
         url = body.get("odata.nextLink") or body.get("@odata.nextLink")
         if not url:
