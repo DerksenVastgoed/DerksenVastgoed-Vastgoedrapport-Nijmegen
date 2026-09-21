@@ -27,7 +27,8 @@ from email.header import decode_header
 
 IMAP_HOST = "imap.gmail.com"
 VERKOPEN_PAD = "verkopen.txt"
-AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com", "kamernet.nl"]
+AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
+             "kamernet.nl", "vendr.nl"]
 
 GEBRUIKER = os.environ.get("MAIL_USERNAME", "")
 WACHTWOORD = os.environ.get("MAIL_PASSWORD", "")
@@ -312,7 +313,12 @@ def parse_kamernet(regels, basis_status="te huur kamer"):
 RE_PA_POSTCODE = re.compile(
     r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*\(([^)]+)\)\s*$")
 RE_PA_PRIJS = re.compile(r"^\s*€\s*([\d.]+)\s*per maand\s*$")
-RE_PA_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2]\s*$")
+# De oppervlakte staat nu op een regel met de rest van de kenmerken:
+# "40 m² · 2 kamers · Gemeubileerd · Bouwjaar 1888". Vroeger stond hij los.
+# Het patroon accepteert beide.
+RE_PA_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2](?:\s*[·•|].*)?\s*$")
+RE_PA_KAMERS = re.compile(r"(\d{1,2})\s*kamers?", re.I)
+RE_PA_BOUWJAAR = re.compile(r"bouwjaar\s*(\d{4})", re.I)
 RE_PA_TITEL = re.compile(
     r"^\s*(Appartement|Huis|Studio|Kamer|Woonboot|Bungalow)\s+(.+?)\s*$", re.I)
 
@@ -334,13 +340,24 @@ def parse_pararius(regels):
         if plaats.lower() not in ("nijmegen", "lent"):
             continue
 
-        # Titel met soort en straat staat boven de postcode
+        # Boven de postcode staat de straat. Vroeger als "Appartement
+        # Berg en Dalseweg", nu vaak alleen "Berg en Dalseweg". We nemen de
+        # soort mee als die er is, en anders de kale straatnaam.
         soort = straat = None
         for j in range(i - 1, max(-1, i - 6), -1):
             tm = RE_PA_TITEL.match(regels[j])
             if tm:
                 soort, straat = tm.group(1).lower(), tm.group(2).strip()
                 break
+        if not straat and i > 0:
+            kandidaat = regels[i - 1].strip()
+            # Een straatnaam: letters, geen prijs, geen reclametekst
+            if (kandidaat and not any(c.isdigit() for c in kandidaat)
+                    and "€" not in kandidaat and len(kandidaat) < 60
+                    and not any(w in kandidaat.lower() for w in
+                                ("pararius", "bekijk", "zoekopdracht", "woning",
+                                 "kijkje", "ontdek"))):
+                straat = kandidaat
         if not straat:
             continue
 
@@ -360,11 +377,22 @@ def parse_pararius(regels):
                     break  # er is maar een prijs, dus dat is de huur
                 break
 
-        opp = None
+        opp = kamers = bouwjaar = None
+        gemeubileerd = False
         for j in range(i + 1, min(len(regels), i + 16)):
             om = RE_PA_OPP.match(regels[j])
             if om:
                 opp = int(om.group(1))
+                km = RE_PA_KAMERS.search(regels[j])
+                kamers = int(km.group(1)) if km else None
+                bj = RE_PA_BOUWJAAR.search(regels[j])
+                bouwjaar = int(bj.group(1)) if bj else None
+                # Gemeubileerd is een andere markt: de huur ligt hoger omdat de
+                # inrichting erbij zit. "Gestoffeerd of gemeubileerd" telt als
+                # gestoffeerd, want dan kan de huurder kiezen.
+                laag = regels[j].lower()
+                gemeubileerd = ("gemeubileerd" in laag
+                                and "gestoffeerd" not in laag)
                 break
 
         beheerder = ""
@@ -380,6 +408,9 @@ def parse_pararius(regels):
         if not (prijs and opp):
             overgeslagen.append(f"{straat} (onvolledig)")
             continue
+        if gemeubileerd:
+            overgeslagen.append(f"{straat} (gemeubileerd, andere markt)")
+            continue
 
         status = "te huur kamer" if soort == "kamer" else "te huur"
         sleutel = (straat.lower(), prijs, opp)
@@ -388,6 +419,55 @@ def parse_pararius(regels):
         gezien.add(sleutel)
         gevonden.append(f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
                         f"| pararius | {opp} | {postcode}")
+    return gevonden, overgeslagen
+
+
+
+
+# Vendr is een biedplatform: objecten worden bij opbod aangeboden, dus er staat
+# geen vraagprijs in de mail. Het adres staat op een regel met de postcode
+# erachter, gescheiden door een komma.
+RE_VENDR = re.compile(
+    r"^\s*([A-Za-zÀ-ÿ.'\- ]+?\s+\d+[A-Za-z]?)\s*,\s*(\d{4}\s?[A-Z]{2})\s+"
+    r"([A-Za-zÀ-ÿ\-' ]+?)\s*$")
+
+VENDR_PLAATSEN = ("nijmegen", "lent", "weurt", "beuningen", "malden",
+                  "berg en dal", "ubbergen", "elst", "bemmel")
+
+
+def parse_vendr(regels):
+    """
+    Leest een Vendr-attendering. Geen prijs, want er wordt geboden. We leggen
+    het adres vast; de brief rekent er zelf een maximum bod bij uit.
+    """
+    gevonden, gezien, overgeslagen = [], {}, []
+    plaatsen = {}
+    vandaag = dt.date.today().isoformat()
+    for i, regel in enumerate(regels):
+        m = RE_VENDR.match(regel)
+        if not m:
+            continue
+        adres, postcode, plaats = (m.group(1).strip(),
+                                   m.group(2).replace(" ", ""),
+                                   m.group(3).strip())
+
+        if plaats.lower() not in VENDR_PLAATSEN:
+            overgeslagen.append(f"{adres} ({plaats})")
+            continue
+        plaatsen[postcode] = plaats
+        # In de kopregel staat de projectnaam voor het adres geplakt, verderop
+        # staat het adres los. We groeperen op postcode en huisnummer en houden
+        # de kortste schrijfwijze over.
+        nr = re.search(r"(\d+[A-Za-z]?)\s*$", adres)
+        sleutel = (postcode, nr.group(1) if nr else adres.lower())
+        if sleutel not in gezien or len(adres) < len(gezien[sleutel]):
+            gezien[sleutel] = adres
+
+    for (postcode, _nr), adres in gezien.items():
+        plaats = plaatsen.get(postcode, "Nijmegen")
+        # Prijs 0 betekent: bij opbod, nog geen vraagprijs
+        gevonden.append(f"{adres} | {plaats} | 0 | bieden | {vandaag} "
+                        f"| vendr |  | {postcode}")
     return gevonden, overgeslagen
 
 
@@ -478,7 +558,9 @@ def main():
         # Per bron een ander basisgeval. Kamernet gaat over onzelfstandige
         # eenheden; die moeten apart blijven, anders trekken ze de huur per m2
         # voor gewone woningen omhoog.
-        if "kamernet" in afzender or "kamernet" in blob:
+        if "vendr" in afzender or "vendr" in blob:
+            soort_bron, status_label = "vendr", "bieden"
+        elif "kamernet" in afzender or "kamernet" in blob:
             soort_bron, status_label = "kamernet", "te huur kamer"
         elif "pararius" in afzender or "pararius" in blob:
             soort_bron, status_label = "pararius", "te huur"
@@ -487,7 +569,9 @@ def main():
         else:
             soort_bron, status_label = "regulier", "te koop"
 
-        if soort_bron == "kamernet":
+        if soort_bron == "vendr":
+            objecten, overgeslagen = parse_vendr(regels)
+        elif soort_bron == "kamernet":
             objecten, overgeslagen = parse_kamernet(regels)
         elif soort_bron == "pararius":
             objecten, overgeslagen = parse_pararius(regels)
