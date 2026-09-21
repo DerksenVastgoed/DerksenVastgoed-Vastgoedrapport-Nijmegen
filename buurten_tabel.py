@@ -91,6 +91,57 @@ def _eigendom(p):
 
 
 
+def _zoek_veld(props, bekende_namen, moet_bevatten, mag_niet_bevatten=()):
+    """
+    Zoek een veld, ook als het CBS de naam heeft veranderd.
+
+    Eerst de bekende namen. Staat geen daarvan erin, dan het eerste veld dat
+    ALLE woorden uit moet_bevatten heeft en geen enkel woord uit
+    mag_niet_bevatten. Die regel is bewust streng: liever geen waarde dan een
+    verkeerde. Een afstand tot een bos is geen afstand tot een station.
+
+    Geeft de gebruikte naam terug, zodat het rapport kan melden dat er iets
+    automatisch is gekozen.
+    """
+    for naam in bekende_namen:
+        if naam in props:
+            return naam, False
+    for naam in sorted(props):
+        laag = naam.lower()
+        if (all(w in laag for w in moet_bevatten)
+                and not any(w in laag for w in mag_niet_bevatten)):
+            return naam, True
+    return None, False
+
+
+# Per soort: welke woorden moeten in de veldnaam staan, en welke niet
+AFSTAND_REGELS = {
+    "trein": (["afstand", "trein"], ["begraaf", "bos", "natuur", "recreat"]),
+    "supermarkt": (["afstand", "supermarkt"], []),
+    "huisarts": (["afstand", "huisarts"], ["post"]),
+    "school": (["afstand", "school"], ["hoger", "voortgezet_onderwijs_havo"]),
+}
+_AUTOMATISCH_GEKOZEN = {}
+
+
+def _afstand(props, soort, bekende):
+    moet, niet = AFSTAND_REGELS.get(soort, (["afstand", soort], []))
+    naam, automatisch = _zoek_veld(props, bekende, moet, niet)
+    if not naam:
+        return None
+    if automatisch:
+        _AUTOMATISCH_GEKOZEN[f"afstand_{soort}"] = naam
+    return _getal(props, [naam], 0, 100, decimalen=1)
+
+
+def _eerste_bekend(*waarden):
+    """De eerste waarde die niet None is. Anders dan 'or' telt nul hier mee."""
+    for w in waarden:
+        if w is not None:
+            return w
+    return None
+
+
 def _gemiddelde_leeftijd(props):
     """
     Gewogen gemiddelde leeftijd uit de leeftijdsgroepen van het CBS.
@@ -196,12 +247,15 @@ GROOTTE_VELDEN = [
 # Leeftijdsopbouw. Het CBS geeft inwoners per leeftijdsgroep; daar rekenen we
 # een gewogen gemiddelde uit. Het middelpunt van de open bovengroep zetten we
 # op 80, want daarboven wordt de groep snel dunner.
+# Het CBS levert hier percentages per groep, geen aantallen. Voor een gewogen
+# gemiddelde maakt dat niet uit: de gewichten tellen op tot honderd.
 LEEFTIJDSGROEPEN = [
-    (["aantal_inwoners_0_tot_15_jaar", "aantal_inwoners_0_tot_14_jaar"], 7.5),
-    (["aantal_inwoners_15_tot_25_jaar"], 20),
-    (["aantal_inwoners_25_tot_45_jaar"], 35),
-    (["aantal_inwoners_45_tot_65_jaar"], 55),
-    (["aantal_inwoners_65_jaar_en_ouder", "aantal_inwoners_65_jaar_of_ouder"], 75),
+    (["percentage_personen_0_tot_15_jaar", "aantal_inwoners_0_tot_15_jaar"], 7.5),
+    (["percentage_personen_15_tot_25_jaar", "aantal_inwoners_15_tot_25_jaar"], 20),
+    (["percentage_personen_25_tot_45_jaar", "aantal_inwoners_25_tot_45_jaar"], 35),
+    (["percentage_personen_45_tot_65_jaar", "aantal_inwoners_45_tot_65_jaar"], 55),
+    (["percentage_personen_65_jaar_en_ouder", "aantal_inwoners_65_jaar_en_ouder"],
+     75),
 ]
 
 # Nabijheid van voorzieningen, in kilometers. Het CBS levert dit per buurt als
@@ -224,8 +278,14 @@ OPPERVLAKTE_VELDEN = [
 ]
 
 
-def _getal(p, namen, minimum=None, maximum=None):
-    """Haalt een getal op en controleert of het binnen een zinnig bereik valt."""
+def _getal(p, namen, minimum=None, maximum=None, decimalen=0):
+    """
+    Haalt een getal op en controleert of het binnen een zinnig bereik valt.
+
+    Standaard afgerond op een heel getal, wat goed is voor aantallen en
+    percentages. Afstanden, huishoudgrootte en inkomen hebben een decimaal
+    nodig: 1,4 kilometer is geen 1, en 1,9 personen per huishouden is geen 2.
+    """
     v = _veld(p, namen)
     try:
         v = float(v)
@@ -235,7 +295,7 @@ def _getal(p, namen, minimum=None, maximum=None):
         return None
     if maximum is not None and v > maximum:
         return None
-    return round(v)
+    return round(v, decimalen) if decimalen else round(v)
 
 
 def _oppervlakte(p):
@@ -339,20 +399,29 @@ def main():
             "nietwoningen": _getal(p_nu, ["aantal_niet_woningvoorraad"], 0),
             # Leeftijd en bereikbaarheid
             "leeftijd": _gemiddelde_leeftijd(p_nu),
-            **{f"afstand_{soort}": _getal(p_nu, velden, 0, 100)
+            **{f"afstand_{soort}": _afstand(p_nu, soort, velden)
                for soort, velden in AFSTAND_VELDEN.items()},
             # Huishoudens: wie woont er alleen en wie met hoeveel
             "huishoudens": _getal(p_nu, HUISHOUDENS_VELDEN, 0),
             "eenpersoons": _getal(p_nu, EENPERSOONS_VELDEN, 0, 100),
             "zonder_kinderen": _getal(p_nu, ZONDER_KINDEREN_VELDEN, 0, 100),
             "met_kinderen": _getal(p_nu, MET_KINDEREN_VELDEN, 0, 100),
-            "huishoudgrootte": _getal(p_nu, GROOTTE_VELDEN, 1, 6),
+            "huishoudgrootte": _getal(p_nu, GROOTTE_VELDEN, 1, 6, decimalen=1),
             # Inkomen zegt wat de buurt kan dragen aan huur
             # Ondergrens 1 in plaats van 0: het CBS zet -99999997 bij ontbrekend
-            "inkomen": _getal(p_nu, INKOMEN_VELDEN, 1, 500),
+            # Inkomen en vermogen publiceert het CBS met twee jaar vertraging.
+            # Is het cijfer voor dit jaar er nog niet, dan het oudere jaar.
+            "inkomen": (_getal(p_nu, INKOMEN_VELDEN, 1, 500, decimalen=1)
+                        or _getal(p_toen or {}, INKOMEN_VELDEN, 1, 500,
+                                  decimalen=1)),
             "inkomen_ontvanger": _getal(p_nu, INKOMEN_ONTVANGER_VELDEN, 0, 500),
-            "laag_inkomen": _getal(p_nu, LAAG_INKOMEN_VELDEN, 0, 100),
-            "vermogen": _getal(p_nu, VERMOGEN_VELDEN, -400, 5000),
+            "laag_inkomen": (_getal(p_nu, LAAG_INKOMEN_VELDEN, 0, 100)
+                             or _getal(p_toen or {}, LAAG_INKOMEN_VELDEN, 0, 100)),
+            # Vermogen kan terecht nul of negatief zijn, dus alleen terugvallen
+            # als er werkelijk niets is, niet bij een waarde van nul.
+            "vermogen": _eerste_bekend(
+                _getal(p_nu, VERMOGEN_VELDEN, -400, 5000),
+                _getal(p_toen or {}, VERMOGEN_VELDEN, -400, 5000)),
             "sociaal_minimum": _getal(p_nu, MINIMUM_VELDEN, 0, 100),
             "bedrijven": _getal(p_nu, ["aantal_bedrijfsvestigingen"], 0),
             "leegstand": _getal(p_nu, ["percentage_leegstand_woningen"], 0, 100),
@@ -381,6 +450,10 @@ def main():
 
     wis("buurtcijfers")
     eerste_d = _buurt_props(feats_nu, BUURTEN[0][0]) or {}
+    for veld, naam in sorted(_AUTOMATISCH_GEKOZEN.items()):
+        leg_vast("buurtcijfers",
+                 f"AUTOMATISCH: voor {veld} is het veld '{naam}' gekozen, omdat "
+                 f"de verwachte naam niet bestond. Controleer of dat klopt.")
 
     def _meld(veld, zoekwoorden, namen):
         """Bestaat het veld maar is het leeg, of heet het anders?"""
@@ -395,8 +468,14 @@ def main():
                      f"negatieve waarde meestal dat het cijfer voor dit jaar nog "
                      f"niet gepubliceerd is.")
             return
-        lijkt = sorted(k for k in eerste_d
-                       if any(z in k.lower() for z in zoekwoorden))[:8]
+        # De meest specifieke zoekwoorden eerst, zodat "trein" niet wegvalt
+        # achter acht velden met "afstand" erin
+        lijkt = []
+        for z in zoekwoorden:
+            for k in sorted(eerste_d):
+                if z in k.lower() and k not in lijkt:
+                    lijkt.append(k)
+        lijkt = lijkt[:8]
         leg_vast("buurtcijfers",
                  f"{veld}: niet gevonden onder de verwachte namen. Velden die erop "
                  f"lijken: {', '.join(lijkt) if lijkt else 'geen'}.")
@@ -405,7 +484,7 @@ def main():
     _meld("vermogen", ("vermogen",), VERMOGEN_VELDEN)
     _meld("leeftijd", ("jaar", "leeftijd"),
           [n for groep, _m in LEEFTIJDSGROEPEN for n in groep])
-    _meld("afstand_trein", ("afstand", "station", "trein"),
+    _meld("afstand_trein", ("trein", "station", "overstap", "afstand"),
           AFSTAND_VELDEN["trein"])
 
     if rijen and not any(r.get("afstand_trein") for r in rijen):
