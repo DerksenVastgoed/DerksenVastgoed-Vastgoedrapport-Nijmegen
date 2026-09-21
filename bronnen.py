@@ -369,11 +369,14 @@ ACHTERGROND = [
      "elkaar mag niet, en bij vijf kamers komt de brandveiligheid erbij. Boete "
      "bij omzetten zonder vergunning: tienduizend euro, bij herhaling vijftien."),
     ("Veiligheid en verhuurbaarheid",
-     "De politiecijfers gaan per buurt en per jaar, dus ze zeggen niets over een "
-     "straat. Wat ze wel doen is het verschil laten zien: Stadscentrum telt bijna "
-     "vijf keer zoveel vernielingen per duizend inwoners als Galgenveld. Dat "
-     "raakt je huurderspoule en je exitwaarde, ook nu de leefbaarheidstoets "
-     "vervalt."),
+     "De politie registreert een misdrijf op de plek waar het gebeurt, niet waar "
+     "het slachtoffer woont. Dat maakt uit welk cijfer je gebruikt. Fietsendiefstal "
+     "en vernieling vinden vooral plaats waar veel mensen komen: bij het station, "
+     "in winkelstraten en in het uitgaansgebied. Deel je die door het aantal "
+     "bewoners, dan lijkt een centrum onveilig terwijl het vooral druk is. "
+     "Woninginbraak is het cijfer dat over de bewoners zelf gaat, want het "
+     "gebeurt bij iemand thuis. Wie wil weten of een buurt prettig wonen is voor "
+     "een huurder, kijkt dus eerst naar inbraak en pas daarna naar de rest."),
     ("Waarom oppervlakte zo vaak misgaat",
      "De BAG kent een oppervlakte per verblijfsobject, niet per huisnummer. "
      "Bij een pand dat is opgedeeld in een boven- en benedenhuis staat soms "
