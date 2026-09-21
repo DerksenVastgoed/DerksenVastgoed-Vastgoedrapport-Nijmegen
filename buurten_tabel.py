@@ -119,7 +119,9 @@ AFSTAND_REGELS = {
     "trein": (["afstand", "trein"], ["begraaf", "bos", "natuur", "recreat"]),
     "supermarkt": (["afstand", "supermarkt"], []),
     "huisarts": (["afstand", "huisarts"], ["post"]),
-    "school": (["afstand", "school"], ["hoger", "voortgezet_onderwijs_havo"]),
+    # "Buitenschoolse opvang" bevat het woord school maar is kinderopvang.
+    # Daarom eisen we "basis" en sluiten we opvang uit.
+    "school": (["afstand", "basis"], ["opvang", "buitenschool", "kinderdag"]),
 }
 _AUTOMATISCH_GEKOZEN = {}
 
@@ -260,14 +262,22 @@ LEEFTIJDSGROEPEN = [
 
 # Nabijheid van voorzieningen, in kilometers. Het CBS levert dit per buurt als
 # gemiddelde afstand van een inwoner tot de dichtstbijzijnde voorziening.
+# De eerste naam per soort is bevestigd in de run van 21 september 2026: het
+# CBS schrijft ze als "<voorziening>_gemiddelde_afstand_in_km". De overige
+# namen zijn oudere varianten, voor als het CBS terugvalt.
 AFSTAND_VELDEN = {
-    "trein": ["afstand_tot_belangrijk_overstapstation",
-              "afstand_tot_treinstation", "gemiddelde_afstand_tot_treinstation"],
-    "supermarkt": ["afstand_tot_grote_supermarkt",
-                   "gemiddelde_afstand_tot_grote_supermarkt"],
-    "huisarts": ["afstand_tot_huisartsenpraktijk",
-                 "gemiddelde_afstand_tot_huisartsenpraktijk"],
-    "school": ["afstand_tot_school", "gemiddelde_afstand_tot_school"],
+    "trein": ["treinstation_gemiddelde_afstand_in_km",
+              "afstand_tot_belangrijk_overstapstation",
+              "afstand_tot_treinstation"],
+    "supermarkt": ["grote_supermarkt_gemiddelde_afstand_in_km",
+                   "afstand_tot_grote_supermarkt"],
+    "huisarts": ["huisartsenpraktijk_gemiddelde_afstand_in_km",
+                 "afstand_tot_huisartsenpraktijk"],
+    # Nog niet bevestigd. De automatische keuze pakte op 21 september de
+    # buitenschoolse opvang, wat geen school is.
+    "school": ["basisonderwijs_gemiddelde_afstand_in_km",
+               "basisschool_gemiddelde_afstand_in_km",
+               "afstand_tot_school"],
 }
 
 OPPERVLAKTE_VELDEN = [
