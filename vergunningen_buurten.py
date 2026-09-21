@@ -22,6 +22,15 @@ import time
 
 import requests
 
+try:
+    from diagnose import leg_vast, wis
+except Exception:  # noqa
+    def leg_vast(*_a):
+        pass
+
+    def wis(*_a):
+        pass
+
 BRON = "kamervergunningen.json"
 UIT = "vergunningen_per_buurt.json"
 STRAATCACHE = "straat_buurt_cache.json"
@@ -39,20 +48,34 @@ def lees_cache():
     return {}
 
 
+# Straten waarvoor geen buurt werd gevonden, met wat PDOK teruggaf. Voor de
+# diagnose in het gezondheidsrapport.
+_MISLUKT = []
+
+
 def buurt_van_straat(straat, cache):
     """Zoekt de buurt van een straat op. Resultaten worden bewaard."""
-    if straat in cache:
+    # Een lege waarde in de cache is geen antwoord maar een eerdere mislukking.
+    # Die opnieuw proberen, anders blijft een reparatie van de zoekopdracht
+    # zonder effect: alle straten stonden er met een lege buurt in.
+    if cache.get(straat):
         return cache[straat]
+    # Zoeken op een adres in die straat, niet op de straat zelf. Een straat
+    # loopt vaak door meerdere buurten, en PDOK geeft bij een straat daarom
+    # geen buurtnaam mee. Een adres heeft die wel.
     try:
         r = requests.get(PDOK, params={
-            "q": f"{straat} Nijmegen", "fq": "type:weg", "rows": 1,
+            "q": f"{straat} Nijmegen", "fq": "type:adres", "rows": 1,
             "fl": "buurtnaam wijknaam weergavenaam",
         }, headers=HEADERS, timeout=20)
         r.raise_for_status()
         docs = r.json().get("response", {}).get("docs", [])
         buurt = docs[0].get("buurtnaam", "") if docs else ""
+        if not buurt:
+            _MISLUKT.append((straat, docs[0] if docs else "geen treffer"))
     except Exception as e:
         print(f"  fout bij {straat}: {e}", file=sys.stderr)
+        _MISLUKT.append((straat, f"fout: {str(e)[:80]}"))
         buurt = ""
     cache[straat] = buurt
     time.sleep(0.2)
@@ -79,7 +102,7 @@ def main():
           f"{len(per_straat)} straten", file=sys.stderr)
 
     cache = lees_cache()
-    nieuw = sum(1 for s in per_straat if s not in cache)
+    nieuw = sum(1 for s in per_straat if not cache.get(s))
     if nieuw:
         print(f"{nieuw} straten nog op te zoeken, ongeveer "
               f"{nieuw * 0.4 / 60:.0f} minuten", file=sys.stderr)
@@ -101,6 +124,22 @@ def main():
         json.dump(cache, f, ensure_ascii=False, indent=1, sort_keys=True)
     with open(UIT, "w", encoding="utf-8") as f:
         json.dump(dict(per_buurt), f, ensure_ascii=False, indent=1, sort_keys=True)
+
+    # Diagnose voor het gezondheidsrapport
+    wis("vergunningen")
+    gekoppeld = sum(per_buurt.values())
+    totaal = gekoppeld + zonder_buurt
+    if not per_buurt:
+        voorbeeld = _MISLUKT[0] if _MISLUKT else ("-", "niets")
+        leg_vast("vergunningen",
+                 f"Geen enkele straat gekoppeld aan een buurt ({len(per_straat)} "
+                 f"straten geprobeerd). Voorbeeld: '{voorbeeld[0]}' gaf "
+                 f"{str(voorbeeld[1])[:200]}")
+    elif zonder_buurt > totaal * 0.3:
+        leg_vast("vergunningen",
+                 f"{zonder_buurt} van {totaal} vergunningen zonder buurt. "
+                 f"Voorbeelden: "
+                 + "; ".join(f"{s}" for s, _ in _MISLUKT[:5]))
 
     print(f"\nVergunningen per buurt, weggeschreven naar {UIT}:", file=sys.stderr)
     for buurt, n in per_buurt.most_common(15):
