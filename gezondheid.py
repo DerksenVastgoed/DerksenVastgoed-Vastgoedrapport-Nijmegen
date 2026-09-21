@@ -29,14 +29,30 @@ DIAGNOSE_MAP = "diagnose"
 
 
 def diagnose(onderdeel):
-    """De diagnose die een script zelf heeft achtergelaten, als die er is."""
+    """
+    De diagnose die een script zelf heeft achtergelaten, als die er is.
+
+    Dubbele regels eruit: een script dat twee keer draait of twee keer
+    hetzelfde vaststelt, hoort het maar een keer te zeggen.
+    """
     pad = os.path.join(DIAGNOSE_MAP, f"{onderdeel}.txt")
     try:
         with open(pad, encoding="utf-8") as f:
-            tekst = f.read().strip()
-        return tekst[:900] if tekst else ""
+            regels = [r.strip() for r in f if r.strip()]
     except Exception:
         return ""
+    uniek = []
+    for r in regels:
+        if r not in uniek:
+            uniek.append(r)
+    return " ".join(uniek)
+
+
+def _kort(tekst, maximum=240):
+    """Een diagnose inkorten tot iets wat in een bericht past."""
+    if len(tekst) <= maximum:
+        return tekst
+    return tekst[:maximum].rsplit(" ", 1)[0] + " (...)"
 VANDAAG = dt.date.today()
 
 
@@ -291,7 +307,7 @@ CONTROLES = [
 ]
 
 
-def rapport():
+def rapport(kort=False):
     uitkomsten = []
     for naam, functie in CONTROLES:
         try:
@@ -301,6 +317,24 @@ def rapport():
         uitkomsten.append((naam, status, bewijs, diagnose))
 
     aantal = {s: sum(1 for u in uitkomsten if u[1] == s) for s in (OK, LET_OP, FOUT)}
+
+    if kort:
+        # De versie om te plakken: alleen wat aandacht vraagt, ingekort, en de
+        # onderdelen die goed gaan in een regel
+        r = [f"GEZONDHEID {VANDAAG.isoformat()}: {aantal[OK]} ok, "
+             f"{aantal[LET_OP]} let op, {aantal[FOUT]} fout"]
+        for status in (FOUT, LET_OP):
+            for naam, s_, bewijs, diag in uitkomsten:
+                if s_ != status:
+                    continue
+                r.append(f"[{status}] {naam}: {bewijs}")
+                if diag:
+                    r.append(f"   {_kort(diag)}")
+        goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
+        if goed:
+            r.append("[OK] " + ", ".join(goed))
+        return "\n".join(r)
+
     r = [f"# Gezondheidsrapport {VANDAAG.isoformat()}", "",
          f"{aantal[OK]} in orde, {aantal[LET_OP]} aandachtspunten, "
          f"{aantal[FOUT]} fouten.", ""]
@@ -311,10 +345,10 @@ def rapport():
         if not groep:
             continue
         r.append(f"## {status}")
-        for naam, _s, bewijs, diagnose in groep:
+        for naam, _s, bewijs, diag in groep:
             r.append(f"- **{naam}**: {bewijs}")
-            if diagnose:
-                r.append(f"  {diagnose}")
+            if diag:
+                r.append(f"  {diag}")
         r.append("")
     return "\n".join(r)
 
@@ -323,12 +357,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="")
     args = ap.parse_args()
-    tekst = rapport()
-    print(tekst)
+
+    # In de log de korte versie, om te kopieren en te delen. In het bestand de
+    # volledige versie, voor als je alle details wilt nalezen.
+    print("=" * 60)
+    print("KOPIEER VANAF HIER")
+    print("=" * 60)
+    print(rapport(kort=True))
+    print("=" * 60)
+    print("TOT HIER")
+    print("=" * 60)
     if args.uit:
         os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
         with open(args.uit, "w", encoding="utf-8") as f:
-            f.write(tekst + "\n")
+            f.write(rapport(kort=False) + "\n")
+        print(f"\nVolledig rapport met alle details: {args.uit}")
 
 
 if __name__ == "__main__":
