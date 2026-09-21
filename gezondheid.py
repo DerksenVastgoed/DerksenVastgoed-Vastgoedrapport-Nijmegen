@@ -21,6 +21,22 @@ import os
 import sys
 
 OK, LET_OP, FOUT = "OK", "LET OP", "FOUT"
+
+# De scripts schrijven bij een probleem hun eigen diagnose weg in deze map.
+# Het rapport neemt die over, zodat de oorzaak in het rapport staat en je niet
+# in de logs hoeft te zoeken.
+DIAGNOSE_MAP = "diagnose"
+
+
+def diagnose(onderdeel):
+    """De diagnose die een script zelf heeft achtergelaten, als die er is."""
+    pad = os.path.join(DIAGNOSE_MAP, f"{onderdeel}.txt")
+    try:
+        with open(pad, encoding="utf-8") as f:
+            tekst = f.read().strip()
+        return tekst[:900] if tekst else ""
+    except Exception:
+        return ""
 VANDAAG = dt.date.today()
 
 
@@ -126,7 +142,8 @@ def controle_bouwkosten():
     d = _json("bouwkosten_index.json") or {}
     if not d:
         return (FOUT, "bouwkosten_index.json ontbreekt of is leeg",
-                "De verbouwkosten worden niet geindexeerd. Zie stap 17.")
+                diagnose("bouwkosten")
+                or "De verbouwkosten worden niet geindexeerd. Zie stap 17.")
     laatste = max(d)
     return (OK, f"{len(d)} maanden, laatste {laatste}", "")
 
@@ -153,8 +170,9 @@ def controle_buurtcijfers():
     bewijs = f"{len(buurten)} buurten"
     if ontbreekt:
         return (LET_OP, bewijs + f"; ontbreekt: {', '.join(ontbreekt)}",
-                "Deze velden worden niet gevonden in de CBS-kaart. In stap 7 staat "
-                "welke veldnamen er wel zijn; die moeten in buurten_tabel.py.")
+                diagnose("buurtcijfers")
+                or "Deze velden worden niet gevonden in de CBS-kaart. In stap 7 "
+                   "staat welke veldnamen er wel zijn.")
     return (OK, bewijs + ", alle velden gevuld", "")
 
 
@@ -166,8 +184,9 @@ def controle_vergunningen():
     if len(per_buurt) < 3:
         return (LET_OP, f"{len(lijst)} adressen, maar {len(per_buurt)} buurten "
                         f"gekoppeld",
-                "De koppeling aan buurten is niet gemaakt; de kolom in de brief "
-                "blijft leeg. Zie stap 5.")
+                diagnose("vergunningen")
+                or "De koppeling aan buurten is niet gemaakt; de kolom in de brief "
+                   "blijft leeg. Zie stap 5.")
     return (OK, f"{len(lijst)} adressen in {len(per_buurt)} buurten", "")
 
 
