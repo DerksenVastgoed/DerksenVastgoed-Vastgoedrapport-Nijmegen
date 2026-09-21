@@ -1601,6 +1601,29 @@ def misdrijfregel(buurt, misdrijven, inwoners=None):
     return regel
 
 
+def _uitleg_blokkade(route, reden):
+    """
+    Waarom valt een route af, met het mechanisme erbij.
+
+    Alleen het woord "opkoopbescherming" liet de brief zelf invullen hoe dat
+    werkt, en dan ging het mis: de brief concludeerde dat je "net boven de
+    grens" moest zoeken, terwijl je bij splitsen in twee ruwweg het dubbele
+    nodig hebt. Het mechanisme en de rekensom staan er daarom nu bij.
+    """
+    grens = OPKOOPBESCHERMING_WOZ
+    # De opkoopbescherming toetst de WOZ van het pand bij aankoop, niet die van
+    # eenheden die je daarna zelf maakt (artikel 19 Huisvestingsverordening
+    # Nijmegen 2024). Een eerdere versie van deze tekst rekende per eenheid en
+    # noemde een ondergrens van twee keer de grens; dat was fout.
+    if reden == "opkoopbescherming":
+        wat = "splitsen om te verhuren" if route == "splitsen" else "kamerverhuur"
+        return (f"{wat} valt af op de opkoopbescherming: het pand heeft een WOZ "
+                f"van €{eu(grens)} of minder, en dan mag je het na aankoop vrij "
+                f"van huur vier jaar niet verhuren zonder vergunning, gesplitst "
+                f"of niet.")
+    return f"{route} valt af op {reden}."
+
+
 def lees_vergunningen_per_buurt():
     """
     Aantal verleende kamerverhuurvergunningen per buurt.
@@ -4041,10 +4064,10 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                           + f"€{eu(st.median(prijzen_stil))}/m². "
                           + "Die tellen mee in de vergelijking maar vragen geen actie")
             if geblokt:
-                delen_g = [f"{r} valt af op {reden}"
+                delen_g = [_uitleg_blokkade(r, reden)
                            for reden, routes in sorted(geblokt.items())
                            for r in sorted(routes)]
-                regel_stil += ": " + ", ".join(delen_g[:3])
+                regel_stil += ": " + " ".join(delen_g[:3])
             r.append(regel_stil + "._")
             r.append("")
 
