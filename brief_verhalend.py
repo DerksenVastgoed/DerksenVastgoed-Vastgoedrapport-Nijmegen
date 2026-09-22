@@ -95,7 +95,13 @@ DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron st
 
 VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verbanden tussen bronnen die elk afzonderlijk niet zichtbaar zijn: een besluit van de gemeente, een pand in het aanbod, de buurtcijfers, de puntentelling, de regelgeving, een artikel. Zoek die verbanden actief, vanuit meerdere invalshoeken. Maar elke schakel in de redenering moet in de gegevens of in een bron staan. Staat een schakel er niet, dan is het verband verzonnen, hoe aannemelijk het ook klinkt.
 
-Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien. Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien; dat "met 70% eenpersoonshuishoudens de lokale vraag naar een grote woning dun is en je huurder van buiten de buurt komt" (hoe huidige huishoudens zijn samengesteld, zegt niets over waar een nieuwe huurder vandaan komt). Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+
+HUUR IS GEEN RICHTPRIJS. De huur is een bedrag per maand. De richtprijs is een koopsom: het hoogste bod waarbij de nettohuur de rente en aflossing dekt. Schrijf nooit "de richtprijs komt op €2.394 per maand".
+
+EEN LOSSE STAND IS GEEN TREND. Van de kapitaalmarktrente krijg je een stand, geen verloop. Schrijf dus niet dat een stijging "er nog niet doorheen is" of "nog moet doorwerken": dat vraagt een reeks die je niet hebt.
+
+SPLITSEN IN NIJMEGEN. Nijmegen kent geen splitsingsvergunning. Dat de BAG aparte woningen telt, zegt niet of een pand juridisch is gesplitst. Schrijf dus nooit "je hoeft geen splitsingsvergunning meer aan te vragen".
 
 DE RING IS NIET DE STAD. Je hebt cijfers van zes buurten, niet van heel Nijmegen. Schrijf dus "van de zes buurten", nooit "dan in de rest van de stad".
 
@@ -896,7 +902,20 @@ def main():
     # dan laten we het weetje vandaag weg.
     if weetje and brief:
         getallen = re.findall(r"\d+(?:[.,]\d+)?", weetje)
-        if getallen and all(g in brief for g in getallen):
+        # Ook zonder getal kan het dubbel zijn: "vernieling is in Galgenveld het
+        # laagst" in de brief, en "Galgenveld scoort het laagst op vernieling" in
+        # het weetje. Dan staan de buurt en het onderwerp in dezelfde zin.
+        onderwerpen = ("vernieling", "fietsendiefstal", "woninginbraak",
+                       "inkomen", "vermogen", "studenten", "koop", "corporatie",
+                       "kinderen", "alleen", "vergunning")
+        buurten_w = [b for b in ("Stadscentrum", "Benedenstad", "Bottendaal",
+                                 "Galgenveld", "Altrade", "Biezen") if b in weetje]
+        onderw_w = [o for o in onderwerpen if o in weetje.lower()]
+        zelfde_zin = any(
+            all(b in z for b in buurten_w) and all(o in z.lower() for o in onderw_w)
+            for z in re.split(r"(?<=[.!?])\s+", brief)
+        ) if buurten_w and onderw_w else False
+        if (getallen and all(g in brief for g in getallen)) or zelfde_zin:
             print(f"Weetje weggelaten, staat al in de brief: {weetje[:60]}",
                   file=sys.stderr)
             weetje = ""
