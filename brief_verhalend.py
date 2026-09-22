@@ -95,6 +95,8 @@ GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
+DOSSIERS PER PAND. Voor de panden die ertoe doen krijg je een dossier: per pand alle feiten uit alle bronnen, elk met de bron erbij. Daar haal je de verbanden uit. Noem je een pand, kijk dan eerst in het dossier wat er over bekend is: WOZ ten opzichte van de grens, puntentelling, kamerverhuur op het pand en bij de buren, bekendmakingen op het adres, de doorrekening. Een regel "geen aanwijzing gevonden" is geen bewijs dat er niets is; neem de beperking die erbij staat over als je hem noemt.
+
 VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verbanden tussen bronnen die elk afzonderlijk niet zichtbaar zijn: een besluit van de gemeente, een pand in het aanbod, de buurtcijfers, de puntentelling, de regelgeving, een artikel. Zoek die verbanden actief, vanuit meerdere invalshoeken. Maar elke schakel in de redenering moet in de gegevens of in een bron staan. Staat een schakel er niet, dan is het verband verzonnen, hoe aannemelijk het ook klinkt.
 
 Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien; dat "met 70% eenpersoonshuishoudens de lokale vraag naar een grote woning dun is en je huurder van buiten de buurt komt" (hoe huidige huishoudens zijn samengesteld, zegt niets over waar een nieuwe huurder vandaan komt). Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
@@ -474,6 +476,14 @@ def _misdrijf_rang():
     return uit
 
 
+def _kamerverhuur_per_buurt():
+    try:
+        with open("kamerverhuur_per_buurt.json", encoding="utf-8") as f:
+            return json.load(f).get("per_buurt", {})
+    except Exception:
+        return {}
+
+
 def buurtcijfers_tekst():
     """De buurtcijfers als platte regels, zodat het model ze kan verwerken."""
     try:
@@ -512,7 +522,17 @@ def buurtcijfers_tekst():
             d.append(f"{g['studenten']} studenten")
         if g.get("inwoners"):
             d.append(f"{g['inwoners']} inwoners")
-        if verg.get(buurt):
+        # Bekende kamerverhuurpanden uit vergunningen en meldingen samen, met de
+        # uitsplitsing, zodat de brief ziet wat alleen via een melding bekend is
+        kv = _kamerverhuur_per_buurt().get(buurt)
+        if kv and kv.get("totaal"):
+            d.append(f"{kv['totaal']} bekende kamerverhuurpanden (vergunning of "
+                     f"melding brandveilig gebruik; {kv.get('beide', 0)} met beide, "
+                     f"{kv.get('alleen_melding_of_besluit', 0)} alleen via een melding "
+                     f"of besluit). Dit is een ondergrens: boven de WOZ-grens is geen "
+                     f"vergunning nodig en meldingen worden pas sinds kort "
+                     f"gepubliceerd")
+        elif verg.get(buurt):
             d.append(f"{verg[buurt]} vergunningen voor kamerverhuur sinds 2013")
 
         rang = _mediaan_rang().get(buurt)
@@ -893,6 +913,7 @@ def main():
         ("Cijfers per buurt", buurtcijfers_tekst()),
         ("Achtergrond bij het nieuws van vandaag", achtergrondtekst()),
         ("Aanbod en buurten", strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))),
+        ("Dossiers per pand", strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)),
         ("Gemeentelijke besluiten", strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
