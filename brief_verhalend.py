@@ -89,6 +89,8 @@ PER PAND, NIET PER BUURT. De omzettingsvergunning en de opkoopbescherming hangen
 
 HET PUNTENSTELSEL. Het puntenaantal van een woning volgt onder meer uit de oppervlakte, het energielabel en de WOZ-waarde, plus keuken, sanitair, buitenruimte en verwarming (bron: Volkshuisvesting Nederland). De WOZ is dus juist een van de zwaarste onderdelen; schrijf nooit dat het puntenaantal "niet van de WOZ" afhangt. Bij panden met een bekende WOZ staat in de gegevens een ondergrens van de punten. Onder de 187 punten geldt voor nieuwe contracten een wettelijke maximumhuur, en dan rekent de doorrekening met dat maximum in plaats van de markthuur.
 
+Zeg niet welk onderdeel het verschil in punten tussen twee panden veroorzaakt ("dat zit vooral in de oppervlakte"), want de telling per onderdeel staat niet in de gegevens.
+
 GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden van Mark en zijn broer: niet hun puntenaantal, niet hun segment, niet hun huur. Schrijf dus niets als "onze panden zitten vaak in het hogere segment". Je mag zeggen voor welk soort pand een regel van belang is, maar niet welke van hun eigen panden daaronder vallen.
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
@@ -113,7 +115,7 @@ HERKOMST VAN DE ACHTERGROND. Het achtergrondstuk dat je meekrijgt is door ons ge
 
 BESCHRIJF DE OPBOUW NIET. Zeg niet "dit wordt het hoofdstuk van de brief", "er was geen artikel om op te toetsen" of iets anders over hoe deze brief tot stand komt. Je vader leest een brief, geen verantwoording van de werkwijze.
 
-VEILIGHEIDSCIJFERS. De politie registreert op de plek waar iets gebeurt. Fietsendiefstal en vernieling zijn daarom vooral hoog waar veel bezoekers komen: station, winkels, uitgaansgebied. Gebruik die niet als maat voor hoe prettig een buurt is voor een huurder. Woninginbraak gaat wel over de bewoners. Wil je buurten op veiligheid vergelijken voor verhuur, begin dan bij woninginbraak, en noem het als dat een ander beeld geeft dan de rest.
+VEILIGHEIDSCIJFERS. De politie telt misdrijven op de plaats waar ze zijn gepleegd, en deze brief deelt ze door het aantal bewoners. Bij fietsendiefstal en vernieling telt dan mee wie er in de buurt komt, niet alleen wie er woont. Gebruik die daarom niet als maat voor hoe prettig een buurt is voor een huurder, en zeg er niet bij dat het "vooral iets zegt over het aantal bezoekers": dat hebben we niet gemeten. Woninginbraak gaat wel over de bewoners. Wil je buurten op veiligheid vergelijken voor verhuur, begin dan bij woninginbraak, en noem het als dat een ander beeld geeft dan de rest.
 
 GEEN TOEZEGGINGEN NAMENS MARK. De brief is van Mark, maar jij beslist niet wat hij gaat doen. Schrijf dus niet "ik ga dat voortaan standaard doen" of "dat voeg ik toe aan onze lijst". Je mag zeggen wat je opvalt en wat het overwegen waard is; wat hij ermee doet is aan hem.
 
@@ -257,11 +259,9 @@ def wist_je_dat(cbs, verg, misdrijven=None):
         weetjes.append(f"in {b} {v} procent van de huishoudens een laag inkomen heeft")
 
     # --- Veiligheid ---
-    for soort, omschrijving in (("woninginbraak", "woninginbraken"),
-                                ("vernieling", "gevallen van vernieling"),
-                                ("fietsendiefstal", "fietsendiefstallen"),
-                                ("drugs- en drankoverlast",
-                                 "meldingen van drugs- en drankoverlast")):
+    # Alleen woninginbraak: fietsendiefstal en vernieling per bewoner zeggen
+    # weinig over de buurt, en een weetje geeft geen ruimte voor die kanttekening.
+    for soort, omschrijving in (("woninginbraak", "woninginbraken"),):
         reeks = []
         for b in buurten:
             mis = misdrijven.get(b) if misdrijven else None
@@ -346,8 +346,9 @@ def schrijfruimte(punten):
                 "Behandel de actualiteit en geef daarna een echte verdieping "
                 "van een alinea of drie bij het onderwerp dat het meest speelt.")
     return (600,
-            "Er is vandaag weinig actualiteit. Meld dat kort en maak van de "
-            "verdieping het hoofdstuk van de brief: behandel het aangeleverde "
+            "Er is vandaag weinig actualiteit. Begin direct bij het onderwerp en "
+            "meld niet dat het stil was. Maak van de verdieping het hoofdstuk van "
+            "de brief: behandel het aangeleverde "
             "onderwerp grondig, van meerdere kanten, met de eigen cijfers en de "
             "regelgeving erbij, en sluit af met wat het voor ons betekent. Dit "
             "is geen opvulling maar de reden dat de brief vandaag de moeite "
@@ -586,9 +587,9 @@ def buurtcijfers_tekst():
             if per:
                 d.append(f"misdrijven in {jaren[-1][:4]}, geregistreerd op de "
                          f"plek waar het gebeurde: " + ", ".join(per)
-                         + ". Alleen woninginbraak zegt iets over de bewoners; "
-                           "fietsendiefstal en vernieling volgen vooral waar veel "
-                           "bezoekers komen")
+                         + ". Woninginbraak gebeurt bij iemand thuis en zegt het "
+                           "meest over de bewoners; bij fietsendiefstal en "
+                           "vernieling telt ook mee wie er alleen komt")
         regels.append(", ".join(d))
     return "\n".join(regels)
 
@@ -678,6 +679,24 @@ def lees(pad):
         return ""
 
 
+# Regels in de gegevens die alleen melden dat er niets is. Het model nam die
+# steeds over als opening. Wat er niet is, hoeft de brief niet te weten.
+_LEEG = re.compile(
+    r"(geen mutaties|geen kernsignalen|\b0 kernsignalen|geen nieuwe publicaties|"
+    r"geen nieuwe (panden|besluiten|artikelen)|niets nieuws)", re.I)
+
+
+def zonder_leegmeldingen(tekst):
+    """Haalt zinnen weg die alleen melden dat er niets gebeurde."""
+    uit = []
+    for regel in tekst.split("\n"):
+        zinnen = re.split(r"(?<=[.!?])\s+", regel)
+        over = [z for z in zinnen if not _LEEG.search(z)]
+        if over:
+            uit.append(" ".join(over))
+    return "\n".join(uit)
+
+
 def strip_opmaak(tekst, maxlen=14000):
     """Haalt tabellen en HTML eruit; het model krijgt de inhoud, niet de vorm."""
     tekst = re.sub(r"<[^>]+>", " ", tekst)
@@ -715,6 +734,7 @@ _AFWEZIG = re.compile(
     r"^(vandaag\s+)?("
     r"(weinig|geen|nauwelijks|amper)\b|"
     r"(het\s+)?(is|was)\s+(het\s+)?(vandaag\s+)?(een\s+)?(rustig|stil|kalm)|"
+    r"(is|was)\s+er\s+(vandaag\s+)?(weinig|niets|niks|geen)|"
     r"(een\s+)?(rustige|stille|kalme)\s+(dag|week)|"
     r"er\s+(is|was|gebeurde|gebeurt|kwam|kwamen|stond|stonden|verscheen|lag)\s+"
     r"(vandaag\s+)?(weinig|niets|niks|geen)|"
@@ -727,7 +747,8 @@ _OPBOUW = re.compile(
     r"het onderwerp van (vandaag|de dag)|"
     r"(dus|daarom) (is er|heb ik|geeft dat) (vandaag )?(de )?ruimte|"
     r"er was geen (artikel|besluit|nieuws) om op te toetsen|"
-    r"op mijn bureau|de moeite van het uitleggen waard)", re.I)
+    r"op mijn bureau|de moeite van het uitleggen waard|"
+    r"reden genoeg om|staat er (terecht |ook )?bij)", re.I)
 
 
 def opbouwzinnen(tekst):
@@ -745,7 +766,7 @@ def schrijf_brief(bronnen):
     if not ANTHROPIC_API_KEY:
         print("Geen ANTHROPIC_API_KEY", file=sys.stderr)
         return ""
-    inhoud = "\n\n".join(f"=== {naam} ===\n{tekst}"
+    inhoud = "\n\n".join(f"=== {naam} ===\n{zonder_leegmeldingen(tekst)}"
                          for naam, tekst in bronnen if tekst)
     if not inhoud.strip():
         return ""
