@@ -93,9 +93,15 @@ GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
-GEEN VERZONNEN VERBANDEN. Zeg niet dat panden "in dezelfde straat", "verderop" of "om de hoek" liggen tenzij het adres dat laat zien; de Prof. Molkenboerstraat en de St. Annastraat zijn verschillende straten. Noem geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verbanden tussen bronnen die elk afzonderlijk niet zichtbaar zijn: een besluit van de gemeente, een pand in het aanbod, de buurtcijfers, de puntentelling, de regelgeving, een artikel. Zoek die verbanden actief, vanuit meerdere invalshoeken. Maar elke schakel in de redenering moet in de gegevens of in een bron staan. Staat een schakel er niet, dan is het verband verzonnen, hoe aannemelijk het ook klinkt.
+
+Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien. Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+
+DE RING IS NIET DE STAD. Je hebt cijfers van zes buurten, niet van heel Nijmegen. Schrijf dus "van de zes buurten", nooit "dan in de rest van de stad".
 
 BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
+
+HET ACHTERGRONDSTUK IS GEEN NIEUWS. Presenteer het niet als iets wat vandaag binnenkwam ("kreeg ik op mijn bureau", "vond ik vandaag"). Het is uitleg bij het onderwerp, en zo breng je het ook.
 
 HERKOMST VAN DE ACHTERGROND. Het achtergrondstuk dat je meekrijgt is door ons geschreven, niet door de gemeente of een andere instantie. Schrijf het dus niet toe aan de gemeente ("de gemeente noemt dit..."). Staat er iets in over een regel of verordening, dan mag je de regel noemen, maar niet de gemeente als bron van het oordeel.
 
@@ -109,7 +115,7 @@ DE RENTE IS DE MARKTRENTE, NIET DIE VAN ONS. De rentecijfers in de gegevens zijn
 
 Trek er ook geen conclusie uit voor het bestaande bezit. Een stijgende marktrente maakt een NIEUWE aankoop duurder en drukt de prijs die je kunt bieden; op de panden die er al zijn heeft hij geen invloed zolang de rente vaststaat. Noem nooit de voorwaarden of de herkomst van de eigen financiering: die horen niet in de brief.
 
-FISCAAL ONDERSCHEID DAT JE NIET MAG VERMENGEN. Het eigenwoningforfait, de hypotheekrenteaftrek en het box 1-regime gelden uitsluitend voor de woning waar iemand zelf woont. Ze gelden NIET voor verhuurd vastgoed. Mark en zijn broer houden hun panden in een BV: daar gelden de vennootschapsbelasting, de overdrachtsbelasting en de btw, en er is geen eigenwoningforfait en geen hypotheekrenteaftrek. Gaat een artikel over de eigen woning, zeg dan dat het de eigen woning betreft en niet de verhuurportefeuille, en trek er geen conclusie uit voor verhuurd vastgoed.
+FISCAAL ONDERSCHEID DAT JE NIET MAG VERMENGEN. Het eigenwoningforfait, de hypotheekrenteaftrek en het box 1-regime gelden uitsluitend voor de woning waar iemand zelf woont. Ze gelden NIET voor verhuurd vastgoed. Mark en zijn broer houden hun panden in een BV: daar gelden de vennootschapsbelasting, de overdrachtsbelasting en de btw, en er is geen eigenwoningforfait en geen hypotheekrenteaftrek. De tariefschijf van de vennootschapsbelasting geldt voor de totale winst van de BV in een jaar, niet per pand en niet per buurt. Gaat een artikel over de eigen woning, zeg dan dat het de eigen woning betreft en niet de verhuurportefeuille, en trek er geen conclusie uit voor verhuurd vastgoed.
 
 LET OP DE EENHEID. Bedragen in de gegevens staan er met hun eenheid bij: per jaar of per maand. Neem die letterlijk over. Een operationeel resultaat per jaar is geen bedrag per maand. Staat er geen eenheid bij, noem het bedrag dan zonder eenheid in plaats van er een te kiezen.
 
@@ -396,6 +402,30 @@ def _mediaan_rang():
     return uit
 
 
+def _veld_rang(veld):
+    """De hoeveelste van de zes buurten op een CBS-veld, vooraf berekend."""
+    try:
+        with open("buurten_cbs.json", encoding="utf-8") as f:
+            cbs = json.load(f)
+    except Exception:
+        return {}
+    waarden = {b: g.get(veld) for b, g in cbs.items()
+               if isinstance(g, dict) and g.get(veld) is not None}
+    if len(waarden) < 2:
+        return {}
+    volgorde = sorted(waarden, key=lambda b: waarden[b])
+    n = len(volgorde)
+    uit = {}
+    for i, b in enumerate(volgorde):
+        if i == 0:
+            uit[b] = f"het laagste van de {n} buurten"
+        elif i == n - 1:
+            uit[b] = f"het hoogste van de {n} buurten"
+        else:
+            uit[b] = f"de {i + 1}e van {n} van laag naar hoog"
+    return uit
+
+
 def _misdrijf_rang():
     """
     Per buurt en per misdrijfsoort: de hoeveelste van de zes, per 1000 inwoners.
@@ -503,6 +533,12 @@ def buurtcijfers_tekst():
                         "af van de WOZ van dat pand zelf")
             d.append(f"gemiddelde WOZ €{woz_euro:,.0f}".replace(",", ".")
                      + f", {ligging}")
+
+        for veld, naam in (("inkomen", "gemiddeld inkomen per inwoner"),
+                           ("vermogen", "mediaan vermogen per huishouden")):
+            r = _veld_rang(veld).get(buurt)
+            if r:
+                d.append(f"{naam}: {r}")
 
         # De rangorde per misdrijfsoort, zodat het model niet zelf vergelijkt.
         # Het draaide de vergelijking eerder om.
@@ -674,7 +710,8 @@ _AFWEZIG = re.compile(
     r"(weinig|geen|nauwelijks|amper)\b|"
     r"(het\s+)?(is|was)\s+(het\s+)?(vandaag\s+)?(een\s+)?(rustig|stil|kalm)|"
     r"(een\s+)?(rustige|stille|kalme)\s+(dag|week)|"
-    r"er\s+(is|was|gebeurde|gebeurt)\s+(vandaag\s+)?(weinig|niets|niks|geen)|"
+    r"er\s+(is|was|gebeurde|gebeurt|kwam|kwamen|stond|stonden|verscheen|lag)\s+"
+    r"(vandaag\s+)?(weinig|niets|niks|geen)|"
     r"niets\b|niks\b|stilte\b)", re.I)
 
 
@@ -683,7 +720,8 @@ _OPBOUW = re.compile(
     r"(dit wordt (dus )?het (onderwerp|hoofdstuk)|"
     r"het onderwerp van (vandaag|de dag)|"
     r"(dus|daarom) (is er|heb ik|geeft dat) (vandaag )?(de )?ruimte|"
-    r"er was geen (artikel|besluit|nieuws) om op te toetsen)", re.I)
+    r"er was geen (artikel|besluit|nieuws) om op te toetsen|"
+    r"op mijn bureau|de moeite van het uitleggen waard)", re.I)
 
 
 def opbouwzinnen(tekst):
