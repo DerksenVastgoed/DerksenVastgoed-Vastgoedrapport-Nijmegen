@@ -347,7 +347,10 @@ ACHTERGROND = [
      "het WWSO. Een verhuurder van een kamer moet zich altijd aan de maximale "
      "huurprijs houden, ongeacht het aantal punten of wanneer het contract is "
      "gesloten. Sinds de Wet betaalbare huur telt ook de WOZ-waarde mee in het "
-     "puntenstelsel voor kamers."),
+     "puntenstelsel voor kamers. Een zelfstandige woning vanaf 187 punten heeft "
+     "geen maximale huur; verhuur je hetzelfde pand per kamer, dan geldt er wel "
+     "een. Voor een pand in de vrije sector voert verkameren dus juist een "
+     "maximum in."),
     ("Het puntenstelsel voor woningen",
      "Voor zelfstandige woningen bepaalt het woningwaarderingsstelsel de "
      "maximale huur. Tot en met 143 punten is het sociale huur, van 144 tot en "
