@@ -922,6 +922,12 @@ def trendregel(buurt, historie):
         pct = (nu - oudste) / oudste * 100
         stukken.append(f"{pct:+.1f}".replace(".", ",")
                        + f"% sinds {historie[weken[0]].get('_datum', weken[0])}")
+    if stukken:
+        # De mediaan verschuift ook als er andere panden bijkomen of afgaan. Een
+        # lagere mediaan is dus niet hetzelfde als een lagere prijs.
+        stukken[-1] += (" (verandering van de mediaan van onze waarnemingen, "
+                        "ook door panden die erbij komen of afgaan; geen "
+                        "prijsverandering van dezelfde panden)")
     return ". ".join(stukken)
 
 
