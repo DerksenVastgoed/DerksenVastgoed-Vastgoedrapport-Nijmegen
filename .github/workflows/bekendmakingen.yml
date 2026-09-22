@@ -196,6 +196,13 @@ jobs:
           # het script vernieuwt alleen als er een maand bij kan zijn.
           python bouwkosten_index.py || echo "Bouwkostenindex overgeslagen"
 
+      - name: Woningprijsindex CBS bijwerken
+        continue-on-error: true
+        run: |
+          # Landelijk per maand, Nijmegen per kwartaal. Het CBS publiceert circa
+          # 22 dagen na de periode, dus dagelijks ophalen is ruim voldoende.
+          python woningprijsindex.py || echo "Woningprijsindex overgeslagen"
+
       - name: Kamerverhuurregister bijwerken
         continue-on-error: true
         run: |
@@ -458,6 +465,7 @@ jobs:
             bouwkosten_index.json
             kamerverhuur_objecten.json
             kamerverhuur_per_buurt.json
+            woningprijsindex.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
