@@ -85,6 +85,10 @@ WAT JE NIET DOET:
 
 LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
 
+PER PAND, NIET PER BUURT. De omzettingsvergunning en de opkoopbescherming hangen aan de WOZ van het afzonderlijke pand, niet aan het gemiddelde van de buurt. Schrijf dus nooit "wie in deze buurt koopt, hoeft niet door het vergunningstraject". Een buurtgemiddelde boven de grens betekent alleen dat er waarschijnlijk panden boven liggen, niet welke.
+
+BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
+
 HERKOMST VAN DE ACHTERGROND. Het achtergrondstuk dat je meekrijgt is door ons geschreven, niet door de gemeente of een andere instantie. Schrijf het dus niet toe aan de gemeente ("de gemeente noemt dit..."). Staat er iets in over een regel of verordening, dan mag je de regel noemen, maar niet de gemeente als bron van het oordeel.
 
 BESCHRIJF DE OPBOUW NIET. Zeg niet "dit wordt het hoofdstuk van de brief", "er was geen artikel om op te toetsen" of iets anders over hoe deze brief tot stand komt. Je vader leest een brief, geen verantwoording van de werkwijze.
@@ -477,19 +481,18 @@ def buurtcijfers_tekst():
         if woz:
             woz_euro = woz * 1000 if woz < 5000 else woz
             verschil = woz_euro - 396_000
+            # Alleen de ligging ten opzichte van de grens. Welk deel van de
+            # woningen eronder valt, volgt niet uit een gemiddelde.
             if abs(verschil) <= 25_000:
                 ligging = (f"vlak {'boven' if verschil > 0 else 'onder'} de grens "
-                           f"van €396.000, dus ongeveer de helft van de woningen "
-                           f"valt onder de omzettingsvergunning en de "
-                           f"opkoopbescherming")
+                           f"van €396.000")
             elif verschil > 0:
-                ligging = ("ruim boven de grens van €396.000, dus de meeste "
-                           "woningen vallen niet onder de omzettingsvergunning of "
-                           "de opkoopbescherming")
+                ligging = "boven de grens van €396.000"
             else:
-                ligging = ("ruim onder de grens van €396.000, dus de meeste "
-                           "woningen vallen onder de omzettingsvergunning en de "
-                           "opkoopbescherming")
+                ligging = "onder de grens van €396.000"
+            ligging += (". Dit is een buurtgemiddelde; of een pand onder de "
+                        "omzettingsvergunning of de opkoopbescherming valt, hangt "
+                        "af van de WOZ van dat pand zelf")
             d.append(f"gemiddelde WOZ €{woz_euro:,.0f}".replace(",", ".")
                      + f", {ligging}")
 
@@ -661,7 +664,7 @@ def eerste_zin(tekst):
 _AFWEZIG = re.compile(
     r"^(vandaag\s+)?("
     r"(weinig|geen|nauwelijks|amper)\b|"
-    r"(het\s+)?(is|was)\s+(vandaag\s+)?(een\s+)?(rustig|stil|kalm)|"
+    r"(het\s+)?(is|was)\s+(het\s+)?(vandaag\s+)?(een\s+)?(rustig|stil|kalm)|"
     r"(een\s+)?(rustige|stille|kalme)\s+(dag|week)|"
     r"er\s+(is|was|gebeurde|gebeurt)\s+(vandaag\s+)?(weinig|niets|niks|geen)|"
     r"niets\b|niks\b|stilte\b)", re.I)
