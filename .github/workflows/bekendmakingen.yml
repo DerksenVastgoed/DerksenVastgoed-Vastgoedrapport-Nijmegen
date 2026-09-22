@@ -196,6 +196,13 @@ jobs:
           # het script vernieuwt alleen als er een maand bij kan zijn.
           python bouwkosten_index.py || echo "Bouwkostenindex overgeslagen"
 
+      - name: Kamerverhuurregister bijwerken
+        continue-on-error: true
+        run: |
+          # Vergunningen en meldingen brandveilig gebruik samen, per buurt.
+          # Draait na het archief, zodat de meldingen van vandaag meetellen.
+          python kamerverhuur_register.py || echo "Kamerverhuurregister overgeslagen"
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -206,6 +213,7 @@ jobs:
           python marktprijzen_bag.py --modus "$MODUS" \
             --uit "digests/${DATUM}-marktprijzen.md" \
             --bijlage "digests/${DATUM}-bijlage.md" \
+            --dossiers "digests/${DATUM}-dossiers.md" \
             --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
 
       - name: Achtergrond en bronnen klaarzetten
@@ -448,6 +456,8 @@ jobs:
             straat_buurt_cache.json
             ov_haltes.json
             bouwkosten_index.json
+            kamerverhuur_objecten.json
+            kamerverhuur_per_buurt.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
