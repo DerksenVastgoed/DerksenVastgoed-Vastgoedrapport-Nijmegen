@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-09-22
 
-12 in orde, 2 aandachtspunten, 0 fouten.
+13 in orde, 2 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Huurdata**: 2 huurwaarnemingen, waarvan 2 Pararius en 0 Kamernet; 2 in de laatste week
@@ -15,6 +15,7 @@
 - **Bouwkostenindex**: 103 maanden, laatste 2026-07
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
+- **Kamerverhuurregister**: 948 panden in de ring, waarvan 189 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 66 panden gerouteerd
 - **Bekendmakingen-archief**: 317 adressen, 445 publicaties
