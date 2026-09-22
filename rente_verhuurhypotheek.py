@@ -413,8 +413,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
                            + f"%{f' ({mdatum})' if mdatum else ''}. Banken rekenen "
                            f"daar voor een verhuurhypotheek bij 70% financiering "
                            + f"{r70 - markt:.2f}".replace(".", ",")
-                           + " procentpunt bovenop. De kapitaalmarkt beweegt eerst; "
-                             "de hypotheekrente volgt meestal weken later._\n")
+                           + " procentpunt bovenop._\n")
 
         return ("\n## Marktrente verhuurhypotheek\n\n_Wat een bank nu rekent voor "
                 "een nieuwe verhuurhypotheek, niet de rente op het eigen bezit. "
