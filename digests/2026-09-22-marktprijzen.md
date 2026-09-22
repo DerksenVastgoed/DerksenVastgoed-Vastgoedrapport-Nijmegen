@@ -1,32 +1,14 @@
 
 ## Vandaag
 
-58 panden in beeld, 3 nieuw of gewijzigd. Scherpst geprijsd is **Stieltjesstraat 10** in Stadscentrum: €539.000 voor 158 m², -35% ten opzichte van de mediaan van zijn klasse. Als kamers, mits vergunning loopt het rond tot €490.268, dus -9% ten opzichte van de vraagprijs.
+58 panden in beeld, geen mutaties sinds gisteren.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Stadscentrum**
 _mediaan €5.299/m² op 38 waarnemingen . +1,9% sinds 2026-09-13._
 
-| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
-|---|---:|---:|---:|---:|---|---|---:|---:|
-| [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen) | €539.000 | 158 | €3.411 | 🟢 -35% | -35% onder de mediaan van zijn klasse | kamers, mits vergunning, €2.500/mnd | €490.268 (-9%) | 0 |
-
-_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
-
-| Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
-|---|---:|---:|---:|---:|---:|
-| [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen) | €678.831 | €327.272 | €351.558 | €4.500 | 3,3% |
-
-_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,22]_
-
-_Met het beschikbare eigen vermogen komt geen van deze panden in beeld: de verbouwing slokt het budget vrijwel volledig op._
-
-_Stadscentrum is grotendeels rijksbeschermd stadsgezicht. Voor wijzigingen aan het uiterlijk is een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen aan de voorzijde._
-
-_**Stieltjesstraat 10** en het openbaar vervoer: bushalte Tunnelweg op 680 m lopen, ongeveer 8 minuten. De route is 10.79x zo lang als de rechte lijn, wat op een barriere wijst zoals het spoor of een hoogteverschil. Bij kamerverhuur en kleine eenheden verhuur je aan mensen zonder auto, dus dat telt mee in de verhuurbaarheid._
-
-_Stond er al, vraagprijs ongewijzigd: [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-3% t.o.v. de buurtmediaan) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (-1% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+8% t.o.v. de buurtmediaan) . [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) €550.000 (+18% t.o.v. de buurtmediaan, 9 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen) €539.000 (-35% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-3% t.o.v. de buurtmediaan) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (-1% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+8% t.o.v. de buurtmediaan) . [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) €550.000 (+18% t.o.v. de buurtmediaan, 9 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
 
@@ -55,29 +37,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Galgenveld**
 _mediaan €4.691/m² op 30 waarnemingen . -2,1% sinds 2026-09-13._
 
-| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
-|---|---:|---:|---:|---:|---|---|---:|---:|
-| [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) | €599.000 | 133 | €4.503 | 🟡 -2% | zowel verkameren als splitsen staat open | één woning, €2.394/mnd . pand bevat al 2 woningen volgens de BAG (BAG zegt 197 m²) | €500.780 (-16%) | 0 |
-
-_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
-
-| Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
-|---|---:|---:|---:|---:|---:|
-| [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) | €732.042 | €334.289 | €397.753 | €4.596 | 3,1% |
-
-_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,22]_
-
-_Met het beschikbare eigen vermogen kom je: Pontanusstraat 40 tot €72.640._
-
-_Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
-
-_Galgenveld is deels de negentiende-eeuwse schil. Voor wijzigingen aan het uiterlijk is een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen aan de voorzijde._
-
-_Doelgroep: 70% van de huishoudens in Galgenveld woont alleen en 12% heeft kinderen. Voor Pontanusstraat 40 is de lokale vraag naar een woning van die omvang dus dun; je huurder komt van buiten de buurt._
-
-_**Pontanusstraat 40** zit in een pand dat volgens de BAG al 2 zelfstandige woningen telt: Pontanusstraat 38 (177 m²), Pontanusstraat 40 (197 m²). De splitsing is dus geregistreerd en elke eenheid heeft een eigen adres; je hoeft die niet meer aan te vragen._
-
-_Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-16% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-14% t.o.v. de buurtmediaan, 6 dagen in aanbod) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-10% t.o.v. de buurtmediaan, 9 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-3% t.o.v. de buurtmediaan, 19 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-0% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (+0% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+11% t.o.v. de buurtmediaan, 11 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-16% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-14% t.o.v. de buurtmediaan, 6 dagen in aanbod) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-10% t.o.v. de buurtmediaan, 9 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-3% t.o.v. de buurtmediaan, 19 dagen in aanbod) . [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) €599.000 (-2% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-0% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (+0% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+11% t.o.v. de buurtmediaan, 11 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel ondergrens 180 punten (110 m2, WOZ €432.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . St. Annastraat 28 €1.021.000 (2026) (367 m2): groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Palembangstraat 44 €466.000 (2026), puntenstelsel ondergrens 172 punten (96 m2, WOZ €466.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Pontanusstraat 19 €523.000 (2026), puntenstelsel ondergrens 210 punten (135 m2, WOZ €523.000, label D): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
