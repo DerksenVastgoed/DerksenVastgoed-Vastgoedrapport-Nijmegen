@@ -305,7 +305,9 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
-    "Waarom oppervlakte zo vaak misgaat": "Basisregistratie Adressen en Gebouwen",
+    "Waarom oppervlakte zo vaak misgaat": ("Basisregistratie Adressen en Gebouwen; "
+                                           "advertentie Pontanusstraat 40, Funda, "
+                                           "september 2026"),
 }
 
 ACHTERGROND = [
@@ -424,11 +426,15 @@ ACHTERGROND = [
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
     ("Waarom oppervlakte zo vaak misgaat",
-     "De BAG registreert de gebruiksoppervlakte per verblijfsobject, en elk "
-     "verblijfsobject heeft een eigen adres. Is een pand feitelijk opgedeeld "
-     "maar staat het als een verblijfsobject geregistreerd, dan geeft de BAG de "
-     "oppervlakte van het geheel. Daarom gebruikt deze brief de oppervlakte uit "
-     "de advertentie als die er is, en anders de BAG."),
+     "De BAG registreert een gebruiksoppervlakte per verblijfsobject, en elk "
+     "verblijfsobject heeft een eigen adres. Een advertentie splitst vaak de "
+     "woonoppervlakte en de overige inpandige ruimte, zoals een kelder. Bij de "
+     "Pontanusstraat 40 noemde de advertentie 133 m2 wonen en 68 m2 overige "
+     "ruimte, samen vrijwel de 197 m2 uit de BAG. Deze brief rekent met de "
+     "woonoppervlakte uit de advertentie als die er is; de overige ruimte telt "
+     "dan niet mee, en ook daardoor is de puntentelling een ondergrens. Is een "
+     "pand feitelijk opgedeeld maar als een verblijfsobject geregistreerd, dan "
+     "geeft de BAG de oppervlakte van het geheel."),
 ]
 
 
