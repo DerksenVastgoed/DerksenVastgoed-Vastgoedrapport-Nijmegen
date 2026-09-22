@@ -244,6 +244,23 @@ def controle_kamerverhuur():
     return (OK, bewijs, "")
 
 
+def controle_woningprijzen():
+    d = _json("woningprijsindex.json") or {}
+    l, r = d.get("landelijk"), d.get("regio")
+    if not l and not r:
+        return (FOUT, "woningprijsindex.json leeg",
+                diagnose("woningprijzen") or "Zie de stap Woningprijsindex CBS.")
+    delen = []
+    if l:
+        delen.append(f"landelijk {l['periode']}")
+    if r:
+        delen.append(f"{r['naam']} {r['periode']}")
+    if not r:
+        return (LET_OP, ", ".join(delen) + "; geen regio",
+                diagnose("woningprijzen") or "Nijmegen niet gevonden in de regiotabel.")
+    return (OK, ", ".join(delen), "")
+
+
 def controle_misdrijven():
     d = _json("misdrijven_per_buurt.json") or {}
     if not d:
@@ -337,6 +354,7 @@ CONTROLES = [
     ("Buurtcijfers CBS", controle_buurtcijfers),
     ("Kamervergunningen", controle_vergunningen),
     ("Kamerverhuurregister", controle_kamerverhuur),
+    ("Woningprijsindex CBS", controle_woningprijzen),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
