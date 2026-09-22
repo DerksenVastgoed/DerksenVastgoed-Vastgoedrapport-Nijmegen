@@ -119,6 +119,7 @@ def landelijk():
     jaar_eerder = f"{int(j) - 1}-{mnd}"
     uit = {
         "periode": laatste,
+        "reeks": {k: reeks[k] for k in maanden[-48:]},
         "index": reeks[laatste],
         "maand_pct": _pct(reeks[laatste], reeks[maanden[-2]]),
         "jaar_pct": _pct(reeks[laatste], reeks.get(jaar_eerder)),
@@ -195,6 +196,76 @@ def regio():
             "kolom": kol}
 
 
+MINIMAAL_MAANDEN = 13
+
+
+def _pearson(x, y):
+    n = len(x)
+    if n < 3:
+        return None
+    mx, my = sum(x) / n, sum(y) / n
+    teller = sum((a - mx) * (b - my) for a, b in zip(x, y))
+    noemer = (sum((a - mx) ** 2 for a in x) * sum((b - my) ** 2 for b in y)) ** 0.5
+    return round(teller / noemer, 2) if noemer else None
+
+
+def vergelijk(data, pad="vraagprijzen_ring.json"):
+    """
+    Onze vraagprijzen naast de CBS-index, met vertraging.
+
+    Een vraagprijs komt eerder dan de transactie die het CBS telt: eerst de
+    advertentie, dan het koopcontract, dan de levering bij de notaris. Als er
+    een verband is, loopt onze reeks dus voor. Dat is pas te zien met ruim een
+    jaar maandcijfers; daarvoor zegt een uitkomst niets en rekenen we niet.
+    """
+    try:
+        with open(pad, encoding="utf-8") as f:
+            ring = json.load(f)
+    except Exception:
+        return {"maanden": 0}
+    maanden = sorted(ring)
+    uit = {"maanden": len(maanden), "sinds": maanden[0] if maanden else None}
+    reeks = ((data.get("landelijk") or {}).get("reeks")) or {}
+    if len(maanden) < MINIMAAL_MAANDEN or not reeks:
+        return uit
+
+    # Jaar-op-jaar verandering van beide reeksen, zodat seizoen en niveau
+    # wegvallen en we alleen de beweging vergelijken
+    def jaarmutatie(paren):
+        muts = {}
+        for maand, waarde in paren.items():
+            j, mm = maand.split("-")
+            eerder = paren.get(f"{int(j) - 1}-{mm}")
+            if eerder:
+                muts[maand] = (waarde - eerder) / eerder * 100
+        return muts
+
+    ring_mut = jaarmutatie({m: ring[m]["mediaan_m2"] for m in maanden})
+    cbs_mut = jaarmutatie(reeks)
+    beste = None
+    for vertraging in range(0, 7):
+        paren = [(ring_mut[m], cbs_mut[vooruit])
+                 for m in ring_mut
+                 for vooruit in [_plus_maanden(m, vertraging)]
+                 if vooruit in cbs_mut]
+        if len(paren) >= MINIMAAL_MAANDEN - 1:
+            r = _pearson([a for a, _b in paren], [b for _a, b in paren])
+            if r is not None and (beste is None or abs(r) > abs(beste["r"])):
+                beste = {"vertraging_maanden": vertraging, "r": r,
+                         "waarnemingen": len(paren)}
+    if beste:
+        uit["beste_verband"] = beste
+    return uit
+
+
+def _plus_maanden(maand, n):
+    j, mm = (int(x) for x in maand.split("-"))
+    mm += n
+    j += (mm - 1) // 12
+    mm = (mm - 1) % 12 + 1
+    return f"{j}-{mm:02d}"
+
+
 def omschrijf(data):
     """Tekst voor de brief, met de kanttekening over wat het meet."""
     if not data:
@@ -217,6 +288,19 @@ def omschrijf(data):
                      + "% op een kwartaal, "
                      + f"{r['jaar_pct']:+.1f}".replace(".", ",")
                      + "% op een jaar")
+    v = data.get("vergelijking") or {}
+    if v.get("beste_verband"):
+        b = v["beste_verband"]
+        delen.append(f"Onze vraagprijzen en de CBS-index bewegen het meest samen "
+                     f"als je onze reeks {b['vertraging_maanden']} maanden "
+                     f"vooruitlegt (samenhang {b['r']} over {b['waarnemingen']} "
+                     f"maanden). Dat is een samenhang tussen twee reeksen, geen "
+                     f"bewijs dat de een de ander voorspelt")
+    elif v.get("maanden"):
+        delen.append(f"Onze eigen maandreeks vraagprijzen loopt sinds "
+                     f"{v['sinds']} en telt {v['maanden']} maanden; een verband "
+                     f"met vertraging is pas te berekenen vanaf "
+                     f"{MINIMAAL_MAANDEN} maanden")
     if not delen:
         return ""
     return ("Prijsindex bestaande koopwoningen van CBS en Kadaster, uit "
@@ -230,6 +314,7 @@ def omschrijf(data):
 def main():
     wis("woningprijzen")
     data = {"landelijk": landelijk(), "regio": regio()}
+    data["vergelijking"] = vergelijk(data)
     with open(UIT_PAD, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     print(omschrijf(data) or "Geen woningprijsindex opgehaald", file=sys.stderr)
