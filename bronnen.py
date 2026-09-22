@@ -369,11 +369,17 @@ ACHTERGROND = [
      "heeft toezichthouders aangewezen die woningen mogen betreden om hierop te "
      "controleren, zo nodig met machtiging."),
     ("Verkameren en het risico daarvan",
-     "Verkameren verzilvert vierkante meters, maar het is geen route zonder "
-     "risico. Je verliest de verkoopbaarheid aan een gezin, de leefbaarheids"
-     "toets sneuvelt juist in rustige straten, meer dan twee kamerpanden naast "
-     "elkaar mag niet, en bij vijf kamers komt de brandveiligheid erbij. Boete "
-     "bij omzetten zonder vergunning: tienduizend euro, bij herhaling vijftien."),
+     "Verkameren verzilvert vierkante meters, maar het heeft een prijs. Je "
+     "verkoopt het pand later aan een andere belegger, niet aan een gezin. Bij "
+     "een WOZ tot en met €396.000 is een omzettingsvergunning nodig, en tot en "
+     "met €278.000 wordt die altijd geweigerd. Artikel 15 weigert ook als er "
+     "door de omzetting meer dan twee kamerpanden direct naast, onder of boven "
+     "elkaar komen; twee mag dus wel. Geluidsisolatie, een fietsenstalling op "
+     "eigen terrein en de brandveiligheid worden getoetst. De leefbaarheids"
+     "toets door de ambtelijke adviesgroep staat nog in de verordening, maar de "
+     "gemeente heeft aangekondigd dat die vervalt zodra de gewijzigde "
+     "verordening ingaat. De boete voor omzetten zonder vergunning is €5.000, "
+     "en €10.000 als het bedrijfsmatig gebeurt, zoals vanuit een BV."),
     ("Veiligheid en verhuurbaarheid",
      "De politie registreert een misdrijf op de plek waar het gebeurt, niet waar "
      "het slachtoffer woont. Dat maakt uit welk cijfer je gebruikt. Fietsendiefstal "
