@@ -1601,6 +1601,46 @@ def misdrijfregel(buurt, misdrijven, inwoners=None):
     return regel
 
 
+
+def wws_indicatie(w):
+    """
+    Het puntenaantal van een pand, voor zover het uit bekende gegevens volgt.
+
+    Het woningwaarderingsstelsel telt onder meer de oppervlakte, het
+    energielabel en de WOZ-waarde, plus keuken, sanitair, buitenruimte en
+    verwarming. De eerste drie zijn per pand bekend: oppervlakte uit de BAG of
+    de advertentie, het label uit EP-Online, de WOZ als die is ingevoerd. Voor
+    keuken, sanitair en buitenruimte neemt wwso.py een gewone woning aan, en
+    verwarming zit er niet in. De uitkomst is daarom een ondergrens.
+
+    Zonder bekende WOZ rekenen we niet: de vraagprijs is geen WOZ, en de WOZ
+    is juist een van de zwaarste onderdelen van de telling.
+    """
+    try:
+        from wwso import wws_punten
+    except Exception:
+        return None
+    woz = w.get("woz")
+    opp = w.get("oppervlakte")
+    if not woz or not opp:
+        return None
+    label = (w.get("energielabel") or {}).get("label")
+    uit = wws_punten(opp, woz, label=label, monument=bool(w.get("monument")))
+    punten = uit.get("punten")
+    if punten is None:
+        return None
+    if punten >= 187:
+        oordeel = ("vrije sector: de ondergrens ligt al op of boven 187 punten, "
+                   "en verwarming telt nog mee")
+    else:
+        oordeel = ("onder de 187 op basis van wat bekend is; keuken, sanitair en "
+                   "verwarming bepalen of het middenhuur blijft of vrije sector "
+                   "wordt")
+    basis = [f"{opp} m2", f"WOZ €{eu(woz)}",
+             f"label {label}" if label else "label onbekend, niet meegeteld"]
+    return {"punten": punten, "oordeel": oordeel, "basis": ", ".join(basis)}
+
+
 def _uitleg_blokkade(route, reden):
     """
     Waarom valt een route af, met het mechanisme erbij.
@@ -1803,12 +1843,39 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
 
     sp = splitsscenario(w, huur_bk, huur_k, buurt, _per_buurt_prijzen)
 
+    # Het puntenstelsel geldt ook voor een pand dat je als een woning verhuurt.
+    # Tot 21 september 2026 werd dat alleen bij splitsen getoetst, waardoor een
+    # pand in de middenhuur met markthuur werd doorgerekend en de richtprijs te
+    # hoog uitviel. Nu toetsen we het hier ook, als de WOZ bekend is. De
+    # telling is een ondergrens (verwarming ontbreekt), dus het maximum is
+    # voorzichtig; voor een bod is dat de goede kant.
+    punten_w = None
+    if wws_punten and wws_max_huur and w.get("woz") and opp:
+        try:
+            ep = w.get("energielabel") or {}
+            r = wws_punten(opp, w["woz"], label=ep.get("label"),
+                           monument=bool(w.get("monument")))
+            punten_w = r["punten"]
+            if r["gereguleerd"]:
+                maximum = wws_max_huur(punten_w)
+                if maximum and maximum < maand_w:
+                    maand_w = maximum
+                    huur_w = maximum / opp
+                    bron_w = (f"wettelijk maximum bij {punten_w} punten "
+                              f"(ondergrens), niet de markthuur")
+        except Exception:
+            pass
+    if punten_w is None:
+        # Zonder WOZ kunnen we niet toetsen. Dat zeggen we erbij, want dan kan
+        # de huur boven het wettelijk maximum liggen zonder dat we het zien.
+        bron_w = f"{bron_w}; niet getoetst aan het puntenstelsel, WOZ onbekend"
+
     if geschikt_woning and not kamerpand:
         # Levert splitsen aantoonbaar meer op, dan tonen we dat
         if sp and sp["maand"] > maand_w * 1.1:
             return sp
         return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
-                "opp": opp, "bron": bron_w}
+                "opp": opp, "bron": bron_w, "wws_punten": punten_w}
 
     # Kamerverhuur: alleen het verhuurbare deel telt, tegen de kamerhuur
     huur_k_m2, bron_k = huur_voor_buurt(buurt, huur_bk, huur_k, 20, "kamer")
@@ -4121,10 +4188,18 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             for w in met_woz:
                 jaar = w.get("woz_jaar")
                 oud = jaar and jaar < dt.date.today().year - 1
-                stukken.append(f"{w['adres']} €{eu(w['woz'])}"
-                               + (f" ({jaar}{', verouderd' if oud else ''})" if jaar else ""))
+                deel = (f"{w['adres']} €{eu(w['woz'])}"
+                        + (f" ({jaar}{', verouderd' if oud else ''})" if jaar else ""))
+                wws = wws_indicatie(w)
+                if wws:
+                    deel += (f", puntenstelsel ondergrens {wws['punten']} punten "
+                             f"({wws['basis']}): {wws['oordeel']}")
+                stukken.append(deel)
             r.append("_Bekende WOZ-waarden: " + " . ".join(stukken)
-                     + ". Daar toetsen we op in plaats van op de vraagprijs._")
+                     + ". Daar toetsen we op in plaats van op de vraagprijs. De "
+                       "punten zijn een ondergrens: keuken, sanitair en "
+                       "buitenruimte als gewone woning aangenomen, verwarming "
+                       "niet meegeteld._")
             r.append("")
 
         # Buren met kamerverhuur: dat blokkeert een omzettingsvergunning
