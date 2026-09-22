@@ -99,7 +99,7 @@ DOSSIERS PER PAND. Voor de panden die ertoe doen krijg je een dossier: per pand 
 
 VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verbanden tussen bronnen die elk afzonderlijk niet zichtbaar zijn: een besluit van de gemeente, een pand in het aanbod, de buurtcijfers, de puntentelling, de regelgeving, een artikel. Zoek die verbanden actief, vanuit meerdere invalshoeken. Maar elke schakel in de redenering moet in de gegevens of in een bron staan. Staat een schakel er niet, dan is het verband verzonnen, hoe aannemelijk het ook klinkt.
 
-Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien; dat "met 70% eenpersoonshuishoudens de lokale vraag naar een grote woning dun is en je huurder van buiten de buurt komt" (hoe huidige huishoudens zijn samengesteld, zegt niets over waar een nieuwe huurder vandaan komt). Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien; dat "met 70% eenpersoonshuishoudens de lokale vraag naar een grote woning dun is en je huurder van buiten de buurt komt" (hoe huidige huishoudens zijn samengesteld, zegt niets over waar een nieuwe huurder vandaan komt); dat een buurt "voor kamerverhuur ruimte heeft" omdat er veel koopwoningen en weinig corporatiewoningen zijn (of een pand kan, hangt af van de WOZ van dat pand en of er al twee kamerpanden naast liggen). Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
 
 HUUR IS GEEN RICHTPRIJS. De huur is een bedrag per maand. De richtprijs is een koopsom: het hoogste bod waarbij de nettohuur de rente en aflossing dekt. Schrijf nooit "de richtprijs komt op €2.394 per maand".
 
@@ -164,19 +164,19 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     met_verg = [(b, verg[b], cbs[b]["won"]) for b in buurten
                 if verg.get(b) and cbs[b].get("won")]
     for b, v, won in sorted(met_verg, key=lambda x: -x[1] / x[2])[:3]:
-        weetjes.append(f"in {b} {pct(v / won * 100)} procent van alle woningen een "
-                       f"vergunning voor kamerverhuur heeft, {v} stuks op {n(won)} "
-                       f"woningen")
+        weetjes.append(f"in {b} van {pct(v / won * 100)} procent van alle woningen "
+                       f"bekend is dat er kamers worden verhuurd, {v} panden op "
+                       f"{n(won)} woningen, met een vergunning of een melding")
     if len(met_verg) >= 2:
         hoog = max(met_verg, key=lambda x: x[1] / x[2])
         laag = min(met_verg, key=lambda x: x[1] / x[2])
         weetjes.append(f"er in {hoog[0]} verhoudingsgewijs "
                        f"{pct((hoog[1] / hoog[2]) / (laag[1] / laag[2]), 1)} keer zoveel "
-                       f"kamerverhuurvergunningen zijn als in {laag[0]}")
+                       f"bekende kamerverhuurpanden zijn als in {laag[0]}")
     totaal_v = sum(v for _b, v, _w in met_verg)
     if totaal_v:
-        weetjes.append(f"er in de ring sinds 2013 {totaal_v} vergunningen voor "
-                       f"kamerverhuur zijn verleend")
+        weetjes.append(f"er in de ring {totaal_v} panden bekend zijn met kamerverhuur, "
+                       f"uit vergunningen en meldingen samen")
 
     # --- Studenten ---
     met_stud = [(b, cbs[b]["studenten"], cbs[b]["inwoners"]) for b in buurten
@@ -476,6 +476,18 @@ def _misdrijf_rang():
     return uit
 
 
+def bouwkosten_tekst():
+    """De CBS-bouwkostenindex, voor als een artikel over bouwkosten gaat."""
+    try:
+        from bouwkosten_index import indexfactor, omschrijf
+        info = indexfactor()
+        if info.get("geindexeerd"):
+            return omschrijf(info)
+    except Exception:
+        pass
+    return ""
+
+
 def _kamerverhuur_per_buurt():
     try:
         with open("kamerverhuur_per_buurt.json", encoding="utf-8") as f:
@@ -623,7 +635,10 @@ def weetje_van_de_dag():
         except Exception:
             return {}
     cbs = lees_json("buurten_cbs.json")
-    verg = lees_json("vergunningen_per_buurt.json")
+    # Bekende kamerverhuurpanden uit het register, anders alleen de vergunningen
+    kv = (lees_json("kamerverhuur_per_buurt.json") or {}).get("per_buurt", {})
+    verg = ({b: v.get("totaal") for b, v in kv.items() if v.get("totaal")}
+            or lees_json("vergunningen_per_buurt.json"))
     if not cbs:
         return ""
     try:
@@ -768,13 +783,31 @@ _OPBOUW = re.compile(
     r"(dus|daarom) (is er|heb ik|geeft dat) (vandaag )?(de )?ruimte|"
     r"er was geen (artikel|besluit|nieuws) om op te toetsen|"
     r"op mijn bureau|de moeite van het uitleggen waard|"
-    r"reden genoeg om|staat er (terecht |ook )?bij)", re.I)
+    r"reden genoeg om|staat er (terecht |ook )?bij|"
+    r"(verder |overigens )?(is er|was er|valt er) (weinig|niets) (te melden|nieuws)|"
+    r"geen (bekendmakingen|prijswijzigingen|mutaties)\b)", re.I)
 
 
 def opbouwzinnen(tekst):
     """De zinnen die de opbouw beschrijven, zodat ze hersteld kunnen worden."""
     zinnen = re.split(r"(?<=[.!?])\s+", tekst)
     return [z.strip() for z in zinnen if _OPBOUW.search(z)]
+
+
+def veiligheidszinnen(tekst):
+    """Zinnen die fietsendiefstal of vernieling als plus of min voor verhuur brengen."""
+    # Ook de zin ervoor bekijken: "Vernieling is hier laag. Voor verhuur is dat
+    # een pluspunt." noemt het cijfer in de ene zin en de conclusie in de andere.
+    zinnen = [z.strip() for z in re.split(r"(?<=[.!?])\s+", tekst)]
+    oordeel = re.compile(r"pluspunt|minpunt|prettig|aantrekkelijk|voor verhuur|"
+                         r"voor een huurder|voordeel|nadeel", re.I)
+    cijfer = re.compile(r"fietsendiefstal|vernieling", re.I)
+    uit = []
+    for i, z in enumerate(zinnen):
+        vorige = zinnen[i - 1] if i else ""
+        if oordeel.search(z) and (cijfer.search(z) or cijfer.search(vorige)):
+            uit.append(z)
+    return uit
 
 
 def opent_met_afwezigheid(zin):
@@ -827,6 +860,11 @@ def schrijf_brief(bronnen):
                          f"over wat er niet is gebeurd. Laat de brief beginnen bij "
                          f"het onderwerp; dat er weinig beweging was mag hooguit "
                          f"later terloops.")
+    for zin in veiligheidszinnen(tekst):
+        problemen.append(f"Deze zin gebruikt fietsendiefstal of vernieling als maat "
+                         f"voor hoe prettig een buurt is voor verhuur: \"{zin}\". "
+                         f"Bij die cijfers telt ook mee wie er alleen langskomt. "
+                         f"Haal die conclusie weg; woninginbraak mag wel.")
     for zin in opbouwzinnen(tekst):
         problemen.append(f"Deze zin beschrijft de opbouw van de brief: \"{zin}\". "
                          f"Haal dat deel weg; je vader leest een brief, geen "
@@ -841,7 +879,8 @@ def schrijf_brief(bronnen):
                               {"role": "assistant", "content": tekst},
                               {"role": "user", "content": correctie}], woorden)
         if (herschreven and not opent_met_afwezigheid(eerste_zin(herschreven))
-                and not opbouwzinnen(herschreven)):
+                and not opbouwzinnen(herschreven)
+                and not veiligheidszinnen(herschreven)):
             print("  hersteld", file=sys.stderr)
             tekst = herschreven
         elif herschreven and len(opbouwzinnen(herschreven)) < len(opbouwzinnen(tekst)):
@@ -917,6 +956,7 @@ def main():
         ("Gemeentelijke besluiten", strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
+        ("Bouwkosten", bouwkosten_tekst()),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
