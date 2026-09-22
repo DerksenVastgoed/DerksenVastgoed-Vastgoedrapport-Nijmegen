@@ -280,121 +280,155 @@ ACHTERGROND_TREFWOORDEN = {
                                       "drugs"],
 }
 
+# Per achtergrondstuk de bron waarop het rust. Nagelopen op 22 september 2026.
+# Een stuk zonder externe bron beschrijft de rekenmethode van deze brief.
+ACHTERGROND_BRONNEN = {
+    "Overdrachtsbelasting": "Belastingdienst, tarieven overdrachtsbelasting 2026",
+    "Rentedekking": "rekenmethode van deze brief; de eis van 1,25 is een eigen aanname",
+    "Aflossing is geen kostenpost": "rekenmethode van deze brief",
+    "Netto aanvangsrendement": "rekenmethode van deze brief",
+    "Opkoopbescherming": "Huisvestingsverordening gemeente Nijmegen 2024, artikel 19",
+    "Het puntenstelsel voor kamers": "Volkshuisvesting Nederland, Wet betaalbare huur",
+    "Het puntenstelsel voor woningen": "Volkshuisvesting Nederland, Wet betaalbare huur",
+    "Servicekosten": "Burgerlijk Wetboek boek 7, artikel 259 en 261; Wet goed verhuurderschap",
+    "Leefbaarheidstoets": ("Huisvestingsverordening Nijmegen 2024, artikel 15; "
+                           "Beleidsregels omzetting en onttrekking Nijmegen 2021; "
+                           "officiele bekendmakingen september 2026"),
+    "Splitsen in Nijmegen": ("Huisvestingsverordening Nijmegen 2024, artikel 13; "
+                             "Wet WOZ, artikel 16"),
+    "Btw op verbouwing": "Belastingplan 2025, herziening investeringsdiensten per 2026",
+    "Vennootschapsbelasting": "Belastingdienst, tarieven vennootschapsbelasting 2026",
+    "Beschermd stadsgezicht": ("Rijksdienst voor het Cultureel Erfgoed, aanwijzing "
+                               "De 19de-eeuwse Stadsuitleg Nijmegen, 11 december 2013"),
+    "Wet goed verhuurderschap": "Rijksoverheid, Wet goed verhuurderschap",
+    "Verkameren en het risico daarvan": ("Huisvestingsverordening Nijmegen 2024, "
+                                         "artikel 12, 13, 15 en bijlage 5"),
+    "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
+                                      "per wijk en buurt"),
+    "Waarom oppervlakte zo vaak misgaat": "Basisregistratie Adressen en Gebouwen",
+}
+
 ACHTERGROND = [
     ("Overdrachtsbelasting",
-     "Sinds 1 januari 2026 betaal je 8% overdrachtsbelasting voor een woning "
-     "die niet je hoofdverblijf is, verlaagd van 10,4%. Verkoop je binnen zes "
-     "maanden door, dan betaalt je koper op grond van artikel 13 van de Wet op "
-     "belastingen van rechtsverkeer alleen belasting over de meerwaarde. Dat "
-     "voordeel ligt bij de koper, maar je kunt in de akte afspreken dat hij "
-     "jouw betaalde belasting vergoedt."),
+     "Sinds 1 januari 2026 is de overdrachtsbelasting voor een woning die niet "
+     "je hoofdverblijf wordt 8%, was 10,4%. Voor bedrijfspanden en kantoren "
+     "blijft het 10,4%. Koopt iemand een woning binnen zes maanden nadat de "
+     "vorige eigenaar hem kocht, dan mag die koper de overdrachtsbelasting die "
+     "de verkoper betaalde in mindering brengen; een aanvullende bepaling "
+     "voorkomt dat het tariefverschil daarbij te veel voordeel geeft."),
     ("Rentedekking",
-     "Banken kijken bij verhuurd vastgoed niet alleen naar de "
-     "financieringsgraad maar ook naar de rentedekking: de nettohuur moet "
-     "minstens 1,25 keer de rentelast zijn. Bij de huidige rente knelt die eis "
-     "meestal eerder dan de financieringsgraad, waardoor je minder kunt lenen "
-     "dan 67% van de koopsom en je eigen inleg hoger uitvalt."),
+     "Naast de financieringsgraad kijken banken bij verhuurd vastgoed naar de "
+     "rentedekking: hoe vaak de nettohuur de rentelast dekt. De eis verschilt "
+     "per bank. Deze brief rekent met 1,25 keer, en dat is een eigen aanname, "
+     "geen norm. Knelt die eis eerder dan de financieringsgraad, dan kun je "
+     "minder lenen en wordt je eigen inleg hoger."),
     ("Aflossing is geen kostenpost",
      "Aflossing verlaat wel je rekening maar verdwijnt niet uit je vermogen: "
-     "het verschuift van geld naar pand. Wie aflossing van de huur aftrekt en "
-     "dat rendement noemt, onderschat elke belegging. Het operationeel "
-     "resultaat is de nettohuur min de rente; de aflossing komt daarna apart."),
+     "het verschuift van geld naar pand. Deze brief rekent daarom het "
+     "operationeel resultaat als nettohuur min rente, en zet de aflossing daar "
+     "apart naast als vermogensopbouw."),
     ("Netto aanvangsrendement",
-     "Het bruto aanvangsrendement rekent de huur af tegen de koopsom, maar je "
-     "betaalt meer dan de koopsom: overdrachtsbelasting, notaris, makelaar en "
-     "verbouwing. Het netto aanvangsrendement rekent over die hele investering "
-     "en valt daardoor een tot twee procentpunt lager uit. Dat is het cijfer "
-     "waarop taxateurs vergelijken."),
+     "Het bruto aanvangsrendement zet de huur af tegen de koopsom. Het netto "
+     "aanvangsrendement rekent met de nettohuur over de totale investering, "
+     "dus inclusief overdrachtsbelasting, notaris, makelaar en verbouwing. Hoe "
+     "groot het verschil is, hangt af van die kosten en staat per pand in de "
+     "doorrekening, niet in een vuistregel."),
     ("Opkoopbescherming",
-     "In Nijmegen mag je een gekochte woning met een WOZ tot en met €396.000 "
-     "vier jaar lang niet verhuren zonder vergunning. Die bescherming geldt "
-     "niet als het pand op de leveringsdatum al langer dan zes maanden "
-     "verhuurd was. Dat maakt een pand in verhuurde staat wezenlijk anders dan "
-     "hetzelfde pand leeg."),
+     "In Nijmegen mag je een woning vier jaar na inschrijving van de akte van "
+     "levering niet verhuren zonder verhuurvergunning als de WOZ op die datum "
+     "niet hoger was dan €396.000 en de woning toen vrij van huur was, of "
+     "korter dan zes maanden verhuurd. De toets gaat over wat je koopt, op het "
+     "moment dat je het koopt. Nieuwbouw, en woningen van de gemeente of een "
+     "corporatie, vallen erbuiten."),
     ("Het puntenstelsel voor kamers",
-     "Onzelfstandige woonruimte valt altijd in de sociale sector, hoe duur het "
-     "pand ook is. Het WWSO bepaalt de maximale kale huur per kamer, en boven "
-     "de zestig punten vlakt de tabel af. Kleinere kamers brengen daardoor per "
-     "vierkante meter meer op, tot de bouwkundige ondergrens."),
+     "Voor kamers, dus onzelfstandige woonruimte, geldt een apart puntenstelsel, "
+     "het WWSO. Een verhuurder van een kamer moet zich altijd aan de maximale "
+     "huurprijs houden, ongeacht het aantal punten of wanneer het contract is "
+     "gesloten. Sinds de Wet betaalbare huur telt ook de WOZ-waarde mee in het "
+     "puntenstelsel voor kamers."),
     ("Het puntenstelsel voor woningen",
-     "Bij zelfstandige woningen ligt de grens naar de vrije sector op 187 "
-     "punten. Daaronder is de huur wettelijk gemaximeerd. Een gesplitste "
-     "eenheid van vijftig vierkante meter haalt die grens zelden, waardoor de "
-     "marktprijs per meter niet gevraagd mag worden."),
+     "Voor zelfstandige woningen bepaalt het woningwaarderingsstelsel de "
+     "maximale huur. Tot en met 143 punten is het sociale huur, van 144 tot en "
+     "met 186 punten middenhuur, en vanaf 187 punten vrije sector zonder "
+     "maximale huurprijs. De regulering van de middenhuur geldt voor contracten "
+     "vanaf 1 juli 2024. Sinds 1 januari 2025 moet de verhuurder het "
+     "puntenaantal aan de huurder laten zien, en kan de gemeente een boete geven "
+     "bij een te hoge huur."),
     ("Servicekosten",
-     "Gas, water, licht, schoonmaak van gemeenschappelijke ruimten en internet "
-     "worden via de servicekosten doorbelast en drukken dus niet op je "
-     "rendement. Het puntenstelsel begrenst alleen de kale huur. Wie die "
-     "posten als exploitatiekosten meerekent, onderschat kamerverhuur."),
+     "Een verhuurder mag alleen servicekosten rekenen die het Burgerlijk "
+     "Wetboek toestaat, en moet jaarlijks een volledige kostenspecificatie "
+     "geven. Het puntenstelsel begrenst de kale huur, niet de servicekosten. "
+     "Worden kosten via de servicekosten doorbelast, dan horen ze niet ook "
+     "nog eens bij de exploitatiekosten; dan tel je ze dubbel."),
     ("Leefbaarheidstoets",
-     "De ambtelijke toets bij een omzettingsvergunning vervalt: de gemeente "
-     "trok in september 2026 de beleidsregels uit 2021 in, omdat goed "
-     "verhuurderschap landelijk is geborgd. Wat blijft zijn de harde gronden "
-     "van artikel 15: geluid, fietsenstalling, Bouwbesluit en maximaal twee "
-     "kamergewijs bewoonde woningen naast elkaar."),
+     "De leefbaarheidstoets staat in artikel 15 van de Huisvestingsverordening "
+     "en wordt uitgewerkt in beleidsregels uit 2021, waarin een ambtelijke "
+     "adviesgroep de leefbaarheid rond het pand beoordeelt. Volgens een "
+     "besluit dat onze bekendmakingenmonitor in september 2026 vond, trekt de "
+     "gemeente die beleidsregels in zodra de gewijzigde verordening ingaat. "
+     "Tot dan geldt de toets nog. De andere weigeringsgronden van artikel 15 "
+     "blijven: WOZ-ondergrens, geluid, fietsenstalling, Bouwbesluit en niet "
+     "meer dan twee kamergewijs bewoonde woningen naast, onder of boven elkaar."),
     ("Splitsen in Nijmegen",
      "Splitsen betekent drie verschillende dingen. Juridisch of kadastraal "
-     "splitsen in appartementsrechten is een notariele akte die in het "
-     "Kadaster wordt ingeschreven; daar vraagt Nijmegen geen vergunning voor. "
-     "Fysiek splitsen, van een woning meerdere zelfstandige woningen maken, "
-     "vraagt geen huisvestingsvergunning maar wel een omgevingsvergunning, "
-     "waarbij voor bestaande bouw het van rechtens verkregen niveau geldt en "
-     "niet de nieuwbouwnorm. En verkameren is iets anders: dat is omzetten naar "
-     "onzelfstandige woonruimte, met een eigen vergunningplicht. Voor de WOZ "
-     "telt de fysieke situatie: elke zelfstandige woning krijgt een eigen WOZ, "
-     "ook zonder appartementsrechten, terwijl een verkamerd pand een WOZ houdt "
-     "omdat kamers geen eigen keuken, douche en toilet hebben."),
+     "splitsen in appartementsrechten gebeurt bij de notaris en wordt in het "
+     "Kadaster ingeschreven; de Nijmeegse verordening kent daar geen vergunning "
+     "voor. Fysiek splitsen, van een woning meerdere zelfstandige woningen "
+     "maken, vraagt geen huisvestingsvergunning maar wel een omgevingsvergunning. "
+     "Verkameren is iets anders: omzetten naar onzelfstandige woonruimte, met "
+     "een eigen vergunningplicht. Voor de WOZ telt de fysieke situatie: "
+     "zelfstandige woningen zijn aparte WOZ-objecten, ook zonder "
+     "appartementsrechten, terwijl een verkamerd pand een WOZ houdt omdat "
+     "kamers geen eigen keuken, douche en toilet hebben."),
     ("Btw op verbouwing",
-     "Woningverhuur is vrijgesteld van btw, dus de btw op de verbouwing kun je "
-     "niet terugvorderen. Sinds 1 januari 2026 geldt bovendien een "
-     "herzieningsregeling voor kostbare diensten aan onroerend goed, met een "
-     "termijn van vijf jaar en een drempel van €30.000 exclusief btw."),
+     "Woningverhuur is vrijgesteld van btw, dus de btw op een verbouwing trek je "
+     "daarbij niet af. Sinds 1 januari 2026 geldt een herzieningstermijn voor "
+     "diensten aan onroerende zaken vanaf €30.000 exclusief btw per dienst: het "
+     "jaar van ingebruikname en de vier jaren daarna. Dat raakt vooral wie de "
+     "btw wel aftrok, bijvoorbeeld bij tijdelijk btw-belaste verhuur, en het "
+     "pand daarna vrijgesteld gaat verhuren."),
     ("Vennootschapsbelasting",
-     "In een BV betaal je 19% over de eerste €200.000 winst en 25,8% "
-     "daarboven. Bij actief handelen, dus kopen, verbouwen en snel "
-     "doorverkopen, is de BV bijna altijd de juiste structuur: prive loopt zo'n "
-     "strategie het risico dat de winst in box 1 valt als resultaat uit overige "
-     "werkzaamheden, tegen een tarief tot bijna vijftig procent."),
+     "Een BV betaalt in 2026 19% vennootschapsbelasting over de winst tot en met "
+     "€200.000 en 25,8% over het meerdere; die tarieven zijn sinds 2023 gelijk. "
+     "Wat de aandeelhouder daarna als dividend ontvangt, wordt in box 2 belast. "
+     "Welke structuur past, hangt af van de situatie en is een vraag voor de "
+     "fiscalist."),
     ("Beschermd stadsgezicht",
-     "De Benedenstad en de negentiende-eeuwse schil zijn rijksbeschermd "
-     "stadsgezicht. In zo'n gebied is voor wijzigingen aan het uiterlijk een "
-     "omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. "
-     "Dat raakt precies de maatregelen waarmee je het energielabel verbetert: "
-     "gevelisolatie, kozijnen en zonnepanelen aan de voorzijde."),
+     "De Benedenstad is van rijkswege beschermd stadsgezicht, en in december "
+     "2013 werd ook De 19de-eeuwse Stadsuitleg aangewezen, de eerste grote "
+     "uitbreiding van de stad na 1874. Het gevolg van zo'n aanwijzing is dat de "
+     "gemeente de bescherming vastlegt in het plan voor dat gebied. Of een "
+     "straat binnen de begrenzing valt en wat dat betekent voor gevel, "
+     "kozijnen of zonnepanelen, staat in het omgevingsplan en verschilt per "
+     "adres."),
     ("Wet goed verhuurderschap",
-     "Sinds 2023 gelden landelijke verplichtingen voor elke verhuurder: een "
-     "schriftelijke huurovereenkomst, een gespecificeerde servicekostenafrekening, "
-     "de waarborgsom van hooguit twee maanden huur en binnen veertien dagen na "
-     "einde huur terug, en informatie aan de huurder over zijn rechten. Nijmegen "
-     "heeft toezichthouders aangewezen die woningen mogen betreden om hierop te "
-     "controleren, zo nodig met machtiging."),
+     "Sinds 1 juli 2023 gelden landelijke regels voor elke verhuurder. Een "
+     "schriftelijk huurcontract is verplicht. De borg is maximaal twee maanden "
+     "kale huur en moet binnen 14 dagen na het einde van de huur terug, of "
+     "binnen 30 dagen als er wordt verrekend; verrekenen mag alleen met "
+     "achterstallige huur, servicekosten, schade en een energieprestatie"
+     "vergoeding. De gemeente handhaaft en kan een boete opleggen."),
     ("Verkameren en het risico daarvan",
-     "Verkameren verzilvert vierkante meters, maar het heeft een prijs. Je "
-     "verkoopt het pand later aan een andere belegger, niet aan een gezin. Bij "
-     "een WOZ tot en met €396.000 is een omzettingsvergunning nodig, en tot en "
-     "met €278.000 wordt die altijd geweigerd. Artikel 15 weigert ook als er "
-     "door de omzetting meer dan twee kamerpanden direct naast, onder of boven "
-     "elkaar komen; twee mag dus wel. Geluidsisolatie, een fietsenstalling op "
-     "eigen terrein en de brandveiligheid worden getoetst. De leefbaarheids"
-     "toets door de ambtelijke adviesgroep staat nog in de verordening, maar de "
-     "gemeente heeft aangekondigd dat die vervalt zodra de gewijzigde "
-     "verordening ingaat. De boete voor omzetten zonder vergunning is €5.000, "
-     "en €10.000 als het bedrijfsmatig gebeurt, zoals vanuit een BV."),
+     "Bij een WOZ tot en met €396.000 is voor verkameren een omzettingsvergunning "
+     "nodig, en tot en met €278.000 wordt die altijd geweigerd. Artikel 15 "
+     "weigert ook als er door de omzetting meer dan twee kamergewijs bewoonde "
+     "woningen direct naast, onder of boven elkaar komen; twee mag dus wel. "
+     "Geluidsisolatie, een fietsenstalling op eigen terrein, het Bouwbesluit en "
+     "brandveilig gebruik worden getoetst. De boete voor omzetten zonder "
+     "vergunning is €5.000, en €10.000 bij bedrijfsmatige exploitatie."),
     ("Veiligheid en verhuurbaarheid",
-     "De politie registreert een misdrijf op de plek waar het gebeurt, niet waar "
-     "het slachtoffer woont. Dat maakt uit welk cijfer je gebruikt. Fietsendiefstal "
-     "en vernieling vinden vooral plaats waar veel mensen komen: bij het station, "
-     "in winkelstraten en in het uitgaansgebied. Deel je die door het aantal "
-     "bewoners, dan lijkt een centrum onveilig terwijl het vooral druk is. "
-     "Woninginbraak is het cijfer dat over de bewoners zelf gaat, want het "
-     "gebeurt bij iemand thuis. Wie wil weten of een buurt prettig wonen is voor "
-     "een huurder, kijkt dus eerst naar inbraak en pas daarna naar de rest."),
+     "De politie telt misdrijven per buurt op de plaats waar ze zijn gepleegd, "
+     "inclusief pogingen; wat niet aan een buurt is toe te kennen, telt niet "
+     "mee. Deze brief deelt die aantallen door het aantal bewoners. Bij delicten "
+     "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
+     "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
+     "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
     ("Waarom oppervlakte zo vaak misgaat",
-     "De BAG kent een oppervlakte per verblijfsobject, niet per huisnummer. "
-     "Bij een pand dat is opgedeeld in een boven- en benedenhuis staat soms "
-     "het geheel geregistreerd, en bij een geregistreerde splitsing staan er "
-     "twee objecten op hetzelfde adres. Daarom telt de oppervlakte uit de "
-     "advertentie zwaarder dan die uit de registratie."),
+     "De BAG registreert de gebruiksoppervlakte per verblijfsobject, en elk "
+     "verblijfsobject heeft een eigen adres. Is een pand feitelijk opgedeeld "
+     "maar staat het als een verblijfsobject geregistreerd, dan geeft de BAG de "
+     "oppervlakte van het geheel. Daarom gebruikt deze brief de oppervlakte uit "
+     "de advertentie als die er is, en anders de BAG."),
 ]
 
 
@@ -442,7 +476,9 @@ def achtergrond_van_de_dag(nieuwstekst=""):
             json.dump(gezien[-len(ACHTERGROND):], f, ensure_ascii=False, indent=1)
     except Exception:
         pass
-    return ["", f"**Over {titel.lower()}.** {tekst}", ""]
+    bron = ACHTERGROND_BRONNEN.get(titel, "")
+    staart = f" _(Bron: {bron}.)_" if bron else ""
+    return ["", f"**Over {titel.lower()}.** {tekst}{staart}", ""]
 
 
 if __name__ == "__main__":
