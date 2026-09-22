@@ -393,10 +393,16 @@ def _mediaan_rang():
             trend = json.load(f)
     except Exception:
         return {}
-    laatste = {}
-    for buurt, reeks in trend.items():
-        if isinstance(reeks, dict) and reeks:
-            laatste[buurt] = reeks[sorted(reeks)[-1]]
+    # Het bestand is per week opgebouwd: {week: {buurt: mediaan, "_datum": ...}}.
+    # Een eerdere versie las het per buurt, rangschikte daardoor de weken en gaf
+    # de brief nooit een rangorde mee. We nemen de laatste week, en per buurt
+    # alleen getallen.
+    weken = sorted(k for k in trend if not str(k).startswith("_")
+                   and isinstance(trend[k], dict))
+    if not weken:
+        return {}
+    laatste = {b: v for b, v in trend[weken[-1]].items()
+               if b in ZES_BUURTEN and isinstance(v, (int, float))}
     if len(laatste) < 2:
         return {}
     volgorde = sorted(laatste, key=lambda b: laatste[b])
@@ -413,6 +419,10 @@ def _mediaan_rang():
     return uit
 
 
+ZES_BUURTEN = ("Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
+               "Altrade", "Biezen")
+
+
 def _veld_rang(veld):
     """De hoeveelste van de zes buurten op een CBS-veld, vooraf berekend."""
     try:
@@ -420,8 +430,11 @@ def _veld_rang(veld):
             cbs = json.load(f)
     except Exception:
         return {}
+    # Alleen de zes buurten van de ring: het bestand kan meer bevatten, en dan
+    # zou "het hoogste van de zes" stilletjes "het hoogste van de 44" worden
     waarden = {b: g.get(veld) for b, g in cbs.items()
-               if isinstance(g, dict) and g.get(veld) is not None}
+               if b in ZES_BUURTEN and isinstance(g, dict)
+               and g.get(veld) is not None}
     if len(waarden) < 2:
         return {}
     volgorde = sorted(waarden, key=lambda b: waarden[b])
@@ -456,6 +469,8 @@ def _misdrijf_rang():
     for soort in ("woninginbraak", "vernieling", "fietsendiefstal"):
         per_buurt = {}
         for buurt, jaren in mis.items():
+            if buurt not in ZES_BUURTEN:
+                continue
             inw = (cbs.get(buurt) or {}).get("inwoners")
             if not jaren or not inw:
                 continue
@@ -549,7 +564,10 @@ def buurtcijfers_tekst():
         elif verg.get(buurt):
             d.append(f"{verg[buurt]} vergunningen voor kamerverhuur sinds 2013")
 
-        rang = _mediaan_rang().get(buurt)
+        try:
+            rang = _mediaan_rang().get(buurt)
+        except Exception:
+            rang = None
         if rang:
             d.append(f"prijs per m2: {rang}")
 
@@ -855,6 +873,15 @@ def schrijf_brief(bronnen):
     buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
     punten = nieuwswaarde(bronnen)
     woorden, sturing = schrijfruimte(punten)
+
+    # Een nieuw pand is actualiteit, ook op een dag met weinig ander nieuws.
+    # Eerder zei de sturing op zo'n dag "maak van de verdieping het hoofdstuk",
+    # en schoof de brief een nieuw pand 36% onder de mediaan opzij.
+    alle_tekst = " ".join(t for _n, t in bronnen if t)
+    if re.search(r"\b\d+ nieuw of gewijzigd\b", alle_tekst):
+        sturing += (" Er staat vandaag een nieuw of gewijzigd pand in de gegevens. "
+                    "Begin daarmee: introduceer het, haal erbij wat het dossier "
+                    "erover zegt, en verbind het met de verdieping als dat kan.")
     print(f"Nieuwswaarde vandaag: {punten} punten, ruimte {woorden} woorden",
           file=sys.stderr)
 
