@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-09-22
 
-13 in orde, 2 aandachtspunten, 0 fouten.
+14 in orde, 2 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Huurdata**: 2 huurwaarnemingen, waarvan 2 Pararius en 0 Kamernet; 2 in de laatste week
@@ -11,11 +11,12 @@
 ## OK
 - **Aanbod**: 62 koopobjecten, 7 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,53% (2026-09-18), opslag bij 70% financiering 1,97 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,47% (2026-09-21), opslag bij 70% financiering 2,03 procentpunt
 - **Bouwkostenindex**: 103 maanden, laatste 2026-07
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 948 panden in de ring, waarvan 189 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
+- **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 66 panden gerouteerd
 - **Bekendmakingen-archief**: 317 adressen, 445 publicaties

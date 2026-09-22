@@ -1,0 +1,17 @@
+{
+ "landelijk": {
+  "periode": "2026-08",
+  "index": 156.6,
+  "maand_pct": -0.1,
+  "jaar_pct": 3.3,
+  "kolom": "PrijsindexVerkoopprijzen_1"
+ },
+ "regio": {
+  "naam": "Gelderland (PV)",
+  "periode": "2026-K2",
+  "index": 164.4,
+  "kwartaal_pct": 1.1,
+  "jaar_pct": 5.6,
+  "kolom": "PrijsindexVerkoopprijzen_1"
+ }
+}
