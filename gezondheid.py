@@ -223,6 +223,27 @@ def controle_vergunningen():
     return (OK, f"{len(lijst)} adressen in {len(per_buurt)} buurten", "")
 
 
+def controle_kamerverhuur():
+    """Het register van kamerverhuurpanden, en hoe ver de meldingen teruggaan."""
+    d = _json("kamerverhuur_per_buurt.json") or {}
+    per = d.get("per_buurt") or {}
+    if not per:
+        return (FOUT, "kamerverhuur_per_buurt.json ontbreekt of is leeg",
+                diagnose("kamerverhuur") or "Zie de stap Kamerverhuurregister.")
+    totaal = sum(v.get("totaal", 0) for v in per.values())
+    via_melding = sum(v.get("alleen_melding_of_besluit", 0) for v in per.values())
+    jaren = d.get("meldingen_per_jaar") or {}
+    jaartekst = (", ".join(f"{j}: {n}" for j, n in jaren.items())
+                 if jaren else "geen meldingen")
+    bewijs = (f"{totaal} panden in de ring, waarvan {via_melding} alleen via een "
+              f"melding of besluit; meldingen per jaar: {jaartekst}")
+    if not jaren:
+        return (LET_OP, bewijs, diagnose("kamerverhuur") or
+                "Geen meldingen in het archief; het register rust dan alleen op de "
+                "vergunningenlijst.")
+    return (OK, bewijs, "")
+
+
 def controle_misdrijven():
     d = _json("misdrijven_per_buurt.json") or {}
     if not d:
@@ -315,6 +336,7 @@ CONTROLES = [
     ("Eigen bouwkosten", controle_eigen_bouwkosten),
     ("Buurtcijfers CBS", controle_buurtcijfers),
     ("Kamervergunningen", controle_vergunningen),
+    ("Kamerverhuurregister", controle_kamerverhuur),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
