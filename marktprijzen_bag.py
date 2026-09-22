@@ -1640,6 +1640,46 @@ def eigen_kamervergunning(w, vergunningen=None):
             if "samenvoeg" not in (v.get("soort") or "").lower()]
 
 
+def kamerverhuur_bekend(w, vergunningen=None, archief=None):
+    """
+    Aanwijzingen dat dit pand per kamer wordt verhuurd, elk met de bron.
+
+    De vergunningenlijst alleen is niet genoeg. Boven de WOZ-grens van
+    €396.000 is geen omzettingsvergunning nodig, dus kamerpanden in die klasse
+    staan er per definitie niet in; de St. Annastraat 28 is daar een voorbeeld
+    van. Een melding brandveilig gebruik hangt niet aan de WOZ maar aan het
+    gebruik: verplicht vanaf vijf verhuurde kamers (Besluit bouwwerken
+    leefomgeving, artikel 6.6). Die meldingen staan in het bekendmakingen-
+    archief.
+
+    Wat ook dit mist: panden met drie of vier kamers boven de WOZ-grens, en
+    meldingen van voor het archief. Geen aanwijzing betekent dus niet dat er
+    geen kamerverhuur is.
+    """
+    uit = []
+    for v in eigen_kamervergunning(w, vergunningen):
+        uit.append({"bron": "vergunningenlijst van de gemeente",
+                    "soort": v.get("soort") or "kamerverhuur",
+                    "jaar": (v.get("datum") or "")[:4]})
+
+    archief = archief if archief is not None else lees_archief()
+    m = re.match(r"^(.+?)\s+(\d+)", (w.get("adres") or "").strip())
+    if m and archief:
+        for t in archief.get(archief_sleutel(m.group(1), m.group(2)), []):
+            soorten = " ".join(x.lower() for x in (t.get("soorten") or []))
+            titel = (t.get("titel") or "").lower()
+            jaar = (t.get("datum") or "")[:4]
+            if "brandveilig" in soorten or "brandveilig" in titel:
+                uit.append({"bron": "melding brandveilig gebruik",
+                            "soort": "melding brandveilig gebruik", "jaar": jaar})
+            elif (any(k in soorten for k in ("kamerverhuur", "omzetting"))
+                    and not titel.startswith("aanvraag")):
+                # Een aanvraag is nog geen toestemming; alleen een besluit telt
+                uit.append({"bron": "officiele bekendmaking",
+                            "soort": "besluit kamerverhuur", "jaar": jaar})
+    return uit
+
+
 def wws_indicatie(w):
     """
     Het puntenaantal van een pand, voor zover het uit bekende gegevens volgt.
@@ -1659,13 +1699,13 @@ def wws_indicatie(w):
     # daarbij geldt altijd een maximale huur. De telling voor een zelfstandige
     # woning geeft dan een getal dat nergens over gaat: bij de St. Annastraat 28
     # kwam er 476 punten en "vrije sector" uit, terwijl het een kamerpand is.
-    eigen = eigen_kamervergunning(w)
-    if eigen:
-        v = eigen[0]
+    bekend = kamerverhuur_bekend(w)
+    if bekend:
+        v = bekend[0]
         return {"punten": None, "kamerpand": True,
-                "basis": f"vergunning {v.get('soort', 'kamerverhuur')}"
-                         f"{' uit ' + v.get('datum', '')[:4] if v.get('datum') else ''}",
-                "oordeel": ("heeft een vergunning voor kamerverhuur. Per kamer "
+                "basis": f"{v['soort']}{' uit ' + v['jaar'] if v['jaar'] else ''}, "
+                         f"bron: {v['bron']}",
+                "oordeel": ("er is een aanwijzing voor kamerverhuur. Per kamer "
                             "verhuurd geldt het puntenstelsel voor onzelfstandige "
                             "woonruimte, en daarbij geldt altijd een maximale "
                             "huur, ongeacht het aantal punten")}
@@ -1882,7 +1922,7 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
     # Aanwijzingen dat het pand al als kamerverhuur draait
     tekst = " ".join(str(w.get(k, "")) for k in ("adres", "status", "bron")).lower()
     signalen = w.get("signalen") or []
-    kamerpand = (bool(eigen_kamervergunning(w))
+    kamerpand = (bool(kamerverhuur_bekend(w))
                  or any("kamerverhuur" in (s.get("soorten") or []) for s in signalen)
                  or "kamer" in tekst)
 
@@ -3581,8 +3621,15 @@ def render_bieden(woningen, huur_bk, huur_k, per_buurt):
         budget = max_koopsom_bij_budget(sc["maand"] * 12 * (1 - opex / 100),
                                         renovatie=reno)
         if budget and budget["max"] < max_bod:
-            regel += (f" Met het beschikbare eigen vermogen kom je tot "
-                      f"€{eu(budget['max'])}.")
+            vraag = w.get("prijs") or 0
+            if vraag and budget["max"] < 0.5 * vraag:
+                regel += (" Met het ingestelde eigen vermogen is dit pand niet "
+                          "haalbaar: de verbouwing, de kosten koper en het deel "
+                          "boven de lening vragen samen meer dan er is.")
+            else:
+                regel += (f" Met het ingestelde eigen vermogen is de hoogste "
+                          f"koopsom €{eu(budget['max'])}; daarboven is de eigen "
+                          f"inleg groter dan het vermogen.")
         r.append(regel)
         r.append("")
     return r
@@ -4174,10 +4221,14 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                     + (f" ({e['oppervlakte']} m²)"
                                        if e.get("oppervlakte") else "")
                                     for e in eenh[:4])
-                r.append(f"_**{w['adres']}** zit in een pand dat volgens de BAG al "
-                         f"{len(eenh)} zelfstandige woningen telt: {namen_e}. De "
-                         f"splitsing is dus geregistreerd en elke eenheid heeft een "
-                         f"eigen adres; je hoeft die niet meer aan te vragen._")
+                r.append(f"_**{w['adres']}** zit in een pand met volgens de BAG "
+                         f"{len(eenh)} woningen, elk met een eigen adres: "
+                         f"{namen_e}. Het aangeboden object is daar een van. De "
+                         f"oppervlakte per adres komt uit de BAG en kan afwijken "
+                         f"van de advertentie. Dat de BAG aparte woningen telt, "
+                         f"zegt niet of het pand juridisch in appartementsrechten "
+                         f"is gesplitst; dat staat in het Kadaster. Een "
+                         f"splitsingsvergunning kent Nijmegen niet._")
                 r.append("")
 
         if stil:
