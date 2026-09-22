@@ -255,6 +255,14 @@ def controle_woningprijzen():
         delen.append(f"landelijk {l['periode']}")
     if r:
         delen.append(f"{r['naam']} {r['periode']}")
+    v = d.get("vergelijking") or {}
+    if v.get("beste_verband"):
+        b = v["beste_verband"]
+        delen.append(f"eigen reeks {v['maanden']} maanden, sterkste samenhang bij "
+                     f"{b['vertraging_maanden']} maanden vooruit ({b['r']})")
+    elif v.get("maanden"):
+        delen.append(f"eigen reeks {v['maanden']} maanden sinds {v['sinds']}, "
+                     f"vergelijking start bij 13")
     if not r:
         return (LET_OP, ", ".join(delen) + "; geen regio",
                 diagnose("woningprijzen") or "Nijmegen niet gevonden in de regiotabel.")
