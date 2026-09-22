@@ -87,6 +87,11 @@ BRONNEN = [
      "eigen aanname in bouwkosten_eigen.txt, anders een schatting van het "
      "script; de RVO-kentallen zijn nog niet ingelezen",
      "peildatum mei 2025, geindexeerd naar nu"),
+    ("Woningprijsindex", "registratie",
+     "prijsindex bestaande koopwoningen, landelijk per maand en Nijmegen per "
+     "kwartaal, uit werkelijke verkoopprijzen",
+     "CBS en Kadaster, tabellen 85773NED en 85792NED",
+     "circa 22 dagen na de periode"),
     ("Bouwkostenindex", "registratie",
      "inputprijsindex bouwkosten, loon en materiaal, om de kentallen te "
      "indexeren",
