@@ -56,6 +56,15 @@ jobs:
           # Zondag is dag 7. Dan de uitgebreide brief, doordeweeks de korte.
           if [ "$(date +%u)" = "7" ]; then MODUS=weekelijks; else MODUS=dagelijks; fi
           echo "MODUS=$MODUS" >> "$GITHUB_ENV"
+          # Een handmatige run met "alleen naar mij" is een test. Die mag het
+          # geheugen van geziene panden niet bijwerken, anders is een nieuw pand
+          # bij de echte brief van morgen niet meer nieuw.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
+             && [ "${{ github.event.inputs.alleen_naar_mij }}" = "true" ]; then
+            echo "TESTRUN=1" >> "$GITHUB_ENV"
+          else
+            echo "TESTRUN=0" >> "$GITHUB_ENV"
+          fi
           if [ -n "${VERHAAL_ADRES}" ]; then
             echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
           else
@@ -217,6 +226,9 @@ jobs:
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
+          # Bij een testrun het geheugen niet bijwerken, anders is een nieuw
+          # pand bij de echte brief van morgen niet meer nieuw.
+          export GEHEUGEN_ALLEEN_LEZEN="${TESTRUN:-0}"
           python marktprijzen_bag.py --modus "$MODUS" \
             --uit "digests/${DATUM}-marktprijzen.md" \
             --bijlage "digests/${DATUM}-bijlage.md" \
