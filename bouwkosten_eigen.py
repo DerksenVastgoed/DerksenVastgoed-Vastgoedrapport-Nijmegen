@@ -15,6 +15,10 @@
 #   verduurzaming-c    idem vanaf C
 #   verduurzaming      geldt voor alle labels waarvoor niets specifieks staat
 #   verhuurklaar       keuken, badkamer, schilderwerk, vloeren, elektra
+#   splitsen-eenheid   wat het kost om een extra zelfstandige eenheid te maken:
+#                      keuken, badkamer, scheiding, aansluitingen. Een bedrag PER
+#                      EENHEID, niet per m2. Zolang dit ontbreekt, kiest het script
+#                      splitsen niet automatisch als route.
 #
 # De bedragen zijn EXCLUSIEF btw; het script telt daar 15% bij op, de menging
 # van 9% arbeid en 21% materiaal die het PBL hanteert. Staat jouw bedrag al
@@ -44,3 +48,4 @@
 # VOORBEELD, verwijder het hekje en pas de bedragen aan:
 # verhuurklaar | 310 | 2026-06 | keuken en badkamer Graafsedwarsstraat, excl btw
 # verduurzaming-e | 385 | 2026-03 | dak, spouw en HR++ bij een pand uit 1920
+# splitsen-eenheid | 45000 | 2026-06 | tweede keuken, badkamer en scheidingswand
