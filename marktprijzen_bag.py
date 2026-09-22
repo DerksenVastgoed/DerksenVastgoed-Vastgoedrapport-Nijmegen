@@ -1602,6 +1602,23 @@ def misdrijfregel(buurt, misdrijven, inwoners=None):
 
 
 
+def eigen_kamervergunning(w, vergunningen=None):
+    """
+    De vergunningen voor kamerverhuur op dit pand zelf, uit de gemeentelijke lijst.
+
+    Samenvoeging telt niet mee, want dat is geen kamerverhuur. Geen treffer
+    betekent niet dat er niets ligt: oudere vergunningen staan niet in de lijst.
+    """
+    vergunningen = (vergunningen if vergunningen is not None
+                    else lees_kamervergunningen())
+    m = re.match(r"^(.+?)\s+(\d+)", (w.get("adres") or "").strip())
+    if not m or not vergunningen:
+        return []
+    lijst = vergunningen.get(archief_sleutel(m.group(1), m.group(2)), [])
+    return [v for v in lijst
+            if "samenvoeg" not in (v.get("soort") or "").lower()]
+
+
 def wws_indicatie(w):
     """
     Het puntenaantal van een pand, voor zover het uit bekende gegevens volgt.
@@ -1616,6 +1633,22 @@ def wws_indicatie(w):
     Zonder bekende WOZ rekenen we niet: de vraagprijs is geen WOZ, en de WOZ
     is juist een van de zwaarste onderdelen van de telling.
     """
+    # Heeft het pand een vergunning voor kamerverhuur, dan wordt het per kamer
+    # verhuurd. Dan geldt het puntenstelsel voor onzelfstandige woonruimte, en
+    # daarbij geldt altijd een maximale huur. De telling voor een zelfstandige
+    # woning geeft dan een getal dat nergens over gaat: bij de St. Annastraat 28
+    # kwam er 476 punten en "vrije sector" uit, terwijl het een kamerpand is.
+    eigen = eigen_kamervergunning(w)
+    if eigen:
+        v = eigen[0]
+        return {"punten": None, "kamerpand": True,
+                "basis": f"vergunning {v.get('soort', 'kamerverhuur')}"
+                         f"{' uit ' + v.get('datum', '')[:4] if v.get('datum') else ''}",
+                "oordeel": ("heeft een vergunning voor kamerverhuur. Per kamer "
+                            "verhuurd geldt het puntenstelsel voor onzelfstandige "
+                            "woonruimte, en daarbij geldt altijd een maximale "
+                            "huur, ongeacht het aantal punten")}
+
     try:
         from wwso import wws_punten
     except Exception:
@@ -1624,6 +1657,14 @@ def wws_indicatie(w):
     opp = w.get("oppervlakte")
     if not woz or not opp:
         return None
+    # Zo groot dat het script het niet als een huishouden doorrekent: dan zegt
+    # de telling voor een zelfstandige woning weinig over de verhuur.
+    if opp > MAX_M2_EEN_HUISHOUDEN:
+        return {"punten": None, "kamerpand": False,
+                "basis": f"{opp} m2",
+                "oordeel": (f"groter dan {MAX_M2_EEN_HUISHOUDEN} m2, dus niet als "
+                            f"een huishouden doorgerekend; een telling voor een "
+                            f"zelfstandige woning zegt hier weinig")}
     label = (w.get("energielabel") or {}).get("label")
     uit = wws_punten(opp, woz, label=label, monument=bool(w.get("monument")))
     punten = uit.get("punten")
@@ -1820,7 +1861,8 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
     # Aanwijzingen dat het pand al als kamerverhuur draait
     tekst = " ".join(str(w.get(k, "")) for k in ("adres", "status", "bron")).lower()
     signalen = w.get("signalen") or []
-    kamerpand = (any("kamerverhuur" in (s.get("soorten") or []) for s in signalen)
+    kamerpand = (bool(eigen_kamervergunning(w))
+                 or any("kamerverhuur" in (s.get("soorten") or []) for s in signalen)
                  or "kamer" in tekst)
 
     huur_w, bron_w = huur_voor_buurt(buurt, huur_bk, huur_k, opp, "woning")
@@ -4191,9 +4233,11 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 deel = (f"{w['adres']} €{eu(w['woz'])}"
                         + (f" ({jaar}{', verouderd' if oud else ''})" if jaar else ""))
                 wws = wws_indicatie(w)
-                if wws:
+                if wws and wws.get("punten") is not None:
                     deel += (f", puntenstelsel ondergrens {wws['punten']} punten "
                              f"({wws['basis']}): {wws['oordeel']}")
+                elif wws:
+                    deel += f" ({wws['basis']}): {wws['oordeel']}"
                 stukken.append(deel)
             r.append("_Bekende WOZ-waarden: " + " . ".join(stukken)
                      + ". Daar toetsen we op in plaats van op de vraagprijs. De "
