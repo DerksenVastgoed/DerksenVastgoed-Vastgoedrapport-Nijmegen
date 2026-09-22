@@ -203,6 +203,12 @@
   "prijs": 385000,
   "status": "te koop"
  },
+ "mrfranckenstraat6": {
+  "adres": "Mr. Franckenstraat 6",
+  "laatst": "2026-09-22",
+  "prijs": 375000,
+  "status": "te koop"
+ },
  "nieuwemarkt90": {
   "adres": "Nieuwe Markt 90",
   "laatst": "2026-09-22",
@@ -251,6 +257,12 @@
   "prijs": 539000,
   "status": "te koop"
  },
+ "pontanusstraat40": {
+  "adres": "Pontanusstraat 40",
+  "laatst": "2026-09-22",
+  "prijs": 599000,
+  "status": "te koop"
+ },
  "professorcornelissenstraat3": {
   "adres": "Professor Cornelissenstraat 3",
   "laatst": "2026-09-22",
@@ -297,6 +309,12 @@
   "adres": "Staringstraat 21",
   "laatst": "2026-09-22",
   "prijs": 299000,
+  "status": "te koop"
+ },
+ "stieltjesstraat10": {
+  "adres": "Stieltjesstraat 10",
+  "laatst": "2026-09-22",
+  "prijs": 539000,
   "status": "te koop"
  },
  "ubbergseveldweg17": {

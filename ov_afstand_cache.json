@@ -95,6 +95,14 @@
   "omweg": 1.22,
   "soort": "bus"
  },
+ "51.83870,5.86105": {
+  "geschat": false,
+  "hemelsbreed": 204,
+  "meters": 322,
+  "naam": "Fransestraat",
+  "omweg": 1.58,
+  "soort": "bus"
+ },
  "51.83895,5.86167": {
   "geschat": false,
   "hemelsbreed": 155,
@@ -285,6 +293,22 @@
   "meters": 24,
   "naam": "Meester Franckenstraat",
   "omweg": 0.62,
+  "soort": "bus"
+ },
+ "51.84440,5.85490": {
+  "geschat": false,
+  "hemelsbreed": 63,
+  "meters": 680,
+  "naam": "Tunnelweg",
+  "omweg": 10.79,
+  "soort": "bus"
+ },
+ "51.84446,5.87289": {
+  "geschat": false,
+  "hemelsbreed": 37,
+  "meters": 134,
+  "naam": "Meester Franckenstraat",
+  "omweg": 3.62,
   "soort": "bus"
  },
  "51.84464,5.87529": {

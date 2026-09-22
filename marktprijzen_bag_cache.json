@@ -4521,5 +4521,228 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Mr. Franckenstraat 6|Nijmegen": {
+    "oppervlakte": 94,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522AD",
+    "adresseerbaarObjectIdentificatie": "0268010000051330",
+    "pand": "0268100000020697",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-551e85a0a871d2a1e5c8627ae096281f",
+    "eenheden_in_pand": [
+      {
+        "adres": "Mr. Franckenstraat 2",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 4",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 6",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 8",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 10",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 12",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 14",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 16",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 18",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 20",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 22",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 24",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 26",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 28",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 30",
+        "oppervlakte": 25,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 32",
+        "oppervlakte": 32,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mr. Franckenstraat 34",
+        "oppervlakte": 32,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 96,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2020-11-12",
+      "geldig_tot": "2030-11-12",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Stieltjesstraat 10|Nijmegen": {
+    "oppervlakte": 158,
+    "bouwjaar": "1938",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511AC",
+    "adresseerbaarObjectIdentificatie": "0268010000031845",
+    "pand": "0268100000040817",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-456f15ad922392b78c70edf97445f6b9",
+    "oppervlakte_bag": 181,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-10-16",
+      "geldig_tot": "2035-10-13",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Pontanusstraat 40|Nijmegen": {
+    "oppervlakte": 133,
+    "bouwjaar": "1908",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HG",
+    "adresseerbaarObjectIdentificatie": "0268010000024899",
+    "pand": "0268100000029586",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-ce075491041c1ab468befdd4bb2bd79b",
+    "eenheden_in_pand": [
+      {
+        "adres": "Pontanusstraat 38",
+        "oppervlakte": 177,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Pontanusstraat 40",
+        "oppervlakte": 197,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 197,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2020-10-27",
+      "geldig_tot": "2030-10-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }
