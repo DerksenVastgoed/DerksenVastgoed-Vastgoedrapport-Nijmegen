@@ -1665,7 +1665,12 @@ def kamerverhuur_bekend(w, vergunningen=None, archief=None):
     archief = archief if archief is not None else lees_archief()
     m = re.match(r"^(.+?)\s+(\d+)", (w.get("adres") or "").strip())
     if m and archief:
-        for t in archief.get(archief_sleutel(m.group(1), m.group(2)), []):
+        # In het archief kan een melding onder "de Pijnboomstraat" staan als de
+        # titel "aan de Pijnboomstraat" luidde. Beide sleutels proberen.
+        sleutels = {archief_sleutel(m.group(1), m.group(2)),
+                    archief_sleutel("de " + m.group(1), m.group(2))}
+        items_a = [t for sl in sleutels for t in archief.get(sl, [])]
+        for t in items_a:
             soorten = " ".join(x.lower() for x in (t.get("soorten") or []))
             titel = (t.get("titel") or "").lower()
             jaar = (t.get("datum") or "")[:4]
@@ -1700,15 +1705,13 @@ def wws_indicatie(w):
     # woning geeft dan een getal dat nergens over gaat: bij de St. Annastraat 28
     # kwam er 476 punten en "vrije sector" uit, terwijl het een kamerpand is.
     bekend = kamerverhuur_bekend(w)
+    kamer_tekst = ""
     if bekend:
         v = bekend[0]
-        return {"punten": None, "kamerpand": True,
-                "basis": f"{v['soort']}{' uit ' + v['jaar'] if v['jaar'] else ''}, "
-                         f"bron: {v['bron']}",
-                "oordeel": ("er is een aanwijzing voor kamerverhuur. Per kamer "
-                            "verhuurd geldt het puntenstelsel voor onzelfstandige "
-                            "woonruimte, en daarbij geldt altijd een maximale "
-                            "huur, ongeacht het aantal punten")}
+        kamer_tekst = (f"bekend als kamerpand ({v['soort']}"
+                       f"{' ' + v['jaar'] if v['jaar'] else ''}). Per kamer "
+                       f"verhuurd geldt het puntenstelsel voor onzelfstandige "
+                       f"woonruimte, met altijd een maximale huur. ")
 
     try:
         from wwso import wws_punten
@@ -1721,11 +1724,12 @@ def wws_indicatie(w):
     # Zo groot dat het script het niet als een huishouden doorrekent: dan zegt
     # de telling voor een zelfstandige woning weinig over de verhuur.
     if opp > MAX_M2_EEN_HUISHOUDEN:
-        return {"punten": None, "kamerpand": False,
+        return {"punten": None, "kamerpand": bool(bekend),
                 "basis": f"{opp} m2",
-                "oordeel": (f"groter dan {MAX_M2_EEN_HUISHOUDEN} m2, dus niet als "
-                            f"een huishouden doorgerekend; een telling voor een "
-                            f"zelfstandige woning zegt hier weinig")}
+                "oordeel": kamer_tekst + (
+                    f"Groter dan {MAX_M2_EEN_HUISHOUDEN} m2, dus niet als een "
+                    f"huishouden doorgerekend; een telling voor een zelfstandige "
+                    f"woning zegt hier weinig")}
     label = (w.get("energielabel") or {}).get("label")
     uit = wws_punten(opp, woz, label=label, monument=bool(w.get("monument")))
     punten = uit.get("punten")
@@ -1738,9 +1742,12 @@ def wws_indicatie(w):
         oordeel = ("onder de 187 op basis van wat bekend is; keuken, sanitair en "
                    "verwarming bepalen of het middenhuur blijft of vrije sector "
                    "wordt")
+    if kamer_tekst:
+        oordeel = kamer_tekst + "Als een woning verhuurd: " + oordeel
     basis = [f"{opp} m2", f"WOZ €{eu(woz)}",
              f"label {label}" if label else "label onbekend, niet meegeteld"]
-    return {"punten": punten, "oordeel": oordeel, "basis": ", ".join(basis)}
+    return {"punten": punten, "oordeel": oordeel, "basis": ", ".join(basis),
+            "kamerpand": bool(bekend)}
 
 
 def _uitleg_blokkade(route, reden):
@@ -3471,6 +3478,170 @@ def draagkracht(maandhuur, cbs_buurt):
 
 
 
+MAX_DOSSIERS = 12
+
+
+def pand_dossier(w, buurt, afw, cbs, archief, register):
+    """
+    Alles wat we over een pand weten, uit alle bronnen, elk feit met de bron.
+
+    Dit is er zodat de brief verbanden krijgt aangereikt in plaats van ze zelf
+    te bedenken. Wat we niet weten staat er ook in, met de reden, zodat het
+    model die leegte niet zelf invult.
+    """
+    feiten = []
+
+    def f(onderwerp, tekst, bron):
+        feiten.append(f"{onderwerp}: {tekst} (bron: {bron})")
+
+    # Aanbod
+    opp = w.get("oppervlakte")
+    f("aanbod", f"vraagprijs €{eu(w['prijs'])}"
+      + (f", {opp} m2" if opp else "")
+      + (f", {afw:+.0f}% ten opzichte van de buurtmediaan per m2".replace(".", ",")
+         if afw is not None else ""),
+      "attendering; mediaan uit eigen waarnemingen")
+    eerst = eerste_datum(w)
+    if eerst:
+        f("in aanbod", f"sinds {eerst}, {_dagen_sinds(eerst)} dagen", "attendering")
+
+    # WOZ en de grens die vergunning en opkoopbescherming bepaalt
+    woz = w.get("woz")
+    if woz:
+        f("WOZ", f"€{eu(woz)}" + (f" ({w['woz_jaar']})" if w.get("woz_jaar") else ""),
+          "WOZ-invoer")
+        if woz <= WOZ_ONDERGRENS:
+            f("omzetting naar kamers", f"WOZ op of onder €{eu(WOZ_ONDERGRENS)}: "
+              f"omzettingsvergunning wordt altijd geweigerd",
+              "Huisvestingsverordening Nijmegen 2024, artikel 15")
+        elif woz <= OPKOOPBESCHERMING_WOZ:
+            f("omzetting naar kamers", "omzettingsvergunning nodig",
+              "Huisvestingsverordening Nijmegen 2024, artikel 12 en 13")
+            f("opkoopbescherming", "geldt bij aankoop vrij van huur: vier jaar niet "
+              "verhuren zonder vergunning",
+              "Huisvestingsverordening Nijmegen 2024, artikel 19")
+        else:
+            f("omzetting naar kamers", f"WOZ boven €{eu(OPKOOPBESCHERMING_WOZ)}: geen "
+              f"omzettingsvergunning nodig",
+              "Huisvestingsverordening Nijmegen 2024, artikel 12")
+            f("opkoopbescherming", "geldt niet bij deze WOZ",
+              "Huisvestingsverordening Nijmegen 2024, artikel 19")
+    else:
+        f("WOZ", "onbekend, dus vergunningplicht, opkoopbescherming en puntentelling "
+          "zijn niet te toetsen", "WOZ-invoer")
+
+    # Puntentelling
+    wws = wws_indicatie(w)
+    if wws and wws.get("punten") is not None:
+        f("puntenstelsel", f"ondergrens {wws['punten']} punten ({wws['basis']}): "
+          f"{wws['oordeel']}", "woningwaarderingsstelsel, berekend met wwso.py")
+    elif wws:
+        f("puntenstelsel", wws["oordeel"], "woningwaarderingsstelsel")
+
+    # Kamerverhuur op het pand zelf
+    bekend = kamerverhuur_bekend(w)
+    if bekend:
+        f("kamerverhuur op dit pand", "; ".join(
+            f"{b['soort']}{' ' + b['jaar'] if b['jaar'] else ''}" for b in bekend),
+          ", ".join(sorted({b["bron"] for b in bekend})))
+    else:
+        f("kamerverhuur op dit pand", "geen vergunning, melding of besluit gevonden. "
+          "Dat bewijst niet dat er geen kamerverhuur is: boven de WOZ-grens is geen "
+          "vergunning nodig, en meldingen worden pas sinds kort gepubliceerd",
+          "vergunningenlijst en bekendmakingenarchief")
+
+    # Buren, voor de regel van niet meer dan twee naast elkaar
+    buren = buren_met_kamerverhuur(w["adres"], archief, lees_kamervergunningen())
+    if buren:
+        f("kamerverhuur bij de buren", ", ".join(
+            f"{b.get('adres')} ({b.get('soort', '')})" for b in buren[:4]),
+          "vergunningenlijst en bekendmakingenarchief")
+    else:
+        f("kamerverhuur bij de buren", "geen aanwijzing gevonden, met dezelfde "
+          "beperking als hierboven", "vergunningenlijst en bekendmakingenarchief")
+
+    # Bekendmakingen op het adres
+    m_a = re.match(r"^(.+?)\s+(\d+)", w["adres"])
+    if m_a and archief:
+        sleutels = {archief_sleutel(m_a.group(1), m_a.group(2)),
+                    archief_sleutel("de " + m_a.group(1), m_a.group(2))}
+        eigen = [t for sl in sleutels for t in archief.get(sl, [])]
+        for t in eigen[:3]:
+            f("bekendmaking op dit adres",
+              f"{(t.get('datum') or '')[:10]}: {(t.get('titel') or '')[:140]}",
+              "officiele bekendmakingen")
+
+    # BAG, label, monument, OV
+    eenh = w.get("eenheden_in_pand") or []
+    if len(eenh) > 1:
+        f("BAG", f"het pand telt {len(eenh)} woningen met een eigen adres; dat zegt "
+          f"niet of het juridisch in appartementsrechten is gesplitst",
+          "Basisregistratie Adressen en Gebouwen")
+    lab = _labeltekst(w.get("energielabel"))
+    if lab != "onbekend":
+        f("energielabel", lab, "EP-Online")
+    if w.get("monument"):
+        f("monument", "rijksmonument", "Rijksdienst voor het Cultureel Erfgoed")
+    if w.get("ov_halte"):
+        h = w["ov_halte"]
+        f("OV", f"{h['naam']} op {h['meters']} m lopen", "OpenStreetMap en OSRM")
+
+    # De buurt, alleen wat bij verhuur telt
+    kv = {}
+    try:
+        with open("kamerverhuur_per_buurt.json", encoding="utf-8") as fk:
+            kv = json.load(fk).get("per_buurt", {}).get(buurt, {})
+    except Exception:
+        pass
+    if kv.get("totaal"):
+        f("kamerverhuur in de buurt", f"{kv['totaal']} bekende panden (ondergrens)",
+          "vergunningenlijst en bekendmakingenarchief")
+
+    # De doorrekening
+    sc = w.get("_scenario")
+    if sc:
+        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
+        waarom = ""
+        if bekend and sc["naam"] == "één woning":
+            waarom = ("; het pand is bekend als kamerpand, maar verhuur als een "
+                      "woning rekent hier hoger uit dan per kamer")
+        f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand "
+          f"({sc.get('bron', '')}), richtprijs €{eu(plafond)} als koopsom{waarom}",
+          "eigen doorrekening met aannames voor exploitatie en verbouwing")
+    return feiten
+
+
+def render_dossiers(woningen, per_buurt):
+    """
+    Dossiers voor de panden die de brief waarschijnlijk noemt: eerst die met een
+    bekende WOZ, dan de scherpst geprijsde. Niet alle panden, want dan wordt
+    het te veel om te lezen.
+    """
+    cbs = lees_cbs()
+    archief = lees_archief()
+    kandidaten = []
+    for buurt, rijen in per_buurt.items():
+        if buurt not in FOCUS_BUURTEN or not rijen:
+            continue
+        med = st.median([p for p, _ in rijen])
+        for ppm2, w in rijen:
+            if (w.get("status") or "").lower() in ("verkocht", "transactie"):
+                continue
+            afw = (ppm2 - med) / med * 100 if med else None
+            kandidaten.append((0 if w.get("woz") else 1, afw if afw is not None else 99,
+                               buurt, afw, w))
+    kandidaten.sort(key=lambda x: (x[0], x[1]))
+    r = ["# Dossiers per pand", "",
+         "_Per pand wat de bronnen samen zeggen, elk feit met zijn bron. Wat er "
+         "niet staat, weten we niet._", ""]
+    for _o, _a, buurt, afw, w in kandidaten[:MAX_DOSSIERS]:
+        r.append(f"## {w['adres']}, {buurt}")
+        for regel in pand_dossier(w, buurt, afw, cbs, archief, None):
+            r.append(f"- {regel}")
+        r.append("")
+    return r
+
+
 def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
     """
     De bijlage: cijfers in tabellen, zonder verhaal.
@@ -3492,8 +3663,15 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
     r = ["", "## De cijfers per buurt", ""]
 
     # Eerst een overzicht van alle buurten naast elkaar
+    # Bekende kamerverhuurpanden: vergunningen en meldingen samen. Valt terug op
+    # alleen de vergunningen als het register er nog niet is.
+    try:
+        with open("kamerverhuur_per_buurt.json", encoding="utf-8") as f_kv:
+            kv = json.load(f_kv).get("per_buurt", {})
+    except Exception:
+        kv = {}
     r.append("| Buurt | Woningen | Koop | Corporatie | WOZ | Studenten | "
-             "Kamervergunningen | Mediaan €/m² |")
+             "Kamerverhuur bekend | Mediaan €/m² |")
     r.append("|---|---:|---:|---:|---:|---:|---:|---:|")
     for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
         g = cbs.get(buurt) or {}
@@ -3505,8 +3683,14 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             f"| {str(g.get('corp', '—')) + '%' if g.get('corp') is not None else '—'} "
             f"| {'€' + eu(g['woz'] * 1000) if g.get('woz') else '—'} "
             f"| {eu(g['studenten']) if g.get('studenten') else '—'} "
-            f"| {verg.get(buurt, '—')} "
+            f"| {(kv.get(buurt) or {}).get('totaal') or verg.get(buurt, '—')} "
             f"| {'€' + eu(med) if med else '—'} |")
+    r.append("")
+    r.append("_Kamerverhuur bekend telt de panden met een vergunning, een melding "
+             "brandveilig gebruik of een besluit over kamerverhuur. Het is een "
+             "ondergrens: boven de WOZ-grens van €396.000 is geen vergunning nodig, "
+             "en een melding is pas verplicht vanaf vijf kamers en wordt pas sinds "
+             "kort gepubliceerd._")
     r.append("")
 
     # Dan per buurt de panden
@@ -4835,6 +5019,16 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         except Exception as e:
             print(f"Bijlage maken mislukt: {e}", file=sys.stderr)
 
+    pad_dossiers = globals().get("_DOSSIER_PAD")
+    if pad_dossiers:
+        try:
+            regels_d = render_dossiers(woningen, per_buurt)
+            with open(pad_dossiers, "w", encoding="utf-8") as fd:
+                fd.write("\n".join(regels_d) + "\n")
+            print(f"Dossiers weggeschreven naar {pad_dossiers}", file=sys.stderr)
+        except Exception as e:
+            print(f"Dossiers maken mislukt: {e}", file=sys.stderr)
+
     if kort:
         # Dagelijks houdt het hier op. De referentietabellen, yield, uitpond-marge
         # en beleggingstabel staan in de zondagsbrief.
@@ -5144,6 +5338,8 @@ def main():
     ap.add_argument("--input", default=INPUT_PAD)
     ap.add_argument("--modus", choices=["dagelijks", "weekelijks"], default="weekelijks",
                     help="dagelijks toont alleen wat beweegt, weekelijks het volledige beeld")
+    ap.add_argument("--dossiers", default="",
+                    help="pad voor de dossiers per pand, voor de verhalende brief")
     ap.add_argument("--bijlage", default="",
                     help="schrijf daarnaast een bijlage met alleen tabellen")
     ap.add_argument("--bag", default="",
@@ -5260,6 +5456,8 @@ def main():
     schrijf_cache(cache)
     if args.bijlage:
         globals()["_BIJLAGE_PAD"] = args.bijlage
+    if getattr(args, "dossiers", None):
+        globals()["_DOSSIER_PAD"] = args.dossiers
     md = render(woningen, modus=args.modus,
                 bm_per_buurt=bm_per_buurt, bm_overig=bm_overig)
 
