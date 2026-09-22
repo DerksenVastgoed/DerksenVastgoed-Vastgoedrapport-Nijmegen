@@ -3341,6 +3341,14 @@ def lees_gezien():
 
 
 def schrijf_gezien(gezien):
+    # Een testrun mag het nieuws niet opeten. Draait de workflow handmatig met
+    # "alleen naar mij", dan onthouden we niet welke panden we hebben gezien;
+    # anders is een pand bij de echte brief van morgen niet meer nieuw. Dat
+    # gebeurde met de Stieltjesstraat 10, die twee keer buiten de brief bleef.
+    if os.environ.get("GEHEUGEN_ALLEEN_LEZEN") == "1":
+        print("Testrun: het geheugen van geziene panden wordt niet bijgewerkt",
+              file=sys.stderr)
+        return
     try:
         with open(GEZIEN_PAD, "w", encoding="utf-8") as f:
             json.dump(gezien, f, ensure_ascii=False, indent=1, sort_keys=True)
@@ -3653,6 +3661,51 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         if sc.get("alternatief"):
             f("alternatief", sc["alternatief"], "eigen doorrekening")
     return feiten
+
+
+VRAAGPRIJZEN_PAD = "vraagprijzen_ring.json"
+
+
+def leg_maandmediaan_vast(per_buurt):
+    """
+    De mediaan van de vraagprijzen per m2 over de hele ring, per maand.
+
+    Bedoeld om later naast de CBS-index te leggen. Een vraagprijs komt eerder
+    dan de transactie die het CBS telt, dus als er een verband is, zit er
+    vertraging in. Dat is pas te zien na ruim een jaar maandcijfers; tot die
+    tijd leggen we alleen vast.
+
+    Alleen panden die te koop staan, en de hele ring samen, want per buurt zijn
+    het te weinig waarnemingen per maand.
+    """
+    if os.environ.get("GEHEUGEN_ALLEEN_LEZEN") == "1":
+        return
+    prijzen = []
+    for buurt, rijen in per_buurt.items():
+        if buurt not in FOCUS_BUURTEN:
+            continue
+        for ppm2, w in rijen:
+            if (w.get("status") or "").lower() not in ("verkocht", "transactie"):
+                prijzen.append(ppm2)
+    if len(prijzen) < 10:
+        return
+    maand = dt.date.today().strftime("%Y-%m")
+    try:
+        with open(VRAAGPRIJZEN_PAD, encoding="utf-8") as f:
+            reeks = json.load(f)
+    except Exception:
+        reeks = {}
+    reeks[maand] = {"mediaan_m2": round(st.median(prijzen)),
+                    "waarnemingen": len(prijzen),
+                    "bijgewerkt": dt.date.today().isoformat()}
+    try:
+        with open(VRAAGPRIJZEN_PAD, "w", encoding="utf-8") as f:
+            json.dump(reeks, f, ensure_ascii=False, indent=1, sort_keys=True)
+        print(f"Vraagprijsmediaan {maand}: €{reeks[maand]['mediaan_m2']}/m2 op "
+              f"{len(prijzen)} panden ({len(reeks)} maanden in de reeks)",
+              file=sys.stderr)
+    except Exception as e:
+        print(f"Kon {VRAAGPRIJZEN_PAD} niet schrijven: {e}", file=sys.stderr)
 
 
 def render_dossiers(woningen, per_buurt):
@@ -5062,6 +5115,8 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             print(f"Bijlage weggeschreven naar {pad_bijlage}", file=sys.stderr)
         except Exception as e:
             print(f"Bijlage maken mislukt: {e}", file=sys.stderr)
+
+    leg_maandmediaan_vast(per_buurt)
 
     pad_dossiers = globals().get("_DOSSIER_PAD")
     if pad_dossiers:
