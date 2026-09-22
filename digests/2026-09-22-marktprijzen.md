@@ -1,12 +1,12 @@
 
 ## Vandaag
 
-58 panden in beeld, geen mutaties sinds gisteren.
+58 panden in beeld, geen mutaties sinds gisteren. 1 gemeentelijke bericht.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Stadscentrum**
-_mediaan €5.299/m² op 38 waarnemingen . +1,9% sinds 2026-09-13._
+_mediaan €5.299/m² op 38 waarnemingen . +1,9% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _Stond er al, vraagprijs ongewijzigd: [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen) €539.000 (-35% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-3% t.o.v. de buurtmediaan) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (-1% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+8% t.o.v. de buurtmediaan) . [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) €550.000 (+18% t.o.v. de buurtmediaan, 9 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
@@ -24,7 +24,7 @@ _Stond er al, vraagprijs ongewijzigd: [Nieuwe Markt 90](https://www.google.com/m
 _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Biezen**
-_mediaan €5.039/m² op 32 waarnemingen . +0,0% sinds 2026-09-13._
+_mediaan €5.039/m² op 32 waarnemingen . +0,0% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _1 pand buiten beeld, mediaan €6.671/m². Die tellen mee in de vergelijking maar vragen geen actie._
 
@@ -35,7 +35,7 @@ _Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026), puntenstelsel ondergrens 
 _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Galgenveld**
-_mediaan €4.691/m² op 30 waarnemingen . -2,1% sinds 2026-09-13._
+_mediaan €4.691/m² op 30 waarnemingen . -2,1% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-16% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-14% t.o.v. de buurtmediaan, 6 dagen in aanbod) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-10% t.o.v. de buurtmediaan, 9 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-3% t.o.v. de buurtmediaan, 19 dagen in aanbod) . [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) €599.000 (-2% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-0% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (+0% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+11% t.o.v. de buurtmediaan, 11 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
@@ -44,7 +44,7 @@ _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel
 _3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Altrade**
-_mediaan €4.852/m² op 38 waarnemingen . +0,0% sinds 2026-09-13._
+_mediaan €4.852/m² op 38 waarnemingen . +0,0% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-13% t.o.v. de buurtmediaan, 11 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
@@ -53,13 +53,21 @@ _Zonder vergelijking, te weinig commercieel objecten in de dataset: [Jacob Canis
 _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Bottendaal**
-_mediaan €4.772/m² op 11 waarnemingen . +0,0% sinds 2026-09-13._
+_mediaan €4.772/m² op 11 waarnemingen . +0,0% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _Stond er al, vraagprijs ongewijzigd: [de Ruyterstraat 37](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+37%2C+Nijmegen) €450.000 (-5% t.o.v. de buurtmediaan, 11 dagen in aanbod) . [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) €925.000 (-3% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: de Ruyterstraat 37 €514.000 (2026), puntenstelsel ondergrens 179 punten (99 m2, WOZ €514.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-443780.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het vervangen van het kozijn van het souterrain in de voorgevel, aan Graafseweg 89, 6512BS Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">64 m² . label A (2025)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vervanging van een kozijn in het souterrain is een cosmetische ingreep zonder impact op waardecreatiepotentieel.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-22 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-443780.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
 
 _10 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
 _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond verkameren en splitsen staan in de uitgebreide brief van zondag._

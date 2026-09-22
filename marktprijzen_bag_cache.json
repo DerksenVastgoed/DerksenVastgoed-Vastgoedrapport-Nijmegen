@@ -4744,5 +4744,11 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:Graafseweg 89|Nijmegen": {
+    "postcode": "6512BS",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-fb37f40d21cba046ffc5871b031f3290"
   }
 }
