@@ -93,6 +93,8 @@ GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
+GEEN VERZONNEN VERBANDEN. Zeg niet dat panden "in dezelfde straat", "verderop" of "om de hoek" liggen tenzij het adres dat laat zien; de Prof. Molkenboerstraat en de St. Annastraat zijn verschillende straten. Noem geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
+
 BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
 
 HERKOMST VAN DE ACHTERGROND. Het achtergrondstuk dat je meekrijgt is door ons geschreven, niet door de gemeente of een andere instantie. Schrijf het dus niet toe aan de gemeente ("de gemeente noemt dit..."). Staat er iets in over een regel of verordening, dan mag je de regel noemen, maar niet de gemeente als bron van het oordeel.
@@ -676,6 +678,20 @@ _AFWEZIG = re.compile(
     r"niets\b|niks\b|stilte\b)", re.I)
 
 
+# Zinnen die de opbouw van de brief beschrijven in plaats van de inhoud.
+_OPBOUW = re.compile(
+    r"(dit wordt (dus )?het (onderwerp|hoofdstuk)|"
+    r"het onderwerp van (vandaag|de dag)|"
+    r"(dus|daarom) (is er|heb ik|geeft dat) (vandaag )?(de )?ruimte|"
+    r"er was geen (artikel|besluit|nieuws) om op te toetsen)", re.I)
+
+
+def opbouwzinnen(tekst):
+    """De zinnen die de opbouw beschrijven, zodat ze hersteld kunnen worden."""
+    zinnen = re.split(r"(?<=[.!?])\s+", tekst)
+    return [z.strip() for z in zinnen if _OPBOUW.search(z)]
+
+
 def opent_met_afwezigheid(zin):
     """Gaat deze openingszin over wat er niet is?"""
     return bool(_AFWEZIG.search(zin.strip())) if zin else False
@@ -716,22 +732,35 @@ def schrijf_brief(bronnen):
     # regel in hoofdletters opende de brief herhaaldelijk met "vandaag weinig
     # beweging". Dus controleert het script het, en krijgt het model een keer
     # de kans het te herstellen, met de foute zin erbij.
+    # Controleren na het schrijven, want een instructie is geen garantie.
+    # Twee dingen: een opening over wat er niet is, en zinnen die de opbouw van
+    # de brief beschrijven. Beide in een herstelronde.
+    problemen = []
     eerste = eerste_zin(tekst)
     if opent_met_afwezigheid(eerste):
-        print(f"Opening gaat over wat er niet is: '{eerste[:90]}'. "
-              f"Een herstelronde.", file=sys.stderr)
-        correctie = (
-            f"Je eerste zin na de aanhef is: \"{eerste}\"\n\n"
-            f"Die gaat over wat er niet is gebeurd, en dat mag niet. Herschrijf "
-            f"alleen de openingsalinea zo dat de eerste zin begint bij het "
-            f"onderwerp waar de brief over gaat. Dat er weinig beweging was, mag "
-            f"hooguit later terloops. Laat de rest van de brief zo veel mogelijk "
-            f"staan. Geef de volledige brief terug, niets eromheen.")
+        problemen.append(f"Je eerste zin na de aanhef is: \"{eerste}\". Die gaat "
+                         f"over wat er niet is gebeurd. Laat de brief beginnen bij "
+                         f"het onderwerp; dat er weinig beweging was mag hooguit "
+                         f"later terloops.")
+    for zin in opbouwzinnen(tekst):
+        problemen.append(f"Deze zin beschrijft de opbouw van de brief: \"{zin}\". "
+                         f"Haal dat deel weg; je vader leest een brief, geen "
+                         f"verantwoording.")
+    if problemen:
+        print(f"Herstelronde voor {len(problemen)} punt(en)", file=sys.stderr)
+        correctie = ("\n\n".join(problemen)
+                     + "\n\nPas alleen deze zinnen aan en laat de rest van de brief "
+                       "zo veel mogelijk staan. Geef de volledige brief terug, "
+                       "niets eromheen.")
         herschreven = _vraag([{"role": "user", "content": prompt},
                               {"role": "assistant", "content": tekst},
                               {"role": "user", "content": correctie}], woorden)
-        if herschreven and not opent_met_afwezigheid(eerste_zin(herschreven)):
-            print("  opening hersteld", file=sys.stderr)
+        if (herschreven and not opent_met_afwezigheid(eerste_zin(herschreven))
+                and not opbouwzinnen(herschreven)):
+            print("  hersteld", file=sys.stderr)
+            tekst = herschreven
+        elif herschreven and len(opbouwzinnen(herschreven)) < len(opbouwzinnen(tekst)):
+            print("  deels hersteld", file=sys.stderr)
             tekst = herschreven
         else:
             print("  herstel lukte niet; de eerste versie blijft staan",
