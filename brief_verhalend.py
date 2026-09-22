@@ -107,6 +107,8 @@ EEN LOSSE STAND IS GEEN TREND. Van de kapitaalmarktrente krijg je een stand, gee
 
 SPLITSEN IN NIJMEGEN. Nijmegen kent geen splitsingsvergunning. Dat de BAG aparte woningen telt, zegt niet of een pand juridisch is gesplitst. Schrijf dus nooit "je hoeft geen splitsingsvergunning meer aan te vragen".
 
+CBS-INDEX EN RINGCIJFERS. De prijsindex van CBS en Kadaster meet werkelijke verkoopprijzen, gecorrigeerd voor het type woning, per maand of kwartaal. Onze ringcijfers zijn de mediaan van vraagprijzen over een paar dagen. Zet ze naast elkaar om te laten zien of de ring anders beweegt dan Nederland of Nijmegen, maar trek geen conclusie uit het verschil in procenten alsof het dezelfde maat is. Noem bij een maandcijfer of het seizoengecorrigeerd is, zoals het in de gegevens staat.
+
 EEN MEDIAAN IS GEEN PRIJS. De buurtmediaan per m2 verschuift ook als er andere panden bijkomen of afgaan. Een lagere mediaan betekent dus niet dat prijzen zijn gedaald. Schrijf "de mediaan van onze waarnemingen" en niet "de prijs daalde"; noem een nieuw pand onder de mediaan als het die verschuiving verklaart.
 
 DE RING IS NIET DE STAD. Je hebt cijfers van zes buurten, niet van heel Nijmegen. Schrijf dus "van de zes buurten", nooit "dan in de rest van de stad".
@@ -491,6 +493,16 @@ def _misdrijf_rang():
             uit.setdefault(b, {})[f"{soort} per 1000 inwoners"] = (
                 f"{per_buurt[b]:.1f}".replace(".", ",") + f", {tekst}")
     return uit
+
+
+def woningprijzen_tekst():
+    """De CBS-prijsindex bestaande koopwoningen, landelijk en voor Nijmegen."""
+    try:
+        from woningprijsindex import omschrijf
+        with open("woningprijsindex.json", encoding="utf-8") as f:
+            return omschrijf(json.load(f))
+    except Exception:
+        return ""
 
 
 def bouwkosten_tekst():
@@ -1013,6 +1025,7 @@ def main():
         ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
         ("Bouwkosten", bouwkosten_tekst()),
+        ("Woningprijzen CBS", woningprijzen_tekst()),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
