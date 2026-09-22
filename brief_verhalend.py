@@ -107,6 +107,8 @@ EEN LOSSE STAND IS GEEN TREND. Van de kapitaalmarktrente krijg je een stand, gee
 
 SPLITSEN IN NIJMEGEN. Nijmegen kent geen splitsingsvergunning. Dat de BAG aparte woningen telt, zegt niet of een pand juridisch is gesplitst. Schrijf dus nooit "je hoeft geen splitsingsvergunning meer aan te vragen".
 
+EEN MEDIAAN IS GEEN PRIJS. De buurtmediaan per m2 verschuift ook als er andere panden bijkomen of afgaan. Een lagere mediaan betekent dus niet dat prijzen zijn gedaald. Schrijf "de mediaan van onze waarnemingen" en niet "de prijs daalde"; noem een nieuw pand onder de mediaan als het die verschuiving verklaart.
+
 DE RING IS NIET DE STAD. Je hebt cijfers van zes buurten, niet van heel Nijmegen. Schrijf dus "van de zes buurten", nooit "dan in de rest van de stad".
 
 BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
@@ -164,9 +166,9 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     met_verg = [(b, verg[b], cbs[b]["won"]) for b in buurten
                 if verg.get(b) and cbs[b].get("won")]
     for b, v, won in sorted(met_verg, key=lambda x: -x[1] / x[2])[:3]:
-        weetjes.append(f"in {b} van {pct(v / won * 100)} procent van alle woningen "
-                       f"bekend is dat er kamers worden verhuurd, {v} panden op "
-                       f"{n(won)} woningen, met een vergunning of een melding")
+        weetjes.append(f"in {b} bij {v} van de {n(won)} woningen bekend is dat er "
+                       f"kamers worden verhuurd, {pct(v / won * 100)} procent, via een "
+                       f"vergunning of een melding")
     if len(met_verg) >= 2:
         hoog = max(met_verg, key=lambda x: x[1] / x[2])
         laag = min(met_verg, key=lambda x: x[1] / x[2])
@@ -810,6 +812,29 @@ def veiligheidszinnen(tekst):
     return uit
 
 
+# Ruimtelijke beweringen die niet uit een adres volgen, en regels per pand die
+# uit een buurtgemiddelde worden afgeleid.
+_VERBAND_RUIMTE = re.compile(r"\b(even |iets |wat )?verderop\b|om de hoek|"
+                             r"in dezelfde straat|een paar straten|vlakbij|"
+                             r"naast elkaar in de straat", re.I)
+_VERBAND_REGEL = re.compile(r"omzettingsvergunning|opkoopbescherming|vergunningplicht",
+                            re.I)
+_VERBAND_VEEL = re.compile(r"\b(meestal|doorgaans|vaak|zelden|in de regel|"
+                           r"de meeste|merendeel|kans)\b", re.I)
+
+
+def verbandzinnen(tekst):
+    """Zinnen met een verband dat niet uit de gegevens volgt."""
+    uit = []
+    for z in (z.strip() for z in re.split(r"(?<=[.!?])\s+", tekst)):
+        if _VERBAND_RUIMTE.search(z):
+            uit.append((z, "een ruimtelijke bewering die niet uit de adressen volgt"))
+        elif _VERBAND_REGEL.search(z) and _VERBAND_VEEL.search(z):
+            uit.append((z, "een uitspraak over hoe vaak een regel geldt, afgeleid uit "
+                           "een buurtgemiddelde; de regel hangt aan de WOZ per pand"))
+    return uit
+
+
 def opent_met_afwezigheid(zin):
     """Gaat deze openingszin over wat er niet is?"""
     return bool(_AFWEZIG.search(zin.strip())) if zin else False
@@ -860,6 +885,9 @@ def schrijf_brief(bronnen):
                          f"over wat er niet is gebeurd. Laat de brief beginnen bij "
                          f"het onderwerp; dat er weinig beweging was mag hooguit "
                          f"later terloops.")
+    for zin, waarom in verbandzinnen(tekst):
+        problemen.append(f"Deze zin bevat {waarom}: \"{zin}\". Haal dat deel weg of "
+                         f"maak het concreet met wat er in de gegevens staat.")
     for zin in veiligheidszinnen(tekst):
         problemen.append(f"Deze zin gebruikt fietsendiefstal of vernieling als maat "
                          f"voor hoe prettig een buurt is voor verhuur: \"{zin}\". "
@@ -880,7 +908,8 @@ def schrijf_brief(bronnen):
                               {"role": "user", "content": correctie}], woorden)
         if (herschreven and not opent_met_afwezigheid(eerste_zin(herschreven))
                 and not opbouwzinnen(herschreven)
-                and not veiligheidszinnen(herschreven)):
+                and not veiligheidszinnen(herschreven)
+                and not verbandzinnen(herschreven)):
             print("  hersteld", file=sys.stderr)
             tekst = herschreven
         elif herschreven and len(opbouwzinnen(herschreven)) < len(opbouwzinnen(tekst)):
