@@ -1614,7 +1614,28 @@ def eigen_kamervergunning(w, vergunningen=None):
     m = re.match(r"^(.+?)\s+(\d+)", (w.get("adres") or "").strip())
     if not m or not vergunningen:
         return []
-    lijst = vergunningen.get(archief_sleutel(m.group(1), m.group(2)), [])
+    basis = archief_sleutel(m.group(1), m.group(2))
+    lijst = list(vergunningen.get(basis, []))
+
+    # Staat het nummer in de lijst met een lettertoevoeging, zoals 28A, dan
+    # matcht de exacte sleutel niet. Alleen een letter is veilig: na het
+    # normaliseren valt een streepje weg, en dan is 28-1 niet te onderscheiden
+    # van nummer 281.
+    if not lijst:
+        for sleutel, items in vergunningen.items():
+            if (sleutel.startswith(basis)
+                    and re.fullmatch(r"[a-z]{1,2}", sleutel[len(basis):])):
+                lijst.extend(items)
+
+    # En als laatste: op het adres zoals het in de vergunning zelf staat
+    if not lijst:
+        doel = basis
+        for items in vergunningen.values():
+            for v in items:
+                ma = re.match(r"^(.+?)\s+(\d+)", (v.get("adres") or "").strip())
+                if ma and archief_sleutel(ma.group(1), ma.group(2)) == doel:
+                    lijst.append(v)
+
     return [v for v in lijst
             if "samenvoeg" not in (v.get("soort") or "").lower()]
 
