@@ -1240,6 +1240,31 @@ def _bouwkostenfactor():
 BOUWKOSTEN_EIGEN_PAD = "bouwkosten_eigen.txt"
 
 
+def _splitskosten_per_eenheid():
+    """
+    Wat het kost om een extra zelfstandige eenheid te maken, uit
+    bouwkosten_eigen.txt (regel "splitsen-eenheid", een bedrag per eenheid).
+    Geen getal betekent: onbekend. Dan kiezen we splitsen niet automatisch.
+    """
+    r = lees_eigen_bouwkosten().get("splitsen-eenheid")
+    return r["per_m2"] if r else None
+
+
+def _splitsen_loont(sp, huur_m2_ander, opp_ander, naam_ander):
+    """
+    Levert splitsen na de kosten van de extra eenheden meer op dan het
+    alternatief? Vergeleken op richtprijs, niet op maandhuur: tien procent meer
+    huur weegt niet op tegen een tweede keuken en badkamer.
+    """
+    kosten = _splitskosten_per_eenheid()
+    if kosten is None:
+        return False
+    extra = (sp.get("aantal", 2) - 1) * kosten
+    rp_s = richtprijs(sp["opp"], sp["huur_m2"], opex_voor(sp["naam"])) - extra
+    rp_a = richtprijs(opp_ander, huur_m2_ander, opex_voor(naam_ander))
+    return rp_s > rp_a
+
+
 def lees_eigen_bouwkosten():
     """
     Eigen ervaringscijfers per m2, als die er zijn.
@@ -1987,11 +2012,22 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
         bron_w = f"{bron_w}; niet getoetst aan het puntenstelsel, WOZ onbekend"
 
     if geschikt_woning and not kamerpand:
-        # Levert splitsen aantoonbaar meer op, dan tonen we dat
-        if sp and sp["maand"] > maand_w * 1.1:
+        # Splitsen alleen als het na de kosten van de extra eenheden meer
+        # oplevert. Sinds de maximumhuur ook bij een woning geldt, won splitsen
+        # bij kleine woningen op tien procent meer maandhuur, zonder dat de kosten
+        # van een tweede keuken en badkamer waren meegeteld.
+        if (sp and sp["maand"] > maand_w * 1.1
+                and _splitsen_loont(sp, huur_w, opp, "één woning")):
             return sp
-        return {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
-                "opp": opp, "bron": bron_w, "wws_punten": punten_w}
+        uit_w = {"naam": "één woning", "huur_m2": huur_w, "maand": maand_w,
+                 "opp": opp, "bron": bron_w, "wws_punten": punten_w}
+        if sp and sp["maand"] > maand_w * 1.1:
+            uit_w["alternatief"] = (
+                f"{sp['naam']} geeft €{eu(sp['maand'])} per maand tegen "
+                f"€{eu(maand_w)} als een woning, maar de kosten van het splitsen "
+                + ("wegen daar niet tegen op" if _splitskosten_per_eenheid()
+                   else "zijn niet ingevuld; daarom niet als route gekozen"))
+        return uit_w
 
     # Kamerverhuur: alleen het verhuurbare deel telt, tegen de kamerhuur
     huur_k_m2, bron_k = huur_voor_buurt(buurt, huur_bk, huur_k, 20, "kamer")
@@ -3614,6 +3650,8 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand "
           f"({sc.get('bron', '')}), richtprijs €{eu(plafond)} als koopsom{waarom}",
           "eigen doorrekening met aannames voor exploitatie en verbouwing")
+        if sc.get("alternatief"):
+            f("alternatief", sc["alternatief"], "eigen doorrekening")
     return feiten
 
 
