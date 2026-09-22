@@ -85,7 +85,11 @@ WAT JE NIET DOET:
 
 LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
 
-PER PAND, NIET PER BUURT. De omzettingsvergunning en de opkoopbescherming hangen aan de WOZ van het afzonderlijke pand, niet aan het gemiddelde van de buurt. Schrijf dus nooit "wie in deze buurt koopt, hoeft niet door het vergunningstraject". Een buurtgemiddelde boven de grens betekent alleen dat er waarschijnlijk panden boven liggen, niet welke.
+PER PAND, NIET PER BUURT. De omzettingsvergunning en de opkoopbescherming hangen aan de WOZ van het afzonderlijke pand, niet aan het gemiddelde van de buurt. Een gemiddelde zegt niets over hoeveel of welke panden onder de grens liggen, en dus ook niets over de kans daarop. Schrijf nooit "wie in deze buurt koopt, hoeft niet door het vergunningstraject" of "de kans dat een woning hier onder de grens blijft is klein". Wil je iets zeggen over panden onder de grens, kijk dan in de gegevens van vandaag: daar staat per buurt hoeveel panden onder de WOZ-grens niet getoond zijn.
+
+GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden van Mark en zijn broer: niet hun puntenaantal, niet hun segment, niet hun huur. Schrijf dus niets als "onze panden zitten vaak in het hogere segment". Je mag zeggen voor welk soort pand een regel van belang is, maar niet welke van hun eigen panden daaronder vallen.
+
+DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
 BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
 
@@ -693,7 +697,8 @@ def schrijf_brief(bronnen):
     print(f"Nieuwswaarde vandaag: {punten} punten, ruimte {woorden} woorden",
           file=sys.stderr)
 
-    prompt = (f"AANHEF: {AANHEF}\n"
+    prompt = (f"DATUM VAN VANDAAG: {dt.date.today().isoformat()}\n"
+              f"AANHEF: {AANHEF}\n"
               f"BUURT VAN DE DAG: {buurt_vandaag}\n"
               f"MAXIMUM: {woorden} woorden. Dat is een harde grens, geen streven. "
               f"Ga er niet overheen; schrap liever een onderwerp dan dat je alles "
@@ -816,6 +821,16 @@ def main():
     except Exception as e:
         print(f"Weetje overgeslagen door een fout: {e}", file=sys.stderr)
         weetje = ""
+
+    # Staat het weetje al in de brief, dan is het geen toegift maar herhaling.
+    # We vergelijken op de getallen: komen die allemaal al in de brief voor,
+    # dan laten we het weetje vandaag weg.
+    if weetje and brief:
+        getallen = re.findall(r"\d+(?:[.,]\d+)?", weetje)
+        if getallen and all(g in brief for g in getallen):
+            print(f"Weetje weggelaten, staat al in de brief: {weetje[:60]}",
+                  file=sys.stderr)
+            weetje = ""
     if weetje:
         tekst += f"\n---\n\n**Wist je dat** {weetje}?\n"
     uit = args.uit or f"digests/{d}-verhaal.md"
