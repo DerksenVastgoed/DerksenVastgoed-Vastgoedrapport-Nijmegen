@@ -85,6 +85,8 @@ WAT JE NIET DOET:
 
 LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de MEDIAANPRIJS PER VIERKANTE METER in die buurt, niet een prijswijziging. "Nieuwe Markt 90 €575.000 (-27%)" betekent dus: dit pand is per vierkante meter 27% goedkoper dan vergelijkbare panden in die buurt. Het betekent NIET dat de vraagprijs verlaagd is. Schrijf dus nooit "onder de oorspronkelijke vraagprijs" of "inmiddels verhoogd". Een echte prijswijziging staat er altijd expliciet bij als "prijs verlaagd met" of "prijs gewijzigd".
 
+HERKOMST VAN DE ACHTERGROND. Het achtergrondstuk dat je meekrijgt is door ons geschreven, niet door de gemeente of een andere instantie. Schrijf het dus niet toe aan de gemeente ("de gemeente noemt dit..."). Staat er iets in over een regel of verordening, dan mag je de regel noemen, maar niet de gemeente als bron van het oordeel.
+
 BESCHRIJF DE OPBOUW NIET. Zeg niet "dit wordt het hoofdstuk van de brief", "er was geen artikel om op te toetsen" of iets anders over hoe deze brief tot stand komt. Je vader leest een brief, geen verantwoording van de werkwijze.
 
 VEILIGHEIDSCIJFERS. De politie registreert op de plek waar iets gebeurt. Fietsendiefstal en vernieling zijn daarom vooral hoog waar veel bezoekers komen: station, winkels, uitgaansgebied. Gebruik die niet als maat voor hoe prettig een buurt is voor een huurder. Woninginbraak gaat wel over de bewoners. Wil je buurten op veiligheid vergelijken voor verhuur, begin dan bij woninginbraak, en noem het als dat een ander beeld geeft dan de rest.
@@ -382,6 +384,47 @@ def _mediaan_rang():
     return uit
 
 
+def _misdrijf_rang():
+    """
+    Per buurt en per misdrijfsoort: de hoeveelste van de zes, per 1000 inwoners.
+
+    Vooraf berekend om dezelfde reden als de prijsrangorde: het model schreef
+    dat Bottendaal ruim onder Galgenveld zat qua vernieling, terwijl het er
+    ruim boven zat.
+    """
+    try:
+        with open("misdrijven_per_buurt.json", encoding="utf-8") as f:
+            mis = json.load(f)
+        with open("buurten_cbs.json", encoding="utf-8") as f:
+            cbs = json.load(f)
+    except Exception:
+        return {}
+    uit = {}
+    for soort in ("woninginbraak", "vernieling", "fietsendiefstal"):
+        per_buurt = {}
+        for buurt, jaren in mis.items():
+            inw = (cbs.get(buurt) or {}).get("inwoners")
+            if not jaren or not inw:
+                continue
+            n = jaren[sorted(jaren)[-1]].get(soort)
+            if n is not None:
+                per_buurt[buurt] = n / inw * 1000
+        if len(per_buurt) < 2:
+            continue
+        volgorde = sorted(per_buurt, key=lambda b: per_buurt[b])
+        n = len(volgorde)
+        for i, b in enumerate(volgorde):
+            if i == 0:
+                tekst = f"het laagste van de {n} buurten"
+            elif i == n - 1:
+                tekst = f"het hoogste van de {n} buurten"
+            else:
+                tekst = f"de {i + 1}e van {n} van laag naar hoog"
+            uit.setdefault(b, {})[f"{soort} per 1000 inwoners"] = (
+                f"{per_buurt[b]:.1f}".replace(".", ",") + f", {tekst}")
+    return uit
+
+
 def buurtcijfers_tekst():
     """De buurtcijfers als platte regels, zodat het model ze kan verwerken."""
     try:
@@ -427,9 +470,39 @@ def buurtcijfers_tekst():
         if rang:
             d.append(f"prijs per m2: {rang}")
 
+        # Waar ligt de gemiddelde WOZ ten opzichte van de grens van €396.000?
+        # Die grens bepaalt de omzettingsvergunning en de opkoopbescherming,
+        # dus dit zegt meer dan "hoog" of "laag".
+        woz = g.get("woz")
+        if woz:
+            woz_euro = woz * 1000 if woz < 5000 else woz
+            verschil = woz_euro - 396_000
+            if abs(verschil) <= 25_000:
+                ligging = (f"vlak {'boven' if verschil > 0 else 'onder'} de grens "
+                           f"van €396.000, dus ongeveer de helft van de woningen "
+                           f"valt onder de omzettingsvergunning en de "
+                           f"opkoopbescherming")
+            elif verschil > 0:
+                ligging = ("ruim boven de grens van €396.000, dus de meeste "
+                           "woningen vallen niet onder de omzettingsvergunning of "
+                           "de opkoopbescherming")
+            else:
+                ligging = ("ruim onder de grens van €396.000, dus de meeste "
+                           "woningen vallen onder de omzettingsvergunning en de "
+                           "opkoopbescherming")
+            d.append(f"gemiddelde WOZ €{woz_euro:,.0f}".replace(",", ".")
+                     + f", {ligging}")
+
+        # De rangorde per misdrijfsoort, zodat het model niet zelf vergelijkt.
+        # Het draaide de vergelijking eerder om.
+        for soort, r in _misdrijf_rang().get(buurt, {}).items():
+            d.append(f"{soort}: {r}")
+
         # Wie er woont, wat ze verdienen en bezitten
         if g.get("eenpersoons") is not None:
-            d.append(f"{g['eenpersoons']}% woont alleen")
+            d.append(f"{g['eenpersoons']}% van de huishoudens bestaat uit een "
+                     f"persoon (dat is een aandeel van de huishoudens, niet van "
+                     f"de bewoners)")
         if g.get("met_kinderen") is not None:
             d.append(f"{g['met_kinderen']}% van de huishoudens heeft kinderen")
         if g.get("huishoudgrootte"):
