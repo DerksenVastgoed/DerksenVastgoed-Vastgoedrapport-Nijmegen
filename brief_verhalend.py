@@ -1026,6 +1026,7 @@ def main():
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
         ("Bouwkosten", bouwkosten_tekst()),
         ("Woningprijzen CBS", woningprijzen_tekst()),
+        ("Stadsbegroting Nijmegen", strip_opmaak(lees(f"digests/{d}-begroting.md"), 3000)),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
