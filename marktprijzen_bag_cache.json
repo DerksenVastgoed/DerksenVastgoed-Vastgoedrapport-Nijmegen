@@ -4750,5 +4750,172 @@
     "buurtnaam": "Bottendaal",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-fb37f40d21cba046ffc5871b031f3290"
+  },
+  "Johannes Vijghstraat 6|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "1910",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524BR",
+    "adresseerbaarObjectIdentificatie": "0268010000095237",
+    "pand": "0268100000002650",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-6cf6f05597b0056c6e15655bb55a3e4b",
+    "eenheden_in_pand": [
+      {
+        "adres": "Johannes Vijghstraat 6",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Johannes Vijghstraat 6B",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 63,
+    "energielabel": {
+      "label": "G",
+      "registratiedatum": "2018-03-15",
+      "geldig_tot": "2028-03-15",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Voorstadslaan 121|Nijmegen": {
+    "oppervlakte": 101,
+    "bouwjaar": "1900",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541SL",
+    "adresseerbaarObjectIdentificatie": "0268010000110589",
+    "pand": "0268100000023167",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-84c68139fce929afdb05a1984dd3a36e",
+    "eenheden_in_pand": [
+      {
+        "adres": "Voorstadslaan 119",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Voorstadslaan 121",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 109,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-08-02",
+      "geldig_tot": "2036-07-07",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Voorstadslaan 63|Nijmegen": {
+    "oppervlakte": 115,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541SJ",
+    "adresseerbaarObjectIdentificatie": "0268010000098968",
+    "pand": "0268100000023156",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-ade968bdca030067bb6e32cccb594840",
+    "eenheden_in_pand": [
+      {
+        "adres": "Voorstadslaan 63",
+        "oppervlakte": 134,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Voorstadslaan 65",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 134,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-09-15",
+      "geldig_tot": "2036-09-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Goorstraat 91|Nijmegen": {
+    "oppervlakte": 67,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EC",
+    "adresseerbaarObjectIdentificatie": "0268010000028334",
+    "pand": "0268100000021171",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-4188e81ba1598079470af3cf8051d43f",
+    "eenheden_in_pand": [
+      {
+        "adres": "van Goorstraat 89",
+        "oppervlakte": 177,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Goorstraat 91",
+        "oppervlakte": 94,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 94,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-08-14",
+      "geldig_tot": "2036-08-07",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Javastraat 23|Nijmegen": {
+    "postcode": "6524LT",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-235d48ed8b4940c4168e48d2688a950b"
   }
 }

@@ -95,6 +95,14 @@
   "omweg": 1.22,
   "soort": "bus"
  },
+ "51.83852,5.85728": {
+  "geschat": false,
+  "hemelsbreed": 386,
+  "meters": 504,
+  "naam": "Spoorkuil",
+  "omweg": 1.31,
+  "soort": "bus"
+ },
  "51.83870,5.86105": {
   "geschat": false,
   "hemelsbreed": 204,
@@ -117,6 +125,14 @@
   "meters": 292,
   "naam": "Fransestraat",
   "omweg": 2.7,
+  "soort": "bus"
+ },
+ "51.83973,5.86466": {
+  "geschat": false,
+  "hemelsbreed": 70,
+  "meters": 149,
+  "naam": "Fransestraat",
+  "omweg": 2.13,
   "soort": "bus"
  },
  "51.83978,5.86004": {
@@ -437,6 +453,22 @@
   "meters": 599,
   "naam": "Centraal Station",
   "omweg": 1.51,
+  "soort": "bus"
+ },
+ "51.84748,5.84732": {
+  "geschat": false,
+  "hemelsbreed": 297,
+  "meters": 438,
+  "naam": "Havenweg",
+  "omweg": 1.47,
+  "soort": "bus"
+ },
+ "51.84773,5.84874": {
+  "geschat": false,
+  "hemelsbreed": 253,
+  "meters": 336,
+  "naam": "Havenweg",
+  "omweg": 1.33,
   "soort": "bus"
  },
  "51.84843,5.85838": {

@@ -258,3 +258,9 @@ van Welderenstraat | Nijmegen | 705 | te huur | 2026-09-21 | pararius | 27 | 651
 Mr. Franckenstraat 6 | Nijmegen | 375000 | te koop | 2026-09-22 |  | 94 | 6522AD
 Stieltjesstraat 10 | Nijmegen | 539000 | te koop | 2026-09-22 |  | 158 | 6511AC
 Pontanusstraat 40 | Nijmegen | 599000 | te koop | 2026-09-22 |  | 133 | 6524HG
+
+# Automatisch toegevoegd uit Funda-attendering op 23-09-2026
+Johannes Vijghstraat 6 | Nijmegen | 280000 | te koop | 2026-09-23 |  | 64 | 6524BR
+Voorstadslaan 121 | Nijmegen | 550000 | te koop | 2026-09-23 |  | 101 | 6541SL
+Voorstadslaan 63 | Nijmegen | 585000 | te koop | 2026-09-23 |  | 115 | 6541SJ
+van Goorstraat 91 | Nijmegen | 410000 | te koop | 2026-09-23 |  | 67 | 6512EC
