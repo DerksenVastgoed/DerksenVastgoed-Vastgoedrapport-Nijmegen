@@ -46,6 +46,15 @@ GEMEENTELIJK = [
     ("parkeer", "Parkeerverordening: parkeereis en vergunningen bij splitsing"),
     ("leegstand", "Leegstandverordening"),
     ("bouw", "Bouwverordening"),
+    # De gemeentelijke lasten en heffingen: die zitten nu als percentage in de
+    # exploitatiekosten, terwijl de tarieven jaarlijks worden vastgesteld.
+    ("onroerende", "Verordening onroerendezaakbelastingen: het OZB-tarief voor "
+                   "woningen en niet-woningen, dat per WOZ-waarde doorwerkt in de "
+                   "exploitatiekosten"),
+    ("rioolheffing", "Rioolheffing: een vaste last per pand of per gebruiker"),
+    ("afvalstoffenheffing", "Afvalstoffenheffing: een vaste last per woning"),
+    ("leges", "Legesverordening: wat een omgevingsvergunning of een "
+              "omzettingsvergunning kost bij splitsen of verkameren"),
 ]
 
 # Landelijke wetten. De nummers zijn de vaste BWB-identificatie.
