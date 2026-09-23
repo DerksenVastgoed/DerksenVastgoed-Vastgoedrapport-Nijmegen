@@ -269,6 +269,15 @@ def controle_woningprijzen():
     return (OK, ", ".join(delen), "")
 
 
+def controle_begroting():
+    d = _json("begroting_nijmegen.json") or {}
+    if not d.get("paginas"):
+        return (LET_OP, "nog geen begroting opgehaald",
+                diagnose("begroting") or "Draait de stap Stadsbegroting al?")
+    return (OK, f"Stadsbegroting {d.get('jaar')}, {len(d['paginas'])} pagina's, "
+                f"opgehaald {d.get('opgehaald')}", "")
+
+
 def controle_misdrijven():
     d = _json("misdrijven_per_buurt.json") or {}
     if not d:
@@ -363,6 +372,7 @@ CONTROLES = [
     ("Kamervergunningen", controle_vergunningen),
     ("Kamerverhuurregister", controle_kamerverhuur),
     ("Woningprijsindex CBS", controle_woningprijzen),
+    ("Stadsbegroting", controle_begroting),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
