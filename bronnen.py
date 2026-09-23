@@ -87,6 +87,12 @@ BRONNEN = [
      "eigen aanname in bouwkosten_eigen.txt, anders een schatting van het "
      "script; de RVO-kentallen zijn nog niet ingelezen",
      "peildatum mei 2025, geindexeerd naar nu"),
+    ("Stadsbegroting Nijmegen", "beleid",
+     "de begroting van de gemeente: tarieven voor OZB, riool- en "
+     "afvalstoffenheffing, grondbeleid en het programma Wonen. Een voornemen; "
+     "vastgesteld wordt het in de belastingverordeningen",
+     "gemeente Nijmegen, nijmegen.begroting-<jaar>.nl",
+     "jaarlijks in het najaar"),
     ("Woningprijsindex", "registratie",
      "prijsindex bestaande koopwoningen, landelijk per maand en Nijmegen per "
      "kwartaal, uit werkelijke verkoopprijzen",
