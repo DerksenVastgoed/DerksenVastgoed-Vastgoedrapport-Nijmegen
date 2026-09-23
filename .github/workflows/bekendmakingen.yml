@@ -205,6 +205,15 @@ jobs:
           # het script vernieuwt alleen als er een maand bij kan zijn.
           python bouwkosten_index.py || echo "Bouwkostenindex overgeslagen"
 
+      - name: Stadsbegroting Nijmegen lezen
+        continue-on-error: true
+        run: |
+          # De begroting is een raadsstuk en geen bekendmaking; de monitor ziet
+          # hem niet. Het script haalt hooguit een keer per week op en meldt
+          # alleen wat nieuw is.
+          python begroting_monitor.py --uit "digests/${DATUM}-begroting.md" \
+            || echo "Begroting overgeslagen"
+
       - name: Woningprijsindex CBS bijwerken
         continue-on-error: true
         run: |
@@ -478,6 +487,7 @@ jobs:
             kamerverhuur_objecten.json
             kamerverhuur_per_buurt.json
             woningprijsindex.json
+            begroting_nijmegen.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
