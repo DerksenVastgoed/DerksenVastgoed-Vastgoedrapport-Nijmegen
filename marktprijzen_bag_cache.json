@@ -4917,5 +4917,255 @@
     "buurtnaam": "Galgenveld",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-235d48ed8b4940c4168e48d2688a950b"
+  },
+  "Castellastraat 15|Nijmegen": {
+    "oppervlakte": 102,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EV",
+    "adresseerbaarObjectIdentificatie": "0268010000082168",
+    "pand": "0268100000026684",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-89cade441d4622deff1a786225d5f542",
+    "eenheden_in_pand": [
+      {
+        "adres": "Castellastraat 1",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 2",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 3",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 4",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 5",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 6",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 7",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 8",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 9",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 10",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 11",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 12",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 13",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 14",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 15",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 16",
+        "oppervlakte": 57,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 17",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 18",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 19",
+        "oppervlakte": 57,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 20",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 21",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 22",
+        "oppervlakte": 107,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 23",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 24",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 25",
+        "oppervlakte": 95,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 27",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 112,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-09-14",
+      "geldig_tot": "2036-09-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Prins Bernhardstraat 65|Nijmegen": {
+    "postcode": "6521AD",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-94f9d6b93efff3e14dd40bb4c8045a76"
+  },
+  "bm:Berg en Dalseweg 70|Nijmegen": {
+    "postcode": "6522BC",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-fb2dd556dd4ed501b593a9b8380f77dd"
+  },
+  "bm:Kanunnik Mijllinckstraat 7|Nijmegen": {
+    "postcode": "6525WS",
+    "buurtnaam": "Brakkenstein",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-94954bb279277983aabb2df78c103833"
   }
 }

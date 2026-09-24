@@ -1,10 +1,51 @@
 [
  {
+  "datum": "2026-09-24",
+  "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de begane grond tot een appartement, aan Prins Bernhardstraat 65, 6521AD Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-448375.html",
+  "strategie": "splitsen",
+  "duiding": "Aanvraag om de begane grond te verbouwen tot apartement kan, indien vergund, een extra zelfstandige unit aan de voorraad toevoegen.",
+  "feiten": {
+   "oppervlakte_m2": 114
+  },
+  "straat": "Prins Bernhardstraat",
+  "huisnummer": "65",
+  "kern": true
+ },
+ {
+  "datum": "2026-09-24",
+  "titel": "Aanvraag omgevingsvergunning voor de woning bouwkundig splitsen naar 5 zelfstandige appartementen, aan Berg en Dalseweg 70, 6522BN Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-448465.html",
+  "strategie": "splitsen",
+  "duiding": "Aanvraag voor bouwkundige splitsing naar vijf appartementen; bij label E tellen de WWS-punten zwaarder, wat de maximale huur per unit beperkt.",
+  "feiten": {
+   "energielabel": "E (2025)",
+   "oppervlakte_m2": 188
+  },
+  "straat": "Berg en Dalseweg",
+  "huisnummer": "70",
+  "kern": true
+ },
+ {
+  "datum": "2026-09-24",
+  "titel": "Besluit voor woongebouw: uitbreiden ALDI filiaal, aan Kanunnik Mijllinckstraat 7, 6525WS Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-447572.html",
+  "strategie": "geen",
+  "duiding": "Uitbreiding van het ALDI-filiaal binnen het woongebouw is een commerciële ingreep zonder directe implicatie voor de woningvoorraad.",
+  "feiten": {
+   "energielabel": "A (2019)",
+   "oppervlakte_m2": 1456
+  },
+  "straat": "Kanunnik Mijllinckstraat",
+  "huisnummer": "7",
+  "kern": false
+ },
+ {
   "datum": "2026-09-22",
   "titel": "Aanvraag omgevingsvergunning voor het vervangen van het kozijn van het souterrain in de voorgevel, aan Graafseweg 89, 6512BS Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-443780.html",
   "strategie": "geen",
-  "duiding": "Vervangen van een kozijn in het souterrain is een cosmetische ingreep zonder marktrelevantie.",
+  "duiding": "Vervanging van het kozijn in het souterrain is een lokale bouwkundige ingreep zonder marktbrede waardecreatie-implicatie.",
   "feiten": {
    "energielabel": "A (2025)",
    "oppervlakte_m2": 64
@@ -17,8 +58,8 @@
   "datum": "2026-09-23",
   "titel": "Aanvraag omgevingsvergunning voor het wijzigen van de voorgevel en de constructie t.b.v. indeling van de woning, aan Javastraat 23, 6524LT Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-445225.html",
-  "strategie": "splitsen",
-  "duiding": "Wijziging van voorgevel en constructie t.b.v. de indeling wijst op herconfiguratie van het pand, relevant voor wie units wil creëren.",
+  "strategie": "geen",
+  "duiding": "Wijziging van voorgevel en constructie voor de indeling betreft een interne aanpassing van de woning zonder aangegeven functie- of unitwijziging.",
   "feiten": {
    "energielabel": "E (2026)",
    "oppervlakte_m2": 210

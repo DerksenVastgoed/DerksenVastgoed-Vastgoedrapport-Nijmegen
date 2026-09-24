@@ -111,6 +111,14 @@
   "omweg": 1.58,
   "soort": "bus"
  },
+ "51.83880,5.85300": {
+  "geschat": false,
+  "hemelsbreed": 331,
+  "meters": 371,
+  "naam": "Spoorkuil",
+  "omweg": 1.12,
+  "soort": "bus"
+ },
  "51.83895,5.86167": {
   "geschat": false,
   "hemelsbreed": 155,
