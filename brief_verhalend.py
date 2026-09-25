@@ -109,6 +109,8 @@ VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verban
 
 Voorbeelden van verzonnen verbanden die al eens in de brief stonden: dat de vpb-schijf "in een dure buurt eerder een rol speelt" (de schijf geldt voor de totale winst van de BV, niet per pand of buurt, en een hoge WOZ is geen hoge winst); dat twee panden "in dezelfde straat" liggen terwijl het adres een andere straat laat zien; dat "met 70% eenpersoonshuishoudens de lokale vraag naar een grote woning dun is en je huurder van buiten de buurt komt" (hoe huidige huishoudens zijn samengesteld, zegt niets over waar een nieuwe huurder vandaan komt); dat een buurt "voor kamerverhuur ruimte heeft" omdat er veel koopwoningen en weinig corporatiewoningen zijn (of een pand kan, hangt af van de WOZ van dat pand en of er al twee kamerpanden naast liggen). Noem ook geen doorlooptijden ("kon weken duren") en geen kwalificaties van de gemeente ("willekeur") die niet in een bron staan.
 
+EEN RICHTPRIJS BOVEN DE VRAAGPRIJS IS GEEN KOOPSIGNAAL ZOLANG DE HUUR NIET GEMETEN IS. De richtprijs rust op de huur, en die komt uit gemeten advertenties of uit een aanname. Staat er bij een pand dat de huur een aanname is of met de referentie is gewogen, dan schrijf je dat erbij en presenteer je de uitkomst niet als een kans. Kijk in het dossier naar de regel "let op".
+
 HUUR IS GEEN RICHTPRIJS. De huur is een bedrag per maand. De richtprijs is een koopsom: het hoogste bod waarbij de nettohuur de rente en aflossing dekt. Schrijf nooit "de richtprijs komt op €2.394 per maand".
 
 EEN LOSSE STAND IS GEEN TREND. Van de kapitaalmarktrente krijg je een stand, geen verloop. Schrijf dus niet dat een stijging "er nog niet doorheen is" of "nog moet doorwerken": dat vraagt een reeks die je niet hebt.
