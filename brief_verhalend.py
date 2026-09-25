@@ -45,7 +45,13 @@ Schrijf in de ik-vorm. Spreek hem aan met 'je' en 'jij', nooit met 'u'.
 
 OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buurten.
 
-1. Open met het belangrijkste van vandaag. Dat is meestal een gemeentelijk besluit, soms een nieuw pand, soms een bericht dat schuurt met onze eigen cijfers.
+1. Open met het belangrijkste van vandaag, in deze volgorde:
+   a. een gemeentelijk besluit of een wijziging in de regels die de hele portefeuille raakt;
+   b. een bericht uit de pers dat schuurt met onze eigen cijfers, of dat bevestigt;
+   c. een nieuw pand, maar alleen als in de gegevens staat dat het de drempel haalt, dus als de richtprijs dicht bij de vraagprijs ligt. Staat dat er niet bij, dan is het geen opening maar hooguit een alinea verderop;
+   d. anders: het onderwerp van de verdieping.
+
+   Een besluit of een regelwijziging gaat dus voor op een nieuw pand, want dat raakt alles wat jullie bezitten en niet alleen dat ene adres.
 
    DE EERSTE ZIN GAAT NOOIT OVER WAT ER NIET IS. Begin dus niet met "het is een rustige dag", "geen mutaties", "weinig te melden" of iets van die strekking, ook niet als dat waar is. Begin bij het onderwerp zelf. Ligt het aanbod stil, dan is het belangrijkste van die dag iets anders: een besluit, een artikel, een cijfer dat opvalt. Dat wordt dan je opening.
 
@@ -939,10 +945,15 @@ def schrijf_brief(bronnen):
     # Eerder zei de sturing op zo'n dag "maak van de verdieping het hoofdstuk",
     # en schoof de brief een nieuw pand 36% onder de mediaan opzij.
     alle_tekst = " ".join(t for _n, t in bronnen if t)
-    if re.search(r"\b\d+ nieuw of gewijzigd\b", alle_tekst):
-        sturing += (" Er staat vandaag een nieuw of gewijzigd pand in de gegevens. "
-                    "Begin daarmee: introduceer het, haal erbij wat het dossier "
-                    "erover zegt, en verbind het met de verdieping als dat kan.")
+    if "haalt de drempel om de brief mee te openen" in alle_tekst:
+        sturing += (" Er staat vandaag een nieuw pand in de gegevens dat de drempel "
+                    "haalt: de richtprijs ligt dicht bij de vraagprijs. Is er geen "
+                    "gemeentelijk besluit of artikel dat de hele portefeuille raakt, "
+                    "open dan met dit pand.")
+    elif re.search(r"\b\d+ nieuw of gewijzigd\b", alle_tekst):
+        sturing += (" Er is wel nieuw aanbod, maar geen pand dat de drempel haalt. "
+                    "Noem het kort en open met het belangrijkste besluit, bericht "
+                    "of onderwerp.")
     print(f"Nieuwswaarde vandaag: {punten} punten, ruimte {woorden} woorden",
           file=sys.stderr)
 
