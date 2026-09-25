@@ -1832,6 +1832,12 @@ def _uitleg_blokkade(route, reden):
     # eenheden die je daarna zelf maakt (artikel 19 Huisvestingsverordening
     # Nijmegen 2024). Een eerdere versie van deze tekst rekende per eenheid en
     # noemde een ondergrens van twee keer de grens; dat was fout.
+    if reden.startswith("appartement in een complex"):
+        return (f"{route} is hier geen vrije route: dit is een {reden}. Splitsen "
+                f"vraagt een wijziging van de splitsingsakte en toestemming van "
+                f"de VvE; kamerverhuur is in veel splitsingsreglementen aan "
+                f"toestemming gebonden. Wat de VvE toestaat, staat in de akte en "
+                f"het reglement, en dat weten wij niet.")
     if reden == "opkoopbescherming":
         wat = "splitsen om te verhuren" if route == "splitsen" else "kamerverhuur"
         return (f"{wat} valt af op de opkoopbescherming: het pand heeft een WOZ "
@@ -3661,9 +3667,20 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # BAG, label, monument, OV
     eenh = w.get("eenheden_in_pand") or []
     if len(eenh) > 1:
-        f("BAG", f"het pand telt {len(eenh)} woningen met een eigen adres; dat zegt "
-          f"niet of het juridisch in appartementsrechten is gesplitst",
+        wat = ("dit is een appartement in een complex, wat op zichzelf niets "
+               "bijzonders is" if in_complex(w)
+               else "het pand is opgedeeld in meerdere woningen")
+        f("BAG", f"{len(eenh)} woningen met een eigen adres in hetzelfde pand: "
+          f"{wat}. Of het juridisch in appartementsrechten is gesplitst, staat "
+          f"in het Kadaster en niet in de BAG",
           "Basisregistratie Adressen en Gebouwen")
+
+    # De routes, met de reden als er een dicht zit
+    routes = haalbare_routes(w, w.get("_scenario"), lees_kamervergunningen())
+    if routes.get("vrij"):
+        f("open routes", ", ".join(sorted(routes["vrij"])), "eigen toets")
+    for route, reden in sorted((routes.get("geblokkeerd") or {}).items()):
+        f("route afgevallen", _uitleg_blokkade(route, reden), "eigen toets")
     lab = _labeltekst(w.get("energielabel"))
     if lab != "onbekend":
         f("energielabel", lab, "EP-Online")
@@ -3981,6 +3998,22 @@ DREMPEL_SCHERP = -15      # procent onder de mediaan van de eigen klasse
 
 
 
+APPARTEMENT_VANAF = 4
+
+
+def in_complex(w):
+    """
+    Is dit een appartement in een complex? Dan gelden andere regels.
+
+    Bij meer dan een paar woningen in hetzelfde pand is het aangeboden object
+    een appartement. Splitsen vraagt dan een wijziging van de splitsingsakte en
+    toestemming van de VvE, en kamerverhuur is in veel splitsingsreglementen aan
+    toestemming gebonden. De gemeentelijke vergunning is dan maar een van de
+    horden.
+    """
+    return len(w.get("eenheden_in_pand") or []) >= APPARTEMENT_VANAF
+
+
 def haalbare_routes(w, sc, vergunningen=None):
     """
     Welke routes staan voor dit pand open?
@@ -3996,6 +4029,13 @@ def haalbare_routes(w, sc, vergunningen=None):
         return {"vrij": ["kamers", "splitsen"], "geblokkeerd": {}}
 
     vrij, geblokkeerd = [], {}
+    if in_complex(w):
+        # Niet als "afgevallen op een regel" maar als wat het is: bij een
+        # appartement gaat de VvE erover, niet alleen de gemeente.
+        # Zelfde vorm als elders: route -> reden
+        n = len(w.get("eenheden_in_pand") or [])
+        reden = f"appartement in een complex van {n} woningen"
+        return {"vrij": [], "geblokkeerd": {"splitsen": reden, "kamers": reden}}
     opp = w.get("oppervlakte") or 0
 
     # Kamerverhuur is alleen zinvol bij voldoende oppervlak
@@ -4554,9 +4594,12 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                                     + (f" ({e['oppervlakte']} m²)"
                                        if e.get("oppervlakte") else "")
                                     for e in eenh[:4])
-                r.append(f"_**{w['adres']}** zit in een pand met volgens de BAG "
-                         f"{len(eenh)} woningen, elk met een eigen adres: "
-                         f"{namen_e}. Het aangeboden object is daar een van. De "
+                soort = ("een appartement in een complex van" if in_complex(w)
+                         else "een van de")
+                r.append(f"_**{w['adres']}** is volgens de BAG {soort} "
+                         f"{len(eenh)} woningen in hetzelfde pand: {namen_e}. "
+                         f"Dat is bij een appartementencomplex normaal en op "
+                         f"zichzelf geen bijzonderheid. De "
                          f"oppervlakte per adres komt uit de BAG en kan afwijken "
                          f"van de advertentie. Dat de BAG aparte woningen telt, "
                          f"zegt niet of het pand juridisch in appartementsrechten "
