@@ -2981,7 +2981,7 @@ def render_wwso(huur_aanbod):
 
 
 def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
-                             bm_per_buurt=None, beleggingen=None, aantal=3):
+                             bm_per_buurt=None, beleggingen=None, aantal=1):
     """
     De zondagsbrief licht een paar panden uit en rekent ze door: positie in de
     markt, rendement bij de huidige rente, uitpondpotentie en het gemeentelijk
@@ -2996,14 +2996,39 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
                 and normaliseer_buurt(k[-1].get("buurtnaam", "")) in FOCUS_BUURTEN]
     if not geschikt:
         return r
-    top = sorted(geschikt, key=lambda x: x[0])[:aantal]
 
-    r.append("## Uitgelicht: investeringscases")
+    # Het object met de meeste kans: waar de richtprijs het dichtst bij de
+    # vraagprijs ligt. Niet het scherpst geprijsde per m2; een pand kan
+    # goedkoop ogen en toch ver van haalbaar zijn.
+    def _ruimte(k):
+        w_ = k[-1]
+        sc_ = w_.get("_scenario")
+        if not sc_ or not w_.get("prijs"):
+            return None
+        p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+        return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
+
+    met_ruimte = sorted(((r_, k) for k in geschikt for r_ in [_ruimte(k)]
+                         if r_ is not None), key=lambda x: -x[0])
+    if not met_ruimte:
+        return r
+    if met_ruimte[0][0] < DREMPEL_INTERESSANT:
+        r.append("## Uitgelicht: investeringscase")
+        r.append("")
+        r.append(f"_Geen enkel object in de ring haalt deze week de drempel: bij het "
+                 f"beste pand, {met_ruimte[0][1][-1]['adres']}, ligt de richtprijs "
+                 f"{met_ruimte[0][0]:+.0f}% onder de vraagprijs, en de drempel is "
+                 f"{DREMPEL_INTERESSANT}%. Geen case deze week._")
+        r.append("")
+        return r
+    top = [k for _r, k in met_ruimte[:aantal]]
+
+    r.append("## Uitgelicht: investeringscase")
     r.append("")
-    r.append(f"_De {len(top)} scherpst geprijsde woningen in de ring, beoordeeld als "
-             f"exploitatieobject: wat kost het, wat brengt het op, en wat is de meest "
-             f"realistische route naar meer huur of waarde. Blijft een pand staan, dan "
-             f"blijft het hier staan tot het verkocht is of iets beters langskomt._")
+    r.append(f"_Het object in de ring waar de richtprijs het dichtst bij de "
+             f"vraagprijs ligt ({met_ruimte[0][0]:+.0f}%), beoordeeld als "
+             f"exploitatieobject: wat kost het, wat brengt het op, en wat is de "
+             f"meest realistische route naar meer huur of waarde._")
     r.append("")
 
     # Eerst alle feiten per pand berekenen; het verhaal komt daarna
@@ -5277,10 +5302,11 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     # Zondag: uitgewerkte investeringscases, en verder niets. De referentie-
     # tabellen zaten hier eerder onder, maar die informatie zit nu in de cases.
     huur_bk, huur_k = gemeten_huren(huur_aanbod)
+    # Verder niets: de zondagsbrief is de case, de rest staat zes dagen per
+    # week in de dagelijkse editie.
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
-                                      huur_bk, huur_k, bm_per_buurt, beleggingen=beleggingen))
-    r.extend(render_bieden(woningen, huur_bk, huur_k, per_buurt))
-    r.extend(render_wwso(huur_aanbod))
+                                      huur_bk, huur_k, bm_per_buurt,
+                                      beleggingen=beleggingen))
     return "\n".join(r)
 
     r.append("### Referentie: prijspeil per buurt")
