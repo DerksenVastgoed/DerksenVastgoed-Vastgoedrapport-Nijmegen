@@ -43,6 +43,11 @@ FEEDS = [
     # Financiering
     ("Rente vastgoed", _gnews("hypotheekrente OR verhuurhypotheek")),
     # Kwartaal-updates van grote spelers (vangen automatisch nieuwe rapporten)
+    # Short stay wordt landelijk teruggeduwd naar 30 dagen en Nijmegen regelt
+    # het via het omgevingsplan. Beide raken de vraag of verhuur aan expats en
+    # studenten via zo'n contract nog kan.
+    ("Short stay en toeristische verhuur",
+     _gnews('"short stay" OR "toeristische verhuur" woning verhuur')),
     ("Brainbay Woningwaarde-index", _gnews("Brainbay OR NVM woningmarktcijfers")),
     ("Pararius huurmarkt", _gnews("Pararius huurprijs OR huurmarkt")),
     ("Rabobank Woningmarkt", _gnews("Rabobank woningmarkt kwartaalbericht")),
