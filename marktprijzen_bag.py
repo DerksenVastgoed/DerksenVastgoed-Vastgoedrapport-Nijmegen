@@ -1419,6 +1419,12 @@ def jaarlast_factor():
 # Boven deze oppervlakte is verhuur aan een enkel huishouden niet realistisch:
 # de maandhuur loopt dan op tot bedragen die de markt niet betaalt.
 MAX_M2_EEN_HUISHOUDEN = 150
+
+# Vanaf welke afstand tussen richtprijs en vraagprijs een nieuw pand de opening
+# van de brief waard is. Een keuze, geen berekening: -10 betekent dat de
+# richtprijs hoogstens tien procent onder de vraagprijs ligt. Hoger zetten maakt
+# de brief strenger.
+DREMPEL_INTERESSANT = -10
 MAX_HUUR_EEN_HUISHOUDEN = 3500     # euro per maand
 # Aandeel van het vloeroppervlak dat bij verkamering verhuurbaar is; de rest is
 # gang, trappenhuis en gedeelde ruimte. Ontleend aan een pand van 439 m2 bvo
@@ -4946,20 +4952,39 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
     # Panden die je niet mag verhuren horen niet als tip in de opening
     toonbaar = [k for k in aanbod if opkoop_signaal(k[-1]) != "beschermd"]
     if toonbaar and nieuw:
-        beste = sorted(toonbaar, key=lambda x: x[0])[0]
-        afw, ppm2, klasse, _a, basis, w = beste
-        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
-        zin = (f"Scherpst geprijsd is **{w['adres']}** in {buurt}: €{n(w['prijs'])} "
-               f"voor {w['oppervlakte']} m², {afw:+.0f}% ten opzichte van de mediaan "
-               f"van zijn klasse")
-        sc = w.get("_scenario")
-        if sc:
+        # Niet het scherpst geprijsde per m2, maar het pand waar de richtprijs
+        # het dichtst bij de vraagprijs ligt: dat is wat telt bij aankoop voor
+        # verhuur. Een pand kan goedkoop ogen per m2 en toch ver van haalbaar
+        # zijn.
+        def _ruimte_van(k):
+            w_ = k[-1]
+            sc_ = w_.get("_scenario")
+            if not sc_ or not w_.get("prijs"):
+                return None
+            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+            return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
+
+        met_ruimte = [(r, k) for k in toonbaar for r in [_ruimte_van(k)]
+                      if r is not None]
+        if met_ruimte:
+            ruimte, beste = max(met_ruimte, key=lambda x: x[0])
+            afw, ppm2, klasse, _a, basis, w = beste
+            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+            sc = w.get("_scenario")
             plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
-            if plafond:
-                ruimte = (plafond - w["prijs"]) / w["prijs"] * 100
-                zin += (f". Als {sc['naam']} loopt het rond tot €{n(plafond)}, "
-                        f"dus {ruimte:+.0f}% ten opzichte van de vraagprijs")
-        zinnen.append(zin + ".")
+            zin = (f"Dichtst bij haalbaar is **{w['adres']}** in {buurt}: "
+                   f"€{n(w['prijs'])} voor {w['oppervlakte']} m². Als {sc['naam']} "
+                   f"loopt het rond tot €{n(plafond)}, dus {ruimte:+.0f}% ten "
+                   f"opzichte van de vraagprijs; per m² staat het "
+                   f"{afw:+.0f}% ten opzichte van de mediaan van zijn klasse")
+            if ruimte >= DREMPEL_INTERESSANT:
+                zin += (". Dit pand haalt de drempel om de brief mee te openen "
+                        f"(richtprijs binnen {abs(DREMPEL_INTERESSANT):.0f}% van de "
+                        f"vraagprijs)")
+            else:
+                zin += (f". Dat is verder dan {abs(DREMPEL_INTERESSANT):.0f}% van de "
+                        f"vraagprijs, dus geen reden om de brief mee te openen")
+            zinnen.append(zin + ".")
 
     # Bewegingen benoemen, want dat is het enige dat sinds gisteren veranderde
     if gewijzigd:
