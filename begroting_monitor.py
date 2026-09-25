@@ -89,6 +89,83 @@ def _regels_met_trefwoord(tekst):
     return uit[:12]
 
 
+# Getallen uit de zinnen halen. Bewust streng: de zin moet zeggen welke
+# heffing het is en voor wie, anders nemen we hem niet over. Liever geen getal
+# dan een verkeerd getal in de doorrekening.
+_PERCENT = re.compile(r"(\d{1,2},\d{3,4})\s*%")
+_BEDRAG = re.compile(r"€\s?(\d{1,3}(?:\.\d{3})*,\d{2})")
+
+
+def _getal(tekst, patroon):
+    m = patroon.search(tekst)
+    if not m:
+        return None
+    return float(m.group(1).replace(".", "").replace(",", "."))
+
+
+def tarieven(data):
+    """
+    De tarieven uit de zinnen van de begroting, met de zin als bewijs.
+
+    Per soort hoogstens een waarde. Staan er twee verschillende in de tekst,
+    dan nemen we er geen over en leggen we dat vast: dan is de opmaak veranderd
+    en moet iemand kijken.
+    """
+    kandidaten = {}
+    for _titel, p in (data.get("paginas") or {}).items():
+        for zin in p.get("regels", []):
+            laag = zin.lower()
+            jaar = None
+            mj = re.search(r"\b(20\d{2})\b", zin)
+            if mj:
+                jaar = int(mj.group(1))
+
+            if ("onroerendezaakbelasting" in laag or "ozb" in laag) and "woning" in laag:
+                # Voor verhuurd bezit betaalt de eigenaar; een gebruikerstarief
+                # voor woningen bestaat sinds 2006 niet meer, maar we toetsen
+                # het toch, zodat een gebruikerszin niet stilletjes meetelt.
+                if "gebruik" in laag and "eigena" not in laag:
+                    sleutel = "ozb_woning_gebruiker"
+                elif "niet-woning" in laag:
+                    sleutel = "ozb_nietwoning_eigenaar"
+                else:
+                    sleutel = "ozb_woning_eigenaar"
+                waarde = _getal(zin, _PERCENT)
+                eenheid = "% van de WOZ-waarde"
+            elif "rioolheffing" in laag:
+                # "eigenaren" en "gebruikers" komen even vaak voor als het
+                # enkelvoud, dus we toetsen op de stam
+                sleutel = ("rioolheffing_eigenaar" if "eigena" in laag
+                           else "rioolheffing_gebruiker" if "gebruik" in laag
+                           else "rioolheffing_onbekend_wie")
+                waarde = _getal(zin, _BEDRAG)
+                eenheid = "euro per jaar"
+            elif "afvalstoffenheffing" in laag:
+                sleutel = "afvalstoffenheffing_gebruiker"
+                waarde = _getal(zin, _BEDRAG)
+                eenheid = "euro per jaar"
+            else:
+                continue
+            if waarde is None:
+                continue
+            kandidaten.setdefault(sleutel, []).append(
+                {"waarde": waarde, "eenheid": eenheid, "jaar": jaar or data.get("jaar"),
+                 "zin": zin})
+
+    uit, botsingen = {}, []
+    for sleutel, lijst in kandidaten.items():
+        waarden = {x["waarde"] for x in lijst}
+        if len(waarden) > 1:
+            botsingen.append(f"{sleutel}: {sorted(waarden)}")
+            continue
+        uit[sleutel] = lijst[0]
+    if botsingen:
+        leg_vast("begroting", "Tegenstrijdige tarieven in de begroting, niet "
+                              "overgenomen: " + "; ".join(botsingen)
+                              + ". Waarschijnlijk is de opmaak veranderd.")
+    return uit
+
+
 def haal(jaar, sessie=None):
     """De begrotingssite van een jaar, als die bestaat."""
     basis = f"https://nijmegen.begroting-{jaar}.nl"
@@ -191,6 +268,7 @@ def main():
         print("Geen begroting opgehaald", file=sys.stderr)
         return
 
+    data["tarieven"] = tarieven(data)
     nieuw = nieuw_ten_opzichte_van(data, eerder)
     with open(UIT_PAD, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
@@ -199,6 +277,12 @@ def main():
             f.write(omschrijf(data, nieuw) + "\n")
     print(f"Begroting {data['jaar']}: {len(data['paginas'])} pagina's, "
           f"{sum(len(v) for v in nieuw.values())} nieuwe regels", file=sys.stderr)
+    for sleutel, t in sorted(data["tarieven"].items()):
+        print(f"  {sleutel}: {t['waarde']} {t['eenheid']} ({t['jaar']})",
+              file=sys.stderr)
+    if not data["tarieven"]:
+        leg_vast("begroting", "Geen enkel tarief uit de begroting te halen. "
+                              "Staat het tarief er anders opgeschreven?")
 
 
 if __name__ == "__main__":
