@@ -107,6 +107,8 @@ EEN LOSSE STAND IS GEEN TREND. Van de kapitaalmarktrente krijg je een stand, gee
 
 SPLITSEN IN NIJMEGEN. Nijmegen kent geen splitsingsvergunning. Dat de BAG aparte woningen telt, zegt niet of een pand juridisch is gesplitst. Schrijf dus nooit "je hoeft geen splitsingsvergunning meer aan te vragen".
 
+RAMINGEN VAN BANKEN ZIJN GEEN CIJFERS. Een woningmarktmonitor van ABN AMRO, Rabobank of ING is een verwachting van een commerciele partij, met een belang bij de markt. Noem zo'n getal altijd als raming en van wie, en zet het naast wat er gemeten is: de CBS-index en onze eigen vraagprijzen. Schrijf nooit "de huizenprijzen stijgen met 3%" als een bank dat verwacht.
+
 CBS-INDEX EN RINGCIJFERS. De prijsindex van CBS en Kadaster meet werkelijke verkoopprijzen, gecorrigeerd voor het type woning, per maand of kwartaal. Onze ringcijfers zijn de mediaan van vraagprijzen over een paar dagen. Zet ze naast elkaar om te laten zien of de ring anders beweegt dan Nederland of Nijmegen, maar trek geen conclusie uit het verschil in procenten alsof het dezelfde maat is. Noem bij een maandcijfer of het seizoengecorrigeerd is, zoals het in de gegevens staat.
 
 EEN MEDIAAN IS GEEN PRIJS. De buurtmediaan per m2 verschuift ook als er andere panden bijkomen of afgaan. Een lagere mediaan betekent dus niet dat prijzen zijn gedaald. Schrijf "de mediaan van onze waarnemingen" en niet "de prijs daalde"; noem een nieuw pand onder de mediaan als het die verschuiving verklaart.
