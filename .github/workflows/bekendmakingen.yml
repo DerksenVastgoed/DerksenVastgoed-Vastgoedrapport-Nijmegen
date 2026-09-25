@@ -228,6 +228,13 @@ jobs:
           # Draait na het archief, zodat de meldingen van vandaag meetellen.
           python kamerverhuur_register.py || echo "Kamerverhuurregister overgeslagen"
 
+      - name: Geplakte Kamernet-tekst verwerken
+        continue-on-error: true
+        run: |
+          # Kamernet laat automatisch uitlezen niet toe; Mark plakt de tekst in
+          # kamernet_plak.txt en dit zet er huurwaarnemingen van.
+          python kamernet_plak.py || echo "Kamernet-plak overgeslagen"
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
