@@ -2230,6 +2230,39 @@ def eigen_inleg(koopsom):
     return koopsom * (1 - LTV / 100) + koopsom * AANKOOPKOSTEN_PCT / 100
 
 
+# Hoe zwaar een meting weegt tegenover de referentie voor die buurt. Bij dit
+# aantal waarnemingen tellen ze even zwaar; daaronder weegt de referentie meer.
+# Zonder deze weging trok een handvol dure kleine advertenties de huur voor een
+# groot pand omhoog: bij de Burg. Hustinxstraat 56 gaf dat €30/m2 waar de
+# referentie €20 is, en een richtprijs ruim boven de vraagprijs.
+HUUR_HALFWEG = 10
+HUUR_BAND = (0.7, 1.4)   # buitenste grens, ook bij veel waarnemingen
+
+
+def _binnen_band(hm2, buurt, bron, klasse="woning", n=0):
+    """
+    De gemeten huur gewogen met de referentie voor die buurt.
+
+    Het gewicht van de meting is n / (n + 10): bij drie waarnemingen telt de
+    meting voor bijna een kwart, bij tien voor de helft, bij dertig voor
+    driekwart. Daarbuiten geldt nog een harde band, zodat ook een grote reeks
+    de referentie niet onbeperkt kan overrulen.
+    """
+    if klasse != "woning":
+        return hm2, bron
+    ref = HUUR_M2_MND.get(buurt)
+    if not ref or not hm2:
+        return hm2, bron
+    gewicht = n / (n + HUUR_HALFWEG) if n else 0.0
+    gewogen = gewicht * hm2 + (1 - gewicht) * ref
+    gewogen = max(ref * HUUR_BAND[0], min(ref * HUUR_BAND[1], gewogen))
+    if abs(gewogen - hm2) < 0.5:
+        return hm2, bron
+    return gewogen, (f"{bron}: meting €{hm2:.0f}/m2 gewogen met de referentie "
+                     f"€{ref}/m2 voor {buurt} tot €{gewogen:.0f}/m2, want "
+                     f"{n} waarnemingen")
+
+
 def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
     """
     Gemeten huur per m2.
@@ -2253,14 +2286,19 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
         factor_bron = f", geschaald naar {buurt} ({factor:.2f}x)"
 
     if len(band_reeks) >= 3:
-        return (st.median(band_reeks) * factor,
-                f"gemeten, {len(band_reeks)} panden {band}{factor_bron}")
+        return _binnen_band(st.median(band_reeks) * factor, buurt,
+                            f"gemeten, {len(band_reeks)} panden {band}{factor_bron}",
+                            klasse, len(band_reeks))
 
     if len(buurt_reeks) >= 3:
-        return st.median(buurt_reeks), f"gemeten, {len(buurt_reeks)} in {buurt}"
+        return _binnen_band(st.median(buurt_reeks), buurt,
+                            f"gemeten, {len(buurt_reeks)} in {buurt}", klasse,
+                            len(buurt_reeks))
 
     if len(stad_reeks) >= 3:
-        return st.median(stad_reeks) * factor, f"gemeten, {len(stad_reeks)} stadsbreed{factor_bron}"
+        return _binnen_band(st.median(stad_reeks) * factor, buurt,
+                            f"gemeten, {len(stad_reeks)} stadsbreed{factor_bron}",
+                            klasse, len(stad_reeks))
 
     return HUUR_M2_MND.get(buurt, 18), "aanname"
 
@@ -3745,6 +3783,16 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           "eigen doorrekening met aannames voor exploitatie en verbouwing")
         if sc.get("alternatief"):
             f("alternatief", sc["alternatief"], "eigen doorrekening")
+
+        # Een richtprijs boven de vraagprijs is een uitzondering. Rust die op
+        # een aangenomen huur, dan is het geen bevinding maar een aanname.
+        if plafond and plafond > w["prijs"]:
+            bron_h = (sc.get("bron") or "").lower()
+            if bron_h.startswith("aanname") or "gewogen met de referentie" in bron_h:
+                f("let op", "de richtprijs ligt boven de vraagprijs, maar de huur "
+                  "waarop dat rust is niet of nauwelijks gemeten. Zonder meer "
+                  "huurwaarnemingen is dit geen koopsignaal",
+                  "eigen doorrekening")
 
         # De gemeentelijke lasten zijn te berekenen; de rest van de
         # exploitatiekosten is nog een aanname. Beide naast elkaar, zodat
