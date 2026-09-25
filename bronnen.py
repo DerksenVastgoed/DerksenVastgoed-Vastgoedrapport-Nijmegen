@@ -286,6 +286,10 @@ ACHTERGROND_TREFWOORDEN = {
                                  "handhaving", "servicekosten"],
     "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
                                          "omzetting", "studenten", "onzelfstandig"],
+    "Gemeubileerd verhuren": ["gemeubileerd", "gestoffeerd", "servicekosten",
+                              "meubilering", "inventaris"],
+    "Short stay": ["short stay", "shortstay", "toeristische verhuur",
+                   "vakantieverhuur", "logies", "expats"],
     "Veiligheid en verhuurbaarheid": ["inbraak", "vernieling", "overlast",
                                       "criminaliteit", "politie", "veiligheid",
                                       "drugs"],
@@ -316,6 +320,11 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
+    "Gemeubileerd verhuren": ("Huurcommissie, Beleidsboek Servicekosten; "
+                              "Wet betaalbare huur"),
+    "Short stay": ("gemeente Nijmegen, tijdelijke verhuur van een woning; "
+                   "Rijksoverheid, maatregelen onderscheid huur en short stay, "
+                   "november 2025; Huisvestingsverordening Nijmegen 2024"),
     "Waarom oppervlakte zo vaak misgaat": ("Basisregistratie Adressen en Gebouwen; "
                                            "advertentie Pontanusstraat 40, Funda, "
                                            "september 2026"),
@@ -439,6 +448,30 @@ ACHTERGROND = [
      "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
+    ("Gemeubileerd verhuren",
+     "Meubels verhogen de kale huur niet: die wordt begrensd door het "
+     "puntenstelsel. Meubilering en stoffering gaan via de servicekosten, als "
+     "gebruiksvergoeding voor roerende zaken, en dat is afschrijving en geen "
+     "marktprijs. De Huurcommissie rekent met een levensduur van tien jaar voor "
+     "duurzame zaken als een vaatwasser of laminaat en vijf jaar voor overige "
+     "stoffering en meubilair. Zonder inventarislijst en gegevens over ouderdom "
+     "geldt een standaardbedrag van 12 euro per jaar voor roerende zaken. Een "
+     "all-in prijs mag niet: kale huur en servicekosten moeten apart in het "
+     "contract staan, anders neemt de wet aan dat 55 procent kale huur is, 25 "
+     "procent servicekosten en 20 procent gas, water en licht. Sinds 1 juli 2024 "
+     "kan de Huurcommissie ook bij middenhuur en vrije sector over servicekosten "
+     "oordelen."),
+    ("Short stay",
+     "Nijmegen staat het tijdelijk verhuren van je eigen woning toe zonder "
+     "vergunning of melding, maar alleen als je er zelf het grootste deel van "
+     "het jaar woont; een woning telkens voor korte tijd verhuren terwijl je er "
+     "niet woont mag niet. Landelijk wil de minister short-stay-contracten "
+     "beperken tot 30 dagen, gelijk aan de maximale termijn voor "
+     "vakantieverhuur; die maatregelen gingen begin 2026 in consultatie. "
+     "Structureel verblijf in plaats van wonen is onttrekking aan de "
+     "woonruimtevoorraad, met een eigen vergunning en weigeringsgronden. Voor "
+     "een verhuurpand waar de eigenaar niet woont, is short stay dus geen vrije "
+     "route."),
     ("Waarom oppervlakte zo vaak misgaat",
      "De BAG registreert een gebruiksoppervlakte per verblijfsobject, en elk "
      "verblijfsobject heeft een eigen adres. Een advertentie splitst vaak de "
