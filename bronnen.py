@@ -286,6 +286,9 @@ ACHTERGROND_TREFWOORDEN = {
                                  "handhaving", "servicekosten"],
     "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
                                          "omzetting", "studenten", "onzelfstandig"],
+    "Tijdelijke huurcontracten": ["tijdelijk contract", "tijdelijke huur",
+                                  "huurcontract", "campuscontract", "student",
+                                  "huurbescherming", "onbepaalde tijd"],
     "Gemeubileerd verhuren": ["gemeubileerd", "gestoffeerd", "servicekosten",
                               "meubilering", "inventaris"],
     "Short stay": ["short stay", "shortstay", "toeristische verhuur",
@@ -320,6 +323,9 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
+    "Tijdelijke huurcontracten": ("Wet vaste huurcontracten; Besluit specifieke "
+                                  "groepen tijdelijke huurovereenkomst, Staatsblad "
+                                  "2024, 152; artikel 7:271 BW"),
     "Gemeubileerd verhuren": ("Huurcommissie, Beleidsboek Servicekosten; "
                               "Wet betaalbare huur"),
     "Short stay": ("gemeente Nijmegen, tijdelijke verhuur van een woning; "
@@ -448,6 +454,21 @@ ACHTERGROND = [
      "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
+    ("Tijdelijke huurcontracten",
+     "Sinds 1 juli 2024 is een huurcontract voor onbepaalde tijd de norm. Een "
+     "tijdelijk contract van hoogstens twee jaar mag alleen nog met personen uit "
+     "een limitatieve lijst, waaronder personen die voor hun studie tijdelijk in "
+     "een andere gemeente binnen Nederland willen wonen of uit het buitenland "
+     "komen om hier te studeren. Dat geldt voor zelfstandige en voor "
+     "onzelfstandige woonruimte; voor kamers was vijf jaar mogelijk, en dat kan "
+     "niet meer. In het contract moet staan dat het tijdelijk is en op welke "
+     "uitzondering het rust, en de toelichting adviseert vooraf bewijsstukken op "
+     "te vragen. Valt de huurder niet onder de lijst, dan is het contract er een "
+     "voor onbepaalde tijd. Een tijdelijk contract eindigt bovendien alleen als "
+     "de verhuurder het einde tijdig schriftelijk aankondigt; gebeurt dat niet, "
+     "dan loopt het door voor onbepaalde tijd, en een tweede tijdelijk contract "
+     "met dezelfde huurder kan niet. Naast deze route bestaat het campuscontract, "
+     "dat doorloopt zolang iemand studeert en eindigt als dat niet meer zo is."),
     ("Gemeubileerd verhuren",
      "Meubels verhogen de kale huur niet: die wordt begrensd door het "
      "puntenstelsel. Meubilering en stoffering gaan via de servicekosten, als "
