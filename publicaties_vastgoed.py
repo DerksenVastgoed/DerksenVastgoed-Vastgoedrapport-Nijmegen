@@ -46,7 +46,10 @@ FEEDS = [
     ("Brainbay Woningwaarde-index", _gnews("Brainbay OR NVM woningmarktcijfers")),
     ("Pararius huurmarkt", _gnews("Pararius huurprijs OR huurmarkt")),
     ("Rabobank Woningmarkt", _gnews("Rabobank woningmarkt kwartaalbericht")),
-    ("ABN AMRO Woningmarkt", _gnews("ABN AMRO woningmarkt sector update")),
+    # De monitor verschijnt onder een eigen naam; die stond niet in de zoekterm,
+    # waardoor alleen losse sectorberichten binnenkwamen.
+    ("ABN AMRO Woningmarkt", _gnews('ABN AMRO woningmarkt OR "Woningmarktmonitor"')),
+    ("ING woningmarkt", _gnews("ING woningmarkt huizenprijzen raming")),
     # Directe RSS van Vastgoed Insider (schrijft vaak relevant over uitponden/beleggers)
     ("Vastgoed Insider", "https://vastgoedinsider.nl/feed/"),
     # PropertyNL is een vakblad met een eigen feed, dus geen omweg via Google News
