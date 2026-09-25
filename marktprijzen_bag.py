@@ -2642,6 +2642,15 @@ def gemeten_huren(huur_aanbod):
         # ook niet op. Advertenties met een bedrag inclusief vaste lasten laten
         # we daarom weg in plaats van er een aftrek op te verzinnen.
         if (w.get("bron") or "").endswith("incl"):
+            # Bij woningen is inclusief een uitzondering; bij kamers is het
+            # eerder regel dan uitzondering. Die weggooien betekent dat we de
+            # kamermarkt helemaal niet meten. Daarom apart bewaren: ze tellen
+            # niet mee in de richtprijs, maar laten wel zien wat er gevraagd
+            # wordt.
+            if (w.get("status") or "").lower() == "te huur kamer":
+                hm2_i = huur_per_m2_maand(w)
+                if hm2_i and 8 <= hm2_i <= 80:
+                    per_klasse["kamer_incl"].append(hm2_i)
             inclusief_weg += 1
             continue
 
@@ -2674,8 +2683,9 @@ def gemeten_huren(huur_aanbod):
         if buurt:
             per_buurt_klasse[(klasse, buurt)].append(hm2)
     if inclusief_weg:
-        print(f"Huur: {inclusief_weg} advertenties inclusief vaste lasten weggelaten",
-              file=sys.stderr)
+        n_i = len(per_klasse.get("kamer_incl", []))
+        print(f"Huur: {inclusief_weg} advertenties inclusief vaste lasten niet in "
+              f"de richtprijs; {n_i} kamers apart bewaard", file=sys.stderr)
         per_klasse["_inclusief_weggelaten"] = inclusief_weg
     return per_buurt_klasse, per_klasse
 
