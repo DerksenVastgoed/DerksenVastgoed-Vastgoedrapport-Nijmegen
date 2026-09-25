@@ -55,6 +55,11 @@ GEMEENTELIJK = [
     ("afvalstoffenheffing", "Afvalstoffenheffing: een vaste last per woning"),
     ("leges", "Legesverordening: wat een omgevingsvergunning of een "
               "omzettingsvergunning kost bij splitsen of verkameren"),
+    # Het omgevingsplan regelt wat er op een adres mag. Nijmegen kondigde in
+    # september 2025 een wijziging aan over short stay, met besluitvorming
+    # voorzien in maart 2026; die zagen we niet, want we volgden het plan niet.
+    ("omgevingsplan", "Omgevingsplan: wat op een adres is toegestaan, waaronder "
+                      "een logiesfunctie en regels over short stay"),
 ]
 
 # Landelijke wetten. De nummers zijn de vaste BWB-identificatie.
