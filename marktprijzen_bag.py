@@ -1671,6 +1671,43 @@ def eigen_kamervergunning(w, vergunningen=None):
             if "samenvoeg" not in (v.get("soort") or "").lower()]
 
 
+def gemeentelijke_lasten(w):
+    """
+    Wat de gemeente jaarlijks kost bij dit pand, berekend uit de WOZ.
+
+    Alleen wat de eigenaar betaalt: de OZB voor eigenaren van woningen, en de
+    rioolheffing als de begroting zegt dat die bij de eigenaar ligt. De
+    afvalstoffenheffing is een gebruikersheffing en betaalt de huurder, dus die
+    telt hier niet mee.
+
+    Zonder tarief of zonder WOZ geven we niets terug; dan blijft de aanname
+    voor exploitatiekosten staan.
+    """
+    woz = w.get("woz")
+    if not woz:
+        return None
+    try:
+        with open("begroting_nijmegen.json", encoding="utf-8") as f:
+            begroting = json.load(f)
+    except Exception:
+        return None
+    tarieven = begroting.get("tarieven") or {}
+    ozb = tarieven.get("ozb_woning_eigenaar")
+    if not ozb:
+        return None
+    delen, totaal = [], 0.0
+    bedrag_ozb = woz * ozb["waarde"] / 100
+    totaal += bedrag_ozb
+    delen.append(f"OZB eigenaar €{eu(bedrag_ozb)} ({ozb['waarde']}% van "
+                 f"€{eu(woz)})")
+    riool = tarieven.get("rioolheffing_eigenaar")
+    if riool:
+        totaal += riool["waarde"]
+        delen.append(f"rioolheffing eigenaar €{eu(riool['waarde'])}")
+    return {"totaal": totaal, "delen": delen,
+            "jaar": ozb.get("jaar"), "bron": "Stadsbegroting Nijmegen"}
+
+
 def kamerverhuur_bekend(w, vergunningen=None, archief=None):
     """
     Aanwijzingen dat dit pand per kamer wordt verhuurd, elk met de bron.
@@ -3660,6 +3697,21 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           "eigen doorrekening met aannames voor exploitatie en verbouwing")
         if sc.get("alternatief"):
             f("alternatief", sc["alternatief"], "eigen doorrekening")
+
+        # De gemeentelijke lasten zijn te berekenen; de rest van de
+        # exploitatiekosten is nog een aanname. Beide naast elkaar, zodat
+        # zichtbaar is hoeveel van die aanname al gedekt is.
+        lasten = gemeentelijke_lasten(w)
+        if lasten:
+            # opex_voor geeft een percentage (20, 25 of 22), geen fractie
+            pct = opex_voor(sc["naam"])
+            aanname = sc["maand"] * 12 * pct / 100
+            f("gemeentelijke lasten",
+              f"€{eu(lasten['totaal'])} per jaar ({', '.join(lasten['delen'])}). "
+              f"De exploitatieaanname van {pct:.0f}% is "
+              f"€{eu(aanname)} per jaar; dit is daarvan een berekend deel, de "
+              f"rest is nog aanname",
+              f"{lasten['bron']} {lasten['jaar']} en de WOZ van dit pand")
     return feiten
 
 
