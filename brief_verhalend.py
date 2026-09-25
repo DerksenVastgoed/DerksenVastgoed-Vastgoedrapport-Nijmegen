@@ -77,7 +77,7 @@ OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buu
 
 6. De rente, kort, en alleen als er iets aan veranderd is of als het iets verklaart.
 
-7. BUURT VAN DE DAG: je krijgt een buurtnaam aangeleverd. Geef alleen die ene buurt een kort achtergrondportret van een paar zinnen, en alleen als het ergens bij aansluit. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen geen portret; die komen een andere dag.
+7. BUURT VAN DE DAG (niet in de zondagseditie): je krijgt een buurtnaam aangeleverd. Geef alleen die ene buurt een kort achtergrondportret van een paar zinnen, en alleen als het ergens bij aansluit. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen geen portret; die komen een andere dag.
 
    Noem je een pand of een besluit in een andere buurt, dan mag je daar wel één cijfer bij halen dat er iets over zegt, bijvoorbeeld het aantal inbraken of vernielingen per duizend inwoners als het over verhuurbaarheid gaat, of het aandeel kamerverhuurvergunningen als het over verkameren gaat. Eén cijfer, ter plaatse, niet een heel portret.
 
@@ -819,6 +819,29 @@ def zonder_leegmeldingen(tekst):
     return "\n".join(uit)
 
 
+def _weekelijks():
+    """Draait deze run de zondagseditie?"""
+    return (os.environ.get("MODUS") or "").lower().startswith("week")
+
+
+def week_terug(soort, datum, dagen=7, maxlen=6000):
+    """
+    De digests van de afgelopen dagen achter elkaar, met hun datum ervoor.
+
+    De zondagsbrief gaat over de week, maar kreeg alleen de digest van die dag.
+    Dan moet het model zich de week herinneren, en dat kan het niet: het ziet
+    alleen wat er in de opdracht staat.
+    """
+    eind = dt.date.fromisoformat(datum)
+    stukken = []
+    for i in range(dagen - 1, -1, -1):
+        d = (eind - dt.timedelta(days=i)).isoformat()
+        tekst = zonder_leegmeldingen(strip_opmaak(lees(f"digests/{d}-{soort}.md"), 2000))
+        if tekst.strip():
+            stukken.append(f"[{d}]\n{tekst}")
+    return "\n\n".join(stukken)[:maxlen]
+
+
 def strip_opmaak(tekst, maxlen=14000):
     """Haalt tabellen en HTML eruit; het model krijgt de inhoud, niet de vorm."""
     tekst = re.sub(r"<[^>]+>", " ", tekst)
@@ -940,6 +963,25 @@ def schrijf_brief(bronnen):
     buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
     punten = nieuwswaarde(bronnen)
     woorden, sturing = schrijfruimte(punten)
+
+    # De zondagseditie is een andere brief: kort, het belangrijkste van de week,
+    # en in de bijlage een uitgewerkte case. Geen buurtportret, geen vast
+    # rentekopje, geen rondje langs alles.
+    if _weekelijks():
+        woorden = 500
+        sturing = (
+            "Dit is de zondagseditie. Houd het kort: hooguit 500 woorden. Schrijf "
+            "het belangrijkste van de afgelopen week, niet van vandaag. Betreft het "
+            "losse onderwerpen, gebruik dan korte kopjes boven elk onderdeel; hoort "
+            "het bij elkaar, dan doorlopende tekst. Laat weg: het portret van een "
+            "buurt, het rondje langs de buurten, en een apart kopje over de rente. "
+            "Noem de rente alleen als die deze week is veranderd, en dan in een "
+            "halve zin in de lopende tekst. De uitgewerkte investeringscase staat "
+            "in de bijlage; verwijs er hooguit een zin naar en herhaal de "
+            "berekening niet. De besluiten en het nieuws krijg je van de hele "
+            "week, met de datum per dag erbij; gebruik die datums en schrijf niet "
+            "alsof alles vandaag gebeurde."
+        )
 
     # Een nieuw pand is actualiteit, ook op een dag met weinig ander nieuws.
     # Eerder zei de sturing op zo'n dag "maak van de verdieping het hoofdstuk",
@@ -1081,8 +1123,12 @@ def main():
         ("Achtergrond bij het nieuws van vandaag", achtergrondtekst()),
         ("Aanbod en buurten", strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))),
         ("Dossiers per pand", strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)),
-        ("Gemeentelijke besluiten", strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
-        ("Nieuws", strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
+        ("Gemeentelijke besluiten",
+         week_terug("bekendmakingen", d) if _weekelijks()
+         else strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
+        ("Nieuws",
+         week_terug("publicaties", d) if _weekelijks()
+         else strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
         ("Rente", strip_opmaak(lees(f"digests/{d}-rente.md"), 3000)),
         ("Bouwkosten", bouwkosten_tekst()),
         ("Woningprijzen CBS", woningprijzen_tekst()),
