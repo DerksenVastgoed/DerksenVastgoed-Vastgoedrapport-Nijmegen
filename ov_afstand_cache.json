@@ -151,6 +151,14 @@
   "omweg": 4.32,
   "soort": "bus"
  },
+ "51.83982,5.86217": {
+  "geschat": false,
+  "hemelsbreed": 121,
+  "meters": 169,
+  "naam": "Fransestraat",
+  "omweg": 1.4,
+  "soort": "bus"
+ },
  "51.84019,5.85579": {
   "geschat": false,
   "hemelsbreed": 341,
@@ -205,6 +213,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.55,
+  "soort": "bus"
+ },
+ "51.84289,5.85446": {
+  "geschat": false,
+  "hemelsbreed": 68,
+  "meters": 54,
+  "naam": "Centraal Station",
+  "omweg": 0.79,
   "soort": "bus"
  },
  "51.84297,5.86312": {
@@ -317,6 +333,14 @@
   "meters": 24,
   "naam": "Meester Franckenstraat",
   "omweg": 0.62,
+  "soort": "bus"
+ },
+ "51.84436,5.86781": {
+  "geschat": false,
+  "hemelsbreed": 58,
+  "meters": 161,
+  "naam": "Hertogplein",
+  "omweg": 2.78,
   "soort": "bus"
  },
  "51.84440,5.85490": {

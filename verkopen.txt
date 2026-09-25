@@ -267,3 +267,8 @@ van Goorstraat 91 | Nijmegen | 410000 | te koop | 2026-09-23 |  | 67 | 6512EC
 
 # Automatisch toegevoegd uit Funda-attendering op 24-09-2026
 Castellastraat 15 | Nijmegen | 549000 | te koop | 2026-09-24 |  | 102 | 6512EV
+
+# Automatisch toegevoegd uit Funda-attendering op 25-09-2026
+Burg. Hustinxstraat 56 | Nijmegen | 415000 | te koop | 2026-09-25 |  | 102 | 6512AE
+Achter de Bank 4 | Nijmegen | 375000 | te koop | 2026-09-25 |  | 96 | 6511PB
+Pontanusstraat | Nijmegen | 1213 | te huur | 2026-09-25 | pararius | 26 | 6524HD

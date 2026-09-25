@@ -1,0 +1,135 @@
+
+## Vandaag
+
+65 panden in beeld, 2 nieuw of gewijzigd. Dichtst bij haalbaar is **Burg. Hustinxstraat 56** in Stadscentrum: €415.000 voor 102 m². Als één woning loopt het rond tot €621.337, dus +50% ten opzichte van de vraagprijs; per m² staat het -22% ten opzichte van de mediaan van zijn klasse. Dit pand haalt de drempel om de brief mee te openen (richtprijs binnen 10% van de vraagprijs). 8 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
+
+### Per gebied: aanbod en gemeentelijke berichten
+
+**Stadscentrum**
+_mediaan €5.227/m² op 40 waarnemingen . +0,6% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+
+| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
+|---|---:|---:|---:|---:|---|---|---:|---:|
+| [Burg. Hustinxstraat 56](https://www.google.com/maps/search/?api=1&query=Burg.+Hustinxstraat+56%2C+Nijmegen) | €415.000 | 102 | €4.068 | 🟢 -22% | -22% onder de mediaan van zijn klasse | één woning, €2.970/mnd . pand bevat al 36 woningen volgens de BAG | €621.337 (+50%) | 0 |
+
+_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
+
+| Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
+|---|---:|---:|---:|---:|---:|
+| [Burg. Hustinxstraat 56](https://www.google.com/maps/search/?api=1&query=Burg.+Hustinxstraat+56%2C+Nijmegen) | €494.321 | €276.805 | €217.516 | €13.290 | 5,8% |
+
+_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de financieringsgraad. [17,19,20,24]_
+
+_Met het beschikbare eigen vermogen kom je: Burg. Hustinxstraat 56 tot €152.389._
+
+_Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
+
+_Stadscentrum is grotendeels rijksbeschermd stadsgezicht. Voor wijzigingen aan het uiterlijk is een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen aan de voorzijde._
+
+_Doelgroep: 79% van de huishoudens in Stadscentrum woont alleen en 3% heeft kinderen. Voor Burg. Hustinxstraat 56 is de lokale vraag naar een woning van die omvang dus dun; je huurder komt van buiten de buurt._
+
+_**Burg. Hustinxstraat 56** is volgens de BAG een appartement in een complex van 36 woningen in hetzelfde pand: Burg. Hustinxstraat 18 (111 m²), Burg. Hustinxstraat 20 (104 m²), Burg. Hustinxstraat 22 (109 m²), Burg. Hustinxstraat 24 (104 m²). Dat is bij een appartementencomplex normaal en op zichzelf geen bijzonderheid. De oppervlakte per adres komt uit de BAG en kan afwijken van de advertentie. Dat de BAG aparte woningen telt, zegt niet of het pand juridisch in appartementsrechten is gesplitst; dat staat in het Kadaster. Een splitsingsvergunning kent Nijmegen niet._
+
+_Stond er al, vraagprijs ongewijzigd: [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen) €539.000 (-34% t.o.v. de buurtmediaan, 3 dagen in aanbod) . [Mariënburg 20](https://www.google.com/maps/search/?api=1&query=Mari%C3%ABnburg+20%2C+Nijmegen) €629.000 (-2% t.o.v. de buurtmediaan) . [Arsenaalplaats 6](https://www.google.com/maps/search/?api=1&query=Arsenaalplaats+6%2C+Nijmegen) €499.000 (+0% t.o.v. de buurtmediaan, 14 dagen in aanbod) . [Plein 1944 86B](https://www.google.com/maps/search/?api=1&query=Plein+1944+86B%2C+Nijmegen) €495.000 (+9% t.o.v. de buurtmediaan) . [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) €550.000 (+19% t.o.v. de buurtmediaan, 12 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_Zonder vergelijking, te weinig commercieel objecten in de dataset: [van Welderenstraat 5](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+5%2C+Nijmegen) €500.000 (235 m², €2.127/m²) . [Ziekerstraat 5](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+5%2C+Nijmegen) €450.000 (126 m², €3.571/m²) . [van Welderenstraat 89](https://www.google.com/maps/search/?api=1&query=van+Welderenstraat+89%2C+Nijmegen) €934.000 (182 m², €5.131/m²) . [Koningstraat 4](https://www.google.com/maps/search/?api=1&query=Koningstraat+4%2C+Nijmegen) €850.000 (134 m², €6.343/m²)._
+
+_14 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+_Grensgeval voor de opkoopbescherming: Burg. Hustinxstraat 56. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
+
+_Ziekerstraat 5 wordt in verhuurde staat aangeboden. Was het pand op de leveringsdatum al langer dan zes maanden verhuurd, dan is het geen beschermde woonruimte en geldt de vergunningplicht niet. Bij lege oplevering of een kortere verhuurperiode vervalt die route._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html" style="color:#12242c;text-decoration:none">Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen</a></span></div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-25 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html" style="color:#12242c;text-decoration:none">Besluit voor het verduurzamen van de woning, aan van Berchenstraat 31, 6511BB Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">224 m² . label G (2016)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Verduurzaming van een pand met label G verbetert de energieprestatie fors, wat bij mutatie meer huurpunten en waarde kan opleveren.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-25 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+**Benedenstad**
+_mediaan €5.508/m² op 9 waarnemingen._
+
+_Stond er al, vraagprijs ongewijzigd: [Nieuwe Markt 90](https://www.google.com/maps/search/?api=1&query=Nieuwe+Markt+90%2C+Nijmegen) €575.000 (-34% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+**Biezen**
+_mediaan €5.082/m² op 34 waarnemingen . +0,9% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+
+_1 pand buiten beeld, mediaan €6.671/m². Die tellen mee in de vergelijking maar vragen geen actie._
+
+_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-16% t.o.v. de buurtmediaan, 7 dagen in aanbod) . [Voorstadslaan 63](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+63%2C+Nijmegen) €585.000 (+0% t.o.v. de buurtmediaan, 2 dagen in aanbod) . [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (+1% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+7% t.o.v. de buurtmediaan) . [Voorstadslaan 121](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+121%2C+Nijmegen) €550.000 (+7% t.o.v. de buurtmediaan, 2 dagen in aanbod) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+15% t.o.v. de buurtmediaan, 14 dagen in aanbod) . [Marialaan 56](https://www.google.com/maps/search/?api=1&query=Marialaan+56%2C+Nijmegen) €450.000 (+16% t.o.v. de buurtmediaan, 6 dagen in aanbod) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+37% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_Bekende WOZ-waarden: Dokstraat 127 €416.000 (2026), puntenstelsel ondergrens 161 punten (64 m2, WOZ €416.000, label A): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
+
+_4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+**Galgenveld**
+_mediaan €4.691/m² op 30 waarnemingen . -2,1% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+
+_Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-16% t.o.v. de buurtmediaan) . [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) €539.000 (-14% t.o.v. de buurtmediaan, 9 dagen in aanbod) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-10% t.o.v. de buurtmediaan, 12 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-3% t.o.v. de buurtmediaan, 22 dagen in aanbod) . [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) €599.000 (-2% t.o.v. de buurtmediaan, 3 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-0% t.o.v. de buurtmediaan, 14 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (+0% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+11% t.o.v. de buurtmediaan, 14 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel ondergrens 180 punten (110 m2, WOZ €432.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . St. Annastraat 28 €1.021.000 (2026) (367 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Palembangstraat 44 €466.000 (2026), puntenstelsel ondergrens 172 punten (96 m2, WOZ €466.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Pontanusstraat 19 €523.000 (2026), puntenstelsel ondergrens 210 punten (135 m2, WOZ €523.000, label D): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
+
+_3 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-445225.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het wijzigen van de voorgevel en de constructie t.b.v. indeling van de woning, aan Javastraat 23, 6524LT Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">210 m² . label E (2026)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Wijziging van voorgevel en constructie voor de indeling duidt op interne herindeling, mogelijk voorbereidend op meerdere wooneenheden.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-23 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-445225.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">299 m² . label D (2025)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel is een bouwkundige ingreep zonder direct signaal voor splitsing of verhuur.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-25 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+**Altrade**
+_mediaan €4.813/m² op 39 waarnemingen . -0,8% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+
+_Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-12% t.o.v. de buurtmediaan, 14 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_Zonder vergelijking, te weinig commercieel objecten in de dataset: [Jacob Canisstraat 51](https://www.google.com/maps/search/?api=1&query=Jacob+Canisstraat+51%2C+Nijmegen) €565.000 (138 m², €4.094/m²)._
+
+_2 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-448375.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van de begane grond tot een appartement, aan Prins Bernhardstraat 65, 6521AD Nijmegen</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">114 m²</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Ombouw van de begane grond (114 m2) tot zelfstandig appartement voegt een extra verhuurbare unit toe aan het pand.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-24 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-448375.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
+
+**Bottendaal**
+_mediaan €4.781/m² op 13 waarnemingen . +0,2% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+
+_1 pand buiten beeld, mediaan €5.382/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 26 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 26 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
+
+_Stond er al, vraagprijs ongewijzigd: [de Ruyterstraat 37](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+37%2C+Nijmegen) €450.000 (-5% t.o.v. de buurtmediaan, 14 dagen in aanbod) . [de Ruyterstraat 135](https://www.google.com/maps/search/?api=1&query=de+Ruyterstraat+135%2C+Nijmegen) €925.000 (-3% t.o.v. de buurtmediaan) . [van Goorstraat 91](https://www.google.com/maps/search/?api=1&query=van+Goorstraat+91%2C+Nijmegen) €410.000 (+28% t.o.v. de buurtmediaan, 2 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+
+_Bekende WOZ-waarden: de Ruyterstraat 37 €514.000 (2026), puntenstelsel ondergrens 179 punten (99 m2, WOZ €514.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
+
+_1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+_10 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
+_De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond verkameren en splitsen staan in de uitgebreide brief van zondag._
+
+
+### Achtergrond
+
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 218 panden, waarvan er 72 nu in aanbod zijn. Bijgewerkt 25 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+
+_Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._
