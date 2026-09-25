@@ -87,13 +87,15 @@ LET OP BIJ PERCENTAGES. Een percentage achter een pand is de afwijking van de ME
 
 PER PAND, NIET PER BUURT. De omzettingsvergunning en de opkoopbescherming hangen aan de WOZ van het afzonderlijke pand, niet aan het gemiddelde van de buurt. Een gemiddelde zegt niets over hoeveel of welke panden onder de grens liggen, en dus ook niets over de kans daarop. Schrijf nooit "wie in deze buurt koopt, hoeft niet door het vergunningstraject" of "de kans dat een woning hier onder de grens blijft is klein". Wil je iets zeggen over panden onder de grens, kijk dan in de gegevens van vandaag: daar staat per buurt hoeveel panden onder de WOZ-grens niet getoond zijn.
 
-HET PUNTENSTELSEL. Het puntenaantal van een woning volgt onder meer uit de oppervlakte, het energielabel en de WOZ-waarde, plus keuken, sanitair, buitenruimte en verwarming (bron: Volkshuisvesting Nederland). De WOZ is dus juist een van de zwaarste onderdelen; schrijf nooit dat het puntenaantal "niet van de WOZ" afhangt. Bij panden met een bekende WOZ staat in de gegevens een ondergrens van de punten. Onder de 187 punten geldt voor nieuwe contracten een wettelijke maximumhuur, en dan rekent de doorrekening met dat maximum in plaats van de markthuur.
+HET PUNTENSTELSEL. Een beter energielabel geeft meer punten en dus een hogere maximale huur; een slechter label geeft er minder. Schrijf dus nooit dat de punten bij een laag label "zwaarder tellen". Het puntenaantal van een woning volgt onder meer uit de oppervlakte, het energielabel en de WOZ-waarde, plus keuken, sanitair, buitenruimte en verwarming (bron: Volkshuisvesting Nederland). De WOZ is dus juist een van de zwaarste onderdelen; schrijf nooit dat het puntenaantal "niet van de WOZ" afhangt. Bij panden met een bekende WOZ staat in de gegevens een ondergrens van de punten. Onder de 187 punten geldt voor nieuwe contracten een wettelijke maximumhuur, en dan rekent de doorrekening met dat maximum in plaats van de markthuur.
 
 Zeg niet welk onderdeel het verschil in punten tussen twee panden veroorzaakt ("dat zit vooral in de oppervlakte"), want de telling per onderdeel staat niet in de gegevens.
 
 GEEN UITSPRAKEN OVER DE EIGEN PORTEFEUILLE. Je hebt geen gegevens over de panden van Mark en zijn broer: niet hun puntenaantal, niet hun segment, niet hun huur. Schrijf dus niets als "onze panden zitten vaak in het hogere segment". Je mag zeggen voor welk soort pand een regel van belang is, maar niet welke van hun eigen panden daaronder vallen.
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
+
+EEN APPARTEMENT IS GEEN BIJZONDERHEID. Staan er volgens de BAG meerdere woningen in hetzelfde pand, dan is het aangeboden object meestal gewoon een appartement in een complex. Presenteer dat aantal niet als een vondst en niet als "het bijzondere van dit pand". Bij zo'n appartement gaat de VvE over splitsen en kamerverhuur, niet alleen de gemeente; wat de akte en het reglement toestaan, weten wij niet.
 
 DOSSIERS PER PAND. Voor de panden die ertoe doen krijg je een dossier: per pand alle feiten uit alle bronnen, elk met de bron erbij. Daar haal je de verbanden uit. Noem je een pand, kijk dan eerst in het dossier wat er over bekend is: WOZ ten opzichte van de grens, puntentelling, kamerverhuur op het pand en bij de buren, bekendmakingen op het adres, de doorrekening. Een regel "geen aanwijzing gevonden" is geen bewijs dat er niets is; neem de beperking die erbij staat over als je hem noemt.
 
@@ -519,6 +521,47 @@ def bouwkosten_tekst():
     return ""
 
 
+def _kamerverhuur_rang():
+    """
+    De rangorde van de buurten op bekende kamerverhuurpanden per woning.
+
+    Nodig omdat het model zelf vergeleek en schreef dat Biezen met 46 panden
+    het laagste van de zes was, terwijl de Benedenstad er 15 heeft. En een
+    aantal zonder noemer zegt weinig: Biezen heeft ruim drie keer zoveel
+    woningen als de Benedenstad.
+    """
+    kv = _kamerverhuur_per_buurt()
+    try:
+        with open("buurten_cbs.json", encoding="utf-8") as f:
+            cbs = json.load(f)
+    except Exception:
+        return {}
+    aandeel = {}
+    for b, v in kv.items():
+        won = (cbs.get(b) or {}).get("won")
+        if b in ZES_BUURTEN and won and v.get("totaal"):
+            aandeel[b] = v["totaal"] / won * 100
+    if len(aandeel) < 2:
+        return {}
+    volgorde = sorted(aandeel, key=lambda x: aandeel[x])
+    n = len(volgorde)
+    uit = {}
+    for i, b in enumerate(volgorde):
+        plek = ("het laagste" if i == 0 else "het hoogste" if i == n - 1
+                else f"de {i + 1}e van laag naar hoog")
+        tekst = (f"{aandeel[b]:.1f}".replace(".", ",")
+                 + f"% van de woningen, {plek} van de {n} buurten")
+        # Ligt de buur er vlak naast, dan is een rangorde geen verschil. Zonder
+        # deze regel wordt "het laagste" tegenover "de tweede" een contrast dat
+        # er niet is.
+        buren = [volgorde[j] for j in (i - 1, i + 1) if 0 <= j < n]
+        dichtbij = [x for x in buren if abs(aandeel[x] - aandeel[b]) < 0.15]
+        if dichtbij:
+            tekst += f", nagenoeg gelijk aan {' en '.join(dichtbij)}"
+        uit[b] = tekst
+    return uit
+
+
 def _kamerverhuur_per_buurt():
     try:
         with open("kamerverhuur_per_buurt.json", encoding="utf-8") as f:
@@ -568,6 +611,10 @@ def buurtcijfers_tekst():
         # Bekende kamerverhuurpanden uit vergunningen en meldingen samen, met de
         # uitsplitsing, zodat de brief ziet wat alleen via een melding bekend is
         kv = _kamerverhuur_per_buurt().get(buurt)
+        r_kv = _kamerverhuur_rang().get(buurt)
+        if r_kv:
+            d.append(f"bekende kamerverhuurpanden als aandeel van de woningen: "
+                     f"{r_kv}")
         if kv and kv.get("totaal"):
             d.append(f"{kv['totaal']} bekende kamerverhuurpanden (vergunning of "
                      f"melding brandveilig gebruik; {kv.get('beide', 0)} met beide, "
