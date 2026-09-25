@@ -3894,7 +3894,19 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
         rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
                    if w in panden]
         med_b = st.median([p for p, _ in per_buurt.get(buurt, [])]) if per_buurt.get(buurt) else None
-        for ppm2, w in sorted(rijen_b, key=lambda x: x[0]):
+        # Sorteren op wat je als koper wilt weten: hoe dicht de richtprijs bij
+        # de vraagprijs ligt. De afwijking van de buurtmediaan blijft als kolom
+        # staan, maar bepaalt de volgorde niet meer: die zegt of een pand
+        # relatief duur staat, niet of je het voor verhuur kunt betalen.
+        def _ruimte(paar):
+            w_ = paar[1]
+            sc_ = w_.get("_scenario")
+            if not sc_ or not w_.get("prijs"):
+                return -999
+            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+            return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else -999
+
+        for ppm2, w in sorted(rijen_b, key=_ruimte, reverse=True):
             sc = w.get("_scenario") or kies_scenario(
                 w, huur_bk, huur_k, buurt, None, per_buurt.get(buurt, []))
             plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
@@ -3926,6 +3938,10 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
              "prijswijziging. Richtprijs is de hoogste koopsom waarbij de "
              "nettohuur rente en aflossing nog dekt. De laatste kolom zet die "
              "richtprijs af tegen de vraagprijs: positief betekent ruimte, "
+             "en op die kolom is de tabel gesorteerd, want dat is wat telt bij "
+             "aankoop voor verhuur. De afwijking van de buurtmediaan staat "
+             "ernaast als context. Let op: de richtprijs rust op aannames voor "
+             "huur, exploitatie en rente; de mediaanafwijking is gemeten. "
              "negatief betekent te duur voor verhuur._")
     return r
 
