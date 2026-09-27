@@ -2863,6 +2863,11 @@ UITGANGSPUNT: het gewone geval is kopen en verhuren. Beoordeel een pand dus eers
 
 Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de feiten er aanleiding toe geven, bijvoorbeeld een grote oppervlakte, een hoog aandeel appartementen in de buurt of een aanzienlijke uitpondruimte. Presenteer ze nooit als vanzelfsprekend, en benoem dan ook meteen de beperking: in een aangewezen wijk is omzetting vergunningplichtig, en onder de WOZ-grens is verkameren simpelweg niet toegestaan.
 
+DRIE VRAGEN DIE ALTIJD BEANTWOORD MOETEN WORDEN, want zonder die is het geen investeringsmemo maar een prijsopmerking:
+- MAG HET. Kun je dit pand na aankoop verhuren zoals je van plan bent? Kijk naar de WOZ tegenover de grens van €396.000: daaronder geldt de opkoopbescherming en is verhuren vier jaar niet toegestaan zonder vergunning, en is voor kamers een omzettingsvergunning nodig die onder €278.000 altijd wordt geweigerd. Is de WOZ onbekend, zeg dat dan: dan is dit niet te toetsen en is dat het eerste wat je uitzoekt.
+- WAT IS DE HUUR EN WAAR KOMT DIE VANDAAN. Noem het bedrag per maand en of het een meting is of een aanname. Staat er bij de feiten dat de huur is gewogen met de referentie of dat het een aanname is, dan is een richtprijs boven de vraagprijs geen koopsignaal en schrijf je dat erbij. Staat er een puntentelling bij, noem dan of het pand onder of boven de 187 punten valt en dus of er een wettelijke maximumhuur geldt.
+- WAT DEDEN DE BUREN. Staat er onder "eerder in deze straat" een pand dat is gekocht, gesplitst, verduurzaamd of verkamerd, gebruik dat dan. Dat is het sterkste bewijs van wat er op die plek kan, sterker dan welke redenering ook.
+
 Bouw het memo zo op:
 1. Waarom valt dit pand op en wat zeggen de cijfers over de positie in de markt.
 2. Wat kost het en wat brengt het op bij de huidige rente: investering, eigen inleg, operationeel resultaat, netto aanvangsrendement.
@@ -2870,7 +2875,7 @@ Bouw het memo zo op:
 4. OF HET UITVOERBAAR IS. Dit is geen bijzaak maar de kern van een investeringsvoorstel. Behandel: ligt er al een vergunning op het pand, zijn er kamerverhuurpanden in de straat en welke adressen, welke voorwaarden gelden er voor een omzettingsvergunning, staat er iets aan handhaving in de omgeving, en hoe staat het met veiligheid en overlast in de buurt. Noem de adressen en de cijfers die je krijgt aangeleverd; schrijf niet "mogelijk vergunningplichtig" als er concrete gegevens bij staan.
 5. Sluit af met een oordeel in een of twee zinnen: is dit het bekijken waard, en wat zou je als eerste uitzoeken voordat je een bod doet.
 
-LENGTE: maximaal 450 woorden per pand. Dat is een harde grens. Je krijgt veel meer feiten aangeleverd dan erin passen, en dat is opzet: kies.
+LENGTE: maximaal 550 woorden per pand. Dat is een harde grens. Je krijgt veel meer feiten aangeleverd dan erin passen, en dat is opzet: kies.
 
 WAT ALTIJD MOET: de cijfers die het oordeel dragen, en elke blokkade. Loopt een route vast op de opkoopbescherming, op de WOZ-ondergrens of op twee kamerpanden naast elkaar, dan hoort dat erin, ook als de rest goed oogt.
 
@@ -3107,6 +3112,17 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
 
         f.append(f"positie: {afwijking:+.0f}% ten opzichte van de mediaan"
                  + ("" if basis == buurt else f" van {basis}"))
+
+        # Het volledige dossier erbij: de huur en waar die vandaan komt, de
+        # puntentelling, de WOZ tegenover de vergunninggrens, wat de buren in
+        # de straat deden en welke routes dicht zitten. Zonder dit bleef de
+        # case hangen bij de vraagprijs.
+        try:
+            for regel in pand_dossier(w, buurt, afwijking, cbs, lees_archief(), None):
+                if not regel.startswith("aanbod:"):
+                    f.append(regel)
+        except Exception as e:
+            print(f"Dossier bij de case mislukt: {e}", file=sys.stderr)
         rijen = per_buurt.get(buurt, [])
         if len(rijen) >= 10:
             prijzen = sorted(p for p, _ in rijen)
@@ -3412,9 +3428,12 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         r.append(voet + "_")
         r.append("")
 
-    # Kaart met de drie panden, en de uitpondmarge als context
+    # Kaart met de panden uit de case. Stond hier "de drie panden", ook toen er
+    # nog maar een was.
     if schrijf_top3_kaart([k[-1] for k in top]):
-        r.append(f"[Bekijk de drie panden op de kaart]({TOP3_KAART_URL})")
+        woord = ("het pand" if len(top) == 1 else
+                 "de twee panden" if len(top) == 2 else f"de {len(top)} panden")
+        r.append(f"[Bekijk {woord} op de kaart]({TOP3_KAART_URL})")
         r.append("")
 
     if beleggingen and len(beleggingen) >= 3:

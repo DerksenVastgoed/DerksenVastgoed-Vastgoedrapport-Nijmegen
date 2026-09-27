@@ -137,6 +137,7 @@ def haal_gemeentelijk():
                 "geldig_vanaf": _tekst(rec, "inwerkingtredingDatum"),
                 "geldig_tot": _tekst(rec, "uitwerkingtredingDatum"),
                 "waarom": waarom,
+                "term": term,
                 "bron": "gemeente",
                 "url": _tekst(rec, "preferredUrl") or _tekst(rec, "publicatieurl"),
             }
@@ -326,16 +327,34 @@ def main():
         return
 
     vorig = lees_status()
-    wijzigingen, nieuw = [], []
+    # Welke zoektermen we al eens hebben opgehaald. Een nieuwe term levert in
+    # een klap de hele geschiedenis op: bij het toevoegen van de belasting-
+    # verordeningen kwamen alle jaargangen sinds 2011 als "nieuw in beeld"
+    # binnen. Die leggen we stil vast als uitgangspunt.
+    bekende_termen = set(vorig.get("_termen") or [])
+    alle_termen = {g.get("term") for g in huidig.values() if g.get("term")}
+    eerste_keer = alle_termen - bekende_termen
+
+    wijzigingen, nieuw, basis = [], [], 0
     for sleutel, g in huidig.items():
+        if str(sleutel).startswith("_"):
+            continue
         was = vorig.get(sleutel)
         if not was:
-            if vorig:          # bij de eerste run is alles nieuw, dat is geen signaal
+            if not vorig:      # bij de eerste run is alles nieuw, dat is geen signaal
+                pass
+            elif g.get("term") in eerste_keer:
+                basis += 1     # nieuwe zoekterm: wel bewaren, niet melden
+            else:
                 nieuw.append((sleutel, g))
         elif (was.get("gewijzigd") or "") != (g.get("gewijzigd") or ""):
             wijzigingen.append((sleutel, was, g))
 
+    huidig["_termen"] = sorted(bekende_termen | alle_termen)
     schrijf_status(huidig)
+    if basis:
+        print(f"  {basis} regelingen bij {len(eerste_keer)} nieuwe zoektermen als "
+              f"uitgangspunt vastgelegd, niet gemeld", file=sys.stderr)
 
     rijk = rijkspublicaties()
     if rijk:
