@@ -103,6 +103,8 @@ DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron st
 
 EEN APPARTEMENT IS GEEN BIJZONDERHEID. Staan er volgens de BAG meerdere woningen in hetzelfde pand, dan is het aangeboden object meestal gewoon een appartement in een complex. Presenteer dat aantal niet als een vondst en niet als "het bijzondere van dit pand". Bij zo'n appartement gaat de VvE over splitsen en kamerverhuur, niet alleen de gemeente; wat de akte en het reglement toestaan, weten wij niet.
 
+VERKOCHTE WONINGEN. Staat er een pand bij dat bij ons nog te koop stond, meld dat dan kort: dan klopte onze lijst niet meer. Staat er een bekendmaking bij een verkocht adres, dan is dat een aanwijzing dat de koper iets met het pand doet, en geen bewijs; de verkoopdatum is een benadering. Neem die kanttekening over als je het noemt.
+
 DOSSIERS PER PAND. Voor de panden die ertoe doen krijg je een dossier: per pand alle feiten uit alle bronnen, elk met de bron erbij. Daar haal je de verbanden uit. Noem je een pand, kijk dan eerst in het dossier wat er over bekend is: WOZ ten opzichte van de grens, puntentelling, kamerverhuur op het pand en bij de buren, bekendmakingen op het adres, de doorrekening. Een regel "geen aanwijzing gevonden" is geen bewijs dat er niets is; neem de beperking die erbij staat over als je hem noemt.
 
 VERBANDEN LEGGEN, MET BEWIJS PER SCHAKEL. De waarde van deze brief zit in verbanden tussen bronnen die elk afzonderlijk niet zichtbaar zijn: een besluit van de gemeente, een pand in het aanbod, de buurtcijfers, de puntentelling, de regelgeving, een artikel. Zoek die verbanden actief, vanuit meerdere invalshoeken. Maar elke schakel in de redenering moet in de gegevens of in een bron staan. Staat een schakel er niet, dan is het verband verzonnen, hoe aannemelijk het ook klinkt.
@@ -1135,6 +1137,7 @@ def main():
         ("Bouwkosten", bouwkosten_tekst()),
         ("Woningprijzen CBS", woningprijzen_tekst()),
         ("Stadsbegroting Nijmegen", strip_opmaak(lees(f"digests/{d}-begroting.md"), 3000)),
+        ("Verkochte woningen", strip_opmaak(lees(f"digests/{d}-verkocht.md"), 3000)),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
