@@ -29,11 +29,17 @@ import json
 import os
 import re
 import sys
+import time
 
 PAD = "pandgeschiedenis.json"
 VERKOPEN = "verkopen.txt"
 ARCHIEF = "bekendmakingen_archief.json"
-MAX_BAG_PER_RONDE = 60
+# Hoeveel panden per ronde tegen de BAG en EP-Online worden gehouden. Elke
+# controle is een paar opvragingen, dus dit is een afweging tussen snelheid en
+# belasting van die diensten. Met de omgevingsvariabele BAG_PER_RONDE tijdelijk
+# te verhogen als je een achterstand wilt inlopen.
+MAX_BAG_PER_RONDE = int(os.environ.get("BAG_PER_RONDE") or 200)
+PAUZE_TUSSEN = 0.2
 
 try:
     from diagnose import leg_vast, wis
@@ -238,6 +244,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         return 0
     nieuw, gedaan = 0, 0
     vandaag = dt.date.today().isoformat()
+    nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
     for sl, pand in sorted(geschiedenis.items(),
                            key=lambda x: x[1].get("bag_gezien") or ""):
         if gedaan >= MAX_BAG_PER_RONDE:
@@ -255,6 +262,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
             continue
         eenheden = bag_eenheden_in_pand(pand_id)
         gedaan += 1
+        time.sleep(PAUZE_TUSSEN)
         pand["bag_gezien"] = vandaag
         if not eenheden:
             continue
@@ -274,6 +282,9 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
             nieuw += voeg_toe(pand, vandaag, "bag", tekst,
                               "Basisregistratie Adressen en Gebouwen")
             pand["bag_eenheden"] = nu
+    over = max(nooit - gedaan, 0)
+    print(f"BAG: {gedaan} panden gecontroleerd, nog {over} nooit gecontroleerd",
+          file=sys.stderr)
     return nieuw
 
 
