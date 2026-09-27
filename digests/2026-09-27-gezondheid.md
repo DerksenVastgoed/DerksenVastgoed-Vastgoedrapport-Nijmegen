@@ -1,12 +1,14 @@
 # Gezondheidsrapport 2026-09-27
 
-15 in orde, 2 aandachtspunten, 0 fouten.
+15 in orde, 3 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Huurdata**: 6 huurwaarnemingen, waarvan 6 Pararius en 0 Kamernet; 6 in de laatste week
   Er wordt gemeten, maar het aantal is nog te klein voor een betrouwbare mediaan per grootteklasse en buurt.
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
+- **Geschiedenis per pand**: 1143 panden gevolgd, 123 met meer dan een gebeurtenis, 1143 nog nooit tegen de BAG gehouden
+  Bij 200 panden per ronde zijn dat nog 6 run(s). Elke handmatige start werkt er een ronde af.
 
 ## OK
 - **Aanbod**: 77 koopobjecten, 11 in de laatste drie dagen
@@ -16,7 +18,7 @@
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 948 panden in de ring, waarvan 189 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
-- **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2
+- **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-09-24
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 85 panden gerouteerd
