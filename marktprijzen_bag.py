@@ -2696,12 +2696,13 @@ def gemeten_huren(huur_aanbod):
 # ---------------------------------------------------------------------------
 
 BELEID_UITGELICHT = [
-    ("Aangewezen wijk",
-     "In de aangewezen wijken, waaronder Benedenstad, Centrum, Bottendaal, "
-     "Galgenveld, Altrade, Hunnerberg, Biezen en Wolfskuil, is omzetting van "
-     "álle woonruimte vergunningplichtig, ongeacht de WOZ-waarde. De WOZ-band "
-     "bepaalt dus niet óf je een vergunning nodig hebt, maar of je er een kunt "
-     "krijgen."),
+    ("Twee sporen bij kamerverhuur",
+     "De huisvestingsverordening vraagt een omzettingsvergunning bij een WOZ tot "
+     "en met €396.000; daarboven niet. Dat betekent niet dat het vrij is: de "
+     "gemeente schrijft zelf dat je boven die grens wel een omgevingsvergunning "
+     "nodig hebt om de woning geschikt te maken voor kamerverhuur. Dat spoor "
+     "loopt via het omgevingsplan, het vroegere facetbestemmingsplan "
+     "kamerverhuur uit 2022, en hangt niet aan de WOZ."),
     ("Drempel van drie",
      "De vergunningplicht geldt bij omzetting naar drie of meer onzelfstandige "
      "woonruimten én bij bewoning door drie of meer personen. Twee kamers met "
@@ -2861,7 +2862,7 @@ Je krijgt per pand een blok met FEITEN: alles is al berekend. Schrijf daarover e
 
 UITGANGSPUNT: het gewone geval is kopen en verhuren. Beoordeel een pand dus eerst als exploitatieobject: wat kost het, wat brengt het op, houdt het zichzelf rond bij deze rente. Een bescheiden ingreep die het energielabel verbetert telt mee in de WWS-punten en daarmee in de maximaal toegestane huur; dat is bij een matig label vaak de meest realistische route naar meer rendement.
 
-Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de feiten er aanleiding toe geven, bijvoorbeeld een grote oppervlakte, een hoog aandeel appartementen in de buurt of een aanzienlijke uitpondruimte. Presenteer ze nooit als vanzelfsprekend, en benoem dan ook meteen de beperking: in een aangewezen wijk is omzetting vergunningplichtig, en onder de WOZ-grens is verkameren simpelweg niet toegestaan.
+Uitponden, splitsen of verkameren zijn UITZONDERINGEN. Noem die alleen als de feiten er aanleiding toe geven, bijvoorbeeld een grote oppervlakte, een hoog aandeel appartementen in de buurt of een aanzienlijke uitpondruimte. Presenteer ze nooit als vanzelfsprekend, en benoem dan ook meteen de beperking: tot een WOZ van €396.000 is een omzettingsvergunning nodig en tot €278.000 wordt die altijd geweigerd, en boven die grens is nog steeds een omgevingsvergunning nodig om de woning geschikt te maken voor kamerverhuur. Schrijf niet dat een buurt een "aangewezen wijk" is; die grond bestaat niet.
 
 DRIE VRAGEN DIE ALTIJD BEANTWOORD MOETEN WORDEN, want zonder die is het geen investeringsmemo maar een prijsopmerking:
 - MAG HET. Kun je dit pand na aankoop verhuren zoals je van plan bent? Kijk naar de WOZ tegenover de grens van €396.000: daaronder geldt de opkoopbescherming en is verhuren vier jaar niet toegestaan zonder vergunning, en is voor kamers een omzettingsvergunning nodig die onder €278.000 altijd wordt geweigerd. Is de WOZ onbekend, zeg dat dan: dan is dit niet te toetsen en is dat het eerste wat je uitzoekt.
@@ -2875,13 +2876,15 @@ Bouw het memo zo op:
 4. OF HET UITVOERBAAR IS. Dit is geen bijzaak maar de kern van een investeringsvoorstel. Behandel: ligt er al een vergunning op het pand, zijn er kamerverhuurpanden in de straat en welke adressen, welke voorwaarden gelden er voor een omzettingsvergunning, staat er iets aan handhaving in de omgeving, en hoe staat het met veiligheid en overlast in de buurt. Noem de adressen en de cijfers die je krijgt aangeleverd; schrijf niet "mogelijk vergunningplichtig" als er concrete gegevens bij staan.
 5. Sluit af met een oordeel in een of twee zinnen: is dit het bekijken waard, en wat zou je als eerste uitzoeken voordat je een bod doet.
 
+VERBOUWKOSTEN ZIJN GEEN BEGROTING. Zolang de eigen bouwkosten niet zijn ingevuld, is elk bedrag voor verduurzaming of verhuurklaar maken een aanname van het script. Schrijf dus niet "de begrote €45.020" maar "een aangenomen €45.020", en zeg erbij dat dat getal wordt vervangen zodra de eigen kosten er staan.
+
 LENGTE: maximaal 550 woorden per pand. Dat is een harde grens. Je krijgt veel meer feiten aangeleverd dan erin passen, en dat is opzet: kies.
 
 WAT ALTIJD MOET: de cijfers die het oordeel dragen, en elke blokkade. Loopt een route vast op de opkoopbescherming, op de WOZ-ondergrens of op twee kamerpanden naast elkaar, dan hoort dat erin, ook als de rest goed oogt.
 
 WAT MAG WEGVALLEN: gronden waar niets aan de hand is, cijfers die het oordeel niet veranderen, en achtergrond die in elke case hetzelfde zou zijn. Een opsomming van tien weigeringsgronden waarvan er negen in orde zijn, is geen analyse maar een afvinklijst.
 
-Staat er een "bod voor cashflow nul" bij de feiten, verwerk dat dan in je oordeel. Ligt dat bedrag onder de vraagprijs, benoem dan hoeveel eraf zou moeten voordat het pand zichzelf rondhoudt. Dat is geen taxatie maar een vertrekpunt voor onderhandeling; schrijf het ook zo op.
+Er is één bedrag dat zegt wat je maximaal kunt betalen: de richtprijs uit de doorrekening. Noem dat bedrag en hoeveel het afwijkt van de vraagprijs, en gebruik geen tweede bedrag voor hetzelfde begrip. Ligt de richtprijs onder de vraagprijs, benoem dan hoeveel eraf zou moeten. Dat is geen taxatie maar een vertrekpunt voor onderhandeling; schrijf het ook zo op.
 
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS.
 - Gebruik UITSLUITEND getallen die letterlijk in de FEITEN staan.
@@ -3229,10 +3232,11 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
               f"operationeel rendement op eigen vermogen: {fin['op_eigen']:.1f}%"
               if eigen > 0 else ""]
         f = [x for x in f if x]
-        bod = richtprijs(opp, huur_m2)
-        if bod:
-            f.append(f"bod voor cashflow nul: €{n(bod)}, dat is "
-                     f"{(bod - prijs) / prijs * 100:+.0f}% ten opzichte van de vraagprijs")
+        # Eerder stond hier ook een "bod voor cashflow nul". Dat was dezelfde
+        # berekening met een andere exploitatie-aanname, en leverde een tweede
+        # bedrag op voor hetzelfde begrip: in de brief van 27 september stond
+        # €610.142 naast €779.861. De richtprijs uit het dossier is het ene
+        # getal dat telt.
 
         if len(rijen) >= 10:
             voh = st.median([p for p, _ in rijen])
@@ -3251,9 +3255,13 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             f.append("verkameren: vermoedelijk vergunningplichtig, WOZ zelf niet bekend")
         else:
             f.append("verkameren: WOZ ligt vermoedelijk boven de band")
-        if buurt in FOCUS_BUURTEN:
-            f.append(f"{buurt} is een aangewezen wijk, omzetting is er hoe dan ook "
-                     f"vergunningplichtig")
+        # Boven de WOZ-grens vervalt de omzettingsvergunning, maar niet de
+        # planologische kant: voor het geschikt maken voor kamerverhuur is een
+        # omgevingsvergunning nodig. Dat is een ander spoor, geen aangewezen wijk.
+        f.append("kamerverhuur kent twee sporen: de omzettingsvergunning uit de "
+                 "huisvestingsverordening tot een WOZ van €396.000, en daarnaast "
+                 "een omgevingsvergunning om de woning geschikt te maken, via het "
+                 "omgevingsplan en ongeacht de WOZ")
         if g.get("meergezins") is not None:
             f.append(f"aandeel appartementen in {buurt}: {g['meergezins']}%")
         if g.get("studenten") and g.get("inwoners"):
