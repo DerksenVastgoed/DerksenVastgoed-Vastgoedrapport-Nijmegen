@@ -5569,7 +5569,8 @@
     ],
     "postcode": "6511GG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Saturnusstraat|Nijmegen": {
     "oppervlakte": 85,
@@ -5578,7 +5579,8 @@
     ],
     "postcode": "6543XE",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Hertogplein|Nijmegen": {
     "oppervlakte": 49,
@@ -5587,7 +5589,8 @@
     ],
     "postcode": "6511SK",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Daalseweg 58|Nijmegen": {
     "oppervlakte": 34,

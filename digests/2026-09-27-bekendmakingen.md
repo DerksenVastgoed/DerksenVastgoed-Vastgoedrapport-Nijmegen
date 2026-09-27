@@ -10,12 +10,12 @@ Geen kernsignalen in deze periode.
 _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-09-25** . Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html))
-  **[buy-and-hold]** _Aanvraag voor tijdelijke verhuur wijst op overbrugging vóór verkoop of verbouwing van het pand._
+  **[buy-and-hold]** _Aanvraag tijdelijke verhuur wijst op mogelijke overbrugging richting verkoop of verbouwing, nog geen definitief besluit._
 - **2026-09-25** . Aanvraag omgevingsvergunning voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html))
   `299 m² . label D (2025)`
-  _Constructieve wijziging van de achtergevel is een bouwkundige ingreep zonder directe link naar een waardecreatie-strategie._
+  _Wijziging betreft de bouwkundige achtergevel, los van het energielabel D (2025) dat nog geruime tijd geldig blijft._
 - **2026-09-25** . Besluit voor het verduurzamen van de woning, aan van Berchenstraat 31, 6511BB Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html))
   `224 m² . label G (2016)`
-  **[verduurzaming]** _Besluit tot verduurzaming van een pand met laag label G verbetert de energieprestatie, relevant bij toekomstige verhuur of verkoop._
+  **[verduurzaming]** _Besluit maakt verduurzaming van de woning met label G (2016) mogelijk, wat de energieprestatie kan verbeteren na uitvoering._
 - **2026-09-25** . Aanvraag omgevingsvergunning voor het vervangen van de kozijnen aan de Wolfskuilseweg 1A in Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-449558.html))
-  _Vervanging van kozijnen is een bouwkundige ingreep zonder marktrelevantie voor dit segment._
+  _Vervangen van kozijnen is een reguliere onderhoudsingreep zonder direct waardecreatie-signaal voor investeerders._

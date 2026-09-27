@@ -4,7 +4,7 @@
   "titel": "Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html",
   "strategie": "buy-and-hold",
-  "duiding": "Aanvraag voor tijdelijke verhuur wijst op overbrugging vóór verkoop of verbouwing van het pand.",
+  "duiding": "Aanvraag tijdelijke verhuur wijst op mogelijke overbrugging richting verkoop of verbouwing, nog geen definitief besluit.",
   "feiten": {},
   "straat": "de St. Josephhof",
   "huisnummer": "14",
@@ -15,7 +15,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html",
   "strategie": "geen",
-  "duiding": "Constructieve wijziging van de achtergevel is een bouwkundige ingreep zonder directe link naar een waardecreatie-strategie.",
+  "duiding": "Wijziging betreft de bouwkundige achtergevel, los van het energielabel D (2025) dat nog geruime tijd geldig blijft.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 299
@@ -29,7 +29,7 @@
   "titel": "Besluit voor het verduurzamen van de woning, aan van Berchenstraat 31, 6511BB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html",
   "strategie": "verduurzaming",
-  "duiding": "Besluit tot verduurzaming van een pand met laag label G verbetert de energieprestatie, relevant bij toekomstige verhuur of verkoop.",
+  "duiding": "Besluit maakt verduurzaming van de woning met label G (2016) mogelijk, wat de energieprestatie kan verbeteren na uitvoering.",
   "feiten": {
    "energielabel": "G (2016)",
    "oppervlakte_m2": 224
@@ -43,7 +43,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het vervangen van de kozijnen aan de Wolfskuilseweg 1A in Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-449558.html",
   "strategie": "geen",
-  "duiding": "Vervanging van kozijnen is een bouwkundige ingreep zonder marktrelevantie voor dit segment.",
+  "duiding": "Vervangen van kozijnen is een reguliere onderhoudsingreep zonder direct waardecreatie-signaal voor investeerders.",
   "feiten": {},
   "straat": "de Wolfskuilseweg",
   "huisnummer": "1",
