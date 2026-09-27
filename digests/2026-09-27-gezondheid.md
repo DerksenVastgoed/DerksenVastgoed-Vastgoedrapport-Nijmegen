@@ -1,10 +1,6 @@
 # Gezondheidsrapport 2026-09-27
 
-14 in orde, 2 aandachtspunten, 1 fouten.
-
-## FOUT
-- **Woningprijsindex CBS**: woningprijsindex.json leeg
-  Zie de stap Woningprijsindex CBS.
+15 in orde, 2 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Huurdata**: 6 huurwaarnemingen, waarvan 6 Pararius en 0 Kamernet; 6 in de laatste week
@@ -20,6 +16,7 @@
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 948 panden in de ring, waarvan 189 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
+- **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-09-24
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 85 panden gerouteerd
