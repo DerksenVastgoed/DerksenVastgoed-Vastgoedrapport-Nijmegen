@@ -10,12 +10,12 @@ Geen kernsignalen in deze periode.
 _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-09-25** . Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html))
-  **[buy-and-hold]** _Dit is nog een aanvraag, geen verleende vergunning; tijdelijke verhuur wijst op overbrugging richting verkoop of verbouwing._
+  **[buy-and-hold]** _Aanvraag voor tijdelijke verhuur is nog geen besluit en wijst op overbrugging richting verkoop of verbouwing._
 - **2026-09-25** . Aanvraag omgevingsvergunning voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html))
   `299 m² . label D (2025)`
-  _Constructieve wijziging van de achtergevel staat los van het energielabel D uit 2025, dat nog jaren geldig blijft._
+  **[verduurzaming]** _Wijziging van de achtergevel bij een pand van 299 m2 met label D uit 2025 kan bij herregistratie het label verder verbeteren._
 - **2026-09-25** . Besluit voor het verduurzamen van de woning, aan van Berchenstraat 31, 6511BB Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html))
   `224 m² . label G (2016)`
-  **[verduurzaming]** _Besluit voor verduurzaming van een pand met label G uit 2016 verbetert het label pas na een nieuwe opname._
+  **[verduurzaming]** _Besluit voor verduurzaming van dit pand van 224 m2 met label G uit 2016 bevestigt dat een forse labelsprong hier vergund is._
 - **2026-09-25** . Aanvraag omgevingsvergunning voor het vervangen van de kozijnen aan de Wolfskuilseweg 1A in Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-449558.html))
-  **[verduurzaming]** _Vervangen van kozijnen verbetert de isolatiewaarde en daarmee potentieel het energielabel bij herregistratie._
+  **[verduurzaming]** _Vervangen van kozijnen verbetert de isolatiewaarde en kan bij nieuwe opname het energielabel verhogen._

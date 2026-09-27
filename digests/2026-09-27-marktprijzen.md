@@ -6,13 +6,11 @@ _Het object in de ring waar de richtprijs het dichtst bij de vraagprijs ligt (+1
 
 ### 1. [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen), Galgenveld
 
-Pontanusstraat 19 staat 15% onder de buurtmediaan (€3.992 tegen €4.782 per m2) en heeft met €523.000 WOZ een positie ruim boven de opkoopbeschermingsgrens: verhuren mag direct, en boven €396.000 is voor kamers geen omzettingsvergunning nodig, al blijft een omgevingsvergunning voor de verbouwing zelf verplicht.
+Pontanusstraat 19 vraagt €539.000, ofwel €3.992/m2, 15% onder de mediaan van Galgenveld. WOZ is €523.000, dus geen opkoopbescherming en geen omzettingsvergunning nodig voor kamers; met 210 WWS-punten zit het pand ruim boven de grens van 187, dus vrije sector zonder maximumhuur. De gemeten huur van €2.916 per maand is gewogen met de buurtreferentie op basis van slechts 6 waarnemingen; de richtprijs van €610.142 ligt daardoor boven de vraagprijs, maar is geen koopsignaal zolang de huur niet steviger gemeten is.
 
-De huur van €2.916 per maand is een meting maar zwak onderbouwd (6 waarnemingen, gewogen met de referentie); de richtprijs van €610.142 ligt daardoor wel boven de vraagprijs van €539.000, maar dat is geen koopsignaal zolang er niet breder gemeten is. Met 210 WWS-punten zit dit pand al boven de 187-grens en dus in de vrije sector, zonder wettelijk maximum. Bij een eigen inleg van €328.371 resteert €11.053 per jaar onder de streep, BAR 8,3%, NAR 5,2%.
+Bij aankoop op vraagprijs vraagt de exploitatie €328.371 eigen inleg, met een BAR van 8,3% en een NAR van 5,2%; onder de streep blijft €11.053 per jaar over. Label D is de voor de hand liggende ingreep: een aangenomen €45.020 verduurzaming (nog niet getoetst) kan de WWS-punten en daarmee de huur verder verhogen.
 
-Een labelverbetering (aangenomen €45.020, nog te toetsen) versterkt de punten verder, maar de cap is hier al geen probleem. Interessanter is dat verderop in de straat, op nummer 42 en 9, recent is gesplitst in twee appartementen, het laatste via een BOPA; dat maakt splitsen op deze omvang (135 m2) een reële route naast verhuur, met een uitpondruimte van circa €106.652. In de straat zijn sinds 2013 vier vergunningen verleend, geen handhavingssignalen, veiligheid gemiddeld.
-
-De moeite van het bekijken waard, maar eerst de huurmeting verbreden en de eigen verbouwkosten invullen voordat de richtprijs als onderhandelingsbasis dient.
+Splitsen is hier geen fantasie: op nummer 42 en 9 zijn recent vergelijkbare woningen via omgevingsvergunning gesplitst in twee appartementen, en de straat telt al vier kamervergunningen. Met 54% appartementen en 23% studenten in de wijk, en een rustige veiligheidsscore, is dit het bekijken waard; eerst de eigen verbouwkosten en extra huurdata uitzoeken voordat je bovenop de vraagprijs biedt.
 
 _€539.000 . 135 m2 . €3.992 . 1897 . D (2026). [Bekijk op straatniveau](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen&layer=c)_
 
