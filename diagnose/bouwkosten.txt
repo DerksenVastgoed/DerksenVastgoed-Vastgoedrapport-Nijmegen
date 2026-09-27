@@ -1,2 +1,2 @@
 De lijst met componenten kon niet worden opgehaald: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85728NED/Component
-Het CBS gaf een fout bij https://opendata.cbs.nl/ODataApi/OData/85728NED/TypedDataSet: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85728NED/TypedDataSet (Caused by NewConnectionError("HTTPSConnection(host='opendata.cbs.nl', port=
+Het CBS gaf een fout bij https://opendata.cbs.nl/ODataApi/OData/85728NED/TypedDataSet: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85728NED/TypedDataSet (Caused by ConnectTimeoutError(<HTTPSConnection(host='opendata.cbs.nl', port
