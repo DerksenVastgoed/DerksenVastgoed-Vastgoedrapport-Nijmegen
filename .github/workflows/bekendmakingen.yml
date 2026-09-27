@@ -62,8 +62,14 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
              && [ "${{ github.event.inputs.alleen_naar_mij }}" = "true" ]; then
             echo "TESTRUN=1" >> "$GITHUB_ENV"
+            # Bij een testrun gaat de brief alleen naar Mark. Dit hier bepalen
+            # en niet in de mailstap zelf: in een GitHub-expressie telt een lege
+            # string als onwaar, waardoor "voorwaarde && '' || secret" altijd
+            # het secret oplevert. Daardoor kreeg zijn vader toch een brief.
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
           else
             echo "TESTRUN=0" >> "$GITHUB_ENV"
+            echo "CC_VERHAAL=${{ secrets.MAIL_TO_VERHAAL }}" >> "$GITHUB_ENV"
           fi
           if [ -n "${VERHAAL_ADRES}" ]; then
             echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
@@ -615,8 +621,8 @@ jobs:
           # Alleen bij een handmatige run kan de kopie worden weggelaten. Een
           # geplande ochtendrun gaat altijd naar beiden, wat er ook in het
           # formulier van een eerdere handmatige run stond.
-          cc: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.alleen_naar_mij == 'true') && '' || secrets.MAIL_TO_VERHAAL }}
-          subject: ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.alleen_naar_mij == 'true') && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          cc: ${{ env.CC_VERHAAL }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
       # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
@@ -631,5 +637,5 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          subject: Vastgoed in Nijmegen, ${{ env.DATUM }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
           html_body: file://digests/${{ env.DATUM }}-brief.html
