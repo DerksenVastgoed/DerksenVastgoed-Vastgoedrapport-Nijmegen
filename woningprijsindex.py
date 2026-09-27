@@ -70,6 +70,11 @@ UIT_PAD = "woningprijsindex.json"
 REGIO_ZOEK = ("Nijmegen", "Gelderland")
 
 
+# Welke ingang uiteindelijk antwoordde. Zonder dit weet je na een storing niet
+# of de eerste weer werkt of dat de terugval het al weken opvangt.
+GEBRUIKT = {"ingang": None}
+
+
 def _verzoek(url, params=None, pogingen=3):
     """
     Een verzoek aan het CBS, met wachten tussen de pogingen.
@@ -96,6 +101,8 @@ def _haal(url, params=None):
     """Alle rijen van een OData-bron, via de nextLink die het CBS meegeeft."""
     rijen, eerste = [], True
     for _ronde in range(40):
+        if eerste and "opendata.cbs.nl" in url:
+            GEBRUIKT["ingang"] = "opendata.cbs.nl"
         r = _verzoek(url, params if eerste else None)
         body = r.json()
         rijen.extend(body.get("value", []))
@@ -115,6 +122,7 @@ def _haal_v4(tabel, pad, params=None, basis=None):
             print(f"  v4 op datasets.cbs.nl mislukt ({str(e)[:60]}), nu odata4",
                   file=sys.stderr)
             return _haal_v4(tabel, pad, params, BASIS_V4_OUD)
+    GEBRUIKT["ingang"] = basis.split("/")[2]
     url, rijen, eerste = f"{basis}/{tabel}/{pad}", [], True
     for _ronde in range(40):
         r = _verzoek(url, params if eerste else None)
@@ -191,7 +199,17 @@ def landelijk():
     except Exception as e:
         print(f"Eerste ingang mislukt ({str(e)[:80]}), nu via de v4-API",
               file=sys.stderr)
-        rijen, kol = _index_uit_v4(LANDELIJK)
+        try:
+            rijen, kol = _index_uit_v4(LANDELIJK)
+        except Exception as e2:
+            # Mislukken alle ingangen, dan moet dat in de diagnose komen. Eerder
+            # liep deze fout naar buiten en stopte het script, waardoor er niets
+            # werd vastgelegd en het rapport alleen "zie de stap" kon melden.
+            leg_vast("woningprijzen",
+                     f"Alle ingangen mislukt voor {LANDELIJK}. "
+                     f"opendata.cbs.nl: {str(e)[:110]}. "
+                     f"v4: {str(e2)[:110]}")
+            return None
     if not rijen:
         leg_vast("woningprijzen", f"Tabel {LANDELIJK} gaf geen rijen, ook niet via "
                                   f"de v4-API op datasets.cbs.nl.")
@@ -269,8 +287,15 @@ def regio():
     except Exception:
         try:
             rijen = _haal(f"{BASIS}/{REGIONAAL}/TypedDataSet")
-        except Exception:
-            rijen, kol = _index_uit_v4(REGIONAAL, sleutel)
+        except Exception as e:
+            try:
+                rijen, kol = _index_uit_v4(REGIONAAL, sleutel)
+            except Exception as e2:
+                leg_vast("woningprijzen",
+                         f"Alle ingangen mislukt voor {REGIONAAL}. "
+                         f"opendata.cbs.nl: {str(e)[:110]}. "
+                         f"v4: {str(e2)[:110]}")
+                return None
     rijen = [r for r in rijen if (r.get("RegioS") or "").strip() == sleutel]
     if not rijen:
         leg_vast("woningprijzen", f"Geen rijen voor {titel} ({sleutel}).")
@@ -417,7 +442,18 @@ def omschrijf(data):
 
 def main():
     wis("woningprijzen")
-    data = {"landelijk": landelijk(), "regio": regio()}
+    def veilig(functie, naam):
+        try:
+            return functie()
+        except Exception as e:
+            leg_vast("woningprijzen", f"{naam} brak af: {type(e).__name__}: "
+                                      f"{str(e)[:160]}")
+            print(f"{naam} brak af: {e}", file=sys.stderr)
+            return None
+
+    data = {"landelijk": veilig(landelijk, "Landelijke reeks"),
+            "regio": veilig(regio, "Regionale reeks"),
+            "ingang": GEBRUIKT["ingang"]}
     data["vergelijking"] = vergelijk(data)
     with open(UIT_PAD, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
