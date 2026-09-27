@@ -28,6 +28,7 @@ import datetime as dt
 import json
 import os
 import re
+import statistics as st
 import sys
 import time
 
@@ -384,6 +385,117 @@ def precedenten(geschiedenis, adres, maximaal=4):
     return uit[:maximaal]
 
 
+BUURTBEELD_PAD = "buurtbeeld.json"
+
+# Waar een bekendmaking over gaat, en hoe hij afliep
+_INGREEP = re.compile(r"splits|omzet|kamerverhuur|woningvorming|onttrek", re.I)
+_AANVRAAG = re.compile(r"^aanvraag|ingediend", re.I)
+_VERLEEND = re.compile(r"verleend|vergund", re.I)
+_GEWEIGERD = re.compile(r"geweigerd|afgewezen", re.I)
+_GESTOPT = re.compile(r"buiten behandeling|ingetrokken", re.I)
+
+
+def buurt_van_pand(pand, cache):
+    """De buurt van een pand, via de straatcache. Geen opvraging."""
+    m = re.match(r"^(.+?)\s+\d", (pand.get("adres") or "").strip())
+    if not m:
+        return ""
+    straat = m.group(1).strip()
+    return cache.get(straat) or cache.get(straat.lower()) or ""
+
+
+def buurtbeeld(geschiedenis, cache=None, vanaf=2012):
+    """
+    Per buurt en per jaar: hoeveel aanvragen om te splitsen of te verkameren, en
+    hoe ze afliepen.
+
+    Dit is de stroom in plaats van de voorraad. De buurtcijfers van het CBS
+    veranderen een keer per jaar; dit verandert elke week, en het zegt iets wat
+    je nergens anders ziet: of de gemeente in die buurt meewerkt.
+
+    Wat het niet is: een volledig beeld. We zien alleen wat gepubliceerd is en
+    wat onze zoekwoorden vangen. Een laag aantal bewijst dus niets.
+    """
+    cache = cache if cache is not None else lees("straat_buurt_cache.json", {})
+    per_buurt = {}
+    for sl, pand in geschiedenis.items():
+        buurt = buurt_van_pand(pand, cache)
+        if not buurt:
+            continue
+        b = per_buurt.setdefault(buurt, {"jaren": {}, "doorlooptijden": [],
+                                         "na_verkoop": 0})
+        aanvraag_op = None
+        verkocht_op = None
+        for g in sorted(pand["gebeurtenissen"], key=lambda x: x["datum"]):
+            datum, tekst = g["datum"][:10], g["tekst"]
+            if g["soort"] == "verkocht":
+                verkocht_op = datum
+                continue
+            if g["soort"] != "bekendmaking" or not _INGREEP.search(tekst):
+                continue
+            jaar = datum[:4]
+            if not jaar.isdigit() or int(jaar) < vanaf:
+                continue
+            tel = b["jaren"].setdefault(jaar, {"aanvragen": 0, "verleend": 0,
+                                               "geweigerd": 0, "gestopt": 0})
+            if _GESTOPT.search(tekst):
+                tel["gestopt"] += 1
+            elif _GEWEIGERD.search(tekst):
+                tel["geweigerd"] += 1
+            elif _VERLEEND.search(tekst):
+                tel["verleend"] += 1
+                if aanvraag_op:
+                    dagen = (dt.date.fromisoformat(datum)
+                             - dt.date.fromisoformat(aanvraag_op)).days
+                    if 0 <= dagen <= 730:
+                        b["doorlooptijden"].append(dagen)
+                    aanvraag_op = None
+            elif _AANVRAAG.search(tekst):
+                tel["aanvragen"] += 1
+                aanvraag_op = datum
+            # Gekocht en daarna een ingreep aangevraagd: de route die we volgen
+            if verkocht_op and datum > verkocht_op:
+                b["na_verkoop"] += 1
+                verkocht_op = None
+    return per_buurt
+
+
+def buurtbeeld_tekst(per_buurt, buurt, jaren=4):
+    """De regels voor een buurt, met de laatste jaren apart en de rest opgeteld."""
+    b = per_buurt.get(buurt)
+    if not b or not b["jaren"]:
+        return []
+    alle = sorted(b["jaren"])
+    recent_j = alle[-jaren:]
+    ouder = [j for j in alle if j not in recent_j]
+    regels = []
+    for j in recent_j:
+        t = b["jaren"][j]
+        delen = [f"{t['aanvragen']} aanvragen"] if t["aanvragen"] else []
+        for sleutel, woord in (("verleend", "verleend"), ("geweigerd", "geweigerd"),
+                               ("gestopt", "buiten behandeling of ingetrokken")):
+            if t[sleutel]:
+                delen.append(f"{t[sleutel]} {woord}")
+        if delen:
+            regels.append(f"{j}: " + ", ".join(delen))
+    if ouder:
+        som = sum(b["jaren"][j]["aanvragen"] for j in ouder)
+        regels.append(f"{ouder[0]} tot en met {ouder[-1]}: {som} aanvragen")
+    uit = [f"splitsen en verkameren in {buurt}, uit de gepubliceerde "
+           f"bekendmakingen: " + "; ".join(regels)]
+    if b["doorlooptijden"]:
+        mediaan = int(st.median(b["doorlooptijden"]))
+        uit.append(f"doorlooptijd van aanvraag tot verleende vergunning in "
+                   f"{buurt}: mediaan {mediaan} dagen over "
+                   f"{len(b['doorlooptijden'])} gevallen")
+    if b["na_verkoop"]:
+        uit.append(f"{b['na_verkoop']} keer werd er in {buurt} na een verkoop een "
+                   f"ingreep aangevraagd op hetzelfde adres")
+    uit.append("deze tellingen zien alleen wat gepubliceerd is; een laag aantal "
+               "bewijst niet dat er weinig gebeurt")
+    return uit
+
+
 def recent(geschiedenis, dagen=7):
     """De panden met een gebeurtenis in de afgelopen dagen, met hun hele verleden."""
     grens = (dt.date.today() - dt.timedelta(days=dagen)).isoformat()
@@ -431,6 +543,9 @@ def main():
         n_b = bij_bag(geschiedenis)
         n_l = bij_labels(geschiedenis)
     bewaar(geschiedenis)
+    beeld = buurtbeeld(geschiedenis)
+    with open(BUURTBEELD_PAD, "w", encoding="utf-8") as f:
+        json.dump(beeld, f, ensure_ascii=False, indent=1, sort_keys=True)
 
     met_verhaal = sum(1 for p in geschiedenis.values()
                       if len(p["gebeurtenissen"]) > 1)
