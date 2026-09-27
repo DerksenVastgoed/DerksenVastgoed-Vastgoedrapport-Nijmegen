@@ -306,8 +306,12 @@ jobs:
               echo "---"
               echo ""
             fi
-            # Algemeen nieuws, met daarachter de berichten zonder herkenbare buurt
-            if [ -s "digests/${DATUM}-publicaties.md" ]; then
+            # Algemeen nieuws, met daarachter de berichten zonder herkenbare buurt.
+            # Op zondag niet: de brief behandelt dan de hele week, en een blok
+            # "laatste 24 uur" eronder is dan een losse dag zonder betekenis.
+            if [ "$MODUS" = "weekelijks" ]; then
+              :
+            elif [ -s "digests/${DATUM}-publicaties.md" ]; then
               cat "digests/${DATUM}-publicaties.md"
               if [ -s overige_berichten.md ]; then
                 echo ""
