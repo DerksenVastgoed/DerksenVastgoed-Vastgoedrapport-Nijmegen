@@ -4,8 +4,10 @@ Geplakte Funda-lijst met verkochte woningen verwerken.
 
 Drie dingen tegelijk, uit dezelfde lijst:
 
-1. De verkopen worden waarnemingen. Tot nu toe kende de brief vooral
-   vraagprijzen; verkochte panden geven een tweede meting naast die vraagprijs.
+1. De verkopen worden waarnemingen. Let op: Funda toont bij een verkocht pand
+   de laatste vraagprijs en niet de koopsom; die staat alleen bij het Kadaster.
+   Het is dus de vraagprijs waarop het pand van de markt ging, en dat is iets
+   anders dan wat er is betaald.
 2. Panden die bij ons nog te koop staan maar op Funda verkocht zijn, worden
    gemeld. Vendr stuurt geen bericht als een project verkocht is, dus die
    blijven anders eeuwig in de lijst staan.
@@ -240,7 +242,8 @@ def main():
             r.append("_Deze panden stonden bij ons nog in het aanbod maar zijn op "
                      "Funda verkocht. Vendr meldt een verkoop niet._")
             for w in alsnog_verkocht:
-                r.append(f"- **{w['adres']}**, €{w['prijs']:,}".replace(",", ".")
+                r.append(f"- **{w['adres']}**, laatste vraagprijs "
+                         + f"€{w['prijs']:,}".replace(",", ".")
                          + f", {w['woonopp']} m2")
             r.append("")
         if sporen:
@@ -251,7 +254,7 @@ def main():
                 regels = "; ".join(f"{(t.get('datum') or '')[:10]} "
                                    f"{(t.get('titel') or '')[:90]}"
                                    for t in s["bekendmakingen"])
-                r.append(f"- **{s['adres']}** (verkocht voor "
+                r.append(f"- **{s['adres']}** (verkocht, laatste vraagprijs "
                          + f"€{s['prijs']:,}".replace(",", ".")
                          + f"): {regels}")
         os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
