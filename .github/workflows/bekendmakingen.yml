@@ -252,8 +252,13 @@ jobs:
           # Dagelijks de gebeurtenissen uit het aanbod en het archief; op zondag
           # ook de BAG en de energielabels, want die kosten verzoeken en
           # veranderen niet dagelijks.
+          # Op zondag, en bij elke handmatige start. Zo kun je een achterstand
+          # inlopen zonder tot zondag te wachten.
           EXTRA=""
-          [ "$MODUS" = "weekelijks" ] && EXTRA="--volledig"
+          if [ "$MODUS" = "weekelijks" ] \
+             || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            EXTRA="--volledig"
+          fi
           python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
             $EXTRA || echo "Geschiedenis overgeslagen"
 
