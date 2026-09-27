@@ -131,12 +131,51 @@ def lees_regels(pad):
 
 
 def uit_archief(geschiedenis):
-    """Vergunningen en meldingen op een adres dat we volgen."""
+    """
+    Vergunningen en meldingen, ook op adressen die nooit te koop stonden.
+
+    Eerder werden alleen panden uit het aanbod gevolgd, en dan mist een pand
+    waar de eigenaar iets aanvraagt zonder het ooit te koop te zetten. Dat is
+    juist het soort pand waar een verhaal in zit. Alle panden volgen hoeft niet:
+    een pand zonder gebeurtenis heeft geen geschiedenis, en de signalen komen
+    vanzelf binnen.
+    """
     archief = lees(ARCHIEF, {})
     if not archief:
         return 0
     nieuw = 0
-    for sl, pand in geschiedenis.items():
+
+    # Eerst de adressen uit het archief zelf als pand opnemen
+    try:
+        from bekendmakingen_archief import adres_uit_titel
+    except Exception:
+        adres_uit_titel = None
+    for k, items in archief.items():
+        if k in geschiedenis:
+            continue
+        adres = None
+        for t in items:
+            uit = adres_uit_titel(t.get("titel") or "") if adres_uit_titel else None
+            if uit:
+                adres = f"{uit[0]} {uit[1]}"
+                break
+        if not adres:
+            continue
+        # De sleutel komt uit het archief zelf, niet uit de titel. Anders levert
+        # "aan de Dominicanenstraat 30" de sleutel "dedominicanenstraat30" op en
+        # matcht een pand niet met zijn eigen bekendmakingen. Een huisnummer met
+        # een letter hoort bij het pand van het kale nummer.
+        basis = re.sub(r"(?<=\d)[a-z]{1,2}$", "", k)
+        if basis in geschiedenis:
+            continue
+        # De weergave in lijn brengen met de sleutel: staat er "de" voor de
+        # straat terwijl de sleutel dat niet heeft, dan hoort het er niet bij.
+        if sleutel(adres) != basis and sleutel(adres).startswith("de"):
+            adres = re.sub(r"^de\s+", "", adres)
+        geschiedenis.setdefault(basis, {"adres": adres, "pand_id": None,
+                                        "gebeurtenissen": []})
+
+    for sl, pand in list(geschiedenis.items()):
         m = re.match(r"^(.+?)\s+(\d+)", pand["adres"])
         if not m:
             continue
@@ -150,6 +189,31 @@ def uit_archief(geschiedenis):
                 titel = (t.get("titel") or "")[:160]
                 nieuw += voeg_toe(pand, (t.get("datum") or "")[:10], "bekendmaking",
                                   titel, "officiele bekendmakingen")
+    return nieuw
+
+
+def uit_kamerverhuur(geschiedenis):
+    """
+    De bekende kamerverhuurpanden als pand opnemen.
+
+    Daar gebeurt per definitie iets: een vergunning of een melding. Ze volgen
+    kost niets extra, want de gebeurtenissen komen uit bestanden die we al
+    hebben.
+    """
+    register = lees("kamerverhuur_objecten.json", {})
+    nieuw = 0
+    for sl, r in register.items():
+        adres = r.get("adres")
+        if not adres or sl in geschiedenis:
+            continue
+        pand = geschiedenis.setdefault(sl, {"adres": adres, "pand_id": None,
+                                            "gebeurtenissen": []})
+        for b in r.get("bronnen", []):
+            jaar = b.get("jaar")
+            if jaar:
+                nieuw += voeg_toe(pand, f"{jaar}-01-01", "kamerverhuur",
+                                  f"{b.get('soort', 'kamerverhuur')} bekend "
+                                  f"(jaar bij benadering)", b.get("bron", "register"))
     return nieuw
 
 
@@ -172,7 +236,8 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         if gedaan >= MAX_BAG_PER_RONDE:
             break
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
-        if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking"}):
+        if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
+                                              "kamerverhuur"}):
             continue
         pand_id = pand.get("pand_id")
         if not pand_id:
@@ -282,15 +347,19 @@ def main():
     geschiedenis = lees(PAD, {})
     n_v = uit_verkopen(geschiedenis)
     n_a = uit_archief(geschiedenis)
+    n_k = uit_kamerverhuur(geschiedenis)
     n_b = n_l = 0
     if args.volledig:
         n_b = bij_bag(geschiedenis)
         n_l = bij_labels(geschiedenis)
     bewaar(geschiedenis)
 
-    print(f"Geschiedenis: {len(geschiedenis)} panden; nieuw: {n_v} uit het aanbod, "
-          f"{n_a} bekendmakingen, {n_b} BAG-wijzigingen, {n_l} labelwijzigingen",
-          file=sys.stderr)
+    met_verhaal = sum(1 for p in geschiedenis.values()
+                      if len(p["gebeurtenissen"]) > 1)
+    print(f"Geschiedenis: {len(geschiedenis)} panden gevolgd, waarvan "
+          f"{met_verhaal} met meer dan een gebeurtenis; nieuw: {n_v} uit het "
+          f"aanbod, {n_a} bekendmakingen, {n_k} uit het kamerverhuurregister, "
+          f"{n_b} BAG-wijzigingen, {n_l} labelwijzigingen", file=sys.stderr)
     if args.uit:
         regels = render(geschiedenis)
         if regels:
