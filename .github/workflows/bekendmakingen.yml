@@ -245,6 +245,9 @@ jobs:
 
       - name: Geschiedenis per pand bijwerken
         continue-on-error: true
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_ONLINE_KEY: ${{ secrets.EP_ONLINE_KEY }}
         run: |
           # Dagelijks de gebeurtenissen uit het aanbod en het archief; op zondag
           # ook de BAG en de energielabels, want die kosten verzoeken en
