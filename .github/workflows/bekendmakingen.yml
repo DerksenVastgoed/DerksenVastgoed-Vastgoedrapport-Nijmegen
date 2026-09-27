@@ -552,15 +552,42 @@ jobs:
 
           git commit -m "Brief ${{ env.DATUM }}"
 
-          # De repo kan intussen zijn veranderd, bijvoorbeeld door een upload.
-          # Dan eerst ophalen en opnieuw proberen, anders gaat de commit verloren.
+          # De repo kan intussen zijn veranderd, bijvoorbeeld door een tweede
+          # run of een upload. Dan eerst ophalen en opnieuw proberen.
+          #
+          # Bij bestanden waar alleen regels bij komen, zoals woz.txt en
+          # verkopen.txt, kan git beide kanten samenvoegen. Zonder die instelling
+          # loopt de rebase vast op een conflict en gaat de hele run verloren,
+          # zoals op 27 september gebeurde.
           for poging in 1 2 3; do
             if git push; then
               echo "Teruggecommit gelukt"
               exit 0
             fi
             echo "Push mislukt, poging $poging; repo ophalen en opnieuw"
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            if ! git pull --rebase --autostash origin "${GITHUB_REF_NAME}"; then
+              # Conflicten die blijven staan zelf afhandelen: bij tekstbestanden
+              # beide kanten houden, bij de rest de versie van deze run.
+              for bestand in $(git diff --name-only --diff-filter=U); do
+                case "$bestand" in
+                  *.txt)
+                    echo "  conflict in $bestand: beide kanten samenvoegen"
+                    git checkout --theirs -- "$bestand" 2>/dev/null || true
+                    git show ":2:$bestand" > /tmp/ours.txt 2>/dev/null || true
+                    git show ":3:$bestand" > /tmp/theirs.txt 2>/dev/null || true
+                    cat /tmp/ours.txt /tmp/theirs.txt 2>/dev/null \
+                      | awk '!gezien[$0]++' > "$bestand" || true
+                    ;;
+                  *)
+                    echo "  conflict in $bestand: versie van deze run"
+                    git checkout --theirs -- "$bestand" 2>/dev/null \
+                      || git checkout --ours -- "$bestand" 2>/dev/null || true
+                    ;;
+                esac
+                git add "$bestand"
+              done
+              git -c core.editor=true rebase --continue || git rebase --abort || true
+            fi
             sleep 5
           done
           echo "LET OP: terugcommitten is niet gelukt. De gegevensbestanden van"
