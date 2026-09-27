@@ -225,9 +225,16 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
     per ronde, want elke opvraging is een verzoek.
     """
     try:
-        from marktprijzen_bag import bag_dump, bag_eenheden_in_pand
+        from marktprijzen_bag import bag_dump, bag_eenheden_in_pand, BAG_API_KEY
     except Exception as e:
         leg_vast("geschiedenis", f"BAG-functies niet te laden: {str(e)[:120]}")
+        return 0
+    if not BAG_API_KEY:
+        # Zonder sleutel geeft elke opvraging een 401. Eenmaal melden is genoeg;
+        # honderden mislukte verzoeken vullen alleen het logboek.
+        leg_vast("geschiedenis", "Geen BAG_API_KEY in deze stap: de BAG en de "
+                                 "energielabels zijn niet bijgewerkt.")
+        print("Geen BAG-sleutel; BAG-controle overgeslagen", file=sys.stderr)
         return 0
     nieuw, gedaan = 0, 0
     vandaag = dt.date.today().isoformat()
@@ -273,9 +280,12 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
 def bij_labels(geschiedenis):
     """Het energielabel per adres in het pand; na een splitsing volgt dat later."""
     try:
-        from marktprijzen_bag import bag_adres_uitgebreid, ep_energielabel
+        from marktprijzen_bag import (bag_adres_uitgebreid, ep_energielabel,
+                                      BAG_API_KEY)
     except Exception as e:
         leg_vast("geschiedenis", f"Labelfuncties niet te laden: {str(e)[:120]}")
+        return 0
+    if not BAG_API_KEY:
         return 0
     nieuw, vandaag = 0, dt.date.today().isoformat()
     for sl, pand in geschiedenis.items():

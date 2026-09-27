@@ -3118,8 +3118,11 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         # de straat deden en welke routes dicht zitten. Zonder dit bleef de
         # case hangen bij de vraagprijs.
         try:
+            # Wat hierboven al staat niet nog een keer: anders komt het label
+            # twee keer in de voettekst van de case
+            al_bekend = ("aanbod:", "energielabel:", "monument:", "OV:")
             for regel in pand_dossier(w, buurt, afwijking, cbs, lees_archief(), None):
-                if not regel.startswith("aanbod:"):
+                if not regel.startswith(al_bekend):
                     f.append(regel)
         except Exception as e:
             print(f"Dossier bij de case mislukt: {e}", file=sys.stderr)

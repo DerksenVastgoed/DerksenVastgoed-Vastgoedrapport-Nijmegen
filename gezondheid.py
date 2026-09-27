@@ -324,6 +324,10 @@ def controle_regelgeving():
         return (LET_OP, "nog geen regelgevingsstatus",
                 "De monitor draait op zondag. Na de eerste zondag hoort hier een "
                 "aantal regelingen te staan.")
+    # Sleutels die met een liggend streepje beginnen zijn geen regeling maar
+    # administratie van het script zelf, zoals de lijst met zoektermen.
+    d = {k: v for k, v in d.items()
+         if not str(k).startswith("_") and isinstance(v, dict)}
     gemeente = sum(1 for g in d.values() if g.get("bron") == "gemeente")
     landelijk = sum(1 for g in d.values() if g.get("bron") == "landelijk")
     bewijs = f"{gemeente} verordeningen, {landelijk} wetten"

@@ -24,6 +24,7 @@ Schrijft woningprijsindex.json.
 import json
 import re
 import sys
+import time
 
 import requests
 
@@ -45,12 +46,33 @@ UIT_PAD = "woningprijsindex.json"
 REGIO_ZOEK = ("Nijmegen", "Gelderland")
 
 
+def _verzoek(url, params=None, pogingen=3):
+    """
+    Een verzoek aan het CBS, met wachten tussen de pogingen.
+
+    De eerste run liep op een verbindingsfout naar opendata.cbs.nl, niet op een
+    foutcode. Dat kan tijdelijk zijn; drie pogingen met oplopende wachttijd
+    vangen dat af. Blijft het mislukken, dan staat de host in de diagnose zodat
+    duidelijk is dat het niet aan de tabel ligt.
+    """
+    laatste = None
+    for poging in range(1, pogingen + 1):
+        try:
+            r = requests.get(url, params=params, timeout=(15, 90))
+            r.raise_for_status()
+            return r
+        except Exception as e:
+            laatste = e
+            if poging < pogingen:
+                time.sleep(poging * 5)
+    raise laatste
+
+
 def _haal(url, params=None):
     """Alle rijen van een OData-bron, via de nextLink die het CBS meegeeft."""
     rijen, eerste = [], True
     for _ronde in range(40):
-        r = requests.get(url, params=params if eerste else None, timeout=(15, 90))
-        r.raise_for_status()
+        r = _verzoek(url, params if eerste else None)
         body = r.json()
         rijen.extend(body.get("value", []))
         url = body.get("odata.nextLink") or body.get("@odata.nextLink")
