@@ -243,6 +243,17 @@ jobs:
           # kamernet_plak.txt en dit zet er huurwaarnemingen van.
           python kamernet_plak.py || echo "Kamernet-plak overgeslagen"
 
+      - name: Geschiedenis per pand bijwerken
+        continue-on-error: true
+        run: |
+          # Dagelijks de gebeurtenissen uit het aanbod en het archief; op zondag
+          # ook de BAG en de energielabels, want die kosten verzoeken en
+          # veranderen niet dagelijks.
+          EXTRA=""
+          [ "$MODUS" = "weekelijks" ] && EXTRA="--volledig"
+          python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
+            $EXTRA || echo "Geschiedenis overgeslagen"
+
       - name: Marktprijzen (BAG) verrijken
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
@@ -504,6 +515,7 @@ jobs:
             woningprijsindex.json
             begroting_nijmegen.json
             verkocht_details.json
+            pandgeschiedenis.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
