@@ -228,6 +228,14 @@ jobs:
           # Draait na het archief, zodat de meldingen van vandaag meetellen.
           python kamerverhuur_register.py || echo "Kamerverhuurregister overgeslagen"
 
+      - name: Geplakte Funda-verkooplijst verwerken
+        continue-on-error: true
+        run: |
+          # Verkopen worden waarnemingen, panden die bij ons nog te koop staan
+          # worden gemeld, en elk verkocht adres wordt tegen het archief gelegd.
+          python funda_verkocht_plak.py --uit "digests/${DATUM}-verkocht.md" \
+            || echo "Verkooplijst overgeslagen"
+
       - name: Geplakte Kamernet-tekst verwerken
         continue-on-error: true
         run: |
@@ -495,6 +503,7 @@ jobs:
             kamerverhuur_per_buurt.json
             woningprijsindex.json
             begroting_nijmegen.json
+            verkocht_details.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
