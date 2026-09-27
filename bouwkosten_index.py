@@ -239,6 +239,14 @@ def omschrijf(info):
 
 
 def main():
+    # Zelfde host als de woningprijsindex, en daar bleek het IPv6-verkeer van de
+    # runner nergens heen te kunnen. Dus hier ook over IPv4.
+    try:
+        from woningprijsindex import alleen_ipv4
+        alleen_ipv4()
+    except Exception:
+        pass
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--vanaf", default=PEILDATUM)
     ap.add_argument("--verversen", action="store_true")
