@@ -1,2 +1,0 @@
-Landelijke tabel 85773NED niet op te halen: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85773NED/TypedDataSet (Caused by NewConnectionEr
-Regio's van 85792NED niet op te halen: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85792NED/RegioS (Caused by NewConnectionError("H

@@ -1,12 +1,10 @@
 # Gezondheidsrapport 2026-09-27
 
-13 in orde, 2 aandachtspunten, 2 fouten.
+14 in orde, 2 aandachtspunten, 1 fouten.
 
 ## FOUT
 - **Woningprijsindex CBS**: woningprijsindex.json leeg
-  Landelijke tabel 85773NED niet op te halen: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85773NED/TypedDataSet (Caused by NewConnectionEr Regio's van 85792NED niet op te halen: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85792NED/RegioS (Caused by NewConnectionError("H
-- **Regelgevingsmonitor**: controle zelf faalde
-  'list' object has no attribute 'get'
+  Zie de stap Woningprijsindex CBS.
 
 ## LET OP
 - **Huurdata**: 6 huurwaarnemingen, waarvan 6 Pararius en 0 Kamernet; 6 in de laatste week
@@ -26,6 +24,7 @@
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 85 panden gerouteerd
 - **Bekendmakingen-archief**: 319 adressen, 449 publicaties
+- **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 80 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard
 
