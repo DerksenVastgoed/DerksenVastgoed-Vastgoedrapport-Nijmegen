@@ -23,6 +23,7 @@ Schrijft woningprijsindex.json.
 
 import json
 import re
+import socket
 import sys
 import time
 
@@ -41,6 +42,26 @@ BASIS = "https://opendata.cbs.nl/ODataApi/OData"
 # Tweede ingang: dezelfde tabellen, andere opbouw. De eerste run liep op een
 # verbindingsfout naar opendata.cbs.nl; dan proberen we het hier.
 BASIS_V4 = "https://datasets.cbs.nl/odata/v1/CBS"
+# Derde ingang: het CBS levert de v4-API ook op dit adres.
+BASIS_V4_OUD = "https://odata4.cbs.nl/CBS"
+
+
+def alleen_ipv4():
+    """
+    Verbindingen over IPv4 dwingen.
+
+    Twee CBS-hosts gaven een verbindingsfout terwijl dataderden.cbs.nl en alle
+    andere bronnen wel werkten. Dat patroon hoort bij een host met zowel een
+    IPv4- als een IPv6-adres op een machine waar het IPv6-verkeer nergens heen
+    kan: de naam wordt gevonden, de verbinding niet opgebouwd. Door alleen naar
+    IPv4-adressen te vragen valt die route weg.
+    """
+    echte = socket.getaddrinfo
+
+    def ipv4(host, port, familie=0, *rest):
+        return echte(host, port, socket.AF_INET, *rest)
+
+    socket.getaddrinfo = ipv4
 LANDELIJK = "85773NED"
 REGIONAAL = "85792NED"
 UIT_PAD = "woningprijsindex.json"
@@ -85,9 +106,16 @@ def _haal(url, params=None):
     return rijen
 
 
-def _haal_v4(tabel, pad, params=None):
+def _haal_v4(tabel, pad, params=None, basis=None):
     """Rijen uit de v4-API, die met @odata.nextLink doorpagineert."""
-    url, rijen, eerste = f"{BASIS_V4}/{tabel}/{pad}", [], True
+    if basis is None:
+        try:
+            return _haal_v4(tabel, pad, params, BASIS_V4)
+        except Exception as e:
+            print(f"  v4 op datasets.cbs.nl mislukt ({str(e)[:60]}), nu odata4",
+                  file=sys.stderr)
+            return _haal_v4(tabel, pad, params, BASIS_V4_OUD)
+    url, rijen, eerste = f"{basis}/{tabel}/{pad}", [], True
     for _ronde in range(40):
         r = _verzoek(url, params if eerste else None)
         body = r.json()
