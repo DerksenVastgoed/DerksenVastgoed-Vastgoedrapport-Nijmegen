@@ -3754,6 +3754,23 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           f"in het Kadaster en niet in de BAG",
           "Basisregistratie Adressen en Gebouwen")
 
+    # Wat de buren in dezelfde straat eerder deden. Bij een pand dat te koop
+    # komt is dat het meest bruikbare precedent: is hier al gesplitst of
+    # verkamerd, en wat ging daaraan vooraf?
+    try:
+        from pandgeschiedenis import lees as lees_gesch, precedenten
+        eerder = precedenten(lees_gesch("pandgeschiedenis.json", {}), w["adres"])
+        for p in eerder:
+            f("eerder in deze straat", f"{p['adres']}: {p['route']}",
+              "geschiedenis per pand")
+        if not eerder:
+            f("eerder in deze straat", "geen pand met een vergunning, splitsing "
+              "of verkameringsmelding in onze geschiedenis. Dat betekent niet dat "
+              "het er niet is: we zien alleen wat gepubliceerd is sinds 2012",
+              "geschiedenis per pand")
+    except Exception:
+        pass
+
     # De routes, met de reden als er een dicht zit
     routes = haalbare_routes(w, w.get("_scenario"), lees_kamervergunningen())
     if routes.get("vrij"):
