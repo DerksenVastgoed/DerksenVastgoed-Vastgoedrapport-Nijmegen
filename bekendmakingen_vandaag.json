@@ -1,51 +1,10 @@
 [
  {
-  "datum": "2026-09-24",
-  "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de begane grond tot een appartement, aan Prins Bernhardstraat 65, 6521AD Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-448375.html",
-  "strategie": "splitsen",
-  "duiding": "Ombouw van de begane grond (114 m2) tot zelfstandig appartement voegt een extra verhuurbare unit toe aan het pand.",
-  "feiten": {
-   "oppervlakte_m2": 114
-  },
-  "straat": "Prins Bernhardstraat",
-  "huisnummer": "65",
-  "kern": true
- },
- {
-  "datum": "2026-09-24",
-  "titel": "Aanvraag omgevingsvergunning voor de woning bouwkundig splitsen naar 5 zelfstandige appartementen, aan Berg en Dalseweg 70, 6522BN Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-448465.html",
-  "strategie": "splitsen",
-  "duiding": "Splitsen van de 188 m2 woning naar vijf zelfstandige appartementen vergroot het aanbod kleine huureenheden, met label E relevant voor WWS-punten.",
-  "feiten": {
-   "energielabel": "E (2025)",
-   "oppervlakte_m2": 188
-  },
-  "straat": "Berg en Dalseweg",
-  "huisnummer": "70",
-  "kern": true
- },
- {
-  "datum": "2026-09-24",
-  "titel": "Besluit voor woongebouw: uitbreiden ALDI filiaal, aan Kanunnik Mijllinckstraat 7, 6525WS Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-447572.html",
-  "strategie": "geen",
-  "duiding": "Uitbreiding van het ALDI-filiaal binnen het woongebouw wijzigt de commerciële ruimte, geen direct signaal voor de woningvoorraad.",
-  "feiten": {
-   "energielabel": "A (2019)",
-   "oppervlakte_m2": 1456
-  },
-  "straat": "Kanunnik Mijllinckstraat",
-  "huisnummer": "7",
-  "kern": false
- },
- {
   "datum": "2026-09-25",
   "titel": "Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-449778.html",
   "strategie": "buy-and-hold",
-  "duiding": "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt.",
+  "duiding": "Aanvraag voor tijdelijke verhuur wijst op overbrugging vóór verkoop of verbouwing van het pand.",
   "feiten": {},
   "straat": "de St. Josephhof",
   "huisnummer": "14",
@@ -56,7 +15,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-450056.html",
   "strategie": "geen",
-  "duiding": "Constructieve wijziging van de achtergevel is een bouwkundige ingreep zonder direct signaal voor splitsing of verhuur.",
+  "duiding": "Constructieve wijziging van de achtergevel is een bouwkundige ingreep zonder directe link naar een waardecreatie-strategie.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 299
@@ -70,7 +29,7 @@
   "titel": "Besluit voor het verduurzamen van de woning, aan van Berchenstraat 31, 6511BB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-450982.html",
   "strategie": "verduurzaming",
-  "duiding": "Verduurzaming van een pand met label G verbetert de energieprestatie fors, wat bij mutatie meer huurpunten en waarde kan opleveren.",
+  "duiding": "Besluit tot verduurzaming van een pand met laag label G verbetert de energieprestatie, relevant bij toekomstige verhuur of verkoop.",
   "feiten": {
    "energielabel": "G (2016)",
    "oppervlakte_m2": 224
@@ -83,25 +42,11 @@
   "datum": "2026-09-25",
   "titel": "Aanvraag omgevingsvergunning voor het vervangen van de kozijnen aan de Wolfskuilseweg 1A in Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-449558.html",
-  "strategie": "verduurzaming",
-  "duiding": "Vervangen van kozijnen verbetert de isolatie en daarmee het toekomstige energielabel, ook bij bestaande bebouwing.",
+  "strategie": "geen",
+  "duiding": "Vervanging van kozijnen is een bouwkundige ingreep zonder marktrelevantie voor dit segment.",
   "feiten": {},
   "straat": "de Wolfskuilseweg",
   "huisnummer": "1",
-  "kern": false
- },
- {
-  "datum": "2026-09-23",
-  "titel": "Aanvraag omgevingsvergunning voor het wijzigen van de voorgevel en de constructie t.b.v. indeling van de woning, aan Javastraat 23, 6524LT Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-445225.html",
-  "strategie": "splitsen",
-  "duiding": "Wijziging van voorgevel en constructie voor de indeling duidt op interne herindeling, mogelijk voorbereidend op meerdere wooneenheden.",
-  "feiten": {
-   "energielabel": "E (2026)",
-   "oppervlakte_m2": 210
-  },
-  "straat": "Javastraat",
-  "huisnummer": "23",
   "kern": false
  }
 ]

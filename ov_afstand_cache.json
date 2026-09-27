@@ -47,6 +47,14 @@
   "omweg": 1.56,
   "soort": "bus"
  },
+ "51.83599,5.86673": {
+  "geschat": false,
+  "hemelsbreed": 373,
+  "meters": 465,
+  "naam": "Fransestraat",
+  "omweg": 1.25,
+  "soort": "bus"
+ },
  "51.83701,5.85938": {
   "geschat": false,
   "hemelsbreed": 412,
@@ -135,6 +143,22 @@
   "omweg": 2.7,
   "soort": "bus"
  },
+ "51.83957,5.83591": {
+  "geschat": false,
+  "hemelsbreed": 78,
+  "meters": 145,
+  "naam": "Molenweg/Wolfskuilseweg",
+  "omweg": 1.86,
+  "soort": "bus"
+ },
+ "51.83964,5.84465": {
+  "geschat": false,
+  "hemelsbreed": 340,
+  "meters": 408,
+  "naam": "2e Oude Heselaan",
+  "omweg": 1.2,
+  "soort": "bus"
+ },
  "51.83973,5.86466": {
   "geschat": false,
   "hemelsbreed": 70,
@@ -175,6 +199,14 @@
   "omweg": 1.06,
   "soort": "bus"
  },
+ "51.84053,5.87192": {
+  "geschat": false,
+  "hemelsbreed": 138,
+  "meters": 138,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.0,
+  "soort": "bus"
+ },
  "51.84055,5.87127": {
   "geschat": false,
   "hemelsbreed": 174,
@@ -213,6 +245,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.55,
+  "soort": "bus"
+ },
+ "51.84255,5.86721": {
+  "geschat": false,
+  "hemelsbreed": 190,
+  "meters": 275,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.45,
   "soort": "bus"
  },
  "51.84289,5.85446": {
@@ -271,12 +311,28 @@
   "omweg": 1.32,
   "soort": "bus"
  },
+ "51.84350,5.84382": {
+  "geschat": false,
+  "hemelsbreed": 102,
+  "meters": 422,
+  "naam": "Zwaluwstraat",
+  "omweg": 4.14,
+  "soort": "bus"
+ },
  "51.84358,5.86085": {
   "geschat": false,
   "hemelsbreed": 155,
   "meters": 361,
   "naam": "Smetiusstraat",
   "omweg": 2.33,
+  "soort": "bus"
+ },
+ "51.84370,5.86098": {
+  "geschat": false,
+  "hemelsbreed": 159,
+  "meters": 438,
+  "naam": "Smetiusstraat",
+  "omweg": 2.75,
   "soort": "bus"
  },
  "51.84389,5.85869": {
@@ -317,6 +373,14 @@
   "meters": 229,
   "naam": "Zwaluwstraat",
   "omweg": 1.02,
+  "soort": "bus"
+ },
+ "51.84426,5.86881": {
+  "geschat": false,
+  "hemelsbreed": 38,
+  "meters": 31,
+  "naam": "Hertogplein",
+  "omweg": 0.82,
   "soort": "bus"
  },
  "51.84428,5.84350": {
@@ -487,6 +551,22 @@
   "omweg": 1.51,
   "soort": "bus"
  },
+ "51.84660,5.85913": {
+  "geschat": false,
+  "hemelsbreed": 247,
+  "meters": 349,
+  "naam": "Kronenburgersingel",
+  "omweg": 1.41,
+  "soort": "bus"
+ },
+ "51.84744,5.86218": {
+  "geschat": false,
+  "hemelsbreed": 312,
+  "meters": 431,
+  "naam": "Waalkade",
+  "omweg": 1.38,
+  "soort": "bus"
+ },
  "51.84748,5.84732": {
   "geschat": false,
   "hemelsbreed": 297,
@@ -501,6 +581,14 @@
   "meters": 336,
   "naam": "Havenweg",
   "omweg": 1.33,
+  "soort": "bus"
+ },
+ "51.84825,5.86179": {
+  "geschat": false,
+  "hemelsbreed": 261,
+  "meters": 367,
+  "naam": "Waalkade",
+  "omweg": 1.41,
   "soort": "bus"
  },
  "51.84843,5.85838": {

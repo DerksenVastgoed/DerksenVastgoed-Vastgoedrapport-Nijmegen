@@ -5535,7 +5535,8 @@
     ],
     "postcode": "6524HD",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:de St. Josephhof 14|Nijmegen": {
     "postcode": "6511SH",
@@ -5560,5 +5561,476 @@
     "buurtnaam": "Wolfskuil",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-f62d6d3900e36492785aa6e8a6320a8d"
+  },
+  "Eerste Walstraat|Nijmegen": {
+    "oppervlakte": 55,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GG",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Saturnusstraat|Nijmegen": {
+    "oppervlakte": 85,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6543XE",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Hertogplein|Nijmegen": {
+    "oppervlakte": 49,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511SK",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Daalseweg 58|Nijmegen": {
+    "oppervlakte": 34,
+    "bouwjaar": "1891",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521GN",
+    "adresseerbaarObjectIdentificatie": "0268010000072125",
+    "pand": "0268100000002238",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-e3bf20804e8d661c54464243a8f69456",
+    "eenheden_in_pand": [
+      {
+        "adres": "Daalseweg 56",
+        "oppervlakte": 31,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Daalseweg 56A",
+        "oppervlakte": 123,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Daalseweg 58",
+        "oppervlakte": 34,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 34,
+    "energielabel": {
+      "label": "G",
+      "registratiedatum": "2026-05-29",
+      "geldig_tot": "2036-04-29",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Nieuwe Nonnendaalseweg 107|Nijmegen": {
+    "oppervlakte": 132,
+    "bouwjaar": "1896",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542PD",
+    "adresseerbaarObjectIdentificatie": "0268010000020353",
+    "pand": "0268100000017887",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-220d754751be0e23bd7c656323e050db",
+    "oppervlakte_bag": 123,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-09-17",
+      "geldig_tot": "2036-09-09",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Stikke Hezelstraat 53|Nijmegen": {
+    "oppervlakte": 53,
+    "bouwjaar": "1956",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511JW",
+    "adresseerbaarObjectIdentificatie": "0268010000072170",
+    "pand": "0268100000035967",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-32c8245a5dff86e3d836e3bb32f8528a",
+    "eenheden_in_pand": [
+      {
+        "adres": "Stikke Hezelstraat 53",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Stikke Hezelstraat 55",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Stikke Hezelstraat 57",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 53,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2019-03-28",
+      "geldig_tot": "2029-03-28",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Oranjesingel 59|Nijmegen": {
+    "oppervlakte": 163,
+    "bouwjaar": "1908",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511NR",
+    "adresseerbaarObjectIdentificatie": "0268010000025660",
+    "pand": "0268100000002684",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-42510b492887eb5b3abf63f9d5be2bea",
+    "eenheden_in_pand": [
+      {
+        "adres": "Oranjesingel 59",
+        "oppervlakte": 166,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Oranjesingel 59A",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Oranjesingel 59B",
+        "oppervlakte": 113,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 166,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-09-23",
+      "geldig_tot": "2036-09-16",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Delistraat 20|Nijmegen": {
+    "oppervlakte": 70,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KR",
+    "adresseerbaarObjectIdentificatie": "0268010000048847",
+    "pand": "0268100000025308",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-7c693888b18354e978b58fd55752725b",
+    "eenheden_in_pand": [
+      {
+        "adres": "Delistraat 20",
+        "oppervlakte": 67,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Delistraat 22",
+        "oppervlakte": 105,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 67,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-09-25",
+      "geldig_tot": "2036-09-23",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Ganzenheuvel 50|Nijmegen": {
+    "oppervlakte": 69,
+    "bouwjaar": "1985",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WD",
+    "adresseerbaarObjectIdentificatie": "0268010000078573",
+    "pand": "0268100000010393",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-fbf36b4b55c7a12e2238fc94d511432a",
+    "eenheden_in_pand": [
+      {
+        "adres": "Ganzenheuvel 36",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 38",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 40",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 42",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 44",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 46",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 48",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 50",
+        "oppervlakte": 72,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 52",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Noorderkerktrappen 1",
+        "oppervlakte": 41,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 72,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-07-24",
+      "geldig_tot": "2036-07-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Doddendaal 101|Nijmegen": {
+    "oppervlakte": 159,
+    "bouwjaar": "2022",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511DD",
+    "adresseerbaarObjectIdentificatie": "0268010000102381",
+    "pand": "0268100000102220",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-51b463b99c0d3a3d7b276ab784b5c30e",
+    "eenheden_in_pand": [
+      {
+        "adres": "Doddendaal 85",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 87",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 89",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 91",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 93",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 95",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 97",
+        "oppervlakte": 84,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 99",
+        "oppervlakte": 163,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 101",
+        "oppervlakte": 153,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 103",
+        "oppervlakte": 153,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 105",
+        "oppervlakte": 166,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 153,
+    "energielabel": {
+      "label": "A+++",
+      "registratiedatum": "2023-08-31",
+      "geldig_tot": "2033-08-31",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Korhoenstraat 4|Nijmegen": {
+    "oppervlakte": 165,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TT",
+    "adresseerbaarObjectIdentificatie": "0268010000014778",
+    "pand": "0268100000048803",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-ad586ad86c679b0b711f08dd079e7d91",
+    "oppervlakte_bag": 144,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2019-11-22",
+      "geldig_tot": "2029-11-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

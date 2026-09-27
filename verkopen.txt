@@ -272,3 +272,16 @@ Castellastraat 15 | Nijmegen | 549000 | te koop | 2026-09-24 |  | 102 | 6512EV
 Burg. Hustinxstraat 56 | Nijmegen | 415000 | te koop | 2026-09-25 |  | 102 | 6512AE
 Achter de Bank 4 | Nijmegen | 375000 | te koop | 2026-09-25 |  | 96 | 6511PB
 Pontanusstraat | Nijmegen | 1213 | te huur | 2026-09-25 | pararius | 26 | 6524HD
+
+# Automatisch toegevoegd uit Funda-attendering op 27-09-2026
+Eerste Walstraat | Nijmegen | 697 | te huur | 2026-09-27 | pararius | 55 | 6511GG
+Saturnusstraat | Nijmegen | 1650 | te huur | 2026-09-27 | pararius | 85 | 6543XE
+Hertogplein | Nijmegen | 1995 | te huur | 2026-09-27 | pararius | 49 | 6511SK
+Daalseweg 58 | Nijmegen | 215000 | te koop | 2026-09-27 |  | 34 | 6521GN
+Nieuwe Nonnendaalseweg 107 | Nijmegen | 549000 | te koop | 2026-09-27 |  | 132 | 6542PD
+Stikke Hezelstraat 53 | Nijmegen | 325000 | te koop | 2026-09-27 |  | 53 | 6511JW
+Oranjesingel 59 | Nijmegen | 795000 | te koop | 2026-09-27 |  | 163 | 6511NR
+Delistraat 20 | Nijmegen | 425000 | te koop | 2026-09-27 |  | 70 | 6524KR
+Ganzenheuvel 50 | Nijmegen | 375000 | te koop | 2026-09-27 |  | 69 | 6511WD
+Doddendaal 101 | Nijmegen | 1150000 | te koop | 2026-09-27 |  | 159 | 6511DD
+Korhoenstraat 4 | Nijmegen | 650000 | te koop | 2026-09-27 |  | 165 | 6542TT
