@@ -38,6 +38,9 @@ except Exception:  # noqa
         pass
 
 BASIS = "https://opendata.cbs.nl/ODataApi/OData"
+# Tweede ingang: dezelfde tabellen, andere opbouw. De eerste run liep op een
+# verbindingsfout naar opendata.cbs.nl; dan proberen we het hier.
+BASIS_V4 = "https://datasets.cbs.nl/odata/v1/CBS"
 LANDELIJK = "85773NED"
 REGIONAAL = "85792NED"
 UIT_PAD = "woningprijsindex.json"
@@ -82,6 +85,52 @@ def _haal(url, params=None):
     return rijen
 
 
+def _haal_v4(tabel, pad, params=None):
+    """Rijen uit de v4-API, die met @odata.nextLink doorpagineert."""
+    url, rijen, eerste = f"{BASIS_V4}/{tabel}/{pad}", [], True
+    for _ronde in range(40):
+        r = _verzoek(url, params if eerste else None)
+        body = r.json()
+        rijen.extend(body.get("value", []))
+        url = body.get("@odata.nextLink") or body.get("odata.nextLink")
+        eerste = False
+        if not url:
+            break
+    return rijen
+
+
+def _index_uit_v4(tabel, regio_sleutel=None):
+    """
+    De indexreeks uit de v4-API, met dezelfde vorm als de v3-rijen.
+
+    In v4 staat elke cel apart, met een code voor wat er gemeten is. Die code
+    zoeken we op in plaats van hem aan te nemen: we nemen de maat waarvan de
+    titel over de prijsindex gaat en niet over een ontwikkeling.
+    """
+    maten = _haal_v4(tabel, "MeasureCodes")
+    verandering = ("ontwikkeling", "mutatie", "verandering")
+    gekozen = None
+    for m in maten:
+        titel = (m.get("Title") or "").lower()
+        if "prijsindex" in titel and not any(v in titel for v in verandering):
+            gekozen = m.get("Identifier")
+            break
+    if not gekozen:
+        leg_vast("woningprijzen", f"Geen indexmaat in {tabel} via de v4-API. "
+                                  + "; ".join((m.get("Title") or "")[:40]
+                                              for m in maten[:8]))
+        return [], None
+    filters = [f"Measure eq '{gekozen}'"]
+    if regio_sleutel:
+        filters.append(f"RegioS eq '{regio_sleutel}'")
+    rijen = _haal_v4(tabel, "Observations",
+                     {"$filter": " and ".join(filters)})
+    # Terugvertalen naar de vorm die de rest van dit script verwacht
+    uit = [{"Perioden": r.get("Perioden"), "RegioS": r.get("RegioS"),
+            "_waarde": r.get("Value")} for r in rijen if r.get("Value") is not None]
+    return uit, "_waarde"
+
+
 def kies_kolommen(sleutels):
     """
     Het indexniveau, en de seizoengecorrigeerde maandontwikkeling als die er is.
@@ -106,16 +155,19 @@ def _pct(nu, toen):
 
 def landelijk():
     """De landelijke index per maand, met de ontwikkeling op maand en jaar."""
+    kol = seiz = None
     try:
         rijen = _haal(f"{BASIS}/{LANDELIJK}/TypedDataSet")
+        if rijen:
+            kol, seiz = kies_kolommen(list(rijen[0].keys()))
     except Exception as e:
-        leg_vast("woningprijzen", f"Landelijke tabel {LANDELIJK} niet op te halen: "
-                                  f"{str(e)[:150]}")
-        return None
+        print(f"Eerste ingang mislukt ({str(e)[:80]}), nu via de v4-API",
+              file=sys.stderr)
+        rijen, kol = _index_uit_v4(LANDELIJK)
     if not rijen:
-        leg_vast("woningprijzen", f"Tabel {LANDELIJK} gaf geen rijen.")
+        leg_vast("woningprijzen", f"Tabel {LANDELIJK} gaf geen rijen, ook niet via "
+                                  f"de v4-API op datasets.cbs.nl.")
         return None
-    kol, seiz = kies_kolommen(list(rijen[0].keys()))
     if not kol:
         leg_vast("woningprijzen", f"Geen indexkolom in {LANDELIJK}. Kolommen: "
                                   f"{', '.join(rijen[0].keys())}")
@@ -157,10 +209,13 @@ def regio():
     """De index voor Nijmegen per kwartaal, of anders Gelderland."""
     try:
         opties = _haal(f"{BASIS}/{REGIONAAL}/RegioS")
-    except Exception as e:
-        leg_vast("woningprijzen", f"Regio's van {REGIONAAL} niet op te halen: "
-                                  f"{str(e)[:150]}")
-        return None
+    except Exception:
+        try:
+            opties = _haal_v4(REGIONAAL, "RegioSCodes")
+        except Exception as e:
+            leg_vast("woningprijzen", f"Regio's van {REGIONAAL} niet op te halen, "
+                                      f"ook niet via de v4-API: {str(e)[:120]}")
+            return None
     titels = [((o.get("Key") or "").strip(), (o.get("Title") or "").strip())
               for o in opties]
     gekozen = None
@@ -179,21 +234,20 @@ def regio():
     sleutel, titel = gekozen
 
     # Eerst met een filter; lukt dat niet, dan alles ophalen en zelf filteren
+    kol = None
     try:
         rijen = _haal(f"{BASIS}/{REGIONAAL}/TypedDataSet",
                       {"$filter": f"startswith(RegioS,'{sleutel}')"})
     except Exception:
         try:
             rijen = _haal(f"{BASIS}/{REGIONAAL}/TypedDataSet")
-        except Exception as e:
-            leg_vast("woningprijzen", f"Regionale tabel niet op te halen: "
-                                      f"{str(e)[:150]}")
-            return None
+        except Exception:
+            rijen, kol = _index_uit_v4(REGIONAAL, sleutel)
     rijen = [r for r in rijen if (r.get("RegioS") or "").strip() == sleutel]
     if not rijen:
         leg_vast("woningprijzen", f"Geen rijen voor {titel} ({sleutel}).")
         return None
-    kol, _s = kies_kolommen(list(rijen[0].keys()))
+    kol = kol or kies_kolommen(list(rijen[0].keys()))[0]
     if not kol:
         leg_vast("woningprijzen", f"Geen indexkolom in {REGIONAAL}. Kolommen: "
                                   f"{', '.join(rijen[0].keys())}")

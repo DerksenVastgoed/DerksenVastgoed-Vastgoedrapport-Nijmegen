@@ -1,0 +1,14 @@
+# Bestanden waar alleen regels bij komen. Draaien er twee runs tegelijk, dan
+# kan git beide aanvullingen houden in plaats van een conflict te melden. Zonder
+# dit liep de rebase vast op woz.txt en ging een hele run verloren (27-09-2026).
+#
+# Let op: de samenvoeger "union" is ingebouwd in git. Definieer hem niet zelf in
+# de workflow; dan overschrijf je de ingebouwde en verdwijnt juist een van de
+# twee kanten.
+verkopen.txt merge=union
+woz.txt merge=union
+huidige_huur.txt merge=union
+bouwkosten_eigen.txt merge=union
+kamernet_plak.txt merge=union
+funda_verkocht_plak.txt merge=union
+onderwerpen_volgen.txt merge=union
