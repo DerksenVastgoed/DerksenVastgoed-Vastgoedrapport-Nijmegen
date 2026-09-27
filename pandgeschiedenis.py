@@ -306,6 +306,63 @@ def bij_labels(geschiedenis):
     return nieuw
 
 
+# Welke gebeurtenissen iets zeggen over wat een eigenaar met een pand doet
+ROUTE_SOORTEN = ("bekendmaking", "bag", "energielabel", "kamerverhuur")
+ROUTE_WOORDEN = ("splits", "omzet", "kamerverhuur", "verbouw", "onttrek",
+                 "woningvorming", "brandveilig", "vergunning")
+
+
+def straat_van(adres):
+    m = re.match(r"^(.+?)\s+\d", (adres or "").strip())
+    return re.sub(r"[^a-z]", "", m.group(1).lower()) if m else ""
+
+
+def _route_tekst(pand):
+    """Een korte samenvatting van wat er met dit pand is gebeurd."""
+    delen = []
+    for g in pand["gebeurtenissen"]:
+        if g["soort"] == "verkocht":
+            delen.append(f"{g['datum'][:7]} verkocht")
+        elif g["soort"] == "te koop" and delen:
+            # Alleen als er al iets gebeurd is: dan is opnieuw te koop het
+            # sluitstuk van de route en niet het begin
+            delen.append(f"{g['datum'][:7]} weer te koop")
+        elif g["soort"] in ROUTE_SOORTEN:
+            tekst = g["tekst"].lower()
+            if g["soort"] == "bekendmaking" and not any(w in tekst
+                                                        for w in ROUTE_WOORDEN):
+                continue
+            kort = g["tekst"][:70].rstrip()
+            delen.append(f"{g['datum'][:7]} {kort}")
+    return " -> ".join(delen[-5:])
+
+
+def precedenten(geschiedenis, adres, maximaal=4):
+    """
+    Wat vergelijkbare panden in dezelfde straat eerder hebben gedaan.
+
+    Bedoeld voor het moment dat een pand te koop komt: is hier in de straat al
+    eerder gesplitst, verkamerd of verbouwd, en wat ging daaraan vooraf? Dat
+    zegt iets over wat de gemeente daar toestond en wat een koper er zag.
+    """
+    straat = straat_van(adres)
+    if not straat:
+        return []
+    zelf = sleutel(adres)
+    uit = []
+    for sl, pand in geschiedenis.items():
+        if sl == zelf or straat_van(pand.get("adres")) != straat:
+            continue
+        tekst = _route_tekst(pand)
+        if not tekst:
+            continue
+        laatste = max((g["datum"] for g in pand["gebeurtenissen"]), default="")
+        uit.append({"adres": pand["adres"], "route": tekst, "laatste": laatste,
+                    "aantal": len(pand["gebeurtenissen"])})
+    uit.sort(key=lambda x: x["laatste"], reverse=True)
+    return uit[:maximaal]
+
+
 def recent(geschiedenis, dagen=7):
     """De panden met een gebeurtenis in de afgelopen dagen, met hun hele verleden."""
     grens = (dt.date.today() - dt.timedelta(days=dagen)).isoformat()
