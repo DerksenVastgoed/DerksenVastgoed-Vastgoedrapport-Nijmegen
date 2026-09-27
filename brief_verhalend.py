@@ -103,7 +103,11 @@ DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron st
 
 EEN APPARTEMENT IS GEEN BIJZONDERHEID. Staan er volgens de BAG meerdere woningen in hetzelfde pand, dan is het aangeboden object meestal gewoon een appartement in een complex. Presenteer dat aantal niet als een vondst en niet als "het bijzondere van dit pand". Bij zo'n appartement gaat de VvE over splitsen en kamerverhuur, niet alleen de gemeente; wat de akte en het reglement toestaan, weten wij niet.
 
+EEN VERKOOPPRIJS HEBBEN WE NIET. Bij een verkocht pand toont Funda de laatste vraagprijs, niet de koopsom; die staat alleen bij het Kadaster. Schrijf dus "verkocht, laatste vraagprijs X" en nooit "verkocht voor X" of "de verkoopprijs was X".
+
 VERKOCHTE WONINGEN. Staat er een pand bij dat bij ons nog te koop stond, meld dat dan kort: dan klopte onze lijst niet meer. Staat er een bekendmaking bij een verkocht adres, dan is dat een aanwijzing dat de koper iets met het pand doet, en geen bewijs; de verkoopdatum is een benadering. Neem die kanttekening over als je het noemt.
+
+GESCHIEDENIS PER PAND. Je krijgt van sommige panden de gebeurtenissen op volgorde: te koop, prijswijziging, verkocht, vergunning, een splitsing in de BAG, een nieuw energielabel. Dat is het waardevolste wat de brief kan laten zien, want het toont wat een koper met een pand deed. Vertel zo'n reeks als een verhaal en niet als een opsomming, en zeg erbij wat het voor ons betekent. Nieuwe gebeurtenissen zijn gemarkeerd; begin daarbij.
 
 DOSSIERS PER PAND. Voor de panden die ertoe doen krijg je een dossier: per pand alle feiten uit alle bronnen, elk met de bron erbij. Daar haal je de verbanden uit. Noem je een pand, kijk dan eerst in het dossier wat er over bekend is: WOZ ten opzichte van de grens, puntentelling, kamerverhuur op het pand en bij de buren, bekendmakingen op het adres, de doorrekening. Een regel "geen aanwijzing gevonden" is geen bewijs dat er niets is; neem de beperking die erbij staat over als je hem noemt.
 
@@ -1138,6 +1142,8 @@ def main():
         ("Woningprijzen CBS", woningprijzen_tekst()),
         ("Stadsbegroting Nijmegen", strip_opmaak(lees(f"digests/{d}-begroting.md"), 3000)),
         ("Verkochte woningen", strip_opmaak(lees(f"digests/{d}-verkocht.md"), 3000)),
+        ("Wat er met eerdere panden gebeurde",
+         strip_opmaak(lees(f"digests/{d}-geschiedenis.md"), 4000)),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
