@@ -255,6 +255,8 @@ def controle_woningprijzen():
         delen.append(f"landelijk {l['periode']}")
     if r:
         delen.append(f"{r['naam']} {r['periode']}")
+    if d.get("ingang"):
+        delen.append(f"via {d['ingang']}")
     v = d.get("vergelijking") or {}
     if v.get("beste_verband"):
         b = v["beste_verband"]
@@ -276,6 +278,27 @@ def controle_begroting():
                 diagnose("begroting") or "Draait de stap Stadsbegroting al?")
     return (OK, f"Stadsbegroting {d.get('jaar')}, {len(d['paginas'])} pagina's, "
                 f"opgehaald {d.get('opgehaald')}", "")
+
+
+def controle_geschiedenis():
+    """Hoeveel panden we volgen, en hoeveel er nog nooit zijn nagekeken."""
+    d = _json("pandgeschiedenis.json") or {}
+    if not d:
+        return (LET_OP, "nog geen geschiedenis opgebouwd",
+                diagnose("geschiedenis") or "Draait de stap Geschiedenis per pand?")
+    met_verhaal = sum(1 for p in d.values()
+                      if len(p.get("gebeurtenissen") or []) > 1)
+    nooit = sum(1 for p in d.values() if not p.get("bag_gezien"))
+    per_ronde = int(os.environ.get("BAG_PER_RONDE") or 200)
+    bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
+              f"gebeurtenis, {nooit} nog nooit tegen de BAG gehouden")
+    if nooit:
+        runs = -(-nooit // per_ronde)
+        oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
+                   f"run(s). Elke handmatige start werkt er een ronde af.")
+        return (LET_OP, bewijs, diagnose("geschiedenis") or oorzaak)
+    return (OK, bewijs + "; iedereen is minstens een keer nagekeken",
+            diagnose("geschiedenis") or "")
 
 
 def controle_misdrijven():
@@ -377,6 +400,7 @@ CONTROLES = [
     ("Kamerverhuurregister", controle_kamerverhuur),
     ("Woningprijsindex CBS", controle_woningprijzen),
     ("Stadsbegroting", controle_begroting),
+    ("Geschiedenis per pand", controle_geschiedenis),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
