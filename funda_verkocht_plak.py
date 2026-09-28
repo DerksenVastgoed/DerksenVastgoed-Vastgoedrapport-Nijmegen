@@ -45,7 +45,19 @@ except Exception:  # noqa
     def wis(*_a):
         pass
 
-PRIJS = re.compile(r"^€\s*([\d.]+)\s*k\.k\.", re.I)
+# Funda kent meer dan "Verkocht": een pand kan onder bod staan of verkocht zijn
+# onder voorbehoud. Dat zijn verschillende dingen, en "onder bod" is helemaal
+# geen verkoop. We leggen ze apart vast in plaats van ze op een hoop te gooien.
+STATUS = {
+    "verkocht": "verkocht",
+    "verkocht onder voorbehoud": "verkocht onder voorbehoud",
+    "onder bod": "onder bod",
+    "onder optie": "onder bod",
+}
+# Nieuwbouw is geen bestaande voorraad: bouwnummers, v.o.n.-prijzen en een
+# project in plaats van een adres. Die horen niet in onze reeks.
+NIEUWBOUW = re.compile(r"nieuwbouw|bouwnr\.|^project\[", re.I)
+PRIJS = re.compile(r"^€\s*([\d.]+)\s*(k\.k\.|v\.o\.n\.)", re.I)
 ADRES = re.compile(r"^\[([^\]]+)\]\((https://www\.funda\.nl/detail/koop/[^)]+)\)")
 POSTCODE = re.compile(r"^\[(\d{4}\s?[A-Z]{2})\s+(.+?)\]\(")
 OPP = re.compile(r"^\*\s*(\d{1,4})\s*m²")
@@ -67,18 +79,28 @@ def parse(tekst):
             aantal, eenheid = int(s.group(1)), s.group(2).lower()
             sinds_dagen = aantal * (7 if eenheid.startswith("week") else 30)
             continue
-        if regel.lower() == "verkocht":
+        # De statusregel kan er "Verkocht onder voorbehoudNieuwbouwwoning" of
+        # "Onder optieNieuwbouwwoning" uitzien: status en soort aan elkaar
+        kaal = regel.lower().replace("nieuwbouwwoning", "").strip()
+        if kaal in STATUS:
             if huidig:
                 uit.append(huidig)
             huidig = {"prijs": None, "adres": None, "plaats": None,
                       "postcode": None, "opp": [], "label": None,
-                      "sinds_dagen": sinds_dagen, "url": None}
+                      "sinds_dagen": sinds_dagen, "url": None,
+                      "status": STATUS[kaal],
+                      "nieuwbouw": bool(NIEUWBOUW.search(regel))}
             continue
         if not huidig:
             continue
         p = PRIJS.match(regel)
         if p and huidig["prijs"] is None:
             huidig["prijs"] = int(p.group(1).replace(".", ""))
+            if p.group(2).lower().startswith("v"):
+                huidig["nieuwbouw"] = True   # v.o.n. hoort bij nieuwbouw
+            continue
+        if NIEUWBOUW.search(regel):
+            huidig["nieuwbouw"] = True
             continue
         a = ADRES.match(regel)
         if a and not huidig["adres"]:
@@ -104,6 +126,8 @@ def parse(tekst):
     gezien, schoon = set(), []
     for w in uit:
         if not (w["adres"] and w["prijs"] and w["opp"] and w["plaats"]):
+            continue
+        if w.get("nieuwbouw"):
             continue
         k = (_sleutel(w["adres"]), w["prijs"])
         if k in gezien:
@@ -196,9 +220,10 @@ def main():
     nieuw, alsnog_verkocht = [], []
     for w in verkocht:
         sl = _sleutel(w["adres"])
-        if (sl, str(w["prijs"]), "verkocht") in kern:
+        if (sl, str(w["prijs"]), w.get("status") or "verkocht") in kern:
             continue
-        nieuw.append(f"{w['adres']} | {w['plaats']} | {w['prijs']} | verkocht | "
+        nieuw.append(f"{w['adres']} | {w['plaats']} | {w['prijs']} | "
+                     f"{w.get('status') or 'verkocht'} | "
                      f"{datum} | funda-verkocht-plak | {w['woonopp']} | "
                      f"{w['postcode'] or ''}")
         if sl in te_koop:

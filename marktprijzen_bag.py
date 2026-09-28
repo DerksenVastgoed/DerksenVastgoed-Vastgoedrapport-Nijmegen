@@ -1144,6 +1144,18 @@ OPEX_PER_SCENARIO = {
 OPEX_PCT = OPEX_PER_SCENARIO["woning"]   # standaard, wordt per scenario gezet
 
 
+def is_verkocht(w):
+    """
+    Telt dit pand als verkocht?
+
+    Funda kent "Verkocht" en "Verkocht onder voorbehoud"; dat tweede is een
+    gesloten koop met ontbindende voorwaarden en hoort dus bij de verkopen.
+    "Onder bod" is dat niet: daar wordt nog onderhandeld, en het pand staat nog
+    te koop.
+    """
+    return (w.get("status") or "").lower().startswith(("verkocht", "transactie"))
+
+
 def opex_voor(scenario_naam):
     """Het exploitatiepercentage dat bij dit scenario hoort."""
     naam = (scenario_naam or "").lower()
@@ -1361,15 +1373,28 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     idx = _bouwkostenfactor()
     f = idx.get("factor", 1.0) * btw
 
+    def afronden(bedrag):
+        """
+        Op duizend euro afronden zolang het een aanname is.
+
+        €45.020 suggereert een begroting; het is een tarief per m2 maal de
+        oppervlakte. Staat het bedrag wel in bouwkosten_eigen.txt, dan komt het
+        uit een echte opgave en laten we het staan.
+        """
+        if gebruikt_eigen or not bedrag:
+            return bedrag
+        return round(bedrag / 1000) * 1000
+
     if uitsplitsen:
-        return {"totaal": (duurzaam + klaar) * f,
-                "verduurzaming": duurzaam * f,
-                "verhuurklaar": klaar * f,
+        return {"totaal": afronden((duurzaam + klaar) * f),
+                "verduurzaming": afronden(duurzaam * f),
+                "verhuurklaar": afronden(klaar * f),
+                "afgerond": not gebruikt_eigen,
                 "per_m2_verduurzaming": tarief_d,
                 "per_m2_verhuurklaar": tarief_k,
                 "index": idx,
                 "eigen": gebruikt_eigen}
-    return (duurzaam + klaar) * f
+    return afronden((duurzaam + klaar) * f)
 
 
 def aanloopverlies(lening, netto_huur):
@@ -3898,7 +3923,7 @@ def leg_maandmediaan_vast(per_buurt):
         if buurt not in FOCUS_BUURTEN:
             continue
         for ppm2, w in rijen:
-            if (w.get("status") or "").lower() not in ("verkocht", "transactie"):
+            if not is_verkocht(w):
                 prijzen.append(ppm2)
     if len(prijzen) < 10:
         return
@@ -3935,7 +3960,7 @@ def render_dossiers(woningen, per_buurt):
             continue
         med = st.median([p for p, _ in rijen])
         for ppm2, w in rijen:
-            if (w.get("status") or "").lower() in ("verkocht", "transactie"):
+            if is_verkocht(w):
                 continue
             afw = (ppm2 - med) / med * 100 if med else None
             kandidaten.append((0 if w.get("woz") else 1, afw if afw is not None else 99,
@@ -4006,7 +4031,7 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
     # Dan per buurt de panden
     for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
         panden = [w for _p, w in per_buurt.get(buurt, [])
-                  if (w.get("status") or "").lower() not in ("verkocht", "transactie")]
+                  if not is_verkocht(w)]
         if not panden:
             continue
 
@@ -5228,7 +5253,7 @@ def vul_ov_afstand(woningen):
 
     nieuw = 0
     for w in woningen:
-        if w.get("ov_halte") or (w.get("status") or "").lower() == "verkocht":
+        if w.get("ov_halte") or is_verkocht(w):
             continue
         punt = coordinaten(w["adres"], w.get("plaats", "Nijmegen"))
         if not punt:
@@ -5358,7 +5383,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         return "\n".join(r)
 
     vul_ov_afstand([w for w in woningen
-                    if (w.get("status") or "").lower() != "verkocht"])
+                    if not is_verkocht(w)])
 
     # Het geheugen lezen voordat het aanbod het bijwerkt, anders ziet de
     # samenvatting alles als al gezien.
