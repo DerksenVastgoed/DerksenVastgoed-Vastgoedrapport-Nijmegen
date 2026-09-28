@@ -244,6 +244,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         print("Geen BAG-sleutel; BAG-controle overgeslagen", file=sys.stderr)
         return 0
     nieuw, gedaan, deze_ronde = 0, 0, []
+    geen_id, bekeken = 0, 0
     vandaag = dt.date.today().isoformat()
     nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
     def volgorde(paar):
@@ -260,12 +261,20 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
                                               "kamerverhuur"}):
             continue
+        bekeken += 1
         pand_id = pand.get("pand_id")
         if not pand_id:
             bag = bag_dump(pand["adres"]) or {}
             pand_id = bag.get("pand")
             pand["pand_id"] = pand_id
         if not pand_id:
+            # Geen pand-id: dan kunnen we de eenheden niet opvragen. Wel
+            # vastleggen dat we het geprobeerd hebben, anders blijven deze
+            # panden elke ronde vooraan staan en komt de rest nooit aan de beurt.
+            geen_id += 1
+            pand["bag_gezien"] = vandaag
+            pand["bag_zonder_id"] = vandaag
+            gedaan += 1
             continue
         eenheden = bag_eenheden_in_pand(pand_id)
         gedaan += 1
@@ -291,8 +300,19 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
                               "Basisregistratie Adressen en Gebouwen")
             pand["bag_eenheden"] = nu
     over = max(nooit - gedaan, 0)
-    print(f"BAG: {gedaan} panden gecontroleerd, nog {over} nooit gecontroleerd",
+    print(f"BAG: {bekeken} panden bekeken, {gedaan} afgehandeld waarvan "
+          f"{geen_id} zonder pand-id, nog {over} nooit gecontroleerd",
           file=sys.stderr)
+    if bekeken and not deze_ronde:
+        leg_vast("geschiedenis",
+                 f"Van {bekeken} bekeken panden leverde er geen een pand-id op. "
+                 f"Waarschijnlijk komt het adres niet door de BAG-opzoeking, of "
+                 f"ontbreekt de sleutel in deze stap.")
+    if not bekeken:
+        leg_vast("geschiedenis",
+                 "Geen enkel pand kwam in aanmerking voor de BAG-controle. "
+                 "Draait de stap wel met --volledig, en hebben de panden een "
+                 "gebeurtenis van het juiste soort?")
     return nieuw, deze_ronde
 
 
