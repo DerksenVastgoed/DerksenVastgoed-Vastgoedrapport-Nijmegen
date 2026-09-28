@@ -61,6 +61,14 @@ SIGNAALWOORDEN = {
     "onttrekking": ["onttrekking", "onttrekken"],
     "tijdelijke verhuur": ["tijdelijk verhuren", "tijdelijke verhuur"],
 
+    # Gewone verbouwingen. Die zeggen niets over de voorraad, maar wel over het
+    # pand: gekocht en daarna verbouwd is het spoor waar we naar zoeken, en een
+    # pand dat in tien jaar niets heeft aangevraagd is waarschijnlijk niet
+    # aangepakt. Bewust zonder kap-, inrit-, evenement- en standplaatsberichten.
+    "verbouwing": ["verbouwen", "het bouwen van", "uitbreiden van de woning",
+                   "aanbouw", "dakkapel", "dakopbouw", "gevelwijziging",
+                   "constructieve", "interne verbouwing", "renovatie"],
+
     # Handhaving per adres. De politiecijfers gaan niet dieper dan de buurt,
     # maar handhavingsbesluiten worden wel per pand gepubliceerd. Voor de
     # leefbaarheidstoets en voor het risico bij aankoop is dat het enige
