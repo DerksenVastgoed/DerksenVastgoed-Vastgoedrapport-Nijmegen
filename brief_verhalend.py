@@ -77,7 +77,9 @@ OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buu
 
 6. De rente, kort, en alleen als er iets aan veranderd is of als het iets verklaart.
 
-7. BUURT VAN DE DAG (niet in de zondagseditie): je krijgt een buurtnaam aangeleverd. Geef alleen die ene buurt een kort achtergrondportret van een paar zinnen, en alleen als het ergens bij aansluit. Kies de drie of vier cijfers die het meest zeggen. De andere buurten krijgen geen portret; die komen een andere dag.
+7. BUURT VAN DE DAG (niet in de zondagseditie): begin bij wat er in die buurt gebeurde, niet bij de jaarcijfers. In de gegevens staan per jaar de aanvragen om te splitsen of te verkameren, hoe ze afliepen en hoe lang ze duurden. Dat is nieuws; het koopaandeel en de WOZ zijn achtergrond en komen er hooguit bij als ze iets verklaren. Loopt het aantal aanvragen op of terug over de jaren, benoem dat. Neem de kanttekening mee dat we alleen zien wat gepubliceerd is.
+
+Je krijgt een buurtnaam aangeleverd; alleen die ene buurt komt aan bod, de andere een andere dag. Zijn er geen gebeurtenissen in die buurt, houd het dan bij twee of drie cijfers die ergens bij aansluiten, en laat het portret anders weg.
 
    Noem je een pand of een besluit in een andere buurt, dan mag je daar wel één cijfer bij halen dat er iets over zegt, bijvoorbeeld het aantal inbraken of vernielingen per duizend inwoners als het over verhuurbaarheid gaat, of het aandeel kamerverhuurvergunningen als het over verkameren gaat. Eén cijfer, ter plaatse, niet een heel portret.
 
@@ -537,6 +539,16 @@ def bouwkosten_tekst():
     return ""
 
 
+def _buurtbeeld_regels(buurt):
+    """De gebeurtenissen per jaar in deze buurt, uit de pandgeschiedenis."""
+    try:
+        from pandgeschiedenis import buurtbeeld_tekst
+        with open("buurtbeeld.json", encoding="utf-8") as f:
+            return buurtbeeld_tekst(json.load(f), buurt)
+    except Exception:
+        return []
+
+
 def _kamerverhuur_rang():
     """
     De rangorde van de buurten op bekende kamerverhuurpanden per woning.
@@ -675,6 +687,12 @@ def buurtcijfers_tekst():
             r = _veld_rang(veld).get(buurt)
             if r:
                 d.append(f"{naam}: {r}")
+
+        # Wat er in deze buurt gebeurde: aanvragen om te splitsen of te
+        # verkameren per jaar, hoe ze afliepen en hoe lang ze duurden. Dat
+        # verandert elke week, anders dan de jaarcijfers hierboven.
+        for regel in _buurtbeeld_regels(buurt):
+            d.append(regel)
 
         # De rangorde per misdrijfsoort, zodat het model niet zelf vergelijkt.
         # Het draaide de vergelijking eerder om.
