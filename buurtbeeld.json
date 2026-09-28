@@ -1,0 +1,443 @@
+{
+ "'t Acker": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "'t Broek": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Aldenhof": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Altrade": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 3,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 4,
+    "gestopt": 1,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Benedenstad": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Biezen": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 3,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Bottendaal": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Brakkenstein": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2026": {
+    "aanvragen": 3,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "De Kamp": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Galgenveld": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 4,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Goffert": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Groenewoud": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Grootstal": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Hatert": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Hatertse Hei": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Haven- en industrieterrein": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Hazenkamp": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Hees": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Heijendaal": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Hengstdal": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Heseveld": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 4,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 6,
+    "gestopt": 3,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Hunnerberg": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 4,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Kerkenbos": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Kwakkenberg": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Lankforst": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2026": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Lent": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Malvert": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Meijhorst": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Methen": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "Neerbosch-Oost": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Nije Veld": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 3,
+    "gestopt": 1,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Ressen": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ },
+ "St. Anna": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 3,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 6,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Stadscentrum": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 9,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 8,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Tolhuis": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 3,
+    "gestopt": 1,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Wolfskuil": {
+  "doorlooptijden": [],
+  "jaren": {
+   "2025": {
+    "aanvragen": 2,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2026": {
+    "aanvragen": 4,
+    "gestopt": 2,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
+  "na_verkoop": 0
+ },
+ "Zwanenveld": {
+  "doorlooptijden": [],
+  "jaren": {},
+  "na_verkoop": 0
+ }
+}
