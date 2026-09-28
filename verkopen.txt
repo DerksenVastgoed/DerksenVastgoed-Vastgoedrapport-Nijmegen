@@ -285,3 +285,531 @@ Delistraat 20 | Nijmegen | 425000 | te koop | 2026-09-27 |  | 70 | 6524KR
 Ganzenheuvel 50 | Nijmegen | 375000 | te koop | 2026-09-27 |  | 69 | 6511WD
 Doddendaal 101 | Nijmegen | 1150000 | te koop | 2026-09-27 |  | 159 | 6511DD
 Korhoenstraat 4 | Nijmegen | 650000 | te koop | 2026-09-27 |  | 165 | 6542TT
+Fransestraat 38 | Nijmegen | 1025000 | onder bod | 2026-09-28 | funda-verkocht-plak | 204 | 6524JD
+Plein 1944 129 | Nijmegen | 425000 | onder bod | 2026-09-28 | funda-verkocht-plak | 59 | 6511JG
+Mariënburg 20 | Nijmegen | 629000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 122 | 6511PS
+Braamhof 11 | Nijmegen | 500000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 107 | 6542JX
+Nieuwe Marktstraat 6 | Nijmegen | 425000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 80 | 6511AA
+Doddendaal 117 | Nijmegen | 500000 | onder bod | 2026-09-28 | funda-verkocht-plak | 77 | 6511DD
+Priemstraat 17-E | Nijmegen | 350000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 56 | 6511WC
+Vondelstraat 63 | Nijmegen | 495000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 124 | 6512BC
+Eilbrachtstraat 6 | Nijmegen | 325000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 63 | 6511LX
+Holtermanstraat 20-A | Nijmegen | 295000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 51 | 6512DB
+Jan de Wittstraat 6 | Nijmegen | 195000 | onder bod | 2026-09-28 | funda-verkocht-plak | 22 | 6512EJ
+Waalkade 35 | Nijmegen | 675000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 127 | 6511XP
+van Welderenstraat 18-A | Nijmegen | 315000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 61 | 6511ML
+Sweersstraat 2 | Nijmegen | 375000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 86 | 6524BM
+Lage Markt 21 | Nijmegen | 450000 | onder bod | 2026-09-28 | funda-verkocht-plak | 73 | 6511VK
+Scholenhof 8 | Nijmegen | 550000 | onder bod | 2026-09-28 | funda-verkocht-plak | 89 | 6511SG
+Dokstraat 425 | Nijmegen | 595000 | onder bod | 2026-09-28 | funda-verkocht-plak | 102 | 6541EZ
+Beijensstraat 18 | Nijmegen | 419000 | onder bod | 2026-09-28 | funda-verkocht-plak | 77 | 6521EC
+Groesbeeksedwarsweg 99 | Nijmegen | 495000 | onder bod | 2026-09-28 | funda-verkocht-plak | 93 | 6521DC
+Groesbeekseweg 85 | Nijmegen | 1150000 | onder bod | 2026-09-28 | funda-verkocht-plak | 228 | 6524CS
+Tweede Oude Heselaan 368 | Nijmegen | 500000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 90 | 6542VJ
+Burg. Hustinxstraat 140 | Nijmegen | 325000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 63 | 6512AG
+Dokstraat 127 | Nijmegen | 427000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 65 | 6541EZ
+Zwaluwstraat 54 | Nijmegen | 315000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 42 | 6541NT
+Burghardt van den Berghstraat 175-A | Nijmegen | 200000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 29 | 6512DK
+Nina Simonestraat 124 | Nijmegen | 425000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 76 | 6541ED
+Beijensstraat 80 | Nijmegen | 575000 | onder bod | 2026-09-28 | funda-verkocht-plak | 88 | 6521ED
+Hertogstraat 32 | Nijmegen | 365000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 79 | 6511SB
+Oude Nonnendaalseweg 194 | Nijmegen | 675000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 134 | 6542WX
+Krayenhofflaan 47 | Nijmegen | 439000 | onder bod | 2026-09-28 | funda-verkocht-plak | 116 | 6541PP
+Pontanusstraat 19 | Nijmegen | 539000 | onder bod | 2026-09-28 | funda-verkocht-plak | 135 | 6524HB
+Mariënburg 88-D | Nijmegen | 535000 | onder bod | 2026-09-28 | funda-verkocht-plak | 95 | 6511PS
+Molukkenstraat 14 | Nijmegen | 469000 | onder bod | 2026-09-28 | funda-verkocht-plak | 103 | 6524NB
+Schoolstraat 135 | Nijmegen | 405000 | onder bod | 2026-09-28 | funda-verkocht-plak | 80 | 6512JE
+St. Stephanusstraat 13 | Nijmegen | 625000 | onder bod | 2026-09-28 | funda-verkocht-plak | 146 | 6512HM
+Vondelstraat 26 | Nijmegen | 545000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 147 | 6512BG
+Veemarkt 3 | Nijmegen | 350000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 65 | 6511ZD
+Krayenhofflaan 281 | Nijmegen | 365000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 72 | 6541PS
+Nieuwstraat 41 | Nijmegen | 525000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 100 | 6511PT
+Veemarkt 277 | Nijmegen | 375000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZJ
+Beijensstraat 4-A | Nijmegen | 275000 | onder bod | 2026-09-28 | funda-verkocht-plak | 40 | 6521EC
+St. Annastraat 165-B | Nijmegen | 385000 | onder bod | 2026-09-28 | funda-verkocht-plak | 49 | 6524ES
+St. Annastraat 165-E | Nijmegen | 395000 | onder bod | 2026-09-28 | funda-verkocht-plak | 54 | 6524ES
+Smetiusstraat 4-D | Nijmegen | 225000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 33 | 6511ES
+Boomvalkstraat 18 | Nijmegen | 275000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 40 | 6541RT
+Van der Kempstraat 10 | Nijmegen | 375000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 64 | 6512JP
+Regulierstraat 92 | Nijmegen | 345000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 58 | 6511DS
+Thijmstraat 11-G | Nijmegen | 375000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 64 | 6531CM
+Jan de Wittstraat 6-8 studio 9 | Nijmegen | 246000 | onder bod | 2026-09-28 | funda-verkocht-plak | 41 | 6512EJ
+Groesbeekseweg 71 | Nijmegen | 995000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 228 | 6524CR
+Dokstraat 81 | Nijmegen | 425000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 63 | 6541EZ
+Ridderspoor 12 | Nijmegen | 335000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 63 | 6542HD
+Eerste Oude Heselaan 172 | Nijmegen | 265000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 34 | 6541PD
+St. Annastraat 30 | Nijmegen | 165000 | onder bod | 2026-09-28 | funda-verkocht-plak | 23 | 6524GD
+Zwaluwstraat 175 | Nijmegen | 349500 | onder bod | 2026-09-28 | funda-verkocht-plak | 82 | 6541NV
+Daalseweg 56 | Nijmegen | 190000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 31 | 6521GN
+van Oldenbarneveltstraat 61-B | Nijmegen | 235000 | verkocht onder voorbehoud | 2026-09-28 | funda-verkocht-plak | 34 | 6512AT
+Kronenburgersingel 115 | Nijmegen | 309000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6511AN
+de Ruyterstraat 135 | Nijmegen | 925000 | verkocht | 2026-09-28 | funda-verkocht-plak | 169 | 6512GC
+Ridderstraat 32 | Nijmegen | 299000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511TM
+Burg. Hustinxstraat 246 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6512AC
+St. Jorisstraat 54 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 90 | 6511TD
+Ridderstraat 72 | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511TM
+Groesbeekseweg 118 | Nijmegen | 950000 | verkocht | 2026-09-28 | funda-verkocht-plak | 227 | 6524DL
+van Schevichavenstraat 3-R | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6511LM
+Plein 1944 86-B | Nijmegen | 495000 | verkocht | 2026-09-28 | funda-verkocht-plak | 87 | 6511JE
+Groesbeekseweg 146 | Nijmegen | 900000 | verkocht | 2026-09-28 | funda-verkocht-plak | 173 | 6524DN
+Ridderspoor 51 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6542HA
+Spieghelstraat 3 | Nijmegen | 615000 | verkocht | 2026-09-28 | funda-verkocht-plak | 124 | 6531BM
+Bloemerstraat 22 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6511EJ
+Voorstadslaan 24 | Nijmegen | 599000 | verkocht | 2026-09-28 | funda-verkocht-plak | 110 | 6541SR
+Ganzenheuvel 18 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6511WD
+Keizer Karelplein 27 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 103 | 6511NH
+Palmstraat 40 | Nijmegen | 535000 | verkocht | 2026-09-28 | funda-verkocht-plak | 118 | 6542JZ
+Graafseweg 76 | Nijmegen | 610000 | verkocht | 2026-09-28 | funda-verkocht-plak | 124 | 6512CE
+van Oldenbarneveltstraat 15 | Nijmegen | 565000 | verkocht | 2026-09-28 | funda-verkocht-plak | 145 | 6512AS
+Tulpstraat 12 | Nijmegen | 480000 | verkocht | 2026-09-28 | funda-verkocht-plak | 83 | 6542XN
+Ziekerstraat 26 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6511LH
+Willemsweg 10 | Nijmegen | 495000 | verkocht | 2026-09-28 | funda-verkocht-plak | 106 | 6531DL
+Achter de Oude Gracht 17 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511PZ
+Biesmanstraat 3 | Nijmegen | 650000 | verkocht | 2026-09-28 | funda-verkocht-plak | 132 | 6512KA
+Tollensstraat 145 | Nijmegen | 285000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6531AC
+Jan Luykenstraat 2 | Nijmegen | 595000 | verkocht | 2026-09-28 | funda-verkocht-plak | 117 | 6531AN
+Vondelstraat 75-B | Nijmegen | 550000 | verkocht | 2026-09-28 | funda-verkocht-plak | 100 | 6512BD
+van Berchenstraat 27-A | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 67 | 6511BB
+Graafsedwarsstraat 65 | Nijmegen | 525000 | verkocht | 2026-09-28 | funda-verkocht-plak | 118 | 6512ER
+Gerard Noodtstraat 129-A8 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6511ST
+St. Jorisstraat 48 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 90 | 6511TD
+Bijleveldsingel 49 | Nijmegen | 489000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6521AP
+Heselaan 90 | Nijmegen | 600000 | verkocht | 2026-09-28 | funda-verkocht-plak | 114 | 6541MH
+Evertsenstraat 42 | Nijmegen | 535000 | verkocht | 2026-09-28 | funda-verkocht-plak | 119 | 6512JN
+St. Annastraat 190-B | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6525GW
+Bloemerstraat 119 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511EG
+Dominicanenstraat 103 | Nijmegen | 700000 | verkocht | 2026-09-28 | funda-verkocht-plak | 221 | 6521KB
+Ruusbroecstraat 7 | Nijmegen | 550000 | verkocht | 2026-09-28 | funda-verkocht-plak | 100 | 6531AE
+Kroonstraat 184 | Nijmegen | 615000 | verkocht | 2026-09-28 | funda-verkocht-plak | 120 | 6511DX
+Lage Markt 47-B | Nijmegen | 390000 | verkocht | 2026-09-28 | funda-verkocht-plak | 83 | 6511VK
+Dominicanenstraat 153 | Nijmegen | 360000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6521KC
+Prins Hendrikstraat 69 | Nijmegen | 389000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6521AX
+Bijleveldsingel 20-DG | Nijmegen | 399500 | verkocht | 2026-09-28 | funda-verkocht-plak | 80 | 6521AT
+Gerard Noodtstraat 129-A12 | Nijmegen | 277500 | verkocht | 2026-09-28 | funda-verkocht-plak | 41 | 6511ST
+Vondelstraat 48-A | Nijmegen | 398000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6512BH
+Jacob Canisstraat 79 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6521HK
+Ziekerstraat 10 | Nijmegen | 398000 | verkocht | 2026-09-28 | funda-verkocht-plak | 75 | 6511LH
+Molukkenstraat 152 | Nijmegen | 385000 | verkocht | 2026-09-28 | funda-verkocht-plak | 69 | 6524NJ
+Zwaluwstraat 36 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 82 | 6541NT
+Gerard Noodtstraat 129-A7 | Nijmegen | 217500 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6511ST
+Plein 1944 132-a | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511JG
+Prins Hendrikstraat 65 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 68 | 6521AX
+Molenstraat 43-G | Nijmegen | 189000 | verkocht | 2026-09-28 | funda-verkocht-plak | 27 | 6511HA
+Mariënburg 82-A | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6511PS
+Groesbeeksedwarsweg 153 | Nijmegen | 615000 | verkocht | 2026-09-28 | funda-verkocht-plak | 143 | 6521DE
+Waalbandijk 161 | Nijmegen | 700000 | verkocht | 2026-09-28 | funda-verkocht-plak | 171 | 6541AA
+Plein 1944 129-M | Nijmegen | 629000 | verkocht | 2026-09-28 | funda-verkocht-plak | 120 | 6511JG
+van Slichtenhorststraat 48-C | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6524JS
+Arksteestraat 10 | Nijmegen | 470000 | verkocht | 2026-09-28 | funda-verkocht-plak | 125 | 6511MZ
+Kronenburgersingel 291 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511AV
+Delistraat 71 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 94 | 6524KN
+Tweede Walstraat 49-A | Nijmegen | 345000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511LP
+Tollensstraat 147-B | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6531AC
+Doddendaal 99 | Nijmegen | 1250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 168 | 6511DD
+Eerste Oude Heselaan 144 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6541PD
+Ridderspoor 41 | Nijmegen | 360000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6542HA
+Sperwerstraat 62 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6541SH
+Sperwerstraat 89 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 86 | 6541SE
+Wilhelminasingel 1 | Nijmegen | 162500 | verkocht | 2026-09-28 | funda-verkocht-plak | 26 | 6524AH
+Dominicanenstraat 151-A | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 51 | 6521KC
+Oranjesingel 69 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6511NR
+Mariënburg 86-B | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 80 | 6511PS
+Palembangstraat 40 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 98 | 6524KX
+Professor van der Veldenstraat 9 | Nijmegen | 370000 | verkocht | 2026-09-28 | funda-verkocht-plak | 71 | 6524PN
+Stikke Hezelstraat 77 | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 57 | 6511JW
+Eilbrachtstraat 1 | Nijmegen | 290000 | verkocht | 2026-09-28 | funda-verkocht-plak | 43 | 6511LX
+Mr. Franckenstraat 15 | Nijmegen | 900000 | verkocht | 2026-09-28 | funda-verkocht-plak | 225 | 6522AB
+van Nispenstraat 116 | Nijmegen | 695000 | verkocht | 2026-09-28 | funda-verkocht-plak | 180 | 6521KR
+Hertogstraat 69 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511RW
+Tollensstraat 141-B | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6531AC
+Graafseweg 47-E | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 67 | 6512BR
+Jonckerhof 4 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 143 | 6511XW
+van Broeckhuysenstraat 42 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 84 | 6511PJ
+Dominicanenstraat 151 | Nijmegen | 390000 | verkocht | 2026-09-28 | funda-verkocht-plak | 69 | 6521KC
+Eerste Walstraat 1-C | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511GE
+Evertsenstraat 27 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 93 | 6512JL
+Raadhuishof 14 | Nijmegen | 600000 | verkocht | 2026-09-28 | funda-verkocht-plak | 110 | 6511PW
+Krayenhofflaan 267 | Nijmegen | 685000 | verkocht | 2026-09-28 | funda-verkocht-plak | 138 | 6541PR
+Burg. Hustinxstraat 68 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 116 | 6512AE
+van Goorstraat 7-B | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6512EA
+Graafseweg 47-X | Nijmegen | 345000 | verkocht | 2026-09-28 | funda-verkocht-plak | 59 | 6512BR
+Plein 1944 129-H | Nijmegen | 575000 | verkocht | 2026-09-28 | funda-verkocht-plak | 116 | 6511JG
+Dominicanenstraat 151-B | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 69 | 6521KC
+Tweede Walstraat 27 | Nijmegen | 310000 | verkocht | 2026-09-28 | funda-verkocht-plak | 52 | 6511LN
+Mr. Franckenstraat 29-B | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 92 | 6522AC
+Javastraat 11 | Nijmegen | 925000 | verkocht | 2026-09-28 | funda-verkocht-plak | 127 | 6524LS
+Molukkenstraat 3-T | Nijmegen | 825000 | verkocht | 2026-09-28 | funda-verkocht-plak | 153 | 6524NA
+van Heemskerckstraat 45 | Nijmegen | 490000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6512GM
+van Heutszstraat 15 | Nijmegen | 859000 | verkocht | 2026-09-28 | funda-verkocht-plak | 152 | 6521CS
+Parkweg 62 | Nijmegen | 775000 | verkocht | 2026-09-28 | funda-verkocht-plak | 160 | 6511BJ
+Van der Kempstraat 1 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6512JP
+Raadhuishof 25 | Nijmegen | 595000 | verkocht | 2026-09-28 | funda-verkocht-plak | 110 | 6511PW
+Bijleveldsingel 5-C | Nijmegen | 340000 | verkocht | 2026-09-28 | funda-verkocht-plak | 66 | 6521AM
+van Somerenstraat 8 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6521BR
+Derde Walstraat 114 | Nijmegen | 169000 | verkocht | 2026-09-28 | funda-verkocht-plak | 28 | 6511SP
+Groesbeekseweg 141-A | Nijmegen | 480000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6524CV
+Oude Haven 58 | Nijmegen | 448500 | verkocht | 2026-09-28 | funda-verkocht-plak | 97 | 6511XH
+Stikke Hezelstraat 57 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6511JW
+Achter de Wiemelpoort 5-B | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 68 | 6511JJ
+Ruusbroecstraat 24-D | Nijmegen | 575000 | verkocht | 2026-09-28 | funda-verkocht-plak | 114 | 6531AH
+Burg. Hustinxstraat 264 | Nijmegen | 362500 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6512AC
+Palmstraat 40 | Nijmegen | 485000 | verkocht | 2026-09-28 | funda-verkocht-plak | 118 | 6542JZ
+Graafsedwarsstraat 69 | Nijmegen | 565000 | verkocht | 2026-09-28 | funda-verkocht-plak | 117 | 6512ER
+Fagelstraat 22 | Nijmegen | 495000 | verkocht | 2026-09-28 | funda-verkocht-plak | 122 | 6524CE
+St. Thomashof 5-G | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 68 | 6511SZ
+Kronenburgersingel 199 | Nijmegen | 299000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511AP
+Dr. Jan Berendsstraat 23 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6512HA
+Bankastraat 17 | Nijmegen | 399000 | verkocht | 2026-09-28 | funda-verkocht-plak | 82 | 6524MS
+Sperwerstraat 7 | Nijmegen | 495000 | verkocht | 2026-09-28 | funda-verkocht-plak | 101 | 6541SB
+Karrengas 50-B | Nijmegen | 195000 | verkocht | 2026-09-28 | funda-verkocht-plak | 29 | 6511GS
+Kronenburgersingel 197 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511AP
+Fransestraat 34-A | Nijmegen | 659000 | verkocht | 2026-09-28 | funda-verkocht-plak | 141 | 6524JC
+St. Stephanusstraat 122 | Nijmegen | 459000 | verkocht | 2026-09-28 | funda-verkocht-plak | 90 | 6512HX
+de Ruyterstraat 189 | Nijmegen | 650000 | verkocht | 2026-09-28 | funda-verkocht-plak | 136 | 6512GD
+Scholenhof 51 | Nijmegen | 525000 | verkocht | 2026-09-28 | funda-verkocht-plak | 92 | 6511SG
+Achter de Carmel 32 | Nijmegen | 448000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6511CT
+Groesbeekseweg 47 | Nijmegen | 975000 | verkocht | 2026-09-28 | funda-verkocht-plak | 255 | 6524CN
+van Slichtenhorststraat 71 | Nijmegen | 1085000 | verkocht | 2026-09-28 | funda-verkocht-plak | 256 | 6524JL
+van Spaenstraat 24 | Nijmegen | 489000 | verkocht | 2026-09-28 | funda-verkocht-plak | 93 | 6524HN
+Boomvalkstraat 12 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6541RT
+Bloemerstraat 111 | Nijmegen | 362500 | verkocht | 2026-09-28 | funda-verkocht-plak | 67 | 6511EG
+Molukkenstraat 76 | Nijmegen | 389000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6524ND
+Koninginnelaan 197 | Nijmegen | 415000 | verkocht | 2026-09-28 | funda-verkocht-plak | 87 | 6542ZP
+Zwaluwstraat 48 | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 82 | 6541NT
+Tweede Walstraat 101 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511LS
+Tweede Walstraat 31-B | Nijmegen | 298000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6511LN
+Burg. Hustinxstraat 114 | Nijmegen | 309000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6512AG
+Derde Walstraat 116 | Nijmegen | 265000 | verkocht | 2026-09-28 | funda-verkocht-plak | 67 | 6511SP
+van Schevichavenstraat 3-S | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6511LM
+van Welderenstraat 95-B | Nijmegen | 385000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6511ME
+Semmelinkstraat 23 | Nijmegen | 435000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6512JR
+Javastraat 112 | Nijmegen | 925000 | verkocht | 2026-09-28 | funda-verkocht-plak | 166 | 6524MK
+Professor Hoogveldstraat 4 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6524PL
+Gladiolenstraat 12 | Nijmegen | 399000 | verkocht | 2026-09-28 | funda-verkocht-plak | 90 | 6542XC
+Voorstadslaan 49-C | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 52 | 6541AB
+Vondelstraat 12-A | Nijmegen | 349500 | verkocht | 2026-09-28 | funda-verkocht-plak | 66 | 6512BE
+Delistraat 43 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6524KN
+Eerste Oude Heselaan 150 | Nijmegen | 259500 | verkocht | 2026-09-28 | funda-verkocht-plak | 36 | 6541PD
+Mariënburgsestraat 25 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6511RL
+Professor van der Heijdenstraat 2 | Nijmegen | 419000 | verkocht | 2026-09-28 | funda-verkocht-plak | 105 | 6524PW
+Fransestraat 5-B | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 39 | 6524HP
+Palembangstraat 30 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 95 | 6524KX
+Raadhuisstraat 18 | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6511PV
+Eerste Oude Heselaan 154 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6541PD
+Kronenburgersingel 169 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6511AP
+Fransestraat 5-A | Nijmegen | 289000 | verkocht | 2026-09-28 | funda-verkocht-plak | 36 | 6524HP
+Voorstadslaan 12 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6541SR
+Javastraat 23 | Nijmegen | 850000 | verkocht | 2026-09-28 | funda-verkocht-plak | 173 | 6524LT
+Professor Schlichtingstraat 5 | Nijmegen | 875000 | verkocht | 2026-09-28 | funda-verkocht-plak | 172 | 6524NM
+Wilhelminasingel 2-A | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6524AK
+Bronsgeeststraat 11 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 52 | 6541ZJ
+Piet Heinstraat 67 | Nijmegen | 540000 | verkocht | 2026-09-28 | funda-verkocht-plak | 95 | 6512GS
+Jacob Canisstraat 32-A | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6521HT
+Heselaan 88 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 106 | 6541MH
+Oude Azaleastraat 7 | Nijmegen | 495000 | verkocht | 2026-09-28 | funda-verkocht-plak | 98 | 6542JR
+Bijleveldsingel 20-DF | Nijmegen | 389000 | verkocht | 2026-09-28 | funda-verkocht-plak | 75 | 6521AT
+Weurtseweg 65 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6541AN
+Boomvalkstraat 8 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6541RT
+Oude Haven 104 | Nijmegen | 580000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6511XH
+Molukkenstraat 70 | Nijmegen | 409000 | verkocht | 2026-09-28 | funda-verkocht-plak | 82 | 6524ND
+Bachstraat 17 | Nijmegen | 825000 | verkocht | 2026-09-28 | funda-verkocht-plak | 148 | 6521EH
+van Berchenstraat 10 | Nijmegen | 525000 | verkocht | 2026-09-28 | funda-verkocht-plak | 107 | 6511BC
+Lage Markt 1-B | Nijmegen | 429500 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6511VK
+Mariënburgsestraat 39 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6511RL
+Graafseweg 47-C | Nijmegen | 409000 | verkocht | 2026-09-28 | funda-verkocht-plak | 93 | 6512BR
+Gorisstraat 24 | Nijmegen | 829000 | verkocht | 2026-09-28 | funda-verkocht-plak | 137 | 6521CK
+Ganzenheuvel 14 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6511WD
+Delistraat 33 | Nijmegen | 885000 | verkocht | 2026-09-28 | funda-verkocht-plak | 145 | 6524KM
+Evertsenstraat 17 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 80 | 6512JK
+Karrengas 48 | Nijmegen | 239000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6511GS
+Johan Maelwaelplein 5 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 87 | 6511BV
+Groesbeekseweg 162 | Nijmegen | 795000 | verkocht | 2026-09-28 | funda-verkocht-plak | 208 | 6521CP
+Professor van der Heijdenstraat 36 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 84 | 6524PX
+Waalbandijk 277 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6541AA
+Hessenberg 35-B | Nijmegen | 285000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511BS
+van Heutszstraat 47 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6521CT
+Molenstraat 63-H | Nijmegen | 285000 | verkocht | 2026-09-28 | funda-verkocht-plak | 51 | 6511HA
+Dominicanenstraat 86 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6521KE
+Eerste Oude Heselaan 162-A | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6541PD
+Karrengas 44-C | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6511GS
+Zwaluwstraat 29 | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 42 | 6541NZ
+Scholenhof 1 | Nijmegen | 519000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6511SG
+Molenstraat 63-Q | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 37 | 6511HA
+Beijensstraat 4-C | Nijmegen | 270000 | verkocht | 2026-09-28 | funda-verkocht-plak | 42 | 6521EC
+Prins Bernhardstraat 57 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 56 | 6521AD
+St. Annastraat 43-A | Nijmegen | 575000 | verkocht | 2026-09-28 | funda-verkocht-plak | 133 | 6524EE
+Willemsweg 96 | Nijmegen | 345000 | verkocht | 2026-09-28 | funda-verkocht-plak | 62 | 6531DN
+Achter de Wiemelpoort 5-A | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 57 | 6511JJ
+Groesbeeksedwarsweg 155 | Nijmegen | 725000 | verkocht | 2026-09-28 | funda-verkocht-plak | 139 | 6521DE
+van Goorstraat 43 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6512EB
+Schoolstraat 153 | Nijmegen | 329000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6512JG
+Voorstadslaan 119 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6541SL
+Van der Kempstraat 12 | Nijmegen | 445000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6512JP
+Derde Walstraat 110 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6511SP
+Houtstraat 27 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6511JK
+Bankastraat 6 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6524MT
+Schoolstraat 151 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 53 | 6512JG
+Burghardt van den Berghstraat 30 | Nijmegen | 465000 | verkocht | 2026-09-28 | funda-verkocht-plak | 99 | 6512DM
+Berg en Dalseweg 5 | Nijmegen | 160000 | verkocht | 2026-09-28 | funda-verkocht-plak | 22 | 6521JA
+Mariënburgsestraat 23 | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6511RL
+Mariënburgsestraat 47-A | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 41 | 6511RL
+Johannes Vijghstraat 18 | Nijmegen | 575000 | verkocht | 2026-09-28 | funda-verkocht-plak | 110 | 6524BS
+Plein 1944 89-D | Nijmegen | 585000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6511JE
+Graafseweg 100-B | Nijmegen | 285000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6512CH
+van Dulckenstraat 32-A | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 57 | 6512DV
+van Welderenstraat 32 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 123 | 6511ML
+St. Annastraat 165-C | Nijmegen | 415000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6524ES
+Schoolstraat 155 | Nijmegen | 449000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6512JG
+Gerard Noodtstraat 33 | Nijmegen | 485000 | verkocht | 2026-09-28 | funda-verkocht-plak | 84 | 6511SV
+Castellastraat 42 | Nijmegen | 545000 | verkocht | 2026-09-28 | funda-verkocht-plak | 109 | 6512EX
+Nina Simonestraat 50 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 68 | 6541EB
+van Nispenstraat 212 | Nijmegen | 498000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6521KT
+Johannes Vijghstraat 76 | Nijmegen | 399000 | verkocht | 2026-09-28 | funda-verkocht-plak | 69 | 6524BW
+Groesbeekseweg 103-C | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 30 | 6524CS
+Regulierstraat 80 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6511DS
+Daalsehof 5-A | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 68 | 6521GT
+van der Brugghenstraat 6-A | Nijmegen | 359000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511SL
+Tweede Walstraat 27-H | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6511LN
+Krayenhofflaan 337 | Nijmegen | 359000 | verkocht | 2026-09-28 | funda-verkocht-plak | 75 | 6541PS
+Sumatraplein 82 | Nijmegen | 299000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6524KH
+Krayenhofflaan 34 | Nijmegen | 555000 | verkocht | 2026-09-28 | funda-verkocht-plak | 100 | 6541PT
+Beijensstraat 20 | Nijmegen | 539000 | verkocht | 2026-09-28 | funda-verkocht-plak | 101 | 6521EC
+Karrengas 54-A | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6511GS
+Molenstraat 148 | Nijmegen | 576500 | verkocht | 2026-09-28 | funda-verkocht-plak | 156 | 6511HN
+van Oldenbarneveltstraat 29 | Nijmegen | 995000 | verkocht | 2026-09-28 | funda-verkocht-plak | 221 | 6512AS
+Stijn Buysstraat 74 | Nijmegen | 588000 | verkocht | 2026-09-28 | funda-verkocht-plak | 116 | 6512CT
+Thijmstraat 7-H | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6531CM
+Burg. Hustinxstraat 184 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 51 | 6512AC
+Graafseweg 70 | Nijmegen | 595000 | verkocht | 2026-09-28 | funda-verkocht-plak | 130 | 6512CE
+Waalkade 59 | Nijmegen | 799000 | verkocht | 2026-09-28 | funda-verkocht-plak | 138 | 6511XP
+Waalbandijk 99 | Nijmegen | 649000 | verkocht | 2026-09-28 | funda-verkocht-plak | 162 | 6541AK
+Gerard Noodtstraat 71 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 104 | 6511SV
+Jacob Canisstraat 98 | Nijmegen | 385000 | verkocht | 2026-09-28 | funda-verkocht-plak | 67 | 6521HX
+Korenbloemstraat 36 | Nijmegen | 320000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6542NJ
+Kronenburgersingel 45 | Nijmegen | 349000 | verkocht | 2026-09-28 | funda-verkocht-plak | 86 | 6511AL
+Ridderspoor 122 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6542HG
+Eerste Oude Heselaan 164 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6541PD
+Sperwerstraat 76 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6541SH
+Willemsweg 67-A | Nijmegen | 282500 | verkocht | 2026-09-28 | funda-verkocht-plak | 53 | 6531DD
+Wilhelminasingel 7-B | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 84 | 6524AH
+Scholeksterstraat 36 | Nijmegen | 240000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6541LC
+van Welderenstraat 7-A | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 104 | 6511MA
+Arksteestraat 17 | Nijmegen | 385000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6511MX
+Burg. Hustinxstraat 222 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6512AC
+Ziekerstraat 120-A | Nijmegen | 175000 | verkocht | 2026-09-28 | funda-verkocht-plak | 28 | 6511LK
+Eerste Oude Heselaan 164-A | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6541PD
+Eerste Oude Heselaan 152 | Nijmegen | 265000 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6541PD
+Begijnenstraat 44 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 52 | 6511WP
+Willemsweg 67 | Nijmegen | 232500 | verkocht | 2026-09-28 | funda-verkocht-plak | 42 | 6531DD
+Karrengas 48-B | Nijmegen | 270000 | verkocht | 2026-09-28 | funda-verkocht-plak | 42 | 6511GS
+Molenstraat 41-G | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 41 | 6511HA
+van Somerenstraat 6 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6521BR
+St. Annastraat 30 | Nijmegen | 189000 | verkocht | 2026-09-28 | funda-verkocht-plak | 31 | 6524GD
+Korenbloemstraat 16 | Nijmegen | 440000 | verkocht | 2026-09-28 | funda-verkocht-plak | 76 | 6542NJ
+Burg. Hustinxstraat 294 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6512AC
+Augustijnenstraat 40-A1 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 59 | 6511KG
+Beijensstraat 66 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 106 | 6521ED
+Stikke Hezelstraat 9 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6511JV
+Professor van der Veldenstraat 11 | Nijmegen | 367000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6524PN
+Staringstraat 10 | Nijmegen | 575000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6521AJ
+Achter de Carmel 28 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6511CT
+Jonckerhof 1 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6511XW
+Molukkenstraat 106 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 83 | 6524NE
+Lage Markt 23 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6511VK
+Pijkestraat 3 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6511BN
+Graadt van Roggenstraat 14 | Nijmegen | 1375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 256 | 6522AK
+Ziekerstraat 14-A | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511LH
+Sumatrastraat 22 | Nijmegen | 1050000 | verkocht | 2026-09-28 | funda-verkocht-plak | 265 | 6524KK
+St. Annastraat 154 | Nijmegen | 765000 | verkocht | 2026-09-28 | funda-verkocht-plak | 186 | 6524GR
+Molenstraat 98-A1 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 46 | 6511HJ
+Burg. Hustinxstraat 296 | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6512AC
+Dominicanenstraat 20 | Nijmegen | 590000 | verkocht | 2026-09-28 | funda-verkocht-plak | 136 | 6521KD
+Bloemerstraat 38 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6511EK
+Smetiusstraat 10-C | Nijmegen | 215000 | verkocht | 2026-09-28 | funda-verkocht-plak | 53 | 6511ES
+Pontanusstraat 32 | Nijmegen | 595000 | verkocht | 2026-09-28 | funda-verkocht-plak | 162 | 6524HG
+Eerste Oude Heselaan 142 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6541PD
+Semmelinkstraat 12 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6512JT
+Thijmstraat 109 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 86 | 6531CP
+Waalkade 13 | Nijmegen | 595000 | verkocht | 2026-09-28 | funda-verkocht-plak | 162 | 6511XP
+Nieuwe Nonnendaalseweg 133 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 108 | 6542PE
+Plein 1944 68 | Nijmegen | 389500 | verkocht | 2026-09-28 | funda-verkocht-plak | 92 | 6511JE
+Daalsehof 11 | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 31 | 6521GT
+Eerste Oude Heselaan 162 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 32 | 6541PD
+Marialaan 95 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 56 | 6541RD
+Scholeksterstraat 27 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6541LA
+Jacob Canisstraat 30-A | Nijmegen | 345000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6521HT
+Veemarkt 115 | Nijmegen | 340000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZD
+Burg. Hustinxstraat 40 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 117 | 6512AD
+Marialaan 81 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6541RC
+Smetiusstraat 4-B | Nijmegen | 198000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6511ES
+Eerste Oude Heselaan 156-A | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6541PD
+Eerste Oude Heselaan 158-A | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6541PD
+Floraweg 17 | Nijmegen | 362500 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6542KA
+Delistraat 10 | Nijmegen | 795000 | verkocht | 2026-09-28 | funda-verkocht-plak | 152 | 6524KP
+Plein 1944 130-B | Nijmegen | 435000 | verkocht | 2026-09-28 | funda-verkocht-plak | 66 | 6511JG
+Hertogstraat 53-A | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 56 | 6511RW
+van Welderenstraat 139 | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 28 | 6511MJ
+Berg en Dalseweg 7 | Nijmegen | 169500 | verkocht | 2026-09-28 | funda-verkocht-plak | 22 | 6521JA
+Scholenhof 81 | Nijmegen | 421000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6511SG
+van Nispenstraat 234 | Nijmegen | 585000 | verkocht | 2026-09-28 | funda-verkocht-plak | 98 | 6521KV
+Kroonstraat 142 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 86 | 6511DX
+Ziekerstraat 38 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 69 | 6511LH
+Bloemerstraat 28 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 71 | 6511EJ
+Ziekerstraat 34 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511LH
+Piet Heinstraat 54 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6512GV
+Kaaisjouwerskade 236 | Nijmegen | 719000 | verkocht | 2026-09-28 | funda-verkocht-plak | 120 | 6541EW
+Ganzenheuvel 73 | Nijmegen | 650000 | verkocht | 2026-09-28 | funda-verkocht-plak | 130 | 6511WD
+Dokstraat 79 | Nijmegen | 420000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6541EZ
+Molenstraat 43-U | Nijmegen | 289000 | verkocht | 2026-09-28 | funda-verkocht-plak | 46 | 6511HA
+Graafseweg 47-J | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 98 | 6512BR
+Houthof 47-B | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 70 | 6511JT
+Professor van Weliestraat 26 | Nijmegen | 750000 | verkocht | 2026-09-28 | funda-verkocht-plak | 150 | 6524NN
+Nieuwe Markt 12 | Nijmegen | 800000 | verkocht | 2026-09-28 | funda-verkocht-plak | 209 | 6511XK
+Fagelstraat 12 | Nijmegen | 519000 | verkocht | 2026-09-28 | funda-verkocht-plak | 117 | 6524CE
+Kronenburgersingel 71 | Nijmegen | 282000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511AM
+Koningstraat 32 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 44 | 6511LB
+Veemarkt 225 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZJ
+Veemarkt 135 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZD
+Eerste Oude Heselaan 156 | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6541PD
+Veemarkt 253 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZJ
+Pijkestraat 17 | Nijmegen | 330000 | verkocht | 2026-09-28 | funda-verkocht-plak | 84 | 6511BN
+Ridderspoor 40 | Nijmegen | 310000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6542HD
+Schoolstraat 29 | Nijmegen | 525000 | verkocht | 2026-09-28 | funda-verkocht-plak | 121 | 6512JB
+van Nispenstraat 240 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6521KV
+Graafseweg 33-A16 | Nijmegen | 170800 | verkocht | 2026-09-28 | funda-verkocht-plak | 24 | 6512BP
+Daalsehof 11-A | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 46 | 6521GT
+Veemarkt 165 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZD
+Veemarkt 293 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511ZJ
+Veemarkt 275 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZJ
+Veemarkt 73 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511ZD
+Graafseweg 33-A10 | Nijmegen | 119000 | verkocht | 2026-09-28 | funda-verkocht-plak | 19 | 6512BP
+van den Havestraat 83 | Nijmegen | 429000 | verkocht | 2026-09-28 | funda-verkocht-plak | 100 | 6521JP
+Augustijnenstraat 51 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511KE
+Evertsenstraat 19 | Nijmegen | 499000 | verkocht | 2026-09-28 | funda-verkocht-plak | 115 | 6512JK
+Gerard Noodtstraat 28 | Nijmegen | 479000 | verkocht | 2026-09-28 | funda-verkocht-plak | 97 | 6511SW
+Bronsgeeststraat 53 | Nijmegen | 385000 | verkocht | 2026-09-28 | funda-verkocht-plak | 59 | 6541ZK
+Professor van der Veldenstraat 32 | Nijmegen | 370000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6524PR
+Ridderspoor 128 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6542HG
+Bloemenburgerhof 16 | Nijmegen | 315000 | verkocht | 2026-09-28 | funda-verkocht-plak | 63 | 6511EP
+Jan de Wittstraat 61 | Nijmegen | 539000 | verkocht | 2026-09-28 | funda-verkocht-plak | 115 | 6512EH
+van Heutszstraat 6 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 83 | 6521CW
+van den Havestraat 91 | Nijmegen | 469000 | verkocht | 2026-09-28 | funda-verkocht-plak | 97 | 6521JR
+Tweede Walstraat 163-B | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6511LT
+Bijleveldsingel 105 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6521AP
+Groesbeekseweg 22 | Nijmegen | 1095000 | verkocht | 2026-09-28 | funda-verkocht-plak | 303 | 6524DB
+Groesbeekseweg 93-B | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 62 | 6524CS
+Groesbeekseweg 93-A | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6524CS
+Voorstadslaan 4-B | Nijmegen | 439000 | verkocht | 2026-09-28 | funda-verkocht-plak | 141 | 6541AC
+Scheidemakershof 39-B | Nijmegen | 280000 | verkocht | 2026-09-28 | funda-verkocht-plak | 41 | 6511KJ
+Molenstraat 98-A2 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6511HJ
+Vondelstraat 73 | Nijmegen | 390000 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6512BC
+Burchtstraat 70 | Nijmegen | 550000 | verkocht | 2026-09-28 | funda-verkocht-plak | 145 | 6511RH
+Hertogstraat 37 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 139 | 6511RV
+Groesbeeksedwarsweg 260 | Nijmegen | 765000 | verkocht | 2026-09-28 | funda-verkocht-plak | 173 | 6521DV
+Tweede Walstraat 37-A | Nijmegen | 299500 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6511LP
+Tweede Walstraat 35-A | Nijmegen | 299500 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6511LP
+van Welderenstraat 38-A | Nijmegen | 249000 | verkocht | 2026-09-28 | funda-verkocht-plak | 53 | 6511MN
+Nieuwe Markt 94 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 73 | 6511XM
+Tweede Walstraat 43-A | Nijmegen | 299000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6511LP
+Tweede Walstraat 35 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 33 | 6511LP
+Tweede Walstraat 47 | Nijmegen | 265000 | verkocht | 2026-09-28 | funda-verkocht-plak | 33 | 6511LP
+Tweede Walstraat 45 | Nijmegen | 200000 | verkocht | 2026-09-28 | funda-verkocht-plak | 23 | 6511LP
+Sumatraplein 46 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6524KH
+Burg. Hustinxstraat 236 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6512AC
+van Berchenstraat 10-C | Nijmegen | 255000 | verkocht | 2026-09-28 | funda-verkocht-plak | 31 | 6511BC
+Karrengas 48-C | Nijmegen | 235000 | verkocht | 2026-09-28 | funda-verkocht-plak | 32 | 6511GS
+Kronenburgerplaats 34 | Nijmegen | 340000 | verkocht | 2026-09-28 | funda-verkocht-plak | 66 | 6511AW
+van Welderenstraat 129 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6511MJ
+Karrengas 52 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511GS
+Ridderstraat 68 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6511TM
+de Ruyterstraat 3-L | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 39 | 6512GA
+Evertsenstraat 22 | Nijmegen | 535000 | verkocht | 2026-09-28 | funda-verkocht-plak | 121 | 6512JM
+Oude Nonnendaalseweg 188 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 107 | 6542WX
+Waalkade 42 | Nijmegen | 699000 | verkocht | 2026-09-28 | funda-verkocht-plak | 161 | 6511XP
+Thijmstraat 17-E | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6531CM
+Derde Walstraat 1 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 43 | 6511SM
+van Berchenstraat 20 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 71 | 6511BC
+Fagelstraat 40 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 107 | 6524CE
+Zwaluwstraat 147 | Nijmegen | 425000 | verkocht | 2026-09-28 | funda-verkocht-plak | 86 | 6541NW
+van Heutszstraat 41 | Nijmegen | 485000 | verkocht | 2026-09-28 | funda-verkocht-plak | 96 | 6521CT
+van Schaeck Mathonsingel 47 | Nijmegen | 395000 | verkocht | 2026-09-28 | funda-verkocht-plak | 99 | 6512AJ
+Kronenburgerplaats 22 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511AW
+Coehoornstraat 36 | Nijmegen | 795000 | verkocht | 2026-09-28 | funda-verkocht-plak | 164 | 6521CE
+Staringstraat 21-B | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6521AG
+Nieuwe Markt 4-A | Nijmegen | 329000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511XK
+Groesbeekseweg 23-A | Nijmegen | 249000 | verkocht | 2026-09-28 | funda-verkocht-plak | 49 | 6524CL
+Koninginnelaan 103 | Nijmegen | 449000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6542ZK
+Veemarkt 175 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511ZD
+Veemarkt 193 | Nijmegen | 330000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6511ZJ
+Professor Hoogveldstraat 32 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6524PM
+Graafseweg 33-W | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 35 | 6512BP
+Veemarkt 157 | Nijmegen | 347500 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511ZD
+Kronenburgersingel 297 | Nijmegen | 340000 | verkocht | 2026-09-28 | funda-verkocht-plak | 57 | 6511AV
+Hertogstraat 28 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 79 | 6511SB
+St. Canisiussingel 19 | Nijmegen | 515000 | verkocht | 2026-09-28 | funda-verkocht-plak | 97 | 6511TE
+Waalbandijk 247 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6541AA
+Plein 1944 133-A | Nijmegen | 399000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511JH
+Sumatraplein 80 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 48 | 6524KH
+Kronenburgersingel 287 | Nijmegen | 340000 | verkocht | 2026-09-28 | funda-verkocht-plak | 58 | 6511AV
+Groesbeekseweg 21-C | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 55 | 6524CL
+Veemarkt 177 | Nijmegen | 365000 | verkocht | 2026-09-28 | funda-verkocht-plak | 61 | 6511ZD
+Groesbeekseweg 63 | Nijmegen | 1080000 | verkocht | 2026-09-28 | funda-verkocht-plak | 350 | 6524CP
+Jacob Canisstraat 26 | Nijmegen | 565000 | verkocht | 2026-09-28 | funda-verkocht-plak | 114 | 6521HT
+Krayenhofflaan 307 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 113 | 6541PS
+Molenstraat 43-R | Nijmegen | 225000 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6511HA
+Veemarkt 159 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511ZD
+Sperwerstraat 46 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6541SH
+Kronenburgersingel 47 | Nijmegen | 282500 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511AL
+In de Betouwstraat 5-B | Nijmegen | 300000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511GA
+Ridderstraat 88 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 62 | 6511TM
+de Ruyterstraat 207 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 125 | 6512GD
+de Ruyterstraat 205 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6512GD
+Koninginnelaan 225 | Nijmegen | 640000 | verkocht | 2026-09-28 | funda-verkocht-plak | 143 | 6542ZR
+Tweede Walstraat 49 | Nijmegen | 345000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511LP
+Schoolstraat 40 | Nijmegen | 325000 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6512JH
+Professor van der Heijdenstraat 15 | Nijmegen | 370000 | verkocht | 2026-09-28 | funda-verkocht-plak | 74 | 6524PT
+Groesbeekseweg 21 | Nijmegen | 215000 | verkocht | 2026-09-28 | funda-verkocht-plak | 44 | 6524CL
+Evertsenstraat 48 | Nijmegen | 260000 | verkocht | 2026-09-28 | funda-verkocht-plak | 33 | 6512JN
+van Goorstraat 81 | Nijmegen | 525000 | verkocht | 2026-09-28 | funda-verkocht-plak | 102 | 6512EC
+Waalbandijk 125 | Nijmegen | 550000 | verkocht | 2026-09-28 | funda-verkocht-plak | 118 | 6541AK
+Lange Hezelstraat 100 | Nijmegen | 265000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511CN
+Voorstadslaan 44 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 101 | 6541SR
+Groesbeekseweg 21-A | Nijmegen | 249000 | verkocht | 2026-09-28 | funda-verkocht-plak | 53 | 6524CL
+Fuutstraat 1 | Nijmegen | 335000 | verkocht | 2026-09-28 | funda-verkocht-plak | 71 | 6542TV
+Burchtstraat 79-B | Nijmegen | 285000 | verkocht | 2026-09-28 | funda-verkocht-plak | 45 | 6511RC
+Roukensstraat 12 | Nijmegen | 445000 | verkocht | 2026-09-28 | funda-verkocht-plak | 98 | 6521BN
+Fransestraat 13 | Nijmegen | 519000 | verkocht | 2026-09-28 | funda-verkocht-plak | 106 | 6524HP
+Houtstraat 25 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511JK
+van Somerenstraat 40 | Nijmegen | 319000 | verkocht | 2026-09-28 | funda-verkocht-plak | 47 | 6521BS
+Eerste Oude Heselaan 140-A | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 81 | 6541PD
+Veemarkt 81 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 72 | 6511ZD
+van Slichtenhorststraat 51 | Nijmegen | 185000 | verkocht | 2026-09-28 | funda-verkocht-plak | 26 | 6524JK
+Beijensstraat 1 | Nijmegen | 439000 | verkocht | 2026-09-28 | funda-verkocht-plak | 103 | 6521EA
+Burghardt van den Berghstraat 153 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6512DK
+Waalkade 81 | Nijmegen | 795000 | verkocht | 2026-09-28 | funda-verkocht-plak | 128 | 6511XR
+St. Annastraat 30 | Nijmegen | 175000 | verkocht | 2026-09-28 | funda-verkocht-plak | 23 | 6524GD
+Wilhelminasingel 18 | Nijmegen | 1150000 | verkocht | 2026-09-28 | funda-verkocht-plak | 333 | 6524AM
+Molukkenstraat 100 | Nijmegen | 450000 | verkocht | 2026-09-28 | funda-verkocht-plak | 82 | 6524NE
+Semmelinkstraat 2 | Nijmegen | 435000 | verkocht | 2026-09-28 | funda-verkocht-plak | 64 | 6512JT
+Nieuwe Markt 72 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6511XL
+Graafseweg 33-A22 | Nijmegen | 150000 | verkocht | 2026-09-28 | funda-verkocht-plak | 24 | 6512BP
+Plein 1944 53 | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 65 | 6511JE
+Gerard Noodtstraat 141 | Nijmegen | 375000 | verkocht | 2026-09-28 | funda-verkocht-plak | 101 | 6511ST
+Professor van der Veldenstraat 36 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 85 | 6524PR
+Jacob Canisstraat 36-A | Nijmegen | 269000 | verkocht | 2026-09-28 | funda-verkocht-plak | 27 | 6521HT
+Groesbeekseweg 21-B | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 37 | 6524CL
+Gerard Noodtstraat 139 | Nijmegen | 400000 | verkocht | 2026-09-28 | funda-verkocht-plak | 99 | 6511ST
+Delistraat 73 | Nijmegen | 475000 | verkocht | 2026-09-28 | funda-verkocht-plak | 107 | 6524KN
+Nieuwe Nonnendaalseweg 43 | Nijmegen | 299500 | verkocht | 2026-09-28 | funda-verkocht-plak | 54 | 6542PA
+Molukkenstraat 7-A18 | Nijmegen | 339500 | verkocht | 2026-09-28 | funda-verkocht-plak | 52 | 6524NA
+Molukkenstraat 7-A9 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 50 | 6524NA
+St. Annastraat 21-A | Nijmegen | 85000 | verkocht | 2026-09-28 | funda-verkocht-plak | 12 | 6524EC
+Fagelstraat 86 | Nijmegen | 500000 | verkocht | 2026-09-28 | funda-verkocht-plak | 78 | 6524CH
+Hendrikhof 8 | Nijmegen | 350000 | verkocht | 2026-09-28 | funda-verkocht-plak | 122 | 6511JA
+St. Anthoniusplaats 2 | Nijmegen | 250000 | verkocht | 2026-09-28 | funda-verkocht-plak | 60 | 6511TR
+Marialaan 4 | Nijmegen | 295000 | verkocht | 2026-09-28 | funda-verkocht-plak | 100 | 6541RL
+Molukkenstraat 7-A5 | Nijmegen | 232500 | verkocht | 2026-09-28 | funda-verkocht-plak | 29 | 6524NA
+Molukkenstraat 7-A7 | Nijmegen | 262500 | verkocht | 2026-09-28 | funda-verkocht-plak | 34 | 6524NA
+Molukkenstraat parkeerplaats | Nijmegen | 27500 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6524NA
+Bloemerstraat 85 | Nijmegen | 355000 | verkocht | 2026-09-28 | funda-verkocht-plak | 77 | 6511EE
+Pontanusstraat 5-B | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 39 | 6524HA

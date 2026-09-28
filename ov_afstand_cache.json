@@ -23,6 +23,14 @@
   "omweg": 2.43,
   "soort": "bus"
  },
+ "51.83338,5.86397": {
+  "geschat": false,
+  "hemelsbreed": 476,
+  "meters": 720,
+  "naam": "Archipelstraat",
+  "omweg": 1.51,
+  "soort": "bus"
+ },
  "51.83344,5.86674": {
   "geschat": false,
   "hemelsbreed": 341,
@@ -39,6 +47,22 @@
   "omweg": 1.9,
   "soort": "bus"
  },
+ "51.83413,5.85952": {
+  "geschat": false,
+  "hemelsbreed": 444,
+  "meters": 506,
+  "naam": "Spoorkuil",
+  "omweg": 1.14,
+  "soort": "bus"
+ },
+ "51.83414,5.85940": {
+  "geschat": false,
+  "hemelsbreed": 436,
+  "meters": 506,
+  "naam": "Spoorkuil",
+  "omweg": 1.16,
+  "soort": "bus"
+ },
  "51.83543,5.86458": {
   "geschat": false,
   "hemelsbreed": 403,
@@ -53,6 +77,22 @@
   "meters": 465,
   "naam": "Fransestraat",
   "omweg": 1.25,
+  "soort": "bus"
+ },
+ "51.83601,5.85782": {
+  "geschat": false,
+  "hemelsbreed": 284,
+  "meters": 322,
+  "naam": "Spoorkuil",
+  "omweg": 1.13,
+  "soort": "bus"
+ },
+ "51.83655,5.85805": {
+  "geschat": false,
+  "hemelsbreed": 309,
+  "meters": 404,
+  "naam": "Spoorkuil",
+  "omweg": 1.31,
   "soort": "bus"
  },
  "51.83701,5.85938": {
@@ -87,12 +127,28 @@
   "omweg": 1.7,
   "soort": "bus"
  },
+ "51.83798,5.86658": {
+  "geschat": false,
+  "hemelsbreed": 184,
+  "meters": 182,
+  "naam": "Fransestraat",
+  "omweg": 0.99,
+  "soort": "bus"
+ },
  "51.83815,5.84661": {
   "geschat": false,
   "hemelsbreed": 212,
   "meters": 481,
   "naam": "Rozenstraat",
   "omweg": 2.27,
+  "soort": "bus"
+ },
+ "51.83825,5.86257": {
+  "geschat": false,
+  "hemelsbreed": 162,
+  "meters": 225,
+  "naam": "Fransestraat",
+  "omweg": 1.39,
   "soort": "bus"
  },
  "51.83827,5.85479": {
@@ -143,6 +199,14 @@
   "omweg": 2.7,
   "soort": "bus"
  },
+ "51.83907,5.87120": {
+  "geschat": false,
+  "hemelsbreed": 160,
+  "meters": 278,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.74,
+  "soort": "bus"
+ },
  "51.83957,5.83591": {
   "geschat": false,
   "hemelsbreed": 78,
@@ -157,6 +221,14 @@
   "meters": 408,
   "naam": "2e Oude Heselaan",
   "omweg": 1.2,
+  "soort": "bus"
+ },
+ "51.83970,5.87153": {
+  "geschat": false,
+  "hemelsbreed": 124,
+  "meters": 181,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.46,
   "soort": "bus"
  },
  "51.83973,5.86466": {
@@ -199,6 +271,14 @@
   "omweg": 1.06,
   "soort": "bus"
  },
+ "51.84031,5.85716": {
+  "geschat": false,
+  "hemelsbreed": 345,
+  "meters": 565,
+  "naam": "Centraal Station",
+  "omweg": 1.64,
+  "soort": "bus"
+ },
  "51.84053,5.87192": {
   "geschat": false,
   "hemelsbreed": 138,
@@ -213,6 +293,14 @@
   "meters": 278,
   "naam": "Dominicanenstraat",
   "omweg": 1.6,
+  "soort": "bus"
+ },
+ "51.84075,5.87131": {
+  "geschat": false,
+  "hemelsbreed": 185,
+  "meters": 299,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.62,
   "soort": "bus"
  },
  "51.84113,5.87317": {
@@ -431,6 +519,14 @@
   "omweg": 2.55,
   "soort": "bus"
  },
+ "51.84470,5.86660": {
+  "geschat": false,
+  "hemelsbreed": 143,
+  "meters": 232,
+  "naam": "Hertogplein",
+  "omweg": 1.62,
+  "soort": "bus"
+ },
  "51.84475,5.86436": {
   "geschat": false,
   "hemelsbreed": 284,
@@ -527,6 +623,14 @@
   "omweg": 3.13,
   "soort": "bus"
  },
+ "51.84602,5.84970": {
+  "geschat": false,
+  "hemelsbreed": 397,
+  "meters": 659,
+  "naam": "Nijmegen",
+  "omweg": 1.66,
+  "soort": "station"
+ },
  "51.84615,5.86238": {
   "geschat": false,
   "hemelsbreed": 46,
@@ -557,6 +661,22 @@
   "meters": 349,
   "naam": "Kronenburgersingel",
   "omweg": 1.41,
+  "soort": "bus"
+ },
+ "51.84664,5.86319": {
+  "geschat": false,
+  "hemelsbreed": 116,
+  "meters": 86,
+  "naam": "Plein 1944",
+  "omweg": 0.74,
+  "soort": "bus"
+ },
+ "51.84678,5.85885": {
+  "geschat": false,
+  "hemelsbreed": 220,
+  "meters": 327,
+  "naam": "Kronenburgersingel",
+  "omweg": 1.49,
   "soort": "bus"
  },
  "51.84744,5.86218": {
@@ -613,6 +733,14 @@
   "meters": 357,
   "naam": "Waalkade",
   "omweg": 1.35,
+  "soort": "bus"
+ },
+ "51.84964,5.86245": {
+  "geschat": false,
+  "hemelsbreed": 154,
+  "meters": 216,
+  "naam": "Waalkade",
+  "omweg": 1.4,
   "soort": "bus"
  },
  "51.84966,5.85446": {

@@ -86,7 +86,7 @@
   "doorlooptijden": [],
   "jaren": {
    "2025": {
-    "aanvragen": 2,
+    "aanvragen": 3,
     "gestopt": 0,
     "geweigerd": 0,
     "verleend": 0
@@ -367,7 +367,7 @@
   "doorlooptijden": [],
   "jaren": {
    "2025": {
-    "aanvragen": 3,
+    "aanvragen": 6,
     "gestopt": 0,
     "geweigerd": 0,
     "verleend": 0
@@ -391,7 +391,7 @@
     "verleend": 0
    },
    "2026": {
-    "aanvragen": 8,
+    "aanvragen": 9,
     "gestopt": 0,
     "geweigerd": 0,
     "verleend": 0
