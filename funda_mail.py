@@ -308,6 +308,65 @@ def parse_kamernet(regels, basis_status="te huur kamer"):
 
 
 
+# Kamernet stuurt ook losse attenderingen, met labels in plaats van een lijst:
+#   Locatie: Graafseweg, Nijmegen
+#   Oppervlakte: 21 m2
+#   Prijs: € 852 incl. g/w/e
+# Die vorm herkende de overzichtsparser niet, waardoor tien mails per dag
+# ongebruikt bleven.
+RE_KN_LOCATIE = re.compile(r"^\s*Locatie:\s*(.+?)\s*,\s*([A-Za-zÀ-ÿ\-' ]+)\s*$", re.I)
+RE_KN_OPP = re.compile(r"^\s*Oppervlakte:\s*(\d{1,4})\s*m", re.I)
+RE_KN_PRIJS = re.compile(r"^\s*Prijs:\s*€\s*([\d.]+)", re.I)
+# Waaraan we zien dat het geen kamer is. Op hele woorden, want "studentenhuis"
+# bevat "huis" en dat maakte van een kamer een zelfstandige woning.
+RE_ZELFSTANDIG = re.compile(r"\b(appartement|studio|woonhuis|eengezinswoning)\b", re.I)
+RE_KAMER = re.compile(r"\bkamer\b", re.I)
+
+
+def parse_kamernet_attendering(regels, vandaag=None):
+    """
+    Een losse Kamernet-mail met een enkele woonruimte.
+
+    Er staat geen huisnummer in, alleen de straat; dat is hetzelfde als bij het
+    huuraanbod van Pararius en daar kan de rest van het script mee omgaan.
+    """
+    vandaag = vandaag or dt.date.today().isoformat()
+    straat = plaats = None
+    opp = prijs = None
+    inclusief = False
+    soort_tekst = " ".join(regels).lower()
+    for regel in regels:
+        m = RE_KN_LOCATIE.match(regel)
+        if m and not straat:
+            straat, plaats = m.group(1).strip(), m.group(2).strip()
+            continue
+        m = RE_KN_OPP.match(regel)
+        if m and not opp:
+            opp = int(m.group(1))
+            continue
+        m = RE_KN_PRIJS.match(regel)
+        if m and not prijs:
+            prijs = int(m.group(1).replace(".", ""))
+            inclusief = "incl" in regel.lower()
+    if not (straat and plaats and prijs and opp):
+        return [], []
+    # Kamernet attendeert ook buiten de stad; die horen niet in onze reeks,
+    # anders schuift een kamer in Arnhem de Nijmeegse mediaan.
+    if plaats.strip().lower() != "nijmegen":
+        return [], [f"{straat}, {plaats}: buiten Nijmegen"]
+    # Staat er "kamer", dan is het een kamer, ook als het woord studentenhuis
+    # verderop valt. Kamernet gaat standaard over onzelfstandige woonruimte.
+    if RE_KAMER.search(soort_tekst):
+        status = "te huur kamer"
+    elif RE_ZELFSTANDIG.search(soort_tekst):
+        status = "te huur"
+    else:
+        status = "te huur kamer"
+    bron = "kamernet-incl" if inclusief else "kamernet"
+    return [f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+            f"| {bron} | {opp} | "], []
+
+
 # Pararius-overzicht. De buurt staat tussen haakjes achter de postcode, en waar
 # een kale en een totale huurprijs staan nemen we de kale: die telt voor het
 # rendement en voor het puntenstelsel.
@@ -595,6 +654,8 @@ def main():
             objecten, overgeslagen = parse_vendr(regels)
         elif soort_bron == "kamernet":
             objecten, overgeslagen = parse_kamernet(regels)
+            if not objecten:
+                objecten, overgeslagen = parse_kamernet_attendering(regels)
         elif soort_bron == "pararius":
             objecten, overgeslagen = parse_pararius(regels)
         else:
