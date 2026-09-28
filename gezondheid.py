@@ -308,6 +308,25 @@ def controle_geschiedenis():
             diagnose("geschiedenis") or "")
 
 
+def controle_plakbestanden():
+    """De lijsten die Mark met de hand aanlevert: verkopen en Kamernet."""
+    uit = []
+    for pad, wat in (("funda_verkocht_plak.txt", "verkooplijst van Funda"),
+                     ("kamernet_plak.txt", "kamerlijst van Kamernet")):
+        if os.path.exists(pad) and os.path.getsize(pad) > 200:
+            uit.append(f"{wat}: aanwezig")
+        else:
+            uit.append(f"{wat}: ontbreekt")
+    verkocht = _json("verkocht_details.json") or {}
+    if verkocht:
+        uit.append(f"{len(verkocht)} verkochte woningen verwerkt")
+    if all("aanwezig" in x for x in uit[:2]):
+        return (OK, "; ".join(uit), "")
+    return (LET_OP, "; ".join(uit),
+            "Plak de tekst van de pagina in dat bestand en commit het; het "
+            "script verwerkt hem bij de volgende run.")
+
+
 def controle_misdrijven():
     d = _json("misdrijven_per_buurt.json") or {}
     if not d:
@@ -408,6 +427,7 @@ CONTROLES = [
     ("Woningprijsindex CBS", controle_woningprijzen),
     ("Stadsbegroting", controle_begroting),
     ("Geschiedenis per pand", controle_geschiedenis),
+    ("Handmatige lijsten", controle_plakbestanden),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
