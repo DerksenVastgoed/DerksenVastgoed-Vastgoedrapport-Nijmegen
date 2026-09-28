@@ -105,6 +105,8 @@ DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron st
 
 EEN APPARTEMENT IS GEEN BIJZONDERHEID. Staan er volgens de BAG meerdere woningen in hetzelfde pand, dan is het aangeboden object meestal gewoon een appartement in een complex. Presenteer dat aantal niet als een vondst en niet als "het bijzondere van dit pand". Bij zo'n appartement gaat de VvE over splitsen en kamerverhuur, niet alleen de gemeente; wat de akte en het reglement toestaan, weten wij niet.
 
+GEPLAKTE VERKOPEN HEBBEN GEEN DATUM. Verkopen met bron "funda-verkocht-plak" komen uit een lijst die in een keer is ingelezen; ze dragen de datum van dat inlezen, niet de datum van de verkoop. Die kent Funda niet eens. Zeg dus nooit wanneer zo'n pand is verkocht, en schrijf niet "deze maand verkocht", "recent verkocht" of "vorige week van de markt". Je mag wel zeggen dat het verkocht is, en hoeveel panden in een straat verkocht zijn, zonder tijdsaanduiding.
+
 EEN VERKOOPPRIJS HEBBEN WE NIET. Bij een verkocht pand toont Funda de laatste vraagprijs, niet de koopsom; die staat alleen bij het Kadaster. Schrijf dus "verkocht, laatste vraagprijs X" en nooit "verkocht voor X" of "de verkoopprijs was X".
 
 VERKOCHTE WONINGEN. Staat er een pand bij dat bij ons nog te koop stond, meld dat dan kort: dan klopte onze lijst niet meer. Staat er een bekendmaking bij een verkocht adres, dan is dat een aanwijzing dat de koper iets met het pand doet, en geen bewijs; de verkoopdatum is een benadering. Neem die kanttekening over als je het noemt.
