@@ -6035,5 +6035,17 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:In de Betouwstraat 44|Nijmegen": {
+    "postcode": "6511GD",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-e0242d31ae7b9158514f86eb71cb1409"
+  },
+  "bm:Groesbeeksedwarsweg 95|Nijmegen": {
+    "postcode": "6521DC",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-4679b35d47583b0fa43122bd51a77466"
   }
 }

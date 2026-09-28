@@ -1,14 +1,16 @@
 # Gezondheidsrapport 2026-09-28
 
-15 in orde, 3 aandachtspunten, 0 fouten.
+15 in orde, 4 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Huurdata**: 6 huurwaarnemingen, waarvan 6 Pararius en 0 Kamernet; 6 in de laatste week
   Er wordt gemeten, maar het aantal is nog te klein voor een betrouwbare mediaan per grootteklasse en buurt.
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1146 panden gevolgd, 123 met meer dan een gebeurtenis, 146 nog nooit tegen de BAG gehouden, 526 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1147 panden gevolgd, 123 met meer dan een gebeurtenis, 147 nog nooit tegen de BAG gehouden, 526 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
+- **Handmatige lijsten**: verkooplijst van Funda: ontbreekt; kamerlijst van Kamernet: ontbreekt
+  Plak de tekst van de pagina in dat bestand en commit het; het script verwerkt hem bij de volgende run.
 
 ## OK
 - **Aanbod**: 77 koopobjecten, 10 in de laatste drie dagen
@@ -22,7 +24,7 @@
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-09-24
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 85 panden gerouteerd
-- **Bekendmakingen-archief**: 322 adressen, 452 publicaties
+- **Bekendmakingen-archief**: 323 adressen, 453 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 80 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard

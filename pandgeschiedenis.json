@@ -12745,6 +12745,18 @@
   ],
   "pand_id": "0268100000109797"
  },
+ "merelstraat14": {
+  "adres": "Merelstraat 14",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-28",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het vervangen van een dakkapel aan Merelstraat 14, 6542WJ Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "mesdagstraat70": {
   "adres": "Mesdagstraat 70",
   "bag_eenheden": [

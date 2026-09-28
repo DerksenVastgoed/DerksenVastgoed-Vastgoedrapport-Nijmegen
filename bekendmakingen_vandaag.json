@@ -1,1 +1,28 @@
-[]
+[
+ {
+  "datum": "2026-09-28",
+  "titel": "Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html",
+  "strategie": "geen",
+  "duiding": "Legalisatie van gevelkozijnen is een administratieve correctie zonder invloed op waardecreatiepotentieel van het pand.",
+  "feiten": {
+   "oppervlakte_m2": 156
+  },
+  "straat": "In de Betouwstraat",
+  "huisnummer": "44",
+  "kern": false
+ },
+ {
+  "datum": "2026-09-28",
+  "titel": "Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html",
+  "strategie": "verduurzaming",
+  "duiding": "Vergunde dakisolatie verbetert het energielabel en toont dat labelverbetering hier vergunbaar is, ook bij bestaande daken.",
+  "feiten": {
+   "oppervlakte_m2": 139
+  },
+  "straat": "Groesbeeksedwarsweg",
+  "huisnummer": "95",
+  "kern": false
+ }
+]
