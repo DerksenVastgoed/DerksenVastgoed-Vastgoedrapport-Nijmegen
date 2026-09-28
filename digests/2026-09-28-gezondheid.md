@@ -7,7 +7,7 @@
   Er wordt gemeten, maar het aantal is nog te klein voor een betrouwbare mediaan per grootteklasse en buurt.
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1143 panden gevolgd, 123 met meer dan een gebeurtenis, 1143 nog nooit tegen de BAG gehouden
+- **Geschiedenis per pand**: 1146 panden gevolgd, 123 met meer dan een gebeurtenis, 1146 nog nooit tegen de BAG gehouden
   Bij 200 panden per ronde zijn dat nog 6 run(s). Elke handmatige start werkt er een ronde af.
 
 ## OK
@@ -22,7 +22,7 @@
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-09-24
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 85 panden gerouteerd
-- **Bekendmakingen-archief**: 319 adressen, 449 publicaties
+- **Bekendmakingen-archief**: 322 adressen, 452 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 80 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard

@@ -9067,6 +9067,18 @@
   ],
   "pand_id": null
  },
+ "nijlpaardstraat23": {
+  "adres": "Nijlpaardstraat 23",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-21",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor geschakelde woning: realiseren dakopbouw, aan Nijlpaardstraat 23, 6531RR Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "nijmeegsebaan65": {
   "adres": "Nijmeegsebaan 65",
   "gebeurtenissen": [
@@ -9860,6 +9872,18 @@
   ],
   "pand_id": null
  },
+ "prinsbernhardstraat65": {
+  "adres": "Prins Bernhardstraat 65",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-24",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van de begane grond tot een appartement, aan Prins Bernhardstraat 65, 6521AD Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "prinshendrikstraat18": {
   "adres": "Prins Hendrikstraat 18",
   "gebeurtenissen": [
@@ -10057,6 +10081,18 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "robijnstraat38": {
+  "adres": "Robijnstraat 38",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-21",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor dakopbouw met interne trap, dakkapellen in voor- en achterdakvlak, aan Robijnstraat 38, 6534XS Nijmegen"
    }
   ],
   "pand_id": null
