@@ -93,7 +93,7 @@ def uit_verkopen(geschiedenis):
             continue
         per_adres.setdefault(sleutel(adres), []).append(
             {"adres": adres, "plaats": plaats, "prijs": prijs, "status": status,
-             "datum": datum, "opp": v[6] or None})
+             "datum": datum, "opp": v[6] or None, "bron": v[5] if len(v) > 5 else ""})
 
     for sl, rijen in per_adres.items():
         rijen.sort(key=lambda r: r["datum"])
@@ -122,10 +122,16 @@ def uit_verkopen(geschiedenis):
             elif r["status"] == "verkocht":
                 # Funda toont de laatste vraagprijs, niet de koopsom; die staat
                 # alleen bij het Kadaster. Zo noemen we het dus ook.
+                # Uit een geplakte lijst kennen we de verkoopdatum niet; dan
+                # zetten we er geen datum bij in de tekst, zodat niemand er een
+                # tijdlijn op bouwt.
+                zonder_datum = "plak" in (r.get("bron") or "")
                 nieuw += voeg_toe(pand, r["datum"], "verkocht",
                                   "verkocht, laatste vraagprijs "
                                   + f"€{r['prijs']:,}".replace(",", ".")
-                                  + (f", {r['opp']} m2" if r["opp"] else ""),
+                                  + (f", {r['opp']} m2" if r["opp"] else "")
+                                  + (" (verkoopdatum onbekend; uit een geplakte "
+                                     "lijst)" if zonder_datum else ""),
                                   "aanbod")
     return nieuw
 
