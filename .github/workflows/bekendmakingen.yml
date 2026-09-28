@@ -190,7 +190,12 @@ jobs:
           # terugkijken om oude attenderingen alsnog in te lezen. De datum van
           # de waarneming komt uit de mail zelf, dus dat vertekent de reeks niet.
           DAGEN="${{ github.event.inputs.mail_dagen || '3' }}"
-          python funda_mail.py --dagen "$DAGEN" || echo "Funda-mail-stap overgeslagen"
+          # Loopt de stap vast, dan mag dat niet stil gebeuren: dan schrijven we
+          # zelf een stand met de reden, zodat het gezondheidsrapport het meldt.
+          if ! python funda_mail.py --dagen "$DAGEN"; then
+            echo "Funda-mail-stap is vastgelopen"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'bronnen': {}, 'opmerking': 'de mailstap is vastgelopen; zie het logboek van die stap'}, open('mail_status.json', 'w'), ensure_ascii=False, indent=1)"
+          fi
 
       - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
         run: |
