@@ -19,12 +19,12 @@ _Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel
 | Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
 |---|---:|---:|---:|---:|---:|
 | [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) | €638.317 | €241.242 | €397.074 | €3.317 | 2,6% |
-| [Doddendaal 117](https://www.google.com/maps/search/?api=1&query=Doddendaal+117%2C+Nijmegen) | €603.869 | €208.715 | €395.154 | €2.869 | 2,4% |
+| [Doddendaal 117](https://www.google.com/maps/search/?api=1&query=Doddendaal+117%2C+Nijmegen) | €578.869 | €208.715 | €370.154 | €2.869 | 2,5% |
 | [Plein 1944 129](https://www.google.com/maps/search/?api=1&query=Plein+1944+129%2C+Nijmegen) | €489.698 | €159.924 | €329.774 | €2.198 | 2,2% |
 
 _Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,24]_
 
-_Met het beschikbare eigen vermogen kom je: Scholenhof 8 tot €161.662 . Doddendaal 117 tot €113.163 . Plein 1944 129 tot €184.757._
+_Met het beschikbare eigen vermogen kom je: Scholenhof 8 tot €161.662 . Doddendaal 117 tot €170.900 . Plein 1944 129 tot €184.757._
 
 _Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
 
@@ -49,7 +49,7 @@ _Grensgeval voor de opkoopbescherming: Plein 1944 129. Controleer de WOZ, want o
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">156 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van kozijnaanpassing is een administratieve correctie zonder marktimpact.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legaliseren van kozijnonderdelen is een administratieve correctie zonder marktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -161,7 +161,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">139 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vergunde dakisolatie verbetert het energielabel en toont dat labelverbetering bij dit type pand vergunbaar is.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Isolatie van het dak verbetert de energieprestatie en kan bij nieuwe opname het energielabel verhogen.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 

@@ -13,8 +13,8 @@
   Plak de tekst van de pagina in dat bestand en commit het; het script verwerkt hem bij de volgende run.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
-- **Attenderingen**: nog geen mailstand vastgelegd
-  Draait de mailstap, en heeft hij al een keer mails gezien?
+- **Attenderingen**: mailstap van ?: geen enkele mail van een van de bronnen
+  Komen de attenderingen in deze mailbox binnen, en staan ze in de inbox en niet in een map?
 
 ## OK
 - **Aanbod**: 77 koopobjecten, 10 in de laatste drie dagen

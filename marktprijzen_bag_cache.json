@@ -6492,7 +6492,14 @@
     "buurtnaam": "Wolfskuil",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-d103a57e46707933d95bd62281b835c0",
-    "oppervlakte_bag": 106
+    "oppervlakte_bag": 106,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2019-02-01",
+      "geldig_tot": "2029-02-01",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Doddendaal 117|Nijmegen": {
     "oppervlakte": 77,
@@ -6539,7 +6546,14 @@
       }
     ],
     "oppervlakte_bag": 63,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-06-26",
+      "geldig_tot": "2036-06-12",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Priemstraat 17-E|Nijmegen": {
     "oppervlakte": 56,
@@ -13444,7 +13458,14 @@
     "buurtnaam": "Nije Veld",
     "wijknaam": "Nijmegen-Midden",
     "nummeraanduiding": "adr-33804400744d22c4b081c9d5db34eeed",
-    "oppervlakte_bag": 122
+    "oppervlakte_bag": 122,
+    "energielabel": {
+      "label": "A++",
+      "registratiedatum": "2026-03-25",
+      "geldig_tot": "2036-03-17",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Bloemerstraat 22|Nijmegen": {
     "oppervlakte": 72,
@@ -14017,7 +14038,14 @@
     "buurtnaam": "Wolfskuil",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-2b74e40c202f6a5e71864051927aacdd",
-    "oppervlakte_bag": 100
+    "oppervlakte_bag": 100,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-04-22",
+      "geldig_tot": "2036-04-16",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Ziekerstraat 26|Nijmegen": {
     "oppervlakte": 50,
@@ -14130,7 +14158,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 51
+    "oppervlakte_bag": 51,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2020-11-27",
+      "geldig_tot": "2030-11-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Willemsweg 10|Nijmegen": {
     "oppervlakte": 106,
@@ -19975,7 +20010,8 @@
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-8e57224597124d21bf92e37ee6343420",
     "oppervlakte_bag": 307,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": null
   },
   "Dominicanenstraat 151-A|Nijmegen": {
     "oppervlakte": 51,
@@ -20568,7 +20604,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 43
+    "oppervlakte_bag": 43,
+    "energielabel": null
   },
   "Mr. Franckenstraat 15|Nijmegen": {
     "oppervlakte": 225,
@@ -21230,7 +21267,14 @@
     "buurtnaam": "Bottendaal",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-03e930af372a3f0a1011f2eca3026e03",
-    "oppervlakte_bag": 109
+    "oppervlakte_bag": 109,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2023-02-05",
+      "geldig_tot": "2033-01-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Raadhuishof 14|Nijmegen": {
     "oppervlakte": 110,
@@ -21365,7 +21409,14 @@
     "buurtnaam": "Biezen",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-815ca6c5cad991c8203a28e832255124",
-    "oppervlakte_bag": 137
+    "oppervlakte_bag": 137,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2024-02-14",
+      "geldig_tot": "2034-01-29",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Burg. Hustinxstraat 68|Nijmegen": {
     "oppervlakte": 116,
@@ -21750,7 +21801,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 70
+    "oppervlakte_bag": 70,
+    "energielabel": null
   },
   "Graafseweg 47-X|Nijmegen": {
     "oppervlakte": 59,
@@ -21951,7 +22003,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 59
+    "oppervlakte_bag": 59,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2017-04-10",
+      "geldig_tot": "2027-04-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Plein 1944 129-H|Nijmegen": {
     "oppervlakte": 116,
@@ -22591,7 +22650,14 @@
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-60cb756dceb4152e03a7b00d0e7fbaee",
     "oppervlakte_bag": 200,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2025-08-19",
+      "geldig_tot": "2035-08-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Molukkenstraat 3-T|Nijmegen": {
     "oppervlakte": 153,
@@ -23007,7 +23073,14 @@
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-fad4020a512b4a6e90036baf3bf80ac0",
     "oppervlakte_bag": 109,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2025-08-28",
+      "geldig_tot": "2035-08-20",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "van Heutszstraat 15|Nijmegen": {
     "oppervlakte": 152,
@@ -23045,7 +23118,14 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-dc45b277f487402669ef20b7c23ab168",
-    "oppervlakte_bag": 181
+    "oppervlakte_bag": 181,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-08-29",
+      "geldig_tot": "2035-08-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Van der Kempstraat 1|Nijmegen": {
     "oppervlakte": 65,
@@ -25831,7 +25911,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 99
+    "oppervlakte_bag": 99,
+    "energielabel": null
   },
   "Groesbeekseweg 47|Nijmegen": {
     "oppervlakte": 255,
@@ -25846,7 +25927,14 @@
     "buurtnaam": "Galgenveld",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-94486a253fa29358c4541e6851157bd2",
-    "oppervlakte_bag": 292
+    "oppervlakte_bag": 292,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-09-01",
+      "geldig_tot": "2035-09-01",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "van Slichtenhorststraat 71|Nijmegen": {
     "oppervlakte": 256,
@@ -25910,7 +25998,14 @@
       }
     ],
     "oppervlakte_bag": 141,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "F",
+      "registratiedatum": "2025-09-26",
+      "geldig_tot": "2035-09-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Boomvalkstraat 12|Nijmegen": {
     "oppervlakte": 40,
@@ -33935,7 +34030,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 40
+    "oppervlakte_bag": 40,
+    "energielabel": null
   },
   "Johannes Vijghstraat 18|Nijmegen": {
     "oppervlakte": 110,
@@ -39637,7 +39733,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 58
+    "oppervlakte_bag": 58,
+    "energielabel": null
   },
   "Willemsweg 67|Nijmegen": {
     "oppervlakte": 42,
@@ -47786,7 +47883,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 100
+    "oppervlakte_bag": 100,
+    "energielabel": null
   },
   "Houthof 47-B|Nijmegen": {
     "oppervlakte": 70,
@@ -48857,7 +48955,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 45
+    "oppervlakte_bag": 45,
+    "energielabel": null
   },
   "Veemarkt 225|Nijmegen": {
     "oppervlakte": 64,
@@ -50410,7 +50509,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 119
+    "oppervlakte_bag": 119,
+    "energielabel": {
+      "label": "F",
+      "registratiedatum": "2025-06-18",
+      "geldig_tot": "2035-06-12",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "van Nispenstraat 240|Nijmegen": {
     "oppervlakte": 85,
@@ -50889,7 +50995,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 45
+    "oppervlakte_bag": 45,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2025-11-19",
+      "geldig_tot": "2035-08-26",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Veemarkt 165|Nijmegen": {
     "oppervlakte": 64,
@@ -51298,7 +51411,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 70
+    "oppervlakte_bag": 70,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2024-11-27",
+      "geldig_tot": "2034-09-16",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Veemarkt 293|Nijmegen": {
     "oppervlakte": 60,
@@ -52955,7 +53075,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 20
+    "oppervlakte_bag": 20,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-03-18",
+      "geldig_tot": "2036-03-13",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "van den Havestraat 83|Nijmegen": {
     "oppervlakte": 100,
@@ -52988,7 +53115,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 100
+    "oppervlakte_bag": 100,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-07-16",
+      "geldig_tot": "2036-07-16",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Augustijnenstraat 51|Nijmegen": {
     "oppervlakte": 60,
@@ -53125,7 +53259,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 60
+    "oppervlakte_bag": 60,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-03-04",
+      "geldig_tot": "2036-03-03",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Evertsenstraat 19|Nijmegen": {
     "oppervlakte": 115,
@@ -53591,7 +53732,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 98
+    "oppervlakte_bag": 98,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-02-06",
+      "geldig_tot": "2036-01-29",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "van den Havestraat 91|Nijmegen": {
     "oppervlakte": 97,
@@ -53664,7 +53812,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 62
+    "oppervlakte_bag": 62,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2022-10-03",
+      "geldig_tot": "2032-09-21",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Bijleveldsingel 105|Nijmegen": {
     "oppervlakte": 73,
@@ -53993,7 +54148,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 76
+    "oppervlakte_bag": 76,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2025-11-18",
+      "geldig_tot": "2035-11-17",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Groesbeekseweg 22|Nijmegen": {
     "oppervlakte": 303,
@@ -54008,7 +54170,14 @@
     "buurtnaam": "Groenewoud",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-830953855aa74d216aa6b16ff83c93f1",
-    "oppervlakte_bag": 304
+    "oppervlakte_bag": 304,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-02-17",
+      "geldig_tot": "2036-02-05",
+      "gebouwklasse": "Utiliteitsbouw",
+      "prive": false
+    }
   },
   "Groesbeekseweg 93-B|Nijmegen": {
     "oppervlakte": 62,
@@ -54062,7 +54231,14 @@
         "status": "Verblijfsobject gevormd"
       }
     ],
-    "oppervlakte_bag": 62
+    "oppervlakte_bag": 62,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-05-05",
+      "geldig_tot": "2036-04-23",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Groesbeekseweg 93-A|Nijmegen": {
     "oppervlakte": 48,
@@ -54116,7 +54292,14 @@
         "status": "Verblijfsobject gevormd"
       }
     ],
-    "oppervlakte_bag": 51
+    "oppervlakte_bag": 51,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-05-05",
+      "geldig_tot": "2036-04-23",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Voorstadslaan 4-B|Nijmegen": {
     "oppervlakte": 141,
@@ -54149,7 +54332,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 162
+    "oppervlakte_bag": 162,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-02-24",
+      "geldig_tot": "2036-02-24",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Scheidemakershof 39-B|Nijmegen": {
     "oppervlakte": 41,
@@ -54236,7 +54426,14 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-b45f74538454a8f3d6e568d8fc1b9d06",
-    "oppervlakte_bag": 50
+    "oppervlakte_bag": 50,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-03-27",
+      "geldig_tot": "2035-02-26",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Vondelstraat 73|Nijmegen": {
     "oppervlakte": 74,
@@ -54277,7 +54474,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 74
+    "oppervlakte_bag": 74,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2018-11-26",
+      "geldig_tot": "2028-11-26",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Burchtstraat 70|Nijmegen": {
     "oppervlakte": 145,
@@ -54574,7 +54778,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 146
+    "oppervlakte_bag": 146,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2016-10-27",
+      "geldig_tot": "2026-10-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Hertogstraat 37|Nijmegen": {
     "oppervlakte": 139,
@@ -54631,7 +54842,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 128
+    "oppervlakte_bag": 128,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2026-01-30",
+      "geldig_tot": "2036-01-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Groesbeeksedwarsweg 260|Nijmegen": {
     "oppervlakte": 173,
@@ -57921,7 +58139,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 75
+    "oppervlakte_bag": 75,
+    "energielabel": null
   },
   "Fagelstraat 40|Nijmegen": {
     "oppervlakte": 107,
@@ -63718,7 +63937,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 79
+    "oppervlakte_bag": 79,
+    "energielabel": null
   },
   "Kronenburgersingel 47|Nijmegen": {
     "oppervlakte": 65,
@@ -64609,7 +64829,8 @@
       }
     ],
     "oppervlakte_bag": 66,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": null
   },
   "Tweede Walstraat 49|Nijmegen": {
     "oppervlakte": 45,
@@ -65566,7 +65787,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 46
+    "oppervlakte_bag": 46,
+    "energielabel": null
   },
   "Roukensstraat 12|Nijmegen": {
     "oppervlakte": 98,
@@ -65801,7 +66023,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 66
+    "oppervlakte_bag": 66,
+    "energielabel": null
   },
   "van Somerenstraat 40|Nijmegen": {
     "oppervlakte": 47,
@@ -66571,7 +66794,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 133
+    "oppervlakte_bag": 133,
+    "energielabel": null
   },
   "Wilhelminasingel 18|Nijmegen": {
     "oppervlakte": 333,
@@ -67187,7 +67411,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 28
+    "oppervlakte_bag": 28,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2026-03-18",
+      "geldig_tot": "2036-03-13",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Plein 1944 53|Nijmegen": {
     "oppervlakte": 65,
@@ -67436,7 +67667,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 101
+    "oppervlakte_bag": 101,
+    "energielabel": null
   },
   "Professor van der Veldenstraat 36|Nijmegen": {
     "oppervlakte": 85,
@@ -67501,7 +67733,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 85
+    "oppervlakte_bag": 85,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-10-31",
+      "geldig_tot": "2035-10-27",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Jacob Canisstraat 36-A|Nijmegen": {
     "oppervlakte": 27,
@@ -67558,7 +67797,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 28
+    "oppervlakte_bag": 28,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2024-05-31",
+      "geldig_tot": "2034-04-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Groesbeekseweg 21-B|Nijmegen": {
     "oppervlakte": 37,
@@ -67639,7 +67885,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 37
+    "oppervlakte_bag": 37,
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2025-12-14",
+      "geldig_tot": "2035-12-12",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Gerard Noodtstraat 139|Nijmegen": {
     "oppervlakte": 99,
@@ -67672,7 +67925,8 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 110
+    "oppervlakte_bag": 110,
+    "energielabel": null
   },
   "Delistraat 73|Nijmegen": {
     "oppervlakte": 107,
@@ -67745,7 +67999,14 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "oppervlakte_bag": 63
+    "oppervlakte_bag": 63,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2025-08-06",
+      "geldig_tot": "2035-08-01",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Molukkenstraat 7-A18|Nijmegen": {
     "oppervlakte": 52,
@@ -68657,7 +68918,8 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-71c2baed1ada4dc15eb6f1da0322102c",
-    "oppervlakte_bag": 133
+    "oppervlakte_bag": 133,
+    "energielabel": null
   },
   "St. Anthoniusplaats 2|Nijmegen": {
     "oppervlakte": 60,
@@ -68741,7 +69003,8 @@
       }
     ],
     "oppervlakte_bag": 133,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": null
   },
   "Molukkenstraat 7-A5|Nijmegen": {
     "oppervlakte": 29,
@@ -69550,7 +69813,8 @@
     ],
     "postcode": "6524NA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Bloemerstraat 85|Nijmegen": {
     "oppervlakte": 77,

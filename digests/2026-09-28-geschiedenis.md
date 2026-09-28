@@ -7,6 +7,26 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-03-24: Besluit voor de omzetting van een woning naar drie zelfstandige woningen, aan Dominicanenstraat 103, 6521KB Nijmegen (officiele bekendmakingen)
 - 2026-09-28: verkocht, laatste vraagprijs €700.000, 221 m2 (aanbod) **nieuw**
 
+## Graafseweg 47-C
+- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2026-09-28: verkocht, laatste vraagprijs €409.000, 93 m2 (aanbod) **nieuw**
+
+## Graafseweg 47-E
+- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2026-09-28: verkocht, laatste vraagprijs €335.000, 67 m2 (aanbod) **nieuw**
+
+## Graafseweg 47-J
+- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2026-09-28: verkocht, laatste vraagprijs €425.000, 98 m2 (aanbod) **nieuw**
+
+## Graafseweg 47-X
+- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
+- 2026-09-28: verkocht, laatste vraagprijs €345.000, 59 m2 (aanbod) **nieuw**
+
 ## Johannes Vijghstraat 18
 - 2016-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
 - 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
@@ -17,28 +37,8 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-04-07: Buiten behandelingstelling van de aanvraag: het juridisch kadastraal splitsen van de boven en beneden woning, aan Koninginnelaan 225 en 227, 6542ZR Nijmegen (officiele bekendmakingen)
 - 2026-09-28: verkocht, laatste vraagprijs €640.000, 143 m2 (aanbod) **nieuw**
 
-## Graafseweg 47-E
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €335.000, 67 m2 (aanbod) **nieuw**
-
-## Graafseweg 47-X
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €345.000, 59 m2 (aanbod) **nieuw**
-
-## Graafseweg 47-C
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €409.000, 93 m2 (aanbod) **nieuw**
-
 ## St. Annastraat 165-C
 - 2025-08-01: Aanvraag omgevingsvergunning voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen (officiele bekendmakingen)
 - 2025-09-24: Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen (officiele bekendmakingen)
 - 2026-09-28: verkocht, laatste vraagprijs €415.000, 55 m2 (aanbod) **nieuw**
-
-## Wilhelminasingel 7-B
-- 2026-04-08: Aanvraag omgevingsvergunning voor het omzetten van een kantoorruimte naar een derde zelfstandige woonruimte, aan Wilhelminasingel 7, 6524AH Nijmegen (officiele bekendmakingen)
-- 2026-06-01: Besluit voor het omzetten van een kantoorruimte naar een derde zelfstandige woonruimte, aan Wilhelminasingel 7, 6524AH Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €395.000, 84 m2 (aanbod) **nieuw**
 
