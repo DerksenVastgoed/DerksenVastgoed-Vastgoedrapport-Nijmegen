@@ -1456,6 +1456,12 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     opp = w.get("oppervlakte")
     if not opp:
         return None
+    # Een appartement in een complex splits je niet: daar gaat de VvE over, en
+    # het aantal woningen in het pand is geen aantal waarin dit object kan
+    # worden opgedeeld. Zonder deze regel werd "Doddendaal 101, 159 m2" een
+    # splitsing in elf eenheden van veertien meter.
+    if in_complex(w):
+        return None
     bruikbaar = opp * VERHUURBAAR_SPLITSING
     aantal = int(bruikbaar // MIN_UNIT_M2)
     if aantal < 2:
@@ -1467,7 +1473,7 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     # verdieping. Kent de BAG al meer eenheden in dit pand, dan is dat aantal
     # het uitgangspunt: die opdeling is al geregistreerd.
     al_bekend = len(w.get("eenheden_in_pand") or [])
-    if al_bekend > 1:
+    if 1 < al_bekend <= MAX_UNITS:
         aantal = al_bekend
     elif bruikbaar / aantal < 45 and bruikbaar >= 2 * 45:
         # Eenheden onder 45 m2 zijn krap; twee ruimere etages is vaak
@@ -2060,7 +2066,9 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
         # de huur boven het wettelijk maximum liggen zonder dat we het zien.
         bron_w = f"{bron_w}; niet getoetst aan het puntenstelsel, WOZ onbekend"
 
-    if geschikt_woning and not kamerpand:
+    # Een appartement in een complex verhuur je als woning: splitsen en kamers
+    # vragen allebei toestemming van de VvE, ook als het pand groot is.
+    if (geschikt_woning or in_complex(w)) and not kamerpand:
         # Splitsen alleen als het na de kosten van de extra eenheden meer
         # oplevert. Sinds de maximumhuur ook bij een woning geldt, won splitsen
         # bij kleine woningen op tien procent meer maandhuur, zonder dat de kosten
