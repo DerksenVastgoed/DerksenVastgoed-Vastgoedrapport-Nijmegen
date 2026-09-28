@@ -308,6 +308,40 @@ def controle_geschiedenis():
             diagnose("geschiedenis") or "")
 
 
+def controle_verkopen():
+    """
+    Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
+
+    Belangrijk om te weten of de attendering de verkopen meeneemt sinds Mark
+    dat filter aanzette. Zo ja, dan hoeft er niets meer geplakt te worden.
+    """
+    per_bron, laatste = {}, ""
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 6 or not v[3].lower().startswith("verkocht"):
+                    continue
+                bron = "geplakt" if "plak" in v[5] else "uit de mail"
+                per_bron[bron] = per_bron.get(bron, 0) + 1
+                laatste = max(laatste, v[4])
+    except Exception:
+        return (LET_OP, "verkopen niet te lezen", "Staat verkopen.txt er wel?")
+    if not per_bron:
+        return (LET_OP, "nog geen verkopen in de reeks",
+                "Zet in de Funda-attendering het filter op verkocht en onder "
+                "bod; dan komen ze vanzelf binnen. Werkt dat niet, dan blijft "
+                "plakken over.")
+    delen = ", ".join(f"{n} {b}" for b, n in sorted(per_bron.items()))
+    uit_mail = per_bron.get("uit de mail", 0)
+    bewijs = f"{sum(per_bron.values())} verkopen: {delen}; laatste {laatste}"
+    if not uit_mail:
+        return (LET_OP, bewijs,
+                "Er komt nog geen enkele verkoop uit de attendering. Controleer "
+                "of het filter op verkocht daar echt aan staat.")
+    return (OK, bewijs, "")
+
+
 def controle_plakbestanden():
     """De lijsten die Mark met de hand aanlevert: verkopen en Kamernet."""
     uit = []
@@ -428,6 +462,7 @@ CONTROLES = [
     ("Stadsbegroting", controle_begroting),
     ("Geschiedenis per pand", controle_geschiedenis),
     ("Handmatige lijsten", controle_plakbestanden),
+    ("Verkopen", controle_verkopen),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
