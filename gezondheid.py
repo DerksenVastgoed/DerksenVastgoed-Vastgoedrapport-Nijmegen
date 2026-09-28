@@ -1,585 +1,769 @@
 #!/usr/bin/env python3
 """
-Gezondheidsrapport van de vastgoedbrief.
+Leest de attenderingsmails van Funda en funda in business uit de eigen mailbox
+en zet nieuwe objecten onderaan verkopen.txt.
 
-Draait als laatste stap en kijkt per onderdeel wat er werkelijk is opgeleverd.
-Niet wat de log belooft, maar wat er in de bestanden staat: een script kan
-netjes "gelukt" melden en toch niets hebben weggeschreven.
+Dit is geen scraping: Funda stuurt deze berichten zelf toe op basis van een
+opgeslagen zoekopdracht. Het script leest de eigen post, meer niet.
 
-Het rapport is bedoeld om te kopiëren en te delen. Per onderdeel staat de
-status, het bewijs en bij een probleem de vermoedelijke oorzaak en waar je
-moet kijken.
+Vereist:
+  - IMAP aangezet in Gmail (Instellingen, Doorsturen en POP/IMAP)
+  - MAIL_USERNAME en MAIL_PASSWORD (app-wachtwoord) als omgevingsvariabelen
 
 Gebruik:
-  python gezondheid.py --uit digests/2026-09-21-gezondheid.md
+  python funda_mail.py                    # verwerkt ongelezen Funda-mails
+  python funda_mail.py --proef            # toont wat het zou toevoegen, schrijft niets
+  python funda_mail.py --dagen 30         # kijkt verder terug dan alleen ongelezen
 """
 
 import argparse
 import datetime as dt
 import json
+import email
+import imaplib
 import os
+import re
 import sys
+from email.header import decode_header
 
-OK, LET_OP, FOUT = "OK", "LET OP", "FOUT"
+IMAP_HOST = "imap.gmail.com"
+VERKOPEN_PAD = "verkopen.txt"
+AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
+             "kamernet.nl", "vendr.nl"]
 
-# De scripts schrijven bij een probleem hun eigen diagnose weg in deze map.
-# Het rapport neemt die over, zodat de oorzaak in het rapport staat en je niet
-# in de logs hoeft te zoeken.
-DIAGNOSE_MAP = "diagnose"
+# De datum van de mail die nu wordt gelezen. De parsers stempelden elke
+# waarneming met vandaag; bij het inhalen van oude mails zouden alle
+# advertenties dan dezelfde dag krijgen en lijkt de markt in een dag ontstaan.
+_DATUM_VAN_MAIL = None
 
 
-def diagnose(onderdeel):
-    """
-    De diagnose die een script zelf heeft achtergelaten, als die er is.
+def waarnemingsdatum():
+    """De datum van de mail die nu gelezen wordt, anders vandaag."""
+    return _DATUM_VAN_MAIL or dt.date.today().isoformat()
 
-    Dubbele regels eruit: een script dat twee keer draait of twee keer
-    hetzelfde vaststelt, hoort het maar een keer te zeggen.
-    """
-    pad = os.path.join(DIAGNOSE_MAP, f"{onderdeel}.txt")
+
+def datum_van_mail(bericht):
+    """De verzenddatum uit de mailkop, als jjjj-mm-dd."""
     try:
-        with open(pad, encoding="utf-8") as f:
-            regels = [r.strip() for r in f if r.strip()]
+        from email.utils import parsedate_to_datetime
+        d = parsedate_to_datetime(bericht.get("Date"))
+        return d.date().isoformat()
     except Exception:
-        return ""
-    uniek = []
-    for r in regels:
-        if r not in uniek:
-            uniek.append(r)
-    return " ".join(uniek)
+        return None
 
 
-def automatische_keuzes():
-    """Alle keuzes die een script zelf heeft gemaakt, uit alle diagnoses."""
-    uit = []
-    if not os.path.isdir(DIAGNOSE_MAP):
-        return uit
-    for naam in sorted(os.listdir(DIAGNOSE_MAP)):
+GEBRUIKER = os.environ.get("MAIL_USERNAME", "")
+WACHTWOORD = os.environ.get("MAIL_PASSWORD", "")
+
+# Zelfde patronen als de browser-verzamelaar
+RE_ADRES_KOMMA = re.compile(
+    r"^\s*([A-Za-zÀ-ÿ.'\-\s]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*,\s*"
+    r"([A-Za-zÀ-ÿ\-' ]+?)\s*$")
+RE_POSTCODE = re.compile(
+    r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*(?:\([^)]*\))?\s*$")
+# Alleen een straatnaam, zonder huisnummer. Pararius doet dit bij huuraanbod.
+RE_STRAAT_ALLEEN = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\- ]{3,40})\s*$")
+# '112 m² · 3 kamers · ...' of '112 m2'
+RE_OPPERVLAKTE = re.compile(r"(\d{2,4})\s*m[²2]\b")
+RE_ADRES = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\-\s]+?\s+\d+[A-Za-z]?(?:-[A-Za-z0-9]+)?)\s*$")
+RE_PRIJS = re.compile(r"([\d][\d.]{2,})")
+
+
+def strip_html(tekst):
+    """
+    Maakt van een HTML-mail leesbare regels. De href van een link naar een
+    objectpagina wordt als aparte regel bewaard, zodat we later per pand de
+    oorspronkelijke advertentie kunnen meegeven.
+    """
+    tekst = re.sub(r"(?is)<(script|style).*?</\1>", " ", tekst)
+    # Objectlinks markeren voordat de tags verdwijnen
+    tekst = re.sub(
+        r'(?is)<a[^>]+href=["\']([^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*)["\'][^>]*>',
+        lambda m: f"\n__LINK__{m.group(1)}\n", tekst)
+    tekst = re.sub(r"(?i)<br\s*/?>", "\n", tekst)
+    tekst = re.sub(r"(?i)</(p|div|tr|td|h\d|li)>", "\n", tekst)
+    tekst = re.sub(r"<[^>]+>", " ", tekst)
+    vervang = {"&nbsp;": " ", "&amp;": "&", "&euro;": "€", "&#8364;": "€",
+               "&quot;": '"', "&#39;": "'", "&lt;": "<", "&gt;": ">"}
+    for k, v in vervang.items():
+        tekst = tekst.replace(k, v)
+    regels = [re.sub(r"[ \t]+", " ", r).strip() for r in tekst.split("\n")]
+    return [r for r in regels if r]
+
+
+def haal_tekst(bericht):
+    """Haalt de leesbare regels uit een e-mailbericht."""
+    delen_html, delen_plat = [], []
+    if bericht.is_multipart():
+        for deel in bericht.walk():
+            soort = deel.get_content_type()
+            if soort not in ("text/plain", "text/html"):
+                continue
+            try:
+                inhoud = deel.get_payload(decode=True)
+                if inhoud is None:
+                    continue
+                tekens = deel.get_content_charset() or "utf-8"
+                tekst = inhoud.decode(tekens, errors="replace")
+            except Exception:
+                continue
+            (delen_html if soort == "text/html" else delen_plat).append(tekst)
+    else:
         try:
-            with open(os.path.join(DIAGNOSE_MAP, naam), encoding="utf-8") as f:
-                for regel in f:
-                    regel = regel.strip()
-                    if regel.startswith("AUTOMATISCH") and regel not in uit:
-                        uit.append(regel.replace("AUTOMATISCH: ", ""))
+            inhoud = bericht.get_payload(decode=True) or b""
+            tekst = inhoud.decode(bericht.get_content_charset() or "utf-8",
+                                  errors="replace")
         except Exception:
-            continue
-    return uit
-
-
-def _kort(tekst, maximum=240):
-    """Een diagnose inkorten tot iets wat in een bericht past."""
-    if len(tekst) <= maximum:
-        return tekst
-    return tekst[:maximum].rsplit(" ", 1)[0] + " (...)"
-VANDAAG = dt.date.today()
-
-
-def _json(pad):
-    try:
-        with open(pad, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return None
-
-
-def _leeftijd_dagen(pad):
-    """Hoeveel dagen geleden is dit bestand bijgewerkt?"""
-    try:
-        return (VANDAAG - dt.date.fromtimestamp(os.path.getmtime(pad))).days
-    except Exception:
-        return None
-
-
-def _regels(pad):
-    try:
-        with open(pad, encoding="utf-8") as f:
-            return [r for r in f if r.strip() and not r.startswith("#")]
-    except Exception:
-        return []
-
-
-# ---------------------------------------------------------------------------
-# De controles. Elk geeft (status, bewijs, diagnose) terug.
-# ---------------------------------------------------------------------------
-
-def controle_huurdata():
-    """Het belangrijkste: rust de richtprijs op metingen of op een aanname?"""
-    regels = _regels("verkopen.txt")
-    huur = [r for r in regels if "te huur" in r.lower()]
-    pararius = [r for r in huur if "pararius" in r.lower()]
-    kamernet = [r for r in huur if "kamernet" in r.lower()]
-    recent = [r for r in huur
-              if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(8))]
-    bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
-              f"en {len(kamernet)} Kamernet; {len(recent)} in de laatste week")
-    if not huur:
-        return (FOUT, bewijs,
-                "Geen enkele huurwaarneming. Elke richtprijs rust op een aanname. "
-                "Kijk in stap 14 naar de [pararius]-regels: staat daar "
-                "'0 objecten', dan herkent de parser de mail niet.")
-    if not recent:
-        return (LET_OP, bewijs,
-                "Wel huurdata, maar niets nieuws deze week. Komen de Pararius-mails "
-                "nog binnen, en worden ze herkend? Zie stap 14.")
-    if len(huur) < 30:
-        return (LET_OP, bewijs,
-                "Er wordt gemeten, maar het aantal is nog te klein voor een "
-                "betrouwbare mediaan per grootteklasse en buurt.")
-    return (OK, bewijs, "")
-
-
-def controle_aanbod():
-    regels = _regels("verkopen.txt")
-    koop = [r for r in regels if "te koop" in r.lower() or "belegging" in r.lower()]
-    recent = [r for r in koop
-              if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(4))]
-    bewijs = f"{len(koop)} koopobjecten, {len(recent)} in de laatste drie dagen"
-    if not koop:
-        return (FOUT, bewijs, "Het aanbodbestand is leeg. Zie stap 14.")
-    if not recent:
-        return (LET_OP, bewijs,
-                "Geen nieuw aanbod in drie dagen. Kan kloppen in een stille week, "
-                "maar controleer of de Funda-mails binnenkomen.")
-    return (OK, bewijs, "")
-
-
-def controle_rente():
-    d = _json("rente_actueel.json") or {}
-    leeftijd = _leeftijd_dagen("rente_actueel.json")
-    rente = d.get("rente") or d.get("ltv70")
-    if not rente:
-        return (FOUT, "geen rente in rente_actueel.json",
-                "De rentestap leverde niets op. Zie stap 8; financieren.nl kan van "
-                "opmaak zijn veranderd.")
-    if leeftijd is not None and leeftijd > 3:
-        return (LET_OP, f"rente {rente}%, bestand {leeftijd} dagen oud",
-                "De rente is niet vernieuwd. Zie stap 8.")
-    return (OK, f"rente {rente}% bij 70% financiering", "")
-
-
-def controle_ecb():
-    d = _json("rente_actueel.json") or {}
-    markt = d.get("kapitaalmarkt")
-    if markt is None:
-        return (FOUT, "geen kapitaalmarktrente vastgelegd",
-                "De ECB gaf geen antwoord. Zie stap 8, de regel 'ECB-rente'. Staat "
-                "er 'mislukt op alle manieren', dan blokkeert de ECB verzoeken "
-                "vanaf GitHub en helpt een andere vraagvorm niet.")
-    rente = d.get("ltv70") or d.get("rente")
-    opslag = (f", opslag bij 70% financiering {rente - markt:.2f}".replace(".", ",")
-              + " procentpunt") if rente else ""
-    return (OK, f"tienjaars AAA-rente " + f"{markt:.2f}".replace(".", ",")
-            + f"% ({d.get('kapitaalmarkt_datum', '')}){opslag}", "")
-
-
-def controle_bouwkosten():
-    d = _json("bouwkosten_index.json") or {}
-    if not d:
-        return (FOUT, "bouwkosten_index.json ontbreekt of is leeg",
-                diagnose("bouwkosten")
-                or "De verbouwkosten worden niet geindexeerd. Zie stap 17.")
-    laatste = max(d)
-    return (OK, f"{len(d)} maanden, laatste {laatste}", "")
-
-
-def controle_eigen_bouwkosten():
-    eigen = [r for r in _regels("bouwkosten_eigen.txt") if "|" in r]
-    if not eigen:
-        return (LET_OP, "geen eigen bouwkosten ingevuld",
-                "De verbouwkosten zijn aannames van het script. Vul in "
-                "bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per "
-                "m2 kosten; uit het hoofd is al beter dan de aanname.")
-    return (OK, f"{len(eigen)} eigen tarieven ingevuld", "")
-
-
-def controle_buurtcijfers():
-    d = _json("buurten_cbs.json") or {}
-    buurten = [b for b in d if not str(b).startswith("_")]
-    if not buurten:
-        return (FOUT, "buurten_cbs.json leeg", "Zie stap 7.")
-    eerste = d[buurten[0]] if buurten else {}
-    ontbreekt = [v for v in ("inkomen", "vermogen", "eenpersoons", "leeftijd",
-                             "afstand_trein")
-                 if eerste.get(v) is None]
-    bewijs = f"{len(buurten)} buurten"
-    if ontbreekt:
-        return (LET_OP, bewijs + f"; ontbreekt: {', '.join(ontbreekt)}",
-                diagnose("buurtcijfers")
-                or "Deze velden worden niet gevonden in de CBS-kaart. In stap 7 "
-                   "staat welke veldnamen er wel zijn.")
-    return (OK, bewijs + ", alle velden gevuld", "")
-
-
-def controle_vergunningen():
-    per_buurt = _json("vergunningen_per_buurt.json") or {}
-    lijst = _json("kamervergunningen.json") or {}
-    if not lijst:
-        return (FOUT, "kamervergunningen.json ontbreekt", "")
-    if len(per_buurt) < 3:
-        return (LET_OP, f"{len(lijst)} adressen, maar {len(per_buurt)} buurten "
-                        f"gekoppeld",
-                diagnose("vergunningen")
-                or "De koppeling aan buurten is niet gemaakt; de kolom in de brief "
-                   "blijft leeg. Zie stap 5.")
-    return (OK, f"{len(lijst)} adressen in {len(per_buurt)} buurten", "")
-
-
-def controle_kamerverhuur():
-    """Het register van kamerverhuurpanden, en hoe ver de meldingen teruggaan."""
-    d = _json("kamerverhuur_per_buurt.json") or {}
-    per = d.get("per_buurt") or {}
-    if not per:
-        return (FOUT, "kamerverhuur_per_buurt.json ontbreekt of is leeg",
-                diagnose("kamerverhuur") or "Zie de stap Kamerverhuurregister.")
-    totaal = sum(v.get("totaal", 0) for v in per.values())
-    via_melding = sum(v.get("alleen_melding_of_besluit", 0) for v in per.values())
-    jaren = d.get("meldingen_per_jaar") or {}
-    jaartekst = (", ".join(f"{j}: {n}" for j, n in jaren.items())
-                 if jaren else "geen meldingen")
-    bewijs = (f"{totaal} panden in de ring, waarvan {via_melding} alleen via een "
-              f"melding of besluit; meldingen per jaar: {jaartekst}")
-    if not jaren:
-        return (LET_OP, bewijs, diagnose("kamerverhuur") or
-                "Geen meldingen in het archief; het register rust dan alleen op de "
-                "vergunningenlijst.")
-    return (OK, bewijs, "")
-
-
-def controle_woningprijzen():
-    d = _json("woningprijsindex.json") or {}
-    l, r = d.get("landelijk"), d.get("regio")
-    if not l and not r:
-        return (FOUT, "woningprijsindex.json leeg",
-                diagnose("woningprijzen") or "Zie de stap Woningprijsindex CBS.")
-    delen = []
-    if l:
-        delen.append(f"landelijk {l['periode']}")
-    if r:
-        delen.append(f"{r['naam']} {r['periode']}")
-    if d.get("ingang"):
-        delen.append(f"via {d['ingang']}")
-    v = d.get("vergelijking") or {}
-    if v.get("beste_verband"):
-        b = v["beste_verband"]
-        delen.append(f"eigen reeks {v['maanden']} maanden, sterkste samenhang bij "
-                     f"{b['vertraging_maanden']} maanden vooruit ({b['r']})")
-    elif v.get("maanden"):
-        delen.append(f"eigen reeks {v['maanden']} maanden sinds {v['sinds']}, "
-                     f"vergelijking start bij 13")
-    if not r:
-        return (LET_OP, ", ".join(delen) + "; geen regio",
-                diagnose("woningprijzen") or "Nijmegen niet gevonden in de regiotabel.")
-    return (OK, ", ".join(delen), "")
-
-
-def controle_begroting():
-    d = _json("begroting_nijmegen.json") or {}
-    if not d.get("paginas"):
-        return (LET_OP, "nog geen begroting opgehaald",
-                diagnose("begroting") or "Draait de stap Stadsbegroting al?")
-    return (OK, f"Stadsbegroting {d.get('jaar')}, {len(d['paginas'])} pagina's, "
-                f"opgehaald {d.get('opgehaald')}", "")
-
-
-def controle_geschiedenis():
-    """Hoeveel panden we volgen, en hoeveel er nog nooit zijn nagekeken."""
-    d = _json("pandgeschiedenis.json") or {}
-    if not d:
-        return (LET_OP, "nog geen geschiedenis opgebouwd",
-                diagnose("geschiedenis") or "Draait de stap Geschiedenis per pand?")
-    met_verhaal = sum(1 for p in d.values()
-                      if len(p.get("gebeurtenissen") or []) > 1)
-    nooit = sum(1 for p in d.values() if not p.get("bag_gezien"))
-    zonder_id = sum(1 for p in d.values() if p.get("bag_zonder_id"))
-    # Het getal uit het script zelf, niet een eigen kopie: die liepen uiteen
-    # toen de standaard van 200 naar 500 ging.
-    try:
-        from pandgeschiedenis import MAX_BAG_PER_RONDE as per_ronde
-    except Exception:
-        per_ronde = int(os.environ.get("BAG_PER_RONDE") or 500)
-    bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
-              f"gebeurtenis, {nooit} nog nooit tegen de BAG gehouden"
-              + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else ""))
-    if nooit:
-        runs = -(-nooit // per_ronde)
-        oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
-                   f"run(s). Elke handmatige start werkt er een ronde af.")
-        return (LET_OP, bewijs, diagnose("geschiedenis") or oorzaak)
-    return (OK, bewijs + "; iedereen is minstens een keer nagekeken",
-            diagnose("geschiedenis") or "")
-
-
-def controle_mailbronnen():
-    """Welke attenderingen er binnenkomen, en of er iets uit te halen valt."""
-    d = _json("mail_status.json") or {}
-    bronnen = d.get("bronnen") or {}
-    if d.get("opmerking"):
-        return (LET_OP, f"mailstap van {d.get('datum', '?')}: {d['opmerking']}",
-                "De mailstap kwam niet bij de mailbox; zonder die stap komt er "
-                "geen aanbod binnen.")
-    if not bronnen:
-        return (LET_OP, f"mailstap van {d.get('datum', '?')}: geen enkele mail "
-                        f"van een van de bronnen",
-                "Komen de attenderingen in deze mailbox binnen, en staan ze in "
-                "de inbox en niet in een map?")
-    delen, stil, stom = [], [], []
-    for bron, t in sorted(bronnen.items()):
-        delen.append(f"{bron}: {t.get('mails', 0)} mails, "
-                     f"{t.get('objecten', 0)} objecten")
-        if not t.get("mails"):
-            stil.append(bron)
-        elif not t.get("objecten"):
-            stom.append(bron)
-    for verwacht in ("kamernet", "pararius", "funda"):
-        if verwacht not in bronnen:
-            stil.append(verwacht)
-    bewijs = f"laatste ronde {d.get('datum', '?')}: " + "; ".join(delen)
-    if stom:
-        return (LET_OP, bewijs,
-                f"Van {', '.join(stom)} komen wel mails binnen maar het script "
-                f"haalt er niets uit; de opmaak is waarschijnlijk veranderd.")
-    if stil:
-        return (LET_OP, bewijs,
-                f"Van {', '.join(sorted(set(stil)))} kwam geen enkele mail. "
-                f"Staat de attendering aan en komt hij in deze mailbox binnen?")
-    return (OK, bewijs, "")
-
-
-def controle_verkopen():
-    """
-    Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
-
-    Belangrijk om te weten of de attendering de verkopen meeneemt sinds Mark
-    dat filter aanzette. Zo ja, dan hoeft er niets meer geplakt te worden.
-    """
-    per_bron, laatste = {}, ""
-    try:
-        with open("verkopen.txt", encoding="utf-8") as f:
-            for regel in f:
-                v = [x.strip() for x in regel.split("|")]
-                if len(v) < 6 or not v[3].lower().startswith("verkocht"):
-                    continue
-                bron = "geplakt" if "plak" in v[5] else "uit de mail"
-                per_bron[bron] = per_bron.get(bron, 0) + 1
-                laatste = max(laatste, v[4])
-    except Exception:
-        return (LET_OP, "verkopen niet te lezen", "Staat verkopen.txt er wel?")
-    if not per_bron:
-        return (LET_OP, "nog geen verkopen in de reeks",
-                "Zet in de Funda-attendering het filter op verkocht en onder "
-                "bod; dan komen ze vanzelf binnen. Werkt dat niet, dan blijft "
-                "plakken over.")
-    delen = ", ".join(f"{n} {b}" for b, n in sorted(per_bron.items()))
-    uit_mail = per_bron.get("uit de mail", 0)
-    bewijs = f"{sum(per_bron.values())} verkopen: {delen}; laatste {laatste}"
-    if not uit_mail:
-        return (LET_OP, bewijs,
-                "Er komt nog geen enkele verkoop uit de attendering. Controleer "
-                "of het filter op verkocht daar echt aan staat.")
-    return (OK, bewijs, "")
-
-
-def controle_plakbestanden():
-    """De lijsten die Mark met de hand aanlevert: verkopen en Kamernet."""
-    uit = []
-    for pad, wat in (("funda_verkocht_plak.txt", "verkooplijst van Funda"),
-                     ("kamernet_plak.txt", "kamerlijst van Kamernet")):
-        if os.path.exists(pad) and os.path.getsize(pad) > 200:
-            uit.append(f"{wat}: aanwezig")
+            tekst = ""
+        if "<html" in tekst.lower() or "<td" in tekst.lower():
+            delen_html.append(tekst)
         else:
-            uit.append(f"{wat}: ontbreekt")
-    verkocht = _json("verkocht_details.json") or {}
-    if verkocht:
-        uit.append(f"{len(verkocht)} verkochte woningen verwerkt")
-    if all("aanwezig" in x for x in uit[:2]):
-        return (OK, "; ".join(uit), "")
-    return (LET_OP, "; ".join(uit),
-            "Plak de tekst van de pagina in dat bestand en commit het; het "
-            "script verwerkt hem bij de volgende run.")
+            delen_plat.append(tekst)
+
+    if delen_html:
+        return strip_html("\n".join(delen_html))
+    regels = []
+    for t in delen_plat:
+        regels.extend([r.strip() for r in t.split("\n") if r.strip()])
+    return regels
 
 
-def controle_misdrijven():
-    d = _json("misdrijven_per_buurt.json") or {}
-    if not d:
-        return (FOUT, "geen misdrijfcijfers", "Zie stap 6.")
-    return (OK, f"{len(d)} buurten", "")
+def parse_objecten(regels, basis_status):
+    """
+    Haalt objecten uit de regels van een attenderingsmail.
+    Twee vormen:
+      'Waalkade 60, Nijmegen'  gevolgd door  '€ 495.000 k.k.'
+      'Vondelstraat 26'  '6512 BG Nijmegen'  '€ 545.000 k.k.'
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
 
-
-def controle_ov():
-    haltes = _json("ov_haltes.json") or []
-    afstanden = _json("ov_afstand_cache.json") or {}
-    if not haltes:
-        return (FOUT, "geen haltebestand",
-                "Zie stap 16. Verwijder ov_haltes.json om opnieuw op te halen.")
-    if len(haltes) < 50:
-        return (LET_OP, f"{len(haltes)} haltes",
-                "Verdacht weinig voor de ring; controleer het zoekgebied in "
-                "ov_haltes.py.")
-    geschat = sum(1 for a in afstanden.values()
-                  if isinstance(a, dict) and a.get("geschat"))
-    bewijs = f"{len(haltes)} haltes, {len(afstanden)} panden gerouteerd"
-    if afstanden and geschat == len(afstanden):
-        return (LET_OP, bewijs + ", alle afstanden geschat",
-                "De routering via OSRM lukt niet; alle afstanden zijn de rechte "
-                "lijn maal 1,35.")
-    return (OK, bewijs, "")
-
-
-def controle_archief():
-    d = _json("bekendmakingen_archief.json") or {}
-    leeftijd = _leeftijd_dagen("bekendmakingen_archief.json")
-    if not d:
-        return (FOUT, "archief leeg", "Zie stap 13.")
-    publ = sum(len(v) for v in d.values() if isinstance(v, list))
-    bewijs = f"{len(d)} adressen, {publ} publicaties"
-    if leeftijd is not None and leeftijd > 3:
-        return (LET_OP, bewijs + f", {leeftijd} dagen niet bijgewerkt",
-                "Zie stap 13.")
-    return (OK, bewijs, "")
-
-
-def controle_regelgeving():
-    d = _json("regelgeving_status.json")
-    if d is None:
-        return (LET_OP, "nog geen regelgevingsstatus",
-                "De monitor draait op zondag. Na de eerste zondag hoort hier een "
-                "aantal regelingen te staan.")
-    # Sleutels die met een liggend streepje beginnen zijn geen regeling maar
-    # administratie van het script zelf, zoals de lijst met zoektermen.
-    d = {k: v for k, v in d.items()
-         if not str(k).startswith("_") and isinstance(v, dict)}
-    gemeente = sum(1 for g in d.values() if g.get("bron") == "gemeente")
-    landelijk = sum(1 for g in d.values() if g.get("bron") == "landelijk")
-    bewijs = f"{gemeente} verordeningen, {landelijk} wetten"
-    if not gemeente:
-        return (LET_OP, bewijs,
-                "Geen gemeentelijke verordeningen gevonden via CVDR. Zie stap 9 op "
-                "zondag; de zoekopdracht op 'Nijmegen' levert mogelijk niets op.")
-    return (OK, bewijs, "")
-
-
-def controle_geheugen():
-    gezien = _json("brief_gezien.json") or {}
-    trend = _json("prijstrend.json") or {}
-    if not gezien:
-        return (FOUT, "brief_gezien.json leeg",
-                "Zonder geheugen wordt elk pand elke dag als nieuw behandeld.")
-    weken = max((len(v) for v in trend.values() if isinstance(v, dict)), default=0)
-    bewijs = f"{len(gezien)} panden onthouden, prijstrend over {weken} metingen"
-    if weken < 4:
-        return (LET_OP, bewijs,
-                "De prijstrend is nog te kort voor een vergelijking over vier "
-                "weken. Dat lost zich vanzelf op.")
-    return (OK, bewijs, "")
-
-
-def controle_commit():
-    """Werd er de vorige keer iets teruggeschreven?"""
-    leeftijd = _leeftijd_dagen("brief_gezien.json")
-    if leeftijd is None:
-        return (FOUT, "brief_gezien.json ontbreekt", "")
-    if leeftijd > 2:
-        return (FOUT, f"gegevens {leeftijd} dagen niet bijgewerkt",
-                "Het terugcommitten lukt vermoedelijk niet. Zie de stap "
-                "'Digests + gegevensbestanden terugcommitten'.")
-    return (OK, "gegevens van de laatste run bewaard", "")
-
-
-CONTROLES = [
-    ("Huurdata", controle_huurdata),
-    ("Aanbod", controle_aanbod),
-    ("Marktrente", controle_rente),
-    ("Kapitaalmarkt (ECB)", controle_ecb),
-    ("Bouwkostenindex", controle_bouwkosten),
-    ("Eigen bouwkosten", controle_eigen_bouwkosten),
-    ("Buurtcijfers CBS", controle_buurtcijfers),
-    ("Kamervergunningen", controle_vergunningen),
-    ("Kamerverhuurregister", controle_kamerverhuur),
-    ("Woningprijsindex CBS", controle_woningprijzen),
-    ("Stadsbegroting", controle_begroting),
-    ("Geschiedenis per pand", controle_geschiedenis),
-    ("Handmatige lijsten", controle_plakbestanden),
-    ("Verkopen", controle_verkopen),
-    ("Attenderingen", controle_mailbronnen),
-    ("Misdrijfcijfers", controle_misdrijven),
-    ("OV-haltes", controle_ov),
-    ("Bekendmakingen-archief", controle_archief),
-    ("Regelgevingsmonitor", controle_regelgeving),
-    ("Geheugen en trend", controle_geheugen),
-    ("Terugschrijven", controle_commit),
-]
-
-
-def rapport(kort=False):
-    uitkomsten = []
-    for naam, functie in CONTROLES:
-        try:
-            status, bewijs, diagnose = functie()
-        except Exception as e:
-            status, bewijs, diagnose = FOUT, "controle zelf faalde", str(e)[:120]
-        uitkomsten.append((naam, status, bewijs, diagnose))
-
-    aantal = {s: sum(1 for u in uitkomsten if u[1] == s) for s in (OK, LET_OP, FOUT)}
-
-    if kort:
-        # De versie om te plakken: alleen wat aandacht vraagt, ingekort, en de
-        # onderdelen die goed gaan in een regel
-        r = [f"GEZONDHEID {VANDAAG.isoformat()}: {aantal[OK]} ok, "
-             f"{aantal[LET_OP]} let op, {aantal[FOUT]} fout"]
-        for status in (FOUT, LET_OP):
-            for naam, s_, bewijs, diag in uitkomsten:
-                if s_ != status:
-                    continue
-                r.append(f"[{status}] {naam}: {bewijs}")
-                if diag:
-                    r.append(f"   {_kort(diag)}")
-        goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
-        if goed:
-            r.append("[OK] " + ", ".join(goed))
-
-        # Automatische keuzes altijd tonen, ook als het onderdeel groen is.
-        # Juist dan: een automatisch gekozen veld dat verkeerd is, geeft geen
-        # fout maar een plausibel verkeerd getal.
-        for regel in automatische_keuzes():
-            r.append(f"[CONTROLEER] {regel}")
-        return "\n".join(r)
-
-    r = [f"# Gezondheidsrapport {VANDAAG.isoformat()}", "",
-         f"{aantal[OK]} in orde, {aantal[LET_OP]} aandachtspunten, "
-         f"{aantal[FOUT]} fouten.", ""]
-
-    # Eerst wat er mis is, dan de rest: daar gaat het om bij het delen
-    for status in (FOUT, LET_OP, OK):
-        groep = [u for u in uitkomsten if u[1] == status]
-        if not groep:
+    for i, regel in enumerate(regels):
+        if regel.startswith("__LINK__"):
             continue
-        r.append(f"## {status}")
-        for naam, _s, bewijs, diag in groep:
-            r.append(f"- **{naam}**: {bewijs}")
-            if diag:
-                r.append(f"  {diag}")
-        r.append("")
-    return "\n".join(r)
+        adres = plaats = None
+        adres_idx = i
+
+        postcode_gevonden = ""
+        komma = RE_ADRES_KOMMA.match(regel)
+        if komma:
+            adres, plaats = komma.group(1).strip(), komma.group(2).strip()
+        else:
+            pc = RE_POSTCODE.match(regel)
+            if not pc:
+                continue
+            plaats = pc.group(2).strip()
+            postcode_gevonden = pc.group(1).replace(" ", "")
+            for j in range(i - 1, max(-1, i - 5), -1):
+                a = RE_ADRES.match(regels[j])
+                if a:
+                    adres, adres_idx = a.group(1).strip(), j
+                    break
+            # Pararius toont bij huuraanbod alleen de straatnaam. Dan pakken we
+            # de regel direct boven de postcode, mits die op een straat lijkt.
+            if not adres and i > 0:
+                st_alleen = RE_STRAAT_ALLEEN.match(regels[i - 1])
+                if st_alleen and not any(
+                        w in regels[i - 1].lower()
+                        for w in ("zoekopdracht", "woningen", "pararius", "bekijk",
+                                  "nieuwe", "jouw", "team", "groet", "kamernet")):
+                    adres, adres_idx = st_alleen.group(1).strip(), i - 1
+            if not adres:
+                continue
+
+        # Alleen Nijmegen en directe omgeving
+        if plaats.lower() not in ("nijmegen", "lent", "nijmegen-oost", "nijmegen-west"):
+            continue
+
+        prijs = None
+        soort = None   # 'koop', 'maand' of 'pm2jr'
+        for p in range(i + 1, min(len(regels), i + 8)):
+            laag = regels[p].lower()
+            if "aanvraag" in laag or "n.o.t.k" in laag:
+                break
+            pm = RE_PRIJS.search(regels[p])
+            if not pm:
+                continue
+            ruw = pm.group(1).replace(".", "")
+            if not ruw.isdigit():
+                continue
+            bedrag = int(ruw)
+
+            # Huur per m2 per jaar, komt voor bij bedrijfsruimte
+            if re.search(r"/\s*m.?\s*/\s*jaar|per\s*m.?\s*per\s*jaar", laag):
+                if 20 <= bedrag <= 2000:
+                    prijs, soort = bedrag, "pm2jr"
+                    break
+                continue
+
+            # Maandhuur
+            if re.search(r"per\s*maand|p/?m\b|/\s*mnd|per\s*mnd", laag):
+                if 300 <= bedrag <= 25000:
+                    prijs, soort = bedrag, "maand"
+                    break
+                continue
+
+            # Koopsom: minimaal vijf cijfers en een duizendtalscheiding
+            if "." in pm.group(1) and len(ruw) >= 5:
+                prijs, soort = bedrag, "koop"
+                break
+
+        if not prijs:
+            overgeslagen.append(f"{adres} (geen prijs gevonden)")
+            continue
+
+        # De status hangt af van wat voor prijs we vonden
+        if soort == "maand":
+            status = "te huur"
+        elif soort == "pm2jr":
+            status = "te huur pm2"
+        else:
+            status = basis_status
+
+        sleutel = (adres.lower(), prijs)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+
+        # Bron-URL zoeken vlak boven of onder het adres
+        bron = ""
+        for j in range(max(0, adres_idx - 4), min(len(regels), i + 4)):
+            if regels[j].startswith("__LINK__"):
+                bron = regels[j][len("__LINK__"):].split("?")[0].strip()
+                break
+
+        # Oppervlakte staat vaak in de advertentieregel zelf. Bij een adres zonder
+        # huisnummer is dat de enige bron, want de BAG kan er dan niets mee.
+        opp = ""
+        for p in range(adres_idx, min(len(regels), i + 8)):
+            om = RE_OPPERVLAKTE.search(regels[p])
+            if om and 10 <= int(om.group(1)) <= 2000:
+                opp = om.group(1)
+                break
+
+        vandaag = waarnemingsdatum()
+        regel_uit = f"{adres} | {plaats} | {prijs} | {status} | {vandaag}"
+        regel_uit += f" | {bron}" if bron else " | "
+        regel_uit += f" | {opp}" if opp else " | "
+        regel_uit += f" | {postcode_gevonden}" if postcode_gevonden else " | "
+        gevonden.append(regel_uit.rstrip(" |") if regel_uit.endswith(" | ") else regel_uit)
+
+    return gevonden, overgeslagen
+
+
+
+
+# Kamernet zet elk object over meerdere regels, zonder postcode:
+#   Lange Hezelstraat,
+#   Nijmegen
+#   25 m2
+#   kaal
+#   Kamer
+#   Vanaf 1 Sep 2026
+#   € 550
+#   /maand incl.
+RE_KN_STRAAT = re.compile(r"^\s*([A-Za-zÀ-ÿ.'\-\d ]{3,45}),\s*$")
+RE_KN_PLAATS = re.compile(r"^\s*([A-Za-zÀ-ÿ\-' ]{3,30})\s*$")
+RE_KN_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2]\s*$")
+RE_KN_SOORT = re.compile(r"^\s*(Kamer|Appartement|Studio|Woonhuis|Anti-kraak)\s*$", re.I)
+RE_KN_PRIJS = re.compile(r"^\s*€\s*([\d.]+)\s*$")
+
+KN_PLAATSEN = ("nijmegen", "lent")
+
+
+def parse_kamernet(regels, basis_status="te huur kamer"):
+    """
+    Leest een Kamernet-overzicht. Kamers krijgen 'te huur kamer', zelfstandige
+    eenheden zoals appartement en studio krijgen gewoon 'te huur'.
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = waarnemingsdatum()
+
+    for i, regel in enumerate(regels):
+        st_m = RE_KN_STRAAT.match(regel)
+        if not st_m or i + 1 >= len(regels):
+            continue
+        pl_m = RE_KN_PLAATS.match(regels[i + 1])
+        if not pl_m:
+            continue
+        straat, plaats = st_m.group(1).strip(), pl_m.group(1).strip()
+        if plaats.lower() not in KN_PLAATSEN:
+            continue
+
+        opp = soort = prijs = None
+        inclusief = False
+        for j in range(i + 2, min(len(regels), i + 12)):
+            if opp is None:
+                om = RE_KN_OPP.match(regels[j])
+                if om:
+                    opp = int(om.group(1))
+                    continue
+            if soort is None:
+                sm = RE_KN_SOORT.match(regels[j])
+                if sm:
+                    soort = sm.group(1).lower()
+                    continue
+            pm = RE_KN_PRIJS.match(regels[j])
+            if pm:
+                prijs = int(pm.group(1).replace(".", ""))
+                if j + 1 < len(regels) and "incl" in regels[j + 1].lower():
+                    inclusief = True
+                break
+
+        if not (opp and soort and prijs):
+            overgeslagen.append(f"{straat} (onvolledig)")
+            continue
+
+        status = "te huur kamer" if soort == "kamer" else "te huur"
+        sleutel = (straat.lower(), prijs, opp)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+
+        # 'incl.' betekent inclusief servicekosten; dat vermelden we in de bron,
+        # zodat later duidelijk is dat dit geen kale huur is.
+        bron = "kamernet-incl" if inclusief else "kamernet"
+        gevonden.append(f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+                        f"| {bron} | {opp} | ")
+    return gevonden, overgeslagen
+
+
+
+
+# Kamernet stuurt ook losse attenderingen, met labels in plaats van een lijst:
+#   Locatie: Graafseweg, Nijmegen
+#   Oppervlakte: 21 m2
+#   Prijs: € 852 incl. g/w/e
+# Die vorm herkende de overzichtsparser niet, waardoor tien mails per dag
+# ongebruikt bleven.
+RE_KN_LOCATIE = re.compile(r"^\s*Locatie:\s*(.+?)\s*,\s*([A-Za-zÀ-ÿ\-' ]+)\s*$", re.I)
+RE_KN_OPP = re.compile(r"^\s*Oppervlakte:\s*(\d{1,4})\s*m", re.I)
+RE_KN_PRIJS = re.compile(r"^\s*Prijs:\s*€\s*([\d.]+)", re.I)
+# Waaraan we zien dat het geen kamer is. Op hele woorden, want "studentenhuis"
+# bevat "huis" en dat maakte van een kamer een zelfstandige woning.
+RE_ZELFSTANDIG = re.compile(r"\b(appartement|studio|woonhuis|eengezinswoning)\b", re.I)
+RE_KAMER = re.compile(r"\bkamer\b", re.I)
+
+
+def parse_kamernet_attendering(regels, vandaag=None):
+    """
+    Een losse Kamernet-mail met een enkele woonruimte.
+
+    Er staat geen huisnummer in, alleen de straat; dat is hetzelfde als bij het
+    huuraanbod van Pararius en daar kan de rest van het script mee omgaan.
+    """
+    vandaag = vandaag or waarnemingsdatum()
+    straat = plaats = None
+    opp = prijs = None
+    inclusief = False
+    soort_tekst = " ".join(regels).lower()
+    for regel in regels:
+        m = RE_KN_LOCATIE.match(regel)
+        if m and not straat:
+            straat, plaats = m.group(1).strip(), m.group(2).strip()
+            continue
+        m = RE_KN_OPP.match(regel)
+        if m and not opp:
+            opp = int(m.group(1))
+            continue
+        m = RE_KN_PRIJS.match(regel)
+        if m and not prijs:
+            prijs = int(m.group(1).replace(".", ""))
+            inclusief = "incl" in regel.lower()
+    if not (straat and plaats and prijs and opp):
+        return [], []
+    # Kamernet attendeert ook buiten de stad; die horen niet in onze reeks,
+    # anders schuift een kamer in Arnhem de Nijmeegse mediaan.
+    if plaats.strip().lower() != "nijmegen":
+        return [], [f"{straat}, {plaats}: buiten Nijmegen"]
+    # Staat er "kamer", dan is het een kamer, ook als het woord studentenhuis
+    # verderop valt. Kamernet gaat standaard over onzelfstandige woonruimte.
+    if RE_KAMER.search(soort_tekst):
+        status = "te huur kamer"
+    elif RE_ZELFSTANDIG.search(soort_tekst):
+        status = "te huur"
+    else:
+        status = "te huur kamer"
+    bron = "kamernet-incl" if inclusief else "kamernet"
+    return [f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+            f"| {bron} | {opp} | "], []
+
+
+# Pararius-overzicht. De buurt staat tussen haakjes achter de postcode, en waar
+# een kale en een totale huurprijs staan nemen we de kale: die telt voor het
+# rendement en voor het puntenstelsel.
+RE_PA_POSTCODE = re.compile(
+    r"^\s*(\d{4}\s?[A-Z]{2})\s+([A-Za-zÀ-ÿ\-' ]+?)\s*\(([^)]+)\)\s*$")
+RE_PA_PRIJS = re.compile(r"^\s*€\s*([\d.]+)\s*per maand\s*$")
+# De oppervlakte staat nu op een regel met de rest van de kenmerken:
+# "40 m² · 2 kamers · Gemeubileerd · Bouwjaar 1888". Vroeger stond hij los.
+# Het patroon accepteert beide.
+RE_PA_OPP = re.compile(r"^\s*(\d{1,4})\s*m[²2](?:\s*[·•|].*)?\s*$")
+RE_PA_KAMERS = re.compile(r"(\d{1,2})\s*kamers?", re.I)
+RE_PA_BOUWJAAR = re.compile(r"bouwjaar\s*(\d{4})", re.I)
+RE_PA_TITEL = re.compile(
+    r"^\s*(Appartement|Huis|Studio|Kamer|Woonboot|Bungalow)\s+(.+?)\s*$", re.I)
+
+# Leegstandbeheer is geen markthuur en hoort niet in een mediaan thuis.
+PA_UITSLUITEN = ("ad hoc", "camelot", "leegstandbeheer", "anti-kraak", "antikraak")
+
+
+def parse_pararius(regels):
+    """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = waarnemingsdatum()
+
+    for i, regel in enumerate(regels):
+        pc = RE_PA_POSTCODE.match(regel)
+        if not pc:
+            continue
+        postcode, plaats, buurt = (pc.group(1).replace(" ", ""),
+                                   pc.group(2).strip(), pc.group(3).strip())
+        if plaats.lower() not in ("nijmegen", "lent"):
+            continue
+
+        # Boven de postcode staat de straat. Vroeger als "Appartement
+        # Berg en Dalseweg", nu vaak alleen "Berg en Dalseweg". We nemen de
+        # soort mee als die er is, en anders de kale straatnaam.
+        soort = straat = None
+        for j in range(i - 1, max(-1, i - 6), -1):
+            tm = RE_PA_TITEL.match(regels[j])
+            if tm:
+                soort, straat = tm.group(1).lower(), tm.group(2).strip()
+                break
+        if not straat and i > 0:
+            kandidaat = regels[i - 1].strip()
+            # Een straatnaam: letters, geen prijs, geen reclametekst
+            if (kandidaat and not any(c.isdigit() for c in kandidaat)
+                    and "€" not in kandidaat and len(kandidaat) < 60
+                    and not any(w in kandidaat.lower() for w in
+                                ("pararius", "bekijk", "zoekopdracht", "woning",
+                                 "kijkje", "ontdek"))):
+                straat = kandidaat
+        if not straat:
+            continue
+
+        # Kale huurprijs heeft voorrang boven de totale huurprijs
+        prijs = None
+        kale_gezien = False
+        for j in range(i + 1, min(len(regels), i + 12)):
+            if "kale huurprijs" in regels[j].lower():
+                kale_gezien = True
+                continue
+            if "totale huurprijs" in regels[j].lower() and prijs:
+                break  # kale huur al binnen, de rest negeren
+            pm = RE_PA_PRIJS.match(regels[j])
+            if pm and prijs is None:
+                prijs = int(pm.group(1).replace(".", ""))
+                if not kale_gezien:
+                    break  # er is maar een prijs, dus dat is de huur
+                break
+
+        opp = kamers = bouwjaar = None
+        gemeubileerd = False
+        for j in range(i + 1, min(len(regels), i + 16)):
+            om = RE_PA_OPP.match(regels[j])
+            if om:
+                opp = int(om.group(1))
+                km = RE_PA_KAMERS.search(regels[j])
+                kamers = int(km.group(1)) if km else None
+                bj = RE_PA_BOUWJAAR.search(regels[j])
+                bouwjaar = int(bj.group(1)) if bj else None
+                # Gemeubileerd is een andere markt: de huur ligt hoger omdat de
+                # inrichting erbij zit. "Gestoffeerd of gemeubileerd" telt als
+                # gestoffeerd, want dan kan de huurder kiezen.
+                laag = regels[j].lower()
+                gemeubileerd = ("gemeubileerd" in laag
+                                and "gestoffeerd" not in laag)
+                break
+
+        beheerder = ""
+        for j in range(i + 1, min(len(regels), i + 18)):
+            if RE_PA_POSTCODE.match(regels[j]) or RE_PA_TITEL.match(regels[j]):
+                break  # volgend object begint hier
+            if regels[j].strip() and not any(c.isdigit() for c in regels[j]):
+                beheerder = regels[j].strip().lower()
+        if any(u in beheerder for u in PA_UITSLUITEN):
+            overgeslagen.append(f"{straat} (leegstandbeheer)")
+            continue
+
+        if not (prijs and opp):
+            overgeslagen.append(f"{straat} (onvolledig)")
+            continue
+        if gemeubileerd:
+            overgeslagen.append(f"{straat} (gemeubileerd, andere markt)")
+            continue
+
+        status = "te huur kamer" if soort == "kamer" else "te huur"
+        sleutel = (straat.lower(), prijs, opp)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        gevonden.append(f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
+                        f"| pararius | {opp} | {postcode}")
+    return gevonden, overgeslagen
+
+
+
+
+# Vendr is een biedplatform: objecten worden bij opbod aangeboden, dus er staat
+# geen vraagprijs in de mail. Het adres staat op een regel met de postcode
+# erachter, gescheiden door een komma.
+RE_VENDR = re.compile(
+    r"^\s*([A-Za-zÀ-ÿ.'\- ]+?\s+\d+[A-Za-z]?)\s*,\s*(\d{4}\s?[A-Z]{2})\s+"
+    r"([A-Za-zÀ-ÿ\-' ]+?)\s*$")
+
+VENDR_PLAATSEN = ("nijmegen", "lent", "weurt", "beuningen", "malden",
+                  "berg en dal", "ubbergen", "elst", "bemmel")
+
+
+def parse_vendr(regels):
+    """
+    Leest een Vendr-attendering. Geen prijs, want er wordt geboden. We leggen
+    het adres vast; de brief rekent er zelf een maximum bod bij uit.
+    """
+    gevonden, gezien, overgeslagen = [], {}, []
+    plaatsen = {}
+    vandaag = waarnemingsdatum()
+    for i, regel in enumerate(regels):
+        m = RE_VENDR.match(regel)
+        if not m:
+            continue
+        adres, postcode, plaats = (m.group(1).strip(),
+                                   m.group(2).replace(" ", ""),
+                                   m.group(3).strip())
+
+        if plaats.lower() not in VENDR_PLAATSEN:
+            overgeslagen.append(f"{adres} ({plaats})")
+            continue
+        plaatsen[postcode] = plaats
+        # In de kopregel staat de projectnaam voor het adres geplakt, verderop
+        # staat het adres los. We groeperen op postcode en huisnummer en houden
+        # de kortste schrijfwijze over.
+        nr = re.search(r"(\d+[A-Za-z]?)\s*$", adres)
+        sleutel = (postcode, nr.group(1) if nr else adres.lower())
+        if sleutel not in gezien or len(adres) < len(gezien[sleutel]):
+            gezien[sleutel] = adres
+
+    for (postcode, _nr), adres in gezien.items():
+        plaats = plaatsen.get(postcode, "Nijmegen")
+        # Prijs 0 betekent: bij opbod, nog geen vraagprijs
+        gevonden.append(f"{adres} | {plaats} | 0 | bieden | {vandaag} "
+                        f"| vendr |  | {postcode}")
+    return gevonden, overgeslagen
+
+
+def bestaande_adressen(pad):
+    """Adressen die al in verkopen.txt staan, om dubbelingen te vermijden."""
+    bestaand = set()
+    if not os.path.exists(pad):
+        return bestaand
+    with open(pad, encoding="utf-8") as f:
+        for regel in f:
+            regel = regel.strip()
+            if not regel or regel.startswith("#"):
+                continue
+            delen = [d.strip() for d in regel.split("|")]
+            if len(delen) >= 3:
+                bestaand.add((delen[0].lower(), re.sub(r"[^\d]", "", delen[2])))
+    return bestaand
+
+
+def bewaar_stand(tellers, opmerking=""):
+    """
+    De mailstand wegschrijven, ook als er niets te doen viel.
+
+    Zonder dit zag het gezondheidsrapport geen verschil tussen "de stap draaide
+    niet" en "er waren geen mails".
+    """
+    try:
+        with open("mail_status.json", "w", encoding="utf-8") as f:
+            json.dump({"datum": dt.date.today().isoformat(),
+                       "bronnen": tellers, "opmerking": opmerking},
+                      f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--uit", default="")
+    ap.add_argument("--proef", action="store_true",
+                    help="toon wat er toegevoegd zou worden, schrijf niets weg")
+    # Standaard ook gelezen mails van de laatste dagen: Mark leest de
+    # attenderingen zelf, en dan zag het script ze nooit meer. Ontdubbelen
+    # gebeurt toch op het object, dus dubbel kijken kost niets.
+    ap.add_argument("--dagen", type=int, default=3,
+                    help="kijk ook naar gelezen mails van de laatste N dagen")
+    ap.add_argument("--uit", default=VERKOPEN_PAD)
     args = ap.parse_args()
+    # Per bron bijhouden hoeveel mails er waren en hoeveel objecten eruit
+    # kwamen. Stond deze regel er niet, dan liep de stap stuk op de eerste mail.
+    tellers = {}
 
-    # In de log de korte versie, om te kopieren en te delen. In het bestand de
-    # volledige versie, voor als je alle details wilt nalezen.
-    print("=" * 60)
-    print("KOPIEER VANAF HIER")
-    print("=" * 60)
-    print(rapport(kort=True))
-    print("=" * 60)
-    print("TOT HIER")
-    print("=" * 60)
-    if args.uit:
-        os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
-        with open(args.uit, "w", encoding="utf-8") as f:
-            f.write(rapport(kort=False) + "\n")
-        print(f"\nVolledig rapport met alle details: {args.uit}")
+    if not GEBRUIKER or not WACHTWOORD:
+        print("MAIL_USERNAME of MAIL_PASSWORD ontbreekt", file=sys.stderr)
+        bewaar_stand({}, "geen mailgegevens in deze stap")
+        return
+
+    try:
+        verbinding = imaplib.IMAP4_SSL(IMAP_HOST)
+        verbinding.login(GEBRUIKER, WACHTWOORD)
+        verbinding.select("INBOX")
+    except Exception as e:
+        print(f"Kan niet inloggen op de mailbox: {e}", file=sys.stderr)
+        print("Staat IMAP aan in Gmail, en klopt het app-wachtwoord?", file=sys.stderr)
+        bewaar_stand({}, f"inloggen mislukt: {str(e)[:100]}")
+        return
+
+    ids = set()
+    for afzender in AFZENDERS:
+        zoek = f'(FROM "{afzender}")'
+        if args.dagen:
+            sinds = (dt.date.today() - dt.timedelta(days=args.dagen)).strftime("%d-%b-%Y")
+            zoek = f'(FROM "{afzender}" SINCE {sinds})'
+        else:
+            zoek = f'(UNSEEN FROM "{afzender}")'
+        try:
+            status, data = verbinding.search(None, zoek)
+            if status == "OK":
+                ids.update(data[0].split())
+        except Exception as e:
+            print(f"Zoekfout bij {afzender}: {e}", file=sys.stderr)
+
+    print(f"Gevonden berichten van Funda: {len(ids)}", file=sys.stderr)
+    if not ids:
+        verbinding.logout()
+        return
+
+    bestaand = bestaande_adressen(args.uit)
+    nieuwe_regels, alle_overgeslagen = [], []
+
+    for mid in sorted(ids):
+        try:
+            status, data = verbinding.fetch(mid, "(RFC822)")
+            if status != "OK" or not data or not data[0]:
+                continue
+            bericht = email.message_from_bytes(data[0][1])
+            global _DATUM_VAN_MAIL
+            _DATUM_VAN_MAIL = datum_van_mail(bericht)
+        except Exception as e:
+            print(f"Kan bericht {mid} niet lezen: {e}", file=sys.stderr)
+            continue
+
+        onderwerp = ""
+        try:
+            stukken = decode_header(bericht.get("Subject", ""))
+            onderwerp = "".join(
+                (s.decode(c or "utf-8", errors="replace") if isinstance(s, bytes) else s)
+                for s, c in stukken)
+        except Exception:
+            pass
+
+        regels = haal_tekst(bericht)
+        blob = " ".join(regels).lower()
+        afzender = (bericht.get("From", "") or "").lower()
+
+        # Per bron een ander basisgeval. Kamernet gaat over onzelfstandige
+        # eenheden; die moeten apart blijven, anders trekken ze de huur per m2
+        # voor gewone woningen omhoog.
+        if "vendr" in afzender or "vendr" in blob:
+            soort_bron, status_label = "vendr", "bieden"
+        elif "kamernet" in afzender or "kamernet" in blob:
+            soort_bron, status_label = "kamernet", "te huur kamer"
+        elif "pararius" in afzender or "pararius" in blob:
+            soort_bron, status_label = "pararius", "te huur"
+        elif "funda in business" in blob or "bedrijfspanden" in blob:
+            soort_bron, status_label = "business", "belegging"
+        else:
+            soort_bron, status_label = "regulier", "te koop"
+
+        if soort_bron == "vendr":
+            objecten, overgeslagen = parse_vendr(regels)
+        elif soort_bron == "kamernet":
+            objecten, overgeslagen = parse_kamernet(regels)
+            if not objecten:
+                objecten, overgeslagen = parse_kamernet_attendering(regels)
+        elif soort_bron == "pararius":
+            objecten, overgeslagen = parse_pararius(regels)
+        else:
+            objecten, overgeslagen = parse_objecten(regels, status_label)
+        alle_overgeslagen.extend(overgeslagen)
+
+        toegevoegd = 0
+        for regel in objecten:
+            delen = [d.strip() for d in regel.split("|")]
+            # Adres plus prijs: staat het adres er al met een ANDERE prijs, dan is
+            # dat een prijswijziging en dus juist wel de moeite van vastleggen waard.
+            sleutel = (delen[0].lower(), delen[2])
+            if sleutel in bestaand:
+                continue
+            bestaand.add(sleutel)
+            nieuwe_regels.append(regel)
+            toegevoegd += 1
+
+        tellers.setdefault(soort_bron, {"mails": 0, "objecten": 0,
+                                        "overgeslagen": 0, "redenen": []})
+        tellers[soort_bron]["mails"] += 1
+        tellers[soort_bron]["objecten"] += len(objecten)
+        # Ook vastleggen wat er bewust is overgeslagen, met de reden. Zonder dat
+        # onderscheid is "42 mails, 14 objecten" niet te duiden: terecht
+        # overgeslagen of niet begrepen zijn twee heel verschillende dingen.
+        tellers[soort_bron]["overgeslagen"] += len(overgeslagen or [])
+        for reden in (overgeslagen or [])[:3]:
+            if len(tellers[soort_bron]["redenen"]) < 5:
+                tellers[soort_bron]["redenen"].append(str(reden)[:80])
+        if not objecten and not overgeslagen:
+            if len(tellers[soort_bron]["redenen"]) < 5:
+                tellers[soort_bron]["redenen"].append(
+                    f"niets herkend in: {onderwerp[:50]}")
+        print(f"  [{soort_bron}] {onderwerp[:60]}: {len(objecten)} objecten, "
+              f"{toegevoegd} nieuw", file=sys.stderr)
+
+        # Niets herkend? Toon dan wat er in de mail stond, zodat we het formaat
+        # kunnen zien zonder een aparte diagnoseronde.
+        if not objecten:
+            print(f"    Geen objecten herkend. Eerste regels van deze mail:",
+                  file=sys.stderr)
+            for regel in [x for x in regels if x.strip()][:35]:
+                print(f"    | {regel[:110]}", file=sys.stderr)
+
+        if not args.proef:
+            try:
+                verbinding.store(mid, "+FLAGS", "\\Seen")
+            except Exception:
+                pass
+
+    verbinding.logout()
+
+    if alle_overgeslagen:
+        print(f"Overgeslagen ({len(alle_overgeslagen)}):", file=sys.stderr)
+        for o in alle_overgeslagen[:10]:
+            print(f"  {o}", file=sys.stderr)
+
+    if not nieuwe_regels:
+        print("Geen nieuwe objecten om toe te voegen", file=sys.stderr)
+        return
+
+    if args.proef:
+        print("PROEF, niets weggeschreven. Dit zou erbij komen:", file=sys.stderr)
+        for r in nieuwe_regels:
+            print(f"  {r}", file=sys.stderr)
+        return
+
+    vandaag = dt.date.today().strftime("%d-%m-%Y")
+    with open(args.uit, "a", encoding="utf-8") as f:
+        f.write(f"\n# Automatisch toegevoegd uit Funda-attendering op {vandaag}\n")
+        for r in nieuwe_regels:
+            f.write(r + "\n")
+
+    print(f"Toegevoegd aan {args.uit}: {len(nieuwe_regels)} objecten", file=sys.stderr)
+
+    # Per bron vastleggen hoeveel mails er waren en hoeveel objecten eruit
+    # kwamen. Zonder dit zie je niet of een bron zwijgt of dat de parser hem
+    # niet begrijpt, en dat zijn twee heel verschillende problemen.
+    bewaar_stand(tellers)
+    for bron, t in sorted(tellers.items()):
+        print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
