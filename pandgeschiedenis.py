@@ -246,8 +246,14 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
     nieuw, gedaan = 0, 0
     vandaag = dt.date.today().isoformat()
     nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
-    for sl, pand in sorted(geschiedenis.items(),
-                           key=lambda x: x[1].get("bag_gezien") or ""):
+    def volgorde(paar):
+        """Eerst wat in het aanbod zit of verkocht is, dan de rest."""
+        pand = paar[1]
+        soorten = {g["soort"] for g in pand["gebeurtenissen"]}
+        haast = 0 if soorten & {"te koop", "verkocht", "prijswijziging"} else 1
+        return (haast, pand.get("bag_gezien") or "")
+
+    for sl, pand in sorted(geschiedenis.items(), key=volgorde):
         if gedaan >= MAX_BAG_PER_RONDE:
             break
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
