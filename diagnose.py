@@ -31,6 +31,17 @@ def wis(onderdeel):
         pass
 
 
+def alleen_lezen():
+    """
+    Draait dit een testrun?
+
+    Bij een handmatige run met "alleen naar mij" mag niets worden afgestreept
+    wat de echte brief van morgen nodig heeft: gelezen artikelen, het weetje van
+    de dag, het achtergrondstuk. Anders verdwijnt het nieuws in een testrun.
+    """
+    return os.environ.get("GEHEUGEN_ALLEEN_LEZEN") == "1"
+
+
 def leg_vast(onderdeel, tekst):
     """Een regel diagnose toevoegen. Mag meerdere keren per run."""
     try:
