@@ -39,7 +39,7 @@ ARCHIEF = "bekendmakingen_archief.json"
 # controle is een paar opvragingen, dus dit is een afweging tussen snelheid en
 # belasting van die diensten. Met de omgevingsvariabele BAG_PER_RONDE tijdelijk
 # te verhogen als je een achterstand wilt inlopen.
-MAX_BAG_PER_RONDE = int(os.environ.get("BAG_PER_RONDE") or 200)
+MAX_BAG_PER_RONDE = int(os.environ.get("BAG_PER_RONDE") or 500)
 PAUZE_TUSSEN = 0.2
 
 try:
@@ -243,7 +243,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
                                  "energielabels zijn niet bijgewerkt.")
         print("Geen BAG-sleutel; BAG-controle overgeslagen", file=sys.stderr)
         return 0
-    nieuw, gedaan = 0, 0
+    nieuw, gedaan, deze_ronde = 0, 0, []
     vandaag = dt.date.today().isoformat()
     nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
     def volgorde(paar):
@@ -269,6 +269,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
             continue
         eenheden = bag_eenheden_in_pand(pand_id)
         gedaan += 1
+        deze_ronde.append(sl)
         time.sleep(PAUZE_TUSSEN)
         pand["bag_gezien"] = vandaag
         if not eenheden:
@@ -292,11 +293,17 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
     over = max(nooit - gedaan, 0)
     print(f"BAG: {gedaan} panden gecontroleerd, nog {over} nooit gecontroleerd",
           file=sys.stderr)
-    return nieuw
+    return nieuw, deze_ronde
 
 
-def bij_labels(geschiedenis):
-    """Het energielabel per adres in het pand; na een splitsing volgt dat later."""
+def bij_labels(geschiedenis, alleen=None):
+    """
+    Het energielabel per adres in het pand; na een splitsing volgt dat later.
+
+    Alleen voor de panden die deze ronde ook tegen de BAG zijn gehouden. Zonder
+    die grens liep deze stap langs alle gevolgde panden, wat bij duizend panden
+    al duizenden opvragingen betekent en na de archiefbackfill onhoudbaar wordt.
+    """
     try:
         from marktprijzen_bag import (bag_adres_uitgebreid, ep_energielabel,
                                       BAG_API_KEY)
@@ -306,7 +313,10 @@ def bij_labels(geschiedenis):
     if not BAG_API_KEY:
         return 0
     nieuw, vandaag = 0, dt.date.today().isoformat()
+    doel = set(alleen) if alleen is not None else set(geschiedenis)
     for sl, pand in geschiedenis.items():
+        if sl not in doel:
+            continue
         adressen = [a for a, _o in (pand.get("bag_eenheden") or [])] or [pand["adres"]]
         labels = dict(pand.get("labels") or {})
         for adres in adressen:
@@ -331,6 +341,8 @@ def bij_labels(geschiedenis):
                 labels[adres] = label
         if labels:
             pand["labels"] = labels
+        time.sleep(PAUZE_TUSSEN)
+    print(f"Labels: {len(doel)} panden nagekeken", file=sys.stderr)
     return nieuw
 
 
@@ -546,8 +558,8 @@ def main():
     n_k = uit_kamerverhuur(geschiedenis)
     n_b = n_l = 0
     if args.volledig:
-        n_b = bij_bag(geschiedenis)
-        n_l = bij_labels(geschiedenis)
+        n_b, ronde = bij_bag(geschiedenis)
+        n_l = bij_labels(geschiedenis, ronde)
     bewaar(geschiedenis)
     beeld = buurtbeeld(geschiedenis)
     with open(BUURTBEELD_PAD, "w", encoding="utf-8") as f:
