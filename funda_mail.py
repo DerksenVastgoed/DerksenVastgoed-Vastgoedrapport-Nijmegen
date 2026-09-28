@@ -599,8 +599,15 @@ def main():
     # kwamen. Stond deze regel er niet, dan liep de stap stuk op de eerste mail.
     tellers = {}
 
+    # Duidelijk zeggen wat er wel en niet is meegekomen. "ontbreekt" alleen
+    # zegt niet welke van de twee, en of het secret leeg is of niet doorgegeven.
+    print(f"Mailgegevens: gebruikersnaam "
+          f"{'aanwezig' if GEBRUIKER else 'ONTBREEKT'}, wachtwoord "
+          f"{'aanwezig' if WACHTWOORD else 'ONTBREEKT'}", file=sys.stderr)
     if not GEBRUIKER or not WACHTWOORD:
-        print("MAIL_USERNAME of MAIL_PASSWORD ontbreekt", file=sys.stderr)
+        print("Zonder beide komt er geen aanbod binnen. Staan MAIL_USERNAME en "
+              "MAIL_PASSWORD als secret in de repo, en staan ze bij deze stap "
+              "in het env-blok?", file=sys.stderr)
         bewaar_stand({}, "geen mailgegevens in deze stap")
         return
 
