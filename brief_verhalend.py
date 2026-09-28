@@ -325,6 +325,13 @@ def wist_je_dat(cbs, verg, misdrijven=None):
         gezien, nieuw = [], weetjes
     keuze = nieuw[0]
 
+    try:
+        from diagnose import alleen_lezen
+        if alleen_lezen():
+            print("Testrun: het weetje wordt niet afgestreept", file=sys.stderr)
+            return keuze
+    except Exception:
+        pass
     gezien.append(keuze)
     # Alleen de laatste ronde onthouden, anders groeit het bestand eindeloos
     gezien = gezien[-max(len(weetjes), 1):]
