@@ -232,7 +232,8 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
     per ronde, want elke opvraging is een verzoek.
     """
     try:
-        from marktprijzen_bag import bag_dump, bag_eenheden_in_pand, BAG_API_KEY
+        from marktprijzen_bag import (bag_adres_uitgebreid, bag_eenheden_in_pand,
+                                      split_huisnummer, BAG_API_KEY)
     except Exception as e:
         leg_vast("geschiedenis", f"BAG-functies niet te laden: {str(e)[:120]}")
         return 0
@@ -261,10 +262,24 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
                                               "kamerverhuur"}):
             continue
+        if pand.get("bag_zonder_id") and not pand.get("pand_id"):
+            # Eerder mislukt door de verkeerde functie; de markering weg zodat
+            # ze opnieuw aan de beurt komen
+            pand.pop("bag_zonder_id", None)
+            pand.pop("bag_gezien", None)
         bekeken += 1
         pand_id = pand.get("pand_id")
         if not pand_id:
-            bag = bag_dump(pand["adres"]) or {}
+            # bag_dump is een hulpfunctie die de respons print en niets
+            # teruggeeft; die stond hier eerst, waardoor geen enkel pand een
+            # pand-id kreeg. Dit is de opzoeking die de verrijking ook gebruikt.
+            varianten = split_huisnummer(pand["adres"]) or []
+            bag = {}
+            for straat, huisnr, letter, toev in varianten[:2]:
+                bag = bag_adres_uitgebreid(straat, huisnr, letter, toev,
+                                           "Nijmegen") or {}
+                if bag.get("pand"):
+                    break
             pand_id = bag.get("pand")
             pand["pand_id"] = pand_id
         if not pand_id:
