@@ -1,0 +1,26 @@
+{
+ "datum": "2026-09-28",
+ "bronnen": {
+  "pararius": {
+   "mails": 19,
+   "objecten": 17
+  },
+  "regulier": {
+   "mails": 24,
+   "objecten": 62
+  },
+  "kamernet": {
+   "mails": 42,
+   "objecten": 14
+  },
+  "vendr": {
+   "mails": 4,
+   "objecten": 0
+  },
+  "business": {
+   "mails": 1,
+   "objecten": 0
+  }
+ },
+ "opmerking": ""
+}

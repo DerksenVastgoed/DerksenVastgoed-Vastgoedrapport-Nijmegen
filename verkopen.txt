@@ -813,3 +813,33 @@ Molukkenstraat 7-A7 | Nijmegen | 262500 | verkocht | 2026-09-28 | funda-verkocht
 Molukkenstraat parkeerplaats | Nijmegen | 27500 | verkocht | 2026-09-28 | funda-verkocht-plak | 40 | 6524NA
 Bloemerstraat 85 | Nijmegen | 355000 | verkocht | 2026-09-28 | funda-verkocht-plak | 77 | 6511EE
 Pontanusstraat 5-B | Nijmegen | 275000 | verkocht | 2026-09-28 | funda-verkocht-plak | 39 | 6524HA
+
+# Automatisch toegevoegd uit Funda-attendering op 28-09-2026
+Berg en Dalseweg | Nijmegen | 1100 | te huur kamer | 2026-09-27 | kamernet-incl | 50 | 
+Graafseweg | Nijmegen | 650 | te huur kamer | 2026-09-28 | kamernet-incl | 13 | 
+Weezenhof | Nijmegen | 750 | te huur kamer | 2026-09-28 | kamernet-incl | 22 | 
+Krayenhofflaan | Nijmegen | 864 | te huur kamer | 2026-09-28 | kamernet-incl | 19 | 
+Laan van Oost-Indie | Nijmegen | 1297 | te huur kamer | 2026-09-28 | kamernet-incl | 45 | 
+Graafseweg | Nijmegen | 852 | te huur kamer | 2026-09-28 | kamernet-incl | 21 | 
+van Trieststraat | Nijmegen | 577 | te huur kamer | 2026-09-28 | kamernet | 16 | 
+Oranjesingel | Nijmegen | 1700 | te huur | 2026-09-28 | kamernet-incl | 50 | 
+Vredestraat | Nijmegen | 795 | te huur kamer | 2026-09-28 | kamernet-incl | 27 | 
+Hegdambroek | Nijmegen | 5 | te huur kamer | 2026-09-28 | kamernet | 20 | 
+van Dulckenstraat 47 | Nijmegen | 945000 | te koop | 2026-09-02 |  | 171 | 6512DS
+Kaapstander 264 | Nijmegen | 1215000 | te koop | 2026-09-02 |  | 151 | 6541EX
+Eerste Oude Heselaan 170 | Nijmegen | 250000 | te koop | 2026-09-03 |  | 31 | 6541PD
+Houtstraat 31 | Nijmegen | 325000 | te koop | 2026-09-03 |  | 55 | 6511JK
+Grotestraat | Nijmegen | 1650 | te huur | 2026-09-04 | pararius | 40 | 6511VB
+Delistraat 55 | Nijmegen | 565000 | te koop | 2026-09-05 |  | 107 | 6524KN
+Winselingseweg | Nijmegen | 1700 | te huur | 2026-09-05 | pararius | 94 | 6541AK
+van Heutszstraat | Nijmegen | 655 | te huur | 2026-09-09 | pararius | 14 | 6521CS
+Groesbeeksedwarsweg | Nijmegen | 520 | te huur | 2026-09-10 | pararius | 14 | 6521DG
+O.C. Huismanstraat | Nijmegen | 590 | te huur | 2026-09-10 | pararius | 85 | 6544ZV
+Kruidenstraat | Nijmegen | 1495 | te huur | 2026-09-15 | pararius | 131 | 6515HP
+Priemstraat | Nijmegen | 1250 | te huur | 2026-09-16 | pararius | 33 | 6511WC
+Kievitstraat | Nijmegen | 1585 | te huur | 2026-09-16 | pararius | 135 | 6541RX
+St. Stephanusstraat | Nijmegen | 539 | te huur | 2026-09-17 | pararius | 16 | 6512HM
+Grotestraat | Nijmegen | 2450 | te huur | 2026-09-17 | pararius | 80 | 6511VB
+Hengstdalseweg | Nijmegen | 644 | te huur | 2026-09-25 | kamernet | 25 | 
+Graafseweg | Nijmegen | 600 | te huur | 2026-09-26 | kamernet-incl | 22 | 
+Gerard van Swietenlaan | Nijmegen | 695 | te huur | 2026-09-26 | kamernet-incl | 16 | 

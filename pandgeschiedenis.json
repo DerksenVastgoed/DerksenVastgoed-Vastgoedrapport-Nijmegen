@@ -10956,6 +10956,18 @@
   ],
   "pand_id": "0268100000024241"
  },
+ "delistraat55": {
+  "adres": "Delistraat 55",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-05",
+    "soort": "te koop",
+    "tekst": "te koop voor €565.000, 107 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "delistraat71": {
   "adres": "Delistraat 71",
   "bag_eenheden": [
@@ -14787,6 +14799,18 @@
    }
   ],
   "pand_id": "0268100000047997"
+ },
+ "eersteoudeheselaan170": {
+  "adres": "Eerste Oude Heselaan 170",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €250.000, 31 m2"
+   }
+  ],
+  "pand_id": null
  },
  "eersteoudeheselaan172": {
   "adres": "Eerste Oude Heselaan 172",
@@ -24413,6 +24437,18 @@
   ],
   "pand_id": "0268100000020655"
  },
+ "houtstraat31": {
+  "adres": "Houtstraat 31",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €325.000, 55 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "houtstraat43": {
   "adres": "Houtstraat 43",
   "bag_gezien": "2026-09-28",
@@ -26232,6 +26268,18 @@
    }
   ],
   "pand_id": "0268100000028634"
+ },
+ "kaapstander264": {
+  "adres": "Kaapstander 264",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €1.215.000, 151 m2"
+   }
+  ],
+  "pand_id": null
  },
  "kannenmarkt8": {
   "adres": "Kannenmarkt 8",
@@ -59393,6 +59441,18 @@
    }
   ],
   "pand_id": "0268100000021120"
+ },
+ "vandulckenstraat47": {
+  "adres": "van Dulckenstraat 47",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €945.000, 171 m2"
+   }
+  ],
+  "pand_id": null
  },
  "vandulckenstraat49": {
   "adres": "van Dulckenstraat 49",

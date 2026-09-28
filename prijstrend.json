@@ -54,19 +54,19 @@
  "2026-W40": {
   "Altrade": 5118,
   "Benedenstad": 5346,
-  "Biezen": 5387,
-  "Bottendaal": 5147,
-  "Galgenveld": 5075,
-  "Stadscentrum": 5417,
+  "Biezen": 5422,
+  "Bottendaal": 5197,
+  "Galgenveld": 5082,
+  "Stadscentrum": 5436,
   "_datum": "2026-09-28",
   "_n": {
    "Altrade": 95,
    "Benedenstad": 53,
-   "Biezen": 92,
-   "Bottendaal": 75,
-   "Galgenveld": 96,
-   "Stadscentrum": 215
+   "Biezen": 94,
+   "Bottendaal": 76,
+   "Galgenveld": 97,
+   "Stadscentrum": 216
   },
-  "_nijmegen": 5208
+  "_nijmegen": 5211
  }
 }

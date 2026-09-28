@@ -69936,5 +69936,172 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Weezenhof|Nijmegen": {
+    "oppervlakte": 22,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Krayenhofflaan|Nijmegen": {
+    "oppervlakte": 19,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Laan van Oost-Indie|Nijmegen": {
+    "oppervlakte": 45,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "van Trieststraat|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Oranjesingel|Nijmegen": {
+    "oppervlakte": 50,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Vredestraat|Nijmegen": {
+    "oppervlakte": 27,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Hegdambroek|Nijmegen": {
+    "oppervlakte": 20,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Grotestraat|Nijmegen": {
+    "oppervlakte": 40,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511VB",
+    "buurtnaam": "",
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Delistraat 55|Nijmegen": {
+    "oppervlakte": 107,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KN",
+    "adresseerbaarObjectIdentificatie": "0268010000048853",
+    "pand": "0268100000024266",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-05efd8ef7ea64e31eab600949d3e5a30",
+    "eenheden_in_pand": [
+      {
+        "adres": "Delistraat 53",
+        "oppervlakte": 107,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Delistraat 55",
+        "oppervlakte": 105,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 105,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-09-04",
+      "geldig_tot": "2036-08-31",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Winselingseweg|Nijmegen": {
+    "oppervlakte": 94,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AK",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "van Heutszstraat|Nijmegen": {
+    "oppervlakte": 14,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CS",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "O.C. Huismanstraat|Nijmegen": {
+    "oppervlakte": 85,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6544ZV",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Kruidenstraat|Nijmegen": {
+    "oppervlakte": 131,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6515HP",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Priemstraat|Nijmegen": {
+    "oppervlakte": 33,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WC",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Kievitstraat|Nijmegen": {
+    "oppervlakte": 135,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RX",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "St. Stephanusstraat|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512HM",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Hengstdalseweg|Nijmegen": {
+    "oppervlakte": 25,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Gerard van Swietenlaan|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
