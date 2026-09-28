@@ -220,7 +220,7 @@ Molukkenstraat 14 |  | 2026
 Plein 1944 129 |  | 2026
 
 # Toegevoegd op 2026-09-28: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Krayenhofflaan 47 |  | 2026
-Lage Markt 21 |  | 2026
-Molukkenstraat 14 |  | 2026
-Plein 1944 129 |  | 2026
+Krayenhofflaan 47 | 518.000 | 2026
+Lage Markt 21 | 314.000 | 2026
+Molukkenstraat 14 | 430.000 | 2026
+Plein 1944 129 | 371.000 | 2026
