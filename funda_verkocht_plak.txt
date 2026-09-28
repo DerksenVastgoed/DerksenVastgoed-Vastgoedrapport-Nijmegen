@@ -1,0 +1,25 @@
+# Plak hieronder de tekst van de Funda-pagina met verkochte woningen.
+#
+# Zo doe je dat: zoek op Funda binnen 1 km rond het Keizer Karelplein, zet het
+# filter op verkocht en onder bod, selecteer de hele pagina en plak hem hier.
+# Opmaak maakt niet uit; het script haalt er de adressen, prijzen, oppervlaktes
+# en labels uit en negeert de rest. Regels die met een hekje beginnen worden
+# overgeslagen, dus deze uitleg mag blijven staan.
+#
+# Het script draait bij elke run en voegt alleen nieuwe woningen toe, dus je
+# mag dezelfde lijst gerust een tweede keer plakken.
+#
+# Wat er automatisch afvalt: nieuwbouwprojecten met bouwnummers en v.o.n.-prijzen
+# (Metterswane, Joie de Vivre, Amber), parkeerplaatsen zonder oppervlakte, en
+# alles buiten Nijmegen.
+#
+# Vier statussen worden herkend en apart vastgelegd:
+#   Verkocht                    een afgeronde verkoop
+#   Verkocht onder voorbehoud   gesloten koop met ontbindende voorwaarden
+#   Onder bod                   er wordt nog onderhandeld, telt niet als verkoop
+#   Onder optie                 idem
+#
+# Een enkele woning met de hand toevoegen kan ook, met deze korte regel:
+#   status | prijs | adres | postcode | woonoppervlakte | label
+# Bijvoorbeeld:
+#   verkocht | 519000 | Fagelstraat 42 | 6524CG | 110 | C

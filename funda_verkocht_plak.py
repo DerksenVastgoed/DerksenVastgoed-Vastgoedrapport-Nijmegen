@@ -69,6 +69,31 @@ def _sleutel(adres):
     return re.sub(r"[^a-z0-9]", "", adres.lower())
 
 
+# Een korte regel voor handwerk, naast de geplakte pagina:
+#   status | prijs | adres | postcode | woonoppervlakte | label
+# Bijvoorbeeld: verkocht | 519000 | Fagelstraat 42 | 6524CG | 110 | C
+KORT = re.compile(r"^\s*(verkocht onder voorbehoud|verkocht|onder bod|onder optie)"
+                  r"\s*\|\s*([\d.]+)\s*\|\s*([^|]+?)\s*\|\s*(\d{4}\s?[A-Z]{2})?"
+                  r"\s*\|\s*(\d{1,4})\s*(?:\|\s*([A-G]\+{0,4}))?\s*$", re.I)
+
+
+def parse_kort(regels):
+    """De korte handmatige regels, als die er zijn."""
+    uit = []
+    for regel in regels:
+        m = KORT.match(regel)
+        if not m:
+            continue
+        status, prijs, adres, postcode, opp, label = m.groups()
+        uit.append({"prijs": int(prijs.replace(".", "")), "adres": adres.strip(),
+                    "plaats": "Nijmegen",
+                    "postcode": (postcode or "").replace(" ", "") or None,
+                    "opp": [int(opp)], "label": (label or "").upper() or None,
+                    "sinds_dagen": None, "url": None,
+                    "status": STATUS[status.lower()], "nieuwbouw": False})
+    return uit
+
+
 def parse(tekst):
     """De verkochte woningen uit de geplakte tekst."""
     regels = [r.strip() for r in tekst.split("\n")]
@@ -121,6 +146,7 @@ def parse(tekst):
             huidig["label"] = lb.group(1)
     if huidig:
         uit.append(huidig)
+    uit.extend(parse_kort(regels))
 
     # Ontdubbelen: de geplakte pagina herhaalt zich vaak
     gezien, schoon = set(), []
