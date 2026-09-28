@@ -7,8 +7,8 @@
   Er wordt gemeten, maar het aantal is nog te klein voor een betrouwbare mediaan per grootteklasse en buurt.
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1146 panden gevolgd, 123 met meer dan een gebeurtenis, 1146 nog nooit tegen de BAG gehouden
-  Bij 200 panden per ronde zijn dat nog 6 run(s). Elke handmatige start werkt er een ronde af.
+- **Geschiedenis per pand**: 1146 panden gevolgd, 123 met meer dan een gebeurtenis, 646 nog nooit tegen de BAG gehouden, 500 zonder pand-id in de BAG
+  Van 500 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
 
 ## OK
 - **Aanbod**: 77 koopobjecten, 10 in de laatste drie dagen
