@@ -289,9 +289,16 @@ def controle_geschiedenis():
     met_verhaal = sum(1 for p in d.values()
                       if len(p.get("gebeurtenissen") or []) > 1)
     nooit = sum(1 for p in d.values() if not p.get("bag_gezien"))
-    per_ronde = int(os.environ.get("BAG_PER_RONDE") or 200)
+    zonder_id = sum(1 for p in d.values() if p.get("bag_zonder_id"))
+    # Het getal uit het script zelf, niet een eigen kopie: die liepen uiteen
+    # toen de standaard van 200 naar 500 ging.
+    try:
+        from pandgeschiedenis import MAX_BAG_PER_RONDE as per_ronde
+    except Exception:
+        per_ronde = int(os.environ.get("BAG_PER_RONDE") or 500)
     bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
-              f"gebeurtenis, {nooit} nog nooit tegen de BAG gehouden")
+              f"gebeurtenis, {nooit} nog nooit tegen de BAG gehouden"
+              + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else ""))
     if nooit:
         runs = -(-nooit // per_ronde)
         oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
