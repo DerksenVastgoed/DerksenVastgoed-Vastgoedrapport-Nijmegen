@@ -7,7 +7,7 @@
   Er wordt gemeten, maar het aantal is nog te klein voor een betrouwbare mediaan per grootteklasse en buurt.
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1147 panden gevolgd, 123 met meer dan een gebeurtenis, 147 nog nooit tegen de BAG gehouden, 526 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1147 panden gevolgd, 123 met meer dan een gebeurtenis, 62 nog nooit tegen de BAG gehouden, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Handmatige lijsten**: verkooplijst van Funda: ontbreekt; kamerlijst van Kamernet: ontbreekt
   Plak de tekst van de pagina in dat bestand en commit het; het script verwerkt hem bij de volgende run.
@@ -15,7 +15,7 @@
 ## OK
 - **Aanbod**: 77 koopobjecten, 10 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,57% (2026-09-24), opslag bij 70% financiering 1,93 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,61% (2026-09-25), opslag bij 70% financiering 1,89 procentpunt
 - **Bouwkostenindex**: 103 maanden, laatste 2026-07
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten

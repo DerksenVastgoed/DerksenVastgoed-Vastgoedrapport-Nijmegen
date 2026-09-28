@@ -11,7 +11,7 @@ _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-09-28** . Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html))
   `156 m²`
-  _Legalisatie van gevelkozijnen is een administratieve correctie zonder invloed op waardecreatiepotentieel van het pand._
+  _Legalisatie van bestaande kozijnonderdelen is een administratieve correctie zonder marktimpact._
 - **2026-09-28** . Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html))
   `139 m²`
-  **[verduurzaming]** _Vergunde dakisolatie verbetert het energielabel en toont dat labelverbetering hier vergunbaar is, ook bij bestaande daken._
+  **[verduurzaming]** _Isolatie van het dak verbetert de energieprestatie en kan bij herregistratie leiden tot een hoger energielabel._
