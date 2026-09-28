@@ -534,6 +534,7 @@ jobs:
             begroting_nijmegen.json
             verkocht_details.json
             pandgeschiedenis.json
+            buurtbeeld.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
