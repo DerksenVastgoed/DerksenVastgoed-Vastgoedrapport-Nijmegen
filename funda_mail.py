@@ -595,6 +595,9 @@ def main():
                     help="kijk ook naar gelezen mails van de laatste N dagen")
     ap.add_argument("--uit", default=VERKOPEN_PAD)
     args = ap.parse_args()
+    # Per bron bijhouden hoeveel mails er waren en hoeveel objecten eruit
+    # kwamen. Stond deze regel er niet, dan liep de stap stuk op de eerste mail.
+    tellers = {}
 
     if not GEBRUIKER or not WACHTWOORD:
         print("MAIL_USERNAME of MAIL_PASSWORD ontbreekt", file=sys.stderr)
