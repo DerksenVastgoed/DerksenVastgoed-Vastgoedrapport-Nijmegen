@@ -23,6 +23,10 @@ on:
         description: "Einddatum van de backfill, bijvoorbeeld 2018-07-01. Leeg laten voor vandaag."
         required: false
         default: ""
+      mail_dagen:
+        description: "Hoeveel dagen aan mails ophalen (standaard 3; hoger om oude attenderingen in te halen)"
+        required: false
+        default: "3"
       alleen_naar_mij:
         description: "Stuur de brief alleen naar jezelf, niet naar de kopie. Aanvinken bij een testrun."
         type: boolean
@@ -182,7 +186,11 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
         run: |
-          python funda_mail.py --dagen 3 || echo "Funda-mail-stap overgeslagen"
+          # Standaard drie dagen; bij een handmatige start kun je verder
+          # terugkijken om oude attenderingen alsnog in te lezen. De datum van
+          # de waarneming komt uit de mail zelf, dus dat vertekent de reeks niet.
+          DAGEN="${{ github.event.inputs.mail_dagen || '3' }}"
+          python funda_mail.py --dagen "$DAGEN" || echo "Funda-mail-stap overgeslagen"
 
       - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
         run: |
