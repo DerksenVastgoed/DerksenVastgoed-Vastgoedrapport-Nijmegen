@@ -360,6 +360,16 @@ def lees_gezien():
 
 
 def schrijf_gezien(links):
+    # Bij een testrun niets afstrepen: anders zijn de artikelen van vandaag
+    # morgen "al geweest" en komen ze niet meer in de echte brief.
+    try:
+        from diagnose import alleen_lezen
+        if alleen_lezen():
+            print("Testrun: gelezen artikelen worden niet vastgelegd",
+                  file=sys.stderr)
+            return
+    except Exception:
+        pass
     with open(HISTORIE_PAD, "w", encoding="utf-8") as f:
         json.dump({"links": list(links)[-500:]}, f, ensure_ascii=False)
 
