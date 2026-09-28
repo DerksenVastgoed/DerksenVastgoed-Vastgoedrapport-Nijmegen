@@ -12,7 +12,6 @@ _mediaan €5.435/m² op 216 waarnemingen . +4,6% sinds 2026-09-13 (verandering 
 |---|---:|---:|---:|---:|---|---|---:|---:|
 | [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) | €550.000 | 89 | €6.179 | 🔴 +14% | splitsen staat open als route | één woning, €1.738/mnd | €363.605 (-34%) | 15 |
 | [Doddendaal 117](https://www.google.com/maps/search/?api=1&query=Doddendaal+117%2C+Nijmegen) | €500.000 | 77 | €6.493 | 🔴 +20% | splitsen staat open als route | één woning, €1.503/mnd . pand bevat al 3 woningen volgens de BAG . splitsing al geregistreerd in de BAG: Doddendaal 117 26 m² (BAG zegt 63 m²) | €314.579 (-37%) | 0 |
-| [Plein 1944 129](https://www.google.com/maps/search/?api=1&query=Plein+1944+129%2C+Nijmegen) | €425.000 | 59 | €7.203 | 🔴 +33% | heeft al een onttrekkingsvergunning uit 2018 | één woning, €1.152/mnd . pand bevat al 48 woningen volgens de BAG | €241.041 (-43%) | 0 |
 
 _Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
 
@@ -20,19 +19,16 @@ _Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel
 |---|---:|---:|---:|---:|---:|
 | [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) | €638.337 | €242.719 | €395.617 | €3.337 | 2,6% |
 | [Doddendaal 117](https://www.google.com/maps/search/?api=1&query=Doddendaal+117%2C+Nijmegen) | €578.887 | €209.993 | €368.893 | €2.887 | 2,5% |
-| [Plein 1944 129](https://www.google.com/maps/search/?api=1&query=Plein+1944+129%2C+Nijmegen) | €489.712 | €160.904 | €328.808 | €2.212 | 2,3% |
 
 _Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,24]_
 
-_Met het beschikbare eigen vermogen kom je: Scholenhof 8 tot €161.662 . Doddendaal 117 tot €170.900 . Plein 1944 129 tot €184.757._
+_Met het beschikbare eigen vermogen kom je: Scholenhof 8 tot €161.662 . Doddendaal 117 tot €170.900._
 
 _Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
 
 _Stadscentrum is grotendeels rijksbeschermd stadsgezicht. Voor wijzigingen aan het uiterlijk is een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen aan de voorzijde._
 
 _**Scholenhof 8** en het openbaar vervoer: bushalte Hertogplein op 263 m lopen, ongeveer 3 minuten. De route is 2.77x zo lang als de rechte lijn, wat op een barriere wijst zoals het spoor of een hoogteverschil. Bij kamerverhuur en kleine eenheden verhuur je aan mensen zonder auto, dus dat telt mee in de verhuurbaarheid._
-
-_**Plein 1944 129** is volgens de BAG een appartement in een complex van 48 woningen in hetzelfde pand: Plein 1944 129 (57 m²), Plein 1944 129A (112 m²), Plein 1944 129B (121 m²), Plein 1944 129C (121 m²). Dat is bij een appartementencomplex normaal en op zichzelf geen bijzonderheid. De oppervlakte per adres komt uit de BAG en kan afwijken van de advertentie. Dat de BAG aparte woningen telt, zegt niet of het pand juridisch in appartementsrechten is gesplitst; dat staat in het Kadaster. Een splitsingsvergunning kent Nijmegen niet._
 
 _**Doddendaal 117** is volgens de BAG een van de 3 woningen in hetzelfde pand: Doddendaal 117 (63 m²), Doddendaal 117 (26 m²), Doddendaal 119 (46 m²). Dat is bij een appartementencomplex normaal en op zichzelf geen bijzonderheid. De oppervlakte per adres komt uit de BAG en kan afwijken van de advertentie. Dat de BAG aparte woningen telt, zegt niet of het pand juridisch in appartementsrechten is gesplitst; dat staat in het Kadaster. Een splitsingsvergunning kent Nijmegen niet._
 
@@ -42,14 +38,12 @@ _Stond er al, vraagprijs ongewijzigd: [van Welderenstraat 5](https://www.google.
 
 _Bekende WOZ-waarden: Burg. Hustinxstraat 56 €419.000 (2026), puntenstelsel ondergrens 186 punten (102 m2, WOZ €419.000, label B): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
-_12 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Plein 1944 129. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
+_13 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">156 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van kozijnonderdelen is een administratieve correctie zonder marktrelevantie.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legaliseren van bestaande kozijnonderdelen is een administratieve correctie zonder marktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -57,11 +51,9 @@ _Grensgeval voor de opkoopbescherming: Plein 1944 129. Controleer de WOZ, want o
 **Benedenstad**
 _mediaan €5.346/m² op 53 waarnemingen._
 
-_1 pand buiten beeld, mediaan €6.164/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 19 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 19 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
-
 _Stond er al, vraagprijs ongewijzigd: [Nieuwe Markt 90](https://www.google.com/maps/search/?api=1&query=Nieuwe+Markt+90%2C+Nijmegen) €575.000 (-32% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
-_5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+_6 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Biezen**
 _mediaan €5.422/m² op 94 waarnemingen . +7,6% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
@@ -88,11 +80,9 @@ _Boven de huurtoeslaggrens: Dokstraat 425, Krayenhofflaan 47. Daar krijgt je huu
 
 _Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-22% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [Voorstadslaan 63](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+63%2C+Nijmegen) €585.000 (-6% t.o.v. de buurtmediaan, 5 dagen in aanbod) . [Havenweg 70](https://www.google.com/maps/search/?api=1&query=Havenweg+70%2C+Nijmegen) €690.000 (-6% t.o.v. de buurtmediaan) . [Havenweg 34](https://www.google.com/maps/search/?api=1&query=Havenweg+34%2C+Nijmegen) €825.000 (+0% t.o.v. de buurtmediaan) . [Voorstadslaan 121](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+121%2C+Nijmegen) €550.000 (+0% t.o.v. de buurtmediaan, 5 dagen in aanbod) . [Marialaan 56](https://www.google.com/maps/search/?api=1&query=Marialaan+56%2C+Nijmegen) €450.000 (+9% t.o.v. de buurtmediaan, 9 dagen in aanbod) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+28% t.o.v. de buurtmediaan). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
-_Bekende WOZ-waarden: Marialaan 56 €444.000 (2026), puntenstelsel ondergrens 140 punten (76 m2, WOZ €444.000, label onbekend, niet meegeteld): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
+_Bekende WOZ-waarden: Marialaan 56 €444.000 (2026), puntenstelsel ondergrens 140 punten (76 m2, WOZ €444.000, label onbekend, niet meegeteld): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Krayenhofflaan 47 €518.000 (2026), puntenstelsel ondergrens 193 punten (116 m2, WOZ €518.000, label D): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Krayenhofflaan 47. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
 
 **Galgenveld**
 _mediaan €5.081/m² op 97 waarnemingen . +6,0% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
@@ -100,7 +90,7 @@ _mediaan €5.081/m² op 97 waarnemingen . +6,0% sinds 2026-09-13 (verandering v
 | Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
 |---|---:|---:|---:|---:|---|---|---:|---:|
 | [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) | €539.000 | 135 | €3.992 | 🟢 -21% | -21% onder de mediaan van zijn klasse | één woning, €3.187/mnd | €666.715 (+24%) | 12 |
-| [Molukkenstraat 14](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+14%2C+Nijmegen) | €469.000 | 103 | €4.553 | 🟢 -10% | zowel verkameren als splitsen staat open | één woning, €2.431/mnd . pand bevat al 3 woningen volgens de BAG | €508.679 (+8%) | 0 |
+| [Molukkenstraat 14](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+14%2C+Nijmegen) | €469.000 | 103 | €4.553 | 🟢 -10% | zowel verkameren als splitsen staat open | één woning, €1.200/mnd . pand bevat al 3 woningen volgens de BAG | €251.145 (-46%) | 0 |
 | [Fransestraat 38](https://www.google.com/maps/search/?api=1&query=Fransestraat+38%2C+Nijmegen) | €1.025.000 | 204 | €5.024 | 🟡 -1% | zowel verkameren als splitsen staat open | kamers, mits vergunning, €2.898/mnd (BAG zegt 273 m²) ✱ | €568.319 (-45%) | 0 |
 | [Groesbeekseweg 85](https://www.google.com/maps/search/?api=1&query=Groesbeekseweg+85%2C+Nijmegen) | €1.150.000 | 228 | €5.043 | 🟡 -1% | zowel verkameren als splitsen staat open | kamers, mits vergunning, €3.240/mnd ✱ | €635.388 (-45%) | 0 |
 | [Delistraat 55](https://www.google.com/maps/search/?api=1&query=Delistraat+55%2C+Nijmegen) | €565.000 | 107 | €5.280 | 🟡 +4% | zowel verkameren als splitsen staat open | één woning, €2.526/mnd . pand bevat al 2 woningen volgens de BAG | €528.433 (-6%) | 23 |
@@ -110,7 +100,7 @@ _Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel
 | Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
 |---|---:|---:|---:|---:|---:|
 | [Pontanusstraat 19](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+19%2C+Nijmegen) | €687.843 | €359.513 | €328.330 | €10.824 | 4,4% |
-| [Molukkenstraat 14](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+14%2C+Nijmegen) | €573.201 | €312.823 | €260.378 | €6.139 | 4,1% |
+| [Molukkenstraat 14](https://www.google.com/maps/search/?api=1&query=Molukkenstraat+14%2C+Nijmegen) | €571.205 | €167.648 | €403.556 | €2.305 | 2,0% |
 | [Fransestraat 38](https://www.google.com/maps/search/?api=1&query=Fransestraat+38%2C+Nijmegen) | €1.237.716 | €379.374 | €858.341 | €5.216 | 2,1% |
 | [Groesbeekseweg 85](https://www.google.com/maps/search/?api=1&query=Groesbeekseweg+85%2C+Nijmegen) | €1.388.832 | €424.145 | €964.686 | €5.832 | 2,1% |
 | [Delistraat 55](https://www.google.com/maps/search/?api=1&query=Delistraat+55%2C+Nijmegen) | €662.350 | €352.749 | €309.601 | €4.850 | 3,7% |
@@ -131,11 +121,9 @@ _**Delistraat 55** is volgens de BAG een van de 2 woningen in hetzelfde pand: De
 
 _Stond er al, vraagprijs ongewijzigd: [Prof. Molkenboerstraat 30](https://www.google.com/maps/search/?api=1&query=Prof.+Molkenboerstraat+30%2C+Nijmegen) €429.000 (-23% t.o.v. de buurtmediaan) . [Palembangstraat 44](https://www.google.com/maps/search/?api=1&query=Palembangstraat+44%2C+Nijmegen) €399.000 (-18% t.o.v. de buurtmediaan, 15 dagen in aanbod) . [van Slichtenhorststraat 42](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+42%2C+Nijmegen) €645.000 (-12% t.o.v. de buurtmediaan, 25 dagen in aanbod) . [Pontanusstraat 40](https://www.google.com/maps/search/?api=1&query=Pontanusstraat+40%2C+Nijmegen) €599.000 (-11% t.o.v. de buurtmediaan, 6 dagen in aanbod) . [van Slichtenhorststraat 100](https://www.google.com/maps/search/?api=1&query=van+Slichtenhorststraat+100%2C+Nijmegen) €630.000 (-9% t.o.v. de buurtmediaan, 17 dagen in aanbod) . [St. Annastraat 28](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+28%2C+Nijmegen) €1.695.000 (-9% t.o.v. de buurtmediaan) . [St. Annastraat 96](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+96%2C+Nijmegen) €750.000 (+1% t.o.v. de buurtmediaan, 17 dagen in aanbod) . [Delistraat 20](https://www.google.com/maps/search/?api=1&query=Delistraat+20%2C+Nijmegen) €425.000 (+20% t.o.v. de buurtmediaan, 1 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
-_Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel ondergrens 180 punten (110 m2, WOZ €432.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . St. Annastraat 28 €1.021.000 (2026) (367 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Palembangstraat 44 €466.000 (2026), puntenstelsel ondergrens 172 punten (96 m2, WOZ €466.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Pontanusstraat 19 €523.000 (2026), puntenstelsel ondergrens 210 punten (135 m2, WOZ €523.000, label D): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Delistraat 20 €408.000 (2026), puntenstelsel ondergrens 146 punten (70 m2, WOZ €408.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
+_Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel ondergrens 180 punten (110 m2, WOZ €432.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . St. Annastraat 28 €1.021.000 (2026) (367 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Palembangstraat 44 €466.000 (2026), puntenstelsel ondergrens 172 punten (96 m2, WOZ €466.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Pontanusstraat 19 €523.000 (2026), puntenstelsel ondergrens 210 punten (135 m2, WOZ €523.000, label D): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Delistraat 20 €408.000 (2026), puntenstelsel ondergrens 146 punten (70 m2, WOZ €408.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Molukkenstraat 14 €430.000 (2026), puntenstelsel ondergrens 182 punten (103 m2, WOZ €430.000, label C): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Molukkenstraat 14. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
 
 **Bottendaal**
 _mediaan €5.196/m² op 76 waarnemingen . +8,9% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
@@ -206,7 +194,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">139 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Dakisolatie verbetert het energielabel en toont dat labelverbetering aan de buitenzijde hier vergunbaar is.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Dakisolatie verbetert de energieprestatie van het pand, wat bij herwaardering tot een beter label kan leiden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 

@@ -69941,43 +69941,50 @@
     "oppervlakte": 22,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Krayenhofflaan|Nijmegen": {
     "oppervlakte": 19,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Laan van Oost-Indie|Nijmegen": {
     "oppervlakte": 45,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "van Trieststraat|Nijmegen": {
     "oppervlakte": 16,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Oranjesingel|Nijmegen": {
     "oppervlakte": 50,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Vredestraat|Nijmegen": {
     "oppervlakte": 27,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Hegdambroek|Nijmegen": {
     "oppervlakte": 20,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Grotestraat|Nijmegen": {
     "oppervlakte": 40,
@@ -70036,7 +70043,8 @@
     ],
     "postcode": "6541AK",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "van Heutszstraat|Nijmegen": {
     "oppervlakte": 14,
@@ -70045,7 +70053,8 @@
     ],
     "postcode": "6521CS",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "O.C. Huismanstraat|Nijmegen": {
     "oppervlakte": 85,
@@ -70054,7 +70063,8 @@
     ],
     "postcode": "6544ZV",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Kruidenstraat|Nijmegen": {
     "oppervlakte": 131,
@@ -70063,7 +70073,8 @@
     ],
     "postcode": "6515HP",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Priemstraat|Nijmegen": {
     "oppervlakte": 33,
@@ -70072,7 +70083,8 @@
     ],
     "postcode": "6511WC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Kievitstraat|Nijmegen": {
     "oppervlakte": 135,
@@ -70081,7 +70093,8 @@
     ],
     "postcode": "6541RX",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "St. Stephanusstraat|Nijmegen": {
     "oppervlakte": 16,
@@ -70090,18 +70103,21 @@
     ],
     "postcode": "6512HM",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Hengstdalseweg|Nijmegen": {
     "oppervlakte": 25,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Gerard van Swietenlaan|Nijmegen": {
     "oppervlakte": 16,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   }
 }
