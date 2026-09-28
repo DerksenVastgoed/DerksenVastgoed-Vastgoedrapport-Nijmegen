@@ -18,6 +18,7 @@ Gebruik:
 
 import argparse
 import datetime as dt
+import json
 import email
 import imaplib
 import os
@@ -591,6 +592,9 @@ def main():
             nieuwe_regels.append(regel)
             toegevoegd += 1
 
+        tellers.setdefault(soort_bron, {"mails": 0, "objecten": 0})
+        tellers[soort_bron]["mails"] += 1
+        tellers[soort_bron]["objecten"] += len(objecten)
         print(f"  [{soort_bron}] {onderwerp[:60]}: {len(objecten)} objecten, "
               f"{toegevoegd} nieuw", file=sys.stderr)
 
@@ -632,6 +636,19 @@ def main():
             f.write(r + "\n")
 
     print(f"Toegevoegd aan {args.uit}: {len(nieuwe_regels)} objecten", file=sys.stderr)
+
+    # Per bron vastleggen hoeveel mails er waren en hoeveel objecten eruit
+    # kwamen. Zonder dit zie je niet of een bron zwijgt of dat de parser hem
+    # niet begrijpt, en dat zijn twee heel verschillende problemen.
+    stand = {"datum": dt.date.today().isoformat(), "bronnen": tellers}
+    try:
+        with open("mail_status.json", "w", encoding="utf-8") as f:
+            json.dump(stand, f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+    for bron, t in sorted(tellers.items()):
+        print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -308,6 +308,36 @@ def controle_geschiedenis():
             diagnose("geschiedenis") or "")
 
 
+def controle_mailbronnen():
+    """Welke attenderingen er binnenkomen, en of er iets uit te halen valt."""
+    d = _json("mail_status.json") or {}
+    bronnen = d.get("bronnen") or {}
+    if not bronnen:
+        return (LET_OP, "nog geen mailstand vastgelegd",
+                "Draait de mailstap, en heeft hij al een keer mails gezien?")
+    delen, stil, stom = [], [], []
+    for bron, t in sorted(bronnen.items()):
+        delen.append(f"{bron}: {t.get('mails', 0)} mails, "
+                     f"{t.get('objecten', 0)} objecten")
+        if not t.get("mails"):
+            stil.append(bron)
+        elif not t.get("objecten"):
+            stom.append(bron)
+    for verwacht in ("kamernet", "pararius", "funda"):
+        if verwacht not in bronnen:
+            stil.append(verwacht)
+    bewijs = f"laatste ronde {d.get('datum', '?')}: " + "; ".join(delen)
+    if stom:
+        return (LET_OP, bewijs,
+                f"Van {', '.join(stom)} komen wel mails binnen maar het script "
+                f"haalt er niets uit; de opmaak is waarschijnlijk veranderd.")
+    if stil:
+        return (LET_OP, bewijs,
+                f"Van {', '.join(sorted(set(stil)))} kwam geen enkele mail. "
+                f"Staat de attendering aan en komt hij in deze mailbox binnen?")
+    return (OK, bewijs, "")
+
+
 def controle_verkopen():
     """
     Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
@@ -463,6 +493,7 @@ CONTROLES = [
     ("Geschiedenis per pand", controle_geschiedenis),
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
+    ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
