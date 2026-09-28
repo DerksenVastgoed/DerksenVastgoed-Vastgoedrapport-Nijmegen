@@ -31,6 +31,27 @@ VERKOPEN_PAD = "verkopen.txt"
 AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
              "kamernet.nl", "vendr.nl"]
 
+# De datum van de mail die nu wordt gelezen. De parsers stempelden elke
+# waarneming met vandaag; bij het inhalen van oude mails zouden alle
+# advertenties dan dezelfde dag krijgen en lijkt de markt in een dag ontstaan.
+_DATUM_VAN_MAIL = None
+
+
+def waarnemingsdatum():
+    """De datum van de mail die nu gelezen wordt, anders vandaag."""
+    return _DATUM_VAN_MAIL or dt.date.today().isoformat()
+
+
+def datum_van_mail(bericht):
+    """De verzenddatum uit de mailkop, als jjjj-mm-dd."""
+    try:
+        from email.utils import parsedate_to_datetime
+        d = parsedate_to_datetime(bericht.get("Date"))
+        return d.date().isoformat()
+    except Exception:
+        return None
+
+
 GEBRUIKER = os.environ.get("MAIL_USERNAME", "")
 WACHTWOORD = os.environ.get("MAIL_PASSWORD", "")
 
@@ -219,7 +240,7 @@ def parse_objecten(regels, basis_status):
                 opp = om.group(1)
                 break
 
-        vandaag = dt.date.today().isoformat()
+        vandaag = waarnemingsdatum()
         regel_uit = f"{adres} | {plaats} | {prijs} | {status} | {vandaag}"
         regel_uit += f" | {bron}" if bron else " | "
         regel_uit += f" | {opp}" if opp else " | "
@@ -255,7 +276,7 @@ def parse_kamernet(regels, basis_status="te huur kamer"):
     eenheden zoals appartement en studio krijgen gewoon 'te huur'.
     """
     gevonden, gezien, overgeslagen = [], set(), []
-    vandaag = dt.date.today().isoformat()
+    vandaag = waarnemingsdatum()
 
     for i, regel in enumerate(regels):
         st_m = RE_KN_STRAAT.match(regel)
@@ -330,7 +351,7 @@ def parse_kamernet_attendering(regels, vandaag=None):
     Er staat geen huisnummer in, alleen de straat; dat is hetzelfde als bij het
     huuraanbod van Pararius en daar kan de rest van het script mee omgaan.
     """
-    vandaag = vandaag or dt.date.today().isoformat()
+    vandaag = vandaag or waarnemingsdatum()
     straat = plaats = None
     opp = prijs = None
     inclusief = False
@@ -389,7 +410,7 @@ PA_UITSLUITEN = ("ad hoc", "camelot", "leegstandbeheer", "anti-kraak", "antikraa
 def parse_pararius(regels):
     """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
     gevonden, gezien, overgeslagen = [], set(), []
-    vandaag = dt.date.today().isoformat()
+    vandaag = waarnemingsdatum()
 
     for i, regel in enumerate(regels):
         pc = RE_PA_POSTCODE.match(regel)
@@ -502,7 +523,7 @@ def parse_vendr(regels):
     """
     gevonden, gezien, overgeslagen = [], {}, []
     plaatsen = {}
-    vandaag = dt.date.today().isoformat()
+    vandaag = waarnemingsdatum()
     for i, regel in enumerate(regels):
         m = RE_VENDR.match(regel)
         if not m:
@@ -619,6 +640,8 @@ def main():
             if status != "OK" or not data or not data[0]:
                 continue
             bericht = email.message_from_bytes(data[0][1])
+            global _DATUM_VAN_MAIL
+            _DATUM_VAN_MAIL = datum_van_mail(bericht)
         except Exception as e:
             print(f"Kan bericht {mid} niet lezen: {e}", file=sys.stderr)
             continue
