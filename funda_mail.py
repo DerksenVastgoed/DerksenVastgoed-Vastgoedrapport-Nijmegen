@@ -700,9 +700,21 @@ def main():
             nieuwe_regels.append(regel)
             toegevoegd += 1
 
-        tellers.setdefault(soort_bron, {"mails": 0, "objecten": 0})
+        tellers.setdefault(soort_bron, {"mails": 0, "objecten": 0,
+                                        "overgeslagen": 0, "redenen": []})
         tellers[soort_bron]["mails"] += 1
         tellers[soort_bron]["objecten"] += len(objecten)
+        # Ook vastleggen wat er bewust is overgeslagen, met de reden. Zonder dat
+        # onderscheid is "42 mails, 14 objecten" niet te duiden: terecht
+        # overgeslagen of niet begrepen zijn twee heel verschillende dingen.
+        tellers[soort_bron]["overgeslagen"] += len(overgeslagen or [])
+        for reden in (overgeslagen or [])[:3]:
+            if len(tellers[soort_bron]["redenen"]) < 5:
+                tellers[soort_bron]["redenen"].append(str(reden)[:80])
+        if not objecten and not overgeslagen:
+            if len(tellers[soort_bron]["redenen"]) < 5:
+                tellers[soort_bron]["redenen"].append(
+                    f"niets herkend in: {onderwerp[:50]}")
         print(f"  [{soort_bron}] {onderwerp[:60]}: {len(objecten)} objecten, "
               f"{toegevoegd} nieuw", file=sys.stderr)
 
