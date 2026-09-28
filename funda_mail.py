@@ -488,17 +488,37 @@ def bestaande_adressen(pad):
     return bestaand
 
 
+def bewaar_stand(tellers, opmerking=""):
+    """
+    De mailstand wegschrijven, ook als er niets te doen viel.
+
+    Zonder dit zag het gezondheidsrapport geen verschil tussen "de stap draaide
+    niet" en "er waren geen mails".
+    """
+    try:
+        with open("mail_status.json", "w", encoding="utf-8") as f:
+            json.dump({"datum": dt.date.today().isoformat(),
+                       "bronnen": tellers, "opmerking": opmerking},
+                      f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--proef", action="store_true",
                     help="toon wat er toegevoegd zou worden, schrijf niets weg")
-    ap.add_argument("--dagen", type=int, default=0,
+    # Standaard ook gelezen mails van de laatste dagen: Mark leest de
+    # attenderingen zelf, en dan zag het script ze nooit meer. Ontdubbelen
+    # gebeurt toch op het object, dus dubbel kijken kost niets.
+    ap.add_argument("--dagen", type=int, default=3,
                     help="kijk ook naar gelezen mails van de laatste N dagen")
     ap.add_argument("--uit", default=VERKOPEN_PAD)
     args = ap.parse_args()
 
     if not GEBRUIKER or not WACHTWOORD:
         print("MAIL_USERNAME of MAIL_PASSWORD ontbreekt", file=sys.stderr)
+        bewaar_stand({}, "geen mailgegevens in deze stap")
         return
 
     try:
@@ -508,6 +528,7 @@ def main():
     except Exception as e:
         print(f"Kan niet inloggen op de mailbox: {e}", file=sys.stderr)
         print("Staat IMAP aan in Gmail, en klopt het app-wachtwoord?", file=sys.stderr)
+        bewaar_stand({}, f"inloggen mislukt: {str(e)[:100]}")
         return
 
     ids = set()
@@ -640,12 +661,7 @@ def main():
     # Per bron vastleggen hoeveel mails er waren en hoeveel objecten eruit
     # kwamen. Zonder dit zie je niet of een bron zwijgt of dat de parser hem
     # niet begrijpt, en dat zijn twee heel verschillende problemen.
-    stand = {"datum": dt.date.today().isoformat(), "bronnen": tellers}
-    try:
-        with open("mail_status.json", "w", encoding="utf-8") as f:
-            json.dump(stand, f, ensure_ascii=False, indent=1)
-    except Exception:
-        pass
+    bewaar_stand(tellers)
     for bron, t in sorted(tellers.items()):
         print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
               file=sys.stderr)

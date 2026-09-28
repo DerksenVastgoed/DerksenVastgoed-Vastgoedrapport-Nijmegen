@@ -433,7 +433,11 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
             if rente is not None:
                 delen.append(f"{rente:.2f}% bij {label} LTV")
         _, r70 = scherpsten.get("ltv70", (None, None))
-        regel = "Onveranderd deze week: " + ", ".join(delen) + "."
+        # Een stand die niet beweegt is geen nieuws. De regel blijft in de
+        # bijlage staan als naslag, maar krijgt er een markering bij zodat de
+        # brief er geen alinea aan wijdt.
+        regel = ("GEEN NIEUWS, ALLEEN NASLAG. Onveranderd: "
+                 + ", ".join(delen) + ".")
         if r70 is not None:
             regel += (f" Op een lening van €1.000.000 is dat "
                       f"€{_nl(round(1_000_000 * r70 / 100))} rentelast per jaar.")

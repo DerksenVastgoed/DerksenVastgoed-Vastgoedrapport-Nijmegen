@@ -312,9 +312,15 @@ def controle_mailbronnen():
     """Welke attenderingen er binnenkomen, en of er iets uit te halen valt."""
     d = _json("mail_status.json") or {}
     bronnen = d.get("bronnen") or {}
+    if d.get("opmerking"):
+        return (LET_OP, f"mailstap van {d.get('datum', '?')}: {d['opmerking']}",
+                "De mailstap kwam niet bij de mailbox; zonder die stap komt er "
+                "geen aanbod binnen.")
     if not bronnen:
-        return (LET_OP, "nog geen mailstand vastgelegd",
-                "Draait de mailstap, en heeft hij al een keer mails gezien?")
+        return (LET_OP, f"mailstap van {d.get('datum', '?')}: geen enkele mail "
+                        f"van een van de bronnen",
+                "Komen de attenderingen in deze mailbox binnen, en staan ze in "
+                "de inbox en niet in een map?")
     delen, stil, stom = [], [], []
     for bron, t in sorted(bronnen.items()):
         delen.append(f"{bron}: {t.get('mails', 0)} mails, "
