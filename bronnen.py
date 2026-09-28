@@ -546,10 +546,19 @@ def achtergrond_van_de_dag(nieuwstekst=""):
     titel, tekst = keuze or nieuw[0]
     gezien.append(titel)
     try:
-        with open(pad, "w", encoding="utf-8") as f:
-            json.dump(gezien[-len(ACHTERGROND):], f, ensure_ascii=False, indent=1)
+        from diagnose import alleen_lezen
+        testrun = alleen_lezen()
     except Exception:
-        pass
+        testrun = False
+    if testrun:
+        print("Testrun: het achtergrondstuk wordt niet afgestreept",
+              file=sys.stderr)
+    else:
+        try:
+            with open(pad, "w", encoding="utf-8") as f:
+                json.dump(gezien[-len(ACHTERGROND):], f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
     bron = ACHTERGROND_BRONNEN.get(titel, "")
     staart = f" _(Bron: {bron}.)_" if bron else ""
     return ["", f"**Over {titel.lower()}.** {tekst}{staart}", ""]
