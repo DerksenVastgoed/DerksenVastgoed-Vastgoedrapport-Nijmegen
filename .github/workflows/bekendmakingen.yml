@@ -1,5 +1,13 @@
 name: Bekendmakingen Nijmegen
 
+# Twee runs tegelijk botsen bij het terugcommitten: op 27 september liep een
+# handmatige run tegen de geplande run aan en ging een hele run verloren. Met
+# deze instelling wacht de tweede tot de eerste klaar is in plaats van hem af
+# te breken; niets gaat verloren, het duurt alleen even.
+concurrency:
+  group: vastgoedbrief
+  cancel-in-progress: false
+
 on:
   schedule:
     - cron: "17 3 * * 1-5"  # werkdagen: korte brief (niet op het hele uur,
@@ -535,6 +543,7 @@ jobs:
             verkocht_details.json
             pandgeschiedenis.json
             buurtbeeld.json
+            mail_status.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
