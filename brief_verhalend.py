@@ -1075,18 +1075,39 @@ def schrijf_brief(bronnen):
         herschreven = _vraag([{"role": "user", "content": prompt},
                               {"role": "assistant", "content": tekst},
                               {"role": "user", "content": correctie}], woorden)
-        if (herschreven and not opent_met_afwezigheid(eerste_zin(herschreven))
+        # Een herstelronde die korter uitvalt is meestal afgebroken, niet beter.
+        # Een afgekapte brief heeft per definitie minder probleemzinnen, dus de
+        # controles hieronder zouden hem juist goedkeuren.
+        kort = (len(herschreven.split()) < 0.8 * len(tekst.split())
+                if herschreven else True)
+        if kort and herschreven:
+            print(f"  herschreven versie is veel korter "
+                  f"({len(herschreven.split())} tegen {len(tekst.split())} "
+                  f"woorden); niet overgenomen", file=sys.stderr)
+        if (herschreven and not kort
+                and not opent_met_afwezigheid(eerste_zin(herschreven))
                 and not opbouwzinnen(herschreven)
                 and not veiligheidszinnen(herschreven)
                 and not verbandzinnen(herschreven)):
             print("  hersteld", file=sys.stderr)
             tekst = herschreven
-        elif herschreven and len(opbouwzinnen(herschreven)) < len(opbouwzinnen(tekst)):
+        elif (herschreven and not kort
+              and len(opbouwzinnen(herschreven)) < len(opbouwzinnen(tekst))):
             print("  deels hersteld", file=sys.stderr)
             tekst = herschreven
         else:
             print("  herstel lukte niet; de eerste versie blijft staan",
                   file=sys.stderr)
+    if tekst and not tekst.rstrip().endswith((".", "!", "?", '"', ")")):
+        staart = tekst.rstrip()[-60:]
+        print(f"LET OP: de brief eindigt midden in een zin: '...{staart}'. "
+              f"Waarschijnlijk is het antwoord afgebroken.", file=sys.stderr)
+        try:
+            from diagnose import leg_vast
+            leg_vast("brief", f"De brief eindigt midden in een zin: '...{staart}'. "
+                              f"Controleer of het antwoord is afgekapt.")
+        except Exception:
+            pass
     return tekst
 
 
