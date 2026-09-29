@@ -2544,6 +2544,12 @@ def render_prijswijzigingen(woningen):
         eerst = w.get("prijs_eerst")
         if not eerst or eerst == w["prijs"]:
             continue
+        # Twee verkopen van hetzelfde pand uit een geplakte lijst zijn geen
+        # prijswijziging: het zijn twee transacties op onbekende momenten. De
+        # Palmstraat 40 stond er zo twee keer in, voor €535.000 en €485.000,
+        # en dat werd gemeld als een verlaging van vandaag.
+        if is_verkocht(w) or "plak" in (w.get("bron") or ""):
+            continue
         verschil = w["prijs"] - eerst
         pct = verschil / eerst * 100
         gewijzigd.append((abs(pct), verschil, pct, w))
