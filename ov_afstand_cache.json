@@ -15,6 +15,14 @@
   "omweg": 1.96,
   "soort": "bus"
  },
+ "51.82777,5.79553": {
+  "geschat": false,
+  "hemelsbreed": 167,
+  "meters": 293,
+  "naam": "De Voorstenkamp",
+  "omweg": 1.75,
+  "soort": "bus"
+ },
  "51.82985,5.86795": {
   "geschat": false,
   "hemelsbreed": 322,
@@ -933,6 +941,14 @@
   "meters": 357,
   "naam": "Waalkade",
   "omweg": 1.35,
+  "soort": "bus"
+ },
+ "51.84929,5.86657": {
+  "geschat": false,
+  "hemelsbreed": 141,
+  "meters": 742,
+  "naam": "Waalkade",
+  "omweg": 5.26,
   "soort": "bus"
  },
  "51.84964,5.86245": {

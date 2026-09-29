@@ -70478,5 +70478,17 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Waalkade|Nijmegen": {
+    "oppervlakte": 14,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "de Voorstenkamp|Nijmegen": {
+    "oppervlakte": 30,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
