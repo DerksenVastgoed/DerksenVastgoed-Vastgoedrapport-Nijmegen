@@ -40,6 +40,33 @@ ARCHIEF = "bekendmakingen_archief.json"
 # belasting van die diensten. Met de omgevingsvariabele BAG_PER_RONDE tijdelijk
 # te verhogen als je een achterstand wilt inlopen.
 MAX_BAG_PER_RONDE = int(os.environ.get("BAG_PER_RONDE") or 500)
+# Een GitHub-job stopt na zes uur. Bij een grote inhaalronde stoppen we zelf
+# eerder en netjes, zodat het werk dat af is bewaard blijft in plaats van
+# verloren te gaan bij een afgekapte job.
+MINUTEN_BUDGET = int(os.environ.get("BAG_MINUTEN") or 0)
+_START = dt.datetime.now()
+
+
+def _rest_vastleggen(rest):
+    """
+    Hoeveel panden er nog wachten, zodat de workflow zelf kan doorgaan.
+
+    Een GitHub-job stopt na zes uur. Blijft er werk over, dan start de workflow
+    een vervolgronde; dit bestand is het sein daarvoor.
+    """
+    try:
+        with open("bag_rest.json", "w", encoding="utf-8") as f:
+            json.dump({"rest": max(0, int(rest)),
+                       "datum": dt.date.today().isoformat()}, f)
+    except Exception:
+        pass
+
+
+def tijd_op():
+    """Of het tijdbudget voor deze ronde op is."""
+    if not MINUTEN_BUDGET:
+        return False
+    return (dt.datetime.now() - _START).total_seconds() > MINUTEN_BUDGET * 60
 PAUZE_TUSSEN = 0.2
 
 try:
@@ -274,8 +301,15 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         haast = 0 if soorten & {"te koop", "verkocht", "prijswijziging"} else 1
         return (haast, pand.get("bag_gezien") or "")
 
-    for sl, pand in sorted(geschiedenis.items(), key=volgorde):
+    wachtrij = sorted(geschiedenis.items(), key=volgorde)
+    for sl, pand in wachtrij:
+        if tijd_op():
+            print(f"Tijdbudget van {MINUTEN_BUDGET} minuten op na {gedaan} "
+                  f"panden; de rest volgt in een vervolgronde", file=sys.stderr)
+            _rest_vastleggen(len(wachtrij) - gedaan)
+            break
         if gedaan >= MAX_BAG_PER_RONDE:
+            _rest_vastleggen(len(wachtrij) - gedaan)
             break
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
         if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
@@ -360,11 +394,19 @@ def bij_labels(geschiedenis, alleen=None):
     """
     try:
         from marktprijzen_bag import (bag_adres_uitgebreid, ep_energielabel,
-                                      BAG_API_KEY)
+                                      BAG_API_KEY, EP_API_KEY)
     except Exception as e:
         leg_vast("geschiedenis", f"Labelfuncties niet te laden: {str(e)[:120]}")
         return 0
     if not BAG_API_KEY:
+        return 0
+    # Hier hardop over zijn: zonder deze sleutel komt er geen enkel label
+    # binnen, en dat bleef eerder onzichtbaar omdat elke fout werd ingeslikt.
+    if not EP_API_KEY:
+        leg_vast("geschiedenis", "Geen EP_API_KEY: energielabels worden "
+                                 "overgeslagen. Staat het secret in de repo en "
+                                 "geeft de workflow hem als EP_API_KEY door?")
+        print("Geen EP_API_KEY; energielabels overgeslagen", file=sys.stderr)
         return 0
     nieuw, vandaag = 0, dt.date.today().isoformat()
     doel = set(alleen) if alleen is not None else set(geschiedenis)
