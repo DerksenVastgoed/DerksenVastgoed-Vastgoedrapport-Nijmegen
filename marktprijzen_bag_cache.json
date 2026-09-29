@@ -70492,5 +70492,12 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Hatertseveldweg|Nijmegen": {
+    "oppervlakte": 60,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "energielabel": null
   }
 }

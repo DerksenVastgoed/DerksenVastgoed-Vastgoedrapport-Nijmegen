@@ -5,17 +5,17 @@
 ## LET OP
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1684 panden gevolgd, 611 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 476 met een energielabel, 145 nog nooit nagekeken, 188 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1685 panden gevolgd, 612 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 476 met een energielabel, 146 nog nooit nagekeken, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **WOZ-schatting**: geijkt op 22 panden: correctie 1.041 (4% stelselmatig), spreiding ±23.9%; kenmerken uit 23 straten en 7 buurten
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
-- **Attenderingen**: laatste ronde 2026-09-29: kamernet: 18 mails, 15 objecten, 3 bewust overgeslagen; pararius: 1 mails, 3 objecten; regulier: 3 mails, 10 objecten
+- **Attenderingen**: laatste ronde 2026-09-29: kamernet: 20 mails, 17 objecten, 3 bewust overgeslagen; pararius: 1 mails, 3 objecten; regulier: 3 mails, 10 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Huurdata**: 32 huurwaarnemingen, waarvan 16 Pararius en 16 Kamernet; 20 in de laatste week
+- **Huurdata**: 34 huurwaarnemingen, waarvan 16 Pararius en 18 Kamernet; 22 in de laatste week
 - **Aanbod**: 84 koopobjecten, 10 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
 - **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,63% (2026-09-28), opslag bij 70% financiering 1,87 procentpunt
@@ -32,7 +32,7 @@
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07)
 - **Misdrijfcijfers**: 44 buurten
-- **OV-haltes**: 333 haltes, 132 panden gerouteerd
+- **OV-haltes**: 333 haltes, 133 panden gerouteerd
 - **Bekendmakingen-archief**: 323 adressen, 454 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 80 panden onthouden, prijstrend over 9 metingen

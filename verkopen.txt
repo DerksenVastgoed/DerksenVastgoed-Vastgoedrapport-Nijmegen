@@ -854,3 +854,7 @@ Roukensstraat | Nijmegen | 880 | te huur kamer | 2026-09-29 | kamernet-incl | 38
 # Automatisch toegevoegd uit Funda-attendering op 29-09-2026
 Waalkade | Nijmegen | 565 | te huur kamer | 2026-09-29 | kamernet-incl | 14 | 
 de Voorstenkamp | Nijmegen | 990 | te huur | 2026-09-29 | kamernet-incl | 30 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 29-09-2026
+Hatertseveldweg | Nijmegen | 2000 | te huur | 2026-09-29 | kamernet-incl | 60 | 
+Hatertseveldweg | Nijmegen | 950 | te huur | 2026-09-29 | kamernet-incl | 60 | 

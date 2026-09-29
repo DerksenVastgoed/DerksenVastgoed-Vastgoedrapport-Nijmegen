@@ -10,7 +10,7 @@ _mediaan €5.416/m² op 217 waarnemingen . +4,2% sinds 2026-09-13 (verandering 
 
 | Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
 |---|---:|---:|---:|---:|---|---|---:|---:|
-| [Burg. Hustinxstraat 46](https://www.google.com/maps/search/?api=1&query=Burg.+Hustinxstraat+46%2C+Nijmegen) | €425.000 | 105 | €4.047 | 🟢 -25% | -25% onder de mediaan van zijn klasse | één woning, €2.100/mnd . pand bevat al 36 woningen volgens de BAG | €439.280 (+3%) | 0 |
+| [Burg. Hustinxstraat 46](https://www.google.com/maps/search/?api=1&query=Burg.+Hustinxstraat+46%2C+Nijmegen) | €425.000 | 105 | €4.047 | 🟢 -25% | -25% onder de mediaan van zijn klasse | één woning, €2.100/mnd . pand bevat al 36 woningen volgens de BAG | €427.736 (+1%) | 0 |
 | [Scholenhof 8](https://www.google.com/maps/search/?api=1&query=Scholenhof+8%2C+Nijmegen) | €550.000 | 89 | €6.179 | 🔴 +14% | splitsen staat open als route | één woning, €1.738/mnd | €363.605 (-34%) | 16 |
 | [Doddendaal 117](https://www.google.com/maps/search/?api=1&query=Doddendaal+117%2C+Nijmegen) | €500.000 | 77 | €6.493 | 🔴 +20% | splitsen staat open als route | één woning, €1.503/mnd . pand bevat al 3 woningen volgens de BAG . splitsing al geregistreerd in de BAG: Doddendaal 117 26 m² (BAG zegt 63 m²) | €314.579 (-37%) | 1 |
 
@@ -50,8 +50,7 @@ _13 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen</a></span></div>
-<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">156 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van kozijnonderdelen is een administratieve correctie zonder marktrelevantie.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legaliseren van kozijnonderdelen is een administratieve correctie zonder marktrelevante waardecreatie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -205,8 +204,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen</a></span></div>
-<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">139 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Vergunde dakisolatie bevestigt dat labelverbetering aan de buitenzijde hier vergunbaar is bij bestaande bebouwing.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vergunde dakisolatie toont dat labelverbetering bij dit gebouwtype vergunbaar is, relevant voor vergelijkbare renovaties.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -217,6 +215,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 773 panden, waarvan er 95 nu in aanbod zijn. Bijgewerkt 29 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 775 panden, waarvan er 95 nu in aanbod zijn. Bijgewerkt 29 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._
