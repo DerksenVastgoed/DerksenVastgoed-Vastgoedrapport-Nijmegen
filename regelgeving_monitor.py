@@ -67,6 +67,12 @@ LANDELIJK = [
     ("BWBR0035303", "Huisvestingswet 2014"),
     ("BWBR0002740", "Wet op belastingen van rechtsverkeer, de overdrachtsbelasting"),
     ("BWBR0002672", "Uitvoeringsbesluit belastingen van rechtsverkeer"),
+    # Hierin staat bijlage I met de huurprijstabel: de maximale huur per
+    # puntental. Die wordt elk jaar per 1 januari geindexeerd, en daarmee
+    # verschuift ook de grens tussen middenhuur en vrije sector. Verandert dit
+    # besluit, dan moet de tabel in wwso.py worden bijgewerkt.
+    ("BWBR0003237", "Besluit huurprijzen woonruimte, de huurprijstabel"),
+    ("BWBR0002481", "Uitvoeringswet huurprijzen woonruimte"),
 ]
 
 HEADERS = {"Accept": "application/xml",
