@@ -488,6 +488,23 @@ def controle_achtergronddekking():
     return (OK, bewijs + "; elk soort heeft een stuk", "")
 
 
+def controle_vve():
+    """Van hoeveel appartementen in een complex kennen we de VvE-bijdrage?"""
+    try:
+        from marktprijzen_bag import lees_vve_kosten
+        tabel = lees_vve_kosten()
+    except Exception as e:
+        return (LET_OP, "VvE-bestand niet te lezen", str(e)[:120])
+    if not tabel:
+        return (LET_OP, "geen enkele VvE-bijdrage ingevoerd",
+                "Appartementen in een complex worden nu doorgerekend alsof er "
+                "geen VvE is; de richtprijs valt daardoor te hoog uit. Zet de "
+                "maandbijdrage in vve_kosten.txt, een regel per adres.")
+    bedragen = sorted(tabel.values())
+    return (OK, f"{len(tabel)} panden met een VvE-bijdrage, mediaan "
+            f"€{bedragen[len(bedragen)//2]:.2f} per maand", "")
+
+
 def controle_veroudering():
     """
     Hoe oud is het aanbod dat we tonen?
@@ -689,6 +706,7 @@ CONTROLES = [
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
     ("Veroudering aanbod", controle_veroudering),
+    ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
     ("Achtergronddekking", controle_achtergronddekking),
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),

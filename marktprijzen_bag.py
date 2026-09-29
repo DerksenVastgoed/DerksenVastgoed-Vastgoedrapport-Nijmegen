@@ -1156,6 +1156,53 @@ def is_verkocht(w):
     return (w.get("status") or "").lower().startswith(("verkocht", "transactie"))
 
 
+# Welk deel van het exploitatiepercentage de VvE al dekt: onderhoud van casco
+# en gemeenschappelijke delen, opstalverzekering en het beheer daarvan. Bij een
+# pand met een VvE-bijdrage tellen we die bijdrage apart en halen we dit deel
+# uit het percentage, anders staat onderhoud er twee keer in.
+# AANNAME, en een gevoelige: hij bepaalt hoeveel de VvE-bijdrage netto kost.
+# De VvE dekt onderhoud van casco en gemeenschappelijke delen, de
+# opstalverzekering en het beheer daarvan; belastingen, verhuurbeheer,
+# leegstand en binnenonderhoud blijven voor de eigenaar. Zet een eigen waarde
+# in de omgevingsvariabele OPEX_DEEL_VVE zodra je weet wat het werkelijk is.
+OPEX_DEEL_VVE = float(os.environ.get("OPEX_DEEL_VVE", "0.55"))
+
+VVE_PAD = "vve_kosten.txt"
+
+
+def lees_vve_kosten(pad=VVE_PAD):
+    """
+    De maandelijkse VvE-bijdrage per adres, met de hand ingevoerd.
+
+    Een regel is: adres | bedrag per maand. De bijdrage staat meestal in de
+    advertentie maar niet in de attenderingsmail, dus dit is handwerk, net als
+    de WOZ. Zonder bijdrage rekent het script het pand door alsof er geen VvE
+    is, en dat maakt een appartement in een complex te aantrekkelijk.
+    """
+    uit = {}
+    try:
+        with open(pad, encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip()
+                if not regel or regel.startswith("#") or "|" not in regel:
+                    continue
+                adres, bedrag = regel.split("|", 1)
+                getal = re.sub(r"[^\d,.]", "", bedrag).replace(".", "").replace(",", ".")
+                try:
+                    uit[adres.strip().lower()] = float(getal)
+                except ValueError:
+                    continue
+    except Exception:
+        pass
+    return uit
+
+
+def vve_van(w, tabel=None):
+    """De VvE-bijdrage per maand voor dit pand, als we hem kennen."""
+    tabel = tabel if tabel is not None else lees_vve_kosten()
+    return tabel.get((w.get("adres") or "").strip().lower())
+
+
 def opex_voor(scenario_naam):
     """Het exploitatiepercentage dat bij dit scenario hoort."""
     naam = (scenario_naam or "").lower()
@@ -3549,7 +3596,31 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             f.append(f"wettelijk maximum volgens het puntenstelsel: "
                      f"€{n(hp_case['maximaal'])} per jaar; het verschil van "
                      f"€{n(hp_case['ruimte'])} komt vrij bij mutatie")
-        netto = jaarhuur * (1 - opex / 100)
+        # De VvE-bijdrage komt rechtstreeks van de huur af en is niet door te
+        # belasten aan de huurder. Het deel dat de VvE al dekt halen we uit het
+        # exploitatiepercentage, anders staat onderhoud er twee keer in.
+        vve_maand = vve_van(w)
+        if vve_maand:
+            opex_eigen = opex * (1 - OPEX_DEEL_VVE)
+            netto = jaarhuur * (1 - opex_eigen / 100) - vve_maand * 12
+            hard = jaarhuur * (1 - opex / 100) - vve_maand * 12
+            f.append(f"VvE-bijdrage: €{n(round(vve_maand * 12))} per jaar "
+                     f"(€{vve_maand:.2f} per maand), van de huur af en niet "
+                     f"door te belasten aan de huurder. Het "
+                     f"exploitatiepercentage gaat van {opex}% naar "
+                     f"{opex_eigen:.0f}%, omdat de VvE onderhoud van casco en "
+                     f"gemeenschappelijke delen en de opstalverzekering al "
+                     f"dekt. Dat aandeel van {OPEX_DEEL_VVE:.0%} is een "
+                     f"aanname: houd je het percentage ongewijzigd, dan is de "
+                     f"nettohuur €{n(round(hard))} in plaats van "
+                     f"€{n(round(netto))} en valt de richtprijs lager uit")
+        else:
+            netto = jaarhuur * (1 - opex / 100)
+            if in_complex(w):
+                f.append("let op: dit pand zit in een complex en heeft dus "
+                         "vrijwel zeker een VvE, maar de bijdrage is niet "
+                         "ingevoerd en telt niet mee. De richtprijs is daardoor "
+                         "te hoog; zet het bedrag in vve_kosten.txt")
         fin = financiering(prijs, netto, reno)
         lening, rentelast = fin["lening"], fin["rente"]
         jaarlast, aflossing = fin["jaarlast"], fin["aflossing"]

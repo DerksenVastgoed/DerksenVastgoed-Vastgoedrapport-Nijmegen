@@ -1,0 +1,11 @@
+# De maandelijkse VvE-bijdrage per adres, uit de advertentie of de akte.
+# Een regel is: adres | bedrag per maand
+#
+# Waarom dit nodig is: de bijdrage komt rechtstreeks van de nettohuur af en is
+# niet door te belasten aan de huurder. Zonder deze regel rekent het script een
+# appartement in een complex te aantrekkelijk. Het deel dat de VvE al dekt,
+# onderhoud van casco en gemeenschappelijke delen plus de opstalverzekering,
+# wordt uit het exploitatiepercentage gehaald zodat het er niet twee keer in zit.
+#
+# Voorbeeld:
+# Burg. Hustinxstraat 46 | 275,15
