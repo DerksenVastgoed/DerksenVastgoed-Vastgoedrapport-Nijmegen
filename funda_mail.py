@@ -383,7 +383,21 @@ def parse_kamernet_attendering(regels, vandaag=None):
         status = "te huur"
     else:
         status = "te huur kamer"
-    bron = "kamernet-incl" if inclusief else "kamernet"
+    # De staat van oplevering hoort in de bron: een gemeubileerd appartement
+    # met een kort contract brengt per m2 veel meer op dan gewone verhuur, en
+    # die twee horen niet in dezelfde mediaan. Bij de geplakte lijst leggen we
+    # dit al vast; uit de mail deden we het nog niet.
+    bron = "kamernet"
+    # Kaal eerst: "ongemeubileerd" bevat "gemeubileerd", en anders wordt een
+    # kale woning als gemeubileerd geteld.
+    for staat, woorden in (("kaal", ("kaal", "kale", "ongemeubileerd")),
+                           ("gestoffeerd", ("gestoffeerd",)),
+                           ("gemeubileerd", ("gemeubileerd", "gemeubeld"))):
+        if any(woord in soort_tekst for woord in woorden):
+            bron += f"-{staat}"
+            break
+    if inclusief:
+        bron += "-incl"
     return [f"{straat} | {plaats} | {prijs} | {status} | {vandaag} "
             f"| {bron} | {opp} | "], []
 
