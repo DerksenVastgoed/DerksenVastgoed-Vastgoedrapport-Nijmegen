@@ -89,8 +89,10 @@ def uit_verkopen(geschiedenis):
         if len(v) < 7 or not v[2].isdigit():
             continue
         adres, plaats, prijs, status, datum = v[0], v[1], int(v[2]), v[3].lower(), v[4]
-        if status.startswith("te huur"):
-            continue
+        # Huuradvertenties horen er wel in: bij een appartement in een complex
+        # is "wat werd hier eerder voor gevraagd" het meest directe antwoord op
+        # de vraag wat je kunt vragen.
+        pass
         per_adres.setdefault(sleutel(adres), []).append(
             {"adres": adres, "plaats": plaats, "prijs": prijs, "status": status,
              "datum": datum, "opp": v[6] or None, "bron": v[5] if len(v) > 5 else ""})
@@ -120,6 +122,16 @@ def uit_verkopen(geschiedenis):
                                       + " naar " + f"€{r['prijs']:,}".replace(",", "."),
                                       "aanbod")
                 vorige_prijs = r["prijs"]
+            elif r["status"].startswith("te huur"):
+                soort = ("kamer te huur" if "kamer" in r["status"]
+                         else "te huur aangeboden")
+                nieuw += voeg_toe(pand, r["datum"], "verhuur",
+                                  f"{soort} voor €{r['prijs']:,}".replace(",", ".")
+                                  + " per maand"
+                                  + (f", {r['opp']} m2" if r["opp"] else "")
+                                  + (" (inclusief servicekosten)"
+                                     if "incl" in (r.get("bron") or "") else ""),
+                                  r.get("bron") or "aanbod")
             elif r["status"] == "verkocht":
                 # Funda toont de laatste vraagprijs, niet de koopsom; die staat
                 # alleen bij het Kadaster. Zo noemen we het dus ook.
@@ -389,7 +401,7 @@ def bij_labels(geschiedenis, alleen=None):
 
 
 # Welke gebeurtenissen iets zeggen over wat een eigenaar met een pand doet
-ROUTE_SOORTEN = ("bekendmaking", "bag", "energielabel", "kamerverhuur")
+ROUTE_SOORTEN = ("bekendmaking", "bag", "energielabel", "kamerverhuur", "verhuur")
 ROUTE_WOORDEN = ("splits", "omzet", "kamerverhuur", "verbouw", "onttrek",
                  "woningvorming", "brandveilig", "vergunning")
 
@@ -405,6 +417,8 @@ def _route_tekst(pand):
     for g in pand["gebeurtenissen"]:
         if g["soort"] == "verkocht":
             delen.append(f"{g['datum'][:7]} verkocht")
+        elif g["soort"] == "verhuur":
+            delen.append(f"{g['datum'][:7]} {g['tekst'][:60]}")
         elif g["soort"] == "te koop" and delen:
             # Alleen als er al iets gebeurd is: dan is opnieuw te koop het
             # sluitstuk van de route en niet het begin
