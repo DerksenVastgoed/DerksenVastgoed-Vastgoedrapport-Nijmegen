@@ -641,7 +641,14 @@ def achtergrond_van_de_dag(nieuwstekst=""):
             print(f"Achtergrond gekozen op aansluiting bij het nieuws: "
                   f"{keuze[0]}", file=sys.stderr)
 
-    titel, tekst = keuze or nieuw[0]
+    # Zonder aansluiting bij het nieuws geen achtergrondstuk. Een stuk dat uit
+    # de lucht komt vallen maakt de brief langer zonder hem beter te maken; de
+    # rotatie was bedoeld als vulling en dat is precies wat we niet willen.
+    if not keuze:
+        print("Geen achtergrondstuk: niets in het nieuws sluit erop aan",
+              file=sys.stderr)
+        return []
+    titel, tekst = keuze
     gezien.append(titel)
     try:
         from diagnose import alleen_lezen
