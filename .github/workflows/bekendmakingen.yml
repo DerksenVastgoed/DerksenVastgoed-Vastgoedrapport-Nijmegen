@@ -578,6 +578,7 @@ jobs:
             pandgeschiedenis.json
             buurtbeeld.json
             mail_status.json
+            woz_kalibratie.json
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
