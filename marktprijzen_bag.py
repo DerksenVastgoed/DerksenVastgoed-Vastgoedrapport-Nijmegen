@@ -2345,6 +2345,22 @@ def richtprijs(opp, huur_m2, opex=None, vve_maand=None):
     return plafond if plafond > 0 else None
 
 
+def richtprijs_van(w, scenario=None):
+    """
+    De richtprijs van een pand, op één plek berekend.
+
+    De berekening stond op negen plekken in dit bestand, en toen de
+    VvE-bijdrage erbij kwam kreeg de helft hem wel en de andere helft niet.
+    Gevolg: de brief noemde een ander bedrag dan de tabel, voor hetzelfde pand.
+    Alles loopt nu hierlangs, inclusief de VvE.
+    """
+    sc = scenario or w.get("_scenario")
+    if not sc:
+        return None
+    return richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]),
+                      vve_van(w))
+
+
 def eigen_inleg(koopsom):
     """Eigen geld: het niet-gefinancierde deel plus de aankoopkosten."""
     return koopsom * (1 - LTV / 100) + koopsom * AANKOOPKOSTEN_PCT / 100
@@ -3505,8 +3521,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         sc_ = w_.get("_scenario")
         if not sc_ or not w_.get("prijs"):
             return None
-        p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
-                        vve_van(w_))
+        p_ = richtprijs_van(w_, sc_)
         return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
 
     met_ruimte = sorted(((r_, k) for k in geschikt for r_ in [_ruimte(k)]
@@ -4352,8 +4367,7 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # De doorrekening
     sc = w.get("_scenario")
     if sc:
-        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]),
-                             vve_van(w))
+        plafond = richtprijs_van(w, sc)
         waarom = ""
         if bekend and sc["naam"] == "één woning":
             waarom = ("; het pand is bekend als kamerpand, maar verhuur als een "
@@ -4568,15 +4582,13 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             sc_ = w_.get("_scenario")
             if not sc_ or not w_.get("prijs"):
                 return -999
-            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
-                        vve_van(w_))
+            p_ = richtprijs_van(w_, sc_)
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else -999
 
         for ppm2, w in sorted(rijen_b, key=_ruimte, reverse=True):
             sc = w.get("_scenario") or kies_scenario(
                 w, huur_bk, huur_k, buurt, None, per_buurt.get(buurt, []))
-            plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
-                       if sc else None)
+            plafond = richtprijs_van(w, sc)
             afw = ((ppm2 - med_b) / med_b * 100) if med_b else None
             verschil_s = (f"{(plafond - w['prijs']) / w['prijs'] * 100:+.0f}%"
                           if plafond else "—")
@@ -4633,7 +4645,7 @@ def render_bieden(woningen, huur_bk, huur_k, per_buurt):
         if not sc:
             continue
         opex = opex_voor(sc["naam"])
-        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex)
+        plafond = richtprijs_van(w, sc)
         if not plafond:
             continue
         reno = renovatiekosten(w["oppervlakte"], w.get("energielabel"))
@@ -5075,8 +5087,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     sc["bron"] = "gemeten uit de verkoopgegevens"
                 w["_scenario"] = sc
                 w["_huurpositie"] = hp0
-                plafond = (richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
-                           if sc else None)
+                plafond = richtprijs_van(w, sc)
                 if plafond:
                     verschil = (plafond - w["prijs"]) / w["prijs"] * 100
                     plafond_s = ("€" + f"{int(plafond):,}".replace(",", ".")
@@ -5621,8 +5632,7 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
             sc_ = w_.get("_scenario")
             if not sc_ or not w_.get("prijs"):
                 return None
-            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
-                        vve_van(w_))
+            p_ = richtprijs_van(w_, sc_)
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
 
         met_ruimte = [(r, k) for k in toonbaar for r in [_ruimte_van(k)]
@@ -5632,8 +5642,7 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
             afw, ppm2, klasse, _a, basis, w = beste
             buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
             sc = w.get("_scenario")
-            plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]),
-                             vve_van(w))
+            plafond = richtprijs_van(w, sc)
             zin = (f"Dichtst bij haalbaar is **{w['adres']}** in {buurt}: "
                    f"€{n(w['prijs'])} voor {w['oppervlakte']} m². Als {sc['naam']} "
                    f"loopt het rond tot €{n(plafond)}, dus {ruimte:+.0f}% ten "
