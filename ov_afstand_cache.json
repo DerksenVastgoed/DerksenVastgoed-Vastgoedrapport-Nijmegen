@@ -343,6 +343,14 @@
   "omweg": 1.4,
   "soort": "bus"
  },
+ "51.83991,5.87145": {
+  "geschat": false,
+  "hemelsbreed": 133,
+  "meters": 205,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.54,
+  "soort": "bus"
+ },
  "51.84019,5.85579": {
   "geschat": false,
   "hemelsbreed": 341,
@@ -469,6 +477,14 @@
   "meters": 532,
   "naam": "Smetiusstraat",
   "omweg": 1.64,
+  "soort": "bus"
+ },
+ "51.84321,5.85447": {
+  "geschat": false,
+  "hemelsbreed": 84,
+  "meters": 494,
+  "naam": "Tunnelweg",
+  "omweg": 5.88,
   "soort": "bus"
  },
  "51.84329,5.86352": {
@@ -813,6 +829,14 @@
   "meters": 86,
   "naam": "Plein 1944",
   "omweg": 0.74,
+  "soort": "bus"
+ },
+ "51.84677,5.85882": {
+  "geschat": false,
+  "hemelsbreed": 219,
+  "meters": 326,
+  "naam": "Kronenburgersingel",
+  "omweg": 1.49,
   "soort": "bus"
  },
  "51.84678,5.85885": {

@@ -1,5 +1,28 @@
 {
- "datum": "2026-09-28",
- "bronnen": {},
- "opmerking": "geen mailgegevens in deze stap"
+ "datum": "2026-09-29",
+ "bronnen": {
+  "pararius": {
+   "mails": 1,
+   "objecten": 3,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "regulier": {
+   "mails": 3,
+   "objecten": 10,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "kamernet": {
+   "mails": 15,
+   "objecten": 12,
+   "overgeslagen": 3,
+   "redenen": [
+    "Grotestraat, Cuijk: buiten Nijmegen",
+    "Keurvorststraat, Molenhoek: buiten Nijmegen",
+    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen"
+   ]
+  }
+ },
+ "opmerking": ""
 }
