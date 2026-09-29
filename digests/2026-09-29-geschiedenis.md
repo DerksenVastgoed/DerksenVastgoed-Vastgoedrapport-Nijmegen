@@ -2,51 +2,435 @@
 
 _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een splitsing en de nieuwe huisnummers horen bij dezelfde geschiedenis._
 
-## Dominicanenstraat 103
-- 2026-01-16: Aanvraag omgevingsvergunning voor de omzetting van een woning naar drie zelfstandige woningen, aan Dominicanenstraat 103, 6521KB Nijmegen (officiele bekendmakingen)
-- 2026-03-24: Besluit voor de omzetting van een woning naar drie zelfstandige woningen, aan Dominicanenstraat 103, 6521KB Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €700.000, 221 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €700.000, 221 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 115
+- 2026-09-28: verkocht, laatste vraagprijs €340.000, 64 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €340.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Graafseweg 47-C
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €409.000, 93 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €409.000, 93 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 135
+- 2026-09-28: verkocht, laatste vraagprijs €350.000, 64 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Graafseweg 47-E
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €335.000, 67 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €335.000, 67 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 157
+- 2026-09-28: verkocht, laatste vraagprijs €347.500, 65 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €347.500, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Graafseweg 47-J
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €425.000, 98 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €425.000, 98 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 159
+- 2026-09-28: verkocht, laatste vraagprijs €325.000, 65 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €325.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Graafseweg 47-X
-- 2025-06-06: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2025-06-16: Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €345.000, 59 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €345.000, 59 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 165
+- 2026-09-28: verkocht, laatste vraagprijs €325.000, 64 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €325.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Johannes Vijghstraat 18
-- 2016-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
-- 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
-- 2026-09-28: verkocht, laatste vraagprijs €575.000, 110 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €575.000, 110 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 175
+- 2026-09-28: verkocht, laatste vraagprijs €350.000, 60 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €350.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Koninginnelaan 225
-- 2026-02-19: Aanvraag omgevingsvergunning voor het juridisch kadastraal splitsen van de boven en beneden woning, aan Koninginnelaan 225 en 227, 6542ZR Nijmegen (officiele bekendmakingen)
-- 2026-04-07: Buiten behandelingstelling van de aanvraag: het juridisch kadastraal splitsen van de boven en beneden woning, aan Koninginnelaan 225 en 227, 6542ZR Nijmegen (officiele bekendmakingen)
-- 2026-09-28: verkocht, laatste vraagprijs €640.000, 143 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €640.000, 143 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 177
+- 2026-09-28: verkocht, laatste vraagprijs €365.000, 61 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €365.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
-## Palmstraat 40
-- 2026-09-28: verkocht, laatste vraagprijs €535.000, 118 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €485.000, 118 m2 (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €535.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-09-28: verkocht, laatste vraagprijs €485.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+## Veemarkt 193
+- 2026-09-28: verkocht, laatste vraagprijs €330.000, 64 m2 (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €330.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 189 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 191 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 193 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 195 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 197 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 199 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 201 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 203 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 205 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 207 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 209 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 211 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 213 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 215 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 217 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 219 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 221 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 223 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 225 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 227 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 229 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 231 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 233 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 235 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 237 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 239 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 241 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 243 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 245 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 247 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 249 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 251 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 253 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 255 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 257 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 259 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 261 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 263 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 265 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 267 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 269 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 271 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 273 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 275 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 277 is nu A (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 279 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 281 is nu B (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 283 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 285 is nu C (EP-Online) **nieuw**
+- 2026-09-29: energielabel van Veemarkt 287 is nu C (EP-Online) **nieuw**
 

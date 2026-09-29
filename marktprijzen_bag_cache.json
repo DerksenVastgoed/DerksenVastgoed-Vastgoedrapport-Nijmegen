@@ -70483,12 +70483,14 @@
     "oppervlakte": 14,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "de Voorstenkamp|Nijmegen": {
     "oppervlakte": 30,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   }
 }
