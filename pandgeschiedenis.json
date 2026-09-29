@@ -2075,7 +2075,7 @@
     1222
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2227,7 +2227,7 @@
     40
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2250,7 +2250,7 @@
     73
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2335,7 +2335,7 @@
     73
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2400,14 +2400,26 @@
  },
  "beijenstraat2": {
   "adres": "Beijenstraat 2",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2017-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "bergendalseweg": {
+  "adres": "Berg en Dalseweg",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-27",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.100 per maand, 50 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -2428,7 +2440,7 @@
     61
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2461,7 +2473,7 @@
     129
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2480,7 +2492,7 @@
     238
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2511,7 +2523,7 @@
     40
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2530,7 +2542,7 @@
     171
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2549,7 +2561,7 @@
     258
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2582,7 +2594,7 @@
     2922
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2611,7 +2623,7 @@
     150
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "melding",
@@ -2634,7 +2646,7 @@
     134
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2669,7 +2681,7 @@
     110
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2698,7 +2710,7 @@
     4532
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2723,7 +2735,7 @@
     357
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2767,7 +2779,7 @@
     468
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "melding",
@@ -2811,7 +2823,7 @@
     188
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -2844,7 +2856,7 @@
     55
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -2863,7 +2875,7 @@
     264
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -3078,7 +3090,7 @@
     34
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -3132,7 +3144,7 @@
     110
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -3151,7 +3163,7 @@
     203
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -3170,7 +3182,7 @@
     249
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -3197,7 +3209,7 @@
     245
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -3220,7 +3232,7 @@
     51
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -3243,7 +3255,7 @@
     53
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -3262,7 +3274,7 @@
     177
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -3556,7 +3568,7 @@
     296
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -3789,7 +3801,7 @@
     307
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -15435,6 +15447,18 @@
   ],
   "pand_id": "0268100000048358"
  },
+ "eerstewalstraat": {
+  "adres": "Eerste Walstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €697 per maand, 55 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "eerstewalstraat18": {
   "adres": "Eerste Walstraat 18",
   "bag_eenheden": [
@@ -18604,6 +18628,18 @@
   ],
   "pand_id": "0268100000002873"
  },
+ "gerardvanswietenlaan": {
+  "adres": "Gerard van Swietenlaan",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-26",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €695 per maand, 16 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "gladiolenstraat12": {
   "adres": "Gladiolenstraat 12",
   "bag_eenheden": [
@@ -18960,6 +18996,30 @@
    }
   ],
   "pand_id": "0268100000019919"
+ },
+ "graafseweg": {
+  "adres": "Graafseweg",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-26",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €600 per maand, 22 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €650 per maand, 13 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €852 per maand, 21 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "graafseweg1": {
   "adres": "Graafseweg 1",
@@ -21874,6 +21934,18 @@
   ],
   "pand_id": "0268100000024838"
  },
+ "groesbeeksedwarsweg": {
+  "adres": "Groesbeeksedwarsweg",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €520 per maand, 14 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "groesbeeksedwarsweg106": {
   "adres": "Groesbeeksedwarsweg 106",
   "bag_eenheden": [
@@ -23426,6 +23498,24 @@
   ],
   "pand_id": "0268100000028697"
  },
+ "grotestraat": {
+  "adres": "Grotestraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-04",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.650 per maand, 40 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-09-17",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.450 per maand, 80 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "grotestraat11": {
   "adres": "Grotestraat 11",
   "bag_eenheden": [
@@ -24106,6 +24196,18 @@
   ],
   "pand_id": null
  },
+ "hegdambroek": {
+  "adres": "Hegdambroek",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €5 per maand, 20 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "heidebloemstraat1": {
   "adres": "Heidebloemstraat 1",
   "bag_gezien": "2026-09-28",
@@ -24375,6 +24477,18 @@
   ],
   "pand_id": null
  },
+ "hengstdalseweg": {
+  "adres": "Hengstdalseweg",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-09-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €644 per maand, 25 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "hengstdalseweg124": {
   "adres": "Hengstdalseweg 124",
   "bag_gezien": "2026-09-28",
@@ -24455,6 +24569,18 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "hertogplein": {
+  "adres": "Hertogplein",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.995 per maand, 49 m2"
    }
   ],
   "pand_id": null
@@ -29290,6 +29416,18 @@
   ],
   "pand_id": "0268100000025044"
  },
+ "kievitstraat": {
+  "adres": "Kievitstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-16",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.585 per maand, 135 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "klaverstraat23": {
   "adres": "Klaverstraat 23",
   "bag_eenheden": [
@@ -29829,6 +29967,18 @@
     "datum": "2026-09-27",
     "soort": "te koop",
     "tekst": "te koop voor €650.000, 165 m2"
+   }
+  ],
+  "pand_id": null
+ },
+ "krayenhofflaan": {
+  "adres": "Krayenhofflaan",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €864 per maand, 19 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -33154,6 +33304,18 @@
   ],
   "pand_id": "0268100000083374"
  },
+ "kruidenstraat": {
+  "adres": "Kruidenstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-15",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.495 per maand, 131 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "kwakkenbergweg27": {
   "adres": "Kwakkenbergweg 27",
   "bag_eenheden": [
@@ -33229,6 +33391,18 @@
    }
   ],
   "pand_id": "0268100000090586"
+ },
+ "laanvanoostindie": {
+  "adres": "Laan van Oost-Indie",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.297 per maand, 45 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "lagemarkt1b": {
   "adres": "Lage Markt 1-B",
@@ -43811,6 +43985,30 @@
   ],
   "pand_id": "0268100000010925"
  },
+ "ochuismanstraat": {
+  "adres": "O.C. Huismanstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €590 per maand, 85 m2"
+   }
+  ],
+  "pand_id": null
+ },
+ "oranjesingel": {
+  "adres": "Oranjesingel",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.700 per maand, 50 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "oranjesingel21": {
   "adres": "Oranjesingel 21",
   "bag_eenheden": [
@@ -47392,6 +47590,18 @@
   ],
   "pand_id": null
  },
+ "pontanusstraat": {
+  "adres": "Pontanusstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.213 per maand, 26 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "pontanusstraat10": {
   "adres": "Pontanusstraat 10",
   "bag_eenheden": [
@@ -47716,6 +47926,18 @@
    }
   ],
   "pand_id": "0268100000004630"
+ },
+ "priemstraat": {
+  "adres": "Priemstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-16",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.250 per maand, 33 m2"
+   }
+  ],
+  "pand_id": null
  },
  "priemstraat17e": {
   "adres": "Priemstraat 17-E",
@@ -50439,6 +50661,18 @@
   ],
   "pand_id": "0268100000041848"
  },
+ "roukensstraat": {
+  "adres": "Roukensstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-29",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €880 per maand, 38 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "roukensstraat12": {
   "adres": "Roukensstraat 12",
   "bag_eenheden": [
@@ -50613,6 +50847,18 @@
    }
   ],
   "pand_id": "0268100000005857"
+ },
+ "saturnusstraat": {
+  "adres": "Saturnusstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.650 per maand, 85 m2"
+   }
+  ],
+  "pand_id": null
  },
  "scheidemakershof39b": {
   "adres": "Scheidemakershof 39-B",
@@ -57345,6 +57591,18 @@
   ],
   "pand_id": "0268100000045388"
  },
+ "ststephanusstraat": {
+  "adres": "St. Stephanusstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-17",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €539 per maand, 16 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "ststephanusstraat11": {
   "adres": "St. Stephanusstraat 11",
   "bag_eenheden": [
@@ -58961,6 +59219,12 @@
     "datum": "2026-05-18",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor geschakelde woning: realiseren kamerverhuur, aan Tolhuis 3512, 6537NR Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-29",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor geschakelde woning: realiseren kamerverhuur, aan Tolhuis 3512, 6537NR Nijmegen"
    }
   ],
   "pand_id": "0268100000032880"
@@ -62237,6 +62501,18 @@
   ],
   "pand_id": "0268100000049584"
  },
+ "vanheutszstraat": {
+  "adres": "van Heutszstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €655 per maand, 14 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "vanheutszstraat15": {
   "adres": "van Heutszstraat 15",
   "bag_eenheden": [
@@ -64431,6 +64707,18 @@
   ],
   "pand_id": "0268100000023385"
  },
+ "vantrieststraat": {
+  "adres": "van Trieststraat",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €577 per maand, 16 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "vantrieststraat1": {
   "adres": "van Trieststraat 1",
   "bag_gezien": "2026-09-28",
@@ -64507,6 +64795,18 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "vanwelderenstraat": {
+  "adres": "van Welderenstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-21",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €705 per maand, 27 m2"
    }
   ],
   "pand_id": null
@@ -69586,6 +69886,18 @@
   ],
   "pand_id": "0268100000041677"
  },
+ "vredestraat": {
+  "adres": "Vredestraat",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €795 per maand, 27 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "vredestraat12": {
   "adres": "Vredestraat 12",
   "bag_eenheden": [
@@ -69643,6 +69955,18 @@
    }
   ],
   "pand_id": "0268100000020989"
+ },
+ "waalbandijk": {
+  "adres": "Waalbandijk",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-21",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.650 per maand, 91 m2"
+   }
+  ],
+  "pand_id": null
  },
  "waalbandijk125": {
   "adres": "Waalbandijk 125",
@@ -71603,6 +71927,18 @@
   ],
   "pand_id": "0268100000011998"
  },
+ "weezenhof": {
+  "adres": "Weezenhof",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €750 per maand, 22 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "wegdoorjonkerbos27": {
   "adres": "Weg door Jonkerbos 27",
   "bag_eenheden": [
@@ -72665,6 +73001,18 @@
    }
   ],
   "pand_id": "0268100000041945"
+ },
+ "winselingseweg": {
+  "adres": "Winselingseweg",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.700 per maand, 94 m2"
+   }
+  ],
+  "pand_id": null
  },
  "wintersoord26": {
   "adres": "Wintersoord 26",

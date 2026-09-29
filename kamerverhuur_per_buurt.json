@@ -209,10 +209,10 @@
    "totaal": 185
   },
   "Tolhuis": {
-   "alleen_melding_of_besluit": 1,
+   "alleen_melding_of_besluit": 2,
    "alleen_vergunning": 3,
    "beide": 0,
-   "totaal": 4
+   "totaal": 5
   },
   "Wolfskuil": {
    "alleen_melding_of_besluit": 4,

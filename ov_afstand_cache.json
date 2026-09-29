@@ -295,6 +295,14 @@
   "omweg": 2.3,
   "soort": "bus"
  },
+ "51.83950,5.87058": {
+  "geschat": false,
+  "hemelsbreed": 190,
+  "meters": 347,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.83,
+  "soort": "bus"
+ },
  "51.83957,5.83591": {
   "geschat": false,
   "hemelsbreed": 78,

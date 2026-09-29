@@ -9472,6 +9472,18 @@
   "buurt": "Tolhuis",
   "straat": "Tolhuis"
  },
+ "tolhuis3512": {
+  "adres": "Tolhuis 3512",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2026",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Tolhuis",
+  "straat": "Tolhuis"
+ },
  "tolhuis7630": {
   "adres": "Tolhuis 7630",
   "bronnen": [

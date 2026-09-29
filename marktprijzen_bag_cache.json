@@ -70471,5 +70471,11 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Roukensstraat|Nijmegen": {
+    "oppervlakte": 38,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

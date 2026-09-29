@@ -847,3 +847,6 @@ Gerard van Swietenlaan | Nijmegen | 695 | te huur | 2026-09-26 | kamernet-incl |
 # Automatisch toegevoegd uit Funda-attendering op 29-09-2026
 Burg. Hustinxstraat 46 | Nijmegen | 425000 | te koop | 2026-09-29 |  | 105 | 6512AE
 Beijensstraat 68 | Nijmegen | 539000 | te koop | 2026-09-29 |  | 90 | 6521ED
+
+# Automatisch toegevoegd uit Funda-attendering op 29-09-2026
+Roukensstraat | Nijmegen | 880 | te huur kamer | 2026-09-29 | kamernet-incl | 38 | 
