@@ -1851,8 +1851,28 @@ def wws_indicatie(w):
         oordeel = kamer_tekst + "Als een woning verhuurd: " + oordeel
     basis = [f"{opp} m2", f"WOZ €{eu(woz)}",
              f"label {label}" if label else "label onbekend, niet meegeteld"]
+
+    # Wat levert een beter label op? Alleen zinvol als het pand nu onder de 187
+    # zit: dan beslist een labelsprong of je aan een maximumhuur vastzit of
+    # vrij bent. Zit het er al boven, dan verandert de sprong de huur niet meer
+    # via het puntenstelsel.
+    sprong = None
+    if punten < 187 and label:
+        for doel in ("B", "A", "A+", "A++"):
+            uit_d = wws_punten(opp, woz, label=doel, monument=bool(w.get("monument")))
+            p_d = uit_d.get("punten")
+            if p_d and p_d >= 187:
+                sprong = {"label": doel, "punten": p_d,
+                          "winst": p_d - punten}
+                break
+        if not sprong:
+            beste = wws_punten(opp, woz, label="A++",
+                               monument=bool(w.get("monument"))).get("punten")
+            if beste and beste > punten:
+                sprong = {"label": "A++", "punten": beste,
+                          "winst": beste - punten, "haalt_niet": True}
     return {"punten": punten, "oordeel": oordeel, "basis": ", ".join(basis),
-            "kamerpand": bool(bekend)}
+            "label": label, "labelsprong": sprong, "kamerpand": bool(bekend)}
 
 
 def _uitleg_blokkade(route, reden):
