@@ -396,6 +396,36 @@ def controle_peildata():
     return (OK, "; ".join(regels), "")
 
 
+def controle_wozschatting():
+    """Hoe betrouwbaar is de eigen WOZ-schatting inmiddels?"""
+    d = _json("woz_kalibratie.json") or {}
+    aantal = d.get("aantal") or 0
+    if aantal < 8:
+        return (LET_OP, f"geijkt op {aantal} panden, te weinig om iets te zeggen",
+                "Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint "
+                "de schatting zichzelf te corrigeren.")
+    vgl = d.get("vergelijking") or {}
+    delen = []
+    for naam in ("kenmerken", "prijs"):
+        v = vgl.get(naam)
+        if v:
+            delen.append(f"{naam} {v['mediane_fout'] * 100:.1f}%")
+    afwijking = abs(1 - (d.get("correctie") or 1)) * 100
+    spreiding = (d.get("spreiding") or 0) * 100
+    kb = d.get("kenmerken_beschikbaar") or {}
+    bewijs = (f"geijkt op {aantal} panden: correctie {d.get('correctie'):.3f} "
+              f"({afwijking:.0f}% stelselmatig), spreiding ±{spreiding:.1f}%"
+              + (f"; mediane fout per methode: {', '.join(delen)}" if delen else "")
+              + (f"; kenmerken uit {kb.get('straten', 0)} straten en "
+                 f"{kb.get('buurten', 0)} buurten" if kb else ""))
+    if spreiding > 7:
+        return (LET_OP, bewijs,
+                "De spreiding is nog te groot om op de schatting te varen; blijf "
+                "de WOZ opzoeken bij panden die ertoe doen.")
+    return (OK, bewijs + "; nauwkeurig genoeg om alleen grensgevallen op te "
+            "zoeken", "")
+
+
 def controle_verkopen():
     """
     Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
@@ -555,6 +585,7 @@ CONTROLES = [
     ("Geschiedenis per pand", controle_geschiedenis),
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
+    ("WOZ-schatting", controle_wozschatting),
     ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),

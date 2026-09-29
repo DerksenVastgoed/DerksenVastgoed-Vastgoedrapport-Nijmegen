@@ -2327,6 +2327,192 @@ def _binnen_band(hm2, buurt, bron, klasse="woning", n=0):
                      f"{n} waarnemingen")
 
 
+# De WOZ van een belastingjaar is de marktwaarde op 1 januari van het jaar
+# ervoor: de waardepeildatum. Gemeenten herleiden verkoopcijfers naar die
+# datum met een prijsindex. Dat kunnen wij ook, want we hebben de CBS-index.
+def woz_peildatum(vandaag=None):
+    """De waardepeildatum die nu geldt: 1 januari van het vorige jaar."""
+    d = vandaag or dt.date.today()
+    return f"{d.year - 1}-01"
+
+
+def prijsindex_factor(naar_maand):
+    """
+    Hoeveel de prijzen zijn veranderd tussen die maand en de laatste stand.
+
+    Geeft None als de reeks te kort is; dan schatten we liever niet dan dat we
+    met een verzonnen correctie werken.
+    """
+    try:
+        with open("woningprijsindex.json", encoding="utf-8") as f:
+            d = json.load(f)
+        reeks = ((d.get("landelijk") or {}).get("reeks")) or {}
+        if not reeks:
+            return None
+        laatste = max(reeks)
+        begin = reeks.get(naar_maand)
+        if not begin:
+            eerder = [m for m in sorted(reeks) if m <= naar_maand]
+            if not eerder:
+                return None
+            begin = reeks[eerder[-1]]
+        return begin / reeks[laatste]
+    except Exception:
+        return None
+
+
+_WOZ_KALIBRATIE = None
+_WOZ_KENMERKEN = None
+
+
+def woz_per_m2(woningen):
+    """
+    De WOZ per vierkante meter, uit de panden waarvan we de waarde kennen.
+
+    Dit is het model op kenmerken: oppervlakte, buurt en straat, precies wat de
+    gemeente ook gebruikt. Het verwijst nergens naar verkoop- of vraagprijzen,
+    en het leert alleen van waarden die Mark zelf heeft opgezocht.
+    """
+    per_straat, per_buurt, stad = {}, {}, []
+    for w in woningen or []:
+        woz, opp = w.get("woz"), w.get("oppervlakte")
+        if not woz or not opp or opp < 15:
+            continue
+        pm2 = woz / opp
+        stad.append(pm2)
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        if buurt:
+            per_buurt.setdefault(buurt, []).append(pm2)
+        m = re.match(r"^(.+?)\s+\d", (w.get("adres") or "").strip())
+        if m:
+            per_straat.setdefault(m.group(1).strip().lower(), []).append(pm2)
+    return {"straat": per_straat, "buurt": per_buurt, "stad": stad}
+
+
+def woz_uit_kenmerken(w, kenmerken=None):
+    """
+    Een WOZ-schatting uit oppervlakte, straat en buurt.
+
+    Een straat telt pas mee vanaf drie panden, een buurt vanaf vijf; anders is
+    de mediaan een toevalstreffer. Zonder genoeg gegevens geeft dit niets terug
+    en valt de schatting terug op de prijsmethode.
+    """
+    k = kenmerken or _WOZ_KENMERKEN or {}
+    opp = w.get("oppervlakte")
+    if not opp or not k:
+        return None
+    m = re.match(r"^(.+?)\s+\d", (w.get("adres") or "").strip())
+    straat = m.group(1).strip().lower() if m else ""
+    buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+    reeks, basis = [], ""
+    if straat and len(k.get("straat", {}).get(straat, [])) >= 3:
+        reeks, basis = k["straat"][straat], f"straatmediaan ({len(k['straat'][straat])} panden)"
+    elif buurt and len(k.get("buurt", {}).get(buurt, [])) >= 5:
+        reeks, basis = k["buurt"][buurt], f"buurtmediaan ({len(k['buurt'][buurt])} panden)"
+    elif len(k.get("stad", [])) >= 15:
+        reeks, basis = k["stad"], f"stadsmediaan ({len(k['stad'])} panden)"
+    if not reeks:
+        return None
+    return {"waarde": round(st.median(reeks) * opp / 1000) * 1000,
+            "methode": f"kenmerken: {basis} maal {opp} m2"}
+
+
+def woz_vergelijk_methoden(woningen):
+    """
+    Welke methode schat de WOZ beter: kenmerken of de herleide vraagprijs?
+
+    Voor elk pand met een bekende WOZ wordt de schatting gemaakt zonder dat
+    pand zelf mee te tellen, en gemeten hoe ver hij ernaast zit. Zo wordt niet
+    op de eigen uitkomst geoefend.
+    """
+    uit = {}
+    for naam in ("kenmerken", "prijs"):
+        fouten = []
+        for w in woningen or []:
+            echt = w.get("woz")
+            if not echt:
+                continue
+            anderen = [x for x in woningen if x is not w]
+            if naam == "kenmerken":
+                schat = woz_uit_kenmerken(w, woz_per_m2(anderen))
+            else:
+                schat = woz_schatting({**w, "woz": None},
+                                      woz_kalibratie(anderen))
+            if schat and schat.get("waarde"):
+                fouten.append(abs(schat["waarde"] - echt) / echt)
+        if fouten:
+            fouten.sort()
+            uit[naam] = {"aantal": len(fouten),
+                         "mediane_fout": st.median(fouten),
+                         "negentig": fouten[int(len(fouten) * 0.9)]}
+    return uit
+
+
+def woz_kalibratie(woningen=None):
+    """
+    Hoe goed is onze WOZ-schatting? Gemeten aan de panden waarvan we de echte
+    waarde kennen.
+
+    Voor elk pand met een ingevoerde WOZ en een bekende vraagprijs rekenen we
+    de schatting opnieuw uit en vergelijken we die met de werkelijke waarde.
+    De mediaan van die verhouding is de correctie: zit onze schatting er
+    stelselmatig naast, dan corrigeert dit dat. De spreiding zegt hoeveel
+    vertrouwen de schatting verdient.
+
+    Dit is het leereffect: hoe meer WOZ-waarden er met de hand bij komen, hoe
+    beter de schatting voor de panden waar we hem niet van weten.
+    """
+    rijen = woningen if woningen is not None else []
+    verhoudingen = []
+    for w in rijen or []:
+        echt = w.get("woz")
+        schat = woz_schatting({**w, "woz": None})
+        if echt and schat and schat.get("waarde"):
+            verhoudingen.append(echt / schat["waarde"])
+    if len(verhoudingen) < 8:
+        return {"aantal": len(verhoudingen), "correctie": 1.0, "spreiding": None}
+    verhoudingen.sort()
+    mediaan = st.median(verhoudingen)
+    laag = verhoudingen[int(len(verhoudingen) * 0.1)]
+    hoog = verhoudingen[int(len(verhoudingen) * 0.9)]
+    return {"aantal": len(verhoudingen), "correctie": mediaan,
+            "spreiding": (hoog - laag) / 2,
+            "band": (laag, hoog)}
+
+
+def woz_schatting(w, kalibratie=None):
+    """
+    Een schatting van de WOZ: de vraagprijs herleid naar de waardepeildatum.
+
+    Dit is de vereenvoudigde versie van wat de gemeente doet: die vergelijkt
+    verkoopcijfers rond de peildatum van vergelijkbare woningen. Wij nemen de
+    vraagprijs van dit pand en rekenen die terug met de landelijke prijsindex.
+    Goed genoeg om te zien of een pand in de buurt van de €396.000-grens komt,
+    niet goed genoeg om op te varen: kenmerken als onderhoud en ligging zitten
+    er niet in, en een vraagprijs is geen verkoopprijs.
+    """
+    prijs = w.get("prijs")
+    if not prijs or is_verkocht(w):
+        return None
+    peil = woz_peildatum()
+    factor = prijsindex_factor(peil)
+    if not factor:
+        return None
+    # Eerst het model op kenmerken; dat verwijst nergens naar vraagprijzen en
+    # gebruikt alleen WOZ-waarden die we zelf hebben opgezocht.
+    uit_kenmerken = woz_uit_kenmerken(w)
+    if uit_kenmerken:
+        return {"waarde": uit_kenmerken["waarde"], "peildatum": peil,
+                "methode": uit_kenmerken["methode"]}
+
+    ruw = prijs * factor
+    correctie = ((kalibratie or _WOZ_KALIBRATIE or {}).get("correctie")) or 1.0
+    return {"waarde": round(ruw * correctie / 1000) * 1000,
+            "peildatum": peil, "factor": factor, "correctie": correctie,
+            "methode": f"vraagprijs herleid naar {peil}, geijkt op eigen invoer",
+            "ruw": round(ruw / 1000) * 1000}
+
+
 def woz_voor_vrije_sector(opp, label=None, monument=False):
     """
     Bij welke WOZ komt dit pand op 187 punten?
@@ -3985,6 +4171,25 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # Zonder WOZ weten we het huurregime niet. Dan zeggen we waar de grens
     # ligt, zodat een opzoeking op het woz-loket meteen uitsluitsel geeft.
     if not w.get("woz") and w.get("oppervlakte"):
+        schatting = woz_schatting(w)
+        if schatting:
+            grens = OPKOOPBESCHERMING_WOZ
+            kant = ("boven" if schatting["waarde"] > grens else "onder")
+            f("geschatte WOZ",
+              f"€{eu(schatting['waarde'])}, {kant} de grens van €{eu(grens)}. "
+              f"Dit is de vraagprijs herleid naar de waardepeildatum "
+              f"{schatting['peildatum']} met de landelijke prijsindex, zoals de "
+              f"gemeente verkoopcijfers naar die datum herleidt. Een schatting: "
+              f"onderhoud, ligging en woningtype zitten er niet in, en een "
+              f"vraagprijs is geen verkoopprijs."
+              + (f" Geijkt op {(_WOZ_KALIBRATIE or {}).get('aantal', 0)} panden "
+                 f"waarvan we de echte WOZ kennen; die schattingen zaten er "
+                 f"mediaan {abs(1 - (_WOZ_KALIBRATIE or {}).get('correctie', 1)) * 100:.0f}% "
+                 f"naast met een spreiding van "
+                 f"±{((_WOZ_KALIBRATIE or {}).get('spreiding') or 0) * 100:.0f}%."
+                 if (_WOZ_KALIBRATIE or {}).get("spreiding") else "")
+              + " Zoek hem op als het pand dicht bij de grens ligt",
+              "eigen berekening met de CBS-prijsindex, geijkt op eigen WOZ-invoer")
         label_nu = (w.get("energielabel") or {}).get("label")
         drempel = woz_voor_vrije_sector(w["oppervlakte"], label_nu)
         if drempel:
@@ -5464,6 +5669,24 @@ def lees_haltes_bestand():
 
 
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
+    # De WOZ-schatting ijken op de panden waarvan we de echte waarde kennen.
+    # Hoe meer WOZ-waarden Mark invoert, hoe beter de schatting voor de rest.
+    global _WOZ_KALIBRATIE, _WOZ_KENMERKEN
+    _WOZ_KALIBRATIE = woz_kalibratie(woningen)
+    _WOZ_KENMERKEN = woz_per_m2(woningen)
+    try:
+        stand = dict(_WOZ_KALIBRATIE or {})
+        # Welke methode het beste schat, gemeten op de eigen WOZ-invoer. Zo
+        # beslist de data welke aanpak wint, niet een aanname vooraf.
+        stand["vergelijking"] = woz_vergelijk_methoden(woningen)
+        stand["kenmerken_beschikbaar"] = {
+            "straten": len((_WOZ_KENMERKEN or {}).get("straat", {})),
+            "buurten": len((_WOZ_KENMERKEN or {}).get("buurt", {})),
+            "panden": len((_WOZ_KENMERKEN or {}).get("stad", []))}
+        with open("woz_kalibratie.json", "w", encoding="utf-8") as f:
+            json.dump(stand, f, ensure_ascii=False, indent=1)
+    except Exception:
+        pass
     """
     In de dagelijkse brief tonen we alleen wat beweegt: prijswijzigingen,
     looptijd en het actuele aanbod met zijn positie ten opzichte van de markt.
