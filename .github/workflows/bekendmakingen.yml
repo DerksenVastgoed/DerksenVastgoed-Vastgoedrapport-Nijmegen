@@ -579,6 +579,7 @@ jobs:
             buurtbeeld.json
             mail_status.json
             woz_kalibratie.json
+            vve_kosten.txt
             bouwkosten_eigen.txt
             ov_afstand_cache.json
             rente_actueel.json
