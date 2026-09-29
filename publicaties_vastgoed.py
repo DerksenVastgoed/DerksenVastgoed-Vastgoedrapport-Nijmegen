@@ -38,6 +38,10 @@ FEEDS = [
     ("Huurprijzen", _gnews("huurcommissie OR huurverlaging OR \"te hoge huur\"")),
     # Regio
     ("Vastgoed Gelderland", _gnews("vastgoed Nijmegen OR Arnhem OR Gelderland")),
+    # Stadssite met vooral uitgaan en winkelen; daarom eng gezocht op wonen.
+    # Levert dit na een maand niets bruikbaars op, dan kan hij er weer uit.
+    ("Nijmegen lokaal (indebuurt)",
+     _gnews('indebuurt Nijmegen wonen OR woningmarkt OR huurwoning OR nieuwbouw')),
     # Verduurzaming
     ("Verduurzaming huur", _gnews("verduurzaming huurwoning OR energielabel verhuur")),
     # Financiering
