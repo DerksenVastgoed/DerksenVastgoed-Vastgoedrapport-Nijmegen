@@ -286,6 +286,17 @@ ACHTERGROND_TREFWOORDEN = {
                                  "handhaving", "servicekosten"],
     "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
                                          "omzetting", "studenten", "onzelfstandig"],
+    "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
+                                   "woonruimtevoorraad", "logies"],
+    "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Onrechtmatig gebruik en handhaving": [
+        "onrechtmatig gebruik", "handhaving", "bestuurlijke boete", "dwangsom",
+        "zonder vergunning", "illegaal"],
+    "Sluiting van een pand": ["sluiting", "gesloten", "opiumwet", "damocles",
+                              "victor", "drugs"],
+    "Brandveilig gebruik bij kamerverhuur": [
+        "brandveilig gebruik", "gebruiksmelding", "brandveiligheid",
+        "rookmelder", "vluchtroute", "kamergewijze verhuur", "brandweer"],
     "Tijdelijke huurcontracten": ["tijdelijk contract", "tijdelijke huur",
                                   "huurcontract", "campuscontract", "student",
                                   "huurbescherming", "onbepaalde tijd"],
@@ -323,6 +334,17 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
+    "Onttrekking van woonruimte": ("Huisvestingswet 2014, artikel 21; "
+                                   "Huisvestingsverordening Nijmegen 2024"),
+    "Samenvoegen van woningen": ("Huisvestingswet 2014, artikel 21, onder b"),
+    "Onrechtmatig gebruik en handhaving": (
+        "Huisvestingswet 2014, artikel 21 en de bestuurlijke boete; "
+        "Raad van State, uitspraak 201703819/1/A3"),
+    "Sluiting van een pand": ("Opiumwet, artikel 13b; Woningwet, artikel 17; "
+                              "Raad van State, overzichtsuitspraak woningsluitingen"),
+    "Brandveilig gebruik bij kamerverhuur": (
+        "Besluit bouwwerken leefomgeving, paragraaf 6.1.2 en artikel 6.8; "
+        "Informatiepunt Leefomgeving; Brandweer Nederland"),
     "Tijdelijke huurcontracten": ("Wet vaste huurcontracten; Besluit specifieke "
                                   "groepen tijdelijke huurovereenkomst, Staatsblad "
                                   "2024, 152; artikel 7:271 BW"),
@@ -454,6 +476,75 @@ ACHTERGROND = [
      "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
+    ("Onttrekking van woonruimte",
+     "Artikel 21 van de Huisvestingswet verbiedt vijf handelingen zonder "
+     "vergunning: woonruimte aan de bewoning onttrekken, samenvoegen, "
+     "zelfstandig naar onzelfstandig omzetten, onzelfstandig naar zelfstandig "
+     "omzetten, en verbouwen tot twee of meer zelfstandige woningen. Onttrekken "
+     "betekent dat de woonruimte haar woonfunctie verliest, door sloop of door "
+     "een niet-woonbestemming zoals logies of kantoor. Het verbod geldt alleen "
+     "voor de categorieen woonruimte en het gebied die de gemeenteraad in de "
+     "huisvestingsverordening heeft aangewezen; in Nijmegen is dat gekoppeld "
+     "aan de WOZ-waarde. Een eigenaar-bewoner die een deel van de eigen woning "
+     "als kantoor of praktijkruimte gebruikt, valt buiten het verbod. Een "
+     "gemeente kan aan de vergunning compensatie verbinden, bijvoorbeeld het "
+     "toevoegen van gelijkwaardige woonruimte, en de vergunning voor een "
+     "bepaalde termijn verlenen; daarna vervalt hij van rechtswege."),
+    ("Samenvoegen van woningen",
+     "Samenvoegen valt onder hetzelfde artikel 21 van de Huisvestingswet als "
+     "onttrekken: twee woningen tot een maken laat zelfstandige woonruimte "
+     "verdwijnen, en dus is er een vergunning nodig zodra het pand onder de "
+     "aangewezen categorie en het aangewezen gebied valt. Voor de WOZ is het "
+     "omgekeerde van splitsen: waar splitsen extra objecten oplevert, verdwijnt "
+     "er bij samenvoegen een. Bij een eigenaar die samenvoegt voor eigen "
+     "bewoning of voor een kantoor aan huis kennen verordeningen vaak een "
+     "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
+     "herstel. Wat er in Nijmegen precies geldt, staat in de "
+     "huisvestingsverordening en niet in de landelijke wet."),
+    ("Onrechtmatig gebruik en handhaving",
+     "Verkameren, splitsen of onttrekken zonder de vereiste vergunning is een "
+     "overtreding van artikel 21 van de Huisvestingswet, en gemeenten leggen "
+     "daar een bestuurlijke boete op. De Raad van State heeft bevestigd dat "
+     "waar een verordening spreekt over onttrekken, daar ook omzetten, "
+     "samenvoegen en verbouwen onder kan vallen; de reikwijdte van dat ene "
+     "woord bepaalt dus of een boete stand houdt. Bij bewoning zonder de "
+     "vereiste huisvestingsvergunning zijn huurder en verhuurder allebei in "
+     "overtreding, en een verleende vergunning kan worden ingetrokken als de "
+     "verhuurder zijn verantwoordelijkheid niet neemt. Voor een verhuurder is "
+     "het risico dus dubbel: een boete en het verlies van de vergunning waarop "
+     "de exploitatie rust."),
+    ("Sluiting van een pand",
+     "Een pand kan op twee gronden dicht. De burgemeester kan een woning "
+     "sluiten op grond van artikel 13b van de Opiumwet als daar drugs worden "
+     "verkocht, afgeleverd of verstrekt of daarvoor aanwezig zijn; bij een "
+     "eerste overtreding volstaat volgens de wetsgeschiedenis vaak nog een "
+     "waarschuwing. Daarnaast kan het bevoegd gezag sluiten op grond van "
+     "artikel 17 van de Woningwet: bij overtreding van de bouwvoorschriften, "
+     "een bedreiging voor de leefomgeving of gevaar voor veiligheid of "
+     "gezondheid, en klaarblijkelijk gevaar op herhaling. De Raad van State "
+     "eist dat de burgemeester het publieke belang afweegt tegen de gevolgen "
+     "voor de bewoner. Voor een verhuurder zijn die gevolgen zwaar: de bewoner "
+     "moet eruit, een huurcontract kan door de sluiting worden ontbonden, en na "
+     "sluiting kan de gemeente de Wet Victor inzetten, waarmee zij verder kan "
+     "ingrijpen in het beheer of de eigendom van het pand."),
+    ("Brandveilig gebruik bij kamerverhuur",
+     "Sinds 1 januari 2024 is de vergunningplicht voor brandveilig gebruik "
+     "vervallen; er geldt nog een meldplicht uit het Besluit bouwwerken "
+     "leefomgeving. Voor een woonfunctie voor kamergewijze verhuur is die "
+     "melding verplicht: daarvan is sprake als het niet-gemeenschappelijke deel "
+     "vijf of meer wooneenheden telt. De melding moet ten minste vier weken "
+     "voor ingebruikname bij de gemeente liggen, via het Omgevingsloket, en het "
+     "is verboden het gebouw eerder in gebruik te nemen. Bij de melding hoort "
+     "een plattegrond per bouwlaag met per ruimte de oppervlakte en de "
+     "bestemming, het maximale aantal personen, en ingetekend waar de brand- en "
+     "rookwerende scheidingen, vluchtroutes, zelfsluitende deuren, "
+     "vluchtrouteaanduidingen, noodverlichting en blusmiddelen zitten. Wat er "
+     "inhoudelijk moet, staat in het Bbl zelf: bij kamergewijze verhuur moeten "
+     "de verblijfsruimten en de besloten ruimten op de vluchtroute tot aan de "
+     "uitgang doorgekoppelde rookmelders hebben. De gemeente kan in een "
+     "maatwerkvoorschrift extra eisen stellen. De meldplicht is landelijk en "
+     "staat los van de Nijmeegse omzettingsvergunning: die twee kunnen allebei "
+     "gelden, en het een vervangt het ander niet."),
     ("Tijdelijke huurcontracten",
      "Sinds 1 juli 2024 is een huurcontract voor onbepaalde tijd de norm. Een "
      "tijdelijk contract van hoogstens twee jaar mag alleen nog met personen uit "
@@ -536,7 +627,14 @@ def achtergrond_van_de_dag(nieuwstekst=""):
         beste_score = 0
         for titel_k, tekst_k in nieuw:
             woorden = ACHTERGROND_TREFWOORDEN.get(titel_k, [])
-            score = sum(1 for w in woorden if w in laag)
+            # Een specifiek trefwoord telt zwaarder dan een algemeen woord:
+            # "samenvoegen" hoort bij een stuk, "vergunning" bij tien. Zonder
+            # deze weging won het stuk met de meeste algemene woorden.
+            score = 0
+            for w in woorden:
+                if w not in laag:
+                    continue
+                score += len(w.split()) * 2 + min(len(w), 14) / 7
             if score > beste_score:
                 beste_score, keuze = score, (titel_k, tekst_k)
         if keuze:
