@@ -111,7 +111,8 @@ def uit_verkopen(geschiedenis):
                                       + (f", {r['opp']} m2" if r["opp"] else ""),
                                       "aanbod")
                     gezien_te_koop = True
-                elif vorige_prijs and r["prijs"] != vorige_prijs:
+                elif (vorige_prijs and r["prijs"] != vorige_prijs
+                      and "plak" not in (r.get("bron") or "")):
                     richting = "verlaagd" if r["prijs"] < vorige_prijs else "verhoogd"
                     nieuw += voeg_toe(pand, r["datum"], "prijswijziging",
                                       f"prijs {richting} van "
