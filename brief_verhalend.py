@@ -24,7 +24,23 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
 # Let op: een secret dat bestaat maar leeg is, geeft een lege tekst terug en
 # niet de standaardwaarde. Vandaar de or in plaats van een default.
-AANHEF = (os.environ.get("BRIEF_AANHEF") or "").strip() or "Beste pa"
+def _aanhef_naar_dagdeel():
+    """
+    De aanspreking hoort bij het moment waarop de brief aankomt.
+
+    De dagelijkse run draait 's ochtends, maar bij een handmatige start kan het
+    elk moment zijn; daarom kijkt dit naar de klok van de run zelf. Met
+    BRIEF_AANHEF is het te overrulen.
+    """
+    uur = dt.datetime.now().hour
+    if uur < 12:
+        return "Goedemorgen pa"
+    if uur < 18:
+        return "Goedemiddag pa"
+    return "Goedenavond pa"
+
+
+AANHEF = (os.environ.get("BRIEF_AANHEF") or "").strip() or _aanhef_naar_dagdeel()
 
 PROFIEL = """Je schrijft een lange brief van Mark aan zijn vader over de vastgoedmarkt in Nijmegen. Zij kennen elkaar goed en werken allebei in vastgoed; Mark en zijn broer runnen samen Derksen Vastgoed. Zijn vader volgt de Nijmeegse markt al zijn hele leven.
 
