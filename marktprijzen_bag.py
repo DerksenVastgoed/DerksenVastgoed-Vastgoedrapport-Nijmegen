@@ -2316,7 +2316,7 @@ def max_koopsom_bij_budget(netto_huur, budget=None, renovatie=0):
     return {"max": via_ltv, "knelpunt": "financieringsgraad"}
 
 
-def richtprijs(opp, huur_m2, opex=None):
+def richtprijs(opp, huur_m2, opex=None, vve_maand=None):
     """
     De hoogste koopsom waarbij het pand nog de gewenste cashflow haalt.
 
@@ -2328,7 +2328,16 @@ def richtprijs(opp, huur_m2, opex=None):
     """
     if not opp or not huur_m2:
         return None
-    netto = huur_m2 * 12 * opp * (1 - (OPEX_PCT if opex is None else opex) / 100)
+    pct = OPEX_PCT if opex is None else opex
+    if vve_maand:
+        # De VvE-bijdrage gaat van de huur af en is niet door te belasten. Het
+        # deel dat de VvE al dekt halen we uit het percentage, anders staat
+        # onderhoud er twee keer in. Stond dit eerder alleen in de tekst van
+        # het dossier en niet in de richtprijs zelf.
+        pct = pct * (1 - OPEX_DEEL_VVE)
+        netto = huur_m2 * 12 * opp * (1 - pct / 100) - vve_maand * 12
+    else:
+        netto = huur_m2 * 12 * opp * (1 - pct / 100)
     noemer = (LTV / 100) * jaarlast_factor()
     if noemer <= 0:
         return None
@@ -2423,9 +2432,12 @@ def woz_per_m2(woningen):
     gemeente ook gebruikt. Het verwijst nergens naar verkoop- of vraagprijzen,
     en het leert alleen van waarden die Mark zelf heeft opgezocht.
     """
+    tabel = lees_woz()
     per_straat, per_buurt, stad = {}, {}, []
     for w in woningen or []:
-        woz, opp = w.get("woz"), w.get("oppervlakte")
+        woz = (_woz_getal(w.get("woz"))
+               or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
+        opp = w.get("oppervlakte")
         if not woz or not opp or opp < 15:
             continue
         pm2 = woz / opp
@@ -2498,6 +2510,16 @@ def woz_vergelijk_methoden(woningen):
     return uit
 
 
+def _woz_getal(waarde):
+    """De WOZ als getal, of het nu een bedrag is of een regel met jaartal."""
+    if isinstance(waarde, dict):
+        waarde = waarde.get("woz") or waarde.get("waarde")
+    try:
+        return float(waarde) or None
+    except (TypeError, ValueError):
+        return None
+
+
 def woz_kalibratie(woningen=None):
     """
     Hoe goed is onze WOZ-schatting? Gemeten aan de panden waarvan we de echte
@@ -2512,10 +2534,15 @@ def woz_kalibratie(woningen=None):
     Dit is het leereffect: hoe meer WOZ-waarden er met de hand bij komen, hoe
     beter de schatting voor de panden waar we hem niet van weten.
     """
+    # De WOZ-waarden staan in woz.txt en worden pas later aan de panden
+    # gehangen; deze functie draait aan het begin van de run. Daarom hier zelf
+    # lezen, anders telt er geen enkel pand mee en blijft de ijking op nul.
+    tabel = lees_woz()
     rijen = woningen if woningen is not None else []
     verhoudingen = []
     for w in rijen or []:
-        echt = w.get("woz")
+        echt = (_woz_getal(w.get("woz"))
+                or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
         schat = woz_schatting({**w, "woz": None})
         if echt and schat and schat.get("waarde"):
             verhoudingen.append(echt / schat["waarde"])
@@ -3478,7 +3505,8 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         sc_ = w_.get("_scenario")
         if not sc_ or not w_.get("prijs"):
             return None
-        p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+        p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
+                        vve_van(w_))
         return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
 
     met_ruimte = sorted(((r_, k) for k in geschikt for r_ in [_ruimte(k)]
@@ -4324,7 +4352,8 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # De doorrekening
     sc = w.get("_scenario")
     if sc:
-        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
+        plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]),
+                             vve_van(w))
         waarom = ""
         if bekend and sc["naam"] == "één woning":
             waarom = ("; het pand is bekend als kamerpand, maar verhuur als een "
@@ -4539,7 +4568,8 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             sc_ = w_.get("_scenario")
             if not sc_ or not w_.get("prijs"):
                 return -999
-            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
+                        vve_van(w_))
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else -999
 
         for ppm2, w in sorted(rijen_b, key=_ruimte, reverse=True):
@@ -5591,7 +5621,8 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
             sc_ = w_.get("_scenario")
             if not sc_ or not w_.get("prijs"):
                 return None
-            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]))
+            p_ = richtprijs(sc_["opp"], sc_["huur_m2"], opex_voor(sc_["naam"]),
+                        vve_van(w_))
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
 
         met_ruimte = [(r, k) for k in toonbaar for r in [_ruimte_van(k)]
@@ -5601,7 +5632,8 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
             afw, ppm2, klasse, _a, basis, w = beste
             buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
             sc = w.get("_scenario")
-            plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]))
+            plafond = richtprijs(sc["opp"], sc["huur_m2"], opex_voor(sc["naam"]),
+                             vve_van(w))
             zin = (f"Dichtst bij haalbaar is **{w['adres']}** in {buurt}: "
                    f"€{n(w['prijs'])} voor {w['oppervlakte']} m². Als {sc['naam']} "
                    f"loopt het rond tot €{n(plafond)}, dus {ruimte:+.0f}% ten "
