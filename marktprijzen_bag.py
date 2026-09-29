@@ -2327,6 +2327,38 @@ def _binnen_band(hm2, buurt, bron, klasse="woning", n=0):
                      f"{n} waarnemingen")
 
 
+def woz_voor_vrije_sector(opp, label=None, monument=False):
+    """
+    Bij welke WOZ komt dit pand op 187 punten?
+
+    De WOZ is het zwaarste onderdeel van de puntentelling. Kennen we hem niet,
+    dan weten we het huurregime niet, en dan is de markthuur een slag in de
+    lucht: onder de 187 punten mag je die huur helemaal niet vragen. Deze
+    berekening zegt waar de grens ligt, zodat een opzoeking op het woz-loket
+    meteen uitsluitsel geeft.
+    """
+    try:
+        from wwso import wws_punten
+    except Exception:
+        return None
+    if not opp:
+        return None
+    laag, hoog = 50000, 2000000
+    if (wws_punten(opp, hoog, label=label, monument=monument) or {}).get("punten", 0) < 187:
+        return None                      # zelfs bij een hoge WOZ niet vrij
+    if (wws_punten(opp, laag, label=label, monument=monument) or {}).get("punten", 0) >= 187:
+        return laag                      # ook bij een lage WOZ al vrij
+    for _ronde in range(24):
+        midden = (laag + hoog) // 2
+        punten = (wws_punten(opp, midden, label=label,
+                             monument=monument) or {}).get("punten", 0)
+        if punten >= 187:
+            hoog = midden
+        else:
+            laag = midden
+    return hoog
+
+
 def vrije_sector_grens():
     """
     De huur waarboven een woning per definitie in de vrije sector wordt
@@ -3950,6 +3982,40 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     except Exception:
         pass
 
+    # Zonder WOZ weten we het huurregime niet. Dan zeggen we waar de grens
+    # ligt, zodat een opzoeking op het woz-loket meteen uitsluitsel geeft.
+    if not w.get("woz") and w.get("oppervlakte"):
+        label_nu = (w.get("energielabel") or {}).get("label")
+        drempel = woz_voor_vrije_sector(w["oppervlakte"], label_nu)
+        if drempel:
+            f("WOZ onbekend, en dat bepaalt alles",
+              f"boven een WOZ van ongeveer €{eu(drempel)} komt dit pand op 187 "
+              f"punten en is de huur vrij; daaronder geldt een wettelijk maximum "
+              f"dat flink lager kan liggen dan de markthuur waarmee hierboven is "
+              f"gerekend", "puntentelling op basis van oppervlakte en label")
+        else:
+            f("WOZ onbekend, en dat bepaalt alles",
+              "ook bij een hoge WOZ haalt dit pand de 187 punten niet; de huur "
+              "is dan hoe dan ook wettelijk begrensd en de gerekende markthuur "
+              "is niet toegestaan",
+              "puntentelling op basis van oppervlakte en label")
+
+    # Wat een labelsprong doet met de punten en dus met het huurregime
+    w_ind = wws_indicatie(w) or {}
+    if w_ind.get("label"):
+        f("energielabel nu", w_ind["label"], "EP-Online")
+    sprong = w_ind.get("labelsprong")
+    if sprong and not sprong.get("haalt_niet"):
+        f("labelsprong", f"naar label {sprong['label']} komt het pand op "
+          f"{sprong['punten']} punten ({sprong['winst']:+d}), en daarmee boven "
+          f"de 187: van een wettelijke maximumhuur naar de vrije sector",
+          "puntentelling op basis van oppervlakte, WOZ en label")
+    elif sprong:
+        f("labelsprong", f"zelfs met label {sprong['label']} blijft het op "
+          f"{sprong['punten']} punten ({sprong['winst']:+d}) en dus onder de "
+          f"187: verduurzamen haalt het hier niet naar de vrije sector",
+          "puntentelling op basis van oppervlakte, WOZ en label")
+
     # De routes, met de reden als er een dicht zit
     routes = haalbare_routes(w, w.get("_scenario"), lees_kamervergunningen())
     if routes.get("vrij"):
@@ -3992,6 +4058,12 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
 
         # Een richtprijs boven de vraagprijs is een uitzondering. Rust die op
         # een aangenomen huur, dan is het geen bevinding maar een aanname.
+        if plafond and plafond > w["prijs"] and not w.get("woz"):
+            f("let op", "de richtprijs ligt boven de vraagprijs, maar zonder WOZ "
+              "weten we niet of deze huur wettelijk gevraagd mag worden. Onder "
+              "de 187 punten geldt een maximum dat flink lager kan liggen dan "
+              "de markthuur; dan is dit geen koopsignaal maar een bovengrens",
+              "eigen doorrekening")
         if plafond and plafond > w["prijs"]:
             bron_h = (sc.get("bron") or "").lower()
             if bron_h.startswith("aanname") or "gewogen met de referentie" in bron_h:
