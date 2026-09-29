@@ -796,7 +796,9 @@ def weetje_van_de_dag():
 
 
 
-AANHEF_WOORDEN = ("beste", "hoi", "hallo", "dag", "lieve", "pa", "pap", "papa",
+AANHEF_WOORDEN = ("goedemorgen", "goedemiddag", "goedenavond", "goeiemorgen",
+                  "goedeavond", "goede morgen", "goede middag", "goede avond",
+                  "beste", "hoi", "hallo", "dag", "lieve", "pa", "pap", "papa",
                   "vader", "hey", "hé")
 
 
