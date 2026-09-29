@@ -246,6 +246,13 @@ def wws_punten(opp_m2, woz, label=None, monument=False, aanrecht_m=2.0,
 
 # Maximale huurprijsgrenzen zelfstandige woningen per 1 januari 2026.
 # Onder 40 punten geldt de grens bij 40 punten.
+# Wanneer deze tabel is vastgesteld. De huurprijzen worden elk jaar per
+# 1 januari geindexeerd; staat hier een ouder jaar dan het huidige, dan meldt
+# het gezondheidsrapport dat de tabel verouderd is. De bron is bijlage I van
+# het Besluit huurprijzen woonruimte, dat de regelgevingsmonitor volgt.
+TABEL_PEILDATUM = "2026-01-01"
+TABEL_BRON = "Besluit huurprijzen woonruimte, bijlage I (BWBR0003237)"
+
 WWS_TABEL = {
     40: 250.26,
     41: 256.53,
