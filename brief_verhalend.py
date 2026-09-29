@@ -1000,6 +1000,19 @@ def schrijf_brief(bronnen):
     ronde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
              "Altrade", "Biezen"]
     buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
+    # Staat het uitgelichte pand in een andere buurt, dan wint die: een portret
+    # van Altrade naast een pand in het Stadscentrum leest als twee losse
+    # brieven. De rotatie is er om herhaling te voorkomen, niet om tegen het
+    # nieuws in te gaan.
+    tekst_alles = " ".join(t for _n, t in bronnen if t)
+    m_pand = re.search(r"(?:Dichtst bij haalbaar|Scherpst geprijsd) is \*\*[^*]+\*\* "
+                       r"in ([A-Za-zÀ-ÿ\- ]+?):", tekst_alles)
+    if m_pand:
+        genoemd = m_pand.group(1).strip()
+        if genoemd in ronde and genoemd != buurt_vandaag:
+            print(f"Buurt van de dag: {genoemd} in plaats van {buurt_vandaag}, "
+                  f"want daar staat het uitgelichte pand", file=sys.stderr)
+            buurt_vandaag = genoemd
     punten = nieuwswaarde(bronnen)
     woorden, sturing = schrijfruimte(punten)
 
