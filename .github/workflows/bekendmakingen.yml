@@ -12,7 +12,10 @@ on:
   schedule:
     - cron: "17 3 * * 1-5"  # werkdagen: korte brief (niet op het hele uur,
                             # want dan staat de wachtrij bij GitHub vol)
-    - cron: "23 4 * * 0"    # zondag: uitgebreide brief
+    # De weekendrun begint vrijdagnacht, niet zondagochtend: hij werkt de hele
+    # pandgeschiedenis bij en dat duurt uren. De brief is dan zaterdag of
+    # zondagochtend klaar en wordt als weekeditie verstuurd.
+    - cron: "23 22 * * 5"   # vrijdagnacht: weekeditie met volledige geschiedenis
   workflow_dispatch:
     inputs:
       backfill_vanaf:
@@ -23,6 +26,10 @@ on:
         description: "Einddatum van de backfill, bijvoorbeeld 2018-07-01. Leeg laten voor vandaag."
         required: false
         default: ""
+      vervolg:
+        description: "Interne teller voor een vervolgronde van de BAG-controle. Zelf leeg laten."
+        required: false
+        default: "0"
       mail_dagen:
         description: "Hoeveel dagen aan mails ophalen (standaard 3; hoger om oude attenderingen in te halen)"
         required: false
@@ -44,6 +51,9 @@ jobs:
   digest:
     runs-on: ubuntu-latest
     timeout-minutes: 330
+    permissions:
+      contents: write
+      actions: write
     steps:
       - name: Repo ophalen
         uses: actions/checkout@v4
@@ -87,7 +97,16 @@ jobs:
           mkdir -p digests
           DATUM=$(date +%F)
           # Zondag is dag 7. Dan de uitgebreide brief, doordeweeks de korte.
-          if [ "$(date +%u)" = "7" ]; then MODUS=weekelijks; else MODUS=dagelijks; fi
+          # Vrijdag na achten en het hele weekend geldt als weekeditie, zodat
+          # een run die vrijdagnacht begint en zaterdag klaar is de juiste
+          # brief oplevert.
+          DAG=$(date +%u); UUR=$(date +%H)
+          if [ "$DAG" = "6" ] || [ "$DAG" = "7" ] \
+             || { [ "$DAG" = "5" ] && [ "$UUR" -ge 20 ]; }; then
+            MODUS=weekelijks
+          else
+            MODUS=dagelijks
+          fi
           echo "MODUS=$MODUS" >> "$GITHUB_ENV"
           # Een handmatige run met "alleen naar mij" is een test. Die mag het
           # geheugen van geziene panden niet bijwerken, anders is een nieuw pand
@@ -295,7 +314,9 @@ jobs:
         continue-on-error: true
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
-          EP_ONLINE_KEY: ${{ secrets.EP_ONLINE_KEY }}
+          # De code leest EP_API_KEY; met de oude naam kwam er geen enkel
+          # energielabel binnen en zweeg de stap daarover.
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
           # Dagelijks de gebeurtenissen uit het aanbod en het archief; op zondag
           # ook de BAG en de energielabels, want die kosten verzoeken en
@@ -306,6 +327,15 @@ jobs:
           if [ "$MODUS" = "weekelijks" ] \
              || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             EXTRA="--volledig"
+          fi
+          # In de weekeditie gaat de rem eraf: zoveel panden als in vier uur
+          # passen. Een GitHub-job stopt hoe dan ook na zes uur, dus het script
+          # stopt zelf eerder en bewaart wat af is.
+          if [ "$MODUS" = "weekelijks" ]; then
+            export BAG_PER_RONDE=100000
+            # De job stopt na 330 minuten; de rest van de pijplijn heeft daar
+            # zo'n 25 minuten van nodig. Vandaar 295 en niet 240.
+            export BAG_MINUTEN=295
           fi
           python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
             $EXTRA || echo "Geschiedenis overgeslagen"
@@ -534,6 +564,24 @@ jobs:
             echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM} (weekoverzicht)" >> "$GITHUB_ENV"
           else
             echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Vervolgronde starten als er werk blijft liggen
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Een GitHub-job stopt na zes uur. Blijft er werk over, dan starten we
+          # zelf een vervolgronde; elke ronde krijgt weer zes uur. De teller
+          # voorkomt dat dit blijft rondzingen.
+          REST=$(python -c "import json;print((json.load(open('bag_rest.json')) or {}).get('rest',0))" 2>/dev/null || echo 0)
+          RONDE="${{ github.event.inputs.vervolg || '0' }}"
+          echo "Nog te doen: $REST panden, dit is ronde $RONDE"
+          if [ "$REST" -gt 0 ] && [ "$RONDE" -lt 3 ]; then
+            gh workflow run "${{ github.workflow }}" \
+              -f vervolg="$((RONDE + 1))" -f alleen_naar_mij=true \
+              && echo "Vervolgronde gestart" \
+              || echo "Vervolgronde kon niet worden gestart"
           fi
 
       - name: Gezondheidsrapport
