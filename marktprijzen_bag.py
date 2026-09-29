@@ -2393,7 +2393,10 @@ def prijsindex_factor(naar_maand):
     try:
         with open("woningprijsindex.json", encoding="utf-8") as f:
             d = json.load(f)
-        reeks = ((d.get("landelijk") or {}).get("reeks")) or {}
+        # Het bestand heeft "reeks" op het hoogste niveau; een oudere vorm had
+        # hem onder "landelijk". Allebei accepteren, anders geeft de schatting
+        # stilletjes niets terug en blijft de kalibratie op nul staan.
+        reeks = d.get("reeks") or (d.get("landelijk") or {}).get("reeks") or {}
         if not reeks:
             return None
         laatste = max(reeks)
