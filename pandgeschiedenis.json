@@ -19384,12 +19384,6 @@
     "bron": "EP-Online",
     "datum": "2026-09-29",
     "soort": "energielabel",
-    "tekst": "energielabel van Eerste Oude Heselaan 142A is nu A"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
     "tekst": "energielabel van Eerste Oude Heselaan 144 is nu A"
    },
    {
@@ -19427,7 +19421,6 @@
    "Eerste Oude Heselaan 140": "A",
    "Eerste Oude Heselaan 140A": "A",
    "Eerste Oude Heselaan 142": "A",
-   "Eerste Oude Heselaan 142A": "A",
    "Eerste Oude Heselaan 144": "A",
    "Eerste Oude Heselaan 156": "B",
    "Eerste Oude Heselaan 156A": "B",
@@ -28021,12 +28014,6 @@
     "bron": "EP-Online",
     "datum": "2026-09-29",
     "soort": "energielabel",
-    "tekst": "energielabel van Graafseweg 33A-19 is nu A"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
     "tekst": "energielabel van Graafseweg 33A-20 is nu A"
    },
    {
@@ -28173,7 +28160,6 @@
    "Graafseweg 33A-16": "A",
    "Graafseweg 33A-17": "A",
    "Graafseweg 33A-18": "A",
-   "Graafseweg 33A-19": "A",
    "Graafseweg 33A-20": "A",
    "Graafseweg 33A-21": "A",
    "Graafseweg 33A-22": "A",
@@ -52091,6 +52077,12 @@
     "bron": "EP-Online",
     "datum": "2026-09-29",
     "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 150 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
     "tekst": "energielabel van Burchtstraat 152 is nu C"
    },
    {
@@ -52185,6 +52177,7 @@
    "Burchtstraat 140": "C",
    "Burchtstraat 146": "D",
    "Burchtstraat 148": "E",
+   "Burchtstraat 150": "E",
    "Burchtstraat 152": "C",
    "Burchtstraat 158": "E",
    "Mariënburgsestraat 17": "C",
@@ -76747,12 +76740,6 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van St. Annastraat 165D is nu A"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van St. Annastraat 165E is nu A"
    }
   ],
   "labels": {
@@ -76760,8 +76747,7 @@
    "St. Annastraat 165A": "A+",
    "St. Annastraat 165B": "A",
    "St. Annastraat 165C": "A",
-   "St. Annastraat 165D": "A",
-   "St. Annastraat 165E": "A"
+   "St. Annastraat 165D": "A"
   },
   "pand_id": "0268100000019410"
  },
