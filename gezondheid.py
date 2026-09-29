@@ -426,6 +426,109 @@ def controle_wozschatting():
             "zoeken", "")
 
 
+def controle_nieuwe_onderwerpen():
+    """
+    Onderwerpen die in het nieuws terugkomen en waar nog geen stuk over is.
+
+    De signaalstap vindt ze en schrijft ze in een bestand; zonder deze controle
+    blijft dat bestand liggen en gebeurt er niets mee. Dit is de schakel tussen
+    "het script ziet een nieuw onderwerp" en "er komt een achtergrondstuk".
+    """
+    voorstellen = []
+    try:
+        with open("onderwerpen_voorstel.md", encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip(" -*\t\n")
+                if regel and not regel.startswith("#") and len(regel) < 120:
+                    voorstellen.append(regel)
+    except Exception:
+        pass
+    gevolgd = _json("onderwerpen_volgen.json") or {}
+    if not voorstellen and not gevolgd:
+        return (OK, "geen nieuwe onderwerpen voorgesteld", "")
+    bewijs = (f"{len(voorstellen)} voorgestelde onderwerpen, "
+              f"{len(gevolgd)} gevolgd")
+    if voorstellen:
+        return (LET_OP, bewijs + ": " + "; ".join(voorstellen[:4]),
+                "Deze komen terug in het nieuws en hebben nog geen "
+                "achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen "
+                "bij; het script schrijft die niet zelf, want juridische tekst "
+                "zonder gecontroleerde bron is precies wat we niet willen.")
+    return (OK, bewijs, "")
+
+
+def controle_achtergronddekking():
+    """
+    Heeft elk soort bekendmaking een achtergrondstuk dat de inhoud uitlegt?
+
+    Een melding constateren is iets anders dan uitleggen wat er dan van je
+    gevraagd wordt. Komt er een soort voorbij waarvoor geen stuk klaarligt, dan
+    blijft het bij de constatering.
+    """
+    try:
+        from bekendmakingen_archief import SIGNAALWOORDEN
+        from bronnen import ACHTERGROND, ACHTERGROND_TREFWOORDEN
+    except Exception as e:
+        return (LET_OP, "kon de onderwerpen niet vergelijken", str(e)[:120])
+    alle_trefwoorden = " ".join(
+        " ".join(v) for v in ACHTERGROND_TREFWOORDEN.values()).lower()
+    titels = " ".join(t for t, _ in ACHTERGROND).lower()
+    zonder = []
+    for soort, woorden in SIGNAALWOORDEN.items():
+        raak = any(w.lower()[:8] in alle_trefwoorden or w.lower()[:8] in titels
+                   for w in [soort] + list(woorden))
+        if not raak:
+            zonder.append(soort)
+    bewijs = (f"{len(ACHTERGROND)} achtergrondstukken voor "
+              f"{len(SIGNAALWOORDEN)} soorten bekendmakingen")
+    if zonder:
+        return (LET_OP, bewijs + f"; geen stuk voor: {', '.join(sorted(zonder))}",
+                "Bij die soorten blijft het bij constateren dat er iets is "
+                "gemeld, zonder uit te leggen wat de regel inhoudt.")
+    return (OK, bewijs + "; elk soort heeft een stuk", "")
+
+
+def controle_veroudering():
+    """
+    Hoe oud is het aanbod dat we tonen?
+
+    Een pand blijft in de tabellen staan tot iets anders bewijst dat het weg
+    is. De attenderingen melden alleen nieuw en gewijzigd aanbod, dus een pand
+    dat stilletjes verkocht wordt, blijft staan. Dit telt hoe groot die groep
+    is, zodat de brief niet ongemerkt met verouderd aanbod rekent.
+    """
+    vandaag = dt.date.today()
+    laatst = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 5 or not v[3].lower().startswith("te koop"):
+                    continue
+                sleutel = v[0].lower()
+                laatst[sleutel] = max(laatst.get(sleutel, ""), v[4])
+    except Exception:
+        return (LET_OP, "aanbod niet te lezen", "Staat verkopen.txt er wel?")
+    if not laatst:
+        return (LET_OP, "geen aanbod in het bestand", "")
+    ouderdom = []
+    for datum in laatst.values():
+        try:
+            ouderdom.append((vandaag - dt.date.fromisoformat(datum)).days)
+        except Exception:
+            continue
+    ouderdom.sort()
+    oud = sum(1 for d in ouderdom if d > 60)
+    bewijs = (f"{len(ouderdom)} panden te koop, mediaan {ouderdom[len(ouderdom)//2]} "
+              f"dagen geleden voor het laatst bevestigd, oudste {ouderdom[-1]} dagen")
+    if oud:
+        return (LET_OP, bewijs + f", {oud} langer dan 60 dagen",
+                "Die panden zijn waarschijnlijk al van de markt; ze blijven "
+                "staan omdat de attendering alleen nieuw aanbod meldt. Een "
+                "geplakte verkooplijst haalt ze eruit.")
+    return (OK, bewijs, "")
+
+
 def controle_verkopen():
     """
     Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
@@ -585,7 +688,10 @@ CONTROLES = [
     ("Geschiedenis per pand", controle_geschiedenis),
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
+    ("Veroudering aanbod", controle_veroudering),
     ("WOZ-schatting", controle_wozschatting),
+    ("Achtergronddekking", controle_achtergronddekking),
+    ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
     ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
