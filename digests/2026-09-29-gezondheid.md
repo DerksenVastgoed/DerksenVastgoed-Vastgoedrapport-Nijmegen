@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-09-29
 
-18 in orde, 4 aandachtspunten, 0 fouten.
+18 in orde, 5 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
@@ -9,6 +9,8 @@
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
+- **WOZ-schatting**: geijkt op 0 panden, te weinig om iets te zeggen
+  Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint de schatting zichzelf te corrigeren.
 - **Attenderingen**: laatste ronde 2026-09-29: kamernet: 16 mails, 13 objecten, 3 bewust overgeslagen; pararius: 1 mails, 3 objecten; regulier: 3 mails, 10 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
@@ -16,7 +18,7 @@
 - **Huurdata**: 30 huurwaarnemingen, waarvan 16 Pararius en 14 Kamernet; 18 in de laatste week
 - **Aanbod**: 84 koopobjecten, 10 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,61% (2026-09-25), opslag bij 70% financiering 1,89 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,63% (2026-09-28), opslag bij 70% financiering 1,87 procentpunt
 - **Bouwkostenindex**: 103 maanden, laatste 2026-07
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
