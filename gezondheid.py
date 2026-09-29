@@ -359,6 +359,43 @@ def controle_mailbronnen():
     return (OK, bewijs, "")
 
 
+def controle_peildata():
+    """
+    Bedragen en grenzen die elk jaar opnieuw worden vastgesteld.
+
+    De huurprijstabel wordt per 1 januari geindexeerd, en daarmee verschuift de
+    grens tussen middenhuur en vrije sector. Hetzelfde geldt voor de WOZ-grenzen
+    in de huisvestingsverordening en voor de overdrachtsbelasting. Staat hier
+    een ouder jaar dan het huidige, dan rekent het script met verouderde
+    grenzen zonder dat iemand dat merkt.
+    """
+    dit_jaar = dt.date.today().year
+    regels, verouderd = [], []
+    try:
+        from wwso import TABEL_PEILDATUM, TABEL_BRON, WWS_TABEL
+        jaar = int(TABEL_PEILDATUM[:4])
+        regels.append(f"huurprijstabel {TABEL_PEILDATUM} (grens vrije sector "
+                      f"€{WWS_TABEL.get(186, 0):.2f})")
+        if jaar < dit_jaar:
+            verouderd.append(f"de huurprijstabel is van {jaar}; de nieuwe staat "
+                             f"in {TABEL_BRON}")
+    except Exception as e:
+        return (LET_OP, "huurprijstabel niet te lezen", str(e)[:120])
+
+    try:
+        from marktprijzen_bag import WOZ_GRENS_OMZETTING, WOZ_GRENS_WEIGERING
+        regels.append(f"WOZ-grenzen €{WOZ_GRENS_OMZETTING:,} en "
+                      f"€{WOZ_GRENS_WEIGERING:,}".replace(",", "."))
+    except Exception:
+        pass
+
+    if verouderd:
+        return (LET_OP, "; ".join(regels),
+                " ".join(verouderd) + " Werk de tabel bij en zet de nieuwe "
+                "peildatum erbij.")
+    return (OK, "; ".join(regels), "")
+
+
 def controle_verkopen():
     """
     Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
@@ -518,6 +555,7 @@ CONTROLES = [
     ("Geschiedenis per pand", controle_geschiedenis),
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
+    ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
