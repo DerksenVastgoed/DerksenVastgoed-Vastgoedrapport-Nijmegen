@@ -2044,7 +2044,18 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
                  or any("kamerverhuur" in (s.get("soorten") or []) for s in signalen)
                  or "kamer" in tekst)
 
-    huur_w, bron_w = huur_voor_buurt(buurt, huur_bk, huur_k, opp, "woning")
+    # Valt dit pand boven de 187 punten, dan wordt het in de vrije sector
+    # verhuurd en zeggen alleen vrije-sectoradvertenties iets over de prijs.
+    # Onder die grens bepaalt het puntenstelsel de huur en is de markt niet de
+    # maat. Zonder puntentelling laten we het segment open.
+    punten_w = None
+    try:
+        punten_w = (wws_indicatie(w) or {}).get("punten")
+    except Exception:
+        punten_w = None
+    segment_w = "vrij" if (punten_w or 0) >= 187 else None
+    huur_w, bron_w = huur_voor_buurt(buurt, huur_bk, huur_k, opp, "woning",
+                                     segment=segment_w)
     maand_w = huur_w * opp
 
     geschikt_woning = (opp <= MAX_M2_EEN_HUISHOUDEN
@@ -2296,7 +2307,42 @@ def _binnen_band(hm2, buurt, bron, klasse="woning", n=0):
                      f"{n} waarnemingen")
 
 
-def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
+def vrije_sector_grens():
+    """
+    De huur waarboven een woning per definitie in de vrije sector wordt
+    verhuurd: de maximale huur bij 186 punten.
+
+    Tot en met 186 punten geldt een wettelijk maximum; daarboven bepaalt de
+    markt de prijs. Een advertentie die meer vraagt dan dat maximum is dus een
+    vrije-sectorwoning, ook zonder dat we de punten van dat pand kennen.
+    """
+    try:
+        from wwso import WWS_TABEL
+        return WWS_TABEL.get(186) or 1228.07
+    except Exception:
+        return 1228.07
+
+
+def grootte_van_reeks(_reeks, huur_k, klasse):
+    """
+    Uit welke grootteklassen de stadsbrede metingen komen.
+
+    Bedoeld voor de bron bij de huur: "vooral 20-60 m2" maakt meteen duidelijk
+    dat een prijs per m2 uit kleine eenheden komt en niet uit gezinswoningen.
+    """
+    tellingen = {}
+    for sleutel, waarden in (huur_k or {}).items():
+        if isinstance(sleutel, tuple) and len(sleutel) == 2 and sleutel[0] == klasse:
+            tellingen[sleutel[1]] = tellingen.get(sleutel[1], 0) + len(waarden)
+    if not tellingen:
+        return ""
+    grootste = max(tellingen, key=tellingen.get)
+    deel = tellingen[grootste] / sum(tellingen.values()) * 100
+    return f"{grootste} ({deel:.0f}% van de waarnemingen)"
+
+
+def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning",
+                    segment=None):
     """
     Gemeten huur per m2.
 
@@ -2307,7 +2353,18 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
     die naar het niveau van de buurt.
     """
     band = groottebandje(opp)
-    band_reeks = huur_k.get((klasse, band), [])
+    # Valt dit pand in de vrije sector, dan tellen alleen advertenties mee die
+    # daar ook in zitten. Anders zou de wettelijke maximumhuur van kleinere
+    # woningen de prijs van een vrij te verhuren pand bepalen.
+    band_reeks = []
+    if segment:
+        band_reeks = huur_k.get((klasse, band, segment), [])
+        if len(band_reeks) < 3:
+            ruimer = huur_k.get((klasse, segment), [])
+            if len(ruimer) >= 3 and len(ruimer) > len(band_reeks):
+                band_reeks = []          # geen extrapolatie over grootteklassen
+    if not band_reeks:
+        band_reeks = huur_k.get((klasse, band), [])
     buurt_reeks = huur_bk.get((klasse, buurt), [])
     stad_reeks = huur_k.get(klasse, [])
 
@@ -2323,15 +2380,25 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning"):
                             f"gemeten, {len(band_reeks)} panden {band}{factor_bron}",
                             klasse, len(band_reeks))
 
-    if len(buurt_reeks) >= 3:
-        return _binnen_band(st.median(buurt_reeks), buurt,
-                            f"gemeten, {len(buurt_reeks)} in {buurt}", klasse,
-                            len(buurt_reeks))
-
-    if len(stad_reeks) >= 3:
-        return _binnen_band(st.median(stad_reeks) * factor, buurt,
-                            f"gemeten, {len(stad_reeks)} stadsbreed{factor_bron}",
-                            klasse, len(stad_reeks))
+    # Metingen uit een andere grootteklasse tellen half mee. Kleine woningen
+    # brengen per m2 veel meer op dan grote: een prijs die klopt voor 45 m2 is
+    # te hoog voor 116 m2. Zonder deze demping leverde een handvol kleine
+    # advertenties €23,6 per m2 op voor een gezinswoning in Biezen.
+    # Zonder metingen in de eigen grootteklasse rekenen we niet door met
+    # metingen uit een andere klasse. Een prijs per m2 uit eenheden van 20 tot
+    # 60 m2 doortrekken naar 116 m2 is geen meting maar extrapolatie: kleine
+    # woningen brengen per m2 veel meer op. Dan liever eerlijk de referentie,
+    # die als aanname wordt gemarkeerd en dus geen koopsignaal oplevert.
+    maten = grootte_van_reeks(stad_reeks, huur_k, klasse)
+    beschikbaar = len(buurt_reeks) + len(stad_reeks)
+    if beschikbaar >= 3:
+        ref = HUUR_M2_MND.get(buurt)
+        if ref:
+            return ref, (f"aanname: {beschikbaar} metingen beschikbaar, maar "
+                         f"geen enkele in de klasse {band}"
+                         + (f" (wel {maten})" if maten else "")
+                         + "; doortrekken over grootteklassen heen zou de huur "
+                           "overschatten")
 
     return HUUR_M2_MND.get(buurt, 18), "aanname"
 
@@ -2666,6 +2733,21 @@ def kamerhuur_binnen_wwso(w):
     return min(w["prijs"], band["hoog"])
 
 
+def segment_van(w):
+    """
+    In welk segment wordt deze woning aangeboden?
+
+    Boven de maximale huur bij 186 punten bepaalt de markt de prijs; daaronder
+    doet het puntenstelsel dat. Die twee prijzen komen dus ergens anders
+    vandaan en horen niet op een hoop. We kennen de punten van een advertentie
+    niet, maar de gevraagde huur verraadt het segment.
+    """
+    prijs = w.get("prijs")
+    if not prijs:
+        return ""
+    return "vrij" if prijs > vrije_sector_grens() else "gereguleerd"
+
+
 def gemeten_huren(huur_aanbod):
     """
     Mediane huur per m2 per maand, per buurt en per klasse.
@@ -2717,6 +2799,14 @@ def gemeten_huren(huur_aanbod):
                 continue
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
         per_klasse[klasse].append(hm2)
+        # Ook per segment bewaren: een gereguleerde huur is een uitkomst van het
+        # puntenstelsel, een vrije-sectorhuur van de markt. Voor een pand dat in
+        # de vrije sector valt, zeggen alleen die laatste iets.
+        segment = segment_van(w)
+        if segment:
+            per_klasse[(klasse, segment)].append(hm2)
+            per_klasse[(klasse, groottebandje(w.get("oppervlakte")),
+                        segment)].append(hm2)
         # Ook per grootteklasse, want dat verklaart het meeste van de spreiding
         per_klasse[(klasse, groottebandje(w.get("oppervlakte")))].append(hm2)
         if buurt:
