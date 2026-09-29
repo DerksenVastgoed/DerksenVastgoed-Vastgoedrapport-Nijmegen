@@ -14912,8 +14912,8 @@
  },
  "defransestraat36": {
   "adres": "de Fransestraat 36",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -14932,8 +14932,8 @@
  },
  "defranshalsstraat35": {
   "adres": "de Frans Halsstraat 35",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -14952,7 +14952,7 @@
     180
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -14975,21 +14975,37 @@
     156
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Gildekamp 5029A is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Gildekamp 6006 is nu A"
    }
   ],
+  "labels": {
+   "de Gildekamp 5029A": "A",
+   "de Gildekamp 6006": "A"
+  },
   "pand_id": "0268100000037774"
  },
  "degraafsedwarsstraat71": {
   "adres": "de Graafsedwarsstraat 71",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15002,8 +15018,8 @@
  },
  "degraafseweg50": {
   "adres": "de Graafseweg 50",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15016,8 +15032,8 @@
  },
  "degriftdijk212": {
   "adres": "de Griftdijk 212",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15030,8 +15046,8 @@
  },
  "degroenestraat122": {
   "adres": "de Groenestraat 122",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15044,8 +15060,8 @@
  },
  "degroenestraat252": {
   "adres": "de Groenestraat 252",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15058,8 +15074,8 @@
  },
  "degroesbeekseweg315": {
   "adres": "de Groesbeekseweg 315",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15072,8 +15088,8 @@
  },
  "degroesbeekseweg319": {
   "adres": "de Groesbeekseweg 319",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15086,8 +15102,8 @@
  },
  "degrotestraat11": {
   "adres": "de Grotestraat 11",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15100,8 +15116,8 @@
  },
  "degrotestraat7": {
   "adres": "de Grotestraat 7",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15114,8 +15130,8 @@
  },
  "deheidebloemstraat1": {
   "adres": "de Heidebloemstraat 1",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15128,8 +15144,8 @@
  },
  "deheidebloemstraat28": {
   "adres": "de Heidebloemstraat 28",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15142,8 +15158,8 @@
  },
  "deheidebloemstraat3": {
   "adres": "de Heidebloemstraat 3",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15156,8 +15172,8 @@
  },
  "dehengstdalseweg46": {
   "adres": "de Hengstdalseweg 46",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15170,8 +15186,8 @@
  },
  "deheyendaalseweg117": {
   "adres": "de Heyendaalseweg 117",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15184,8 +15200,8 @@
  },
  "dehobbemastraat25": {
   "adres": "de Hobbemastraat 25",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15198,8 +15214,8 @@
  },
  "dekapittelweg33": {
   "adres": "de Kapittelweg 33",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15212,8 +15228,8 @@
  },
  "dekerkstraat65": {
   "adres": "de Kerkstraat 65",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15232,15 +15248,24 @@
     175
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Kluijskamp 1281 is nu C"
    }
   ],
+  "labels": {
+   "de Kluijskamp 1281": "C"
+  },
   "pand_id": "0268100000034084"
  },
  "dekluijskamp1401": {
@@ -15251,7 +15276,7 @@
     144
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -15264,14 +15289,23 @@
     "datum": "2024-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Kluijskamp 1401 is nu C"
    }
   ],
+  "labels": {
+   "de Kluijskamp 1401": "C"
+  },
   "pand_id": "0268100000034689"
  },
  "dekroonstraat2": {
   "adres": "de Kroonstraat 2",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15284,8 +15318,8 @@
  },
  "delaanvanoostindi315": {
   "adres": "de Laan van Oost-Indië 315",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15298,8 +15332,8 @@
  },
  "delaanvanscheut10": {
   "adres": "de Laan van Scheut 10",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15312,8 +15346,8 @@
  },
  "delangehezelstraat75": {
   "adres": "de Lange Hezelstraat 75",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15326,8 +15360,8 @@
  },
  "delimoslaan25": {
   "adres": "de Limoslaan 25",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -15475,15 +15509,31 @@
     99
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Delistraat 45 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Delistraat 47 is nu D"
    }
   ],
+  "labels": {
+   "Delistraat 45": "C",
+   "Delistraat 47": "D"
+  },
   "pand_id": "0268100000024241"
  },
  "delistraat55": {
@@ -15600,21 +15650,37 @@
     67
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Delistraat 88 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Delistraat 90 is nu C"
    }
   ],
+  "labels": {
+   "Delistraat 88": "D",
+   "Delistraat 90": "C"
+  },
   "pand_id": "0268100000024259"
  },
  "demarialaan360": {
   "adres": "de Marialaan 360",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-29",
+  "bag_zonder_id": "2026-09-29",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -19415,12 +19481,19 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Eerste Oude Heselaan 160 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Oude Heselaan 142A is nu A"
    }
   ],
   "labels": {
    "Eerste Oude Heselaan 140": "A",
    "Eerste Oude Heselaan 140A": "A",
    "Eerste Oude Heselaan 142": "A",
+   "Eerste Oude Heselaan 142A": "A",
    "Eerste Oude Heselaan 144": "A",
    "Eerste Oude Heselaan 156": "B",
    "Eerste Oude Heselaan 156A": "B",
@@ -28147,6 +28220,12 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Graafseweg 33Z is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-19 is nu A"
    }
   ],
   "labels": {
@@ -28160,6 +28239,7 @@
    "Graafseweg 33A-16": "A",
    "Graafseweg 33A-17": "A",
    "Graafseweg 33A-18": "A",
+   "Graafseweg 33A-19": "A",
    "Graafseweg 33A-20": "A",
    "Graafseweg 33A-21": "A",
    "Graafseweg 33A-22": "A",

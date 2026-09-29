@@ -5,12 +5,12 @@
 ## LET OP
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1684 panden gevolgd, 607 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 471 met een energielabel, 145 nog nooit nagekeken, 188 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1684 panden gevolgd, 611 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 476 met een energielabel, 145 nog nooit nagekeken, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
-- **WOZ-schatting**: geijkt op 0 panden, te weinig om iets te zeggen
-  Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint de schatting zichzelf te corrigeren.
+- **WOZ-schatting**: geijkt op 22 panden: correctie 1.041 (4% stelselmatig), spreiding ±23.9%; kenmerken uit 23 straten en 7 buurten
+  De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-09-29: kamernet: 18 mails, 15 objecten, 3 bewust overgeslagen; pararius: 1 mails, 3 objecten; regulier: 3 mails, 10 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 

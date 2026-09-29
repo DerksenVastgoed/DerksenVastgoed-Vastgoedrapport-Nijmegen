@@ -1,11 +1,15 @@
 {
- "aantal": 0,
- "correctie": 1.0,
- "spreiding": null,
+ "aantal": 22,
+ "correctie": 1.0409434295965032,
+ "spreiding": 0.23923444976076558,
+ "band": [
+  0.7511961722488039,
+  1.229665071770335
+ ],
  "vergelijking": {},
  "kenmerken_beschikbaar": {
-  "straten": 0,
-  "buurten": 0,
-  "panden": 0
+  "straten": 23,
+  "buurten": 7,
+  "panden": 26
  }
 }
