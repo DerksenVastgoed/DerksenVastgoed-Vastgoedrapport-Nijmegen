@@ -55,6 +55,14 @@
   "omweg": 1.81,
   "soort": "bus"
  },
+ "51.83134,5.84321": {
+  "geschat": false,
+  "hemelsbreed": 80,
+  "meters": 82,
+  "naam": "Muntweg/Wezenlaan",
+  "omweg": 1.02,
+  "soort": "bus"
+ },
  "51.83214,5.86258": {
   "geschat": false,
   "hemelsbreed": 312,

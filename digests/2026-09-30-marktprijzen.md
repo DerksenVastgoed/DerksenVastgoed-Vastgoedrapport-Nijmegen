@@ -19,7 +19,7 @@ _13 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">156 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van gevelkozijnen is een technische correctie zonder effect op huur- of verkoopmogelijkheden.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van kozijnonderdelen is een administratieve correctie zonder investeringsrelevantie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -45,7 +45,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#12242c;text-decoration:none">Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">59 m² . label A+ (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke verhuur wijst op overbrugging; het pand (59 m2, label A+) blijft voorlopig uit de verkoop.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke verhuur houdt het pand voorlopig uit de verkoopmarkt, wat het aanbod beperkt.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-30 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -80,7 +80,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#12242c;text-decoration:none">Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">139 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Isolatie van het pannendak verbetert het energielabel van de betrokken panden (139 m2) bij komende opname.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Dakisolatie verbetert de energieprestatie van de woning, relevant voor toekomstige labelverbetering bij herkeuring.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-28 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -91,6 +91,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 777 panden, waarvan er 97 nu in aanbod zijn. Bijgewerkt 30 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 778 panden, waarvan er 97 nu in aanbod zijn. Bijgewerkt 30 september 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

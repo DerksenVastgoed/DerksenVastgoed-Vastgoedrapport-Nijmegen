@@ -3,9 +3,9 @@
 24 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: 32 bestanden gelijk aan de paklijst, 6 afwijkend, 7 ontbreekt: funda_verkocht_plak.txt, maatregel_hoeveelheden.py, ov_haltes.py, rijksmonumenten.py, verkopen.txt, woz.txt
+- **Versies**: 26 bestanden gelijk aan de paklijst, 3 afwijkend, 4 ontbreekt: maatregel_hoeveelheden.py, ov_haltes.py, rijksmonumenten.py, bag3d.py, bag_uitzoeken.py, bouwnorm.py
   Deze run draait niet op de code uit de paklijst. Controleer of alle bestanden zijn geuploud, inclusief versies.json.
-- **Geschiedenis per pand**: 1689 panden gevolgd, 668 met meer dan een gebeurtenis; 1353 met BAG-gegevens (11625 woningen), 542 met een energielabel, 148 nog nooit nagekeken, 188 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1690 panden gevolgd, 691 met meer dan een gebeurtenis; 1353 met BAG-gegevens (11625 woningen), 569 met een energielabel, 149 nog nooit nagekeken, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
@@ -13,11 +13,11 @@
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **3D BAG eigen snapshot**: nog geen 3D BAG-gegevens opgehaald
   Zonder hoogte en buitenmuuroppervlak is er geen basis voor de bouwkosten per pand. Zie de stap in het logboek.
-- **Attenderingen**: laatste ronde 2026-09-30: kamernet: 18 mails, 15 objecten, 3 bewust overgeslagen; pararius: 1 mails, 0 objecten, 1 bewust overgeslagen; regulier: 3 mails, 6 objecten
+- **Attenderingen**: laatste ronde 2026-09-30: kamernet: 19 mails, 16 objecten, 3 bewust overgeslagen; pararius: 1 mails, 0 objecten, 1 bewust overgeslagen; regulier: 3 mails, 6 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Huurdata**: 34 huurwaarnemingen, waarvan 16 Pararius en 18 Kamernet; 22 in de laatste week
+- **Huurdata**: 35 huurwaarnemingen, waarvan 16 Pararius en 19 Kamernet; 23 in de laatste week
 - **Aanbod**: 86 koopobjecten, 12 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
 - **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,61% (2026-09-29), opslag bij 70% financiering 1,89 procentpunt
@@ -36,7 +36,7 @@
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
-- **OV-haltes**: 333 haltes, 135 panden gerouteerd
+- **OV-haltes**: 333 haltes, 136 panden gerouteerd
 - **Bekendmakingen-archief**: 325 adressen, 457 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 105 panden onthouden, prijstrend over 9 metingen

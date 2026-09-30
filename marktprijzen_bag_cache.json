@@ -71013,5 +71013,11 @@
     "buurtnaam": "Hatertse Hei",
     "wijknaam": "Nijmegen-Zuid",
     "nummeraanduiding": "adr-baf36f19977991cf5169f6ccfa5ff572"
+  },
+  "Muntweg|Nijmegen": {
+    "oppervlakte": 24,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

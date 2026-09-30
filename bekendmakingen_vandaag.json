@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor  uitbreiding met erker voorzijde woning , aan Van Haapsstraat 13, 6525CA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-457391.html",
   "strategie": "geen",
-  "duiding": "Erker vergroot het woonoppervlak (185 m2) zonder functiewijziging, dus beperkt effect op de bredere marktvoorraad.",
+  "duiding": "Erkeruitbreiding aan de voorzijde is een beperkte fysieke aanpassing zonder functiewijziging, marktloos signaal.",
   "feiten": {
    "oppervlakte_m2": 185
   },
@@ -17,7 +17,7 @@
   "titel": "Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html",
   "strategie": "buy-and-hold",
-  "duiding": "Verlenging van tijdelijke verhuur wijst op overbrugging; het pand (59 m2, label A+) blijft voorlopig uit de verkoop.",
+  "duiding": "Verlenging van tijdelijke verhuur houdt het pand voorlopig uit de verkoopmarkt, wat het aanbod beperkt.",
   "feiten": {
    "energielabel": "A+ (2024)",
    "oppervlakte_m2": 59
@@ -31,7 +31,7 @@
   "titel": "Besluit voor het legaliseren en vervangen van de draaiende delen in de gevelkozijnen aan In de Betouwstraat 44, 6511GD Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-452363.html",
   "strategie": "geen",
-  "duiding": "Legalisatie van gevelkozijnen is een technische correctie zonder effect op huur- of verkoopmogelijkheden.",
+  "duiding": "Legalisatie van kozijnonderdelen is een administratieve correctie zonder investeringsrelevantie.",
   "feiten": {
    "oppervlakte_m2": 156
   },
@@ -43,8 +43,8 @@
   "datum": "2026-09-30",
   "titel": "Besluit voor woning: realiseren extra verdieping op woning, aan St. Annastraat 456, 6525ZP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-457701.html",
-  "strategie": "geen",
-  "duiding": "Extra verdieping vergroot de woning (204 m2, label G) maar creëert geen extra zelfstandige eenheid.",
+  "strategie": "splitsen",
+  "duiding": "Extra verdieping vergroot het bouwvolume en kan ruimte bieden voor een extra zelfstandige unit.",
   "feiten": {
    "energielabel": "G (2019)",
    "oppervlakte_m2": 204
@@ -58,7 +58,7 @@
   "titel": "Besluit voor het renoveren en isoleren van het pannendak groesbeeksedwarsweg  91 t/m 101, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-452351.html",
   "strategie": "verduurzaming",
-  "duiding": "Isolatie van het pannendak verbetert het energielabel van de betrokken panden (139 m2) bij komende opname.",
+  "duiding": "Dakisolatie verbetert de energieprestatie van de woning, relevant voor toekomstige labelverbetering bij herkeuring.",
   "feiten": {
    "oppervlakte_m2": 139
   },

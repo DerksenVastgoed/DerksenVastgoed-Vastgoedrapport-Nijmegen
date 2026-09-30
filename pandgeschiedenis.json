@@ -27840,15 +27840,24 @@
     83
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorisstraat 18 is nu C"
    }
   ],
+  "labels": {
+   "Gorisstraat 18": "C"
+  },
   "pand_id": "0268100000001939"
  },
  "gorisstraat24": {
@@ -27908,15 +27917,31 @@
     129
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorisstraat 35 is nu F"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorisstraat 37 is nu D"
    }
   ],
+  "labels": {
+   "Gorisstraat 35": "F",
+   "Gorisstraat 37": "D"
+  },
   "pand_id": "0268100000001910"
  },
  "gorterplaats2stannastraat198": {
@@ -27932,7 +27957,7 @@
     88
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -27993,15 +28018,38 @@
     65
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graadt van Roggenstraat 20 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graadt van Roggenstraat 22 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graadt van Roggenstraat 22A is nu A"
    }
   ],
+  "labels": {
+   "Graadt van Roggenstraat 20": "D",
+   "Graadt van Roggenstraat 22": "A",
+   "Graadt van Roggenstraat 22A": "A"
+  },
   "pand_id": "0268100000021472"
  },
  "graadtvanroggenstraat6": {
@@ -28012,7 +28060,7 @@
     356
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -28145,15 +28193,24 @@
     450
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2014-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 1 is nu A"
    }
   ],
+  "labels": {
+   "Graafseweg 1": "A"
+  },
   "pand_id": "0268100000021003"
  },
  "graafseweg100b": {
@@ -28246,7 +28303,7 @@
     187
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -28295,8 +28352,17 @@
     "datum": "2026-06-10",
     "soort": "bekendmaking",
     "tekst": "Intrekking verzoek voor geschakelde woning: kamerverhuurvergunning aanvragen, aan Graafseweg 115, 6531ZN Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 115 is nu F"
    }
   ],
+  "labels": {
+   "Graafseweg 115": "F"
+  },
   "pand_id": "0268100000015072"
  },
  "graafseweg128": {
@@ -28307,15 +28373,24 @@
     299
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 128 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 128": "C"
+  },
   "pand_id": "0268100000015965"
  },
  "graafseweg141": {
@@ -28330,15 +28405,31 @@
     141
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 141 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 141A is nu G"
    }
   ],
+  "labels": {
+   "Graafseweg 141": "E",
+   "Graafseweg 141A": "G"
+  },
   "pand_id": "0268100000008054"
  },
  "graafseweg18": {
@@ -28349,7 +28440,7 @@
     374
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -28368,8 +28459,17 @@
     "datum": "2026-04-13",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor het splitsen van de woning in zes zelfstandige appartementen, aan Graafseweg 18, 6512CB Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 18 is nu D"
    }
   ],
+  "labels": {
+   "Graafseweg 18": "D"
+  },
   "pand_id": "0268100000021138"
  },
  "graafseweg195": {
@@ -28388,15 +28488,24 @@
     145
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 195 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 195": "C"
+  },
   "pand_id": "0268100000015750"
  },
  "graafseweg213": {
@@ -28407,7 +28516,7 @@
     123
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -28430,15 +28539,31 @@
     319
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-07-23",
     "soort": "bekendmaking",
     "tekst": "Melding brandveilig gebruik aan Graafseweg 225, 6531ZS Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 225 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 227 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 225": "D",
+   "Graafseweg 227": "C"
+  },
   "pand_id": "0268100000011336"
  },
  "graafseweg241": {
@@ -28449,15 +28574,24 @@
     278
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2016-01-01",
     "soort": "kamerverhuur",
     "tekst": "omzetting bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 241 is nu D"
    }
   ],
+  "labels": {
+   "Graafseweg 241": "D"
+  },
   "pand_id": "0268100000014771"
  },
  "graafseweg244": {
@@ -28488,15 +28622,52 @@
     32
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-09-04",
     "soort": "bekendmaking",
     "tekst": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 244, 6532ZV Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 244 is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 244A is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 244B is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 244C is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 244D is nu A"
    }
   ],
+  "labels": {
+   "Graafseweg 244": "A+",
+   "Graafseweg 244A": "A",
+   "Graafseweg 244B": "C",
+   "Graafseweg 244C": "A",
+   "Graafseweg 244D": "A"
+  },
   "pand_id": "0268100000019404"
  },
  "graafseweg257": {
@@ -28507,15 +28678,24 @@
     153
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2015-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 257 is nu B"
    }
   ],
+  "labels": {
+   "Graafseweg 257": "B"
+  },
   "pand_id": "0268100000018602"
  },
  "graafseweg259": {
@@ -28526,7 +28706,7 @@
     130
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -28539,8 +28719,17 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 259 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 259": "C"
+  },
   "pand_id": "0268100000018603"
  },
  "graafseweg29": {
@@ -28575,15 +28764,38 @@
     35
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2015-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 29 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 29B is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 29F is nu D"
    }
   ],
+  "labels": {
+   "Graafseweg 29": "G",
+   "Graafseweg 29B": "E",
+   "Graafseweg 29F": "D"
+  },
   "pand_id": "0268100000011140"
  },
  "graafseweg31": {
@@ -28782,15 +28994,255 @@
     48
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2015-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-10 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-11 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-12 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-13 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-14 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-15 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-16 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-17 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-18 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-19 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-20 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-21 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-22 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-23 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-24 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-25 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-26 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-27 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-28 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-29 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-30 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-31 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-32 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-33 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-34 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-35 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-36 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-7 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-8 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33A-9 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33W is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33Y is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 33Z is nu A"
    }
   ],
+  "labels": {
+   "Graafseweg 33": "C",
+   "Graafseweg 33A-10": "A",
+   "Graafseweg 33A-11": "A",
+   "Graafseweg 33A-12": "A",
+   "Graafseweg 33A-13": "A",
+   "Graafseweg 33A-14": "A",
+   "Graafseweg 33A-15": "A",
+   "Graafseweg 33A-16": "A",
+   "Graafseweg 33A-17": "A",
+   "Graafseweg 33A-18": "A",
+   "Graafseweg 33A-19": "A",
+   "Graafseweg 33A-20": "A",
+   "Graafseweg 33A-21": "A",
+   "Graafseweg 33A-22": "A",
+   "Graafseweg 33A-23": "A",
+   "Graafseweg 33A-24": "A",
+   "Graafseweg 33A-25": "A",
+   "Graafseweg 33A-26": "A",
+   "Graafseweg 33A-27": "A",
+   "Graafseweg 33A-28": "A",
+   "Graafseweg 33A-29": "A",
+   "Graafseweg 33A-30": "A",
+   "Graafseweg 33A-31": "A",
+   "Graafseweg 33A-32": "A",
+   "Graafseweg 33A-33": "A",
+   "Graafseweg 33A-34": "A",
+   "Graafseweg 33A-35": "A",
+   "Graafseweg 33A-36": "A",
+   "Graafseweg 33A-7": "A",
+   "Graafseweg 33A-8": "A",
+   "Graafseweg 33A-9": "A",
+   "Graafseweg 33W": "A",
+   "Graafseweg 33Y": "E",
+   "Graafseweg 33Z": "A"
+  },
   "pand_id": "0268100000011142"
  },
  "graafseweg32": {
@@ -28805,15 +29257,24 @@
     282
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-04-04",
     "soort": "bekendmaking",
     "tekst": "Melding melding brandveilig gebruik , aan Graafseweg 32, 6512CC Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 36 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 36": "C"
+  },
   "pand_id": "0268100000021812"
  },
  "graafseweg33a10": {
@@ -30664,15 +31125,45 @@
     595
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2014-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35C is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35E is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 6 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 35": "B",
+   "Graafseweg 35C": "A",
+   "Graafseweg 35E": "A",
+   "Jan de Wittstraat 6": "C"
+  },
   "pand_id": "0268100000011141"
  },
  "graafseweg385": {
@@ -30683,7 +31174,7 @@
     367
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -30714,15 +31205,45 @@
     44
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 405 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 407 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 409 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 411 is nu A"
    }
   ],
+  "labels": {
+   "Graafseweg 405": "B",
+   "Graafseweg 407": "A",
+   "Graafseweg 409": "A",
+   "Graafseweg 411": "A"
+  },
   "pand_id": "0268100000016907"
  },
  "graafseweg47": {
@@ -30825,7 +31346,7 @@
     59
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -30838,8 +31359,122 @@
     "datum": "2025-06-16",
     "soort": "bekendmaking",
     "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47 is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47A is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47B is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47C is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47E is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47F is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47G is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47H is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47K is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47M is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47P is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47R is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47S is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47T is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47V is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 47X is nu B"
    }
   ],
+  "labels": {
+   "Graafseweg 47": "A+",
+   "Graafseweg 47A": "A+",
+   "Graafseweg 47B": "B",
+   "Graafseweg 47C": "A",
+   "Graafseweg 47E": "A",
+   "Graafseweg 47F": "B",
+   "Graafseweg 47G": "B",
+   "Graafseweg 47H": "C",
+   "Graafseweg 47K": "A",
+   "Graafseweg 47M": "B",
+   "Graafseweg 47P": "A+",
+   "Graafseweg 47R": "B",
+   "Graafseweg 47S": "A",
+   "Graafseweg 47T": "A",
+   "Graafseweg 47V": "A",
+   "Graafseweg 47X": "B"
+  },
   "pand_id": "0268100000018488"
  },
  "graafseweg47c": {
@@ -31842,15 +32477,38 @@
     132
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-01-09",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het splitsen van een bovenwoning in twee zelfstandige woonfuncties aan Graafseweg 49, 6512BR Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 49 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 51 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 53 is nu B"
    }
   ],
+  "labels": {
+   "Graafseweg 49": "C",
+   "Graafseweg 51": "G",
+   "Graafseweg 53": "B"
+  },
   "pand_id": "0268100000020556"
  },
  "graafseweg50": {
@@ -31869,15 +32527,24 @@
     69
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 52A is nu E"
    }
   ],
+  "labels": {
+   "Graafseweg 52A": "E"
+  },
   "pand_id": "0268100000020470"
  },
  "graafseweg64": {
@@ -31912,15 +32579,24 @@
     36
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 64 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 64": "C"
+  },
   "pand_id": "0268100000019101"
  },
  "graafseweg66": {
@@ -31931,15 +32607,24 @@
     379
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2019-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 66 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 66": "C"
+  },
   "pand_id": "0268100000019006"
  },
  "graafseweg70": {
@@ -32003,15 +32688,38 @@
     206
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burghardt van den Berghstraat 148 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 73 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 75 is nu A"
    }
   ],
+  "labels": {
+   "Burghardt van den Berghstraat 148": "A",
+   "Graafseweg 73": "A",
+   "Graafseweg 75": "A"
+  },
   "pand_id": "0268100000019926"
  },
  "graafseweg76": {
@@ -32066,15 +32774,24 @@
     429
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 82 is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 82": "C"
+  },
   "pand_id": "0268100000018744"
  },
  "graafseweg91": {
@@ -32089,15 +32806,31 @@
     229
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 89 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 91 is nu B"
    }
   ],
+  "labels": {
+   "Graafseweg 89": "A",
+   "Graafseweg 91": "B"
+  },
   "pand_id": "0268100000020716"
  },
  "graafseweg98": {
@@ -62930,6 +63663,18 @@
    }
   ],
   "pand_id": "0268100000040328"
+ },
+ "muntweg": {
+  "adres": "Muntweg",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-30",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €835 per maand, 24 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "muntweg364": {
   "adres": "Muntweg 364",
