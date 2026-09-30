@@ -3001,6 +3001,41 @@ hoger.
 
 ---
 
+## 9p. De bouwkosten zijn verkeerd gestructureerd — 30 september 2026
+
+**Mark twijfelt aan de opzet, en terecht.** Een hele verbouwing teruggerekend
+naar een bedrag per m2 woonoppervlak, en dat vervolgens op elk pand met label E
+of F plakken, is te grof. Drie bezwaren, en ze zijn alle drie hard:
+
+1. **Er zit werk in dat niets met verduurzamen te maken heeft.** Van de €240 is
+   €65 stucwerk, 27%. Er is 109 m2 wand gestuukt tegenover 38 m2 voorzetwand,
+   dus het meeste daarvan hoort bij het opknappen van de woning.
+2. **Niet elk pand heeft alles nodig.** Een pand uit 1985 heeft volgens
+   bouwnorm.py alleen dak en vloer nodig, geen gevel. Nu krijgt het hetzelfde
+   bedrag als een pand uit 1930 dat alles vraagt.
+3. **Het schaalt met het verkeerde getal.** Gevelisolatie schaalt met het
+   geveloppervlak, dakisolatie met het dakvlak, ventilatie met de woning. Geen
+   van drieen schaalt met het woonoppervlak.
+
+**De betere opzet, en de onderdelen liggen er al:**
+- bouwnorm.py zegt uit het bouwjaar welke bouwdelen onder de maat zijn, en het
+  energielabel corrigeert dat als er al is geisoleerd;
+- de 3D BAG geeft het buitenmuuroppervlak, het dakvlak en het grondvlak;
+- maatregelprijzen.txt geeft wat elke maatregel per m2 van dat bouwdeel kost;
+- subsidie_svoh.py trekt de subsidie er per maatregel af;
+- en het puntenstelsel in wwso.py zegt wat de labelsprong oplevert aan huur.
+
+**Gemeten per maatregel, inclusief btw en na subsidie:** gevelisolatie €156 per
+m2 gevel, vloerisolatie €39 per m2 vloer, ventilatie €2.329 per woning,
+stucwerk €25 per m2 afgewerkt vlak. Die staan nu in maatregelprijzen.txt.
+
+**Wat er nog tussen zit:** de 3D BAG-stap moet eerst draaien, en de zijgevels
+die tegen de buren staan moeten van het buitenmuuroppervlak af. Zonder die twee
+is er geen oppervlak om mee te vermenigvuldigen. De €240 per m2 blijft tot dan
+staan als noodgreep, met die waarschuwing erbij in het bestand.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

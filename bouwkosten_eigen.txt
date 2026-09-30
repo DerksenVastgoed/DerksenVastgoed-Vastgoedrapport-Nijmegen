@@ -8,6 +8,11 @@
 #
 # Regels met een hekje tellen niet mee.
 #
+# De tarieven zijn NETTO, dus na aftrek van de SVOH-subsidie. Dat is het bedrag
+# waarmee je een aankoop beoordeelt, want die subsidie krijg je hoe dan ook als
+# je de maatregelen uitvoert. Bij de Eerste Oude Heselaan was dat €2.537,25 op
+# een investering van €16.478,36, oftewel 15%.
+#
 # Ventilatie hoort bij isoleren en zit daarom in het verduurzamingstarief.
 # Luchtdicht maken zonder ventilatie levert vocht en schimmel op, en een
 # CO2-gestuurd systeem telt ook mee in de labelberekening. Bij de Eerste Oude
@@ -21,9 +26,17 @@ stucwerk           | 22  | 2026-03-11 | Eerste Oude Heselaan 88, V. van Oijen: �
 # met het geisoleerde geveldeel. Hier is 109 m2 wand gestuukt tegenover 38 m2
 # voorzetwand.
 
-verduurzaming-f | 284 | 2026-06-05 | Eerste Oude Heselaan 88, 58 m2 volgens de BAG: van label F of E naar A voor €16.478,36 inclusief btw. Daarin zitten gevelisolatie aan de binnenzijde over 38 m2, vloerisolatie over 50,4 m2, stucwerk over 109 m2 wand en 39 m2 plafond, en een Duco ventilatiesysteem met CO2-sensoren. Een sprong naar A is de zwaarste ingreep; voor een kleiner labelverschil is dit tarief te hoog.
+# LET OP: dit is een noodgreep, geen tarief. Het is een hele verbouwing van een
+# woning van 58 m2, teruggerekend naar een bedrag per m2 woonoppervlak, en er
+# zit 27% stucwerk in dat met verduurzamen weinig te maken heeft. Elk pand met
+# label E of F krijgt hiermee dezelfde kosten, ongeacht wat het werkelijk nodig
+# heeft. Zodra de maatregelenketen werkt (bouwjaar naar norm naar oppervlak uit
+# de 3D BAG naar prijs per maatregel uit maatregelprijzen.txt) vervalt deze
+# regel. Tot die tijd is hij beter dan het kental van de RVO, want hij komt
+# tenminste uit een echte factuur.
+verduurzaming-f | 240 | 2026-06-05 | Eerste Oude Heselaan 88, 58 m2 volgens de BAG: van label F of E naar A. Investering €16.478,36 inclusief btw min €2.537,25 SVOH-subsidie is €13.941,11 netto. Daarin zitten gevelisolatie aan de binnenzijde over 38 m2, vloerisolatie, stucwerk over 109 m2 wand en 39 m2 plafond, en een Duco ventilatiesysteem met CO2-sensoren. Een sprong naar A is de zwaarste ingreep; voor een kleiner labelverschil is dit tarief te hoog.
 
-verduurzaming-e | 284 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pand had label F of E en het is niet vast te stellen welke van de twee
+verduurzaming-e | 240 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pand had label F of E en het is niet vast te stellen welke van de twee
 
 # LET OP: de brief leest alleen de posten verduurzaming, verhuurklaar en
 # splitsen-eenheid, en rekent die per m2 woonoppervlak. De posten hierboven

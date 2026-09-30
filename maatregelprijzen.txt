@@ -1,0 +1,31 @@
+# Kosten per maatregel, per eenheid van het bouwdeel waar de maatregel op zit.
+# Formaat per regel: maatregel | bedrag | eenheid | peildatum | toelichting
+#
+# Waarom dit bestand naast bouwkosten_eigen.txt bestaat: dat laatste rekent met
+# een bedrag per m2 woonoppervlak, en dat is te grof. Een pand dat alleen een
+# slechte gevel heeft, krijgt daar dezelfde kosten als een pand waar gevel,
+# vloer, dak en ventilatie allemaal moeten. Hier staat wat elke maatregel op
+# zichzelf kost, zodat het model alleen rekent met wat dit pand werkelijk nodig
+# heeft. Welke maatregelen dat zijn volgt uit het bouwjaar via bouwnorm.py, en
+# hoeveel vierkante meter uit de 3D BAG.
+#
+# BEDRAGEN INCLUSIEF BTW EN NA SVOH-SUBSIDIE, want dat is wat het werkelijk
+# kost. De subsidie per maatregel staat in subsidie_svoh.py.
+#
+# Herkomst: Eerste Oude Heselaan 88, november 2025 tot juni 2026.
+
+gevelisolatie  | 156     | m2 gevel      | 2026-02-01 | voorzetwand binnenzijde met frame, folies, 100 mm PIR Rd 4,54, plaatwerk en arbeid over 38 m2; bruto €7.458,70 min €1.539 subsidie
+vloerisolatie  | 39      | m2 vloer      | 2025-11-20 | Knauf Brio vloerelementen 33 mm met lijm en randstroken over 50,4 m2, geen subsidie want geen begane grond
+ventilatie     | 2329    | per woning    | 2026-06-05 | Duco systeem met CO2-sensoren; bruto €3.327,50 min €998,25 subsidie. Per woning en niet per m2, want het is een installatie
+stucwerk       | 25      | m2 vlak       | 2026-03-11 | €20 per m2 wand en €25 per m2 plafond exclusief, 9% btw, over 109 m2 wand en 39 m2 plafond
+
+# Nog niet gemeten, en dus nog niet bruikbaar:
+# dakisolatie      | ... | m2 dakvlak | ... |
+# spouwmuurisolatie| ... | m2 gevel   | ... |
+# hr_glas          | ... | m2 glas    | ... |
+#
+# Let op bij stucwerk: dat schaalt met het afgewerkte oppervlak en niet met het
+# geisoleerde geveldeel. Bij de Eerste Oude Heselaan is 109 m2 wand gestuukt
+# tegenover 38 m2 voorzetwand, dus het meeste stucwerk hoort bij het opknappen
+# van de woning en niet bij het isoleren. Reken het daarom niet automatisch mee
+# bij een verduurzamingsmaatregel.
