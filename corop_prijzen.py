@@ -60,22 +60,61 @@ def _getal(waarde):
         return None
 
 
+def _veld_een_van(rij, *woordsets):
+    """Het eerste veld dat bij een van deze woordcombinaties past."""
+    for woorden in woordsets:
+        waarde = _veld(rij, *woorden)
+        if waarde is not None:
+            return waarde
+    return None
+
+
+def _veld(rij, *woorden):
+    """
+    De waarde van het eerste veld waarvan de naam al deze woorden bevat.
+
+    De kolomnamen van het CBS eindigen op een volgnummer dat per tabelversie
+    verandert, en soms wijzigt de naam zelf. Zoeken op woorden is daarom
+    steviger dan een vaste sleutel, en voorkomt dat een naamswijziging
+    stilletjes lege cijfers oplevert.
+    """
+    for sleutel, waarde in rij.items():
+        laag = sleutel.lower()
+        if all(w in laag for w in woorden):
+            g = _getal(waarde)
+            if g is not None:
+                return g
+    return None
+
+
 def kwartaalreeks(rijen):
     """De kwartaalrijen op volgorde, met de velden die we gebruiken."""
     uit = {}
     for rij in rijen:
-        periode = (rij.get("Perioden") or "").strip()
-        if "KW" not in periode:            # jaar- en maandrijen overslaan
+        # De periodesleutel heet Perioden, maar in een Engelstalige variant
+        # Periods; daarom zoeken in plaats van aannemen.
+        periode = ""
+        for sleutel, waarde in rij.items():
+            if "period" in sleutel.lower():
+                periode = str(waarde or "").strip()
+                break
+        if "KW" not in periode.upper():    # jaar- en maandrijen overslaan
             continue
+        # Nederlandse en Engelse kolomnamen allebei afvangen; het CBS biedt
+        # sommige tabellen in beide talen aan en de opzet wijkt dan af.
         uit[periode] = {
-            "index": _getal(rij.get("PrijsindexBestaandeKoopwoningen_1")),
-            "kwartaal_pct": _getal(rij.get("OntwikkelingTOVVorigePeriode_2")),
-            "jaar_pct": _getal(rij.get("OntwikkelingTOVEenJaarEerder_3")),
-            "transacties": _getal(rij.get("AantalVerkochteWoningen_4")),
-            "transacties_jaar_pct": _getal(
-                rij.get("OntwikkelingTOVEenJaarEerder_6")),
-            "gemiddelde_prijs": _getal(rij.get("GemiddeldeVerkoopprijs_7")),
+            "index": _veld_een_van(rij, ("prijsindex",), ("priceindex",)),
+            "kwartaal_pct": _veld_een_van(rij, ("ontwikkeling", "vorige"),
+                                          ("development", "previous")),
+            "jaar_pct": _veld_een_van(rij, ("ontwikkeling", "jaar"),
+                                      ("development", "year")),
+            "transacties": _veld_een_van(rij, ("aantal", "woningen"),
+                                         ("number", "dwellings"),
+                                         ("aantal", "verkocht")),
+            "gemiddelde_prijs": _veld_een_van(rij, ("gemiddelde", "prijs"),
+                                              ("average", "price")),
         }
+        uit[periode]["transacties_jaar_pct"] = None
     return uit
 
 
@@ -129,9 +168,31 @@ def main():
         print(f"Cijfers niet op te halen: {str(e)[:120]}", file=sys.stderr)
         return 1
 
-    stand = samenvatting(kwartaalreeks(rijen), naam)
+    reeks = kwartaalreeks(rijen)
+    if not reeks:
+        # Het CBS bewaart regiocodes met spaties erachter. Een filter op de
+        # afgeknipte code kan daardoor niets opleveren. Dan halen we de tabel
+        # zonder filter op en zoeken we de regio er zelf uit.
+        print(f"Geen kwartaalrijen bij filter op '{code}' ({len(rijen)} rijen "
+              f"terug); nu zonder filter", file=sys.stderr)
+        try:
+            alles = haal(f"{basis}/{TABEL}/TypedDataSet")
+        except Exception as e:
+            print(f"Ook zonder filter niets: {str(e)[:120]}", file=sys.stderr)
+            return 1
+        eigen = [r for r in alles
+                 if str(r.get("RegioS", "")).strip() == code]
+        print(f"Zonder filter: {len(alles)} rijen, waarvan {len(eigen)} voor "
+              f"{naam}", file=sys.stderr)
+        if alles and not eigen:
+            print(f"Voorbeeld van een rij: "
+                  f"{list(alles[0].items())[:6]}", file=sys.stderr)
+        reeks = kwartaalreeks(eigen)
+
+    stand = samenvatting(reeks, naam)
     if not stand:
-        print("Geen kwartaalcijfers gevonden", file=sys.stderr)
+        print("Geen kwartaalcijfers gevonden; zie de regels hierboven voor "
+              "wat de bron wel teruggaf", file=sys.stderr)
         return 1
 
     with open(args.uit, "w", encoding="utf-8") as f:
