@@ -23968,7 +23968,7 @@
     182
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -23987,7 +23987,7 @@
     134
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -24014,15 +24014,24 @@
     131
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 40 is nu D"
    }
   ],
+  "labels": {
+   "Evertsenstraat 40": "D"
+  },
   "pand_id": "0268100000012238"
  },
  "evertsenstraat42": {
@@ -24173,15 +24182,31 @@
     121
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 5 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 7 is nu C"
    }
   ],
+  "labels": {
+   "Evertsenstraat 5": "G",
+   "Evertsenstraat 7": "C"
+  },
   "pand_id": "0268100000010197"
  },
  "evertsenstraat7": {
@@ -24200,15 +24225,31 @@
     121
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 5 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 7 is nu C"
    }
   ],
+  "labels": {
+   "Evertsenstraat 5": "G",
+   "Evertsenstraat 7": "C"
+  },
   "pand_id": "0268100000010197"
  },
  "evertsenstraat8": {
@@ -24227,15 +24268,31 @@
     119
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 10 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Evertsenstraat 6 is nu F"
    }
   ],
+  "labels": {
+   "Evertsenstraat 10": "C",
+   "Evertsenstraat 6": "F"
+  },
   "pand_id": "0268100000010199"
  },
  "fagelstraat12": {
@@ -24375,7 +24432,7 @@
     118
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -24388,8 +24445,24 @@
     "datum": "2019-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 6 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 8 is nu G"
    }
   ],
+  "labels": {
+   "Fagelstraat 6": "G",
+   "Fagelstraat 8": "G"
+  },
   "pand_id": "0268100000002354"
  },
  "fagelstraat86": {
@@ -24478,15 +24551,38 @@
     51
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 86 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 88 is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 88A is nu A+"
    }
   ],
+  "labels": {
+   "Fagelstraat 86": "A",
+   "Fagelstraat 88": "A+",
+   "Fagelstraat 88A": "A+"
+  },
   "pand_id": "0268100000002067"
  },
  "fanfarestraat32": {
@@ -24497,7 +24593,7 @@
     115
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -24516,7 +24612,7 @@
     126
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -24563,8 +24659,8 @@
  },
  "floraweg61": {
   "adres": "Floraweg 61",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-30",
+  "bag_zonder_id": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -24592,15 +24688,31 @@
     115
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fort Kijk in de Potstraat 46 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fort Kijk in de Potstraat 48 is nu D"
    }
   ],
+  "labels": {
+   "Fort Kijk in de Potstraat 46": "C",
+   "Fort Kijk in de Potstraat 48": "D"
+  },
   "pand_id": "0268100000002330"
  },
  "fortstraat10": {
@@ -24619,7 +24731,7 @@
     95
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -24632,8 +24744,17 @@
     "datum": "2026-03-09",
     "soort": "bekendmaking",
     "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Fortstraat 10, 6523DH Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fortstraat 10 is nu F"
    }
   ],
+  "labels": {
+   "Fortstraat 10": "F"
+  },
   "pand_id": "0268100000003875"
  },
  "fransestraat11": {
@@ -24668,7 +24789,7 @@
     93
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -24681,8 +24802,31 @@
     "datum": "2026-02-24",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het splitsen van twee bovenwoningen in totaal vier zelfstandige woningen, aan Fransestraat 11, 6524HP Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 11 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 13 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 13A is nu C"
    }
   ],
+  "labels": {
+   "Fransestraat 11": "E",
+   "Fransestraat 13": "B",
+   "Fransestraat 13A": "C"
+  },
   "pand_id": "0268100000031097"
  },
  "fransestraat12": {
@@ -24693,15 +24837,24 @@
     299
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 12 is nu C"
    }
   ],
+  "labels": {
+   "Fransestraat 12": "C"
+  },
   "pand_id": "0268100000031091"
  },
  "fransestraat13": {
@@ -25013,15 +25166,24 @@
     110
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Galvanistraat 22 is nu B"
    }
   ],
+  "labels": {
+   "Galvanistraat 22": "B"
+  },
   "pand_id": "0268100000008253"
  },
  "ganzenheuvel14": {
@@ -25295,7 +25457,7 @@
     181
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -25320,8 +25482,8 @@
  },
  "geerkamp1610": {
   "adres": "Geerkamp 1610",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-30",
+  "bag_zonder_id": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -25356,7 +25518,7 @@
     214
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -25369,8 +25531,24 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 13 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 10 is nu B"
    }
   ],
+  "labels": {
+   "Derde Walstraat 13": "C",
+   "Gerard Noodtstraat 10": "B"
+  },
   "pand_id": "0268100000026239"
  },
  "gerardnoodtstraat129a12": {
@@ -26002,7 +26180,7 @@
     99
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -26015,8 +26193,31 @@
     "datum": "2025-04-11",
     "soort": "bekendmaking",
     "tekst": "Aanvraag Omgevingsvergunning voor het splitsen van de woning, aan Gerard Noodtstraat 26, 6511SW Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 26 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 26A is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 28 is nu C"
    }
   ],
+  "labels": {
+   "Gerard Noodtstraat 26": "D",
+   "Gerard Noodtstraat 26A": "A",
+   "Gerard Noodtstraat 28": "C"
+  },
   "pand_id": "0268100000002872"
  },
  "gerardnoodtstraat28": {
@@ -26624,15 +26825,38 @@
     154
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 75 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 79 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 42 is nu C"
    }
   ],
+  "labels": {
+   "Derde Walstraat 75": "C",
+   "Derde Walstraat 79": "C",
+   "Gerard Noodtstraat 42": "C"
+  },
   "pand_id": "0268100000028060"
  },
  "gerardnoodtstraat46": {
@@ -26659,15 +26883,31 @@
     164
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 81 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 85 is nu C"
    }
   ],
+  "labels": {
+   "Derde Walstraat 81": "G",
+   "Derde Walstraat 85": "C"
+  },
   "pand_id": "0268100000028059"
  },
  "gerardnoodtstraat48": {
@@ -26690,15 +26930,24 @@
     312
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 89 is nu D"
    }
   ],
+  "labels": {
+   "Derde Walstraat 89": "D"
+  },
   "pand_id": "0268100000028058"
  },
  "gerardnoodtstraat54": {
@@ -26721,15 +26970,31 @@
     69
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 91A is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Derde Walstraat 91B is nu A"
    }
   ],
+  "labels": {
+   "Derde Walstraat 91A": "A",
+   "Derde Walstraat 91B": "A"
+  },
   "pand_id": "0268100000002876"
  },
  "gerardnoodtstraat62": {
@@ -26752,15 +27017,38 @@
     114
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-08-03",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor het splitsen van een woning aan Gerard Noodtstraat 62, 6511SX Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bastionstraat 2 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 58 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gerard Noodtstraat 60 is nu C"
    }
   ],
+  "labels": {
+   "Bastionstraat 2": "A",
+   "Gerard Noodtstraat 58": "A",
+   "Gerard Noodtstraat 60": "C"
+  },
   "pand_id": "0268100000028181"
  },
  "gerardnoodtstraat71": {
@@ -27292,7 +27580,7 @@
     127
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -27315,7 +27603,7 @@
     127
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -27395,15 +27683,31 @@
     372
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Glashuis 11 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lange Hezelstraat 72 is nu B"
    }
   ],
+  "labels": {
+   "Glashuis 11": "G",
+   "Lange Hezelstraat 72": "B"
+  },
   "pand_id": "0268100000009954"
  },
  "glashuis12": {
@@ -27422,15 +27726,38 @@
     372
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Glashuis 12 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lange Hezelstraat 74 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lange Hezelstraat 76 is nu E"
    }
   ],
+  "labels": {
+   "Glashuis 12": "G",
+   "Lange Hezelstraat 74": "G",
+   "Lange Hezelstraat 76": "E"
+  },
   "pand_id": "0268100000009956"
  },
  "glimwormstraat8": {
@@ -27441,15 +27768,24 @@
     107
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2016-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Glimwormstraat 8 is nu B"
    }
   ],
+  "labels": {
+   "Glimwormstraat 8": "B"
+  },
   "pand_id": "0268100000007773"
  },
  "goemanborgesiusstraat88": {
@@ -27472,15 +27808,24 @@
     43
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Goeman Borgesiusstraat 88 is nu D"
    }
   ],
+  "labels": {
+   "Goeman Borgesiusstraat 88": "D"
+  },
   "pand_id": "0268100000019066"
  },
  "gorisstraat18": {
