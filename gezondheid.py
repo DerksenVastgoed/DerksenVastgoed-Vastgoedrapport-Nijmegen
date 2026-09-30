@@ -396,6 +396,29 @@ def controle_peildata():
     return (OK, "; ".join(regels), "")
 
 
+def controle_corop():
+    """De kwartaalcijfers voor het eigen COROP-gebied."""
+    d = _json("corop_prijzen.json") or {}
+    if not d.get("periode"):
+        return (LET_OP, "geen COROP-cijfers opgehaald",
+                "Zonder deze tabel vergelijkt de brief onze buurtcijfers met "
+                "heel Gelderland; dat is te grof. Zie de stap in het logboek.")
+    oud = ""
+    try:
+        jaar, kw = d["periode"][:4], d["periode"][-1]
+        maanden = (dt.date.today().year - int(jaar)) * 12 + \
+                  (dt.date.today().month - int(kw) * 3)
+        if maanden > 6:
+            oud = (f" De cijfers zijn van {d['periode']}; het CBS publiceert "
+                   f"ongeveer 22 dagen na afloop van een kwartaal.")
+    except Exception:
+        pass
+    bewijs = (f"{d.get('gebied')} {d['periode']}: index {d.get('index')}, "
+              f"{d.get('jaar_pct')}% op jaarbasis, "
+              f"{int(d.get('transacties') or 0)} transacties")
+    return ((LET_OP, bewijs, oud.strip()) if oud else (OK, bewijs, ""))
+
+
 def controle_wozschatting():
     """Hoe betrouwbaar is de eigen WOZ-schatting inmiddels?"""
     d = _json("woz_kalibratie.json") or {}
@@ -708,6 +731,7 @@ CONTROLES = [
     ("Veroudering aanbod", controle_veroudering),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
+    ("COROP Arnhem/Nijmegen", controle_corop),
     ("Achtergronddekking", controle_achtergronddekking),
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
     ("Jaarlijkse grenzen", controle_peildata),
