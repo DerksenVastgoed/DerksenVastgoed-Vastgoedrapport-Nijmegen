@@ -26,7 +26,12 @@ PAD = "versies.json"
 # Wat er meetelt. De digests en gegevensbestanden veranderen elke run en horen
 # er dus niet in; alleen code en handmatig beheerde lijsten.
 MAPPEN = (".", ".github/workflows")
-EXTENSIES = (".py", ".yml", ".txt", ".md")
+# Alleen code. Gegevensbestanden als verkopen.txt en woz.txt worden door de
+# run zelf bijgewerkt en wijken dus altijd af; die meenemen levert elke dag een
+# valse melding op. De handmatige lijsten zoals bouwkosten_eigen.txt vallen er
+# ook buiten, want die vul jij aan en dan zou de paklijst gaan klagen over je
+# eigen werk.
+EXTENSIES = (".py", ".yml")
 NEGEER = ("versies.py", "versies.json", "requirements.txt")
 NEGEER_MAPPEN = ("digests", ".git", "__pycache__", "node_modules")
 

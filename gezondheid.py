@@ -884,10 +884,15 @@ def rapport(kort=False, bewaren=False):
         # is veranderd sinds de vorige run, want daar zit het nieuws.
         goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
         vorige = _vorige_stand()
-        verschil = _verschillen(uitkomsten, vorige)
+        verschil = _verschillen(uitkomsten, vorige) if vorige else []
         r.append(f"[OK] {len(goed)} onderdelen, ongewijzigd; het volledige "
                  f"rapport staat in het digestbestand")
-        if verschil:
+        if not vorige:
+            # Eerste run met deze vergelijking: dan is alles nieuw en zegt dat
+            # niets. Vanaf de volgende run staat hier wat er werkelijk wijzigde.
+            r.append("Eerste run met deze vergelijking; vanaf morgen staat hier "
+                     "alleen nog wat er is veranderd.")
+        elif verschil:
             r.append("")
             r.append(f"VERANDERD sinds {vorige.get('datum', 'de vorige run')}:")
             for regel in verschil:

@@ -3154,6 +3154,29 @@ doen; het korte blok is er om te zien of er iets aan de hand is.
 
 ---
 
+## 9v. De eerste run met de nieuwe opzet — 30 september 2026
+
+**Goed nieuws:** COROP Arnhem/Nijmegen staat op OK, dus die kwartaalcijfers
+komen binnen. Een van de twee oorzaken die ik afving, was de juiste.
+
+**Twee fouten in mijn eigen nieuwe onderdelen.**
+
+De lijst met veranderingen noemde alle dertig controles nieuw, omdat er nog
+geen vorige stand was om mee te vergelijken. Dat zegt niets en maakt het
+rapport juist langer. Bij een eerste run staat er nu een regel dat de
+vergelijking vanaf morgen pas zin heeft.
+
+De paklijst nam ook gegevensbestanden mee. verkopen.txt, woz.txt en de
+plakbestanden worden door de run zelf bijgewerkt of door Mark aangevuld, dus
+die wijken per definitie af. Elke dag zes valse meldingen. De paklijst gaat nu
+alleen over code: python en de workflow, 33 bestanden.
+
+**Wat er van de melding overblijft en wel klopt:** er staan bestanden in de
+paklijst die niet in de repo zitten. Dat is precies waar het ding voor is, en
+na deze aanpassing is die melding weer betekenisvol in plaats van ruis.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
