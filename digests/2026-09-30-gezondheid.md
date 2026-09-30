@@ -1,11 +1,9 @@
 # Gezondheidsrapport 2026-09-30
 
-22 in orde, 6 aandachtspunten, 0 fouten.
+23 in orde, 5 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
-  De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1689 panden gevolgd, 626 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 494 met een energielabel, 150 nog nooit nagekeken, 188 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1689 panden gevolgd, 651 met meer dan een gebeurtenis; 1353 met BAG-gegevens (11625 woningen), 520 met een energielabel, 148 nog nooit nagekeken, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
@@ -20,8 +18,9 @@
 - **Huurdata**: 34 huurwaarnemingen, waarvan 16 Pararius en 18 Kamernet; 22 in de laatste week
 - **Aanbod**: 86 koopobjecten, 12 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,63% (2026-09-28), opslag bij 70% financiering 1,87 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,61% (2026-09-29), opslag bij 70% financiering 1,89 procentpunt
 - **Bouwkostenindex**: 104 maanden, laatste 2026-08
+- **Eigen bouwkosten**: 5 eigen tarieven ingevuld
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 949 panden in de ring, waarvan 190 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
