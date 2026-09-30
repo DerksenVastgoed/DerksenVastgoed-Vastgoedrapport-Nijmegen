@@ -1,0 +1,17 @@
+# Adressen van huurwoningen die je op andere platforms ziet, een per regel.
+# De opmaak maakt niet uit; het script haalt er straat en huisnummer uit.
+# Draai daarna huur_dekking.py en je ziet welke we al hadden en welke niet.
+#
+# Uit de links van 30 september 2026, als eerste steekproef:
+Kronenburgersingel 223-D
+Hatertseveldweg 12
+Hertogplein 39
+Wilhelminasingel 1
+Scholenhof 270
+Thorbeckestraat 37
+Eerste Walstraat 27
+Houthof 47
+Groesbeeksedwarsweg 1
+Kwartelstraat 28
+Hertogstraat 109
+St. Annastraat 201A
