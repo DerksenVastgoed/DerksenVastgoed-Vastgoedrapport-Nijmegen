@@ -60,24 +60,12 @@ jobs:
 
       - name: Welke versie draait
         run: |
-          # Bij twijfel over "heb ik het nieuwe bestand wel geuploud": dit zegt
-          # het precies. Per script wordt gekeken of een kenmerk van de nieuwste
-          # versie erin staat. Staat er NEE, dan draait de run op een oudere
-          # versie van dat bestand, wat er ook in de repo lijkt te staan.
+          # De paklijst vergelijkt de vingerafdruk van elk bestand met wat er
+          # bij de laatste oplevering is meegegeven. Staat er ANDERE VERSIE of
+          # ONTBREEKT, dan draait deze run niet op de code die je denkt.
           echo "Commit: $(git log -1 --format='%h %ci %s')"
           echo "Branch: ${GITHUB_REF_NAME}"
-          controleer() {
-            if grep -q "$2" "$1" 2>/dev/null; then
-              echo "  $1: nieuwste versie"
-            else
-              echo "  $1: NIET de nieuwste versie (kenmerk '$2' ontbreekt)"
-            fi
-          }
-          controleer funda_mail.py "Mailgegevens:"
-          controleer marktprijzen_bag.py "def is_verkocht"
-          controleer brief_verhalend.py "GEEN NIEUWS, ALLEEN NASLAG"
-          controleer gezondheid.py "met BAG-gegevens"
-          controleer pandgeschiedenis.py "def buurtbeeld"
+          python versies.py --controleer || echo "Versiecontrole overgeslagen"
 
       - name: Python klaarzetten
         uses: actions/setup-python@v5
@@ -347,6 +335,17 @@ jobs:
           fi
           python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
             $EXTRA || echo "Geschiedenis overgeslagen"
+
+      - name: Hoogtes en oppervlakken uit de 3D BAG
+        continue-on-error: true
+        run: |
+          # Eigen snapshot in de repo, per ronde aangevuld. Zo hebben we onze
+          # panden nog als de bron wegvalt. Het landelijke bestand is ruim een
+          # gigabyte en past niet in een repo; onze paar duizend panden wel.
+          # In het weekend een grotere ronde, doordeweeks klein.
+          if [ "$MODUS" = "weekelijks" ]; then AANTAL=2000; else AANTAL=300; fi
+          python bag3d.py --per-ronde "$AANTAL" \
+            || echo "3D BAG-stap overgeslagen"
 
       - name: Marktprijzen (BAG) verrijken
         env:
@@ -638,6 +637,7 @@ jobs:
             kamerverhuur_per_buurt.json
             woningprijsindex.json
             corop_prijzen.json
+            bag3d.json
             begroting_nijmegen.json
             verkocht_details.json
             pandgeschiedenis.json
