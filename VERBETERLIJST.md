@@ -2934,6 +2934,73 @@ van €10.000, en dat is het laatste geschatte getal in deze kolom.
 
 ---
 
+## 9n. De SVOH als rekenmodule — 30 september 2026
+
+De laatste stap uit Marks keten: subsidie verlaagt de investering en dus de
+richtprijs. De bedragen per 1 januari 2026 staan nu in subsidie_svoh.py, met
+een peildatum, want ze worden jaarlijks opnieuw vastgesteld. Het
+gezondheidsrapport meldt het zodra dat jaartal achterloopt, net als bij de
+huurprijstabel.
+
+**De bedragen bij twee of meer maatregelen**, en dat is het gewone geval want
+de regeling vraagt er minimaal twee: gevelisolatie €40,50 per m2, dakisolatie
+€32,50, vloerisolatie €11, spouwmuur €10,50, bodemisolatie €6,
+zoldervloer €8, HR++ glas €50. Biobased materiaal geeft een bonus per m2.
+CO2-gestuurde ventilatie loopt niet per m2 maar op 30% van de kosten met een
+maximum van €1.200. Plafond €10.000 per woning, of €15.000 met een warmtepomp
+of zonneboiler.
+
+**Voor de Eerste Oude Heselaan 88** zou dat uitkomen op €1.539 voor de gevel,
+€554 voor de vloer en €825 voor de ventilatie, samen €2.918. De investering
+zakt daarmee van €284 naar €234 per m2, een zesde eraf.
+
+**Een voorwaarde om na te gaan:** voor vloerisolatie geldt een minimale Rd van
+3,5. De Knauf Brio-elementen zijn een droge dekvloer van 33 mm; of die die
+waarde halen, is de vraag. Zonder de vloer komt de subsidie op €2.364 en de
+investering op €243 per m2.
+
+**De voorwaarden staan erbij in de module:** minimaal twee maatregelen, de
+woning wordt al verhuurd voordat het werk begint, bestaande bouw met een
+woonfunctie in de BAG, uitvoering door een erkend bedrijf, aanvragen binnen 24
+maanden, en ventilatie alleen in combinatie met een isolatiemaatregel.
+
+---
+
+## 9o. De subsidie valt precies te reconstrueren — 30 september 2026
+
+Ontvangen: €2.537,25, voor de gevelisolatie en de ventilatie-unit. Voor de
+brioplaten kwam niets, omdat die niet op de begane grond liggen.
+
+- gevelisolatie 38 m2 maal €40,50 is €1.539,00
+- CO2-gestuurde ventilatie, 30% van €3.327,50 is €998,25
+
+Samen €2.537,25, precies wat er binnenkwam.
+
+**Mijn eerste reconstructie zat ernaast.** Ik kwam ook op €2.537,25 uit, maar
+met een derde regel voor 15,75 m2 vloerisolatie en de ventilatie over het
+bedrag exclusief btw. Twee fouten die elkaar toevallig opheffen; dat het totaal
+klopte betekende dus niets.
+
+**Twee dingen die dit leert, en die in de module staan:**
+- het percentage voor ventilatie gaat over het bedrag INCLUSIEF btw. Logisch
+  voor een verhuurder van woningen, die de btw niet kan verrekenen en dus
+  werkelijk dat hele bedrag betaalt. Dat scheelde hier €173;
+- vloer- en bodemisolatie gaan over de begane grond, boven de kruipruimte of
+  op de grond. Een droge dekvloer op een verdieping valt er niet onder, ook
+  niet als er isolerend materiaal in zit.
+
+**Het verduurzamingstarief gaat van €284 naar €240 per m2**, want de tarieven
+in bouwkosten_eigen.txt staan nu netto, na aftrek van subsidie. Dat is het
+bedrag waarmee je een aankoop beoordeelt: die subsidie krijg je hoe dan ook als
+je de maatregelen uitvoert.
+
+**De subsidie dekte 15% van de investering.** Dat is een bruikbaar kengetal om
+te onthouden bij een volgende doorrekening, maar het is geen vuistregel: bij
+een pand met veel dakoppervlak, waar €32,50 per m2 geldt, ligt het aandeel
+hoger.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
