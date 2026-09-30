@@ -336,7 +336,10 @@ def controle_mailbronnen():
         delen.append(stuk)
         if not t.get("mails"):
             stil.append(bron)
-        elif not t.get("objecten"):
+        elif not t.get("objecten") and not t.get("overgeslagen"):
+            # Alleen alarm slaan als er niets uitkwam en er ook niets bewust is
+            # overgeslagen. Een mail met alleen een gemeubileerde woning levert
+            # terecht nul objecten op; dat is geen parserfout.
             stom.append(bron)
     for verwacht in ("kamernet", "pararius", "funda"):
         if verwacht not in bronnen:
@@ -383,6 +386,17 @@ def controle_peildata():
         return (LET_OP, "huurprijstabel niet te lezen", str(e)[:120])
 
     try:
+        from subsidie_svoh import PEILDATUM as SVOH_PEIL, PER_M2
+        jaar = int(SVOH_PEIL[:4])
+        regels.append(f"SVOH-bedragen {SVOH_PEIL} (gevelisolatie "
+                      f"€{PER_M2['gevelisolatie'][1]:.2f} per m2)")
+        if jaar < dit_jaar:
+            verouderd.append(f"de SVOH-bedragen zijn van {jaar}; ze worden "
+                             f"jaarlijks opnieuw vastgesteld door de RVO.")
+    except Exception:
+        pass
+
+    try:
         from marktprijzen_bag import WOZ_GRENS_OMZETTING, WOZ_GRENS_WEIGERING
         regels.append(f"WOZ-grenzen €{WOZ_GRENS_OMZETTING:,} en "
                       f"€{WOZ_GRENS_WEIGERING:,}".replace(",", "."))
@@ -394,6 +408,26 @@ def controle_peildata():
                 " ".join(verouderd) + " Werk de tabel bij en zet de nieuwe "
                 "peildatum erbij.")
     return (OK, "; ".join(regels), "")
+
+
+def controle_bag3d():
+    """De eigen snapshot van hoogtes en oppervlakken per pand."""
+    d = _json("bag3d.json") or {}
+    panden = d.get("panden") or {}
+    if not panden:
+        return (LET_OP, "nog geen 3D BAG-gegevens opgehaald",
+                "Zonder hoogte en buitenmuuroppervlak is er geen basis voor de "
+                "bouwkosten per pand. Zie de stap in het logboek.")
+    met = sum(1 for p in panden.values() if p.get("b3_opp_buitenmuur"))
+    leeg = sum(1 for p in panden.values() if p.get("leeg"))
+    bewijs = (f"{len(panden)} panden in de eigen snapshot, {met} met een "
+              f"buitenmuuroppervlak, {leeg} zonder gegevens bij de bron; "
+              f"bijgewerkt {d.get('bijgewerkt', '?')}")
+    if met < len(panden) * 0.5:
+        return (LET_OP, bewijs,
+                "Van minder dan de helft kwamen bruikbare waarden; controleer "
+                "of de opzet van de bron is veranderd.")
+    return (OK, bewijs, "")
 
 
 def controle_corop():
@@ -732,6 +766,7 @@ CONTROLES = [
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
     ("COROP Arnhem/Nijmegen", controle_corop),
+    ("3D BAG eigen snapshot", controle_bag3d),
     ("Achtergronddekking", controle_achtergronddekking),
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
     ("Jaarlijkse grenzen", controle_peildata),
