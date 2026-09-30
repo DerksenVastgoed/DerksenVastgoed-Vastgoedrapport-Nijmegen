@@ -289,6 +289,8 @@ def controle_geschiedenis():
     met_verhaal = sum(1 for p in d.values()
                       if len(p.get("gebeurtenissen") or []) > 1)
     nooit = sum(1 for p in d.values() if not p.get("bag_gezien"))
+    opgegeven = sum(1 for p in d.values()
+                    if int(p.get("bag_pogingen") or 0) >= 3)
     zonder_id = sum(1 for p in d.values() if p.get("bag_zonder_id"))
     # Wat er werkelijk is opgehaald: de eenheden uit de BAG en de labels uit
     # EP-Online. Dat was tot nu toe alleen af te leiden uit een aftreksom.
@@ -304,7 +306,9 @@ def controle_geschiedenis():
     bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
               f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen), "
               f"{met_label} met een energielabel, {nooit} nog nooit nagekeken"
-              + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else ""))
+              + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else "")
+              + (f" waarvan {opgegeven} na drie pogingen opgegeven"
+                 if opgegeven else ""))
     if nooit:
         runs = -(-nooit // per_ronde)
         oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "

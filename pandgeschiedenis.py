@@ -330,9 +330,17 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
                                               "kamerverhuur"}):
             continue
+        # Een pand dat geen pand-id oplevert, mag het een paar keer opnieuw
+        # proberen en daarna niet meer. Dit blok haalde eerst elke run de
+        # markering weg, waardoor dezelfde panden eeuwig terugkwamen, elke
+        # ronde de quota vulden en het aantal "nooit nagekeken" opliep in
+        # plaats van af. Het was bedoeld als eenmalige reparatie na de
+        # bag_dump-fout van 28 september.
         if pand.get("bag_zonder_id") and not pand.get("pand_id"):
-            # Eerder mislukt door de verkeerde functie; de markering weg zodat
-            # ze opnieuw aan de beurt komen
+            pogingen = int(pand.get("bag_pogingen") or 0)
+            if pogingen >= 3:
+                continue
+            pand["bag_pogingen"] = pogingen + 1
             pand.pop("bag_zonder_id", None)
             pand.pop("bag_gezien", None)
         bekeken += 1

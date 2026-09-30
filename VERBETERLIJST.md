@@ -3281,6 +3281,31 @@ zijn of van de markt gehaald. Dat blijft onbekend.
 
 ---
 
+## 9aa. De wachtrij liep vol door een noodreparatie — 30 september 2026
+
+De versiecontrole wees uit dat bag3d.py ontbrak, wat verklaart waarom de 3D BAG
+niets ophaalde. Maar pandgeschiedenis.py werd niet als afwijkend gemeld,
+terwijl het aantal nooit nagekeken panden toch opliep. Dan ligt het niet aan de
+upload maar aan de code, en zo bleek het ook.
+
+**Oorzaak:** een noodreparatie van 28 september, na de bag_dump-fout, haalde bij
+elk pand zonder pand-id de markering weg zodat het opnieuw aan de beurt kwam.
+Dat blok is blijven staan. Elke run werden dus dezelfde 188 panden opnieuw
+geprobeerd, mislukten ze opnieuw, en liep het aantal "nooit nagekeken" op in
+plaats van af. Ze vulden bovendien elke ronde een deel van de quota, waardoor
+de echte achterstand niet werd ingelopen.
+
+**Nu krijgt zo'n pand drie pogingen en daarna niet meer.** Het rapport meldt
+hoeveel er zijn opgegeven, zodat die groep zichtbaar blijft in plaats van
+stilletjes te verdwijnen of eeuwig terug te komen.
+
+**En de paklijst negeert voortaan drie bestanden** die ik niet zelf lever:
+ov_haltes.py, rijksmonumenten.py en bag_uitzoeken.py. Mijn kopie daarvan wijkt
+af van de repo en dat zou elke run als afwijking worden gemeld, terwijl er
+niets aan de hand is.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

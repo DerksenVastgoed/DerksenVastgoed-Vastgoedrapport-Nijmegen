@@ -32,7 +32,11 @@ MAPPEN = (".", ".github/workflows")
 # ook buiten, want die vul jij aan en dan zou de paklijst gaan klagen over je
 # eigen werk.
 EXTENSIES = (".py", ".yml")
-NEGEER = ("versies.py", "versies.json", "requirements.txt")
+# Bestanden die ik niet zelf lever en waarvan mijn kopie dus kan afwijken van
+# de repo. Die permanent als "andere versie" melden is ruis; wie ze beheert,
+# beheert ze buiten deze sessies om.
+NEGEER = ("versies.py", "versies.json", "requirements.txt",
+          "ov_haltes.py", "rijksmonumenten.py", "bag_uitzoeken.py")
 NEGEER_MAPPEN = ("digests", ".git", "__pycache__", "node_modules")
 
 
