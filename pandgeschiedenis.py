@@ -295,10 +295,25 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
     vandaag = dt.date.today().isoformat()
     nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
     def volgorde(paar):
-        """Eerst wat in het aanbod zit of verkocht is, dan de rest."""
+        """
+        Wie er het eerst aan de beurt is.
+
+        Eerst panden die nog nooit zijn nagekeken. Daarna wat in het aanbod zit
+        of verkocht is, en dan de rest, telkens de langst niet bekekene eerst.
+
+        Waarom die eerste groep voorgaat: sinds de 505 geplakte verkopen erin
+        zitten, vulden die in hun eentje de quota van 500 per ronde. De panden
+        die nog nooit waren nagekeken kwamen daardoor nooit aan de beurt, hoe
+        vaak er ook werd gedraaid, en hun aantal liep juist op.
+        """
         pand = paar[1]
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
-        haast = 0 if soorten & {"te koop", "verkocht", "prijswijziging"} else 1
+        if not pand.get("bag_gezien"):
+            haast = 0
+        elif soorten & {"te koop", "verkocht", "prijswijziging"}:
+            haast = 1
+        else:
+            haast = 2
         return (haast, pand.get("bag_gezien") or "")
 
     wachtrij = sorted(geschiedenis.items(), key=volgorde)
