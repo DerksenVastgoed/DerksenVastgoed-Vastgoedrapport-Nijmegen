@@ -644,6 +644,7 @@ jobs:
             buurtbeeld.json
             mail_status.json
             woz_kalibratie.json
+            gezondheid_vorige.json
             vve_kosten.txt
             bouwkosten_eigen.txt
             ov_afstand_cache.json
