@@ -3106,6 +3106,27 @@ gemeubileerd, en nu .github op .git.
 
 ---
 
+## 9t. De versiecontrole in het rapport zelf — 30 september 2026
+
+**Mark:** weet jij dan precies welke versies er draaiden als ik het rapport
+stuur?
+
+**Zoals het was: nee.** De versiestap en het gezondheidsrapport staan op
+verschillende plekken in het logboek. Wie alleen het rapport plakt, laat de
+versies achter, en dan ben ik terug bij vermoeden.
+
+**Nu staat de controle in het rapport**, als eerste regel. Eén blok plakken
+levert dan drie dingen tegelijk: welke code er draaide, wat elke bron heeft
+opgeleverd en wat er mis is. Bij een afwijking noemt hij de bestandsnamen,
+dus ik weet meteen welke.
+
+**Wat het rapport nog steeds niet bevat**, en dat is goed om te weten: de
+uitvoer van de losse stappen. Loopt de COROP-stap vast, dan zegt het rapport
+dat er geen cijfers zijn, maar niet waarom. Voor dat waarom blijft de regel uit
+die stap nodig. Datzelfde geldt voor de mailstap en de 3D BAG.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

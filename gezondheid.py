@@ -362,6 +362,35 @@ def controle_mailbronnen():
     return (OK, bewijs, "")
 
 
+def controle_versies():
+    """
+    Draait deze run op de bestanden die bij de laatste oplevering horen?
+
+    Staat bovenaan in het rapport, zodat een geplakt rapport meteen laat zien
+    welke code er draaide. Anders moet dat uit een andere stap in het logboek
+    komen en is het bij het overnemen zo verdwenen.
+    """
+    try:
+        from versies import controleer
+        uit = controleer()
+    except Exception as e:
+        return (LET_OP, "versiecontrole niet uit te voeren", str(e)[:120])
+    if uit is None:
+        return (LET_OP, "geen paklijst gevonden",
+                "versies.json hoort mee in dezelfde upload als de bestanden.")
+    bewijs = (f"{len(uit['gelijk'])} bestanden gelijk aan de paklijst, "
+              f"{len(uit['afwijkend'])} afwijkend, "
+              f"{len(uit['ontbrekend'])} ontbreekt")
+    if uit["afwijkend"] or uit["ontbrekend"]:
+        namen = ", ".join((uit["afwijkend"] + uit["ontbrekend"])[:6])
+        return (LET_OP, bewijs + f": {namen}",
+                "Deze run draait niet op de code uit de paklijst. Controleer "
+                "of alle bestanden zijn geuploud, inclusief versies.json.")
+    if uit["onbekend"]:
+        bewijs += f", {len(uit['onbekend'])} niet in de paklijst"
+    return (OK, bewijs, "")
+
+
 def controle_peildata():
     """
     Bedragen en grenzen die elk jaar opnieuw worden vastgesteld.
@@ -748,6 +777,7 @@ def controle_commit():
 
 
 CONTROLES = [
+    ("Versies", controle_versies),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),
