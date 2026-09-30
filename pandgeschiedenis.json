@@ -16882,8 +16882,17 @@
     "datum": "2026-07-01",
     "soort": "bekendmaking",
     "tekst": "Besluit voor een kamerverhuurvergunning aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Voorstenkamp 1142 is nu C"
    }
   ],
+  "labels": {
+   "de Voorstenkamp 1142": "C"
+  },
   "pand_id": "0268100000030668"
  },
  "devredestraat12": {
@@ -17063,8 +17072,80 @@
     "datum": "2021-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 32 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 34 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 36 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 38 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 40 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 52 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 54 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 58 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 60 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 62 is nu A"
    }
   ],
+  "labels": {
+   "Dikkeboomweg 32": "A",
+   "Dikkeboomweg 34": "A",
+   "Dikkeboomweg 36": "A",
+   "Dikkeboomweg 38": "A",
+   "Dikkeboomweg 40": "A",
+   "Dikkeboomweg 52": "A",
+   "Dikkeboomweg 54": "A",
+   "Dikkeboomweg 58": "A",
+   "Dikkeboomweg 60": "A",
+   "Dikkeboomweg 62": "A"
+  },
   "pand_id": "0268100000083295"
  },
  "distelstraat94": {
@@ -17082,8 +17163,17 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Distelstraat 94 is nu B"
    }
   ],
+  "labels": {
+   "Distelstraat 94": "B"
+  },
   "pand_id": "0268100000029814"
  },
  "dobbelmannweg2": {
@@ -17105,8 +17195,24 @@
     "datum": "2015-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dobbelmannweg 2 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 233 is nu A"
    }
   ],
+  "labels": {
+   "Dobbelmannweg 2": "A",
+   "Groenestraat 233": "A"
+  },
   "pand_id": "0268100000009339"
  },
  "dobbelmannweg21": {
@@ -17124,8 +17230,17 @@
     "datum": "2019-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dobbelmannweg 21 is nu C"
    }
   ],
+  "labels": {
+   "Dobbelmannweg 21": "C"
+  },
   "pand_id": "0268100000014148"
  },
  "dobbelmannweg29": {
@@ -17149,8 +17264,17 @@
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dobbelmannweg 29 is nu F"
    }
   ],
+  "labels": {
+   "Dobbelmannweg 29": "F"
+  },
   "pand_id": "0268100000032989"
  },
  "dobbelmannweg4": {
@@ -17396,8 +17520,45 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 10 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 12 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 2 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 4 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 8 is nu D"
    }
   ],
+  "labels": {
+   "Doddendaal 10": "D",
+   "Doddendaal 12": "D",
+   "Doddendaal 2": "A",
+   "Doddendaal 4": "A",
+   "Doddendaal 8": "D"
+  },
   "pand_id": "0268100000020654"
  },
  "doddendaal6": {
@@ -17603,8 +17764,45 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 10 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 12 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 2 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 4 is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Doddendaal 8 is nu D"
    }
   ],
+  "labels": {
+   "Doddendaal 10": "D",
+   "Doddendaal 12": "D",
+   "Doddendaal 2": "A",
+   "Doddendaal 4": "A",
+   "Doddendaal 8": "D"
+  },
   "pand_id": "0268100000020654"
  },
  "doddendaal99": {
@@ -18406,8 +18604,31 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 143 is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 143A is nu A+++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 145 is nu D"
    }
   ],
+  "labels": {
+   "Dominicanenstraat 143": "A+",
+   "Dominicanenstraat 143A": "A+++",
+   "Dominicanenstraat 145": "D"
+  },
   "pand_id": "0268100000001550"
  },
  "dominicanenstraat145": {
@@ -18433,8 +18654,31 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 143 is nu A+"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 143A is nu A+++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 145 is nu D"
    }
   ],
+  "labels": {
+   "Dominicanenstraat 143": "A+",
+   "Dominicanenstraat 143A": "A+++",
+   "Dominicanenstraat 145": "D"
+  },
   "pand_id": "0268100000001550"
  },
  "dominicanenstraat147": {
@@ -18456,8 +18700,24 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 147 is nu F"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 147A is nu E"
    }
   ],
+  "labels": {
+   "Dominicanenstraat 147": "F",
+   "Dominicanenstraat 147A": "E"
+  },
   "pand_id": "0268100000001547"
  },
  "dominicanenstraat151": {
@@ -18834,8 +19094,24 @@
     "datum": "2025-07-04",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het samenvoegen van twee woningen, aan Dominicanenstraat 21, 6521KA Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 19 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 21 is nu C"
    }
   ],
+  "labels": {
+   "Dominicanenstraat 19": "D",
+   "Dominicanenstraat 21": "C"
+  },
   "pand_id": "0268100000001582"
  },
  "dominicanenstraat30": {
@@ -18964,8 +19240,66 @@
     "datum": "2026-06-26",
     "soort": "bekendmaking",
     "tekst": "Melding melding brandveilig gebruik kinderdag opvang, aan Dominicanenstraat 91, 6521KB Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 75 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 77 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 79 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 81 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 83 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 85 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 87 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 89 is nu C"
    }
   ],
+  "labels": {
+   "Dominicanenstraat 75": "C",
+   "Dominicanenstraat 77": "B",
+   "Dominicanenstraat 79": "B",
+   "Dominicanenstraat 81": "B",
+   "Dominicanenstraat 83": "B",
+   "Dominicanenstraat 85": "C",
+   "Dominicanenstraat 87": "C",
+   "Dominicanenstraat 89": "C"
+  },
   "pand_id": "0268100000001016"
  },
  "dommervanpoldersveldtweg112": {
@@ -18983,8 +19317,17 @@
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 112 is nu G"
    }
   ],
+  "labels": {
+   "Dommer van Poldersveldtweg 112": "G"
+  },
   "pand_id": "0268100000024485"
  },
  "dommervanpoldersveldtweg214": {
@@ -19012,8 +19355,17 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 212 is nu D"
    }
   ],
+  "labels": {
+   "Dommer van Poldersveldtweg 212": "D"
+  },
   "pand_id": "0268100000025679"
  },
  "dommervanpoldersveldtweg331": {
@@ -19074,8 +19426,24 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 34 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tooropstraat 124 is nu C"
    }
   ],
+  "labels": {
+   "Dommer van Poldersveldtweg 34": "E",
+   "Tooropstraat 124": "C"
+  },
   "pand_id": "0268100000024043"
  },
  "dommervanpoldersveldtweg37": {
@@ -19116,8 +19484,24 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 42 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 44 is nu C"
    }
   ],
+  "labels": {
+   "Dommer van Poldersveldtweg 42": "D",
+   "Dommer van Poldersveldtweg 44": "C"
+  },
   "pand_id": "0268100000024695"
  },
  "drakensteinstraat9": {
@@ -19155,8 +19539,17 @@
     "datum": "2021-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Drakensteinstraat 9 is nu C"
    }
   ],
+  "labels": {
+   "Drakensteinstraat 9": "C"
+  },
   "pand_id": "0268100000011102"
  },
  "drclaasnoorduijnstraat1": {

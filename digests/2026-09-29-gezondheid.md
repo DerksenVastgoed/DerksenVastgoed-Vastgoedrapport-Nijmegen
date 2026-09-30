@@ -1,11 +1,11 @@
-# Gezondheidsrapport 2026-09-29
+# Gezondheidsrapport 2026-09-30
 
 22 in orde, 5 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Eigen bouwkosten**: geen eigen bouwkosten ingevuld
   De verbouwkosten zijn aannames van het script. Vul in bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per m2 kosten; uit het hoofd is al beter dan de aanname.
-- **Geschiedenis per pand**: 1685 panden gevolgd, 612 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 476 met een energielabel, 146 nog nooit nagekeken, 188 zonder pand-id in de BAG
+- **Geschiedenis per pand**: 1685 panden gevolgd, 625 met meer dan een gebeurtenis; 1351 met BAG-gegevens (11620 woningen), 494 met een energielabel, 146 nog nooit nagekeken, 188 zonder pand-id in de BAG
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
@@ -19,14 +19,14 @@
 - **Aanbod**: 84 koopobjecten, 10 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
 - **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,63% (2026-09-28), opslag bij 70% financiering 1,87 procentpunt
-- **Bouwkostenindex**: 103 maanden, laatste 2026-07
+- **Bouwkostenindex**: 104 maanden, laatste 2026-08
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 949 panden in de ring, waarvan 190 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 83
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-09-24
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
-- **Veroudering aanbod**: 56 panden te koop, mediaan 13 dagen geleden voor het laatst bevestigd, oudste 27 dagen
+- **Veroudering aanbod**: 56 panden te koop, mediaan 14 dagen geleden voor het laatst bevestigd, oudste 28 dagen
 - **VvE-bijdragen**: 1 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **Achtergronddekking**: 25 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
