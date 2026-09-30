@@ -591,6 +591,71 @@ def controle_vve():
             f"€{bedragen[len(bedragen)//2]:.2f} per maand", "")
 
 
+def controle_opnieuw_aangeboden():
+    """
+    Woningen die vaker te huur zijn aangeboden, en tegen welke prijs.
+
+    We horen nooit wanneer een woning verhuurd is. Maar komt hetzelfde adres
+    later terug voor minder geld, dan is dat het bewijs dat de eerste vraagprijs
+    niet werd betaald. Komt hij terug voor meer, dan is het een normale mutatie
+    in een krappe markt. Dat onderscheid is het enige signaal dat we hebben
+    over wat er werkelijk wordt betaald.
+    """
+    per_adres = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 6 or not v[3].lower().startswith("te huur"):
+                    continue
+                try:
+                    prijs = int(v[2])
+                except ValueError:
+                    continue
+                per_adres.setdefault(v[0].lower(), []).append((v[4], prijs))
+    except Exception:
+        return (LET_OP, "huuraanbod niet te lezen", "Staat verkopen.txt er wel?")
+    herhaald = {a: sorted(p) for a, p in per_adres.items() if len(p) > 1}
+    if not herhaald:
+        return (OK, "geen enkel adres twee keer aangeboden", "")
+    omlaag, omhoog = [], []
+    for adres, reeks in herhaald.items():
+        eerst, laatst = reeks[0][1], reeks[-1][1]
+        if laatst < eerst * 0.97:
+            omlaag.append(f"{adres} van €{eerst} naar €{laatst}")
+        elif laatst > eerst * 1.03:
+            omhoog.append(adres)
+    bewijs = (f"{len(herhaald)} adressen vaker aangeboden: {len(omlaag)} voor "
+              f"minder, {len(omhoog)} voor meer")
+    if omlaag:
+        return (OK, bewijs + "; lager bij: " + "; ".join(omlaag[:3]),
+                "")
+    return (OK, bewijs, "")
+
+
+def controle_huurdekking():
+    """Hoeveel van het huuraanbod elders we zelf al zien."""
+    try:
+        from huur_dekking import lees_elders, lees_eigen, sleutel
+        elders = lees_elders()
+    except Exception as e:
+        return (LET_OP, "dekkingscontrole niet uit te voeren", str(e)[:100])
+    if not elders:
+        return (OK, "geen steekproef geplakt in huur_elders.txt", "")
+    per_sleutel, straten = lees_eigen()
+    raak = sum(1 for a in elders
+               if a["sleutel"] in per_sleutel or sleutel(a["straat"]) in straten)
+    deel = raak / len(elders) * 100
+    bewijs = (f"steekproef van {len(elders)} adressen elders: {raak} kennen we "
+              f"al ({deel:.0f}%)")
+    if deel < 60:
+        return (LET_OP, bewijs,
+                "We missen het grootste deel van het huuraanbod. Een extra "
+                "bron erbij weegt dan zwaarder dan welke verfijning van de "
+                "berekening ook.")
+    return (OK, bewijs, "")
+
+
 def controle_veroudering():
     """
     Hoe oud is het aanbod dat we tonen?
@@ -793,6 +858,8 @@ CONTROLES = [
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
     ("Veroudering aanbod", controle_veroudering),
+    ("Huurdekking", controle_huurdekking),
+    ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
     ("COROP Arnhem/Nijmegen", controle_corop),

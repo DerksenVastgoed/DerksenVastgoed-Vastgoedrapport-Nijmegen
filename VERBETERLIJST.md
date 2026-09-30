@@ -3206,6 +3206,81 @@ een plakartefact en geen fout in de brief.
 
 ---
 
+## 9x. Huisly als mogelijke bron — 30 september 2026
+
+Niet bekend, en de zoekmachine kent hem ook niet, dus het is waarschijnlijk een
+nieuw of klein platform. Het adres dat Mark stuurde is een gegevensingang van
+hun eigen webapplicatie; zonder zoekopdracht geeft die een foutstatus terug.
+
+**Technisch zou het aanbod daar als gestructureerde gegevens uit te halen
+zijn**, netter dan wat we bij Funda doen met geplakte tekst. Twee bezwaren: ik
+weet niet of hun voorwaarden dat toestaan, en een ingang die voor hun eigen
+site is bedoeld kan morgen veranderen zonder aankondiging.
+
+**De route die deze week steeds werkte is de attendering per mail.** Die komt
+met hun instemming binnen en verandert niet als ze hun site verbouwen.
+huisly.nl staat nu bij de afzenders die de mailstap accepteert. Er is nog geen
+parser, dus de teller zal "huisly: N mails, 0 objecten" melden zodra de eerste
+binnenkomt. Dat is precies wat ik nodig heb om er een te schrijven.
+
+---
+
+## 9y. Veertien platforms, en de vraag eronder — 30 september 2026
+
+Mark vond via Huisly een stuk of veertien sites met huuraanbod in Nijmegen, en
+vraagt of we die kunnen koppelen zonder overal een account en een attendering.
+
+**Veertien koppelingen bouwen is de verkeerde afslag.** Elk heeft zijn eigen
+opmaak, geen van allen een open ingang, en ze verbouwen hun site zonder
+aankondiging. Dan repareer je elke week parsers in plaats van panden te
+beoordelen. Dat is dezelfde afweging als bij de Funda-lijst: een route die
+niemand onderhoudt, houdt geen stand.
+
+**De vraag eronder is beter te beantwoorden met een meting.** Hoeveel van dat
+aanbod missen we werkelijk? huur_dekking.py leest de adressen die je op zo'n
+site ziet uit huur_elders.txt en zegt welke we al hadden. Op de twaalf adressen
+uit Marks eigen links: drie bekend, negen gemist. Dat is 25%, en het
+gezondheidsrapport meldt het zolang het onder de zestig procent ligt.
+
+**Wat dat betekent voor de volgorde van werken.** Zolang we driekwart van het
+huuraanbod niet zien, weegt een extra bron zwaarder dan welke verfijning van de
+berekening ook. De huurprijs bepaalt elke richtprijs in de brief, en die rust
+nu op 29 waarnemingen.
+
+**De praktische route blijft een aggregator.** Huisly bundelt kennelijk precies
+deze partijen; een attendering daar is een account in plaats van veertien. Dat
+is ook waarom huisly.nl al bij de geaccepteerde afzenders staat.
+
+---
+
+## 9z. Huuradvertenties vervallen nooit — 30 september 2026
+
+**Mark:** we horen nooit wanneer een woning verhuurd is, dus we zien alleen de
+vraagprijs op de dag dat hij beschikbaar kwam. Is dat het?
+
+**Ja, en bij huur is dat minder erg dan bij koop**, want een advertentie zegt
+wat er op dat moment werd gevraagd, en dat is precies de maat die we willen.
+Maar er zitten twee gaten in, en die zijn deels te dichten.
+
+**Een vraagprijs die drie dagen staat is de markt; een die vier maanden hangt,
+niet.** Toch wegen ze even zwaar in de mediaan. Dat is niet op te lossen zonder
+de verhuurdatum, maar wel te beperken: waarnemingen ouder dan achttien maanden
+tellen niet meer mee. Een huur uit 2024 is geen marktprijs van nu. Het venster
+staat in een omgevingsvariabele, dus het is te verzetten zodra er genoeg
+waarnemingen zijn om korter te kunnen.
+
+**En er is een signaal dat we wel kunnen lezen: opnieuw aangeboden.** Komt
+hetzelfde adres later terug voor minder geld, dan is dat het bewijs dat de
+eerste vraagprijs niet werd betaald. Komt hij terug voor meer, dan is het een
+gewone mutatie in een krappe markt. Het rapport telt beide en noemt de
+verlagingen met bedrag erbij. Dat is het enige wat we hebben over wat er
+werkelijk betaald wordt, en het wordt beter naarmate de reeks langer loopt.
+
+**Wat we hiermee niet oplossen:** een woning die nooit terugkomt, kan verhuurd
+zijn of van de markt gehaald. Dat blijft onbekend.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

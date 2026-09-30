@@ -3108,6 +3108,26 @@ def segment_van(w):
     return "vrij" if prijs > vrije_sector_grens() else "gereguleerd"
 
 
+# Hoe lang een huurwaarneming meetelt. Een advertentie zegt wat er op dat
+# moment werd gevraagd; twee jaar later is dat geen marktprijs meer. We horen
+# nooit wanneer een woning verhuurd is, dus dit is de enige manier om oude
+# waarnemingen te laten vervallen.
+HUUR_GELDIG_MAANDEN = int(os.environ.get("HUUR_GELDIG_MAANDEN") or 18)
+
+
+def _te_oud(w, maanden=None):
+    """Of deze waarneming buiten het venster valt."""
+    maanden = maanden or HUUR_GELDIG_MAANDEN
+    datum = (w.get("datum") or "")[:10]
+    if not datum:
+        return False
+    try:
+        d = dt.date.fromisoformat(datum)
+    except ValueError:
+        return False
+    return (dt.date.today() - d).days > maanden * 30
+
+
 def gemeten_huren(huur_aanbod):
     """
     Mediane huur per m2 per maand, per buurt en per klasse.
@@ -3117,6 +3137,7 @@ def gemeten_huren(huur_aanbod):
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
     inclusief_weg = 0
+    huur_aanbod = [w for w in huur_aanbod if not _te_oud(w)]
     for w in huur_aanbod:
         # Alleen kale huur telt. Servicekosten zijn doorbelasting van werkelijke
         # kosten waar geen rendement uit komt, en het puntenstelsel toetst er
