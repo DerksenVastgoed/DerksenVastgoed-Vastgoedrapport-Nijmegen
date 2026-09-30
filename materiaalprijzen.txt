@@ -1,0 +1,57 @@
+# Eigen inkoopprijzen per eenheid, uit echte bonnen en offertes.
+# Formaat per regel: post | prijs | eenheid | peildatum
+#
+# Bedragen EXCLUSIEF btw, zoals ze op de bon staan. Het script telt de btw er
+# zelf bij: 21% op materiaal en 9% op arbeid aan een woning ouder dan twee jaar.
+# Dat is nodig omdat woningverhuur vrijgesteld is en de btw voor ons dus geen
+# verrekenbare post is maar gewoon kosten.
+#
+# De peildatum is de datum van de bon of de begroting;
+# daarmee rekent het script de prijs met de CBS-bouwkostenindex om naar vandaag,
+# zodat een bon van een half jaar oud geen prijs van nu voorstelt. Zonder
+# peildatum blijft het bedrag staan zoals het is, met die melding erbij.
+#
+# Herkomst: begroting aannemer (Materiaallijst V2) en de bonnen van de
+# Eerste Oude Heselaan 88, november 2025 tot januari 2026.
+
+# Voorzetwand
+hout       | 4,39  | m1, houten balk 44x119x3000, €13,18 per stuk van 3 meter | 2026-02-01
+folie      | 2,04  | m1, dampdoorlatende folie, €102,04 per rol van 50 meter  | 2026-02-01
+tape       | 0,53  | m1, isolatietape 75 mm x 25 m, €13,24 per rol            | 2025-11-18
+isolatie   | 24,93 | m2, PIR 100 mm met Rd 4,54, ruim boven de subsidie-eis   | 2026-02-01
+osb        | 7,98  | m2, OSB 18 mm volgens de begroting                       | 2026-02-01
+gipsplaat  | 3,38  | m2, gipsplaat 12,5 mm volgens de begroting               | 2026-02-01
+stucplaat  | 3,28  | m2, stucplaat volgens de begroting                       | 2026-02-01
+
+# Stucwerk, dit is arbeid inclusief materiaal, geen inkoopprijs
+stucwerk         | 20,00 | m2 wand, V. van Oijen Stukadoorsbedrijf, Eerste Oude Heselaan 88 | 2026-03-11
+stucwerk_plafond | 25,00 | m2 plafond, zelfde werk                                          | 2026-03-11
+hoekstrip        | 9,33  | m1, €280 voor 30 meter volgens de opgave; zie de opmerking onder  | 2026-03-11
+
+# Vloer
+vloerplaat | 35,40 | m2, Knauf brioplaten volgens de begroting                | 2026-02-01
+egaline    | 6,33  | m2, 24 zakken a €15,82 voor 60 m2                        | 2026-02-01
+
+# Wat de begroting nog meer noemt en wat niet per m2 gaat: Fill&Finish €30,86
+# per 20 kg, gaasband €6,53 per rol, acrylaatkit €3,54, diepgrond €23,80 per
+# 5 liter, verf €71,90 per 10 liter, schroeven hout €15,90 en €18,49 per doos,
+# gipsschroeven €19,58 per 1000, PUR-schuim €15,28, aluminium tape €7,77,
+# lijm brioplaten €17,81, randisolatiestrook €20,08 per 20 meter, Uniflott
+# €61,03, en de elektra-posten. Die horen bij een projectbegroting en niet bij
+# een prijs per vierkante meter.
+#
+# Opmerking bij de hoekstrips: de opgave noemt 30 meter maal €7, wat €210 zou
+# zijn, maar het bedrag in de opgave en in de facturen is €280. Of het gaat om
+# 40 meter, of om €9,33 per meter. Het totaal klopt wel: 2180 plus 975 plus 280
+# is 3435, en dat is precies de som van de twee termijnen. Vraag de stukadoor
+# welke van de twee getallen goed is voordat we hiermee rekenen.
+#
+# Let op bij de peildatum: de eerste factuur vermeldt 25-2-2025 met vervaldatum
+# 5-3-2025, een jaar voor het werk. Gezien week 9 en week 11 en de tweede
+# factuur van 11-3-2026 is dat vrijwel zeker een typefout en hoort er 2026 te
+# staan. Voor het indexeren is 2026 aangehouden.
+#
+# Prijsverschil tussen bronnen op hetzelfde product, allemaal exclusief btw:
+#   OSB 18 mm: €6,93 per m2 bij Sleiderink, €7,17 bij Hornbach, €7,98 in de
+#   begroting van de aannemer. Gipsplaat 12,5 mm: €4,53 bij Sleiderink tegen
+#   €3,38 in de begroting. Zelf inkopen scheelt dus niet bij elke post.

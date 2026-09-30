@@ -1,0 +1,22 @@
+# Eigen bouwkosten per vierkante meter, uit echte facturen en bonnen.
+# Formaat per regel: post | bedrag per m2 | peildatum | toelichting
+#
+# BEDRAGEN INCLUSIEF BTW. Woningverhuur is vrijgesteld, dus de btw is voor ons
+# geen verrekenbare post maar gewoon kosten. Alleen bij een utiliteitspand kan
+# de btw worden teruggevraagd. Materiaal 21%, arbeid aan een woning ouder dan
+# twee jaar 9%.
+#
+# Regels met een hekje tellen niet mee.
+
+binnenwandisolatie | 161 | 2026-02-01 | Eerste Oude Heselaan 88, 38 m2: aanneemsom Noordermeer €5.213,08 inclusief btw (frame, folies, 100 mm PIR met Rd 4,54, arbeid, afvalcontainer) plus €911,26 aan zelf gekocht plaatmateriaal bij Sleiderink; exclusief het hout van Bouwmaat, dat als aanbetaling zonder specificatie is geboekt
+vloerisolatie      | 39  | 2025-11-20 | Eerste Oude Heselaan 88, 50,4 m2: Knauf Brio vloerelementen 33 mm met lijm en randisolatiestroken, €1.948,00 inclusief btw
+stucwerk           | 22  | 2026-03-11 | Eerste Oude Heselaan 88, V. van Oijen: €20 per m2 wand exclusief, €21,80 inclusief 9% btw; plafond €27,25 inclusief. Twee termijnen samen €3.744,15 inclusief btw over 109 m2 wand en 39 m2 plafond
+
+# Let op bij het gebruik: stucwerk schaalt met het hele woonoppervlak en niet
+# met het geisoleerde geveldeel. Hier is 109 m2 wand gestuukt tegenover 38 m2
+# voorzetwand.
+
+# Nog in te vullen, met dezelfde onderbouwing:
+# verhuurklaar     | ... | ... | wat een pand kost om zonder ingreep te kunnen verhuren
+# dakisolatie      | ... | ... | per m2 dakvlak
+# splitsen-eenheid | ... | ... | per extra zelfstandige eenheid, dus geen bedrag per m2
