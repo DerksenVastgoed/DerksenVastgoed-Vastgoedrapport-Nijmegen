@@ -28,6 +28,17 @@ stucwerk         | 20,00 | m2 wand, V. van Oijen Stukadoorsbedrijf, Eerste Oude 
 stucwerk_plafond | 25,00 | m2 plafond, zelfde werk                                          | 2026-03-11
 hoekstrip        | 9,33  | m1, €280 voor 30 meter volgens de opgave; zie de opmerking onder  | 2026-03-11
 
+# Scheidingswand voor kamers. Hier hoort geluidsisolatie in en geen PIR: PIR is
+# er voor de warmte, glaswol voor het geluid, en die is per m2 veel goedkoper.
+geluidsisolatie | 2,62 | m2, Knauf Acoustifit 40 mm Rd 1,05, €33,93 per pak van 12,96 m2 (isolatiemateriaal.nl) | 2026-09-30
+glaswol_dik     | 7,88 | m2, Knauf Acoustifit 150 mm Rd 4,05, €31,91 per pak van 4,05 m2 (Sleiderink 1000145044; m2 per pak uit het productblad van Knauf) | 2026-01-08
+
+# Wat opvalt als je die twee naast de PIR legt: per eenheid Rd kost glaswol
+# €1,95 per m2 en PIR €5,49. Glaswol is dus bijna drie keer goedkoper per
+# eenheid isolatiewaarde, maar heeft er wel de helft meer dikte voor nodig.
+# Waar ruimte geen probleem is, is glaswol de goedkoopste route naar dezelfde
+# Rd; in een voorzetwand die zo dun mogelijk moet blijven, is PIR dat.
+
 # Vloer
 vloerplaat | 35,40 | m2, Knauf brioplaten volgens de begroting                | 2026-02-01
 egaline    | 6,33  | m2, 24 zakken a €15,82 voor 60 m2                        | 2026-02-01
