@@ -288,6 +288,14 @@ jobs:
           # 22 dagen na de periode, dus dagelijks ophalen is ruim voldoende.
           python woningprijsindex.py || echo "Woningprijsindex overgeslagen"
 
+      - name: Prijzen en transacties COROP Arnhem/Nijmegen
+        continue-on-error: true
+        run: |
+          # Dichter bij onze markt dan het provinciecijfer, en het aantal
+          # transacties zegt iets over de krapte. Landelijk, provincie en COROP
+          # blijven naast elkaar staan; het verschil is zelf een signaal.
+          python corop_prijzen.py --stil || echo "COROP-cijfers overgeslagen"
+
       - name: Kamerverhuurregister bijwerken
         continue-on-error: true
         run: |
@@ -621,6 +629,7 @@ jobs:
             kamerverhuur_objecten.json
             kamerverhuur_per_buurt.json
             woningprijsindex.json
+            corop_prijzen.json
             begroting_nijmegen.json
             verkocht_details.json
             pandgeschiedenis.json
