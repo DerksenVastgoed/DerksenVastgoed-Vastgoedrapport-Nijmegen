@@ -3127,6 +3127,33 @@ die stap nodig. Datzelfde geldt voor de mailstap en de 3D BAG.
 
 ---
 
+## 9u. Het rapport korter, maar niet blind — 30 september 2026
+
+**Mark:** het rapport wordt steeds langer; is het een idee om alleen te tonen
+wat opvalt?
+
+**Ja, met een voorbehoud dat vandaag bewezen is.** We vonden een probleem
+doordat de 3D BAG-controle in geen van beide lijsten stond. Zou het rapport
+alleen problemen tonen, dan was die controle geruisloos verdwenen en had
+niemand iets gemerkt. Alleen problemen tonen is dus wel gevaarlijk; alleen
+veranderingen tonen niet.
+
+**Zo is het nu opgezet.** De onderdelen die goed gaan worden niet meer
+uitgeschreven, alleen geteld; dat scheelt de helft van het rapport. Daarvoor in
+de plaats komt wat er is veranderd sinds de vorige run: een controle die van OK
+naar LET OP ging, een nieuwe controle, en met nadruk een controle die niet meer
+draait. Die laatste regel begint met WEG, want dat is het gevaarlijke geval.
+
+**Staat er niets veranderd, dan zegt hij dat ook**, met de datum van de vorige
+run erbij. Dan weet je in een oogopslag dat er niets nieuws is in plaats van
+dat je twintig regels moet vergelijken.
+
+**Het volledige rapport blijft bestaan** in het digestbestand, met alle
+adviesregels. Dat is er voor als je wilt weten wat je aan een melding moet
+doen; het korte blok is er om te zien of er iets aan de hand is.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

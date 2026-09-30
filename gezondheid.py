@@ -810,7 +810,49 @@ CONTROLES = [
 ]
 
 
-def rapport(kort=False):
+VORIGE_PAD = "gezondheid_vorige.json"
+
+
+def _vorige_stand():
+    """Welke controles er vorige keer waren en hoe ze stonden."""
+    return _json(VORIGE_PAD) or {}
+
+
+def _bewaar_stand(uitkomsten):
+    """De stand van nu bewaren, zodat de volgende run kan vergelijken."""
+    try:
+        with open(VORIGE_PAD, "w", encoding="utf-8") as f:
+            json.dump({"datum": VANDAAG.isoformat(),
+                       "controles": {n: s for n, s, _b, _d in uitkomsten}},
+                      f, ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception:
+        pass
+
+
+def _verschillen(uitkomsten, vorige):
+    """
+    Wat er is veranderd sinds de vorige run.
+
+    Dit is de kern van een korter rapport: je hoeft niet elke regel te lezen,
+    alleen wat anders is dan gisteren. En het vangt het gevaarlijke geval af
+    dat een controle helemaal verdwijnt, zoals de 3D BAG-controle die er
+    vanmiddag uitviel omdat een bestand niet was geuploud.
+    """
+    oud = (vorige or {}).get("controles") or {}
+    nu = {n: s for n, s, _b, _d in uitkomsten}
+    regels = []
+    for naam, status in nu.items():
+        if naam not in oud:
+            regels.append(f"nieuw: {naam} ({status})")
+        elif oud[naam] != status:
+            regels.append(f"{naam}: van {oud[naam]} naar {status}")
+    for naam in oud:
+        if naam not in nu:
+            regels.append(f"WEG: de controle {naam} draait niet meer")
+    return regels
+
+
+def rapport(kort=False, bewaren=False):
     uitkomsten = []
     for naam, functie in CONTROLES:
         try:
@@ -820,6 +862,10 @@ def rapport(kort=False):
         uitkomsten.append((naam, status, bewijs, diagnose))
 
     aantal = {s: sum(1 for u in uitkomsten if u[1] == s) for s in (OK, LET_OP, FOUT)}
+    # Pas bewaren als het korte rapport al is gemaakt, anders vergelijkt de
+    # volgende regel de stand met zichzelf en is er nooit een verschil.
+    if bewaren:
+        _bewaar_stand(uitkomsten)
 
     if kort:
         # De versie om te plakken: alleen wat aandacht vraagt, ingekort, en de
@@ -833,9 +879,21 @@ def rapport(kort=False):
                 r.append(f"[{status}] {naam}: {bewijs}")
                 if diag:
                     r.append(f"   {_kort(diag)}")
+        # De onderdelen die goed gaan niet meer uitschrijven: dat is de helft
+        # van het rapport en je leest het toch niet. Wel het aantal, en wat er
+        # is veranderd sinds de vorige run, want daar zit het nieuws.
         goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
-        if goed:
-            r.append("[OK] " + ", ".join(goed))
+        vorige = _vorige_stand()
+        verschil = _verschillen(uitkomsten, vorige)
+        r.append(f"[OK] {len(goed)} onderdelen, ongewijzigd; het volledige "
+                 f"rapport staat in het digestbestand")
+        if verschil:
+            r.append("")
+            r.append(f"VERANDERD sinds {vorige.get('datum', 'de vorige run')}:")
+            for regel in verschil:
+                r.append(f"  {regel}")
+        elif vorige:
+            r.append(f"Niets veranderd sinds {vorige.get('datum')}.")
 
         # Automatische keuzes altijd tonen, ook als het onderdeel groen is.
         # Juist dan: een automatisch gekozen veld dat verkeerd is, geeft geen
@@ -879,7 +937,7 @@ def main():
     if args.uit:
         os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
         with open(args.uit, "w", encoding="utf-8") as f:
-            f.write(rapport(kort=False) + "\n")
+            f.write(rapport(kort=False, bewaren=True) + "\n")
         print(f"\nVolledig rapport met alle details: {args.uit}")
 
 
