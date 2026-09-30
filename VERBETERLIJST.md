@@ -3036,6 +3036,76 @@ staan als noodgreep, met die waarschuwing erbij in het bestand.
 
 ---
 
+## 9q. Vals alarm bij Pararius — 30 september 2026
+
+Het rapport meldde dat Pararius wel mails stuurt maar dat het script er niets
+uithaalt, met als voorbeeld "St. Stephanusstraat (gemeubileerd, andere markt)".
+Dat voorbeeld is juist het bewijs dat het goed ging: die woning is bewust
+overgeslagen omdat gemeubileerde verhuur een andere markt is.
+
+De controle keek alleen naar het aantal objecten en niet naar het aantal
+bewust overgeslagen mails. Nu slaat hij alleen alarm als er niets uitkwam en er
+ook niets is overgeslagen.
+
+**Twee dingen uit dit rapport die nog open staan:**
+- de COROP-stap leverde niets op; wat er in het logboek van die stap staat,
+  moet eerst bekend zijn voordat ik iets aanpas;
+- de 3D BAG-controle staat in geen van beide lijsten, dus die draait niet mee.
+  Samen met het aantal nooit nagekeken panden, dat van 146 naar 148 ging in
+  plaats van naar nul, wijst dat erop dat niet alle bestanden van gisteravond
+  in de repo staan.
+
+---
+
+## 9r. COROP: de regio werd gevonden, de cijfers niet — 30 september 2026
+
+Het logboek zegt "Geen kwartaalcijfers gevonden". Dat betekent dat de regio wel
+is opgezocht maar dat er geen kwartaalrijen uitkwamen. Twee oorzaken zijn
+mogelijk en ik heb ze allebei afgevangen in plaats van er een te kiezen:
+
+1. **De regiocode met spaties.** Het CBS bewaart codes als "CR12  " met
+   spaties erachter. Een filter op de afgeknipte code kan dan nul rijen
+   opleveren. Levert het filter niets op, dan haalt het script de tabel nu
+   zonder filter op en zoekt het de regio er zelf uit.
+2. **Andere kolomnamen.** De namen eindigen op een volgnummer dat per
+   tabelversie verandert, en het CBS biedt sommige tabellen ook in het Engels
+   aan. Het script zoekt nu op woorden in de kolomnaam, in beide talen, in
+   plaats van op een vaste sleutel.
+
+**En het logboek vertelt voortaan wat de bron wel teruggaf:** hoeveel rijen er
+kwamen, hoeveel daarvan bij Arnhem/Nijmegen horen, en bij niets een voorbeeld
+van de eerste rij met de kolomnamen erin. Dan is de volgende diagnose een
+kwestie van kijken in plaats van opnieuw raden.
+
+---
+
+## 9s. Een paklijst in plaats van een tekstcontrole — 30 september 2026
+
+**Mark:** beide bestanden staan wel in de repo; is werken met versies niet
+beter?
+
+**Mijn versiestap deugde niet.** Die zocht naar een stukje tekst dat ook in
+oudere versies stond, en meldde daarom "nieuwste versie" terwijl dat niet zo
+was. Zo'n controle kan alleen heel oude bestanden herkennen, en precies de
+gevallen waar het om gaat, een versie van een uur eerder, glippen erdoor.
+
+**Nu een paklijst met vingerafdrukken.** versies.json bevat per bestand de
+eerste twaalf tekens van de sha256 op het moment van opleveren. De workflow
+vergelijkt dat bij elke run en meldt per bestand ANDERE VERSIE of ONTBREEKT.
+Daar valt niets aan te interpreteren.
+
+**Belangrijk bij het gebruik:** versies.json hoort altijd mee in dezelfde
+upload als de bestanden waar hij bij hoort. Hij is de pakbon; upload je hem
+niet, dan klopt de vergelijking niet meer.
+
+**Een fout die de test blootlegde, en het is dezelfde als eerder deze week:**
+de map .github viel weg omdat de negeerlijst op tekst vergeleek en ".github"
+het woord ".git" bevat. Nu wordt er op mapnaam vergeleken. Dat is de derde keer
+dat een insluiting toesloeg: studentenhuis op huis, ongemeubileerd op
+gemeubileerd, en nu .github op .git.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
