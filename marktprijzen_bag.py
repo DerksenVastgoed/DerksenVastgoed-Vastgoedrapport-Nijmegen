@@ -4607,9 +4607,24 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
         # staan, maar bepaalt de volgorde niet meer: die zegt of een pand
         # relatief duur staat, niet of je het voor verhuur kunt betalen.
         def _ruimte(paar):
+            """
+            De ruimte tussen richtprijs en vraagprijs, waarop we sorteren.
+
+            Het scenario wordt hier berekend als het er nog niet is. Stond dat
+            alleen in de lus hieronder, dan had bij het sorteren bijna geen
+            pand een scenario en kreeg alles dezelfde waarde; de tabel bleef
+            dan in de volgorde staan waarin de panden toevallig binnenkwamen.
+            """
             w_ = paar[1]
+            if not w_.get("prijs"):
+                return -999
             sc_ = w_.get("_scenario")
-            if not sc_ or not w_.get("prijs"):
+            if not sc_:
+                sc_ = kies_scenario(w_, huur_bk, huur_k, buurt, None,
+                                    per_buurt.get(buurt, []))
+                if sc_:
+                    w_["_scenario"] = sc_
+            if not sc_:
                 return -999
             p_ = richtprijs_van(w_, sc_)
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else -999

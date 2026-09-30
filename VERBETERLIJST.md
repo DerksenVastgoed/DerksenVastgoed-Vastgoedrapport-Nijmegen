@@ -3177,6 +3177,35 @@ na deze aanpassing is die melding weer betekenisvol in plaats van ruis.
 
 ---
 
+## 9w. De tabellen stonden niet meer op volgorde — 30 september 2026
+
+In de brief van 30 september staat Achter de Bank met +5% op plek veertien van
+Stadscentrum, terwijl dat de enige positieve is. De tabellen waren dus niet
+gesorteerd op richtprijs ten opzichte van vraagprijs, zoals er onder de tabel
+staat, maar stonden in de volgorde waarin de panden binnenkwamen.
+
+**Oorzaak:** de sorteerfunctie kijkt naar het scenario van een pand, en dat
+wordt pas berekend in de lus die de tabelregels schrijft. Bij het sorteren had
+bijna geen pand een scenario, dus kreeg alles dezelfde waarde en bleef de
+oorspronkelijke volgorde staan.
+
+**Hersteld** door het scenario in de sorteerfunctie te berekenen als het er nog
+niet is, en het daarna te bewaren zodat de lus eronder het hergebruikt en er
+geen dubbel werk ontstaat.
+
+**Eerlijk over de test:** de volledige bijlagetabel krijg ik in een
+testopstelling niet gereproduceerd, dus deze fix is nagekeken maar niet
+end-to-end getest. In de eerstvolgende brief moet de eerste regel van elke
+buurttabel het hoogste percentage hebben.
+
+**Twee kleinere dingen uit dezelfde brief.** Er staat "Gelderland 5,6% per
+kwartaal", terwijl dat een jaarcijfer is; eerdere brieven schreven het wel
+goed, dus dat is een uitglijder van het model en geen rekenfout. En de laatste
+kolom van de laatste regel van elke tabel viel bij het overnemen weg; dat is
+een plakartefact en geen fout in de brief.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
