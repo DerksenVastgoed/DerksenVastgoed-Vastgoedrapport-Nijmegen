@@ -7,6 +7,11 @@
 # twee jaar 9%.
 #
 # Regels met een hekje tellen niet mee.
+#
+# Ventilatie hoort bij isoleren en zit daarom in het verduurzamingstarief.
+# Luchtdicht maken zonder ventilatie levert vocht en schimmel op, en een
+# CO2-gestuurd systeem telt ook mee in de labelberekening. Bij de Eerste Oude
+# Heselaan was dat €3.327,50 inclusief btw, een vijfde van de hele ingreep.
 
 binnenwandisolatie | 161 | 2026-02-01 | Eerste Oude Heselaan 88, 38 m2: aanneemsom Noordermeer €5.213,08 inclusief btw (frame, folies, 100 mm PIR met Rd 4,54, arbeid, afvalcontainer) plus €911,26 aan zelf gekocht plaatmateriaal bij Sleiderink; exclusief het hout van Bouwmaat, dat als aanbetaling zonder specificatie is geboekt
 vloerisolatie      | 39  | 2025-11-20 | Eerste Oude Heselaan 88, 50,4 m2: Knauf Brio vloerelementen 33 mm met lijm en randisolatiestroken, €1.948,00 inclusief btw
@@ -16,9 +21,9 @@ stucwerk           | 22  | 2026-03-11 | Eerste Oude Heselaan 88, V. van Oijen: �
 # met het geisoleerde geveldeel. Hier is 109 m2 wand gestuukt tegenover 38 m2
 # voorzetwand.
 
-verduurzaming-f | 227 | 2026-03-11 | Eerste Oude Heselaan 88, 58 m2 volgens de BAG: van label F of E naar A voor €13.150,86 inclusief btw. Daarin zitten gevelisolatie aan de binnenzijde over 38 m2, vloerisolatie over 50,4 m2, en stucwerk over 109 m2 wand en 39 m2 plafond. Een sprong naar A is de zwaarste ingreep; voor een kleiner labelverschil is dit tarief te hoog.
+verduurzaming-f | 284 | 2026-06-05 | Eerste Oude Heselaan 88, 58 m2 volgens de BAG: van label F of E naar A voor €16.478,36 inclusief btw. Daarin zitten gevelisolatie aan de binnenzijde over 38 m2, vloerisolatie over 50,4 m2, stucwerk over 109 m2 wand en 39 m2 plafond, en een Duco ventilatiesysteem met CO2-sensoren. Een sprong naar A is de zwaarste ingreep; voor een kleiner labelverschil is dit tarief te hoog.
 
-verduurzaming-e | 227 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pand had label F of E en het is niet vast te stellen welke van de twee
+verduurzaming-e | 284 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pand had label F of E en het is niet vast te stellen welke van de twee
 
 # LET OP: de brief leest alleen de posten verduurzaming, verhuurklaar en
 # splitsen-eenheid, en rekent die per m2 woonoppervlak. De posten hierboven
