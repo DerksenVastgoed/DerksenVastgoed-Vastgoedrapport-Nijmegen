@@ -1,25 +1,43 @@
 {
  "achterdebank4": {
   "adres": "Achter de Bank 4",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 375000,
   "status": "te koop"
  },
  "arsenaalplaats6": {
   "adres": "Arsenaalplaats 6",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 499000,
   "status": "te koop"
  },
  "beijensstraat18": {
   "adres": "Beijensstraat 18",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 419000,
+  "status": "onder bod"
+ },
+ "beijensstraat4a": {
+  "adres": "Beijensstraat 4-A",
+  "laatst": "2026-09-30",
+  "prijs": 275000,
+  "status": "onder bod"
+ },
+ "beijensstraat68": {
+  "adres": "Beijensstraat 68",
+  "laatst": "2026-09-30",
+  "prijs": 539000,
   "status": "te koop"
+ },
+ "beijensstraat80": {
+  "adres": "Beijensstraat 80",
+  "laatst": "2026-09-30",
+  "prijs": 575000,
+  "status": "onder bod"
  },
  "bloemerstraat107": {
   "adres": "Bloemerstraat 107",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 336500,
   "status": "te koop"
  },
@@ -31,19 +49,19 @@
  },
  "bottelstraat19": {
   "adres": "Bottelstraat 19",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 395000,
   "status": "te koop"
  },
  "braamhof4": {
   "adres": "Braamhof 4",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 525000,
   "status": "te koop"
  },
  "burghustinxstraat208": {
   "adres": "Burg. Hustinxstraat 208",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 300000,
   "status": "te koop"
  },
@@ -53,33 +71,51 @@
   "prijs": 295000,
   "status": "te koop"
  },
+ "burghustinxstraat46": {
+  "adres": "Burg. Hustinxstraat 46",
+  "laatst": "2026-09-30",
+  "prijs": 425000,
+  "status": "te koop"
+ },
  "burghustinxstraat56": {
   "adres": "Burg. Hustinxstraat 56",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 415000,
   "status": "te koop"
  },
  "castellastraat15": {
   "adres": "Castellastraat 15",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 549000,
+  "status": "te koop"
+ },
+ "castellastraat16": {
+  "adres": "Castellastraat 16",
+  "laatst": "2026-09-30",
+  "prijs": 395000,
   "status": "te koop"
  },
  "daalseweg58": {
   "adres": "Daalseweg 58",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 215000,
   "status": "te koop"
  },
  "delistraat20": {
   "adres": "Delistraat 20",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 425000,
+  "status": "te koop"
+ },
+ "delistraat55": {
+  "adres": "Delistraat 55",
+  "laatst": "2026-09-30",
+  "prijs": 565000,
   "status": "te koop"
  },
  "derdewalstraat108": {
   "adres": "Derde Walstraat 108",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 225000,
   "status": "te koop"
  },
@@ -91,21 +127,27 @@
  },
  "deruyterstraat37": {
   "adres": "de Ruyterstraat 37",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 450000,
   "status": "te koop"
  },
  "dikkeboomweg36": {
   "adres": "Dikkeboomweg 36",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 450000,
   "status": "te koop"
  },
  "doddendaal101": {
   "adres": "Doddendaal 101",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 1150000,
   "status": "te koop"
+ },
+ "doddendaal117": {
+  "adres": "Doddendaal 117",
+  "laatst": "2026-09-30",
+  "prijs": 500000,
+  "status": "onder bod"
  },
  "dokstraat127": {
   "adres": "Dokstraat 127",
@@ -115,19 +157,25 @@
  },
  "dokstraat425": {
   "adres": "Dokstraat 425",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 595000,
-  "status": "te koop"
+  "status": "onder bod"
  },
  "dominicanenstraat30": {
   "adres": "Dominicanenstraat 30",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 735000,
+  "status": "te koop"
+ },
+ "eersteoudeheselaan170": {
+  "adres": "Eerste Oude Heselaan 170",
+  "laatst": "2026-09-30",
+  "prijs": 250000,
   "status": "te koop"
  },
  "eerstewalstraat3b": {
   "adres": "Eerste Walstraat 3B",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 195000,
   "status": "te koop"
  },
@@ -137,105 +185,153 @@
   "prijs": 325000,
   "status": "te koop"
  },
+ "fransestraat38": {
+  "adres": "Fransestraat 38",
+  "laatst": "2026-09-30",
+  "prijs": 1025000,
+  "status": "onder bod"
+ },
  "ganzenheuvel50": {
   "adres": "Ganzenheuvel 50",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 375000,
   "status": "te koop"
  },
  "graadtvanroggenstraat143": {
   "adres": "Graadt van Roggenstraat 143",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 585000,
   "status": "te koop"
  },
  "graafseweg47k": {
   "adres": "Graafseweg 47K",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 375000,
   "status": "te koop"
  },
+ "groesbeeksedwarsweg99": {
+  "adres": "Groesbeeksedwarsweg 99",
+  "laatst": "2026-09-30",
+  "prijs": 495000,
+  "status": "onder bod"
+ },
  "groesbeekseweg103d": {
   "adres": "Groesbeekseweg 103D",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 235000,
   "status": "te koop"
  },
+ "groesbeekseweg85": {
+  "adres": "Groesbeekseweg 85",
+  "laatst": "2026-09-30",
+  "prijs": 1150000,
+  "status": "onder bod"
+ },
  "guldenwagengas1": {
   "adres": "Gulden Wagengas 1",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 315000,
   "status": "te koop"
  },
  "havenweg34": {
   "adres": "Havenweg 34",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 825000,
   "status": "te koop"
  },
  "havenweg70": {
   "adres": "Havenweg 70",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 690000,
   "status": "onder bod"
  },
  "hofdijkstraat17": {
   "adres": "Hofdijkstraat 17",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 635000,
+  "status": "te koop"
+ },
+ "houtstraat31": {
+  "adres": "Houtstraat 31",
+  "laatst": "2026-09-30",
+  "prijs": 325000,
   "status": "te koop"
  },
  "indebetouwstraat35": {
   "adres": "In de Betouwstraat 35",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 429000,
   "status": "te koop"
  },
  "indebetouwstraat37": {
   "adres": "In de Betouwstraat 37",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 369000,
   "status": "te koop"
  },
  "jacobcanisstraat51": {
   "adres": "Jacob Canisstraat 51",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 565000,
   "status": "te koop"
  },
+ "jandewittstraat6": {
+  "adres": "Jan de Wittstraat 6",
+  "laatst": "2026-09-30",
+  "prijs": 195000,
+  "status": "onder bod"
+ },
  "johannesvijghstraat6": {
   "adres": "Johannes Vijghstraat 6",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 280000,
+  "status": "te koop"
+ },
+ "kaapstander264": {
+  "adres": "Kaapstander 264",
+  "laatst": "2026-09-30",
+  "prijs": 1215000,
   "status": "te koop"
  },
  "koningstraat4": {
   "adres": "Koningstraat 4",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 850000,
   "status": "belegging"
  },
  "korhoenstraat4": {
   "adres": "Korhoenstraat 4",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 650000,
   "status": "te koop"
  },
  "krayenhofflaan104": {
   "adres": "Krayenhofflaan 104",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 575000,
   "status": "te koop"
  },
+ "krayenhofflaan47": {
+  "adres": "Krayenhofflaan 47",
+  "laatst": "2026-09-30",
+  "prijs": 439000,
+  "status": "onder bod"
+ },
+ "lagemarkt21": {
+  "adres": "Lage Markt 21",
+  "laatst": "2026-09-30",
+  "prijs": 450000,
+  "status": "onder bod"
+ },
  "marialaan111": {
   "adres": "Marialaan 111",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 335000,
   "status": "te koop"
  },
  "marialaan56": {
   "adres": "Marialaan 56",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 450000,
   "status": "te koop"
  },
@@ -245,27 +341,39 @@
   "prijs": 629000,
   "status": "te koop"
  },
+ "marinburg88d": {
+  "adres": "Mariënburg 88-D",
+  "laatst": "2026-09-30",
+  "prijs": 535000,
+  "status": "onder bod"
+ },
+ "molukkenstraat14": {
+  "adres": "Molukkenstraat 14",
+  "laatst": "2026-09-30",
+  "prijs": 469000,
+  "status": "onder bod"
+ },
  "molukkenstraat168": {
   "adres": "Molukkenstraat 168",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 400000,
   "status": "te koop"
  },
  "mrfranckenstraat46": {
   "adres": "Mr. Franckenstraat 46",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 385000,
   "status": "te koop"
  },
  "mrfranckenstraat6": {
   "adres": "Mr. Franckenstraat 6",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 375000,
   "status": "te koop"
  },
  "nieuwemarkt90": {
   "adres": "Nieuwe Markt 90",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 575000,
   "status": "te koop"
  },
@@ -277,33 +385,45 @@
  },
  "nieuwenonnendaalseweg107": {
   "adres": "Nieuwe Nonnendaalseweg 107",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 549000,
+  "status": "te koop"
+ },
+ "ninasimonestraat140": {
+  "adres": "Nina Simonestraat 140",
+  "laatst": "2026-09-30",
+  "prijs": 649000,
   "status": "te koop"
  },
  "oranjesingel59": {
   "adres": "Oranjesingel 59",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 795000,
   "status": "te koop"
  },
  "oudekoningstraat28": {
   "adres": "Oude Koningstraat 28",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 325000,
   "status": "te koop"
  },
  "palembangstraat44": {
   "adres": "Palembangstraat 44",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 399000,
   "status": "te koop"
  },
  "patrijsstraat48": {
   "adres": "Patrijsstraat 48",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 385000,
   "status": "te koop"
+ },
+ "plein1944129": {
+  "adres": "Plein 1944 129",
+  "laatst": "2026-09-30",
+  "prijs": 425000,
+  "status": "onder bod"
  },
  "plein194486b": {
   "adres": "Plein 1944 86B",
@@ -313,45 +433,51 @@
  },
  "pluvierstraat21": {
   "adres": "Pluvierstraat 21",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 319000,
   "status": "te koop"
  },
  "pontanusstraat19": {
   "adres": "Pontanusstraat 19",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 539000,
-  "status": "te koop"
+  "status": "onder bod"
  },
  "pontanusstraat40": {
   "adres": "Pontanusstraat 40",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 599000,
   "status": "te koop"
  },
  "professorcornelissenstraat3": {
   "adres": "Professor Cornelissenstraat 3",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 370000,
   "status": "te koop"
  },
  "profmolkenboerstraat30": {
   "adres": "Prof. Molkenboerstraat 30",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 429000,
   "status": "te koop"
  },
  "profregoutstraat1b": {
   "adres": "Prof Regoutstraat 1B",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 235000,
   "status": "te koop"
  },
  "scholenhof8": {
   "adres": "Scholenhof 8",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 550000,
-  "status": "te koop"
+  "status": "onder bod"
+ },
+ "schoolstraat135": {
+  "adres": "Schoolstraat 135",
+  "laatst": "2026-09-30",
+  "prijs": 405000,
+  "status": "onder bod"
  },
  "smetiusstraat4d": {
   "adres": "Smetiusstraat 4D",
@@ -359,123 +485,147 @@
   "prijs": 225000,
   "status": "te koop"
  },
+ "stannastraat165b": {
+  "adres": "St. Annastraat 165-B",
+  "laatst": "2026-09-30",
+  "prijs": 385000,
+  "status": "onder bod"
+ },
+ "stannastraat165e": {
+  "adres": "St. Annastraat 165-E",
+  "laatst": "2026-09-30",
+  "prijs": 395000,
+  "status": "onder bod"
+ },
  "stannastraat28": {
   "adres": "St. Annastraat 28",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 1695000,
   "status": "belegging"
  },
  "stannastraat96": {
   "adres": "St. Annastraat 96",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 750000,
   "status": "te koop"
  },
  "staringstraat21": {
   "adres": "Staringstraat 21",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 299000,
   "status": "te koop"
  },
  "stieltjesstraat10": {
   "adres": "Stieltjesstraat 10",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 539000,
   "status": "te koop"
  },
  "stikkehezelstraat53": {
   "adres": "Stikke Hezelstraat 53",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 325000,
   "status": "te koop"
  },
+ "ststephanusstraat13": {
+  "adres": "St. Stephanusstraat 13",
+  "laatst": "2026-09-30",
+  "prijs": 625000,
+  "status": "onder bod"
+ },
  "ubbergseveldweg17": {
   "adres": "Ubbergseveldweg 17",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 825000,
+  "status": "te koop"
+ },
+ "vandulckenstraat47": {
+  "adres": "van Dulckenstraat 47",
+  "laatst": "2026-09-30",
+  "prijs": 945000,
   "status": "te koop"
  },
  "vangoorstraat91": {
   "adres": "van Goorstraat 91",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 410000,
   "status": "te koop"
  },
  "vanslichtenhorststraat100": {
   "adres": "van Slichtenhorststraat 100",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 630000,
   "status": "te koop"
  },
  "vanslichtenhorststraat42": {
   "adres": "van Slichtenhorststraat 42",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 645000,
   "status": "te koop"
  },
  "vanwelderenstraat5": {
   "adres": "van Welderenstraat 5",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 500000,
   "status": "belegging"
  },
  "vanwelderenstraat89": {
   "adres": "van Welderenstraat 89",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 934000,
   "status": "belegging"
  },
  "veemarkt213": {
   "adres": "Veemarkt 213",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 370000,
   "status": "te koop"
  },
  "voorstadslaan121": {
   "adres": "Voorstadslaan 121",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 550000,
   "status": "te koop"
  },
  "voorstadslaan63": {
   "adres": "Voorstadslaan 63",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 585000,
   "status": "te koop"
  },
  "waalbandijk479": {
   "adres": "Waalbandijk 479",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 625000,
   "status": "te koop"
  },
  "ziekerstraat10d": {
   "adres": "Ziekerstraat 10D",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 179500,
   "status": "nieuw"
  },
  "ziekerstraat36": {
   "adres": "Ziekerstraat 36",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 339000,
   "status": "te koop"
  },
  "ziekerstraat5": {
   "adres": "Ziekerstraat 5",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 450000,
   "status": "belegging"
  },
  "zwaluwstraat175": {
   "adres": "Zwaluwstraat 175",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 349500,
-  "status": "te koop"
+  "status": "onder bod"
  },
  "zwaluwstraat7": {
   "adres": "Zwaluwstraat 7",
-  "laatst": "2026-09-28",
+  "laatst": "2026-09-30",
   "prijs": 335000,
   "status": "te koop"
  }

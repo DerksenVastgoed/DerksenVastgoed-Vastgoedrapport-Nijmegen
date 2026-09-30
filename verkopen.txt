@@ -858,3 +858,7 @@ de Voorstenkamp | Nijmegen | 990 | te huur | 2026-09-29 | kamernet-incl | 30 |
 # Automatisch toegevoegd uit Funda-attendering op 29-09-2026
 Hatertseveldweg | Nijmegen | 2000 | te huur | 2026-09-29 | kamernet-incl | 60 | 
 Hatertseveldweg | Nijmegen | 950 | te huur | 2026-09-29 | kamernet-incl | 60 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 30-09-2026
+Nina Simonestraat 140 | Nijmegen | 649000 | te koop | 2026-09-30 |  | 126 | 6541ED
+Castellastraat 16 | Nijmegen | 395000 | te koop | 2026-09-30 |  | 49 | 6512EX

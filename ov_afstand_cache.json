@@ -279,6 +279,14 @@
   "omweg": 1.12,
   "soort": "bus"
  },
+ "51.83883,5.85306": {
+  "geschat": false,
+  "hemelsbreed": 334,
+  "meters": 362,
+  "naam": "Spoorkuil",
+  "omweg": 1.08,
+  "soort": "bus"
+ },
  "51.83895,5.86167": {
   "geschat": false,
   "hemelsbreed": 155,
@@ -957,6 +965,14 @@
   "meters": 742,
   "naam": "Waalkade",
   "omweg": 5.26,
+  "soort": "bus"
+ },
+ "51.84960,5.85023": {
+  "geschat": false,
+  "hemelsbreed": 113,
+  "meters": 124,
+  "naam": "Havenweg",
+  "omweg": 1.1,
   "soort": "bus"
  },
  "51.84964,5.86245": {

@@ -13430,6 +13430,18 @@
   ],
   "pand_id": null
  },
+ "castellastraat16": {
+  "adres": "Castellastraat 16",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-30",
+    "soort": "te koop",
+    "tekst": "te koop voor €395.000, 49 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "castellastraat42": {
   "adres": "Castellastraat 42",
   "bag_eenheden": [
@@ -38102,6 +38114,12 @@
     "datum": "2026-08-28",
     "soort": "bekendmaking",
     "tekst": "Aanvraag vergunning tijdelijke verhuur voor de woonruimte aan Jupiterstraat 5, 6543XG Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-30",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Jupiterstraat 5, 6543XG Nijmegen"
    }
   ],
   "pand_id": "0268100000017572"
@@ -62467,6 +62485,18 @@
  "ninasimonestraat124": {
   "adres": "Nina Simonestraat 124",
   "gebeurtenissen": [],
+  "pand_id": null
+ },
+ "ninasimonestraat140": {
+  "adres": "Nina Simonestraat 140",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-30",
+    "soort": "te koop",
+    "tekst": "te koop voor €649.000, 126 m2"
+   }
+  ],
   "pand_id": null
  },
  "ninasimonestraat28": {
@@ -100259,6 +100289,18 @@
   ],
   "pand_id": "0268100000020419"
  },
+ "voorstadslaan211": {
+  "adres": "Voorstadslaan 211",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-30",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "voorstadslaan213": {
   "adres": "Voorstadslaan 213",
   "bag_eenheden": [
@@ -106198,6 +106240,18 @@
    }
   ],
   "pand_id": "0268100000010168"
+ },
+ "wulpstraat11": {
+  "adres": "Wulpstraat 11",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-30",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel en het isoleren van de zolder, aan Wulpstraat 11, 6542TR Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "zellersacker2034": {
   "adres": "Zellersacker 2034",

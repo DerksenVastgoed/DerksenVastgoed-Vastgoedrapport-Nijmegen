@@ -1,26 +1,28 @@
 {
- "datum": "2026-09-29",
+ "datum": "2026-09-30",
  "bronnen": {
-  "pararius": {
-   "mails": 1,
-   "objecten": 3,
-   "overgeslagen": 0,
-   "redenen": []
-  },
   "regulier": {
    "mails": 3,
-   "objecten": 10,
+   "objecten": 6,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 20,
-   "objecten": 17,
+   "mails": 18,
+   "objecten": 15,
    "overgeslagen": 3,
    "redenen": [
     "Grotestraat, Cuijk: buiten Nijmegen",
     "Keurvorststraat, Molenhoek: buiten Nijmegen",
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen"
+   ]
+  },
+  "pararius": {
+   "mails": 1,
+   "objecten": 0,
+   "overgeslagen": 1,
+   "redenen": [
+    "St. Stephanusstraat (gemeubileerd, andere markt)"
    ]
   }
  },

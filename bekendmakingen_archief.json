@@ -2220,6 +2220,14 @@
  ],
  "jupiterstraat5": [
   {
+   "datum": "2026-09-30",
+   "soorten": [
+    "tijdelijke verhuur"
+   ],
+   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Jupiterstraat 5, 6543XG Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-456271/1/html/gmb-2026-456271.html"
+  },
+  {
    "datum": "2026-08-28",
    "soorten": [
     "tijdelijke verhuur"
@@ -4038,6 +4046,16 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-107708/1/html/gmb-2026-107708.html"
   }
  ],
+ "voorstadslaan211": [
+  {
+   "datum": "2026-09-30",
+   "soorten": [
+    "tijdelijke verhuur"
+   ],
+   "titel": "Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-456410/1/html/gmb-2026-456410.html"
+  }
+ ],
  "voorstadslaan213": [
   {
    "datum": "2025-08-15",
@@ -4331,6 +4349,16 @@
    ],
    "titel": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning , aan Wolfstraat 60, 6531LN Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2025/gmb-2025-545828/1/html/gmb-2025-545828.html"
+  }
+ ],
+ "wulpstraat11": [
+  {
+   "datum": "2026-09-30",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel en het isoleren van de zolder, aan Wulpstraat 11, 6542TR Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-456931/1/html/gmb-2026-456931.html"
   }
  ],
  "zwanenveld7318": [

@@ -70499,5 +70499,519 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Nina Simonestraat 140|Nijmegen": {
+    "oppervlakte": 126,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ED",
+    "adresseerbaarObjectIdentificatie": "0268010000047120",
+    "pand": "0268100000010925",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-fa371f176fc31febaadc33d439c526c8",
+    "eenheden_in_pand": [
+      {
+        "adres": "Nina Simonestraat 26",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 28",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 30",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 32",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 34",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 36",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 38",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 40",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 42",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 44",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 46",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 48",
+        "oppervlakte": 78,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 50",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 52",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 54",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 56",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 58",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 60",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 62",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 64",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 66",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 68",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 70",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 72",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 74",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 76",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 78",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 96",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 98",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 100",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 126,
+    "energielabel": {
+      "label": "A+",
+      "registratiedatum": "2026-09-25",
+      "geldig_tot": "2036-09-23",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Castellastraat 16|Nijmegen": {
+    "oppervlakte": 49,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EX",
+    "adresseerbaarObjectIdentificatie": "0268010000082166",
+    "pand": "0268100000026684",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-abed82d8554a61b2d7c58d35560a5053",
+    "eenheden_in_pand": [
+      {
+        "adres": "Castellastraat 1",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 2",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 3",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 4",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 5",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 6",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 7",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 8",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 9",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 10",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 11",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 12",
+        "oppervlakte": 104,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 13",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 14",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 15",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 16",
+        "oppervlakte": 57,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 17",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 18",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 19",
+        "oppervlakte": 57,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 20",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 21",
+        "oppervlakte": 109,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 22",
+        "oppervlakte": 107,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 23",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 24",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 25",
+        "oppervlakte": 95,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Castellastraat 27",
+        "oppervlakte": 155,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 57,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2022-07-29",
+      "geldig_tot": "2032-07-26",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "bm:Van Haapsstraat 13|Nijmegen": {
+    "postcode": "6525CA",
+    "buurtnaam": "Groenewoud",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-56642d8b767f68ea8e193674a553099b"
+  },
+  "bm:Voorstadslaan 211|Nijmegen": {
+    "postcode": "6541SN",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-20baf8418b7443f9c7ad7eceb0e75a24"
+  },
+  "bm:St. Annastraat 456|Nijmegen": {
+    "postcode": "6525ZP",
+    "buurtnaam": "Hatertse Hei",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-baf36f19977991cf5169f6ccfa5ff572"
   }
 }
