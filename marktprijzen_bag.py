@@ -1382,6 +1382,25 @@ def _herkomst_verbouwing(uit):
     return "Herkomst: " + "; ".join(delen) + ". " + staart
 
 
+def _eigen_geindexeerd(post):
+    """
+    Een eigen bedrag, geindexeerd vanaf de peildatum die erbij staat.
+
+    De RVO-kentallen hebben peildatum mei 2025 en worden vanaf daar bijgewerkt.
+    Een eigen factuur van maart 2026 mag die correctie niet ook krijgen, want
+    dan telt bijna een jaar prijsstijging dubbel.
+    """
+    bedrag = post.get("per_m2")
+    peil = (post.get("peildatum") or "")[:7]
+    if not bedrag or not peil or not indexfactor:
+        return bedrag
+    try:
+        info = indexfactor(vanaf=peil)
+        return bedrag * info["factor"] if info.get("geindexeerd") else bedrag
+    except Exception:
+        return bedrag
+
+
 def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     """
     Geschatte verbouwkosten: verduurzaming plus verhuurklaar maken, inclusief
@@ -1399,7 +1418,10 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     tarief_d = None
     for sleutel in (f"verduurzaming-{letter.lower()}", "verduurzaming"):
         if sleutel in eigen:
-            tarief_d = eigen[sleutel]["per_m2"]
+            # Een eigen cijfer wordt geindexeerd vanaf zijn eigen peildatum en
+            # niet vanaf die van de RVO-kentallen. Anders komt er een correctie
+            # van een jaar overheen op een bedrag van vorige maand.
+            tarief_d = _eigen_geindexeerd(eigen[sleutel])
             gebruikt_eigen["verduurzaming"] = eigen[sleutel]
             break
     if tarief_d is None:
@@ -1407,7 +1429,7 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
 
     tarief_k = None
     if "verhuurklaar" in eigen:
-        tarief_k = eigen["verhuurklaar"]["per_m2"]
+        tarief_k = _eigen_geindexeerd(eigen["verhuurklaar"])
         gebruikt_eigen["verhuurklaar"] = eigen["verhuurklaar"]
     if tarief_k is None:
         tarief_k = VERHUURKLAAR_PER_M2
@@ -1416,9 +1438,16 @@ def renovatiekosten(opp, energielabel=None, uitsplitsen=False):
     klaar = opp * tarief_k
     btw = 1 + BTW_OP_VERBOUWING / 100
 
-    # Indexeren naar nu, want de kentallen hebben peildatum mei 2025
+    # Indexeren naar nu, want de kentallen hebben peildatum mei 2025. Eigen
+    # cijfers zijn hierboven al vanaf hun eigen peildatum geindexeerd en hebben
+    # de btw al in het bedrag zitten; die krijgen hier dus geen correctie meer,
+    # anders telt bijna een jaar prijsstijging en 21% btw dubbel.
     idx = _bouwkostenfactor()
     f = idx.get("factor", 1.0) * btw
+    if "verduurzaming" in gebruikt_eigen:
+        duurzaam = duurzaam / f
+    if "verhuurklaar" in gebruikt_eigen:
+        klaar = klaar / f
 
     def afronden(bedrag):
         """

@@ -16,6 +16,21 @@ stucwerk           | 22  | 2026-03-11 | Eerste Oude Heselaan 88, V. van Oijen: â
 # met het geisoleerde geveldeel. Hier is 109 m2 wand gestuukt tegenover 38 m2
 # voorzetwand.
 
+verduurzaming-f | 227 | 2026-03-11 | Eerste Oude Heselaan 88, 58 m2 volgens de BAG: van label F of E naar A voor â‚¬13.150,86 inclusief btw. Daarin zitten gevelisolatie aan de binnenzijde over 38 m2, vloerisolatie over 50,4 m2, en stucwerk over 109 m2 wand en 39 m2 plafond. Een sprong naar A is de zwaarste ingreep; voor een kleiner labelverschil is dit tarief te hoog.
+
+verduurzaming-e | 227 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pand had label F of E en het is niet vast te stellen welke van de twee
+
+# LET OP: de brief leest alleen de posten verduurzaming, verhuurklaar en
+# splitsen-eenheid, en rekent die per m2 woonoppervlak. De posten hierboven
+# staan per m2 bouwdeel en worden dus nog niet gebruikt in de doorrekening.
+#
+#
+# De toevoeging achter verduurzaming is het HUIDIGE label van het pand, niet het
+# label waar je naartoe gaat. Het pand aan de Eerste Oude Heselaan had label F
+# of E, dus staat dit bedrag onder verduurzaming-f en verduurzaming-e. Voor een
+# pand dat al op C staat is de ingreep kleiner en geldt het kental van de RVO,
+# tot we daar ook een eigen factuur van hebben.
+
 # Nog in te vullen, met dezelfde onderbouwing:
 # verhuurklaar     | ... | ... | wat een pand kost om zonder ingreep te kunnen verhuren
 # dakisolatie      | ... | ... | per m2 dakvlak
