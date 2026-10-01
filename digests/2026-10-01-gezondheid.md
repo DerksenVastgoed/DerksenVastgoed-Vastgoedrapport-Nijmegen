@@ -3,21 +3,20 @@
 27 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
+- **Versies**: de versies.py in de repo is een oudere versie
+  Upload versies.py opnieuw; de huidige kent de functie controleer niet.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
 - **WOZ-schatting**: geijkt op 22 panden: correctie 1.041 (4% stelselmatig), spreiding ±23.9%; kenmerken uit 23 straten en 7 buurten
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
-- **Nieuwe onderwerpen**: 2 voorgestelde onderwerpen, 0 gevolgd: wet op belastingen van; regeling noodfonds blokverwarming gemeente
-  Deze komen terug in het nieuws en hebben nog geen achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen bij; het script schrijft die niet zelf, want juridische tekst zonder gecontroleerde bron is precies wat we niet willen.
 - **Logboek van de brief**: nog geen logboek van behandelde onderwerpen
   Vanaf de eerste echte brief wordt hier bijgehouden wat er is verteld en wat bleef liggen. Een testrun schrijft hier niets.
 - **Attenderingen**: laatste ronde 2026-10-01: kamernet: 21 mails, 17 objecten, 4 bewust overgeslagen; pararius: 1 mails, 0 objecten, 1 bewust overgeslagen; regulier: 3 mails, 6 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Versies**: 32 bestanden gelijk aan de paklijst, 0 afwijkend, 0 ontbreekt, 1 niet in de paklijst
 - **Huurdata**: 38 huurwaarnemingen, waarvan 16 Pararius en 22 Kamernet; 26 in de laatste week
 - **Aanbod**: 88 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -35,8 +34,9 @@
 - **Opnieuw aangeboden**: 3 adressen vaker aangeboden: 0 voor minder, 3 voor meer
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
-- **3D BAG eigen snapshot**: 894 panden in de eigen snapshot, 894 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-01
+- **3D BAG eigen snapshot**: 1168 panden in de eigen snapshot, 1168 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-01
 - **Achtergronddekking**: 28 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 140 panden gerouteerd
