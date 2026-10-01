@@ -1,21 +1,21 @@
 {
- "datum": "2026-09-30",
+ "datum": "2026-10-01",
  "bronnen": {
+  "kamernet": {
+   "mails": 17,
+   "objecten": 14,
+   "overgeslagen": 3,
+   "redenen": [
+    "Keurvorststraat, Molenhoek: buiten Nijmegen",
+    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
+    "Hegdambroek: €5 per maand is niet aannemelijk"
+   ]
+  },
   "regulier": {
    "mails": 3,
    "objecten": 6,
    "overgeslagen": 0,
    "redenen": []
-  },
-  "kamernet": {
-   "mails": 19,
-   "objecten": 16,
-   "overgeslagen": 3,
-   "redenen": [
-    "Grotestraat, Cuijk: buiten Nijmegen",
-    "Keurvorststraat, Molenhoek: buiten Nijmegen",
-    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen"
-   ]
   },
   "pararius": {
    "mails": 1,
@@ -26,5 +26,6 @@
    ]
   }
  },
- "opmerking": ""
+ "opmerking": "",
+ "kandidaten": {}
 }

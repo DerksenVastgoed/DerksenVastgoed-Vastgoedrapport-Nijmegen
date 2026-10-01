@@ -2,7 +2,7 @@
  "jaar": 2027,
  "basis": "https://nijmegen.begroting-2027.nl",
  "gebouwd": "09/22/2026 13:24:10",
- "opgehaald": "2026-09-24",
+ "opgehaald": "2026-10-01",
  "paginas": {
   "Wonen en stedelijke ontwikkeling": {
    "url": "https://nijmegen.begroting-2027.nl/p64119/wonen-en-stedelijke-ontwikkeling",
@@ -37,5 +37,6 @@
     "We zijn een stad met gemengde wijken en een gevarieerd woningaanbod dat aansluit bij de vraag van alle nieuwe en bestaande bewoners Doelen * We realiseren onze woningbouwopgave uit de omgevingsvisie en het woonbeleid * We hebben voldoende beschikbaar aanbod van betaalbare woonruimten * We hebben voldoende goede woonruimte voor aandachtsgroepen, waaronder ouderen en studenten."
    ]
   }
- }
+ },
+ "tarieven": {}
 }

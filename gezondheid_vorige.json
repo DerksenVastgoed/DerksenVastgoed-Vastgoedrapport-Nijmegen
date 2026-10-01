@@ -1,6 +1,6 @@
 {
  "controles": {
-  "3D BAG eigen snapshot": "LET OP",
+  "3D BAG eigen snapshot": "OK",
   "Aanbod": "OK",
   "Achtergronddekking": "OK",
   "Attenderingen": "LET OP",
@@ -20,7 +20,7 @@
   "Kapitaalmarkt (ECB)": "OK",
   "Marktrente": "OK",
   "Misdrijfcijfers": "OK",
-  "Nieuwe onderwerpen": "OK",
+  "Nieuwe onderwerpen": "LET OP",
   "OV-haltes": "OK",
   "Opnieuw aangeboden": "OK",
   "Regelgevingsmonitor": "OK",

@@ -865,3 +865,7 @@ Castellastraat 16 | Nijmegen | 395000 | te koop | 2026-09-30 |  | 49 | 6512EX
 
 # Automatisch toegevoegd uit Funda-attendering op 30-09-2026
 Muntweg | Nijmegen | 835 | te huur kamer | 2026-09-30 | kamernet-incl | 24 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 01-10-2026
+Molukkenstraat 188 | Nijmegen | 398000 | te koop | 2026-10-01 |  | 81 | 6524NK
+van Goorstraat 34 | Nijmegen | 390000 | te koop | 2026-10-01 |  | 102 | 6512ED

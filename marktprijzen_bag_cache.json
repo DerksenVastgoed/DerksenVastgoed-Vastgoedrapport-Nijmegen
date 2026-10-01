@@ -71020,5 +71020,143 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Molukkenstraat 188|Nijmegen": {
+    "oppervlakte": 81,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524NK",
+    "adresseerbaarObjectIdentificatie": "0268010000025829",
+    "pand": "0268100000020175",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-9e0cd4f142e6229644f55167b3a2deb7",
+    "eenheden_in_pand": [
+      {
+        "adres": "Molukkenstraat 182",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 184",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 186",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 188",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 190",
+        "oppervlakte": 71,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 192",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 194",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Molukkenstraat 196",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 83,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2019-06-18",
+      "geldig_tot": "2029-06-18",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "van Goorstraat 34|Nijmegen": {
+    "oppervlakte": 102,
+    "bouwjaar": "1896",
+    "gebruiksdoelen": [
+      "winkelfunctie",
+      "woonfunctie"
+    ],
+    "postcode": "6512ED",
+    "adresseerbaarObjectIdentificatie": "0268010000036808",
+    "pand": "0268100000020910",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-09b566ced42e420d32e4f10ae4992c02",
+    "eenheden_in_pand": [
+      {
+        "adres": "van Goorstraat 32",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Goorstraat 32A",
+        "oppervlakte": 58,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Goorstraat 34",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "winkelfunctie",
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 90,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2020-11-01",
+      "geldig_tot": "2030-11-01",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

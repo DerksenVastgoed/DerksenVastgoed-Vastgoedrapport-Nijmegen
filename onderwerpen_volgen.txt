@@ -1,0 +1,34 @@
+# Onderwerpen die we volgen in het nieuws.
+#
+# Een regel zonder hekje wordt gevolgd: er komt een zoekopdracht
+# voor, en artikelen erover halen de brief. Een regel met een hekje
+# is een voorstel dat het script heeft opgemerkt; haal het hekje weg
+# om hem aan te nemen, of laat hem staan om hem te negeren.
+#
+# Het script voegt alleen onderaan toe en verandert nooit iets aan
+# wat er al staat. Jouw keuzes blijven dus staan.
+
+
+# --- voorgesteld op 2026-10-01 ---
+# besluit gevonden
+# besluit voor vergunning aanvragen
+# besluit voor het renoveren
+# besluit voor het wijzigen
+# besluit voor het verbouwen
+# besluit over kamerverhuur
+# besluit voor het vervangen
+# besluit voor het splitsen
+# verordening wordt periodiek herzien
+# besluit voor geschakelde woning
+# besluit voor het samenvoegen
+# wet op belastingen van
+# besluit voor het omzetten
+# besluit voor verlenging vergunning
+# regeling noodfonds blokverwarming gemeente
+# epbd iv
+# nta 8800
+# besluit voor het verduurzamen
+# wet is geborgd
+# besluit voor het legaliseren
+# besluit voor de omzetting
+# regeling richt zich op

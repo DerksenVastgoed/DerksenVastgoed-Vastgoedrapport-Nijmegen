@@ -63,6 +63,14 @@
   "omweg": 1.02,
   "soort": "bus"
  },
+ "51.83201,5.86255": {
+  "geschat": false,
+  "hemelsbreed": 304,
+  "meters": 742,
+  "naam": "Groenestraat",
+  "omweg": 2.44,
+  "soort": "bus"
+ },
  "51.83214,5.86258": {
   "geschat": false,
   "hemelsbreed": 312,
@@ -269,6 +277,14 @@
   "meters": 504,
   "naam": "Spoorkuil",
   "omweg": 1.31,
+  "soort": "bus"
+ },
+ "51.83870,5.85856": {
+  "geschat": false,
+  "hemelsbreed": 368,
+  "meters": 944,
+  "naam": "Fransestraat",
+  "omweg": 2.57,
   "soort": "bus"
  },
  "51.83870,5.86105": {

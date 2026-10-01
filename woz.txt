@@ -227,3 +227,6 @@ Plein 1944 129 | 371.000 | 2026
 
 # Toegevoegd op 2026-09-29: grensgevallen, vul het bedrag in via wozwaardeloket.nl
 Burg. Hustinxstraat 46 | 410.000 | 2026
+
+# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+Molukkenstraat 188 |  | 2026
