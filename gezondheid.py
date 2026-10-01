@@ -988,6 +988,41 @@ def _verschillen(uitkomsten, vorige):
     return regels
 
 
+def _kerncijfers():
+    """
+    De cijfers die groeien, in een regel.
+
+    Niet elk onderdeel hoeft in het korte blok, maar een teller die oploopt wel:
+    daaraan zie je of de voorraad zich vult of dat er iets stilstaat. Een getal
+    dat niet beweegt is deze week vaker een signaal gebleken dan een melding
+    die oplichtte.
+    """
+    uit = []
+    g = _json("pandgeschiedenis.json") or {}
+    if g:
+        met_bag = sum(1 for p in g.values() if p.get("bag_eenheden"))
+        met_label = sum(1 for p in g.values() if p.get("labels"))
+        nooit = sum(1 for p in g.values() if not p.get("bag_gezien"))
+        uit.append(f"{len(g)} panden, {met_bag} met BAG, {met_label} met label, "
+                   f"{nooit} nog niet nagekeken")
+    b3 = (_json("bag3d.json") or {}).get("panden") or {}
+    if b3:
+        met = sum(1 for p in b3.values() if p.get("b3_opp_buitenmuur"))
+        uit.append(f"3D BAG: {met} van {len(b3)}")
+    try:
+        huur = sum(1 for regel in open("verkopen.txt", encoding="utf-8")
+                   if "| te huur" in regel)
+        koop = sum(1 for regel in open("verkopen.txt", encoding="utf-8")
+                   if "| verkocht" in regel)
+        uit.append(f"{huur} huurwaarnemingen, {koop} verkopen")
+    except Exception:
+        pass
+    woz = (_json("woz_kalibratie.json") or {}).get("aantal")
+    if woz:
+        uit.append(f"{woz} panden met eigen WOZ")
+    return uit
+
+
 def rapport(kort=False, bewaren=False):
     uitkomsten = []
     for naam, functie in CONTROLES:
@@ -1023,6 +1058,12 @@ def rapport(kort=False, bewaren=False):
         verschil = _verschillen(uitkomsten, vorige) if vorige else []
         r.append(f"[OK] {len(goed)} onderdelen, ongewijzigd; het volledige "
                  f"rapport staat in het digestbestand")
+        # De tellers die ergens naartoe groeien blijven wel zichtbaar, ook als
+        # ze op OK staan. Anders zie je niet meer dat de voorraad zich vult, en
+        # dat is juist wat je week na week wilt volgen.
+        kern = _kerncijfers()
+        if kern:
+            r.append("Stand: " + "; ".join(kern))
         if not vorige:
             # Eerste run met deze vergelijking: dan is alles nieuw en zegt dat
             # niets. Vanaf de volgende run staat hier wat er werkelijk wijzigde.
