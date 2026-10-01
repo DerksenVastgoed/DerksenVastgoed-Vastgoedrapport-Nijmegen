@@ -242,6 +242,18 @@ def al_gedekt(term, titels, trefwoorden):
     for w in trefwoorden:
         if " " in w and w in term:
             return True
+    # En andersom: een enkel kenmerkend woord uit de term dat als trefwoord
+    # bestaat, dekt hem ook. "regeling noodfonds blokverwarming gemeente" bleef
+    # anders als gat staan terwijl er een stuk over het noodfonds is. Woorden
+    # als wet, regeling en gemeente zeggen daarbij niets.
+    algemeen = {"wet", "besluit", "regeling", "verordening", "gemeente",
+                "nijmegen", "van", "de", "het", "op", "voor", "en"}
+    kenmerkend = [w for w in term.split() if w not in algemeen and len(w) > 4]
+    for w in kenmerkend:
+        if w in trefwoorden:
+            return True
+        if any(w in t for t in titels):
+            return True
     return False
 
 
