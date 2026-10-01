@@ -29,7 +29,20 @@ from email.header import decode_header
 IMAP_HOST = "imap.gmail.com"
 VERKOPEN_PAD = "verkopen.txt"
 AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
-             "kamernet.nl", "vendr.nl"]
+             "kamernet.nl", "vendr.nl",
+             # Nog geen parser voor; de mails worden wel geteld zodat we zien
+             # hoe ze eruitzien zodra de attendering aanstaat.
+             "huisly.nl"]
+
+# Platforms waarvan we nog geen parser hebben, maar waar Mark zich wel bij kan
+# hebben aangemeld. We lezen ze niet uit; we tellen alleen of er post van komt.
+# Zo wordt een aanmelding zichtbaar in het rapport in plaats van dat de mails
+# ongemerkt in de mailbox blijven liggen.
+KANDIDATEN = ["huurwoningen.nl", "rentola.nl", "huurflits.nl", "hestiva.nl",
+              "rebogroep.nl", "huislijn.nl", "ikwilhuren.nu", "nmgwonen.nl",
+              "vastgoednederland.nl", "level2makelaars.nl", "vgmdestijl.nl",
+              "expatrentalsholland.com", "hansjanssen.nl",
+              "nextmovemakelaars.nl", "funda.nl"]
 
 # De datum van de mail die nu wordt gelezen. De parsers stempelden elke
 # waarneming met vandaag; bij het inhalen van oude mails zouden alle
@@ -371,6 +384,14 @@ def parse_kamernet_attendering(regels, vandaag=None):
             inclusief = "incl" in regel.lower()
     if not (straat and plaats and prijs and opp):
         return [], []
+    # Onmogelijke bedragen tegenhouden bij de bron. Een advertentie van €5 per
+    # maand is een typefout of een plaatsaanduiding, en zo'n waarneming hoort
+    # niet in het bestand te belanden, ook niet als de mediaan hem later toch
+    # negeert. Ondergrens per maand en per m2, want allebei komen ze voor.
+    if prijs < 150 or prijs > 10000:
+        return [], [f"{straat}: €{prijs} per maand is niet aannemelijk"]
+    if opp and not (3 <= prijs / opp <= 120):
+        return [], [f"{straat}: €{prijs / opp:.0f} per m2 is niet aannemelijk"]
     # Kamernet attendeert ook buiten de stad; die horen niet in onze reeks,
     # anders schuift een kamer in Arnhem de Nijmeegse mediaan.
     if plaats.strip().lower() != "nijmegen":
@@ -582,7 +603,30 @@ def bestaande_adressen(pad):
     return bestaand
 
 
-def bewaar_stand(tellers, opmerking=""):
+def tel_kandidaten(verbinding, sinds):
+    """
+    Hoeveel post er komt van platforms waar we nog geen parser voor hebben.
+
+    Alleen tellen, niet lezen. Zo zie je in het rapport dat een aanmelding
+    werkt, en weten we welke parser het eerst de moeite waard is.
+    """
+    uit = {}
+    for domein in KANDIDATEN:
+        if any(domein in a for a in AFZENDERS):
+            continue
+        try:
+            status, data = verbinding.search(
+                None, f'(FROM "{domein}" SINCE {sinds})')
+            if status == "OK":
+                aantal = len((data[0] or b"").split())
+                if aantal:
+                    uit[domein] = aantal
+        except Exception:
+            continue
+    return uit
+
+
+def bewaar_stand(tellers, opmerking="", kandidaten=None):
     """
     De mailstand wegschrijven, ook als er niets te doen viel.
 
@@ -592,7 +636,8 @@ def bewaar_stand(tellers, opmerking=""):
     try:
         with open("mail_status.json", "w", encoding="utf-8") as f:
             json.dump({"datum": dt.date.today().isoformat(),
-                       "bronnen": tellers, "opmerking": opmerking},
+                       "bronnen": tellers, "opmerking": opmerking,
+                       "kandidaten": kandidaten or {}},
                       f, ensure_ascii=False, indent=1)
     except Exception:
         pass
@@ -636,10 +681,12 @@ def main():
         return
 
     ids = set()
+    # Buiten de lus, want de kandidaattelling verderop gebruikt hem ook.
+    sinds = ((dt.date.today() - dt.timedelta(days=args.dagen or 3))
+             .strftime("%d-%b-%Y"))
     for afzender in AFZENDERS:
         zoek = f'(FROM "{afzender}")'
         if args.dagen:
-            sinds = (dt.date.today() - dt.timedelta(days=args.dagen)).strftime("%d-%b-%Y")
             zoek = f'(FROM "{afzender}" SINCE {sinds})'
         else:
             zoek = f'(UNSEEN FROM "{afzender}")'
@@ -781,7 +828,16 @@ def main():
     # Per bron vastleggen hoeveel mails er waren en hoeveel objecten eruit
     # kwamen. Zonder dit zie je niet of een bron zwijgt of dat de parser hem
     # niet begrijpt, en dat zijn twee heel verschillende problemen.
-    bewaar_stand(tellers)
+    # Wat er nog meer binnenkomt, van bronnen die we nog niet uitlezen.
+    try:
+        kandidaten = tel_kandidaten(verbinding, sinds)
+    except Exception:
+        kandidaten = {}
+    if kandidaten:
+        print("Post van bronnen zonder parser: "
+              + ", ".join(f"{d}: {n}" for d, n in sorted(kandidaten.items())),
+              file=sys.stderr)
+    bewaar_stand(tellers, kandidaten=kandidaten)
     for bron, t in sorted(tellers.items()):
         print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
               file=sys.stderr)
