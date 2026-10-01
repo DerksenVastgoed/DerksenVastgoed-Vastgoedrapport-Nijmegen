@@ -5,6 +5,7 @@
 # er dus zonder hekje onder, zoals de eerste regel hieronder.
 #
 Burg. Hustinxstraat 46 | 275,15
+Achter de Bank 4 | €151,14
 #
 # Waarom dit nodig is: de bijdrage komt rechtstreeks van de nettohuur af en is
 # niet door te belasten aan de huurder. Zonder deze regel rekent het script een
