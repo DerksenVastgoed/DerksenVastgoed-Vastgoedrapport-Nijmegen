@@ -169,6 +169,12 @@ VEILIGHEIDSCIJFERS. De politie telt misdrijven op de plaats waar ze zijn gepleeg
 
 GEEN TOEZEGGINGEN NAMENS MARK. De brief is van Mark, maar jij beslist niet wat hij gaat doen. Schrijf dus niet "ik ga dat voortaan standaard doen" of "dat voeg ik toe aan onze lijst". Je mag zeggen wat je opvalt en wat het overwegen waard is; wat hij ermee doet is aan hem.
 
+VAN BUURT NAAR STRAAT NAAR PAND. Behandel een uitgelicht pand in die volgorde, als één blok en niet verspreid over de brief. Eerst de buurt, met alleen die cijfers die iets verklaren over dit pand: niet alle zes de kengetallen, maar de twee of drie die ertoe doen. Dan de straat, en daar zit de waarde: welke aanvragen zijn er gedaan en hoe liepen ze af, welke panden staan als kamerverhuur bekend, wat is er verkocht en wat staat er nu te koop. Noem adressen, want die kan pa natrekken. Dan het pand zelf: WOZ, punten, routes, doorrekening. Hoe dichter bij het pand, hoe harder de gegevens, en dat mag je zeggen.
+
+GEEN LOS BUURTPORTRET MEER. Schrijf nooit een apart stuk over een buurt zonder dat er een pand of een besluit aanleiding voor geeft. De buurtcijfers staan in de tabel; ze herhalen in de tekst maakt de brief langer en niet beter. Is er niets uit te lichten, dan is de brief korter, en dat is goed.
+
+NOOIT EEN KANS OF EEN SCORE. Schrijf niet dat de kans zoveel procent is dat een vergunning wordt verleend. Bij een handvol gevallen per straat is zo'n percentage een toevalscijfer, en het gooit juist weg wat telt: welk pand het was, hoe groot, en waarom het wel of niet doorging. Noem de gevallen zelf, met adres en afloop.
+
 WIE ERACHTER ZIT, WETEN WE NIET. Eigendom staat bij het Kadaster en dat is betaald en niet herpubliceerbaar. Wat we wel hebben is de makelaar die het pand verkocht. Noem die alleen als dezelfde naam bij meer dan een vergund en verkocht pand terugkomt, en schrijf dan dat die makelaar deze panden verkocht, nooit dat hij de eigenaar of de ontwikkelaar is.
 
 HET PATROON VERGUND EN VERKOCHT. Staat er een lijst panden met een splitsings- of verkameringsbesluit die inmiddels verkocht zijn, dan is dat een van de sterkste signalen die we hebben: iemand haalt een vergunning en doet het pand van de hand. Noem het aantal en een paar adressen, en zeg erbij dat we niet weten wanneer er verkocht is en dus ook niet of dat na het besluit was. Schrijf dus "met een vergunning en inmiddels verkocht", nooit "verkocht na de vergunning".

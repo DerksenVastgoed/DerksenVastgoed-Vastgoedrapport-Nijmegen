@@ -3599,6 +3599,51 @@ geen bezwaar; voor het volgen van een patroon over honderden panden wel.
 
 ---
 
+## 10. Van buurtportret naar trechter, en een logboek — 1 oktober 2026
+
+Drie dingen gebouwd na het sparren met Mark.
+
+**Het losse buurtportret vervalt.** Die cijfers komen uit de CBS-kerncijfers en
+veranderen een keer per jaar; je las dus elke zes dagen dezelfde zinnen, terwijl
+diezelfde getallen al in de tabel eronder staan. Voortaan alleen buurtcijfers
+als er een pand of een besluit aanleiding voor geeft, en dan alleen de twee of
+drie die iets over dat pand verklaren.
+
+**Een pand wordt behandeld van buurt naar straat naar pand**, als een blok.
+Hoe dichter bij het pand, hoe harder de gegevens: de buurt is statistiek, de
+straat is een handvol gevallen die je kunt natrekken, het pand is een dossier.
+straatprofiel() in pandgeschiedenis.py levert per straat de aanvragen met hun
+afloop, de bekende kamerverhuurpanden, wat er verkocht is, wat er te koop staat
+en de labels die we hebben.
+
+**Geen kansen en geen scores.** Mark wilde dit expliciet niet: bij een handvol
+gevallen per straat is een percentage een toevalscijfer, en het gooit weg wat
+telt, namelijk welk pand het was en waarom het wel of niet doorging. De
+opdracht aan de brief verbiedt het nu met zoveel woorden. Een geweigerde
+aanvraag telt daarbij net zo zwaar als een verleende.
+
+**Wat er niet in gaat: misdrijfcijfers per straat.** Die worden niet
+gepubliceerd, en terecht, want ze zijn dan herleidbaar tot panden. Het
+buurtcijfer blijft, met vermelding dat het de buurt betreft.
+
+**Het logboek, en wat het bewust niet is.** brief_logboek.py legt per brief
+vast welk onderwerp is gekozen en wat er verder lag. Geen wachtrij: een
+onderwerp dat drie dagen wacht is vaak alleen nog waar en geen nieuws meer, en
+een brief die op leeftijd kiest in plaats van op nieuwswaarde opent met iets
+van vorige week. Dezelfde fout die de BAG-wachtrij liet vastlopen.
+
+Het logboek dient twee momenten: de brief mag iets van eerder oppakken als er
+iets nieuws bij is gekomen, en de weekeditie loopt na wat er bleef liggen.
+
+**TESTRUNS SCHRIJVEN NIETS IN HET LOGBOEK.** Dat was Marks harde eis, en
+terecht: op 28 september streepten testruns de artikelen al af, waardoor de
+echte brief zonder nieuws zat. Bij het logboek zou een onderwerp bovendien als
+verteld gemarkeerd staan. De bescherming loopt via alleen_lezen() in
+diagnose.py, en bij twijfel wordt er niets weggeschreven. Het rapport telt de
+brieven in het logboek, zodat zichtbaar is dat er een per dag bij komt.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

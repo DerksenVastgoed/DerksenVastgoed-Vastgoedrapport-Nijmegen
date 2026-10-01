@@ -559,6 +559,102 @@ def _verkocht_details(pad="verkocht_details.json"):
         return {}
 
 
+AFLOOP = {"verleend": "verleend", "geweigerd": "geweigerd",
+          "ingetrokken": "ingetrokken",
+          "buiten behandeling": "buiten behandeling gesteld"}
+
+
+def straatprofiel(geschiedenis, straat, aanbod=None):
+    """
+    Alles wat we van een straat weten, op een rij.
+
+    De straat is het juiste niveau: groot genoeg voor meerdere gevallen, klein
+    genoeg om vergelijkbaar te zijn. Geen percentages en geen kansen, maar
+    adressen die je kunt natrekken. Een geweigerde aanvraag telt daarbij net zo
+    zwaar als een verleende.
+
+    Wat hier niet in kan: misdrijfcijfers, want die gaan niet verder dan
+    buurtniveau en zijn op straatniveau herleidbaar tot panden. En de volgorde
+    van een verkoop ten opzichte van een besluit, want van geplakte verkopen
+    kennen we de datum niet.
+    """
+    basis = sleutel(straat)
+    vergunningen, kamers, verkocht, labels, eenheden = [], [], [], [], 0
+    panden = 0
+    for pand in geschiedenis.values():
+        adres = pand.get("adres") or ""
+        if not sleutel(adres).startswith(basis):
+            continue
+        panden += 1
+        eenheden += len(pand.get("bag_eenheden") or [])
+        for g in pand["gebeurtenissen"]:
+            tekst = (g.get("tekst") or "")
+            laag = tekst.lower()
+            if g["soort"] == "bekendmaking" and any(
+                    w in laag for w in ("splits", "verkamer", "woningvorming",
+                                        "omzett", "onttrekk", "appartement")):
+                afloop = next((v for k, v in AFLOOP.items() if k in laag), "")
+                vergunningen.append({"adres": adres, "datum": g["datum"],
+                                     "tekst": tekst[:110], "afloop": afloop})
+            elif g["soort"] == "kamerverhuur":
+                kamers.append({"adres": adres, "datum": g["datum"],
+                               "tekst": tekst[:80]})
+            elif g["soort"] == "verkocht":
+                verkocht.append({"adres": adres, "tekst": tekst[:90]})
+        for adr, label in (pand.get("labels") or {}).items():
+            labels.append({"adres": adr, "label": label})
+
+    te_koop = [w for w in (aanbod or [])
+               if sleutel(w.get("adres") or "").startswith(basis)
+               and (w.get("status") or "").lower().startswith("te koop")]
+    return {
+        "straat": straat,
+        "panden_gevolgd": panden,
+        "eenheden_in_bag": eenheden,
+        "vergunningen": sorted(vergunningen, key=lambda x: x["datum"],
+                               reverse=True),
+        "verleend": [v for v in vergunningen if v["afloop"] == "verleend"],
+        "geweigerd": [v for v in vergunningen
+                      if v["afloop"] in ("geweigerd", "ingetrokken",
+                                         "buiten behandeling gesteld")],
+        "kamerverhuur": kamers,
+        "verkocht": verkocht,
+        "te_koop": [{"adres": w.get("adres"), "prijs": w.get("prijs"),
+                     "opp": w.get("oppervlakte")} for w in te_koop],
+        "labels": labels,
+    }
+
+
+def straatprofiel_tekst(profiel):
+    """Het profiel als regels voor in het dossier of de brief."""
+    if not profiel or not profiel.get("panden_gevolgd"):
+        return []
+    p = profiel
+    r = [f"**{p['straat']}**: {p['panden_gevolgd']} panden gevolgd, "
+         f"{p['eenheden_in_bag']} woningen volgens de BAG."]
+    if p["vergunningen"]:
+        r.append(f"Aanvragen en besluiten over splitsen, verkameren of "
+                 f"onttrekken: {len(p['vergunningen'])}, waarvan "
+                 f"{len(p['verleend'])} verleend en {len(p['geweigerd'])} "
+                 f"geweigerd, ingetrokken of buiten behandeling.")
+        for v in p["vergunningen"][:5]:
+            r.append(f"- {v['datum']} {v['adres']}: {v['tekst']}")
+    else:
+        r.append("Geen enkele aanvraag over splitsen of verkameren sinds 2012.")
+    if p["kamerverhuur"]:
+        r.append(f"Bekend als kamerverhuur: "
+                 + ", ".join(k["adres"] for k in p["kamerverhuur"][:6]) + ".")
+    if p["verkocht"]:
+        r.append(f"Verkocht in onze gegevens: {len(p['verkocht'])} panden "
+                 f"({', '.join(v['adres'] for v in p['verkocht'][:6])}). "
+                 f"Wanneer er is verkocht weten we niet.")
+    if p["te_koop"]:
+        r.append("Nu te koop: " + ", ".join(
+            f"{w['adres']} €{w['prijs']:,}".replace(",", ".")
+            for w in p["te_koop"][:5]) + ".")
+    return r
+
+
 def vergund_en_verkocht(geschiedenis):
     """
     Panden met een besluit over splitsen of verkameren die inmiddels verkocht

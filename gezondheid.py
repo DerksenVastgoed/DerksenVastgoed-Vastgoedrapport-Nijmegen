@@ -529,6 +529,26 @@ def controle_wozschatting():
             "zoeken", "")
 
 
+def controle_logboek():
+    """
+    Houdt de brief bij wat er is verteld en wat niet?
+
+    Ook een controle op de testrun-bescherming: komen er meer regels bij dan er
+    echte brieven zijn, dan schrijft een oefenrun mee en loopt de echte brief
+    straks nieuws mis.
+    """
+    d = _json("brief_logboek.json") or {}
+    dagen = d.get("dagen") or []
+    if not dagen:
+        return (LET_OP, "nog geen logboek van behandelde onderwerpen",
+                "Vanaf de eerste echte brief wordt hier bijgehouden wat er is "
+                "verteld en wat bleef liggen. Een testrun schrijft hier niets.")
+    laatste = max(x.get("datum", "") for x in dagen)
+    blijven_liggen = sum(len(x.get("overgeslagen") or []) for x in dagen)
+    return (OK, f"{len(dagen)} brieven vastgelegd, laatste {laatste}; "
+            f"{blijven_liggen} onderwerpen bleven liggen", "")
+
+
 def controle_nieuwe_onderwerpen():
     """
     Onderwerpen die in het nieuws terugkomen en waar nog geen stuk over is.
@@ -902,6 +922,7 @@ CONTROLES = [
     ("3D BAG eigen snapshot", controle_bag3d),
     ("Achtergronddekking", controle_achtergronddekking),
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
+    ("Logboek van de brief", controle_logboek),
     ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
