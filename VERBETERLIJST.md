@@ -3538,6 +3538,41 @@ regels is geen meting maar een gevoel.
 
 ---
 
+## 9kk. Drie achtergrondstukken uit het signaal — 1 oktober 2026
+
+De drie vondsten uit de voorstellenlijst zijn uitgezocht en geschreven.
+Achtentwintig stukken nu.
+
+**NTA 8800** is de norm die bepaalt hoe het energielabel wordt uitgerekend.
+Dat raakt ons direct: het label bepaalt punten in het woningwaarderingsstelsel
+en die punten bepalen of een woning gereguleerd is of vrij. Per 29 mei 2026
+geldt NTA 8800:2026, met een klasse A0 voor emissievrije gebouwen en een
+waardering voor thuisbatterijen. Belangrijk: een nieuwe rekenmethode kan het
+puntenaantal verschuiven zonder dat er aan het gebouw iets verandert. Eerder
+geregistreerde labels blijven geldig.
+
+**EPBD IV** is sinds 29 mei 2026 in de Nederlandse regels verwerkt, in
+tranches die doorlopen tot 2033. De belangrijkste uitkomst voor Mark is
+geruststellend: voor bestaande woongebouwen komen er geen individuele
+verplichtingen, dus geen verplicht minimumlabel zoals bij kantoren. Wat wel
+verandert: het label is voortaan ook verplicht bij het vernieuwen van een
+huurovereenkomst en na een grootschalige renovatie, monumenten zijn niet langer
+uitgezonderd, en de keuringsplicht voor verwarmings- en aircosystemen vervalt.
+
+**Noodfonds Energie** kent in de opzet voor 2026 wel huishoudens met een
+blokaansluiting, die er jarenlang buiten vielen. Inkomen tot 200% van het
+sociaal minimum, drempel van 8 of 10% van het inkomen, en vergoed wordt de
+helft van het bedrag boven die drempel. Bij blokverwarming krijgt de huurder
+het bedrag zelf, maar hij moet bij de aanvraag de afrekening van de verhuurder
+of de VvE kunnen laten zien. Een late eindafrekening kost een huurder dus geld.
+
+**Een fout die de test blootlegde:** de EPBD-tekst koos eerst het stuk over
+servicekosten, omdat die op een algemener woord matchte. Met "epbd iv" en
+"nieuw energielabel" als meerwoordige trefwoorden kiest hij nu het juiste. Dat
+is dezelfde weging als bij de eerdere vier stukken.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

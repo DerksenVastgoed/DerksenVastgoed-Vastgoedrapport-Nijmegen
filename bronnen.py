@@ -286,6 +286,17 @@ ACHTERGROND_TREFWOORDEN = {
                                  "handhaving", "servicekosten"],
     "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
                                          "omzetting", "studenten", "onzelfstandig"],
+    "NTA 8800, de rekenmethode achter het energielabel": [
+        "nta 8800", "rekenmethode", "isso-protocol", "primair fossiel",
+        "energiebehoefte"],
+    "EPBD IV, de Europese richtlijn voor energieprestatie": [
+        "epbd iv", "epbd", "energieprestatie van gebouwen",
+        "richtlijn 2024/1275", "renovatiepaspoort",
+        "emissievrije gebouwenvoorraad", "nieuw energielabel",
+        "labelplicht", "zero emission building"],
+    "Noodfonds Energie en blokverwarming": [
+        "noodfonds", "blokverwarming", "blokaansluiting", "energietoeslag",
+        "eindafrekening"],
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
@@ -334,6 +345,15 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
+    "NTA 8800, de rekenmethode achter het energielabel": (
+        "NTA 8800:2026; RVO over EPBD IV; Informatiepunt Leefomgeving"),
+    "EPBD IV, de Europese richtlijn voor energieprestatie": (
+        "Richtlijn (EU) 2024/1275; Staatsblad 2026, 103; RVO; "
+        "Volkshuisvesting Nederland"),
+    "Noodfonds Energie en blokverwarming": (
+        "Kamerbrief over de opzet van het Noodfonds Energie 2026 van 1 juli "
+        "2026; Regeling noodfonds eindafrekening blokverwarming gemeente "
+        "Nijmegen (vervallen per 1 januari 2025)"),
     "Onttrekking van woonruimte": ("Huisvestingswet 2014, artikel 21; "
                                    "Huisvestingsverordening Nijmegen 2024"),
     "Samenvoegen van woningen": ("Huisvestingswet 2014, artikel 21, onder b"),
@@ -476,6 +496,57 @@ ACHTERGROND = [
      "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
+    ("NTA 8800, de rekenmethode achter het energielabel",
+     "Het energielabel is geen oordeel maar een rekenuitkomst, en NTA 8800 is "
+     "de norm die bepaalt hoe er gerekend wordt. Een opnemer legt de "
+     "kenmerken van een woning vast volgens een ISSO-protocol, de norm rekent "
+     "daar een energiebehoefte en een primair fossiel energiegebruik uit, en "
+     "daar rolt de letter uit. Dat maakt de norm voor ons direct belangrijk: "
+     "het label bepaalt punten in het woningwaarderingsstelsel, en die punten "
+     "bepalen of een woning gereguleerd is of vrij. Per 29 mei 2026 geldt een "
+     "nieuwe versie, NTA 8800:2026, die de Europese richtlijn EPBD IV "
+     "verwerkt. Daarin zitten een nieuwe klasse A0 voor emissievrije "
+     "gebouwen, een waardering voor thuisbatterijen en aangepaste "
+     "ISSO-protocollen. Let op wat dat betekent: een nieuwe rekenmethode kan "
+     "het puntenaantal van een pand verschuiven zonder dat er aan het gebouw "
+     "iets verandert. Een label dat eerder is geregistreerd blijft geldig; "
+     "pas bij een nieuwe opname geldt de nieuwe methode."),
+    ("EPBD IV, de Europese richtlijn voor energieprestatie",
+     "Richtlijn (EU) 2024/1275, kortweg EPBD IV, is op 24 april 2024 "
+     "vastgesteld en moest uiterlijk 29 mei 2026 in nationale regels staan. "
+     "Nederland doet dat in tranches; de eerste ging op 29 mei 2026 in, de "
+     "volgende lopen door tot 2033. Het doel is een emissievrije "
+     "gebouwenvoorraad in 2050. Voor bestaande woongebouwen levert de "
+     "richtlijn geen individuele verplichtingen op: er komt dus geen "
+     "verplicht minimumlabel voor woningen, anders dan bij "
+     "utiliteitsgebouwen. Wat wel verandert en een verhuurder raakt: het "
+     "energielabel is voortaan ook verplicht bij het vernieuwen van een "
+     "huurovereenkomst en na een grootschalige renovatie, naast de al "
+     "bestaande plicht bij verkoop en verhuur. Monumenten zijn vanaf 29 mei "
+     "2026 niet langer uitgezonderd van de labelplicht. Het label zelf heeft "
+     "een nieuw ontwerp met meer informatie voor labels die vanaf 28 mei 2026 "
+     "zijn geregistreerd; oudere labels blijven geldig en worden niet "
+     "aangepast. De keuringsplicht voor verwarmings- en aircosystemen uit de "
+     "vorige richtlijn vervalt. Vanaf september 2026 kun je een "
+     "renovatiepaspoort laten opstellen."),
+    ("Noodfonds Energie en blokverwarming",
+     "Huishoudens met een blokaansluiting vielen jarenlang buiten de "
+     "steunregelingen, omdat het energiecontract niet op hun naam staat. In "
+     "de opzet voor 2026 kunnen ze wel meedoen. Het kabinet trekt €193 "
+     "miljoen uit en verwacht ongeveer 500.000 huishoudens te bereiken. De "
+     "voorwaarden: een bruto-inkomen tot 200% van het sociaal minimum, en een "
+     "energierekening boven een drempel van 8% van dat inkomen tot 130% van "
+     "het sociaal minimum en 10% daarboven. Vergoed wordt de helft van het "
+     "bedrag boven die drempel, niet de hele rekening. Bij een gewone "
+     "aansluiting verrekent de leverancier het bedrag; bij blokverwarming "
+     "wordt het aan de huurder zelf overgemaakt. Daar zit het punt dat ons "
+     "raakt: een huurder met blokverwarming moet bij de aanvraag de "
+     "afrekening van de verhuurder of de VvE kunnen laten zien. Een late of "
+     "onduidelijke eindafrekening kost een huurder dus geld, en dat is een "
+     "goede reden om die op tijd en navolgbaar te verstrekken. De gemeente "
+     "Nijmegen kende daarnaast een eigen regeling voor een hoge "
+     "eindafrekening bij blokverwarming; die was beperkt tot huurders van een "
+     "woningcorporatie en is per 1 januari 2025 afgelopen."),
     ("Onttrekking van woonruimte",
      "Artikel 21 van de Huisvestingswet verbiedt vijf handelingen zonder "
      "vergunning: woonruimte aan de bewoning onttrekken, samenvoegen, "
