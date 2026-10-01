@@ -1984,6 +1984,17 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-128413/1/html/gmb-2026-128413.html"
   }
  ],
+ "hatertseweg164": [
+  {
+   "datum": "2026-10-01",
+   "soorten": [
+    "kamerverhuur",
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een kamerverhuurpand naar 3 appartementen, aan Hatertseweg 164, 6533AT Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-458291/1/html/gmb-2026-458291.html"
+  }
+ ],
  "hatertseweg175": [
   {
    "datum": "2025-05-22",
@@ -2876,6 +2887,16 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-136513/1/html/gmb-2026-136513.html"
   }
  ],
+ "peterscheersstraat8": [
+  {
+   "datum": "2026-10-01",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw, aan Peter Scheersstraat 8, 6525DE Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-459204/1/html/gmb-2026-459204.html"
+  }
+ ],
  "pijnboomstraat17": [
   {
    "datum": "2025-07-24",
@@ -3450,6 +3471,16 @@
    ],
    "titel": "Melding melding brandveilig gebruik voor een kamerverhuurpand., aan Stenenkruisstraat 3, 6521BD Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-256752/1/html/gmb-2026-256752.html"
+  }
+ ],
+ "stgeertruidestraat24": [
+  {
+   "datum": "2026-10-01",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik voor kamergewijze verhuur (8 kamers), aan St. Geertruidestraat 24, 6521KH Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-460131/1/html/gmb-2026-460131.html"
   }
  ],
  "stieltjesstraat22": [

@@ -2,13 +2,14 @@
  "datum": "2026-10-01",
  "bronnen": {
   "kamernet": {
-   "mails": 17,
-   "objecten": 14,
-   "overgeslagen": 3,
+   "mails": 19,
+   "objecten": 15,
+   "overgeslagen": 4,
    "redenen": [
     "Keurvorststraat, Molenhoek: buiten Nijmegen",
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "Hegdambroek: €5 per maand is niet aannemelijk"
+    "Hegdambroek: €5 per maand is niet aannemelijk",
+    "Huissensestraat, Arnhem: buiten Nijmegen"
    ]
   },
   "regulier": {

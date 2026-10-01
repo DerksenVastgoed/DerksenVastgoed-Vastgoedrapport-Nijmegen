@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor  uitbreiding met erker voorzijde woning , aan Van Haapsstraat 13, 6525CA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-457391.html",
   "strategie": "geen",
-  "duiding": "Een erkeruitbreiding is een marginale aanpassing van de voorgevel zonder wezenlijke invloed op de woningvoorraad of waardepotentieel.",
+  "duiding": "Besluit betreft enkel een erkeruitbreiding aan de voorzijde, een beperkte fysieke aanpassing zonder directe marktimpact.",
   "feiten": {
    "oppervlakte_m2": 185
   },
@@ -17,7 +17,7 @@
   "titel": "Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html",
   "strategie": "buy-and-hold",
-  "duiding": "Verlenging van de tijdelijke verhuurvergunning wijst op voortzetting van overbrugging, het pand blijft voorlopig uit de reguliere verkoop.",
+  "duiding": "Verlenging van tijdelijke verhuur wijst op overbrugging; het pand van 59 m2 komt op termijn mogelijk alsnog op de markt.",
   "feiten": {
    "energielabel": "A+ (2024)",
    "oppervlakte_m2": 59
@@ -31,13 +31,27 @@
   "titel": "Besluit voor woning: realiseren extra verdieping op woning, aan St. Annastraat 456, 6525ZP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-457701.html",
   "strategie": "splitsen",
-  "duiding": "Een extra verdieping vergroot het vloeroppervlak fors, wat ruimte schept voor latere kadastrale splitsing of verkamering.",
+  "duiding": "Extra verdieping op 204 m2 vergroot het vloeroppervlak, wat ruimte biedt voor een extra zelfstandige wooneenheid.",
   "feiten": {
    "energielabel": "G (2019)",
    "oppervlakte_m2": 204
   },
   "straat": "St. Annastraat",
   "huisnummer": "456",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-01",
+  "titel": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw, aan Peter Scheersstraat 8, 6525DE Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459204.html",
+  "strategie": "splitsen",
+  "duiding": "Aanvraag voor dakopbouw op 140 m2 is nog niet verleend, maar zou bij toekenning extra verhuurbare ruimte opleveren.",
+  "feiten": {
+   "energielabel": "E (2020)",
+   "oppervlakte_m2": 140
+  },
+  "straat": "Peter Scheersstraat",
+  "huisnummer": "8",
   "kern": false
  }
 ]

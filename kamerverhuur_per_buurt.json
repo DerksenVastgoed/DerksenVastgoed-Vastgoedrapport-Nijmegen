@@ -1,7 +1,7 @@
 {
  "meldingen_per_jaar": {
   "2025": 102,
-  "2026": 83
+  "2026": 84
  },
  "per_buurt": {
   "'t Acker": {
@@ -23,10 +23,10 @@
    "totaal": 1
   },
   "Altrade": {
-   "alleen_melding_of_besluit": 16,
+   "alleen_melding_of_besluit": 17,
    "alleen_vergunning": 83,
    "beide": 3,
-   "totaal": 102
+   "totaal": 103
   },
   "Benedenstad": {
    "alleen_melding_of_besluit": 9,

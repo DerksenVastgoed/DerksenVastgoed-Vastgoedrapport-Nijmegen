@@ -15,6 +15,14 @@
   "omweg": 1.96,
   "soort": "bus"
  },
+ "51.82724,5.85673": {
+  "geschat": false,
+  "hemelsbreed": 91,
+  "meters": 262,
+  "naam": "Sint Annamolen",
+  "omweg": 2.88,
+  "soort": "bus"
+ },
  "51.82777,5.79553": {
   "geschat": false,
   "hemelsbreed": 167,

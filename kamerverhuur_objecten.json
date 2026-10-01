@@ -8924,6 +8924,18 @@
   "buurt": "Altrade",
   "straat": "Stenenkruisstraat"
  },
+ "stgeertruidestraat24": {
+  "adres": "St. Geertruidestraat 24",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Altrade",
+  "straat": "St. Geertruidestraat"
+ },
  "stgeertruidestraat31": {
   "adres": "St.Geertruidestraat 31",
   "bronnen": [

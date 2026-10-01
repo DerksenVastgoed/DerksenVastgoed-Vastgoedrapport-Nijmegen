@@ -71158,5 +71158,11 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:Peter Scheersstraat 8|Nijmegen": {
+    "postcode": "6525DE",
+    "buurtnaam": "Groenewoud",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-34d72d2871bef15ca3b62d5396142335"
   }
 }
