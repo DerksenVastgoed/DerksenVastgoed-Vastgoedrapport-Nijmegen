@@ -647,6 +647,7 @@ jobs:
             pandgeschiedenis.json
             buurtbeeld.json
             vergund_verkocht.json
+            brief_logboek.json
             mail_status.json
             woz_kalibratie.json
             gezondheid_vorige.json
