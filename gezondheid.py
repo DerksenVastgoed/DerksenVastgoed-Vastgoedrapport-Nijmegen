@@ -384,11 +384,23 @@ def controle_versies():
         import versies as _v
         controleer = getattr(_v, "controleer", None)
         if controleer is None:
-            # Een oudere versies.py zonder die functie. Zeggen wat er aan de
-            # hand is in plaats van een importfout tonen die niemand leest.
-            return (LET_OP, "de versies.py in de repo is een oudere versie",
-                    "Upload versies.py opnieuw; de huidige kent de functie "
-                    "controleer niet.")
+            # Een oudere versies.py zonder die functie. Met de details erbij,
+            # anders moet je op mijn woord geloven dat het bestand anders is.
+            pad = getattr(_v, "__file__", "?")
+            try:
+                grootte = os.path.getsize(pad)
+                gewijzigd = dt.datetime.fromtimestamp(
+                    os.path.getmtime(pad)).strftime("%Y-%m-%d %H:%M")
+            except Exception:
+                grootte, gewijzigd = "?", "?"
+            heeft = ", ".join(sorted(
+                n for n in dir(_v) if not n.startswith("_") and callable(
+                    getattr(_v, n, None)))) or "geen functies"
+            return (LET_OP,
+                    f"de versies.py in de repo mist de functie controleer "
+                    f"({grootte} bytes, gewijzigd {gewijzigd}); hij kent: "
+                    f"{heeft}",
+                    "Upload versies.py opnieuw.")
         uit = controleer()
     except Exception as e:
         return (LET_OP, "versiecontrole niet uit te voeren", str(e)[:120])
