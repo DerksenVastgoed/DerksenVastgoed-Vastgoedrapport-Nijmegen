@@ -3,8 +3,8 @@
 27 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: de versies.py in de repo is een oudere versie
-  Upload versies.py opnieuw; de huidige kent de functie controleer niet.
+- **Versies**: 27 bestanden gelijk aan de paklijst, 5 afwijkend, 0 ontbreekt: bekendmakingen_nijmegen.py, maatregel_hoeveelheden.py, marktprijzen_bag.py, pandgeschiedenis.py, rente_verhuurhypotheek.py
+  Deze run draait niet op de code uit de paklijst. Controleer of alle bestanden zijn geuploud, inclusief versies.json.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
