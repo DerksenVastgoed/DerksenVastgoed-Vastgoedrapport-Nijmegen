@@ -45,11 +45,15 @@ def regiocode(haal, basis):
     for rij in rijen:
         titel = (rij.get("Title") or "").strip().lower()
         if ZOEK_REGIO in titel.replace(" ", ""):
-            return rij.get("Key", "").strip(), rij.get("Title", "").strip()
+            # De sleutel ongewijzigd teruggeven, mét de spaties die het CBS
+            # eraan plakt. Op de afgeknipte code levert het filter nul rijen op
+            # en haalt het script elke run de hele tabel van ruim vijfduizend
+            # rijen op. Met de volledige sleutel is het een paar honderd.
+            return rij.get("Key", ""), rij.get("Title", "").strip()
     for rij in rijen:                      # ruimer: los van de schuine streep
         titel = (rij.get("Title") or "").lower()
         if "arnhem" in titel and "nijmegen" in titel:
-            return rij.get("Key", "").strip(), rij.get("Title", "").strip()
+            return rij.get("Key", ""), rij.get("Title", "").strip()
     return None, None
 
 
@@ -174,14 +178,15 @@ def main():
         # afgeknipte code kan daardoor niets opleveren. Dan halen we de tabel
         # zonder filter op en zoeken we de regio er zelf uit.
         print(f"Geen kwartaalrijen bij filter op '{code}' ({len(rijen)} rijen "
-              f"terug); nu zonder filter", file=sys.stderr)
+              f"terug); nu zonder filter. Kost een paar seconden extra; als dit "
+              f"elke run gebeurt, klopt de sleutel niet", file=sys.stderr)
         try:
             alles = haal(f"{basis}/{TABEL}/TypedDataSet")
         except Exception as e:
             print(f"Ook zonder filter niets: {str(e)[:120]}", file=sys.stderr)
             return 1
         eigen = [r for r in alles
-                 if str(r.get("RegioS", "")).strip() == code]
+                 if str(r.get("RegioS", "")).strip() == code.strip()]
         print(f"Zonder filter: {len(alles)} rijen, waarvan {len(eigen)} voor "
               f"{naam}", file=sys.stderr)
         if alles and not eigen:
@@ -197,10 +202,11 @@ def main():
 
     with open(args.uit, "w", encoding="utf-8") as f:
         json.dump(stand, f, ensure_ascii=False, indent=1)
-    if not args.stil:
-        print(f"{naam} {stand['periode']}: index {stand['index']}, "
-              f"{stand['jaar_pct']}% op jaarbasis, "
-              f"{int(stand['transacties'] or 0)} transacties", file=sys.stderr)
+    # Deze regel ook bij --stil, want anders eindigt het logboek zonder
+    # uitkomst en lijkt het alsof de stap halverwege is gestopt.
+    print(f"{naam} {stand['periode']}: index {stand['index']}, "
+          f"{stand['jaar_pct']}% op jaarbasis, "
+          f"{int(stand['transacties'] or 0)} transacties", file=sys.stderr)
     return 0
 
 
