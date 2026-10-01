@@ -10,7 +10,7 @@
   "brief_verhalend.py": "55a51b7ff01e",
   "bronnen.py": "790b7c7f79d9",
   "buurten_tabel.py": "86dfaeb447b9",
-  "corop_prijzen.py": "4813e4a2c854",
+  "corop_prijzen.py": "800a98ec614a",
   "diagnose.py": "023b5bcb8726",
   "funda_mail.py": "7d9e151b8068",
   "funda_verkocht_plak.py": "cca849e87877",
