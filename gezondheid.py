@@ -540,6 +540,18 @@ def controle_nieuwe_onderwerpen():
     except Exception:
         pass
     gevolgd = _json("onderwerpen_volgen.json") or {}
+    # Heeft de signaalstap ooit iets weggeschreven? Zo niet, dan draait hij
+    # niet, en dan is "geen nieuwe onderwerpen" geen geruststelling maar een
+    # stille fout. Dit is dezelfde soort melding als bij de mailstap: een nul
+    # kan betekenen dat er niets was, of dat er niets gekeken is.
+    sporen = [p for p in ("onderwerpen_voorstel.md", "onderwerpen_volgen.json",
+                          "onderwerpen_gezien.json")
+              if os.path.exists(p)]
+    if not sporen:
+        return (LET_OP, "de signaalstap heeft nog nooit iets weggeschreven",
+                "Die stap draaide alleen in de weekeditie en is daardoor bij "
+                "elke dagelijkse run overgeslagen. Hij loopt nu ook bij een "
+                "handmatige start mee.")
     if not voorstellen and not gevolgd:
         return (OK, "geen nieuwe onderwerpen voorgesteld", "")
     bewijs = (f"{len(voorstellen)} voorgestelde onderwerpen, "
