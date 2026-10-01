@@ -3306,6 +3306,183 @@ niets aan de hand is.
 
 ---
 
+## 9bb. De 149 bewogen niet, en nu weten we waarom — 1 oktober 2026
+
+De versiecontrole meldde nul ontbrekende bestanden, dus de code klopte. En
+toch bleef het aantal nooit nagekeken panden op 149 staan. Dan is het geen
+uploadprobleem meer.
+
+**Oorzaak:** de vlag --volledig zet de BAG-ronde aan, maar geeft niet door dat
+alle panden mee mogen doen. De functie houdt standaard alleen panden over met
+een verkoop, een bekendmaking of kamerverhuur in hun geschiedenis. Precies die
+149 panden kennen we alleen uit het aanbod, dus ze werden overgeslagen voordat
+ze geteld werden, elke ronde opnieuw.
+
+**Een tweede fout die daarbij boven kwam:** zonder BAG-sleutel gaf de functie
+een enkele nul terug terwijl de aanroeper er twee uitpakt. Dan loopt de hele
+stap vast op precies het moment dat je een nette melding wilt. Nu geeft hij
+twee waarden terug en meldt hij waarom hij overslaat.
+
+**Wat dit zegt over de week:** dit is de derde keer dat een getal dat niet
+beweegt belangrijker bleek dan een melding die oplichtte. De 505 verkopen die
+de wachtrij vulden, de 146 die opliepen door een noodreparatie, en nu deze. Een
+teller die stil blijft staan is een signaal, geen rust.
+
+---
+
+## 9cc. 502 op elk verzoek: twee fouten tegelijk — 1 oktober 2026
+
+De 3D BAG-stap gaf een 502 op elk pand, eenentwintig keer, en stopte toen
+netjes. Dat laatste werkte dus zoals bedoeld. De oorzaak was tweeledig en ik
+heb het opgezocht in plaats van opnieuw te gokken.
+
+**Het pand-id moet met NL.IMBAG.Pand. ervoor.** Wij bewaren het kale nummer uit
+de BAG; de 3D BAG verwacht het voorvoegsel. Zonder dat antwoordt de bron met
+een 502 in plaats van een 404, en dat is een fout die zichzelf niet verklaart.
+
+**En het antwoord is CityJSON, geen GeoJSON.** De kenmerken zitten onder
+feature.CityObjects.<id>.attributes en niet in properties. Mijn zoekfunctie
+keek alleen op de GeoJSON-plekken, dus zelfs met het juiste id was het
+resultaat leeg geweest.
+
+Getest met een antwoord in de echte vorm: elf velden eruit, en uit nokhoogte
+min maaiveld gedeeld door het aantal bouwlagen rolt de verdiepingshoogte. Dat
+is precies het getal dat ik anders had moeten aannemen.
+
+**Wat hieraan opvalt:** de stap meldde "de bron lijkt onbereikbaar of
+veranderd", en dat was de verkeerde conclusie uit een juiste waarneming. Een
+502 betekende hier niet dat de bron plat lag, maar dat wij de verkeerde vraag
+stelden.
+
+---
+
+## 9dd. COROP werkt, maar haalde elke run de hele tabel op — 1 oktober 2026
+
+Het logboek eindigde na "126 rijen voor Arnhem/Nijmegen" zonder uitkomst, wat
+leek op een stap die halverwege stopt. Hij was juist geslaagd: met --stil werd
+de slotregel onderdrukt. Die regel komt er nu altijd, want een logboek dat
+zonder uitkomst eindigt leest als een fout.
+
+**Wel zat er verspilling in.** Het filter op de afgeknipte code CR15 gaf nul
+rijen, dus viel het script terug op de hele tabel: 5040 rijen per run voor 126
+die we nodig hebben. Het CBS plakt spaties achter zijn sleutels; die geven we
+nu ongewijzigd mee in het filter.
+
+**De terugval blijft bestaan** als vangnet, met een duidelijker melding erbij:
+gebeurt dit elke run, dan klopt de sleutel niet.
+
+**En de cijfers zijn binnen:** Arnhem/Nijmegen heeft nu een eigen prijsindex,
+een eigen aantal transacties en een eigen gemiddelde verkoopprijs per kwartaal.
+Daarmee staat in de brief voortaan een regiocijfer naast het landelijke en het
+provinciale, in plaats van alleen die bak waar Winterswijk ook in zit.
+
+---
+
+## 9ee. Een huur van vijf euro — 1 oktober 2026
+
+In het logboek van de mailstap staat "Hegdambroek, 20m2, €5 p/m". Zo'n
+waarneming valt later wel buiten de mediaan, want de prijs per m2 zakt onder
+de ondergrens die daar al staat, maar hij belandt wel in verkopen.txt en telt
+mee in de tellingen.
+
+**Nu wordt dat bij de bron tegengehouden:** onder €150 of boven €10.000 per
+maand, en buiten €3 tot €120 per m2, wordt de advertentie overgeslagen met de
+reden erbij. Die reden komt in de telling van bewust overgeslagen mails
+terecht, dus het blijft zichtbaar.
+
+**Wat het logboek verder laat zien, en dat is goed nieuws:** 23 berichten
+gelezen, zestien objecten herkend, vier bewust overgeslagen (drie buiten
+Nijmegen, een gemeubileerd) en nul nieuw. Dat laatste klopt: met een venster
+van drie dagen worden dezelfde mails elke run opnieuw gelezen en het
+ontdubbelen doet zijn werk.
+
+**En de Kamernet-parser draait zoals bedoeld.** Cuijk, Molenhoek en
+Beek-Berg en Dal worden eruit gefilterd, precies waarvoor die plaatscontrole
+is gebouwd.
+
+---
+
+## 9ff. Aanmeldingen bij nieuwe platforms waren onzichtbaar — 1 oktober 2026
+
+**Mark:** ik heb me bij meerdere sites aangemeld; is dat terug te zien?
+
+**Nee, en dat was een blinde vlek.** De mailstap kijkt alleen naar afzenders op
+de lijst; alles daarbuiten wordt genegeerd. Je zou pas merken dat een
+aanmelding werkt als je het zelf in de mailbox nagaat.
+
+**Nu telt de stap ook de post van platforms zonder parser**, van de vijftien
+sites die in deze sessies langskwamen: huurwoningen.nl, rentola, huurflits,
+hestiva, rebogroep, huislijn, ikwilhuren, nmgwonen, vastgoednederland, level2,
+vgmdestijl, expatrentals, hansjanssen, nextmove en funda. Alleen tellen, niet
+lezen. Het rapport schrijft het als "zonder parser: huurwoningen.nl (3),
+rentola.nl (1)".
+
+**Waarom dat nuttig is:** het zegt welke parser het eerst de moeite waard is.
+Komt er elke dag post van een platform, dan loont een parser; komt er eens per
+maand iets, dan niet. Dat is dezelfde afweging als bij de dekkingsmeting, maar
+dan op volume in plaats van op adressen.
+
+**Een bijvangst:** funda.nl staat ook in die lijst terwijl het wel een parser
+heeft. Dat is met opzet: het rapport meldt al weken dat er geen Funda-mail
+binnenkomt, en zo zien we of dat aan de afzender ligt of aan de attendering.
+
+---
+
+## 9gg. Vier ontbrekende bestanden met dezelfde oorzaak — 1 oktober 2026
+
+De terugcommit-stap meldt vier bestanden als ONTBREEKT, alle vier van de
+onderwerpensignalering: onderwerpen_gezien.json, onderwerpen_volgen.json,
+onderwerpen_volgen.txt en onderwerpen_voorstel.md.
+
+**Oorzaak, na navraag van Mark:** de bestandsnaam was al goed. Het zit in de
+voorwaarde van de stap: if env.MODUS != 'dagelijks'. Alle handruns draaien in
+de dagelijkse modus, dus die stap werd elke keer overgeslagen en heeft sinds
+zijn bestaan alleen op zondag kunnen draaien. De stap loopt nu ook mee bij een
+handmatige start.
+
+**Les over diagnose:** ik wees naar de bestandsnaam omdat die er vreemd uitzag
+in de bestandslijst, en dat was plausibel maar niet nagekeken. De voorwaarde in
+de workflow stond twee regels boven de aanroep. Eerst kijken waar iets wordt
+aangeroepen, dan pas naar hoe het heet.
+
+**En het rapport meldde daar OK.** De controle keek of er voorstellen waren;
+nul voorstellen was geen alarm. Nu kijkt hij eerst of de stap ooit iets heeft
+weggeschreven. Is er geen enkel spoor, dan is dat een melding met de
+bestandsnaam erbij. Dezelfde soort fout als bij de mailstap: een nul kan
+betekenen dat er niets was, of dat er niemand gekeken heeft.
+
+**Een bevestiging in hetzelfde logboek:** bag3d.json is wel aangemaakt, dus die
+stap schrijft weg zoals bedoeld. Leeg, omdat alle verzoeken strandden op het
+ontbrekende voorvoegsel, en dat is inmiddels verholpen.
+
+---
+
+## 9hh. Het sterkste stuk van de brief was toeval — 1 oktober 2026
+
+De brief van 1 oktober opent met een patroon: drie panden met een
+splitsingsvergunning die inmiddels verkocht zijn, St. Annastraat 165, van
+Oldenbarneveltstraat 61 en Dominicanenstraat 103. Mark noemt dit precies het
+deel waar zijn vader enthousiast van wordt, en terecht: het is de kruising van
+twee bronnen die alleen samen iets zeggen.
+
+**Maar het model viste het zelf uit de lijsten, en dat is geen methode.** De
+volgende dag kan het er net zo goed langs kijken. Daarom wordt het nu geteld:
+pandgeschiedenis.py schrijft vergund_verkocht.json met alle panden die een
+besluit over splitsen, verkameren, woningvorming of omzetten hebben en die in
+onze gegevens als verkocht staan.
+
+**De formulering is met zorg gekozen:** "met een vergunning en inmiddels
+verkocht", niet "verkocht na de vergunning". Van de geplakte verkopen kennen we
+de datum niet, dus de volgorde staat niet vast. Dat verschil is het verschil
+tussen een waarneming en een verhaal, en de opdracht aan de brief zegt dat
+met zoveel woorden.
+
+**Ook bevestigd in deze run:** de sortering werkt weer. Achter de Bank met +5%
+bovenaan in Stadscentrum, Krayenhofflaan met -1% in Biezen, van Goorstraat 34
+met -2% in Bottendaal.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

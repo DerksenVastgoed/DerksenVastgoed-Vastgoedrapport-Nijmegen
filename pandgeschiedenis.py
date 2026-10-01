@@ -282,14 +282,17 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
                                       split_huisnummer, BAG_API_KEY)
     except Exception as e:
         leg_vast("geschiedenis", f"BAG-functies niet te laden: {str(e)[:120]}")
-        return 0
+        # Twee waarden terug, want de aanroeper pakt er twee uit. Met een enkele
+        # nul liep de hele stap vast zodra er iets ontbrak, en dat is precies
+        # het moment waarop je een nette melding wilt in plaats van een crash.
+        return 0, []
     if not BAG_API_KEY:
         # Zonder sleutel geeft elke opvraging een 401. Eenmaal melden is genoeg;
         # honderden mislukte verzoeken vullen alleen het logboek.
         leg_vast("geschiedenis", "Geen BAG_API_KEY in deze stap: de BAG en de "
                                  "energielabels zijn niet bijgewerkt.")
         print("Geen BAG-sleutel; BAG-controle overgeslagen", file=sys.stderr)
-        return 0
+        return 0, []
     nieuw, gedaan, deze_ronde = 0, 0, []
     geen_id, bekeken = 0, 0
     vandaag = dt.date.today().isoformat()
@@ -422,7 +425,11 @@ def bij_labels(geschiedenis, alleen=None):
         leg_vast("geschiedenis", f"Labelfuncties niet te laden: {str(e)[:120]}")
         return 0
     if not BAG_API_KEY:
-        return 0
+        # Twee waarden terug, want de aanroeper pakt er twee uit. Met een enkele
+        # nul liep de hele stap vast zodra de sleutel ontbrak, en dat is precies
+        # het moment waarop je een nette melding wilt in plaats van een crash.
+        print("Geen BAG_API_KEY; de BAG-ronde wordt overgeslagen", file=sys.stderr)
+        return 0, []
     # Hier hardop over zijn: zonder deze sleutel komt er geen enkel label
     # binnen, en dat bleef eerder onzichtbaar omdat elke fout werd ingeslikt.
     if not EP_API_KEY:
@@ -541,6 +548,43 @@ def buurt_van_pand(pand, cache):
         return ""
     straat = m.group(1).strip()
     return cache.get(straat) or cache.get(straat.lower()) or ""
+
+
+def vergund_en_verkocht(geschiedenis):
+    """
+    Panden met een besluit over splitsen of verkameren die inmiddels verkocht
+    zijn.
+
+    Dit is het patroon waar de brief van 1 oktober toevallig op stuitte: wie
+    zo'n vergunning krijgt, verkoopt het pand vervolgens door. Toevallig
+    opmerken is geen methode, dus hier wordt het geteld.
+
+    Let op de formulering: "en inmiddels verkocht", niet "daarna verkocht". Van
+    de geplakte verkopen kennen we de datum niet, dus de volgorde is niet vast
+    te stellen. Dat verschil is het verschil tussen een waarneming en een
+    verhaal.
+    """
+    uit = []
+    for pand in geschiedenis.values():
+        soorten = {g["soort"] for g in pand["gebeurtenissen"]}
+        if "verkocht" not in soorten:
+            continue
+        besluiten = [g for g in pand["gebeurtenissen"]
+                     if g["soort"] == "bekendmaking"
+                     and "besluit" in (g.get("tekst") or "").lower()
+                     and any(w in (g.get("tekst") or "").lower()
+                             for w in ("splits", "verkamer", "appartement",
+                                       "omzett", "woningvorming"))]
+        if not besluiten:
+            continue
+        verkoop = [g for g in pand["gebeurtenissen"] if g["soort"] == "verkocht"]
+        uit.append({
+            "adres": pand.get("adres"),
+            "besluit": besluiten[-1]["tekst"][:120],
+            "besluit_datum": besluiten[-1]["datum"],
+            "verkoop": verkoop[-1]["tekst"][:80] if verkoop else "",
+        })
+    return sorted(uit, key=lambda x: x["besluit_datum"], reverse=True)
 
 
 def buurtbeeld(geschiedenis, cache=None, vanaf=2012):
@@ -679,9 +723,26 @@ def main():
     n_k = uit_kamerverhuur(geschiedenis)
     n_b = n_l = 0
     if args.volledig:
-        n_b, ronde = bij_bag(geschiedenis)
+        # alleen_gevolgd=False: bij een volledige ronde doen ook de panden mee
+        # waarvan we alleen aanbod kennen en geen bekendmaking. Zonder dit
+        # werden die overgeslagen voordat ze geteld werden, en bleef het aantal
+        # "nog nooit nagekeken" eeuwig op hetzelfde getal staan.
+        n_b, ronde = bij_bag(geschiedenis, alleen_gevolgd=False)
         n_l = bij_labels(geschiedenis, ronde)
     bewaar(geschiedenis)
+    # Het patroon vergund-en-verkocht apart wegschrijven, zodat de brief het
+    # kan noemen zonder het zelf uit de lijsten te hoeven vissen.
+    patroon = vergund_en_verkocht(geschiedenis)
+    try:
+        with open("vergund_verkocht.json", "w", encoding="utf-8") as f:
+            json.dump({"datum": dt.date.today().isoformat(),
+                       "panden": patroon}, f, ensure_ascii=False, indent=1)
+        if patroon:
+            print(f"Vergund en inmiddels verkocht: {len(patroon)} panden",
+                  file=sys.stderr)
+    except Exception:
+        pass
+
     beeld = buurtbeeld(geschiedenis)
     with open(BUURTBEELD_PAD, "w", encoding="utf-8") as f:
         json.dump(beeld, f, ensure_ascii=False, indent=1, sort_keys=True)
