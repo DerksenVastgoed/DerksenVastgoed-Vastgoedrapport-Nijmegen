@@ -2,6 +2,7 @@
  "controles": {
   "3D BAG eigen snapshot": "OK",
   "Aanbod": "OK",
+  "Aanbodreeks": "LET OP",
   "Achtergronddekking": "OK",
   "Attenderingen": "LET OP",
   "Bekendmakingen-archief": "OK",
@@ -24,6 +25,7 @@
   "Nieuwe onderwerpen": "OK",
   "OV-haltes": "OK",
   "Opnieuw aangeboden": "OK",
+  "Profiel nieuw aanbod": "OK",
   "Regelgevingsmonitor": "OK",
   "Stadsbegroting": "OK",
   "Terugschrijven": "OK",

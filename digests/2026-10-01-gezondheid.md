@@ -1,12 +1,14 @@
 # Gezondheidsrapport 2026-10-01
 
-27 in orde, 6 aandachtspunten, 0 fouten.
+28 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: 27 bestanden gelijk aan de paklijst, 5 afwijkend, 0 ontbreekt: bekendmakingen_nijmegen.py, maatregel_hoeveelheden.py, marktprijzen_bag.py, pandgeschiedenis.py, rente_verhuurhypotheek.py
+- **Versies**: 28 bestanden gelijk aan de paklijst, 5 afwijkend, 1 ontbreekt: bekendmakingen_nijmegen.py, maatregel_hoeveelheden.py, marktprijzen_bag.py, pandgeschiedenis.py, rente_verhuurhypotheek.py, aanbod_reeks.py
   Deze run draait niet op de code uit de paklijst. Controleer of alle bestanden zijn geuploud, inclusief versies.json.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
+- **Aanbodreeks**: 0 dagen in de reeks
+  Een golf is pas te zien na een paar weken meten. Deze reeks begint nu te lopen.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
 - **WOZ-schatting**: geijkt op 22 panden: correctie 1.041 (4% stelselmatig), spreiding ±23.9%; kenmerken uit 23 straten en 7 buurten
@@ -28,9 +30,10 @@
 - **Kamerverhuurregister**: 950 panden in de ring, waarvan 191 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 84
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
-- **Geschiedenis per pand**: 1697 panden gevolgd, 825 met meer dan een gebeurtenis; 1473 met BAG-gegevens (13148 woningen), 730 met een energielabel, 0 nog nooit nagekeken, 224 zonder pand-id in de BAG waarvan 1 na drie pogingen opgegeven; iedereen is minstens een keer nagekeken
+- **Geschiedenis per pand**: 1697 panden gevolgd, 825 met meer dan een gebeurtenis; 1473 met BAG-gegevens (13148 woningen), 730 met een energielabel, 0 nog nooit nagekeken, 224 zonder pand-id in de BAG waarvan 1 na drie pogingen opgegeven; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan; iedereen is minstens een keer nagekeken
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 60 panden te koop, mediaan 14 dagen geleden voor het laatst bevestigd, oudste 29 dagen
+- **Profiel nieuw aanbod**: 60 panden in dertig dagen; mediaan 96 m2; 0 zonder label
 - **Opnieuw aangeboden**: 3 adressen vaker aangeboden: 0 voor minder, 3 voor meer
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
