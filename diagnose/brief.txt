@@ -34,3 +34,6 @@ De brief eindigt midden in een zin: '... op wat er van de box 3-plannen concreet
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '... aanbod, niet omdat het ons rechtstreeks raakt.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

@@ -32849,15 +32849,38 @@
     54
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 96 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 98 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 98A is nu C"
    }
   ],
+  "labels": {
+   "Graafseweg 96": "B",
+   "Graafseweg 98": "B",
+   "Graafseweg 98A": "C"
+  },
   "pand_id": "0268100000018472"
  },
  "griftdijk212": {
@@ -32868,7 +32891,7 @@
     840
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -32887,7 +32910,7 @@
     294
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -32900,14 +32923,24 @@
     "datum": "2017-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Griftdijk 47 is nu B"
    }
   ],
+  "labels": {
+   "Griftdijk 47": "B"
+  },
   "pand_id": "0268100000015551"
  },
  "griftdijknoord14": {
   "adres": "Griftdijk Noord 14",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_gezien": "2026-09-30",
+  "bag_pogingen": 1,
+  "bag_zonder_id": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -32934,15 +32967,31 @@
     93
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2015-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 116 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 118B is nu D"
    }
   ],
+  "labels": {
+   "Groenestraat 116": "C",
+   "Groenestraat 118B": "D"
+  },
   "pand_id": "0268100000014061"
  },
  "groenestraat122": {
@@ -32957,7 +33006,7 @@
     157
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "melding",
@@ -32976,7 +33025,7 @@
     170
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33005,15 +33054,31 @@
     32
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2017-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 18 is nu G"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 20 is nu C"
    }
   ],
+  "labels": {
+   "Groenestraat 18": "G",
+   "Groenestraat 20": "C"
+  },
   "pand_id": "0268100000013083"
  },
  "groenestraat195": {
@@ -33028,7 +33093,7 @@
     138
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33047,7 +33112,7 @@
     248
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33070,7 +33135,7 @@
     176
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -33089,7 +33154,7 @@
     125
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "melding",
@@ -33108,15 +33173,24 @@
     128
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2019-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 321 is nu C"
    }
   ],
+  "labels": {
+   "Groenestraat 321": "C"
+  },
   "pand_id": "0268100000024558"
  },
  "groenestraat323": {
@@ -33135,15 +33209,38 @@
     48
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2017-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 323 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Zichtstraat 1A is nu A+++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Zichtstraat 1B is nu A++"
    }
   ],
+  "labels": {
+   "Groenestraat 323": "C",
+   "Zichtstraat 1A": "A+++",
+   "Zichtstraat 1B": "A++"
+  },
   "pand_id": "0268100000024185"
  },
  "groenestraat331": {
@@ -33154,15 +33251,24 @@
     123
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2016-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenestraat 331 is nu C"
    }
   ],
+  "labels": {
+   "Groenestraat 331": "C"
+  },
   "pand_id": "0268100000022840"
  },
  "groenestraat339": {
@@ -33193,7 +33299,7 @@
     32
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33212,15 +33318,24 @@
     147
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenewoudseweg 20 is nu C"
    }
   ],
+  "labels": {
+   "Groenewoudseweg 20": "C"
+  },
   "pand_id": "0268100000025719"
  },
  "groenewoudseweg334": {
@@ -33231,7 +33346,7 @@
     243
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33250,15 +33365,24 @@
     166
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groenewoudseweg 60 is nu G"
    }
   ],
+  "labels": {
+   "Groenewoudseweg 60": "G"
+  },
   "pand_id": "0268100000024838"
  },
  "groesbeeksedwarsweg": {
@@ -33281,15 +33405,24 @@
     255
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2020-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 106 is nu C"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 106": "C"
+  },
   "pand_id": "0268100000001807"
  },
  "groesbeeksedwarsweg13": {
@@ -33312,7 +33445,7 @@
     311
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33343,7 +33476,7 @@
     59
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -33356,8 +33489,17 @@
     "datum": "2026-05-26",
     "soort": "bekendmaking",
     "tekst": "Besluit voor de opsplitsing van de bovenwoning naar 2 appartementen, aan Groesbeeksedwarsweg 135, 6521DD Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 133 is nu C"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 133": "C"
+  },
   "pand_id": "0268100000001854"
  },
  "groesbeeksedwarsweg143": {
@@ -33372,15 +33514,24 @@
     107
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 141 is nu D"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 141": "D"
+  },
   "pand_id": "0268100000001856"
  },
  "groesbeeksedwarsweg15": {
@@ -33391,7 +33542,7 @@
     69
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -33506,15 +33657,24 @@
     145
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-03-17",
     "soort": "bekendmaking",
     "tekst": "Melding een melding brandveilig gebruik voor kamergewijze verhuur, aan Groesbeeksedwarsweg 183, 6521DG Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 183 is nu A"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 183": "A"
+  },
   "pand_id": "0268100000028333"
  },
  "groesbeeksedwarsweg228": {
@@ -33529,15 +33689,24 @@
     72
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 230 is nu G"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 230": "G"
+  },
   "pand_id": "0268100000001868"
  },
  "groesbeeksedwarsweg260": {
@@ -33586,15 +33755,24 @@
     58
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 304A is nu A+"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 304A": "A+"
+  },
   "pand_id": "0268100000002146"
  },
  "groesbeeksedwarsweg305": {
@@ -33605,7 +33783,7 @@
     253
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -33628,15 +33806,24 @@
     56
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 50 is nu B"
    }
   ],
+  "labels": {
+   "Groesbeeksedwarsweg 50": "B"
+  },
   "pand_id": "0268100000002029"
  },
  "groesbeeksedwarsweg9": {
@@ -33659,7 +33846,7 @@
     311
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -33687,15 +33874,24 @@
     220
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-09-30",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeekseweg 100 is nu D"
    }
   ],
+  "labels": {
+   "Groesbeekseweg 100": "D"
+  },
   "pand_id": "0268100000029585"
  },
  "groesbeekseweg103c": {
@@ -62847,6 +63043,7 @@
  "molukkenstraatparkeerplaats": {
   "adres": "Molukkenstraat parkeerplaats",
   "bag_gezien": "2026-09-30",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-09-30",
   "gebeurtenissen": [
    {
