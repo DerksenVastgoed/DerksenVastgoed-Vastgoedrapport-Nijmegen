@@ -3573,6 +3573,32 @@ is dezelfde weging als bij de eerdere vier stukken.
 
 ---
 
+## 9ll. Wie zit er achter die panden? — 1 oktober 2026
+
+**Mark:** kunnen we de eigenaar of het bedrijf achter die vergunde en verkochte
+panden achterhalen?
+
+**Niet uit een open bron.** Eigendom staat bij het Kadaster: betaald per
+object, ongeveer drie euro, en de gegevens mogen niet worden herpubliceerd. De
+BAG kent geen eigenaren en bekendmakingen noemen meestal alleen het adres.
+
+**Wat we wel hebben en weggooiden: de makelaar.** In de geplakte Funda-lijst
+staat bij elk pand een link naar de pagina van de makelaar. Die naam wordt nu
+bewaard en meegegeven aan het signaal vergund-en-verkocht, met een telling
+erbij. Komt dezelfde naam bij meerdere van die panden terug, dan is dat de
+partij om te bellen.
+
+**De formulering is beperkt gehouden:** de brief mag schrijven dat een makelaar
+deze panden verkocht, nooit dat hij de eigenaar of de ontwikkelaar is. Wie
+verkoopt is niet wie bezit, en dat verschil moet niet in een zin verdwijnen.
+
+**Wat nog wel kan, als je het echt wilt weten:** een losse
+eigendomsinformatie bij het Kadaster voor een pand dat je serieus overweegt.
+Dat is drie euro voor een pand van vier ton, dus voor een concreet bod is dat
+geen bezwaar; voor het volgen van een patroon over honderden panden wel.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -94,6 +94,15 @@ def parse_kort(regels):
     return uit
 
 
+# De makelaar staat in de geplakte tekst als een link naar zijn eigen pagina.
+# Die naam is het enige wat we over de partij achter een pand kunnen weten
+# zonder het Kadaster: eigendom is daar betaald en mag niet worden
+# herpubliceerd. Wie verkoopt is niet wie bezit, maar een makelaar die
+# steeds terugkeert bij vergunde en daarna verkochte panden, zegt genoeg om
+# eens te bellen.
+RE_MAKELAAR = re.compile(r"\[([^\]]{3,60})\]\(https://www\.funda\.nl/makelaar/")
+
+
 def parse(tekst):
     """De verkochte woningen uit de geplakte tekst."""
     regels = [r.strip() for r in tekst.split("\n")]
@@ -147,6 +156,23 @@ def parse(tekst):
     if huidig:
         uit.append(huidig)
     uit.extend(parse_kort(regels))
+
+    # De makelaar hoort bij het pand erboven: in de geplakte pagina staat de
+    # link naar zijn pagina onder de gegevens van die woning. We lopen de
+    # regels in volgorde langs en houden bij welk pand we net zijn gepasseerd.
+    op_adres = {}
+    for w in uit:
+        if w.get("adres"):
+            op_adres.setdefault(w["adres"], w)
+    huidig_pand = None
+    for regel in regels:
+        for adres, w in op_adres.items():
+            if f"[{adres}]" in regel:
+                huidig_pand = w
+                break
+        m = RE_MAKELAAR.search(regel)
+        if m and huidig_pand is not None and not huidig_pand.get("makelaar"):
+            huidig_pand["makelaar"] = m.group(1).strip()
 
     # Ontdubbelen: de geplakte pagina herhaalt zich vaak
     gezien, schoon = set(), []
@@ -269,7 +295,10 @@ def main():
         details[_sleutel(w["adres"])] = {
             "adres": w["adres"], "prijs": w["prijs"], "woonopp": w["woonopp"],
             "perceel": w["perceel"], "label": w["label"],
-            "sinds_dagen": w["sinds_dagen"], "gezien": datum, "url": w["url"]}
+            "sinds_dagen": w["sinds_dagen"], "gezien": datum, "url": w["url"],
+            # Wie het pand verkocht. Niet wie het bezit, maar het enige wat we
+            # over de partij erachter weten zonder het Kadaster.
+            "makelaar": w.get("makelaar")}
     with open(DETAIL_PAD, "w", encoding="utf-8") as f:
         json.dump(details, f, ensure_ascii=False, indent=1, sort_keys=True)
 

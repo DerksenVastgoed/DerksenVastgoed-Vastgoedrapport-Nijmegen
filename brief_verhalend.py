@@ -169,6 +169,8 @@ VEILIGHEIDSCIJFERS. De politie telt misdrijven op de plaats waar ze zijn gepleeg
 
 GEEN TOEZEGGINGEN NAMENS MARK. De brief is van Mark, maar jij beslist niet wat hij gaat doen. Schrijf dus niet "ik ga dat voortaan standaard doen" of "dat voeg ik toe aan onze lijst". Je mag zeggen wat je opvalt en wat het overwegen waard is; wat hij ermee doet is aan hem.
 
+WIE ERACHTER ZIT, WETEN WE NIET. Eigendom staat bij het Kadaster en dat is betaald en niet herpubliceerbaar. Wat we wel hebben is de makelaar die het pand verkocht. Noem die alleen als dezelfde naam bij meer dan een vergund en verkocht pand terugkomt, en schrijf dan dat die makelaar deze panden verkocht, nooit dat hij de eigenaar of de ontwikkelaar is.
+
 HET PATROON VERGUND EN VERKOCHT. Staat er een lijst panden met een splitsings- of verkameringsbesluit die inmiddels verkocht zijn, dan is dat een van de sterkste signalen die we hebben: iemand haalt een vergunning en doet het pand van de hand. Noem het aantal en een paar adressen, en zeg erbij dat we niet weten wanneer er verkocht is en dus ook niet of dat na het besluit was. Schrijf dus "met een vergunning en inmiddels verkocht", nooit "verkocht na de vergunning".
 
 DRIE NIVEAUS NAAST ELKAAR. Voor de prijsontwikkeling zijn er drie gemeten cijfers: landelijk (CBS), de provincie Gelderland, en het COROP-gebied Arnhem/Nijmegen, dat het dichtst bij onze markt ligt en ook het aantal transacties geeft. Zet ze naast elkaar als ze uiteenlopen, want dat verschil is zelf nieuws; loopt alles gelijk op, noem dan alleen het COROP-cijfer. Onze eigen buurtmedianen blijven vraagprijzen van een handvol panden en zijn een andere maat; vergelijk de richting, niet de hoogte.

@@ -550,6 +550,15 @@ def buurt_van_pand(pand, cache):
     return cache.get(straat) or cache.get(straat.lower()) or ""
 
 
+def _verkocht_details(pad="verkocht_details.json"):
+    """De gegevens uit de geplakte verkooplijst, waaronder de makelaar."""
+    try:
+        with open(pad, encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
 def vergund_en_verkocht(geschiedenis):
     """
     Panden met een besluit over splitsen of verkameren die inmiddels verkocht
@@ -564,6 +573,7 @@ def vergund_en_verkocht(geschiedenis):
     te stellen. Dat verschil is het verschil tussen een waarneming en een
     verhaal.
     """
+    details = _verkocht_details()
     uit = []
     for pand in geschiedenis.values():
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
@@ -583,7 +593,18 @@ def vergund_en_verkocht(geschiedenis):
             "besluit": besluiten[-1]["tekst"][:120],
             "besluit_datum": besluiten[-1]["datum"],
             "verkoop": verkoop[-1]["tekst"][:80] if verkoop else "",
+            "makelaar": (details.get(sleutel(pand.get("adres") or "")) or {}
+                         ).get("makelaar"),
         })
+    # Wie keert er terug? Een makelaar die vaker opduikt bij vergunde en daarna
+    # verkochte panden, is de partij om te bellen. Eigendom kunnen we niet zien,
+    # dit wel.
+    tellen = {}
+    for p in uit:
+        if p.get("makelaar"):
+            tellen[p["makelaar"]] = tellen.get(p["makelaar"], 0) + 1
+    for p in uit:
+        p["makelaar_aantal"] = tellen.get(p.get("makelaar"), 0)
     return sorted(uit, key=lambda x: x["besluit_datum"], reverse=True)
 
 
