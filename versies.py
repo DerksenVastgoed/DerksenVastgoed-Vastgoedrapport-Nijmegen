@@ -1,7 +1,7 @@
 {
  "bestanden": {
   ".github/workflows/bekendmakingen.yml": "e1d466abe3a2",
-  "bag3d.py": "4765e5d90765",
+  "bag3d.py": "400dd14cd446",
   "begroting_monitor.py": "9d05d317cb8f",
   "bekendmakingen_archief.py": "57c76345d16a",
   "bekendmakingen_nijmegen.py": "307cc3531c6b",
