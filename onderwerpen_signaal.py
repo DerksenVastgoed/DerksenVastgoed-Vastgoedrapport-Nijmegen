@@ -75,6 +75,51 @@ PATRONEN = [
     r"\bNTA\s*\d{4}\b",
 ]
 
+# Standaardzinnen uit de bekendmakingen. Het patroon voor "Besluit ..." vangt
+# ook gewone ambtelijke formuleringen op, zoals "besluit voor het renoveren" of
+# "besluit gevonden". Dat zijn geen regelingen maar beschrijvingen van een
+# handeling, en die leverden 22 voorstellen op waar niemand iets aan heeft.
+# Een echte regeling heeft een naam, geen werkwoord erachter.
+GEEN_ONDERWERP = (
+    "besluit gevonden", "besluit ontvangen", "besluit verleend",
+    "besluit genomen", "besluit geweigerd", "besluit ingetrokken",
+    "besluit voor", "besluit tot", "besluit over", "besluit op",
+    "besluit omgevingsvergunning", "besluit aanvraag",
+    "wet gevonden", "regeling gevonden",
+)
+
+
+# Woorden die, direct achter besluit, wet, regeling of verordening, aangeven
+# dat er een zin volgt en geen naam. "Besluit bouwwerken leefomgeving" is een
+# regeling; "besluit voor het verbouwen" en "wet is geborgd" zijn zinnen.
+ZINWOORDEN = {"voor", "tot", "over", "op", "om", "is", "wordt", "werd", "richt",
+              "geldt", "bepaalt", "gevonden", "ontvangen", "genomen",
+              "verleend", "geweigerd", "ingetrokken", "aangevraagd",
+              "gepubliceerd", "van"}
+# Uitzondering: "wet op de ..." en "wet op belastingen ..." zijn wel namen.
+NAAMUITZONDERING = ("wet op ",)
+
+
+def _is_standaardzin(term):
+    """
+    Een term die begint als een ambtelijke formulering en geen naam is.
+
+    Het verschil zit in het woord achter besluit, wet, regeling of verordening:
+    een voorzetsel of een werkwoord betekent dat er een handeling volgt, en dat
+    is geen onderwerp om een achtergrondstuk over te schrijven.
+    """
+    laag = " ".join(term.lower().strip(" #-[]x\t").split())
+    if any(laag.startswith(u) for u in NAAMUITZONDERING):
+        return False
+    if any(laag.startswith(z) for z in GEEN_ONDERWERP):
+        return True
+    delen = laag.split()
+    if len(delen) >= 2 and delen[0] in ("besluit", "wet", "regeling",
+                                        "verordening"):
+        return delen[1] in ZINWOORDEN
+    return False
+
+
 # Woorden die vaak in zo'n patroon meeliften maar geen onderwerp zijn
 RUIS = {"wet", "besluit", "regeling", "verordening", "van", "de", "het", "een",
         "voor", "over", "bij", "met", "tot", "aan", "dat", "die", "zijn",
@@ -149,7 +194,7 @@ def vind_onderwerpen(tekst):
                 delen.pop()
             term = " ".join(delen)
             woorden = [w for w in delen if w not in RUIS]
-            if not woorden:
+            if not woorden or _is_standaardzin(term):
                 continue
             # Staat de term in onze eigen omgeving? Zo niet, dan gaat hij over
             # iets anders en telt hij niet mee.
@@ -225,6 +270,37 @@ def lees_keuze():
     except Exception:
         pass
     return goedgekeurd, voorgesteld
+
+
+def ruim_standaardzinnen_op(pad=None):
+    """
+    Eerder weggeschreven standaardzinnen uit de keuzelijst halen.
+
+    De eerste ronde leverde 22 voorstellen op die allemaal ambtelijke
+    formuleringen waren. Zonder opruimen blijven ze in het bestand staan en
+    blijft het rapport ze melden.
+    """
+    pad = pad or KEUZE_PAD
+    if not os.path.exists(pad):
+        return 0
+    try:
+        with open(pad, encoding="utf-8") as f:
+            regels = f.readlines()
+        # Ook de regels met een hekje opruimen: zo staan de voorstellen in het
+        # bestand, en zonder het hekje mee te strippen bleef de ruis staan.
+        houden = [r for r in regels
+                  if r.lstrip().startswith("# ---")
+                  or not _is_standaardzin(
+                      r.strip(" #-[]x\t\n").split("|")[0])]
+        weg = len(regels) - len(houden)
+        if weg:
+            with open(pad, "w", encoding="utf-8") as f:
+                f.writelines(houden)
+            print(f"  {weg} standaardzinnen uit {pad} verwijderd",
+                  file=sys.stderr)
+        return weg
+    except Exception:
+        return 0
 
 
 def schrijf_keuze(nieuwe_voorstellen):
@@ -316,6 +392,7 @@ def main():
     ap.add_argument("--uit", default=VOORSTEL_PAD)
     args = ap.parse_args()
 
+    ruim_standaardzinnen_op()
     tekst = _tekstbronnen(args.dagen)
     if not tekst.strip():
         print("Geen tekst gevonden om te doorzoeken", file=sys.stderr)

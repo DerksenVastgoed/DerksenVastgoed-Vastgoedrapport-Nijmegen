@@ -3507,6 +3507,37 @@ nieuws terugkomt zonder achtergrondstuk is een gemiste uitleg in de brief.
 
 ---
 
+## 9jj. De 22 onderwerpen waren ruis — 1 oktober 2026
+
+Het digest laat zien wat die voorstellen werkelijk zijn: "88x besluit
+gevonden", "31x besluit voor vergunning aanvragen", "20x besluit voor het
+renoveren". Dat zijn geen onderwerpen maar standaardzinnen uit de
+bekendmakingen.
+
+**Oorzaak:** het patroon voor "Besluit ..." vangt ook gewone ambtelijke
+formuleringen op. Een echte regeling heeft een naam, zoals Besluit bouwwerken
+leefomgeving; een zin heeft een werkwoord of een voorzetsel erachter. Daarop
+wordt nu gefilterd, en het bestand met eerdere voorstellen wordt bij elke ronde
+opgeschoond.
+
+**In het echte bestand bleken er drie vondsten tussen de ruis te zitten:**
+EPBD IV, NTA 8800 en de regeling noodfonds blokverwarming. Het filter moest dus
+scherper dan "begint met besluit": het kijkt nu naar het woord erachter. Een
+voorzetsel of een werkwoord betekent een zin, een naam betekent een regeling.
+"Wet op belastingen van" blijft daarom staan en "wet is geborgd" niet.
+
+Op het echte bestand losgelaten: zes regels weg, vier over, en dat zijn precies
+de vier die ergens over gaan. Het opruimen kan ook met regels die met een hekje
+beginnen, want zo staan de voorstellen erin; zonder dat bleef de ruis staan.
+
+**Wat dit zegt over de maat van 326.945 woorden:** een detector die op patronen
+zoekt vindt altijd iets, en het aantal zegt niets over de waarde. Pas toen het
+digest de termen zelf liet zien, bleek dat er nul bruikbare tussen zaten. Dat
+is dezelfde les als bij de dekkingsmeting: een getal zonder de onderliggende
+regels is geen meting maar een gevoel.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
