@@ -381,7 +381,14 @@ def controle_versies():
     komen en is het bij het overnemen zo verdwenen.
     """
     try:
-        from versies import controleer
+        import versies as _v
+        controleer = getattr(_v, "controleer", None)
+        if controleer is None:
+            # Een oudere versies.py zonder die functie. Zeggen wat er aan de
+            # hand is in plaats van een importfout tonen die niemand leest.
+            return (LET_OP, "de versies.py in de repo is een oudere versie",
+                    "Upload versies.py opnieuw; de huidige kent de functie "
+                    "controleer niet.")
         uit = controleer()
     except Exception as e:
         return (LET_OP, "versiecontrole niet uit te voeren", str(e)[:120])
@@ -530,13 +537,20 @@ def controle_nieuwe_onderwerpen():
     blijft dat bestand liggen en gebeurt er niets mee. Dit is de schakel tussen
     "het script ziet een nieuw onderwerp" en "er komt een achtergrondstuk".
     """
+    # De voorstellen staan als kopregel: "## term" of "## term (nieuw)". De
+    # regels eronder zijn tellingen en citaten, geen onderwerpen; die haalde ik
+    # eerst ook binnen, waardoor het rapport "_88 keer genoemd._" als onderwerp
+    # toonde.
     voorstellen = []
     try:
         with open("onderwerpen_voorstel.md", encoding="utf-8") as f:
             for regel in f:
-                regel = regel.strip(" -*\t\n")
-                if regel and not regel.startswith("#") and len(regel) < 120:
-                    voorstellen.append(regel)
+                regel = regel.rstrip()
+                if not regel.startswith("## "):
+                    continue
+                term = regel[3:].replace("(nieuw)", "").strip()
+                if term and len(term) < 80:
+                    voorstellen.append(term)
     except Exception:
         pass
     gevolgd = _json("onderwerpen_volgen.json") or {}

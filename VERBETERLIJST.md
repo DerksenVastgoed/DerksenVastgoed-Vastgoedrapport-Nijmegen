@@ -3483,6 +3483,30 @@ met -2% in Bottendaal.
 
 ---
 
+## 9ii. Twee winsten en twee meldingen die niet deugden — 1 oktober 2026
+
+**De 3D BAG staat op OK**, dus met dat voorvoegsel loopt hij. En de
+onderwerpensignalering draait voor het eerst: 22 voorstellen. Die twee stonden
+gisteren nog open.
+
+**Maar de melding over die voorstellen was onleesbaar:** er stond "_88 keer
+genoemd._" als onderwerp. De voorstellen staan in dat bestand als kopregel,
+"## term", met de telling en een citaat eronder. Mijn controle las elke korte
+regel en pakte dus de tellingen mee. Nu leest hij alleen de kopregels, en dan
+staat er "vermogenswinstbelasting; warmtewet aansluitplicht".
+
+**En de versiecontrole viel om op een importfout.** De versies.py in de repo
+kent de functie controleer niet, dus is het een oudere versie. Dat toonde het
+rapport als een pythonfout van drie regels. Nu staat er wat er aan de hand is
+en wat eraan te doen valt.
+
+**22 voorstellen is veel**, en dat komt doordat die stap weken niet heeft
+gedraaid. De eerste keer is dus een inhaalslag; daarna zijn het er een paar per
+week. Die lijst is het waard om langs te lopen, want elk onderwerp dat in het
+nieuws terugkomt zonder achtergrondstuk is een gemiste uitleg in de brief.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
