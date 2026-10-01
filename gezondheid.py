@@ -303,12 +303,17 @@ def controle_geschiedenis():
         from pandgeschiedenis import MAX_BAG_PER_RONDE as per_ronde
     except Exception:
         per_ronde = int(os.environ.get("BAG_PER_RONDE") or 500)
+    # Labels groeien alleen tijdens een volledige ronde; dat staat erbij zodat
+    # een stilstaand getal niet als storing wordt gelezen.
     bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
               f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen), "
               f"{met_label} met een energielabel, {nooit} nog nooit nagekeken"
               + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else "")
               + (f" waarvan {opgegeven} na drie pogingen opgegeven"
-                 if opgegeven else ""))
+                 if opgegeven else "")
+              + ("; labels en BAG groeien alleen bij een volledige ronde, dus "
+                 "in de weekeditie of bij een handrun met die vlag aan"
+                 if met_label < met_bag else ""))
     if nooit:
         runs = -(-nooit // per_ronde)
         oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
@@ -478,9 +483,12 @@ def controle_bag3d():
                 "bouwkosten per pand. Zie de stap in het logboek.")
     met = sum(1 for p in panden.values() if p.get("b3_opp_buitenmuur"))
     leeg = sum(1 for p in panden.values() if p.get("leeg"))
+    opgegeven = sum(1 for p in panden.values()
+                    if int(p.get("pogingen") or 0) >= 3)
     bewijs = (f"{len(panden)} panden in de eigen snapshot, {met} met een "
-              f"buitenmuuroppervlak, {leeg} zonder gegevens bij de bron; "
-              f"bijgewerkt {d.get('bijgewerkt', '?')}")
+              f"buitenmuuroppervlak, {leeg} zonder gegevens bij de bron"
+              + (f", {opgegeven} na drie pogingen opgegeven" if opgegeven else "")
+              + f"; bijgewerkt {d.get('bijgewerkt', '?')}")
     if met < len(panden) * 0.5:
         return (LET_OP, bewijs,
                 "Van minder dan de helft kwamen bruikbare waarden; controleer "
@@ -724,6 +732,49 @@ def controle_huurdekking():
     return (OK, bewijs, "")
 
 
+def controle_aanbodreeks():
+    """De instroom van nieuw aanbod, en het uitpondsignaal."""
+    reeks = _json("aanbod_reeks.json") or {}
+    if len(reeks) < 2:
+        return (LET_OP, f"{len(reeks)} dagen in de reeks",
+                "Een golf is pas te zien na een paar weken meten. Deze reeks "
+                "begint nu te lopen.")
+    try:
+        from aanbod_reeks import samenvatting
+        weken = samenvatting(reeks)
+    except Exception as e:
+        return (LET_OP, "reeks niet samen te vatten", str(e)[:100])
+    delen = [f"{w}: {d['nieuw_te_koop']} koop, {d['nieuw_te_huur']} huur"
+             + (f", {d['uitpond']} uitpond" if d.get("uitpond") else "")
+             for w, d in sorted(weken.items())]
+    uitpond = sum(d.get("uitpond", 0) for d in weken.values())
+    bewijs = f"{len(reeks)} dagen gemeten; " + "; ".join(delen[-3:])
+    if uitpond:
+        return (OK, bewijs + f". In beeld: {uitpond} nieuw aangeboden panden "
+                f"die bij ons als kamerverhuur bekend staan", "")
+    return (OK, bewijs, "")
+
+
+def controle_aanbodprofiel():
+    """Het profiel van het nieuwe aanbod, voor de weekeditie."""
+    p = _json("aanbodprofiel.json") or {}
+    nu = p.get("nu")
+    if not nu:
+        return (LET_OP, "nog geen profiel van het nieuwe aanbod",
+                "Dit vult zich met elke dag dat er aanbod bijkomt.")
+    delen = [f"{nu['aantal']} panden in dertig dagen"]
+    if nu.get("mediane_opp"):
+        delen.append(f"mediaan {nu['mediane_opp']} m2")
+    if nu.get("label_onbekend") is not None:
+        delen.append(f"{nu['label_onbekend']} zonder label")
+    bewijs = "; ".join(delen)
+    if nu.get("label_onbekend", 0) > nu.get("aantal", 1) * 0.5:
+        return (LET_OP, bewijs,
+                "Van meer dan de helft kennen we het label niet; een "
+                "labelverdeling zegt dan nog weinig.")
+    return (OK, bewijs, "")
+
+
 def controle_veroudering():
     """
     Hoe oud is het aanbod dat we tonen?
@@ -926,6 +977,8 @@ CONTROLES = [
     ("Handmatige lijsten", controle_plakbestanden),
     ("Verkopen", controle_verkopen),
     ("Veroudering aanbod", controle_veroudering),
+    ("Aanbodreeks", controle_aanbodreeks),
+    ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Huurdekking", controle_huurdekking),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
@@ -1010,11 +1063,25 @@ def _kerncijfers():
         met = sum(1 for p in b3.values() if p.get("b3_opp_buitenmuur"))
         uit.append(f"3D BAG: {met} van {len(b3)}")
     try:
-        huur = sum(1 for regel in open("verkopen.txt", encoding="utf-8")
-                   if "| te huur" in regel)
-        koop = sum(1 for regel in open("verkopen.txt", encoding="utf-8")
-                   if "| verkocht" in regel)
-        uit.append(f"{huur} huurwaarnemingen, {koop} verkopen")
+        # Op velden tellen en niet op tekst in de regel. Met "| verkocht" in de
+        # hele regel telde hij ook adressen en toelichtingen mee waar dat woord
+        # in voorkomt; dat gaf 648 waar de controle erboven 505 zei, en twee
+        # tellers op hetzelfde bestand horen hetzelfde getal te geven.
+        huur = koop = voorbehoud = 0
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 5:
+                    continue
+                status = v[3].lower()
+                if status.startswith("te huur"):
+                    huur += 1
+                elif status.startswith("verkocht onder voorbehoud"):
+                    voorbehoud += 1
+                elif status.startswith("verkocht"):
+                    koop += 1
+        uit.append(f"{huur} huurwaarnemingen, {koop} verkopen"
+                   + (f" en {voorbehoud} onder voorbehoud" if voorbehoud else ""))
     except Exception:
         pass
     woz = (_json("woz_kalibratie.json") or {}).get("aantal")

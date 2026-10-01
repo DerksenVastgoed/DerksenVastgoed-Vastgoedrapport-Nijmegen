@@ -112,6 +112,9 @@ def _velden_uit(antwoord):
     return uit
 
 
+MAX_POGINGEN = 3
+
+
 def te_doen(opgeslagen, pand_ids, versie_nu):
     """
     Welke panden opgehaald moeten worden.
@@ -121,7 +124,26 @@ def te_doen(opgeslagen, pand_ids, versie_nu):
     """
     if versie_nu and opgeslagen.get("versie") and versie_nu != opgeslagen["versie"]:
         return list(pand_ids), True
-    return [p for p in pand_ids if p not in opgeslagen.get("panden", {})], False
+    panden = opgeslagen.get("panden", {})
+
+    def nog_doen(pand_id):
+        """
+        Moet dit pand nog opgehaald worden?
+
+        Klaar is het pas als er gegevens zijn, of als de bron er na drie
+        pogingen niets over geeft. Een pand met een mislukte poging staat wel in
+        het bestand maar is niet klaar; keek je alleen of het bekend was, dan
+        kreeg het nooit een tweede kans. Zonder de rem van drie pogingen kwamen
+        dezelfde panden juist elke run terug.
+        """
+        p = panden.get(pand_id)
+        if p is None:
+            return True
+        if p.get("b3_opp_buitenmuur") or p.get("leeg"):
+            return False
+        return int(p.get("pogingen") or 0) < MAX_POGINGEN
+
+    return [p for p in pand_ids if nog_doen(p)], False
 
 
 def pand_ids_uit_geschiedenis(pad="pandgeschiedenis.json"):
@@ -155,6 +177,10 @@ def main():
               file=sys.stderr)
         return 0
 
+    # Eerdere mislukkingen meenemen als poging, zodat de teller doorloopt.
+    for pand_id, pogingen in (opgeslagen.get("mislukt") or {}).items():
+        opgeslagen.setdefault("panden", {}).setdefault(
+            pand_id, {"pogingen": pogingen}) if pogingen >= MAX_POGINGEN else None
     wachtrij, opnieuw = te_doen(opgeslagen, ids, args.versie)
     if opnieuw:
         print(f"Nieuwe versie van de bron ({args.versie}); alles opnieuw",
@@ -170,6 +196,16 @@ def main():
             antwoord = _haal(pand_id)
         except Exception as e:
             fout += 1
+            # De poging onthouden, zodat dit pand niet eeuwig terugkomt.
+            eerder = opgeslagen.setdefault("panden", {}).get(pand_id) or {}
+            pogingen = int(eerder.get("pogingen") or 0) + 1
+            if pogingen >= MAX_POGINGEN:
+                opgeslagen["panden"][pand_id] = {
+                    "pogingen": pogingen, "leeg": True,
+                    "reden": str(e)[:60],
+                    "opgegeven": dt.date.today().isoformat()}
+            else:
+                opgeslagen.setdefault("mislukt", {})[pand_id] = pogingen
             if fout <= 3:
                 print(f"  {pand_id}: {str(e)[:90]}", file=sys.stderr)
             if fout > 20:
@@ -195,9 +231,13 @@ def main():
         json.dump(opgeslagen, f, ensure_ascii=False, indent=1)
 
     rest = max(0, len(wachtrij) - args.per_ronde)
+    opgegeven = sum(1 for p in (opgeslagen.get("panden") or {}).values()
+                    if int(p.get("pogingen") or 0) >= MAX_POGINGEN)
     print(f"3D BAG: {gedaan} panden opgehaald, {leeg} zonder gegevens, "
           f"{fout} fouten, nog {rest} te gaan "
-          f"(totaal {len(opgeslagen.get('panden', {}))})", file=sys.stderr)
+          f"(totaal {len(opgeslagen.get('panden', {}))}"
+          + (f", {opgegeven} na drie pogingen opgegeven" if opgegeven else "")
+          + ")", file=sys.stderr)
     return 0
 
 

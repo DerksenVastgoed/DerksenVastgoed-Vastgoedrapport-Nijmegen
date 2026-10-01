@@ -3644,6 +3644,215 @@ brieven in het logboek, zodat zichtbaar is dat er een per dag bij komt.
 
 ---
 
+## 10a. Een juridische verwisseling in de brief — 1 oktober 2026
+
+De brief van 1 oktober schrijft dat een omzettingsvergunning de toestemming is
+om een pand in meerdere losse woningen te verdelen. Dat klopt niet, en het is
+precies de verwarring die bij kamerverhuur het meest kost.
+
+Artikel 21 van de Huisvestingswet kent vier ingrepen met elk hun eigen naam:
+**omzetten** is een zelfstandige woning naar onzelfstandige woonruimte brengen,
+dus kamerverhuur; **woningvorming**, in de praktijk splitsen genoemd, is een
+pand verbouwen tot twee of meer zelfstandige woningen; **onttrekken** haalt
+woonruimte uit de bewoning; **samenvoegen** maakt van twee woningen een. De
+opdracht aan de brief legt dat nu vast, met de instructie dat "omzetting" in
+een bekendmaking altijd over kamers gaat.
+
+**En de dekkingstoets was te streng.** "Regeling noodfonds blokverwarming
+gemeente" bleef als gat staan terwijl we er die ochtend een stuk over hadden
+geschreven, omdat de toets de hele term wilde matchen. Nu telt een kenmerkend
+woord uit de term ook; woorden als wet, regeling en gemeente zeggen daarbij
+niets. Van de twee overgebleven voorstellen blijft er daarmee een echte over.
+
+**Wat er verder goed ging in deze run:** de versiecontrole staat op OK, dus
+alle 32 bestanden draaien, en het vergund-en-verkocht patroon staat nu met vier
+panden in de brief. Dat was gisteren nog toeval en is nu een berekening.
+
+---
+
+## 10b. De versiecontrole sloeg om zonder dat er iets veranderde — 1 oktober 2026
+
+Om 15:48 stond de versiecontrole op OK, om 17:24 op LET OP met de melding dat
+versies.py een oudere versie is. Tussen die twee runs heb ik aan dat bestand
+niets gewijzigd, dus er is in de repo een oudere versie overheen gekomen.
+
+**De melding noemt nu wat er werkelijk staat:** hoeveel bytes het bestand is,
+wanneer het is gewijzigd en welke functies erin zitten. Dan hoeft niemand op
+mijn woord te geloven dat het een ander bestand is. In de test:
+"mist de functie controleer (144 bytes, gewijzigd 18:55); hij kent:
+vingerafdruk".
+
+**Ter vergelijking:** de versies.py die ik lever is 5157 bytes en bevat
+controleer. Dat is in één oogopslag te vergelijken met wat de melding zegt.
+
+**Wat dit laat zien over de paklijst zelf:** versies.py staat bewust niet in
+die lijst, want hij controleert zichzelf niet. Daardoor kan juist dit bestand
+stil verouderen. De melding vangt dat nu op, en dat is precies waarom de
+controle ook naar zijn eigen gereedschap moet kijken.
+
+---
+
+## 10c. De stand terug in het korte rapport — 1 oktober 2026
+
+**Mark:** worden de pandgegevens inmiddels completer?
+
+Het antwoord stond in het rapport maar niet in cijfers: "Geschiedenis per pand"
+komt niet meer voor bij de meldingen, dus die 149 panden die nooit waren
+nagekeken zijn weggewerkt. Dat was gisteren de grootste openstaande post.
+
+**Maar de getallen waren verdwenen**, en dat is een gevolg van het inkorten van
+vanmiddag. Onderdelen die goed gaan staan alleen nog in het digestbestand. Voor
+een controle die een ja of nee geeft is dat prima; voor een teller die ergens
+naartoe groeit niet, want dan zie je niet meer of de voorraad zich vult.
+
+**Er staat nu een regel Stand in het korte blok**, met alleen de tellers die
+oplopen: panden gevolgd, met BAG-gegevens, met label, nog niet nagekeken, de
+3D BAG, het aantal huurwaarnemingen en verkopen, en het aantal panden met een
+eigen WOZ. In de test:
+
+Stand: 1692 panden, 1353 met BAG, 614 met label, 0 nog niet nagekeken;
+3D BAG: 280 van 300; 46 huurwaarnemingen, 505 verkopen; 22 panden met eigen WOZ.
+
+**Dat is een regel die week na week iets zegt.** Een getal dat niet beweegt is
+deze week vaker een signaal gebleken dan een melding die oplichtte, en nu is
+dat in het blok te zien dat Mark toch al plakt.
+
+---
+
+## 10d. Een reeks om een uitpondgolf in te zien — 1 oktober 2026
+
+**Mark:** houden we bij hoeveel woningen er te koop en te huur staan, zodat we
+een uitpondgolf kunnen zien?
+
+**Nee, en dat was een gat.** Elke brief noemde het aantal panden in beeld, maar
+dat werd nergens bewaard. Zonder reeks is een golf niet te zien.
+
+**Drie maten, en ze zijn niet even betrouwbaar.** De voorraad, dus hoeveel
+panden er te koop staan, is bij ons de zwakste: ons aanbod groeit alleen aan en
+een pand dat verkocht wordt zonder dat wij het horen blijft staan. Een
+oplopende voorraad kan dus ophoping zijn in plaats van marktgroei. De instroom
+is wel zuiver, want elke nieuwe advertentie is een waarneming met een datum;
+dat is de maat voor een golf.
+
+**En er is iets scherpers: nieuw aangeboden panden die bij ons als kamerverhuur
+bekend staan.** Dat is geen omweg maar precies waar een uitpondgolf uit
+bestaat, namelijk verhuurd bezit dat te koop gaat. Dat getal komt uit het
+kamerverhuurregister en de meldingen brandveilig gebruik, die we al hebben.
+
+Per week opgeteld in plaats van per dag, want dagcijfers zijn te klein en
+attenderingen komen met pieken binnen. Dezelfde dag overschrijft, dus een
+tweede run telt niet dubbel.
+
+**Wat je er niet mee kunt:** een golf vaststellen uit twee weken meten. Het
+rapport zegt daarom hoeveel dagen er in de reeks zitten, en pas na een week of
+zes begint een trend iets te betekenen.
+
+---
+
+## 10e. Het profiel van het nieuwe aanbod — 1 oktober 2026
+
+Niet hoeveel panden erbij komen, maar wat voor panden. Een markt verandert vaak
+eerst van samenstelling en pas daarna in aantallen: komen er een maand lang
+alleen kleine woningen met een slecht label bij, dan is dat nieuws ook als het
+totaal gelijk blijft.
+
+**Drie vensters, en het derde is bewust anders.** De laatste dertig dagen, de
+dertig daarvoor om mee te vergelijken, en een voortschrijdend jaar als ijkpunt.
+Dat laatste is geen vergelijking: over een jaar spelen seizoen en rente mee.
+Het zegt alleen of een verschil uitzonderlijk is of binnen de normale
+schommeling valt. En voortschrijdend, niet vanaf 1 januari, want zo'n cijfer is
+in januari leeg en in december vol en betekent elke maand iets anders.
+
+**Wat erin staat:** mediane oppervlakte, mediane prijs per m2, de verdeling
+over drie labelgroepen, en het aandeel panden dat volgens de BAG in een complex
+zit. Labels in drie groepen en niet in zeven, want met zestig tot tachtig
+panden per venster is zeven klassen te fijn.
+
+**Het aandeel onbekende labels staat er altijd bij.** Zolang onze
+labelverzameling groeit, kan een verschuiving in de labelverdeling net zo goed
+onze eigen voortgang zijn als een verandering in de markt. Het rapport meldt
+het apart zodra we van meer dan de helft het label niet kennen.
+
+**In de weekeditie, niet in de dagelijkse brief.** Een profiel over dertig
+dagen verandert niet per dag, en de opdracht zegt erbij dat een paar vierkante
+meter verschil tussen twee steekproeven niets betekent.
+
+Getest met een opzettelijke verschuiving: mediaan van 122 naar 55 m2 en van
+goede naar slechte labels. Dat komt er goed uit, inclusief de melding dat van
+acht van de 25 panden het label ontbreekt.
+
+---
+
+## 10f. De 3D BAG is rond, op vier panden na — 1 oktober 2026
+
+274 panden opgehaald, nul zonder gegevens, vier fouten, nog nul te gaan, totaal
+1168. Daarmee is de snapshot in feite compleet: we hebben voor 1168 panden het
+buitenmuuroppervlak, het dakvlak, het grondvlak en de hoogte.
+
+**Die vier fouten kwamen elke run terug**, want een mislukt pand werd niet
+onthouden. Dezelfde eindeloze herhaling als bij de pand-ids in de
+geschiedenisstap, nu bij een andere bron. Een pand krijgt nu drie pogingen en
+daarna niet meer, en het rapport meldt hoeveel er zijn opgegeven.
+
+**Een valkuil die de test blootlegde:** klaar is niet hetzelfde als bekend. Een
+pand met een mislukte poging staat wel in het bestand maar is niet af. Keek de
+wachtrij alleen of een pand bekend was, dan kreeg het nooit een tweede kans;
+keek hij er helemaal niet naar, dan kwam het eeuwig terug. Nu telt een pand als
+klaar zodra er gegevens zijn of de bron er na drie pogingen niets over geeft.
+
+**Wat dit mogelijk maakt:** die 1168 panden hebben nu een gemeten
+buitenmuuroppervlak en een afleidbare verdiepingshoogte. Daarmee kan de
+maatregelenketen van vanmiddag, bouwjaar naar norm naar oppervlak naar prijs,
+voor het eerst met echte vierkante meters rekenen in plaats van met een
+aangenomen hoogte.
+
+---
+
+## 10g. De volledige ronde terug naar het weekend — 1 oktober 2026
+
+**Mark:** is de pandgeschiedenis nu een keer volledig opgehaald, en kunnen we
+uitzetten dat elke handrun alles naloopt?
+
+**Ja.** "Nog niet nagekeken" staat op nul en de 3D BAG heeft nul te gaan. De
+vlag --volledig stond bij elke handmatige start aan om de achterstand in te
+lopen; die is weg, en hij was bedoeld voor de weekeditie.
+
+**Het is nu een keuze bij de handmatige start**, een vinkje volledig dat
+standaard uit staat. In de weekeditie gaat hij altijd aan. De 3D BAG-stap volgt
+dezelfde keuze: 2000 panden per ronde in het weekend of op verzoek, anders 300.
+
+**Een gevolg om te onthouden:** de energielabels groeien alleen mee tijdens
+zo'n volledige ronde. Er staan er 614 van de 1353, dus die vullen zich vanaf nu
+in het weekend. Het rapport zet dat erbij zodra het aantal labels achterblijft
+bij het aantal panden met BAG-gegevens, zodat een stilstaand getal niet als
+storing wordt gelezen.
+
+Dat laatste is deze week de meest terugkerende les: een getal dat niet beweegt
+moet uitleggen waarom, anders gaat iemand zoeken naar een fout die er niet is.
+
+---
+
+## 10h. Twee tellers, twee antwoorden — 1 oktober 2026
+
+De nieuwe Stand-regel deed meteen waarvoor hij bedoeld is: hij meldde 648
+verkopen terwijl de controle erboven 505 zei. Twee tellers op hetzelfde bestand
+horen hetzelfde getal te geven.
+
+**Oorzaak:** de Stand telde op tekst in de regel, dus "| verkocht" ergens in
+een adres of een toelichting telde mee. De controle telt op het statusveld. Nu
+tellen ze allebei op velden, en staan verkocht en verkocht onder voorbehoud
+apart, want dat laatste is een status die nog kan omslaan.
+
+**Wat de Stand verder laat zien, en dat is goed nieuws:** 1473 panden met
+BAG-gegevens tegen 1353 gisteren, 730 met een label tegen 614, nul nog niet
+nagekeken, en de 3D BAG compleet op 1168 van 1168.
+
+**Dat die inconsistentie binnen een dag opviel, is precies het nut van die
+regel.** Hij staat in het blok dat Mark toch al plakt, dus een getal dat niet
+klopt valt op zonder dat iemand ernaar hoeft te zoeken.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
