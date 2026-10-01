@@ -48,9 +48,24 @@ def lees(pad=UIT_PAD):
         return {"versie": "", "panden": {}, "bijgewerkt": ""}
 
 
+PREFIX = "NL.IMBAG.Pand."
+
+
+def volledig_id(pand_id):
+    """
+    Het pand-id zoals de 3D BAG het verwacht.
+
+    Wij bewaren het kale nummer uit de BAG, zoals 0268100000001130. De 3D BAG
+    wil er NL.IMBAG.Pand. voor; zonder dat voorvoegsel antwoordt de bron met
+    een 502 op elk verzoek, en dat is geen fout die zichzelf verklaart.
+    """
+    pand_id = (pand_id or "").strip()
+    return pand_id if pand_id.startswith(PREFIX) else PREFIX + pand_id
+
+
 def _haal(pand_id):
     """De 3D BAG-gegevens van een pand, of None als er niets is."""
-    url = f"{API}/{pand_id}"
+    url = f"{API}/{volledig_id(pand_id)}"
     verzoek = urllib.request.Request(
         url, headers={"Accept": "application/json",
                       "User-Agent": "NijmegenVastgoedMonitor/1.0"})
@@ -79,6 +94,14 @@ def _velden_uit(antwoord):
         for deel in (antwoord.get("features") or []):
             if isinstance(deel, dict):
                 kandidaten.append(deel.get("properties") or {})
+        # De 3D BAG antwoordt in CityJSON: de kenmerken zitten onder
+        # feature.CityObjects.<id>.attributes, niet in properties.
+        for blok in (antwoord.get("feature"), antwoord):
+            if not isinstance(blok, dict):
+                continue
+            for obj in (blok.get("CityObjects") or {}).values():
+                if isinstance(obj, dict):
+                    kandidaten.append(obj.get("attributes") or {})
     uit = {}
     for bron in kandidaten:
         if not isinstance(bron, dict):
