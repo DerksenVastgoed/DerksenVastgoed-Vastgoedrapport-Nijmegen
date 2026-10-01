@@ -253,7 +253,7 @@ def render(uitgebreid=True):
 # Zonder aansluiting valt het terug op de volgorde: dan is er toch iets.
 ACHTERGROND_TREFWOORDEN = {
     "Overdrachtsbelasting": ["overdrachtsbelasting", "belastingplan", "aankoop",
-                             "prinsjesdag", "miljoenennota", "fiscaal", "8%"],
+                             "prinsjesdag", "miljoenennota", "fiscaal", "8%", "belastingen van rechtsverkeer", "wet op belastingen"],
     "Rentedekking": ["rente", "hypotheek", "financiering", "bank", "lenen",
                      "ecb", "kapitaalmarkt"],
     "Aflossing is geen kostenpost": ["rendement", "cashflow", "aflossing",
