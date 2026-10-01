@@ -1,714 +1,1026 @@
 #!/usr/bin/env python3
 """
-Geschiedenis per pand: wat er in de loop van de tijd met een adres gebeurt.
+Gezondheidsrapport van de vastgoedbrief.
 
-Vastgelegd op het BAG-pand en niet op het adres. Bij een splitsing verdwijnt
-het oude huisnummer niet, er komen nieuwe bij: 15 wordt 15, 15-A en 15-B. Op
-het adres vastgelegd zie je drie losse nieuwe woningen zonder verleden; op het
-pand zie je dat 180 m2 in drieen is gegaan.
+Draait als laatste stap en kijkt per onderdeel wat er werkelijk is opgeleverd.
+Niet wat de log belooft, maar wat er in de bestanden staat: een script kan
+netjes "gelukt" melden en toch niets hebben weggeschreven.
 
-Wat er per pand wordt bijgehouden:
-- te koop gezet, prijs gewijzigd, verkocht (uit verkopen.txt);
-- vergunning aangevraagd of verleend (uit het bekendmakingenarchief);
-- de BAG: hoeveel woningen het pand telt en hoe groot ze zijn. Verandert dat,
-  dan is de splitsing geregistreerd;
-- het energielabel per adres. Na een splitsing komen de labels vaak weken of
-  maanden later; een wijziging is daarom een eigen gebeurtenis.
-
-De BAG en de labels worden alleen op zondag opgevraagd; die veranderen niet
-dagelijks en elke opvraging kost een verzoek.
+Het rapport is bedoeld om te kopiëren en te delen. Per onderdeel staat de
+status, het bewijs en bij een probleem de vermoedelijke oorzaak en waar je
+moet kijken.
 
 Gebruik:
-  python pandgeschiedenis.py --uit digests/2026-09-27-geschiedenis.md
-  python pandgeschiedenis.py --volledig   # ook BAG en labels bijwerken
+  python gezondheid.py --uit digests/2026-09-21-gezondheid.md
 """
 
 import argparse
 import datetime as dt
 import json
 import os
-import re
-import statistics as st
 import sys
-import time
 
-PAD = "pandgeschiedenis.json"
-VERKOPEN = "verkopen.txt"
-ARCHIEF = "bekendmakingen_archief.json"
-# Hoeveel panden per ronde tegen de BAG en EP-Online worden gehouden. Elke
-# controle is een paar opvragingen, dus dit is een afweging tussen snelheid en
-# belasting van die diensten. Met de omgevingsvariabele BAG_PER_RONDE tijdelijk
-# te verhogen als je een achterstand wilt inlopen.
-MAX_BAG_PER_RONDE = int(os.environ.get("BAG_PER_RONDE") or 500)
-# Een GitHub-job stopt na zes uur. Bij een grote inhaalronde stoppen we zelf
-# eerder en netjes, zodat het werk dat af is bewaard blijft in plaats van
-# verloren te gaan bij een afgekapte job.
-MINUTEN_BUDGET = int(os.environ.get("BAG_MINUTEN") or 0)
-_START = dt.datetime.now()
+OK, LET_OP, FOUT = "OK", "LET OP", "FOUT"
+
+# De scripts schrijven bij een probleem hun eigen diagnose weg in deze map.
+# Het rapport neemt die over, zodat de oorzaak in het rapport staat en je niet
+# in de logs hoeft te zoeken.
+DIAGNOSE_MAP = "diagnose"
 
 
-def _rest_vastleggen(rest):
+def diagnose(onderdeel):
     """
-    Hoeveel panden er nog wachten, zodat de workflow zelf kan doorgaan.
+    De diagnose die een script zelf heeft achtergelaten, als die er is.
 
-    Een GitHub-job stopt na zes uur. Blijft er werk over, dan start de workflow
-    een vervolgronde; dit bestand is het sein daarvoor.
+    Dubbele regels eruit: een script dat twee keer draait of twee keer
+    hetzelfde vaststelt, hoort het maar een keer te zeggen.
     """
+    pad = os.path.join(DIAGNOSE_MAP, f"{onderdeel}.txt")
     try:
-        with open("bag_rest.json", "w", encoding="utf-8") as f:
-            json.dump({"rest": max(0, int(rest)),
-                       "datum": dt.date.today().isoformat()}, f)
+        with open(pad, encoding="utf-8") as f:
+            regels = [r.strip() for r in f if r.strip()]
     except Exception:
-        pass
+        return ""
+    uniek = []
+    for r in regels:
+        if r not in uniek:
+            uniek.append(r)
+    return " ".join(uniek)
 
 
-def tijd_op():
-    """Of het tijdbudget voor deze ronde op is."""
-    if not MINUTEN_BUDGET:
-        return False
-    return (dt.datetime.now() - _START).total_seconds() > MINUTEN_BUDGET * 60
-PAUZE_TUSSEN = 0.2
-
-try:
-    from diagnose import leg_vast, wis
-except Exception:  # noqa
-    def leg_vast(*_a):
-        pass
-
-    def wis(*_a):
-        pass
-
-
-def sleutel(adres):
-    return re.sub(r"[^a-z0-9]", "", (adres or "").lower())
+def automatische_keuzes():
+    """Alle keuzes die een script zelf heeft gemaakt, uit alle diagnoses."""
+    uit = []
+    if not os.path.isdir(DIAGNOSE_MAP):
+        return uit
+    for naam in sorted(os.listdir(DIAGNOSE_MAP)):
+        try:
+            with open(os.path.join(DIAGNOSE_MAP, naam), encoding="utf-8") as f:
+                for regel in f:
+                    regel = regel.strip()
+                    if regel.startswith("AUTOMATISCH") and regel not in uit:
+                        uit.append(regel.replace("AUTOMATISCH: ", ""))
+        except Exception:
+            continue
+    return uit
 
 
-def lees(pad, standaard):
+def _kort(tekst, maximum=240):
+    """Een diagnose inkorten tot iets wat in een bericht past."""
+    if len(tekst) <= maximum:
+        return tekst
+    return tekst[:maximum].rsplit(" ", 1)[0] + " (...)"
+VANDAAG = dt.date.today()
+
+
+def _json(pad):
     try:
         with open(pad, encoding="utf-8") as f:
             return json.load(f)
     except Exception:
-        return standaard
+        return None
 
 
-def bewaar(geschiedenis):
-    with open(PAD, "w", encoding="utf-8") as f:
-        json.dump(geschiedenis, f, ensure_ascii=False, indent=1, sort_keys=True)
-
-
-def voeg_toe(pand, datum, soort, tekst, bron):
-    """Een gebeurtenis toevoegen als die er nog niet staat."""
-    for g in pand["gebeurtenissen"]:
-        if g["datum"] == datum and g["soort"] == soort and g["tekst"] == tekst:
-            return False
-    pand["gebeurtenissen"].append({"datum": datum, "soort": soort,
-                                   "tekst": tekst, "bron": bron})
-    pand["gebeurtenissen"].sort(key=lambda g: g["datum"])
-    return True
-
-
-def uit_verkopen(geschiedenis):
-    """Te koop, prijswijziging en verkocht, uit de waarnemingen."""
-    nieuw = 0
-    per_adres = {}
-    for regel in lees_regels(VERKOPEN):
-        v = [x.strip() for x in regel.split("|")]
-        if len(v) < 7 or not v[2].isdigit():
-            continue
-        adres, plaats, prijs, status, datum = v[0], v[1], int(v[2]), v[3].lower(), v[4]
-        # Huuradvertenties horen er wel in: bij een appartement in een complex
-        # is "wat werd hier eerder voor gevraagd" het meest directe antwoord op
-        # de vraag wat je kunt vragen.
-        pass
-        per_adres.setdefault(sleutel(adres), []).append(
-            {"adres": adres, "plaats": plaats, "prijs": prijs, "status": status,
-             "datum": datum, "opp": v[6] or None, "bron": v[5] if len(v) > 5 else ""})
-
-    for sl, rijen in per_adres.items():
-        rijen.sort(key=lambda r: r["datum"])
-        pand = geschiedenis.setdefault(sl, {"adres": rijen[0]["adres"],
-                                            "pand_id": None,
-                                            "gebeurtenissen": []})
-        pand["adres"] = rijen[-1]["adres"]
-        vorige_prijs = None
-        gezien_te_koop = False
-        for r in rijen:
-            if r["status"].startswith("te koop"):
-                if not gezien_te_koop:
-                    nieuw += voeg_toe(pand, r["datum"], "te koop",
-                                      f"te koop voor €{r['prijs']:,}".replace(",", ".")
-                                      + (f", {r['opp']} m2" if r["opp"] else ""),
-                                      "aanbod")
-                    gezien_te_koop = True
-                elif (vorige_prijs and r["prijs"] != vorige_prijs
-                      and "plak" not in (r.get("bron") or "")):
-                    richting = "verlaagd" if r["prijs"] < vorige_prijs else "verhoogd"
-                    nieuw += voeg_toe(pand, r["datum"], "prijswijziging",
-                                      f"prijs {richting} van "
-                                      + f"€{vorige_prijs:,}".replace(",", ".")
-                                      + " naar " + f"€{r['prijs']:,}".replace(",", "."),
-                                      "aanbod")
-                vorige_prijs = r["prijs"]
-            elif r["status"].startswith("te huur"):
-                soort = ("kamer te huur" if "kamer" in r["status"]
-                         else "te huur aangeboden")
-                nieuw += voeg_toe(pand, r["datum"], "verhuur",
-                                  f"{soort} voor €{r['prijs']:,}".replace(",", ".")
-                                  + " per maand"
-                                  + (f", {r['opp']} m2" if r["opp"] else "")
-                                  + (" (inclusief servicekosten)"
-                                     if "incl" in (r.get("bron") or "") else ""),
-                                  r.get("bron") or "aanbod")
-            elif r["status"] == "verkocht":
-                # Funda toont de laatste vraagprijs, niet de koopsom; die staat
-                # alleen bij het Kadaster. Zo noemen we het dus ook.
-                # Uit een geplakte lijst kennen we de verkoopdatum niet; dan
-                # zetten we er geen datum bij in de tekst, zodat niemand er een
-                # tijdlijn op bouwt.
-                zonder_datum = "plak" in (r.get("bron") or "")
-                nieuw += voeg_toe(pand, r["datum"], "verkocht",
-                                  "verkocht, laatste vraagprijs "
-                                  + f"€{r['prijs']:,}".replace(",", ".")
-                                  + (f", {r['opp']} m2" if r["opp"] else "")
-                                  + (" (verkoopdatum onbekend; uit een geplakte "
-                                     "lijst)" if zonder_datum else ""),
-                                  "aanbod")
-    return nieuw
-
-
-def lees_regels(pad):
-    if not os.path.exists(pad):
-        return []
-    with open(pad, encoding="utf-8") as f:
-        return [r.strip() for r in f if r.strip()]
-
-
-def uit_archief(geschiedenis):
-    """
-    Vergunningen en meldingen, ook op adressen die nooit te koop stonden.
-
-    Eerder werden alleen panden uit het aanbod gevolgd, en dan mist een pand
-    waar de eigenaar iets aanvraagt zonder het ooit te koop te zetten. Dat is
-    juist het soort pand waar een verhaal in zit. Alle panden volgen hoeft niet:
-    een pand zonder gebeurtenis heeft geen geschiedenis, en de signalen komen
-    vanzelf binnen.
-    """
-    archief = lees(ARCHIEF, {})
-    if not archief:
-        return 0
-    nieuw = 0
-
-    # Eerst de adressen uit het archief zelf als pand opnemen
+def _leeftijd_dagen(pad):
+    """Hoeveel dagen geleden is dit bestand bijgewerkt?"""
     try:
-        from bekendmakingen_archief import adres_uit_titel
+        return (VANDAAG - dt.date.fromtimestamp(os.path.getmtime(pad))).days
     except Exception:
-        adres_uit_titel = None
-    for k, items in archief.items():
-        if k in geschiedenis:
-            continue
-        adres = None
-        for t in items:
-            uit = adres_uit_titel(t.get("titel") or "") if adres_uit_titel else None
-            if uit:
-                adres = f"{uit[0]} {uit[1]}"
-                break
-        if not adres:
-            continue
-        # De sleutel komt uit het archief zelf, niet uit de titel. Anders levert
-        # "aan de Dominicanenstraat 30" de sleutel "dedominicanenstraat30" op en
-        # matcht een pand niet met zijn eigen bekendmakingen. Een huisnummer met
-        # een letter hoort bij het pand van het kale nummer.
-        basis = re.sub(r"(?<=\d)[a-z]{1,2}$", "", k)
-        if basis in geschiedenis:
-            continue
-        # De weergave in lijn brengen met de sleutel: staat er "de" voor de
-        # straat terwijl de sleutel dat niet heeft, dan hoort het er niet bij.
-        if sleutel(adres) != basis and sleutel(adres).startswith("de"):
-            adres = re.sub(r"^de\s+", "", adres)
-        geschiedenis.setdefault(basis, {"adres": adres, "pand_id": None,
-                                        "gebeurtenissen": []})
-
-    for sl, pand in list(geschiedenis.items()):
-        m = re.match(r"^(.+?)\s+(\d+)", pand["adres"])
-        if not m:
-            continue
-        basis = re.sub(r"[^a-z0-9]", "", m.group(1).lower()) + m.group(2)
-        for k, items in archief.items():
-            # Ook de nummers met een letter, want na een splitsing komt 15-A erbij
-            if not (k == basis or (k.startswith(basis)
-                                   and re.fullmatch(r"[a-z]{1,2}", k[len(basis):]))):
-                continue
-            for t in items:
-                titel = (t.get("titel") or "")[:160]
-                nieuw += voeg_toe(pand, (t.get("datum") or "")[:10], "bekendmaking",
-                                  titel, "officiele bekendmakingen")
-    return nieuw
+        return None
 
 
-def uit_kamerverhuur(geschiedenis):
-    """
-    De bekende kamerverhuurpanden als pand opnemen.
-
-    Daar gebeurt per definitie iets: een vergunning of een melding. Ze volgen
-    kost niets extra, want de gebeurtenissen komen uit bestanden die we al
-    hebben.
-    """
-    register = lees("kamerverhuur_objecten.json", {})
-    nieuw = 0
-    for sl, r in register.items():
-        adres = r.get("adres")
-        if not adres or sl in geschiedenis:
-            continue
-        pand = geschiedenis.setdefault(sl, {"adres": adres, "pand_id": None,
-                                            "gebeurtenissen": []})
-        for b in r.get("bronnen", []):
-            jaar = b.get("jaar")
-            if jaar:
-                nieuw += voeg_toe(pand, f"{jaar}-01-01", "kamerverhuur",
-                                  f"{b.get('soort', 'kamerverhuur')} bekend "
-                                  f"(jaar bij benadering)", b.get("bron", "register"))
-    return nieuw
-
-
-def bij_bag(geschiedenis, alleen_gevolgd=True):
-    """
-    De BAG opnieuw bevragen: is het aantal woningen in het pand veranderd?
-
-    Alleen voor panden waar iets mee gebeurd is, en hoogstens een vast aantal
-    per ronde, want elke opvraging is een verzoek.
-    """
+def _regels(pad):
     try:
-        from marktprijzen_bag import (bag_adres_uitgebreid, bag_eenheden_in_pand,
-                                      split_huisnummer, BAG_API_KEY)
-    except Exception as e:
-        leg_vast("geschiedenis", f"BAG-functies niet te laden: {str(e)[:120]}")
-        # Twee waarden terug, want de aanroeper pakt er twee uit. Met een enkele
-        # nul liep de hele stap vast zodra er iets ontbrak, en dat is precies
-        # het moment waarop je een nette melding wilt in plaats van een crash.
-        return 0, []
-    if not BAG_API_KEY:
-        # Zonder sleutel geeft elke opvraging een 401. Eenmaal melden is genoeg;
-        # honderden mislukte verzoeken vullen alleen het logboek.
-        leg_vast("geschiedenis", "Geen BAG_API_KEY in deze stap: de BAG en de "
-                                 "energielabels zijn niet bijgewerkt.")
-        print("Geen BAG-sleutel; BAG-controle overgeslagen", file=sys.stderr)
-        return 0, []
-    nieuw, gedaan, deze_ronde = 0, 0, []
-    geen_id, bekeken = 0, 0
-    vandaag = dt.date.today().isoformat()
-    nooit = sum(1 for p in geschiedenis.values() if not p.get("bag_gezien"))
-    def volgorde(paar):
-        """
-        Wie er het eerst aan de beurt is.
-
-        Eerst panden die nog nooit zijn nagekeken. Daarna wat in het aanbod zit
-        of verkocht is, en dan de rest, telkens de langst niet bekekene eerst.
-
-        Waarom die eerste groep voorgaat: sinds de 505 geplakte verkopen erin
-        zitten, vulden die in hun eentje de quota van 500 per ronde. De panden
-        die nog nooit waren nagekeken kwamen daardoor nooit aan de beurt, hoe
-        vaak er ook werd gedraaid, en hun aantal liep juist op.
-        """
-        pand = paar[1]
-        soorten = {g["soort"] for g in pand["gebeurtenissen"]}
-        if not pand.get("bag_gezien"):
-            haast = 0
-        elif soorten & {"te koop", "verkocht", "prijswijziging"}:
-            haast = 1
-        else:
-            haast = 2
-        return (haast, pand.get("bag_gezien") or "")
-
-    wachtrij = sorted(geschiedenis.items(), key=volgorde)
-    for sl, pand in wachtrij:
-        if tijd_op():
-            print(f"Tijdbudget van {MINUTEN_BUDGET} minuten op na {gedaan} "
-                  f"panden; de rest volgt in een vervolgronde", file=sys.stderr)
-            _rest_vastleggen(len(wachtrij) - gedaan)
-            break
-        if gedaan >= MAX_BAG_PER_RONDE:
-            _rest_vastleggen(len(wachtrij) - gedaan)
-            break
-        soorten = {g["soort"] for g in pand["gebeurtenissen"]}
-        if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
-                                              "kamerverhuur"}):
-            continue
-        # Een pand dat geen pand-id oplevert, mag het een paar keer opnieuw
-        # proberen en daarna niet meer. Dit blok haalde eerst elke run de
-        # markering weg, waardoor dezelfde panden eeuwig terugkwamen, elke
-        # ronde de quota vulden en het aantal "nooit nagekeken" opliep in
-        # plaats van af. Het was bedoeld als eenmalige reparatie na de
-        # bag_dump-fout van 28 september.
-        if pand.get("bag_zonder_id") and not pand.get("pand_id"):
-            pogingen = int(pand.get("bag_pogingen") or 0)
-            if pogingen >= 3:
-                continue
-            pand["bag_pogingen"] = pogingen + 1
-            pand.pop("bag_zonder_id", None)
-            pand.pop("bag_gezien", None)
-        bekeken += 1
-        pand_id = pand.get("pand_id")
-        if not pand_id:
-            # bag_dump is een hulpfunctie die de respons print en niets
-            # teruggeeft; die stond hier eerst, waardoor geen enkel pand een
-            # pand-id kreeg. Dit is de opzoeking die de verrijking ook gebruikt.
-            varianten = split_huisnummer(pand["adres"]) or []
-            bag = {}
-            for straat, huisnr, letter, toev in varianten[:2]:
-                bag = bag_adres_uitgebreid(straat, huisnr, letter, toev,
-                                           "Nijmegen") or {}
-                if bag.get("pand"):
-                    break
-            pand_id = bag.get("pand")
-            pand["pand_id"] = pand_id
-        if not pand_id:
-            # Geen pand-id: dan kunnen we de eenheden niet opvragen. Wel
-            # vastleggen dat we het geprobeerd hebben, anders blijven deze
-            # panden elke ronde vooraan staan en komt de rest nooit aan de beurt.
-            geen_id += 1
-            pand["bag_gezien"] = vandaag
-            pand["bag_zonder_id"] = vandaag
-            gedaan += 1
-            continue
-        eenheden = bag_eenheden_in_pand(pand_id)
-        gedaan += 1
-        deze_ronde.append(sl)
-        time.sleep(PAUZE_TUSSEN)
-        pand["bag_gezien"] = vandaag
-        if not eenheden:
-            continue
-        nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
-        eerder = pand.get("bag_eenheden")
-        if eerder is None:
-            pand["bag_eenheden"] = nu
-            continue
-        if [tuple(x) for x in eerder] != nu:
-            oud_n, nieuw_n = len(eerder), len(nu)
-            maten = ", ".join(str(o) for _a, o in nu if o)
-            if nieuw_n != oud_n:
-                tekst = (f"de BAG telt nu {nieuw_n} woningen in dit pand, was "
-                         f"{oud_n}: {maten} m2")
-            else:
-                tekst = f"de oppervlaktes in de BAG zijn gewijzigd: {maten} m2"
-            nieuw += voeg_toe(pand, vandaag, "bag", tekst,
-                              "Basisregistratie Adressen en Gebouwen")
-            pand["bag_eenheden"] = nu
-    over = max(nooit - gedaan, 0)
-    print(f"BAG: {bekeken} panden bekeken, {gedaan} afgehandeld waarvan "
-          f"{geen_id} zonder pand-id, nog {over} nooit gecontroleerd",
-          file=sys.stderr)
-    if bekeken and not deze_ronde:
-        leg_vast("geschiedenis",
-                 f"Van {bekeken} bekeken panden leverde er geen een pand-id op. "
-                 f"Waarschijnlijk komt het adres niet door de BAG-opzoeking, of "
-                 f"ontbreekt de sleutel in deze stap.")
-    if not bekeken:
-        leg_vast("geschiedenis",
-                 "Geen enkel pand kwam in aanmerking voor de BAG-controle. "
-                 "Draait de stap wel met --volledig, en hebben de panden een "
-                 "gebeurtenis van het juiste soort?")
-    return nieuw, deze_ronde
+        with open(pad, encoding="utf-8") as f:
+            return [r for r in f if r.strip() and not r.startswith("#")]
+    except Exception:
+        return []
 
 
-def bij_labels(geschiedenis, alleen=None):
-    """
-    Het energielabel per adres in het pand; na een splitsing volgt dat later.
+# ---------------------------------------------------------------------------
+# De controles. Elk geeft (status, bewijs, diagnose) terug.
+# ---------------------------------------------------------------------------
 
-    Alleen voor de panden die deze ronde ook tegen de BAG zijn gehouden. Zonder
-    die grens liep deze stap langs alle gevolgde panden, wat bij duizend panden
-    al duizenden opvragingen betekent en na de archiefbackfill onhoudbaar wordt.
-    """
-    try:
-        from marktprijzen_bag import (bag_adres_uitgebreid, ep_energielabel,
-                                      BAG_API_KEY, EP_API_KEY)
-    except Exception as e:
-        leg_vast("geschiedenis", f"Labelfuncties niet te laden: {str(e)[:120]}")
-        return 0
-    if not BAG_API_KEY:
-        # Twee waarden terug, want de aanroeper pakt er twee uit. Met een enkele
-        # nul liep de hele stap vast zodra de sleutel ontbrak, en dat is precies
-        # het moment waarop je een nette melding wilt in plaats van een crash.
-        print("Geen BAG_API_KEY; de BAG-ronde wordt overgeslagen", file=sys.stderr)
-        return 0, []
-    # Hier hardop over zijn: zonder deze sleutel komt er geen enkel label
-    # binnen, en dat bleef eerder onzichtbaar omdat elke fout werd ingeslikt.
-    if not EP_API_KEY:
-        leg_vast("geschiedenis", "Geen EP_API_KEY: energielabels worden "
-                                 "overgeslagen. Staat het secret in de repo en "
-                                 "geeft de workflow hem als EP_API_KEY door?")
-        print("Geen EP_API_KEY; energielabels overgeslagen", file=sys.stderr)
-        return 0
-    nieuw, vandaag = 0, dt.date.today().isoformat()
-    doel = set(alleen) if alleen is not None else set(geschiedenis)
-    for sl, pand in geschiedenis.items():
-        if sl not in doel:
-            continue
-        adressen = [a for a, _o in (pand.get("bag_eenheden") or [])] or [pand["adres"]]
-        labels = dict(pand.get("labels") or {})
-        for adres in adressen:
-            m = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z]?)[-\s]*(\w*)$", adres or "")
-            if not m:
-                continue
-            try:
-                info = bag_adres_uitgebreid(m.group(1), m.group(2), m.group(3),
-                                            m.group(4), "Nijmegen") or {}
-                ep = ep_energielabel(info.get("vbo"), info.get("postcode"),
-                                     m.group(2), m.group(3), m.group(4)) or {}
-            except Exception:
-                continue
-            label = ep.get("label")
-            if not label:
-                continue
-            if labels.get(adres) != label:
-                was = labels.get(adres)
-                tekst = (f"energielabel van {adres} is nu {label}"
-                         + (f", was {was}" if was else ""))
-                nieuw += voeg_toe(pand, vandaag, "energielabel", tekst, "EP-Online")
-                labels[adres] = label
-        if labels:
-            pand["labels"] = labels
-        time.sleep(PAUZE_TUSSEN)
-    print(f"Labels: {len(doel)} panden nagekeken", file=sys.stderr)
-    return nieuw
+def controle_huurdata():
+    """Het belangrijkste: rust de richtprijs op metingen of op een aanname?"""
+    regels = _regels("verkopen.txt")
+    huur = [r for r in regels if "te huur" in r.lower()]
+    pararius = [r for r in huur if "pararius" in r.lower()]
+    kamernet = [r for r in huur if "kamernet" in r.lower()]
+    recent = [r for r in huur
+              if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(8))]
+    bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
+              f"en {len(kamernet)} Kamernet; {len(recent)} in de laatste week")
+    if not huur:
+        return (FOUT, bewijs,
+                "Geen enkele huurwaarneming. Elke richtprijs rust op een aanname. "
+                "Kijk in stap 14 naar de [pararius]-regels: staat daar "
+                "'0 objecten', dan herkent de parser de mail niet.")
+    if not recent:
+        return (LET_OP, bewijs,
+                "Wel huurdata, maar niets nieuws deze week. Komen de Pararius-mails "
+                "nog binnen, en worden ze herkend? Zie stap 14.")
+    if len(huur) < 30:
+        return (LET_OP, bewijs,
+                "Er wordt gemeten, maar het aantal is nog te klein voor een "
+                "betrouwbare mediaan per grootteklasse en buurt.")
+    return (OK, bewijs, "")
 
 
-# Welke gebeurtenissen iets zeggen over wat een eigenaar met een pand doet
-ROUTE_SOORTEN = ("bekendmaking", "bag", "energielabel", "kamerverhuur", "verhuur")
-ROUTE_WOORDEN = ("splits", "omzet", "kamerverhuur", "verbouw", "onttrek",
-                 "woningvorming", "brandveilig", "vergunning")
+def controle_aanbod():
+    regels = _regels("verkopen.txt")
+    koop = [r for r in regels if "te koop" in r.lower() or "belegging" in r.lower()]
+    recent = [r for r in koop
+              if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(4))]
+    bewijs = f"{len(koop)} koopobjecten, {len(recent)} in de laatste drie dagen"
+    if not koop:
+        return (FOUT, bewijs, "Het aanbodbestand is leeg. Zie stap 14.")
+    if not recent:
+        return (LET_OP, bewijs,
+                "Geen nieuw aanbod in drie dagen. Kan kloppen in een stille week, "
+                "maar controleer of de Funda-mails binnenkomen.")
+    return (OK, bewijs, "")
 
 
-def straat_van(adres):
-    m = re.match(r"^(.+?)\s+\d", (adres or "").strip())
-    return re.sub(r"[^a-z]", "", m.group(1).lower()) if m else ""
+def controle_rente():
+    d = _json("rente_actueel.json") or {}
+    leeftijd = _leeftijd_dagen("rente_actueel.json")
+    rente = d.get("rente") or d.get("ltv70")
+    if not rente:
+        return (FOUT, "geen rente in rente_actueel.json",
+                "De rentestap leverde niets op. Zie stap 8; financieren.nl kan van "
+                "opmaak zijn veranderd.")
+    if leeftijd is not None and leeftijd > 3:
+        return (LET_OP, f"rente {rente}%, bestand {leeftijd} dagen oud",
+                "De rente is niet vernieuwd. Zie stap 8.")
+    return (OK, f"rente {rente}% bij 70% financiering", "")
 
 
-def _route_tekst(pand):
-    """Een korte samenvatting van wat er met dit pand is gebeurd."""
+def controle_ecb():
+    d = _json("rente_actueel.json") or {}
+    markt = d.get("kapitaalmarkt")
+    if markt is None:
+        return (FOUT, "geen kapitaalmarktrente vastgelegd",
+                "De ECB gaf geen antwoord. Zie stap 8, de regel 'ECB-rente'. Staat "
+                "er 'mislukt op alle manieren', dan blokkeert de ECB verzoeken "
+                "vanaf GitHub en helpt een andere vraagvorm niet.")
+    rente = d.get("ltv70") or d.get("rente")
+    opslag = (f", opslag bij 70% financiering {rente - markt:.2f}".replace(".", ",")
+              + " procentpunt") if rente else ""
+    return (OK, f"tienjaars AAA-rente " + f"{markt:.2f}".replace(".", ",")
+            + f"% ({d.get('kapitaalmarkt_datum', '')}){opslag}", "")
+
+
+def controle_bouwkosten():
+    d = _json("bouwkosten_index.json") or {}
+    if not d:
+        return (FOUT, "bouwkosten_index.json ontbreekt of is leeg",
+                diagnose("bouwkosten")
+                or "De verbouwkosten worden niet geindexeerd. Zie stap 17.")
+    laatste = max(d)
+    return (OK, f"{len(d)} maanden, laatste {laatste}", "")
+
+
+def controle_eigen_bouwkosten():
+    eigen = [r for r in _regels("bouwkosten_eigen.txt") if "|" in r]
+    if not eigen:
+        return (LET_OP, "geen eigen bouwkosten ingevuld",
+                "De verbouwkosten zijn aannames van het script. Vul in "
+                "bouwkosten_eigen.txt wat verhuurklaar maken en verduurzaming per "
+                "m2 kosten; uit het hoofd is al beter dan de aanname.")
+    return (OK, f"{len(eigen)} eigen tarieven ingevuld", "")
+
+
+def controle_buurtcijfers():
+    d = _json("buurten_cbs.json") or {}
+    buurten = [b for b in d if not str(b).startswith("_")]
+    if not buurten:
+        return (FOUT, "buurten_cbs.json leeg", "Zie stap 7.")
+    eerste = d[buurten[0]] if buurten else {}
+    ontbreekt = [v for v in ("inkomen", "vermogen", "eenpersoons", "leeftijd",
+                             "afstand_trein")
+                 if eerste.get(v) is None]
+    bewijs = f"{len(buurten)} buurten"
+    if ontbreekt:
+        return (LET_OP, bewijs + f"; ontbreekt: {', '.join(ontbreekt)}",
+                diagnose("buurtcijfers")
+                or "Deze velden worden niet gevonden in de CBS-kaart. In stap 7 "
+                   "staat welke veldnamen er wel zijn.")
+    return (OK, bewijs + ", alle velden gevuld", "")
+
+
+def controle_vergunningen():
+    per_buurt = _json("vergunningen_per_buurt.json") or {}
+    lijst = _json("kamervergunningen.json") or {}
+    if not lijst:
+        return (FOUT, "kamervergunningen.json ontbreekt", "")
+    if len(per_buurt) < 3:
+        return (LET_OP, f"{len(lijst)} adressen, maar {len(per_buurt)} buurten "
+                        f"gekoppeld",
+                diagnose("vergunningen")
+                or "De koppeling aan buurten is niet gemaakt; de kolom in de brief "
+                   "blijft leeg. Zie stap 5.")
+    return (OK, f"{len(lijst)} adressen in {len(per_buurt)} buurten", "")
+
+
+def controle_kamerverhuur():
+    """Het register van kamerverhuurpanden, en hoe ver de meldingen teruggaan."""
+    d = _json("kamerverhuur_per_buurt.json") or {}
+    per = d.get("per_buurt") or {}
+    if not per:
+        return (FOUT, "kamerverhuur_per_buurt.json ontbreekt of is leeg",
+                diagnose("kamerverhuur") or "Zie de stap Kamerverhuurregister.")
+    totaal = sum(v.get("totaal", 0) for v in per.values())
+    via_melding = sum(v.get("alleen_melding_of_besluit", 0) for v in per.values())
+    jaren = d.get("meldingen_per_jaar") or {}
+    jaartekst = (", ".join(f"{j}: {n}" for j, n in jaren.items())
+                 if jaren else "geen meldingen")
+    bewijs = (f"{totaal} panden in de ring, waarvan {via_melding} alleen via een "
+              f"melding of besluit; meldingen per jaar: {jaartekst}")
+    if not jaren:
+        return (LET_OP, bewijs, diagnose("kamerverhuur") or
+                "Geen meldingen in het archief; het register rust dan alleen op de "
+                "vergunningenlijst.")
+    return (OK, bewijs, "")
+
+
+def controle_woningprijzen():
+    d = _json("woningprijsindex.json") or {}
+    l, r = d.get("landelijk"), d.get("regio")
+    if not l and not r:
+        return (FOUT, "woningprijsindex.json leeg",
+                diagnose("woningprijzen") or "Zie de stap Woningprijsindex CBS.")
     delen = []
-    for g in pand["gebeurtenissen"]:
-        if g["soort"] == "verkocht":
-            delen.append(f"{g['datum'][:7]} verkocht")
-        elif g["soort"] == "verhuur":
-            delen.append(f"{g['datum'][:7]} {g['tekst'][:60]}")
-        elif g["soort"] == "te koop" and delen:
-            # Alleen als er al iets gebeurd is: dan is opnieuw te koop het
-            # sluitstuk van de route en niet het begin
-            delen.append(f"{g['datum'][:7]} weer te koop")
-        elif g["soort"] in ROUTE_SOORTEN:
-            tekst = g["tekst"].lower()
-            if g["soort"] == "bekendmaking" and not any(w in tekst
-                                                        for w in ROUTE_WOORDEN):
-                continue
-            kort = g["tekst"][:70].rstrip()
-            delen.append(f"{g['datum'][:7]} {kort}")
-    return " -> ".join(delen[-5:])
+    if l:
+        delen.append(f"landelijk {l['periode']}")
+    if r:
+        delen.append(f"{r['naam']} {r['periode']}")
+    if d.get("ingang"):
+        delen.append(f"via {d['ingang']}")
+    v = d.get("vergelijking") or {}
+    if v.get("beste_verband"):
+        b = v["beste_verband"]
+        delen.append(f"eigen reeks {v['maanden']} maanden, sterkste samenhang bij "
+                     f"{b['vertraging_maanden']} maanden vooruit ({b['r']})")
+    elif v.get("maanden"):
+        delen.append(f"eigen reeks {v['maanden']} maanden sinds {v['sinds']}, "
+                     f"vergelijking start bij 13")
+    if not r:
+        return (LET_OP, ", ".join(delen) + "; geen regio",
+                diagnose("woningprijzen") or "Nijmegen niet gevonden in de regiotabel.")
+    return (OK, ", ".join(delen), "")
 
 
-def precedenten(geschiedenis, adres, maximaal=4):
+def controle_begroting():
+    d = _json("begroting_nijmegen.json") or {}
+    if not d.get("paginas"):
+        return (LET_OP, "nog geen begroting opgehaald",
+                diagnose("begroting") or "Draait de stap Stadsbegroting al?")
+    return (OK, f"Stadsbegroting {d.get('jaar')}, {len(d['paginas'])} pagina's, "
+                f"opgehaald {d.get('opgehaald')}", "")
+
+
+def controle_geschiedenis():
+    """Hoeveel panden we volgen, en hoeveel er nog nooit zijn nagekeken."""
+    d = _json("pandgeschiedenis.json") or {}
+    if not d:
+        return (LET_OP, "nog geen geschiedenis opgebouwd",
+                diagnose("geschiedenis") or "Draait de stap Geschiedenis per pand?")
+    met_verhaal = sum(1 for p in d.values()
+                      if len(p.get("gebeurtenissen") or []) > 1)
+    nooit = sum(1 for p in d.values() if not p.get("bag_gezien"))
+    opgegeven = sum(1 for p in d.values()
+                    if int(p.get("bag_pogingen") or 0) >= 3)
+    zonder_id = sum(1 for p in d.values() if p.get("bag_zonder_id"))
+    # Wat er werkelijk is opgehaald: de eenheden uit de BAG en de labels uit
+    # EP-Online. Dat was tot nu toe alleen af te leiden uit een aftreksom.
+    met_bag = sum(1 for p in d.values() if p.get("bag_eenheden"))
+    met_label = sum(1 for p in d.values() if p.get("labels"))
+    eenheden = sum(len(p.get("bag_eenheden") or []) for p in d.values())
+    # Het getal uit het script zelf, niet een eigen kopie: die liepen uiteen
+    # toen de standaard van 200 naar 500 ging.
+    try:
+        from pandgeschiedenis import MAX_BAG_PER_RONDE as per_ronde
+    except Exception:
+        per_ronde = int(os.environ.get("BAG_PER_RONDE") or 500)
+    bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
+              f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen), "
+              f"{met_label} met een energielabel, {nooit} nog nooit nagekeken"
+              + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else "")
+              + (f" waarvan {opgegeven} na drie pogingen opgegeven"
+                 if opgegeven else ""))
+    if nooit:
+        runs = -(-nooit // per_ronde)
+        oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
+                   f"run(s). Elke handmatige start werkt er een ronde af.")
+        return (LET_OP, bewijs, diagnose("geschiedenis") or oorzaak)
+    return (OK, bewijs + "; iedereen is minstens een keer nagekeken",
+            diagnose("geschiedenis") or "")
+
+
+def controle_mailbronnen():
+    """Welke attenderingen er binnenkomen, en of er iets uit te halen valt."""
+    d = _json("mail_status.json") or {}
+    bronnen = d.get("bronnen") or {}
+    if d.get("opmerking"):
+        return (LET_OP, f"mailstap van {d.get('datum', '?')}: {d['opmerking']}",
+                "De mailstap kwam niet bij de mailbox; zonder die stap komt er "
+                "geen aanbod binnen.")
+    if not bronnen:
+        return (LET_OP, f"mailstap van {d.get('datum', '?')}: geen enkele mail "
+                        f"van een van de bronnen",
+                "Komen de attenderingen in deze mailbox binnen, en staan ze in "
+                "de inbox en niet in een map?")
+    delen, stil, stom = [], [], []
+    for bron, t in sorted(bronnen.items()):
+        stuk = (f"{bron}: {t.get('mails', 0)} mails, "
+                f"{t.get('objecten', 0)} objecten")
+        if t.get("overgeslagen"):
+            stuk += f", {t['overgeslagen']} bewust overgeslagen"
+        delen.append(stuk)
+        if not t.get("mails"):
+            stil.append(bron)
+        elif not t.get("objecten") and not t.get("overgeslagen"):
+            # Alleen alarm slaan als er niets uitkwam en er ook niets bewust is
+            # overgeslagen. Een mail met alleen een gemeubileerde woning levert
+            # terecht nul objecten op; dat is geen parserfout.
+            stom.append(bron)
+    for verwacht in ("kamernet", "pararius", "funda"):
+        if verwacht not in bronnen:
+            stil.append(verwacht)
+    bewijs = f"laatste ronde {d.get('datum', '?')}: " + "; ".join(delen)
+    # Post van platforms waar nog geen parser voor is. Zo wordt een aanmelding
+    # zichtbaar in plaats van dat die mails ongemerkt blijven liggen.
+    kandidaten = d.get("kandidaten") or {}
+    if kandidaten:
+        bewijs += ("; zonder parser: "
+                   + ", ".join(f"{b} ({n})" for b, n in sorted(kandidaten.items())))
+    if stom:
+        voorbeelden = []
+        for bron in stom:
+            for r in (bronnen[bron].get("redenen") or [])[:2]:
+                voorbeelden.append(f"{bron}: {r}")
+        staart = (" Voorbeeld: " + "; ".join(voorbeelden)) if voorbeelden else ""
+        return (LET_OP, bewijs,
+                f"Van {', '.join(stom)} komen wel mails binnen maar het script "
+                f"haalt er niets uit; de opmaak is waarschijnlijk veranderd."
+                + staart)
+    if stil:
+        return (LET_OP, bewijs,
+                f"Van {', '.join(sorted(set(stil)))} kwam geen enkele mail. "
+                f"Staat de attendering aan en komt hij in deze mailbox binnen?")
+    return (OK, bewijs, "")
+
+
+def controle_versies():
     """
-    Wat vergelijkbare panden in dezelfde straat eerder hebben gedaan.
+    Draait deze run op de bestanden die bij de laatste oplevering horen?
 
-    Bedoeld voor het moment dat een pand te koop komt: is hier in de straat al
-    eerder gesplitst, verkamerd of verbouwd, en wat ging daaraan vooraf? Dat
-    zegt iets over wat de gemeente daar toestond en wat een koper er zag.
+    Staat bovenaan in het rapport, zodat een geplakt rapport meteen laat zien
+    welke code er draaide. Anders moet dat uit een andere stap in het logboek
+    komen en is het bij het overnemen zo verdwenen.
     """
-    straat = straat_van(adres)
-    if not straat:
-        return []
-    zelf = sleutel(adres)
+    try:
+        from versies import controleer
+        uit = controleer()
+    except Exception as e:
+        return (LET_OP, "versiecontrole niet uit te voeren", str(e)[:120])
+    if uit is None:
+        return (LET_OP, "geen paklijst gevonden",
+                "versies.json hoort mee in dezelfde upload als de bestanden.")
+    bewijs = (f"{len(uit['gelijk'])} bestanden gelijk aan de paklijst, "
+              f"{len(uit['afwijkend'])} afwijkend, "
+              f"{len(uit['ontbrekend'])} ontbreekt")
+    if uit["afwijkend"] or uit["ontbrekend"]:
+        namen = ", ".join((uit["afwijkend"] + uit["ontbrekend"])[:6])
+        return (LET_OP, bewijs + f": {namen}",
+                "Deze run draait niet op de code uit de paklijst. Controleer "
+                "of alle bestanden zijn geuploud, inclusief versies.json.")
+    if uit["onbekend"]:
+        bewijs += f", {len(uit['onbekend'])} niet in de paklijst"
+    return (OK, bewijs, "")
+
+
+def controle_peildata():
+    """
+    Bedragen en grenzen die elk jaar opnieuw worden vastgesteld.
+
+    De huurprijstabel wordt per 1 januari geindexeerd, en daarmee verschuift de
+    grens tussen middenhuur en vrije sector. Hetzelfde geldt voor de WOZ-grenzen
+    in de huisvestingsverordening en voor de overdrachtsbelasting. Staat hier
+    een ouder jaar dan het huidige, dan rekent het script met verouderde
+    grenzen zonder dat iemand dat merkt.
+    """
+    dit_jaar = dt.date.today().year
+    regels, verouderd = [], []
+    try:
+        from wwso import TABEL_PEILDATUM, TABEL_BRON, WWS_TABEL
+        jaar = int(TABEL_PEILDATUM[:4])
+        regels.append(f"huurprijstabel {TABEL_PEILDATUM} (grens vrije sector "
+                      f"€{WWS_TABEL.get(186, 0):.2f})")
+        if jaar < dit_jaar:
+            verouderd.append(f"de huurprijstabel is van {jaar}; de nieuwe staat "
+                             f"in {TABEL_BRON}")
+    except Exception as e:
+        return (LET_OP, "huurprijstabel niet te lezen", str(e)[:120])
+
+    try:
+        from subsidie_svoh import PEILDATUM as SVOH_PEIL, PER_M2
+        jaar = int(SVOH_PEIL[:4])
+        regels.append(f"SVOH-bedragen {SVOH_PEIL} (gevelisolatie "
+                      f"€{PER_M2['gevelisolatie'][1]:.2f} per m2)")
+        if jaar < dit_jaar:
+            verouderd.append(f"de SVOH-bedragen zijn van {jaar}; ze worden "
+                             f"jaarlijks opnieuw vastgesteld door de RVO.")
+    except Exception:
+        pass
+
+    try:
+        from marktprijzen_bag import WOZ_GRENS_OMZETTING, WOZ_GRENS_WEIGERING
+        regels.append(f"WOZ-grenzen €{WOZ_GRENS_OMZETTING:,} en "
+                      f"€{WOZ_GRENS_WEIGERING:,}".replace(",", "."))
+    except Exception:
+        pass
+
+    if verouderd:
+        return (LET_OP, "; ".join(regels),
+                " ".join(verouderd) + " Werk de tabel bij en zet de nieuwe "
+                "peildatum erbij.")
+    return (OK, "; ".join(regels), "")
+
+
+def controle_bag3d():
+    """De eigen snapshot van hoogtes en oppervlakken per pand."""
+    d = _json("bag3d.json") or {}
+    panden = d.get("panden") or {}
+    if not panden:
+        return (LET_OP, "nog geen 3D BAG-gegevens opgehaald",
+                "Zonder hoogte en buitenmuuroppervlak is er geen basis voor de "
+                "bouwkosten per pand. Zie de stap in het logboek.")
+    met = sum(1 for p in panden.values() if p.get("b3_opp_buitenmuur"))
+    leeg = sum(1 for p in panden.values() if p.get("leeg"))
+    bewijs = (f"{len(panden)} panden in de eigen snapshot, {met} met een "
+              f"buitenmuuroppervlak, {leeg} zonder gegevens bij de bron; "
+              f"bijgewerkt {d.get('bijgewerkt', '?')}")
+    if met < len(panden) * 0.5:
+        return (LET_OP, bewijs,
+                "Van minder dan de helft kwamen bruikbare waarden; controleer "
+                "of de opzet van de bron is veranderd.")
+    return (OK, bewijs, "")
+
+
+def controle_corop():
+    """De kwartaalcijfers voor het eigen COROP-gebied."""
+    d = _json("corop_prijzen.json") or {}
+    if not d.get("periode"):
+        return (LET_OP, "geen COROP-cijfers opgehaald",
+                "Zonder deze tabel vergelijkt de brief onze buurtcijfers met "
+                "heel Gelderland; dat is te grof. Zie de stap in het logboek.")
+    oud = ""
+    try:
+        jaar, kw = d["periode"][:4], d["periode"][-1]
+        maanden = (dt.date.today().year - int(jaar)) * 12 + \
+                  (dt.date.today().month - int(kw) * 3)
+        if maanden > 6:
+            oud = (f" De cijfers zijn van {d['periode']}; het CBS publiceert "
+                   f"ongeveer 22 dagen na afloop van een kwartaal.")
+    except Exception:
+        pass
+    bewijs = (f"{d.get('gebied')} {d['periode']}: index {d.get('index')}, "
+              f"{d.get('jaar_pct')}% op jaarbasis, "
+              f"{int(d.get('transacties') or 0)} transacties")
+    return ((LET_OP, bewijs, oud.strip()) if oud else (OK, bewijs, ""))
+
+
+def controle_wozschatting():
+    """Hoe betrouwbaar is de eigen WOZ-schatting inmiddels?"""
+    d = _json("woz_kalibratie.json") or {}
+    aantal = d.get("aantal") or 0
+    if aantal < 8:
+        return (LET_OP, f"geijkt op {aantal} panden, te weinig om iets te zeggen",
+                "Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint "
+                "de schatting zichzelf te corrigeren.")
+    vgl = d.get("vergelijking") or {}
+    delen = []
+    for naam in ("kenmerken", "prijs"):
+        v = vgl.get(naam)
+        if v:
+            delen.append(f"{naam} {v['mediane_fout'] * 100:.1f}%")
+    afwijking = abs(1 - (d.get("correctie") or 1)) * 100
+    spreiding = (d.get("spreiding") or 0) * 100
+    kb = d.get("kenmerken_beschikbaar") or {}
+    bewijs = (f"geijkt op {aantal} panden: correctie {d.get('correctie'):.3f} "
+              f"({afwijking:.0f}% stelselmatig), spreiding ±{spreiding:.1f}%"
+              + (f"; mediane fout per methode: {', '.join(delen)}" if delen else "")
+              + (f"; kenmerken uit {kb.get('straten', 0)} straten en "
+                 f"{kb.get('buurten', 0)} buurten" if kb else ""))
+    if spreiding > 7:
+        return (LET_OP, bewijs,
+                "De spreiding is nog te groot om op de schatting te varen; blijf "
+                "de WOZ opzoeken bij panden die ertoe doen.")
+    return (OK, bewijs + "; nauwkeurig genoeg om alleen grensgevallen op te "
+            "zoeken", "")
+
+
+def controle_nieuwe_onderwerpen():
+    """
+    Onderwerpen die in het nieuws terugkomen en waar nog geen stuk over is.
+
+    De signaalstap vindt ze en schrijft ze in een bestand; zonder deze controle
+    blijft dat bestand liggen en gebeurt er niets mee. Dit is de schakel tussen
+    "het script ziet een nieuw onderwerp" en "er komt een achtergrondstuk".
+    """
+    voorstellen = []
+    try:
+        with open("onderwerpen_voorstel.md", encoding="utf-8") as f:
+            for regel in f:
+                regel = regel.strip(" -*\t\n")
+                if regel and not regel.startswith("#") and len(regel) < 120:
+                    voorstellen.append(regel)
+    except Exception:
+        pass
+    gevolgd = _json("onderwerpen_volgen.json") or {}
+    if not voorstellen and not gevolgd:
+        return (OK, "geen nieuwe onderwerpen voorgesteld", "")
+    bewijs = (f"{len(voorstellen)} voorgestelde onderwerpen, "
+              f"{len(gevolgd)} gevolgd")
+    if voorstellen:
+        return (LET_OP, bewijs + ": " + "; ".join(voorstellen[:4]),
+                "Deze komen terug in het nieuws en hebben nog geen "
+                "achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen "
+                "bij; het script schrijft die niet zelf, want juridische tekst "
+                "zonder gecontroleerde bron is precies wat we niet willen.")
+    return (OK, bewijs, "")
+
+
+def controle_achtergronddekking():
+    """
+    Heeft elk soort bekendmaking een achtergrondstuk dat de inhoud uitlegt?
+
+    Een melding constateren is iets anders dan uitleggen wat er dan van je
+    gevraagd wordt. Komt er een soort voorbij waarvoor geen stuk klaarligt, dan
+    blijft het bij de constatering.
+    """
+    try:
+        from bekendmakingen_archief import SIGNAALWOORDEN
+        from bronnen import ACHTERGROND, ACHTERGROND_TREFWOORDEN
+    except Exception as e:
+        return (LET_OP, "kon de onderwerpen niet vergelijken", str(e)[:120])
+    alle_trefwoorden = " ".join(
+        " ".join(v) for v in ACHTERGROND_TREFWOORDEN.values()).lower()
+    titels = " ".join(t for t, _ in ACHTERGROND).lower()
+    zonder = []
+    for soort, woorden in SIGNAALWOORDEN.items():
+        raak = any(w.lower()[:8] in alle_trefwoorden or w.lower()[:8] in titels
+                   for w in [soort] + list(woorden))
+        if not raak:
+            zonder.append(soort)
+    bewijs = (f"{len(ACHTERGROND)} achtergrondstukken voor "
+              f"{len(SIGNAALWOORDEN)} soorten bekendmakingen")
+    if zonder:
+        return (LET_OP, bewijs + f"; geen stuk voor: {', '.join(sorted(zonder))}",
+                "Bij die soorten blijft het bij constateren dat er iets is "
+                "gemeld, zonder uit te leggen wat de regel inhoudt.")
+    return (OK, bewijs + "; elk soort heeft een stuk", "")
+
+
+def controle_vve():
+    """Van hoeveel appartementen in een complex kennen we de VvE-bijdrage?"""
+    try:
+        from marktprijzen_bag import lees_vve_kosten
+        tabel = lees_vve_kosten()
+    except Exception as e:
+        return (LET_OP, "VvE-bestand niet te lezen", str(e)[:120])
+    if not tabel:
+        return (LET_OP, "geen enkele VvE-bijdrage ingevoerd",
+                "Appartementen in een complex worden nu doorgerekend alsof er "
+                "geen VvE is; de richtprijs valt daardoor te hoog uit. Zet de "
+                "maandbijdrage in vve_kosten.txt, een regel per adres.")
+    bedragen = sorted(tabel.values())
+    return (OK, f"{len(tabel)} panden met een VvE-bijdrage, mediaan "
+            f"€{bedragen[len(bedragen)//2]:.2f} per maand", "")
+
+
+def controle_opnieuw_aangeboden():
+    """
+    Woningen die vaker te huur zijn aangeboden, en tegen welke prijs.
+
+    We horen nooit wanneer een woning verhuurd is. Maar komt hetzelfde adres
+    later terug voor minder geld, dan is dat het bewijs dat de eerste vraagprijs
+    niet werd betaald. Komt hij terug voor meer, dan is het een normale mutatie
+    in een krappe markt. Dat onderscheid is het enige signaal dat we hebben
+    over wat er werkelijk wordt betaald.
+    """
+    per_adres = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 6 or not v[3].lower().startswith("te huur"):
+                    continue
+                try:
+                    prijs = int(v[2])
+                except ValueError:
+                    continue
+                per_adres.setdefault(v[0].lower(), []).append((v[4], prijs))
+    except Exception:
+        return (LET_OP, "huuraanbod niet te lezen", "Staat verkopen.txt er wel?")
+    herhaald = {a: sorted(p) for a, p in per_adres.items() if len(p) > 1}
+    if not herhaald:
+        return (OK, "geen enkel adres twee keer aangeboden", "")
+    omlaag, omhoog = [], []
+    for adres, reeks in herhaald.items():
+        eerst, laatst = reeks[0][1], reeks[-1][1]
+        if laatst < eerst * 0.97:
+            omlaag.append(f"{adres} van €{eerst} naar €{laatst}")
+        elif laatst > eerst * 1.03:
+            omhoog.append(adres)
+    bewijs = (f"{len(herhaald)} adressen vaker aangeboden: {len(omlaag)} voor "
+              f"minder, {len(omhoog)} voor meer")
+    if omlaag:
+        return (OK, bewijs + "; lager bij: " + "; ".join(omlaag[:3]),
+                "")
+    return (OK, bewijs, "")
+
+
+def controle_huurdekking():
+    """Hoeveel van het huuraanbod elders we zelf al zien."""
+    try:
+        from huur_dekking import lees_elders, lees_eigen, sleutel
+        elders = lees_elders()
+    except Exception as e:
+        return (LET_OP, "dekkingscontrole niet uit te voeren", str(e)[:100])
+    if not elders:
+        return (OK, "geen steekproef geplakt in huur_elders.txt", "")
+    per_sleutel, straten = lees_eigen()
+    raak = sum(1 for a in elders
+               if a["sleutel"] in per_sleutel or sleutel(a["straat"]) in straten)
+    deel = raak / len(elders) * 100
+    bewijs = (f"steekproef van {len(elders)} adressen elders: {raak} kennen we "
+              f"al ({deel:.0f}%)")
+    if deel < 60:
+        return (LET_OP, bewijs,
+                "We missen het grootste deel van het huuraanbod. Een extra "
+                "bron erbij weegt dan zwaarder dan welke verfijning van de "
+                "berekening ook.")
+    return (OK, bewijs, "")
+
+
+def controle_veroudering():
+    """
+    Hoe oud is het aanbod dat we tonen?
+
+    Een pand blijft in de tabellen staan tot iets anders bewijst dat het weg
+    is. De attenderingen melden alleen nieuw en gewijzigd aanbod, dus een pand
+    dat stilletjes verkocht wordt, blijft staan. Dit telt hoe groot die groep
+    is, zodat de brief niet ongemerkt met verouderd aanbod rekent.
+    """
+    vandaag = dt.date.today()
+    laatst = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 5 or not v[3].lower().startswith("te koop"):
+                    continue
+                sleutel = v[0].lower()
+                laatst[sleutel] = max(laatst.get(sleutel, ""), v[4])
+    except Exception:
+        return (LET_OP, "aanbod niet te lezen", "Staat verkopen.txt er wel?")
+    if not laatst:
+        return (LET_OP, "geen aanbod in het bestand", "")
+    ouderdom = []
+    for datum in laatst.values():
+        try:
+            ouderdom.append((vandaag - dt.date.fromisoformat(datum)).days)
+        except Exception:
+            continue
+    ouderdom.sort()
+    oud = sum(1 for d in ouderdom if d > 60)
+    bewijs = (f"{len(ouderdom)} panden te koop, mediaan {ouderdom[len(ouderdom)//2]} "
+              f"dagen geleden voor het laatst bevestigd, oudste {ouderdom[-1]} dagen")
+    if oud:
+        return (LET_OP, bewijs + f", {oud} langer dan 60 dagen",
+                "Die panden zijn waarschijnlijk al van de markt; ze blijven "
+                "staan omdat de attendering alleen nieuw aanbod meldt. Een "
+                "geplakte verkooplijst haalt ze eruit.")
+    return (OK, bewijs, "")
+
+
+def controle_verkopen():
+    """
+    Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
+
+    Belangrijk om te weten of de attendering de verkopen meeneemt sinds Mark
+    dat filter aanzette. Zo ja, dan hoeft er niets meer geplakt te worden.
+    """
+    per_bron, laatste = {}, ""
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 6 or not v[3].lower().startswith("verkocht"):
+                    continue
+                bron = "geplakt" if "plak" in v[5] else "uit de mail"
+                per_bron[bron] = per_bron.get(bron, 0) + 1
+                laatste = max(laatste, v[4])
+    except Exception:
+        return (LET_OP, "verkopen niet te lezen", "Staat verkopen.txt er wel?")
+    if not per_bron:
+        return (LET_OP, "nog geen verkopen in de reeks",
+                "Zet in de Funda-attendering het filter op verkocht en onder "
+                "bod; dan komen ze vanzelf binnen. Werkt dat niet, dan blijft "
+                "plakken over.")
+    delen = ", ".join(f"{n} {b}" for b, n in sorted(per_bron.items()))
+    uit_mail = per_bron.get("uit de mail", 0)
+    bewijs = f"{sum(per_bron.values())} verkopen: {delen}; laatste {laatste}"
+    if not uit_mail:
+        return (LET_OP, bewijs,
+                "Er komt nog geen enkele verkoop uit de attendering. Controleer "
+                "of het filter op verkocht daar echt aan staat.")
+    return (OK, bewijs, "")
+
+
+def controle_plakbestanden():
+    """De lijsten die Mark met de hand aanlevert: verkopen en Kamernet."""
     uit = []
-    for sl, pand in geschiedenis.items():
-        if sl == zelf or straat_van(pand.get("adres")) != straat:
-            continue
-        tekst = _route_tekst(pand)
-        if not tekst:
-            continue
-        laatste = max((g["datum"] for g in pand["gebeurtenissen"]), default="")
-        uit.append({"adres": pand["adres"], "route": tekst, "laatste": laatste,
-                    "aantal": len(pand["gebeurtenissen"])})
-    uit.sort(key=lambda x: x["laatste"], reverse=True)
-    return uit[:maximaal]
+    for pad, wat in (("funda_verkocht_plak.txt", "verkooplijst van Funda"),
+                     ("kamernet_plak.txt", "kamerlijst van Kamernet")):
+        if os.path.exists(pad) and os.path.getsize(pad) > 200:
+            uit.append(f"{wat}: aanwezig")
+        else:
+            uit.append(f"{wat}: ontbreekt")
+    verkocht = _json("verkocht_details.json") or {}
+    if verkocht:
+        uit.append(f"{len(verkocht)} verkochte woningen verwerkt")
+    # Komt een bron via de mail binnen, dan is het plakbestand overbodig.
+    mail = (_json("mail_status.json") or {}).get("bronnen") or {}
+    if (mail.get("kamernet") or {}).get("objecten"):
+        uit[1] = "kamerlijst van Kamernet: niet nodig, komt uit de mail"
+    if all(("aanwezig" in x or "niet nodig" in x) for x in uit[:2]):
+        return (OK, "; ".join(uit), "")
+    return (LET_OP, "; ".join(uit),
+            "Plak de tekst van de pagina in dat bestand en commit het; het "
+            "script verwerkt hem bij de volgende run.")
 
 
-BUURTBEELD_PAD = "buurtbeeld.json"
-
-# Waar een bekendmaking over gaat, en hoe hij afliep
-_INGREEP = re.compile(r"splits|omzet|kamerverhuur|woningvorming|onttrek", re.I)
-_AANVRAAG = re.compile(r"^aanvraag|ingediend", re.I)
-_VERLEEND = re.compile(r"verleend|vergund", re.I)
-_GEWEIGERD = re.compile(r"geweigerd|afgewezen", re.I)
-_GESTOPT = re.compile(r"buiten behandeling|ingetrokken", re.I)
+def controle_misdrijven():
+    d = _json("misdrijven_per_buurt.json") or {}
+    if not d:
+        return (FOUT, "geen misdrijfcijfers", "Zie stap 6.")
+    return (OK, f"{len(d)} buurten", "")
 
 
-def buurt_van_pand(pand, cache):
-    """De buurt van een pand, via de straatcache. Geen opvraging."""
-    m = re.match(r"^(.+?)\s+\d", (pand.get("adres") or "").strip())
-    if not m:
-        return ""
-    straat = m.group(1).strip()
-    return cache.get(straat) or cache.get(straat.lower()) or ""
+def controle_ov():
+    haltes = _json("ov_haltes.json") or []
+    afstanden = _json("ov_afstand_cache.json") or {}
+    if not haltes:
+        return (FOUT, "geen haltebestand",
+                "Zie stap 16. Verwijder ov_haltes.json om opnieuw op te halen.")
+    if len(haltes) < 50:
+        return (LET_OP, f"{len(haltes)} haltes",
+                "Verdacht weinig voor de ring; controleer het zoekgebied in "
+                "ov_haltes.py.")
+    geschat = sum(1 for a in afstanden.values()
+                  if isinstance(a, dict) and a.get("geschat"))
+    bewijs = f"{len(haltes)} haltes, {len(afstanden)} panden gerouteerd"
+    if afstanden and geschat == len(afstanden):
+        return (LET_OP, bewijs + ", alle afstanden geschat",
+                "De routering via OSRM lukt niet; alle afstanden zijn de rechte "
+                "lijn maal 1,35.")
+    return (OK, bewijs, "")
 
 
-def buurtbeeld(geschiedenis, cache=None, vanaf=2012):
+def controle_archief():
+    d = _json("bekendmakingen_archief.json") or {}
+    leeftijd = _leeftijd_dagen("bekendmakingen_archief.json")
+    if not d:
+        return (FOUT, "archief leeg", "Zie stap 13.")
+    publ = sum(len(v) for v in d.values() if isinstance(v, list))
+    bewijs = f"{len(d)} adressen, {publ} publicaties"
+    if leeftijd is not None and leeftijd > 3:
+        return (LET_OP, bewijs + f", {leeftijd} dagen niet bijgewerkt",
+                "Zie stap 13.")
+    return (OK, bewijs, "")
+
+
+def controle_regelgeving():
+    d = _json("regelgeving_status.json")
+    if d is None:
+        return (LET_OP, "nog geen regelgevingsstatus",
+                "De monitor draait op zondag. Na de eerste zondag hoort hier een "
+                "aantal regelingen te staan.")
+    # Sleutels die met een liggend streepje beginnen zijn geen regeling maar
+    # administratie van het script zelf, zoals de lijst met zoektermen.
+    d = {k: v for k, v in d.items()
+         if not str(k).startswith("_") and isinstance(v, dict)}
+    gemeente = sum(1 for g in d.values() if g.get("bron") == "gemeente")
+    landelijk = sum(1 for g in d.values() if g.get("bron") == "landelijk")
+    bewijs = f"{gemeente} verordeningen, {landelijk} wetten"
+    if not gemeente:
+        return (LET_OP, bewijs,
+                "Geen gemeentelijke verordeningen gevonden via CVDR. Zie stap 9 op "
+                "zondag; de zoekopdracht op 'Nijmegen' levert mogelijk niets op.")
+    return (OK, bewijs, "")
+
+
+def controle_geheugen():
+    gezien = _json("brief_gezien.json") or {}
+    trend = _json("prijstrend.json") or {}
+    if not gezien:
+        return (FOUT, "brief_gezien.json leeg",
+                "Zonder geheugen wordt elk pand elke dag als nieuw behandeld.")
+    weken = max((len(v) for v in trend.values() if isinstance(v, dict)), default=0)
+    bewijs = f"{len(gezien)} panden onthouden, prijstrend over {weken} metingen"
+    if weken < 4:
+        return (LET_OP, bewijs,
+                "De prijstrend is nog te kort voor een vergelijking over vier "
+                "weken. Dat lost zich vanzelf op.")
+    return (OK, bewijs, "")
+
+
+def controle_commit():
+    """Werd er de vorige keer iets teruggeschreven?"""
+    leeftijd = _leeftijd_dagen("brief_gezien.json")
+    if leeftijd is None:
+        return (FOUT, "brief_gezien.json ontbreekt", "")
+    if leeftijd > 2:
+        return (FOUT, f"gegevens {leeftijd} dagen niet bijgewerkt",
+                "Het terugcommitten lukt vermoedelijk niet. Zie de stap "
+                "'Digests + gegevensbestanden terugcommitten'.")
+    return (OK, "gegevens van de laatste run bewaard", "")
+
+
+CONTROLES = [
+    ("Versies", controle_versies),
+    ("Huurdata", controle_huurdata),
+    ("Aanbod", controle_aanbod),
+    ("Marktrente", controle_rente),
+    ("Kapitaalmarkt (ECB)", controle_ecb),
+    ("Bouwkostenindex", controle_bouwkosten),
+    ("Eigen bouwkosten", controle_eigen_bouwkosten),
+    ("Buurtcijfers CBS", controle_buurtcijfers),
+    ("Kamervergunningen", controle_vergunningen),
+    ("Kamerverhuurregister", controle_kamerverhuur),
+    ("Woningprijsindex CBS", controle_woningprijzen),
+    ("Stadsbegroting", controle_begroting),
+    ("Geschiedenis per pand", controle_geschiedenis),
+    ("Handmatige lijsten", controle_plakbestanden),
+    ("Verkopen", controle_verkopen),
+    ("Veroudering aanbod", controle_veroudering),
+    ("Huurdekking", controle_huurdekking),
+    ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
+    ("VvE-bijdragen", controle_vve),
+    ("WOZ-schatting", controle_wozschatting),
+    ("COROP Arnhem/Nijmegen", controle_corop),
+    ("3D BAG eigen snapshot", controle_bag3d),
+    ("Achtergronddekking", controle_achtergronddekking),
+    ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
+    ("Jaarlijkse grenzen", controle_peildata),
+    ("Attenderingen", controle_mailbronnen),
+    ("Misdrijfcijfers", controle_misdrijven),
+    ("OV-haltes", controle_ov),
+    ("Bekendmakingen-archief", controle_archief),
+    ("Regelgevingsmonitor", controle_regelgeving),
+    ("Geheugen en trend", controle_geheugen),
+    ("Terugschrijven", controle_commit),
+]
+
+
+VORIGE_PAD = "gezondheid_vorige.json"
+
+
+def _vorige_stand():
+    """Welke controles er vorige keer waren en hoe ze stonden."""
+    return _json(VORIGE_PAD) or {}
+
+
+def _bewaar_stand(uitkomsten):
+    """De stand van nu bewaren, zodat de volgende run kan vergelijken."""
+    try:
+        with open(VORIGE_PAD, "w", encoding="utf-8") as f:
+            json.dump({"datum": VANDAAG.isoformat(),
+                       "controles": {n: s for n, s, _b, _d in uitkomsten}},
+                      f, ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception:
+        pass
+
+
+def _verschillen(uitkomsten, vorige):
     """
-    Per buurt en per jaar: hoeveel aanvragen om te splitsen of te verkameren, en
-    hoe ze afliepen.
+    Wat er is veranderd sinds de vorige run.
 
-    Dit is de stroom in plaats van de voorraad. De buurtcijfers van het CBS
-    veranderen een keer per jaar; dit verandert elke week, en het zegt iets wat
-    je nergens anders ziet: of de gemeente in die buurt meewerkt.
-
-    Wat het niet is: een volledig beeld. We zien alleen wat gepubliceerd is en
-    wat onze zoekwoorden vangen. Een laag aantal bewijst dus niets.
+    Dit is de kern van een korter rapport: je hoeft niet elke regel te lezen,
+    alleen wat anders is dan gisteren. En het vangt het gevaarlijke geval af
+    dat een controle helemaal verdwijnt, zoals de 3D BAG-controle die er
+    vanmiddag uitviel omdat een bestand niet was geuploud.
     """
-    cache = cache if cache is not None else lees("straat_buurt_cache.json", {})
-    per_buurt = {}
-    for sl, pand in geschiedenis.items():
-        buurt = buurt_van_pand(pand, cache)
-        if not buurt:
-            continue
-        b = per_buurt.setdefault(buurt, {"jaren": {}, "doorlooptijden": [],
-                                         "na_verkoop": 0})
-        aanvraag_op = None
-        verkocht_op = None
-        for g in sorted(pand["gebeurtenissen"], key=lambda x: x["datum"]):
-            datum, tekst = g["datum"][:10], g["tekst"]
-            if g["soort"] == "verkocht":
-                verkocht_op = datum
-                continue
-            if g["soort"] != "bekendmaking" or not _INGREEP.search(tekst):
-                continue
-            jaar = datum[:4]
-            if not jaar.isdigit() or int(jaar) < vanaf:
-                continue
-            tel = b["jaren"].setdefault(jaar, {"aanvragen": 0, "verleend": 0,
-                                               "geweigerd": 0, "gestopt": 0})
-            if _GESTOPT.search(tekst):
-                tel["gestopt"] += 1
-            elif _GEWEIGERD.search(tekst):
-                tel["geweigerd"] += 1
-            elif _VERLEEND.search(tekst):
-                tel["verleend"] += 1
-                if aanvraag_op:
-                    dagen = (dt.date.fromisoformat(datum)
-                             - dt.date.fromisoformat(aanvraag_op)).days
-                    if 0 <= dagen <= 730:
-                        b["doorlooptijden"].append(dagen)
-                    aanvraag_op = None
-            elif _AANVRAAG.search(tekst):
-                tel["aanvragen"] += 1
-                aanvraag_op = datum
-            # Gekocht en daarna een ingreep aangevraagd: de route die we volgen
-            if verkocht_op and datum > verkocht_op:
-                b["na_verkoop"] += 1
-                verkocht_op = None
-    return per_buurt
-
-
-def buurtbeeld_tekst(per_buurt, buurt, jaren=4):
-    """De regels voor een buurt, met de laatste jaren apart en de rest opgeteld."""
-    b = per_buurt.get(buurt)
-    if not b or not b["jaren"]:
-        return []
-    alle = sorted(b["jaren"])
-    recent_j = alle[-jaren:]
-    ouder = [j for j in alle if j not in recent_j]
+    oud = (vorige or {}).get("controles") or {}
+    nu = {n: s for n, s, _b, _d in uitkomsten}
     regels = []
-    for j in recent_j:
-        t = b["jaren"][j]
-        delen = [f"{t['aanvragen']} aanvragen"] if t["aanvragen"] else []
-        for sleutel, woord in (("verleend", "verleend"), ("geweigerd", "geweigerd"),
-                               ("gestopt", "buiten behandeling of ingetrokken")):
-            if t[sleutel]:
-                delen.append(f"{t[sleutel]} {woord}")
-        if delen:
-            regels.append(f"{j}: " + ", ".join(delen))
-    if ouder:
-        som = sum(b["jaren"][j]["aanvragen"] for j in ouder)
-        regels.append(f"{ouder[0]} tot en met {ouder[-1]}: {som} aanvragen")
-    uit = [f"splitsen en verkameren in {buurt}, uit de gepubliceerde "
-           f"bekendmakingen: " + "; ".join(regels)]
-    if b["doorlooptijden"]:
-        mediaan = int(st.median(b["doorlooptijden"]))
-        uit.append(f"doorlooptijd van aanvraag tot verleende vergunning in "
-                   f"{buurt}: mediaan {mediaan} dagen over "
-                   f"{len(b['doorlooptijden'])} gevallen")
-    if b["na_verkoop"]:
-        uit.append(f"{b['na_verkoop']} keer werd er in {buurt} na een verkoop een "
-                   f"ingreep aangevraagd op hetzelfde adres")
-    uit.append("deze tellingen zien alleen wat gepubliceerd is; een laag aantal "
-               "bewijst niet dat er weinig gebeurt")
-    return uit
+    for naam, status in nu.items():
+        if naam not in oud:
+            regels.append(f"nieuw: {naam} ({status})")
+        elif oud[naam] != status:
+            regels.append(f"{naam}: van {oud[naam]} naar {status}")
+    for naam in oud:
+        if naam not in nu:
+            regels.append(f"WEG: de controle {naam} draait niet meer")
+    return regels
 
 
-def recent(geschiedenis, dagen=7):
-    """De panden met een gebeurtenis in de afgelopen dagen, met hun hele verleden."""
-    grens = (dt.date.today() - dt.timedelta(days=dagen)).isoformat()
-    uit = []
-    for sl, pand in geschiedenis.items():
-        vers = [g for g in pand["gebeurtenissen"] if g["datum"] >= grens
-                and g["soort"] in ("verkocht", "bekendmaking", "bag", "energielabel",
-                                   "prijswijziging")]
-        if vers and len(pand["gebeurtenissen"]) > 1:
-            uit.append((pand, vers))
-    return uit
+def rapport(kort=False, bewaren=False):
+    uitkomsten = []
+    for naam, functie in CONTROLES:
+        try:
+            status, bewijs, diagnose = functie()
+        except Exception as e:
+            status, bewijs, diagnose = FOUT, "controle zelf faalde", str(e)[:120]
+        uitkomsten.append((naam, status, bewijs, diagnose))
 
+    aantal = {s: sum(1 for u in uitkomsten if u[1] == s) for s in (OK, LET_OP, FOUT)}
+    # Pas bewaren als het korte rapport al is gemaakt, anders vergelijkt de
+    # volgende regel de stand met zichzelf en is er nooit een verschil.
+    if bewaren:
+        _bewaar_stand(uitkomsten)
 
-def render(geschiedenis, dagen=7):
-    paren = recent(geschiedenis, dagen)
-    if not paren:
-        return []
-    r = ["# Wat er met eerdere panden gebeurde", "",
-         "_Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, "
-         "dus een splitsing en de nieuwe huisnummers horen bij dezelfde "
-         "geschiedenis._", ""]
-    for pand, vers in sorted(paren, key=lambda p: -len(p[0]["gebeurtenissen"]))[:8]:
-        r.append(f"## {pand['adres']}")
-        for g in pand["gebeurtenissen"]:
-            merk = " **nieuw**" if g in vers else ""
-            r.append(f"- {g['datum']}: {g['tekst']} ({g['bron']}){merk}")
+    if kort:
+        # De versie om te plakken: alleen wat aandacht vraagt, ingekort, en de
+        # onderdelen die goed gaan in een regel
+        r = [f"GEZONDHEID {VANDAAG.isoformat()}: {aantal[OK]} ok, "
+             f"{aantal[LET_OP]} let op, {aantal[FOUT]} fout"]
+        for status in (FOUT, LET_OP):
+            for naam, s_, bewijs, diag in uitkomsten:
+                if s_ != status:
+                    continue
+                r.append(f"[{status}] {naam}: {bewijs}")
+                if diag:
+                    r.append(f"   {_kort(diag)}")
+        # De onderdelen die goed gaan niet meer uitschrijven: dat is de helft
+        # van het rapport en je leest het toch niet. Wel het aantal, en wat er
+        # is veranderd sinds de vorige run, want daar zit het nieuws.
+        goed = [naam for naam, s_, _b, _d in uitkomsten if s_ == OK]
+        vorige = _vorige_stand()
+        verschil = _verschillen(uitkomsten, vorige) if vorige else []
+        r.append(f"[OK] {len(goed)} onderdelen, ongewijzigd; het volledige "
+                 f"rapport staat in het digestbestand")
+        if not vorige:
+            # Eerste run met deze vergelijking: dan is alles nieuw en zegt dat
+            # niets. Vanaf de volgende run staat hier wat er werkelijk wijzigde.
+            r.append("Eerste run met deze vergelijking; vanaf morgen staat hier "
+                     "alleen nog wat er is veranderd.")
+        elif verschil:
+            r.append("")
+            r.append(f"VERANDERD sinds {vorige.get('datum', 'de vorige run')}:")
+            for regel in verschil:
+                r.append(f"  {regel}")
+        elif vorige:
+            r.append(f"Niets veranderd sinds {vorige.get('datum')}.")
+
+        # Automatische keuzes altijd tonen, ook als het onderdeel groen is.
+        # Juist dan: een automatisch gekozen veld dat verkeerd is, geeft geen
+        # fout maar een plausibel verkeerd getal.
+        for regel in automatische_keuzes():
+            r.append(f"[CONTROLEER] {regel}")
+        return "\n".join(r)
+
+    r = [f"# Gezondheidsrapport {VANDAAG.isoformat()}", "",
+         f"{aantal[OK]} in orde, {aantal[LET_OP]} aandachtspunten, "
+         f"{aantal[FOUT]} fouten.", ""]
+
+    # Eerst wat er mis is, dan de rest: daar gaat het om bij het delen
+    for status in (FOUT, LET_OP, OK):
+        groep = [u for u in uitkomsten if u[1] == status]
+        if not groep:
+            continue
+        r.append(f"## {status}")
+        for naam, _s, bewijs, diag in groep:
+            r.append(f"- **{naam}**: {bewijs}")
+            if diag:
+                r.append(f"  {diag}")
         r.append("")
-    return r
+    return "\n".join(r)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="")
-    ap.add_argument("--volledig", action="store_true",
-                    help="ook de BAG en de energielabels bijwerken")
     args = ap.parse_args()
-    wis("geschiedenis")
 
-    geschiedenis = lees(PAD, {})
-    n_v = uit_verkopen(geschiedenis)
-    n_a = uit_archief(geschiedenis)
-    n_k = uit_kamerverhuur(geschiedenis)
-    n_b = n_l = 0
-    if args.volledig:
-        # alleen_gevolgd=False: bij een volledige ronde doen ook de panden mee
-        # waarvan we alleen aanbod kennen en geen bekendmaking. Zonder dit
-        # werden die overgeslagen voordat ze geteld werden, en bleef het aantal
-        # "nog nooit nagekeken" eeuwig op hetzelfde getal staan.
-        n_b, ronde = bij_bag(geschiedenis, alleen_gevolgd=False)
-        n_l = bij_labels(geschiedenis, ronde)
-    bewaar(geschiedenis)
-    beeld = buurtbeeld(geschiedenis)
-    with open(BUURTBEELD_PAD, "w", encoding="utf-8") as f:
-        json.dump(beeld, f, ensure_ascii=False, indent=1, sort_keys=True)
-
-    met_verhaal = sum(1 for p in geschiedenis.values()
-                      if len(p["gebeurtenissen"]) > 1)
-    print(f"Geschiedenis: {len(geschiedenis)} panden gevolgd, waarvan "
-          f"{met_verhaal} met meer dan een gebeurtenis; nieuw: {n_v} uit het "
-          f"aanbod, {n_a} bekendmakingen, {n_k} uit het kamerverhuurregister, "
-          f"{n_b} BAG-wijzigingen, {n_l} labelwijzigingen", file=sys.stderr)
+    # In de log de korte versie, om te kopieren en te delen. In het bestand de
+    # volledige versie, voor als je alle details wilt nalezen.
+    print("=" * 60)
+    print("KOPIEER VANAF HIER")
+    print("=" * 60)
+    print(rapport(kort=True))
+    print("=" * 60)
+    print("TOT HIER")
+    print("=" * 60)
     if args.uit:
-        regels = render(geschiedenis)
-        if regels:
-            os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
-            with open(args.uit, "w", encoding="utf-8") as f:
-                f.write("\n".join(regels) + "\n")
+        os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
+        with open(args.uit, "w", encoding="utf-8") as f:
+            f.write(rapport(kort=False, bewaren=True) + "\n")
+        print(f"\nVolledig rapport met alle details: {args.uit}")
 
 
 if __name__ == "__main__":
