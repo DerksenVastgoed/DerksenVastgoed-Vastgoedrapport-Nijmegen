@@ -63,10 +63,9 @@ OPBOUW: begin bij wat er werkelijk speelt, niet bij een vast rondje langs de buu
 
 1. Open met het belangrijkste van vandaag, in deze volgorde:
    a. een gemeentelijk besluit of een wijziging in de regels die de hele portefeuille raakt;
-   b. een eigen bevinding die alleen uit onze gegevens blijkt en die vandaag nieuw is, zoals een pand dat nieuw is in het patroon "vergund en inmiddels verkocht". Dit staat nergens anders, en daarom gaat het voor op de pers;
-   c. een bericht uit de pers, maar alleen als het schuurt met onze eigen cijfers. Een artikel dat alleen bevestigt, of een raming van een bank, is geen opening; dat hoort verderop;
-   d. een nieuw pand, maar alleen als in de gegevens staat dat het de drempel haalt, dus als de richtprijs dicht bij de vraagprijs ligt. Staat dat er niet bij, dan is het geen opening maar hooguit een alinea verderop;
-   e. anders: het onderwerp van de verdieping.
+   b. een bericht uit de pers dat schuurt met onze eigen cijfers, of dat bevestigt;
+   c. een nieuw pand, maar alleen als in de gegevens staat dat het de drempel haalt, dus als de richtprijs dicht bij de vraagprijs ligt. Staat dat er niet bij, dan is het geen opening maar hooguit een alinea verderop;
+   d. anders: het onderwerp van de verdieping.
 
    Een besluit of een regelwijziging gaat dus voor op een nieuw pand, want dat raakt alles wat jullie bezitten en niet alleen dat ene adres.
 
@@ -100,7 +99,7 @@ Je krijgt een buurtnaam aangeleverd; alleen die ene buurt komt aan bod, de ander
 
    Noem je een pand of een besluit in een andere buurt, dan mag je daar wel één cijfer bij halen dat er iets over zegt, bijvoorbeeld het aantal inbraken of vernielingen per duizend inwoners als het over verhuurbaarheid gaat, of het aandeel kamerverhuurvergunningen als het over verkameren gaat. Eén cijfer, ter plaatse, niet een heel portret.
 
-8. Sluit af met een korte conclusie in een eigen alinea: hooguit drie zinnen. Herhaal de opening niet; zeg wat je van het geheel vindt en waar je volgende keer op let. Bij een brief met een duidelijk hoofdstuk hoort daar een oordeel bij, niet alleen een vooruitblik.
+8. Sluit af met een korte conclusie: wat je van het geheel vindt en waar je volgende keer op let. Bij een brief met een duidelijk hoofdstuk hoort daar een oordeel bij, niet alleen een vooruitblik.
 
 WAT JE NIET DOET:
 - Elke buurt langslopen omdat het nu eenmaal zes buurten zijn.
@@ -170,6 +169,8 @@ VEILIGHEIDSCIJFERS. De politie telt misdrijven op de plaats waar ze zijn gepleeg
 
 GEEN TOEZEGGINGEN NAMENS MARK. De brief is van Mark, maar jij beslist niet wat hij gaat doen. Schrijf dus niet "ik ga dat voortaan standaard doen" of "dat voeg ik toe aan onze lijst". Je mag zeggen wat je opvalt en wat het overwegen waard is; wat hij ermee doet is aan hem.
 
+DE VIER INGREPEN UIT ARTIKEL 21 HEBBEN ELK HUN EIGEN NAAM, HAAL ZE NOOIT DOOR ELKAAR. Omzetten is een zelfstandige woning naar ONZELFSTANDIGE woonruimte brengen, dus kamerverhuur; daar hoort de omzettingsvergunning bij. Woningvorming, in de praktijk splitsen genoemd, is een pand verbouwen tot twee of meer ZELFSTANDIGE woningen. Onttrekken is woonruimte aan de bewoning onttrekken, bijvoorbeeld voor logies of kantoor. Samenvoegen is twee woningen tot een maken. Schrijf dus nooit dat een omzettingsvergunning de toestemming is om een pand in meerdere losse woningen te verdelen; dat is woningvorming. Staat in een bekendmaking "omzetting", dan gaat het over kamers, en dat is iets anders dan zes appartementen.
+
 VAN BUURT NAAR STRAAT NAAR PAND. Behandel een uitgelicht pand in die volgorde, als één blok en niet verspreid over de brief. Eerst de buurt, met alleen die cijfers die iets verklaren over dit pand: niet alle zes de kengetallen, maar de twee of drie die ertoe doen. Dan de straat, en daar zit de waarde: welke aanvragen zijn er gedaan en hoe liepen ze af, welke panden staan als kamerverhuur bekend, wat is er verkocht en wat staat er nu te koop. Noem adressen, want die kan pa natrekken. Dan het pand zelf: WOZ, punten, routes, doorrekening. Hoe dichter bij het pand, hoe harder de gegevens, en dat mag je zeggen.
 
 GEEN LOS BUURTPORTRET MEER. Schrijf nooit een apart stuk over een buurt zonder dat er een pand of een besluit aanleiding voor geeft. De buurtcijfers staan in de tabel; ze herhalen in de tekst maakt de brief langer en niet beter. Is er niets uit te lichten, dan is de brief korter, en dat is goed.
@@ -178,7 +179,7 @@ NOOIT EEN KANS OF EEN SCORE. Schrijf niet dat de kans zoveel procent is dat een 
 
 WIE ERACHTER ZIT, WETEN WE NIET. Eigendom staat bij het Kadaster en dat is betaald en niet herpubliceerbaar. Wat we wel hebben is de makelaar die het pand verkocht. Noem die alleen als dezelfde naam bij meer dan een vergund en verkocht pand terugkomt, en schrijf dan dat die makelaar deze panden verkocht, nooit dat hij de eigenaar of de ontwikkelaar is.
 
-HET PATROON VERGUND EN VERKOCHT. Staat er een lijst panden met een splitsings- of verkameringsbesluit die inmiddels verkocht zijn, dan is dat een van de sterkste signalen die we hebben: iemand haalt een vergunning en doet het pand van de hand. Noem het aantal en een paar adressen. Per pand staat de volgorde erbij, en die neem je letterlijk over. Staat er "verkocht na het besluit", dan mag je dat schrijven, met de datum waarop het nog te koop stond: dat is gemeten. Staat er "volgorde onbekend", schrijf dan "met een vergunning en inmiddels verkocht", nooit "verkocht na de vergunning", en zeg niet wanneer het verkocht is.
+HET PATROON VERGUND EN VERKOCHT. Staat er een lijst panden met een splitsings- of verkameringsbesluit die inmiddels verkocht zijn, dan is dat een van de sterkste signalen die we hebben: iemand haalt een vergunning en doet het pand van de hand. Noem het aantal en een paar adressen, en zeg erbij dat we niet weten wanneer er verkocht is en dus ook niet of dat na het besluit was. Schrijf dus "met een vergunning en inmiddels verkocht", nooit "verkocht na de vergunning".
 
 DRIE NIVEAUS NAAST ELKAAR. Voor de prijsontwikkeling zijn er drie gemeten cijfers: landelijk (CBS), de provincie Gelderland, en het COROP-gebied Arnhem/Nijmegen, dat het dichtst bij onze markt ligt en ook het aantal transacties geeft. Zet ze naast elkaar als ze uiteenlopen, want dat verschil is zelf nieuws; loopt alles gelijk op, noem dan alleen het COROP-cijfer. Onze eigen buurtmedianen blijven vraagprijzen van een handvol panden en zijn een andere maat; vergelijk de richting, niet de hoogte.
 
@@ -196,19 +197,7 @@ VERGELIJKINGEN. Zeg je dat een buurt "tussen" twee andere ligt, of "hoger" of "l
 
 ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Alleen getallen die in de aangeleverde gegevens staan.
 
-WAT ER NIET STAAT, BESTAAT NIET. Ontbreekt een cijfer in de gegevens, laat het dan weg. Maak er geen nul van, geen schatting en geen "geen gevallen geregistreerd". Dat een soort misdrijf niet wordt genoemd betekent dat wij dat cijfer niet hebben, niet dat het nul is. Hetzelfde geldt voor een ontbrekend energielabel, bouwjaar of oppervlakte: die laat je onbesproken.
-
-AANVRAAG OF BESLUIT. Bij elke gemeentelijke bekendmaking staat de status erbij: AANVRAAG (nog niet verleend), BESLUIT of MELDING. Neem die status per adres letterlijk over. Noem je twee bekendmakingen in een zin, dan alleen samen als ze dezelfde status hebben. Een besluit is nooit "nog niet verleend" en krijgt geen "bij toekenning".
-
-WAT EEN BESLUIT INHOUDT, IN GEWONE WOORDEN. Neem de kern van de titel over zodat pa hem begrijpt zonder de bron te openen. Dus niet "kantoor naar een derde woonruimte", maar: de kantoorruimte wordt de derde woning in dat pand. Voeg niets toe wat niet in de titel staat: een extra verdieping of een dakopbouw is meer vloeroppervlak, geen extra woning. Een extra woning noem je alleen als de titel dat zegt.
-
-OPPERVLAKTE BIJ EEN BEKENDMAKING. Het aantal vierkante meters bij een bekendmaking is de oppervlakte van het bestaande pand volgens de BAG, niet de omvang van de verbouwing. Schrijf dus "het huis van 140 vierkante meter krijgt een dakopbouw", nooit "een dakopbouw van 140 m2".
-
-GEEN DUIDING ZONDER BRON. Wat een eigenaar van plan is, weten we niet. Schrijf dus niet dat een verlenging van tijdelijke verhuur "op overbrugging wijst", dat een pand "op termijn op de markt komt" of dat een buurtcijfer "iets zegt over wie er langskomt". Noem het feit; de uitleg laat je weg als die niet in de gegevens staat.
-
-GEEN VAKTAAL UIT ONZE EIGEN REKENMODULE. Woorden als "de drempel" kent pa niet. Zeg wat er staat, met het percentage uit de gegevens, bijvoorbeeld: de richtprijs blijft meer dan tien procent onder de vraagprijs, dus de doorrekening komt niet uit.
-
-GEEN GEDACHTESTREEPJES. Gebruik een punt voor een nieuwe zin of een komma om door te gaan."""
+WAT ER NIET STAAT, BESTAAT NIET. Ontbreekt een cijfer in de gegevens, laat het dan weg. Maak er geen nul van, geen schatting en geen "geen gevallen geregistreerd". Dat een soort misdrijf niet wordt genoemd betekent dat wij dat cijfer niet hebben, niet dat het nul is. Hetzelfde geldt voor een ontbrekend energielabel, bouwjaar of oppervlakte: die laat je onbesproken."""
 
 
 def met_laag_inkomen(cbs, buurten):
@@ -995,13 +984,8 @@ def veiligheidszinnen(tekst):
     # Ook de zin ervoor bekijken: "Vernieling is hier laag. Voor verhuur is dat
     # een pluspunt." noemt het cijfer in de ene zin en de conclusie in de andere.
     zinnen = [z.strip() for z in re.split(r"(?<=[.!?])\s+", tekst)]
-    # Ook de verklaring zelf telt: "dat zegt ook iets over wie er door de buurt
-    # komt" stond in de brief van 1 oktober, terwijl dat niet gemeten is.
     oordeel = re.compile(r"pluspunt|minpunt|prettig|aantrekkelijk|voor verhuur|"
-                         r"voor een huurder|voordeel|nadeel|"
-                         r"zegt (ook |vooral |meer |iets )*(iets )?over|"
-                         r"wie er (door|langs|in|naar) |bezoekers|passanten|"
-                         r"uitgaanspubliek|langskom", re.I)
+                         r"voor een huurder|voordeel|nadeel", re.I)
     cijfer = re.compile(r"fietsendiefstal|vernieling", re.I)
     uit = []
     for i, z in enumerate(zinnen):
@@ -1034,91 +1018,12 @@ def verbandzinnen(tekst):
     return uit
 
 
-_STATUS_REGEL = re.compile(
-    r"^- \*\*\d{4}-\d{2}-\d{2}\*\* \. (?P<titel>.+?), aan (?P<adres>[^,(]+?\d+[A-Za-z]?(?:-\w+)?)\b",
-    re.M)
-
-
-def statussen(bekendmakingen):
-    """Per adres de status uit de titel: AANVRAAG, BESLUIT of MELDING."""
-    uit = {}
-    for m in _STATUS_REGEL.finditer(bekendmakingen or ""):
-        titel = m.group("titel").strip().lower()
-        if titel.startswith("aanvraag"):
-            status = "AANVRAAG"
-        elif titel.startswith(("besluit", "verleend", "vergunning verleend",
-                               "verlening")):
-            status = "BESLUIT"
-        elif titel.startswith("melding"):
-            status = "MELDING"
-        else:
-            continue
-        uit[m.group("adres").strip()] = status
-    return uit
-
-
-def statuszinnen(tekst, bekendmakingen):
-    """
-    Zinnen die een besluit als aanvraag brengen, of andersom.
-
-    In de brief van 1 oktober stond een verleend besluit (St. Annastraat 456)
-    als "nog niet verleend", omdat het in een zin met een echte aanvraag werd
-    samengenomen. De status staat in de titel; die is hard.
-    """
-    per_adres = statussen(bekendmakingen)
-    uit = []
-    # Niet splitsen na een afkorting als St. of Burg., anders valt het adres
-    # St. Annastraat 456 in twee zinnen uiteen en wordt het niet herkend.
-    splitser = re.compile(r"(?<!\bSt\.)(?<!\bBurg\.)(?<!\bMr\.)(?<!\bDr\.)"
-                          r"(?<!\bProf\.)(?<!\bJhr\.)(?<!\b[A-Z]\.)(?<=[.!?])\s+")
-    for z in (z.strip() for z in splitser.split(tekst)):
-        for adres, status in per_adres.items():
-            if adres not in z:
-                continue
-            if status == "BESLUIT" and re.search(
-                    r"aanvra|nog niet verleend|niet verleend|bij toekenning|"
-                    r"als (die|het) (wordt )?(toegekend|verleend)", z, re.I):
-                uit.append((z, f"{adres} is een besluit, geen aanvraag"))
-            elif status == "AANVRAAG" and re.search(
-                    r"(?<!niet )\b(is|zijn|werd|werden) (al )?(verleend|toegekend|vergund)\b|"
-                    r"\bmag (nu|er)\b", z, re.I):
-                uit.append((z, f"{adres} is een aanvraag, nog niet verleend"))
-    return uit
-
-
-_STREEP = re.compile(r"(?<=[^\s|])\s+[\u2012\u2013\u2014\u2015-]\s+(?=[^\s|])")
-
-
-def zonder_gedachtestreepjes(tekst):
-    """
-    Gedachtestreepjes eruit, ook als het model ze toch schrijft.
-
-    Een streepje met spaties eromheen wordt een komma. Lijsten aan het begin
-    van een regel en bereiken als 2025-2026 (zonder spaties) blijven staan.
-    """
-    regels = []
-    for regel in tekst.split("\n"):
-        if regel.lstrip().startswith(("- ", "* ", "|")):
-            regels.append(regel)
-            continue
-        regels.append(_STREEP.sub(", ", regel))
-    return "\n".join(regels)
-
-
-_SLOT = re.compile(r"(?<=[.!?]) +(?=(Kortom|Samengevat|Al met al|Alles bij elkaar)\b)")
-
-
-def slot_in_eigen_alinea(tekst):
-    """De conclusie begint een eigen alinea, ook als het model hem vastplakt."""
-    return _SLOT.sub("\n\n", tekst)
-
-
 def opent_met_afwezigheid(zin):
     """Gaat deze openingszin over wat er niet is?"""
     return bool(_AFWEZIG.search(zin.strip())) if zin else False
 
 
-def schrijf_brief(bronnen, bekendmakingen=""):
+def schrijf_brief(bronnen):
     if not ANTHROPIC_API_KEY:
         print("Geen ANTHROPIC_API_KEY", file=sys.stderr)
         return ""
@@ -1179,15 +1084,6 @@ def schrijf_brief(bronnen, bekendmakingen=""):
         sturing += (" Er is wel nieuw aanbod, maar geen pand dat de drempel haalt. "
                     "Noem het kort en open met het belangrijkste besluit, bericht "
                     "of onderwerp.")
-    # Een pand dat vandaag nieuw is in het patroon vergund-en-verkocht is een
-    # eigen bevinding: die staat nergens anders. Op 1 oktober opende de brief
-    # met persramingen en stond dit patroon pas in alinea drie.
-    nieuw_patroon = vergund_verkocht_nieuw()
-    if nieuw_patroon and not _weekelijks():
-        sturing += (f" Vandaag zijn {len(nieuw_patroon)} panden nieuw in het patroon "
-                    f"vergund en inmiddels verkocht: {', '.join(nieuw_patroon[:4])}. "
-                    f"Is er geen gemeentelijk besluit dat de hele portefeuille "
-                    f"raakt, open dan hiermee en niet met de pers.")
     print(f"Nieuwswaarde vandaag: {punten} punten, ruimte {woorden} woorden",
           file=sys.stderr)
 
@@ -1226,10 +1122,6 @@ def schrijf_brief(bronnen, bekendmakingen=""):
                          f"voor hoe prettig een buurt is voor verhuur: \"{zin}\". "
                          f"Bij die cijfers telt ook mee wie er alleen langskomt. "
                          f"Haal die conclusie weg; woninginbraak mag wel.")
-    for zin, waarom in statuszinnen(tekst, bekendmakingen):
-        problemen.append(f"Deze zin klopt niet met de status: {waarom}: \"{zin}\". "
-                         f"Neem per adres de status uit de gegevens over en zet een "
-                         f"besluit en een aanvraag niet samen in een zin.")
     for zin in opbouwzinnen(tekst):
         problemen.append(f"Deze zin beschrijft de opbouw van de brief: \"{zin}\". "
                          f"Haal dat deel weg; je vader leest een brief, geen "
@@ -1256,8 +1148,7 @@ def schrijf_brief(bronnen, bekendmakingen=""):
                 and not opent_met_afwezigheid(eerste_zin(herschreven))
                 and not opbouwzinnen(herschreven)
                 and not veiligheidszinnen(herschreven)
-                and not verbandzinnen(herschreven)
-                and not statuszinnen(herschreven, bekendmakingen)):
+                and not verbandzinnen(herschreven)):
             print("  hersteld", file=sys.stderr)
             tekst = herschreven
         elif (herschreven and not kort
@@ -1278,45 +1169,6 @@ def schrijf_brief(bronnen, bekendmakingen=""):
         except Exception:
             pass
     return tekst
-
-
-def vergund_verkocht_tekst(pad="vergund_verkocht.json"):
-    """
-    Het patroon vergund-en-verkocht, per pand met besluit, verkoop en volgorde.
-
-    Het model zag dit eerder alleen terloops in de geschiedenis en moest de
-    volgorde zelf afleiden. De volgorde is uitgerekend in pandgeschiedenis.py;
-    hier gaat hij letterlijk mee.
-    """
-    try:
-        with open(pad, encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception:
-        return ""
-    regels = []
-    for p in data.get("panden", []):
-        delen = [f"{p.get('adres')}{' (NIEUW VANDAAG)' if p.get('nieuw') else ''}",
-                 f"besluit {p.get('besluit_datum')}: {p.get('besluit', '')}",
-                 p.get("verkoop", ""),
-                 p.get("volgorde", "volgorde onbekend")]
-        if p.get("makelaar") and (p.get("makelaar_aantal") or 0) > 1:
-            delen.append(f"makelaar {p['makelaar']}, bij {p['makelaar_aantal']} "
-                         f"van deze panden")
-        regels.append("- " + ". ".join(d for d in delen if d))
-    return "\n".join(regels)
-
-
-def vergund_verkocht_nieuw(pad="vergund_verkocht.json"):
-    """Adressen die vandaag voor het eerst in het patroon vergund-en-verkocht staan."""
-    try:
-        with open(pad, encoding="utf-8") as f:
-            data = json.load(f)
-    except Exception:
-        return []
-    if data.get("datum") != dt.date.today().isoformat():
-        return []
-    return [p.get("adres") for p in data.get("panden", [])
-            if p.get("nieuw") and p.get("adres")]
 
 
 def _vraag(berichten, woorden):
@@ -1391,13 +1243,10 @@ def main():
         ("Woningprijzen CBS", woningprijzen_tekst()),
         ("Stadsbegroting Nijmegen", strip_opmaak(lees(f"digests/{d}-begroting.md"), 3000)),
         ("Verkochte woningen", strip_opmaak(lees(f"digests/{d}-verkocht.md"), 3000)),
-        ("Vergund en inmiddels verkocht", vergund_verkocht_tekst()),
         ("Wat er met eerdere panden gebeurde",
          strip_opmaak(lees(f"digests/{d}-geschiedenis.md"), 4000)),
     ]
-    brief = zet_aanhef(haal_ondertekening_weg(
-        schrijf_brief(bronnen, lees(f"digests/{d}-bekendmakingen.md")) or ""), AANHEF)
-    brief = slot_in_eigen_alinea(zonder_gedachtestreepjes(brief))
+    brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
         print("Geen brief gemaakt", file=sys.stderr)
         return
