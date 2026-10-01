@@ -1,12 +1,12 @@
 
 ## Vandaag
 
-98 panden in beeld, 2 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 4 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
+98 panden in beeld, geen mutaties sinds gisteren, waarvan 2 met een prijswijziging. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 4 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Stadscentrum**
-_mediaan €5.416/m² op 217 waarnemingen . +4,2% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.416/m² op 217 waarnemingen._
 
 _2 panden buiten beeld, mediaan €6.432/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 11 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 11 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. kamers is hier geen vrije route: dit is een appartement in een complex van 20 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
@@ -24,7 +24,7 @@ _Stond er al, vraagprijs ongewijzigd: [Nieuwe Markt 90](https://www.google.com/m
 _6 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Biezen**
-_mediaan €5.416/m² op 95 waarnemingen . +7,5% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.416/m² op 95 waarnemingen._
 
 _1 pand buiten beeld, mediaan €5.150/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 30 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 30 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
@@ -37,13 +37,13 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#12242c;text-decoration:none">Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">59 m² . label A+ (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke verhuur wijst op overbrugging; het pand van 59 m2 komt op termijn mogelijk alsnog op de markt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van de tijdelijke verhuurvergunning bevestigt dat tijdelijke verhuur op deze locatie voortgezet kan worden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-30 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 
 **Bottendaal**
-_mediaan €5.196/m² op 78 waarnemingen . +8,9% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.196/m² op 78 waarnemingen._
 
 _1 pand buiten beeld, mediaan €5.382/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 26 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 26 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
@@ -54,7 +54,7 @@ _Bekende WOZ-waarden: de Ruyterstraat 37 €514.000 (2026), puntenstelsel onderg
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Galgenveld**
-_mediaan €5.075/m² op 98 waarnemingen . +5,9% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.075/m² op 98 waarnemingen._
 
 _1 pand buiten beeld, mediaan €4.913/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 8 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 8 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
@@ -65,7 +65,7 @@ _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 **Altrade**
-_mediaan €5.122/m² op 96 waarnemingen . +5,6% sinds 2026-09-13 (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.122/m² op 96 waarnemingen._
 
 _Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-17% t.o.v. de buurtmediaan, 20 dagen in aanbod) . [Jacob Canisstraat 51](https://www.google.com/maps/search/?api=1&query=Jacob+Canisstraat+51%2C+Nijmegen) €565.000 (+0% t.o.v. de buurtmediaan, 15 dagen in aanbod) . [Groesbeeksedwarsweg 99](https://www.google.com/maps/search/?api=1&query=Groesbeeksedwarsweg+99%2C+Nijmegen) €495.000 (+0% t.o.v. de buurtmediaan, 3 dagen in aanbod) . [Beijensstraat 68](https://www.google.com/maps/search/?api=1&query=Beijensstraat+68%2C+Nijmegen) €539.000 (+17% t.o.v. de buurtmediaan, 2 dagen in aanbod) . [Beijensstraat 80](https://www.google.com/maps/search/?api=1&query=Beijensstraat+80%2C+Nijmegen) €575.000 (+28% t.o.v. de buurtmediaan, 3 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
@@ -77,6 +77,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 781 panden, waarvan er 99 nu in aanbod zijn. Bijgewerkt 01 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 783 panden, waarvan er 99 nu in aanbod zijn. Bijgewerkt 01 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

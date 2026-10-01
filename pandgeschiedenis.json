@@ -150,12 +150,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 96 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €425.000, 96 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -236,12 +230,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €448.000, 96 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -350,12 +338,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 58 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -526,12 +508,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 57 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 57 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -612,12 +588,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 68 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -930,12 +900,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €470.000, 125 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €470.000, 125 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -976,12 +940,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €385.000, 73 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -1902,12 +1860,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 59 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 59 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -2037,12 +1989,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -2180,12 +2126,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €825.000, 148 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €825.000, 148 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -2236,6 +2176,20 @@
    }
   ],
   "pand_id": "0268100000001964"
+ },
+ "balistraat": {
+  "adres": "Balistraat",
+  "bag_gezien": "2026-10-01",
+  "bag_zonder_id": "2026-10-01",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €782 per maand, 12 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "balistraat13": {
   "adres": "Balistraat 13",
@@ -2371,12 +2325,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €399.000, 82 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €399.000, 82 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -2474,12 +2422,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 70 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -2697,12 +2639,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 52 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 52 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -2731,12 +2667,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €439.000, 103 m2"
    },
    {
     "bron": "aanbod",
@@ -2823,12 +2753,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €539.000, 101 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -3039,12 +2963,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €270.000, 42 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €270.000, 42 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -3145,12 +3063,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 106 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -3601,12 +3513,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €160.000, 22 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €160.000, 22 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -3650,12 +3556,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €169.500, 22 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -3976,12 +3876,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €650.000, 132 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -4319,12 +4213,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 73 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 73 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -4545,12 +4433,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €389.000, 75 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €389.000, 75 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -4634,12 +4516,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €399.500, 80 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -4878,12 +4754,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €489.000, 102 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €489.000, 102 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -5092,12 +4962,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €340.000, 66 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €340.000, 66 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -5222,12 +5086,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -5375,12 +5233,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €362.500, 67 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €362.500, 67 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -5431,12 +5283,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -5694,12 +5540,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 72 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -6006,12 +5846,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 71 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 71 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -6314,12 +6148,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 70 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 70 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -6501,12 +6329,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €355.000, 77 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €355.000, 77 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -6676,12 +6498,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 40 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -6763,6 +6579,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €275.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -6840,12 +6662,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 40 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -7003,6 +6819,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €500.000, 107 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -7221,12 +7043,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 52 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 52 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -7345,12 +7161,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €385.000, 59 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -8124,12 +7934,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €550.000, 145 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €550.000, 145 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -8485,12 +8289,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €285.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -8995,12 +8793,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €375.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -9055,6 +8847,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €200.000, 29 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -9171,12 +8969,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €465.000, 99 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -9556,12 +9348,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €309.000, 61 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -9976,6 +9762,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €325.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -10382,12 +10174,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 51 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -11433,12 +11219,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -11848,12 +11628,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -12271,12 +12045,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -12686,12 +12454,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €362.500, 61 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -13109,12 +12871,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 61 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €365.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -13528,12 +13284,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 63 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -13911,12 +13661,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 117 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -14938,12 +14682,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 116 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 116 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -15956,12 +15694,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €545.000, 109 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €545.000, 109 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -16238,12 +15970,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €795.000, 164 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €795.000, 164 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -16453,12 +16179,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 31 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €225.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -16528,12 +16248,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 46 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €315.000, 46 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -16595,12 +16309,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 68 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -17223,6 +16931,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €190.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -17971,12 +17685,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €795.000, 152 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €795.000, 152 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18044,12 +17752,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €885.000, 145 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €885.000, 145 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18078,12 +17780,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 70 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -18198,12 +17894,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 94 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €475.000, 94 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18239,12 +17929,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 107 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -18613,12 +18297,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 43 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 43 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18794,12 +18472,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18862,12 +18534,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €169.000, 28 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €169.000, 28 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -18903,12 +18569,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €265.000, 67 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -19028,12 +18688,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €925.000, 169 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €925.000, 169 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -19058,12 +18712,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €650.000, 136 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -19096,12 +18744,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 54 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -19141,12 +18783,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 125 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -19277,12 +18913,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 39 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -20754,12 +20384,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.250.000, 168 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €1.250.000, 168 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -21050,6 +20674,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €427.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -22140,12 +21770,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €420.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €420.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -22689,6 +22313,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -23060,12 +22690,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €700.000, 221 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €700.000, 221 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -23253,12 +22877,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €390.000, 69 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €390.000, 69 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -23324,12 +22942,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 51 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -23403,12 +23015,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 69 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €365.000, 69 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -23478,12 +23084,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €360.000, 61 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €360.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -23533,12 +23133,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €590.000, 136 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -23678,12 +23272,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 50 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -24255,12 +23843,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 81 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €425.000, 81 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -24392,12 +23974,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 81 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -24549,12 +24125,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 81 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 81 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -24702,12 +24272,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 81 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 81 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -24851,12 +24415,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €259.500, 36 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -25043,12 +24601,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €265.000, 40 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €265.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -25227,12 +24779,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 47 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -25419,12 +24965,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 35 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €225.000, 35 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -25568,12 +25108,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 35 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -25725,12 +25259,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 35 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €225.000, 35 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -25874,12 +25402,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 32 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -26066,12 +25588,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 34 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -26254,12 +25770,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -26438,12 +25948,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -26809,6 +26313,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €265.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -27081,12 +26591,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 45 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 45 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -27295,12 +26799,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €290.000, 43 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €290.000, 43 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -27487,6 +26985,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €325.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -28691,12 +28195,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 80 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €395.000, 80 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -28737,12 +28235,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €499.000, 115 m2"
    },
    {
     "bron": "aanbod",
@@ -28791,12 +28283,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €535.000, 121 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €535.000, 121 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -28828,12 +28314,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 93 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -28958,12 +28438,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €535.000, 119 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €535.000, 119 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -29016,12 +28490,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €260.000, 33 m2"
    },
    {
     "bron": "aanbod",
@@ -29209,12 +28677,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €519.000, 117 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €519.000, 117 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -29254,12 +28716,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €495.000, 122 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €495.000, 122 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -29288,12 +28744,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 107 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -29388,12 +28838,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 78 m2"
    },
    {
     "bron": "aanbod",
@@ -29529,12 +28973,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €362.500, 54 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -29819,12 +29257,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €519.000, 106 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €519.000, 106 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -29867,12 +29299,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €659.000, 141 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -29946,12 +29372,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €289.000, 36 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €289.000, 36 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -30013,12 +29433,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 39 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 39 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -30068,12 +29482,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 71 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -30165,12 +29573,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 72 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -30284,12 +29686,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 72 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -30463,12 +29859,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €650.000, 130 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -30659,12 +30049,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €277.500, 41 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €277.500, 41 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -30832,12 +30216,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €217.500, 35 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -31013,12 +30391,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 40 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -31150,12 +30522,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 99 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 99 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -31183,12 +30549,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 101 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -31288,12 +30648,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €479.000, 97 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -31532,12 +30886,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €485.000, 84 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -32303,12 +31651,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 104 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 104 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -32688,12 +32030,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €399.000, 90 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €399.000, 90 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -32922,12 +32258,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €829.000, 137 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €829.000, 137 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -33024,12 +32354,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.375.000, 256 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -33135,12 +32459,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €525.000, 118 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €525.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -33176,12 +32494,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €565.000, 117 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -33229,6 +32541,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €852 per maand, 21 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €835 per maand, 20 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -33291,12 +32609,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €285.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -34527,12 +33839,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €119.000, 19 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €119.000, 19 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -34976,12 +34282,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €170.800, 24 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -35433,12 +34733,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €150.000, 24 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €150.000, 24 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -35882,12 +35176,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 35 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -36643,12 +35931,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €409.000, 93 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €409.000, 93 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -36894,12 +36176,6 @@
     "datum": "2025-06-16",
     "soort": "bekendmaking",
     "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 67 m2"
    },
    {
     "bron": "aanbod",
@@ -37155,12 +36431,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 98 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €425.000, 98 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -37406,12 +36676,6 @@
     "datum": "2025-06-16",
     "soort": "bekendmaking",
     "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan Graafseweg 47P, 6512BR Nijmegen"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €345.000, 59 m2"
    },
    {
     "bron": "aanbod",
@@ -37745,12 +37009,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €595.000, 130 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €595.000, 130 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -37841,12 +37099,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €610.000, 124 m2"
    },
    {
     "bron": "aanbod",
@@ -38679,12 +37931,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €615.000, 143 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €615.000, 143 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -38720,12 +37966,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €725.000, 139 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -38821,12 +38061,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €765.000, 173 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -39047,12 +38281,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 30 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €225.000, 30 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -39186,12 +38414,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €950.000, 227 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €950.000, 227 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -39224,12 +38446,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €480.000, 96 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -39286,12 +38502,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €900.000, 173 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -39365,12 +38575,6 @@
     "datum": "2026-08-04",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van een bestaande woning naar vier zelfstandige wooneenheden aan Groesbeekseweg 162, 6521CP Nijmegen"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €795.000, 208 m2"
    },
    {
     "bron": "aanbod",
@@ -39456,12 +38660,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €215.000, 44 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -39557,12 +38755,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €249.000, 53 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €249.000, 53 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -39650,12 +38842,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 37 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -39751,12 +38937,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 55 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -39820,12 +39000,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.095.000, 303 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €1.095.000, 303 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -39878,12 +39052,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €249.000, 49 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -40122,12 +39290,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €975.000, 255 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €975.000, 255 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -40218,12 +39380,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.080.000, 350 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €1.080.000, 350 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -40248,6 +39404,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €995.000, 228 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -40336,12 +39498,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -40392,12 +39548,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 62 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -41982,12 +41132,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 122 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 122 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -42279,12 +41423,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 79 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -42435,6 +41573,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €365.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -42555,12 +41699,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 139 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 139 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -42648,12 +41786,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 56 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 56 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -42726,12 +41858,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 45 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 45 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -42781,12 +41907,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 106 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €500.000, 106 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -42811,12 +41931,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €600.000, 114 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -42861,12 +41975,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €285.000, 58 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -43123,6 +42231,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €295.000, 51 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -43264,12 +42378,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 70 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -43464,12 +42572,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €319.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -43593,12 +42695,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 55 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -44119,12 +43215,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44203,12 +43293,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €565.000, 114 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €565.000, 114 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44281,12 +43365,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €345.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €345.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44348,12 +43426,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 65 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -44433,12 +43505,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €269.000, 27 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -44567,12 +43633,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 54 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 54 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44672,12 +43732,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €385.000, 67 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €385.000, 67 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44760,12 +43814,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €539.000, 115 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €539.000, 115 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -44811,12 +43859,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €595.000, 117 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -45091,12 +44133,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €925.000, 127 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €925.000, 127 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -45125,12 +44161,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €925.000, 166 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €925.000, 166 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -45155,12 +44185,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €850.000, 173 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -45412,12 +44436,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 87 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -45725,12 +44743,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €575.000, 110 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €575.000, 110 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -45886,12 +44898,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €399.000, 69 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €399.000, 69 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -45940,12 +44946,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 70 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -46024,12 +45024,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 143 m2"
    },
    {
     "bron": "aanbod",
@@ -46369,12 +45363,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €719.000, 120 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -48070,12 +47058,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 47 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 47 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -48215,12 +47197,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €239.000, 35 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €239.000, 35 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -48282,12 +47258,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €270.000, 42 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -48425,12 +47395,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €235.000, 32 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -48642,12 +47606,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €195.000, 29 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €195.000, 29 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -48779,12 +47737,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -48911,12 +47863,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 47 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -49304,12 +48250,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 103 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -49821,12 +48761,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €449.000, 102 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €449.000, 102 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -49891,12 +48825,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €415.000, 87 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €415.000, 87 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -49936,12 +48864,6 @@
     "datum": "2026-04-07",
     "soort": "bekendmaking",
     "tekst": "Buiten behandelingstelling van de aanvraag: het juridisch kadastraal splitsen van de boven en beneden woning, aan Koninginnelaan 225 en 227, 6542ZR Nijmegen"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €640.000, 143 m2"
    },
    {
     "bron": "aanbod",
@@ -50040,12 +48962,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 44 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -50249,12 +49165,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €440.000, 76 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €440.000, 76 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -50295,12 +49205,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €320.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -50447,12 +49351,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €685.000, 138 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €685.000, 138 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -50555,6 +49453,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €365.000, 72 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -50594,12 +49498,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 113 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -50650,12 +49548,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €359.000, 75 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €359.000, 75 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -50680,12 +49572,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €555.000, 100 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -50950,12 +49836,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -51468,12 +50348,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €340.000, 66 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -52006,12 +50880,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €309.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -52644,12 +51512,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 63 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -53059,12 +51921,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -53482,12 +52338,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €299.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -53855,12 +52705,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €340.000, 58 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €340.000, 58 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -54137,12 +52981,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 58 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €335.000, 58 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -54415,12 +53253,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €340.000, 57 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -54785,12 +53617,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 86 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -55208,12 +54034,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €282.500, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €282.500, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -55627,12 +54447,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €282.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €282.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -56042,12 +54856,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 86 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -56493,12 +55301,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €615.000, 120 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €615.000, 120 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -56864,12 +55666,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €429.500, 74 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -57286,12 +56082,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 74 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 74 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -57507,12 +56297,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €390.000, 83 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €390.000, 83 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -57580,12 +56364,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €265.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -59289,12 +58067,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 100 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 100 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -59587,12 +58359,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 58 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 58 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -59783,12 +58549,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 56 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -60097,6 +58857,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €629.000, 122 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -60516,12 +59282,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 73 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €375.000, 73 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -60721,12 +59481,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 80 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -61191,12 +59945,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 79 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €349.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -61512,12 +60260,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 78 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -61841,12 +60583,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 79 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €319.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -62162,12 +60898,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 41 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -62832,12 +61562,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €576.500, 156 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €576.500, 156 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -63088,12 +61812,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 41 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -63490,12 +62208,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €189.000, 27 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €189.000, 27 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -63884,12 +62596,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 34 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -64286,12 +62992,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €289.000, 46 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €289.000, 46 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -64664,12 +63364,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €285.000, 51 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -65113,12 +63807,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 37 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 37 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -65433,12 +64121,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 46 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 46 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -65484,12 +64166,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 54 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -66883,12 +65559,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 82 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 82 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -66984,12 +65654,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 83 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -67118,12 +65782,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €385.000, 69 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -67909,12 +66567,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €825.000, 153 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €825.000, 153 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -68365,12 +67017,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €409.000, 82 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €409.000, 82 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -68473,12 +67119,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €389.000, 72 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -68745,12 +67385,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €339.500, 52 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -69287,12 +67921,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €232.500, 29 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €232.500, 29 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -69821,12 +68449,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €262.500, 34 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -70363,12 +68985,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 50 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 50 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -70811,12 +69427,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €27.500, 40 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €27.500, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -70923,12 +69533,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €900.000, 225 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -71276,12 +69880,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 92 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -72030,12 +70628,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €800.000, 209 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €800.000, 209 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -72088,12 +70680,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €329.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €329.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -72140,12 +70726,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 78 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €475.000, 78 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -72181,12 +70761,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 73 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -72311,6 +70885,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 80 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -72538,12 +71118,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 108 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €475.000, 108 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -72591,12 +71165,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.500, 54 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -72924,6 +71492,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €525.000, 100 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -73418,6 +71992,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 76 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -74541,12 +73121,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 68 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €375.000, 68 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -75298,12 +73872,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 85 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €475.000, 85 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -75403,12 +73971,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €495.000, 98 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €495.000, 98 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -75445,12 +74007,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €580.000, 102 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -75528,12 +74084,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €448.500, 97 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -75705,12 +74255,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 107 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 107 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -75735,6 +74279,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €675.000, 134 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -75845,12 +74395,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 95 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €500.000, 95 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -75923,12 +74467,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 98 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -76085,18 +74623,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €535.000, 118 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €485.000, 118 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -76328,12 +74854,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €775.000, 160 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -76642,12 +75162,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €500.000, 85 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €500.000, 85 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -76672,12 +75186,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €540.000, 95 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -76714,12 +75222,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €330.000, 84 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €330.000, 84 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -76748,12 +75250,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 72 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -77297,12 +75793,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €575.000, 116 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €575.000, 116 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -77510,12 +76000,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €629.000, 120 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -77731,12 +76215,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €435.000, 66 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €435.000, 66 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -77948,12 +76426,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -78161,12 +76633,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €399.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -78678,12 +77144,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -79166,12 +77626,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €389.500, 92 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €389.500, 92 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -79424,12 +77878,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €495.000, 87 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €495.000, 87 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -79650,12 +78098,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €585.000, 96 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -79967,12 +78409,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €595.000, 162 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €595.000, 162 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -80142,12 +78578,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 39 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -80333,6 +78763,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €350.000, 56 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -80474,12 +78910,6 @@
     "datum": "2018-01-01",
     "soort": "kamerverhuur",
     "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 56 m2"
    },
    {
     "bron": "aanbod",
@@ -80641,12 +79071,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 68 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 68 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -80751,12 +79175,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €389.000, 73 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81027,12 +79445,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 74 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €319.000, 74 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -81102,12 +79514,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 73 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €365.000, 73 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -81153,12 +79559,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €875.000, 172 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81215,12 +79615,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €370.000, 74 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81292,12 +79686,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €419.000, 105 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €419.000, 105 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -81349,12 +79737,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 84 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81439,12 +79821,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €367.000, 85 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81546,12 +79922,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €370.000, 73 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €370.000, 73 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -81603,12 +79973,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 85 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81672,12 +80036,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €370.000, 71 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -81951,12 +80309,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €750.000, 150 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -82607,12 +80959,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €600.000, 110 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €600.000, 110 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -82941,12 +81287,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €595.000, 110 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -83286,12 +81626,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 73 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €349.000, 73 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -83427,12 +81761,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 55 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -83527,6 +81855,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €345.000, 58 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -83674,6 +82008,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €335.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -83740,12 +82080,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -83830,12 +82164,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -83912,12 +82240,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €310.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €310.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -83976,12 +82298,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €360.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -84047,12 +82363,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -84227,12 +82537,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.000, 58 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -84579,12 +82883,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 61 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -84923,12 +83221,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -85275,12 +83567,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 62 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 62 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -85528,12 +83814,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €445.000, 98 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €445.000, 98 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -85631,12 +83911,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €575.000, 114 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €575.000, 114 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -85661,12 +83935,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €550.000, 100 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -85768,12 +84036,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €280.000, 41 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -87258,12 +85520,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -87330,12 +85586,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €240.000, 40 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -87420,12 +85670,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €519.000, 96 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -87603,12 +85847,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €525.000, 92 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -88265,12 +86503,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €421.000, 78 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €421.000, 78 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -88739,12 +86971,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 53 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €315.000, 53 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -88791,12 +87017,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €329.000, 58 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -88851,12 +87071,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €449.000, 79 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €449.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -88899,12 +87113,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €525.000, 121 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -88967,12 +87175,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 74 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -89061,12 +87263,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 63 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €395.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89143,12 +87339,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €435.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €435.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89221,12 +87411,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €435.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -89508,12 +87692,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €215.000, 53 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €215.000, 53 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89621,12 +87799,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €198.000, 35 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €198.000, 35 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89696,6 +87868,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €225.000, 33 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -89813,12 +87991,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 78 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 78 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89888,12 +88060,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 61 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -89918,12 +88084,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €495.000, 101 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -89972,12 +88132,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -90031,12 +88185,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 86 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €425.000, 86 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -90061,12 +88209,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €615.000, 124 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -90462,12 +88604,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €765.000, 186 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €765.000, 186 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -90625,12 +88761,6 @@
     "datum": "2025-09-24",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €415.000, 55 m2"
    },
    {
     "bron": "aanbod",
@@ -90978,12 +89108,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -91376,12 +89500,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €85.000, 12 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €85.000, 12 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -91593,18 +89711,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €189.000, 31 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €175.000, 23 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €189.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -91689,12 +89795,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €575.000, 133 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -92034,12 +90134,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -92076,12 +90170,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €575.000, 96 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -92250,12 +90338,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 50 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 50 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -92394,12 +90476,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €515.000, 97 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -93000,12 +91076,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €588.000, 116 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €588.000, 116 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -93138,12 +91208,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 54 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 54 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -93206,12 +91270,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 57 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 57 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -93263,12 +91321,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 55 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -94229,12 +92281,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 90 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 90 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -94505,12 +92551,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 90 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -94788,12 +92828,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €459.000, 90 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -95215,12 +93249,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 68 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €349.000, 68 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -95375,12 +93403,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 48 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -95634,12 +93656,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -95889,12 +93905,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.000, 48 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €299.000, 48 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -96028,12 +94038,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.050.000, 265 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €1.050.000, 265 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -96093,6 +94097,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 86 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -96191,12 +94201,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 86 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -96428,6 +94432,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -96807,12 +94817,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -97198,12 +95202,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -97626,12 +95624,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 63 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -97671,12 +95663,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €285.000, 40 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €285.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -97712,12 +95698,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 63 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -98602,12 +96582,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €480.000, 83 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €480.000, 83 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -98780,6 +96754,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €500.000, 90 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -98832,12 +96812,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 58 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99006,12 +96980,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 55 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €319.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -99083,12 +97051,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €310.000, 52 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99210,12 +97172,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 48 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €295.000, 48 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -99301,12 +97257,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €298.000, 47 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99402,12 +97352,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €295.000, 33 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99517,12 +97461,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.500, 34 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €299.500, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -99620,12 +97558,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.500, 35 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €299.500, 35 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -99705,12 +97637,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €299.000, 47 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99802,12 +97728,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €200.000, 23 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -99917,12 +97837,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €265.000, 33 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €265.000, 33 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100020,12 +97934,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €345.000, 45 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €345.000, 45 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100105,12 +98013,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €345.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -100287,12 +98189,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €525.000, 107 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €525.000, 107 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100340,12 +98236,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €255.000, 31 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €255.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100385,12 +98275,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €335.000, 71 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €335.000, 71 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100423,12 +98307,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 67 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -100601,12 +98479,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 84 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €375.000, 84 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100718,12 +98590,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €429.000, 100 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €429.000, 100 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100783,12 +98649,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €469.000, 97 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €469.000, 97 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100840,12 +98700,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €359.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -100919,12 +98773,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -100990,6 +98838,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -101060,12 +98914,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €445.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -101247,12 +99095,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 57 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -101456,12 +99298,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 55 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €275.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -101549,12 +99385,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 70 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 70 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -101604,12 +99434,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €525.000, 102 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -101896,12 +99720,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €490.000, 85 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €490.000, 85 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -101940,12 +99758,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €859.000, 152 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -102071,12 +99883,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €485.000, 96 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €485.000, 96 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -102109,12 +99915,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 102 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -102212,12 +100012,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 83 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -102379,12 +100173,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €695.000, 180 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €695.000, 180 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -102455,12 +100243,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €498.000, 102 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €498.000, 102 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -102522,12 +100304,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €585.000, 98 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €585.000, 98 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -102563,12 +100339,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 85 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 85 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -102597,12 +100367,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €565.000, 145 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -102695,12 +100459,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €995.000, 221 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -102866,7 +100624,7 @@
     101
    ]
   ],
-  "bag_gezien": "2026-09-28",
+  "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -102879,8 +100637,44 @@
     "datum": "2025-09-26",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €235.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Oldenbarneveltstraat 61A is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Oldenbarneveltstraat 61B is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Oldenbarneveltstraat 61C is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Oldenbarneveltstraat 63 is nu B"
    }
   ],
+  "labels": {
+   "van Oldenbarneveltstraat 61A": "D",
+   "van Oldenbarneveltstraat 61B": "A",
+   "van Oldenbarneveltstraat 61C": "A",
+   "van Oldenbarneveltstraat 63": "B"
+  },
   "pand_id": "0268100000020707"
  },
  "vanoldenbarneveltstraat75": {
@@ -103116,12 +100910,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 99 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -103676,12 +101464,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 79 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €395.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -103927,12 +101709,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 81 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -104293,12 +102069,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 50 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 50 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -104366,12 +102136,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €185.000, 26 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €185.000, 26 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -104419,12 +102183,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.085.000, 256 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -104480,12 +102238,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 47 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -104547,12 +102299,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 55 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €365.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -104581,12 +102327,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €315.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -104649,12 +102389,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €489.000, 93 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -105033,12 +102767,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €250.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -105133,12 +102861,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €225.000, 28 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €225.000, 28 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -105214,6 +102936,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €315.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -105273,12 +103001,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 123 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 123 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -105311,12 +103033,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €249.000, 53 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -105680,12 +103396,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 104 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €400.000, 104 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -105774,12 +103484,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €385.000, 70 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -106046,12 +103750,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €340.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -106623,12 +104321,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -107192,12 +104884,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €347.500, 65 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -107769,12 +105455,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -108338,12 +106018,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -108915,12 +106589,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 60 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -109488,12 +107156,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 61 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €365.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -110057,12 +107719,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €330.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -111201,12 +108857,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -111770,12 +109420,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -112347,12 +109991,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 64 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -112917,6 +110555,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -113477,12 +111121,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 60 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -114051,6 +111689,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €350.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -114611,12 +112255,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -115188,12 +112826,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 72 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €350.000, 72 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -115674,12 +113306,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.500, 66 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €349.500, 66 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -115729,6 +113355,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €545.000, 147 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -115854,12 +113486,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €398.000, 81 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €398.000, 81 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -115915,6 +113541,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €495.000, 124 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -115951,12 +113583,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €390.000, 74 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -116037,12 +113663,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €550.000, 100 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €550.000, 100 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -116117,12 +113737,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €475.000, 78 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €475.000, 78 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -116162,12 +113776,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 79 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -116417,12 +114025,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €599.000, 110 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €599.000, 110 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -116532,12 +114134,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 101 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €450.000, 101 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -116603,12 +114199,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 52 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 52 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -116659,12 +114249,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €439.000, 141 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -117321,12 +114905,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €550.000, 118 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €550.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -117805,12 +115383,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €700.000, 171 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €700.000, 171 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -118262,12 +115834,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 50 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -118835,12 +116401,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €350.000, 50 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -119633,12 +117193,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €649.000, 162 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €649.000, 162 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -119912,12 +117466,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €595.000, 162 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -120237,6 +117785,12 @@
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €675.000, 127 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -120541,12 +118095,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €699.000, 161 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €699.000, 161 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -120774,12 +118322,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €799.000, 138 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €799.000, 138 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -120838,12 +118380,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €795.000, 128 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -121128,12 +118664,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 48 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -121350,12 +118880,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €162.500, 26 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €162.500, 26 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    }
   ],
@@ -121371,12 +118895,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €1.150.000, 333 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -121417,12 +118935,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €400.000, 64 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -121605,12 +119117,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €395.000, 84 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €395.000, 84 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -121672,12 +119178,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €495.000, 106 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -121933,12 +119433,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €232.500, 42 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €232.500, 42 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -121985,12 +119479,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €282.500, 53 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -122072,12 +119560,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €345.000, 62 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -122836,12 +120318,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €398.000, 75 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €398.000, 75 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -122985,12 +120461,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €175.000, 28 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -123181,12 +120651,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €325.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -123347,12 +120811,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 50 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €319.000, 50 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -123495,12 +120953,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €275.000, 45 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -123793,12 +121245,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €319.000, 69 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -124137,12 +121583,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €425.000, 86 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €425.000, 86 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -124214,12 +121654,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €300.000, 42 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €300.000, 42 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -124248,12 +121682,6 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €365.000, 82 m2"
-   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -124297,12 +121725,6 @@
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €349.000, 82 m2"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €349.000, 82 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
@@ -124338,6 +121760,12 @@
   ],
   "bag_gezien": "2026-10-01",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht onder voorbehoud, laatste vraagprijs €315.000, 42 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",

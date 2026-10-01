@@ -151,6 +151,14 @@
   "omweg": 1.16,
   "soort": "bus"
  },
+ "51.83478,5.86273": {
+  "geschat": false,
+  "hemelsbreed": 453,
+  "meters": 659,
+  "naam": "Groenestraat",
+  "omweg": 1.45,
+  "soort": "bus"
+ },
  "51.83505,5.86699": {
   "geschat": false,
   "hemelsbreed": 476,

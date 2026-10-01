@@ -872,3 +872,7 @@ van Goorstraat 34 | Nijmegen | 390000 | te koop | 2026-10-01 |  | 102 | 6512ED
 
 # Automatisch toegevoegd uit Funda-attendering op 01-10-2026
 St. Annastraat | Nijmegen | 795 | te huur kamer | 2026-10-01 | kamernet-incl | 25 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 01-10-2026
+Graafseweg | Nijmegen | 835 | te huur kamer | 2026-10-01 | kamernet-incl | 20 | 
+Balistraat | Nijmegen | 782 | te huur kamer | 2026-10-01 | kamernet-incl | 12 | 

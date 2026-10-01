@@ -3,7 +3,6 @@
 _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een splitsing en de nieuwe huisnummers horen bij dezelfde geschiedenis._
 
 ## Veemarkt 115
-- 2026-09-28: verkocht, laatste vraagprijs €340.000, 64 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €340.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -57,7 +56,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 135
-- 2026-09-28: verkocht, laatste vraagprijs €350.000, 64 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -111,7 +109,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 157
-- 2026-09-28: verkocht, laatste vraagprijs €347.500, 65 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €347.500, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -165,7 +162,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 159
-- 2026-09-28: verkocht, laatste vraagprijs €325.000, 65 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €325.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -219,7 +215,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 165
-- 2026-09-28: verkocht, laatste vraagprijs €325.000, 64 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €325.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -273,7 +268,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 175
-- 2026-09-28: verkocht, laatste vraagprijs €350.000, 60 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €350.000, 60 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -327,7 +321,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 177
-- 2026-09-28: verkocht, laatste vraagprijs €365.000, 61 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €365.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
@@ -381,7 +374,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
 
 ## Veemarkt 193
-- 2026-09-28: verkocht, laatste vraagprijs €330.000, 64 m2 (aanbod) **nieuw**
 - 2026-09-28: verkocht, laatste vraagprijs €330.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 189 is nu C (EP-Online) **nieuw**
 - 2026-09-29: energielabel van Veemarkt 191 is nu B (EP-Online) **nieuw**

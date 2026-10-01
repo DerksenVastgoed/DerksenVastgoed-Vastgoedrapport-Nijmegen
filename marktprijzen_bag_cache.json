@@ -71164,5 +71164,11 @@
     "buurtnaam": "Groenewoud",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-34d72d2871bef15ca3b62d5396142335"
+  },
+  "Balistraat|Nijmegen": {
+    "oppervlakte": 12,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
