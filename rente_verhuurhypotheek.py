@@ -305,7 +305,29 @@ def langere_terugblik(hist: dict, ltv_key: str = "ltv70"):
             continue
         toen, datum = gevonden
         uit.append({"label": label, "toen": toen, "nu": nu,
-                    "verschil_bp": _bp(nu, toen), "datum": datum})
+                    "verschil_bp": _bp(nu, toen), "datum": datum,
+                    "stappen": stappen(hist, datum, ltv_key)})
+    return uit
+
+
+def stappen(hist: dict, vanaf: str, ltv_key: str = "ltv70"):
+    """
+    Op welke dagen veranderde de stand sinds `vanaf`, en met hoeveel?
+
+    "70 basispunten hoger dan een maand geleden" leest als een maand lang
+    stijgen. Op 1 oktober was het een enkele sprong op 2 september, voor alle
+    financieringsgraden tegelijk, met daarna een maand stilstand. Dat is een
+    ander verhaal, en de datums maken het zichtbaar.
+    """
+    uit = []
+    vorige = None
+    for datum in sorted(d for d in hist if d >= vanaf):
+        waarde = (hist[datum] or {}).get(ltv_key)
+        if waarde is None:
+            continue
+        if vorige is not None and _bp(waarde, vorige) != 0:
+            uit.append((datum, _bp(waarde, vorige)))
+        vorige = waarde
     return uit
 
 
@@ -320,8 +342,19 @@ def render_terugblik(hist: dict):
         if abs(p["verschil_bp"]) < 5:
             delen.append(f"vrijwel gelijk aan {p['label']} geleden")
         else:
-            delen.append(f"{abs(p['verschil_bp'])} basispunten {richting} dan "
-                         f"{p['label']} geleden")
+            zin = (f"{abs(p['verschil_bp'])} basispunten {richting} dan "
+                   f"{p['label']} geleden")
+            st_ = p.get("stappen") or []
+            if len(st_) == 1:
+                datum, bp = st_[0]
+                rust = (dt.date.today() - dt.date.fromisoformat(datum)).days
+                zin += (f", in een stap op {datum} en sindsdien {rust} dagen "
+                        f"onveranderd. Dat is een enkele sprong op die dag, "
+                        f"geen geleidelijke stijging; noem het met die datum")
+            elif st_:
+                zin += (" in " + str(len(st_)) + " stappen ("
+                        + ", ".join(f"{d}: {b:+d}" for d, b in st_) + ")")
+            delen.append(zin)
     return ("_Over langere termijn: " + ", ".join(delen)
             + ". Een uitspraak over de renteontwikkeling vraagt deze vergelijking; "
               "de stand van gisteren zegt daar niets over._")
@@ -415,7 +448,11 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
                            + f"{r70 - markt:.2f}".replace(".", ",")
                            + " procentpunt bovenop._\n")
 
-        return ("\n## Marktrente verhuurhypotheek\n\n_Wat een bank nu rekent voor "
+        # Dezelfde markering als in de weekmodus. Zonder die markering nam de
+        # brief van 1 oktober de terugblik over als nieuws, terwijl de stand al
+        # een maand stilstond.
+        return ("\n## Marktrente verhuurhypotheek\n\nGEEN NIEUWS, ALLEEN NASLAG.\n\n"
+                "_Wat een bank nu rekent voor "
                 "een nieuwe verhuurhypotheek, niet de rente op het eigen bezit. "
                 "Onveranderd sinds gisteren: "
                 + ", ".join(delen_k)
