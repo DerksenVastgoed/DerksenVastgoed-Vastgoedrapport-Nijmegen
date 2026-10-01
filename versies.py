@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "e1d466abe3a2",
+  ".github/workflows/bekendmakingen.yml": "cfe75aeeec00",
   "bag3d.py": "400dd14cd446",
   "begroting_monitor.py": "9d05d317cb8f",
   "bekendmakingen_archief.py": "57c76345d16a",
@@ -14,7 +14,7 @@
   "diagnose.py": "023b5bcb8726",
   "funda_mail.py": "78e7aa8305ae",
   "funda_verkocht_plak.py": "cca849e87877",
-  "gezondheid.py": "f2a842cb1ee1",
+  "gezondheid.py": "271b839c9b9b",
   "huur_dekking.py": "b0ff266fbcd3",
   "kamernet_plak.py": "6dd661a4d254",
   "kamerverhuur_register.py": "bcf50e4cc1cd",
