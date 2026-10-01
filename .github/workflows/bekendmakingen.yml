@@ -172,7 +172,11 @@ jobs:
           fi
 
       - name: Onderwerpen zonder achtergrondstuk signaleren
-        if: env.MODUS != 'dagelijks'
+        # Ook bij een handmatige start, niet alleen in de weekeditie. Anders
+        # draait deze stap alleen op zondag en is er doordeweeks geen manier om
+        # te zien of hij werkt; de vier bestanden die hij wegschrijft stonden
+        # daardoor weken als ONTBREEKT in het terugcommitten.
+        if: env.MODUS != 'dagelijks' || github.event_name == 'workflow_dispatch'
         continue-on-error: true
         run: |
           # Wekelijks kijken of er termen terugkeren waar we niets over zeggen.
