@@ -48,19 +48,26 @@ Let op: van veel adressen staan ook oude advertenties online, soms van tien \
 jaar geleden. Wij willen de meest recente plaatsing. Vind je alleen een oude \
 advertentie, zet dan zeker op laag en vermeld het jaartal in de bron.
 
+Geef ALLE plaatsingen en verkopen die je vindt, niet alleen de laatste. Een
+woning kan in tien jaar meerdere keren zijn verkocht, en elke keer telt.
+
 Antwoord met ALLEEN een JSON-object, zonder tekst eromheen:
-{{"te_koop_vanaf": "JJJJ-MM-DD of null",
-  "verkocht_op": "JJJJ-MM-DD of null",
-  "laatste_vraagprijs": getal of null,
-  "bron": "de url of de naam van de pagina waar je dit vond",
-  "zeker": "hoog, midden of laag"}}
+{{"gebeurtenissen": [
+   {{"soort": "te koop of verkocht",
+     "datum": "JJJJ-MM-DD",
+     "vraagprijs": getal of null,
+     "bron": "de url of de naam van de pagina waar je dit vond",
+     "zeker": "hoog, midden of laag"}}
+ ]}}
 
 Regels die je strikt volgt:
-- Vind je het niet, zet dan overal null en bron op null. Verzin niets.
+- Vind je niets, geef dan een lege lijst. Verzin niets.
+- Elke gebeurtenis krijgt zijn eigen bron. Zonder bron laat je hem weg.
 - Een datum die je afleidt uit "3 maanden te koop" zonder dat de datum er \
 letterlijk staat, is een afleiding: zet zeker op laag.
 - Een bedrag op funda bij een verkochte woning is de laatste vraagprijs, niet \
-de verkoopprijs. Vul die in als laatste_vraagprijs."""
+de verkoopprijs. Vul dat in als vraagprijs.
+- Zet de gebeurtenissen op datum, oudste eerst."""
 
 
 def _sleutel(adres):
@@ -101,36 +108,34 @@ def wat_wij_weten(pad=AANBOD_PAD):
     return uit
 
 
-def toets(d, bekend_pand):
+def toets(rijen, bekend_pand):
     """
-    Het antwoord naast wat wij weten leggen.
+    De gebeurtenissen naast wat wij weten leggen.
 
-    Twee signalen dat het om een andere advertentie gaat: een prijs die meer
-    dan tien procent afwijkt, en een plaatsingsdatum van jaren terug bij een
-    pand dat nu te koop staat.
+    De bedoeling is niet om oude plaatsingen weg te gooien, want die zijn juist
+    waardevol: een pand dat in 2016 voor €360.000 wegging en nu €625.000 vraagt,
+    is een gemeten prijsontwikkeling van datzelfde pand. Het gaat erom ze te
+    HERKENNEN als een eerdere advertentie, zodat ze niet worden aangezien voor
+    de plaatsing die wij nu volgen.
     """
-    if not d or not bekend_pand:
-        return d
-    prijs = d.get("laatste_vraagprijs")
+    if not rijen or not bekend_pand:
+        return rijen
     onze = bekend_pand.get("prijs")
-    # Vijf procent en niet tien: allebei de bedragen horen de laatste
-    # vraagprijs te zijn en zouden dus gelijk moeten zijn. Bij Marienburg 20
-    # scheelde het 8,6%, en dat bleek een andere advertentie.
-    if prijs and onze and abs(prijs - onze) / onze > 0.05:
-        d["zeker"] = "laag"
-        d["waarschuwing"] = (f"prijs {prijs} wijkt af van onze {onze}; "
-                             f"waarschijnlijk een andere advertentie")
-    datum = d.get("te_koop_vanaf")
-    if datum and bekend_pand.get("status", "").startswith("te koop"):
+    nu_te_koop = bekend_pand.get("status", "").startswith("te koop")
+    for r in rijen:
+        prijs = r.get("vraagprijs")
+        # Vijf procent en niet tien: allebei de bedragen horen de laatste
+        # vraagprijs te zijn. Bij Marienburg 20 scheelde het 8,6% en dat bleek
+        # een andere advertentie.
+        if prijs and onze and abs(prijs - onze) / onze > 0.05:
+            r["eerdere_advertentie"] = True
         try:
-            oud = (dt.date.today() - dt.date.fromisoformat(datum)).days > 730
+            oud = (dt.date.today() - dt.date.fromisoformat(r["datum"])).days > 730
         except ValueError:
             oud = False
-        if oud:
-            d["zeker"] = "laag"
-            d["waarschuwing"] = (f"plaatsing {datum} terwijl het pand nu te "
-                                 f"koop staat; oude advertentie")
-    return d
+        if nu_te_koop and oud and r["soort"] == "te koop":
+            r["eerdere_advertentie"] = True
+    return rijen
 
 
 def te_doen(pad=AANBOD_PAD, bekend=None, alles=False):
@@ -192,29 +197,40 @@ def _vraag_model(adres, sleutel, hint=""):
 
 
 def _geldig(d):
-    """Alleen bewaren wat een bron heeft en een bruikbare datum."""
-    if not isinstance(d, dict) or not d.get("bron"):
-        return None
-    datums = {}
-    for veld in ("te_koop_vanaf", "verkocht_op"):
-        waarde = d.get(veld)
-        if isinstance(waarde, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", waarde):
-            try:
-                dt.date.fromisoformat(waarde)
-                datums[veld] = waarde
-            except ValueError:
-                continue
-    if not datums:
-        return None
-    datums["bron"] = str(d.get("bron"))[:200]
-    datums["zeker"] = d.get("zeker") or "laag"
-    # Het bedrag gaat mee als context en wordt nergens in meegerekend.
-    prijs = d.get("laatste_vraagprijs")
-    if isinstance(prijs, (int, float)) and 20000 < prijs < 5000000:
-        datums["laatste_vraagprijs"] = int(prijs)
-    datums["herkomst"] = "model met webzoeken"
-    datums["opgehaald"] = dt.date.today().isoformat()
-    return datums
+    """
+    De gebeurtenissen die een bron en een bruikbare datum hebben.
+
+    Een pand kan in tien jaar meerdere keren zijn verkocht, dus dit geeft een
+    lijst terug en niet een enkele datum. Elke gebeurtenis wordt afzonderlijk
+    beoordeeld: een regel zonder bron valt af, de rest blijft staan.
+    """
+    if not isinstance(d, dict):
+        return []
+    uit = []
+    for g in (d.get("gebeurtenissen") or []):
+        if not isinstance(g, dict) or not g.get("bron"):
+            continue
+        datum = g.get("datum")
+        if not (isinstance(datum, str)
+                and re.fullmatch(r"\d{4}-\d{2}-\d{2}", datum)):
+            continue
+        try:
+            dt.date.fromisoformat(datum)
+        except ValueError:
+            continue
+        soort = str(g.get("soort", "")).lower()
+        soort = "verkocht" if "verkocht" in soort else "te koop"
+        rij = {"soort": soort, "datum": datum,
+               "bron": str(g.get("bron"))[:200],
+               "zeker": g.get("zeker") or "laag",
+               "herkomst": "model met webzoeken",
+               "opgehaald": dt.date.today().isoformat()}
+        # Het bedrag gaat mee als context en wordt nergens in meegerekend.
+        prijs = g.get("vraagprijs")
+        if isinstance(prijs, (int, float)) and 20000 < prijs < 5000000:
+            rij["vraagprijs"] = int(prijs)
+        uit.append(rij)
+    return sorted(uit, key=lambda r: r["datum"])
 
 
 def main():
@@ -252,19 +268,23 @@ def main():
             print(f"  {adres}: {str(e)[:80]}", file=sys.stderr)
             mis += 1
             continue
-        d = toets(_geldig(rauw), pand)
-        if not d:
+        rijen = toets(_geldig(rauw), pand)
+        if not rijen:
             mis += 1
             print(f"  {adres}: niets bruikbaars", file=sys.stderr)
             continue
         raak += 1
-        print(f"  {adres}: te koop {d.get('te_koop_vanaf', '?')}, "
-              f"verkocht {d.get('verkocht_op', '?')}, zeker {d['zeker']}, "
-              f"bron {d['bron'][:60]}"
-              + (f" | {d['waarschuwing']}" if d.get("waarschuwing") else ""),
-              file=sys.stderr)
+        print(f"  {adres}: {len(rijen)} gebeurtenissen", file=sys.stderr)
+        for r in rijen:
+            print(f"    {r['datum']} {r['soort']:9} "
+                  f"{('€%d' % r['vraagprijs']) if r.get('vraagprijs') else '':>10} "
+                  f"zeker {r['zeker']}"
+                  + ("  [eerdere advertentie]"
+                     if r.get("eerdere_advertentie") else ""),
+                  file=sys.stderr)
         if not args.proef:
-            bekend[_sleutel(adres)] = dict(d, adres=adres)
+            bekend[_sleutel(adres)] = {"adres": adres, "gebeurtenissen": rijen,
+                                       "opgehaald": dt.date.today().isoformat()}
 
     if not args.proef:
         with open(UIT_PAD, "w", encoding="utf-8") as f:

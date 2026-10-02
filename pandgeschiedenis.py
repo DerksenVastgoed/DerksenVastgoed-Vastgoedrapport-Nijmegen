@@ -683,17 +683,34 @@ def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
             "adres": adres, "gebeurtenissen": []})
         pand.setdefault("adres", adres)
         pand.setdefault("gebeurtenissen", [])
-        bron = "model: " + str(rij.get("bron", ""))[:90]
-        prijs = rij.get("laatste_vraagprijs")
-        bedrag = f", vraagprijs €{prijs:,}".replace(",", ".") if prijs else ""
-        twijfel = (f" ({rij['waarschuwing']})" if rij.get("waarschuwing")
-                   else f" (zekerheid {rij.get('zeker', 'onbekend')})")
-        if rij.get("te_koop_vanaf"):
-            nieuw += voeg_toe(pand, rij["te_koop_vanaf"], "te koop",
-                              f"te koop aangeboden{bedrag}{twijfel}", bron)
-        if rij.get("verkocht_op"):
-            nieuw += voeg_toe(pand, rij["verkocht_op"], "verkocht",
-                              f"verkocht{bedrag}{twijfel}", bron)
+
+        # Nieuwe vorm: een lijst gebeurtenissen per pand, want een woning kan in
+        # tien jaar meerdere keren zijn verkocht. De oude vorm met een enkele
+        # datum wordt nog gelezen, zodat eerder opgehaalde regels niet verdwijnen.
+        rijen = rij.get("gebeurtenissen")
+        if not rijen:
+            rijen = []
+            for veld, soort in (("te_koop_vanaf", "te koop"),
+                                ("verkocht_op", "verkocht")):
+                if rij.get(veld):
+                    rijen.append({"soort": soort, "datum": rij[veld],
+                                  "vraagprijs": rij.get("laatste_vraagprijs"),
+                                  "bron": rij.get("bron"),
+                                  "zeker": rij.get("zeker"),
+                                  "eerdere_advertentie": bool(
+                                      rij.get("waarschuwing"))})
+        for g in rijen:
+            if not g.get("datum"):
+                continue
+            prijs = g.get("vraagprijs")
+            bedrag = f", vraagprijs €{prijs:,}".replace(",", ".") if prijs else ""
+            merk = (" (eerdere advertentie)" if g.get("eerdere_advertentie")
+                    else f" (zekerheid {g.get('zeker', 'onbekend')})")
+            woord = ("verkocht" if g.get("soort") == "verkocht"
+                     else "te koop aangeboden")
+            nieuw += voeg_toe(pand, g["datum"], g.get("soort") or "te koop",
+                              f"{woord}{bedrag}{merk}",
+                              "model: " + str(g.get("bron", ""))[:90])
     return nieuw
 
 

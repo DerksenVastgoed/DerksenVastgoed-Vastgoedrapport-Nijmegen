@@ -4208,6 +4208,37 @@ Getest met twee panden: verkooptijd 233 dagen, bezitsduur 16 jaar, prijsgroei
 
 ---
 
+## 12d. Meerdere verkopen per pand — 2 oktober 2026
+
+**Mark:** een pand kan in tien jaar meerdere keren verkocht zijn; is daar
+ruimte voor?
+
+**In de opslag wel, in de ophaler niet.** De pandgeschiedenis is een lijst
+gebeurtenissen, dus drie verkopen staan er als drie regels in. Maar de ophaler
+stelde per adres een vraag en kreeg een enkele datum terug; vond het model drie
+verkopen, dan leverde het er een. De reeks zou dan heel langzaam ontstaan
+doordat een volgende ronde toevallig iets anders vindt.
+
+**Nu vraagt hij om alle plaatsingen en verkopen die het model vindt**, als
+lijst, met per gebeurtenis een eigen bron en zekerheid. Een regel zonder bron of
+met een onbruikbare datum valt af, de rest blijft staan. Eén ronde over de
+vijfhonderd panden levert daarmee de hele reeks in plaats van alleen de laatste.
+
+**De toets is van karakter veranderd.** Die gooide eerdere advertenties weg of
+waardeerde ze af. Dat was verkeerd: een pand dat in 2016 voor €360.000 wegging
+en nu €625.000 vraagt, is een gemeten prijsontwikkeling van datzelfde pand. De
+toets merkt zo'n regel nu alleen aan als eerdere advertentie, zodat hij niet
+wordt aangezien voor de plaatsing die wij volgen.
+
+Getest met zeven gebeurtenissen waarvan twee onbruikbaar: vijf blijven over, de
+oude vier zijn gemerkt, de huidige niet. En de inlezer leest nog steeds de oude
+vorm, zodat de negentien panden uit de eerste proef niet verdwijnen.
+
+**Wat de reeks oplevert bij drie verkopen:** twee waarnemingen van bezitsduur en
+twee van prijsgroei in plaats van een. In de test 4,7 jaar en 5,6% per jaar.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
