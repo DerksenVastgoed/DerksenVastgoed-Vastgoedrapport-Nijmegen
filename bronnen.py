@@ -286,6 +286,11 @@ ACHTERGROND_TREFWOORDEN = {
                                  "handhaving", "servicekosten"],
     "Verkameren en het risico daarvan": ["kamerverhuur", "verkameren",
                                          "omzetting", "studenten", "onzelfstandig"],
+    "De buitenplanse omgevingsplanactiviteit (BOPA)": [
+        "bopa-besluit", "bopa", "buitenplanse omgevingsplanactiviteit",
+        "afwijken van het omgevingsplan", "omgevingsplan",
+        "evenwichtige toedeling", "bindend adviesrecht", "omgevingsdialoog",
+        "participatie"],
     "NTA 8800, de rekenmethode achter het energielabel": [
         "nta 8800", "rekenmethode", "isso-protocol", "primair fossiel",
         "energiebehoefte"],
@@ -345,6 +350,10 @@ ACHTERGROND_BRONNEN = {
                                          "artikel 12, 13, 15 en bijlage 5"),
     "Veiligheid en verhuurbaarheid": ("Politie en CBS, geregistreerde misdrijven "
                                       "per wijk en buurt"),
+    "De buitenplanse omgevingsplanactiviteit (BOPA)": (
+        "Omgevingswet, artikelen 16.15a, 16.15b, 16.64 en 4.17; Besluit "
+        "kwaliteit leefomgeving, artikel 8.0a; Omgevingsbesluit, artikel 4.21; "
+        "Informatiepunt Leefomgeving"),
     "NTA 8800, de rekenmethode achter het energielabel": (
         "NTA 8800:2026; RVO over EPBD IV; Informatiepunt Leefomgeving"),
     "EPBD IV, de Europese richtlijn voor energieprestatie": (
@@ -377,6 +386,36 @@ ACHTERGROND_BRONNEN = {
                                            "advertentie Pontanusstraat 40, Funda, "
                                            "september 2026"),
 }
+
+# Voluitschrijvingen, zodat de brief ze niet hoeft te verzinnen en ze overal
+# hetzelfde staan. De eerste keer in een brief voluit, met de afkorting tussen
+# haakjes erachter.
+AFKORTINGEN = {
+    "BOPA": "buitenplanse omgevingsplanactiviteit",
+    "WWS": "woningwaarderingsstelsel",
+    "BAG": "Basisregistratie Adressen en Gebouwen",
+    "Bbl": "Besluit bouwwerken leefomgeving",
+    "VvE": "Vereniging van Eigenaren",
+    "WOZ": "waarde onroerende zaken",
+    "OZB": "onroerendezaakbelasting",
+    "ISDE": "Investeringssubsidie duurzame energie",
+    "SVOH": "Subsidieregeling Verduurzaming en Onderhoud Huurwoningen",
+    "EPBD": "Energy Performance of Buildings Directive",
+    "NAR": "netto aanvangsrendement",
+    "BAR": "bruto aanvangsrendement",
+    "LTV": "verhouding tussen lening en waarde, loan to value",
+    "CBS": "Centraal Bureau voor de Statistiek",
+    "RVO": "Rijksdienst voor Ondernemend Nederland",
+    "COROP": "gebiedsindeling van het CBS voor regionale statistiek",
+    "NTA 8800": "de rekenmethode achter het energielabel",
+}
+
+
+def afkorting_regels():
+    """De voluitschrijvingen als regels voor de opdracht aan de brief."""
+    return ["Voluitschrijvingen, gebruik deze letterlijk:"] + [
+        f"- {a}: {v}" for a, v in sorted(AFKORTINGEN.items())]
+
 
 ACHTERGROND = [
     ("Overdrachtsbelasting",
@@ -496,6 +535,36 @@ ACHTERGROND = [
      "die op straat gebeuren, zoals fietsendiefstal en vernieling, telt dan "
      "mee wie er in de buurt komt, niet alleen wie er woont. Woninginbraak "
      "gebeurt bij iemand thuis en zegt daarom het meest over de bewoners."),
+    ("De buitenplanse omgevingsplanactiviteit (BOPA)",
+     "Een BOPA is een omgevingsvergunning voor iets wat het omgevingsplan niet "
+     "toestaat. Past je plan wel binnen het plan, dan heb je hem niet nodig; "
+     "past het er niet in, dan is dit sinds de Omgevingswet de route. Voor "
+     "splitsen en verkameren komt hij daarom vaak langs: het omgevingsplan "
+     "staat het op veel plekken niet toe, en dan moet het hierlangs. "
+     "Het toetsingskader is er maar een: een evenwichtige toedeling van "
+     "functies aan locaties, artikel 8.0a van het Besluit kwaliteit "
+     "leefomgeving. Dat is geen lijst met voorwaarden maar een afweging, en "
+     "daarom telt de onderbouwing van de gevolgen voor de omgeving zwaar. "
+     "Daarnaast gelden de instructieregels van het Rijk en de provincie. "
+     "Het college van burgemeester en wethouders beslist. De gewone procedure "
+     "duurt acht weken, eenmalig te verlengen met zes, en met vier weken extra "
+     "als een ander bestuursorgaan moet instemmen. In door de raad aangewezen "
+     "gevallen geldt de uitgebreide procedure van zesentwintig weken. "
+     "Let op het bindend adviesrecht van de gemeenteraad: voor categorieen die "
+     "de raad zelf heeft aangewezen moet die eerst adviseren, en het college "
+     "mag van dat advies niet afwijken. In de praktijk werkt het dus als een "
+     "instemmingsrecht, en het is de plek waar een plan stukloopt dat "
+     "inhoudelijk wel door de toets zou komen. Zoek dus voor een aanvraag op "
+     "of jouw type plan op die aanwijzingslijst van Nijmegen staat. "
+     "Participatie is niet verplicht, tenzij de raad die categorie heeft "
+     "aangewezen, maar bij de aanvraag moet je wel opgeven of en hoe je de "
+     "buren hebt betrokken. Een dossier met een gedragen omgevingsdialoog "
+     "staat bij bezwaar aanzienlijk steviger, en bij splitsen in een straat "
+     "met klagende buren is dat geen formaliteit. "
+     "Tot slot: een BOPA zonder einddatum moet de gemeente binnen vijf jaar in "
+     "het omgevingsplan verwerken. Een verleende BOPA in jouw straat is dus "
+     "niet alleen een precedent maar op termijn ook een wijziging van de "
+     "regels zelf."),
     ("NTA 8800, de rekenmethode achter het energielabel",
      "Het energielabel is geen oordeel maar een rekenuitkomst, en NTA 8800 is "
      "de norm die bepaalt hoe er gerekend wordt. Een opnemer legt de "
