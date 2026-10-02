@@ -107,6 +107,10 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
              && [ "${{ github.event.inputs.alleen_naar_mij }}" = "true" ]; then
             echo "TESTRUN=1" >> "$GITHUB_ENV"
+            # Ook hier zetten, zodat elke stap hem ziet. Hij stond alleen in de
+            # marktprijzenstap, waardoor de briefstap dacht dat het geen testrun
+            # was en het logboek toch bijwerkte.
+            echo "GEHEUGEN_ALLEEN_LEZEN=1" >> "$GITHUB_ENV"
             # Bij een testrun gaat de brief alleen naar Mark. Dit hier bepalen
             # en niet in de mailstap zelf: in een GitHub-expressie telt een lege
             # string als onwaar, waardoor "voorwaarde && '' || secret" altijd
@@ -114,6 +118,7 @@ jobs:
             echo "CC_VERHAAL=" >> "$GITHUB_ENV"
           else
             echo "TESTRUN=0" >> "$GITHUB_ENV"
+            echo "GEHEUGEN_ALLEEN_LEZEN=0" >> "$GITHUB_ENV"
             echo "CC_VERHAAL=${{ secrets.MAIL_TO_VERHAAL }}" >> "$GITHUB_ENV"
           fi
           if [ -n "${VERHAAL_ADRES}" ]; then
