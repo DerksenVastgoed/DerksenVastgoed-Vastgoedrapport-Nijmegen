@@ -420,24 +420,20 @@ def controle_versies():
         # Afwijkend en ontbrekend zijn twee verschillende dingen, en bij
         # afwijkend hoort de datum van het bestand in de repo: is dat nieuwer
         # dan de paklijst, dan is de paklijst oud en niet het bestand.
+        # Geen bestandsdatum erbij: in een workflow krijgt elk bestand de tijd
+        # van het uitchecken, dus ze staan allemaal op dezelfde minuut en zegt
+        # die datum niets over wanneer de inhoud is geschreven. Dat was gisteren
+        # een verkeerde aanname van mij.
         delen = []
         if uit["afwijkend"]:
-            met_datum = []
-            for bestand in uit["afwijkend"][:6]:
-                try:
-                    gewijzigd = dt.datetime.fromtimestamp(
-                        os.path.getmtime(bestand)).strftime("%d-%m %H:%M")
-                except Exception:
-                    gewijzigd = "?"
-                met_datum.append(f"{bestand} ({gewijzigd})")
             delen.append("andere inhoud dan de paklijst: "
-                         + ", ".join(met_datum))
+                         + ", ".join(uit["afwijkend"][:6]))
         if uit["ontbrekend"]:
             delen.append("niet in de repo: " + ", ".join(uit["ontbrekend"][:6]))
         return (LET_OP, bewijs + "; " + "; ".join(delen),
-                "Upload de ontbrekende bestanden. Staat een afwijkend bestand "
-                "op een datum na die van de paklijst, dan is de paklijst oud en "
-                "hoeft er aan dat bestand niets te gebeuren.")
+                "Upload de ontbrekende bestanden. Blijft een bestand afwijken "
+                "nadat het is geuploud, dan is de paklijst achter en moet die "
+                "ververst worden.")
     if uit["onbekend"]:
         bewijs += f", {len(uit['onbekend'])} niet in de paklijst"
     return (OK, bewijs, "")
