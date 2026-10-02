@@ -777,6 +777,22 @@ def controle_aanbodreeks():
     return (OK, bewijs, "")
 
 
+def controle_verkoopdatums():
+    """Hoeveel panden een indicatie van hun verkoopdatum hebben."""
+    d = _json("verkoopdatums_model.json") or {}
+    if not d:
+        return (LET_OP, "nog geen verkoopdatums opgehaald",
+                "Draait in de weekeditie of bij een handrun met de volledige "
+                "vlag aan.")
+    hoog = sum(1 for p in d.values() if p.get("zeker") == "hoog")
+    met_verkoop = sum(1 for p in d.values() if p.get("verkocht_op"))
+    met_aanbod = sum(1 for p in d.values() if p.get("te_koop_vanaf"))
+    return (OK, f"{len(d)} panden met een indicatie: {met_verkoop} met een "
+            f"verkoopdatum, {met_aanbod} met een plaatsingsdatum, {hoog} daarvan "
+            f"met hoge zekerheid; dit zijn indicaties met bronvermelding, geen "
+            f"Kadastercijfers", "")
+
+
 def controle_grootte_premie():
     """De gemeten premie van kleine eenheden, de basis van elke splitsingscase."""
     d = _json("grootte_premie.json") or {}
@@ -1022,6 +1038,7 @@ CONTROLES = [
     ("Aanbodreeks", controle_aanbodreeks),
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
+    ("Verkoopdatums", controle_verkoopdatums),
     ("Huurdekking", controle_huurdekking),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
