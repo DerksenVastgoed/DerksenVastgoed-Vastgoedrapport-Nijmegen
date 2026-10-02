@@ -634,6 +634,20 @@ jobs:
           # dubbel.
           python aanbod_reeks.py || echo "Aanbodreeks overgeslagen"
 
+      - name: Verkoopdatums ophalen
+        if: env.MODUS != 'dagelijks' || github.event.inputs.volledig == 'true'
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # De geplakte verkopen dragen allemaal de plakdatum, en dat is
+          # aantoonbaar onjuist. Dit haalt een indicatie op, met bronvermelding;
+          # zonder bron wordt een antwoord weggegooid. Datums mogen meerekenen,
+          # bedragen niet. Alleen in de weekeditie of op verzoek, want het kost
+          # tijd en geld per pand.
+          python verkoopdatum_model.py --per-ronde 50 \
+            || echo "Verkoopdatums overgeslagen"
+
       - name: Groottepremie meten
         continue-on-error: true
         run: |
@@ -698,6 +712,7 @@ jobs:
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
+            verkoopdatums_model.json
             mail_status.json
             woz_kalibratie.json
             gezondheid_vorige.json
