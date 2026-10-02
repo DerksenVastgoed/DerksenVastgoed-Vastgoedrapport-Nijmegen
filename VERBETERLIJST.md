@@ -4078,6 +4078,105 @@ blijft welk deel waar vandaan komt.
 
 ---
 
+## 12. Verkoopdatums als indicatie — 2 oktober 2026
+
+**Mark:** een indicatie is beter dan wat we nu hebben, want alle 505 verkopen
+dragen de dag waarop ik plakte.
+
+**Dat argument is sterker dan mijn bezwaar.** Die datum is niet onzeker maar
+aantoonbaar onjuist, en hetzelfde geldt voor het aanbod: panden met een streepje
+bij "dagen te koop" zijn panden waarvan we de plaatsingsdatum niet kennen,
+terwijl juist dat getal zegt of iets blijft hangen.
+
+**verkoopdatum_model.py vraagt het model per adres**, met webzoeken aan, en
+bewaart alleen wat door vier waarborgen komt:
+
+1. Zonder bronvermelding wordt het antwoord weggegooid. Getest: een antwoord
+   met datums maar zonder bron komt er niet door.
+2. De bron staat in het bestand, zodat elk getal naar zijn herkomst wijst.
+3. Datums mogen meerekenen, bedragen niet. Een datum die er een week naast zit
+   verandert niets aan een doorlooptijd van drie maanden; een verkoopprijs die
+   5% afwijkt verschuift de groottepremie en daarmee elke ontwikkelcase.
+4. Het overschrijft nooit een Kadastercijfer of wat Mark zelf invoerde.
+
+**Waarom dat bedrag er apart in staat.** Wat Google terugmeldde als "verkocht
+voor €525.000" is de laatste vraagprijs van funda, niet de transactieprijs; die
+publiceert funda niet. Het model krijgt daarom de instructie dat bedrag als
+laatste_vraagprijs te labelen, en het rekent nergens in mee.
+
+**Een proefstand:** --proef 20 haalt twintig panden op en bewaart niets, zodat
+de uitkomst naast wat we al weten gelegd kan worden voordat er vijfhonderd
+doorheen gaan. De stap draait alleen in de weekeditie of op verzoek, want het
+kost tijd en geld per pand.
+
+**Wat dit mogelijk maakt:** de volgorde van vergunning en verkoop. Bij de
+Biezenstraat 110 blijkt de woning in september 2025 verkocht en de BOPA pas een
+jaar later verleend. De koper heeft dus eerst gekocht en daarna de vergunning
+aangevraagd, en dat is een ander verhaal dan vergunning halen en doorverkopen.
+
+---
+
+## 12a. Twee bestanden met dezelfde naam — 2 oktober 2026
+
+Het rapport meldde: "de versies.py in de repo mist de functie controleer (1500
+bytes); hij kent: geen functies". Dat is geen oudere versie maar een heel ander
+bestand: versies.json, opgeslagen als versies.py.
+
+**De oorzaak ligt bij mij.** In de chat heten versies.py en versies.json allebei
+"versies", want de kaart toont de bestandsnaam zonder extensie. Bij het
+downloaden is daardoor de een voor de ander aangezien. Dat is twee keer
+gebeurd, en de tweede keer kostte het weer een run.
+
+**Het script heet nu paklijst.py**, de lijst blijft versies.json. Twee
+verschillende namen, dus de kaarten zijn niet meer te verwisselen. De workflow
+en het gezondheidsrapport verwijzen naar de nieuwe naam, en de melding zegt er
+nu bij dat je het script moet pakken en niet de json.
+
+**Verwijder versies.py uit de repo**, anders blijft er een bestand staan dat
+nergens meer bij hoort.
+
+**Wat er in deze run wel goed ging:** 31 onderdelen op OK, de verkoopdatums
+draaien voor het eerst mee, en de geschiedenis staat weer op nul nog niet
+nagekeken panden. De 3D BAG is gegroeid naar 1170 en de labels naar 735.
+
+---
+
+## 12b. De proef legde een systematische fout bloot — 2 oktober 2026
+
+Negentien panden opgehaald, en daar zit een patroon in: het model vindt oude
+advertenties en levert die als de huidige.
+
+- St. Stephanusstraat 13: plaatsing 25 mei 2016 met €360.000, terwijl dat pand
+  nu te koop staat voor €625.000 en vier dagen in de etalage ligt.
+- Beijensstraat 4-A: 2023 met €295.000, terwijl het nu €275.000 vraagt.
+- Vondelstraat 26: 2015.
+- Burg. Hustinxstraat 140: verkocht 1 oktober 2014, uit kadastralekaart.com.
+
+**De controle die dit afvangt hadden we al in huis: onze eigen vraagprijs.**
+Wijkt het bedrag dat het model terugmeldt meer dan vijf procent af, dan gaat het
+om een andere advertentie. Vijf en niet tien, want allebei de bedragen horen de
+laatste vraagprijs te zijn; bij Marienburg 20 scheelde het 8,6% en dat bleek
+inderdaad een andere plaatsing.
+
+**Tweede controle:** een plaatsingsdatum van meer dan twee jaar geleden bij een
+pand dat nu te koop staat. Dat kan niet kloppen.
+
+Beide zetten de zekerheid op laag en schrijven de reden erbij, zodat de regel
+blijft staan maar nergens voor doorgaat. Het rapport telt ze, en meldt het
+apart zodra meer dan een derde een waarschuwing krijgt.
+
+**En de vraag zelf is aangepast:** het model krijgt nu te horen dat het om de
+meest recente plaatsing gaat, dat er van veel adressen oude advertenties online
+staan, en bij een pand dat te koop staat krijgt het onze vraagprijs mee als
+houvast.
+
+**Wat de proef verder laat zien, en dat is bruikbaar:** de bronnen zijn divers.
+Funda-links zijn de verkoopgeschiedenis zelf; huispedia, buurtje en drimble zijn
+doorplaatsers; kadastralekaart.com geeft een oude eigendomsoverdracht. Alleen de
+eerste soort is wat we zoeken, en dat staat per regel in het bestand.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -386,7 +386,7 @@ def controle_versies():
     komen en is het bij het overnemen zo verdwenen.
     """
     try:
-        import versies as _v
+        import paklijst as _v
         controleer = getattr(_v, "controleer", None)
         if controleer is None:
             # Een oudere versies.py zonder die functie. Met de details erbij,
@@ -402,10 +402,11 @@ def controle_versies():
                 n for n in dir(_v) if not n.startswith("_") and callable(
                     getattr(_v, n, None)))) or "geen functies"
             return (LET_OP,
-                    f"de versies.py in de repo mist de functie controleer "
+                    f"de paklijst.py in de repo mist de functie controleer "
                     f"({grootte} bytes, gewijzigd {gewijzigd}); hij kent: "
                     f"{heeft}",
-                    "Upload versies.py opnieuw.")
+                    "Upload paklijst.py opnieuw; let op dat je het script "
+                    "pakt en niet versies.json.")
         uit = controleer()
     except Exception as e:
         return (LET_OP, "versiecontrole niet uit te voeren", str(e)[:120])
@@ -785,12 +786,19 @@ def controle_verkoopdatums():
                 "Draait in de weekeditie of bij een handrun met de volledige "
                 "vlag aan.")
     hoog = sum(1 for p in d.values() if p.get("zeker") == "hoog")
+    verdacht = sum(1 for p in d.values() if p.get("waarschuwing"))
     met_verkoop = sum(1 for p in d.values() if p.get("verkocht_op"))
     met_aanbod = sum(1 for p in d.values() if p.get("te_koop_vanaf"))
-    return (OK, f"{len(d)} panden met een indicatie: {met_verkoop} met een "
-            f"verkoopdatum, {met_aanbod} met een plaatsingsdatum, {hoog} daarvan "
-            f"met hoge zekerheid; dit zijn indicaties met bronvermelding, geen "
-            f"Kadastercijfers", "")
+    bewijs = (f"{len(d)} panden met een indicatie: {met_verkoop} met een "
+              f"verkoopdatum, {met_aanbod} met een plaatsingsdatum, {hoog} met "
+              f"hoge zekerheid, {verdacht} met een waarschuwing dat het om een "
+              f"andere advertentie gaat; indicaties met bronvermelding, geen "
+              f"Kadastercijfers")
+    if verdacht > len(d) * 0.3:
+        return (LET_OP, bewijs,
+                "Meer dan een derde wijkt af van onze eigen vraagprijs; het "
+                "model vindt dan oude advertenties.")
+    return (OK, bewijs, "")
 
 
 def controle_grootte_premie():

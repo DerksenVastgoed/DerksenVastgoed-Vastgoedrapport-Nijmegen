@@ -39,9 +39,14 @@ MODEL = "claude-sonnet-4-6"
 MAX_PER_RONDE = 50
 
 VRAAG = """Zoek op funda.nl of een andere openbare bron wanneer de woning op dit \
-adres te koop is aangeboden en wanneer die is verkocht:
+adres MEEST RECENT te koop is aangeboden en wanneer die is verkocht:
 
 {adres}, Nijmegen
+{hint}
+
+Let op: van veel adressen staan ook oude advertenties online, soms van tien \
+jaar geleden. Wij willen de meest recente plaatsing. Vind je alleen een oude \
+advertentie, zet dan zeker op laag en vermeld het jaartal in de bron.
 
 Antwoord met ALLEEN een JSON-object, zonder tekst eromheen:
 {{"te_koop_vanaf": "JJJJ-MM-DD of null",
@@ -68,6 +73,64 @@ def lees(pad=UIT_PAD):
             return json.load(f) or {}
     except Exception:
         return {}
+
+
+def wat_wij_weten(pad=AANBOD_PAD):
+    """
+    De vraagprijs en de status zoals wij die kennen, per adres.
+
+    Dit is de controle die we gratis hebben: wijkt de prijs die het model
+    terugmeldt sterk af van wat wij zien, dan heeft het een andere, meestal
+    oudere advertentie gevonden. Dat bleek in de proef bij de St.
+    Stephanusstraat 13, waar een plaatsing uit 2016 terugkwam.
+    """
+    uit = {}
+    try:
+        with open(pad, encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 6:
+                    continue
+                try:
+                    prijs = int(v[2])
+                except ValueError:
+                    continue
+                uit[_sleutel(v[0])] = {"prijs": prijs, "status": v[3].lower()}
+    except FileNotFoundError:
+        return {}
+    return uit
+
+
+def toets(d, bekend_pand):
+    """
+    Het antwoord naast wat wij weten leggen.
+
+    Twee signalen dat het om een andere advertentie gaat: een prijs die meer
+    dan tien procent afwijkt, en een plaatsingsdatum van jaren terug bij een
+    pand dat nu te koop staat.
+    """
+    if not d or not bekend_pand:
+        return d
+    prijs = d.get("laatste_vraagprijs")
+    onze = bekend_pand.get("prijs")
+    # Vijf procent en niet tien: allebei de bedragen horen de laatste
+    # vraagprijs te zijn en zouden dus gelijk moeten zijn. Bij Marienburg 20
+    # scheelde het 8,6%, en dat bleek een andere advertentie.
+    if prijs and onze and abs(prijs - onze) / onze > 0.05:
+        d["zeker"] = "laag"
+        d["waarschuwing"] = (f"prijs {prijs} wijkt af van onze {onze}; "
+                             f"waarschijnlijk een andere advertentie")
+    datum = d.get("te_koop_vanaf")
+    if datum and bekend_pand.get("status", "").startswith("te koop"):
+        try:
+            oud = (dt.date.today() - dt.date.fromisoformat(datum)).days > 730
+        except ValueError:
+            oud = False
+        if oud:
+            d["zeker"] = "laag"
+            d["waarschuwing"] = (f"plaatsing {datum} terwijl het pand nu te "
+                                 f"koop staat; oude advertentie")
+    return d
 
 
 def te_doen(pad=AANBOD_PAD, bekend=None, alles=False):
@@ -100,13 +163,13 @@ def te_doen(pad=AANBOD_PAD, bekend=None, alles=False):
     return uit
 
 
-def _vraag_model(adres, sleutel):
+def _vraag_model(adres, sleutel, hint=""):
     """Een pand voorleggen, met webzoeken aan, en het antwoord lezen."""
     body = {
         "model": MODEL,
         "max_tokens": 600,
         "messages": [{"role": "user",
-                      "content": VRAAG.format(adres=adres)}],
+                      "content": VRAAG.format(adres=adres, hint=hint)}],
         "tools": [{"type": "web_search_20250305", "name": "web_search",
                    "max_uses": 4}],
     }
@@ -169,6 +232,7 @@ def main():
         return 0
 
     bekend = lees()
+    onze = wat_wij_weten()
     wachtrij = te_doen(bekend=bekend if not args.proef else {})
     aantal = args.proef or args.per_ronde
     wachtrij = wachtrij[:aantal]
@@ -178,13 +242,17 @@ def main():
 
     raak = mis = 0
     for adres in wachtrij:
+        pand = onze.get(_sleutel(adres)) or {}
+        hint = (f"Volgens onze gegevens staat dit pand nu te koop voor "
+                f"€{pand['prijs']}. Hoort de advertentie die je vindt daarbij?"
+                if pand.get("status", "").startswith("te koop") else "")
         try:
-            rauw = _vraag_model(adres, sleutel)
+            rauw = _vraag_model(adres, sleutel, hint)
         except Exception as e:
             print(f"  {adres}: {str(e)[:80]}", file=sys.stderr)
             mis += 1
             continue
-        d = _geldig(rauw)
+        d = toets(_geldig(rauw), pand)
         if not d:
             mis += 1
             print(f"  {adres}: niets bruikbaars", file=sys.stderr)
@@ -192,7 +260,9 @@ def main():
         raak += 1
         print(f"  {adres}: te koop {d.get('te_koop_vanaf', '?')}, "
               f"verkocht {d.get('verkocht_op', '?')}, zeker {d['zeker']}, "
-              f"bron {d['bron'][:60]}", file=sys.stderr)
+              f"bron {d['bron'][:60]}"
+              + (f" | {d['waarschuwing']}" if d.get("waarschuwing") else ""),
+              file=sys.stderr)
         if not args.proef:
             bekend[_sleutel(adres)] = dict(d, adres=adres)
 
