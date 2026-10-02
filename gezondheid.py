@@ -463,6 +463,14 @@ def controle_peildata():
         return (LET_OP, "huurprijstabel niet te lezen", str(e)[:120])
 
     try:
+        from marktprijzen_bag import (OVERDRACHTSBELASTING_PCT,
+                                      BIJKOMENDE_KOSTEN_PCT)
+        regels.append(f"overdrachtsbelasting {OVERDRACHTSBELASTING_PCT}% plus "
+                      f"{BIJKOMENDE_KOSTEN_PCT}% bijkomende kosten")
+    except Exception:
+        pass
+
+    try:
         from subsidie_svoh import PEILDATUM as SVOH_PEIL, PER_M2
         jaar = int(SVOH_PEIL[:4])
         regels.append(f"SVOH-bedragen {SVOH_PEIL} (gevelisolatie "

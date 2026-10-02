@@ -420,6 +420,8 @@ def afkorting_regels():
 ACHTERGROND = [
     ("Overdrachtsbelasting",
      "Sinds 1 januari 2026 is de overdrachtsbelasting voor een woning die niet "
+     "In de Voorjaarsnota is een verdere verlaging naar 7% per 2027 genoemd; "
+     "dat is een voornemen en geen vastgesteld tarief, dus reken er niet mee. "
      "je hoofdverblijf wordt 8%, was 10,4%. Voor bedrijfspanden en kantoren "
      "blijft het 10,4%. Koopt iemand een woning binnen zes maanden nadat de "
      "vorige eigenaar hem kocht, dan mag die koper de overdrachtsbelasting die "
