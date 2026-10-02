@@ -70,3 +70,6 @@ De brief eindigt midden in een zin: '...iedingen in die buurt daarom extra in de
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...it dus tegen de opkoopbescherming kan aanlopen.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.
