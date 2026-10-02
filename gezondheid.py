@@ -412,14 +412,32 @@ def controle_versies():
     if uit is None:
         return (LET_OP, "geen paklijst gevonden",
                 "versies.json hoort mee in dezelfde upload als de bestanden.")
-    bewijs = (f"{len(uit['gelijk'])} bestanden gelijk aan de paklijst, "
-              f"{len(uit['afwijkend'])} afwijkend, "
-              f"{len(uit['ontbrekend'])} ontbreekt")
+    gemaakt = (_json("versies.json") or {}).get("gemaakt", "?")
+    bewijs = (f"paklijst van {gemaakt}: {len(uit['gelijk'])} gelijk, "
+              f"{len(uit['afwijkend'])} met andere inhoud, "
+              f"{len(uit['ontbrekend'])} niet aanwezig")
     if uit["afwijkend"] or uit["ontbrekend"]:
-        namen = ", ".join((uit["afwijkend"] + uit["ontbrekend"])[:6])
-        return (LET_OP, bewijs + f": {namen}",
-                "Deze run draait niet op de code uit de paklijst. Controleer "
-                "of alle bestanden zijn geuploud, inclusief versies.json.")
+        # Afwijkend en ontbrekend zijn twee verschillende dingen, en bij
+        # afwijkend hoort de datum van het bestand in de repo: is dat nieuwer
+        # dan de paklijst, dan is de paklijst oud en niet het bestand.
+        delen = []
+        if uit["afwijkend"]:
+            met_datum = []
+            for bestand in uit["afwijkend"][:6]:
+                try:
+                    gewijzigd = dt.datetime.fromtimestamp(
+                        os.path.getmtime(bestand)).strftime("%d-%m %H:%M")
+                except Exception:
+                    gewijzigd = "?"
+                met_datum.append(f"{bestand} ({gewijzigd})")
+            delen.append("andere inhoud dan de paklijst: "
+                         + ", ".join(met_datum))
+        if uit["ontbrekend"]:
+            delen.append("niet in de repo: " + ", ".join(uit["ontbrekend"][:6]))
+        return (LET_OP, bewijs + "; " + "; ".join(delen),
+                "Upload de ontbrekende bestanden. Staat een afwijkend bestand "
+                "op een datum na die van de paklijst, dan is de paklijst oud en "
+                "hoeft er aan dat bestand niets te gebeuren.")
     if uit["onbekend"]:
         bewijs += f", {len(uit['onbekend'])} niet in de paklijst"
     return (OK, bewijs, "")
@@ -1106,17 +1124,19 @@ def rapport(kort=False, bewaren=False):
         _bewaar_stand(uitkomsten)
 
     if kort:
-        # De versie om te plakken: alleen wat aandacht vraagt, ingekort, en de
-        # onderdelen die goed gaan in een regel
+        # Dit blok wordt in de chat geplakt en daar door Claude gelezen, niet
+        # door Mark. De adviesregels kunnen er dus uit: wat "505 geplakt, 0 uit
+        # de mail" betekent en wat eraan te doen valt, hoeft er niet bij te
+        # staan. Dat halveert wat er vanaf een telefoon gekopieerd moet worden.
+        # De uitleg blijft in het volledige rapport in het digestbestand, voor
+        # als iemand het zonder context moet kunnen lezen.
         r = [f"GEZONDHEID {VANDAAG.isoformat()}: {aantal[OK]} ok, "
              f"{aantal[LET_OP]} let op, {aantal[FOUT]} fout"]
         for status in (FOUT, LET_OP):
-            for naam, s_, bewijs, diag in uitkomsten:
+            for naam, s_, bewijs, _diag in uitkomsten:
                 if s_ != status:
                     continue
                 r.append(f"[{status}] {naam}: {bewijs}")
-                if diag:
-                    r.append(f"   {_kort(diag)}")
         # De onderdelen die goed gaan niet meer uitschrijven: dat is de helft
         # van het rapport en je leest het toch niet. Wel het aantal, en wat er
         # is veranderd sinds de vorige run, want daar zit het nieuws.
