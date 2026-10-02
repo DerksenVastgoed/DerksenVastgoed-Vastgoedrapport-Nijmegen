@@ -713,6 +713,7 @@ jobs:
             aanbodprofiel.json
             grootte_premie.json
             verkoopdatums_model.json
+            doorlooptijden.json
             mail_status.json
             woz_kalibratie.json
             gezondheid_vorige.json
