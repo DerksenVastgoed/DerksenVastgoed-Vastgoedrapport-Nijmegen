@@ -777,6 +777,26 @@ def controle_aanbodreeks():
     return (OK, bewijs, "")
 
 
+def controle_grootte_premie():
+    """De gemeten premie van kleine eenheden, de basis van elke splitsingscase."""
+    d = _json("grootte_premie.json") or {}
+    klassen = d.get("klassen") or {}
+    if not klassen:
+        return (LET_OP, "nog geen groottepremie gemeten",
+                "Deze rekent elke run opnieuw uit wat er bekend is.")
+    met_getal = {n: r for n, r in klassen.items() if r.get("premie")}
+    if len(met_getal) < 3:
+        return (LET_OP,
+                f"{d.get('waarnemingen', 0)} waarnemingen, maar maar "
+                f"{len(met_getal)} grootteklassen met genoeg panden",
+                "Met minder dan drie klassen is er geen curve.")
+    delen = ", ".join(f"{n}: {r['premie']} ({r['aantal']})"
+                      for n, r in met_getal.items())
+    return (OK, f"{d.get('waarnemingen', 0)} waarnemingen, "
+            f"{d.get('buurten_met_ijkpunt', 0)} buurten met eigen ijkpunt; "
+            f"{delen}", "")
+
+
 def controle_aanbodprofiel():
     """Het profiel van het nieuwe aanbod, voor de weekeditie."""
     p = _json("aanbodprofiel.json") or {}
@@ -1001,6 +1021,7 @@ CONTROLES = [
     ("Veroudering aanbod", controle_veroudering),
     ("Aanbodreeks", controle_aanbodreeks),
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
+    ("Groottepremie", controle_grootte_premie),
     ("Huurdekking", controle_huurdekking),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),

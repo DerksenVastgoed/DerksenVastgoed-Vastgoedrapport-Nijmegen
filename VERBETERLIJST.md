@@ -4041,6 +4041,43 @@ dezelfde dag overschreven; daarna loopt het logboek zuiver.
 
 ---
 
+## 11. De groottepremie: de basis van elke splitsingscase — 2 oktober 2026
+
+**Mark:** we kopen vierkante meters goedkoop in een groot pand en verkopen ze
+duur in kleine eenheden; kunnen we dat meten en automatisch laten meegroeien?
+
+**Dat kan, en het staat al in onze eigen tabellen.** Jan de Wittstraat 6 is
+22 m2 voor €8.863 per m2, van Goorstraat 34 is 102 m2 voor €3.823. Een factor
+2,3 in dezelfde stad.
+
+**Hoe het meet:** elke waarneming wordt eerst gedeeld door de mediaan van zijn
+eigen buurt. Daarmee valt het prijspeil van de buurt eruit en blijft alleen het
+effect van de grootte over. Zonder die correctie meet je ligging in plaats van
+omvang, want kleine eenheden zitten vaker in het centrum.
+
+De uitkomst is een verhoudingsgetal per grootteklasse met 80 tot 100 m2 als
+ijkpunt. Getest met twee kunstmatige buurten met een verschillend prijspeil en
+dezelfde ingebouwde premie: 1,55 kwam er terug als 1,544, 1,30 als 1,286, 0,85
+als 0,842. De correctie werkt dus.
+
+**Het groeit vanzelf mee.** Het script rekent elke run opnieuw uit wat er op dat
+moment bekend is, en het aantal panden per klasse staat er altijd bij. Onder de
+acht waarnemingen toont hij geen getal, want dan is het toeval.
+
+**Wat het oplevert voor een pand:** 168 m2 in twee eenheden van 84 m2 brengt de
+prijs per m2 van €4.200 naar €4.988, een waardesprong van €132.000 voor de
+verbouwkosten. Bij 204 m2 in drie eenheden is dat €317.000.
+
+**Drie waarschuwingen staan erbij.** De verkochte panden dragen de laatste
+vraagprijs en niet de transactieprijs, want Funda toont die niet. De premie van
+een gesplitste eenheid is aangenomen gelijk aan die van een bestaande eenheid
+van dezelfde maat, en dat is pas te toetsen als we een gesplitst pand terugzien
+op de markt. En dit getal is alleen de waardesprong: verbouwkosten,
+overdrachtsbelasting en verkoopkosten horen in de doorrekening, zodat zichtbaar
+blijft welk deel waar vandaan komt.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
