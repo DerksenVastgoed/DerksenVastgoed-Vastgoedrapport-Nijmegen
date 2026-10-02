@@ -2876,8 +2876,14 @@
     40
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://hestia.nl/object/beijensstraat-4-2/",
+    "datum": "2023-11-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €295.000 (zekerheid midden)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -6591,6 +6597,12 @@
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
+    "bron": "model: https://buurtje.nl/en/studio/boomvalkstraat-18-nijmegen/",
+    "datum": "2026-08-10",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €275.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -9773,6 +9785,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://kadastralekaart.com/adres/nijmegen-burg-hustinxstraat-140/0268200000003446",
+    "datum": "2014-10-01",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -20084,8 +20102,14 @@
     46
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511dd/doddendaal/117",
+    "datum": "2026-07-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid midden)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -27241,6 +27265,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://kadastralekaart.com/adres/nijmegen-eilbrachtstraat-6/0268200000006970 en https://w",
+    "datum": "2025-04-22",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €325.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -41829,6 +41859,12 @@
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sb/hertogstraat/32",
+    "datum": "2026-06-06",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -44060,17 +44096,93 @@
  },
  "jandewittstraat6": {
   "adres": "Jan de Wittstraat 6",
-  "bag_gezien": "2026-09-28",
-  "bag_zonder_id": "2026-09-28",
+  "bag_eenheden": [
+   [
+    "Graafseweg 35",
+    64
+   ],
+   [
+    "Graafseweg 35A",
+    64
+   ],
+   [
+    "Graafseweg 35B",
+    62
+   ],
+   [
+    "Graafseweg 35C",
+    62
+   ],
+   [
+    "Graafseweg 35D",
+    59
+   ],
+   [
+    "Graafseweg 35E",
+    61
+   ],
+   [
+    "Jan de Wittstraat 6",
+    595
+   ],
+   [
+    "Jan de Wittstraat 8",
+    595
+   ]
+  ],
+  "bag_gezien": "2026-10-02",
+  "bag_pogingen": 1,
   "gebeurtenissen": [
    {
     "bron": "vergunning",
     "datum": "2014-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listin",
+    "datum": "2025-08-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €219.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listin",
+    "datum": "2026-03-23",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €219.000 (zekerheid midden)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35C is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 35E is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 6 is nu C"
    }
   ],
-  "pand_id": null
+  "labels": {
+   "Graafseweg 35": "B",
+   "Graafseweg 35C": "A",
+   "Graafseweg 35E": "A",
+   "Jan de Wittstraat 6": "C"
+  },
+  "pand_id": "0268100000011141"
  },
  "jandewittstraat61": {
   "adres": "Jan de Wittstraat 61",
@@ -49764,6 +49876,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541ps/krayenhofflaan/281",
+    "datum": "2026-07-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -59176,6 +59294,18 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
+    "datum": "2025-01-24",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €575.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
+    "datum": "2025-03-12",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €575.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -72312,6 +72442,12 @@
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
+    "bron": "model: https://buurtje.nl/en/apartment/nina-simonestraat-124-nijmegen/",
+    "datum": "2026-07-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €425.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -74598,6 +74734,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-oude-nonnendaalseweg-194/44468346/",
+    "datum": "2026-05-22",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €675.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -78639,6 +78781,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-pontanusstraat-19/44507093/",
+    "datum": "2026-09-15",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €539.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-16",
@@ -88188,6 +88336,18 @@
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
+    "datum": "2024-06-08",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €189.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
+    "datum": "2024-07-08",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €189.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -93177,8 +93337,14 @@
     141
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6512HM/st-stephanusstraat-13.html",
+    "datum": "2016-05-25",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €360.000 (zekerheid midden)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -97598,6 +97764,12 @@
   ],
   "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6542vj/tweede-oude-heselaan/368",
+    "datum": "2026-08-26",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -103700,7 +103872,7 @@
     34
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -103778,7 +103950,7 @@
     76
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -103840,7 +104012,7 @@
     136
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -103876,7 +104048,7 @@
     78
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -104235,7 +104407,7 @@
     131
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -104327,7 +104499,7 @@
     66
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -104593,7 +104765,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -105160,7 +105332,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -105727,7 +105899,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -106294,7 +106466,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -106861,7 +107033,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -107428,7 +107600,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -107995,7 +108167,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -108562,7 +108734,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -109129,7 +109301,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -109696,7 +109868,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -110263,7 +110435,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -110830,7 +111002,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -111397,7 +111569,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -111964,7 +112136,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -112531,7 +112703,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -113098,7 +113270,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -113665,7 +113837,7 @@
     70
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114145,7 +114317,7 @@
     65
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114198,8 +114370,20 @@
     149
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512bg/vondelstraat/26",
+    "datum": "2015-01-23",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512bg/vondelstraat/26",
+    "datum": "2015-07-29",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -114325,7 +114509,7 @@
     167
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114383,8 +114567,14 @@
     124
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-vondelstraat-63/44414294/",
+    "datum": "2026-07-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid laag)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -114426,7 +114616,7 @@
     74
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114502,7 +114692,7 @@
     93
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114576,7 +114766,7 @@
     109
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114619,7 +114809,7 @@
     95
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114665,7 +114855,7 @@
     109
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114864,7 +115054,7 @@
     113
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -114973,7 +115163,7 @@
     105
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -115038,7 +115228,7 @@
     42
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -115092,7 +115282,7 @@
     162
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -115138,7 +115328,7 @@
     96
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -115744,7 +115934,7 @@
     146
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -116222,7 +116412,7 @@
     146
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -116677,7 +116867,7 @@
     68
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -117244,7 +117434,7 @@
     68
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -118032,7 +118222,7 @@
     146
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -118309,7 +118499,7 @@
     175
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -118627,8 +118817,14 @@
     248
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.pararius.nl/appartement-te-koop/nijmegen/71136843/waalkade",
+    "datum": "2026-01-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €675.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -118934,7 +119130,7 @@
     248
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119161,7 +119357,7 @@
     58
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119223,7 +119419,7 @@
     220
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119503,7 +119699,7 @@
     73
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119719,7 +119915,7 @@
     307
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119738,7 +119934,7 @@
     398
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119778,7 +119974,7 @@
     93
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -119944,7 +120140,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -120021,7 +120217,7 @@
     120
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -120272,7 +120468,7 @@
     139
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -120322,7 +120518,7 @@
     139
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -120403,7 +120599,7 @@
     42
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121157,7 +121353,7 @@
     483
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121304,7 +121500,7 @@
     45
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121490,7 +121686,7 @@
     483
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121650,7 +121846,7 @@
     409
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121796,7 +121992,7 @@
     409
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -121942,7 +122138,7 @@
     409
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122088,7 +122284,7 @@
     409
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122422,7 +122618,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122454,7 +122650,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122493,7 +122689,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122525,7 +122721,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122564,7 +122760,7 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
    {
     "bron": "aanbod",
@@ -122603,8 +122799,14 @@
     86
    ]
   ],
-  "bag_gezien": "2026-10-01",
+  "bag_gezien": "2026-10-02",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-zwaluwstraat-54/17281905/ en https:/",
+    "datum": "2026-08-14",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €315.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",

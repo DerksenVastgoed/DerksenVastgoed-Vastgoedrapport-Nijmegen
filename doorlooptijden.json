@@ -1,0 +1,28 @@
+{
+ "verkooptijd_aantal": 15,
+ "bezitsduur_aantal": 5,
+ "prijsgroei_aantal": 3,
+ "verkooptijd_mediaan_dagen": 88,
+ "bezitsduur_mediaan_jaar": 2.2,
+ "prijsgroei_mediaan_pct": 6.0,
+ "voorbeelden": [
+  {
+   "adres": "Eilbrachtstraat 6",
+   "van": "2025-04-22",
+   "tot": "2026-09-28",
+   "per_jaar": 0.0
+  },
+  {
+   "adres": "Mariënburg 20",
+   "van": "2025-03-12",
+   "tot": "2026-09-28",
+   "per_jaar": 6.0
+  },
+  {
+   "adres": "Smetiusstraat 4-D",
+   "van": "2024-07-08",
+   "tot": "2026-09-28",
+   "per_jaar": 8.2
+  }
+ ]
+}

@@ -9,6 +9,7 @@
   "Bouwkostenindex": "OK",
   "Buurtcijfers CBS": "OK",
   "COROP Arnhem/Nijmegen": "OK",
+  "Doorlooptijden": "OK",
   "Eigen bouwkosten": "OK",
   "Geheugen en trend": "OK",
   "Geschiedenis per pand": "OK",
@@ -33,7 +34,7 @@
   "Verkoopdatums": "OK",
   "Verkopen": "LET OP",
   "Veroudering aanbod": "OK",
-  "Versies": "LET OP",
+  "Versies": "OK",
   "VvE-bijdragen": "OK",
   "WOZ-schatting": "LET OP",
   "Woningprijsindex CBS": "OK"
