@@ -634,6 +634,15 @@ jobs:
           # dubbel.
           python aanbod_reeks.py || echo "Aanbodreeks overgeslagen"
 
+      - name: Groottepremie meten
+        continue-on-error: true
+        run: |
+          # Wat een vierkante meter kost in een klein pand tegen een groot. Dit
+          # is de basis van elke splitsingscase, en het rekent elke run opnieuw
+          # uit wat er op dat moment bekend is; meer waarnemingen maken de
+          # curve vanzelf beter.
+          python grootte_premie.py || echo "Groottepremie overgeslagen"
+
       - name: Profiel van het nieuwe aanbod
         continue-on-error: true
         run: |
@@ -688,6 +697,7 @@ jobs:
             brief_logboek.json
             aanbod_reeks.json
             aanbodprofiel.json
+            grootte_premie.json
             mail_status.json
             woz_kalibratie.json
             gezondheid_vorige.json
