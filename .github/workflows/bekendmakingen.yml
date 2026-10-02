@@ -70,7 +70,7 @@ jobs:
           # ONTBREEKT, dan draait deze run niet op de code die je denkt.
           echo "Commit: $(git log -1 --format='%h %ci %s')"
           echo "Branch: ${GITHUB_REF_NAME}"
-          python versies.py --controleer || echo "Versiecontrole overgeslagen"
+          python paklijst.py --controleer || echo "Versiecontrole overgeslagen"
 
       - name: Python klaarzetten
         uses: actions/setup-python@v5
