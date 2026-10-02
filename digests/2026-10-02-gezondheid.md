@@ -3,8 +3,8 @@
 27 in orde, 8 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-02: 28 gelijk, 5 met andere inhoud, 1 niet aanwezig; andere inhoud dan de paklijst: bekendmakingen_nijmegen.py (02-10 06:39), maatregel_hoeveelheden.py (02-10 06:39), marktprijzen_bag.py (02-10 06:39), pandgeschiedenis.py (02-10 06:39), rente_verhuurhypotheek.py (02-10 06:39); niet in de repo: aanbod_reeks.py
-  Upload de ontbrekende bestanden. Staat een afwijkend bestand op een datum na die van de paklijst, dan is de paklijst oud en hoeft er aan dat bestand niets te gebeuren.
+- **Versies**: paklijst van 2026-10-02: 28 gelijk, 5 met andere inhoud, 1 niet aanwezig; andere inhoud dan de paklijst: bekendmakingen_nijmegen.py, maatregel_hoeveelheden.py, marktprijzen_bag.py, pandgeschiedenis.py, rente_verhuurhypotheek.py; niet in de repo: aanbod_reeks.py
+  Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
 - **Geschiedenis per pand**: 1702 panden gevolgd, 825 met meer dan een gebeurtenis; 1473 met BAG-gegevens (13148 woningen), 730 met een energielabel, 5 nog nooit nagekeken, 224 zonder pand-id in de BAG waarvan 1 na drie pogingen opgegeven; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28

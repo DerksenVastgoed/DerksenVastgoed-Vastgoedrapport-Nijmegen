@@ -57,3 +57,6 @@ De brief eindigt midden in een zin: '...xen akte-wijzigingen of VvE-besluiten op
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '... onder de grens blijft. Ik hou het in de gaten.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.
