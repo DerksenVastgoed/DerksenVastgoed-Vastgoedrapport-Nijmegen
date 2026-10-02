@@ -24,6 +24,75 @@ ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
 # Let op: een secret dat bestaat maar leeg is, geeft een lege tekst terug en
 # niet de standaardwaarde. Vandaar de or in plaats van een default.
+def _kandidaten(bronnen):
+    """
+    De onderwerpen die vandaag op tafel lagen, als korte regels.
+
+    Uit de bekendmakingen en de publicaties: de eerste regel van elk item, want
+    daar staat waar het over gaat. Geen hele teksten, want het logboek moet een
+    lijst blijven en geen archief.
+    """
+    uit = []
+    for naam, inhoud in bronnen:
+        if not inhoud or not any(w in naam.lower()
+                                 for w in ("bekendmaking", "publicatie",
+                                           "nieuws", "artikel")):
+            continue
+        for regel in str(inhoud).split("\n"):
+            regel = regel.strip(" -*#\t")
+            if len(regel) < 15 or len(regel) > 160:
+                continue
+            if regel.lower().startswith(("bron", "zie ", "http")):
+                continue
+            uit.append(regel)
+    # Ontdubbelen met behoud van volgorde
+    gezien, schoon = set(), []
+    for regel in uit:
+        sleutel = regel[:60].lower()
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        schoon.append(regel)
+    return schoon[:40]
+
+
+def _leg_keuze_vast(brief, bronnen):
+    """
+    Wat is er verteld, en wat lag er nog meer?
+
+    Een onderwerp geldt als behandeld wanneer een kenmerkend stuk ervan in de
+    brief terugkomt, bijvoorbeeld een adres of een straatnaam. Dat is grof,
+    maar het alternatief is de brief laten opgeven wat hij heeft behandeld, en
+    dat is minder betrouwbaar dan ernaar kijken.
+    """
+    from brief_logboek import leg_vast
+    laag = brief.lower()
+    gekozen, rest = [], []
+    for regel in _kandidaten(bronnen):
+        woorden = [w for w in regel.split() if len(w) > 6 or any(
+            c.isdigit() for c in w)]
+        raak = sum(1 for w in woorden[:8] if w.lower().strip(",.;:") in laag)
+        (gekozen if raak >= 2 else rest).append(regel)
+    leg_vast(gekozen[0] if gekozen else "geen onderwerp herkend", rest)
+    print(f"Logboek: {len(gekozen)} behandeld, {len(rest)} bleef liggen",
+          file=sys.stderr)
+
+
+def _afkortingenblok():
+    """
+    De voluitschrijvingen uit bronnen.py, als blok voor de opdracht.
+
+    Zo staan ze op een plek en verzint de brief ze niet zelf. Lukt het laden
+    niet, dan blijft de regel staan zonder lijst; de instructie zelf is het
+    belangrijkst.
+    """
+    try:
+        from bronnen import afkorting_regels
+        return "\n".join(afkorting_regels()) + "\n\n"
+    except Exception:
+        return ""
+
+
 def _aanhef_naar_dagdeel():
     """
     De aanspreking hoort bij het moment waarop de brief aankomt.
@@ -168,6 +237,8 @@ BESCHRIJF DE OPBOUW NIET. Zeg niet "dit wordt het hoofdstuk van de brief", "er w
 VEILIGHEIDSCIJFERS. De politie telt misdrijven op de plaats waar ze zijn gepleegd, en deze brief deelt ze door het aantal bewoners. Bij fietsendiefstal en vernieling telt dan mee wie er in de buurt komt, niet alleen wie er woont. Gebruik die daarom niet als maat voor hoe prettig een buurt is voor een huurder, en zeg er niet bij dat het "vooral iets zegt over het aantal bezoekers": dat hebben we niet gemeten. Woninginbraak gaat wel over de bewoners. Wil je buurten op veiligheid vergelijken voor verhuur, begin dan bij woninginbraak, en noem het als dat een ander beeld geeft dan de rest.
 
 GEEN TOEZEGGINGEN NAMENS MARK. De brief is van Mark, maar jij beslist niet wat hij gaat doen. Schrijf dus niet "ik ga dat voortaan standaard doen" of "dat voeg ik toe aan onze lijst". Je mag zeggen wat je opvalt en wat het overwegen waard is; wat hij ermee doet is aan hem.
+
+SCHRIJF ELKE AFKORTING DE EERSTE KEER VOLUIT, MET DE AFKORTING TUSSEN HAAKJES ERACHTER. Dus "een buitenplanse omgevingsplanactiviteit (BOPA)", en daarna mag je BOPA gebruiken. Dat geldt voor alles: woningwaarderingsstelsel (WWS), Basisregistratie Adressen en Gebouwen (BAG), Besluit bouwwerken leefomgeving (Bbl), Vereniging van Eigenaren (VvE), onroerendezaakbelasting (OZB), Investeringssubsidie duurzame energie (ISDE), Subsidieregeling Verduurzaming en Onderhoud Huurwoningen (SVOH), Energy Performance of Buildings Directive (EPBD). Bij WOZ schrijf je waarde onroerende zaken (WOZ); bij NTA 8800 volstaat "de rekenmethode achter het energielabel, NTA 8800". Een afkorting die pa elke week leest hoeft niet elke keer opnieuw te worden uitgelegd in dezelfde brief, maar wel de eerste keer in die brief. Gebruik nooit een afkorting die je niet eerst voluit hebt geschreven.
 
 DE VIER INGREPEN UIT ARTIKEL 21 HEBBEN ELK HUN EIGEN NAAM, HAAL ZE NOOIT DOOR ELKAAR. Omzetten is een zelfstandige woning naar ONZELFSTANDIGE woonruimte brengen, dus kamerverhuur; daar hoort de omzettingsvergunning bij. Woningvorming, in de praktijk splitsen genoemd, is een pand verbouwen tot twee of meer ZELFSTANDIGE woningen. Onttrekken is woonruimte aan de bewoning onttrekken, bijvoorbeeld voor logies of kantoor. Samenvoegen is twee woningen tot een maken. Schrijf dus nooit dat een omzettingsvergunning de toestemming is om een pand in meerdere losse woningen te verdelen; dat is woningvorming. Staat in een bekendmaking "omzetting", dan gaat het over kamers, en dat is iets anders dan zes appartementen.
 
@@ -1091,6 +1162,7 @@ def schrijf_brief(bronnen):
 
     prompt = (f"DATUM VAN VANDAAG: {dt.date.today().isoformat()}\n"
               f"AANHEF: {AANHEF}\n"
+              + _afkortingenblok() +
               f"BUURT VAN DE DAG: {buurt_vandaag}\n"
               f"MAXIMUM: {woorden} woorden. Dat is een harde grens, geen streven. "
               f"Ga er niet overheen; schrap liever een onderwerp dan dat je alles "
@@ -1252,6 +1324,13 @@ def main():
     if not brief:
         print("Geen brief gemaakt", file=sys.stderr)
         return
+
+    # Vastleggen waar de brief over ging en wat er bleef liggen. Een testrun
+    # schrijft hier niets; dat regelt brief_logboek zelf.
+    try:
+        _leg_keuze_vast(brief, bronnen)
+    except Exception as e:
+        print(f"Logboek niet bijgewerkt: {str(e)[:80]}", file=sys.stderr)
 
     datum_nl = dt.date.fromisoformat(d).strftime("%d %B %Y")
     for en, nl in {"January": "januari", "February": "februari", "March": "maart",
