@@ -66,3 +66,7 @@ Groet, Mark'. Controleer of het antwoord is afgekapt.
 De brief eindigt midden in een zin: '... een paar weken stijgt, daarmee te maken heeft.
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...iedingen in die buurt daarom extra in de gaten.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.
