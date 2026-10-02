@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "8d500bd96346",
+  ".github/workflows/bekendmakingen.yml": "1fda6c3fd9b4",
   "aanbod_reeks.py": "bd9b0bddf0de",
   "aanbodprofiel.py": "a227c893e9b2",
   "bag3d.py": "d49559cb3e5c",
@@ -9,7 +9,7 @@
   "bekendmakingen_nijmegen.py": "307cc3531c6b",
   "bouwkosten_index.py": "bf5be46fdaa4",
   "bouwnorm.py": "3b84776e673e",
-  "brief_logboek.py": "4d5f576dfd50",
+  "brief_logboek.py": "19fb57c795c7",
   "brief_verhalend.py": "ab6530a91260",
   "bronnen.py": "cccb02300958",
   "buurten_tabel.py": "86dfaeb447b9",

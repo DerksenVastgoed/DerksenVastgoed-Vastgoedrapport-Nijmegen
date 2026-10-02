@@ -32,14 +32,31 @@ BEWAAR_DAGEN = 60
 
 
 def _alleen_lezen():
-    """Draait dit een testrun? Dan niets wegschrijven."""
+    """
+    Draait dit een testrun? Dan niets wegschrijven.
+
+    Allebei de signalen controleren, en niet alleen diagnose.alleen_lezen().
+    Dat leest GEHEUGEN_ALLEEN_LEZEN, en die wordt in de workflow alleen in de
+    marktprijzenstap gezet. In de briefstap kreeg deze functie daardoor "geen
+    testrun" terug en schreef het logboek gewoon weg, precies wat niet mocht.
+    """
+    testrun = (os.environ.get("TESTRUN") or "").strip().lower()
+    if testrun not in ("", "0", "false"):
+        return True
+    # Zelf ook lezen en niet alleen via diagnose: lukt die import niet, dan
+    # zou een echte alleen-lezenstand anders onopgemerkt blijven.
+    if (os.environ.get("GEHEUGEN_ALLEEN_LEZEN") or "").strip() == "1":
+        return True
     try:
         from diagnose import alleen_lezen
-        return alleen_lezen()
+        if alleen_lezen():
+            return True
     except Exception:
-        # Bij twijfel niets wegschrijven: een gemiste regel in het logboek is
-        # onschuldig, een onterecht afgestreept onderwerp niet.
-        return bool(os.environ.get("TESTRUN"))
+        pass
+    # Staat TESTRUN uitdrukkelijk op 0, dan is dit een echte run. Staat er niets
+    # en zegt diagnose niets, dan bij twijfel niet schrijven: een gemiste regel
+    # in het logboek is onschuldig, een onterecht afgestreept onderwerp niet.
+    return testrun == ""
 
 
 def lees(pad=PAD):

@@ -3853,6 +3853,194 @@ klopt valt op zonder dat iemand ernaar hoeft te zoeken.
 
 ---
 
+## 10i. Afwijkend is niet hetzelfde als ontbrekend — 1 oktober 2026
+
+**Mark:** die bestanden staan gewoon in de lijst; wat gaat er mis?
+
+**Twee verschillende dingen stonden in een zin.** "Niet aanwezig" betekent dat
+het bestand er niet is; dat gold alleen voor aanbod_reeks.py. "Andere inhoud"
+betekent dat het er wel staat maar anders is dan de paklijst, en dat gold voor
+vijf bestanden.
+
+En bij die vijf zit nog een onderscheid dat de melding niet maakte. Vier ervan
+heb ik die dag gewijzigd en wachten op een upload. Maar
+bekendmakingen_nijmegen.py heb ik deze sessie niet aangeraakt; daar is
+waarschijnlijk mijn kopie de oude en niet die van Mark. Dat is dezelfde
+situatie als bij ov_haltes.py, dat we daarom uit de paklijst hebben gehaald.
+
+**De melding noemt nu de datum van het bestand in de repo.** Is die nieuwer dan
+de paklijst, dan is de paklijst oud en hoeft er aan dat bestand niets te
+gebeuren. Dat scheelt een upload die niets oplost en een zoektocht naar een
+fout die er niet is.
+
+**En de paklijst zelf noemt zijn eigen datum**, zodat je die twee kunt
+vergelijken zonder het bestand te openen.
+
+---
+
+## 10j. Het rapport is voor Claude, niet voor Mark — 1 oktober 2026
+
+**Mark:** het gezondheidsrapport hoef ik niet te begrijpen; als jij maar weet
+wat er staat. Ik plak het direct in de chat.
+
+Dat verandert het ontwerp. De adviesregels onder elke melding zijn geschreven
+voor iemand die zonder context moet kunnen handelen. Als de lezer Claude is,
+hoeft er niet bij te staan wat "505 geplakt, 0 uit de mail" betekent of wat
+eraan te doen valt; dat volgt uit de regel zelf.
+
+**De adviesregels zijn uit het korte blok gehaald.** Dat scheelt ruwweg een
+derde van wat er vanaf een telefoon gekopieerd moet worden, en bij een rapport
+met veel meldingen loopt dat snel op. De uitleg blijft staan in het volledige
+rapport in het digestbestand, voor als iemand het zonder context moet lezen.
+
+**Wat er in het korte blok blijft:** de telling, een regel per melding met het
+bewijs, de Stand met de tellers die groeien, en wat er is veranderd sinds de
+vorige run. Dat is alles wat nodig is om te zien of er iets aan de hand is, en
+genoeg om samen te analyseren.
+
+---
+
+## 10k. De bestandsdatum zei niets — 2 oktober 2026
+
+Gisteren zette ik de datum van het bestand bij een afwijking, zodat te zien zou
+zijn of de paklijst oud was of het bestand. In het rapport van vanochtend staan
+alle vijf de afwijkende bestanden op 02-10 06:39: dat is het moment waarop
+GitHub de repo uitcheckt. In een workflow heeft elk bestand dezelfde tijd,
+ongeacht wanneer de inhoud is geschreven. Die hint is dus weg.
+
+**Wat er in plaats daarvan geldt:** blijft een bestand afwijken nadat het is
+geuploud, dan is de paklijst achter en moet die ververst worden. Dat is de
+enige conclusie die de vingerafdruk zelf kan dragen.
+
+**En dat is hier ook het geval.** Mijn kopie van alle zes de genoemde bestanden
+is identiek aan de paklijst, dus de paklijst klopt met wat ik lever. Blijven ze
+in de repo afwijken, dan is daar iets anders geuploud dan wat ik heb
+meegegeven.
+
+**Twee getallen uit dit rapport om in de gaten te houden:** 5 panden nog nooit
+nagekeken, na nul gisteren, en 224 zonder pand-id tegen 188. Nieuwe panden
+komen binnen via het archief en wachten op de eerstvolgende volledige ronde, en
+dat is sinds vanochtend de weekeditie. Dat verklaart de eerste; de tweede niet,
+want zonder volledige ronde kan die groep niet groeien. Daar wil ik het logboek
+van de geschiedenisstap bij zien.
+
+---
+
+## 10l. Afkortingen de eerste keer voluit — 2 oktober 2026
+
+**Mark:** wat betekent BOPA? Schrijf afkortingen altijd voluit met de afkorting
+tussen haakjes erachter.
+
+Terecht. De brief van 2 oktober opende met "een BOPA-besluit" zonder uitleg,
+terwijl een eerdere brief dezelfde term wel had toegelicht. Zo moet pa per
+brief maar hopen dat het er toevallig bij staat.
+
+**De regel staat nu in de opdracht**, en de voluitschrijvingen staan in
+bronnen.py zodat de brief ze niet zelf verzint en ze overal hetzelfde zijn.
+Zeventien stuks: BOPA is buitenplanse omgevingsplanactiviteit, en verder onder
+meer WWS, BAG, Bbl, VvE, WOZ, OZB, ISDE, SVOH, EPBD, NAR, BAR, LTV en COROP.
+Die lijst gaat als blok mee in de opdracht.
+
+**Eén nuance in de regel:** voluit bij het eerste gebruik in die brief, niet
+elke keer opnieuw binnen dezelfde brief. En nooit een afkorting gebruiken die
+niet eerst is uitgeschreven, ook niet als pa hem vorige week heeft gelezen.
+
+**Een foutje bij het inbouwen:** de lijst werd tussen twee f-strings gezet
+zonder plusteken, waardoor het bestand niet meer te lezen was. Gevonden met de
+syntaxcontrole voordat het de repo in ging; dat is precies waarom die controle
+na elke wijziging draait.
+
+---
+
+## 10m. Een achtergrondstuk over de BOPA — 2 oktober 2026
+
+Negenentwintig stukken nu. De kern voor ons: een BOPA is de route zodra het
+omgevingsplan iets niet toestaat, en bij splitsen en verkameren is dat in
+Nijmegen vaak het geval.
+
+**Het toetsingskader is er maar een:** een evenwichtige toedeling van functies
+aan locaties, artikel 8.0a van het Besluit kwaliteit leefomgeving. Dat is geen
+lijst met voorwaarden maar een afweging, en daarom weegt de onderbouwing van de
+gevolgen voor de omgeving zwaar.
+
+**Twee dingen die een plan kunnen laten stuklopen en die niet over de inhoud
+gaan.** Het bindend adviesrecht van de gemeenteraad: voor categorieen die de
+raad zelf heeft aangewezen moet die eerst adviseren, en het college mag daarvan
+niet afwijken. In de praktijk een instemmingsrecht. En participatie: niet
+verplicht tenzij de raad die categorie heeft aangewezen, maar bij de aanvraag
+moet je wel opgeven of en hoe je de buren hebt betrokken, en een dossier met een
+gedragen omgevingsdialoog staat bij bezwaar steviger.
+
+**Termijnen:** acht weken, eenmalig te verlengen met zes, plus vier weken als
+een ander bestuursorgaan moet instemmen. In aangewezen gevallen de uitgebreide
+procedure van zesentwintig weken.
+
+**En een gevolg dat verder reikt dan het pand zelf:** een BOPA zonder einddatum
+moet de gemeente binnen vijf jaar in het omgevingsplan verwerken. Een verleende
+BOPA in een straat is dus niet alleen een precedent maar op termijn ook een
+wijziging van de regels zelf.
+
+**Bij het testen koos de keuzelogica eerst het stuk over splitsen**, omdat dat
+woord zwaarder weegt dan de afkorting. Met "bopa-besluit" en "afwijken van het
+omgevingsplan" als meerwoordige trefwoorden kiest hij nu het juiste stuk.
+
+---
+
+## 10n. Het logboek was gebouwd maar nooit aangeroepen — 2 oktober 2026
+
+De run van 09:51 was een echte, TESTRUN stond op 0 en de brief ging naar pa.
+Juist daardoor viel op dat het logboek leeg bleef: ik had brief_logboek.py
+gebouwd maar nergens aangeroepen. Een module die niemand aanroept doet precies
+niets, en dat was in het rapport niet te zien omdat de melding "nog geen
+logboek" ook klopt als er nooit iets geschreven wordt.
+
+**Nu legt de brief na afloop vast wat hij heeft behandeld en wat er nog meer
+lag.** De kandidaten komen uit de bekendmakingen en de publicaties van die dag;
+een onderwerp geldt als behandeld wanneer er genoeg kenmerkende woorden van in
+de brief terugkomen, zoals een adres of een straatnaam. Dat is grof, maar het
+alternatief is de brief laten opgeven wat hij heeft gedaan, en dat is minder
+betrouwbaar dan ernaar kijken.
+
+Getest: van vier onderwerpen werd het besluit aan de Biezenstraat als behandeld
+herkend en de andere drie als blijven liggen. En met TESTRUN aan wordt er niets
+weggeschreven, zoals Mark als harde eis stelde.
+
+**Een les over de volgorde van bouwen:** een nieuwe module hoort in dezelfde
+beweging te worden aangeroepen als hij wordt geschreven. Anders staat er een
+melding in het rapport die klopt om de verkeerde reden, en dat kostte hier een
+dag.
+
+---
+
+## 10o. De testrun schreef toch in het logboek — 2 oktober 2026
+
+In de testrun van 10:16 sloeg "Logboek van de brief" om naar OK. Dat kon niet
+kloppen: TESTRUN stond op 1, en Marks harde eis was dat een testrun daar niets
+schrijft.
+
+**Oorzaak:** de bescherming hangt aan GEHEUGEN_ALLEEN_LEZEN, en die variabele
+wordt in de workflow alleen in de marktprijzenstap gezet. In de briefstap vroeg
+mijn controle netjes aan diagnose of dit een testrun was, kreeg "nee" terug, en
+schreef weg.
+
+**Twee dingen aangepast, allebei nodig.** De workflow zet de variabele nu bij
+de bron, in dezelfde stap waar TESTRUN wordt bepaald, zodat elke stap hem ziet.
+En het logboek kijkt zelf naar alle drie de signalen: TESTRUN,
+GEHEUGEN_ALLEEN_LEZEN en diagnose. Staat TESTRUN uitdrukkelijk op 0, dan is het
+een echte run; staat er niets en zegt diagnose niets, dan wordt er niet
+geschreven.
+
+**Wat dit zegt over de eerdere fout van deze week:** op 28 september streepten
+testruns de artikelen af, en dat is toen opgelost in de marktprijzenstap. De
+bescherming is daar blijven hangen in plaats van jobbreed te worden gezet, en
+elke nieuwe stap erft dat gat. Daarom staat hij nu bij de bron.
+
+**De regel die de testrun van vandaag heeft weggeschreven blijft staan.** Hij
+draagt de datum van vandaag en wordt door de eerstvolgende echte brief van
+dezelfde dag overschreven; daarna loopt het logboek zuiver.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
