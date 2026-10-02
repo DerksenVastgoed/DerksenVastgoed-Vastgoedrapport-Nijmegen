@@ -876,3 +876,10 @@ St. Annastraat | Nijmegen | 795 | te huur kamer | 2026-10-01 | kamernet-incl | 2
 # Automatisch toegevoegd uit Funda-attendering op 01-10-2026
 Graafseweg | Nijmegen | 835 | te huur kamer | 2026-10-01 | kamernet-incl | 20 | 
 Balistraat | Nijmegen | 782 | te huur kamer | 2026-10-01 | kamernet-incl | 12 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 02-10-2026
+Doddendaal 10 | Nijmegen | 325000 | te koop | 2026-10-02 |  | 70 | 6511DE
+Sumatraplein 86 | Nijmegen | 385000 | te koop | 2026-10-02 |  | 72 | 6524KH
+Sumatraplein 36 | Nijmegen | 325000 | te koop | 2026-10-02 |  | 51 | 6524KH
+Jan de Wittstraat 4 | Nijmegen | 399000 | te koop | 2026-10-02 |  | 79 | 6512EJ
+Tulpstraat 10 | Nijmegen | 369000 | te koop | 2026-10-02 |  | 75 | 6542XN

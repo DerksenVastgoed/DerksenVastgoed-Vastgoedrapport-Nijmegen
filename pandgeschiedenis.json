@@ -19674,6 +19674,18 @@
   ],
   "pand_id": "0268100000009337"
  },
+ "doddendaal10": {
+  "adres": "Doddendaal 10",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €325.000, 70 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "doddendaal101": {
   "adres": "Doddendaal 101",
   "bag_eenheden": [
@@ -43773,6 +43785,18 @@
    "Jacob Canisstraat 98": "C"
   },
   "pand_id": "0268100000002077"
+ },
+ "jandewittstraat4": {
+  "adres": "Jan de Wittstraat 4",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €399.000, 79 m2"
+   }
+  ],
+  "pand_id": null
  },
  "jandewittstraat6": {
   "adres": "Jan de Wittstraat 6",
@@ -93277,6 +93301,18 @@
   },
   "pand_id": "0268100000002849"
  },
+ "sumatraplein36": {
+  "adres": "Sumatraplein 36",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €325.000, 51 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "sumatraplein46": {
   "adres": "Sumatraplein 46",
   "bag_eenheden": [
@@ -94023,6 +94059,18 @@
    "Sumatraplein 86": "D"
   },
   "pand_id": "0268100000028957"
+ },
+ "sumatraplein86": {
+  "adres": "Sumatraplein 86",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €385.000, 72 m2"
+   }
+  ],
+  "pand_id": null
  },
  "sumatrastraat22": {
   "adres": "Sumatrastraat 22",
@@ -96567,6 +96615,18 @@
    }
   ],
   "pand_id": "0268100000003494"
+ },
+ "tulpstraat10": {
+  "adres": "Tulpstraat 10",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop voor €369.000, 75 m2"
+   }
+  ],
+  "pand_id": null
  },
  "tulpstraat12": {
   "adres": "Tulpstraat 12",

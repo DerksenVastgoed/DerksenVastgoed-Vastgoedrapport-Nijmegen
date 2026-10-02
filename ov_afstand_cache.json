@@ -199,6 +199,14 @@
   "omweg": 1.13,
   "soort": "bus"
  },
+ "51.83635,5.86491": {
+  "geschat": false,
+  "hemelsbreed": 302,
+  "meters": 612,
+  "naam": "Fransestraat",
+  "omweg": 2.03,
+  "soort": "bus"
+ },
  "51.83647,5.85902": {
   "geschat": false,
   "hemelsbreed": 372,
@@ -343,6 +351,14 @@
   "omweg": 2.7,
   "soort": "bus"
  },
+ "51.83906,5.84710": {
+  "geschat": false,
+  "hemelsbreed": 317,
+  "meters": 448,
+  "naam": "Rozenstraat",
+  "omweg": 1.41,
+  "soort": "bus"
+ },
  "51.83907,5.87120": {
   "geschat": false,
   "hemelsbreed": 160,
@@ -453,6 +469,14 @@
   "meters": 565,
   "naam": "Centraal Station",
   "omweg": 1.64,
+  "soort": "bus"
+ },
+ "51.84039,5.85724": {
+  "geschat": false,
+  "hemelsbreed": 344,
+  "meters": 543,
+  "naam": "Centraal Station",
+  "omweg": 1.58,
   "soort": "bus"
  },
  "51.84044,5.87855": {
@@ -861,6 +885,14 @@
   "meters": 56,
   "naam": "Plein 1944",
   "omweg": 1.22,
+  "soort": "bus"
+ },
+ "51.84621,5.86148": {
+  "geschat": false,
+  "hemelsbreed": 13,
+  "meters": 13,
+  "naam": "Plein 1944",
+  "omweg": 1.0,
   "soort": "bus"
  },
  "51.84623,5.84779": {

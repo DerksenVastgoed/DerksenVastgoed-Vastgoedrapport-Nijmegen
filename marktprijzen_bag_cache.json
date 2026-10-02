@@ -71171,5 +71171,795 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Doddendaal 10|Nijmegen": {
+    "oppervlakte": 70,
+    "bouwjaar": "1951",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511DE",
+    "adresseerbaarObjectIdentificatie": "0268010000076318",
+    "pand": "0268100000020654",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-6f65563c8c8e10abced8bb541d2d7411",
+    "eenheden_in_pand": [
+      {
+        "adres": "Doddendaal 6",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 8",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 10",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 12",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 14",
+        "oppervlakte": 59,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Doddendaal 16",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 53",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 54",
+        "oppervlakte": 102,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 55",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 56",
+        "oppervlakte": 102,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 57",
+        "oppervlakte": 54,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 58",
+        "oppervlakte": 102,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 59",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 60",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 61",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 62",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 63",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 64",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 65",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 66",
+        "oppervlakte": 97,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 67",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 68",
+        "oppervlakte": 97,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 69",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Plein 1944 70",
+        "oppervlakte": 97,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 69,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2020-12-15",
+      "geldig_tot": "2030-12-15",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Sumatraplein 86|Nijmegen": {
+    "oppervlakte": 72,
+    "bouwjaar": "1977",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KH",
+    "adresseerbaarObjectIdentificatie": "0268010000032224",
+    "pand": "0268100000028957",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-560f9d92eb6b9988fe7f0a0a06594ef3",
+    "eenheden_in_pand": [
+      {
+        "adres": "Sumatraplein 28",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 30",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 32",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 34",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 36",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 38",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 40",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 42",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 44",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 46",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 48",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 50",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 52",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 54",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 56",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 58",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 60",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 62",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 64",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 66",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 68",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 70",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 72",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 74",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 76",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 78",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 80",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 82",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 84",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 86",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 80,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-09-15",
+      "geldig_tot": "2036-09-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Sumatraplein 36|Nijmegen": {
+    "oppervlakte": 51,
+    "bouwjaar": "1977",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KH",
+    "adresseerbaarObjectIdentificatie": "0268010000031396",
+    "pand": "0268100000028957",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-ed4cc459b24001edbaa12f42fe7c5757",
+    "eenheden_in_pand": [
+      {
+        "adres": "Sumatraplein 28",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 30",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 32",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 34",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 36",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 38",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 40",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 42",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 44",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 46",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 48",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 50",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 52",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 54",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 56",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 58",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 60",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 62",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 64",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 66",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 68",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 70",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 72",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 74",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 76",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 78",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 80",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 82",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 84",
+        "oppervlakte": 48,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Sumatraplein 86",
+        "oppervlakte": 80,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 48,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2016-12-28",
+      "geldig_tot": "2026-12-28",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Jan de Wittstraat 4|Nijmegen": {
+    "oppervlakte": 79,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EJ",
+    "adresseerbaarObjectIdentificatie": "0268010000055596",
+    "pand": "0268100000011139",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-616f9467c92d8f7a6f7cf59489db6882",
+    "oppervlakte_bag": 108,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2026-07-13",
+      "geldig_tot": "2036-06-30",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Tulpstraat 10|Nijmegen": {
+    "oppervlakte": 75,
+    "bouwjaar": "1921",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542XN",
+    "adresseerbaarObjectIdentificatie": "0268010000033449",
+    "pand": "0268100000015469",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-7ff5bca3bde6a48384fe951d1e475d6d",
+    "oppervlakte_bag": 99,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "D",
+      "registratiedatum": "2026-09-03",
+      "geldig_tot": "2036-08-31",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }
