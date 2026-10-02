@@ -1,0 +1,175 @@
+{
+ "beijensstraat4a": {
+  "adres": "Beijensstraat 4-A",
+  "bron": "https://hestia.nl/object/beijensstraat-4-2/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 295000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2023-11-29",
+  "zeker": "midden"
+ },
+ "boomvalkstraat18": {
+  "adres": "Boomvalkstraat 18",
+  "bron": "https://buurtje.nl/en/studio/boomvalkstraat-18-nijmegen/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 275000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-08-10",
+  "zeker": "midden"
+ },
+ "burghustinxstraat140": {
+  "adres": "Burg. Hustinxstraat 140",
+  "bron": "https://kadastralekaart.com/adres/nijmegen-burg-hustinxstraat-140/0268200000003446",
+  "herkomst": "model met webzoeken",
+  "opgehaald": "2026-10-02",
+  "verkocht_op": "2014-10-01",
+  "zeker": "midden"
+ },
+ "doddendaal117": {
+  "adres": "Doddendaal 117",
+  "bron": "https://huispedia.nl/nijmegen/6511dd/doddendaal/117",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 500000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-07-02",
+  "zeker": "midden"
+ },
+ "eilbrachtstraat6": {
+  "adres": "Eilbrachtstraat 6",
+  "bron": "https://kadastralekaart.com/adres/nijmegen-eilbrachtstraat-6/0268200000006970 en https://www.inbeeldmakelaardij.nl/woningaanbod",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 325000,
+  "opgehaald": "2026-10-02",
+  "verkocht_op": "2025-04-22",
+  "zeker": "midden"
+ },
+ "hertogstraat32": {
+  "adres": "Hertogstraat 32",
+  "bron": "https://huispedia.nl/nijmegen/6511sb/hertogstraat/32",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 365000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-06-06",
+  "zeker": "midden"
+ },
+ "jandewittstraat6": {
+  "adres": "Jan de Wittstraat 6",
+  "bron": "https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listing/77e879de-6635-5972-aba4-e97c1143f6ab",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 219000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2025-08-02",
+  "verkocht_op": "2026-03-23",
+  "zeker": "midden"
+ },
+ "krayenhofflaan281": {
+  "adres": "Krayenhofflaan 281",
+  "bron": "https://huispedia.nl/nijmegen/6541ps/krayenhofflaan/281",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 365000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-07-17",
+  "zeker": "midden"
+ },
+ "mariënburg20": {
+  "adres": "Mariënburg 20",
+  "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 575000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2025-01-24",
+  "verkocht_op": "2025-03-12",
+  "zeker": "hoog"
+ },
+ "ninasimonestraat124": {
+  "adres": "Nina Simonestraat 124",
+  "bron": "https://buurtje.nl/en/apartment/nina-simonestraat-124-nijmegen/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 425000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-07-17",
+  "zeker": "laag"
+ },
+ "oudenonnendaalseweg194": {
+  "adres": "Oude Nonnendaalseweg 194",
+  "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-oude-nonnendaalseweg-194/44468346/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 675000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-05-22",
+  "zeker": "midden"
+ },
+ "pontanusstraat19": {
+  "adres": "Pontanusstraat 19",
+  "bron": "https://www.funda.nl/detail/koop/nijmegen/appartement-pontanusstraat-19/44507093/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 539000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-09-15",
+  "zeker": "midden"
+ },
+ "smetiusstraat4d": {
+  "adres": "Smetiusstraat 4-D",
+  "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 189000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2024-06-08",
+  "verkocht_op": "2024-07-08",
+  "zeker": "hoog"
+ },
+ "ststephanusstraat13": {
+  "adres": "St. Stephanusstraat 13",
+  "bron": "https://drimble.nl/adres/nijmegen/6512HM/st-stephanusstraat-13.html",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 360000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2016-05-25",
+  "zeker": "midden"
+ },
+ "tweedeoudeheselaan368": {
+  "adres": "Tweede Oude Heselaan 368",
+  "bron": "https://huispedia.nl/nijmegen/6542vj/tweede-oude-heselaan/368",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 500000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-08-26",
+  "zeker": "midden"
+ },
+ "vondelstraat26": {
+  "adres": "Vondelstraat 26",
+  "bron": "https://huispedia.nl/nijmegen/6512bg/vondelstraat/26",
+  "herkomst": "model met webzoeken",
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2015-01-23",
+  "verkocht_op": "2015-07-29",
+  "zeker": "midden"
+ },
+ "vondelstraat63": {
+  "adres": "Vondelstraat 63",
+  "bron": "https://www.funda.nl/detail/koop/nijmegen/appartement-vondelstraat-63/44414294/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 495000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-07-02",
+  "zeker": "laag"
+ },
+ "waalkade35": {
+  "adres": "Waalkade 35",
+  "bron": "https://www.pararius.nl/appartement-te-koop/nijmegen/71136843/waalkade",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 675000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-01-19",
+  "zeker": "hoog"
+ },
+ "zwaluwstraat54": {
+  "adres": "Zwaluwstraat 54",
+  "bron": "https://www.funda.nl/detail/koop/nijmegen/appartement-zwaluwstraat-54/17281905/ en https://buurtje.nl/appartement/zwaluwstraat-54-nijmegen/",
+  "herkomst": "model met webzoeken",
+  "laatste_vraagprijs": 315000,
+  "opgehaald": "2026-10-02",
+  "te_koop_vanaf": "2026-08-14",
+  "zeker": "hoog"
+ }
+}

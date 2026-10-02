@@ -37,14 +37,14 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html" style="color:#12242c;text-decoration:none">Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">168 m² . label G (2025)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Besluit staat splitsing in twee zelfstandige woningen toe, wat de voorraad kleine zelfstandige units in dit blok vergroot.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Besluit maakt splitsing van één woning met garage naar twee zelfstandige woningen van 168 m² planologisch mogelijk.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-02 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#12242c;text-decoration:none">Besluit voor verlenging vergunning tijdelijk verhuren woonruimte, aan Voorstadslaan 211, 6541SN Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">59 m² . label A+ (2024)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke verhuur wijst op overbrugging richting verkoop of verbouwing op termijn.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlengde tijdelijke verhuur van 59 m² wijst op voortgezette overbrugging, het pand komt vooralsnog niet structureel op de markt.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-09-30 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-456410.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -63,7 +63,7 @@ _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html" style="color:#12242c;text-decoration:none">Besluit (met BOPA) voor Verlengen vergunning (5Jaar) tbv tijdelijke overkappingen, aan Vondelstraat 5, 6512BB Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">974 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke overkappingen wijzigt het gebruik niet structureel en raakt de woningmarkt niet.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Verlenging van tijdelijke overkappingen op 974 m² betreft een bouwkundige voorziening zonder impact op de woningvoorraad.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-02 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -89,7 +89,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html" style="color:#12242c;text-decoration:none">Besluit voor het herstellen voegwerk van de voorgevel aan Johannes Vijghstraat 5, 6524BN Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">182 m² . label E (2020)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Herstel van voegwerk aan de gevel verbetert de buitenschil, wat kan bijdragen aan toekomstige labelverbetering.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Herstel van voegwerk verbetert de gevel bouwkundig, maar het label E uit 2020 verandert pas na een nieuwe opname.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-02 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 

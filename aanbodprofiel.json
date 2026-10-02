@@ -6,12 +6,12 @@
   "mediane_ppm2": 5151,
   "labels": {
    "A en B": 29,
-   "C en D": 25,
-   "E tot G": 6
+   "C en D": 29,
+   "E tot G": 7
   },
-  "label_bekend": 60,
-  "label_onbekend": 5,
-  "in_complex": 30,
+  "label_bekend": 65,
+  "label_onbekend": 0,
+  "in_complex": 33,
   "vanaf": "2026-09-02",
   "tot": "2026-10-03"
  },
@@ -22,12 +22,12 @@
   "mediane_ppm2": 5151,
   "labels": {
    "A en B": 29,
-   "C en D": 25,
-   "E tot G": 6
+   "C en D": 29,
+   "E tot G": 7
   },
-  "label_bekend": 60,
-  "label_onbekend": 5,
-  "in_complex": 30,
+  "label_bekend": 65,
+  "label_onbekend": 0,
+  "in_complex": 33,
   "vanaf": "2025-10-02",
   "tot": "2026-10-03"
  },
