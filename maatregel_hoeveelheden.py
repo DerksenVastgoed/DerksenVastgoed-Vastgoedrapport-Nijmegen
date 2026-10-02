@@ -111,6 +111,42 @@ def indexeer(bedrag, peildatum):
             "reden": f"CBS-bouwkostenindex, {factor:.3f} sinds {peildatum}"}
 
 
+def scheidingswand_hoeveelheden(m2_wand, hoogte=2.6):
+    """
+    Een scheidingswand voor het maken van kamers, met twee afgewerkte zijden.
+
+    Opbouw: gips, OSB 18 mm, isolatie tussen de balken, OSB 18 mm, gips, en aan
+    beide kanten stucwerk. Het grote verschil met een voorzetwand is dat alles
+    behalve het frame en de isolatie dubbel telt: twee lagen OSB, twee lagen
+    gips en twee keer stuken. Er is geen dampremmende folie nodig, want de wand
+    grenst niet aan de buitenlucht, en er hoeft niets gesloopt te worden.
+
+    m2_wand is het oppervlak van de wand, dus een zijde. Bij 10 m2 wand komt er
+    20 m2 plaatwerk en 20 m2 stucwerk.
+    """
+    if not m2_wand or m2_wand <= 0:
+        return None
+    breedte = m2_wand / hoogte
+    stijlen = breedte / HOH + 1
+    return {
+        "muur_m2": round(m2_wand, 1),
+        "hoogte_m": hoogte,
+        "stijlen_stuks": round(stijlen, 1),
+        "hout_m1": round(stijlen * hoogte + breedte * 2, 1),
+        "isolatie_m2": round(m2_wand * (1 - HOUTAANDEEL)
+                             * (1 + SNIJVERLIES_ISOLATIE), 1),
+        "osb_m2": round(m2_wand * 2 * (1 + SNIJVERLIES_PLAAT), 1),
+        "gipsplaat_m2": round(m2_wand * 2 * (1 + SNIJVERLIES_PLAAT), 1),
+        "stucwerk_m2": round(m2_wand * 2, 1),
+        "zijden": 2,
+        "let_op": ("een scheidingswand tussen wooneenheden moet voldoen aan de "
+                   "eisen voor geluid en brandwerendheid uit het Besluit "
+                   "bouwwerken leefomgeving; of deze opbouw dat haalt, hangt af "
+                   "van de dikte en het soort isolatie en hoort te worden "
+                   "nagegaan voordat er wordt gebouwd"),
+    }
+
+
 def lees_prijzen(pad="materiaalprijzen.txt"):
     """
     Eigen prijzen per eenheid. Formaat per regel: post | prijs | eenheid.

@@ -902,19 +902,6 @@ def bewaar_prijspeil(per_buurt, stad_breed):
     return historie
 
 
-# Hoeveel mag het aantal waarnemingen verschillen voordat twee medianen niet
-# meer over dezelfde groep panden gaan? Bij een factor anderhalf is meer dan een
-# derde van de groep anders, en dan meet je vooral wie erbij kwam.
-MAX_GROEPSFACTOR = 1.5
-
-
-def vergelijkbare_groep(n_toen, n_nu):
-    """Gaan twee medianen over een vergelijkbaar grote groep waarnemingen?"""
-    if not n_toen or not n_nu:
-        return False
-    return max(n_toen, n_nu) / min(n_toen, n_nu) <= MAX_GROEPSFACTOR
-
-
 def trendregel(buurt, historie):
     """Hoe staat deze buurt er nu voor ten opzichte van eerder?"""
     weken = sorted(w for w in historie if not w.startswith("_"))
@@ -923,21 +910,18 @@ def trendregel(buurt, historie):
     nu = historie[weken[-1]].get(buurt)
     if not nu:
         return ""
-    # Alleen vier weken of een kwartaal terug, en alleen als de groep panden
-    # vergelijkbaar groot is. De oude terugval op "sinds de oudste meting" gaf
-    # op 1 oktober +8,9% voor Bottendaal over tweeenhalve week, terwijl het
-    # aantal waarnemingen in die tijd van 11 naar 78 ging door de geplakte
-    # verkopen. Dat is een andere groep panden, geen prijsbeweging.
-    n_nu = (historie[weken[-1]].get("_n") or {}).get(buurt)
+    # Vergelijk met de oudste meting die we hebben, en met vier weken terug
     stukken = []
     for terug, label in ((4, "vier weken"), (13, "een kwartaal")):
         if len(weken) > terug and historie[weken[-1 - terug]].get(buurt):
-            n_toen = (historie[weken[-1 - terug]].get("_n") or {}).get(buurt)
-            if not vergelijkbare_groep(n_toen, n_nu):
-                continue
             toen = historie[weken[-1 - terug]][buurt]
             pct = (nu - toen) / toen * 100
             stukken.append(f"{pct:+.1f}".replace(".", ",") + f"% in {label}")
+    oudste = historie[weken[0]].get(buurt)
+    if oudste and not stukken:
+        pct = (nu - oudste) / oudste * 100
+        stukken.append(f"{pct:+.1f}".replace(".", ",")
+                       + f"% sinds {historie[weken[0]].get('_datum', weken[0])}")
     if stukken:
         # De mediaan verschuift ook als er andere panden bijkomen of afgaan. Een
         # lagere mediaan is dus niet hetzelfde als een lagere prijs.

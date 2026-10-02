@@ -159,11 +159,7 @@ def uit_verkopen(geschiedenis):
                                   + (" (inclusief servicekosten)"
                                      if "incl" in (r.get("bron") or "") else ""),
                                   r.get("bron") or "aanbod")
-            # Ook "verkocht onder voorbehoud". Met een exacte vergelijking viel
-            # van Oldenbarneveltstraat 61-B buiten het patroon, terwijl het
-            # verkochtblok hem wel toonde; de brief noemde hem dan zonder dat de
-            # volgorde was nagegaan.
-            elif r["status"].startswith("verkocht"):
+            elif r["status"] == "verkocht":
                 # Funda toont de laatste vraagprijs, niet de koopsom; die staat
                 # alleen bij het Kadaster. Zo noemen we het dus ook.
                 # Uit een geplakte lijst kennen we de verkoopdatum niet; dan
@@ -171,7 +167,7 @@ def uit_verkopen(geschiedenis):
                 # tijdlijn op bouwt.
                 zonder_datum = "plak" in (r.get("bron") or "")
                 nieuw += voeg_toe(pand, r["datum"], "verkocht",
-                                  r["status"] + ", laatste vraagprijs "
+                                  "verkocht, laatste vraagprijs "
                                   + f"€{r['prijs']:,}".replace(",", ".")
                                   + (f", {r['opp']} m2" if r["opp"] else "")
                                   + (" (verkoopdatum onbekend; uit een geplakte "
@@ -659,51 +655,6 @@ def straatprofiel_tekst(profiel):
     return r
 
 
-def volgorde(pand, besluit_datum):
-    """
-    Was het pand na het besluit nog te koop? Dan is het ook na het besluit
-    verkocht. Dat is geen schatting: wie op die dag nog te koop stond, was nog
-    niet verkocht.
-
-    Alleen waarnemingen uit het aanbod tellen, met hun eigen datum. Een
-    geplakte verkoop draagt de datum van het plakken en zegt hier niets.
-    """
-    te_koop = sorted(g["datum"] for g in pand["gebeurtenissen"]
-                     if g["soort"] in ("te koop", "prijswijziging")
-                     and g.get("bron") == "aanbod")
-    na = [d for d in te_koop if d > besluit_datum]
-    if na:
-        return (f"verkocht na het besluit: op {na[-1]} stond het nog te koop, "
-                f"het besluit is van {besluit_datum}")
-    if te_koop:
-        return (f"volgorde onbekend: te koop gezien op {te_koop[0]}, voor het "
-                f"besluit van {besluit_datum}; wanneer het verkocht is weten we niet")
-    return ("volgorde onbekend: nooit door ons te koop gezien, alleen als "
-            "verkocht in een geplakte lijst")
-
-
-def ontdubbel_verkocht(geschiedenis):
-    """
-    Een verkoop die dubbel staat: een keer met en een keer zonder de
-    kanttekening dat de datum onbekend is. De versie zonder kanttekening stamt
-    uit een oudere run en laat de brief een verkoopdatum noemen die we niet
-    hebben. Dezelfde dag en dezelfde vraagprijs is dezelfde verkoop.
-    """
-    weg = 0
-    for pand in geschiedenis.values():
-        verkocht = [g for g in pand["gebeurtenissen"] if g["soort"] == "verkocht"]
-        met_noot = {(g["datum"], g["tekst"].split(" (verkoopdatum")[0])
-                    for g in verkocht if "verkoopdatum onbekend" in g["tekst"]}
-        voor = len(pand["gebeurtenissen"])
-        pand["gebeurtenissen"] = [
-            g for g in pand["gebeurtenissen"]
-            if not (g["soort"] == "verkocht"
-                    and "verkoopdatum onbekend" not in g["tekst"]
-                    and (g["datum"], g["tekst"]) in met_noot)]
-        weg += voor - len(pand["gebeurtenissen"])
-    return weg
-
-
 def vergund_en_verkocht(geschiedenis):
     """
     Panden met een besluit over splitsen of verkameren die inmiddels verkocht
@@ -735,10 +686,9 @@ def vergund_en_verkocht(geschiedenis):
         verkoop = [g for g in pand["gebeurtenissen"] if g["soort"] == "verkocht"]
         uit.append({
             "adres": pand.get("adres"),
-            "besluit": besluiten[-1]["tekst"][:160],
+            "besluit": besluiten[-1]["tekst"][:120],
             "besluit_datum": besluiten[-1]["datum"],
-            "verkoop": verkoop[-1]["tekst"][:120] if verkoop else "",
-            "volgorde": volgorde(pand, besluiten[-1]["datum"]),
+            "verkoop": verkoop[-1]["tekst"][:80] if verkoop else "",
             "makelaar": (details.get(sleutel(pand.get("adres") or "")) or {}
                          ).get("makelaar"),
         })
@@ -896,22 +846,10 @@ def main():
         # "nog nooit nagekeken" eeuwig op hetzelfde getal staan.
         n_b, ronde = bij_bag(geschiedenis, alleen_gevolgd=False)
         n_l = bij_labels(geschiedenis, ronde)
-    n_dubbel = ontdubbel_verkocht(geschiedenis)
-    if n_dubbel:
-        print(f"Dubbele verkopen opgeruimd: {n_dubbel}", file=sys.stderr)
     bewaar(geschiedenis)
     # Het patroon vergund-en-verkocht apart wegschrijven, zodat de brief het
     # kan noemen zonder het zelf uit de lijsten te hoeven vissen.
     patroon = vergund_en_verkocht(geschiedenis)
-    # Wat er gisteren al stond, is vandaag geen nieuws. Wat er nieuw bij komt,
-    # mag de brief openen.
-    try:
-        with open("vergund_verkocht.json", encoding="utf-8") as f:
-            eerder = {p.get("adres") for p in json.load(f).get("panden", [])}
-    except Exception:
-        eerder = None
-    for p in patroon:
-        p["nieuw"] = eerder is not None and p.get("adres") not in eerder
     try:
         with open("vergund_verkocht.json", "w", encoding="utf-8") as f:
             json.dump({"datum": dt.date.today().isoformat(),

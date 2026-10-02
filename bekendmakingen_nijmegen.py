@@ -112,14 +112,9 @@ OVER ENERGIELABELS, want hier gaat het vaak mis:
 - Een energielabel is tien jaar geldig vanaf de opnamedatum. Een label uit 2024 loopt dus tot 2034 en hoeft niet "behouden" te worden.
 - Isolatie, nieuwe kozijnen, glas of een warmtepomp VERBETEREN het label. Schrijf nooit dat zo'n ingreep het label behoudt.
 - Een verbetering telt pas mee zodra er een nieuwe opname is; zonder nieuwe registratie verandert het label niet.
-- Een beter label geeft meer WWS-punten en dus een hogere maximale huur; een slechter label minder. Schrijf nooit dat punten bij een laag label "zwaarder tellen".
+- "Bij label E telt verkamering zwaarder mee in de WWS-punten dan bij label A, wat de maximale huur beperkt."
 - "Rijksmonument: ingrepen zijn vergunningplichtig, wat splitsen trager en duurder maakt."
-
-GEEN VOORSPELLING OVER DE EIGENAAR. Wat een eigenaar van plan is, weten we niet. Schrijf dus nooit dat iets "wijst op" overbrugging, verkoop of een verbouwing, of dat een pand "op termijn op de markt komt". Beschrijf wat het besluit mogelijk maakt, niet wat iemand gaat doen.
-
-DE OPPERVLAKTE IS VAN HET BESTAANDE PAND. Het veld oppervlakte_bestaand_pand_bag_m2 is de huidige oppervlakte volgens de BAG, niet de omvang van de aanvraag. Schrijf dus nooit "dakopbouw op 140 m2" of "extra verdieping van 204 m2".
-
-GEEN EXTRA WONING TENZIJ DE TITEL HET ZEGT. Een dakopbouw of extra verdieping is meer vloeroppervlak. Noem een extra woning of wooneenheid alleen als de titel splitsen, omzetten naar woningen of woningvorming noemt. Kies dan ook pas het label splitsen.
+- "Tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn waarschijnlijk op de markt."
 
 OVERIGE REGELS:
 - Geen geografisch commentaar over afstand of ligging. Het filter is al toegepast.
@@ -744,13 +739,6 @@ def verrijk(items: list):
                                     "2013; kan ouder zijn of niet vereist zijn")
         elif verg:
             feiten["vergunning"] = f"op dit adres ligt al een {verg}"
-        # De oppervlakte komt uit de BAG en is die van het bestaande pand. Onder
-        # de kale naam las het model hem als de omvang van de verbouwing.
-        if "oppervlakte_m2" in feiten:
-            feiten["oppervlakte_bestaand_pand_bag_m2"] = feiten.pop("oppervlakte_m2")
-        status = status_van(it.get("titel", ""))
-        if status:
-            feiten = {"status": status, **feiten}
         if feiten:
             feitentekst = ", ".join(f"{k}={v}" for k, v in feiten.items())
             regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: {feitentekst}")
@@ -783,40 +771,8 @@ def verrijk(items: list):
             a = annotaties.get(i, {})
             it["strategie"] = a.get("strategie", "")
             it["gevolg"] = a.get("duiding", "")
-            # Splitsen alleen als de titel het zegt. Een dakopbouw kreeg het
-            # label splitsen en een duiding over een extra woning.
-            if it["strategie"] == "splitsen" and not _SPLITS_WOORDEN.search(
-                    it.get("titel", "")):
-                it["strategie"] = "geen"
-            if _VOORSPELLING.search(it["gevolg"]):
-                print(f"  duiding weggelaten, voorspelt of leest de BAG verkeerd: "
-                      f"{it['gevolg'][:80]}", file=sys.stderr)
-                it["gevolg"] = ""
     except Exception as e:  # noqa
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
-
-
-_SPLITS_WOORDEN = re.compile(r"splits|omzett|omzetten|woningvorming|samenvoeg|"
-                             r"zelfstandige woon|woningen\b|appartementen|"
-                             r"onttrekking", re.I)
-_VOORSPELLING = re.compile(r"wijst (eerder )?op|op termijn|waarschijnlijk|"
-                           r"komt .{0,30}op de markt|ruimte (biedt|geeft) voor een "
-                           r"extra|"
-                           # BAG-oppervlakte gelezen als omvang van de verbouwing
-                           r"(dakopbouw|verdieping|uitbouw|aanbouw|opbouw)\w* "
-                           r"(op|van) (de )?\d+ ?m", re.I)
-
-
-def status_van(titel: str) -> str:
-    """De juridische status, letterlijk uit het begin van de titel."""
-    t = (titel or "").strip().lower()
-    if t.startswith("aanvraag"):
-        return "AANVRAAG, nog niet verleend"
-    if t.startswith("melding"):
-        return "MELDING, geen vergunning"
-    if t.startswith(("besluit", "verleend", "vergunning verleend", "verlening")):
-        return "BESLUIT"
-    return ""
 
 
 def _regel(it: dict) -> str:
@@ -824,11 +780,10 @@ def _regel(it: dict) -> str:
     regel = f"- **{it['datum']}** . {it['titel']} {link}"
 
     feiten = it.get("feiten") or {}
-    status = status_van(it.get("titel", ""))
-    if feiten or status:
-        delen = [status] if status else []
+    if feiten:
+        delen = []
         if feiten.get("oppervlakte_m2"):
-            delen.append(f"bestaand pand {feiten['oppervlakte_m2']} m² (BAG)")
+            delen.append(f"{feiten['oppervlakte_m2']} m²")
         if feiten.get("bouwjaar"):
             delen.append(f"bouwjaar {feiten['bouwjaar']}")
         if feiten.get("m2_per_kamer"):
