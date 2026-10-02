@@ -883,3 +883,6 @@ Sumatraplein 86 | Nijmegen | 385000 | te koop | 2026-10-02 |  | 72 | 6524KH
 Sumatraplein 36 | Nijmegen | 325000 | te koop | 2026-10-02 |  | 51 | 6524KH
 Jan de Wittstraat 4 | Nijmegen | 399000 | te koop | 2026-10-02 |  | 79 | 6512EJ
 Tulpstraat 10 | Nijmegen | 369000 | te koop | 2026-10-02 |  | 75 | 6542XN
+
+# Automatisch toegevoegd uit Funda-attendering op 02-10-2026
+Jonckerhof | Nijmegen | 629 | te huur kamer | 2026-10-02 | kamernet-incl | 16 | 

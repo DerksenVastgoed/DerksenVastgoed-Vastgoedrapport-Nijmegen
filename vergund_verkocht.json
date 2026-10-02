@@ -3,43 +3,35 @@
  "panden": [
   {
    "adres": "Wilhelminasingel 7-B",
-   "besluit": "Besluit voor het omzetten van een kantoorruimte naar een derde zelfstandige woonruimte, aan Wilhelminasingel 7, 6524AH Nijmegen",
+   "besluit": "Besluit voor het omzetten van een kantoorruimte naar een derde zelfstandige woonruimte, aan Wilhelminasingel 7, 6524AH N",
    "besluit_datum": "2026-06-01",
-   "verkoop": "verkocht, laatste vraagprijs €395.000, 84 m2 (verkoopdatum onbekend; uit een geplakte lijst)",
-   "volgorde": "volgorde onbekend: nooit door ons te koop gezien, alleen als verkocht in een geplakte lijst",
+   "verkoop": "verkocht, laatste vraagprijs €395.000, 84 m2 (verkoopdatum onbekend; uit een gep",
    "makelaar": "Level2 Makelaars",
-   "makelaar_aantal": 1,
-   "nieuw": false
+   "makelaar_aantal": 1
   },
   {
    "adres": "Dominicanenstraat 103",
    "besluit": "Besluit voor de omzetting van een woning naar drie zelfstandige woningen, aan Dominicanenstraat 103, 6521KB Nijmegen",
    "besluit_datum": "2026-03-24",
-   "verkoop": "verkocht, laatste vraagprijs €700.000, 221 m2 (verkoopdatum onbekend; uit een geplakte lijst)",
-   "volgorde": "volgorde onbekend: nooit door ons te koop gezien, alleen als verkocht in een geplakte lijst",
+   "verkoop": "verkocht, laatste vraagprijs €700.000, 221 m2 (verkoopdatum onbekend; uit een ge",
    "makelaar": "Hendriks Makelaardij Nijmegen",
-   "makelaar_aantal": 1,
-   "nieuw": false
+   "makelaar_aantal": 1
   },
   {
    "adres": "van Oldenbarneveltstraat 61-B",
-   "besluit": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen",
+   "besluit": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61",
    "besluit_datum": "2025-09-26",
-   "verkoop": "verkocht onder voorbehoud, laatste vraagprijs €235.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)",
-   "volgorde": "volgorde onbekend: nooit door ons te koop gezien, alleen als verkocht in een geplakte lijst",
+   "verkoop": "verkocht onder voorbehoud, laatste vraagprijs €235.000, 34 m2 (verkoopdatum onbe",
    "makelaar": "Stonevest Makelaardij",
-   "makelaar_aantal": 1,
-   "nieuw": false
+   "makelaar_aantal": 1
   },
   {
    "adres": "St. Annastraat 165-C",
    "besluit": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen",
    "besluit_datum": "2025-09-24",
-   "verkoop": "verkocht, laatste vraagprijs €415.000, 55 m2 (verkoopdatum onbekend; uit een geplakte lijst)",
-   "volgorde": "volgorde onbekend: nooit door ons te koop gezien, alleen als verkocht in een geplakte lijst",
+   "verkoop": "verkocht, laatste vraagprijs €415.000, 55 m2 (verkoopdatum onbekend; uit een gep",
    "makelaar": "Kolmeijer makelaars Nijmegen",
-   "makelaar_aantal": 1,
-   "nieuw": false
+   "makelaar_aantal": 1
   }
  ]
 }

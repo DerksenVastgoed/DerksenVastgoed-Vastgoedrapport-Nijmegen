@@ -1,15 +1,13 @@
 # Gezondheidsrapport 2026-10-02
 
-27 in orde, 8 aandachtspunten, 0 fouten.
+28 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-02: 28 gelijk, 5 met andere inhoud, 1 niet aanwezig; andere inhoud dan de paklijst: bekendmakingen_nijmegen.py, maatregel_hoeveelheden.py, marktprijzen_bag.py, pandgeschiedenis.py, rente_verhuurhypotheek.py; niet in de repo: aanbod_reeks.py
-  Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
-- **Geschiedenis per pand**: 1702 panden gevolgd, 825 met meer dan een gebeurtenis; 1473 met BAG-gegevens (13148 woningen), 730 met een energielabel, 5 nog nooit nagekeken, 224 zonder pand-id in de BAG waarvan 1 na drie pogingen opgegeven; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan
+- **Geschiedenis per pand**: 1703 panden gevolgd, 826 met meer dan een gebeurtenis; 1473 met BAG-gegevens (13148 woningen), 730 met een energielabel, 6 nog nooit nagekeken, 224 zonder pand-id in de BAG waarvan 1 na drie pogingen opgegeven; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
-- **Aanbodreeks**: 0 dagen in de reeks
+- **Aanbodreeks**: 1 dagen in de reeks
   Een golf is pas te zien na een paar weken meten. Deze reeks begint nu te lopen.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
@@ -17,11 +15,12 @@
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Logboek van de brief**: nog geen logboek van behandelde onderwerpen
   Vanaf de eerste echte brief wordt hier bijgehouden wat er is verteld en wat bleef liggen. Een testrun schrijft hier niets.
-- **Attenderingen**: laatste ronde 2026-10-02: kamernet: 11 mails, 9 objecten, 2 bewust overgeslagen; pararius: 1 mails, 0 objecten, 1 bewust overgeslagen; regulier: 4 mails, 11 objecten
+- **Attenderingen**: laatste ronde 2026-10-02: kamernet: 12 mails, 10 objecten, 2 bewust overgeslagen; pararius: 1 mails, 0 objecten, 1 bewust overgeslagen; regulier: 4 mails, 11 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Huurdata**: 38 huurwaarnemingen, waarvan 16 Pararius en 22 Kamernet; 26 in de laatste week
+- **Versies**: paklijst van 2026-10-02: 34 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
+- **Huurdata**: 39 huurwaarnemingen, waarvan 16 Pararius en 23 Kamernet; 27 in de laatste week
 - **Aanbod**: 93 koopobjecten, 11 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
 - **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,58% (2026-09-30), opslag bij 70% financiering 1,92 procentpunt
@@ -43,8 +42,8 @@
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
-- **OV-haltes**: 333 haltes, 144 panden gerouteerd
-- **Bekendmakingen-archief**: 328 adressen, 460 publicaties
+- **OV-haltes**: 333 haltes, 145 panden gerouteerd
+- **Bekendmakingen-archief**: 328 adressen, 461 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 3 wetten
 - **Geheugen en trend**: 107 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard

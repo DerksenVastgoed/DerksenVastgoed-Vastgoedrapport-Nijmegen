@@ -71961,5 +71961,29 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "Jonckerhof|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Biezenstraat 110|Nijmegen": {
+    "postcode": "6541ZW",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-1379aa10d63afe9db399bffa00c888c6"
+  },
+  "bm:Vondelstraat 5|Nijmegen": {
+    "postcode": "6512BB",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-1d49d8c0d6c18a01ad888e34f6511851"
+  },
+  "bm:Johannes Vijghstraat 5|Nijmegen": {
+    "postcode": "6524BN",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-8e7fad80d12b46493ceebb0f3a1390e2"
   }
 }

@@ -1039,6 +1039,14 @@
   "omweg": 5.26,
   "soort": "bus"
  },
+ "51.84955,5.85881": {
+  "geschat": false,
+  "hemelsbreed": 190,
+  "meters": 475,
+  "naam": "Joris Ivensplein",
+  "omweg": 2.5,
+  "soort": "bus"
+ },
  "51.84960,5.85023": {
   "geschat": false,
   "hemelsbreed": 113,

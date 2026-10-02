@@ -3932,6 +3932,12 @@
     "datum": "2026-02-03",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-02",
+    "soort": "bekendmaking",
+    "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen"
    }
   ],
   "pand_id": "0268100000009594"
@@ -44935,6 +44941,18 @@
    "Johannes Vijghstraat 76": "G"
   },
   "pand_id": "0268100000002363"
+ },
+ "jonckerhof": {
+  "adres": "Jonckerhof",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €629 per maand, 16 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "jonckerhof1": {
   "adres": "Jonckerhof 1",
