@@ -71966,7 +71966,8 @@
     "oppervlakte": 16,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Biezenstraat 110|Nijmegen": {
     "postcode": "6541ZW",
@@ -71985,5 +71986,14 @@
     "buurtnaam": "Altrade",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-8e7fad80d12b46493ceebb0f3a1390e2"
+  },
+  "Jozef Israëlsstraat|Nijmegen": {
+    "oppervlakte": 148,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521MX",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

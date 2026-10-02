@@ -886,3 +886,7 @@ Tulpstraat 10 | Nijmegen | 369000 | te koop | 2026-10-02 |  | 75 | 6542XN
 
 # Automatisch toegevoegd uit Funda-attendering op 02-10-2026
 Jonckerhof | Nijmegen | 629 | te huur kamer | 2026-10-02 | kamernet-incl | 16 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 02-10-2026
+Berg en Dalseweg | Nijmegen | 799 | te huur kamer | 2026-10-02 | kamernet-incl | 30 | 
+Jozef Israëlsstraat | Nijmegen | 2650 | te huur | 2026-10-02 | pararius | 148 | 6521MX

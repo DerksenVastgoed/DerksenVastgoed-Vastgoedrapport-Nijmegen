@@ -8,8 +8,8 @@
    "redenen": []
   },
   "kamernet": {
-   "mails": 12,
-   "objecten": 10,
+   "mails": 13,
+   "objecten": 11,
    "overgeslagen": 2,
    "redenen": [
     "Huissensestraat, Arnhem: buiten Nijmegen",
@@ -17,11 +17,12 @@
    ]
   },
   "pararius": {
-   "mails": 1,
-   "objecten": 0,
-   "overgeslagen": 1,
+   "mails": 2,
+   "objecten": 1,
+   "overgeslagen": 2,
    "redenen": [
-    "St. Stephanusstraat (gemeubileerd, andere markt)"
+    "St. Stephanusstraat (gemeubileerd, andere markt)",
+    "IJsvogelpassage (gemeubileerd, andere markt)"
    ]
   }
  },

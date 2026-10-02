@@ -303,6 +303,14 @@
   "omweg": 1.31,
   "soort": "bus"
  },
+ "51.83865,5.88012": {
+  "geschat": false,
+  "hemelsbreed": 92,
+  "meters": 100,
+  "naam": "Mesdagstraat",
+  "omweg": 1.09,
+  "soort": "bus"
+ },
  "51.83870,5.85856": {
   "geschat": false,
   "hemelsbreed": 368,

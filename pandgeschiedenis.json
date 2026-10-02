@@ -3173,6 +3173,12 @@
     "datum": "2026-09-27",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €1.100 per maand, 50 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €799 per maand, 30 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -45105,6 +45111,18 @@
    "Jonckerhof 5": "G"
   },
   "pand_id": "0268100000008909"
+ },
+ "jozefisralsstraat": {
+  "adres": "Jozef Israëlsstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.650 per maand, 148 m2"
+   }
+  ],
+  "pand_id": null
  },
  "jupiterstraat5": {
   "adres": "Jupiterstraat 5",
