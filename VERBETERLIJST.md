@@ -4177,6 +4177,37 @@ eerste soort is wat we zoeken, en dat staat per regel in het bestand.
 
 ---
 
+## 12c. De modelgegevens horen in de pandgeschiedenis — 2 oktober 2026
+
+**Mark:** een verkoop uit 2016 is geen ruis; waarom is dit geen onderdeel van
+pandgeschiedenis.py?
+
+**Daar hoort het thuis, en mijn conclusie van daarvoor was te stellig.**
+€360.000 in 2016 tegen €625.000 nu is 74% in tien jaar, en dat is precies wat de
+markt heeft gedaan. Die waarneming is niet fout, hij is oud. Een los bestand met
+een datum per adres maakte er een momentopname van, terwijl juist de reeks het
+interessant maakt.
+
+**Elke gevonden plaatsing of verkoop is nu een gebeurtenis**, naast de
+vergunningen en de kamerverhuurmeldingen. De bron gaat mee met het voorvoegsel
+"model:", zodat een datum die een model ergens heeft gelezen nooit hetzelfde
+gewicht krijgt als een bekendmaking uit het gemeenteblad. De waarschuwing uit de
+toets staat in de tekst van de gebeurtenis, dus die blijft zichtbaar zonder dat
+de regel wordt weggegooid.
+
+**Drie dingen rollen daar vanzelf uit, en geen ervan is op te zoeken:**
+- de mediane verkooptijd, dus hoe lang een pand te koop staat;
+- de mediane bezitsduur, het verschil tussen twee opeenvolgende verkopen van
+  hetzelfde pand. In een studentenbuurt wisselt bezit sneller dan in een
+  gezinsbuurt;
+- de prijsgroei per pand, van verkoop tot verkoop. Dat is zuiverder dan een
+  buurtmediaan, want alles is gelijk behalve de tijd.
+
+Getest met twee panden: verkooptijd 233 dagen, bezitsduur 16 jaar, prijsgroei
+3,8% per jaar. Het rapport toont ze met het aantal panden erbij.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

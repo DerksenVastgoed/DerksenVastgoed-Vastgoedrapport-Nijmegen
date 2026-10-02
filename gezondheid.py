@@ -778,6 +778,26 @@ def controle_aanbodreeks():
     return (OK, bewijs, "")
 
 
+def controle_doorlooptijden():
+    """Wat de reeks per pand oplevert: verkooptijd, bezitsduur, prijsgroei."""
+    d = _json("doorlooptijden.json") or {}
+    if not d or not d.get("verkooptijd_aantal"):
+        return (LET_OP, "nog geen doorlooptijden te berekenen",
+                "Hiervoor zijn per pand twee gebeurtenissen nodig; dat groeit "
+                "met elke ronde verkoopdatums.")
+    delen = []
+    if d.get("verkooptijd_mediaan_dagen"):
+        delen.append(f"mediane verkooptijd {d['verkooptijd_mediaan_dagen']} "
+                     f"dagen ({d['verkooptijd_aantal']} panden)")
+    if d.get("bezitsduur_mediaan_jaar"):
+        delen.append(f"mediane bezitsduur {d['bezitsduur_mediaan_jaar']} jaar "
+                     f"({d['bezitsduur_aantal']})")
+    if d.get("prijsgroei_mediaan_pct"):
+        delen.append(f"prijsgroei per pand {d['prijsgroei_mediaan_pct']}% per "
+                     f"jaar ({d['prijsgroei_aantal']})")
+    return (OK, "; ".join(delen), "")
+
+
 def controle_verkoopdatums():
     """Hoeveel panden een indicatie van hun verkoopdatum hebben."""
     d = _json("verkoopdatums_model.json") or {}
@@ -1047,6 +1067,7 @@ CONTROLES = [
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
     ("Verkoopdatums", controle_verkoopdatums),
+    ("Doorlooptijden", controle_doorlooptijden),
     ("Huurdekking", controle_huurdekking),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),

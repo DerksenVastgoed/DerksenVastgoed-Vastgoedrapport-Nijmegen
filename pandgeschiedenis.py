@@ -655,6 +655,117 @@ def straatprofiel_tekst(profiel):
     return r
 
 
+def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
+    """
+    Oudere plaatsingen en verkopen uit de modelophaler als gebeurtenis.
+
+    Een verkoop uit 2016 is geen ruis maar geschiedenis van dat pand. Daarmee
+    wordt zichtbaar waarvoor een woning eerder is aangeboden, hoe lang er tussen
+    twee verkopen zat, en hoe de prijs van datzelfde pand zich heeft ontwikkeld.
+    Dat laatste is zuiverder dan een buurtmediaan, want alles is gelijk behalve
+    de tijd.
+
+    De herkomst gaat mee in de bron, zodat een datum die een model ergens heeft
+    gelezen nooit hetzelfde gewicht krijgt als een bekendmaking uit het
+    gemeenteblad.
+    """
+    try:
+        with open(pad, encoding="utf-8") as f:
+            d = json.load(f) or {}
+    except Exception:
+        return 0
+    nieuw = 0
+    for rij in d.values():
+        adres = rij.get("adres")
+        if not adres:
+            continue
+        pand = geschiedenis.setdefault(sleutel(adres), {
+            "adres": adres, "gebeurtenissen": []})
+        pand.setdefault("adres", adres)
+        pand.setdefault("gebeurtenissen", [])
+        bron = "model: " + str(rij.get("bron", ""))[:90]
+        prijs = rij.get("laatste_vraagprijs")
+        bedrag = f", vraagprijs €{prijs:,}".replace(",", ".") if prijs else ""
+        twijfel = (f" ({rij['waarschuwing']})" if rij.get("waarschuwing")
+                   else f" (zekerheid {rij.get('zeker', 'onbekend')})")
+        if rij.get("te_koop_vanaf"):
+            nieuw += voeg_toe(pand, rij["te_koop_vanaf"], "te koop",
+                              f"te koop aangeboden{bedrag}{twijfel}", bron)
+        if rij.get("verkocht_op"):
+            nieuw += voeg_toe(pand, rij["verkocht_op"], "verkocht",
+                              f"verkocht{bedrag}{twijfel}", bron)
+    return nieuw
+
+
+def doorlooptijden(geschiedenis):
+    """
+    Wat de reeks per pand oplevert zodra er meer dan een gebeurtenis in staat.
+
+    Drie dingen die nergens op te zoeken zijn: hoe lang een pand te koop stond,
+    hoeveel jaar er tussen twee verkopen zat, en hoe de prijs van datzelfde pand
+    zich heeft ontwikkeld.
+    """
+    verkoop_duur, bezit_duur, prijsgroei = [], [], []
+    for pand in geschiedenis.values():
+        tekoop = sorted(g["datum"] for g in pand["gebeurtenissen"]
+                        if g["soort"] == "te koop")
+        verkocht = sorted((g for g in pand["gebeurtenissen"]
+                           if g["soort"] == "verkocht"),
+                          key=lambda g: g["datum"])
+        for v in verkocht:
+            eerder = [t for t in tekoop if t < v["datum"]]
+            if eerder:
+                try:
+                    dagen = (dt.date.fromisoformat(v["datum"])
+                             - dt.date.fromisoformat(eerder[-1])).days
+                except ValueError:
+                    continue
+                if 0 < dagen < 1500:
+                    verkoop_duur.append(dagen)
+        datums = [v["datum"] for v in verkocht]
+        for eerst, later in zip(datums, datums[1:]):
+            try:
+                jaren = (dt.date.fromisoformat(later)
+                         - dt.date.fromisoformat(eerst)).days / 365.25
+            except ValueError:
+                continue
+            if 0.2 < jaren < 60:
+                bezit_duur.append(round(jaren, 1))
+        bedragen = []
+        for v in verkocht:
+            m = re.search(r"€([\d.]+)", v["tekst"])
+            if m:
+                try:
+                    bedragen.append((v["datum"],
+                                     int(m.group(1).replace(".", ""))))
+                except ValueError:
+                    continue
+        for (d1, p1), (d2, p2) in zip(bedragen, bedragen[1:]):
+            try:
+                jaren = (dt.date.fromisoformat(d2)
+                         - dt.date.fromisoformat(d1)).days / 365.25
+            except ValueError:
+                continue
+            if jaren > 0.5 and p1:
+                prijsgroei.append({"adres": pand.get("adres"),
+                                   "van": d1, "tot": d2,
+                                   "per_jaar": round(
+                                       ((p2 / p1) ** (1 / jaren) - 1) * 100, 1)})
+    uit = {"verkooptijd_aantal": len(verkoop_duur),
+           "bezitsduur_aantal": len(bezit_duur),
+           "prijsgroei_aantal": len(prijsgroei)}
+    if verkoop_duur:
+        uit["verkooptijd_mediaan_dagen"] = int(st.median(verkoop_duur))
+    if bezit_duur:
+        uit["bezitsduur_mediaan_jaar"] = st.median(bezit_duur)
+    if prijsgroei:
+        uit["prijsgroei_mediaan_pct"] = round(
+            st.median([p["per_jaar"] for p in prijsgroei]), 1)
+        uit["voorbeelden"] = sorted(prijsgroei,
+                                    key=lambda p: p["tot"], reverse=True)[:5]
+    return uit
+
+
 def vergund_en_verkocht(geschiedenis):
     """
     Panden met een besluit over splitsen of verkameren die inmiddels verkocht
@@ -836,6 +947,7 @@ def main():
 
     geschiedenis = lees(PAD, {})
     n_v = uit_verkopen(geschiedenis)
+    n_m = uit_model(geschiedenis)
     n_a = uit_archief(geschiedenis)
     n_k = uit_kamerverhuur(geschiedenis)
     n_b = n_l = 0
@@ -849,6 +961,14 @@ def main():
     bewaar(geschiedenis)
     # Het patroon vergund-en-verkocht apart wegschrijven, zodat de brief het
     # kan noemen zonder het zelf uit de lijsten te hoeven vissen.
+    # Wat de reeks per pand oplevert: verkooptijd, bezitsduur, prijsgroei.
+    try:
+        with open("doorlooptijden.json", "w", encoding="utf-8") as f:
+            json.dump(doorlooptijden(geschiedenis), f, ensure_ascii=False,
+                      indent=1)
+    except Exception:
+        pass
+
     patroon = vergund_en_verkocht(geschiedenis)
     try:
         with open("vergund_verkocht.json", "w", encoding="utf-8") as f:
