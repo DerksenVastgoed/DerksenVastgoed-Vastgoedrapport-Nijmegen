@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "cd3af3af5837",
+  ".github/workflows/bekendmakingen.yml": "2f4623274212",
   "aanbod_reeks.py": "bd9b0bddf0de",
   "aanbodprofiel.py": "a227c893e9b2",
   "bag3d.py": "d49559cb3e5c",
@@ -10,7 +10,7 @@
   "bouwkosten_index.py": "bf5be46fdaa4",
   "bouwnorm.py": "3b84776e673e",
   "brief_logboek.py": "19fb57c795c7",
-  "brief_verhalend.py": "ab6530a91260",
+  "brief_verhalend.py": "dca167fd76a3",
   "bronnen.py": "f251be2ed62b",
   "buurten_tabel.py": "86dfaeb447b9",
   "corop_prijzen.py": "800a98ec614a",
@@ -25,11 +25,11 @@
   "maatregel_hoeveelheden.py": "b25a718d2dd3",
   "marktprijzen_bag.py": "485cd61ee5c0",
   "misdrijven_buurt.py": "2614716de058",
-  "onderwerpen_signaal.py": "cfecf6573abf",
+  "onderwerpen_signaal.py": "fc9083c53051",
   "pandgeschiedenis.py": "56fc599ab40b",
   "publicaties_vastgoed.py": "e39b6d808324",
-  "regelgeving_monitor.py": "9c6b0c73c91b",
-  "rente_verhuurhypotheek.py": "0b81587c74a3",
+  "regelgeving_monitor.py": "4194e668edc0",
+  "rente_verhuurhypotheek.py": "4a6816d6b1b6",
   "subsidie_svoh.py": "c0e352e81bee",
   "toets_artikel15.py": "b42254fe56bc",
   "vergunningen_buurten.py": "edb96de62f03",
@@ -37,5 +37,5 @@
   "woningprijsindex.py": "2856d1372539",
   "wwso.py": "4ec950ac50a2"
  },
- "gemaakt": "2026-10-02"
+ "gemaakt": "2026-10-03"
 }
