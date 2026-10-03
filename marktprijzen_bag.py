@@ -2962,16 +2962,27 @@ def vul_woz_aan(kandidaten, woz_tabel):
 
     # De werklijst erbij: panden die de schatting het meest verbeteren. Die
     # staan in hetzelfde bestand, want anders moet Mark op twee plekken kijken.
+    #
+    # Met een rem erop. Elke run zette er achttien bij, ook als de vorige nog
+    # niet waren ingevuld: in drie runs groeide de lijst van 17 naar 44. Een
+    # werklijst van honderd adressen wordt niet afgewerkt maar genegeerd. Staan
+    # er al genoeg open, dan komt er niets bij.
+    MAX_OPEN = 25
     werk = []
-    try:
-        for p in werklijst_woz(kandidaten, woz_tabel):
-            sleutel = "".join(c for c in p["adres"].lower() if c.isalnum())
-            if sleutel in bekend:
-                continue
-            bekend.add(sleutel)
-            werk.append(f"{p['adres']} |  | {jaar}   # {p['reden']}")
-    except Exception as e:
-        print(f"Werklijst niet gemaakt: {str(e)[:80]}", file=sys.stderr)
+    if len(open_regels) >= MAX_OPEN:
+        print(f"{WOZ_PAD}: {len(open_regels)} regels staan al open, geen nieuwe "
+              f"werklijst toegevoegd", file=sys.stderr)
+    else:
+        try:
+            ruimte = MAX_OPEN - len(open_regels)
+            for p in werklijst_woz(kandidaten, woz_tabel, aantal=ruimte):
+                sleutel = "".join(c for c in p["adres"].lower() if c.isalnum())
+                if sleutel in bekend:
+                    continue
+                bekend.add(sleutel)
+                werk.append(f"{p['adres']} |  | {jaar}   # {p['reden']}")
+        except Exception as e:
+            print(f"Werklijst niet gemaakt: {str(e)[:80]}", file=sys.stderr)
     if not nieuw and not open_regels and not ingevuld:
         return 0
     try:
