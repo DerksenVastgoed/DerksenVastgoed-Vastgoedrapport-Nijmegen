@@ -15,7 +15,9 @@ on:
     # De weekendrun begint vrijdagnacht, niet zondagochtend: hij werkt de hele
     # pandgeschiedenis bij en dat duurt uren. De brief is dan zaterdag of
     # zondagochtend klaar en wordt als weekeditie verstuurd.
-    - cron: "23 22 * * 5"   # vrijdagnacht: weekeditie met volledige geschiedenis
+    - cron: "17 3 * * 0"   # zondagochtend: weekeditie met volledige geschiedenis
+                           # (stond op vrijdagnacht, waardoor de zondagsbrief
+                           # zaterdagochtend binnenkwam)
   workflow_dispatch:
     inputs:
       backfill_vanaf:
@@ -464,19 +466,19 @@ jobs:
               cat "digests/${DATUM}-rente.md"
               echo ""
             fi
-            if [ -s achtergrond_vandaag.md ]; then
+            # Alleen een kop als er ook iets onder staat; een lege kop
+            # "Achtergrond van de dag" stond vandaag in de brief.
+            if [ -s achtergrond_vandaag.md ] \
+               && grep -q "[a-zA-Z]" achtergrond_vandaag.md; then
               echo "## Achtergrond van de dag"
               cat achtergrond_vandaag.md
               echo ""
               rm -f achtergrond_vandaag.md
             fi
-            if [ -s onderwerpen_voorstel.md ] && [ "$MODUS" != "dagelijks" ]; then
-              echo ""
-              echo "---"
-              echo ""
-              cat onderwerpen_voorstel.md
-              echo ""
-            fi
+            # De voorstellenlijst stond hier ook in. Die is bedoeld voor Mark
+            # en bevat instructies als "voeg het toe aan ACHTERGROND in
+            # bronnen.py"; dat hoort niet in een brief aan pa. Hij staat in het
+            # digestbestand en in het gezondheidsrapport.
             if [ -s bronnen_vandaag.md ]; then
               echo ""
               echo "---"
