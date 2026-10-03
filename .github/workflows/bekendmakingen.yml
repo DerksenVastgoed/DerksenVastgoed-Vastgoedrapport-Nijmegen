@@ -637,7 +637,15 @@ jobs:
           python aanbod_reeks.py || echo "Aanbodreeks overgeslagen"
 
       - name: Verkoopdatums ophalen
-        if: env.MODUS != 'dagelijks' || github.event.inputs.volledig == 'true'
+        # UIT. Deze stap stelt per pand een vraag met webzoeken aan, en dat
+        # kostte twee runs lang ongeveer twintig euro per keer. Dat staat in
+        # geen verhouding tot wat het aan de brief toevoegt, en het geld op dat
+        # account is bedoeld voor het schrijven van de brief zelf, een paar cent
+        # per keer. De verkoopgeschiedenis van een pand verandert bovendien
+        # vrijwel nooit, dus het is een eenmalige inhaalslag en geen dagelijkse
+        # taak. Het script blijft bestaan en kan met de hand worden gedraaid;
+        # de gegevens vullen we voorlopig aan vanuit de chat.
+        if: false
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
