@@ -95,7 +95,15 @@ GEEN_ONDERWERP = (
 ZINWOORDEN = {"voor", "tot", "over", "op", "om", "is", "wordt", "werd", "richt",
               "geldt", "bepaalt", "gevonden", "ontvangen", "genomen",
               "verleend", "geweigerd", "ingetrokken", "aangevraagd",
-              "gepubliceerd", "van"}
+              "gepubliceerd", "van",
+              # Werkwoordsvormen die er daarna nog doorheen kwamen: "besluit
+              # lag" haalde als voorstel de brief. Een regeling heet nooit zo.
+              "lag", "ligt", "lagen", "kwam", "komt", "kwamen", "volgt",
+              "volgde", "ontbreekt", "staat", "stond", "blijft", "bleef",
+              "moet", "moest", "kan", "kon", "mag", "mocht", "zegt", "zei",
+              "heeft", "had", "heet", "luidt", "telt", "valt", "viel",
+              "betreft", "gaat", "ging", "maakt", "maakte", "wijzigt",
+              "wijzigde", "treedt", "trad"}
 # Uitzondering: "wet op de ..." en "wet op belastingen ..." zijn wel namen.
 NAAMUITZONDERING = ("wet op ",)
 
