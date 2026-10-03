@@ -6,6 +6,13 @@
   0.7511961722488039,
   1.229665071770335
  ],
+ "uitschieters": [
+  {
+   "adres": "Derde Walstraat 108",
+   "verhouding": 2.086,
+   "afwijking_pct": 104
+  }
+ ],
  "vergelijking": {},
  "kenmerken_beschikbaar": {
   "straten": 36,

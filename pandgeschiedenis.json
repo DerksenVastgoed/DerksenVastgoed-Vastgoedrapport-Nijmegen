@@ -26647,6 +26647,7 @@
  "dominicanenstraat": {
   "adres": "Dominicanenstraat",
   "bag_gezien": "2026-10-03",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -50501,6 +50502,7 @@
  "ijsvogelpassage": {
   "adres": "IJsvogelpassage",
   "bag_gezien": "2026-10-03",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -124161,6 +124163,7 @@
  "vanspaenstraat": {
   "adres": "van Spaenstraat",
   "bag_gezien": "2026-10-03",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {

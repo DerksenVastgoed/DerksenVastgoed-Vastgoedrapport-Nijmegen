@@ -72138,7 +72138,8 @@
     ],
     "postcode": "6541RK",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "van Spaenstraat|Nijmegen": {
     "oppervlakte": 103,
@@ -72147,12 +72148,14 @@
     ],
     "postcode": "6524HM",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Dominicanenstraat|Nijmegen": {
     "oppervlakte": 15,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   }
 }

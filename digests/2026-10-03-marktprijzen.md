@@ -6,9 +6,11 @@ _Het object in de ring waar de richtprijs het dichtst bij de vraagprijs ligt (-8
 
 ### 1. [Zwaluwstraat 175](https://www.google.com/maps/search/?api=1&query=Zwaluwstraat+175%2C+Nijmegen), Biezen
 
-Zwaluwstraat 175 staat 21% onder de buurtmediaan per m2, met prijs die aardig aansluit bij Biezen (p25 €4.716, mediaan €5.416). De WOZ is echter onbekend, en dat is hier het fundamentele probleem: zonder WOZ is niet te toetsen of opkoopbescherming geldt, of een omzettingsvergunning haalbaar is, en of de huur onder het wettelijk maximum van de puntentelling valt. De gemeten huur van €1.537 (zes panden, niet getoetst aan WWS) levert een BAR van 7,4% en een NAR van 4,8% bij de doorgerekende investering van €429.655, met €4.514 per jaar onder de streep op €196.538 eigen inleg: een bescheiden maar functionerend exploitatieplaatje. De richtprijs van €321.589 ligt ruim €28.000 onder de vraagprijs, dus onderhandelingsruimte is er.
+Zwaluwstraat 175 staat 21% onder de buurtmediaan (€4.262 tegen €5.416/m2) en is pas 20 dagen in aanbod. Cruciaal: de WOZ is onbekend, en dat is het eerste wat je uitzoekt, want daarvan hangen opkoopbescherming, vergunningplicht en de WWS-puntentelling af. Een indicatieve schatting via de CBS-index komt op €479.000, boven de grens van €396.000, maar met een spreiding van ±24% is dat geen basis om op te varen.
 
-Splitsen of verkameren is hier geen voor de hand liggende route: het script laat splitsen afvallen op de opkoopbescherming, wat alleen klopt als de WOZ inderdaad €396.000 of lager is, wat haaks staat op de geschatte WOZ van €479.000 (ruwe schatting, ±24% spreiding). In de Zwaluwstraat is sinds 2013 maar één kamervergunning verleend (nr. 59, 2017-2017, inmiddels vervallen), dus van een verkamerde straat is geen sprake. Eerst de echte WOZ opzoeken, dat bepaalt alles hier.
+De doorrekening gaat uit van een gemeten huur van €1.537 per maand (6 panden, niet getoetst aan het puntenstelsel) en komt op een richtprijs van €321.589, €27.911 onder de vraagprijs. Bij die prijs: eigen inleg €196.538, operationeel resultaat €7.733 per jaar, netto aanvangsrendement 4,8%, rendement op eigen vermogen 3,9%. Het houdt zichzelf rond, niet meer dan dat.
+
+Verduurzaming (aangenomen €42.000, nog geen eigen begroting) richting een beter label is de meest voor de hand liggende route; buren op nr. 57 en 59 deden dat al naar label B. Kamerverhuur ligt minder voor de hand: in de hele straat is sinds 2013 maar één vergunning verleend, op nr. 59, inmiddels verlopen, en geen enkel buurpand heeft er een. Bekijken waard tegen de richtprijs, maar WOZ eerst opvragen voordat je rekent.
 
 _€349.500 . 82 m2 . €4.262 . 1978 . C (2026). [Bekijk op straatniveau](https://www.google.com/maps/search/?api=1&query=Zwaluwstraat+175%2C+Nijmegen&layer=c)_
 
