@@ -567,10 +567,15 @@ def controle_wozschatting():
                 "de schatting zichzelf te corrigeren.")
     vgl = d.get("vergelijking") or {}
     delen = []
-    for naam in ("kenmerken", "prijs"):
-        v = vgl.get(naam)
-        if v:
-            delen.append(f"{naam} {v['mediane_fout'] * 100:.1f}%")
+    # Alle methoden tonen die er zijn, met het aantal erbij. De lijst was
+    # beperkt tot twee vaste namen, waardoor "prijsindex" wegviel en er maar
+    # een methode in de regel stond. Juist de vergelijking is interessant: als
+    # meer waarnemingen de spreiding niet verkleinen, moet een betere methode
+    # het doen.
+    for naam, v in sorted(vgl.items()):
+        if isinstance(v, dict) and v.get("mediane_fout") is not None:
+            delen.append(f"{naam} {v['mediane_fout'] * 100:.1f}% "
+                         f"({v.get('aantal', 0)})")
     afwijking = abs(1 - (d.get("correctie") or 1)) * 100
     spreiding = (d.get("spreiding") or 0) * 100
     kb = d.get("kenmerken_beschikbaar") or {}
