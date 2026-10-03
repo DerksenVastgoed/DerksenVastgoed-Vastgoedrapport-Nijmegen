@@ -576,6 +576,11 @@ def controle_wozschatting():
         if isinstance(v, dict) and v.get("mediane_fout") is not None:
             delen.append(f"{naam} {v['mediane_fout'] * 100:.1f}% "
                          f"({v.get('aantal', 0)})")
+    if not delen:
+        # Hardop zeggen dat hij ontbreekt. Zonder deze regel lijkt het alsof de
+        # vergelijking er gewoon niet toe doet, terwijl hij juist bepaalt of
+        # een betere methode of meer waarnemingen de weg vooruit is.
+        delen.append("geen vergelijking tussen methoden beschikbaar")
     afwijking = abs(1 - (d.get("correctie") or 1)) * 100
     spreiding = (d.get("spreiding") or 0) * 100
     kb = d.get("kenmerken_beschikbaar") or {}
