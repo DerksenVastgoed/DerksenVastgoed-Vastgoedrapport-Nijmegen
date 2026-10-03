@@ -4239,6 +4239,202 @@ twee van prijsgroei in plaats van een. In de test 4,7 jaar en 5,6% per jaar.
 
 ---
 
+## 13. De weekeditie kwam te vroeg en de bijlage was een rommeltje — 3 oktober 2026
+
+**De tijd.** De weekeditie stond op vrijdagnacht 22:23 UTC, dus hij kwam
+zaterdagochtend binnen. Nu zondagochtend, op dezelfde tijd als de dagelijkse
+brief.
+
+**Vier dingen in de bijlage die er niet thuishoren, en ze hebben een gemene
+deler: het zijn teksten voor mij, niet voor pa.**
+
+De voorstellenlijst met onderwerpen zonder achtergrondstuk stond integraal in
+de brief, inclusief de zin "voeg het toe aan ACHTERGROND in bronnen.py, met
+trefwoorden in ACHTERGROND_TREFWOORDEN". Die hoort in het digestbestand en in
+het gezondheidsrapport, en is nu uit de brief gehaald.
+
+De rente begon met "GEEN NIEUWS, ALLEEN NASLAG" als kop. Dat was een aanwijzing
+voor de brief en geen zin voor de lezer; hij staat nu tussen vierkante haken,
+en de opdracht zegt dat alles tussen haken nooit in de tekst terechtkomt.
+
+Er stond een lege kop "Achtergrond van de dag" zonder iets eronder. Die
+verschijnt nu alleen als er ook werkelijk iets staat.
+
+En onder Regelgeving gewijzigd stond de Uitvoeringswet Nederlands-Duits
+Executieverdrag. Dat nummer, BWBR0002481, wijst niet naar de Uitvoeringswet
+huurprijzen woonruimte die wij volgen. Het script nam de opgehaalde titel over
+zonder te controleren of het de goede wet was. Nu moet minstens een kenmerkend
+woord overeenkomen; wijkt het af, dan blijft het uit de brief en komt er een
+melding dat onze eigen lijst niet klopt.
+
+**De algemene regel staat nu in de opdracht:** een aanwijzing tussen haken, een
+bestandsnaam zoals bronnen.py, of een stuk dat uitlegt hoe het script werkt,
+hoort niet in de brief en ook niet in de bijlage.
+
+---
+
+## 13a. De weekronde heeft gewerkt — 3 oktober 2026
+
+33 onderdelen op OK, nul fouten, en de weekeditie heeft gedaan waarvoor de
+volledige ronde is bedoeld: de energielabels sprongen van 735 naar 1366, de
+BAG-gegevens naar 1560 panden en de 3D BAG naar 1241. Dat is bijna alles wat
+we volgen.
+
+**Eén gat in het ruisfilter:** "besluit lag" kwam als voorstel door. Mijn lijst
+met zinwoorden bevatte voorzetsels en voltooid deelwoorden, maar geen gewone
+werkwoordsvormen. Nu staan ook lag, ligt, staat, blijft, moet, kan, mag, gaat,
+treedt en hun verleden tijden erin. Getest: "besluit lag", "besluit staat",
+"wet treedt" en "regeling gaat" vallen eruit; Besluit bouwwerken leefomgeving,
+Wet betaalbare huur en Wet op belastingen van blijven staan.
+
+**De aanbodreeks staat op OK**, dus die meting loopt. Over een week of zes zegt
+die iets over een uitpondgolf.
+
+---
+
+## 13b. 2709 labelwijzigingen die geen wijzigingen waren — 3 oktober 2026
+
+Het digest meldde "2709 labelwijzigingen" terwijl het aantal panden met een
+label met ruim zeshonderd groeide. De logica klopte wel, want er wordt alleen
+weggeschreven bij een verschil, maar de bewoording niet: dat waren 2709
+woningen die voor het eerst een label kregen, niet woningen waar het label
+veranderde.
+
+**Twee dingen deugden er niet aan.**
+
+De gebeurtenis kreeg de datum van vandaag. Een label uit 2019 dat wij nu pas
+ophalen is geen gebeurtenis van vandaag, en zo leken honderden panden ineens
+iets gedaan te hebben. Dat verklaart ook waarom het aantal panden met meer dan
+een gebeurtenis in een ronde van 827 naar 1390 sprong. Nu krijgt zo'n regel de
+registratiedatum van het label zelf.
+
+En de tekst maakte geen onderscheid. Nu staat er bij een eerste vondst
+"energielabel van X is C, geregistreerd 2019-04-12" en bij een echte wijziging
+"is nu A, was C". De tellers staan apart in het logboek: zoveel voor het eerst,
+zoveel werkelijk gewijzigd.
+
+**Waarom dat uitmaakt:** die gebeurtenissen voeden straks de doorlooptijden en
+het patroon vergund-en-verkocht. Een pand dat volgens de geschiedenis vandaag
+iets deed terwijl het alleen om onze eigen inhaalslag ging, vervuilt elke
+tijdlijn die we erop bouwen.
+
+---
+
+## 13c. Het WOZ-bestand groeide met herhalingen — 3 oktober 2026
+
+**Mark:** hij zet elke dag dezelfde panden er opnieuw in; na tien dagen staat
+hetzelfde adres tien keer onder elkaar.
+
+**Klopt, en de oorzaak was een halve controle.** Het script sloeg alleen panden
+over waar al een bedrag stond. Een adres dat Mark nog niet had opgezocht, werd
+niet herkend als al aanwezig en kwam dus elke dag opnieuw onderaan te staan,
+met een nieuwe datumkop erboven.
+
+**Het bestand wordt nu elke keer opnieuw opgebouwd** in plaats van aangevuld:
+eerst de ingevulde regels, dan de openstaande, allebei op alfabet. Een adres
+dat er al in staat komt niet terug, ingevuld of niet, en eerdere dubbelingen
+verdwijnen vanzelf bij de eerstvolgende ronde.
+
+Getest op een bestand met drie dagblokken en dubbele adressen: wat overblijft
+is een ingevulde regel en vier openstaande, elk een keer, met een kop die zegt
+hoeveel er in elke groep zitten.
+
+**En de Stand in het rapport noemt nu ook het aantal openstaande regels**, zodat
+zichtbaar is hoe groot die stapel is zonder het bestand te openen.
+
+---
+
+## 13d. Een werklijst in plaats van meer van hetzelfde — 3 oktober 2026
+
+De kalibratie rust op 22 panden en die zijn allemaal grensgeval, dus rond de
+€396.000. Over dat gebied weet het model inmiddels redelijk veel en daarbuiten
+vrijwel niets: een pand van €200.000 en een van €700.000 worden geschat met een
+curve die daar nooit is getoetst. Meer grensgevallen opzoeken maakt de
+schatting dus nauwelijks beter.
+
+**De werklijst kiest op drie dingen:**
+- prijsklasse, zodat de curve over het hele bereik wordt getoetst: een paar
+  onder de drie ton, een paar boven de zes ton en een paar in het midden;
+- straten waar we nog geen enkele WOZ van hebben. Het model rekent per straat
+  vanaf drie waarnemingen, dus vijftien panden in vijftien nieuwe straten
+  leveren meer op dan vijftien in drie straten;
+- grootteklasse, want kleine en grote panden verschillen sterk in prijs per m2
+  en zitten nu allebei dun.
+
+Bij elk adres staat de reden waarom het op de lijst staat, dus "prijsklasse
+onder 300k; straat nog zonder eigen WOZ; 22 m2, buiten het middengebied".
+
+**Hij staat in woz.txt zelf**, onder een eigen kopje, zodat Mark niet op twee
+plekken hoeft te kijken. Ingevuld, nog in te vullen en werklijst, in die
+volgorde. Een adres dat al ergens in het bestand staat komt niet terug.
+
+**Wat dit naar verwachting oplevert:** met achttien goed gekozen panden daalt
+de spreiding van 24% waarschijnlijk meer dan met honderd willekeurige, en het
+is vol te houden. Dat is te toetsen ook: de spreiding staat elke dag in het
+gezondheidsrapport.
+
+---
+
+## 13e. Het bestand is niet rommelig, maar telt wel dubbel — 3 oktober 2026
+
+**Mark:** pandgeschiedenis.json ziet er rommelig uit; gaat een volgende run dan
+fouten maken of langer duren?
+
+**De ordening is in orde.** De panden staan op alfabet, de gebeurtenissen per
+pand op datum, en de sleutels worden gesorteerd weggeschreven. Dat het rommelig
+oogt komt door de opmaak met een inspringing van een spatie, niet door de
+inhoud. Inlezen van 1704 panden kost milliseconden; de traagheid van een run
+zit in de honderden netwerkverzoeken naar de BAG en EP-Online, niet hier.
+
+**Maar in het fragment staat wel een echte fout.** Achter de Carmel 28 en 32
+zijn hetzelfde gebouw, met hetzelfde pand-id en dezelfde acht eenheden, maar ze
+staan als twee panden in het bestand, elk met de volledige lijst. Het aantal
+woningen werd over sleutels opgeteld en telde die acht dus dubbel.
+
+Dat verklaart waarschijnlijk het getal van 13.148 woningen bij 1560 panden, dus
+ruim acht per pand, terwijl de hele ring er ongeveer negentienduizend heeft.
+
+**Het rapport telt nu per pand-id** en meldt hoeveel er zonder die correctie
+dubbel geteld zou zijn. In de test: negen woningen in plaats van zeventien.
+
+**Wat hiermee nog niet is opgelost:** de dubbele opslag zelf. Een pand onder
+twee adressen bewaart twee keer dezelfde eenhedenlijst, en dat maakt het bestand
+groter dan nodig. Dat is een grotere ingreep, want de sleutel is het adres en
+niet het pand-id; dat raakt elke functie die de geschiedenis opzoekt. De
+telling klopt nu, en de opslag kan later.
+
+---
+
+## 14. De pandgeschiedenis slaat hetzelfde gebouw meerdere keren op — 3 oktober 2026
+
+**Mark:** het bestand ziet er rommelig uit; ik hoef het niet te begrijpen, maar
+ik vraag me af of de runs daardoor onnodig lang duren.
+
+**Terecht, en het is geen kwestie van opmaak maar van dubbel werk.** Aubadestraat
+12 en 16 zijn hetzelfde BAG-pand, nummer 0268100000006348, met 24 woningen. Beide
+adressen staan in het bestand met diezelfde 24 eenheden, diezelfde 24 labels en
+diezelfde 24 labelgebeurtenissen. Achter de Wiemelpoort 5, 5-A en 5-B delen een
+pand van acht eenheden: drie keer hetzelfde. In het fragment dat Mark stuurde
+staan alleen al 48 overbodige eenheidregels en 39 overbodige labelregels.
+
+**Erger dan de opslag is het werk.** Het script vraagt die 24 energielabels voor
+elk adres opnieuw op bij EP-Online. Dat verklaart waarom een volledige ronde uren
+duurt en waarom er 2709 labelregels werden geschreven terwijl er maar een paar
+honderd panden bij kwamen.
+
+**Nu wordt per BAG-pand een keer opgehaald** en nemen de andere adressen van
+datzelfde pand de labels over, zonder de gebeurtenissen te herhalen. In het
+voorbeeld scheelt dat 49% van de opvragingen; over de hele voorraad zal het in
+die orde liggen, want complexen komen veel voor in de ring.
+
+**Wat hiermee nog niet is opgelost.** De eenhedenlijst staat nog steeds bij elk
+adres apart. Netter is een bestand met de panden op pand-id en een verwijzing
+per adres, maar dat raakt elke lezer van pandgeschiedenis.json. Dat is een
+verbouwing die apart getest moet worden, niet iets om er achteloos bij te doen.
+Het staat hiermee genoteerd als volgende stap.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

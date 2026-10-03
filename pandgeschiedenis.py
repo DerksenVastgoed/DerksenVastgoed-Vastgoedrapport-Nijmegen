@@ -441,8 +441,23 @@ def bij_labels(geschiedenis, alleen=None):
     nieuw, vandaag = 0, dt.date.today().isoformat()
     eerste = gewijzigd = 0
     doel = set(alleen) if alleen is not None else set(geschiedenis)
+    # Een BAG-pand kan meerdere adressen hebben die wij apart volgen:
+    # Aubadestraat 12 en 16 zijn hetzelfde pand met 24 eenheden. Zonder deze
+    # cache vraagt het script die 24 labels voor elk adres opnieuw op en slaat
+    # ze ook twee keer op. Per pand-id een keer ophalen, de rest overnemen.
+    per_pand_id, bespaard = {}, 0
     for sl, pand in geschiedenis.items():
         if sl not in doel:
+            continue
+        pid = pand.get("pand_id")
+        if pid and pid in per_pand_id:
+            # Zelfde gebouw, al gedaan. Alleen de labels overnemen; de
+            # gebeurtenissen staan al bij het eerste adres van dit pand en
+            # hoeven niet herhaald te worden.
+            klaar = per_pand_id[pid]
+            if klaar:
+                pand["labels"] = dict(klaar)
+                bespaard += len(klaar)
             continue
         adressen = [a for a, _o in (pand.get("bag_eenheden") or [])] or [pand["adres"]]
         labels = dict(pand.get("labels") or {})
@@ -485,9 +500,14 @@ def bij_labels(geschiedenis, alleen=None):
                 labels[adres] = label
         if labels:
             pand["labels"] = labels
+        # Onthouden voor de andere adressen in hetzelfde BAG-pand.
+        if pid:
+            per_pand_id[pid] = labels
         time.sleep(PAUZE_TUSSEN)
     print(f"Labels: {len(doel)} panden nagekeken; {eerste} woningen voor het "
-          f"eerst een label, {gewijzigd} werkelijk gewijzigd", file=sys.stderr)
+          f"eerst een label, {gewijzigd} werkelijk gewijzigd"
+          + (f"; {bespaard} opvragingen bespaard doordat adressen hetzelfde "
+             f"BAG-pand delen" if bespaard else ""), file=sys.stderr)
     return nieuw
 
 
