@@ -1175,7 +1175,20 @@ def _kerncijfers():
         pass
     woz = (_json("woz_kalibratie.json") or {}).get("aantal")
     if woz:
-        uit.append(f"{woz} panden met eigen WOZ")
+        # Ook tonen hoeveel er nog open staan, want dat is de stapel die Mark
+        # zelf moet invullen.
+        open_regels = 0
+        try:
+            with open("woz.txt", encoding="utf-8") as f:
+                for regel in f:
+                    delen = [d.strip() for d in regel.split("|")]
+                    if (len(delen) > 1 and delen[0]
+                            and not delen[0].startswith("#") and not delen[1]):
+                        open_regels += 1
+        except Exception:
+            pass
+        uit.append(f"{woz} panden met eigen WOZ"
+                   + (f", {open_regels} nog in te vullen" if open_regels else ""))
     return uit
 
 
