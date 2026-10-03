@@ -2817,34 +2817,87 @@ def woz_van(w, woz_tabel):
     return woz_tabel.get(_woz_sleutel(w["adres"]))
 
 
+def _woz_regels(pad=WOZ_PAD):
+    """
+    Het WOZ-bestand als twee lijsten: ingevuld en nog in te vullen.
+
+    Nodig omdat het bestand eerder alleen werd aangevuld. Een adres zonder
+    bedrag werd niet herkend als al aanwezig en kwam dus elke dag opnieuw
+    onderaan te staan, met een nieuwe datumkop erboven. Na tien dagen stond
+    hetzelfde adres tien keer in het bestand.
+    """
+    ingevuld, open_regels, gezien = [], [], set()
+    try:
+        with open(pad, encoding="utf-8") as f:
+            for regel in f:
+                kaal = regel.strip()
+                if not kaal or kaal.startswith("#"):
+                    continue
+                delen = [d.strip() for d in kaal.split("|")]
+                adres = delen[0]
+                sleutel = "".join(c for c in adres.lower() if c.isalnum())
+                if not sleutel or sleutel in gezien:
+                    continue
+                gezien.add(sleutel)
+                if len(delen) > 1 and delen[1]:
+                    ingevuld.append(kaal)
+                else:
+                    open_regels.append(kaal)
+    except FileNotFoundError:
+        pass
+    return ingevuld, open_regels, gezien
+
+
 def vul_woz_aan(kandidaten, woz_tabel):
     """
     Zet grensgevallen als lege regel in het WOZ-bestand, zodat er alleen nog
     een bedrag ingevuld hoeft te worden. Alleen panden waar de WOZ het verschil
     maakt tussen wel en niet mogen verhuren.
+
+    Het bestand wordt elke keer opnieuw opgebouwd: eerst de ingevulde regels,
+    dan de openstaande. Zo groeit het als een tabel in plaats van als een
+    stapel dagblokken, en verdwijnen eerdere dubbelingen vanzelf.
     """
-    ontbreekt = []
+    ingevuld, open_regels, bekend = _woz_regels()
+    nieuw = []
     for k in kandidaten:
         w = k[-1]
         if woz_van(w, woz_tabel):
             continue
         if opkoop_signaal(w) != "grensgeval":
             continue
-        ontbreekt.append(w["adres"])
-    if not ontbreekt:
-        return 0
+        adres = w["adres"]
+        sleutel = "".join(c for c in adres.lower() if c.isalnum())
+        if sleutel in bekend:
+            continue
+        bekend.add(sleutel)
+        nieuw.append(adres)
+
     jaar = dt.date.today().year
+    for adres in sorted(set(nieuw)):
+        open_regels.append(f"{adres} |  | {jaar}")
+    if not nieuw and not open_regels and not ingevuld:
+        return 0
     try:
-        with open(WOZ_PAD, "a", encoding="utf-8") as f:
-            f.write(f"\n# Toegevoegd op {dt.date.today().isoformat()}: "
-                    f"grensgevallen, vul het bedrag in via wozwaardeloket.nl\n")
-            for adres in sorted(set(ontbreekt)):
-                f.write(f"{adres} |  | {jaar}\n")
-        print(f"{len(set(ontbreekt))} grensgevallen toegevoegd aan {WOZ_PAD}",
+        with open(WOZ_PAD, "w", encoding="utf-8") as f:
+            f.write("# WOZ-waarden per adres. Formaat: adres | bedrag | jaar\n")
+            f.write("# Op te zoeken via wozwaardeloket.nl. Ingevulde regels "
+                    "blijven staan en komen niet opnieuw terug.\n\n")
+            if ingevuld:
+                f.write(f"# Ingevuld ({len(ingevuld)})\n")
+                for regel in sorted(ingevuld):
+                    f.write(regel + "\n")
+            if open_regels:
+                f.write(f"\n# Nog in te vullen ({len(open_regels)}): vul het "
+                        f"bedrag tussen de eerste twee streepjes\n")
+                for regel in sorted(open_regels):
+                    f.write(regel + "\n")
+        print(f"{WOZ_PAD}: {len(ingevuld)} ingevuld, {len(open_regels)} open"
+              + (f", {len(set(nieuw))} nieuw" if nieuw else ""),
               file=sys.stderr)
     except Exception as e:
-        print(f"Kon {WOZ_PAD} niet aanvullen: {e}", file=sys.stderr)
-    return len(set(ontbreekt))
+        print(f"Kon {WOZ_PAD} niet bijwerken: {e}", file=sys.stderr)
+    return len(set(nieuw))
 
 
 def opkoop_signaal(w):
