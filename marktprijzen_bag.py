@@ -2817,6 +2817,73 @@ def woz_van(w, woz_tabel):
     return woz_tabel.get(_woz_sleutel(w["adres"]))
 
 
+def werklijst_woz(kandidaten, woz_tabel, aantal=18):
+    """
+    Welke panden het meest opleveren als je er de WOZ van opzoekt.
+
+    Niet meer van hetzelfde. De kalibratie rust nu op grensgevallen rond de
+    €396.000, dus over dat gebied weet het model redelijk veel en daarbuiten
+    vrijwel niets. Drie dingen bepalen de keuze:
+
+    1. Prijsklasse. Een paar panden onder de drie ton, een paar boven de zes
+       ton en een paar in het midden, zodat de curve over het hele bereik wordt
+       getoetst in plaats van alleen in het midden.
+    2. Nieuwe straten. Het model rekent met een prijs per m2 per straat vanaf
+       drie waarnemingen. Vijftien panden in vijftien nieuwe straten leveren
+       dus meer op dan vijftien in drie straten.
+    3. Grootteklasse, zodat kleine en grote panden allebei vertegenwoordigd
+       zijn; die verschillen sterk in prijs per m2.
+
+    Geeft een lijst met per pand de reden waarom het erop staat.
+    """
+    _ingevuld, _open, bekend = _woz_regels()
+    straten_bekend = set()
+    for regel in _ingevuld:
+        adres = regel.split("|")[0].strip()
+        straten_bekend.add("".join(c for c in adres.lower()
+                                   if c.isalpha() or c == " ").strip())
+
+    klassen = {"onder 300k": (0, 300000), "300k tot 450k": (300000, 450000),
+               "450k tot 600k": (450000, 600000), "boven 600k": (600000, 10 ** 9)}
+    per_klasse = {naam: [] for naam in klassen}
+    for k in kandidaten:
+        w = k[-1]
+        prijs, adres = w.get("prijs"), w.get("adres")
+        if not prijs or not adres:
+            continue
+        sleutel = "".join(c for c in adres.lower() if c.isalnum())
+        if sleutel in bekend or woz_van(w, woz_tabel):
+            continue
+        straat = "".join(c for c in adres.lower()
+                         if c.isalpha() or c == " ").strip()
+        redenen = []
+        for naam, (onder, boven) in klassen.items():
+            if onder <= prijs < boven:
+                redenen.append(f"prijsklasse {naam}")
+                groep = naam
+                break
+        else:
+            continue
+        if straat not in straten_bekend:
+            redenen.append("straat nog zonder eigen WOZ")
+        opp = w.get("oppervlakte") or 0
+        if opp and (opp < 50 or opp > 130):
+            redenen.append(f"{opp} m2, buiten het middengebied")
+        per_klasse[groep].append({"adres": adres, "prijs": prijs,
+                                  "oppervlakte": opp or None,
+                                  "straat_nieuw": straat not in straten_bekend,
+                                  "reden": "; ".join(redenen)})
+
+    # Evenredig verdelen over de klassen, en binnen een klasse eerst de panden
+    # in een straat waar we nog niets van weten.
+    uit, per = [], max(1, aantal // len(klassen))
+    for naam in klassen:
+        rij = sorted(per_klasse[naam],
+                     key=lambda p: (not p["straat_nieuw"], p["adres"]))
+        uit.extend(rij[:per])
+    return uit[:aantal]
+
+
 def _woz_regels(pad=WOZ_PAD):
     """
     Het WOZ-bestand als twee lijsten: ingevuld en nog in te vullen.
@@ -2876,6 +2943,19 @@ def vul_woz_aan(kandidaten, woz_tabel):
     jaar = dt.date.today().year
     for adres in sorted(set(nieuw)):
         open_regels.append(f"{adres} |  | {jaar}")
+
+    # De werklijst erbij: panden die de schatting het meest verbeteren. Die
+    # staan in hetzelfde bestand, want anders moet Mark op twee plekken kijken.
+    werk = []
+    try:
+        for p in werklijst_woz(kandidaten, woz_tabel):
+            sleutel = "".join(c for c in p["adres"].lower() if c.isalnum())
+            if sleutel in bekend:
+                continue
+            bekend.add(sleutel)
+            werk.append(f"{p['adres']} |  | {jaar}   # {p['reden']}")
+    except Exception as e:
+        print(f"Werklijst niet gemaakt: {str(e)[:80]}", file=sys.stderr)
     if not nieuw and not open_regels and not ingevuld:
         return 0
     try:
@@ -2892,8 +2972,16 @@ def vul_woz_aan(kandidaten, woz_tabel):
                         f"bedrag tussen de eerste twee streepjes\n")
                 for regel in sorted(open_regels):
                     f.write(regel + "\n")
+            if werk:
+                f.write(f"\n# Werklijst ({len(werk)}): deze panden verbeteren "
+                        f"de eigen WOZ-schatting het meest. Niet meer "
+                        f"grensgevallen, maar juist prijsklassen en straten "
+                        f"waar we nog niets van weten.\n")
+                for regel in werk:
+                    f.write(regel + "\n")
         print(f"{WOZ_PAD}: {len(ingevuld)} ingevuld, {len(open_regels)} open"
-              + (f", {len(set(nieuw))} nieuw" if nieuw else ""),
+              + (f", {len(set(nieuw))} nieuw" if nieuw else "")
+              + (f", werklijst {len(werk)}" if werk else ""),
               file=sys.stderr)
     except Exception as e:
         print(f"Kon {WOZ_PAD} niet bijwerken: {e}", file=sys.stderr)
