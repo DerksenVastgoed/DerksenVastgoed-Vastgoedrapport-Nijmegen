@@ -79,6 +79,25 @@ HEADERS = {"Accept": "application/xml",
            "User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
 
+def titel_klopt(verwacht, gevonden):
+    """
+    Wijst dit nummer naar de wet die we denken te volgen?
+
+    BWBR0002481 leverde de Uitvoeringswet Nederlands-Duits Executieverdrag op
+    terwijl we de Uitvoeringswet huurprijzen woonruimte volgen. Het script nam
+    die titel over, en zo stond er een executieverdrag in de brief aan pa. Nu
+    moet minstens een kenmerkend woord overeenkomen.
+    """
+    algemeen = {"wet", "besluit", "regeling", "uitvoeringswet", "de", "het",
+                "van", "en", "op", "voor", "woonruimte"}
+    woorden = {w.strip(",.").lower() for w in (verwacht or "").split()
+               if len(w) > 3} - algemeen
+    laag = (gevonden or "").lower()
+    if not woorden:
+        return True
+    return any(w in laag for w in woorden)
+
+
 def _tekst(element, naam):
     """Haalt de tekst uit het eerste element met deze naam, ongeacht namespace."""
     for el in element.iter():
@@ -160,14 +179,23 @@ def haal_landelijk():
         if not recs:
             continue
         rec = recs[0]
+        opgehaald = _tekst(rec, "title") or naam
         gevonden[bwb] = {
-            "titel": _tekst(rec, "title") or naam,
+            "titel": opgehaald,
             "gewijzigd": (_tekst(rec, "modified") or _tekst(rec, "date")),
             "geldig_vanaf": _tekst(rec, "inwerkingtredingDatum"),
             "waarom": naam,
             "bron": "landelijk",
+            "sleutel": bwb,
+            # Wijst dit nummer naar de wet die we denken te volgen? Zo niet,
+            # dan blijft hij uit de brief en staat het als melding in de
+            # bijlage, want dan klopt onze eigen lijst niet.
+            "titel_wijkt_af": not titel_klopt(naam, opgehaald),
             "url": f"https://wetten.overheid.nl/{bwb}",
         }
+        if gevonden[bwb]["titel_wijkt_af"]:
+            print(f"  {bwb}: verwacht '{naam}', kreeg '{opgehaald[:60]}'",
+                  file=sys.stderr)
         time.sleep(1)
     return gevonden
 
@@ -297,9 +325,21 @@ def render(wijzigingen, nieuw):
                  + (f" [bekijken]({wordt['url']})" if wordt.get("url") else ""))
         r.append(f"  _Waarom dit telt: {wordt['waarom']}._")
     for sleutel, wordt in nieuw:
+        if wordt.get("titel_wijkt_af"):
+            # Niet in de brief: het nummer wijst naar een andere wet dan we
+            # volgen. Dat is een fout in onze lijst en geen nieuws voor pa.
+            continue
         r.append(f"- **{wordt['titel']}** is nieuw in beeld."
                  + (f" [bekijken]({wordt['url']})" if wordt.get("url") else ""))
         r.append(f"  _Waarom dit telt: {wordt['waarom']}._")
+    afwijkend = [w for _s, w in nieuw if w.get("titel_wijkt_af")]
+    if afwijkend:
+        r.append("")
+        r.append("_Niet getoond: " + ", ".join(
+            f"{w['titel']} onder nummer {w.get('sleutel', '?')}"
+            for w in afwijkend[:3])
+            + ". Dat nummer wijst naar een andere wet dan we volgen; "
+              "controleer de lijst in regelgeving_monitor.py._")
     r.append("")
     r.append("_De brief rekent met deze regels. Verandert er een, controleer dan "
              "of de grenzen in het script nog kloppen: de WOZ-grenzen voor "
