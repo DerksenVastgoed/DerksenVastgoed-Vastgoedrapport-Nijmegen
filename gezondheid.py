@@ -584,6 +584,13 @@ def controle_wozschatting():
               + (f"; mediane fout per methode: {', '.join(delen)}" if delen else "")
               + (f"; kenmerken uit {kb.get('straten', 0)} straten en "
                  f"{kb.get('buurten', 0)} buurten" if kb else ""))
+    # Panden die ver van de mediaan liggen apart noemen. Die kunnen een
+    # tikfout in de handmatige invoer zijn, en zo'n fout valt nergens op: de
+    # spreiding gebruikt percentielen en de correctie is een mediaan.
+    uit = d.get("uitschieters") or []
+    if uit:
+        bewijs += ("; nakijken: " + ", ".join(
+            f"{u['adres']} ({u['afwijking_pct']:+d}%)" for u in uit[:3]))
     if spreiding > 7:
         return (LET_OP, bewijs,
                 "De spreiding is nog te groot om op de schatting te varen; blijf "
