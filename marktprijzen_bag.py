@@ -2584,22 +2584,38 @@ def woz_kalibratie(woningen=None):
     # lezen, anders telt er geen enkel pand mee en blijft de ijking op nul.
     tabel = lees_woz()
     rijen = woningen if woningen is not None else []
-    verhoudingen = []
+    verhoudingen, met_adres = [], []
     for w in rijen or []:
         echt = (_woz_getal(w.get("woz"))
                 or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
         schat = woz_schatting({**w, "woz": None})
         if echt and schat and schat.get("waarde"):
-            verhoudingen.append(echt / schat["waarde"])
+            verhouding = echt / schat["waarde"]
+            verhoudingen.append(verhouding)
+            # Het adres meenemen, zodat een uitschieter na te kijken is.
+            met_adres.append((verhouding, w.get("adres") or "onbekend"))
     if len(verhoudingen) < 8:
         return {"aantal": len(verhoudingen), "correctie": 1.0, "spreiding": None}
     verhoudingen.sort()
     mediaan = st.median(verhoudingen)
     laag = verhoudingen[int(len(verhoudingen) * 0.1)]
     hoog = verhoudingen[int(len(verhoudingen) * 0.9)]
+    # De panden die het verst van de mediaan af liggen, met adres erbij. Een
+    # tikfout in de handmatige invoer valt nergens op: de spreiding gebruikt
+    # het tiende en negentigste percentiel en is daar ongevoelig voor, en de
+    # correctie is een mediaan. Zo'n fout verdwijnt dus in de cijfers terwijl
+    # hij bij dat ene pand wel de doorrekening scheeftrekt.
+    uitschieters = []
+    for v, adres in sorted(((v, a) for v, a in met_adres),
+                           key=lambda p: abs(p[0] - mediaan), reverse=True)[:5]:
+        if abs(v - mediaan) / mediaan > 0.5:
+            uitschieters.append({
+                "adres": adres, "verhouding": round(v, 3),
+                "afwijking_pct": round((v / mediaan - 1) * 100)})
     return {"aantal": len(verhoudingen), "correctie": mediaan,
             "spreiding": (hoog - laag) / 2,
-            "band": (laag, hoog)}
+            "band": (laag, hoog),
+            "uitschieters": uitschieters}
 
 
 def woz_schatting(w, kalibratie=None):
