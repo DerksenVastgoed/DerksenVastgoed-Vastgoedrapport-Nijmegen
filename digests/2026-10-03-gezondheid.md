@@ -1,19 +1,20 @@
 # Gezondheidsrapport 2026-10-03
 
-35 in orde, 4 aandachtspunten, 0 fouten.
+34 in orde, 5 aandachtspunten, 0 fouten.
 
 ## LET OP
+- **Versies**: geen paklijst gevonden
+  versies.json hoort mee in dezelfde upload als de bestanden.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
-- **WOZ-schatting**: geijkt op 39 panden: correctie 1.023 (2% stelselmatig), spreiding ±23.9%; kenmerken uit 36 straten en 8 buurten; nakijken: Derde Walstraat 108 (+104%)
+- **WOZ-schatting**: geijkt op 39 panden: correctie 1.023 (2% stelselmatig), spreiding ±23.9%; mediane fout per methode: geen vergelijking tussen methoden beschikbaar; kenmerken uit 36 straten en 8 buurten; nakijken: Derde Walstraat 108 (+104%)
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-03: kamernet: 11 mails, 9 objecten, 2 bewust overgeslagen; pararius: 3 mails, 5 objecten, 4 bewust overgeslagen; regulier: 4 mails, 12 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Versies**: paklijst van 2026-10-03: 36 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
 - **Huurdata**: 46 huurwaarnemingen, waarvan 20 Pararius en 26 Kamernet; 32 in de laatste week
 - **Aanbod**: 96 koopobjecten, 12 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
