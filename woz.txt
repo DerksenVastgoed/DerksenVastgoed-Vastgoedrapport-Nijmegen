@@ -18,35 +18,35 @@ St. Annastraat 28 | 1021000 | 2026
 Zwaluwstraat 7 | 342000 | 2026
 
 # Nog in te vullen (14): vul het bedrag tussen de eerste twee streepjes
-Beijensstraat 18 |  | 2026
-Burg. Hustinxstraat 56 |  | 2026
-Delistraat 20 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Jan de Wittstraat 4 |  | 2026
-Krayenhofflaan 47 |  | 2026
-Lage Markt 21 |  | 2026
-Marialaan 56 |  | 2026
-Molukkenstraat 14 |  | 2026
-Molukkenstraat 188 |  | 2026
-Palembangstraat 44 |  | 2026
-Plein 1944 129 |  | 2026
-de Ruyterstraat 37 |  | 2026
-van Goorstraat 91 |  | 2026
+Beijensstraat 18 | 376.000 | 2026
+Burg. Hustinxstraat 56 | 419.000 | 2026
+Delistraat 20 | 419.000 | 2026
+In de Betouwstraat 35 | 408.000 | 2026
+Jan de Wittstraat 4 | 360.000 | 2026
+Krayenhofflaan 47 | 360.000  | 2026
+Lage Markt 21 | 314.000 | 2026
+Marialaan 56 | 444.000 | 2026
+Molukkenstraat 14 | 430.000  | 2026
+Molukkenstraat 188 | 393.000 | 2026
+Palembangstraat 44 | 466.000 | 2026
+Plein 1944 129 | 	371.000  | 2026
+de Ruyterstraat 37 | 514.000 | 2026
+van Goorstraat 91 | 434.000 | 2026
 
 # Werklijst (16): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
-Beijensstraat 4-A |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 40 m2, buiten het middengebied
+Beijensstraat 4-A | 234.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 40 m2, buiten het middengebied
 Daalseweg 58 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
-Derde Walstraat 108 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
-Eerste Oude Heselaan 170 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 31 m2, buiten het middengebied
-Achter de Bank 4 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Bankastraat 10 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Bloemerstraat 107 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Bottelstraat 19 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Arsenaalplaats 6 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Beijensstraat 68 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Beijensstraat 80 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Braamhof 4 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Doddendaal 101 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 159 m2, buiten het middengebied
-Dominicanenstraat 30 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 174 m2, buiten het middengebied
-Fransestraat 38 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 204 m2, buiten het middengebied
-Groesbeekseweg 85 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 228 m2, buiten het middengebied
+Derde Walstraat 108 | 436.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
+Eerste Oude Heselaan 170 | 199.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 31 m2, buiten het middengebied
+Achter de Bank 4 | 429.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bankastraat 10 | 393.000  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bloemerstraat 107 | 331.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bottelstraat 19 | 383.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Arsenaalplaats 6 | 505.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Beijensstraat 68 | 376.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Beijensstraat 80 | 	475.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Braamhof 4 | 456.000  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Doddendaal 101 | 577.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 159 m2, buiten het middengebied
+Dominicanenstraat 30 | 614.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 174 m2, buiten het middengebied
+Fransestraat 38 | 968.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 204 m2, buiten het middengebied
+Groesbeekseweg 85 | 1.040.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 228 m2, buiten het middengebied
