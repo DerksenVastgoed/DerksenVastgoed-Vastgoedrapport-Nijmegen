@@ -1,4 +1,12 @@
 {
+ "BWBR0002481": {
+  "bron": "landelijk",
+  "geldig_vanaf": "",
+  "gewijzigd": "2016-01-12",
+  "titel": "Uitvoeringswet Nederlands-Duits Executieverdrag",
+  "url": "https://wetten.overheid.nl/BWBR0002481",
+  "waarom": "Uitvoeringswet huurprijzen woonruimte"
+ },
  "BWBR0002672": {
   "bron": "landelijk",
   "geldig_vanaf": "",
@@ -14,6 +22,14 @@
   "titel": "Wet op belastingen van rechtsverkeer",
   "url": "https://wetten.overheid.nl/BWBR0002740",
   "waarom": "Wet op belastingen van rechtsverkeer, de overdrachtsbelasting"
+ },
+ "BWBR0003237": {
+  "bron": "landelijk",
+  "geldig_vanaf": "",
+  "gewijzigd": "2022-06-22",
+  "titel": "Besluit huurprijzen woonruimte",
+  "url": "https://wetten.overheid.nl/BWBR0003237",
+  "waarom": "Besluit huurprijzen woonruimte, de huurprijstabel"
  },
  "BWBR0035303": {
   "bron": "landelijk",

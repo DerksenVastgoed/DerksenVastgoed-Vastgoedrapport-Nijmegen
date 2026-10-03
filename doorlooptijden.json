@@ -1,11 +1,17 @@
 {
- "verkooptijd_aantal": 15,
- "bezitsduur_aantal": 5,
- "prijsgroei_aantal": 3,
- "verkooptijd_mediaan_dagen": 88,
- "bezitsduur_mediaan_jaar": 2.2,
- "prijsgroei_mediaan_pct": 6.0,
+ "verkooptijd_aantal": 40,
+ "bezitsduur_aantal": 16,
+ "prijsgroei_aantal": 6,
+ "verkooptijd_mediaan_dagen": 81,
+ "bezitsduur_mediaan_jaar": 2.5,
+ "prijsgroei_mediaan_pct": 5.2,
  "voorbeelden": [
+  {
+   "adres": "Daalseweg 56",
+   "van": "2019-10-23",
+   "tot": "2026-09-28",
+   "per_jaar": -7.0
+  },
   {
    "adres": "Eilbrachtstraat 6",
    "van": "2025-04-22",
@@ -17,6 +23,12 @@
    "van": "2025-03-12",
    "tot": "2026-09-28",
    "per_jaar": 6.0
+  },
+  {
+   "adres": "Ridderspoor 51",
+   "van": "2019-01-01",
+   "tot": "2026-09-28",
+   "per_jaar": 8.2
   },
   {
    "adres": "Smetiusstraat 4-D",

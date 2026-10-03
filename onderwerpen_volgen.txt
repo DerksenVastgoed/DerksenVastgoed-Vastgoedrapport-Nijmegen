@@ -14,3 +14,6 @@
 # regeling noodfonds blokverwarming gemeente
 # epbd iv
 # nta 8800
+
+# --- voorgesteld op 2026-10-03 ---
+# besluit lag

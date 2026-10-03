@@ -2,7 +2,7 @@
  "controles": {
   "3D BAG eigen snapshot": "OK",
   "Aanbod": "OK",
-  "Aanbodreeks": "LET OP",
+  "Aanbodreeks": "OK",
   "Achtergronddekking": "OK",
   "Attenderingen": "LET OP",
   "Bekendmakingen-archief": "OK",
@@ -24,7 +24,7 @@
   "Logboek van de brief": "OK",
   "Marktrente": "OK",
   "Misdrijfcijfers": "OK",
-  "Nieuwe onderwerpen": "OK",
+  "Nieuwe onderwerpen": "LET OP",
   "OV-haltes": "OK",
   "Opnieuw aangeboden": "OK",
   "Profiel nieuw aanbod": "OK",
@@ -39,5 +39,5 @@
   "WOZ-schatting": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-02"
+ "datum": "2026-10-03"
 }

@@ -1,4 +1,30 @@
 {
+ "achterdeoudegracht17": {
+  "adres": "Achter de Oude Gracht 17",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43454559/",
+    "datum": "2024-01-20",
+    "eerdere_advertentie": true,
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 300000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43454559/",
+    "datum": "2024-02-14",
+    "eerdere_advertentie": true,
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 300000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "beijensstraat18": {
   "adres": "Beijensstraat 18",
   "gebeurtenissen": [
@@ -32,6 +58,72 @@
   "opgehaald": "2026-10-02",
   "te_koop_vanaf": "2023-11-29",
   "zeker": "midden"
+ },
+ "beijensstraat80": {
+  "adres": "Beijensstraat 80",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-beijensstraat-80/44400022/",
+    "datum": "2026-06-22",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 575000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "biesmanstraat3": {
+  "adres": "Biesmanstraat 3",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2014-01-29",
+    "eerdere_advertentie": true,
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 349000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "http://huisx.nl/koop/2959827/biesmanstraat-3/nijmegen",
+    "datum": "2014-09-02",
+    "eerdere_advertentie": true,
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 349000,
+    "zeker": "laag"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2017-11-08",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2017-12-16",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2026-03-13",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 650000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "boomvalkstraat18": {
   "adres": "Boomvalkstraat 18",
@@ -154,6 +246,38 @@
   ],
   "opgehaald": "2026-10-02"
  },
+ "eersteoudeheselaan172": {
+  "adres": "Eerste Oude Heselaan 172",
+  "gebeurtenissen": [
+   {
+    "bron": "https://kadastralekaart.com/adres/nijmegen-eerste-oude-heselaan-172/0268200000090400",
+    "datum": "2025-12-30",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-07-28",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 265000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-09-03",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 265000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "eilbrachtstraat6": {
   "adres": "Eilbrachtstraat 6",
   "bron": "https://kadastralekaart.com/adres/nijmegen-eilbrachtstraat-6/0268200000006970 en https://www.inbeeldmakelaardij.nl/woningaanbod",
@@ -162,6 +286,109 @@
   "opgehaald": "2026-10-02",
   "verkocht_op": "2025-04-22",
   "zeker": "midden"
+ },
+ "evertsenstraat42": {
+  "adres": "Evertsenstraat 42",
+  "gebeurtenissen": [
+   {
+    "bron": "https://drimble.nl/adres/nijmegen/6512JN/evertsenstraat-42.html",
+    "datum": "2020-06-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "laag"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-02",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 535000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-18",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 535000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "fransestraat38": {
+  "adres": "Fransestraat 38",
+  "gebeurtenissen": [
+   {
+    "bron": "https://huispedia.nl/nijmegen/6524jd/fransestraat/50 (vermelding 'Fransestraat 38 te koop, Disveld Makelaardij, €1.025.000', gepubliceerd ca. 59 dagen geleden t.o.v. 3-10-2026)",
+    "datum": "2026-08-05",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 1025000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "ganzenheuvel18": {
+  "adres": "Ganzenheuvel 18",
+  "gebeurtenissen": [
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2017-11-11",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-05-07",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 375000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-07-03",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 375000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "graafseweg76": {
+  "adres": "Graafseweg 76",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 610000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-27",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 610000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "groesbeeksedwarsweg99": {
   "adres": "Groesbeeksedwarsweg 99",
@@ -233,6 +460,29 @@
   ],
   "opgehaald": "2026-10-02"
  },
+ "groesbeekseweg71": {
+  "adres": "Groesbeekseweg 71",
+  "gebeurtenissen": [
+   {
+    "bron": "https://nijmegen.kadasterdata.nl/groesbeekseweg/71",
+    "datum": "2017-01-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "laag"
+   },
+   {
+    "bron": "https://www.funda.nl/zoeken/koop?selected_area=nijmegen%2Fstraat-groesbeekseweg",
+    "datum": "2026-01-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 995000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "groesbeekseweg85": {
   "adres": "Groesbeekseweg 85",
   "gebeurtenissen": [
@@ -275,6 +525,62 @@
   "verkocht_op": "2026-03-23",
   "zeker": "midden"
  },
+ "janluykenstraat2": {
+  "adres": "Jan Luykenstraat 2",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-03-11",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 595000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-04-12",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 595000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "keizerkarelplein27": {
+  "adres": "Keizer Karelplein 27",
+  "gebeurtenissen": [
+   {
+    "bron": "https://kadastralekaart.com/adres/nijmegen-keizer-karelplein-27/0268200000016481",
+    "datum": "2023-07-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/43330875/",
+    "datum": "2026-05-02",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 450000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/43330875/",
+    "datum": "2026-06-05",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 450000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "krayenhofflaan281": {
   "adres": "Krayenhofflaan 281",
   "bron": "https://huispedia.nl/nijmegen/6541ps/krayenhofflaan/281",
@@ -298,6 +604,20 @@
    }
   ],
   "opgehaald": "2026-10-02"
+ },
+ "kroonstraat184": {
+  "adres": "Kroonstraat 184",
+  "gebeurtenissen": [
+   {
+    "bron": "https://huispedia.nl/nijmegen/kroonstraat",
+    "datum": "2025-12-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "lagemarkt21": {
   "adres": "Lage Markt 21",
@@ -337,6 +657,30 @@
    }
   ],
   "opgehaald": "2026-10-02"
+ },
+ "molukkenstraat14": {
+  "adres": "Molukkenstraat 14",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.checkdithuis.nl/nijmegen/molukkenstraat/",
+    "datum": "2026-07-13",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 469000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6524nb/molukkenstraat/14",
+    "datum": "2026-09-04",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 469000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "nieuwemarktstraat6": {
   "adres": "Nieuwe Marktstraat 6",
@@ -532,6 +876,52 @@
   ],
   "opgehaald": "2026-10-02"
  },
+ "ridderstraat72": {
+  "adres": "Ridderstraat 72",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.pararius.nl/koopwoningen/nijmegen/appartement",
+    "datum": "2026-07-10",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 300000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "scholenhof8": {
+  "adres": "Scholenhof 8",
+  "gebeurtenissen": [
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2019-12-07",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2026-09-11",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2026-09-28",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 550000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "smetiusstraat4d": {
   "adres": "Smetiusstraat 4-D",
   "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
@@ -573,6 +963,30 @@
    }
   ],
   "opgehaald": "2026-10-02"
+ },
+ "stjorisstraat48": {
+  "adres": "St. Jorisstraat 48",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 350000,
+    "zeker": "laag"
+   },
+   {
+    "bron": "https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 350000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "stjorisstraat54": {
   "adres": "St. Jorisstraat 54",
@@ -646,6 +1060,30 @@
   ],
   "opgehaald": "2026-10-02"
  },
+ "tulpstraat12": {
+  "adres": "Tulpstraat 12",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-04-24",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 480000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-05-11",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 480000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "tweedeoudeheselaan368": {
   "adres": "Tweede Oude Heselaan 368",
   "bron": "https://huispedia.nl/nijmegen/6542vj/tweede-oude-heselaan/368",
@@ -654,6 +1092,54 @@
   "opgehaald": "2026-10-02",
   "te_koop_vanaf": "2026-08-26",
   "zeker": "midden"
+ },
+ "vanberchenstraat27a": {
+  "adres": "van Berchenstraat 27-A",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-05",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 395000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-21",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 395000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "vanoldenbarneveltstraat15": {
+  "adres": "van Oldenbarneveltstraat 15",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15/43337710/",
+    "datum": "2026-05-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 565000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15/43337710/",
+    "datum": "2026-05-19",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 565000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "vanoldenbarneveltstraat61b": {
   "adres": "van Oldenbarneveltstraat 61-B",
@@ -694,6 +1180,36 @@
   ],
   "opgehaald": "2026-10-02"
  },
+ "veemarkt277": {
+  "adres": "Veemarkt 277",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.youtube.com/watch?v=wlsdJ5eyRqE (video geplaatst '128 days ago' per 2026-10-03)",
+    "datum": "2026-05-28",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 375000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "veemarkt3": {
+  "adres": "Veemarkt 3",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/nijmegen/appartement-veemarkt-3/43243012/",
+    "datum": "2026-02-20",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 365000,
+    "zeker": "midden"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "vondelstraat26": {
   "adres": "Vondelstraat 26",
   "bron": "https://huispedia.nl/nijmegen/6512bg/vondelstraat/26",
@@ -712,6 +1228,61 @@
   "te_koop_vanaf": "2026-07-02",
   "zeker": "laag"
  },
+ "vondelstraat75b": {
+  "adres": "Vondelstraat 75-B",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-06",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 550000,
+    "zeker": "hoog"
+   },
+   {
+    "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-26",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "verkocht",
+    "vraagprijs": 550000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
+ "voorstadslaan24": {
+  "adres": "Voorstadslaan 24",
+  "gebeurtenissen": [
+   {
+    "bron": "https://huispedia.nl/nijmegen/6541sr/voorstadslaan/24",
+    "datum": "2026-02-20",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://huispedia.nl/nijmegen/6541sr/voorstadslaan/24",
+    "datum": "2026-04-25",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "zeker": "midden"
+   },
+   {
+    "bron": "https://www.checkdithuis.nl/nijmegen/voorstadslaan/",
+    "datum": "2026-05-07",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 599000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
+ },
  "waalkade35": {
   "adres": "Waalkade 35",
   "bron": "https://www.pararius.nl/appartement-te-koop/nijmegen/71136843/waalkade",
@@ -720,6 +1291,21 @@
   "opgehaald": "2026-10-02",
   "te_koop_vanaf": "2026-01-19",
   "zeker": "hoog"
+ },
+ "willemsweg10": {
+  "adres": "Willemsweg 10",
+  "gebeurtenissen": [
+   {
+    "bron": "https://drimble.nl/postcode/6531DL/",
+    "datum": "2026-04-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-03",
+    "soort": "te koop",
+    "vraagprijs": 495000,
+    "zeker": "hoog"
+   }
+  ],
+  "opgehaald": "2026-10-03"
  },
  "zwaluwstraat175": {
   "adres": "Zwaluwstraat 175",
