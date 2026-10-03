@@ -279,5 +279,5 @@ Jan de Wittstraat 4 |  | 2026
 Molukkenstraat 188 |  | 2026
 
 # Toegevoegd op 2026-10-03: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
+Jan de Wittstraat 4 | 360.000 | 2026
+Molukkenstraat 188 | 393.000 | 2026
