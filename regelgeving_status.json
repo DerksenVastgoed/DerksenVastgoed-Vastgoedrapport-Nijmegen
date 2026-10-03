@@ -3,7 +3,9 @@
   "bron": "landelijk",
   "geldig_vanaf": "",
   "gewijzigd": "2016-01-12",
+  "sleutel": "BWBR0002481",
   "titel": "Uitvoeringswet Nederlands-Duits Executieverdrag",
+  "titel_wijkt_af": true,
   "url": "https://wetten.overheid.nl/BWBR0002481",
   "waarom": "Uitvoeringswet huurprijzen woonruimte"
  },
@@ -11,7 +13,9 @@
   "bron": "landelijk",
   "geldig_vanaf": "",
   "gewijzigd": "2024-07-09",
+  "sleutel": "BWBR0002672",
   "titel": "Wet op de vennootschapsbelasting 1969",
+  "titel_wijkt_af": true,
   "url": "https://wetten.overheid.nl/BWBR0002672",
   "waarom": "Uitvoeringsbesluit belastingen van rechtsverkeer"
  },
@@ -19,7 +23,9 @@
   "bron": "landelijk",
   "geldig_vanaf": "",
   "gewijzigd": "2024-07-05",
+  "sleutel": "BWBR0002740",
   "titel": "Wet op belastingen van rechtsverkeer",
+  "titel_wijkt_af": false,
   "url": "https://wetten.overheid.nl/BWBR0002740",
   "waarom": "Wet op belastingen van rechtsverkeer, de overdrachtsbelasting"
  },
@@ -27,7 +33,9 @@
   "bron": "landelijk",
   "geldig_vanaf": "",
   "gewijzigd": "2022-06-22",
+  "sleutel": "BWBR0003237",
   "titel": "Besluit huurprijzen woonruimte",
+  "titel_wijkt_af": false,
   "url": "https://wetten.overheid.nl/BWBR0003237",
   "waarom": "Besluit huurprijzen woonruimte, de huurprijstabel"
  },
@@ -35,7 +43,9 @@
   "bron": "landelijk",
   "geldig_vanaf": "",
   "gewijzigd": "2018-01-05",
+  "sleutel": "BWBR0035303",
   "titel": "Huisvestingswet 2014",
+  "titel_wijkt_af": false,
   "url": "https://wetten.overheid.nl/BWBR0035303",
   "waarom": "Huisvestingswet 2014"
  },

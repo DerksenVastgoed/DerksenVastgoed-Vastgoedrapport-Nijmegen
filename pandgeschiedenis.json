@@ -373,6 +373,18 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43",
+    "datum": "2024-01-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €300.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43",
+    "datum": "2024-02-14",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €300.000 (eerdere advertentie)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -2951,7 +2963,7 @@
  "avilastraat10": {
   "adres": "Avilastraat 10",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -3061,7 +3073,7 @@
  "balistraat": {
   "adres": "Balistraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -3218,6 +3230,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Bankastraat 6 is nu A"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €395.000, 83 m2"
    }
   ],
   "labels": {
@@ -4277,6 +4295,12 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-beijensstraat-80/44400022/",
+    "datum": "2026-06-22",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €575.000 (zekerheid laag)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -4291,7 +4315,7 @@
  "beijenstraat2": {
   "adres": "Beijenstraat 2",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -4306,7 +4330,7 @@
  "bergendalseweg": {
   "adres": "Berg en Dalseweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -5564,6 +5588,36 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2014-01-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €349.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: http://huisx.nl/koop/2959827/biesmanstraat-3/nijmegen",
+    "datum": "2014-09-02",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €349.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2017-11-08",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2017-12-16",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2026-03-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €650.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -11963,7 +12017,7 @@
  "burghustingstraat294": {
   "adres": "burg hustingstraat 294",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -19562,7 +19616,7 @@
  "curacaoweg9": {
   "adres": "Curacaoweg 9",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20524,7 +20578,7 @@
  "debergendalseweg287": {
   "adres": "de Berg en Dalseweg 287",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20539,7 +20593,7 @@
  "debergendalseweg32": {
   "adres": "de Berg en Dalseweg 32",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20554,7 +20608,7 @@
  "debergendalseweg50": {
   "adres": "de Berg en Dalseweg 50",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20569,7 +20623,7 @@
  "debiezenstraat20": {
   "adres": "de Biezenstraat 20",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20584,7 +20638,7 @@
  "debroerdijk85": {
   "adres": "de Broerdijk 85",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20599,7 +20653,7 @@
  "deburghardtvandenberghstraat53": {
   "adres": "de Burghardt van den Berghstraat 53",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20614,7 +20668,7 @@
  "deburghardtvandenberghstraat7": {
   "adres": "de Burghardt van den Berghstraat 7",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20629,7 +20683,7 @@
  "decargadoorweg3": {
   "adres": "de Cargadoorweg 3",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20644,7 +20698,7 @@
  "decitroenvlinderstraat45": {
   "adres": "de Citroenvlinderstraat 45",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20659,7 +20713,7 @@
  "decitroenvlinderstraat46": {
   "adres": "de Citroenvlinderstraat 46",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20674,7 +20728,7 @@
  "dedobbelmannweg29": {
   "adres": "de Dobbelmannweg 29",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20689,7 +20743,7 @@
  "dedommervanpoldersveldtweg112": {
   "adres": "de Dommer van Poldersveldtweg 112",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20704,7 +20758,7 @@
  "defransestraat36": {
   "adres": "de Fransestraat 36",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20725,7 +20779,7 @@
  "defranshalsstraat35": {
   "adres": "de Frans Halsstraat 35",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20798,7 +20852,7 @@
  "degraafsedwarsstraat71": {
   "adres": "de Graafsedwarsstraat 71",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20813,7 +20867,7 @@
  "degraafseweg50": {
   "adres": "de Graafseweg 50",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20828,7 +20882,7 @@
  "degriftdijk212": {
   "adres": "de Griftdijk 212",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20843,7 +20897,7 @@
  "degroenestraat122": {
   "adres": "de Groenestraat 122",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20858,7 +20912,7 @@
  "degroenestraat252": {
   "adres": "de Groenestraat 252",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20873,7 +20927,7 @@
  "degroesbeekseweg315": {
   "adres": "de Groesbeekseweg 315",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20888,7 +20942,7 @@
  "degroesbeekseweg319": {
   "adres": "de Groesbeekseweg 319",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20903,7 +20957,7 @@
  "degrotestraat11": {
   "adres": "de Grotestraat 11",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20918,7 +20972,7 @@
  "degrotestraat7": {
   "adres": "de Grotestraat 7",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20933,7 +20987,7 @@
  "deheidebloemstraat1": {
   "adres": "de Heidebloemstraat 1",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20948,7 +21002,7 @@
  "deheidebloemstraat28": {
   "adres": "de Heidebloemstraat 28",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20963,7 +21017,7 @@
  "deheidebloemstraat3": {
   "adres": "de Heidebloemstraat 3",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20978,7 +21032,7 @@
  "dehengstdalseweg46": {
   "adres": "de Hengstdalseweg 46",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -20993,7 +21047,7 @@
  "deheyendaalseweg117": {
   "adres": "de Heyendaalseweg 117",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21008,7 +21062,7 @@
  "dehobbemastraat25": {
   "adres": "de Hobbemastraat 25",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21023,7 +21077,7 @@
  "dekapittelweg33": {
   "adres": "de Kapittelweg 33",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21038,7 +21092,7 @@
  "dekerkstraat65": {
   "adres": "de Kerkstraat 65",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21115,7 +21169,7 @@
  "dekroonstraat2": {
   "adres": "de Kroonstraat 2",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21130,7 +21184,7 @@
  "delaanvanoostindi315": {
   "adres": "de Laan van Oost-Indië 315",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21145,7 +21199,7 @@
  "delaanvanscheut10": {
   "adres": "de Laan van Scheut 10",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21160,7 +21214,7 @@
  "delangehezelstraat75": {
   "adres": "de Lange Hezelstraat 75",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21175,7 +21229,7 @@
  "delimoslaan25": {
   "adres": "de Limoslaan 25",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21352,6 +21406,12 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Delistraat 47 is nu D"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €500.000, 61 m2"
    }
   ],
   "labels": {
@@ -21512,7 +21572,7 @@
  "demarialaan360": {
   "adres": "de Marialaan 360",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21527,7 +21587,7 @@
  "demolenstraat37": {
   "adres": "de Molenstraat 37",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21542,7 +21602,7 @@
  "demolenstraat99": {
   "adres": "de Molenstraat 99",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21557,7 +21617,7 @@
  "demolenweg11": {
   "adres": "de Molenweg 11",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21572,7 +21632,7 @@
  "denijmeegsebaan143": {
   "adres": "de Nijmeegsebaan 143",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21587,7 +21647,7 @@
  "deninasimonestraat28": {
   "adres": "de Nina Simonestraat 28",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21630,7 +21690,7 @@
  "deoudegraafseweg11": {
   "adres": "de Oude Graafseweg 11",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21645,7 +21705,7 @@
  "depaterbrugmanstraat73": {
   "adres": "de Pater Brugmanstraat 73",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21660,7 +21720,7 @@
  "dephawinkelsstraat100": {
   "adres": "de Pé Hawinkelsstraat 100",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21675,7 +21735,7 @@
  "depijnboomstraat17": {
   "adres": "de Pijnboomstraat 17",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -21690,7 +21750,7 @@
  "depijnboomstraat19": {
   "adres": "de Pijnboomstraat 19",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22263,7 +22323,7 @@
  "deriekstraat3": {
   "adres": "de Riekstraat 3",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22607,7 +22667,7 @@
  "desmetiusstraat7": {
   "adres": "de Smetiusstraat 7",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22622,7 +22682,7 @@
  "destjosephhof14": {
   "adres": "de St. Josephhof 14",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22637,7 +22697,7 @@
  "deststevenskerkhof2": {
   "adres": "de St. Stevenskerkhof 2",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22652,7 +22712,7 @@
  "devanbroeckhuysenstraat17": {
   "adres": "de van Broeckhuysenstraat 17",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22667,7 +22727,7 @@
  "devanheutszstraat21": {
   "adres": "de van Heutszstraat 21",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22682,7 +22742,7 @@
  "devanheutszstraat34": {
   "adres": "de van Heutszstraat 34",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22697,7 +22757,7 @@
  "devanoldenbarneveltstraat23": {
   "adres": "de Van Oldenbarneveltstraat 23",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22712,7 +22772,7 @@
  "devanslichtenhorststraat12": {
   "adres": "de van Slichtenhorststraat 12",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22727,7 +22787,7 @@
  "devantrieststraat8": {
   "adres": "de van Trieststraat 8",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22742,7 +22802,7 @@
  "devanwelderenstraat101": {
   "adres": "de van Welderenstraat 101",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22757,7 +22817,7 @@
  "devanwelderenstraat99": {
   "adres": "de van Welderenstraat 99",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22772,7 +22832,7 @@
  "devoorstadslaan211": {
   "adres": "de Voorstadslaan 211",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22787,7 +22847,7 @@
  "devoorstadslaan28": {
   "adres": "de Voorstadslaan 28",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22802,7 +22862,7 @@
  "devoorstenkamp": {
   "adres": "de Voorstenkamp",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22893,7 +22953,7 @@
  "devredestraat12": {
   "adres": "de Vredestraat 12",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22908,7 +22968,7 @@
  "dewaalbandijk14": {
   "adres": "de Waalbandijk 14",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22923,7 +22983,7 @@
  "dewaalkade34": {
   "adres": "de Waalkade 34",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22938,7 +22998,7 @@
  "dewaalkade68": {
   "adres": "de Waalkade 68",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22953,7 +23013,7 @@
  "dewinkelsteegseweg1": {
   "adres": "de Winkelsteegseweg 1",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22968,7 +23028,7 @@
  "dewinkelsteegseweg159": {
   "adres": "de Winkelsteegseweg 159",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -22983,7 +23043,7 @@
  "deziekerstraat6": {
   "adres": "de Ziekerstraat 6",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -30203,6 +30263,24 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://kadastralekaart.com/adres/nijmegen-eerste-oude-heselaan-172/0268200000090400",
+    "datum": "2025-12-30",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-07-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €265.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-09-03",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €265.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -30388,7 +30466,7 @@
  "eerstewalstraat": {
   "adres": "Eerste Walstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -32332,6 +32410,24 @@
     "tekst": "onttrekking bekend (jaar bij benadering)"
    },
    {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6512JN/evertsenstraat-42.html",
+    "datum": "2020-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €535.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-18",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €535.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -32891,7 +32987,7 @@
  "floraweg61": {
   "adres": "Floraweg 61",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -33232,6 +33328,12 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6524jd/fransestraat/50 (vermelding 'Fransestraat 38 te koop,",
+    "datum": "2026-08-05",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €1.025.000 (zekerheid laag)"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -33585,6 +33687,24 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2017-11-11",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-05-07",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €375.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-07-03",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €375.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -33813,7 +33933,7 @@
  "geerkamp1610": {
   "adres": "Geerkamp 1610",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -35900,7 +36020,7 @@
  "gerardvanswietenlaan": {
   "adres": "Gerard van Swietenlaan",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -36221,7 +36341,7 @@
  "gorterplaats2stannastraat198": {
   "adres": "Gorterplaats 2/St. Annastraat 198",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [],
   "pand_id": null
@@ -36423,7 +36543,7 @@
  "graafseweg": {
   "adres": "Graafseweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -41016,6 +41136,18 @@
     "tekst": "onttrekking bekend (jaar bij benadering)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €610.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-27",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €610.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -41206,7 +41338,7 @@
  "griftdijknoord14": {
   "adres": "Griftdijk Noord 14",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -41655,7 +41787,7 @@
  "groesbeeksedwarsweg": {
   "adres": "Groesbeeksedwarsweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -43357,6 +43489,18 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://nijmegen.kadasterdata.nl/groesbeekseweg/71",
+    "datum": "2017-01-01",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=nijmegen%2Fstraat-groesbeekseweg",
+    "datum": "2026-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €995.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -43887,7 +44031,7 @@
  "grotestraat": {
   "adres": "Grotestraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -44207,7 +44351,7 @@
  "hatertseveldweg": {
   "adres": "Hatertseveldweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -45227,7 +45371,7 @@
  "hegdambroek": {
   "adres": "Hegdambroek",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -47193,7 +47337,7 @@
  "hengstdalseweg": {
   "adres": "Hengstdalseweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -47390,7 +47534,7 @@
  "hertogplein": {
   "adres": "Hertogplein",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -48355,7 +48499,7 @@
  "hertogstraat45": {
   "adres": "Hertogstraat 45",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -48641,7 +48785,7 @@
  "hetjonkerbosplein52": {
   "adres": "het Jonkerbosplein 52",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -51418,7 +51562,7 @@
  "jandewittstraat68studio9": {
   "adres": "Jan de Wittstraat 6-8 studio 9",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [],
   "pand_id": null
@@ -51511,6 +51655,18 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-03-11",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €595.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-04-12",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €595.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -52818,7 +52974,7 @@
  "jonckerhof": {
   "adres": "Jonckerhof",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -52985,7 +53141,7 @@
  "jozefisralsstraat": {
   "adres": "Jozef Israëlsstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -54321,7 +54477,7 @@
  "kannunikboenenstraat30": {
   "adres": "Kannunik Boenenstraat 30",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -54336,7 +54492,7 @@
  "kannunikvandeputstraat70": {
   "adres": "Kannunik van de Putstraat 70",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -54351,7 +54507,7 @@
  "kanunnikboenenstraat20": {
   "adres": "Kanunnik Boenenstraat 20",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -54639,7 +54795,7 @@
  "kanunnikboenenstraat26": {
   "adres": "Kanunnik Boenenstraat 26",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -56964,6 +57120,24 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://kadastralekaart.com/adres/nijmegen-keizer-karelplein-27/0268200000016481",
+    "datum": "2023-07-01",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/433308",
+    "datum": "2026-05-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €450.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/433308",
+    "datum": "2026-06-05",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €450.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -57643,7 +57817,7 @@
  "kievitstraat": {
   "adres": "Kievitstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -57743,7 +57917,7 @@
  "konijnenpad10": {
   "adres": "Konijnenpad 10",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -58420,7 +58594,7 @@
  "krayenhofflaan": {
   "adres": "Krayenhofflaan",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -64729,6 +64903,12 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://huispedia.nl/nijmegen/kroonstraat",
+    "datum": "2025-12-01",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -64966,7 +65146,7 @@
  "kruidenstraat": {
   "adres": "Kruidenstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -65066,7 +65246,7 @@
  "laanvanoostindie": {
   "adres": "Laan van Oost-Indie",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -69557,7 +69737,7 @@
  "marienburg74": {
   "adres": "Marienburg 74",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -69572,7 +69752,7 @@
  "marienburgsestraat45": {
   "adres": "Marienburgsestraat 45",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -78119,6 +78299,18 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.checkdithuis.nl/nijmegen/molukkenstraat/",
+    "datum": "2026-07-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €469.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6524nb/molukkenstraat/14",
+    "datum": "2026-09-04",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €469.000 (zekerheid hoog)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -83983,7 +84175,7 @@
  "mrfrankenstraat42": {
   "adres": "Mr. Frankenstraat 42",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -84026,7 +84218,7 @@
  "muntweg": {
   "adres": "Muntweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -85416,7 +85608,7 @@
  "nijmeegsebaan65": {
   "adres": "Nijmeegsebaan 65",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -87740,7 +87932,7 @@
  "ochuismanstraat": {
   "adres": "O.C. Huismanstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -87755,7 +87947,7 @@
  "oranjesingel": {
   "adres": "Oranjesingel",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -89979,7 +90171,7 @@
  "plein1944": {
   "adres": "Plein 1944",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -93008,7 +93200,7 @@
  "pontanusstraat": {
   "adres": "Pontanusstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -93556,7 +93748,7 @@
  "priemstraat": {
   "adres": "Priemstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -95730,7 +95922,7 @@
  "profmolkenboerstraat2020": {
   "adres": "Professor Molkenboerstraat 20 & 20",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [],
   "pand_id": null
@@ -95770,7 +95962,7 @@
  "profmolkenboerstraat34": {
   "adres": "Prof. Molkenboerstraat 34",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -98438,6 +98630,12 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.pararius.nl/koopwoningen/nijmegen/appartement",
+    "datum": "2026-07-10",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €300.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -99010,7 +99208,7 @@
  "roukensstraat": {
   "adres": "Roukensstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -99266,7 +99464,7 @@
  "saturnusstraat": {
   "adres": "Saturnusstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -102447,10 +102645,28 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2019-12-07",
+    "soort": "verkocht",
+    "tekst": "verkocht (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2026-09-11",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-13",
     "soort": "te koop",
     "tekst": "te koop voor €550.000, 89 m2"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2026-09-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €550.000 (zekerheid hoog)"
    },
    {
     "bron": "EP-Online",
@@ -103165,7 +103381,7 @@
  "schoolstraat113": {
   "adres": "Schoolstraat 113",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -104147,7 +104363,7 @@
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -104893,7 +105109,7 @@
  "spoorstraat23": {
   "adres": "Spoorstraat 23",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -105049,7 +105265,7 @@
  "stannastraat": {
   "adres": "St. Annastraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -106910,6 +107126,12 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "EP-Online",
+    "datum": "2025-07-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 45A is D, geregistreerd 2025-07-02"
+   },
+   {
     "bron": "officiele bekendmakingen",
     "datum": "2026-03-02",
     "soort": "bekendmaking",
@@ -106923,7 +107145,8 @@
    }
   ],
   "labels": {
-   "St. Annastraat 45": "D"
+   "St. Annastraat 45": "D",
+   "St. Annastraat 45A": "D"
   },
   "pand_id": "0268100000029591"
  },
@@ -107009,6 +107232,34 @@
    "St. Annastraat 64": "A"
   },
   "pand_id": "0268100000011557"
+ },
+ "stannastraat7": {
+  "adres": "St. Annastraat 7",
+  "bag_eenheden": [
+   [
+    "St. Annastraat 7",
+    342
+   ]
+  ],
+  "bag_gezien": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-22",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 7 is C, geregistreerd 2025-09-22"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €1.100.000, 330 m2"
+   }
+  ],
+  "labels": {
+   "St. Annastraat 7": "C"
+  },
+  "pand_id": "0268100000030270"
  },
  "stannastraat72": {
   "adres": "St. Annastraat 72",
@@ -107951,7 +108202,7 @@
  "stgeertruidestraat31": {
   "adres": "St.Geertruidestraat 31",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -108392,7 +108643,7 @@
  "stijnbuysstraat6": {
   "adres": "Stijn Buysstraat 6",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -108795,7 +109046,7 @@
  "stjacobslaan2": {
   "adres": "St.Jacobslaan 2",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -109623,7 +109874,7 @@
  "stjacobslaan482": {
   "adres": "Sint Jacobslaan 482",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -110094,7 +110345,7 @@
  "stjansvlinder11": {
   "adres": "St. Jansvlinder 11",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -110256,6 +110507,18 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €350.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €350.000 (zekerheid laag)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -110798,7 +111061,7 @@
  "ststephanusstraat": {
   "adres": "St. Stephanusstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -114233,7 +114496,7 @@
  "thomashof6": {
   "adres": "Thomashof 6",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -115046,7 +115309,7 @@
  "tooropstraat95": {
   "adres": "Tooropstraat 95",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -116362,6 +116625,18 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-04-24",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €480.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-05-11",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €480.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -118362,6 +118637,18 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-05",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-21",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -118424,7 +118711,7 @@
  "vanbroeckhuysenstraat10": {
   "adres": "Van Broeckhuysenstraat 10",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -120190,7 +120477,7 @@
  "vanheutszstraat": {
   "adres": "van Heutszstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -120588,7 +120875,7 @@
  "vanheutsztraat54": {
   "adres": "Van Heutsztraat 54",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -121026,6 +121313,18 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15",
+    "datum": "2026-05-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €565.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15",
+    "datum": "2026-05-19",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €565.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -123553,7 +123852,7 @@
  "vantrieststraat": {
   "adres": "van Trieststraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -123568,7 +123867,7 @@
  "vantrieststraat1": {
   "adres": "van Trieststraat 1",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -123667,7 +123966,7 @@
  "vantsantstraat137": {
   "adres": "van t Santstraat 137",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -123682,7 +123981,7 @@
  "vanwelderenstraat": {
   "adres": "van Welderenstraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -123690,6 +123989,12 @@
     "datum": "2026-09-21",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €705 per maand, 27 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €670 per maand, 25 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -123819,7 +124124,7 @@
  "vanwelderenstraat112": {
   "adres": "Van Welderenstraat 112",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -132093,6 +132398,12 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.youtube.com/watch?v=wlsdJ5eyRqE (video geplaatst '128 days ago' per 2026-10-03",
+    "datum": "2026-05-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €375.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -133226,6 +133537,12 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-veemarkt-3/43243012/",
+    "datum": "2026-02-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -135280,6 +135597,18 @@
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
    {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-06",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-26",
+    "soort": "verkocht",
+    "tekst": "verkocht. vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -135684,6 +136013,24 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541sr/voorstadslaan/24",
+    "datum": "2026-02-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541sr/voorstadslaan/24",
+    "datum": "2026-04-25",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.checkdithuis.nl/nijmegen/voorstadslaan/",
+    "datum": "2026-05-07",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €599.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -136447,7 +136794,7 @@
  "vredestraat": {
   "adres": "Vredestraat",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -136496,7 +136843,7 @@
  "vrouweudasingel211": {
   "adres": "Vrouwe Udasingel 211",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -136539,7 +136886,7 @@
  "waalbandijk": {
   "adres": "Waalbandijk",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -139642,7 +139989,7 @@
  "waalkade": {
   "adres": "Waalkade",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -140968,7 +141315,7 @@
  "weezenhof": {
   "adres": "Weezenhof",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -141745,7 +142092,7 @@
  "wilhelminasingel44": {
   "adres": "Wilhelminasingel 4, 4",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
@@ -141908,6 +142255,12 @@
   ],
   "bag_gezien": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "model: https://drimble.nl/postcode/6531DL/",
+    "datum": "2026-04-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid hoog)"
+   },
    {
     "bron": "aanbod",
     "datum": "2026-09-28",
@@ -142636,7 +142989,7 @@
  "winselingseweg": {
   "adres": "Winselingseweg",
   "bag_gezien": "2026-10-03",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {

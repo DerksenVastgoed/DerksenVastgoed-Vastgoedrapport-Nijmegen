@@ -1,283 +1,52 @@
-# WOZ-waarden, handmatig ingevuld. Formaat: adres | woz | jaar
-#
-# De WOZ is niet vrij op te vragen: de officiele API van het Kadaster vereist
-# een organisatiecertificaat en is bedoeld voor gemeenten. Zoek een pand op via
-# wozwaardeloket.nl en zet het bedrag hier neer. De brief toetst dan op de
-# echte waarde in plaats van op de vraagprijs, en dat bepaalt of de
-# opkoopbescherming en de kamerverhuurband gelden.
-#
-# Het jaar is de waardepeildatum: de WOZ wordt jaarlijks opnieuw vastgesteld,
-# met als peildatum 1 januari van het voorgaande jaar. Zonder jaartal weet je
-# later niet meer of een bedrag nog klopt.
-#
-# Regels zonder bedrag worden overgeslagen. Het script zet grensgevallen hier
-# vanzelf bij, zodat je alleen nog het bedrag hoeft in te vullen.
+# WOZ-waarden per adres. Formaat: adres | bedrag | jaar
+# Op te zoeken via wozwaardeloket.nl. Ingevulde regels blijven staan en komen niet opnieuw terug.
 
-St. Annastraat 28 | 1021000 | 2026
+# Ingevuld (14)
+Boomvalkstraat 18 | 239000 | 2026
+Burg. Hustinxstraat 46 | 410.000 | 2026
+Dikkeboomweg 36 | 457000 | 2026
 Dokstraat 127 | 416000 | 2026
+Gerard Noodtstraat 71 | 478000 | 2026
 Graafseweg 47K | 380000 | 2026
 Marialaan 111 | 312000 | 2026
-Boomvalkstraat 18 | 239000 | 2026
-Zwaluwstraat 7 | 342000 | 2026
-Prof. Molkenboerstraat 30 | 432000 | 2026
-
-# Toegevoegd op 2026-09-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Dikkeboomweg 36 | 457000 | 2026
-Gerard Noodtstraat 71 | 478000 | 2026
 Molukkenstraat 168 | 344000 | 2026
 Nieuwe Marktstraat 6 | 390.000 | 2026
+Pontanusstraat 19 | 523.000 | 2026
+Prof. Molkenboerstraat 30 | 432000 | 2026
 Schoolstraat 135 | 379000 | 2026
+St. Annastraat 28 | 1021000 | 2026
+Zwaluwstraat 7 | 342000 | 2026
 
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
+# Nog in te vullen (14): vul het bedrag tussen de eerste twee streepjes
 Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-11: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-13: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-13: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-14: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-14: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-14: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-14: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-15: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-16: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 |  | 2026
-In de Betouwstraat 35 |  | 2026
-Palembangstraat 44 |  | 2026
-de Ruyterstraat 37 |  | 2026
-
-# Toegevoegd op 2026-09-16: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Beijensstraat 18 | 376.000 | 2026
-In de Betouwstraat 35 | 222.000 | 2026
-Palembangstraat 44 | 466.000  | 2026
-de Ruyterstraat 37 | 514.000 | 2026
-Pontanusstraat 19 | 523.000 | 2026 
-
-# Toegevoegd op 2026-09-19: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-20: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-20: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-21: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-22: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-
-# Toegevoegd op 2026-09-23: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-van Goorstraat 91 |  | 2026
-
-# Toegevoegd op 2026-09-24: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Marialaan 56 |  | 2026
-van Goorstraat 91 |  | 2026
-
-# Toegevoegd op 2026-09-25: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Burg. Hustinxstraat 56 |  | 2026
-Marialaan 56 |  | 2026
-van Goorstraat 91 |  | 2026
-
-# Toegevoegd op 2026-09-27: grensgevallen, vul het bedrag in via wozwaardeloket.nl
 Burg. Hustinxstraat 56 |  | 2026
 Delistraat 20 |  | 2026
+In de Betouwstraat 35 |  | 2026
+Jan de Wittstraat 4 |  | 2026
+Krayenhofflaan 47 |  | 2026
+Lage Markt 21 |  | 2026
 Marialaan 56 |  | 2026
+Molukkenstraat 14 |  | 2026
+Molukkenstraat 188 |  | 2026
+Palembangstraat 44 |  | 2026
+Plein 1944 129 |  | 2026
+de Ruyterstraat 37 |  | 2026
 van Goorstraat 91 |  | 2026
 
-# Toegevoegd op 2026-09-27: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Burg. Hustinxstraat 56 | 419.000 | 2026
-Delistraat 20 | 408.000 | 2026
-Marialaan 56 | 444.000 | 2026
-van Goorstraat 91 | 434.000 | 2026
-
-# Toegevoegd op 2026-09-28: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Krayenhofflaan 47 |  | 2026
-Lage Markt 21 |  | 2026
-Molukkenstraat 14 |  | 2026
-Plein 1944 129 |  | 2026
-
-# Toegevoegd op 2026-09-28: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Krayenhofflaan 47 |  | 2026
-Lage Markt 21 |  | 2026
-Molukkenstraat 14 |  | 2026
-Plein 1944 129 |  | 2026
-
-# Toegevoegd op 2026-09-28: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Krayenhofflaan 47 | 518.000 | 2026
-Lage Markt 21 | 314.000 | 2026
-Molukkenstraat 14 | 430.000 | 2026
-Plein 1944 129 | 371.000 | 2026
-
-# Toegevoegd op 2026-09-29: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Burg. Hustinxstraat 46 | 410.000 | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-01: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-02: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 |  | 2026
-Molukkenstraat 188 |  | 2026
-
-# Toegevoegd op 2026-10-03: grensgevallen, vul het bedrag in via wozwaardeloket.nl
-Jan de Wittstraat 4 | 360.000 | 2026
-Molukkenstraat 188 | 393.000 | 2026
+# Werklijst (16): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
+Beijensstraat 4-A |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 40 m2, buiten het middengebied
+Daalseweg 58 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
+Derde Walstraat 108 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
+Eerste Oude Heselaan 170 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 31 m2, buiten het middengebied
+Achter de Bank 4 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bankastraat 10 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bloemerstraat 107 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Bottelstraat 19 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Arsenaalplaats 6 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Beijensstraat 68 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Beijensstraat 80 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Braamhof 4 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Doddendaal 101 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 159 m2, buiten het middengebied
+Dominicanenstraat 30 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 174 m2, buiten het middengebied
+Fransestraat 38 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 204 m2, buiten het middengebied
+Groesbeekseweg 85 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 228 m2, buiten het middengebied

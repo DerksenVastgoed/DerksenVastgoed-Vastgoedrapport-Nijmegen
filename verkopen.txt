@@ -890,3 +890,9 @@ Jonckerhof | Nijmegen | 629 | te huur kamer | 2026-10-02 | kamernet-incl | 16 |
 # Automatisch toegevoegd uit Funda-attendering op 02-10-2026
 Berg en Dalseweg | Nijmegen | 799 | te huur kamer | 2026-10-02 | kamernet-incl | 30 | 
 Jozef Israëlsstraat | Nijmegen | 2650 | te huur | 2026-10-02 | pararius | 148 | 6521MX
+
+# Automatisch toegevoegd uit Funda-attendering op 03-10-2026
+Bankastraat 10 | Nijmegen | 395000 | te koop | 2026-10-03 |  | 83 | 6524MT
+St. Annastraat 7 | Nijmegen | 1100000 | te koop | 2026-10-03 |  | 330 | 6524EB
+Delistraat 45 | Nijmegen | 500000 | te koop | 2026-10-03 |  | 61 | 6524KN
+van Welderenstraat | Nijmegen | 670 | te huur kamer | 2026-10-03 | kamernet-incl | 25 | 

@@ -1,11 +1,23 @@
 {
- "verkooptijd_aantal": 40,
- "bezitsduur_aantal": 16,
- "prijsgroei_aantal": 6,
- "verkooptijd_mediaan_dagen": 81,
- "bezitsduur_mediaan_jaar": 2.5,
- "prijsgroei_mediaan_pct": 5.2,
+ "verkooptijd_aantal": 72,
+ "bezitsduur_aantal": 34,
+ "prijsgroei_aantal": 11,
+ "verkooptijd_mediaan_dagen": 88,
+ "bezitsduur_mediaan_jaar": 1.45,
+ "prijsgroei_mediaan_pct": 4.3,
  "voorbeelden": [
+  {
+   "adres": "Achter de Oude Gracht 17",
+   "van": "2024-02-14",
+   "tot": "2026-09-28",
+   "per_jaar": 8.9
+  },
+  {
+   "adres": "Biesmanstraat 3",
+   "van": "2014-09-02",
+   "tot": "2026-09-28",
+   "per_jaar": 5.3
+  },
   {
    "adres": "Daalseweg 56",
    "van": "2019-10-23",
@@ -19,22 +31,10 @@
    "per_jaar": 0.0
   },
   {
-   "adres": "Mariënburg 20",
-   "van": "2025-03-12",
+   "adres": "Evertsenstraat 42",
+   "van": "2026-02-18",
    "tot": "2026-09-28",
-   "per_jaar": 6.0
-  },
-  {
-   "adres": "Ridderspoor 51",
-   "van": "2019-01-01",
-   "tot": "2026-09-28",
-   "per_jaar": 8.2
-  },
-  {
-   "adres": "Smetiusstraat 4-D",
-   "van": "2024-07-08",
-   "tot": "2026-09-28",
-   "per_jaar": 8.2
+   "per_jaar": 0.0
   }
  ]
 }

@@ -87,6 +87,14 @@
   "omweg": 2.43,
   "soort": "bus"
  },
+ "51.83280,5.86255": {
+  "geschat": false,
+  "hemelsbreed": 310,
+  "meters": 816,
+  "naam": "Groenestraat",
+  "omweg": 2.63,
+  "soort": "bus"
+ },
  "51.83338,5.86397": {
   "geschat": false,
   "hemelsbreed": 476,
@@ -163,6 +171,14 @@
   "geschat": false,
   "hemelsbreed": 476,
   "meters": 600,
+  "naam": "Fransestraat",
+  "omweg": 1.26,
+  "soort": "bus"
+ },
+ "51.83520,5.86702": {
+  "geschat": false,
+  "hemelsbreed": 462,
+  "meters": 584,
   "naam": "Fransestraat",
   "omweg": 1.26,
   "soort": "bus"
@@ -461,6 +477,14 @@
   "meters": 1172,
   "naam": "Fransestraat",
   "omweg": 4.28,
+  "soort": "bus"
+ },
+ "51.84027,5.86069": {
+  "geschat": false,
+  "hemelsbreed": 234,
+  "meters": 339,
+  "naam": "Fransestraat",
+  "omweg": 1.45,
   "soort": "bus"
  },
  "51.84031,5.83776": {

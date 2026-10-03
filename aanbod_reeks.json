@@ -8,11 +8,14 @@
   "uitpond_adressen": []
  },
  "2026-10-03": {
-  "nieuw_te_huur": 0,
-  "nieuw_te_koop": 0,
+  "nieuw_te_huur": 1,
+  "nieuw_te_koop": 3,
   "te_huur": 35,
-  "te_koop": 65,
-  "uitpond": 0,
-  "uitpond_adressen": []
+  "te_koop": 68,
+  "uitpond": 2,
+  "uitpond_adressen": [
+   "Bankastraat 10",
+   "Delistraat 45"
+  ]
  }
 }

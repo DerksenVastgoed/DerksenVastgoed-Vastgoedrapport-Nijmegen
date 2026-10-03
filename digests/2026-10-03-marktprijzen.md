@@ -6,17 +6,17 @@ _Het object in de ring waar de richtprijs het dichtst bij de vraagprijs ligt (+8
 
 ### 1. [Achter de Bank 4](https://www.google.com/maps/search/?api=1&query=Achter+de+Bank+4%2C+Nijmegen), Stadscentrum
 
-Achter de Bank 4 vraagt €375.000 voor 96 m², fors onder de buurtmediaan van €5.413/m2, en de BAG toont al drie woningen met eigen adres in het pand: het is dus al opgedeeld, al is onbekend of dat ook kadastraal is vastgelegd. De WOZ is niet bekend, en dat is hier het eerste probleem: zonder WOZ valt niet te toetsen of de opkoopbescherming geldt, of er een omzettingsvergunning nodig is, en of de 187-puntengrens wordt gehaald. De geschatte WOZ van €418.000 ligt boven de grens van €396.000, maar die schatting zit gemiddeld 24% naast de werkelijkheid, dus dit moet eerst hard gemaakt worden.
+Achter de Bank 4 ligt 28% onder de mediaan prijs per m2 en is met drie woonadressen in de BAG feitelijk al opgedeeld, al is onbekend of dat ook juridisch gesplitst is. Het fundamentele probleem is dat de WOZ-waarde ontbreekt: zonder die waarde zijn opkoopbescherming, vergunningplicht en de WWS-puntentelling niet te toetsen. De geschatte WOZ van €418.000 is een ruwe indexering van de vraagprijs met een spreiding van ±24%, dus geen basis om op te handelen.
 
-De doorrekening gaat uit van €1.874 huur per maand, gemeten op zes panden, en komt op 5,5% netto rendement en een richtprijs van €406.611, boven de vraagprijs. Zonder WOZ-toets is dat geen koopsignaal maar een bovengrens: onder de 187 punten kan de wettelijke maximumhuur fors lager liggen. In de straat zijn geen vergunningen of splitsingen bekend sinds 2013, wat niets bewijst maar ook geen houvast biedt.
+De doorrekening komt op een gemeten huur van €1.874 per maand, gebaseerd op slechts 6 waarnemingen en gewogen met de buurtreferentie, en niet getoetst aan het puntenstelsel. De richtprijs van €406.611 ligt daardoor boven de vraagprijs van €375.000, maar dat is bij deze dunne onderbouwing geen koopsignaal. Splitsen en verhuren valt sowieso af zolang de WOZ niet boven €396.000 is vastgesteld, vanwege de opkoopbescherming. Verkameren oogt kansrijk gezien het hoge aandeel appartementen in Stadscentrum en de afwezigheid van vergunningen in de straat, maar Stadscentrum is grotendeels rijksbeschermd stadsgezicht, wat gevel- en kozijningrepen vergunningplichtig maakt.
 
-Bekijken waard vanwege de prijs per m², maar eerst de WOZ opvragen voordat er geboden wordt.
+Eerst de WOZ-waarde opvragen; zonder dat getal is dit pand niet te beoordelen, hooguit te bekijken.
 
 _€375.000 . 96 m2 . €3.906 . 1950 . C (2026). [Bekijk op straatniveau](https://www.google.com/maps/search/?api=1&query=Achter+de+Bank+4%2C+Nijmegen&layer=c)_
 
 [Bekijk het pand op de kaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html)
 
-_Ter vergelijking: beleggingspanden in verhuurde staat gaan in dezelfde buurten voor mediaan €4.094/m², tegen €5.277/m² vrij van huurder. Dat verschil van €1.182/m² is de ruimte die uitponden oplevert, gerekend op 4 beleggingen en 318 verkopen._
+_Ter vergelijking: beleggingspanden in verhuurde staat gaan in dezelfde buurten voor mediaan €4.094/m², tegen €5.273/m² vrij van huurder. Dat verschil van €1.178/m² is de ruimte die uitponden oplevert, gerekend op 4 beleggingen en 321 verkopen._
 
 ### Beleid uitgelicht: twee sporen bij kamerverhuur
 

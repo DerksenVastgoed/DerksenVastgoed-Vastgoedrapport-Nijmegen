@@ -1,28 +1,30 @@
 {
- "datum": "2026-10-02",
+ "datum": "2026-10-03",
  "bronnen": {
   "regulier": {
    "mails": 4,
-   "objecten": 11,
+   "objecten": 12,
    "overgeslagen": 0,
    "redenen": []
   },
+  "pararius": {
+   "mails": 3,
+   "objecten": 1,
+   "overgeslagen": 4,
+   "redenen": [
+    "St. Stephanusstraat (gemeubileerd, andere markt)",
+    "IJsvogelpassage (gemeubileerd, andere markt)",
+    "van Spaenstraat (gemeubileerd, andere markt)",
+    "IJsvogelpassage (gemeubileerd, andere markt)"
+   ]
+  },
   "kamernet": {
-   "mails": 13,
-   "objecten": 11,
+   "mails": 10,
+   "objecten": 8,
    "overgeslagen": 2,
    "redenen": [
     "Huissensestraat, Arnhem: buiten Nijmegen",
     "Kwartelstraat, Wijchen: buiten Nijmegen"
-   ]
-  },
-  "pararius": {
-   "mails": 2,
-   "objecten": 1,
-   "overgeslagen": 2,
-   "redenen": [
-    "St. Stephanusstraat (gemeubileerd, andere markt)",
-    "IJsvogelpassage (gemeubileerd, andere markt)"
    ]
   }
  },

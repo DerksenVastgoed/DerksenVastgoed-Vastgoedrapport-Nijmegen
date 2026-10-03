@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html",
   "strategie": "splitsen",
-  "duiding": "Besluit staat splitsing naar twee zelfstandige woningen toe, al vraagt label G om renovatie-investering bij mutatie.",
+  "duiding": "Verleende BOPA-vergunning bevestigt dat het splitsen van deze woning in twee zelfstandige units hier planologisch haalbaar is.",
   "feiten": {
    "energielabel": "G (2025)",
    "oppervlakte_m2": 168
@@ -18,7 +18,7 @@
   "titel": "Besluit (met BOPA) voor Verlengen vergunning (5Jaar) tbv tijdelijke overkappingen, aan Vondelstraat 5, 6512BB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html",
   "strategie": "geen",
-  "duiding": "Verlenging van een tijdelijke overkappingsvergunning heeft geen effect op woningvoorraad of waardecreatiepotentieel.",
+  "duiding": "Verlenging van een tijdelijke overkappingsvergunning is administratief en heeft geen directe marktwaarde voor investeerders.",
   "feiten": {
    "oppervlakte_m2": 974
   },
@@ -30,8 +30,8 @@
   "datum": "2026-10-02",
   "titel": "Besluit voor het herstellen voegwerk van de voorgevel aan Johannes Vijghstraat 5, 6524BN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html",
-  "strategie": "geen",
-  "duiding": "Herstel van voegwerk is regulier onderhoud zonder invloed op energielabel of verhuurbaarheid.",
+  "strategie": "verduurzaming",
+  "duiding": "Herstel van voegwerk is onderhoud aan de gevel en verandert het bestaande energielabel niet automatisch.",
   "feiten": {
    "energielabel": "E (2020)",
    "oppervlakte_m2": 182
@@ -45,7 +45,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw, aan Peter Scheersstraat 8, 6525DE Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459204.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor dakopbouw kan bij toekenning extra vloeroppervlak opleveren, wat ruimte biedt voor latere opdeling in meerdere eenheden.",
+  "duiding": "Aanvraag voor een dakopbouw kan extra vloeroppervlak opleveren, wat ruimte biedt voor latere splitsing in meerdere units.",
   "feiten": {
    "energielabel": "E (2020)",
    "oppervlakte_m2": 140

@@ -71996,5 +71996,139 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Bankastraat 10|Nijmegen": {
+    "oppervlakte": 83,
+    "bouwjaar": "1955",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524MT",
+    "adresseerbaarObjectIdentificatie": "0268010000079458",
+    "pand": "0268100000012208",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-8c8f3b1fbf361871ef4369f6071c0971",
+    "eenheden_in_pand": [
+      {
+        "adres": "Bankastraat 4",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bankastraat 6",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bankastraat 8",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bankastraat 10",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bankastraat 12",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Bankastraat 14",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 83,
+    "energielabel": {
+      "label": "F",
+      "registratiedatum": "2026-07-21",
+      "geldig_tot": "2036-07-21",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "St. Annastraat 7|Nijmegen": {
+    "oppervlakte": 330,
+    "bouwjaar": "1888",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524EB",
+    "adresseerbaarObjectIdentificatie": "0268010000025114",
+    "pand": "0268100000030270",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-767b177f31135ea3eb990f43d9eb85bf",
+    "oppervlakte_bag": 342,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2025-09-22",
+      "geldig_tot": "2035-09-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Delistraat 45|Nijmegen": {
+    "oppervlakte": 61,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524KN",
+    "adresseerbaarObjectIdentificatie": "0268010000003962",
+    "pand": "0268100000024241",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-6b452df4574f7188aae70f3b2f2c7115",
+    "eenheden_in_pand": [
+      {
+        "adres": "Delistraat 45",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Delistraat 47",
+        "oppervlakte": 99,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 61,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2020-12-14",
+      "geldig_tot": "2030-12-14",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }
