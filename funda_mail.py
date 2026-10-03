@@ -524,11 +524,15 @@ def parse_pararius(regels):
         if not (prijs and opp):
             overgeslagen.append(f"{straat} (onvolledig)")
             continue
+        # Gemeubileerd telt niet mee in de mediaan, want de inrichting zit in
+        # de prijs. Weggooien is wel zonde: het is een route die een verhuurder
+        # kan kiezen, en met genoeg waarnemingen is de opslag te meten in plaats
+        # van te schatten. Daarom een eigen status, zodat hij bewaard blijft en
+        # nergens meetelt waar hij niet hoort.
+        status = ("te huur gemeubileerd" if gemeubileerd
+                  else "te huur kamer" if soort == "kamer" else "te huur")
         if gemeubileerd:
-            overgeslagen.append(f"{straat} (gemeubileerd, andere markt)")
-            continue
-
-        status = "te huur kamer" if soort == "kamer" else "te huur"
+            overgeslagen.append(f"{straat} (gemeubileerd, apart bewaard)")
         sleutel = (straat.lower(), prijs, opp)
         if sleutel in gezien:
             continue

@@ -296,7 +296,20 @@ def controle_geschiedenis():
     # EP-Online. Dat was tot nu toe alleen af te leiden uit een aftreksom.
     met_bag = sum(1 for p in d.values() if p.get("bag_eenheden"))
     met_label = sum(1 for p in d.values() if p.get("labels"))
-    eenheden = sum(len(p.get("bag_eenheden") or []) for p in d.values())
+    # Per pand-id tellen en niet per sleutel. Hetzelfde pand staat soms onder
+    # meerdere adressen in het bestand, elk met de volledige lijst eenheden;
+    # optellen over sleutels telde die woningen dan dubbel. Achter de Carmel 28
+    # en 32 zijn hetzelfde gebouw met acht eenheden, en die werden zestien.
+    per_pand, zonder_id = {}, 0
+    for p in d.values():
+        eenh = p.get("bag_eenheden") or []
+        pid = p.get("pand_id")
+        if pid:
+            per_pand[pid] = max(per_pand.get(pid, 0), len(eenh))
+        else:
+            zonder_id += len(eenh)
+    eenheden = sum(per_pand.values()) + zonder_id
+    dubbel = sum(len(p.get("bag_eenheden") or []) for p in d.values()) - eenheden
     # Het getal uit het script zelf, niet een eigen kopie: die liepen uiteen
     # toen de standaard van 200 naar 500 ging.
     try:
@@ -306,7 +319,9 @@ def controle_geschiedenis():
     # Labels groeien alleen tijdens een volledige ronde; dat staat erbij zodat
     # een stilstaand getal niet als storing wordt gelezen.
     bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
-              f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen), "
+              f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen"
+              + (f", {dubbel} dubbel geteld zonder deze correctie" if dubbel else "")
+              + "), "
               f"{met_label} met een energielabel, {nooit} nog nooit nagekeken"
               + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else "")
               + (f" waarvan {opgegeven} na drie pogingen opgegeven"
@@ -732,6 +747,24 @@ def controle_opnieuw_aangeboden():
     return (OK, bewijs, "")
 
 
+def controle_gemeubileerd():
+    """Gemeubileerde advertenties: apart bewaard, niet in de mediaan."""
+    aantal = 0
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) > 3 and "gemeubileerd" in v[3].lower():
+                    aantal += 1
+    except Exception:
+        return (OK, "geen huurbestand om te tellen", "")
+    if not aantal:
+        return (OK, "nog geen gemeubileerde advertenties bewaard", "")
+    return (OK, f"{aantal} gemeubileerde advertenties apart bewaard; de opslag "
+            f"wordt binnen hetzelfde huurregime vergeleken, want een hoge huur "
+            f"komt eerder door de vrije sector dan door het meubilair", "")
+
+
 def controle_huurdekking():
     """Hoeveel van het huuraanbod elders we zelf al zien."""
     try:
@@ -802,9 +835,9 @@ def controle_verkoopdatums():
     """Hoeveel panden een indicatie van hun verkoopdatum hebben."""
     d = _json("verkoopdatums_model.json") or {}
     if not d:
-        return (LET_OP, "nog geen verkoopdatums opgehaald",
-                "Draait in de weekeditie of bij een handrun met de volledige "
-                "vlag aan.")
+        return (OK, "geen verkoopdatums opgehaald; die stap staat uit omdat "
+                "het webzoeken per pand te duur was, en wordt vanuit de chat "
+                "aangevuld", "")
     hoog = sum(1 for p in d.values() if p.get("zeker") == "hoog")
     verdacht = sum(1 for p in d.values() if p.get("waarschuwing"))
     met_verkoop = sum(1 for p in d.values() if p.get("verkocht_op"))
@@ -1069,6 +1102,7 @@ CONTROLES = [
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),
     ("Huurdekking", controle_huurdekking),
+    ("Gemeubileerd", controle_gemeubileerd),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),

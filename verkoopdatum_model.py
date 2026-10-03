@@ -19,6 +19,13 @@ zelden "ik weet het niet" terug maar een plausibel getal:
 4. Dit overschrijft nooit een Kadastercijfer of iets wat Mark zelf heeft
    ingevoerd. Komt er later een echte levering, dan vervangt die deze regels.
 
+LET OP: deze stap staat uit in de workflow. Per pand een vraag met webzoeken
+kostte ongeveer twintig euro per run, en dat staat in geen verhouding tot wat
+het aan de brief toevoegt. Het script blijft bruikbaar voor een handmatige
+ronde; de gegevens worden voorlopig vanuit de chat aangevuld, waar het zoeken
+niets kost. De verkoopgeschiedenis van een pand verandert vrijwel nooit, dus
+het is een eenmalige inhaalslag en geen dagelijkse taak.
+
 Gebruik:
   python verkoopdatum_model.py --proef 20     twintig panden, niets bewaren
   python verkoopdatum_model.py --per-ronde 50 vijftig panden, wel bewaren

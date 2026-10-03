@@ -3269,6 +3269,56 @@ def _te_oud(w, maanden=None):
     return (dt.date.today() - d).days > maanden * 30
 
 
+def gemeubileerd_opslag(huur_aanbod):
+    """
+    Hoeveel duurder gemeubileerd is dan kaal, binnen hetzelfde huurregime.
+
+    Die laatste woorden zijn de kern. Een gemeubileerde woning van 103 m2 voor
+    €2.425 is in de eerste plaats een VRIJE prijs: het pand komt boven de
+    puntengrens en dan mag de verhuurder vragen wat de markt betaalt. Of er een
+    bank in staat, is daarna pas aan de orde. Vergelijk je gemeubileerd met
+    kaal zonder op het regime te letten, dan meet je het verschil tussen
+    gereguleerd en vrij en plak je daar het etiket "meubilair" op. Dat is
+    dezelfde fout als bij de groottepremie, waar ligging voor omvang werd
+    aangezien.
+
+    De splitsing gaat op huurprijs en niet op punten, want van een
+    huuradvertentie kennen we alleen straat, prijs en oppervlakte: geen
+    huisnummer, dus geen WOZ en geen label, dus geen puntentelling. Dat is een
+    benadering, en die staat erbij in de uitkomst.
+    """
+    import statistics as _st
+    grens = vrije_sector_grens()
+    groepen = {}
+    for w in huur_aanbod:
+        prijs, opp = w.get("prijs"), w.get("oppervlakte")
+        if not prijs or not opp or opp < 10:
+            continue
+        klasse = "tot 60 m2" if opp < 60 else "60 tot 100 m2" if opp < 100 \
+            else "100 m2 en groter"
+        regime = "vrij" if prijs > grens else "gereguleerd"
+        soort = ("gemeubileerd"
+                 if "gemeubileerd" in (w.get("status") or "").lower() else "kaal")
+        groepen.setdefault((klasse, regime), {}).setdefault(
+            soort, []).append(prijs / opp)
+
+    uit = {"grens": round(grens, 2),
+           "let_op": ("gesplitst op huurprijs en niet op punten; van een "
+                      "huuradvertentie kennen we geen huisnummer en dus geen "
+                      "WOZ of label"),
+           "klassen": {}}
+    for (klasse, regime), rijen in sorted(groepen.items()):
+        gem, kaal = rijen.get("gemeubileerd") or [], rijen.get("kaal") or []
+        naam = f"{klasse}, {regime}"
+        rij = {"gemeubileerd": len(gem), "kaal": len(kaal)}
+        if len(gem) >= 3 and len(kaal) >= 3:
+            rij["ppm2_gemeubileerd"] = round(_st.median(gem), 2)
+            rij["ppm2_kaal"] = round(_st.median(kaal), 2)
+            rij["opslag"] = round(_st.median(gem) / _st.median(kaal), 2)
+        uit["klassen"][naam] = rij
+    return uit
+
+
 def gemeten_huren(huur_aanbod):
     """
     Mediane huur per m2 per maand, per buurt en per klasse.
@@ -3278,7 +3328,10 @@ def gemeten_huren(huur_aanbod):
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
     inclusief_weg = 0
-    huur_aanbod = [w for w in huur_aanbod if not _te_oud(w)]
+    # Gemeubileerd hoort niet in de mediaan: de inrichting zit in de prijs.
+    # Hij wordt wel bewaard, zodat de opslag apart te meten is.
+    huur_aanbod = [w for w in huur_aanbod if not _te_oud(w)
+                   and "gemeubileerd" not in (w.get("status") or "").lower()]
     for w in huur_aanbod:
         # Alleen kale huur telt. Servicekosten zijn doorbelasting van werkelijke
         # kosten waar geen rendement uit komt, en het puntenstelsel toetst er

@@ -4435,6 +4435,75 @@ Het staat hiermee genoteerd als volgende stap.
 
 ---
 
+## 14a. Gemeubileerd weggooien was zonde — 3 oktober 2026
+
+Mark zag een advertentie aan de van Spaenstraat: €2.425 voor 103 m2,
+gemeubileerd. Dat is €23,54 per m2, terwijl onze gemeten huren in die buurt
+tussen de €13 en €18 liggen. Zo'n waarneming werd tot nu toe overgeslagen met
+de reden "andere markt".
+
+**De reden klopt, de behandeling niet.** Gemeubileerd hoort niet in de mediaan,
+want de inrichting zit in de prijs. Maar weggooien betekent dat we nooit kunnen
+meten hoe groot die opslag is, terwijl het een route is die een verhuurder kan
+kiezen. Dit was de tweede in een week; eerder kwam de St. Stephanusstraat langs
+met €1.188 voor 70 m2.
+
+**Nu krijgen ze een eigen status**, "te huur gemeubileerd". Ze blijven bewaard,
+tellen niet mee in de gemeten huren, en er is een berekening die de opslag per
+grootteklasse geeft: de mediaan gemeubileerd gedeeld door de mediaan kaal, pas
+vanaf drie waarnemingen aan beide kanten. In de test: €23,54 tegen €18,00 per
+m2, een opslag van 1,31.
+
+**Mark corrigeerde de uitleg, en terecht.** Die €23,54 is in de eerste plaats
+een VRIJE prijs: 103 m2 uit 1902 komt vrijwel zeker boven de 187 punten, en dan
+mag de verhuurder vragen wat de markt betaalt. Of er een bank in staat is
+daarna pas aan de orde.
+
+Mijn eerste berekening vergeleek gemeubileerd met kaal zonder op het regime te
+letten. Als gemeubileerde panden vaker vrije sector zijn, meet je daarmee het
+verschil tussen gereguleerd en vrij en plak je er het etiket "meubilair" op.
+Dezelfde fout als bij de groottepremie, waar ligging voor omvang werd
+aangezien.
+
+**Nu wordt er binnen hetzelfde huurregime vergeleken**, gesplitst op de grens
+van €1.228 per maand. Dat is een benadering, want de echte grens staat op
+punten en van een huuradvertentie kennen we geen huisnummer en dus geen WOZ of
+label. Die beperking staat in de uitkomst vermeld.
+
+In de test met drie gereguleerde kale panden erbij: zonder splitsing kwam de
+opslag op 1,31, met splitsing op 1,30 binnen de vrije sector en geen uitkomst
+voor gereguleerd. Zodra de aantallen groeien, zegt dat verschil of er binnen de
+vrije sector uberhaupt een meubilairopslag bestaat, of dat Marks verklaring de
+hele verklaring is.
+
+---
+
+## 15. De verkoopdatumstap kostte twintig euro per run — 3 oktober 2026
+
+**Mark:** dit is de tweede run met ongeveer twintig euro aan kosten; dat was
+niet de bedoeling.
+
+**Terecht, en die inschatting was van mij.** De stap stelt per pand een vraag
+met webzoeken aan, en elke zoekopdracht kost geld bovenop het model. Vijftig
+panden per ronde met vier zoekopdrachten elk is tweehonderd zoekacties. Ik had
+dat moeten doorrekenen voordat ik hem in de workflow zette, zeker omdat hij ook
+aan de wekelijkse ronde hing.
+
+**De stap staat uit**, niet weg: het script werkt en de uitkomst was bruikbaar.
+Hij draait alleen nog als je hem zelf start.
+
+**De gegevens vullen we vanuit de chat aan**, waar het zoeken niets kost. Dat
+past ook beter bij wat het is: de verkoopgeschiedenis van een pand verandert
+vrijwel nooit, dus het is een eenmalige inhaalslag en geen dagelijkse taak.
+Beginnen bij de panden die ertoe doen: de vergunde-en-verkochte panden en wat
+Mark serieus overweegt.
+
+**Les voor mezelf:** bij elke stap die per pand een betaalde dienst aanroept,
+eerst de rekensom maken. Aantal panden maal aantal aanroepen maal de prijs, en
+dat naast wat het aan de brief toevoegt.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
