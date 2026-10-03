@@ -439,6 +439,7 @@ def bij_labels(geschiedenis, alleen=None):
         print("Geen EP_API_KEY; energielabels overgeslagen", file=sys.stderr)
         return 0
     nieuw, vandaag = 0, dt.date.today().isoformat()
+    eerste = gewijzigd = 0
     doel = set(alleen) if alleen is not None else set(geschiedenis)
     for sl, pand in geschiedenis.items():
         if sl not in doel:
@@ -461,14 +462,32 @@ def bij_labels(geschiedenis, alleen=None):
                 continue
             if labels.get(adres) != label:
                 was = labels.get(adres)
-                tekst = (f"energielabel van {adres} is nu {label}"
-                         + (f", was {was}" if was else ""))
-                nieuw += voeg_toe(pand, vandaag, "energielabel", tekst, "EP-Online")
+                # De datum van het label zelf, niet die van vandaag. Een label
+                # uit 2019 dat wij nu pas ophalen is geen gebeurtenis van
+                # vandaag; zo stond het wel in de geschiedenis en daarmee
+                # leken honderden panden ineens iets gedaan te hebben.
+                datum = (ep.get("registratiedatum") or "")[:10]
+                try:
+                    dt.date.fromisoformat(datum)
+                except ValueError:
+                    datum = vandaag
+                if was:
+                    tekst = f"energielabel van {adres} is nu {label}, was {was}"
+                    gewijzigd += 1
+                else:
+                    # Voor het eerst opgehaald: dat is geen wijziging aan het
+                    # pand maar een aanvulling van onze gegevens.
+                    tekst = (f"energielabel van {adres} is {label}, "
+                             f"geregistreerd {datum}")
+                    eerste += 1
+                nieuw += voeg_toe(pand, datum, "energielabel", tekst,
+                                  "EP-Online")
                 labels[adres] = label
         if labels:
             pand["labels"] = labels
         time.sleep(PAUZE_TUSSEN)
-    print(f"Labels: {len(doel)} panden nagekeken", file=sys.stderr)
+    print(f"Labels: {len(doel)} panden nagekeken; {eerste} woningen voor het "
+          f"eerst een label, {gewijzigd} werkelijk gewijzigd", file=sys.stderr)
     return nieuw
 
 
@@ -1006,7 +1025,8 @@ def main():
     print(f"Geschiedenis: {len(geschiedenis)} panden gevolgd, waarvan "
           f"{met_verhaal} met meer dan een gebeurtenis; nieuw: {n_v} uit het "
           f"aanbod, {n_a} bekendmakingen, {n_k} uit het kamerverhuurregister, "
-          f"{n_b} BAG-wijzigingen, {n_l} labelwijzigingen", file=sys.stderr)
+          f"{n_b} BAG-wijzigingen, {n_l} labels erbij of gewijzigd",
+          file=sys.stderr)
     if args.uit:
         regels = render(geschiedenis)
         if regels:
