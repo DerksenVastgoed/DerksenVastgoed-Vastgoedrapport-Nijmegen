@@ -391,6 +391,14 @@
   "omweg": 1.74,
   "soort": "bus"
  },
+ "51.83922,5.86273": {
+  "geschat": false,
+  "hemelsbreed": 76,
+  "meters": 296,
+  "naam": "Fransestraat",
+  "omweg": 3.89,
+  "soort": "bus"
+ },
  "51.83937,5.85830": {
   "geschat": false,
   "hemelsbreed": 377,
@@ -565,6 +573,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.84241,5.87371": {
+  "geschat": false,
+  "hemelsbreed": 184,
+  "meters": 430,
+  "naam": "Hugo de Grootstraat",
+  "omweg": 2.34,
   "soort": "bus"
  },
  "51.84243,5.86853": {
@@ -837,6 +853,14 @@
   "meters": 189,
   "naam": "Plein 1944",
   "omweg": 0.86,
+  "soort": "bus"
+ },
+ "51.84517,5.84264": {
+  "geschat": false,
+  "hemelsbreed": 116,
+  "meters": 650,
+  "naam": "Zwaluwstraat",
+  "omweg": 5.6,
   "soort": "bus"
  },
  "51.84523,5.85116": {

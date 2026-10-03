@@ -9,18 +9,18 @@
   },
   "pararius": {
    "mails": 3,
-   "objecten": 1,
+   "objecten": 5,
    "overgeslagen": 4,
    "redenen": [
-    "St. Stephanusstraat (gemeubileerd, andere markt)",
-    "IJsvogelpassage (gemeubileerd, andere markt)",
-    "van Spaenstraat (gemeubileerd, andere markt)",
-    "IJsvogelpassage (gemeubileerd, andere markt)"
+    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)"
    ]
   },
   "kamernet": {
-   "mails": 10,
-   "objecten": 8,
+   "mails": 11,
+   "objecten": 9,
    "overgeslagen": 2,
    "redenen": [
     "Huissensestraat, Arnhem: buiten Nijmegen",

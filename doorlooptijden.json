@@ -1,10 +1,10 @@
 {
- "verkooptijd_aantal": 72,
- "bezitsduur_aantal": 34,
- "prijsgroei_aantal": 11,
- "verkooptijd_mediaan_dagen": 88,
- "bezitsduur_mediaan_jaar": 1.45,
- "prijsgroei_mediaan_pct": 4.3,
+ "verkooptijd_aantal": 118,
+ "bezitsduur_aantal": 65,
+ "prijsgroei_aantal": 26,
+ "verkooptijd_mediaan_dagen": 93,
+ "bezitsduur_mediaan_jaar": 0.8,
+ "prijsgroei_mediaan_pct": 4.8,
  "voorbeelden": [
   {
    "adres": "Achter de Oude Gracht 17",
@@ -19,6 +19,12 @@
    "per_jaar": 5.3
   },
   {
+   "adres": "Braamhof 11",
+   "van": "2026-01-01",
+   "tot": "2026-09-28",
+   "per_jaar": 0.0
+  },
+  {
    "adres": "Daalseweg 56",
    "van": "2019-10-23",
    "tot": "2026-09-28",
@@ -27,12 +33,6 @@
   {
    "adres": "Eilbrachtstraat 6",
    "van": "2025-04-22",
-   "tot": "2026-09-28",
-   "per_jaar": 0.0
-  },
-  {
-   "adres": "Evertsenstraat 42",
-   "van": "2026-02-18",
    "tot": "2026-09-28",
    "per_jaar": 0.0
   }

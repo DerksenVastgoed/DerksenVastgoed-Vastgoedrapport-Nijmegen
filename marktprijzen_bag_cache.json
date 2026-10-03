@@ -72130,5 +72130,29 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "IJsvogelpassage|Nijmegen": {
+    "oppervlakte": 115,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RK",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "van Spaenstraat|Nijmegen": {
+    "oppervlakte": 103,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524HM",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Dominicanenstraat|Nijmegen": {
+    "oppervlakte": 15,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

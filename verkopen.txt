@@ -896,3 +896,9 @@ Bankastraat 10 | Nijmegen | 395000 | te koop | 2026-10-03 |  | 83 | 6524MT
 St. Annastraat 7 | Nijmegen | 1100000 | te koop | 2026-10-03 |  | 330 | 6524EB
 Delistraat 45 | Nijmegen | 500000 | te koop | 2026-10-03 |  | 61 | 6524KN
 van Welderenstraat | Nijmegen | 670 | te huur kamer | 2026-10-03 | kamernet-incl | 25 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 03-10-2026
+St. Stephanusstraat | Nijmegen | 1188 | te huur gemeubileerd | 2026-09-30 | pararius | 70 | 6512HM
+IJsvogelpassage | Nijmegen | 1995 | te huur gemeubileerd | 2026-10-02 | pararius | 115 | 6541RK
+van Spaenstraat | Nijmegen | 2425 | te huur gemeubileerd | 2026-10-03 | pararius | 103 | 6524HM
+Dominicanenstraat | Nijmegen | 550 | te huur kamer | 2026-10-03 | kamernet | 15 | 
