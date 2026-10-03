@@ -436,7 +436,11 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         # Een stand die niet beweegt is geen nieuws. De regel blijft in de
         # bijlage staan als naslag, maar krijgt er een markering bij zodat de
         # brief er geen alinea aan wijdt.
-        regel = ("GEEN NIEUWS, ALLEEN NASLAG. Onveranderd: "
+        # Dit is een aanwijzing voor de brief en geen kop voor de lezer. Hij
+        # stond in de bijlage van 3 oktober als zinnetje in kapitalen; daarom
+        # nu tussen vierkante haken, zodat duidelijk is dat het niet in een
+        # tekst voor pa thuishoort.
+        regel = ("[niet opnemen: onveranderd] "
                  + ", ".join(delen) + ".")
         if r70 is not None:
             regel += (f" Op een lening van €1.000.000 is dat "
