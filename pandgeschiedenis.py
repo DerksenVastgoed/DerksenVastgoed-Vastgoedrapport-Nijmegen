@@ -743,8 +743,16 @@ def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
                 continue
             prijs = g.get("vraagprijs")
             bedrag = f", vraagprijs €{prijs:,}".replace(",", ".") if prijs else ""
-            merk = (" (eerdere advertentie)" if g.get("eerdere_advertentie")
-                    else f" (zekerheid {g.get('zeker', 'onbekend')})")
+            merken = []
+            if g.get("eerdere_advertentie"):
+                merken.append("eerdere advertentie")
+            if g.get("jaar_bij_benadering"):
+                merken.append("jaar bij benadering")
+            if g.get("volgorde_onlogisch"):
+                merken.append("volgorde klopt niet met de plaatsing")
+            if not merken:
+                merken.append(f"zekerheid {g.get('zeker', 'onbekend')}")
+            merk = " (" + ", ".join(merken) + ")"
             woord = ("verkocht" if g.get("soort") == "verkocht"
                      else "te koop aangeboden")
             nieuw += voeg_toe(pand, g["datum"], g.get("soort") or "te koop",
