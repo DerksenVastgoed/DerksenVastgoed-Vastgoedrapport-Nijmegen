@@ -2532,13 +2532,26 @@ def woz_vergelijk_methoden(woningen):
     pand zelf mee te tellen, en gemeten hoe ver hij ernaast zit. Zo wordt niet
     op de eigen uitkomst geoefend.
     """
+    # De WOZ-waarden staan in woz.txt en worden pas later aan de panden
+    # gehangen, net als bij de ijking. Zonder dit zelf te lezen vindt deze
+    # functie er geen een, blijft de vergelijking leeg, en lijkt het alsof er
+    # niets te vergelijken valt. Dat was hier wekenlang het geval.
+    tabel = lees_woz()
     uit = {}
     for naam in ("kenmerken", "prijs"):
         fouten = []
         for w in woningen or []:
-            echt = w.get("woz")
+            echt = (_woz_getal(w.get("woz"))
+                    or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
             if not echt:
                 continue
+            # Dezelfde rem als bij de ijking: een waarde die er een factor vier
+            # naast zit is een tikfout en hoort niet in een foutmeting.
+            schat_ruw = woz_schatting({**w, "woz": None})
+            if schat_ruw and schat_ruw.get("waarde"):
+                v = echt / schat_ruw["waarde"]
+                if v > 4 or v < 0.25:
+                    continue
             anderen = [x for x in woningen if x is not w]
             if naam == "kenmerken":
                 schat = woz_uit_kenmerken(w, woz_per_m2(anderen))
@@ -2584,13 +2597,22 @@ def woz_kalibratie(woningen=None):
     # lezen, anders telt er geen enkel pand mee en blijft de ijking op nul.
     tabel = lees_woz()
     rijen = woningen if woningen is not None else []
-    verhoudingen, met_adres = [], []
+    verhoudingen, met_adres, vermoedelijke_fouten = [], [], []
     for w in rijen or []:
         echt = (_woz_getal(w.get("woz"))
                 or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
         schat = woz_schatting({**w, "woz": None})
         if echt and schat and schat.get("waarde"):
             verhouding = echt / schat["waarde"]
+            # Een waarde die meer dan vier keer zo hoog of laag is als de
+            # schatting, is vrijwel zeker een tikfout in de handmatige invoer:
+            # een nul te veel of te weinig. Zulke waarden horen niet mee te
+            # rekenen zolang ze niet zijn nagekeken. Ze blijven wel in de
+            # uitschieterlijst staan, want anders verdwijnt de fout uit beeld.
+            if verhouding > 4 or verhouding < 0.25:
+                vermoedelijke_fouten.append(
+                    (verhouding, w.get("adres") or "onbekend"))
+                continue
             verhoudingen.append(verhouding)
             # Het adres meenemen, zodat een uitschieter na te kijken is.
             met_adres.append((verhouding, w.get("adres") or "onbekend"))
@@ -2612,9 +2634,18 @@ def woz_kalibratie(woningen=None):
             uitschieters.append({
                 "adres": adres, "verhouding": round(v, 3),
                 "afwijking_pct": round((v / mediaan - 1) * 100)})
+    # De vermoedelijke tikfouten voorop in de lijst, want die moeten als eerste
+    # worden nagekeken.
+    for v, adres in sorted(vermoedelijke_fouten,
+                           key=lambda p: abs(p[0] - 1), reverse=True):
+        uitschieters.insert(0, {
+            "adres": adres, "verhouding": round(v, 3),
+            "afwijking_pct": round((v / mediaan - 1) * 100),
+            "telt_niet_mee": True})
     return {"aantal": len(verhoudingen), "correctie": mediaan,
             "spreiding": (hoog - laag) / 2,
             "band": (laag, hoog),
+            "niet_meegeteld": len(vermoedelijke_fouten),
             "uitschieters": uitschieters}
 
 
