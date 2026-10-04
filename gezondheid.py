@@ -581,6 +581,14 @@ def controle_wozschatting():
         # vergelijking er gewoon niet toe doet, terwijl hij juist bepaalt of
         # een betere methode of meer waarnemingen de weg vooruit is.
         delen.append("geen vergelijking tussen methoden beschikbaar")
+    else:
+        # Erbij zetten welke methode wint, anders moet iedereen twee
+        # percentages vergelijken om de conclusie te trekken.
+        beste = min(((n, v["mediane_fout"]) for n, v in vgl.items()
+                     if isinstance(v, dict) and v.get("mediane_fout") is not None),
+                    key=lambda p: p[1], default=None)
+        if beste:
+            delen.append(f"beste: {beste[0]}")
     afwijking = abs(1 - (d.get("correctie") or 1)) * 100
     spreiding = (d.get("spreiding") or 0) * 100
     kb = d.get("kenmerken_beschikbaar") or {}
