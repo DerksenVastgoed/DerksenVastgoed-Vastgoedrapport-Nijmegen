@@ -93,24 +93,24 @@ van Slichtenhorststraat 42 | 689.000 | 2026   # prijsklasse boven 600k; straat n
 # Nog in te vullen (20): vul het bedrag tussen de eerste twee streepjes
 Burg. Hustinxstraat 208 |  | 2026   # prijsklasse 300k tot 450k
 Daalseweg 58 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
-Delistraat 55 |  | 2026   # prijsklasse 450k tot 600k
-Doddendaal 10 |  | 2026   # prijsklasse 300k tot 450k
-Doddendaal 117 |  | 2026   # prijsklasse 450k tot 600k
-Dokstraat 425 |  | 2026   # prijsklasse 450k tot 600k
+Delistraat 55 | 470.000 | 2026   # prijsklasse 450k tot 600k
+Doddendaal 10 | 341.000 | 2026   # prijsklasse 300k tot 450k
+Doddendaal 117 | 238.000 | 2026   # prijsklasse 450k tot 600k
+Dokstraat 425 | 565.000 | 2026   # prijsklasse 450k tot 600k
 Koningstraat 4 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 134 m2, buiten het middengebied
-Krayenhofflaan 104 |  | 2026   # prijsklasse 450k tot 600k; 135 m2, buiten het middengebied
-Pontanusstraat 40 |  | 2026   # prijsklasse 450k tot 600k; 133 m2, buiten het middengebied
-St. Annastraat 165-B |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
+Krayenhofflaan 104 | 573.000 | 2026   # prijsklasse 450k tot 600k; 135 m2, buiten het middengebied
+Pontanusstraat 40 | 629.000 | 2026   # prijsklasse 450k tot 600k; 133 m2, buiten het middengebied
+St. Annastraat 165 | 936.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
 St. Annastraat 165-E |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-St. Annastraat 7 |  | 2026   # prijsklasse boven 600k; 330 m2, buiten het middengebied
-St. Annastraat 96 |  | 2026   # prijsklasse boven 600k; 146 m2, buiten het middengebied
-Tulpstraat 10 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Veemarkt 213 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Ziekerstraat 36 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+St. Annastraat 7 | 982.009 | 2026   # prijsklasse boven 600k; 330 m2, buiten het middengebied
+St. Annastraat 96 | 702.000 | 2026   # prijsklasse boven 600k; 146 m2, buiten het middengebied
+Tulpstraat 10 | 328.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Veemarkt 213 | 342.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Ziekerstraat 36 | 293.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 Ziekerstraat 5 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 van Dulckenstraat 47 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 171 m2, buiten het middengebied
 van Welderenstraat 5 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
-van Welderenstraat 89 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
+van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 
 # Werklijst (1): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
-In de Betouwstraat 37 |  | 2026   # prijsklasse 300k tot 450k
+In de Betouwstraat 37 | 177.000 | 2026   # prijsklasse 300k tot 450k
