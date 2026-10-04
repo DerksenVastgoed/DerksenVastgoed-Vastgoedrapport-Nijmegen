@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html",
   "strategie": "splitsen",
-  "duiding": "BOPA-besluit maakt splitsing naar 2 zelfstandige woningen op 168 m2 mogelijk, ook bij energielabel G.",
+  "duiding": "Besluit staat splitsing naar 2 zelfstandige woningen toe, wat bij label G en 168 m2 ruimte biedt voor renovatie en waardecreatie per unit.",
   "feiten": {
    "energielabel": "G (2025)",
    "oppervlakte_m2": 168
@@ -18,7 +18,7 @@
   "titel": "Besluit (met BOPA) voor Verlengen vergunning (5Jaar) tbv tijdelijke overkappingen, aan Vondelstraat 5, 6512BB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html",
   "strategie": "geen",
-  "duiding": "Verlenging van een tijdelijke overkappingsvergunning raakt geen woonfunctie of beleggingsstrategie.",
+  "duiding": "Verlenging van een tijdelijke overkappingsvergunning raakt woonfunctie of beleggingsstrategie niet.",
   "feiten": {
    "oppervlakte_m2": 974
   },
@@ -30,8 +30,8 @@
   "datum": "2026-10-02",
   "titel": "Besluit voor het herstellen voegwerk van de voorgevel aan Johannes Vijghstraat 5, 6524BN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html",
-  "strategie": "geen",
-  "duiding": "Herstel van voegwerk is regulier onderhoud aan de gevel zonder effect op label of woningindeling.",
+  "strategie": "verduurzaming",
+  "duiding": "Herstel van voegwerk aan de voorgevel toont dat gevelingrepen hier vergunbaar zijn, relevant bij toekomstige isolatiewerkzaamheden.",
   "feiten": {
    "energielabel": "E (2020)",
    "oppervlakte_m2": 182

@@ -7,13 +7,13 @@
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
-- **WOZ-schatting**: geijkt op 82 panden: correctie 0.984 (2% stelselmatig), spreiding ±15.0%; mediane fout per methode: kenmerken 16.1% (86), prijs 11.0% (82), beste: prijs; kenmerken uit 71 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
+- **WOZ-schatting**: geijkt op 94 panden: correctie 0.984 (2% stelselmatig), spreiding ±16.1%; mediane fout per methode: kenmerken 13.7% (98), prijs 10.3% (94), beste: prijs; kenmerken uit 73 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-04: kamernet: 13 mails, 11 objecten, 2 bewust overgeslagen; pararius: 3 mails, 5 objecten, 4 bewust overgeslagen; regulier: 4 mails, 10 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Versies**: paklijst van 2026-10-04: 36 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
+- **Versies**: paklijst van 2026-10-04: 37 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
 - **Huurdata**: 49 huurwaarnemingen, waarvan 20 Pararius en 29 Kamernet; 33 in de laatste week
 - **Aanbod**: 96 koopobjecten, 10 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -25,7 +25,7 @@
 - **Kamerverhuurregister**: 950 panden in de ring, waarvan 191 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 84
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
-- **Geschiedenis per pand**: 1710 panden gevolgd, 1398 met meer dan een gebeurtenis; 1561 met BAG-gegevens (6309 woningen, 7394 dubbel geteld zonder deze correctie), 1367 met een energielabel, 0 nog nooit nagekeken waarvan 147 na drie pogingen opgegeven; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan; iedereen is minstens een keer nagekeken
+- **Geschiedenis per pand**: 1710 panden gevolgd, 1398 met meer dan een gebeurtenis; 1561 met BAG-gegevens (6309 woningen, 7394 dubbel geteld zonder deze correctie), 1367 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12119 regels bespaard door gedeelde pandgegevens; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan; iedereen is minstens een keer nagekeken
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 68 panden te koop, mediaan 15 dagen geleden voor het laatst bevestigd, oudste 32 dagen
 - **Aanbodreeks**: 3 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond. In beeld: 2 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
