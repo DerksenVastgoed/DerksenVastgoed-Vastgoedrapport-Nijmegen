@@ -47,38 +47,38 @@ de Ruyterstraat 37 | 514.000 | 2026
 van Goorstraat 91 | 434.000 | 2026
 
 # Nog in te vullen (32): vul het bedrag tussen de eerste twee streepjes
-Castellastraat 15 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Castellastraat 16 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
+Castellastraat 15 | 522.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Castellastraat 16 | 384.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
 Daalseweg 58 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
-Eerste Walstraat 3B |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 29 m2, buiten het middengebied
-Ganzenheuvel 50 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Graadt van Roggenstraat 143 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Groesbeeksedwarsweg 99 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Groesbeekseweg 103D |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 28 m2, buiten het middengebied
-Gulden Wagengas 1 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
-Havenweg 34 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 152 m2, buiten het middengebied
-Havenweg 70 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 135 m2, buiten het middengebied
-Hofdijkstraat 17 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
-Houtstraat 31 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Jacob Canisstraat 51 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 138 m2, buiten het middengebied
-Jan de Wittstraat 6 |  | 2026   # prijsklasse onder 300k; 22 m2, buiten het middengebied
-Johannes Vijghstraat 6 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ
+Eerste Walstraat 3B | 170.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 29 m2, buiten het middengebied
+Ganzenheuvel 50 | 329.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Graadt van Roggenstraat 143 | 495.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Groesbeeksedwarsweg 99 | 443.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Groesbeekseweg 103D | 176.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 28 m2, buiten het middengebied
+Gulden Wagengas 1 | 296.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
+Havenweg 34 | 249.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 152 m2, buiten het middengebied
+Havenweg 70 | 297.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 135 m2, buiten het middengebied
+Hofdijkstraat 17 | 570.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
+Houtstraat 31 | 302.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Jacob Canisstraat 51 | 520.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 138 m2, buiten het middengebied
+Jan de Wittstraat 6 | 2.196.000 | 2026   # prijsklasse onder 300k; 22 m2, buiten het middengebied
+Johannes Vijghstraat 6 | 284.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ
 Kaapstander 264 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 151 m2, buiten het middengebied
 Koningstraat 4 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 134 m2, buiten het middengebied
-Korhoenstraat 4 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 165 m2, buiten het middengebied
-Mariënburg 88-D |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Mr. Franckenstraat 46 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Mr. Franckenstraat 6 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Nieuwe Markt 90 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 158 m2, buiten het middengebied
-Nieuwe Nonnendaalseweg 107 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 132 m2, buiten het middengebied
-Nina Simonestraat 140 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
-Oranjesingel 59 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 163 m2, buiten het middengebied
-Oude Koningstraat 28 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Patrijsstraat 48 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Korhoenstraat 4 | 620.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 165 m2, buiten het middengebied
+Mariënburg 88-D | 513.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Mr. Franckenstraat 46 | 427.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Mr. Franckenstraat 6 | 342.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Nieuwe Markt 90 | 479.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 158 m2, buiten het middengebied
+Nieuwe Nonnendaalseweg 107 | 522.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 132 m2, buiten het middengebied
+Nina Simonestraat 140 | 574.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
+Oranjesingel 59 | 509.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 163 m2, buiten het middengebied
+Oude Koningstraat 28 | 282.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Patrijsstraat 48 | 328.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 Prof Regoutstraat 1B |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 35 m2, buiten het middengebied
-Scholenhof 8 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Staringstraat 21 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 48 m2, buiten het middengebied
-Ziekerstraat 10D |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 28 m2, buiten het middengebied
+Scholenhof 8 | 513.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Staringstraat 21 | 270.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 48 m2, buiten het middengebied
+Ziekerstraat 10D | 162.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 28 m2, buiten het middengebied
 
 # Werklijst (12): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
 Pluvierstraat 21 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
