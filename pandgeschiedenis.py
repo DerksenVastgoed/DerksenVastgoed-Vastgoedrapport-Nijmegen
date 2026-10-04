@@ -984,11 +984,35 @@ def render(geschiedenis, dagen=7):
          "_Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, "
          "dus een splitsing en de nieuwe huisnummers horen bij dezelfde "
          "geschiedenis._", ""]
-    for pand, vers in sorted(paren, key=lambda p: -len(p[0]["gebeurtenissen"]))[:8]:
+    # Op aantal gebeurtenissen sorteren levert complexen bovenaan, en die
+    # hebben er honderden. Daarom tellen labelregels niet mee in die volgorde:
+    # een pand met twintig vergunningen is interessanter dan een flat met
+    # honderdtwintig labels.
+    def gewicht(paar):
+        return -sum(1 for g in paar[0]["gebeurtenissen"]
+                    if g["soort"] != "energielabel")
+
+    for pand, vers in sorted(paren, key=gewicht)[:8]:
         r.append(f"## {pand['adres']}")
-        for g in pand["gebeurtenissen"]:
+        labels = [g for g in pand["gebeurtenissen"] if g["soort"] == "energielabel"]
+        rest = [g for g in pand["gebeurtenissen"] if g["soort"] != "energielabel"]
+        for g in rest:
             merk = " **nieuw**" if g in vers else ""
             r.append(f"- {g['datum']}: {g['tekst']} ({g['bron']}){merk}")
+        # Labels samenvatten in plaats van uitschrijven. Een flat met
+        # honderdtwintig woningen leverde honderdtwintig regels op en maakte
+        # het dossier onleesbaar; de verdeling zegt hetzelfde in een regel.
+        if labels:
+            verdeling = {}
+            for g in labels:
+                m = re.search(r"is (?:nu )?([A-G]\+*)", g["tekst"])
+                if m:
+                    verdeling[m.group(1)] = verdeling.get(m.group(1), 0) + 1
+            laatste = max(g["datum"] for g in labels)
+            samen = ", ".join(f"{k}: {v}" for k, v in
+                              sorted(verdeling.items(), key=lambda p: -p[1])[:6])
+            r.append(f"- {laatste}: energielabels van {len(labels)} woningen in "
+                     f"dit pand ({samen or 'niet uit te lezen'}) (EP-Online)")
         r.append("")
     return r
 
