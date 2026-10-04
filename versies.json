@@ -17,13 +17,13 @@
   "diagnose.py": "023b5bcb8726",
   "funda_mail.py": "ab056585fc2c",
   "funda_verkocht_plak.py": "42a974d69fce",
-  "gezondheid.py": "0fa35010e130",
+  "gezondheid.py": "8d0a1438ad0b",
   "grootte_premie.py": "489e3d6e3455",
   "huur_dekking.py": "b0ff266fbcd3",
   "kamernet_plak.py": "6dd661a4d254",
   "kamerverhuur_register.py": "bcf50e4cc1cd",
   "maatregel_hoeveelheden.py": "b25a718d2dd3",
-  "marktprijzen_bag.py": "57c1892c5fdf",
+  "marktprijzen_bag.py": "fafa25a47f04",
   "misdrijven_buurt.py": "2614716de058",
   "onderwerpen_signaal.py": "fc9083c53051",
   "pandgeschiedenis.py": "9a7c1a77f2cd",
@@ -37,5 +37,5 @@
   "woningprijsindex.py": "2856d1372539",
   "wwso.py": "4ec950ac50a2"
  },
- "gemaakt": "2026-10-03"
+ "gemaakt": "2026-10-04"
 }
