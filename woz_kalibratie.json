@@ -1,37 +1,50 @@
 {
- "aantal": 67,
- "correctie": 1.0,
- "spreiding": 0.19395571964987623,
+ "aantal": 82,
+ "correctie": 0.9844985763998735,
+ "spreiding": 0.15019896706460073,
  "band": [
-  0.7511961722488039,
+  0.8387096774193549,
   1.1391076115485563
  ],
+ "niet_meegeteld": 1,
  "uitschieters": [
   {
    "adres": "Jan de Wittstraat 6",
    "verhouding": 12.133,
-   "afwijking_pct": 1113
+   "afwijking_pct": 1132,
+   "telt_niet_mee": true
   },
   {
    "adres": "Derde Walstraat 108",
    "verhouding": 2.086,
-   "afwijking_pct": 109
+   "afwijking_pct": 112
   },
   {
    "adres": "Havenweg 34",
    "verhouding": 0.325,
-   "afwijking_pct": -68
+   "afwijking_pct": -67
   },
   {
    "adres": "Havenweg 70",
    "verhouding": 0.463,
-   "afwijking_pct": -54
+   "afwijking_pct": -53
   }
  ],
- "vergelijking": {},
+ "vergelijking": {
+  "kenmerken": {
+   "aantal": 86,
+   "mediane_fout": 0.16053922431083867,
+   "negentig": 0.4006734006734007
+  },
+  "prijs": {
+   "aantal": 82,
+   "mediane_fout": 0.1101243644358939,
+   "negentig": 0.398989898989899
+  }
+ },
  "kenmerken_beschikbaar": {
-  "straten": 59,
+  "straten": 71,
   "buurten": 11,
-  "panden": 71
+  "panden": 87
  }
 }

@@ -1,21 +1,12 @@
 {
- "datum": "2026-10-03",
+ "datum": "2026-10-04",
  "bronnen": {
   "regulier": {
    "mails": 4,
-   "objecten": 12,
+   "objecten": 10,
    "overgeslagen": 0,
-   "redenen": []
-  },
-  "pararius": {
-   "mails": 3,
-   "objecten": 5,
-   "overgeslagen": 4,
    "redenen": [
-    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
-    "van Spaenstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)"
+    "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht "
    ]
   },
   "kamernet": {
@@ -25,6 +16,17 @@
    "redenen": [
     "Huissensestraat, Arnhem: buiten Nijmegen",
     "Kwartelstraat, Wijchen: buiten Nijmegen"
+   ]
+  },
+  "pararius": {
+   "mails": 3,
+   "objecten": 5,
+   "overgeslagen": 4,
+   "redenen": [
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)"
    ]
   }
  },

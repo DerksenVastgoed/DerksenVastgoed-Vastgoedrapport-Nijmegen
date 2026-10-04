@@ -98,3 +98,6 @@ De brief eindigt midden in een zin: '..., maar wel het aanbod. Ik houd het in de
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...erkochte panden met een vergunning in de gaten.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

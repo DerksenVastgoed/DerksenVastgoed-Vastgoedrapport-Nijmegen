@@ -7,6 +7,14 @@
   "omweg": 1.37,
   "soort": "bus"
  },
+ "51.81797,5.79892": {
+  "geschat": false,
+  "hemelsbreed": 119,
+  "meters": 450,
+  "naam": "Steve Bikoplein",
+  "omweg": 3.78,
+  "soort": "bus"
+ },
  "51.82524,5.86010": {
   "geschat": false,
   "hemelsbreed": 281,

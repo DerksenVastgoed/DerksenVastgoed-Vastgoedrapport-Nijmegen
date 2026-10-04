@@ -2,430 +2,77 @@
 
 _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een splitsing en de nieuwe huisnummers horen bij dezelfde geschiedenis._
 
-## Berg en Dalseweg 81
-- 2025-11-18: Aanvraag omgevingsvergunning voor het wijzigen van de bibliotheek van kantoorfunctie naar bijeenkomstfunctie aan Berg en Dalseweg 81, 6522BC Nijmegen (officiele bekendmakingen)
-- 2026-03-26: Besluit (met BOPA) voor het wijzigen van de bibliotheek van kantoorfunctie naar bijeenkomstfunctie aan Berg en Dalseweg 81, 6522BC Nijmegen (officiele bekendmakingen)
-- 2026-10-03: energielabel van Berg en Dalseweg 77 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 77A is nu A+++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 77B is nu A+++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79 is nu A+++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-1 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-10 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-100 is nu A+++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-101 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-102 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-103 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-104 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-105 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-106 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-107 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-108 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-109 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-11 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-110 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-111 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-112 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-113 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-114 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-115 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-116 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-117 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-118 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-119 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-12 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-120 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-13 is nu A+++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-14 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-15 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-16 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-17 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-18 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-19 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-2 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-20 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-21 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-22 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-23 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-24 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-25 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-26 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-27 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-28 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-29 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-3 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-30 is nu A+ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Berg en Dalseweg 79A-31 is nu A+ (EP-Online) **nieuw**
+## de Voorstenkamp 1142
+- 2026-01-09: Aanvraag omgevingsvergunning voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-01-23: Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-02-03: Melding melding brandveilig gebruik ten behoeve van kamerverhuur, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-02-13: Intrekking verzoek voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-02-24: Intrekking verzoek voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-03-11: Aanvraag omgevingsvergunning voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-04-17: Aanvraag omzettingsvergunning voor kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-05-06: Besluit voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-07-01: Besluit voor een kamerverhuurvergunning aan de Voorstenkamp 1142, 6545EH Nijmegen (officiele bekendmakingen)
+- 2026-09-29: energielabels van 1 woningen in dit pand (C: 1) (EP-Online)
 
-## Veemarkt 277
-- 2026-05-28: te koop aangeboden. vraagprijs €375.000 (zekerheid laag) (model: https://www.youtube.com/watch?v=wlsdJ5eyRqE (video geplaatst '128 days ago' per 2026-10-03)
-- 2026-09-28: verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 189 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 191 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 193 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 195 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 197 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 199 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 201 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 203 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 205 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 207 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 209 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 211 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 213 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 215 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 217 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 219 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 221 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 223 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 225 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 227 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 229 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 231 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 233 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 235 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 237 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 239 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 241 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 243 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 245 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 247 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 249 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 251 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 253 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 255 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 257 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 259 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 261 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 263 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 265 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 267 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 269 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 271 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 273 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 275 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 277 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 279 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 281 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 283 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 285 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 287 is nu C (EP-Online) **nieuw**
+## Graafseweg 115
+- 2025-12-11: Aanvraag omgevingsvergunning voor het aanvragen van een kamerverhuurvergunning , aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2025-12-23: Aanvraag omgevingsvergunning voor Kamerverhuur Graafseweg 115, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-01-23: Buiten behandelingstelling  het aanvragen van een kamerverhuurvergunning , aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-02-25: Buiten behandelingstelling  Kamerverhuur Graafseweg 115, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-04-21: Melding brandveilig gebruik, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-05-15: Aanvraag omgevingsvergunning voor geschakelde woning: legaliseren kamerverhuur, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-05-15: Aanvraag omzettingsvergunning voor geschakelde woning: kamerverhuurvergunning aanvragen, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-06-10: Intrekking verzoek voor geschakelde woning: kamerverhuurvergunning aanvragen, aan Graafseweg 115, 6531ZN Nijmegen (officiele bekendmakingen)
+- 2026-09-30: energielabels van 1 woningen in dit pand (F: 1) (EP-Online)
 
-## Veemarkt 3
-- 2026-02-20: te koop aangeboden. vraagprijs €365.000 (zekerheid midden) (model: https://www.funda.nl/detail/koop/nijmegen/appartement-veemarkt-3/43243012/)
-- 2026-09-28: verkocht onder voorbehoud, laatste vraagprijs €350.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
-- 2026-10-01: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
+## Biesmanstraat 3
+- 2014-01-29: te koop aangeboden. vraagprijs €349.000 (eerdere advertentie) (model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3)
+- 2014-09-02: verkocht. vraagprijs €349.000 (eerdere advertentie) (model: http://huisx.nl/koop/2959827/biesmanstraat-3/nijmegen)
+- 2017-11-08: te koop aangeboden (zekerheid midden) (model: https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3)
+- 2017-12-16: verkocht (zekerheid midden) (model: https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3)
+- 2026-03-13: te koop aangeboden. vraagprijs €650.000 (zekerheid hoog) (model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3)
+- 2026-09-28: verkocht, laatste vraagprijs €650.000, 132 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 1 woningen in dit pand (A: 1) (EP-Online)
 
-## Malvert 5004
-- 2025-05-14: Melding melding brandveilig gebruik, aan Malvert 5004, 6538DM Nijmegen (officiele bekendmakingen)
-- 2026-10-03: energielabel van Malvert 5004 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-1 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-14 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-15 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-16 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-17 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-18 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-19 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-2 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-20 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-21 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-22 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-23 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-24 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-25 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-26 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-27 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-28 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-29 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-3 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-30 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-31 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-32 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-33 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-34 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-35 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-36 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-37 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-38 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-39 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-4 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-40 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-41 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-42 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-43 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-44 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-45 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-46 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-47 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-48 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-49 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-5 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-50 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-51 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-52 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-53 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-54 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-55 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-56 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Malvert 5004A-57 is nu A (EP-Online) **nieuw**
+## Palmstraat 40
+- 2025-10-19: te koop aangeboden. vraagprijs €485.000 (zekerheid hoog) (model: https://drimble.nl/adres/nijmegen/6542JZ/palmstraat-40.html)
+- 2025-11-04: verkocht. vraagprijs €485.000 (zekerheid hoog) (model: https://drimble.nl/adres/nijmegen/6542JZ/palmstraat-40.html)
+- 2026-05-02: te koop aangeboden. vraagprijs €535.000 (eerdere advertentie) (model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/)
+- 2026-05-22: verkocht. vraagprijs €535.000 (eerdere advertentie) (model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/)
+- 2026-09-28: verkocht, laatste vraagprijs €535.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €485.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 1 woningen in dit pand (A: 1) (EP-Online)
 
-## Meijhorst 2001
-- 2026-06-03: Melding brandveilig gebruik woonzorggebouw, aan Meijhorst 2001, 6537GA Nijmegen (officiele bekendmakingen)
-- 2026-07-20: Melding woonzorggebouw: melding brandveilig gebruik, aan Meijhorst 2001, 6537GA Nijmegen (officiele bekendmakingen)
-- 2026-10-03: energielabel van Meijhorst 2001 is nu A++ (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-1 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-10 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-11 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-12 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-13 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-14 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-15 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-16 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-17 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-18 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-19 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-2 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-20 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-21 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-22 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-23 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-24 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-25 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-26 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-27 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-28 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-29 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-3 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-30 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-31 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-32 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-33 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-34 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-35 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-36 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-37 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-38 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-39 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-4 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-40 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-41 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-42 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-43 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-44 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-45 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-46 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-47 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-48 is nu B (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-5 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-6 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-7 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-8 is nu A (EP-Online) **nieuw**
-- 2026-10-03: energielabel van Meijhorst 2001A-9 is nu A (EP-Online) **nieuw**
+## St. Annastraat 30
+- 2025-01-01: te koop aangeboden. vraagprijs €165.000 (eerdere advertentie) (model: https://www.verbeek-makelaars.nl/aanbod/woningaanbod/nijmegen/koop/huis-8909447-St.-Annast)
+- 2025-06-27: verkocht. vraagprijs €165.000 (eerdere advertentie) (model: https://www.verbeek-makelaars.nl/aanbod/woningaanbod/nijmegen/koop/huis-8909447-St.-Annast)
+- 2026-08-13: te koop aangeboden. vraagprijs €189.000 (eerdere advertentie) (model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30)
+- 2026-09-27: verkocht. vraagprijs €189.000 (eerdere advertentie) (model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €189.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-28: verkocht, laatste vraagprijs €175.000, 23 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 1 woningen in dit pand (F: 1) (EP-Online)
 
-## Veemarkt 115
-- 2026-09-28: verkocht, laatste vraagprijs €340.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
+## Bloemerstraat 22
+- 2014-01-01: verkocht (zekerheid laag) (model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22)
+- 2014-06-30: te koop aangeboden (zekerheid midden) (model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22)
+- 2026-05-18: te koop aangeboden. vraagprijs €365.000 (zekerheid hoog) (model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22)
+- 2026-06-01: verkocht. vraagprijs €365.000 (zekerheid laag) (model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22)
+- 2026-09-28: verkocht, laatste vraagprijs €365.000, 72 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 15 woningen in dit pand (C: 5, E: 3, D: 2, F: 2, G: 2, A: 1) (EP-Online)
 
-## Veemarkt 135
-- 2026-09-28: verkocht, laatste vraagprijs €350.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
+## Evertsenstraat 42
+- 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
+- 2020-06-01: verkocht (zekerheid laag) (model: https://drimble.nl/adres/nijmegen/6512JN/evertsenstraat-42.html)
+- 2026-02-02: te koop aangeboden. vraagprijs €535.000 (zekerheid hoog) (model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/)
+- 2026-02-18: verkocht. vraagprijs €535.000 (zekerheid hoog) (model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/)
+- 2026-09-28: verkocht, laatste vraagprijs €535.000, 119 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 2 woningen in dit pand (D: 1, C: 1) (EP-Online)
 
-## Veemarkt 157
-- 2026-09-28: verkocht, laatste vraagprijs €347.500, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 1 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 11 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 13 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 15 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 17 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 19 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 21 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 23 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 25 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 27 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 29 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 3 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 31 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 33 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 35 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 37 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 39 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 41 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 43 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 45 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 47 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 49 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 5 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 51 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 53 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 55 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 57 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 59 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 61 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 63 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 65 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 67 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 69 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 7 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 71 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 73 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 75 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 77 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 79 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 81 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 83 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 85 is nu C (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 87 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 89 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 9 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 91 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 93 is nu B (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 95 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 97 is nu A (EP-Online) **nieuw**
-- 2026-09-29: energielabel van Veemarkt 99 is nu A (EP-Online) **nieuw**
+## Graafsedwarsstraat 65
+- 2022-01-01: verkocht. vraagprijs €339.000 (eerdere advertentie) (model: https://www.houwenmakelaars.nl/woning/graafsedwarsstraat-65/)
+- 2022-09-21: te koop aangeboden. vraagprijs €339.000 (eerdere advertentie) (model: https://www.houwenmakelaars.nl/woning/graafsedwarsstraat-65/)
+- 2026-02-24: te koop aangeboden. vraagprijs €525.000 (zekerheid hoog) (model: https://drimble.nl/postcode/6512ER/)
+- 2026-06-01: verkocht. vraagprijs €525.000 (zekerheid midden) (model: https://huispedia.nl/nijmegen/graafsedwarsstraat)
+- 2026-09-28: verkocht, laatste vraagprijs €525.000, 118 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod) **nieuw**
+- 2026-09-29: energielabels van 2 woningen in dit pand (B: 1, G: 1) (EP-Online)
 

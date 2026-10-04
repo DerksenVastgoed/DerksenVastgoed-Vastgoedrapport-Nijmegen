@@ -902,3 +902,6 @@ St. Stephanusstraat | Nijmegen | 1188 | te huur gemeubileerd | 2026-09-30 | para
 IJsvogelpassage | Nijmegen | 1995 | te huur gemeubileerd | 2026-10-02 | pararius | 115 | 6541RK
 van Spaenstraat | Nijmegen | 2425 | te huur gemeubileerd | 2026-10-03 | pararius | 103 | 6524HM
 Dominicanenstraat | Nijmegen | 550 | te huur kamer | 2026-10-03 | kamernet | 15 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 04-10-2026
+Tolhuis | Nijmegen | 760 | te huur kamer | 2026-10-04 | kamernet-incl | 25 | 

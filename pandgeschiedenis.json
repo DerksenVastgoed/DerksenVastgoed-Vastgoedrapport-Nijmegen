@@ -114999,6 +114999,20 @@
   },
   "pand_id": "0268100000010518"
  },
+ "tolhuis": {
+  "adres": "Tolhuis",
+  "bag_gezien": "2026-10-04",
+  "bag_zonder_id": "2026-10-04",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €760 per maand, 25 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "tolhuis2064": {
   "adres": "Tolhuis 2064",
   "bag_eenheden": [
