@@ -70,6 +70,10 @@ Antwoord met ALLEEN een JSON-object, zonder tekst eromheen:
 Regels die je strikt volgt:
 - Vind je niets, geef dan een lege lijst. Verzin niets.
 - Elke gebeurtenis krijgt zijn eigen bron. Zonder bron laat je hem weg.
+- Alleen bronnen met een verkoopgeschiedenis: funda, een makelaarssite of een \
+woningplatform. Geen video's, sociale media of marktplaatsen.
+- Leid een datum nooit af uit "128 days ago" of iets dergelijks; dan is het \
+geen gevonden datum maar een berekening.
 - Een datum die je afleidt uit "3 maanden te koop" zonder dat de datum er \
 letterlijk staat, is een afleiding: zet zeker op laag.
 - Een bedrag op funda bij een verkochte woning is de laatste vraagprijs, niet \
@@ -203,6 +207,30 @@ def _vraag_model(adres, sleutel, hint=""):
         return None
 
 
+# Bronnen waar geen verkoopgeschiedenis in staat. Dit kwam uit de praktijk:
+# een datum werd afgeleid uit een YouTube-video met de tekst "128 days ago".
+# Zo'n regel heeft wel een bron en komt dus door een controle die alleen op
+# aanwezigheid toetst.
+SLECHTE_BRONNEN = ("youtube.", "youtu.be", "facebook.", "instagram.",
+                   "tiktok.", "marktplaats.", "linkedin.", "pinterest.",
+                   "twitter.", "x.com", "reddit.")
+# Een datum die uit een relatieve tijdsaanduiding is afgeleid, is een
+# berekening van het model en geen gevonden datum.
+RELATIEVE_TIJD = ("ago", "geleden", "maanden terug", "vorig jaar", "weken")
+
+
+def bron_deugt(bron):
+    """Of deze bron een verkoopgeschiedenis kan bevatten."""
+    laag = (bron or "").lower()
+    if not laag:
+        return False
+    if any(d in laag for d in SLECHTE_BRONNEN):
+        return False
+    if any(t in laag for t in RELATIEVE_TIJD):
+        return False
+    return True
+
+
 def _geldig(d):
     """
     De gebeurtenissen die een bron en een bruikbare datum hebben.
@@ -215,7 +243,7 @@ def _geldig(d):
         return []
     uit = []
     for g in (d.get("gebeurtenissen") or []):
-        if not isinstance(g, dict) or not g.get("bron"):
+        if not isinstance(g, dict) or not bron_deugt(g.get("bron")):
             continue
         datum = g.get("datum")
         if not (isinstance(datum, str)
