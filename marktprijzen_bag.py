@@ -4644,7 +4644,8 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     routes = haalbare_routes(w, w.get("_scenario"), lees_kamervergunningen())
     if routes.get("vrij"):
         f("open routes", ", ".join(sorted(routes["vrij"])), "eigen toets")
-    for route, reden in sorted((routes.get("geblokkeerd") or {}).items()):
+    geblokkeerd = sorted((routes.get("geblokkeerd") or {}).items())
+    for route, reden in geblokkeerd:
         f("route afgevallen", _uitleg_blokkade(route, reden), "eigen toets")
     lab = _labeltekst(w.get("energielabel"))
     if lab != "onbekend":
@@ -4677,8 +4678,14 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand "
           f"({sc.get('bron', '')}), richtprijs €{eu(plafond)} als koopsom{waarom}",
           "eigen doorrekening met aannames voor exploitatie en verbouwing")
-        if sc.get("alternatief"):
-            f("alternatief", sc["alternatief"], "eigen doorrekening")
+        # Geen alternatief tonen voor een route die hierboven al is afgevallen.
+        # Bij de Zwaluwstraat en de Krayenhofflaan stond splitsen zowel als
+        # afgevallen route als als alternatief in hetzelfde dossier, en dat is
+        # voor de lezer een tegenspraak.
+        alt = sc.get("alternatief") or ""
+        afgevallen = " ".join(r for r, _x in geblokkeerd).lower()
+        if alt and not ("splitsen" in alt.lower() and "splitsen" in afgevallen):
+            f("alternatief", alt, "eigen doorrekening")
 
         # Een richtprijs boven de vraagprijs is een uitzondering. Rust die op
         # een aangenomen huur, dan is het geen bevinding maar een aanname.
