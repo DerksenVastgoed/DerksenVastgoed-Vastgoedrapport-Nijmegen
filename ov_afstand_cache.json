@@ -39,6 +39,14 @@
   "omweg": 1.75,
   "soort": "bus"
  },
+ "51.82921,5.81369": {
+  "geschat": false,
+  "hemelsbreed": 39,
+  "meters": 1,
+  "naam": "Winkelcentrum Notenhout",
+  "omweg": 0.03,
+  "soort": "bus"
+ },
  "51.82985,5.86795": {
   "geschat": false,
   "hemelsbreed": 322,

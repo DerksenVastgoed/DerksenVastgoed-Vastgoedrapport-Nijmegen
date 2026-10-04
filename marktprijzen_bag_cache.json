@@ -72162,6 +72162,13 @@
     "oppervlakte": 25,
     "gebruiksdoelen": [
       "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "Symfoniestraat|Nijmegen": {
+    "oppervlakte": 8,
+    "gebruiksdoelen": [
+      "woonfunctie"
     ]
   }
 }

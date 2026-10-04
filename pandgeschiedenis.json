@@ -113569,6 +113569,20 @@
   },
   "pand_id": "0268100000047728"
  },
+ "symfoniestraat": {
+  "adres": "Symfoniestraat",
+  "bag_gezien": "2026-10-04",
+  "bag_zonder_id": "2026-10-04",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €482 per maand, 8 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "symfoniestraat178": {
   "adres": "Symfoniestraat 178",
   "bag_eenheden": [
@@ -115002,6 +115016,7 @@
  "tolhuis": {
   "adres": "Tolhuis",
   "bag_gezien": "2026-10-04",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-04",
   "gebeurtenissen": [
    {
@@ -141736,6 +141751,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €750 per maand, 22 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €550 per maand, 18 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
