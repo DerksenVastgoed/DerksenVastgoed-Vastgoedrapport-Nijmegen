@@ -113572,6 +113572,7 @@
  "symfoniestraat": {
   "adres": "Symfoniestraat",
   "bag_gezien": "2026-10-04",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-04",
   "gebeurtenissen": [
    {
@@ -115016,7 +115017,7 @@
  "tolhuis": {
   "adres": "Tolhuis",
   "bag_gezien": "2026-10-04",
-  "bag_pogingen": 1,
+  "bag_pogingen": 2,
   "bag_zonder_id": "2026-10-04",
   "gebeurtenissen": [
    {

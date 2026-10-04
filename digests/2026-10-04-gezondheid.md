@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-10-04
 
-34 in orde, 5 aandachtspunten, 0 fouten.
+35 in orde, 4 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
@@ -9,8 +9,6 @@
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
 - **WOZ-schatting**: geijkt op 82 panden: correctie 0.984 (2% stelselmatig), spreiding ±15.0%; mediane fout per methode: kenmerken 16.1% (86), prijs 11.0% (82), beste: prijs; kenmerken uit 71 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
-- **Nieuwe onderwerpen**: 1 voorgestelde onderwerpen, 0 gevolgd: besluit was
-  Deze komen terug in het nieuws en hebben nog geen achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen bij; het script schrijft die niet zelf, want juridische tekst zonder gecontroleerde bron is precies wat we niet willen.
 - **Attenderingen**: laatste ronde 2026-10-04: kamernet: 13 mails, 11 objecten, 2 bewust overgeslagen; pararius: 3 mails, 5 objecten, 4 bewust overgeslagen; regulier: 4 mails, 10 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
@@ -41,6 +39,7 @@
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
 - **3D BAG eigen snapshot**: 1242 panden in de eigen snapshot, 1242 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-04
 - **Achtergronddekking**: 29 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 3 brieven vastgelegd, laatste 2026-10-04; 48 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
