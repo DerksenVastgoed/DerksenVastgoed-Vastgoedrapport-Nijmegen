@@ -91,7 +91,10 @@ BRONNEN = [
      "de begroting van de gemeente: tarieven voor OZB, riool- en "
      "afvalstoffenheffing, grondbeleid en het programma Wonen. Een voornemen; "
      "vastgesteld wordt het in de belastingverordeningen",
-     "gemeente Nijmegen, nijmegen.begroting-<jaar>.nl",
+     # Geen punthaken: in de HTML-versie van de brief leest de browser
+     # <jaar> als een onbekende tag en verdwijnt het woord. Daarom in
+     # hoofdletters, dat overleeft elke opmaak.
+     "gemeente Nijmegen, nijmegen.begroting-JAAR.nl",
      "jaarlijks in het najaar"),
     ("Woningprijsindex", "registratie",
      "prijsindex bestaande koopwoningen, landelijk per maand en Nijmegen per "
