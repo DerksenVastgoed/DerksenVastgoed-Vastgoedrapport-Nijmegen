@@ -50,9 +50,17 @@ def _sleutel(adres):
 def lees_kenmerken(pad=GESCHIEDENIS_PAD):
     """Per adres het label en of het pand meerdere eenheden heeft."""
     try:
-        with open(pad, encoding="utf-8") as f:
-            g = json.load(f)
+        # Via pandlezer: die vouwt gedeelde pandgegevens weer uit per adres,
+        # zodat deze functie niets hoeft te weten van de opslagvorm.
+        from pandlezer import laad
+        g = laad(pad)
     except Exception:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                g = json.load(f)
+        except Exception:
+            return {}
+    if not g:
         return {}
     uit = {}
     for pand in g.values():

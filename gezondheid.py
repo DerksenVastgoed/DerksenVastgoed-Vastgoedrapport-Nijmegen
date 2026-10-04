@@ -73,6 +73,15 @@ def _kort(tekst, maximum=240):
 VANDAAG = dt.date.today()
 
 
+def _geschiedenis(pad="pandgeschiedenis.json"):
+    """De pandgeschiedenis, uitgevouwen uit de compacte vorm."""
+    try:
+        from pandlezer import laad
+        return laad(pad)
+    except Exception:
+        return _json(pad) or {}
+
+
 def _json(pad):
     try:
         with open(pad, encoding="utf-8") as f:
@@ -282,7 +291,7 @@ def controle_begroting():
 
 def controle_geschiedenis():
     """Hoeveel panden we volgen, en hoeveel er nog nooit zijn nagekeken."""
-    d = _json("pandgeschiedenis.json") or {}
+    d = _geschiedenis()
     if not d:
         return (LET_OP, "nog geen geschiedenis opgebouwd",
                 diagnose("geschiedenis") or "Draait de stap Geschiedenis per pand?")
@@ -318,6 +327,13 @@ def controle_geschiedenis():
         per_ronde = int(os.environ.get("BAG_PER_RONDE") or 500)
     # Labels groeien alleen tijdens een volledige ronde; dat staat erbij zodat
     # een stilstaand getal niet als storing wordt gelezen.
+    # Hoeveel het delen van pandgegevens scheelt, zodat de verbouwing
+    # meetbaar is in plaats van aangenomen.
+    try:
+        from pandlezer import tel_besparing
+        bes = tel_besparing(d)
+    except Exception:
+        bes = {}
     bewijs = (f"{len(d)} panden gevolgd, {met_verhaal} met meer dan een "
               f"gebeurtenis; {met_bag} met BAG-gegevens ({eenheden} woningen"
               + (f", {dubbel} dubbel geteld zonder deze correctie" if dubbel else "")
@@ -326,6 +342,8 @@ def controle_geschiedenis():
               + (f", {zonder_id} zonder pand-id in de BAG" if zonder_id else "")
               + (f" waarvan {opgegeven} na drie pogingen opgegeven"
                  if opgegeven else "")
+              + (f"; {bes['bespaard']} regels bespaard door gedeelde "
+                 f"pandgegevens" if bes.get("bespaard") else "")
               + ("; labels en BAG groeien alleen bij een volledige ronde, dus "
                  "in de weekeditie of bij een handrun met die vlag aan"
                  if met_label < met_bag else ""))
@@ -1212,7 +1230,7 @@ def _kerncijfers():
     die oplichtte.
     """
     uit = []
-    g = _json("pandgeschiedenis.json") or {}
+    g = _geschiedenis()
     if g:
         met_bag = sum(1 for p in g.values() if p.get("bag_eenheden"))
         met_label = sum(1 for p in g.values() if p.get("labels"))

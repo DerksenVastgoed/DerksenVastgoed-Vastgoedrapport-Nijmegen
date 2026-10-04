@@ -4703,6 +4703,132 @@ alleen.
 
 ---
 
+## 19. De vergelijking werkt, en mijn verwachting was fout — 4 oktober 2026
+
+Met 82 panden staat de spreiding op ±15,0%, tegen 19,4% bij 67 en 23,9% bij 39.
+Meer waarnemingen blijven dus helpen, en mijn conclusie van 3 oktober dat de
+methode de beperking was, is daarmee definitief weerlegd.
+
+**En de methodevergelijking komt er nu wel uit, met een onverwachte uitkomst:**
+de prijsindexmethode zit op 11,0% mediane fout, het kenmerkmodel op 16,1%. Ik
+had gezegd dat het kenmerkmodel waarschijnlijk beter zou zijn en dat we daarop
+moesten overstappen. Dat was een verwachting zonder meting, en hij klopt niet.
+De methode die al in gebruik is, is de betere.
+
+Het rapport zegt nu welke methode wint, zodat die conclusie niet uit twee
+percentages hoeft te worden afgeleid.
+
+**Wat dit betekent voor de volgende stap:** niet de methode omgooien, maar
+doorgaan met WOZ-waarden invoeren. Van 39 naar 82 panden halveerde de spreiding
+bijna; de werklijst houdt zichzelf op vijfentwintig open regels, dus het is
+behapbaar.
+
+**Les, en het is deze week de derde van dezelfde soort:** ik trok een conclusie
+uit twee metingen, uit een lege uitkomst, en uit een verwachting over welke
+methode beter zou zijn. Alle drie bleken onjuist toen er gemeten werd.
+
+---
+
+## 19a. Beide open vragen beantwoord — 4 oktober 2026
+
+De renteregel staat nu als "Onveranderd sinds de vorige meting: 5.10% bij 50%
+LTV ..." in de bijlage. Leesbaar als naslag, en de opdracht herkent hem aan het
+eerste woord. En de brief staat een keer in het bestand; de verdubbeling kwam
+van het samenvoegen van meerdere digests in een bericht.
+
+**Een echte fout in dezelfde tabel:** bij de Stadsbegroting stond als vindplaats
+"nijmegen.begroting-<jaar>.nl". In de HTML-versie van de brief leest een browser
+<jaar> als een onbekende tag en verdwijnt het woord, dus pa zag
+"nijmegen.begroting-.nl". Nu staat er JAAR in hoofdletters; dat overleeft elke
+opmaak.
+
+**Twee andere dingen in die tabel, een samengelopen rij en een streepjeslijn van
+zes tekens, laat ik staan.** Die zijn niet te onderscheiden van een
+plakartefact, en ik heb deze week twee keer achter zo'n artefact aan gezeten.
+Komen ze terug in een los aangeleverd bestand, dan zijn ze echt.
+
+---
+
+## 20. Een tegenspraak in het dossier — 4 oktober 2026
+
+Bij de Zwaluwstraat 175 en de Krayenhofflaan 47 staat splitsen twee keer in
+hetzelfde dossier: een keer als "route afgevallen op de opkoopbescherming" en
+een keer als "alternatief: splitsen in 2 geeft €1.220 per maand". Voor de lezer
+is dat een tegenspraak, en bij een beslissing van vier ton is dat geen detail.
+
+Het alternatief wordt nu weggelaten voor een route die al is afgevallen. Blijft
+de route open, dan blijft het alternatief staan.
+
+**En de WOZ van de Zwaluwstraat is geland.** Met €376.000: 159 punten,
+€1.042 wettelijk maximum, richtprijs €218.119 in plaats van de €321.589 die op
+de gemeten markthuur rustte. Precies de uitkomst die we met de hand vonden toen
+Mark de WOZ opzocht, en een verschuiving van ruim een ton.
+
+**Wat daarbij opvalt over de schatting.** Bij de Krayenhofflaan 47 stond op 1
+oktober €518.000 als schatting; de ingevoerde waarde is €360.000. Dat is 44%
+ernaast, en het draait de case om: boven de grens leek het vrij, onder de grens
+geldt de opkoopbescherming. Dat is het sterkste argument om bij een pand dat
+ertoe doet nooit op de schatting te varen, ook niet nu de spreiding op 15% zit.
+
+---
+
+## 21. De labelsamenvatting werkt, de modeldatums vragen nog twee controles
+
+**De samenvatting doet wat hij moet:** "energielabels van 15 woningen in dit
+pand (C: 5, E: 3, D: 2, F: 2, G: 2, A: 1)". Dat waren vijftien regels.
+
+**Maar de modelgegevens laten twee nieuwe soorten fouten zien.**
+
+Verkopen die voor de plaatsing liggen. Graafsedwarsstraat 65 staat verkocht in
+januari 2022 en te koop in september 2022; Bloemerstraat 22 verkocht in januari
+2014 en te koop in juni 2014. Minstens een van de twee klopt dan niet. Staat er
+geen eerdere plaatsing maar wel een latere binnen hetzelfde jaar, dan worden
+allebei gemerkt als "volgorde klopt niet met de plaatsing".
+
+En datums op 1 januari. Dat is vrijwel altijd een jaartal dat als exacte datum
+is opgeschreven. Zulke regels blijven bruikbaar voor het jaar, maar gaan nu niet
+meer voor een dag door: de zekerheid gaat naar laag en er staat "jaar bij
+benadering" bij, net als bij de oude vergunningen.
+
+**Een derde punt blijft staan en is lastiger.** Palmstraat 40 en St.
+Annastraat 30 hebben allebei twee verkopen op dezelfde dag met verschillende
+bedragen en oppervlaktes: 31 m2 en 23 m2 bij de St. Annastraat. Dat zijn twee
+verschillende woningen die op hetzelfde BAG-pand belanden. Dat is de keerzijde
+van het vastleggen op het pand, en het hoort bij de herstructurering die al
+genoteerd staat: panden op pand-id, met per adres een verwijzing.
+
+---
+
+## 22. De pandgeschiedenis herstructureerd — 4 oktober 2026
+
+Een BAG-pand kan meerdere adressen hebben die wij apart volgen. Aubadestraat 12
+en 16 zijn hetzelfde pand met 24 woningen, en die lijst stond bij allebei;
+Achter de Wiemelpoort zelfs drie keer. Dat maakte het bestand groot, de runs
+traag en het dossier onleesbaar.
+
+**De oplossing houdt alle lezers buiten schot.** Het bestand wordt compact
+weggeschreven met de gedeelde pandgegevens een keer onder "_panden", en bij het
+inlezen vouwt pandlezer.py het weer uit. Elk adres heeft in het geheugen dus
+gewoon zijn eigen bag_eenheden en labels, en geen enkele lezer hoeft anders te
+rekenen.
+
+**Wat gedeeld wordt en wat niet.** Gedeeld: bag_eenheden, labels en de datum
+waarop het pand is nagekeken; die horen bij het gebouw. Niet gedeeld: de
+gebeurtenissen, want een verkoop of een vergunning hoort bij een adres. Panden
+zonder pand-id blijven staan zoals ze zijn.
+
+**Getest op vier punten:** een bestand in de oude vorm wordt nog gewoon gelezen,
+een compact bestand komt uitgevouwen terug, de eigen gebeurtenissen blijven
+gescheiden, en bij twee verschillende data van nakijken wint de laatste. De vier
+andere lezers, marktprijzen, het aanbodprofiel, het gezondheidsrapport en de 3D
+BAG, geven op een compact bestand dezelfde uitkomsten als eerst.
+
+In de proef zakte het bestand van 2740 naar 1535 bytes en verdwenen 48 van de
+97 regels. Het rapport meldt die besparing voortaan, zodat het effect op de
+echte voorraad zichtbaar is in plaats van aangenomen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -92,8 +92,22 @@ def lees(pad, standaard):
 
 
 def bewaar(geschiedenis):
+    """
+    Wegschrijven in de compacte vorm: gedeelde pandgegevens een keer.
+
+    Aubadestraat 12 en 16 zijn hetzelfde BAG-pand met 24 woningen; in de oude
+    vorm stond die lijst bij allebei. Bij het inlezen wordt het weer uitgevouwen,
+    dus voor elke lezer verandert er niets.
+    """
+    try:
+        from pandlezer import compact
+        uit = compact(geschiedenis)
+    except Exception as e:
+        print(f"Compact opslaan lukt niet, oude vorm gebruikt: {str(e)[:80]}",
+              file=sys.stderr)
+        uit = geschiedenis
     with open(PAD, "w", encoding="utf-8") as f:
-        json.dump(geschiedenis, f, ensure_ascii=False, indent=1, sort_keys=True)
+        json.dump(uit, f, ensure_ascii=False, indent=1, sort_keys=True)
 
 
 def voeg_toe(pand, datum, soort, tekst, bron):
@@ -1033,7 +1047,11 @@ def main():
     args = ap.parse_args()
     wis("geschiedenis")
 
-    geschiedenis = lees(PAD, {})
+    try:
+        from pandlezer import laad
+        geschiedenis = laad(PAD)
+    except Exception:
+        geschiedenis = lees(PAD, {})
     n_v = uit_verkopen(geschiedenis)
     n_m = uit_model(geschiedenis)
     n_a = uit_archief(geschiedenis)

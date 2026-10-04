@@ -4575,7 +4575,14 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # verkamerd, en wat ging daaraan vooraf?
     try:
         from pandgeschiedenis import lees as lees_gesch, precedenten
-        eerder = precedenten(lees_gesch("pandgeschiedenis.json", {}), w["adres"])
+        # Via pandlezer, zodat een compact bestand weer wordt uitgevouwen en
+        # elk adres zijn eigen eenheden en labels heeft.
+        try:
+            from pandlezer import laad as _laad_gesch
+            _gesch = _laad_gesch("pandgeschiedenis.json")
+        except Exception:
+            _gesch = lees_gesch("pandgeschiedenis.json", {})
+        eerder = precedenten(_gesch, w["adres"])
         for p in eerder:
             f("eerder in deze straat", f"{p['adres']}: {p['route']}",
               "geschiedenis per pand")

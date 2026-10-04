@@ -147,6 +147,9 @@ def te_doen(opgeslagen, pand_ids, versie_nu):
 
 
 def pand_ids_uit_geschiedenis(pad="pandgeschiedenis.json"):
+    # Opmerking: deze functie leest alleen pand_id per adres, en dat veld blijft
+    # in de compacte vorm gewoon bij het adres staan. Uitvouwen is hier dus niet
+    # nodig.
     """De pand-ids die we al kennen uit de geschiedenis per pand."""
     try:
         with open(pad, encoding="utf-8") as f:
