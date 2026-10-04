@@ -1,0 +1,24 @@
+
+## Publicaties
+_Vastgoedartikelen laatste 24u, met marktduiding. 04-10-2026._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPR1dmYkdCN0FRcGlYUWZpaHNnWlR0dUVHbXFMQWJWbWkzOEdGd0N0dE9YQWxmNU45NkhRR01RcFhHY0pNNHFyNXZfNDlnYTlXLWE1X3dPd3RzcTNTdk1WYjNITGI3aUtHQmhndFEtdW85LW5FMnhTREZMbm94UV9KdVptXzVZeXY5LXd1WExwbUU4SFBNMzRrcEJvSFgwN2M?oc=5" style="color:#12242c;text-decoration:none">Wat levert Wet betaalbare huur op voor huurders? - Binnenlands Bestuur</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het artikel bespreekt wat de Wet betaalbare huur oplevert voor huurders.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Strengere huurregulering kan de maximale huur en dus de kale huuropbrengst in dit segment beperken.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Wet betaalbare huur . <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPR1dmYkdCN0FRcGlYUWZpaHNnWlR0dUVHbXFMQWJWbWkzOEdGd0N0dE9YQWxmNU45NkhRR01RcFhHY0pNNHFyNXZfNDlnYTlXLWE1X3dPd3RzcTNTdk1WYjNITGI3aUtHQmhndFEtdW85LW5FMnhTREZMbm94UV9KdVptXzVZeXY5LXd1WExwbUU4SFBNMzRrcEJvSFgwN2M?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#B8860B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">uitponden</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxNOFFPR2hVZDR5Qm5hRlYtNzBNRjV5MFBSNU16TWo0ZnR0MUlQcEhJOXI4MGFPNVRNT0piSGVnOS04bXJuc245bDBreVlLaDlGVEpFVnlXSHlCN3lPN1J3VXloRFNXTUVDRHluS056Wl9ENmdOYzBJUmhpQ215SG9icmlkeml6V1hEalhEUjhVb0lNbVdTYVgxUHRnSjNKS3RQeVQwbms3RUc?oc=5" style="color:#12242c;text-decoration:none">Uitponden in een afkoelende markt: is dit het moment voor de hoogste opbrengst? - Vastgoed Insider</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het artikel vraagt zich af of een afkoelende markt nog het beste moment is om uit te ponden.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Bij afnemende prijsstijging kan de meerwaarde uit losse verkoop van appartementen lager uitvallen dan verwacht.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Uitponden . <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxNOFFPR2hVZDR5Qm5hRlYtNzBNRjV5MFBSNU16TWo0ZnR0MUlQcEhJOXI4MGFPNVRNT0piSGVnOS04bXJuc245bDBreVlLaDlGVEpFVnlXSHlCN3lPN1J3VXloRFNXTUVDRHluS056Wl9ENmdOYzBJUmhpQ215SG9icmlkeml6V1hEalhEUjhVb0lNbVdTYVgxUHRnSjNKS3RQeVQwbms3RUc?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#B8860B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">uitponden</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/verhuurd-verkopen-of-uitponden-zo-regisseer-je-het-verkoopproces/" style="color:#12242c;text-decoration:none">Verhuurd verkopen of uitponden: zo regisseer je het verkoopproces – Met 8 tips voor de vastgoedbelegger</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het artikel geeft tips over hoe je het verkoopproces van verhuurd vastgoed of uitponden regisseert.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Een goed geregisseerd verkoopproces kan de exit-opbrengst en doorlooptijd bij uitponden in dit segment verbeteren.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/verhuurd-verkopen-of-uitponden-zo-regisseer-je-het-verkoopproces/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>

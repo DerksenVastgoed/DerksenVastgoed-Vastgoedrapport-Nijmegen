@@ -17,5 +17,13 @@
    "Bankastraat 10",
    "Delistraat 45"
   ]
+ },
+ "2026-10-04": {
+  "nieuw_te_huur": 0,
+  "nieuw_te_koop": 0,
+  "te_huur": 38,
+  "te_koop": 68,
+  "uitpond": 0,
+  "uitpond_adressen": []
  }
 }

@@ -4,7 +4,7 @@
   "titel": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html",
   "strategie": "splitsen",
-  "duiding": "Verleende BOPA-vergunning bevestigt dat splitsing naar twee zelfstandige woningen hier planologisch haalbaar is, ondanks energielabel G.",
+  "duiding": "BOPA-besluit maakt splitsing naar twee zelfstandige woningen mogelijk, wat de voorraad kleinere units vergroot.",
   "feiten": {
    "energielabel": "G (2025)",
    "oppervlakte_m2": 168
@@ -18,7 +18,7 @@
   "titel": "Besluit (met BOPA) voor Verlengen vergunning (5Jaar) tbv tijdelijke overkappingen, aan Vondelstraat 5, 6512BB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html",
   "strategie": "geen",
-  "duiding": "Verlenging van een tijdelijke overkappingsvergunning is een administratieve voortzetting zonder effect op de woningvoorraad.",
+  "duiding": "Verlenging van tijdelijke overkappingen betreft een gebruiksvergunning zonder relevantie voor woningmarktstrategieën.",
   "feiten": {
    "oppervlakte_m2": 974
   },
@@ -30,28 +30,14 @@
   "datum": "2026-10-02",
   "titel": "Besluit voor het herstellen voegwerk van de voorgevel aan Johannes Vijghstraat 5, 6524BN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html",
-  "strategie": "geen",
-  "duiding": "Herstel van voegwerk is regulier onderhoud aan de gevel en verandert het energielabel uit 2020 niet.",
+  "strategie": "verduurzaming",
+  "duiding": "Herstel van voegwerk is regulier gevelonderhoud en verbetert het energielabel niet zonder nieuwe opname.",
   "feiten": {
    "energielabel": "E (2020)",
    "oppervlakte_m2": 182
   },
   "straat": "Johannes Vijghstraat",
   "huisnummer": "5",
-  "kern": false
- },
- {
-  "datum": "2026-10-01",
-  "titel": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw, aan Peter Scheersstraat 8, 6525DE Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-459204.html",
-  "strategie": "splitsen",
-  "duiding": "Aanvraag voor een dakopbouw kan extra woonoppervlak toevoegen dat later als aparte unit kan dienen, maar is nog niet besloten.",
-  "feiten": {
-   "energielabel": "E (2020)",
-   "oppervlakte_m2": 140
-  },
-  "straat": "Peter Scheersstraat",
-  "huisnummer": "8",
   "kern": false
  }
 ]
