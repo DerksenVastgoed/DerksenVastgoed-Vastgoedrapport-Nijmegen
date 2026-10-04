@@ -255,9 +255,15 @@ def _geldig(d):
             continue
         soort = str(g.get("soort", "")).lower()
         soort = "verkocht" if "verkocht" in soort else "te koop"
+        # Een datum van 1 januari is vrijwel altijd een jaartal dat als exacte
+        # datum is opgeschreven. Dat kwam terug bij de Graafsedwarsstraat en de
+        # Bloemerstraat. Zo'n regel blijft bruikbaar voor het jaar, maar mag
+        # niet voor een dag doorgaan.
+        bijbenadering = datum.endswith("-01-01")
         rij = {"soort": soort, "datum": datum,
+               "jaar_bij_benadering": bijbenadering,
                "bron": str(g.get("bron"))[:200],
-               "zeker": g.get("zeker") or "laag",
+               "zeker": "laag" if bijbenadering else (g.get("zeker") or "laag"),
                "herkomst": "model met webzoeken",
                "opgehaald": dt.date.today().isoformat()}
         # Het bedrag gaat mee als context en wordt nergens in meegerekend.
@@ -265,7 +271,21 @@ def _geldig(d):
         if isinstance(prijs, (int, float)) and 20000 < prijs < 5000000:
             rij["vraagprijs"] = int(prijs)
         uit.append(rij)
-    return sorted(uit, key=lambda r: r["datum"])
+    # Volgorde toetsen: een verkoop kan niet voor de plaatsing liggen die erbij
+    # hoort. Bij de Graafsedwarsstraat stond verkocht in januari 2022 en te koop
+    # in september 2022; dan klopt minstens een van de twee niet.
+    uit = sorted(uit, key=lambda r: r["datum"])
+    for i, r in enumerate(uit):
+        if r["soort"] != "verkocht":
+            continue
+        eerder = [x for x in uit[:i] if x["soort"] == "te koop"]
+        later = [x for x in uit[i + 1:] if x["soort"] == "te koop"]
+        # Geen eerdere plaatsing, wel een latere binnen hetzelfde jaar: dan
+        # staan ze vermoedelijk omgekeerd.
+        if not eerder and later and later[0]["datum"][:4] == r["datum"][:4]:
+            r["volgorde_onlogisch"] = True
+            later[0]["volgorde_onlogisch"] = True
+    return uit
 
 
 def main():
