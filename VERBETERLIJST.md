@@ -4504,6 +4504,205 @@ dat naast wat het aan de brief toevoegt.
 
 ---
 
+## 15a. Meer WOZ-waarnemingen halen de spreiding er niet uit — 3 oktober 2026
+
+Mark voerde de hele werklijst in: van 24 naar 39 panden, van 24 naar 36 straten
+en van 7 naar 8 buurten. De uitkomst beantwoordt de vraag van gisteren, zij het
+anders dan gehoopt.
+
+**Wat wel verbeterde:** de systematische afwijking halveerde van 4% naar 2%.
+Dat is precies wat een grotere steekproef doet met een scheve ligging.
+
+**Wat niet verbeterde:** de spreiding bleef op ±23,9%, tot op de decimaal.
+Nagekeken of het getal niet bevroren was: het bestand wordt elke run opnieuw
+berekend en het aantal ging wel omhoog, dus de spreiding is werkelijk gelijk
+gebleven. Dat is logisch ook: de correctie verschuift de band, hij versmalt
+hem niet. De spreiding is een eigenschap van de methode en niet van de
+steekproef.
+
+**Gevolg voor de werkwijze:** nog dertig panden opzoeken verbetert dit cijfer
+niet. Dat scheelt Mark werk, en het is beter dat nu te weten dan over een maand.
+De weg vooruit is een betere methode, niet meer waarnemingen.
+
+**Daarom staat de vergelijking tussen de twee methoden nu volledig in de
+regel.** Die lijst was beperkt tot twee vaste namen waardoor er maar een
+methode in beeld kon komen.
+
+**Correctie, 3 oktober, avond:** ik heb bij die wijziging getallen genoemd van
+11% tegen 18% alsof het een bevinding was. Die kwamen uit mijn eigen
+testbestand, niet uit de gegevens van Mark. In zijn rapport ontbreekt de
+vergelijking helemaal, ook in de run ervoor: woz_vergelijk_methoden levert niets
+op. Dat is dezelfde fout als bij de reconstructie van de SVOH-subsidie, waar
+een kloppend totaal uit twee fouten bestond: een uitkomst die past is nog geen
+uitkomst die klopt.
+
+Het rapport zegt nu met zoveel woorden "geen vergelijking tussen methoden
+beschikbaar" als die ontbreekt, zodat die leegte niet nog eens voor een
+uitkomst kan doorgaan. Waarom hij leeg blijft, is het eerste dat uitgezocht
+moet worden voordat er iets aan de methode verandert.
+
+---
+
+## 15b. Kan een tikfout de spreiding verklaren? — 3 oktober 2026
+
+**Mark:** als er maar een pand ver afwijkt, zou dat ook een invoerfout kunnen
+zijn.
+
+**Voor de spreiding kan dat niet de verklaring zijn**, en dat komt door hoe hij
+is gebouwd: het tiende en het negentigste percentiel, gehalveerd. Bij 39 panden
+zijn dat de vierde en de 35e waarneming op volgorde; een pand dat er ver naast
+zit valt daarbuiten en verschuift niets. Precies daarom is die maat zo gekozen.
+
+**Maar het onderliggende punt klopt wel.** Een tikfout in de handmatige invoer
+valt nergens op: de spreiding gebruikt percentielen en de correctie is een
+mediaan, allebei ongevoelig voor een uitschieter. Zo'n fout verdwijnt dus in de
+cijfers terwijl hij bij dat ene pand de hele doorrekening scheeftrekt.
+
+**De ijking noemt nu de panden die meer dan de helft van de mediaan afwijken**,
+met adres en percentage, en het rapport zet ze achter de regel: "nakijken:
+Marialaan 56 (+105%), Dokstraat 425 (-60%)". Dan is een verdwaalde nul of een
+verkeerd overgenomen bedrag binnen een dag te vinden in plaats van nooit.
+
+---
+
+## 15c. De werklijst groeide harder dan hij werd afgewerkt — 3 oktober 2026
+
+Het aantal openstaande WOZ-regels liep in drie runs op van 17 naar 32 naar 44.
+Elke ronde zette er achttien bij, ook als de vorige nog niet waren ingevuld.
+Een werklijst van honderd adressen wordt niet afgewerkt maar genegeerd.
+
+**Nu zit er een rem op.** Staan er vijfentwintig of meer open, dan komt er niets
+bij en meldt de stap dat in het logboek. Zit er nog ruimte, dan wordt die
+precies opgevuld tot vijfentwintig. Getest met 26 openstaande regels: geen
+enkele toevoeging. Met twintig: aangevuld tot de grens.
+
+**Waarom vijfentwintig.** Dat is ongeveer een half uur werk op het
+wozwaardeloket, en daarmee blijft het iets wat je in een keer afmaakt. Vul je
+ze in, dan staat de volgende lichting er de dag erna.
+
+**En een melding uit dezelfde run:** de paklijst werd niet gevonden.
+versies.json is vermoedelijk meeverdwenen bij het opruimen van versies.py.
+Zonder dat bestand kan de versiecontrole niets vergelijken en staat hij op
+LET OP zonder dat er iets mis is met de code.
+
+---
+
+## 16. Correctie: meer waarnemingen helpen wel — 4 oktober 2026
+
+Met 67 panden in plaats van 39 ging de spreiding van ±23,9% naar ±19,4% en de
+systematische afwijking naar nul.
+
+**Dat weerlegt mijn conclusie van gisteren.** Bij de sprong van 24 naar 39
+bewoog de spreiding niet, en daar schreef ik uit op dat het aan de methode lag
+en niet aan het aantal. Een vlakke stap tussen twee metingen is geen bewijs dat
+een reeks vlak is. Dat is binnen twee dagen de tweede keer dat ik een uitkomst
+te snel voor een bevinding aanzag; de eerste was de methodevergelijking met
+cijfers uit mijn eigen testbestand.
+
+Wat wel blijft staan: de methodevergelijking is nog altijd leeg, dus of het
+kenmerkmodel beter is dan de prijsindex weten we nog steeds niet.
+
+**Een tikfout gevonden, en dat is waarvoor de uitschietercontrole is gebouwd.**
+Jan de Wittstraat 6 stond op +1113%: een pand van 22 m2 met een vraagprijs van
+€195.000. Zo'n afwijking kan geen echt pand zijn, dus daar staat een nul te
+veel.
+
+**Zulke waarden tellen nu niet mee in de ijking.** Meer dan vier keer zo hoog of
+laag als de schatting is vrijwel zeker een invoerfout. Ze blijven wel in de
+uitschieterlijst staan met de vermelding "telt niet mee", want een fout die uit
+beeld verdwijnt wordt nooit hersteld. Het rapport meldt hoeveel waarden er
+buiten beschouwing zijn gelaten.
+
+**De twee andere uitschieters zijn van een andere orde:** Derde Walstraat 108
+op +109% en Havenweg 34 op -68%. Die kunnen een invoerfout zijn, maar ook een
+pand dat werkelijk afwijkt, bijvoorbeeld door een bedrijfsruimte op de begane
+grond of een monumentenstatus. Die blijven meetellen tot Mark ze heeft
+nagekeken.
+
+---
+
+## 16a. Waarom de methodevergelijking leeg bleef — 4 oktober 2026
+
+Dezelfde fout als eerder bij de ijking: woz_vergelijk_methoden zocht de WOZ op
+het pand zelf, terwijl die waarden in woz.txt staan en pas later aan de panden
+worden gehangen. Dus vond hij er geen een, bleef de lijst leeg, en leek het
+alsof er niets te vergelijken viel.
+
+De functie leest de tabel nu zelf, met dezelfde rem op vermoedelijke tikfouten
+als de ijking. Getest met vervangende schatters die er respectievelijk 10% en
+25% naast zitten: beide komen er met het juiste aantal panden uit.
+
+**Wat er bij de volgende run moet verschijnen:** twee percentages achter
+"mediane fout per methode". Is het kenmerkmodel duidelijk lager, dan wordt dat
+de standaard voor panden waar genoeg straatgegevens zijn.
+
+**Twee dingen uit hetzelfde rapport die opvallen.**
+
+De groottepremie staat nu op 571 waarnemingen en de curve is overtuigend:
+1,422 onder de 40 m2 tegen 0,911 boven de 130 m2. Dat is een factor 1,56 tussen
+het kleinste en het grootste segment, gemeten en gecorrigeerd voor de buurt.
+Daarmee is de kern van elke splitsingscase geen aanname meer.
+
+En de mediane bezitsduur van 0,8 jaar klopt niet. Die komt uit paren van
+verkopen waarvan er een uit de geplakte lijst komt met de datum van het plakken,
+28 september. Zolang die datums ontbreken, meet dit cijfer vooral onze eigen
+invoer. Dat hoort met een waarschuwing in het rapport of er voorlopig uit.
+
+---
+
+## 17. Een verkoopdatum uit een YouTube-video — 4 oktober 2026
+
+In het dossier van de Veemarkt 277 staat: "te koop aangeboden, vraagprijs
+€375.000 (zekerheid laag), bron youtube.com/watch?v=... (video geplaatst '128
+days ago')". Het model heeft een plaatsingsdatum afgeleid uit de leeftijd van
+een video.
+
+**Dat kwam erdoor omdat mijn controle alleen eiste dat er een bron was**, niet
+dat die deugde. Een YouTube-link is een bron, dus de regel kwam binnen.
+
+Twee filters erbij. Bronnen waar geen verkoopgeschiedenis in kan staan vallen
+af: video's, sociale media en marktplaatsen. En een bron die een relatieve
+tijdsaanduiding bevat, zoals "128 days ago" of "3 maanden geleden", valt ook af:
+dan is de datum een berekening van het model en geen gevonden datum. De
+opdracht aan het model zegt dat nu ook met zoveel woorden.
+
+**En het dossier was onleesbaar geworden.** Berg en Dalseweg 81 leverde 120
+labelregels op, een per woning in het complex. Die worden nu samengevat in een
+regel: "energielabels van 120 woningen in dit pand (A++: 90, A+++: 30)".
+
+Daarbij telt een labelregel niet meer mee in de volgorde waarin panden worden
+getoond. Anders staan de flats bovenaan omdat ze de meeste gebeurtenissen
+hebben, terwijl een pand met drie vergunningen interessanter is dan een flat met
+honderdtwintig labels. In de test komt Ackerbroekweg 31 met drie vergunningen
+daardoor boven Berg en Dalseweg 81 met 122 regels.
+
+---
+
+## 18. Een aanwijzing die drie keer in de brief belandde — 4 oktober 2026
+
+De renteregel stond eerst als "GEEN NIEUWS, ALLEEN NASLAG" in de bijlage. Ik
+zette er vierkante haken omheen, en toen stond er "[niet opnemen: onveranderd]".
+Twee keer het probleem verplaatst in plaats van opgelost.
+
+**De fout zat in het ontwerp.** Een aanwijzing voor de brief hoort niet in de
+tekst die de brief leest, want alles wat erin staat kan erin terechtkomen. Nu
+staat er een gewone Nederlandse zin: "Onveranderd sinds de vorige meting:
+5.10% bij 50% LTV ...". Die leest in de bijlage als naslag, en de opdracht
+herkent hem aan het eerste woord.
+
+**En er staat nu een algemene regel in de opdracht:** komt er in een bron een
+stuk tussen vierkante haken voor, een woord in kapitalen dat een opdracht is,
+of een zin die zegt wat de brief moet doen, dan is dat nooit tekst voor pa.
+
+**Twee dingen die ik nog niet kan verklaren uit dit materiaal.** De brief staat
+drie keer achter elkaar in wat Mark stuurde, en het HTML-bestand bevat twee
+complete documenten met elk een eigen DOCTYPE. Dat kan aan het plakken liggen,
+maar het kan ook betekenen dat de briefstap zijn uitvoer meerdere keren
+wegschrijft. Dat is na te gaan met het bestand digests/2026-10-04-brief.md
+alleen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
