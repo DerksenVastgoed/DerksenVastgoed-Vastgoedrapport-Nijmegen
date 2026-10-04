@@ -595,7 +595,13 @@ def controle_wozschatting():
     uit = d.get("uitschieters") or []
     if uit:
         bewijs += ("; nakijken: " + ", ".join(
-            f"{u['adres']} ({u['afwijking_pct']:+d}%)" for u in uit[:3]))
+            f"{u['adres']} ({u['afwijking_pct']:+d}%"
+            + (", telt niet mee" if u.get("telt_niet_mee") else "") + ")"
+            for u in uit[:3]))
+    niet_mee = d.get("niet_meegeteld") or 0
+    if niet_mee:
+        bewijs += (f"; {niet_mee} waarde(n) buiten beschouwing gelaten als "
+                   f"vermoedelijke tikfout")
     if spreiding > 7:
         return (LET_OP, bewijs,
                 "De spreiding is nog te groot om op de schatting te varen; blijf "
@@ -840,8 +846,15 @@ def controle_doorlooptijden():
         delen.append(f"mediane verkooptijd {d['verkooptijd_mediaan_dagen']} "
                      f"dagen ({d['verkooptijd_aantal']} panden)")
     if d.get("bezitsduur_mediaan_jaar"):
+        # Met een waarschuwing zolang de geplakte verkopen allemaal de
+        # plakdatum dragen: dan meet dit cijfer vooral onze eigen invoer. Een
+        # mediane bezitsduur van onder het jaar is in een woonbuurt niet
+        # geloofwaardig.
+        kort = d["bezitsduur_mediaan_jaar"] < 3
         delen.append(f"mediane bezitsduur {d['bezitsduur_mediaan_jaar']} jaar "
-                     f"({d['bezitsduur_aantal']})")
+                     f"({d['bezitsduur_aantal']})"
+                     + ("; onbetrouwbaar zolang de geplakte verkopen de "
+                        "plakdatum dragen" if kort else ""))
     if d.get("prijsgroei_mediaan_pct"):
         delen.append(f"prijsgroei per pand {d['prijsgroei_mediaan_pct']}% per "
                      f"jaar ({d['prijsgroei_aantal']})")
