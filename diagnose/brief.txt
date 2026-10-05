@@ -117,3 +117,7 @@ De brief eindigt midden in een zin: '...rdige voorspeller van wat er over een pa
 De brief eindigt midden in een zin: '...nd en of de marktrente alsnog in beweging komt.
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...ngstraat in de gaten zodra er een besluit ligt.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.
