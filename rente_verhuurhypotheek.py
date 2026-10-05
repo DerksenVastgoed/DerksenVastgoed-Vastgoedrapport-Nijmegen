@@ -266,6 +266,35 @@ def schrijf_historie(hist: dict):
 
 
 
+def ongewijzigd_sinds(hist: dict, scherpsten: dict) -> str:
+    """
+    De datum waarop deze tarieven voor het laatst veranderden.
+
+    "Onveranderd sinds de vorige meting" staat er elke dag en zegt dus niets.
+    "Ongewijzigd sinds 12 augustus" vertelt wel iets: dat de markt al weken
+    stilstaat. Dat is informatie, en het is precies wat een lezer wil weten.
+
+    Gaat terug door de historie zolang alle drie de tarieven gelijk zijn aan nu,
+    en geeft de oudste datum waarop dat nog zo was.
+    """
+    sleutels = ("ltv50", "ltv70", "ltv80")
+    nu = {k: (scherpsten.get(k) or (None, None))[1] for k in sleutels}
+    if not any(v is not None for v in nu.values()):
+        return ""
+    oudste = ""
+    for datum in sorted(hist.keys(), reverse=True):
+        rij = hist.get(datum) or {}
+        gelijk = all(
+            (rij.get(k) is None and nu[k] is None)
+            or (rij.get(k) is not None and nu[k] is not None
+                and abs(rij[k] - nu[k]) < 0.005)
+            for k in sleutels)
+        if not gelijk:
+            break
+        oudste = datum
+    return oudste
+
+
 def langere_terugblik(hist: dict, ltv_key: str = "ltv70"):
     """
     Hoe stond deze rente een maand, een kwartaal en een jaar geleden?
@@ -349,6 +378,22 @@ def _pijl(delta_bp: int) -> str:
     return f"▬ {delta_bp:+d} bp"
 
 
+MAANDEN = ("januari", "februari", "maart", "april", "mei", "juni", "juli",
+           "augustus", "september", "oktober", "november", "december")
+
+
+def _datum_nl(datum: str) -> str:
+    """2026-08-12 wordt 12 augustus, en bij een ander jaar met het jaartal."""
+    try:
+        d = dt.date.fromisoformat(datum[:10])
+    except Exception:
+        return datum
+    tekst = f"{d.day} {MAANDEN[d.month - 1]}"
+    if d.year != dt.date.today().year:
+        tekst += f" {d.year}"
+    return tekst
+
+
 def _nl(getal):
     """Nederlands geformatteerd getal, bv 15000 -> '15.000'."""
     return f"{getal:,}".replace(",", ".")
@@ -384,8 +429,13 @@ def vertaal_bod(rente_pct: float) -> str:
     )
 
 
-def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks") -> str:
+def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks",
+           hist: dict = None) -> str:
     vandaag = dt.date.today().strftime("%d-%m-%Y")
+    # De historie is nodig om te zeggen sinds wanneer de stand gelijk is. Komt
+    # hij niet mee, dan wordt hij hier alsnog gelezen.
+    if hist is None:
+        hist = lees_historie()
     grote_beweging = any(abs(v["delta_bp"]) >= DREMPEL_BP for v in wijzigingen.values() if v)
 
     # Doordeweeks geen tabel en geen analyse als de rente stilstaat, maar wel
@@ -415,15 +465,26 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
                            + f"{r70 - markt:.2f}".replace(".", ",")
                            + " procentpunt bovenop._\n")
 
+        # Hoe lang de stand al gelijk is, in plaats van "sinds gisteren": dat
+        # laatste staat er elke dag en zegt dus niets.
+        _s = ongewijzigd_sinds(hist, scherpsten) if hist else ""
+        _sinds_tekst = f"sinds {_datum_nl(_s)}" if _s else "sinds gisteren"
         return ("\n## Marktrente verhuurhypotheek\n\n_Wat een bank nu rekent voor "
-                "een nieuwe verhuurhypotheek, niet de rente op het eigen bezit. "
-                "Onveranderd sinds gisteren: "
+                "een nieuwe verhuurhypotheek, verzameld via financieren.nl. Niet "
+                "de rente op onze eigen panden: die ligt vast in de afspraken "
+                "met onze eigen financier. Het scherpste markttarief is "
+                "ongewijzigd " + _sinds_tekst + ": "
                 + ", ".join(delen_k)
                 + ". De volledige doorrekening staat in de brief van zondag._\n"
                 + (f"\n{terug}\n" if terug else "")
                 + opslagregel)
 
-    r = ["", "## Marktrente verhuurhypotheek"]
+    r = ["", "## Marktrente verhuurhypotheek",
+         "",
+         "_Wat banken nu vragen voor een nieuwe verhuurhypotheek, verzameld via "
+         "financieren.nl. Dit is geen rente op onze eigen panden: die ligt vast "
+         "in de afspraken met onze eigen financier. Dit tarief gebruiken we om "
+         "de richtprijs van een aankoop door te rekenen._"]
 
     # Rustige dag: een regel, geen tabel. De volledige analyse verschijnt zodra er iets beweegt.
     if not grote_beweging:
@@ -441,7 +502,12 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks")
         # zelf; de opdracht zegt dat een onveranderde rente geen nieuws is.
         # Eerdere pogingen met "GEEN NIEUWS, ALLEEN NASLAG" en met
         # "[niet opnemen]" kwamen allebei als losse tekst in de brief terecht.
-        regel = ("Onveranderd sinds de vorige meting: "
+        # "Onveranderd sinds de vorige meting" las als een mededeling over de
+        # eigen financiering. Daarom staat er nu bij wiens tarieven het zijn.
+        sinds = ongewijzigd_sinds(hist, scherpsten) if hist else ""
+        wanneer = (f"sinds {_datum_nl(sinds)}" if sinds
+                   else "sinds de vorige meting")
+        regel = (f"Het scherpste markttarief is ongewijzigd {wanneer}: "
                  + ", ".join(delen) + ".")
         if r70 is not None:
             regel += (f" Op een lening van €1.000.000 is dat "
@@ -509,7 +575,7 @@ def main():
         else:
             wijzigingen[k] = None
 
-    md = render(scherpsten, wijzigingen, data, modus=args.modus)
+    md = render(scherpsten, wijzigingen, data, modus=args.modus, hist=hist)
     print(md)
     with open(args.uit, "w", encoding="utf-8") as f:
         f.write(md)
