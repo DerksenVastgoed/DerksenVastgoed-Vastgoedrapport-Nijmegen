@@ -129,3 +129,6 @@ De brief eindigt midden in een zin: '...beweging komt of dat dit artikel voorbar
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...st naar onze eigen reeks voordat ik het geloof.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.
