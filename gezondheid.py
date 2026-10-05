@@ -967,6 +967,27 @@ def controle_verkoopdatums():
     return (OK, bewijs, "")
 
 
+def controle_splitsingen():
+    """Panden waarvan de BAG laat zien dat ze werkelijk zijn opgedeeld."""
+    d = _json("splitsingen.json") or {}
+    ger = d.get("gerealiseerd") or []
+    zonder = d.get("zonder_bekende_vergunning") or []
+    vergund = d.get("vergund_maar_niets_gebeurd") or []
+    if not (ger or zonder or vergund):
+        return (OK, "nog geen voltooide splitsing gezien; het aantal woningen "
+                "per pand wordt pas sinds eind september gemeten", "")
+    delen = [f"{len(ger)} gerealiseerd"]
+    if d.get("mediaan_dagen_besluit_tot_bag"):
+        delen.append(f"mediaan {d['mediaan_dagen_besluit_tot_bag']} dagen van "
+                     f"besluit tot registratie ({d.get('aantal_looptijden')})")
+    if zonder:
+        delen.append(f"{len(zonder)} zonder bekende vergunning")
+    if vergund:
+        delen.append(f"{len(vergund)} vergund maar na een jaar nog niets in "
+                     f"de BAG")
+    return (OK, "; ".join(delen), "")
+
+
 def controle_grootte_premie():
     """De gemeten premie van kleine eenheden, de basis van elke splitsingscase."""
     d = _json("grootte_premie.json") or {}
@@ -1212,6 +1233,7 @@ CONTROLES = [
     ("Aanbodreeks", controle_aanbodreeks),
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
+    ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),
     ("Huurdekking", controle_huurdekking),
