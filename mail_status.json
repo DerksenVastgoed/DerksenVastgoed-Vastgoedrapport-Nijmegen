@@ -10,12 +10,14 @@
    ]
   },
   "kamernet": {
-   "mails": 11,
-   "objecten": 9,
-   "overgeslagen": 2,
+   "mails": 14,
+   "objecten": 10,
+   "overgeslagen": 4,
    "redenen": [
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "De Heege, Westervoort: buiten Nijmegen"
+    "De Heege, Westervoort: buiten Nijmegen",
+    "Stekkenberg, Groesbeek: buiten Nijmegen",
+    "Bloemfonteinstraat, Eindhoven: buiten Nijmegen"
    ]
   },
   "pararius": {

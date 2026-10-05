@@ -91012,6 +91012,12 @@
     "datum": "2026-10-01",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €795 per maand, 25 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €738 per maand, 23 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
