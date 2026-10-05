@@ -721,6 +721,66 @@ def _parse_annotaties(tekst: str, n: int) -> dict:
     return uit
 
 
+def laatste_verkoop_per_adres(pad="pandgeschiedenis.json"):
+    """
+    Per pand wanneer het voor het laatst te koop stond of is verkocht.
+
+    Uit onze eigen geschiedenis, dus zonder extra opvragingen. Dat de verkoop
+    recent is, is de interessante helft van het signaal: een nieuwe vergunning
+    op een pas verkocht pand wijst op een koper met een plan, en dat is iets
+    anders dan een eigenaar die zijn eigen huis verbouwt.
+    """
+    try:
+        from pandlezer import laad
+        geschiedenis = laad(pad)
+    except Exception:
+        return {}
+    uit = {}
+    for pand in geschiedenis.values():
+        if not isinstance(pand, dict) or not pand.get("adres"):
+            continue
+        rijen = [g for g in (pand.get("gebeurtenissen") or [])
+                 if g.get("soort") in ("verkocht", "te koop") and g.get("datum")]
+        if not rijen:
+            continue
+        laatste = max(rijen, key=lambda g: g["datum"])
+        sleutel = "".join(c for c in pand["adres"].lower() if c.isalnum())
+        uit[sleutel] = (laatste["soort"], laatste["datum"])
+    return uit
+
+
+def _verkoopregel(soort, datum):
+    """Van "verkocht 2026-09-28" naar "verkocht 7 dagen geleden"."""
+    try:
+        dagen = (dt.date.today() - dt.date.fromisoformat(datum[:10])).days
+    except Exception:
+        return None
+    if dagen > 1095 or dagen < 0:
+        # Ouder dan drie jaar zegt niets meer over de huidige eigenaar.
+        return None
+    if dagen < 60:
+        wanneer = f"{dagen} dagen geleden"
+    elif dagen < 365:
+        wanneer = f"{dagen // 30} maanden geleden"
+    else:
+        wanneer = f"{dagen // 365} jaar geleden"
+    return f"{soort} {wanneer}"
+
+
+def verkoop_bij_items(items, verkopen):
+    """De laatste verkoop aan elk item hangen, als we die kennen."""
+    for it in items:
+        adres = (it.get("feiten") or {}).get("adres") or it.get("adres") or ""
+        sleutel = "".join(c for c in str(adres).lower() if c.isalnum())
+        rij = verkopen.get(sleutel)
+        if not rij:
+            continue
+        regel = _verkoopregel(*rij)
+        if regel:
+            it.setdefault("feiten", {})["laatste_verkoop"] = regel
+    return items
+
+
 def verrijk(items: list):
     """Zet bij elk item een strategie-label en duiding via de Anthropic-API."""
     for it in items:
@@ -793,6 +853,13 @@ def _regel(it: dict) -> str:
         if feiten.get("rijksmonument"):
             nr = feiten.get("monumentnr")
             delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
+        # Wanneer dit pand voor het laatst van eigenaar wisselde. Een pand dat
+        # een maand geleden is verkocht en nu een splitsingsaanvraag heeft, is
+        # een ontwikkelaar aan het werk; dat is iets anders dan een eigenaar die
+        # zijn eigen huis verbouwt. Zonder deze regel stond er alleen de
+        # oppervlakte en het label.
+        if feiten.get("laatste_verkoop"):
+            delen.append(feiten["laatste_verkoop"])
         if delen:
             regel += f"\n  `{' . '.join(delen)}`"
 
@@ -908,6 +975,14 @@ def main():
 
     verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
     verrijk_met_vergunning(kern + overige)
+    # Wanneer dit pand voor het laatst van eigenaar wisselde, uit onze eigen
+    # geschiedenis. Een vergunningaanvraag op een pand dat een maand geleden is
+    # verkocht, is een koper met een plan; dat is iets anders dan een eigenaar
+    # die zijn eigen huis verbouwt.
+    try:
+        verkoop_bij_items(kern + overige, laatste_verkoop_per_adres())
+    except Exception as e:  # noqa
+        print(f"Laatste verkoop niet toegevoegd: {str(e)[:80]}", file=sys.stderr)
     verrijk(kern + overige + beleid)  # duiding voor alle getoonde items in een call
 
     if beleid:
