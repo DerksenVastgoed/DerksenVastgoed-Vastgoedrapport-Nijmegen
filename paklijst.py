@@ -87,6 +87,15 @@ def maak(pad=PAD):
     return lijst
 
 
+def _regels(bestand):
+    """Het aantal regels, als handvat om twee versies te onderscheiden."""
+    try:
+        with open(bestand, encoding="utf-8") as f:
+            return sum(1 for _ in f)
+    except Exception:
+        return 0
+
+
 def controleer(pad=PAD):
     """
     Vergelijken met de paklijst.
@@ -107,7 +116,12 @@ def controleer(pad=PAD):
         elif vingerafdruk(bestand) == verwacht:
             gelijk.append(bestand)
         else:
-            afwijkend.append(bestand)
+            # Niet alleen DAT het afwijkt, maar ook iets waaraan te zien is WAT
+            # er staat. Twee bestanden bleven afwijken na opnieuw uploaden, en
+            # zonder dit detail was er alleen te raden: een oude versie, een
+            # halve upload, of een echt verschil.
+            afwijkend.append(f"{bestand} ({os.path.getsize(bestand)} bytes, "
+                             f"{_regels(bestand)} regels)")
     onbekend = [p for p in bestanden() if p not in lijst]
     return {"gelijk": gelijk, "afwijkend": afwijkend,
             "ontbrekend": ontbrekend, "onbekend": onbekend}
