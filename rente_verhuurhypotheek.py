@@ -173,7 +173,7 @@ def haal_kapitaalmarktrente():
     return None, None
 
 
-def render_opslag(vastgoedrente):
+def render_opslag(vastgoedrente, hist: dict = None):
     """Het verschil tussen de verhuurhypotheek en de kapitaalmarkt."""
     markt, datum = haal_kapitaalmarktrente()
     if markt is None or not vastgoedrente:
@@ -183,6 +183,23 @@ def render_opslag(vastgoedrente):
              f"De verhuurhypotheek staat op {_fmt_pct(vastgoedrente)}%, de tienjaars "
              f"AAA-staatsrente in de eurozone op {_fmt_pct(markt)}%"
              + (f" ({datum})" if datum else "") + "."]
+    # De eigen reeks erbij, zodat de brief over de kapitaalmarkt iets anders
+    # kan zeggen dan de stand van vandaag. Zonder reeks blijft de regel weg.
+    reeks = kapitaalmarkt_reeks(hist or {})
+    if reeks and reeks.get("maand"):
+        mnd = reeks["maand"]
+        richting = ("hoger" if mnd["verschil_bp"] > 0
+                    else "lager" if mnd["verschil_bp"] < 0 else "gelijk")
+        deel = (f"Een maand geleden stond die staatsrente op "
+                f"{_fmt_pct(mnd['toen'])}%, dus nu {abs(mnd['verschil_bp'])} "
+                f"basispunten {richting}" if richting != "gelijk" else
+                f"Een maand geleden stond die staatsrente op hetzelfde niveau")
+        if reeks.get("periode"):
+            per = reeks["periode"]
+            deel += (f"; over de laatste drie maanden "
+                     f"{per['verschil_bp']:+d} basispunten")
+        r.append(f"{deel}. Gemeten over {reeks['metingen']} dagen sinds "
+                 f"{reeks['eerste_meting']}.")
     r.append("_Die opslag is wat banken rekenen voor het risico van verhuurd vastgoed. "
              "Beweegt de hypotheekrente mee met de kapitaalmarkt, dan is het "
              "monetair beleid; loopt de opslag op, dan schatten banken het risico "
@@ -293,6 +310,39 @@ def ongewijzigd_sinds(hist: dict, scherpsten: dict) -> str:
             break
         oudste = datum
     return oudste
+
+
+def kapitaalmarkt_reeks(hist: dict, dagen: int = 90):
+    """
+    Hoe de tienjaars AAA-staatsrente zich de afgelopen maanden bewoog.
+
+    Zonder deze reeks kan de brief alleen de stand van vandaag noemen en moet
+    hij erbij zeggen dat hij geen trend kan beoordelen. Dat klopte, maar het was
+    onnodig: de rente wordt elke dag opgehaald en kan dus gewoon worden bewaard.
+
+    Geeft de stand van nu, die van een maand en van zoveel dagen geleden, en het
+    verschil in basispunten. Geen oordeel: dat hoort in de brief.
+    """
+    rijen = sorted((d, r.get("ecb10j")) for d, r in hist.items()
+                   if isinstance(r, dict) and r.get("ecb10j") is not None)
+    if len(rijen) < 2:
+        return None
+    vandaag, nu = rijen[-1]
+    uit = {"nu": nu, "datum": vandaag, "metingen": len(rijen),
+           "eerste_meting": rijen[0][0]}
+    try:
+        vandaag_d = dt.date.fromisoformat(vandaag)
+    except ValueError:
+        return uit
+    for naam, terug in (("maand", 30), ("periode", dagen)):
+        doel = vandaag_d - dt.timedelta(days=terug)
+        eerder = [(d, w) for d, w in rijen
+                  if dt.date.fromisoformat(d) <= doel]
+        if eerder:
+            toen_datum, toen = eerder[-1]
+            uit[naam] = {"toen": toen, "datum": toen_datum,
+                         "verschil_bp": round((nu - toen) * 100)}
+    return uit
 
 
 def langere_terugblik(hist: dict, ltv_key: str = "ltv70"):
@@ -463,7 +513,18 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks",
                            + f"%{f' ({mdatum})' if mdatum else ''}. Banken rekenen "
                            f"daar voor een verhuurhypotheek bij 70% financiering "
                            + f"{r70 - markt:.2f}".replace(".", ",")
-                           + " procentpunt bovenop._\n")
+                           + " procentpunt bovenop.")
+            # Ook hier de eigen reeks, zodat de dagelijkse brief niet hoeft te
+            # schrijven dat hij met een meting geen trend kan beoordelen.
+            _reeks = kapitaalmarkt_reeks(hist or {})
+            if _reeks and _reeks.get("maand"):
+                _m = _reeks["maand"]
+                opslagregel += (f" Een maand geleden stond die staatsrente op "
+                                + f"{_m['toen']:.2f}".replace(".", ",")
+                                + f"%, dus nu {_m['verschil_bp']:+d} "
+                                f"basispunten, gemeten over "
+                                f"{_reeks['metingen']} dagen.")
+            opslagregel += "_\n"
 
         # Hoe lang de stand al gelijk is, in plaats van "sinds gisteren": dat
         # laatste staat er elke dag en zegt dus niets.
@@ -542,7 +603,7 @@ def render(scherpsten: dict, wijzigingen: dict, alles: list, modus="weekelijks",
     # De risico-opslag ten opzichte van de kapitaalmarkt
     _, r70 = scherpsten.get("ltv70", (None, None))
     if r70:
-        r.extend(render_opslag(r70))
+        r.extend(render_opslag(r70, hist))
 
     return "\n".join(r)
 
@@ -565,6 +626,19 @@ def main():
     hist = lees_historie()
     vandaag_iso = dt.date.today().isoformat()
     hist[vandaag_iso] = {k: v[1] for k, v in scherpsten.items() if v[1] is not None}
+
+    # De kapitaalmarktrente wordt elke dag opgehaald maar werd niet bewaard.
+    # Daardoor kon de brief er alleen de stand van vandaag over melden en
+    # schreef hij terecht dat hij met een meting geen trend kan beoordelen.
+    # Een reeks is er wel: die van onszelf, zodra we hem opslaan.
+    try:
+        _ecb, _ecb_datum = haal_kapitaalmarktrente()
+        if _ecb is not None:
+            hist[vandaag_iso]["ecb10j"] = _ecb
+            if _ecb_datum:
+                hist[vandaag_iso]["ecb_datum"] = str(_ecb_datum)[:10]
+    except Exception as e:  # noqa
+        print(f"Kapitaalmarktrente niet bewaard: {str(e)[:80]}", file=sys.stderr)
 
     wijzigingen = {}
     for k in ("ltv50", "ltv70", "ltv80"):
