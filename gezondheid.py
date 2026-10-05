@@ -796,6 +796,46 @@ def controle_opnieuw_aangeboden():
     return (OK, bewijs, "")
 
 
+def controle_adressen_met_meerdere_maten():
+    """
+    Adressen waaronder meerdere woningen schuilgaan.
+
+    Bij de St. Annastraat 30 staan een woning van 31 m2 en een van 23 m2 onder
+    hetzelfde adres, allebei uit de geplakte lijst. Het huisnummer-achtervoegsel
+    is bij het plakken verloren gegaan, en dat valt niet terug te rekenen: de
+    oppervlakte is het enige dat ze onderscheidt. Zulke adressen delen een
+    dossier en een geschiedenis, en dat vertekent elke doorrekening op dat pand.
+    """
+    per_adres = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 7 or not v[6]:
+                    continue
+                try:
+                    opp = int(v[6])
+                except ValueError:
+                    continue
+                per_adres.setdefault(v[0].lower(), set()).add(opp)
+    except Exception:
+        return (OK, "geen aanbodbestand om te toetsen", "")
+    # Meer dan tien procent verschil: dan is het geen meetverschil maar een
+    # andere woning.
+    verdacht = {a: sorted(m) for a, m in per_adres.items()
+                if len(m) > 1 and max(m) > min(m) * 1.10}
+    if not verdacht:
+        return (OK, "geen adres met twee verschillende woningmaten", "")
+    namen = ", ".join(f"{a} ({', '.join(str(x) for x in m)} m2)"
+                      for a, m in sorted(verdacht.items())[:3])
+    return (LET_OP, f"{len(verdacht)} adressen met meerdere woningmaten: {namen}",
+            "Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken "
+            "weggevallen. Zoek het juiste adres op en pas de regel aan, anders "
+            "delen twee woningen een dossier.")
+
+
 def controle_gemeubileerd():
     """Gemeubileerde advertenties: apart bewaard, niet in de mediaan."""
     aantal = 0
@@ -965,7 +1005,7 @@ def controle_veroudering():
         with open("verkopen.txt", encoding="utf-8") as f:
             for regel in f:
                 v = [x.strip() for x in regel.split("|")]
-                if len(v) < 5 or not v[3].lower().startswith("te koop"):
+                if len(v) < 5 or not v[3].lower().startswith(("te koop", "nieuw")):
                     continue
                 sleutel = v[0].lower()
                 laatst[sleutel] = max(laatst.get(sleutel, ""), v[4])
@@ -1159,6 +1199,7 @@ CONTROLES = [
     ("Doorlooptijden", controle_doorlooptijden),
     ("Huurdekking", controle_huurdekking),
     ("Gemeubileerd", controle_gemeubileerd),
+    ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
