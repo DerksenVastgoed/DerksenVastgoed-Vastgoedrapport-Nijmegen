@@ -2835,27 +2835,50 @@ def lees_woz():
     """
     if not os.path.exists(WOZ_PAD):
         return {}
-    uit = {}
+    uit, slechte = {}, []
     try:
         with open(WOZ_PAD, encoding="utf-8") as f:
-            for regel in f:
-                regel = regel.strip()
-                if not regel or regel.startswith("#"):
-                    continue
-                delen = [d.strip() for d in regel.split("|")]
-                if len(delen) < 2:
-                    continue
-                bedrag = re.sub(r"[^\d]", "", delen[1])
-                if not bedrag or int(bedrag) < 10_000:
-                    continue   # nog niet ingevuld
-                jaar = None
-                if len(delen) > 2:
-                    j = re.sub(r"[^\d]", "", delen[2])
-                    if len(j) == 4:
-                        jaar = int(j)
-                uit[_woz_sleutel(delen[0])] = {"woz": int(bedrag), "jaar": jaar}
-    except Exception:
+            regels = f.readlines()
+    except Exception as e:  # noqa
+        print(f"{WOZ_PAD} niet te lezen: {str(e)[:80]}", file=sys.stderr)
         return {}
+    for nummer, regel in enumerate(regels, 1):
+        # Per regel, niet per bestand. Eerder viel bij een enkele rare regel de
+        # hele tabel weg en waren alle ingevoerde WOZ-waarden ineens
+        # onzichtbaar, zonder dat iets dat meldde.
+        try:
+            regel = regel.strip()
+            if not regel or regel.startswith("#"):
+                continue
+            # Een opmerking achter de gegevens, zoals de werklijst die
+            # toevoegt, hoort niet mee te tellen.
+            regel = regel.split("#", 1)[0].strip()
+            if not regel:
+                continue
+            delen = [d.strip() for d in regel.split("|")]
+            if len(delen) < 2 or not delen[0]:
+                slechte.append(nummer)
+                continue
+            bedrag = re.sub(r"[^\d]", "", delen[1])
+            if not bedrag:
+                continue   # nog niet ingevuld
+            if int(bedrag) < 10_000:
+                # Te laag voor een WOZ: vrijwel zeker een tikfout of een
+                # notitie in het bedragveld.
+                slechte.append(nummer)
+                continue
+            jaar = None
+            if len(delen) > 2:
+                j = re.sub(r"[^\d]", "", delen[2])
+                if len(j) == 4:
+                    jaar = int(j)
+            uit[_woz_sleutel(delen[0])] = {"woz": int(bedrag), "jaar": jaar}
+        except Exception:  # noqa
+            slechte.append(nummer)
+    if slechte:
+        print(f"{WOZ_PAD}: {len(slechte)} regel(s) niet te lezen, overgeslagen "
+              f"(regel {', '.join(str(n) for n in slechte[:5])}). De rest is "
+              f"gewoon gebruikt.", file=sys.stderr)
     return uit
 
 
