@@ -75,7 +75,7 @@ def lees_waarnemingen(pad=AANBOD_PAD):
                 if len(v) < 7:
                     continue
                 status = v[3].lower()
-                if not (status.startswith("te koop")
+                if not (status.startswith(("te koop", "nieuw"))
                         or status.startswith("verkocht")):
                     continue
                 try:
