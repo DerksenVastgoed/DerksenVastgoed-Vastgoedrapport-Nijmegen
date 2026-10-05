@@ -4829,6 +4829,101 @@ echte voorraad zichtbaar is in plaats van aangenomen.
 
 ---
 
+## 23. De status "nieuw" viel buiten zes modules — 4 oktober 2026
+
+In verkopen.txt staan twee regels met status "nieuw": Ziekerstraat 10D en
+Nieuwe Marktstraat 6. De kop van het bestand noemt die status niet, maar
+marktprijzen_bag kent hem wel en behandelt hem als aanbod. De zes nieuwere
+modules niet: die filteren op "te koop" en sloegen die panden stilzwijgend over.
+
+Dat raakte de aanbodreeks, het profiel van het nieuwe aanbod, de groottepremie,
+de verkoopdatums, het gezondheidsrapport en de pandgeschiedenis. Niet groot in
+aantal, maar wel precies het soort stille afwijking waar niemand ooit tegenaan
+loopt: er ontbreekt iets en er is geen melding.
+
+Alle zeven plekken accepteren nu "nieuw" naast "te koop". Getest op een bestand
+met twee regels "nieuw" en een "te koop": alle drie komen er nu uit, waar het
+er eerst een was.
+
+**Wat dit laat zien over het bestand zelf:** de toegestane statussen staan in
+een kopregel als commentaar, en daar kan geen enkel script op toetsen. Een
+controle die onbekende statussen meldt, zou dit eerder hebben gevonden. Dat is
+een punt voor later.
+
+---
+
+## 24. Twee woningen onder een adres — 4 oktober 2026
+
+De drie regels van de St. Annastraat 30 geven het antwoord:
+
+    St. Annastraat 30 | 165000 | onder bod | 23 m2
+    St. Annastraat 30 | 189000 | verkocht  | 31 m2
+    St. Annastraat 30 | 175000 | verkocht  | 23 m2
+
+Er schuilen twee woningen onder hetzelfde adres: een van 31 m2 en een van
+23 m2. Die van 23 m2 staat er twee keer, eerst onder bod en daarna verkocht, en
+dat is juist goed: dat is dezelfde woning in twee stadia.
+
+**Het huisnummer-achtervoegsel is bij het plakken weggevallen**, en dat valt
+niet terug te rekenen. De oppervlakte is het enige dat de twee onderscheidt.
+
+**Het rapport meldt zulke adressen nu.** Twee maten onder een adres die meer dan
+tien procent verschillen zijn geen meetverschil maar een andere woning. Getest
+op drie gevallen: de St. Annastraat (23 en 31) wordt gemeld, de Palmstraat met
+twee keer 118 m2 niet, want dat is prijsgeschiedenis van een woning, en 86 tegen
+87 m2 blijft eronder.
+
+**Correctie na de eerste echte run:** de controle meldde zes adressen, maar drie
+daarvan waren "berg en dalseweg", "graafseweg" en "grotestraat", zonder
+huisnummer. Dat zijn de huurwaarnemingen van Pararius en Kamernet, die alleen
+een straatnaam dragen; twee verschillende maten in dezelfde straat zijn daar
+juist normaal. De controle kijkt nu alleen naar koopregels met een huisnummer.
+
+**Wat Mark ermee moet doen:** het juiste adres opzoeken en de regel aanpassen,
+bijvoorbeeld naar 30-A. Zolang dat niet gebeurt delen twee woningen een dossier
+en een geschiedenis, en dat vertekent elke doorrekening op dat pand.
+
+---
+
+## 25. De rente in de brief is niet onze rente — 5 oktober 2026
+
+**Mark:** er staat dat de rente ongewijzigd is, maar dat zijn de markttarieven
+van financieren.nl. Wij hebben zelf rente afgesproken met onze eigen financier,
+en dat staat er nu door elkaar.
+
+**Terecht, en het is een verwarring die geld kan kosten.** "Onveranderd sinds de
+vorige meting: 5,10% bij 50% LTV" leest als een mededeling over de eigen
+portefeuille. Het zijn de scherpste tarieven die banken nu vragen voor een
+nieuwe verhuurhypotheek, en die gebruiken we om de richtprijs van een aankoop
+door te rekenen.
+
+**Drie dingen aangepast.** Het blok heeft een inleiding gekregen die zegt wiens
+tarieven het zijn en waarvoor ze dienen. De regel zelf begint nu met "Het
+scherpste markttarief is onveranderd", niet met "Onveranderd". En de opdracht
+aan de brief zegt met zoveel woorden dat dit nooit "onze rente" of "onze
+financieringslasten" mag worden genoemd.
+
+**En de formulering zelf zei niets.** "Onveranderd sinds de vorige meting" staat
+er elke dag, dus een lezer leert er niets van. Nu staat er sinds wanneer de
+tarieven werkelijk gelijk zijn: "Het scherpste markttarief is ongewijzigd sinds
+12 augustus". Dat is informatie, want acht weken stilstand zegt iets over de
+markt.
+
+De datum komt uit de opgeslagen historie: het script loopt terug zolang alle
+drie de tarieven gelijk zijn aan nu en noemt de oudste datum waarop dat nog zo
+was. Getest op vier gevallen: een stand die sinds augustus gelijk is, een datum
+uit een ander jaar (dan komt het jaartal erbij), een lege historie (dan valt hij
+terug op de oude formulering) en een tarief dat gisteren nog anders was. In
+allebei de modi, dagelijks en wekelijks, staat nu dezelfde zin.
+
+**Wat hier nog uit volgt voor later:** de doorrekening rekent met het
+markttarief, en dat is juist voor een aankoop. Maar voor een pand dat we al
+bezitten is het de eigen rente die telt. Zodra de eigen financieringsafspraken
+in het model staan, moet de doorrekening onderscheid maken tussen een
+aankoopcase en een pand in bezit.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
