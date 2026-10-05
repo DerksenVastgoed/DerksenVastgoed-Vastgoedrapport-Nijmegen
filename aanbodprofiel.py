@@ -89,7 +89,7 @@ def lees_aanbod(pad=AANBOD_PAD):
         with open(pad, encoding="utf-8") as f:
             for regel in f:
                 v = [x.strip() for x in regel.split("|")]
-                if len(v) < 7 or not v[3].lower().startswith("te koop"):
+                if len(v) < 7 or not v[3].lower().startswith(("te koop", "nieuw")):
                     continue
                 try:
                     prijs, opp = int(v[2]), int(v[6])
