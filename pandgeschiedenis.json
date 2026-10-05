@@ -99713,6 +99713,18 @@
   ],
   "pand_id": "0268100000001441"
  },
+ "vanoldenbarneveltstraat": {
+  "adres": "van Oldenbarneveltstraat",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.001 per maand, 22 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "vanoldenbarneveltstraat15": {
   "adres": "van Oldenbarneveltstraat 15",
   "gebeurtenissen": [

@@ -72177,5 +72177,11 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-2e40d7db6f24a2b894b7c40d485c0461"
+  },
+  "van Oldenbarneveltstraat|Nijmegen": {
+    "oppervlakte": 22,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

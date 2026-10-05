@@ -909,3 +909,6 @@ Tolhuis | Nijmegen | 760 | te huur kamer | 2026-10-04 | kamernet-incl | 25 |
 # Automatisch toegevoegd uit Funda-attendering op 04-10-2026
 Weezenhof | Nijmegen | 550 | te huur kamer | 2026-10-04 | kamernet-incl | 18 | 
 Symfoniestraat | Nijmegen | 482 | te huur kamer | 2026-10-04 | kamernet-incl | 8 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 05-10-2026
+van Oldenbarneveltstraat | Nijmegen | 1001 | te huur kamer | 2026-10-05 | kamernet-incl | 22 | 
