@@ -147,7 +147,7 @@ def uit_verkopen(geschiedenis):
         vorige_prijs = None
         gezien_te_koop = False
         for r in rijen:
-            if r["status"].startswith("te koop"):
+            if r["status"].startswith(("te koop", "nieuw")):
                 if not gezien_te_koop:
                     nieuw += voeg_toe(pand, r["datum"], "te koop",
                                       f"te koop voor €{r['prijs']:,}".replace(",", ".")
