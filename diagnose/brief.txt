@@ -125,3 +125,7 @@ De brief eindigt midden in een zin: '... een eventueel besluit op Staringstraat 
 
 Tot morgen,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...beweging komt of dat dit artikel voorbarig was.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.

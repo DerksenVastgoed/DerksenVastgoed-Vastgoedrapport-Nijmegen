@@ -6,4 +6,4 @@ _Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._
 
 - **2026-10-05** . Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html))
   `256 m²`
-  **[splitsen]** _Aanvraag voor omzetting naar 3 appartementen op 256 m2; nog geen besluit, dus splitsing is juridisch niet geborgd._
+  **[splitsen]** _Aanvraag voor omzetting naar 3 appartementen, nog geen besluit, bij toewijzing ontstaan verhandelbare kleinere eenheden uit één pand van 256 m2._

@@ -3,7 +3,7 @@
 33 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-05: 35 gelijk, 2 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: brief_verhalend.py, rente_verhuurhypotheek.py
+- **Versies**: paklijst van 2026-10-05: 35 gelijk, 2 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: brief_verhalend.py (81296 bytes, 1394 regels), rente_verhuurhypotheek.py (27855 bytes, 680 regels)
   Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
 - **Geschiedenis per pand**: 1712 panden gevolgd, 1399 met meer dan een gebeurtenis; 1561 met BAG-gegevens (6309 woningen, 7394 dubbel geteld zonder deze correctie), 1367 met een energielabel, 2 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12119 regels bespaard door gedeelde pandgegevens; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan
   Bij 500 panden per ronde zijn dat nog 1 run(s). Elke handmatige start werkt er een ronde af.
