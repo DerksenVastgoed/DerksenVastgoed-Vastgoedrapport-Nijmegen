@@ -208,7 +208,7 @@ def nog_te_koop(bestaand):
         if len(velden) < 5:
             continue
         status_per_adres[_sleutel(velden[0])] = velden[3].lower()
-    return {k for k, v in status_per_adres.items() if v.startswith("te koop")}
+    return {k for k, v in status_per_adres.items() if v.startswith(("te koop", "nieuw"))}
 
 
 def vergunningen_na_plaatsing(verkocht, archief):
