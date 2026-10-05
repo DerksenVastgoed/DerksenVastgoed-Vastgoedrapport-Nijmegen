@@ -915,3 +915,6 @@ van Oldenbarneveltstraat | Nijmegen | 1001 | te huur kamer | 2026-10-05 | kamern
 
 # Automatisch toegevoegd uit Funda-attendering op 05-10-2026
 St. Annastraat | Nijmegen | 738 | te huur kamer | 2026-10-05 | kamernet-incl | 23 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 05-10-2026
+Tweede Oude Heselaan | Nijmegen | 630 | te huur kamer | 2026-10-05 | kamernet | 12 | 

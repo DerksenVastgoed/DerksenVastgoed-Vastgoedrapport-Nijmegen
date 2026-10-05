@@ -25920,6 +25920,15 @@
     "Tweede Oude Heselaan 97": "C"
    }
   },
+  "0268100000027159": {
+   "bag_eenheden": [
+    [
+     "Staringstraat 2",
+     256
+    ]
+   ],
+   "bag_gezien": "2026-10-05"
+  },
   "0268100000027330": {
    "bag_eenheden": [
     [
@@ -92340,7 +92349,7 @@
     "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen"
    }
   ],
-  "pand_id": null
+  "pand_id": "0268100000027159"
  },
  "staringstraat21": {
   "adres": "Staringstraat 21",
@@ -97046,6 +97055,20 @@
   ],
   "pand_id": "0268100000015470"
  },
+ "tweedeoudeheselaan": {
+  "adres": "Tweede Oude Heselaan",
+  "bag_gezien": "2026-10-05",
+  "bag_zonder_id": "2026-10-05",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €630 per maand, 12 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "tweedeoudeheselaan103": {
   "adres": "Tweede Oude Heselaan 103",
   "gebeurtenissen": [
@@ -99721,6 +99744,8 @@
  },
  "vanoldenbarneveltstraat": {
   "adres": "van Oldenbarneveltstraat",
+  "bag_gezien": "2026-10-05",
+  "bag_zonder_id": "2026-10-05",
   "gebeurtenissen": [
    {
     "bron": "kamernet-incl",
