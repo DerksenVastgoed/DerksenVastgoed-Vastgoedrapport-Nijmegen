@@ -344,14 +344,22 @@ def controle_geschiedenis():
                  if opgegeven else "")
               + (f"; {bes['bespaard']} regels bespaard door gedeelde "
                  f"pandgegevens" if bes.get("bespaard") else "")
-              + ("; labels en BAG groeien alleen bij een volledige ronde, dus "
-                 "in de weekeditie of bij een handrun met die vlag aan"
+              + ("; nieuwe panden worden elke run opgehaald, het nakijken van "
+                 "de hele voorraad op veranderingen gebeurt in de weekronde"
                  if met_label < met_bag else ""))
-    if nooit:
+    # Een handvol panden dat vandaag of gisteren uit de attendering kwam, is
+    # geen achterstand: de BAG en het label worden opgehaald bij de eerste
+    # volledige ronde, dus uiterlijk zondag. Dat op LET OP zetten maakt een
+    # melding van iets wat precies volgens plan verloopt.
+    if nooit > per_ronde // 10:
         runs = -(-nooit // per_ronde)
         oorzaak = (f"Bij {per_ronde} panden per ronde zijn dat nog {runs} "
                    f"run(s). Elke handmatige start werkt er een ronde af.")
         return (LET_OP, bewijs, diagnose("geschiedenis") or oorzaak)
+    if nooit:
+        return (OK, bewijs + "; die paar zijn net binnengekomen en worden bij "
+                "de eerste volledige ronde opgehaald",
+                diagnose("geschiedenis") or "")
     return (OK, bewijs + "; iedereen is minstens een keer nagekeken",
             diagnose("geschiedenis") or "")
 
