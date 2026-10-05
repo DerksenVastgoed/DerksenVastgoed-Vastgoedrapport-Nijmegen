@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-10-05
 
-34 in orde, 6 aandachtspunten, 0 fouten.
+33 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Geschiedenis per pand**: 1712 panden gevolgd, 1398 met meer dan een gebeurtenis; 1561 met BAG-gegevens (6309 woningen, 7394 dubbel geteld zonder deze correctie), 1367 met een energielabel, 2 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12119 regels bespaard door gedeelde pandgegevens; labels en BAG groeien alleen bij een volledige ronde, dus in de weekeditie of bij een handrun met die vlag aan
@@ -13,6 +13,8 @@
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
 - **WOZ-schatting**: geijkt op 94 panden: correctie 0.984 (2% stelselmatig), spreiding ±16.1%; mediane fout per methode: kenmerken 13.7% (98), prijs 10.3% (94), beste: prijs; kenmerken uit 73 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
+- **Nieuwe onderwerpen**: 1 voorgestelde onderwerpen, 0 gevolgd: besluit was
+  Deze komen terug in het nieuws en hebben nog geen achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen bij; het script schrijft die niet zelf, want juridische tekst zonder gecontroleerde bron is precies wat we niet willen.
 - **Attenderingen**: laatste ronde 2026-10-05: kamernet: 11 mails, 9 objecten, 2 bewust overgeslagen; pararius: 3 mails, 5 objecten, 4 bewust overgeslagen; regulier: 3 mails, 8 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
@@ -21,7 +23,7 @@
 - **Huurdata**: 50 huurwaarnemingen, waarvan 20 Pararius en 30 Kamernet; 30 in de laatste week
 - **Aanbod**: 96 koopobjecten, 8 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,59% (2026-10-01), opslag bij 70% financiering 1,91 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,46% (2026-10-02), opslag bij 70% financiering 2,04 procentpunt
 - **Bouwkostenindex**: 104 maanden, laatste 2026-08
 - **Eigen bouwkosten**: 5 eigen tarieven ingevuld
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
@@ -42,8 +44,7 @@
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
 - **3D BAG eigen snapshot**: 1242 panden in de eigen snapshot, 1242 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-05
 - **Achtergronddekking**: 29 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
-- **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
-- **Logboek van de brief**: 3 brieven vastgelegd, laatste 2026-10-04; 48 onderwerpen bleven liggen
+- **Logboek van de brief**: 4 brieven vastgelegd, laatste 2026-10-05; 63 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 155 panden gerouteerd
