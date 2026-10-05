@@ -46,12 +46,22 @@ NEGEER_MAPPEN = ("digests", ".git", "__pycache__", "node_modules")
 
 
 def vingerafdruk(pad):
-    """De sha256 van een bestand, de eerste twaalf tekens."""
-    h = hashlib.sha256()
-    with open(pad, "rb") as f:
-        for blok in iter(lambda: f.read(65536), b""):
-            h.update(blok)
-    return h.hexdigest()[:12]
+    """
+    De sha256 van een bestand, de eerste twaalf tekens.
+
+    Regelovergangen aan het einde tellen niet mee. Bij het uploaden naar de repo
+    verdween soms die laatste regelovergang, en dan week een bestand af van de
+    paklijst terwijl er inhoudelijk niets veranderd was: een byte verschil bij
+    hetzelfde aantal regels. Dat kostte drie runs aan zoeken. Alles vóór die
+    laatste witruimte telt onverkort mee, dus een echte wijziging valt nog
+    gewoon op.
+    """
+    try:
+        with open(pad, "rb") as f:
+            inhoud = f.read()
+    except Exception:
+        return ""
+    return hashlib.sha256(inhoud.rstrip(b"\r\n \t")).hexdigest()[:12]
 
 
 def bestanden():
