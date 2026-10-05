@@ -92324,6 +92324,18 @@
   ],
   "pand_id": "0268100000007041"
  },
+ "staringstraat2": {
+  "adres": "Staringstraat 2",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-05",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "staringstraat21": {
   "adres": "Staringstraat 21",
   "gebeurtenissen": [

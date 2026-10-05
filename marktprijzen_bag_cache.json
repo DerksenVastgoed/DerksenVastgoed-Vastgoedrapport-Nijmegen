@@ -72171,5 +72171,11 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "bm:Staringstraat 2|Nijmegen": {
+    "postcode": "6511PD",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-2e40d7db6f24a2b894b7c40d485c0461"
   }
 }

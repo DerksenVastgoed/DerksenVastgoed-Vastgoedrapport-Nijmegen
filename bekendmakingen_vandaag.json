@@ -1,43 +1,15 @@
 [
  {
-  "datum": "2026-10-02",
-  "titel": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460303.html",
+  "datum": "2026-10-05",
+  "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html",
   "strategie": "splitsen",
-  "duiding": "Besluit staat splitsing naar 2 zelfstandige woningen toe, wat bij label G en 168 m2 ruimte biedt voor renovatie en waardecreatie per unit.",
+  "duiding": "Aanvraag voor omzetting naar 3 appartementen (256 m2) is nog niet verleend, markt moet besluit afwachten voordat splitsing vaststaat.",
   "feiten": {
-   "energielabel": "G (2025)",
-   "oppervlakte_m2": 168
+   "oppervlakte_m2": 256
   },
-  "straat": "Biezenstraat",
-  "huisnummer": "110",
+  "straat": "Staringstraat",
+  "huisnummer": "2",
   "kern": true
- },
- {
-  "datum": "2026-10-02",
-  "titel": "Besluit (met BOPA) voor Verlengen vergunning (5Jaar) tbv tijdelijke overkappingen, aan Vondelstraat 5, 6512BB Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-460706.html",
-  "strategie": "geen",
-  "duiding": "Verlenging van een tijdelijke overkappingsvergunning raakt woonfunctie of beleggingsstrategie niet.",
-  "feiten": {
-   "oppervlakte_m2": 974
-  },
-  "straat": "Vondelstraat",
-  "huisnummer": "5",
-  "kern": true
- },
- {
-  "datum": "2026-10-02",
-  "titel": "Besluit voor het herstellen voegwerk van de voorgevel aan Johannes Vijghstraat 5, 6524BN Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-461569.html",
-  "strategie": "verduurzaming",
-  "duiding": "Herstel van voegwerk aan de voorgevel toont dat gevelingrepen hier vergunbaar zijn, relevant bij toekomstige isolatiewerkzaamheden.",
-  "feiten": {
-   "energielabel": "E (2020)",
-   "oppervlakte_m2": 182
-  },
-  "straat": "Johannes Vijghstraat",
-  "huisnummer": "5",
-  "kern": false
  }
 ]

@@ -4,6 +4,7 @@
   "Aanbod": "OK",
   "Aanbodreeks": "OK",
   "Achtergronddekking": "OK",
+  "Adressen met meerdere maten": "LET OP",
   "Attenderingen": "LET OP",
   "Bekendmakingen-archief": "OK",
   "Bouwkostenindex": "OK",
@@ -13,7 +14,7 @@
   "Eigen bouwkosten": "OK",
   "Geheugen en trend": "OK",
   "Gemeubileerd": "OK",
-  "Geschiedenis per pand": "OK",
+  "Geschiedenis per pand": "LET OP",
   "Groottepremie": "OK",
   "Handmatige lijsten": "OK",
   "Huurdata": "OK",
@@ -40,5 +41,5 @@
   "WOZ-schatting": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-04"
+ "datum": "2026-10-05"
 }
