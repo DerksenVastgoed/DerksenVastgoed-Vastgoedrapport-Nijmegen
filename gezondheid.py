@@ -804,6 +804,46 @@ def controle_opnieuw_aangeboden():
     return (OK, bewijs, "")
 
 
+def controle_wozbestand():
+    """Of elke regel in het WOZ-bestand te lezen is."""
+    goed = slecht = open_regels = 0
+    voorbeelden = []
+    try:
+        with open("woz.txt", encoding="utf-8") as f:
+            for nummer, regel in enumerate(f, 1):
+                kaal = regel.split("#", 1)[0].strip()
+                if not kaal:
+                    continue
+                delen = [d.strip() for d in kaal.split("|")]
+                if len(delen) < 2 or not delen[0]:
+                    slecht += 1
+                    if len(voorbeelden) < 3:
+                        voorbeelden.append(f"regel {nummer}")
+                    continue
+                cijfers = "".join(c for c in delen[1] if c.isdigit())
+                if not cijfers:
+                    # Leeg bedrag is geen fout: dat is een regel die nog moet
+                    # worden ingevuld.
+                    open_regels += 1
+                elif int(cijfers) < 10000:
+                    slecht += 1
+                    if len(voorbeelden) < 3:
+                        voorbeelden.append(f"regel {nummer}: {delen[0]}")
+                else:
+                    goed += 1
+    except FileNotFoundError:
+        return (OK, "geen WOZ-bestand", "")
+    bewijs = f"{goed} bruikbare regels, {open_regels} nog in te vullen"
+    if slecht:
+        return (LET_OP, bewijs + f", {slecht} niet te lezen: "
+                + ", ".join(voorbeelden),
+                "Formaat per regel: adres | bedrag | jaar. Staat er tekst in "
+                "het bedragveld, zet die dan achter een # aan het eind van de "
+                "regel; dan blijft hij leesbaar en gaat de notitie niet "
+                "verloren.")
+    return (OK, bewijs, "")
+
+
 def controle_adressen_met_meerdere_maten():
     """
     Adressen waaronder meerdere woningen schuilgaan.
@@ -1239,6 +1279,7 @@ CONTROLES = [
     ("Huurdekking", controle_huurdekking),
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
+    ("WOZ-bestand", controle_wozbestand),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
