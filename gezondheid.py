@@ -815,6 +815,15 @@ def controle_adressen_met_meerdere_maten():
                 v = [x.strip() for x in regel.split("|")]
                 if len(v) < 7 or not v[6]:
                     continue
+                # Alleen koopregels met een huisnummer. De huurwaarnemingen van
+                # Pararius en Kamernet dragen alleen een straatnaam, en dan zijn
+                # twee verschillende maten juist normaal: dat zijn twee woningen
+                # in dezelfde straat. Zonder deze regel meldde de controle
+                # "graafseweg (13, 20, 21, 22 m2)" als probleem.
+                if "huur" in v[3].lower():
+                    continue
+                if not any(c.isdigit() for c in v[0]):
+                    continue
                 try:
                     opp = int(v[6])
                 except ValueError:
