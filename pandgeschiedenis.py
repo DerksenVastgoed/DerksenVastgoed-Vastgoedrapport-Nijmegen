@@ -284,12 +284,18 @@ def uit_kamerverhuur(geschiedenis):
     return nieuw
 
 
-def bij_bag(geschiedenis, alleen_gevolgd=True):
+def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
     """
     De BAG opnieuw bevragen: is het aantal woningen in het pand veranderd?
 
     Alleen voor panden waar iets mee gebeurd is, en hoogstens een vast aantal
     per ronde, want elke opvraging is een verzoek.
+
+    Met alleen_nieuwe doet hij uitsluitend panden die nog nooit zijn nagekeken.
+    Dat zijn er een handvol per dag, de nieuwe aanbiedingen uit de attendering,
+    en die hoeven niet tot zondag te wachten. Het opnieuw nakijken van de hele
+    voorraad op veranderingen is iets anders: dat zijn duizenden opvragingen en
+    dat hoort wel in de weekronde.
     """
     try:
         from marktprijzen_bag import (bag_adres_uitgebreid, bag_eenheden_in_pand,
@@ -343,9 +349,13 @@ def bij_bag(geschiedenis, alleen_gevolgd=True):
         if gedaan >= MAX_BAG_PER_RONDE:
             _rest_vastleggen(len(wachtrij) - gedaan)
             break
+        if alleen_nieuwe and pand.get("bag_gezien"):
+            # De wachtrij zet de nooit nagekeken panden vooraan, dus zodra hier
+            # een pand met een datum langskomt, zijn we er doorheen.
+            break
         soorten = {g["soort"] for g in pand["gebeurtenissen"]}
-        if alleen_gevolgd and not (soorten & {"verkocht", "bekendmaking",
-                                              "kamerverhuur"}):
+        if not alleen_nieuwe and alleen_gevolgd and not (
+                soorten & {"verkocht", "bekendmaking", "kamerverhuur"}):
             continue
         # Een pand dat geen pand-id oplevert, mag het een paar keer opnieuw
         # proberen en daarna niet meer. Dit blok haalde eerst elke run de
@@ -1057,6 +1067,16 @@ def main():
     n_a = uit_archief(geschiedenis)
     n_k = uit_kamerverhuur(geschiedenis)
     n_b = n_l = 0
+    if not args.volledig:
+        # Nieuwe panden meteen ophalen, ook bij een korte run. Dat zijn de
+        # aanbiedingen die vandaag binnenkwamen: een handvol, en zonder dit
+        # staan ze tot zondag zonder oppervlakte, bouwjaar en label in de
+        # dossiers. Het hele bestand nakijken op veranderingen blijft wel aan
+        # de weekronde voorbehouden.
+        n_b, ronde = bij_bag(geschiedenis, alleen_gevolgd=False,
+                             alleen_nieuwe=True)
+        if ronde:
+            n_l = bij_labels(geschiedenis, ronde)
     if args.volledig:
         # alleen_gevolgd=False: bij een volledige ronde doen ook de panden mee
         # waarvan we alleen aanbod kennen en geen bekendmaking. Zonder dit
