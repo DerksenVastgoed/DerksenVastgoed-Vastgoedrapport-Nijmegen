@@ -65,7 +65,7 @@ def tel(pad=AANBOD_PAD, vandaag=None):
                 if len(v) < 5:
                     continue
                 adres, status, datum = v[0], v[3].lower(), v[4]
-                if status.startswith("te koop"):
+                if status.startswith(("te koop", "nieuw")):
                     te_koop.add(_sleutel(adres))
                     if datum == vandaag:
                         nieuw_koop.append(adres)
