@@ -121,3 +121,7 @@ De brief eindigt midden in een zin: '...ngstraat in de gaten zodra er een beslui
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '... een eventueel besluit op Staringstraat 2.
+
+Tot morgen,
+Mark'. Controleer of het antwoord is afgekapt.
