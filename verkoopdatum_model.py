@@ -132,7 +132,7 @@ def toets(rijen, bekend_pand):
     if not rijen or not bekend_pand:
         return rijen
     onze = bekend_pand.get("prijs")
-    nu_te_koop = bekend_pand.get("status", "").startswith("te koop")
+    nu_te_koop = bekend_pand.get("status", "").startswith(("te koop", "nieuw"))
     for r in rijen:
         prijs = r.get("vraagprijs")
         # Vijf procent en niet tien: allebei de bedragen horen de laatste
@@ -316,7 +316,7 @@ def main():
         pand = onze.get(_sleutel(adres)) or {}
         hint = (f"Volgens onze gegevens staat dit pand nu te koop voor "
                 f"€{pand['prijs']}. Hoort de advertentie die je vindt daarbij?"
-                if pand.get("status", "").startswith("te koop") else "")
+                if pand.get("status", "").startswith(("te koop", "nieuw")) else "")
         try:
             rauw = _vraag_model(adres, sleutel, hint)
         except Exception as e:
