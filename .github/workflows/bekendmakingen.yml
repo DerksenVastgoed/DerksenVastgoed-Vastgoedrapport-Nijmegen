@@ -466,6 +466,13 @@ jobs:
               cat "digests/${DATUM}-rente.md"
               echo ""
             fi
+            # Voltooide splitsingen: alleen als er werkelijk iets is gezien.
+            if [ -s splitsingen_vandaag.md ]; then
+              echo ""
+              cat splitsingen_vandaag.md
+              echo ""
+              rm -f splitsingen_vandaag.md
+            fi
             # Alleen een kop als er ook iets onder staat; een lege kop
             # "Achtergrond van de dag" stond vandaag in de brief.
             if [ -s achtergrond_vandaag.md ] \
@@ -658,6 +665,17 @@ jobs:
           python verkoopdatum_model.py --per-ronde 50 \
             || echo "Verkoopdatums overgeslagen"
 
+      - name: Voltooide splitsingen uit de BAG
+        continue-on-error: true
+        run: |
+          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
+          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
+          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
+          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
+          # zonder dat wij een vergunning kennen.
+          python splitsing_voltooid.py --tekst splitsingen_vandaag.md \
+            || echo "Splitsingen overgeslagen"
+
       - name: Groottepremie meten
         continue-on-error: true
         run: |
@@ -722,6 +740,7 @@ jobs:
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
+            splitsingen.json
             verkoopdatums_model.json
             doorlooptijden.json
             mail_status.json
