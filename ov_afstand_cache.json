@@ -255,6 +255,14 @@
   "omweg": 1.31,
   "soort": "bus"
  },
+ "51.83675,5.87854": {
+  "geschat": false,
+  "hemelsbreed": 186,
+  "meters": 191,
+  "naam": "Badhuis",
+  "omweg": 1.03,
+  "soort": "bus"
+ },
  "51.83701,5.85938": {
   "geschat": false,
   "hemelsbreed": 412,
@@ -1229,6 +1237,14 @@
   "meters": 161,
   "naam": "Ferry Portierstraat",
   "omweg": 1.49,
+  "soort": "bus"
+ },
+ "51.85426,5.82724": {
+  "geschat": false,
+  "hemelsbreed": 589,
+  "meters": 623,
+  "naam": "Scheepvaartweg",
+  "omweg": 1.06,
   "soort": "bus"
  },
  "51.85508,5.84036": {

@@ -918,3 +918,7 @@ St. Annastraat | Nijmegen | 738 | te huur kamer | 2026-10-05 | kamernet-incl | 2
 
 # Automatisch toegevoegd uit Funda-attendering op 05-10-2026
 Tweede Oude Heselaan | Nijmegen | 630 | te huur kamer | 2026-10-05 | kamernet | 12 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 05-10-2026
+Tooropstraat | Nijmegen | 750 | te huur kamer | 2026-10-05 | kamernet-incl | 15 | 
+Sprengenweg | Nijmegen | 704 | te huur kamer | 2026-10-05 | kamernet-incl | 28 | 

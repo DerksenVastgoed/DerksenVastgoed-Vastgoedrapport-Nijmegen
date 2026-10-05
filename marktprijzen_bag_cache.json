@@ -72191,5 +72191,17 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Tooropstraat|Nijmegen": {
+    "oppervlakte": 15,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Sprengenweg|Nijmegen": {
+    "oppervlakte": 28,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
