@@ -308,6 +308,10 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Legaliseren achteraf": [
+        "legaliseren", "legalisatie", "legalisering", "achteraf",
+        "handhaving", "dwangsom", "bestuursdwang", "herstelsanctie",
+        "beginselplicht", "concreet zicht"],
     "Onrechtmatig gebruik en handhaving": [
         "onrechtmatig gebruik", "handhaving", "bestuurlijke boete", "dwangsom",
         "zonder vergunning", "illegaal"],
@@ -646,6 +650,37 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("Legaliseren achteraf",
+     "Een aanvraag om een al uitgevoerde splitsing of verkamering alsnog "
+     "vergund te krijgen heet legaliseren, en zo'n aanvraag doet meer dan "
+     "toestemming vragen: hij raakt de handhaving. De hoofdregel is de "
+     "beginselplicht tot handhaving: ziet een bestuursorgaan een overtreding "
+     "van een wettelijk voorschrift, dan moet het in de regel optreden met een "
+     "last onder dwangsom of bestuursdwang. Dat is sinds 1 januari 2024 "
+     "vastgelegd in artikel 18.1 van de Omgevingswet en gold daarvoor al als "
+     "vaste rechtspraak. "
+     "Daarop zijn twee uitzonderingen. De eerste is concreet zicht op "
+     "legalisatie: er ligt een ontvankelijke aanvraag die de hele overtreding "
+     "wegneemt, en het bestuursorgaan is bereid die te verlenen. Bij de "
+     "uitgebreide procedure moet daarvoor een ontwerpbesluit ter inzage "
+     "liggen. De tweede is dat handhaven onevenredig zou zijn ten opzichte van "
+     "het doel. "
+     "Dat verklaart waarom een legalisatieaanvraag zo vaak voorkomt: zolang "
+     "die loopt en kansrijk lijkt, kan de gemeente van handhaven afzien. Maar "
+     "het is geen vrijbrief. De Afdeling bestuursrechtspraak heeft bevestigd "
+     "dat een bestuursorgaan ook bij concreet zicht op legalisatie toch mag "
+     "handhaven, en dat de vraag of dat zicht er is, wordt beoordeeld op het "
+     "moment van de beslissing op bezwaar. Een aanvraag die uiteindelijk wordt "
+     "geweigerd, levert geen zicht op legalisatie op. "
+     "En de beginselplicht geldt voor herstelsancties, dus voor de dwangsom en "
+     "de bestuursdwang die de situatie moeten terugdraaien. Voor een "
+     "bestuurlijke boete geldt die plicht niet; die kan de gemeente opleggen of "
+     "achterwege laten. Een lopende legalisatieaanvraag beschermt dus niet "
+     "tegen een boete over de periode dat het zonder vergunning gebeurde. "
+     "Voor een koper is dit het punt waar het om draait: een pand met een "
+     "lopende legalisatieaanvraag is geen vergund pand. Wordt de vergunning "
+     "geweigerd, dan ligt er een herstelplicht bij de eigenaar van dat moment, "
+     "en dat kan de koper zijn."),
     ("Onrechtmatig gebruik en handhaving",
      "Verkameren, splitsen of onttrekken zonder de vereiste vergunning is een "
      "overtreding van artikel 21 van de Huisvestingswet, en gemeenten leggen "
