@@ -2919,11 +2919,25 @@ def werklijst_woz(kandidaten, woz_tabel, aantal=18):
     Geeft een lijst met per pand de reden waarom het erop staat.
     """
     _ingevuld, _open, bekend = _woz_regels()
-    straten_bekend = set()
+    straten_bekend, per_buurt = set(), {}
     for regel in _ingevuld:
         adres = regel.split("|")[0].strip()
         straten_bekend.add("".join(c for c in adres.lower()
                                    if c.isalpha() or c == " ").strip())
+    # Hoeveel ingevulde WOZ-waarden er per buurt zijn. Een buurt met drie
+    # waarnemingen heeft meer baat bij vijf panden erbij dan een buurt met
+    # veertig. De kalibratie rekent per buurt, dus daar zit het verschil.
+    sleutels_ingevuld = {
+        "".join(c for c in r.split("|")[0].strip().lower() if c.isalnum())
+        for r in _ingevuld}
+    for k in kandidaten:
+        w = k[-1]
+        sleutel = "".join(c for c in (w.get("adres") or "").lower()
+                          if c.isalnum())
+        if sleutel in sleutels_ingevuld:
+            buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+            if buurt:
+                per_buurt[buurt] = per_buurt.get(buurt, 0) + 1
 
     klassen = {"onder 300k": (0, 300000), "300k tot 450k": (300000, 450000),
                "450k tot 600k": (450000, 600000), "boven 600k": (600000, 10 ** 9)}
@@ -2948,20 +2962,28 @@ def werklijst_woz(kandidaten, woz_tabel, aantal=18):
             continue
         if straat not in straten_bekend:
             redenen.append("straat nog zonder eigen WOZ")
+        buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        dun = buurt and per_buurt.get(buurt, 0) < 8
+        if dun:
+            redenen.append(f"{buurt} heeft nog maar "
+                           f"{per_buurt.get(buurt, 0)} eigen WOZ-waarden")
         opp = w.get("oppervlakte") or 0
         if opp and (opp < 50 or opp > 130):
             redenen.append(f"{opp} m2, buiten het middengebied")
         per_klasse[groep].append({"adres": adres, "prijs": prijs,
                                   "oppervlakte": opp or None,
                                   "straat_nieuw": straat not in straten_bekend,
+                                  "buurt_dun": bool(dun),
                                   "reden": "; ".join(redenen)})
 
     # Evenredig verdelen over de klassen, en binnen een klasse eerst de panden
     # in een straat waar we nog niets van weten.
     uit, per = [], max(1, aantal // len(klassen))
     for naam in klassen:
+        # Eerst de dunne buurten, dan de nieuwe straten, dan op alfabet.
         rij = sorted(per_klasse[naam],
-                     key=lambda p: (not p["straat_nieuw"], p["adres"]))
+                     key=lambda p: (not p.get("buurt_dun"),
+                                    not p["straat_nieuw"], p["adres"]))
         uit.extend(rij[:per])
     return uit[:aantal]
 
