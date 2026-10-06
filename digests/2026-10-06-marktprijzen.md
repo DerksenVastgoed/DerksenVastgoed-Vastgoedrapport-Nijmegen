@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-107 panden in beeld, 1 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Dichtst bij haalbaar is **Krayenhofflaan 321** in Biezen: €485.000 voor 108 m². Als één woning loopt het rond tot €374.016, dus -23% ten opzichte van de vraagprijs; per m² staat het -17% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 4 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
+107 panden in beeld, geen mutaties sinds gisteren, waarvan 2 met een prijswijziging. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 4 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -19,7 +19,7 @@ _12 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">256 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Omzetting naar 3 appartementen op 256 m² vergroot het aantal verhuurbare units en verhoogt de totale opbrengstwaarde per pand.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor opdeling in 3 appartementen; nog geen besluit, maar bij goedkeuring verkleint dit het pand tot kleinere verhuurbare units.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-05 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -47,33 +47,13 @@ _6 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Biezen**
 _mediaan €5.386/m² op 96 waarnemingen . +6,9% in vier weken (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
-| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
-|---|---:|---:|---:|---:|---|---|---:|---:|
-| [Krayenhofflaan 321](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+321%2C+Nijmegen) | €485.000 | 108 | €4.490 | 🟢 -17% | -17% onder de mediaan van zijn klasse | één woning, €1.787/mnd . pand bevat al 2 woningen volgens de BAG | €374.016 (-23%) | 0 |
-
-_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
-
-| Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
-|---|---:|---:|---:|---:|---:|
-| [Krayenhofflaan 321](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+321%2C+Nijmegen) | €592.932 | €249.669 | €343.263 | €3.432 | 2,9% |
-
-_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,24]_
-
-_Met het beschikbare eigen vermogen kom je: Krayenhofflaan 321 tot €101.616._
-
-_Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
-
-_**Krayenhofflaan 321** is volgens de BAG een van de 2 woningen in hetzelfde pand: Krayenhofflaan 321 (117 m²), Krayenhofflaan 323 (76 m²). Dat is bij een appartementencomplex normaal en op zichzelf geen bijzonderheid. De oppervlakte per adres komt uit de BAG en kan afwijken van de advertentie. Dat de BAG aparte woningen telt, zegt niet of het pand juridisch in appartementsrechten is gesplitst; dat staat in het Kadaster. Een splitsingsvergunning kent Nijmegen niet._
-
 _1 pand buiten beeld, mediaan €5.150/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 30 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 30 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
-_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-21% t.o.v. de buurtmediaan, 18 dagen in aanbod) . [Voorstadslaan 63](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+63%2C+Nijmegen) €585.000 (-6% t.o.v. de buurtmediaan, 13 dagen in aanbod) . [Voorstadslaan 121](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+121%2C+Nijmegen) €550.000 (+1% t.o.v. de buurtmediaan, 13 dagen in aanbod) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+8% t.o.v. de buurtmediaan, 25 dagen in aanbod) . [Marialaan 56](https://www.google.com/maps/search/?api=1&query=Marialaan+56%2C+Nijmegen) €450.000 (+9% t.o.v. de buurtmediaan, 17 dagen in aanbod) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+28% t.o.v. de buurtmediaan) . [Kaapstander 264](https://www.google.com/maps/search/?api=1&query=Kaapstander+264%2C+Nijmegen) €1.215.000 (+49% t.o.v. de buurtmediaan, 34 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Krayenhofflaan 104](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+104%2C+Nijmegen) €575.000 (-21% t.o.v. de buurtmediaan, 18 dagen in aanbod) . [Krayenhofflaan 321](https://www.google.com/maps/search/?api=1&query=Krayenhofflaan+321%2C+Nijmegen) €485.000 (-17% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [Voorstadslaan 63](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+63%2C+Nijmegen) €585.000 (-6% t.o.v. de buurtmediaan, 13 dagen in aanbod) . [Voorstadslaan 121](https://www.google.com/maps/search/?api=1&query=Voorstadslaan+121%2C+Nijmegen) €550.000 (+1% t.o.v. de buurtmediaan, 13 dagen in aanbod) . [Dokstraat 425](https://www.google.com/maps/search/?api=1&query=Dokstraat+425%2C+Nijmegen) €595.000 (+8% t.o.v. de buurtmediaan, 25 dagen in aanbod) . [Marialaan 56](https://www.google.com/maps/search/?api=1&query=Marialaan+56%2C+Nijmegen) €450.000 (+9% t.o.v. de buurtmediaan, 17 dagen in aanbod) . [Waalbandijk 479](https://www.google.com/maps/search/?api=1&query=Waalbandijk+479%2C+Nijmegen) €625.000 (+28% t.o.v. de buurtmediaan) . [Kaapstander 264](https://www.google.com/maps/search/?api=1&query=Kaapstander+264%2C+Nijmegen) €1.215.000 (+49% t.o.v. de buurtmediaan, 34 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Waalbandijk 479 €535.000 (2026), puntenstelsel ondergrens 200 punten (90 m2, WOZ €535.000, label A++): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Dokstraat 425 €565.000 (2026), puntenstelsel ondergrens 208 punten (102 m2, WOZ €565.000, label A+): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Krayenhofflaan 104 €573.000 (2026), puntenstelsel ondergrens 192 punten (135 m2, WOZ €573.000, label F): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Marialaan 56 €444.000 (2026), puntenstelsel ondergrens 140 punten (76 m2, WOZ €444.000, label onbekend, niet meegeteld): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Voorstadslaan 121 €458.000 (2026), puntenstelsel ondergrens 193 punten (101 m2, WOZ €458.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Voorstadslaan 63 €476.000 (2026), puntenstelsel ondergrens 203 punten (115 m2, WOZ €476.000, label B): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Kaapstander 264 €985.000 (2026) (151 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Nina Simonestraat 140 €574.000 (2026), puntenstelsel ondergrens 229 punten (126 m2, WOZ €574.000, label A+): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _7 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
-
-_Grensgeval voor de opkoopbescherming: Krayenhofflaan 321. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
 
 **Bottendaal**
 _mediaan €5.147/m² op 79 waarnemingen . +7,8% in vier weken (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
@@ -96,9 +76,9 @@ _Bekende WOZ-waarden: Dominicanenstraat 30 €614.000 (2026) (174 m2): Groter da
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">101 m² . label A (2023)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie wijst op renovatie tussen huurperiodes om de woning daarna opnieuw te verhuren.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Melding asbestverwijdering bij mutatie is een uitvoeringsstap zonder zelfstandige marktimplicatie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-06 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
