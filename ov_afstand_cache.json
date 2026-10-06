@@ -775,6 +775,14 @@
   "omweg": 1.02,
   "soort": "bus"
  },
+ "51.84410,5.84883": {
+  "geschat": false,
+  "hemelsbreed": 312,
+  "meters": 415,
+  "naam": "Nijmegen",
+  "omweg": 1.33,
+  "soort": "station"
+ },
  "51.84426,5.86881": {
   "geschat": false,
   "hemelsbreed": 38,

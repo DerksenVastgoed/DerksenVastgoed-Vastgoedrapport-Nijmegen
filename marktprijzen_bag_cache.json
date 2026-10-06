@@ -72196,12 +72196,54 @@
     "oppervlakte": 15,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Sprengenweg|Nijmegen": {
     "oppervlakte": 28,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
+  },
+  "Krayenhofflaan 321|Nijmegen": {
+    "oppervlakte": 108,
+    "bouwjaar": "1903",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541PS",
+    "adresseerbaarObjectIdentificatie": "0268010000014612",
+    "pand": "0268100000048363",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-48305b95a31cb04f7580e93fbabff4fe",
+    "eenheden_in_pand": [
+      {
+        "adres": "Krayenhofflaan 321",
+        "oppervlakte": 117,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Krayenhofflaan 323",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 117,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2017-03-10",
+      "geldig_tot": "2027-03-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   }
 }

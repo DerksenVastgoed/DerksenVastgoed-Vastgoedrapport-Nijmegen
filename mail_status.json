@@ -1,17 +1,17 @@
 {
- "datum": "2026-10-05",
+ "datum": "2026-10-06",
  "bronnen": {
   "regulier": {
    "mails": 3,
-   "objecten": 8,
+   "objecten": 4,
    "overgeslagen": 0,
    "redenen": [
     "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht "
    ]
   },
   "kamernet": {
-   "mails": 17,
-   "objecten": 13,
+   "mails": 14,
+   "objecten": 10,
    "overgeslagen": 4,
    "redenen": [
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
@@ -21,11 +21,10 @@
    ]
   },
   "pararius": {
-   "mails": 3,
-   "objecten": 5,
-   "overgeslagen": 4,
+   "mails": 2,
+   "objecten": 3,
+   "overgeslagen": 3,
    "redenen": [
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
     "van Spaenstraat (gemeubileerd, apart bewaard)",
     "IJsvogelpassage (gemeubileerd, apart bewaard)",
     "van Spaenstraat (gemeubileerd, apart bewaard)"

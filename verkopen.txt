@@ -922,3 +922,6 @@ Tweede Oude Heselaan | Nijmegen | 630 | te huur kamer | 2026-10-05 | kamernet | 
 # Automatisch toegevoegd uit Funda-attendering op 05-10-2026
 Tooropstraat | Nijmegen | 750 | te huur kamer | 2026-10-05 | kamernet-incl | 15 | 
 Sprengenweg | Nijmegen | 704 | te huur kamer | 2026-10-05 | kamernet-incl | 28 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 06-10-2026
+Krayenhofflaan 321 | Nijmegen | 485000 | te koop | 2026-10-06 |  | 108 | 6541PS

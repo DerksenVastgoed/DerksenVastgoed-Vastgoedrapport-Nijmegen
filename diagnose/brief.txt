@@ -138,3 +138,7 @@ Groet, Mark'. Controleer of het antwoord is afgekapt.
 De brief eindigt midden in een zin: '...nhoudt of een kwestie van samenstelling blijkt.
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '... in de gaten, vooral of nummer 321 verder zakt.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.

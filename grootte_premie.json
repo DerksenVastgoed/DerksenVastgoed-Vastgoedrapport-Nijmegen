@@ -3,7 +3,7 @@
   "0-40 m2": {
    "aantal": 56,
    "verhouding": 1.32,
-   "premie": 1.422
+   "premie": 1.421
   },
   "40-60 m2": {
    "aantal": 110,
@@ -17,13 +17,13 @@
   },
   "80-100 m2": {
    "aantal": 84,
-   "verhouding": 0.928,
+   "verhouding": 0.929,
    "premie": 1.0
   },
   "100-130 m2": {
-   "aantal": 82,
-   "verhouding": 0.901,
-   "premie": 0.971
+   "aantal": 83,
+   "verhouding": 0.9,
+   "premie": 0.969
   },
   "130 m2 en groter": {
    "aantal": 73,
@@ -32,7 +32,7 @@
   }
  },
  "buurten_met_ijkpunt": 9,
- "waarnemingen": 571,
+ "waarnemingen": 572,
  "ijkklasse": "80-100 m2",
  "basis_gemeten": true
 }
