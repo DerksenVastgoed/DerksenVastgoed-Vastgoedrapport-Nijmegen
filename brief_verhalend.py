@@ -124,6 +124,8 @@ SCHRIJF EENVOUDIG, NIET SIMPEL. Het onderwerp mag ingewikkeld zijn, de zinnen ni
 
 Het niveau blijft hetzelfde: je vader is niet dom, hij leest alleen 's ochtends. Schrijf zoals je het aan tafel zou uitleggen.
 
+WAT EERST KOMT: EERST DE STAD, DAN DE MARKT. De brief opent met het dichtstbijzijnde nieuws dat er is. Een bekendmaking over een pand in onze ring gaat voor een landelijk marktbericht, en een gemeten verandering gaat voor een bericht dat een verandering beweert. Een rentebericht hoort alleen bovenaan als onze eigen meting ook werkelijk beweegt; staat het tarief al weken stil, dan is het weerspreken van zo'n artikel hooguit een alinea verderop en nooit de opening. Hetzelfde geldt voor een artikel over de markt in het algemeen: interessant, maar niet het eerste wat pa leest als er die dag een pand in de ring is gesplitst, verkocht of vergund.
+
 ACTUALITEIT KRIJGT ALTIJD VOORRANG. Is er nieuws, dan gaat de brief daarover. Is er weinig nieuws, dan is er altijd een onderwerp dat verdieping verdient; dan wordt dat het hoofdstuk. Een lege brief bestaat niet, een gevulde brief wel: die moet je vermijden.
 
 Schrijf in de ik-vorm. Spreek hem aan met 'je' en 'jij', nooit met 'u'.
