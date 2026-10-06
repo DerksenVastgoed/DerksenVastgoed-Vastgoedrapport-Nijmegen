@@ -835,7 +835,34 @@ def controle_wozbestand():
                     goed += 1
     except FileNotFoundError:
         return (OK, "geen WOZ-bestand", "")
+    # Hoeveel panden uit het aanbod nog geen WOZ hebben. Staat dat op nul,
+    # dan vult de werklijst niet aan omdat er niets te kiezen valt, en niet
+    # omdat er iets stuk is.
+    te_doen = 0
+    try:
+        bekend = set()
+        with open("woz.txt", encoding="utf-8") as f2:
+            for r in f2:
+                k = r.split("#", 1)[0].split("|", 1)[0].strip().lower()
+                if k:
+                    bekend.add("".join(c for c in k if c.isalnum()))
+        with open("verkopen.txt", encoding="utf-8") as f2:
+            for r in f2:
+                if r.startswith("#"):
+                    continue
+                v = [x.strip() for x in r.split("|")]
+                if len(v) < 4 or not v[3].lower().startswith(("te koop", "nieuw")):
+                    continue
+                if "".join(c for c in v[0].lower() if c.isalnum()) not in bekend:
+                    te_doen += 1
+    except Exception:
+        te_doen = -1
     bewijs = f"{goed} bruikbare regels, {open_regels} nog in te vullen"
+    if te_doen == 0:
+        bewijs += ("; geen nieuwe kandidaten, elk pand in het aanbod heeft al "
+                   "een WOZ of staat al op de lijst")
+    elif te_doen > 0:
+        bewijs += f"; {te_doen} panden in het aanbod nog zonder WOZ"
     if benaderingen:
         bewijs += (f", {benaderingen} overgenomen van een ander pand (die "
                    f"tellen niet mee in de ijking)")
