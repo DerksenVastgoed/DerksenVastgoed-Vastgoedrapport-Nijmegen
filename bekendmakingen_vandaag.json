@@ -4,7 +4,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor omzetting naar 3 appartementen is nog niet besloten, maar toont potentieel voor opdeling van het pand van 256 m2.",
+  "duiding": "Verbouwing naar 3 appartementen splitst het pand van 256 m2 in kleinere zelfstandige units, wat de huurvoorraad verruimt.",
   "feiten": {
    "oppervlakte_m2": 256
   },
@@ -17,7 +17,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466573.html",
   "strategie": "splitsen",
-  "duiding": "Legalisatie-aanvraag bevestigt een bestaande feitelijke splitsing naar 4 woningen; label F beperkt de WWS-punten bij eventuele verkamering.",
+  "duiding": "Aanvraag om de splitsing naar 4 woningen te legaliseren is nog niet besloten; bij label F tellen WWS-punten zwaarder mee.",
   "feiten": {
    "energielabel": "F (2017)",
    "oppervlakte_m2": 116
@@ -31,7 +31,7 @@
   "titel": "Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html",
   "strategie": "geen",
-  "duiding": "Asbestmelding bij mutatie is een technische stap voorafgaand aan renovatie, zonder directe link met een specifieke beleggingsstrategie.",
+  "duiding": "Asbestverwijdering bij mutatie wijst op renovatie voorafgaand aan nieuwe verhuur, zonder dat dit een specifieke beleggingsstrategie typeert.",
   "feiten": {
    "energielabel": "A (2023)",
    "oppervlakte_m2": 101
@@ -45,7 +45,7 @@
   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465994.html",
   "strategie": "buy-and-hold",
-  "duiding": "Besloten vergunning voor tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn op de markt.",
+  "duiding": "Besluit maakt tijdelijke verhuur mogelijk, wat duidt op overbrugging richting verkoop of verbouwing op termijn.",
   "feiten": {
    "energielabel": "C (2026)",
    "oppervlakte_m2": 125

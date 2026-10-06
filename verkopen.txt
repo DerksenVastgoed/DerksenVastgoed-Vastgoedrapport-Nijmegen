@@ -928,3 +928,6 @@ Krayenhofflaan 321 | Nijmegen | 485000 | te koop | 2026-10-06 |  | 108 | 6541PS
 
 # Automatisch toegevoegd uit Funda-attendering op 06-10-2026
 Maasstraat | Nijmegen | 822 | te huur | 2026-10-06 | pararius | 35 | 6541ZB
+
+# Automatisch toegevoegd uit Funda-attendering op 06-10-2026
+Jan de Wittstraat | Nijmegen | 750 | te huur kamer | 2026-10-06 | kamernet-incl | 13 | 

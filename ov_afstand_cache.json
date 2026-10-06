@@ -503,6 +503,14 @@
   "omweg": 2.56,
   "soort": "bus"
  },
+ "51.84019,5.85690": {
+  "geschat": false,
+  "hemelsbreed": 340,
+  "meters": 586,
+  "naam": "Centraal Station",
+  "omweg": 1.72,
+  "soort": "bus"
+ },
  "51.84019,5.86003": {
   "geschat": false,
   "hemelsbreed": 274,
