@@ -2541,8 +2541,10 @@ def woz_vergelijk_methoden(woningen):
     for naam in ("kenmerken", "prijs"):
         fouten = []
         for w in woningen or []:
-            echt = (_woz_getal(w.get("woz"))
-                    or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
+            _rij = tabel.get(_woz_sleutel(w.get("adres") or "")) or {}
+            if _rij.get("benadering"):
+                continue
+            echt = _woz_getal(w.get("woz")) or _woz_getal(_rij)
             if not echt:
                 continue
             # Dezelfde rem als bij de ijking: een waarde die er een factor vier
@@ -2599,8 +2601,11 @@ def woz_kalibratie(woningen=None):
     rijen = woningen if woningen is not None else []
     verhoudingen, met_adres, vermoedelijke_fouten = [], [], []
     for w in rijen or []:
-        echt = (_woz_getal(w.get("woz"))
-                or _woz_getal(tabel.get(_woz_sleutel(w.get("adres") or ""))))
+        rij_tabel = tabel.get(_woz_sleutel(w.get("adres") or "")) or {}
+        if rij_tabel.get("benadering"):
+            # Overgenomen van een ander pand: geen meting, dus niet ijken.
+            continue
+        echt = _woz_getal(w.get("woz")) or _woz_getal(rij_tabel)
         schat = woz_schatting({**w, "woz": None})
         if echt and schat and schat.get("waarde"):
             verhouding = echt / schat["waarde"]
@@ -2859,6 +2864,12 @@ def lees_woz():
             if len(delen) < 2 or not delen[0]:
                 slechte.append(nummer)
                 continue
+            # Een tilde voor het bedrag betekent: dit is niet de WOZ van dit
+            # pand zelf, maar een overgenomen waarde, bijvoorbeeld van het
+            # buurpand. Zo'n getal mag wel meedoen in de doorrekening, maar
+            # nooit in de ijking: die vergelijkt de schatting met de
+            # werkelijkheid, en een ingevulde schatting maakt dat rondje rond.
+            benadering = delen[1].lstrip().startswith(("~", "ca", "±"))
             bedrag = re.sub(r"[^\d]", "", delen[1])
             if not bedrag:
                 continue   # nog niet ingevuld
@@ -2872,7 +2883,8 @@ def lees_woz():
                 j = re.sub(r"[^\d]", "", delen[2])
                 if len(j) == 4:
                     jaar = int(j)
-            uit[_woz_sleutel(delen[0])] = {"woz": int(bedrag), "jaar": jaar}
+            uit[_woz_sleutel(delen[0])] = {"woz": int(bedrag), "jaar": jaar,
+                                           "benadering": benadering}
         except Exception:  # noqa
             slechte.append(nummer)
     if slechte:
@@ -4588,6 +4600,21 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         wat = ("dit is een appartement in een complex, wat op zichzelf niets "
                "bijzonders is" if in_complex(w)
                else "het pand is opgedeeld in meerdere woningen")
+        # Het gebruiksdoel erbij, want dat verklaart veel. Een verblijfsobject
+        # zonder woonfunctie heeft wel een WOZ-beschikking, maar het
+        # wozwaardeloket toont alleen woningen; dan lijkt de WOZ te ontbreken
+        # terwijl het object gewoon een winkel of kantoor is. En een
+        # doorrekening als woning klopt er sowieso niet voor.
+        _doelen = [str(d).lower() for d in (w.get("gebruiksdoelen") or [])]
+        if _doelen and not any("woon" in d for d in _doelen):
+            f("gebruiksdoel", f"volgens de BAG geen woonfunctie maar "
+              f"{', '.join(sorted(set(_doelen)))}: het wozwaardeloket toont "
+              f"alleen woningen, dus daar is geen WOZ te vinden. Een "
+              f"doorrekening als woning past hier niet",
+              "Basisregistratie Adressen en Gebouwen")
+        elif len(_doelen) > 1:
+            f("gebruiksdoel", f"meerdere functies: "
+              f"{', '.join(sorted(set(_doelen)))}", "BAG")
         f("BAG", f"{len(eenh)} woningen met een eigen adres in hetzelfde pand: "
           f"{wat}. Of het juridisch in appartementsrechten is gesplitst, staat "
           f"in het Kadaster en niet in de BAG",
