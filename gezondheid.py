@@ -806,7 +806,7 @@ def controle_opnieuw_aangeboden():
 
 def controle_wozbestand():
     """Of elke regel in het WOZ-bestand te lezen is."""
-    goed = slecht = open_regels = 0
+    goed = slecht = open_regels = benaderingen = 0
     voorbeelden = []
     try:
         with open("woz.txt", encoding="utf-8") as f:
@@ -820,6 +820,8 @@ def controle_wozbestand():
                     if len(voorbeelden) < 3:
                         voorbeelden.append(f"regel {nummer}")
                     continue
+                if delen[1].lstrip().startswith(("~", "ca", "±")):
+                    benaderingen += 1
                 cijfers = "".join(c for c in delen[1] if c.isdigit())
                 if not cijfers:
                     # Leeg bedrag is geen fout: dat is een regel die nog moet
@@ -834,6 +836,9 @@ def controle_wozbestand():
     except FileNotFoundError:
         return (OK, "geen WOZ-bestand", "")
     bewijs = f"{goed} bruikbare regels, {open_regels} nog in te vullen"
+    if benaderingen:
+        bewijs += (f", {benaderingen} overgenomen van een ander pand (die "
+                   f"tellen niet mee in de ijking)")
     if slecht:
         return (LET_OP, bewijs + f", {slecht} niet te lezen: "
                 + ", ".join(voorbeelden),
@@ -842,6 +847,54 @@ def controle_wozbestand():
                 "regel; dan blijft hij leesbaar en gaat de notitie niet "
                 "verloren.")
     return (OK, bewijs, "")
+
+
+def controle_woz_zonder_pand():
+    """
+    WOZ-regels waarvan het adres bij geen enkel pand hoort dat wij volgen.
+
+    Dit komt voor als een huisnummer bij het wozwaardeloket niets oplevert en
+    het object onder 19-A geregistreerd staat. Dan is 19-A de juiste meting,
+    maar in ons aanbod staat het pand nog als 19, en dan vindt het model die
+    WOZ niet. Het opzoekwerk is dan gedaan maar landt nergens.
+    """
+    adressen = set()
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                naam = regel.split("|", 1)[0].strip()
+                if naam:
+                    adressen.add("".join(c for c in naam.lower() if c.isalnum()))
+    except Exception:
+        return (OK, "geen aanbodbestand om tegen te toetsen", "")
+    los = []
+    try:
+        with open("woz.txt", encoding="utf-8") as f:
+            for regel in f:
+                kaal = regel.split("#", 1)[0].strip()
+                if not kaal or kaal.startswith("#"):
+                    continue
+                delen = [d.strip() for d in kaal.split("|")]
+                if len(delen) < 2 or not delen[0]:
+                    continue
+                if not any(c.isdigit() for c in delen[1]):
+                    continue
+                sleutel = "".join(c for c in delen[0].lower() if c.isalnum())
+                if sleutel not in adressen:
+                    los.append(delen[0])
+    except FileNotFoundError:
+        return (OK, "geen WOZ-bestand", "")
+    if not los:
+        return (OK, "elke ingevulde WOZ hoort bij een pand dat we volgen", "")
+    return (LET_OP,
+            f"{len(los)} ingevulde WOZ-regels horen bij geen pand in ons "
+            f"aanbod: {', '.join(los[:4])}",
+            "Waarschijnlijk is het huisnummer aangepast omdat het "
+            "wozwaardeloket alleen een variant kende, bijvoorbeeld 19-A in "
+            "plaats van 19. Die waarde landt dan nergens. Zet het adres terug "
+            "zoals het in het aanbod staat, of voeg beide regels toe.")
 
 
 def controle_adressen_met_meerdere_maten():
@@ -1280,6 +1333,7 @@ CONTROLES = [
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
     ("WOZ-bestand", controle_wozbestand),
+    ("WOZ zonder pand", controle_woz_zonder_pand),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),
