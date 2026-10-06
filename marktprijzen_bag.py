@@ -4728,7 +4728,36 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("route afgevallen", _uitleg_blokkade(route, reden), "eigen toets")
     lab = _labeltekst(w.get("energielabel"))
     if lab != "onbekend":
-        f("energielabel", lab, "EP-Online")
+        # Erbij zetten voor hoeveel woningen in dit pand we een label kennen.
+        # Een energielabel hoort bij een verblijfsobject, dus bij een adres.
+        # Bij een pand met meerdere woningen zegt het label van de een niets
+        # over de ander, en bij een splitsing hebben de nieuwe eenheden vaak
+        # nog helemaal geen label. "Het pand heeft label F" is dan te stellig.
+        eenheden_n = len(w.get("eenheden_in_pand") or []) or 1
+        labels_n = 0
+        try:
+            from pandlezer import laad as _laad_g
+            _pand = (_laad_g("pandgeschiedenis.json") or {}).get(
+                "".join(c for c in (w.get("adres") or "").lower() if c.isalnum()))
+            labels_n = len((_pand or {}).get("labels") or {})
+        except Exception:
+            labels_n = 0
+        if eenheden_n > 1 and labels_n:
+            f("energielabel", f"{lab}; bekend voor {labels_n} van de "
+              f"{eenheden_n} woningen in dit pand, van de overige kennen we "
+              f"het label niet", "EP-Online")
+            # De labels per huisnummer erbij. Bij een splitsingscase wil je zien
+            # dat de ene helft A is en de andere G: dat zegt wat er al verbouwd
+            # is en wat niet. Alleen samenvatten verbergt juist dat verschil.
+            alle = (_pand or {}).get("labels") or {}
+            if len(alle) > 1:
+                rijen = sorted(alle.items())
+                toon = ", ".join(f"{a}: {l}" for a, l in rijen[:12])
+                if len(rijen) > 12:
+                    toon += f" en {len(rijen) - 12} meer"
+                f("labels per adres", toon, "EP-Online")
+        else:
+            f("energielabel", lab, "EP-Online")
     if w.get("monument"):
         f("monument", "rijksmonument", "Rijksdienst voor het Cultureel Erfgoed")
     if w.get("ov_halte"):
