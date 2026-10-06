@@ -72898,6 +72898,20 @@
   ],
   "pand_id": "0268100000046692"
  },
+ "maasstraat": {
+  "adres": "Maasstraat",
+  "bag_gezien": "2026-10-06",
+  "bag_zonder_id": "2026-10-06",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-06",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €822 per maand, 35 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "maasstraat7": {
   "adres": "Maasstraat 7",
   "gebeurtenissen": [

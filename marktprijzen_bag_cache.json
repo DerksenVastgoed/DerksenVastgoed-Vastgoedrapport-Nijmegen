@@ -72257,5 +72257,14 @@
     "buurtnaam": "Brakkenstein",
     "wijknaam": "Nijmegen-Zuid",
     "nummeraanduiding": "adr-3259ce6e7f27a4a00b41a69595ce3f12"
+  },
+  "Maasstraat|Nijmegen": {
+    "oppervlakte": 35,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ZB",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

@@ -1127,6 +1127,14 @@
   "omweg": 1.45,
   "soort": "bus"
  },
+ "51.84903,5.84542": {
+  "geschat": false,
+  "hemelsbreed": 183,
+  "meters": 245,
+  "naam": "Biezenstraat",
+  "omweg": 1.34,
+  "soort": "bus"
+ },
  "51.84906,5.86100": {
   "geschat": false,
   "hemelsbreed": 265,
