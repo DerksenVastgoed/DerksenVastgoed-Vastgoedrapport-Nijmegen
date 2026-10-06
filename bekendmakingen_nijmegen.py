@@ -59,6 +59,11 @@ KERN = [
     "wooneenhe", "appartement", "transformatie", "herbestemm",
     "kamerverhuur", "logiesfunctie", "logies", "bopa",
     "nieuwbouw", "starters", "optoppen", "woningen",
+    # Een aanvraag voor extra huisnummers is de administratieve vingerafdruk
+    # van woningvorming: nieuwe zelfstandige woningen krijgen een eigen adres,
+    # en pas daarna telt de BAG ze mee. Zo'n aanvraag gaat vaak vooraf aan de
+    # splitsing die wij in de BAG zien verschijnen.
+    "huisnummer", "huisnummers", "nummeraanduiding",
 ]
 REL_BASIS = [
     "verbouw", "renove", "verduurz", "sloop", "woning", "woon", "warmtepomp",
