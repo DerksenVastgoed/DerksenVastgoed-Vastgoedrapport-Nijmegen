@@ -4550,6 +4550,38 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     if eerst:
         f("in aanbod", f"sinds {eerst}, {_dagen_sinds(eerst)} dagen", "attendering")
 
+    # Stond dit pand eerder al eens te koop, en voor hoeveel? De brief schreef
+    # "staat weer te koop" zonder te zeggen wanneer dat eerder was, terwijl we
+    # die gebeurtenis gewoon in de geschiedenis hebben staan. Juist het verschil
+    # tussen toen en nu is het interessante: een pand dat terugkomt voor minder,
+    # of na een jaar opnieuw, vertelt iets over de verkoopbaarheid.
+    try:
+        from pandlezer import laad as _laad_h
+        _p = (_laad_h("pandgeschiedenis.json") or {}).get(
+            "".join(c for c in (w.get("adres") or "").lower() if c.isalnum()))
+        _eerder = [g for g in ((_p or {}).get("gebeurtenissen") or [])
+                   if g.get("soort") == "te koop" and g.get("datum")
+                   and (not eerst or g["datum"][:10] < str(eerst)[:10])]
+        if _eerder:
+            _l = max(_eerder, key=lambda g: g["datum"])
+            _bedrag = re.search(r"€([\d.]+)", _l.get("tekst") or "")
+            _deel = f"eerder aangeboden op {_l['datum']}"
+            if _bedrag:
+                _deel += f" voor €{_bedrag.group(1)}"
+                try:
+                    _toen = int(_bedrag.group(1).replace(".", ""))
+                    _nu = int(w.get("prijs") or 0)
+                    if _toen and _nu:
+                        _v = round((_nu - _toen) / _toen * 100)
+                        _deel += (f", nu {abs(_v)}% "
+                                  f"{'hoger' if _v > 0 else 'lager'}"
+                                  if _v else ", zelfde vraagprijs")
+                except ValueError:
+                    pass
+            f("eerder te koop", _deel, "geschiedenis per pand")
+    except Exception:
+        pass
+
     # WOZ en de grens die vergunning en opkoopbescherming bepaalt
     woz = w.get("woz")
     if woz:
