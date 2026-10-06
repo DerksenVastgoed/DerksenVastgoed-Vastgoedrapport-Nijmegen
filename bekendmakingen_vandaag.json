@@ -4,12 +4,51 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor splitsing naar 3 appartementen (256 m2) toont dat verdichting hier wordt overwogen, maar besluit staat nog niet vast.",
+  "duiding": "Omzetten van één pand naar 3 appartementen creëert extra verhuureenheden en verkleint de voorraad grote panden.",
   "feiten": {
    "oppervlakte_m2": 256
   },
   "straat": "Staringstraat",
   "huisnummer": "2",
   "kern": true
+ },
+ {
+  "datum": "2026-10-06",
+  "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466573.html",
+  "strategie": "splitsen",
+  "duiding": "Legalisatie van 2 naar 4 woningen toont dat eerdere splitsing zonder vergunning plaatsvond en nu alsnog wordt vastgelegd.",
+  "feiten": {},
+  "straat": "",
+  "huisnummer": "",
+  "kern": true
+ },
+ {
+  "datum": "2026-10-06",
+  "titel": "Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html",
+  "strategie": "verduurzaming",
+  "duiding": "Asbestverwijdering bij mutatie wijst op renovatie van de woning voorafgaand aan heringebruikname, met het huidige label A nog geldig tot 2033.",
+  "feiten": {
+   "energielabel": "A (2023)",
+   "oppervlakte_m2": 101
+  },
+  "straat": "Daalseweg",
+  "huisnummer": "96",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-06",
+  "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465994.html",
+  "strategie": "buy-and-hold",
+  "duiding": "Besluit maakt tijdelijke verhuur van deze woonruimte mogelijk, wat duidt op een overbruggingsperiode richting verkoop of herbestemming.",
+  "feiten": {
+   "energielabel": "C (2026)",
+   "oppervlakte_m2": 125
+  },
+  "straat": "Kanunnik van Osstraat",
+  "huisnummer": "53",
+  "kern": false
  }
 ]

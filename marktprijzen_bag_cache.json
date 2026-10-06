@@ -72245,5 +72245,17 @@
       "gebouwklasse": "Woningbouw",
       "prive": false
     }
+  },
+  "bm:Daalseweg 96|Nijmegen": {
+    "postcode": "6521GP",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-3c46ce4a5695eebfb2a42bce52cd57ba"
+  },
+  "bm:Kanunnik van Osstraat 53|Nijmegen": {
+    "postcode": "6525TW",
+    "buurtnaam": "Brakkenstein",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-3259ce6e7f27a4a00b41a69595ce3f12"
   }
 }

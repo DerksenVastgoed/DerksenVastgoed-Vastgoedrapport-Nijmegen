@@ -142,3 +142,6 @@ De brief eindigt midden in een zin: '... in de gaten, vooral of nummer 321 verde
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...rschil maakt tussen middenhuur en vrije sector.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

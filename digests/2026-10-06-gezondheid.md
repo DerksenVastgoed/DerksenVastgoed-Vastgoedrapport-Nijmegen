@@ -30,6 +30,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
 - **Geschiedenis per pand**: 1716 panden gevolgd, 1400 met meer dan een gebeurtenis; 1563 met BAG-gegevens (6312 woningen, 7394 dubbel geteld zonder deze correctie), 1368 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12119 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 69 panden te koop, mediaan 17 dagen geleden voor het laatst bevestigd, oudste 34 dagen
 - **Aanbodreeks**: 5 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 1 koop, 5 huur. In beeld: 2 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -50,7 +51,7 @@
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 159 panden gerouteerd
-- **Bekendmakingen-archief**: 329 adressen, 462 publicaties
+- **Bekendmakingen-archief**: 330 adressen, 464 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 5 wetten
 - **Geheugen en trend**: 115 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard

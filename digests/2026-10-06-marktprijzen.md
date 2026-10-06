@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-107 panden in beeld, 1 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Dichtst bij haalbaar is **Krayenhofflaan 321** in Biezen: €485.000 voor 108 m². Als één woning loopt het rond tot €374.016, dus -23% ten opzichte van de vraagprijs; per m² staat het -17% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 1 gemeentelijke bericht, waarvan 1 over splitsen, verkameren of transformatie.
+107 panden in beeld, 1 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Dichtst bij haalbaar is **Krayenhofflaan 321** in Biezen: €485.000 voor 108 m². Als één woning loopt het rond tot €374.016, dus -23% ten opzichte van de vraagprijs; per m² staat het -17% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 3 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -19,7 +19,7 @@ _12 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">256 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor splitsing naar 3 appartementen (256 m2) toont dat verdichting hier wordt overwogen, maar besluit staat nog niet vast.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Omzetten van één pand naar 3 appartementen creëert extra verhuureenheden en verkleint de voorraad grote panden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-05 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -94,6 +94,14 @@ _Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.
 _Bekende WOZ-waarden: Dominicanenstraat 30 €614.000 (2026) (174 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Jacob Canisstraat 51 €520.000 (2026), puntenstelsel ondergrens 231 punten (138 m2, WOZ €520.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Groesbeeksedwarsweg 99 €443.000 (2026), puntenstelsel ondergrens 181 punten (93 m2, WOZ €443.000, label B): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Beijensstraat 80 €475.000 (2026), puntenstelsel ondergrens 147 punten (88 m2, WOZ €475.000, label E): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
+<div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">101 m² . label A (2023)</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie wijst op renovatie van de woning voorafgaand aan heringebruikname, met het huidige label A nog geldig tot 2033.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-06 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
+</div>
+
 
 _13 panden staan in buurten buiten de ring. Die staan in de uitgebreide brief van zondag._
 _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond verkameren en splitsen staan in de uitgebreide brief van zondag._
