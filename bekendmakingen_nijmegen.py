@@ -685,6 +685,18 @@ def verrijk_met_bag(items: list):
                     jaar = (ep.get("registratiedatum") or "")[:4]
                     it["feiten"]["energielabel"] = (
                         f"{ep['label']} ({jaar})" if jaar else ep["label"])
+                    # Dit label hoort bij dit adres. Gaat de bekendmaking over
+                    # een pand met meerdere woningen, bijvoorbeeld "11-11A" of
+                    # een splitsing naar vier, dan zegt het niets over de
+                    # andere eenheden. Zonder deze toevoeging schreef de brief
+                    # "het pand heeft energielabel F".
+                    titel_l = (it.get("titel") or "").lower()
+                    meer = (re.search(r"\d+\s*-\s*\d+[a-z]?\b", titel_l)
+                            or re.search(r"naar\s+(twee|drie|vier|vijf|\d+)\s+"
+                                         r"(zelfstandige\s+)?won", titel_l)
+                            or "appartementen" in titel_l)
+                    if meer:
+                        it["feiten"]["label_alleen_dit_adres"] = True
         if feiten.get("oppervlakte"):
             it["feiten"]["oppervlakte_m2"] = feiten["oppervlakte"]
         if feiten.get("bouwjaar"):
@@ -864,7 +876,10 @@ def _regel(it: dict) -> str:
         if feiten.get("m2_per_kamer"):
             delen.append(f"{feiten['m2_per_kamer']} m² per kamer")
         if feiten.get("energielabel"):
-            delen.append(f"label {feiten['energielabel']}")
+            deel = f"label {feiten['energielabel']}"
+            if feiten.get("label_alleen_dit_adres"):
+                deel += " (alleen van dit adres bekend)"
+            delen.append(deel)
         if feiten.get("rijksmonument"):
             nr = feiten.get("monumentnr")
             delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
