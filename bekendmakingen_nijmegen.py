@@ -374,6 +374,16 @@ def _adres_uit_titel(titel: str):
         straatdeel = staart.group(1).strip()
 
     straatdeel = re.split(r"\s+en\s+\d", straatdeel)[0].strip()
+    # Een bereik van twee huisnummers, zoals "Berg en Dalseweg 11-11A" of
+    # "Dokstraat 110-112". Die vorm komt vooral voor bij woningvorming, waar
+    # juist twee adressen in het spel zijn. Zonder deze regel leverde zo'n
+    # titel helemaal geen adres op en kon de bekendmaking aan geen enkel pand
+    # worden gehangen. We nemen het eerste nummer: dat is het pand waar het
+    # over gaat.
+    bereik = re.match(r"^(.+?\s+\d+\s*[A-Za-z]?)\s*[-/]\s*\d+\s*[A-Za-z]?\s*$",
+                      straatdeel)
+    if bereik:
+        straatdeel = bereik.group(1).strip()
     a = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z])?\s*$", straatdeel)
     if not a:
         return None
