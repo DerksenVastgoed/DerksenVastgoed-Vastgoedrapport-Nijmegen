@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-107 panden in beeld, 1 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Dichtst bij haalbaar is **Krayenhofflaan 321** in Biezen: €485.000 voor 108 m². Als één woning loopt het rond tot €374.016, dus -23% ten opzichte van de vraagprijs; per m² staat het -17% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 3 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
+107 panden in beeld, 1 nieuw of gewijzigd, waarvan 2 met een prijswijziging. Dichtst bij haalbaar is **Krayenhofflaan 321** in Biezen: €485.000 voor 108 m². Als één woning loopt het rond tot €374.016, dus -23% ten opzichte van de vraagprijs; per m² staat het -17% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 4 gemeentelijke berichten, waarvan 2 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -19,7 +19,7 @@ _12 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">256 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor omzetting naar 3 appartementen op 256 m² is nog niet verleend, dus splitsing is pas na besluit zeker.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor omzetting naar 3 appartementen is nog niet besloten, maar toont potentieel voor opdeling van het pand van 256 m2.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-05 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -96,9 +96,9 @@ _Bekende WOZ-waarden: Dominicanenstraat 30 €614.000 (2026) (174 m2): Groter da
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">101 m² . label A (2023)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestsanering bij mutatie wijst op renovatie bij leegkomst om de woning opnieuw te verhuren.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestmelding bij mutatie is een technische stap voorafgaand aan renovatie, zonder directe link met een specifieke beleggingsstrategie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-06 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 

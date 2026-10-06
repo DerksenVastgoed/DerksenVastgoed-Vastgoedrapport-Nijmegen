@@ -4,7 +4,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor omzetting naar 3 appartementen op 256 m² is nog niet verleend, dus splitsing is pas na besluit zeker.",
+  "duiding": "Aanvraag voor omzetting naar 3 appartementen is nog niet besloten, maar toont potentieel voor opdeling van het pand van 256 m2.",
   "feiten": {
    "oppervlakte_m2": 256
   },
@@ -17,18 +17,21 @@
   "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466573.html",
   "strategie": "splitsen",
-  "duiding": "Legalisatieaanvraag van 2 naar 4 woningen toont bestaande praktijk, maar vergunning kan alsnog worden geweigerd.",
-  "feiten": {},
-  "straat": "",
-  "huisnummer": "",
+  "duiding": "Legalisatie-aanvraag bevestigt een bestaande feitelijke splitsing naar 4 woningen; label F beperkt de WWS-punten bij eventuele verkamering.",
+  "feiten": {
+   "energielabel": "F (2017)",
+   "oppervlakte_m2": 116
+  },
+  "straat": "Berg en Dalseweg",
+  "huisnummer": "11",
   "kern": true
  },
  {
   "datum": "2026-10-06",
   "titel": "Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Asbestsanering bij mutatie wijst op renovatie bij leegkomst om de woning opnieuw te verhuren.",
+  "strategie": "geen",
+  "duiding": "Asbestmelding bij mutatie is een technische stap voorafgaand aan renovatie, zonder directe link met een specifieke beleggingsstrategie.",
   "feiten": {
    "energielabel": "A (2023)",
    "oppervlakte_m2": 101
@@ -42,7 +45,7 @@
   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465994.html",
   "strategie": "buy-and-hold",
-  "duiding": "Besluit over tijdelijke verhuur wijst op overbrugging, het pand komt op termijn waarschijnlijk op de markt.",
+  "duiding": "Besloten vergunning voor tijdelijke verhuur wijst op overbrugging voor verkoop of verbouwing; het pand komt op termijn op de markt.",
   "feiten": {
    "energielabel": "C (2026)",
    "oppervlakte_m2": 125

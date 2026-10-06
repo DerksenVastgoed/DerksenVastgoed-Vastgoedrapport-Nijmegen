@@ -10520,7 +10520,7 @@
      143
     ]
    ],
-   "bag_gezien": "2026-10-04",
+   "bag_gezien": "2026-10-06",
    "labels": {
     "St. Annastraat 80": "C",
     "St. Annastraat 80A": "E"
@@ -18303,6 +18303,43 @@
     "Van Haapsstraat 74": "A",
     "Van Haapsstraat 76": "D",
     "Van Haapsstraat 76A": "E"
+   }
+  },
+  "0268100000019591": {
+   "bag_eenheden": [
+    [
+     "Berg en Dalseweg 11",
+     116
+    ],
+    [
+     "Berg en Dalseweg 11A",
+     130
+    ],
+    [
+     "Straalmanstraat 13",
+     43
+    ],
+    [
+     "Straalmanstraat 13A",
+     62
+    ],
+    [
+     "Straalmanstraat 13B",
+     68
+    ],
+    [
+     "Straalmanstraat 13C",
+     48
+    ],
+    [
+     "Straalmanstraat 13D",
+     44
+    ]
+   ],
+   "bag_gezien": "2026-10-06",
+   "labels": {
+    "Berg en Dalseweg 11": "F",
+    "Berg en Dalseweg 11A": "E"
    }
   },
   "0268100000019601": {
@@ -36836,7 +36873,7 @@
      148
     ]
    ],
-   "bag_gezien": "2026-10-04",
+   "bag_gezien": "2026-10-06",
    "labels": {
     "Fort Kijk in de Potstraat 34": "C",
     "Fort Kijk in de Potstraat 36": "C"
@@ -39943,6 +39980,30 @@
    }
   ],
   "pand_id": "0268100000000993"
+ },
+ "bergendalseweg11": {
+  "adres": "Berg en Dalseweg 11",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2017-07-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Berg en Dalseweg 11 is F, geregistreerd 2017-07-19"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2017-07-20",
+    "soort": "energielabel",
+    "tekst": "energielabel van Berg en Dalseweg 11A is E, geregistreerd 2017-07-20"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-06",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000019591"
  },
  "bergendalseweg176": {
   "adres": "Berg en Dalseweg 176",
@@ -54889,6 +54950,30 @@
    }
   ],
   "pand_id": null
+ },
+ "fortkijkindepotstraat34": {
+  "adres": "Fort Kijk in de Potstraat 34",
+  "gebeurtenissen": [
+   {
+    "bron": "melding",
+    "datum": "2025-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fort Kijk in de Potstraat 34 is C, geregistreerd 2026-05-30"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fort Kijk in de Potstraat 36 is C, geregistreerd 2026-05-30"
+   }
+  ],
+  "pand_id": "0268100000094031"
  },
  "fortkijkindepotstraat3436": {
   "adres": "Fort Kijk in de Potstraat 34 - 36",
@@ -92293,6 +92378,30 @@
    }
   ],
   "pand_id": "0268100000009388"
+ },
+ "stannastraat80": {
+  "adres": "St. Annastraat 80",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2023-01-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 80 is C, geregistreerd 2023-01-09"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-01-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 80A is E, geregistreerd 2023-01-09"
+   },
+   {
+    "bron": "melding",
+    "datum": "2025-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": "0268100000009387"
  },
  "stannastraat8080": {
   "adres": "St. Annastraat 80 - 80",

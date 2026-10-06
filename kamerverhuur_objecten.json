@@ -2860,8 +2860,8 @@
   "buurt": "Wolfskuil",
   "straat": "Floraweg"
  },
- "fortkijkindepotstraat3436": {
-  "adres": "Fort Kijk in de Potstraat 34 - 36",
+ "fortkijkindepotstraat34": {
+  "adres": "Fort Kijk in de Potstraat 34",
   "bronnen": [
    {
     "bron": "melding",
@@ -2870,7 +2870,7 @@
    }
   ],
   "buurt": "Altrade",
-  "straat": "Fort Kijk in de Potstraat 34 -"
+  "straat": "Fort Kijk in de Potstraat"
  },
  "fortkijkindepotstraat48": {
   "adres": "Fort Kijk in de Potstraat 48",
@@ -8816,8 +8816,8 @@
   "buurt": "St. Anna",
   "straat": "St. Annastraat"
  },
- "stannastraat8080": {
-  "adres": "St. Annastraat 80 - 80",
+ "stannastraat80": {
+  "adres": "St. Annastraat 80",
   "bronnen": [
    {
     "bron": "melding",
@@ -8825,8 +8825,8 @@
     "soort": "melding brandveilig gebruik"
    }
   ],
-  "buurt": "Galgenveld",
-  "straat": "St. Annastraat 80 -"
+  "buurt": "St. Anna",
+  "straat": "St. Annastraat"
  },
  "stannastraat82": {
   "adres": "St. Annastraat 82",

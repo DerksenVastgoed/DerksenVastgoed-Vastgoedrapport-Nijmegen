@@ -29,8 +29,7 @@
 - **Kamerverhuurregister**: 950 panden in de ring, waarvan 191 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 84
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
-- **Geschiedenis per pand**: 1717 panden gevolgd, 1400 met meer dan een gebeurtenis; 1563 met BAG-gegevens (6312 woningen, 7394 dubbel geteld zonder deze correctie), 1368 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12119 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
+- **Geschiedenis per pand**: 1720 panden gevolgd, 1403 met meer dan een gebeurtenis; 1566 met BAG-gegevens (6319 woningen, 7398 dubbel geteld zonder deze correctie), 1371 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 69 panden te koop, mediaan 17 dagen geleden voor het laatst bevestigd, oudste 34 dagen
 - **Aanbodreeks**: 5 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 1 koop, 6 huur. In beeld: 2 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -44,14 +43,14 @@
 - **Opnieuw aangeboden**: 8 adressen vaker aangeboden: 4 voor minder, 4 voor meer; lager bij: van welderenstraat van €705 naar €670; berg en dalseweg van €1100 naar €799; weezenhof van €750 naar €550
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
-- **3D BAG eigen snapshot**: 1244 panden in de eigen snapshot, 1244 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-06
-- **Achtergronddekking**: 29 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **3D BAG eigen snapshot**: 1245 panden in de eigen snapshot, 1245 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-06
+- **Achtergronddekking**: 30 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 4 brieven vastgelegd, laatste 2026-10-05; 63 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 160 panden gerouteerd
-- **Bekendmakingen-archief**: 330 adressen, 464 publicaties
+- **Bekendmakingen-archief**: 331 adressen, 465 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 5 wetten
 - **Geheugen en trend**: 115 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard
