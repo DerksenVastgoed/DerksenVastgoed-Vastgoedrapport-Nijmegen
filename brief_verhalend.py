@@ -192,7 +192,9 @@ EEN BENADERD JAARTAL BLIJFT BENADERD. Staat er bij een gebeurtenis "jaar bij ben
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
-ONDER BOD IS SNELLER NIEUWS DAN VERKOCHT. Een pand dat onder bod gaat, is het moment waarop een koper zich vastlegt; de overdracht bij de notaris volgt maanden later. Staat er dat een pand onder bod of verkocht onder voorbehoud is, dan is dat dus actueler nieuws dan een verkoop die nu wordt gemeld maar al weken oud is. Noem het ook zo: onder bod is nog geen verkoop, en een bod kan afketsen.
+IN ONDERHANDELING DEKT DRIE STADIA, EN DIE ZIJN NIET HETZELFDE. Funda vat onder bod, onder optie en verkocht onder voorbehoud samen als "in onderhandeling". Onder bod betekent dat er wordt onderhandeld en kan nog makkelijk afketsen. Onder optie betekent dat het pand voor iemand is vastgehouden. Verkocht onder voorbehoud is vrijwel een deal, met alleen de financiering of een bouwkundige keuring nog open. Neem het stadium over dat in de gegevens staat en vervang het niet door een algemener woord. Staat er alleen "in onderhandeling", schrijf dan niet dat het verkocht is.
+
+ONDERHANDELEN IS SNELLER NIEUWS DAN VERKOCHT. Dat is het moment waarop een koper zich vastlegt; de overdracht bij de notaris volgt maanden later. Een verkoop die nu wordt gemeld is dus vaak weken oud nieuws. Maar het blijft geen verkoop: noem het zoals het er staat.
 
 EEN VERKOOPTIJD IS EEN BOVENGRENS, GEEN METING. Staat er dat een pand hoogstens zoveel dagen te koop stond, schrijf dat dan ook zo: "hoogstens 25 dagen" of "binnen 25 dagen", nooit "25 dagen te koop". Wij kennen de verkoopdatum niet; we weten alleen wanneer we het pand voor het laatst te koop zagen en wanneer het verkocht bleek. De werkelijke tijd is korter of gelijk, nooit langer.
 

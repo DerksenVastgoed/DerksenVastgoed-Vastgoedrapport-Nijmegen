@@ -811,8 +811,17 @@ def main():
             # panden die zijn verkocht of onder voorbehoud staan. Zonder dit
             # kwamen die als "te koop" binnen en bleef een verkocht pand
             # eeuwig in het aanbod staan.
-            if "onder voorbehoud" in blob or "onder bod" in blob:
-                status_label = "onder voorbehoud"
+            # Funda vat drie stadia samen als "in onderhandeling": onder bod,
+            # onder optie en verkocht onder voorbehoud. We bewaren het stadium
+            # dat in de mail staat, want ze zeggen niet hetzelfde.
+            if "verkocht onder voorbehoud" in blob:
+                status_label = "verkocht onder voorbehoud"
+            elif "onder optie" in blob:
+                status_label = "onder optie"
+            elif "onder bod" in blob:
+                status_label = "onder bod"
+            elif "in onderhandeling" in blob:
+                status_label = "in onderhandeling"
             elif "verkocht" in blob:
                 status_label = "verkocht"
 

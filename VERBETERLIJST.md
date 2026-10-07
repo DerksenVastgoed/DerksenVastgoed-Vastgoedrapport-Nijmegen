@@ -5655,6 +5655,33 @@ toetsen met eigen cijfers.
 
 ---
 
+## 50a. "In onderhandeling" dekt drie stadia — 7 oktober 2026
+
+**Mark:** funda schrijft zelf dat "in onderhandeling" onder bod, onder optie en
+verkocht onder voorbehoud omvat.
+
+**Dat maakt mijn gebeurtenis van een uur eerder te grof.** Die gooide alles op
+een hoop onder de naam "onder bod", en onder optie kende hij helemaal niet. Dat
+zijn geen synoniemen: onder bod is onderhandelen en kan makkelijk afketsen,
+onder optie betekent dat het pand voor iemand wordt vastgehouden, en verkocht
+onder voorbehoud is vrijwel een deal met alleen de financiering of een
+bouwkundige keuring nog open.
+
+De gebeurtenis heet nu "in onderhandeling", de overkoepelende term, met het
+werkelijke stadium in de tekst. Zo kan de meting ze samen nemen voor de
+doorlooptijd, terwijl het verschil blijft staan waar het telt. De mailparser
+herkent alle vier de schrijfwijzen en bewaart welke er in de mail stond.
+
+De opdracht aan de brief zegt nu dat hij het stadium overneemt zoals het er
+staat en niet vervangt door een algemener woord, en dat "in onderhandeling"
+nooit als verkocht mag worden geschreven.
+
+**Controle die ik erbij heb gedaan:** de tak voor echt verkocht toetst op
+gelijkheid en niet op "begint met", dus "verkocht onder voorbehoud" wordt niet
+als verkoop geteld. Dat was de fout die hier makkelijk had kunnen insluipen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

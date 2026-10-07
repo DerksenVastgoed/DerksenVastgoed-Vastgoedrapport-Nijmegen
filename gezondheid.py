@@ -1058,16 +1058,18 @@ def controle_verkooptijd():
     """De bovengrens op de verkooptijd, uit onze eigen waarnemingen."""
     d = _json("verkooptijd.json") or {}
     if not d.get("aantal"):
-        return (OK, "nog geen pand dat wij eerst te koop en daarna verkocht "
+        return (OK, "nog geen pand dat wij eerst te koop en daarna in "
+                "onderhandeling of verkocht "
                 "zagen; dat begint te lopen nu de verkochtmeldingen binnenkomen",
                 "")
     deel = (f"{d['aantal']} panden van te koop naar onder bod of verkocht "
             f"gezien; mediaan hoogstens {d.get('mediaan_hoogstens_dagen')} "
             f"dagen")
-    if d.get("aantal_onder_bod"):
-        deel += (f"; alleen onder bod: {d['aantal_onder_bod']} panden, mediaan "
-                 f"hoogstens {d['mediaan_tot_onder_bod']} dagen. Dat is de "
-                 f"scherpste maat, want onder bod legt de koper zich vast")
+    if d.get("aantal_in_onderhandeling"):
+        deel += (f"; alleen in onderhandeling: "
+                 f"{d['aantal_in_onderhandeling']} panden, mediaan hoogstens "
+                 f"{d['mediaan_tot_onderhandeling']} dagen. Dat is de scherpste "
+                 f"maat, want daar legt de koper zich vast")
     return (OK, deel + ". Een bovengrens uit twee eigen waarnemingen, geen "
             "schatting: de werkelijke tijd is korter of gelijk", "")
 

@@ -187,14 +187,22 @@ def uit_verkopen(geschiedenis):
                                   + (" (verkoopdatum onbekend; uit een geplakte "
                                      "lijst)" if zonder_datum else ""),
                                   "aanbod")
-            elif r["status"].startswith(("onder bod", "onder voorbehoud")):
-                # Onder bod is een scherper signaal dan de verkoop zelf: dit is
-                # het moment dat een koper zich vastlegt, terwijl de overdracht
-                # pas maanden later bij de notaris passeert. Zonder deze regel
-                # viel die status buiten de geschiedenis.
-                nieuw += voeg_toe(pand, r["datum"], "onder bod",
-                                  "onder bod of verkocht onder voorbehoud, "
-                                  "vraagprijs "
+            elif r["status"].startswith(("onder bod", "onder optie",
+                                         "onder voorbehoud",
+                                         "verkocht onder voorbehoud",
+                                         "in onderhandeling")):
+                # Funda vat drie stadia samen als "in onderhandeling": onder
+                # bod, onder optie en verkocht onder voorbehoud. Dat zijn geen
+                # synoniemen. Onder bod is nog onderhandelen en kan makkelijk
+                # afketsen; verkocht onder voorbehoud is vrijwel een deal met
+                # alleen de financiering of de bouwkundige keuring nog open.
+                # Daarom een gezamenlijke soort voor de meting, met het stadium
+                # in de tekst zodat het verschil niet verdwijnt.
+                stadium = r["status"].strip().lower()
+                if stadium.startswith("in onderhandeling"):
+                    stadium = "in onderhandeling, stadium onbekend"
+                nieuw += voeg_toe(pand, r["datum"], "in onderhandeling",
+                                  f"{stadium}, vraagprijs "
                                   + f"€{r['prijs']:,}".replace(",", ".")
                                   + (f", {r['opp']} m2" if r["opp"] else ""),
                                   "aanbod")
@@ -818,7 +826,7 @@ def verkooptijd_bovengrens(geschiedenis):
         tekoop = [g["datum"] for g in gebeurtenissen
                   if g.get("soort") == "te koop" and g.get("datum")]
         verkocht = [g for g in gebeurtenissen
-                    if g.get("soort") in ("verkocht", "onder bod")
+                    if g.get("soort") in ("verkocht", "in onderhandeling")
                     and g.get("datum")]
         if not (tekoop and verkocht):
             continue
@@ -843,10 +851,10 @@ def verkooptijd_bovengrens(geschiedenis):
     # Onder bod apart, want dat is het moment dat een koper zich vastlegt en
     # dus de scherpste maat voor hoe snel de markt loopt.
     bod = sorted(r["hoogstens_dagen"] for r in rijen
-                 if r.get("soort") == "onder bod")
+                 if r.get("soort") == "in onderhandeling")
     if bod:
-        uit["aantal_onder_bod"] = len(bod)
-        uit["mediaan_tot_onder_bod"] = bod[len(bod) // 2]
+        uit["aantal_in_onderhandeling"] = len(bod)
+        uit["mediaan_tot_onderhandeling"] = bod[len(bod) // 2]
     return uit
 
 
