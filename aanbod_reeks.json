@@ -41,5 +41,15 @@
   "te_koop": 69,
   "uitpond": 0,
   "uitpond_adressen": []
+ },
+ "2026-10-07": {
+  "nieuw_te_huur": 1,
+  "nieuw_te_koop": 1,
+  "te_huur": 48,
+  "te_koop": 70,
+  "uitpond": 1,
+  "uitpond_adressen": [
+   "van Slichtenhorststraat 14"
+  ]
  }
 }

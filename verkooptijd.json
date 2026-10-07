@@ -1,0 +1,148 @@
+{
+ "aantal": 73,
+ "panden": [
+  {
+   "adres": "Dokstraat 425",
+   "eerst_gezien": "2026-05-30",
+   "verkocht_gezien": "2026-10-02",
+   "soort": "verkocht",
+   "hoogstens_dagen": 125
+  },
+  {
+   "adres": "Achter de Oude Gracht 17",
+   "eerst_gezien": "2024-01-20",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 982
+  },
+  {
+   "adres": "Beijensstraat 18",
+   "eerst_gezien": "2026-09-08",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 20
+  },
+  {
+   "adres": "Beijensstraat 4-A",
+   "eerst_gezien": "2023-11-29",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 1034
+  },
+  {
+   "adres": "Beijensstraat 80",
+   "eerst_gezien": "2026-06-22",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 98
+  },
+  {
+   "adres": "Boomvalkstraat 18",
+   "eerst_gezien": "2026-08-10",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 49
+  },
+  {
+   "adres": "Braamhof 11",
+   "eerst_gezien": "2025-01-01",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 635
+  },
+  {
+   "adres": "Burghardt van den Berghstraat 175-A",
+   "eerst_gezien": "2026-07-28",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 62
+  },
+  {
+   "adres": "Delistraat 71",
+   "eerst_gezien": "2026-01-06",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 265
+  },
+  {
+   "adres": "de Ruyterstraat 135",
+   "eerst_gezien": "2026-07-01",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 89
+  },
+  {
+   "adres": "Doddendaal 117",
+   "eerst_gezien": "2026-07-02",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 88
+  },
+  {
+   "adres": "Dominicanenstraat 153",
+   "eerst_gezien": "2025-08-26",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 398
+  },
+  {
+   "adres": "Eerste Oude Heselaan 172",
+   "eerst_gezien": "2026-07-28",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 62
+  },
+  {
+   "adres": "Evertsenstraat 42",
+   "eerst_gezien": "2026-02-02",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 238
+  },
+  {
+   "adres": "Fransestraat 38",
+   "eerst_gezien": "2026-08-05",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 54
+  },
+  {
+   "adres": "Gerard Noodtstraat 129-A7",
+   "eerst_gezien": "2025-04-01",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 545
+  },
+  {
+   "adres": "Graafsedwarsstraat 65",
+   "eerst_gezien": "2022-09-21",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 1468
+  },
+  {
+   "adres": "Graafseweg 76",
+   "eerst_gezien": "2026-05-01",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 150
+  },
+  {
+   "adres": "Groesbeeksedwarsweg 153",
+   "eerst_gezien": "2025-10-18",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 345
+  },
+  {
+   "adres": "Groesbeeksedwarsweg 99",
+   "eerst_gezien": "2026-09-02",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "in onderhandeling",
+   "hoogstens_dagen": 26
+  }
+ ],
+ "mediaan_hoogstens_dagen": 129,
+ "aantal_in_onderhandeling": 37,
+ "mediaan_tot_onderhandeling": 88
+}

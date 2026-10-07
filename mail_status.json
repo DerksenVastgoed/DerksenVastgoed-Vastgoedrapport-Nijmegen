@@ -1,31 +1,33 @@
 {
- "datum": "2026-10-06",
+ "datum": "2026-10-07",
  "bronnen": {
   "regulier": {
-   "mails": 3,
-   "objecten": 4,
+   "mails": 9,
+   "objecten": 18,
    "overgeslagen": 0,
    "redenen": [
     "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht "
    ]
   },
   "kamernet": {
-   "mails": 16,
-   "objecten": 11,
-   "overgeslagen": 5,
+   "mails": 49,
+   "objecten": 37,
+   "overgeslagen": 12,
    "redenen": [
+    "Grotestraat, Cuijk: buiten Nijmegen",
+    "Keurvorststraat, Molenhoek: buiten Nijmegen",
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "De Heege, Westervoort: buiten Nijmegen",
-    "Stekkenberg, Groesbeek: buiten Nijmegen",
-    "Bloemfonteinstraat, Eindhoven: buiten Nijmegen",
-    "Rijksweg, Malden: buiten Nijmegen"
+    "Hegdambroek: €5 per maand is niet aannemelijk",
+    "Huissensestraat, Arnhem: buiten Nijmegen"
    ]
   },
   "pararius": {
-   "mails": 3,
-   "objecten": 4,
-   "overgeslagen": 3,
+   "mails": 5,
+   "objecten": 7,
+   "overgeslagen": 5,
    "redenen": [
+    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
     "van Spaenstraat (gemeubileerd, apart bewaard)",
     "IJsvogelpassage (gemeubileerd, apart bewaard)",
     "van Spaenstraat (gemeubileerd, apart bewaard)"

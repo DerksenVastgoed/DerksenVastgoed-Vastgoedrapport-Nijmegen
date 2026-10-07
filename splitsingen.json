@@ -13,69 +13,75 @@
  "zonder_bekende_vergunning": [],
  "vergund_maar_niets_gebeurd": [
   {
+   "adres": "Pontanusstraat 9",
+   "besluit": "2025-10-06",
+   "dagen": 366,
+   "tekst": "Besluit (met BOPA) voor het splitsen van een woning naar twee appartementen aan Pontanusstraat 9, 6524HA Nijmegen"
+  },
+  {
    "adres": "van Oldenbarneveltstraat 61",
    "besluit": "2025-09-26",
-   "dagen": 375,
+   "dagen": 376,
    "tekst": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen"
   },
   {
    "adres": "van Oldenbarneveltstraat 61-B",
    "besluit": "2025-09-26",
-   "dagen": 375,
+   "dagen": 376,
    "tekst": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen"
   },
   {
    "adres": "St. Annastraat 165",
    "besluit": "2025-09-24",
-   "dagen": 377,
+   "dagen": 378,
    "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
   },
   {
    "adres": "St. Annastraat 165-B",
    "besluit": "2025-09-24",
-   "dagen": 377,
+   "dagen": 378,
    "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
   },
   {
    "adres": "St. Annastraat 165-C",
    "besluit": "2025-09-24",
-   "dagen": 377,
+   "dagen": 378,
    "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
   },
   {
    "adres": "St. Annastraat 165-E",
    "besluit": "2025-09-24",
-   "dagen": 377,
+   "dagen": 378,
    "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
   },
   {
    "adres": "Couwenbergstraat 123",
    "besluit": "2025-08-20",
-   "dagen": 412,
+   "dagen": 413,
    "tekst": "Besluit voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen"
   },
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 417,
+   "dagen": 418,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   },
   {
    "adres": "Voorstadslaan 70",
    "besluit": "2025-07-21",
-   "dagen": 442,
+   "dagen": 443,
    "tekst": "Besluit voor het splitsen van een gebouw in 2 woningen, aan Voorstadslaan 70, 6541ST Nijmegen"
   },
   {
    "adres": "de Fransestraat 36",
    "besluit": "2025-06-26",
-   "dagen": 467,
+   "dagen": 468,
    "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
   },
   {
    "adres": "Albardastraat 34",
    "besluit": "2025-05-19",
-   "dagen": 505,
+   "dagen": 506,
    "tekst": "Besluit voor het plaatsen van een dakopbouw en splitsten van de woning, aan Albardastraat 34, 6535VK Nijmegen"
   }
  ],

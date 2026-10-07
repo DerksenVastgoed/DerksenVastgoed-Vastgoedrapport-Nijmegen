@@ -30741,6 +30741,23 @@
     "Stieltjesstraat 20": "C"
    }
   },
+  "0268100000040809": {
+   "bag_eenheden": [
+    [
+     "Hulzenseweg 1",
+     10902
+    ],
+    [
+     "Hulzenseweg 15",
+     11186
+    ],
+    [
+     "Tarweweg 3",
+     1477
+    ]
+   ],
+   "bag_gezien": "2026-10-07"
+  },
   "0268100000040817": {
    "bag_eenheden": [
     [
@@ -34442,6 +34459,18 @@
    "bag_gezien": "2026-10-04",
    "labels": {
     "van Heemskerckstraat 45": "A"
+   }
+  },
+  "0268100000049591": {
+   "bag_eenheden": [
+    [
+     "Dikkeboomweg 28",
+     130
+    ]
+   ],
+   "bag_gezien": "2026-10-07",
+   "labels": {
+    "Dikkeboomweg 28": "D"
    }
   },
   "0268100000049641": {
@@ -39619,6 +39648,12 @@
     "tekst": "te koop voor €419.000, 77 m2"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €419.000, 77 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -39731,6 +39766,12 @@
     "datum": "2023-11-29",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €295.000 (zekerheid midden)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €275.000, 40 m2"
    },
    {
     "bron": "EP-Online",
@@ -39899,6 +39940,12 @@
     "datum": "2026-06-22",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €575.000 (zekerheid laag)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €575.000, 88 m2"
    },
    {
     "bron": "EP-Online",
@@ -42079,6 +42126,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €275.000, 40 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €275.000, 40 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -42257,6 +42310,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €500.000, 107 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €500.000, 107 m2"
    },
    {
     "bron": "EP-Online",
@@ -43657,6 +43716,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €200.000, 29 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €200.000, 29 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -44066,6 +44131,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €325.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €325.000, 63 m2"
    },
    {
     "bron": "EP-Online",
@@ -47238,6 +47309,20 @@
   ],
   "pand_id": "0268100000000763"
  },
+ "cortvanderlindenstraat": {
+  "adres": "Cort van der Lindenstraat",
+  "bag_gezien": "2026-10-07",
+  "bag_zonder_id": "2026-10-07",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-06",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €700 per maand, 80 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "couwenbergstraat123": {
   "adres": "Couwenbergstraat 123",
   "gebeurtenissen": [
@@ -47771,6 +47856,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €190.000, 31 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €190.000, 31 m2"
    },
    {
     "bron": "EP-Online",
@@ -49740,6 +49831,24 @@
   ],
   "pand_id": null
  },
+ "dikkeboomweg28": {
+  "adres": "Dikkeboomweg 28",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dikkeboomweg 28 is D, geregistreerd 2024-05-02"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-07",
+    "soort": "bekendmaking",
+    "tekst": "Melding slopen deel van woning t.b.v. opbouw en aanbouw achtergevel, aan Dikkeboomweg 28, 6542RK Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000049591"
+ },
  "dikkeboomweg36": {
   "adres": "Dikkeboomweg 36",
   "gebeurtenissen": [
@@ -50038,6 +50147,12 @@
     "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid midden)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €500.000, 77 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -50216,6 +50331,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €427.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €427.000, 65 m2"
    },
    {
     "bron": "EP-Online",
@@ -50516,6 +50637,12 @@
     "datum": "2026-09-11",
     "soort": "te koop",
     "tekst": "te koop voor €595.000, 102 m2"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €595.000, 102 m2"
    },
    {
     "bron": "EP-Online",
@@ -51110,6 +51237,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €425.000, 63 m2"
    },
    {
     "bron": "EP-Online",
@@ -53401,6 +53534,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €265.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €265.000, 34 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -53816,6 +53955,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €325.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €325.000, 63 m2"
    },
    {
     "bron": "EP-Online",
@@ -55157,6 +55302,12 @@
     "datum": "2026-08-05",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €1.025.000 (zekerheid laag)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €1.025.000, 204 m2"
    },
    {
     "bron": "EP-Online",
@@ -60048,6 +60199,12 @@
     "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid midden)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €495.000, 93 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -60768,6 +60925,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €995.000, 228 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €995.000, 228 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -60808,6 +60971,12 @@
     "datum": "2026-01-01",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €1.150.000 (zekerheid laag)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €1.150.000, 228 m2"
    },
    {
     "bron": "EP-Online",
@@ -61174,6 +61343,12 @@
     "datum": "2026-09-29",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €950 per maand, 60 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-06",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.750 per maand, 60 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -63055,6 +63230,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €365.000, 79 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €365.000, 79 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -63636,6 +63817,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €295.000, 51 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €295.000, 51 m2"
    },
    {
     "bron": "EP-Online",
@@ -64851,6 +65038,12 @@
     "tekst": "verkocht. vraagprijs €219.000 (zekerheid midden)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €195.000, 22 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-02",
     "soort": "energielabel",
@@ -64900,7 +65093,14 @@
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [],
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €246.000, 41 m2"
+   }
+  ],
   "pand_id": null
  },
  "jandewittstraat8": {
@@ -68753,6 +68953,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €365.000, 72 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €365.000, 72 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -68884,6 +69090,12 @@
  "krayenhofflaan47": {
   "adres": "Krayenhofflaan 47",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €439.000, 116 m2"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -71921,6 +72133,12 @@
     "tekst": "te koop aangeboden. vraagprijs €450.000 (zekerheid midden)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €450.000, 73 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -74293,6 +74511,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €629.000, 122 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €629.000, 122 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -74753,6 +74977,12 @@
     "datum": "2026-09-01",
     "soort": "verkocht",
     "tekst": "verkocht (zekerheid laag)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €535.000, 95 m2"
    },
    {
     "bron": "EP-Online",
@@ -78211,6 +78441,12 @@
     "tekst": "te koop aangeboden. vraagprijs €469.000 (zekerheid hoog)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €469.000, 103 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -81362,6 +81598,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Muntweg 414 is nu E"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-07",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van een kamerverhuurpand naar 2 woningen, aan Muntweg 414, 6532TN Nijmegen"
    }
   ],
   "pand_id": "0268100000042348"
@@ -81542,6 +81784,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 80 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €425.000, 80 m2"
    },
    {
     "bron": "EP-Online",
@@ -81880,6 +82128,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €525.000, 100 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €525.000, 100 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -82145,6 +82399,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €425.000, 76 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €425.000, 76 m2"
    },
    {
     "bron": "EP-Online",
@@ -83683,6 +83943,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €675.000, 134 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €675.000, 134 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -84524,6 +84790,12 @@
     "datum": "2026-09-03",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €425.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €425.000, 59 m2"
    }
   ],
   "pand_id": "0268100000083307"
@@ -85055,6 +85327,12 @@
     "tekst": "te koop voor €539.000, 135 m2"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €539.000, 135 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -85356,6 +85634,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €350.000, 56 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €350.000, 56 m2"
    },
    {
     "bron": "EP-Online",
@@ -87151,6 +87435,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €345.000, 58 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €345.000, 58 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -87269,6 +87559,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €335.000, 63 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €335.000, 63 m2"
    },
    {
     "bron": "EP-Online",
@@ -89707,6 +90003,12 @@
     "tekst": "te koop aangeboden. vraagprijs €550.000 (zekerheid hoog)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €550.000, 89 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -90135,6 +90437,12 @@
  "schoolstraat135": {
   "adres": "Schoolstraat 135",
   "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €405.000, 80 m2"
+   },
    {
     "bron": "EP-Online",
     "datum": "2026-10-01",
@@ -90811,6 +91119,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €225.000, 33 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €225.000, 33 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -91449,6 +91763,12 @@
     "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €385.000, 49 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-03",
     "soort": "energielabel",
@@ -91561,6 +91881,12 @@
     "datum": "2025-09-24",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €395.000, 54 m2"
    },
    {
     "bron": "EP-Online",
@@ -92167,6 +92493,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht, laatste vraagprijs €175.000, 23 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €165.000, 23 m2"
    },
    {
     "bron": "EP-Online",
@@ -94413,6 +94745,12 @@
     "tekst": "te koop aangeboden. vraagprijs €360.000 (zekerheid midden)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €625.000, 146 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -95391,6 +95729,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 86 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €375.000, 86 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -95462,6 +95806,18 @@
   ],
   "pand_id": "0268100000021549"
  },
+ "tarweweg3": {
+  "adres": "Tarweweg 3",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-07",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het omzetten van een kantoor naar educatieruimte, aan Tarweweg 3, 6534AM Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000040809"
+ },
  "thijmstraat109": {
   "adres": "Thijmstraat 109",
   "gebeurtenissen": [
@@ -95512,6 +95868,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €375.000, 64 m2"
    },
    {
     "bron": "EP-Online",
@@ -96088,6 +96450,12 @@
     "datum": "2026-10-04",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €760 per maand, 25 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-06",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €685 per maand, 11 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -97435,6 +97803,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €500.000, 90 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €500.000, 90 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -98780,6 +99154,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €375.000, 64 m2"
    },
    {
     "bron": "EP-Online",
@@ -100194,6 +100574,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €235.000, 34 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €235.000, 34 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -100953,7 +101339,7 @@
   "pand_id": "0268100000029375"
  },
  "vanslichtenhorststraat14": {
-  "adres": "Van Slichtenhorststraat 14",
+  "adres": "van Slichtenhorststraat 14",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -100972,6 +101358,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Slichtenhorststraat 14A is nu E"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-07",
+    "soort": "te koop",
+    "tekst": "te koop voor €575.000, 74 m2"
    }
   ],
   "pand_id": "0268100000029374"
@@ -101728,6 +102120,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €315.000, 61 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €315.000, 61 m2"
    },
    {
     "bron": "EP-Online",
@@ -105972,6 +106370,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €375.000, 64 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €375.000, 64 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -106600,6 +107004,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €350.000, 65 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €350.000, 65 m2"
    },
    {
     "bron": "EP-Online",
@@ -107646,6 +108056,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €545.000, 147 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €545.000, 147 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -107788,6 +108204,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €495.000, 124 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €495.000, 124 m2"
    },
    {
     "bron": "EP-Online",
@@ -110382,6 +110804,12 @@
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €675.000, 127 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €675.000, 127 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -110767,6 +111195,20 @@
    }
   ],
   "pand_id": "0268100000002213"
+ },
+ "waterstraat": {
+  "adres": "Waterstraat",
+  "bag_gezien": "2026-10-07",
+  "bag_zonder_id": "2026-10-07",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €650 per maand, 11 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "waterstraat115": {
   "adres": "Waterstraat 115",
@@ -112965,6 +113407,12 @@
     "tekst": "te koop voor €349.500, 82 m2"
    },
    {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "onder bod, vraagprijs €349.500, 82 m2"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -113077,6 +113525,12 @@
     "datum": "2026-09-28",
     "soort": "verkocht",
     "tekst": "verkocht onder voorbehoud, laatste vraagprijs €315.000, 42 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "in onderhandeling",
+    "tekst": "verkocht onder voorbehoud, vraagprijs €315.000, 42 m2"
    },
    {
     "bron": "EP-Online",

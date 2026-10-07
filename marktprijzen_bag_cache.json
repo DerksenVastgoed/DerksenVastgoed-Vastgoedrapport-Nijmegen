@@ -72273,5 +72273,72 @@
     "buurtnaam": "Hunnerberg",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-38d8ce0571e55d9d35e29248989bfdf9"
+  },
+  "Cort van der Lindenstraat|Nijmegen": {
+    "oppervlakte": 80,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "van Slichtenhorststraat 14|Nijmegen": {
+    "oppervlakte": 74,
+    "bouwjaar": "1899",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524JP",
+    "adresseerbaarObjectIdentificatie": "0268010000056861",
+    "pand": "0268100000029374",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-8f80fbea169abaf9787c4fe6e358f1d6",
+    "eenheden_in_pand": [
+      {
+        "adres": "van Slichtenhorststraat 14",
+        "oppervlakte": 97,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Slichtenhorststraat 14A",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Slichtenhorststraat 16",
+        "oppervlakte": 171,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 97,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2020-12-21",
+      "geldig_tot": "2030-12-21",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Waterstraat|Nijmegen": {
+    "oppervlakte": 11,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Oude Nonnendaalseweg 188|Nijmegen": {
+    "postcode": "6542WX",
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-73f7d6cc1f5690e3215d798f298b1841"
   }
 }

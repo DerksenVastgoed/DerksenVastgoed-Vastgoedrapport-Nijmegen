@@ -7,6 +7,14 @@
   "omweg": 1.37,
   "soort": "bus"
  },
+ "51.80537,5.83031": {
+  "geschat": false,
+  "hemelsbreed": 113,
+  "meters": 110,
+  "naam": "Hogendorpstraat",
+  "omweg": 0.97,
+  "soort": "bus"
+ },
  "51.81797,5.79892": {
   "geschat": false,
   "hemelsbreed": 119,
@@ -421,6 +429,14 @@
   "meters": 296,
   "naam": "Fransestraat",
   "omweg": 3.89,
+  "soort": "bus"
+ },
+ "51.83927,5.86185": {
+  "geschat": false,
+  "hemelsbreed": 134,
+  "meters": 246,
+  "naam": "Fransestraat",
+  "omweg": 1.84,
   "soort": "bus"
  },
  "51.83937,5.85830": {
@@ -1197,6 +1213,14 @@
   "meters": 302,
   "naam": "Joris Ivensplein",
   "omweg": 1.8,
+  "soort": "bus"
+ },
+ "51.84982,5.84311": {
+  "geschat": false,
+  "hemelsbreed": 88,
+  "meters": 87,
+  "naam": "Biezenstraat",
+  "omweg": 0.99,
   "soort": "bus"
  },
  "51.85016,5.85637": {

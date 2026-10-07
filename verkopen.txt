@@ -931,3 +931,10 @@ Maasstraat | Nijmegen | 822 | te huur | 2026-10-06 | pararius | 35 | 6541ZB
 
 # Automatisch toegevoegd uit Funda-attendering op 06-10-2026
 Jan de Wittstraat | Nijmegen | 750 | te huur kamer | 2026-10-06 | kamernet-incl | 13 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 07-10-2026
+Cort van der Lindenstraat | Nijmegen | 700 | te huur kamer | 2026-10-06 | kamernet-incl | 80 | 
+Hatertseveldweg | Nijmegen | 1750 | te huur | 2026-10-06 | kamernet-incl | 60 | 
+Tolhuis | Nijmegen | 685 | te huur kamer | 2026-10-06 | kamernet-incl | 11 | 
+van Slichtenhorststraat 14 | Nijmegen | 575000 | te koop | 2026-10-07 |  | 74 | 6524JP
+Waterstraat | Nijmegen | 650 | te huur kamer | 2026-10-07 | kamernet-incl | 11 | 
