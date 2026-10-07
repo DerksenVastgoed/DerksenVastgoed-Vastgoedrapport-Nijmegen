@@ -6178,6 +6178,36 @@ aantal waarnemingen waarop die rust.
 
 ---
 
+## 64. Het aantal bouwlagen lag al klaar en werd nergens gebruikt — 7 oktober 2026
+
+**Mark:** kunnen we uit onze gegevens bepalen hoeveel vierkante meter een etage
+heeft, zodat we zien of een pand van 120 m2 twee of drie lagen heeft?
+
+**Dat kan, en het lag al klaar.** De 3D BAG levert b3_bouwlagen, het geschatte
+aantal bouwlagen, en b3_opp_grond, het grondvlak. Beide worden sinds weken
+opgehaald voor 1.242 panden en werden in geen enkele module gebruikt.
+
+Het dossier zet er nu bij: "3 bouwlagen, grondvlak 41 m2, dus ongeveer 40 m2
+per laag bij 120 m2 gebruiksoppervlak". Bij een pand met meer dan een woning
+staat erbij dat de oppervlakte niets zegt over de verdeling per laag, want dan
+is de gebruiksoppervlakte van dit object niet het hele pand. Bij een pand van
+een bouwlaag komt er geen regel.
+
+**Waarom dit het bepalende getal is bij splitsen.** Een opdeling gaat in de
+praktijk per woonlaag: dat is waar de trap, de meterkast en de leidingschacht
+al zitten. Een pand van 120 m2 over twee lagen geeft twee eenheden van 60, over
+drie lagen drie van 40. Dat verschil bepaalt in welke grootteklasse de nieuwe
+eenheden vallen, en daarmee of de groottepremie 1,236 of 1,422 is.
+
+**Deze reparatie ging drie keer mis voordat hij werkte**, en dat is het noteren
+waard. De regel waarop ik aankoppelde komt drie keer in het bestand voor, met
+verschillende inspringing, en mijn vervanging landde alle drie de keren. Het
+bestand was daarna op twee plekken stuk. Dat is de prijs van tekstvervanging in
+een bestand van zevenduizend regels; voortaan eerst tellen hoeveel keer een
+anker voorkomt.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

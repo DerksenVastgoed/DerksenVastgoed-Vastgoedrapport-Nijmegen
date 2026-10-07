@@ -4896,6 +4896,34 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     geblokkeerd = sorted((routes.get("geblokkeerd") or {}).items())
     for route, reden in geblokkeerd:
         f("route afgevallen", _uitleg_blokkade(route, reden), "eigen toets")
+    # Hoeveel bouwlagen heeft dit pand, en hoeveel vierkante meter is dat per
+    # laag? De 3D BAG geeft het aantal bouwlagen en het grondvlak, en die
+    # werden opgehaald maar nergens gebruikt. Juist bij splitsen is dit het
+    # bepalende getal: een opdeling gaat in de praktijk per woonlaag, dus bij
+    # 120 m2 over twee lagen zijn dat twee eenheden van 60 en over drie lagen
+    # drie van 40.
+    try:
+        import json as _js
+        with open("bag3d.json", encoding="utf-8") as _f:
+            _b3 = (_js.load(_f) or {}).get("panden") or {}
+        _rij = _b3.get(str(w.get("pand_id") or w.get("pand") or "")) or {}
+        _lagen = _rij.get("b3_bouwlagen")
+        _grond = _rij.get("b3_opp_grond")
+        if _lagen and int(_lagen) > 1:
+            _deel = f"{int(_lagen)} bouwlagen"
+            if _grond:
+                _deel += f", grondvlak {round(float(_grond))} m2"
+            _eenh_n = len(w.get("eenheden_in_pand") or [])
+            if _eenh_n > 1:
+                _deel += (f"; het pand bevat {_eenh_n} woningen, dus deze "
+                          f"oppervlakte zegt niets over de verdeling per laag")
+            elif opp:
+                _deel += (f", dus ongeveer {round(opp / int(_lagen))} m2 per "
+                          f"laag bij {round(opp)} m2 gebruiksoppervlak")
+            f("bouwlagen", _deel, "3D BAG, TU Delft en 3DGI")
+    except Exception:
+        pass
+
     lab = _labeltekst(w.get("energielabel"))
     if lab != "onbekend":
         # Erbij zetten voor hoeveel woningen in dit pand we een label kennen.
