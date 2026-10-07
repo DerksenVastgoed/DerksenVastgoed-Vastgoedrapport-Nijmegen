@@ -941,6 +941,32 @@ def controle_woz_zonder_pand():
             "zoals het in het aanbod staat, of voeg beide regels toe.")
 
 
+def controle_nieuwbouw():
+    """
+    Nieuwbouwprojecten die apart worden gehouden.
+
+    Een prijs vrij op naam is niet vergelijkbaar met kosten koper, en een
+    bouwnummer is geen bestaande woning. Zeven stadswoningen van een project
+    tegen €733.000 voor 153 m2 zouden de mediaan per m2 en de groottepremie
+    verschuiven zonder dat er iets in de bestaande voorraad is gebeurd.
+    """
+    aantal = 0
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) > 3 and v[3].lower().startswith("project"):
+                    aantal += 1
+    except Exception:
+        return (OK, "geen aanbodbestand om te tellen", "")
+    if not aantal:
+        return (OK, "geen nieuwbouwprojecten in het aanbodbestand", "")
+    return (OK, f"{aantal} nieuwbouwregels apart gehouden; die tellen niet mee "
+            f"in de mediaan per m2, de groottepremie of de aanbodreeks", "")
+
+
 def controle_adressen_met_meerdere_maten():
     """
     Adressen waaronder meerdere woningen schuilgaan.
@@ -1399,6 +1425,7 @@ CONTROLES = [
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
     ("WOZ-bestand", controle_wozbestand),
     ("WOZ zonder pand", controle_woz_zonder_pand),
+    ("Nieuwbouw apart", controle_nieuwbouw),
     ("Opnieuw aangeboden", controle_opnieuw_aangeboden),
     ("VvE-bijdragen", controle_vve),
     ("WOZ-schatting", controle_wozschatting),

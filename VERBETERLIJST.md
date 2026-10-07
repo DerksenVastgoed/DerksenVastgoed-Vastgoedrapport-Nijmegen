@@ -5682,6 +5682,37 @@ als verkoop geteld. Dat was de fout die hier makkelijk had kunnen insluipen.
 
 ---
 
+## 51. Nieuwbouw hoort niet in de mediaan — 7 oktober 2026
+
+In de lijst met panden in onderhandeling staan zeven stadswoningen van Amber
+fase 2, 153 m2 voor ongeveer €733.000 vrij op naam. Die zouden de mediaan per m2
+en de groottepremie verschuiven zonder dat er iets in de bestaande voorraad
+gebeurt: vrij op naam bevat de overdrachtskosten en de btw, en een bouwnummer is
+geen bestaand pand.
+
+Zulke regels krijgen nu de status "project". Die naam is met opzet gekozen:
+negen filters in andere modules matchen op het voorvoegsel "nieuw", dus een
+status "nieuwbouw" zou alsnog als gewoon aanbod worden geteld. Getest: "project"
+valt buiten elk van die filters, "nieuw" en "te koop" erbinnen.
+
+Het rapport meldt hoeveel nieuwbouwregels apart worden gehouden, en de opdracht
+aan de brief zegt dat zo'n regel niet voor een prijsvergelijking of een mediaan
+mag worden gebruikt. Als het nieuws is, bijvoorbeeld een heel blok dat tegelijk
+onder optie gaat, mag dat als eigen bericht met vermelding dat het vrij op naam
+is.
+
+**Een tweede vondst uit dezelfde lijst, en die lost een oud raadsel op.** Er
+staat "Jan de Wittstraat 6-8 studio 9, 41 m2, €246.000". Jan de Wittstraat 6 is
+dus een studiocomplex. Dat verklaart de WOZ-uitschieter van +1132% op dat adres:
+de ingevoerde waarde is vrijwel zeker die van het hele pand en niet van de
+studio van 22 m2 die in ons aanbod staat.
+
+En het verklaart ook de St. Annastraat 30, die als onder bod staat met 23 m2 voor
+€165.000 terwijl wij er ook een van 31 m2 kennen. Funda hangt daar werkelijk
+meerdere eenheden onder hetzelfde adres; dat is geen fout in onze invoer.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

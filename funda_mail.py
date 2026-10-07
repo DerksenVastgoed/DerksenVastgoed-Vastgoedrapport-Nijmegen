@@ -811,6 +811,15 @@ def main():
             # panden die zijn verkocht of onder voorbehoud staan. Zonder dit
             # kwamen die als "te koop" binnen en bleef een verkocht pand
             # eeuwig in het aanbod staan.
+            # Nieuwbouw apart houden. Een prijs vrij op naam is niet
+            # vergelijkbaar met kosten koper, en een bouwnummer is geen
+            # bestaande woning. In de mediaan per m2 of in de groottepremie
+            # hoort het dus niet. De status heet "project" en niet
+            # "nieuwbouw": negen filters in andere modules matchen op het
+            # voorvoegsel "nieuw" en zouden het dan alsnog als aanbod zien.
+            if any(w in blob for w in ("nieuwbouwwoning", "bouwnr.", "v.o.n.",
+                                       "vrij op naam")):
+                status_label = "project"
             # Funda vat drie stadia samen als "in onderhandeling": onder bod,
             # onder optie en verkocht onder voorbehoud. We bewaren het stadium
             # dat in de mail staat, want ze zeggen niet hetzelfde.

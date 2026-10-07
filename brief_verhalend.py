@@ -192,6 +192,8 @@ EEN BENADERD JAARTAL BLIJFT BENADERD. Staat er bij een gebeurtenis "jaar bij ben
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
+NIEUWBOUW IS GEEN VERGELIJKINGSMATERIAAL. Een prijs vrij op naam bevat de overdrachtskosten en de btw en is dus niet te vergelijken met kosten koper. Een bouwnummer is geen bestaand pand. Staat er een regel met status "project", gebruik die dan niet voor een prijsvergelijking, een mediaan of een conclusie over de markt in de ring. Als projectaanbod nieuws is, bijvoorbeeld omdat een heel blok tegelijk onder optie gaat, mag dat als eigen bericht, met de vermelding dat het nieuwbouw vrij op naam is.
+
 IN ONDERHANDELING DEKT DRIE STADIA, EN DIE ZIJN NIET HETZELFDE. Funda vat onder bod, onder optie en verkocht onder voorbehoud samen als "in onderhandeling". Onder bod betekent dat er wordt onderhandeld en kan nog makkelijk afketsen. Onder optie betekent dat het pand voor iemand is vastgehouden. Verkocht onder voorbehoud is vrijwel een deal, met alleen de financiering of een bouwkundige keuring nog open. Neem het stadium over dat in de gegevens staat en vervang het niet door een algemener woord. Staat er alleen "in onderhandeling", schrijf dan niet dat het verkocht is.
 
 ONDERHANDELEN IS SNELLER NIEUWS DAN VERKOCHT. Dat is het moment waarop een koper zich vastlegt; de overdracht bij de notaris volgt maanden later. Een verkoop die nu wordt gemeld is dus vaak weken oud nieuws. Maar het blijft geen verkoop: noem het zoals het er staat.
