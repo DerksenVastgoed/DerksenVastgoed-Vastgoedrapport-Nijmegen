@@ -72278,7 +72278,8 @@
     "oppervlakte": 80,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "van Slichtenhorststraat 14|Nijmegen": {
     "oppervlakte": 74,
@@ -72333,7 +72334,8 @@
     "oppervlakte": 11,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Oude Nonnendaalseweg 188|Nijmegen": {
     "postcode": "6542WX",
