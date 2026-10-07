@@ -5808,6 +5808,75 @@ buiten het gereguleerde gebied geldt de eis juist wel.
 
 ---
 
+## 55. De rekenstukken van een splitsingsaanvraag zelf maken — 7 oktober 2026
+
+**Mark:** welke documenten gaan er bij zo'n aanvraag mee, en kunnen we die
+berekeningen zelf opstellen zodat ze klaarliggen bij aankoop?
+
+**Uit de twee aanvragen blijkt welke bijlagen er zijn.** Plattegronden,
+doorsneden en detailtekeningen; een constructieve berekening; een toelichting op
+de constructie; mechanische ventilatie; thermische isolatie; bruikbaarheid en
+toegankelijkheid; bouwwerkinstallaties; kwaliteitsverklaringen; een
+parkeerberekening; bodemonderzoek; en situatietekeningen van de bestaande en de
+nieuwe toestand. Bij de Staringstraat zit de constructieberekening er nog niet
+bij: die wordt later nagestuurd.
+
+**Drie daarvan zijn rekenwerk met vaste formules**, en die zijn uit de aanvraag
+van de Staringstraat te herleiden:
+- de 55%-toets uit het Besluit bouwwerken leefomgeving: minstens 55% van de
+  gebruiksoppervlakte moet verblijfsgebied zijn;
+- de ventilatie-eis, 0,9 dm3/s per m2 verblijfsruimte en vaste waarden van 7
+  voor een toilet, 14 voor sanitair en berging en 21 voor een keuken;
+- de spuivoorziening, 0,06 m2 per m2 verblijfsruimte;
+- en de parkeerberekening met de norm van 0,70 per woning en de vrijstelling
+  voor splitsing in het gereguleerde gebied.
+
+**splitsingstoets.py doet dat, en is getest tegen de echte aanvraag.** Met de
+kamermaten van de Staringstraat erin komt er exact hetzelfde uit: 56,6 en 48,2
+m2 gebruiksoppervlakte, eisen van 31,1 en 26,5, verschillen van +19,9 en +8,6,
+en ventilatiewaarden 18,81, 14,76 en 12,78. Dat is geen benadering maar
+hetzelfde getal.
+
+Ook getest op de twee gevallen waar het misgaat: een appartement met te veel
+verkeersruimte haalt de 55%-eis niet en wordt gemeld, en een pand buiten het
+gereguleerde gebied krijgt de parkeereis wel met het tekort als kritieke toets.
+
+**Aanvulling na navraag van Mark over het huidige Bbl.** Twee dingen waren te
+grof.
+
+Het minimum van 7 dm3/s per ruimte werd niet getoetst. Een kamer van 5 m2 kwam
+daardoor op 4,5 uit in plaats van op 7. Nu staat er "7,0 (minimum)" bij zo'n
+ruimte.
+
+En het onderscheid tussen verblijfsgebied en verblijfsruimte ontbrak. Voor
+nieuwbouw vraagt een verblijfsgebied 0,9 dm3/s per m2 en een verblijfsruimte
+0,7, allebei met dat minimum van 7. Het invoerbestand kiest nu zelf; markeer je
+de ruimten als verblijfsgebied, dan komen er exact de getallen van de echte
+aanvraag uit: 12,33, 18,81 en 14,76. Die aanvraag rekende dus met de zwaarste
+waarde voor elke ruimte.
+
+Ook de spuivoorziening is nu gesplitst: 6 dm3/s per m2 voor een verblijfsgebied
+en 3 voor een losse verblijfsruimte, omgerekend naar 0,06 en 0,03 m2
+openingsoppervlak per m2.
+
+**En het Bbl drukt dit voor een woonfunctie niet uit in luchtwisselingen per
+uur** maar in dm3/s per m2 vloeroppervlakte. De tabel zet er nu m3/h naast,
+omgerekend met 1 dm3/s is 3,6 m3/h, zodat het vergelijkbaar is met wat een
+installateur noemt.
+
+**Bij verbouw mag worden teruggevallen op het rechtens verkregen niveau:** de
+legale kwaliteit mag niet verslechteren, met de eisen voor bestaande bouw als
+ondergrens, en dat is 0,7 dm3/s per m2 met hetzelfde minimum. Het rapport zegt
+er daarom bij dat het op nieuwbouwniveau rekent en dus de zwaarste variant is.
+
+**Wat we hiermee niet kunnen:** de constructieberekening, de bouwtekeningen en
+de situatietekeningen. Daar zijn een constructeur en een tekenbureau voor nodig.
+Maar de toets die bepaalt of een indeling überhaupt kan, hoeft niet meer te
+wachten tot na de aankoop: met de maten van een plattegrond is in vijf minuten
+te zien of drie eenheden passen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
