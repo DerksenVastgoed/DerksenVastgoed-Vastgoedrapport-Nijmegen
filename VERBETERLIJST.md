@@ -6148,6 +6148,36 @@ dat verschil groot genoeg om de rangorde om te gooien.
 
 ---
 
+## 63. Een kamerhuur hoort per kamer, niet per vierkante meter — 7 oktober 2026
+
+**Mark:** dat meten we zelf toch al via Kamernet en Pararius?
+
+**Klopt, en dat maakt mijn eigen advies van een minuut eerder onzin.** Ik zei
+dat hij met drie telefoontjes naar een bemiddelaar kon weten wat een kamer
+opbrengt. Die telefoontjes zijn niet nodig: er staan 56 huurwaarnemingen in het
+bestand, waaronder Kamernet-advertenties die per kamer zijn.
+
+**Het echte probleem zat in de eenheid.** Het kamerscenario rekent met een prijs
+per vierkante meter: €25,79 maal het verhuurbare deel van 158 m2 geeft €4.075.
+Dat getal is door niemand na te rekenen. De markt praat in huur per kamer, onze
+eigen waarnemingen staan per kamer, en dan is een prijs per m2 de enige
+grootheid die niemand kent.
+
+Het dossier zet er nu bij hoeveel kamers het zijn en wat dat per kamer betekent:
+"zes kamers à €679, toets dit aan het kameraanbod in deze buurt". Het aantal
+volgt uit de gemeten kamergrootte van ongeveer 20 m2 uit onze eigen Kamernet-
+waarnemingen, niet uit een aanname. Getest op vier pandmaten.
+
+**Daarmee wordt de gevoeligheid zichtbaar in plaats van verstopt.** Bij €679 per
+kamer staat de Stieltjesstraat 10 op +56% boven de vraagprijs, bij €600 op +38%,
+bij €550 op +27% en bij €450 op +4%. Het is dus geen no-brainer van +50% maar
+een bandbreedte die door één getal wordt bepaald, en dat getal meten we zelf.
+
+De opdracht aan de brief eist nu dat de huur per kamer wordt genoemd, met het
+aantal waarnemingen waarop die rust.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

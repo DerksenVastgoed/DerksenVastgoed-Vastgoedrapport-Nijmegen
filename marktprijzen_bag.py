@@ -1544,6 +1544,10 @@ VERHUURBAAR_AANDEEL = 0.79
 # grens die hieronder gold, sloot de beste variant helemaal uit.
 MIN_UNIT_M2 = 22
 VERHUURBAAR_SPLITSING = 0.90  # verlies aan gedeelde entree en trappenhuis
+# De mediane kamergrootte uit onze eigen Kamernet-waarnemingen. Hiermee wordt
+# een kamerscenario uitgedrukt in kamers en huur per kamer, en dat is wat je
+# kunt narekenen tegen het aanbod.
+KAMER_M2_MEDIAAN = 20
 MAX_UNITS = 6               # boven dit aantal is het geen splitsing meer
 
 
@@ -2270,10 +2274,20 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
                    else "zijn niet ingevuld; daarom niet als route gekozen"))
         return uit_w
 
-    # Kamerverhuur: alleen het verhuurbare deel telt, tegen de kamerhuur
+    # Kamerverhuur: alleen het verhuurbare deel telt, tegen de kamerhuur.
+    #
+    # De uitkomst wordt ook per kamer uitgedrukt, want zo wordt hij
+    # narekenbaar. "€4.075 per maand" voor 158 m2 zegt niemand iets; "zes
+    # kamers à €679" is meteen te toetsen aan wat er op Kamernet staat, en dat
+    # meten we zelf. Reken je met een prijs per vierkante meter, dan verdwijnt
+    # de enige grootheid waar de markt in praat.
     huur_k_m2, bron_k = huur_voor_buurt(buurt, huur_bk, huur_k, 20, "kamer")
     verhuurbaar = round(opp * VERHUURBAAR_AANDEEL)
     maand_k = huur_k_m2 * verhuurbaar
+    # Het aantal kamers volgt uit de gemeten kamergrootte, niet uit een
+    # aanname: onze eigen waarnemingen op Kamernet liggen rond de 20 m2.
+    kamers_schatting = max(1, round(verhuurbaar / KAMER_M2_MEDIAAN))
+    per_kamer = round(maand_k / kamers_schatting) if kamers_schatting else None
     naam = "kamers" if kamerpand else "kamers, mits vergunning"
     if not kamerpand:
         # Omzetten van een eengezinswoning is geen formaliteit: de
@@ -2297,6 +2311,7 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
         # waarschuwing dat de meters duur zijn ingekocht.
         return {"naam": naam, "huur_m2": huur_k_m2, "maand": maand_k,
                 "opp": verhuurbaar, "bron": bron_k,
+                "kamers": kamers_schatting, "per_kamer": per_kamer,
                 "let_op": "prijs per m² ligt boven het gemiddelde van "
                           "vergelijkbaar grote panden"}
 
@@ -2309,7 +2324,8 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
     if sp and sp["maand"] > maand_k:
         return sp
     return {"naam": naam, "huur_m2": huur_k_m2, "maand": maand_k,
-            "opp": verhuurbaar, "bron": bron_k}
+            "opp": verhuurbaar, "bron": bron_k,
+            "kamers": kamers_schatting, "per_kamer": per_kamer}
 
 
 
@@ -4937,8 +4953,16 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         if bekend and sc["naam"] == "één woning":
             waarom = ("; het pand is bekend als kamerpand, maar verhuur als een "
                       "woning rekent hier hoger uit dan per kamer")
-        f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand "
-          f"({sc.get('bron', '')}), richtprijs €{eu(plafond)} als koopsom{waarom}",
+        # Bij kamerverhuur de huur ook per kamer noemen. Een maandbedrag voor
+        # het hele pand is niet te toetsen; zes kamers à €679 is dat wel, en
+        # dat is precies het getal dat wij zelf op Kamernet meten.
+        _per_kamer = ""
+        if sc.get("kamers") and sc.get("per_kamer"):
+            _per_kamer = (f", dus {sc['kamers']} kamers à €{eu(sc['per_kamer'])} "
+                          f"(toets dit aan het kameraanbod in deze buurt)")
+        f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand"
+          f"{_per_kamer} ({sc.get('bron', '')}), richtprijs €{eu(plafond)} als "
+          f"koopsom{waarom}",
           "eigen doorrekening met aannames voor exploitatie en verbouwing")
         # Geen alternatief tonen voor een route die hierboven al is afgevallen.
         # Bij de Zwaluwstraat en de Krayenhofflaan stond splitsen zowel als
