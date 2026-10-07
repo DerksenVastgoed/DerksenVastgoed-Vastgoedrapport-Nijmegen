@@ -6183,8 +6183,34 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
             p_ = richtprijs_van(w_, sc_)
             return (p_ - w_["prijs"]) / w_["prijs"] * 100 if p_ else None
 
+        def _genoeg_gemeten(k):
+            """
+            Rust de huur op genoeg waarnemingen om een pand uit te lichten?
+
+            Bij de Stieltjesstraat 10 kwam de richtprijs 48% boven de vraagprijs
+            uit, op een huur die op drie kleine panden was gemeten en doorgerekend
+            naar 158 m2. Dat is dezelfde fout als een prijs per m2 van kleine
+            eenheden toepassen op een groot pand. Zo'n getal mag in de tabel
+            staan, met de bron erbij, maar het hoort niet het pand te zijn dat
+            de brief uitlicht.
+            """
+            bron = ((k[-1].get("_scenario") or {}).get("bron") or "").lower()
+            if "aanname" in bron:
+                return False
+            # Alleen het getal dat bij "gemeten, N panden" hoort telt. Een
+            # eerdere versie pakte het eerste cijfer in de tekst en las daardoor
+            # "179 punten" als 179 waarnemingen.
+            m = re.search(r"gemeten,\s*(\d+)\s*(?:vergelijkbare\s*)?pand", bron)
+            if m:
+                return int(m.group(1)) >= 5
+            return True
+
         met_ruimte = [(r, k) for k in toonbaar for r in [_ruimte_van(k)]
-                      if r is not None]
+                      if r is not None and _genoeg_gemeten(k)]
+        if not met_ruimte:
+            # Liever geen uitgelicht pand dan een pand waarvan het getal op een
+            # handvol waarnemingen rust.
+            met_ruimte = []
         if met_ruimte:
             ruimte, beste = max(met_ruimte, key=lambda x: x[0])
             afw, ppm2, klasse, _a, basis, w = beste

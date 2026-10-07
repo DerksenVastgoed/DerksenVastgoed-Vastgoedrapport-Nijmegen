@@ -5746,6 +5746,31 @@ model, niet geschat.
 
 ---
 
+## 53. Het uitgelichte pand rustte op drie waarnemingen — 7 oktober 2026
+
+De brief van 7 oktober lichtte de Stieltjesstraat 10 uit met een richtprijs van
+€799.285 tegen een vraagprijs van €539.000, dus 48% ruimte. De brief zette er
+zelf bij dat die huur op maar drie kleine panden is gemeten en dat je daar niet
+blind op moet varen; dat is eerlijk, maar het pand stond er wel als beste.
+
+**Dat is dezelfde fout als bij de groottepremie:** een huur per m2 die op kleine
+eenheden is gemeten, toegepast op een pand van 158 m2.
+
+De keuze van het uitgelichte pand slaat nu panden over waarvan de huur op minder
+dan vijf waarnemingen rust of op een aanname. Zulke panden blijven gewoon in de
+tabel staan, met de bron erbij, maar ze worden niet het pand dat de brief
+uitlicht.
+
+**Een valkuil in de eerste versie:** die las het eerste cijfer uit de
+brontekst, en bij "wettelijk maximum bij 179 punten" werd dat 179 waarnemingen.
+Nu wordt alleen het getal uit "gemeten, N panden" gelezen. Getest op vijf
+bronteksten.
+
+**Wat Mark hier zelf aan had:** de bronlinks naar de officiële bekendmakingen
+staan nu in de brief, dus elke aanvraag is in een klik na te lezen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
