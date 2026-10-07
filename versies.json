@@ -10,7 +10,7 @@
   "bouwkosten_index.py": "f28b149e1b4b",
   "bouwnorm.py": "0e31713d956d",
   "brief_logboek.py": "3667d1e9fdaa",
-  "brief_verhalend.py": "5729c64028ab",
+  "brief_verhalend.py": "cabe9ab6557c",
   "bronnen.py": "f0dc6650f0f9",
   "buurten_tabel.py": "be9f6ffee4ec",
   "corop_prijzen.py": "ac3a1de9f344",
@@ -23,12 +23,13 @@
   "kamernet_plak.py": "7b673395ed06",
   "kamerverhuur_register.py": "9138b6992488",
   "maatregel_hoeveelheden.py": "c100d5a6d09d",
-  "marktprijzen_bag.py": "5b2ecd2e63c7",
+  "marktprijzen_bag.py": "4d3707e88837",
   "misdrijven_buurt.py": "60a769179821",
   "onderwerpen_signaal.py": "2e2017c0c698",
   "pandgeschiedenis.py": "16bee51ea297",
   "pandlezer.py": "5ef344795556",
   "publicaties_vastgoed.py": "93d577ba3a88",
+  "puntendoel.py": "564923ee99b1",
   "regelgeving_monitor.py": "3a32888de289",
   "rente_verhuurhypotheek.py": "e9f628b66fcc",
   "splitsing_voltooid.py": "02d0aa467f94",
@@ -38,7 +39,7 @@
   "vergunningen_buurten.py": "f220305bc7bc",
   "verkoopdatum_model.py": "e24a889d332d",
   "woningprijsindex.py": "8bc8f9f2c72f",
-  "wwso.py": "878418125bec"
+  "wwso.py": "f4b919fb6ec7"
  },
  "gemaakt": "2026-10-07"
 }

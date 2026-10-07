@@ -1983,7 +1983,9 @@ def wws_indicatie(w):
                    f"leveren samen makkelijk twintig punten op. Een balkon van "
                    f"14 m2 en een berging van 7 m2 zijn al elf punten. Reken "
                    f"dit pand niet door op een wettelijk maximum zonder de "
-                   f"werkelijke telling")
+                   f"werkelijke telling. Draai het liever om: zie de regel "
+                   f"'programma van eisen' voor wat de verbouwing moet "
+                   f"opleveren om de grens wel te halen")
     else:
         oordeel = ("onder de 187 op basis van wat bekend is; keuken, sanitair en "
                    "verwarming bepalen of het middenhuur blijft of vrije sector "
@@ -2297,6 +2299,37 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
     # aanname: onze eigen waarnemingen op Kamernet liggen rond de 20 m2.
     kamers_schatting = max(1, round(verhuurbaar / KAMER_M2_MEDIAAN))
     per_kamer = round(maand_k / kamers_schatting) if kamers_schatting else None
+    # Sinds de Wet betaalbare huur is OOK onzelfstandige woonruimte
+    # gereguleerd: het WWSO geeft per kamer een wettelijk maximum. Dat werd
+    # hier niet toegepast, terwijl het voor zelfstandige woningen al jaren
+    # gebeurt. Gevolg: het model rekende met een markthuur die hoger kan zijn
+    # dan wat je mag vragen. Bij zes kamers van 26 m2 ligt het maximum tussen
+    # €3.546 en €4.174 per maand, en het model rekende €4.075: dat is de
+    # bovenkant van de band, alleen haalbaar bij een gunstige telling.
+    if wwso_bandbreedte and kamers_schatting:
+        try:
+            _band = wwso_bandbreedte(
+                verhuurbaar / kamers_schatting,
+                label=(w.get("energielabel") or {}).get("label"),
+                bouwjaar=w.get("bouwjaar"), monument=bool(w.get("monument")),
+                eenheden=kamers_schatting)
+            if _band and _band.get("laag"):
+                _max_karig = _band["laag"] * kamers_schatting
+                _max_ruim = _band["hoog"] * kamers_schatting
+                if maand_k > _max_ruim:
+                    maand_k = _max_ruim
+                    per_kamer = round(_band["hoog"])
+                    huur_k_m2 = maand_k / verhuurbaar
+                    bron_k = (f"wettelijk maximum WWSO, ruime telling, "
+                              f"{_band.get('punten_hoog')} punten per kamer")
+                elif maand_k > _max_karig:
+                    bron_k += (f"; let op: dit ligt boven het WWSO-maximum bij "
+                               f"een karige telling (€{round(_max_karig):,}".replace(",", ".")
+                               + f") en is alleen haalbaar als de "
+                               f"gemeenschappelijke ruimte, keuken en sanitair "
+                               f"ruim zijn")
+        except Exception:
+            pass
     naam = "kamers" if kamerpand else "kamers, mits vergunning"
     if not kamerpand:
         # Omzetten van een eengezinswoning is geen formaliteit: de
@@ -4930,6 +4963,135 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                 _deel += (f", dus ongeveer {round(opp / int(_lagen))} m2 per "
                           f"laag bij {round(opp)} m2 gebruiksoppervlak")
             f("bouwlagen", _deel, "3D BAG, TU Delft en 3DGI")
+    except Exception:
+        pass
+
+    # Uitponden: splitsen om te VERKOPEN in plaats van te verhuren. De
+    # doorrekening kiest het scenario op huuropbrengst, dus deze route kwam er
+    # nooit uit, ook niet wanneer de gemeten groottepremie zegt dat hij de
+    # beste is. Bij verkoop gelden het puntenstelsel en de opkoopbescherming
+    # juist niet, en dat is precies waarom het kan lonen.
+    try:
+        import json as _jsp
+        from grootte_premie import premie_voor as _premie_voor
+        with open("grootte_premie.json", encoding="utf-8") as _fp:
+            _gem = _jsp.load(_fp) or {}
+        # De buurtmediaan als anker, terug te rekenen uit de afwijking die we
+        # al hebben: staat dit pand 23% onder de mediaan, dan is de mediaan de
+        # eigen prijs per m2 gedeeld door 0,77. De mediaan hoort bij de
+        # ijkklasse van 80 tot 100 m2, waar de premie 1,000 is, dus de prijs
+        # van een kleinere eenheid is de mediaan maal de premie van die klasse.
+        # Rekenen vanaf de eigen vraagprijs gaf onzin: Doddendaal 101 staat 34%
+        # boven de mediaan en kwam dan op €11.290 per m2 uit.
+        _eigen = (w.get("prijs") / opp) if (opp and w.get("prijs")) else None
+        _med = None
+        if _eigen and afw is not None:
+            try:
+                _med = _eigen / (1 + float(afw) / 100)
+            except (TypeError, ValueError, ZeroDivisionError):
+                _med = None
+        if (_gem.get("klassen") and _med and opp and opp >= 2 * MIN_UNIT_M2
+                and not in_complex(w)):
+            _beste = None
+            for _n in range(2, MAX_UNITS + 1):
+                _unit = opp / _n
+                if _unit < MIN_UNIT_M2:
+                    break
+                _pr = _premie_voor(_unit, _gem)
+                if not _pr:
+                    continue
+                _waarde = _med * _pr * opp
+                if not _beste or _waarde > _beste[2]:
+                    _beste = (_n, _pr, _waarde)
+            if _beste:
+                _n, _pr, _waarde = _beste
+                _kosten = w["prijs"] * (OVERDRACHTSBELASTING_PCT
+                                        + BIJKOMENDE_KOSTEN_PCT) / 100
+                _marge = _waarde - w["prijs"] - _kosten
+                if _marge > 0:
+                    f("uitponden",
+                      f"opdelen in {_n} eenheden van {round(opp / _n)} m2 en "
+                      f"verkopen: gemeten premie {_pr} voor die klasse, dus "
+                      f"€{round(_med * _pr):,}".replace(",", ".")
+                      + f"/m2 tegen de buurtmediaan van "
+                      + f"€{round(_med):,}".replace(",", ".")
+                      + f"/m2, samen €{round(_waarde):,}".replace(",", ".")
+                      + f". Na aankoop en kosten koper blijft "
+                      + f"€{round(_marge):,}".replace(",", ".")
+                      + " over VOOR verbouwing, splitsingsakte, VvE en "
+                      + "belasting. Bij verkoop gelden het puntenstelsel en de "
+                      + "opkoopbescherming niet, bij verhuur wel",
+                      "gemeten groottepremie en de buurtmediaan")
+                    # Het bod waarbij BEIDE routes werken. Dit is de strategie
+                    # waarbij de onderkant gedekt is: lukt verkopen niet, dan
+                    # draagt de huur van diezelfde eenheden de financiering.
+                    # De huurroute is vrijwel altijd bindend, want het
+                    # puntenstelsel begrenst de huur en de verkoop niet.
+                    _huur_na = None
+                    if wws_punten and wws_max_huur:
+                        try:
+                            _ep2 = w.get("energielabel") or {}
+                            _r2 = wws_punten(opp / _n, w["prijs"] / _n,
+                                             label=_ep2.get("label"),
+                                             monument=bool(w.get("monument")),
+                                             heeft_buiten=False)
+                            if _r2["gereguleerd"]:
+                                _mx2 = wws_max_huur(_r2["punten"])
+                                if _mx2:
+                                    _huur_na = _mx2 * _n
+                        except Exception:
+                            _huur_na = None
+                    if _huur_na:
+                        _plafond_huur = richtprijs(opp, _huur_na / opp,
+                                                   opex_voor("splitsen"),
+                                                   vve_van(w))
+                        if _plafond_huur:
+                            _ruimte = (_waarde - _plafond_huur
+                                       - _plafond_huur
+                                       * (OVERDRACHTSBELASTING_PCT
+                                          + BIJKOMENDE_KOSTEN_PCT) / 100)
+                            _k = round((_plafond_huur - w["prijs"])
+                                       / w["prijs"] * 100)
+                            f("beide routes gedekt",
+                              f"bij {_n} eenheden draagt de huur van "
+                              f"€{round(_huur_na):,}".replace(",", ".")
+                              + f" per maand een koopsom tot "
+                              + f"€{round(_plafond_huur):,}".replace(",", ".")
+                              + f" ({_k:+d}% t.o.v. de vraagprijs). Bied je dat, "
+                              + f"dan is de onderkant gedekt: lukt verkopen "
+                              + f"niet, dan draagt de verhuur de financiering. "
+                              + f"De verkoopwaarde van "
+                              + f"€{round(_waarde):,}".replace(",", ".")
+                              + f" laat dan €{round(_ruimte):,}".replace(",", ".")
+                              + f" over voor verbouwing en de rest, dus "
+                              + f"€{round(_ruimte / _n):,}".replace(",", ".")
+                              + " per eenheid",
+                              "eigen doorrekening, huur via het puntenstelsel "
+                              "en verkoop via de gemeten groottepremie")
+    except Exception:
+        pass
+
+    # De puntentelling omgedraaid: niet raden hoeveel punten er zijn, maar
+    # opschrijven wat de verbouwing moet opleveren om een doel te halen. Dat
+    # is een eis die een aannemer kan nalezen in plaats van een schatting.
+    try:
+        from puntendoel import programma as _programma
+        _woz_voor_doel = (w.get("woz") or {}).get("waarde") if isinstance(
+            w.get("woz"), dict) else w.get("woz")
+        if opp and _woz_voor_doel:
+            _pr = _programma(opp, int(_woz_voor_doel),
+                             (w.get("energielabel") or {}).get("label"))
+            if _pr.get("tekort") and _pr.get("gekozen"):
+                _eisen = "; ".join(f"{n} (+{p})" for n, p in _pr["gekozen"])
+                _slot = ("daarmee is de grens gehaald" if _pr.get("haalbaar")
+                         else "en dat haalt de grens NIET: met deze "
+                              "oppervlakte en WOZ is 187 punten niet te "
+                              "bereiken met inrichting alleen")
+                f("programma van eisen",
+                  f"telling staat op {_pr['nu']} punten, {_pr['tekort']} te "
+                  f"kort voor de vrije sector. Wat de verbouwing moet "
+                  f"opleveren: {_eisen}, {_slot}",
+                  "eigen berekening met het woningwaarderingsstelsel")
     except Exception:
         pass
 

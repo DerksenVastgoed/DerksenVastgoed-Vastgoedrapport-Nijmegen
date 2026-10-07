@@ -228,11 +228,22 @@ def wws_punten(opp_m2, woz, label=None, monument=False, aanrecht_m=2.0,
     totaal_ongecapt = punten + woz_punten
     # De WOZ telt voor hoogstens een derde, maar alleen als de woning zonder
     # die begrenzing op 187 punten of meer zou uitkomen.
+    gecapt = False
     if totaal_ongecapt >= 187:
         max_woz = WOZ_CAP_AANDEEL * totaal_ongecapt
-        woz_punten = min(woz_punten, max_woz)
+        if woz_punten > max_woz:
+            woz_punten = max_woz
+            gecapt = True
 
     totaal = round(punten + woz_punten)
+    # Zakt de woning DOOR de cap onder de 187, dan geldt een waardering van
+    # 186 punten, niet het lagere getal dat de cap oplevert. Dat staat als
+    # rekenvoorbeeld 5 in het Besluit huurprijzen woonruimte: 218 punten
+    # ongecapt, 162 na de cap, en dan telt 186. Zonder deze regel rekende het
+    # model met een veel lagere maximumhuur dan er mag worden gevraagd, en dat
+    # is een fout in het nadeel van de verhuurder.
+    if gecapt and totaal < 187:
+        totaal = 186
     if totaal <= GRENS_SOCIAAL:
         segment = "sociale huur"
     elif totaal <= GRENS_MIDDENHUUR:

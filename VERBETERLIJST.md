@@ -6267,6 +6267,228 @@ rente rekende.
 
 ---
 
+## 67. Uitponden stond nergens in de tabel — 7 oktober 2026
+
+**Mark:** er is nergens te zien wat het oplevert om een woning te kopen, te
+splitsen in twee of drie woningen en die te verkopen, terwijl dat juist
+interessant lijkt.
+
+**Klopt, en de oorzaak is dat de tabel op huur kiest.** Het scenario wordt
+bepaald door welke route de hoogste maandhuur geeft, en de richtprijs is de
+koopsom waarbij de nettohuur rente en aflossing dekt. Uitponden komt daar nooit
+uit, hoe goed het ook is, want er zit geen huur in.
+
+Dat is extra zuur omdat de functie waarde_na_splitsing al sinds vrijdag in
+grootte_premie.py staat, met 571 waarnemingen eronder, en door geen enkele
+module werd aangeroepen. Net als de bouwlagen uit de 3D BAG.
+
+**Het dossier heeft nu een regel "uitponden"** met het beste aantal eenheden, de
+gemeten premie voor die grootteklasse, de prijs per m2 en de marge na aankoop en
+kosten koper. Met de aantekening dat het puntenstelsel en de opkoopbescherming
+bij verkoop niet gelden, en dat de marge VOOR verbouwing, splitsingsakte, VvE en
+belasting is.
+
+**Twee rekenfouten die ik onderweg heb gemaakt en gevonden.**
+
+De eerste: de premie toepassen op de eigen prijs per m2 van het pand. Doddendaal
+101 staat 34% boven de buurtmediaan en kwam dan op €11.290 per m2 uit, en dat is
+geen prijs maar een rekenfout. Het anker moet de buurtmediaan zijn, en die is
+terug te rekenen uit de afwijking die we al hebben.
+
+De tweede: ook nog delen door de premie van de huidige grootteklasse. De
+buurtmediaan hoort al bij de ijkklasse van 80 tot 100 m2 waar de premie 1,000
+is, dus die deling telt dubbel. Na correctie komt Prof. Molkenboerstraat 30 op
+€7.202 per m2 voor eenheden van 37 m2, en dat is te toetsen: in Galgenveld staan
+nu een eenheid van 49 m2 op €7.857 en een van 35 m2 op €6.714 te koop. Het getal
+ligt dus binnen wat de markt daar vraagt.
+
+**Wat het oplevert op het huidige aanbod**, met alle vier de ontbrekende posten
+nog open: Krayenhofflaan 47 drie eenheden van 39 m2 met €409.000 marge, Prof.
+Molkenboerstraat 30 drie van 37 m2 met €320.000, van Goorstraat 34 drie van 34
+m2 met €320.000, Zwaluwstraat 175 drie van 27 m2 met €245.000. En Doddendaal 101
+komt negatief uit, want dat pand is per m2 al duur.
+
+---
+
+## 68. Beide routes gedekt: de strategie doorgerekend — 7 oktober 2026
+
+**Mark:** wat als we alleen panden kopen waarvan we zeker weten dat ze bij
+verhuur al rondkomen EN bij uitponden winst geven? Dan is de onderkant gedekt:
+lukt verkopen niet, dan verhuren we.
+
+**Dat is te meten, en het antwoord is ja, maar niet tegen de vraagprijs.** Met
+dezelfde opdeling van drie eenheden voor beide routes:
+
+| pand | vraagprijs | bod waarbij de huur het draagt | verkoopwaarde |
+|---|---|---|---|
+| Krayenhofflaan 47 | €439.000 | €314.000 (-28%) | €892.000 |
+| van Goorstraat 34 | €390.000 | €326.000 (-16%) | €749.000 |
+| Zwaluwstraat 175 | €349.500 | €302.000 (-14%) | €629.000 |
+
+**De huurroute is vrijwel altijd bindend**, en de reden is structureel: het
+puntenstelsel begrenst de huur van kleine eenheden en de verkoopprijs niet. Het
+bod waarbij beide routes werken is dus het bod waarbij de huur het draagt, en
+dat ligt veertien tot achtentwintig procent onder de vraagprijs.
+
+Daar staat tegenover dat de verkoopwaarde bij dat bod enorme ruimte laat: bij de
+Krayenhofflaan €531.000 na aftrek van bod en kosten koper, dus €177.000 per
+eenheid voor verbouwing, splitsingsakte, VvE en belasting. Dat is ruim, maar het
+is geen winst totdat die vier posten zijn gemeten.
+
+Het dossier heeft nu een regel "beide routes gedekt" met het bod, het verschil
+met de vraagprijs en de ruimte per eenheid. De opdracht aan de brief zegt dat
+die regel prominent genoemd moet worden, en verbiedt te schrijven dat een pand
+bij de vraagprijs gedekt is als dat bod eronder ligt.
+
+**Waarom dit de scherpste screening is die we hebben.** Een pand met beide
+routes gedekt is niet een pand waarop je moet hopen dat de markt meewerkt: het
+rekent rond bij verhuur, en de verkoop is de bonus. Dat is een ander soort
+aankoop dan de cases die de brief tot nu toe liet zien, en het verklaart ook
+waarom er in de tabel nooit iets interessants stond: die kolom rekende alleen de
+huur van het ONGESPLITSTE pand.
+
+---
+
+## 69. Kamerverhuur was niet begrensd in het model — 7 oktober 2026
+
+**Mark:** hoe verhoudt splitsen in zelfstandige appartementen zich tot opknappen
+tot losse studentenkamers?
+
+**Bij het uitzoeken daarvan kwam een fout boven die groter is dan de vraag.**
+Sinds de Wet betaalbare huur valt ook onzelfstandige woonruimte onder een
+puntenstelsel, het WWSO, met per kamer een wettelijk maximum. De module wwso.py
+kan dat al berekenen en wordt alleen gebruikt om huuradvertenties te toetsen.
+Het kamerscenario in de doorrekening paste het maximum NIET toe, terwijl dat
+voor zelfstandige woningen al jaren gebeurt.
+
+**Wat dat betekende voor de Stieltjesstraat 10.** Het model rekende €4.075 per
+maand. Het WWSO geeft voor zes kamers van 21 m2 een band van €3.117 bij een
+karige telling tot €3.984 bij een ruime. De aangenomen huur lag dus BOVEN het
+wettelijk maximum, ook in de gunstigste variant. De richtprijs zakt daarmee van
++48% naar een band van +20% tot +53% ten opzichte van de vraagprijs.
+
+Het kamerscenario kapt nu af op het WWSO-maximum bij een ruime telling, en als
+de uitkomst boven de karige variant ligt staat erbij dat het alleen haalbaar is
+bij ruime gemeenschappelijke ruimte, keuken en sanitair.
+
+**En dat beantwoordt Marks vraag ook.** Beide routes zijn gereguleerd, dus de
+keuze gaat niet over wettelijke ruimte maar over iets anders: zelfstandige
+eenheden kunnen worden verhuurd EN verkocht, kamers alleen verhuurd. Een
+gesplitst pand heeft twee uitgangen, een kamerpand één. Dat is de reden om voor
+splitsen te kiezen, niet een hogere huur.
+
+**Zijn zorg dat je moet kiezen, klopt daarmee maar half.** Je kiest wel, maar de
+ene keuze houdt meer open dan de andere.
+
+---
+
+## 70. De puntentelling omgedraaid — 7 oktober 2026
+
+**Mark:** de telling is onvolledig omdat we de keuken en de badkamer niet
+kennen, maar dat kunnen we omdraaien: wanneer we een aantal punten willen
+halen, kunnen we dat als voorwaarde stellen.
+
+**Eens, en dat haalt de angel uit de hele beperking.** Zolang je de punten
+probeert te RADEN is onbekendheid een probleem. Draai je het om, dan is het een
+programma van eisen: welk puntenaantal willen we halen en wat moet de
+verbouwing dan opleveren.
+
+puntendoel.py doet dat. Het meet per maatregel wat hij werkelijk oplevert door
+de telling met en zonder die maatregel door te rekenen, dus de waarden komen uit
+het stelsel zelf en niet uit een tabel die kan verouderen.
+
+Drie voorbeelden uit het huidige aanbod:
+- Krayenhofflaan 47, 116 m2, WOZ €360.000, label D: staat op 179 punten, acht te
+  kort. Een labelstap naar C is precies genoeg.
+- Burg. Hustinxstraat 56, 102 m2, WOZ €419.000, label B: staat op 186, één te
+  kort. Een balkon van 8 m2 levert er drie op.
+- Zwaluwstraat 175, 82 m2, WOZ €376.000, label C: staat op 159, achtentwintig te
+  kort. Alle inrichtingsmaatregelen samen geven negentien punten, dus die grens
+  is daar niet te halen. Dat is ook een antwoord, en een definitief.
+
+**Een valkuil die ik eruit heb gehaald.** De eerste versie koos de grootste
+maatregel: bij een tekort van acht punten kwam "energielabel naar A" met achttien
+punten eruit, terwijl label C met acht punten precies genoeg is. Een eis die
+verder gaat dan nodig kost geld dat niets oplevert. Nu wordt de kleinste
+maatregel gekozen die het tekort alleen al dekt, en pas als die niet bestaat
+wordt er gestapeld, opnieuw de kleinste eerst.
+
+Het dossier zet die regel erbij, en de brief moet hem noemen in plaats van
+alleen te melden dat het pand onder de grens zit. "179 punten, dus gereguleerd"
+is een conclusie waar pa niets mee kan; "acht punten te kort, een labelstap naar
+C is genoeg" is een opdracht aan een aannemer.
+
+---
+
+## 71. Eén programma voor het gebouw, één per eenheid — 7 oktober 2026
+
+**Mark:** als er een pand van 180 m2 over drie etages komt, moet het systeem dan
+niet zeggen: splitsen in drie, en dit zijn de eisen? En dan apart wat aan het
+GEBOUW moet gebeuren, zoals isolatie voor het label, en wat per APPARTEMENT.
+
+**Die tweedeling is wezenlijk en zit er nu in.** Het energielabel en de isolatie
+zitten aan de schil: dat is één bestek voor één aannemer, en de puntenwinst telt
+in elke eenheid mee. De keuken, het sanitair, de buitenruimte en de berging zijn
+per eenheid en staan dus zo vaak in de begroting als er eenheden zijn.
+
+Voorbeeld van 180 m2 over drie lagen, WOZ €500.000, label E: elke eenheid van 60
+m2 staat op 91 punten. Eén keer aan het gebouw een labelstap naar D levert er
+negentien per eenheid op; drie keer per eenheid een balkon, een badkamer met
+ligbad en een berging leveren er samen twaalf op.
+
+**En dan komt de eerlijke uitkomst, die ik eerst niet goed afhandelde.** Samen is
+dat 122 punten, en de 187 wordt niet gehaald. Bij eenheden van 60 m2 met een WOZ
+van €167.000 is de vrije sector gewoon onbereikbaar.
+
+Daarom zegt het programma nu wat die punten dan WEL opbrengen: de maximumhuur
+per eenheid gaat van €575,87 naar €788,71, over drie eenheden €639 per maand of
+€7.662 per jaar. Dat is het getal waartegen je de verbouwing afweegt.
+
+**Dat is een scherpere conclusie dan hij lijkt.** Bij gesplitste eenheden is 187
+punten meestal het verkeerde doel. De opbrengst zit in een zo hoog mogelijk
+wettelijk maximum per eenheid, plus de verkoopoptie die kamers niet hebben. De
+vrije sector is iets voor een hele woning die groot genoeg is, en dat is precies
+het pand dat je NIET moet splitsen als je wilt verhuren.
+
+---
+
+## 72. De bron nagekeken, en een regel die ontbrak — 7 oktober 2026
+
+**Mark:** welke bron gebruiken we voor de huurgrenzen en de vrije sector?
+
+**Nagekeken, en de bedragen kloppen exact.** De tabel in wwso.py staat op
+peildatum 1 januari 2026 met als bron bijlage I van het Besluit huurprijzen
+woonruimte. De liberalisatiegrens voor zelfstandige woningen is de maximale
+huurprijsgrens bij 186 punten, en die is in 2026 €1.228,07 per maand; vanaf 187
+punten is het vrije sector. De indexering per 1 januari 2026 was 3,65%.
+
+Steekproef op de tabelwaarden: 110 punten €706,32, 116 punten €747,51, 122
+punten €788,71, 183 punten €1.207,46, 193 punten €1.276,12. Alle vijf gelijk aan
+de bron. Het gezondheidsrapport meldt het ook als de peildatum verouderd raakt,
+want die grenzen worden elk jaar per 1 januari geïndexeerd.
+
+**Maar er ontbrak een regel, en die werkte in ons nadeel.** De cap op de
+WOZ-punten zat er wel in: de WOZ mag voor hoogstens een derde meetellen, en
+alleen als de woning zonder die begrenzing op 187 of meer zou uitkomen. Wat
+ontbrak is wat er daarna gebeurt. Zakt de woning DOOR die cap onder de 187, dan
+geldt een waardering van 186 punten, niet het lagere getal dat de cap oplevert.
+Dat staat als rekenvoorbeeld in het Besluit: 218 punten ongecapt, 162 na de cap,
+en dan telt 186.
+
+Ons model rekende met dat lagere getal en dus met een veel lagere maximumhuur
+dan er gevraagd mag worden. Bij 162 punten is dat ongeveer €1.040 tegen
+€1.228,07 bij 186: bijna tweehonderd euro per maand verschil, in het nadeel van
+de verhuurder.
+
+**Wat opvalt bij het testen:** de cap bijt bij panden met een hoge WOZ en een
+beperkte maat, en dat is precies het soort pand in Galgenveld. Een woning van 74
+m2 met een WOZ van €575.000 haalt 175 punten met een WOZ-deel van 63; die blijft
+gereguleerd. Een pand van 105 m2 met WOZ €410.000 en label A komt op 192 en is
+vrij. Het verschil zit niet in de WOZ maar in de verhouding tussen WOZ en
+oppervlakte.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
