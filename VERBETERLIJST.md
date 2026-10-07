@@ -5593,6 +5593,35 @@ aanbod is, en dat was precies het punt bij die melding.
 
 ---
 
+## 49. Dubbelingen tussen platforms — 7 oktober 2026
+
+**Mark:** er kunnen dubbelingen zitten ten opzichte van de andere aanbieders.
+
+**Terecht, en het raakt twee dingen.** Dezelfde woning op Pararius en Huislijn
+telt twee keer mee in de mediane huur, en twee keer in de aanbodreeks. Dan lijkt
+er meer aanbod dan er is, en weegt een woning dubbel in de huur per m2.
+
+Zonder huisnummer is een zekere match onmogelijk. Een waarschijnlijke wel:
+dezelfde straat, een huur die minder dan twee procent verschilt, en waarnemingen
+binnen drie weken van elkaar. Dat is vrijwel altijd een advertentie die op twee
+sites staat.
+
+**Welke waarneming blijft staan, is een bewuste keuze:** die met een
+oppervlakte, want alleen daarmee komt er een prijs per vierkante meter uit. Is
+die bij geen van de twee bekend, dan de oudste, zodat de eerste waarneming de
+datum bepaalt.
+
+Getest op zes waarnemingen uit de echte mails. Breehofstraat van Huislijn is
+samengevoegd met die van Pararius, en de Pararius-regel met 68 m2 blijft staan.
+De twee St. Agnetenweg blijven apart omdat de huren €84 verschillen. En
+Maasstraat blijft apart omdat die twee waarnemingen twee maanden uiteenliggen:
+dat zijn twee verhuringen, niet een dubbeling.
+
+Het rapport meldt hoeveel er zijn samengevoegd, zodat het aantal huurwaarnemingen
+niet stil lijkt te staan terwijl er wel mails binnenkomen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

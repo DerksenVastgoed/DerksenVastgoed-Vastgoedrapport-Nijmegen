@@ -3384,6 +3384,75 @@ def _te_oud(w, maanden=None):
     return (dt.date.today() - d).days > maanden * 30
 
 
+def ontdubbel_huur(huur_aanbod, dagen=21, marge=0.02):
+    """
+    Dezelfde woning op twee platforms telt maar een keer mee.
+
+    Sinds Huislijn erbij is, komt hetzelfde aanbod via meerdere bronnen binnen.
+    Zonder huisnummer is een zekere match onmogelijk, maar een waarschijnlijke
+    wel: dezelfde straat, een huur die minder dan twee procent verschilt, en
+    waarnemingen binnen drie weken van elkaar. Dat is vrijwel altijd een
+    advertentie die op twee sites staat.
+
+    Welke blijft staan: die met een oppervlakte, want alleen daarmee kan er een
+    prijs per vierkante meter uit. Is dat bij geen van de twee bekend, dan de
+    oudste, zodat de eerste waarneming de datum bepaalt.
+    """
+    def straat(w):
+        naam = (w.get("adres") or "").lower()
+        letters = []
+        for teken in naam:
+            if teken.isdigit():
+                break
+            letters.append(teken)
+        return "".join(c for c in "".join(letters) if c.isalpha())
+
+    def datum(w):
+        try:
+            return dt.date.fromisoformat(str(w.get("datum") or "")[:10])
+        except Exception:
+            return None
+
+    behouden, weg = [], 0
+    for w in sorted(huur_aanbod, key=lambda x: str(x.get("datum") or "")):
+        prijs, s_naam, d = w.get("prijs"), straat(w), datum(w)
+        dubbel = None
+        if prijs and s_naam:
+            for eerder in behouden:
+                if straat(eerder) != s_naam or not eerder.get("prijs"):
+                    continue
+                if abs(eerder["prijs"] - prijs) > prijs * marge:
+                    continue
+                d2 = datum(eerder)
+                if d and d2 and abs((d - d2).days) > dagen:
+                    continue
+                # Een pand met huisnummer naast een straatnaam zonder nummer
+                # kan dezelfde woning zijn; met twee verschillende nummers niet.
+                n1 = "".join(c for c in (w.get("adres") or "") if c.isdigit())
+                n2 = "".join(c for c in (eerder.get("adres") or "") if c.isdigit())
+                if n1 and n2 and n1 != n2:
+                    continue
+                dubbel = eerder
+                break
+        if not dubbel:
+            behouden.append(w)
+            continue
+        weg += 1
+        # De waarneming met oppervlakte wint; die is bruikbaar voor de mediaan.
+        if not dubbel.get("oppervlakte") and w.get("oppervlakte"):
+            behouden[behouden.index(dubbel)] = w
+    if weg:
+        print(f"Huuraanbod: {weg} waarschijnlijke dubbelingen samengevoegd "
+              f"(zelfde straat, huur binnen {int(marge * 100)}%, "
+              f"binnen {dagen} dagen)", file=sys.stderr)
+        try:
+            with open("huur_dubbel.json", "w", encoding="utf-8") as f:
+                json.dump({"samengevoegd": weg, "over": len(behouden)}, f)
+        except Exception:
+            pass
+    return behouden
+
+
 def gemeubileerd_opslag(huur_aanbod):
     """
     Hoeveel duurder gemeubileerd is dan kaal, binnen hetzelfde huurregime.
@@ -3447,6 +3516,7 @@ def gemeten_huren(huur_aanbod):
     # Hij wordt wel bewaard, zodat de opslag apart te meten is.
     huur_aanbod = [w for w in huur_aanbod if not _te_oud(w)
                    and "gemeubileerd" not in (w.get("status") or "").lower()]
+    huur_aanbod = ontdubbel_huur(huur_aanbod)
     for w in huur_aanbod:
         # Alleen kale huur telt. Servicekosten zijn doorbelasting van werkelijke
         # kosten waar geen rendement uit komt, en het puntenstelsel toetst er

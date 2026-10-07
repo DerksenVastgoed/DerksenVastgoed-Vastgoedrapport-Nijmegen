@@ -132,7 +132,11 @@ def controle_huurdata():
               + (f" en {len(huislijn)} Huislijn" if huislijn else "")
               + f"; {len(recent)} in de laatste week"
               + (f"; {zonder_m2} zonder oppervlakte, die tellen niet mee in de "
-                 f"huur per m2" if zonder_m2 else ""))
+                 f"huur per m2" if zonder_m2 else "")
+              + (f"; {(_json('huur_dubbel.json') or {}).get('samengevoegd')} "
+                 f"waarschijnlijke dubbelingen tussen platforms samengevoegd"
+                 if (_json("huur_dubbel.json") or {}).get("samengevoegd")
+                 else ""))
     if not huur:
         return (FOUT, bewijs,
                 "Geen enkele huurwaarneming. Elke richtprijs rust op een aanname. "
