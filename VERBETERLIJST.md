@@ -6208,6 +6208,65 @@ anker voorkomt.
 
 ---
 
+## 65. Een verkeerd afzenderdomein, en niemand die het merkte — 7 oktober 2026
+
+**Mark:** de mails van server@huislijn.nl worden niet geopend in mijn mailbox,
+dus die woningen komen ook niet in het bestand.
+
+**Klopt, en de oorzaak was een domein dat niet bestaat.** In de lijst met
+afzenders stond "huisly.nl" en Huislijn stuurt vanaf "huislijn.nl". Die mails
+werden dus nooit opgehaald: ze bleven ongelezen staan en de woningen kwamen
+nergens terecht. De parser die ik vandaag heb gebouwd stond klaar voor mails die
+nooit binnenkwamen.
+
+Beide domeinen staan er nu in; Huisly is een andere dienst. Getest op vier
+afzenders.
+
+**Wat hieraan erger is dan de fout zelf: niets meldde het.** Een verkeerd domein
+levert geen foutmelding op, alleen stilte, en stilte ziet er in een rapport uit
+als "geen nieuws". Het is opgemerkt doordat Mark naar zijn mailbox keek, niet
+doordat het systeem iets zei.
+
+Er is nu een controle "Bronnen die niets opleveren": hij telt per bron hoeveel
+waarnemingen er in het aanbodbestand staan en meldt elke bron die op nul staat,
+met als diagnose dat het afzenderdomein of de attendering zelf het probleem is.
+Getest op beide gevallen. Had die controle er eerder gestaan, dan had Huislijn
+vanaf 1 oktober in het rapport gestaan in plaats van in een ongelezen mailbox.
+
+**Dat is vandaag de tweede fout van deze soort**, na de buiten-behandelingstelling
+die als ruis werd weggefilterd. Beide keren werd er niets gemeld omdat er niets
+gebeurde, en dat is het moeilijkste soort fout om te zien.
+
+---
+
+## 66. FAIL BAG op een adres met een studionummer — 7 oktober 2026
+
+In het logboek staat "FAIL BAG: Jan de Wittstraat 6-8 studio 9". Dat is het
+studiocomplex dat vandaag al eerder opdook, en de reden dat de BAG-opvraging
+mislukt is het adres zelf: "6-8 studio 9" is geen huisnummer dat de BAG kent.
+
+Twee dingen worden er nu afgehaald voordat de BAG wordt bevraagd. Een aanduiding
+van een eenheid achter het adres (studio, bouwnummer, appartement, unit, kamer,
+woning met een nummer erachter), en een bereik van twee huisnummers, waarvan het
+eerste wordt genomen omdat dat het pand is.
+
+Getest op acht adressen uit het echte aanbod: Jan de Wittstraat 6-8 studio 9
+geeft nu nummer 6, Berg en Dalseweg 11-11A geeft 11, en de gevallen die al goed
+gingen blijven goed, inclusief Plein 1944 129 met een jaartal in de straatnaam
+en Graafseweg 33-A21 met een huisletter en een toevoeging. Een nieuwbouwregel
+als "Amber fase 2 Stadswoning bouwnr. 608" geeft terecht geen adres: dat is geen
+pand maar een bouwnummer, en zulke regels hebben sinds vandaag de status
+"project" en vallen toch al buiten de berekening.
+
+**En een tweede regel uit hetzelfde logboek werkt zoals bedoeld:** "Rente
+bijgesteld van 5.75% naar 5.5% op basis van de gemeten stand". De vaste waarde
+in het model is 5,75% en de gemeten marktrente bij 70% financiering staat op
+5,50%, dus het model corrigeert zichzelf en zegt dat het dat doet. Dat is precies
+het gedrag dat we vorige week hebben ingebouwd nadat de brief met een aangenomen
+rente rekende.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

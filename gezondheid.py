@@ -110,6 +110,40 @@ def _regels(pad):
 # De controles. Elk geeft (status, bewijs, diagnose) terug.
 # ---------------------------------------------------------------------------
 
+def controle_afzenders():
+    """
+    Of elke bron waarvan we mails verwachten ook werkelijk iets oplevert.
+
+    Huislijn stond met een verkeerd domein in de lijst, "huisly.nl" in plaats
+    van "huislijn.nl". De mails stonden daardoor ongelezen in de mailbox en de
+    woningen kwamen nergens terecht. Dat was alleen te zien doordat Mark het
+    opmerkte, en dat is precies het soort fout dat een controle hoort te doen.
+    """
+    bronnen_verwacht = ("funda", "pararius", "kamernet", "huislijn")
+    gezien = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                v = [x.strip().lower() for x in regel.split("|")]
+                if len(v) > 5 and v[5]:
+                    for b in bronnen_verwacht:
+                        if b in v[5]:
+                            gezien[b] = gezien.get(b, 0) + 1
+    except Exception:
+        return (OK, "geen aanbodbestand om te toetsen", "")
+    stil = [b for b in bronnen_verwacht if not gezien.get(b)]
+    bewijs = ", ".join(f"{b}: {gezien.get(b, 0)}" for b in bronnen_verwacht)
+    if stil:
+        return (LET_OP, bewijs + f"; geen enkele waarneming van: "
+                + ", ".join(stil),
+                "Controleer of het afzenderdomein in AFZENDERS klopt en of de "
+                "attendering bij die partij aanstaat. Een verkeerd domein "
+                "levert geen foutmelding op, alleen stilte.")
+    return (OK, bewijs, "")
+
+
 def controle_huurdata():
     """Het belangrijkste: rust de richtprijs op metingen of op een aanname?"""
     regels = _regels("verkopen.txt")
@@ -1421,6 +1455,7 @@ CONTROLES = [
     ("Doorlooptijden", controle_doorlooptijden),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
+    ("Bronnen die niets opleveren", controle_afzenders),
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
     ("WOZ-bestand", controle_wozbestand),

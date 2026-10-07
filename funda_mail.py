@@ -30,9 +30,12 @@ IMAP_HOST = "imap.gmail.com"
 VERKOPEN_PAD = "verkopen.txt"
 AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
              "kamernet.nl", "vendr.nl",
-             # Nog geen parser voor; de mails worden wel geteld zodat we zien
-             # hoe ze eruitzien zodra de attendering aanstaat.
-             "huisly.nl"]
+             # Huislijn stuurt vanaf server@huislijn.nl. Hier stond eerst
+             # alleen "huisly.nl", een ander domein, waardoor die mails nooit
+             # werden opgehaald: ze stonden ongelezen in de mailbox en de
+             # woningen kwamen niet in het bestand. Beide domeinen blijven
+             # staan; Huisly is een andere dienst.
+             "huislijn.nl", "huisly.nl"]
 
 # Platforms waarvan we nog geen parser hebben, maar waar Mark zich wel bij kan
 # hebben aangemeld. We lezen ze niet uit; we tellen alleen of er post van komt.

@@ -194,6 +194,15 @@ def split_huisnummer(adres):
     'Voorbeeldstraat 7A-12' -> [(...,'7','A','12')]
     """
     s = adres.strip()
+    # Een aanduiding van een eenheid achter het adres hoort niet in de
+    # BAG-zoekopdracht. "Jan de Wittstraat 6-8 studio 9" liep daarop vast en
+    # leverde elke ronde een FAIL BAG op. Funda hangt zulke namen aan een
+    # object in een complex: studio 9, bouwnummer 24, appartement 3.
+    s = re.sub(r"\s+(studio|bouwnr\.?|bouwnummer|appartement|app\.?|unit|"
+               r"kamer|woning)\s*\d*\s*$", "", s, flags=re.IGNORECASE).strip()
+    # Een bereik van twee huisnummers: neem het eerste. "6-8" is het pand, en
+    # dat is wat de BAG kent.
+    s = re.sub(r"^(.+?\s+\d+)\s*[-/]\s*\d+[A-Za-z]?\s*$", r"\1", s).strip()
     # Straten met een getal in de naam ('Plein 1944 168'): pak het laatste getal
     jaartal = re.match(r"^(.+?\s+\d{4})\s+(\d+)\s*([A-Za-z])?\s*$", s)
     if jaartal:
