@@ -5565,6 +5565,34 @@ suggereren die we niet hebben.
 
 ---
 
+## 48. Huislijn wordt nu uitgelezen — 7 oktober 2026
+
+Huislijn was een van de veertien kandidaatplatforms die we wel telden maar niet
+uitlazen. Mark stuurde het formaat: een straatnaam met "Nijmegen" erachter, en
+daaronder "Huur: € 822". Verder niets.
+
+De parser leest die paren en slaat de reclameblokken over. Getest op de echte
+mail met acht woningen en drie advertentieblokken ertussen: alle acht komen
+eruit, de reclame niet, en de twee St. Agnetenweg blijven apart omdat de huren
+verschillen.
+
+**Met een beperking die erbij hoort en die het rapport nu noemt.** Huislijn geeft
+geen huisnummer en geen oppervlakte. Daarmee kan er geen prijs per vierkante
+meter uit, en dat is wat de doorrekening gebruikt. Zulke waarnemingen tellen mee
+voor de dekking van wat er in de stad te huur staat en voor het signaal
+"opnieuw aangeboden", maar niet voor de gemeten huur per m2. Dat gaat
+automatisch goed, want een regel zonder oppervlakte valt buiten die berekening.
+
+Het rapport meldt nu hoeveel huurwaarnemingen geen oppervlakte hebben, zodat die
+beperking zichtbaar is in plaats van verstopt.
+
+**Waarom dit de huurdekking van 42% helpt.** Die steekproef toetst of wij de
+adressen kennen die elders te huur staan. Een extra bron verhoogt die dekking
+ook als de waarneming zelf niet in de mediaan meetelt: je weet dan wél dat er
+aanbod is, en dat was precies het punt bij die melding.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

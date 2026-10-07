@@ -118,8 +118,21 @@ def controle_huurdata():
     kamernet = [r for r in huur if "kamernet" in r.lower()]
     recent = [r for r in huur
               if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(8))]
+    huislijn = [r for r in huur if "huislijn" in r.lower()]
+    # Waarnemingen zonder oppervlakte: bruikbaar om te zien wat er te huur
+    # staat, niet om een prijs per vierkante meter uit te rekenen. Huislijn
+    # geeft alleen een straatnaam en een huurprijs, dus die vallen hieronder.
+    zonder_m2 = 0
+    for r in huur:
+        v = [x.strip() for x in r.split("|")]
+        if len(v) < 7 or not v[6]:
+            zonder_m2 += 1
     bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
-              f"en {len(kamernet)} Kamernet; {len(recent)} in de laatste week")
+              f"en {len(kamernet)} Kamernet"
+              + (f" en {len(huislijn)} Huislijn" if huislijn else "")
+              + f"; {len(recent)} in de laatste week"
+              + (f"; {zonder_m2} zonder oppervlakte, die tellen niet mee in de "
+                 f"huur per m2" if zonder_m2 else ""))
     if not huur:
         return (FOUT, bewijs,
                 "Geen enkele huurwaarneming. Elke richtprijs rust op een aanname. "

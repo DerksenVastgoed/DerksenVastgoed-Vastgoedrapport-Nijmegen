@@ -442,6 +442,64 @@ RE_PA_TITEL = re.compile(
 PA_UITSLUITEN = ("ad hoc", "camelot", "leegstandbeheer", "anti-kraak", "antikraak")
 
 
+RE_HL_STRAAT = re.compile(r"^\[?([A-Za-zÀ-ÿ.'\- ]{3,40}?)\s+Nijmegen\]?",
+                          re.IGNORECASE)
+RE_HL_HUUR = re.compile(r"^Huur:\s*€\s*([\d.,]+)", re.IGNORECASE)
+
+
+def parse_huislijn(regels):
+    """
+    Leest een Huislijn-attendering: straatnaam en huurprijs, niets meer.
+
+    Deze bron geeft geen huisnummer en geen oppervlakte. Daarmee kan er geen
+    prijs per vierkante meter uit, en die is wat de doorrekening nodig heeft.
+    De waarneming is dus beperkt bruikbaar: hij telt mee voor het aanbod en
+    voor de dekking van wat er in de stad te huur staat, maar niet voor de
+    gemeten huur per m2. Dat laatste gaat automatisch goed, want een regel
+    zonder oppervlakte valt buiten die berekening.
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = waarnemingsdatum()
+    straat = None
+    for regel in regels:
+        kaal = regel.strip()
+        if not kaal:
+            continue
+        # Reclameblokken dragen geen huurprijs en vallen dus vanzelf af, maar
+        # een link als "Kan ik dit huis betalen" mag de straatnaam niet
+        # overschrijven.
+        if "kan ik dit huis betalen" in kaal.lower() or "aanmelden" in kaal.lower():
+            continue
+        huur = RE_HL_HUUR.match(kaal)
+        if huur and straat:
+            bedrag = huur.group(1).replace(".", "").replace(",", "")
+            try:
+                prijs = int(bedrag)
+            except ValueError:
+                straat = None
+                continue
+            if not 150 <= prijs <= 10000:
+                overgeslagen.append(f"{straat} (huur €{prijs} onmogelijk)")
+                straat = None
+                continue
+            sleutel = (straat.lower(), prijs)
+            if sleutel in gezien:
+                straat = None
+                continue
+            gezien.add(sleutel)
+            # Geen huisnummer en geen oppervlakte: het veld voor m2 blijft leeg.
+            gevonden.append(f"{straat} | Nijmegen | {prijs} | te huur | "
+                            f"{vandaag} | huislijn |  | ")
+            straat = None
+            continue
+        m = RE_HL_STRAAT.match(kaal)
+        if m:
+            kandidaat = m.group(1).strip().strip("[]").strip()
+            if 3 <= len(kandidaat) <= 40 and "huislijn" not in kandidaat.lower():
+                straat = kandidaat
+    return gevonden, overgeslagen
+
+
 def parse_pararius(regels):
     """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
     gevonden, gezien, overgeslagen = [], set(), []
@@ -743,6 +801,8 @@ def main():
             soort_bron, status_label = "kamernet", "te huur kamer"
         elif "pararius" in afzender or "pararius" in blob:
             soort_bron, status_label = "pararius", "te huur"
+        elif "huislijn" in afzender or "huislijn" in blob:
+            soort_bron, status_label = "huislijn", "te huur"
         elif "funda in business" in blob or "bedrijfspanden" in blob:
             soort_bron, status_label = "business", "belegging"
         else:
@@ -764,6 +824,8 @@ def main():
                 objecten, overgeslagen = parse_kamernet_attendering(regels)
         elif soort_bron == "pararius":
             objecten, overgeslagen = parse_pararius(regels)
+        elif soort_bron == "huislijn":
+            objecten, overgeslagen = parse_huislijn(regels)
         else:
             objecten, overgeslagen = parse_objecten(regels, status_label)
         alle_overgeslagen.extend(overgeslagen)
