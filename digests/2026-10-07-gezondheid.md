@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-10-07
 
-38 in orde, 7 aandachtspunten, 0 fouten.
+39 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
@@ -13,14 +13,12 @@
   Waarschijnlijk is het huisnummer aangepast omdat het wozwaardeloket alleen een variant kende, bijvoorbeeld 19-A in plaats van 19. Die waarde landt dan nergens. Zet het adres terug zoals het in het aanbod staat, of voeg beide regels toe.
 - **WOZ-schatting**: geijkt op 98 panden: correctie 0.984 (2% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 13.7% (103), prijs 10.3% (98), beste: prijs; kenmerken uit 75 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
-- **Nieuwe onderwerpen**: 1 voorgestelde onderwerpen, 0 gevolgd: besluit was
-  Deze komen terug in het nieuws en hebben nog geen achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen bij; het script schrijft die niet zelf, want juridische tekst zonder gecontroleerde bron is precies wat we niet willen.
-- **Attenderingen**: laatste ronde 2026-10-07: kamernet: 49 mails, 37 objecten, 12 bewust overgeslagen; pararius: 5 mails, 7 objecten, 5 bewust overgeslagen; regulier: 9 mails, 18 objecten
+- **Attenderingen**: laatste ronde 2026-10-07: kamernet: 21 mails, 15 objecten, 6 bewust overgeslagen; pararius: 2 mails, 2 objecten, 1 bewust overgeslagen; regulier: 3 mails, 2 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
 - **Versies**: paklijst van 2026-10-07: 38 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
-- **Huurdata**: 60 huurwaarnemingen, waarvan 21 Pararius en 39 Kamernet; 26 in de laatste week
+- **Huurdata**: 61 huurwaarnemingen, waarvan 21 Pararius en 40 Kamernet; 27 in de laatste week
 - **Aanbod**: 98 koopobjecten, 2 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
 - **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,52% (2026-10-06), opslag bij 70% financiering 1,98 procentpunt
@@ -31,11 +29,11 @@
 - **Kamerverhuurregister**: 950 panden in de ring, waarvan 191 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 84
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
-- **Geschiedenis per pand**: 1725 panden gevolgd, 1406 met meer dan een gebeurtenis; 1568 met BAG-gegevens (6323 woningen, 7398 dubbel geteld zonder deze correctie), 1372 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
+- **Geschiedenis per pand**: 1726 panden gevolgd, 1406 met meer dan een gebeurtenis; 1568 met BAG-gegevens (6323 woningen, 7398 dubbel geteld zonder deze correctie), 1372 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
+  Van 1 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 70 panden te koop, mediaan 18 dagen geleden voor het laatst bevestigd, oudste 35 dagen
-- **Aanbodreeks**: 6 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 2 koop, 8 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
+- **Aanbodreeks**: 6 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 2 koop, 9 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
 - **Profiel nieuw aanbod**: 64 panden in dertig dagen; mediaan 90 m2; 0 zonder label
 - **Groottepremie**: 573 waarnemingen, 9 buurten met eigen ijkpunt; 0-40 m2: 1.422 (56), 40-60 m2: 1.237 (110), 60-80 m2: 1.061 (167), 80-100 m2: 1.0 (84), 100-130 m2: 0.97 (83), 130 m2 en groter: 0.912 (73)
 - **Voltooide splitsingen**: 1 gerealiseerd; mediaan 1 dagen van besluit tot registratie (1); 12 vergund maar na een jaar nog niets in de BAG
@@ -50,10 +48,11 @@
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
 - **3D BAG eigen snapshot**: 1247 panden in de eigen snapshot, 1247 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-07
 - **Achtergronddekking**: 30 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 6 brieven vastgelegd, laatste 2026-10-07; 88 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
-- **OV-haltes**: 333 haltes, 164 panden gerouteerd
+- **OV-haltes**: 333 haltes, 165 panden gerouteerd
 - **Bekendmakingen-archief**: 334 adressen, 468 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 5 wetten
 - **Geheugen en trend**: 117 panden onthouden, prijstrend over 9 metingen

@@ -49276,6 +49276,20 @@
   ],
   "pand_id": null
  },
+ "deruyterstraat": {
+  "adres": "de Ruyterstraat",
+  "bag_gezien": "2026-10-07",
+  "bag_zonder_id": "2026-10-07",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €350 per maand, 24 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "deruyterstraat135": {
   "adres": "de Ruyterstraat 135",
   "gebeurtenissen": [

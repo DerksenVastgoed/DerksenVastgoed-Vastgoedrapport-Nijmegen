@@ -938,3 +938,6 @@ Hatertseveldweg | Nijmegen | 1750 | te huur | 2026-10-06 | kamernet-incl | 60 |
 Tolhuis | Nijmegen | 685 | te huur kamer | 2026-10-06 | kamernet-incl | 11 | 
 van Slichtenhorststraat 14 | Nijmegen | 575000 | te koop | 2026-10-07 |  | 74 | 6524JP
 Waterstraat | Nijmegen | 650 | te huur kamer | 2026-10-07 | kamernet-incl | 11 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 07-10-2026
+de Ruyterstraat | Nijmegen | 350 | te huur kamer | 2026-10-07 | kamernet-incl | 24 | 

@@ -72342,5 +72342,11 @@
     "buurtnaam": "Wolfskuil",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-73f7d6cc1f5690e3215d798f298b1841"
+  },
+  "de Ruyterstraat|Nijmegen": {
+    "oppervlakte": 24,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
