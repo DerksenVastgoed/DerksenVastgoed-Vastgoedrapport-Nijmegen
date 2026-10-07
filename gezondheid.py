@@ -1037,6 +1037,19 @@ def controle_aanbodreeks():
     return (OK, bewijs, "")
 
 
+def controle_verkooptijd():
+    """De bovengrens op de verkooptijd, uit onze eigen waarnemingen."""
+    d = _json("verkooptijd.json") or {}
+    if not d.get("aantal"):
+        return (OK, "nog geen pand dat wij eerst te koop en daarna verkocht "
+                "zagen; dat begint te lopen nu de verkochtmeldingen binnenkomen",
+                "")
+    return (OK, f"{d['aantal']} panden van te koop naar verkocht gezien; "
+            f"mediaan hoogstens {d.get('mediaan_hoogstens_dagen')} dagen te "
+            f"koop. Een bovengrens uit twee eigen waarnemingen, geen schatting: "
+            f"de werkelijke tijd is korter of gelijk", "")
+
+
 def controle_doorlooptijden():
     """Wat de reeks per pand oplevert: verkooptijd, bezitsduur, prijsgroei."""
     d = _json("doorlooptijden.json") or {}
@@ -1356,6 +1369,7 @@ CONTROLES = [
     ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),
+    ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),

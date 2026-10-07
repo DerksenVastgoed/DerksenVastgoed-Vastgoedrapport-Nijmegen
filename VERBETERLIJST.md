@@ -4924,6 +4924,647 @@ aankoopcase en een pand in bezit.
 
 ---
 
+## 26. Twee regimes door elkaar in de brief — 5 oktober 2026
+
+De brief van 5 oktober opent met de Staringstraat 2: een aanvraag om een pand te
+verbouwen tot drie appartementen. Dat is woningvorming, dus splitsen. De
+volgende alinea gaat over de WOZ-grens van €396.000 en de omzettingsvergunning,
+en die horen bij kamerverhuur.
+
+**De brief schuift daarmee ongemerkt van het ene regime naar het andere.** De
+caveat dat het buurtgemiddelde niets zegt over dit pand staat er keurig bij,
+maar dat dekt de verkeerde vraag: bij splitsen is die grens helemaal niet de
+toets. Dat loopt via het omgevingsplan en zo nodig een BOPA.
+
+De opdracht zegt dit nu met zoveel woorden: gaat een bekendmaking over splitsen,
+haal er dan niet de WOZ-grens bij alsof die erover gaat, ook niet als
+achtergrond bij de buurt.
+
+**Wat er in deze brief wel goed ging**, en het is het vermelden waard: de
+renteregel noemt nu "al sinds 2 september stil", het onderscheid tussen het
+markttarief en de eigen financiering staat erin, en de brief toetst een artikel
+van vanbruggen.nl over stijgende rente aan de eigen meting en concludeert dat
+die elkaar tegenspreken. Dat laatste is precies waarvoor de brief bedoeld is.
+
+---
+
+## 27. De kapitaalmarktrente werd opgehaald maar niet bewaard — 5 oktober 2026
+
+**Mark:** de brief schrijft dat hij met een meting geen trend kan beoordelen,
+maar die koppeling hebben we toch gewoon?
+
+**Klopt, en dat was een gemiste kans.** De tienjaars AAA-staatsrente werd elke
+dag bij de ECB opgehaald en meteen weer weggegooid; alleen de hypotheektarieven
+gingen de historie in. Daardoor kon de brief terecht schrijven dat hij geen
+trend kon beoordelen, terwijl de reeks er vanaf vandaag gewoon komt.
+
+**De ECB-stand gaat nu mee in rente_historie.json**, naast de drie
+hypotheektarieven. Daaruit volgt een reeks met de stand van nu, die van een
+maand geleden en die van drie maanden geleden, met het verschil in
+basispunten en het aantal metingen erbij.
+
+In de test met 97 dagen historie levert dat: "Een maand geleden stond die
+staatsrente op 3,38%, dus nu +8 basispunten, gemeten over 97 dagen." Met minder
+dan twee metingen blijft de regel weg, en dan geldt het oude voorbehoud nog.
+
+De opdracht aan de brief zegt nu dat hij die vergelijking moet gebruiken als hij
+er staat, en het voorbehoud alleen moet maken als hij ontbreekt.
+
+**Wat dit over een paar maanden mogelijk maakt:** de vraag of de hypotheekrente
+achterblijft bij de kapitaalmarkt. Beweegt de staatsrente wel en het
+hypotheektarief niet, dan loopt de risico-opslag op, en dat is iets anders dan
+een renteverhoging. Dat onderscheid kan de brief straks zelf maken.
+
+---
+
+## 28. Twee bestanden blijven afwijken van de paklijst — 5 oktober 2026
+
+Na opnieuw uploaden meldt de versiecontrole nog steeds brief_verhalend.py en
+rente_verhuurhypotheek.py als afwijkend. Nagekeken aan mijn kant: de paklijst
+past precies bij de bestanden die ik stuurde, de regeleindes zijn gelijk en
+allebei eindigen op een gewone regelovergang. Het verschil zit dus in de repo.
+
+**De controle zei alleen DAT er iets afwijkt, niet WAT.** Daardoor viel er
+alleen te raden: een oudere versie, een halve upload, of een echt verschil. Hij
+noemt nu de omvang en het aantal regels van het bestand dat er staat, zodat het
+te vergelijken is met wat het hoort te zijn.
+
+Wat het moet zijn: brief_verhalend.py 81.297 bytes en 1.394 regels,
+rente_verhuurhypotheek.py 27.856 bytes en 680 regels.
+
+**Gevonden dankzij dat detail:** 81.296 tegen 81.297 bytes en 27.855 tegen
+27.856, allebei bij hetzelfde aantal regels. Een byte verschil, dus de
+regelovergang aan het einde van het bestand valt bij het uploaden weg.
+
+Dat is geen inhoudelijk verschil, maar de controle kon het niet onderscheiden
+van een echte wijziging. De vingerafdruk negeert nu witruimte aan het einde van
+het bestand. Alles daarvoor telt onverkort mee, dus een echte wijziging valt nog
+gewoon op.
+
+Getest op twee gevallen: een bestand zonder die laatste regelovergang blijft
+gelijk, en een bestand waarin een woord is veranderd wordt nog steeds gemeld.
+
+**Wat dit kostte:** drie runs aan zoeken, en twee onterechte vermoedens van mijn
+kant. Eerst dacht ik aan de volgorde van uploaden, daarna aan dezelfde val als
+met versies.py. Allebei plausibel en allebei fout. Pas toen de controle zelf de
+omvang meldde, was het binnen een minuut duidelijk.
+
+---
+
+## 29. Een melding over iets dat goed gaat — 5 oktober 2026
+
+"2 nog nooit nagekeken" zette de geschiedenis op LET OP. Dat zijn panden die
+vandaag uit de attendering binnenkwamen; hun BAG-gegevens en label worden
+opgehaald bij de eerste volledige ronde, dus uiterlijk zondag. Het systeem doet
+dus precies wat het hoort te doen.
+
+**Een melding die afgaat bij normaal gedrag maakt het rapport minder waard**,
+want dan went het oog eraan. Nu geldt een drempel van een tiende van wat een
+ronde aankan, dus vijftig bij vijfhonderd per ronde. Daaronder staat het als
+feit in de regel met de uitleg dat ze net binnen zijn; daarboven is het een
+echte achterstand en blijft de melding staan.
+
+**En de versiecontrole staat weer op OK**, met 37 bestanden gelijk. Daarmee is
+het verhaal van die ene byte afgerond.
+
+---
+
+## 30. Nieuwe panden hoefden niet tot zondag te wachten — 5 oktober 2026
+
+**Mark:** waarom worden de gegevens van nieuwe panden niet meteen opgehaald? Het
+hele bestand nakijken op veranderingen hoort in de weekronde, maar een nieuw
+object kan toch elke run?
+
+**Terecht, en dat waren twee dingen op een hoop.** Een nieuw pand voor het eerst
+ophalen is een handvol opvragingen per dag: de aanbiedingen die vandaag
+binnenkwamen. De hele voorraad opnieuw nakijken op een labelsprong of een
+splitsing is duizenden opvragingen. Alleen dat tweede hoort in de weekronde,
+maar allebei zaten achter dezelfde vlag.
+
+**Nu haalt elke run de nooit nagekeken panden op.** De wachtrij zette die al
+vooraan, dus het script loopt tot het eerste pand met een datum en stopt daar:
+geen enkele overbodige opvraging. Getest op een bestand met twee nieuwe en twee
+oude panden; alleen de twee nieuwe worden gedaan.
+
+**Wat dit praktisch oplevert:** een pand dat vandaag in de attendering komt,
+staat vandaag met oppervlakte, bouwjaar en label in zijn dossier, in plaats van
+over vijf dagen. Juist bij een nieuw aanbod is dat het moment waarop je ernaar
+kijkt.
+
+---
+
+## 31. Voltooide splitsingen uit de BAG — 5 oktober 2026
+
+Een vergunning zegt dat het mag. De BAG zegt dat het gebeurd is: zodra het
+aantal woningen met een eigen adres in een pand omhoog gaat, zijn de nieuwe
+eenheden geregistreerd. Dat is het enige harde bewijs van een voltooide
+splitsing dat we hebben, en het komt uit een registratie en niet uit een
+advertentie.
+
+De BAG-wijziging werd al als gebeurtenis vastgelegd, met het oude en nieuwe
+aantal in de tekst. Wat ontbrak was iets dat er een signaal van maakt.
+
+**splitsing_voltooid.py levert drie dingen:**
+- panden waar de vergunning is gevolgd door een registratie, met de werkelijke
+  doorlooptijd van besluit tot BAG. Dat getal is nergens op te zoeken en elke
+  ontwikkelcase heeft het nodig;
+- panden die zijn opgedeeld zonder dat wij een vergunning kennen. Dat bewijst
+  niets, want wij zien alleen wat gepubliceerd is, maar het wijst op een route
+  die we missen;
+- vergunningen die na een jaar nog tot niets hebben geleid. Dat zegt iets over
+  hoe haalbaar zo'n plan in de praktijk is.
+
+**Getest op vijf gevallen, waaronder twee valkuilen.** Een kamerverhuur-
+vergunning telt niet mee, want omzetten is iets anders dan woningvorming. En een
+besluit dat NA de registratie komt hoort niet bij die splitsing; zo'n pand komt
+terecht bij "zonder bekende vergunning".
+
+**De beperking hoort erbij en staat in het script.** Het aantal woningen wordt
+alleen bij een volledige ronde opnieuw opgehaald, dus wekelijks, en we meten pas
+sinds eind september. Een splitsing van voor die tijd zien we niet, en de eerste
+echte waarneming kan weken op zich laten wachten.
+
+---
+
+## 32. Een vergunning op een pas verkocht pand — 5 oktober 2026
+
+**Mark:** haalt hij er ook bij wanneer dat pand voor het laatst is verkocht?
+
+**Nee, en dat was het ontbrekende stuk.** Bij een bekendmaking stonden de
+oppervlakte, het bouwjaar en het label, maar niet wanneer het pand van eigenaar
+wisselde. Terwijl dat de helft van het verhaal is: een splitsingsaanvraag een
+maand na de verkoop is een koper met een plan, en dat is iets heel anders dan
+een eigenaar die na jaren zijn eigen huis verbouwt.
+
+De feitenregel onder een bekendmaking toont nu "verkocht 35 dagen geleden" of
+"te koop 9 dagen geleden", uit onze eigen geschiedenis en dus zonder extra
+opvragingen. Boven de drie jaar vervalt de regel, want dan zegt het niets meer
+over de huidige eigenaar.
+
+Getest op vijf panden: recent verkocht, lang geleden verkocht, recent te koop,
+ruim een jaar geleden, en een pand dat we niet kennen. Alleen de eerste, derde
+en vierde krijgen een regel.
+
+De opdracht aan de brief zegt erbij dat het ontbreken van zo'n regel niet
+betekent dat het pand niet is verkocht; dan weten we het alleen niet.
+
+**Dit sluit het paar rond.** We hadden al vergund-en-verkocht, dus een pand dat
+een vergunning kreeg en daarna werd verkocht. Dit is de andere richting:
+gekocht en daarna een vergunning. Die tweede is voor ons de interessantere,
+want dat is wat wij zelf zouden doen.
+
+---
+
+## 33. Een regel in woz.txt kon de hele tabel wegvagen — 5 oktober 2026
+
+Mark heeft WOZ-waarden opgezocht en bij panden zonder WOZ een alternatief in het
+bestand gezet. Daarna liep de handrun niet meer.
+
+**De oorzaak zat in de manier van afvangen.** De parser ving fouten af per
+BESTAND, niet per regel: bij een enkele onleesbare regel gaf hij een lege tabel
+terug en waren alle 94 ingevoerde WOZ-waarden ineens onzichtbaar, zonder dat
+iets dat meldde. Elke doorrekening viel dan terug op de schatting.
+
+**Nu per regel.** Een onleesbare regel wordt overgeslagen, de rest wordt gewoon
+gebruikt, en er komt een melding met de regelnummers. Een opmerking achter een
+# aan het eind van een regel telt niet meer mee als gegevens, dus een notitie
+naast een bedrag kan nu gewoon.
+
+Getest op een bestand met zeven regels, waarvan drie onleesbaar: tekst in het
+bedragveld, een losse zin zonder streepjes, en een bedrag van 1 euro. De drie
+goede regels komen eruit, inclusief "342.000" met een punt erin.
+
+**En het gezondheidsrapport controleert het bestand nu apart**, met de
+regelnummers en een uitleg van het formaat. Zo is een fout in de invoer te zien
+zonder de run te hoeven lezen.
+
+---
+
+## 35. Waarom huisnummer 19 geen WOZ heeft maar 19-A wel — 6 oktober 2026
+
+**Mark:** het pand met nummer 19 staat gewoon in de BAG, maar het loket meldt
+dat er geen WOZ is.
+
+**Een WOZ-object is niet hetzelfde als een BAG-object, en dat verklaart het.**
+Het wozwaardeloket publiceert alleen de waarde van woningen. Staat op 19 een
+winkel of een kantoor, dan is er wel degelijk een beschikking, maar wordt die
+niet getoond. En een WOZ-object kan meerdere BAG-eenheden omvatten: een pand met
+een winkel beneden en een woning boven staat vaak als een object onder 19-A.
+
+**Het gebruiksdoel werd al opgehaald maar nergens getoond.** Het dossier zegt nu
+bij een verblijfsobject zonder woonfunctie dat het loket daar geen WOZ toont, en
+dat een doorrekening als woning er niet bij past. Bij meerdere functies, dus een
+gemengd pand, staat dat er ook bij; dat is juist interessant, want zo'n pand
+leent zich vaak voor transformatie.
+
+Getest op vier soorten: winkel, gemengd, woning en onbekend. Alleen de eerste
+twee krijgen een regel.
+
+**Wat dit praktisch betekent voor de invoer:** geeft 19 geen WOZ en 19-A wel,
+kijk dan eerst wat voor object 19 is. Is het een winkel, dan is de WOZ van 19-A
+de waarde van de woning erboven en hoort die bij een ander verblijfsobject dan
+het pand in het aanbod. Is 19 gewoon een woning die onder 19-A geregistreerd
+staat, dan is het dezelfde woning en klopt de invoer.
+
+---
+
+## 34a. Correctie: het waren wel metingen — 6 oktober 2026
+
+Mark legde uit wat hij werkelijk deed: als huisnummer 19 bij het wozwaardeloket
+niets opleverde en 19-A wel, heeft hij het adres in woz.txt aangepast en de
+WOZ van 19-A ingevuld. Dat is geen overgenomen waarde van een ander pand maar de
+meting van hetzelfde object onder het adres waaronder het geregistreerd staat.
+Mijn zorg van gisteravond was dus misplaatst, en de tildemarkering is voor deze
+regels niet nodig.
+
+**Er zit wel een risico aan dat ik niet had gezien.** Staat het pand in ons
+aanbod als "Havenweg 34" en in woz.txt als "Havenweg 34-A", dan vindt het model
+die WOZ niet: het zoekt op adres. Het opzoekwerk is dan gedaan maar landt
+nergens, en het pand blijft met een geschatte WOZ in de doorrekening staan.
+
+Het rapport meldt nu welke ingevulde WOZ-regels bij geen enkel pand in het
+aanbod horen, met de adressen erbij. Getest: een regel op 34-A terwijl het
+aanbod 34 kent, wordt gemeld; de regels die wel kloppen niet.
+
+Wat eraan te doen is, staat in de melding: zet het adres terug zoals het in het
+aanbod staat, of voeg beide regels toe. Dat tweede is het veiligst, want dan
+klopt het ook als het pand later onder de andere schrijfwijze binnenkomt.
+
+---
+
+## 34. Een overgenomen WOZ is geen meting — 5 oktober 2026
+
+Mark vulde bij panden zonder eigen WOZ een alternatief in, bijvoorbeeld de
+waarde van het buurpand. Begrijpelijk, en voor de doorrekening ook bruikbaar:
+beter een onderbouwd getal dan niets.
+
+**Maar voor de ijking is het funest.** Die vergelijkt onze schatting met de
+werkelijkheid. Vul je daar een schatting in, dan vergelijkt het model zijn eigen
+aanname met een andere aanname, en lijkt de uitkomst beter of slechter dan hij
+is. In deze run ging de spreiding van 16,1% naar 19,4% bij vier panden erbij;
+dat kan ruis zijn, maar het kan ook dit zijn.
+
+**Een tilde voor het bedrag markeert het nu als overgenomen:**
+
+    Havenweg 34 | ~825000 | 2026   # geen eigen WOZ, waarde van nr 36
+
+Zo'n waarde telt gewoon mee in de doorrekening, maar niet in de ijking en niet
+in de methodevergelijking. Ook "ca" en een plusminteken werken. Het rapport
+telt hoeveel er zo in staan.
+
+**Waarom dit principieel is:** het hele punt van die ijking is dat we weten hoe
+goed de schatting is. Elke geschatte waarde die als meting binnenkomt, maakt dat
+getal minder waard zonder dat iemand het ziet. Dat is dezelfde fout als een
+vraagprijs voor een transactieprijs aanzien.
+
+---
+
+## 36. Hoeveel WOZ-waarden zijn er nog nodig? — 6 oktober 2026
+
+**Mark:** moeten we er nog meer opzoeken?
+
+**Systematisch niet meer, gericht wel.** De reeks laat zien waarom. Bij 39, 67
+en 82 panden ging de spreiding van 23,9% naar 19,4% naar 15,0%; daarna, bij 94
+en 98, terug naar 16,1% en 19,4%. Dat is geen verslechtering maar ruis in de
+maat zelf: hij neemt het tiende en negentigste percentiel, en dat beweegt bij
+honderd waarnemingen een paar punten op en neer.
+
+Het stabiele getal is de mediane fout van de prijsindexmethode, en die ging van
+11,0% naar 10,3% en beweegt sinds 82 panden nauwelijks. Tien procent mediane
+fout betekent: goed genoeg om mee te sorteren, nooit goed genoeg om op te
+bieden. Honderd panden erbij verandert dat niet.
+
+**De werklijst kiest nu wel beter.** Hij keek naar prijsklasse en nieuwe
+straten, maar niet naar buurten waar we weinig hebben. De kalibratie rekent per
+buurt, dus een buurt met drie waarnemingen heeft meer baat bij vijf panden erbij
+dan een buurt met veertig. Buurten met minder dan acht eigen WOZ-waarden staan
+nu bovenaan, met de reden erbij: "Benedenstad heeft nog maar 0 eigen
+WOZ-waarden".
+
+Getest met vier kandidaten in twee buurten, waarvan een met drie waarden en een
+met nul: de buurt met nul komt eerst.
+
+**En de lijst vulde niet aan tot vijfentwintig, wat zelf het antwoord is.** Met
+98 ingevulde en 8 openstaande regels staan er 106 adressen in woz.txt, tegen 96
+koopobjecten in het aanbod. Vrijwel elk pand dat te koop staat heeft dus al een
+WOZ of staat al op de lijst: er is niets meer te kiezen. Dat bevestigt gemeten
+wat hierboven beredeneerd staat.
+
+Het rapport zei dat niet, en dan lijkt de werklijst kapot. Nu staat er "geen
+nieuwe kandidaten, elk pand in het aanbod heeft al een WOZ of staat al op de
+lijst", of anders hoeveel panden er nog zonder zitten. Getest op allebei de
+gevallen.
+
+Nieuwe kandidaten komen er vanzelf zodra er panden te koop komen. Wat wel loont, blijft: de WOZ van elk pand dat Mark
+serieus overweegt, want daar beslist het verschil tussen €360.000 en €518.000 de
+hele case.
+
+---
+
+## 37. Twee vergunningen door elkaar in een achtergrondstuk — 6 oktober 2026
+
+De brief van 6 oktober opent sterk: een aanvraag aan de Berg en Dalseweg 11-11A
+om een splitsing van 2 naar 4 woningen te legaliseren, dus achteraf recht te
+zetten wat zonder vergunning is gebeurd. Precies het soort bericht waarvoor dit
+systeem is gebouwd.
+
+**Maar er staat een zin in die twee stelsels door elkaar haalt**, en die komt uit
+mijn eigen achtergrondstuk "Onrechtmatig gebruik en handhaving": "Woon je zonder
+de vereiste huisvestingsvergunning, dan zijn huurder en verhuurder allebei in
+overtreding."
+
+Dat gaat over artikel 8 van de Huisvestingswet, een vergunning over wie er mag
+wonen, die alleen geldt voor woonruimte die de gemeente daarvoor heeft
+aangewezen. De rest van de alinea gaat over artikel 21: omzetten, onttrekken,
+samenvoegen en woningvorming, een zaak van de eigenaar. Die twee hebben verder
+niets met elkaar te maken, en of Nijmegen zo'n aanwijzing voor bewoning kent,
+weet ik niet; dat staat in de verordening en moet per geval worden nagekeken.
+
+Het achtergrondstuk zegt dat nu met zoveel woorden, en de opdracht aan de brief
+verbiedt het mengen: schrijf nooit over een huisvestingsvergunning bij een
+splitsings- of kamerverhuurzaak.
+
+**Dit is dezelfde soort fout als die van gisteren met de WOZ-grens**, en het is
+de derde keer deze week: twee regimes die allebei uit dezelfde wet komen en in
+een alinea in elkaar overlopen. Daar zit blijkbaar een structurele zwakte, en
+die zit in mijn achtergrondstukken en niet in de brief.
+
+---
+
+## 38. De rente stond weer bovenaan — 6 oktober 2026
+
+Na de correctie opende de brief met vanbruggen.nl over een stijgende
+hypotheekrente, weersproken door onze eigen meting. Daaronder pas de
+legalisatieaanvraag aan de Berg en Dalseweg.
+
+**Dat is de verkeerde volgorde, en wel om twee redenen.** Het rentebericht gaat
+over een cijfer dat volgens onze eigen meting sinds 2 september stilstaat; het
+weerspreken daarvan is nuttig maar het is geen gebeurtenis. De Berg en Dalseweg
+is een pand in de eigen ring waar iets concreets gebeurt.
+
+De opdracht kent al de regel dat een onveranderde rente geen nieuws is, maar die
+sloeg niet aan omdat er een artikel over was. Nu staat er een expliciete
+volgorde: eerst de stad, dan de markt. Een bekendmaking over een pand in de ring
+gaat voor een landelijk marktbericht, en een gemeten verandering gaat voor een
+bericht dat een verandering beweert. Een rentebericht mag alleen openen als onze
+eigen meting ook werkelijk beweegt.
+
+---
+
+## 39. De volgorde klopt nu, en een benaderd jaartal werd hard — 6 oktober 2026
+
+De brief van 6 oktober opent met twee splitsingsaanvragen in de ring, zet de
+WOZ-grens expliciet naast het splitsingsregime in plaats van erdoorheen, en
+weerspreekt het rentebericht pas verderop. Alle drie de aanpassingen van
+vanochtend doen wat ze moeten.
+
+**Een detail klopt nog niet.** De brief schrijft "op nummer 210 en 275 is in
+2018 woonruimte onttrokken", terwijl in de gegevens "jaar bij benadering" staat.
+Die oude kamerverhuurvergunningen komen uit de gemeentelijke lijst waarin het
+jaartal is afgeleid en niet gepubliceerd. De opdracht zegt nu dat zo'n jaartal
+"omstreeks 2018" moet worden, nooit "in 2018".
+
+**Wat verder opvalt aan deze brief**, en het is het noteren waard omdat het laat
+zien waar het systeem nu staat: hij legt bij de Krayenhofflaan 47 het verband
+tussen WOZ, puntenaantal, opkoopbescherming en labelsprong in een alinea, met
+alle vier de getallen uit onze eigen gegevens. Een labelsprong naar B geeft 14
+punten en brengt het pand van 179 naar 193, dus over de grens van 187 heen. Dat
+is precies de redenering waarvoor dit is gebouwd, en die stond er een week
+geleden nog niet in.
+
+---
+
+## 40. Hoe een legalisatietraject werkt — 6 oktober 2026
+
+**Correctie vooraf:** ik schreef dat de observatie over eerst splitsen en dan
+toestemming vragen van Mark kwam. Dat klopt niet; die stond in de brief en
+nergens in zijn berichten. Ik heb hem ten onrechte aan hem toegeschreven.
+
+**Zijn werkelijke punt was beter:** we weten niet hoe zo'n legalisatietraject
+verloopt, en dat is precies wat je moet weten als er een pand met zo'n aanvraag
+te koop komt. Daar was geen achtergrondstuk voor; nu wel, het dertigste.
+
+Wat erin staat, opgezocht en niet uit het hoofd:
+
+- de beginselplicht tot handhaving, sinds 1 januari 2024 vastgelegd in artikel
+  18.1 Omgevingswet en daarvoor al vaste rechtspraak: bij een overtreding moet
+  het bestuursorgaan in de regel optreden met een dwangsom of bestuursdwang;
+- twee uitzonderingen: concreet zicht op legalisatie, en onevenredigheid. Van
+  concreet zicht is sprake bij een ontvankelijke aanvraag die de hele
+  overtreding wegneemt en de bereidheid die te verlenen; bij de uitgebreide
+  procedure moet er een ontwerpbesluit ter inzage liggen;
+- dat verklaart waarom legalisatieaanvragen zo vaak voorkomen: zolang die loopt
+  en kansrijk lijkt, kan de gemeente van handhaven afzien;
+- maar het is geen vrijbrief. De Afdeling bestuursrechtspraak heeft bevestigd
+  dat een bestuursorgaan ook bij concreet zicht op legalisatie toch mag
+  handhaven, en het zicht wordt beoordeeld op het moment van de beslissing op
+  bezwaar;
+- en de beginselplicht geldt alleen voor herstelsancties. Voor een bestuurlijke
+  boete geldt hij niet, dus een lopende aanvraag beschermt niet tegen een boete
+  over de periode zonder vergunning.
+
+**Waar het voor een koper om draait, staat als laatste in het stuk:** een pand
+met een lopende legalisatieaanvraag is geen vergund pand. Wordt de vergunning
+geweigerd, dan ligt de herstelplicht bij de eigenaar van dat moment, en dat kan
+de koper zijn.
+
+---
+
+## 41. Een huisnummeraanvraag is een splitsingssignaal — 6 oktober 2026
+
+Mark legde een antwoord van een andere assistent voor over de Berg en Dalseweg
+11-11A. Een eigen zoekopdracht levert daar niets over op, dus de bewering dat de
+appartementen in 2017 voor het laatst zijn verkocht is niet te bevestigen; dat
+soort Kadastergegevens is ook niet vrij op te vragen.
+
+**Maar een onderdeel is wel opvallend en controleerbaar:** in juni 2026 zou er
+een aanvraag zijn ingediend voor twee extra huisnummers op dat adres. Dat is
+precies wat woningvorming administratief is. Nieuwe zelfstandige woningen
+krijgen een eigen adres, en pas daarna telt de BAG ze mee. Twee extra
+huisnummers bij een pand van twee woningen is dus een splitsing naar vier, en
+dat is exact de aanvraag die vandaag als legalisatie binnenkwam.
+
+**Die signaalsoort stond niet in onze kernwoorden.** Een bekendmaking over
+huisnummers of een nummeraanduiding viel bij de overige berichten, terwijl het
+de stap is die vooraf gaat aan de splitsing die we later in de BAG zien
+verschijnen. Nu staan "huisnummer", "huisnummers" en "nummeraanduiding" in de
+kernlijst. Getest: de twee huisnummerregels komen als kernsignaal binnen, een
+kapvergunning niet.
+
+**Daarmee zit de keten compleet:** aanvraag huisnummers, dan de
+vergunningaanvraag, dan het besluit, en ten slotte de BAG die de nieuwe woningen
+telt. Elk van die vier stappen is nu een gebeurtenis in de pandgeschiedenis.
+
+---
+
+## 42. Een adres met een streepje werd niet gelezen — 6 oktober 2026
+
+**Mark:** worden die huisnummeraanvragen ook per pand vastgelegd? Dat hoort in
+het pandverhaal.
+
+**Eens, en het ging mis op een plek die niemand zou vermoeden.** De titel "aan
+Berg en Dalseweg 11-11A, 6522BB Nijmegen" leverde helemaal geen adres op. Beide
+parsers, die in bekendmakingen_nijmegen.py en die in bekendmakingen_archief.py,
+konden niet omgaan met een bereik van twee huisnummers. Zo'n bekendmaking kwam
+daardoor in geen enkele pandgeschiedenis terecht.
+
+Juist bij woningvorming is dat de vorm die voorkomt, want daar zijn twee
+adressen in het spel. De aanvraag voor extra huisnummers, de legalisatie en het
+latere besluit dragen allemaal die schrijfwijze, en ze vielen alle drie buiten
+het pandverhaal.
+
+Beide parsers nemen nu het eerste nummer uit het bereik. Getest op zes vormen:
+11-11A, 110-112, een schuine streep, "51 en 53", een gewoon nummer en een
+nummer met een letter. Alle zes geven nu het juiste pand, en de twee Berg en
+Dalseweg-regels landen op dezelfde sleutel.
+
+**Daarmee is de keten van signalen ook werkelijk aan elkaar geknoopt.** De
+aanvraag voor huisnummers, de vergunningaanvraag, het besluit en de BAG die de
+nieuwe woningen telt, staan vanaf nu alle vier in de geschiedenis van hetzelfde
+pand. Dat was de bedoeling van het splitsingssignaal van gisteren, en zonder
+deze reparatie had het bij dit pand niet gewerkt.
+
+---
+
+## 43. Een label hoort bij een adres, niet bij een pand — 6 oktober 2026
+
+**Mark:** het gaat om twee huisnummers, maar er staat maar een energielabel.
+Betekent dat dat er maar een is, of dat beide woningen hetzelfde hebben?
+
+**Het eerste: we kennen er maar een.** Een energielabel wordt per
+verblijfsobject geregistreerd, dus per adres. Is er voor 11A niets
+geregistreerd, dan weten we daar niets van, en bij een pas gesplitst pand is dat
+juist waarschijnlijk: nieuwe eenheden hebben vaak nog geen label.
+
+De brief schreef "het pand heeft energielabel F", en dat suggereert meer dan we
+weten. Twee aanpassingen.
+
+Het dossier zet er nu bij voor hoeveel woningen in het pand we een label kennen:
+"F; bekend voor 1 van de 2 woningen in dit pand, van de overige kennen we het
+label niet". Bij een pand met een woning blijft het de gewone regel.
+
+En de opdracht zegt dat een label bij een adres hoort en niet bij een pand, en
+dat de brief "voor dit adres staat label F geregistreerd" moet schrijven in
+plaats van "het pand heeft label F".
+
+**Aanvulling, zelfde dag.** De gegevens staan al per huisnummer: in
+pandgeschiedenis.json staat per pand een lijst adres-naar-label, en die wordt
+per verblijfsobject opgehaald. Alleen de weergave was samengevat, en het dossier
+toonde uitsluitend het label van het aangeboden adres.
+
+Nu staat er een regel "labels per adres" bij een pand met meerdere bekende
+labels, bijvoorbeeld "Berg en Dalseweg 11: F, Berg en Dalseweg 11A: A". Boven de
+twaalf adressen wordt afgekapt met een telling erachter.
+
+Dat is bij een splitsingscase het interessantste wat er staat: verschillende
+labels binnen een pand betekent dat een deel is verbouwd en een deel niet. De
+opdracht zegt nu dat de brief dat verschil concreet moet noemen, met de adressen
+erbij.
+
+**Waarom dit meer is dan een slag om de arm:** bij de Berg en Dalseweg gaat het
+om vier woningen na splitsing. Als er straks een puntentelling op wordt
+losgelaten, telt het label van elk van die vier apart. Een label F van het
+oorspronkelijke adres zegt dan niets over wat de nieuwe eenheden krijgen, en die
+zijn na een verbouwing vaak een stuk beter.
+
+---
+
+## 44. De labelnuance gold nog niet voor bekendmakingen — 6 oktober 2026
+
+De brief schreef vanochtend nog "het pand is 116 vierkante meter groot en heeft
+energielabel F", terwijl het over de Berg en Dalseweg 11-11A gaat: twee adressen,
+en straks vier woningen.
+
+**De reparatie van eerder vandaag zat in het dossier, niet bij de
+bekendmakingen.** Die hebben hun eigen feitenregel met oppervlakte, bouwjaar en
+label, en daar gold de nuance niet.
+
+Nu krijgt het label daar "(alleen van dit adres bekend)" achter zich zodra de
+bekendmaking over meerdere woningen gaat: een adres met een streepje erin, een
+titel over verbouwen naar twee of meer woningen, of het woord appartementen.
+Getest op drie titels: de huisnummeraanvraag en de verbouwing naar drie
+appartementen krijgen de toevoeging, een dakkapel niet.
+
+**Dit is dezelfde fout op een tweede plek**, en dat patroon komt vaker voor in
+dit systeem: dezelfde gegevens worden op twee manieren naar de brief gebracht,
+en een verbetering aan de ene kant laat de andere ongemoeid. De adresparser van
+vanmiddag was precies hetzelfde geval: twee parsers, allebei met dezelfde
+beperking.
+
+---
+
+## 45. "Weer te koop" zonder te zeggen wanneer — 6 oktober 2026
+
+**Mark:** er staat dat de Krayenhofflaan 321 weer te koop staat, maar niet
+wanneer het pand eerder werd aangeboden. Dat is jammer, want daar zit het
+verhaal.
+
+**Terecht, en die gebeurtenis staat gewoon in de geschiedenis.** Het dossier
+toonde alleen sinds wanneer het pand nu te koop staat, niet de vorige keer.
+
+Er staat nu een regel "eerder te koop" bij met de datum en, als we die kennen,
+de vorige vraagprijs met het verschil erbij: "eerder aangeboden op 2025-11-12
+voor €520.000, nu 7% lager". Getest op vier gevallen: lager, hoger, dezelfde
+prijs en een gebeurtenis zonder bedrag.
+
+En de opdracht zegt nu dat "weer te koop" nooit zonder dat wanneer mag. Juist
+het verschil is het nieuws: een pand dat na drie maanden terugkomt voor zeven
+procent minder zegt iets anders dan een pand dat na vier jaar opnieuw op de
+markt komt. Ontbreekt die regel, dan schrijft de brief alleen dat het nu te koop
+staat.
+
+---
+
+## 46. Wat er vandaag werkte, en een afgeronde periode — 6 oktober 2026
+
+**Drie aanpassingen van vandaag zijn terug te zien in de brief:**
+
+"Energielabel F, uit 2017 en alleen van dit adres bekend" bij een pand met twee
+adressen. Bij de Krayenhofflaan 28 gebruikt de brief de labels per adres: "nu
+gesplitst in 28, 28A en 28B, alle drie met label C". En hij schrijft niet meer
+dat nummer 321 weer te koop staat, alleen dat het te koop staat; de eerdere
+plaatsing zit niet in onze geschiedenis, dus de regel die zegt "ontbreekt die
+datum, claim het dan niet" doet precies zijn werk.
+
+**Een kleinigheid klopt niet:** "Stadscentrum +4,2% in vier weken", terwijl de
+meting loopt sinds 13 september, dus drieëntwintig dagen. Een periode die langer
+lijkt dan hij is, maakt een beweging kleiner dan hij is. De opdracht zegt nu dat
+de brief de datum zelf of het werkelijke aantal dagen noemt en niet naar boven
+afrondt.
+
+---
+
+## 47. Een verkooptijd die een feit is in plaats van een schatting — 6 oktober 2026
+
+Mark plakte de verkochte woningen van funda. Zeven ervan stonden bij ons al als
+te koop; acht waren nieuw. En de "Sinds 3 weken" op die pagina blijkt niet de
+verkoopdatum: Hofdijkstraat 17 zagen wij op 11 september te koop en staat op
+"3 weken", dus 15 september. Die labels lopen gelijk met de advertentie, niet
+met de verkoop.
+
+**Maar twee eigen waarnemingen geven wel een harde bovengrens.** Zagen we een
+pand op 11 september te koop en is het op 6 oktober verkocht, dan stond het
+hoogstens 25 dagen te koop. Dat is geen schatting: de werkelijke tijd is korter
+of gelijk, nooit langer. Precies de maat die we de hele week misten en die het
+model tot nu toe met een modelantwoord moest vullen.
+
+verkooptijd.json bevat nu per pand de eerste keer dat we het te koop zagen, de
+dag dat het verkocht bleek, en het aantal dagen ertussen, plus de mediaan.
+Getest op vier panden: twee met beide waarnemingen, een alleen te koop en een
+alleen verkocht; de laatste twee vallen terecht af.
+
+**En de mailparser leest de verkochtmeldingen nu.** Het filter op verkocht staat
+sinds kort aan bij Mark, en zonder deze aanpassing kwamen die mails als "te
+koop" binnen, waardoor een verkocht pand eeuwig in het aanbod bleef staan. Nu
+levert een mail met "verkocht" de status verkocht, en een mail met "onder
+voorbehoud" of "onder bod" de status onder voorbehoud.
+
+**De opdracht aan de brief eist de juiste formulering:** "hoogstens 25 dagen" of
+"binnen 25 dagen", nooit "25 dagen te koop". Dat laatste zou een precisie
+suggereren die we niet hebben.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

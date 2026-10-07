@@ -747,6 +747,14 @@ def main():
             soort_bron, status_label = "business", "belegging"
         else:
             soort_bron, status_label = "regulier", "te koop"
+            # Sinds het filter op verkocht aanstaat komen er ook mails over
+            # panden die zijn verkocht of onder voorbehoud staan. Zonder dit
+            # kwamen die als "te koop" binnen en bleef een verkocht pand
+            # eeuwig in het aanbod staan.
+            if "onder voorbehoud" in blob or "onder bod" in blob:
+                status_label = "onder voorbehoud"
+            elif "verkocht" in blob:
+                status_label = "verkocht"
 
         if soort_bron == "vendr":
             objecten, overgeslagen = parse_vendr(regels)

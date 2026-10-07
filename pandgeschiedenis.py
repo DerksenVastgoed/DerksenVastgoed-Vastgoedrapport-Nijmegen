@@ -785,6 +785,59 @@ def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
     return nieuw
 
 
+def verkooptijd_bovengrens(geschiedenis):
+    """
+    Hoe lang een pand maximaal te koop stond, uit twee eigen waarnemingen.
+
+    De exacte verkoopdatum kennen we niet: Funda publiceert die niet en de
+    "sinds zoveel weken" op de site loopt gelijk met de advertentie en niet met
+    de verkoop. Maar twee eigen waarnemingen geven wel een harde bovengrens:
+    zagen we een pand op 11 september te koop en is het op 6 oktober verkocht,
+    dan stond het hoogstens 25 dagen te koop.
+
+    Dat is geen schatting maar een feit, en het is de maat die we de hele week
+    misten. De werkelijke verkooptijd is korter of gelijk; nooit langer.
+    """
+    rijen = []
+    for pand in geschiedenis.values():
+        if not isinstance(pand, dict):
+            continue
+        gebeurtenissen = sorted((pand.get("gebeurtenissen") or []),
+                                key=lambda g: g.get("datum") or "")
+        tekoop = [g["datum"] for g in gebeurtenissen
+                  if g.get("soort") == "te koop" and g.get("datum")]
+        verkocht = [g for g in gebeurtenissen
+                    if g.get("soort") == "verkocht" and g.get("datum")]
+        if not (tekoop and verkocht):
+            continue
+        laatste = verkocht[-1]
+        # De eerste keer dat we het pand te koop zagen vóór deze verkoop.
+        eerder = [d for d in tekoop if d <= laatste["datum"]]
+        if not eerder:
+            continue
+        dagen = _dagen_tussen(eerder[0], laatste["datum"])
+        if dagen is None or dagen < 0 or dagen > 1500:
+            continue
+        rijen.append({"adres": pand.get("adres"),
+                      "eerst_gezien": eerder[0],
+                      "verkocht_gezien": laatste["datum"],
+                      "hoogstens_dagen": dagen})
+    rijen.sort(key=lambda r: r["verkocht_gezien"], reverse=True)
+    uit = {"aantal": len(rijen), "panden": rijen[:20]}
+    if rijen:
+        waarden = sorted(r["hoogstens_dagen"] for r in rijen)
+        uit["mediaan_hoogstens_dagen"] = waarden[len(waarden) // 2]
+    return uit
+
+
+def _dagen_tussen(van, tot):
+    try:
+        return (dt.date.fromisoformat(tot[:10])
+                - dt.date.fromisoformat(van[:10])).days
+    except Exception:
+        return None
+
+
 def doorlooptijden(geschiedenis):
     """
     Wat de reeks per pand oplevert zodra er meer dan een gebeurtenis in staat.
@@ -1092,6 +1145,13 @@ def main():
         with open("doorlooptijden.json", "w", encoding="utf-8") as f:
             json.dump(doorlooptijden(geschiedenis), f, ensure_ascii=False,
                       indent=1)
+    except Exception:
+        pass
+    # De bovengrens op de verkooptijd, uit onze eigen waarnemingen.
+    try:
+        with open("verkooptijd.json", "w", encoding="utf-8") as f:
+            json.dump(verkooptijd_bovengrens(geschiedenis), f,
+                      ensure_ascii=False, indent=1)
     except Exception:
         pass
 

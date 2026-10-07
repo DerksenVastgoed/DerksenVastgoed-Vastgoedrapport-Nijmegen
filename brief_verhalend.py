@@ -192,6 +192,8 @@ EEN BENADERD JAARTAL BLIJFT BENADERD. Staat er bij een gebeurtenis "jaar bij ben
 
 DATA ALTIJD ABSOLUUT. Noem de ingangsdatum van een regel zoals die in de bron staat: "sinds 1 juli 2024", niet "sinds vorig jaar zomer"; "sinds 1 januari 2025", niet "sinds januari" of "sinds dit jaar". De datum van vandaag staat bovenaan de gegevens; reken niet zelf om naar "vorig jaar" of "dit jaar".
 
+EEN VERKOOPTIJD IS EEN BOVENGRENS, GEEN METING. Staat er dat een pand hoogstens zoveel dagen te koop stond, schrijf dat dan ook zo: "hoogstens 25 dagen" of "binnen 25 dagen", nooit "25 dagen te koop". Wij kennen de verkoopdatum niet; we weten alleen wanneer we het pand voor het laatst te koop zagen en wanneer het verkocht bleek. De werkelijke tijd is korter of gelijk, nooit langer.
+
 EEN PERIODE NOOIT AFRONDEN NAAR BOVEN. Staat er bij het prijspeil "sinds 2026-09-13", reken dan niet om naar "in vier weken" als het er drieëntwintig zijn. Noem de datum zelf, of het werkelijke aantal dagen. Een periode die langer lijkt dan hij is, maakt een beweging kleiner dan hij is, en bij een prijsverandering telt dat.
 
 "WEER TE KOOP" VRAAGT ALTIJD OM WANNEER. Schrijf nooit dat een pand opnieuw te koop staat zonder erbij te zetten wanneer het eerder werd aangeboden en voor hoeveel. Dat staat in het dossier onder "eerder te koop". Juist het verschil is het nieuws: een pand dat na drie maanden terugkomt voor zeven procent minder, zegt iets anders dan een pand dat na vier jaar opnieuw op de markt komt. Ontbreekt die regel, schrijf dan niet "weer te koop" maar alleen dat het nu te koop staat.

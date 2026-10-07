@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "850c7844643c",
+  ".github/workflows/bekendmakingen.yml": "2e7552ed05a3",
   "aanbod_reeks.py": "81d5a7aa0aa2",
   "aanbodprofiel.py": "23697f8f4d8f",
   "bag3d.py": "b7cbb69df264",
@@ -10,14 +10,14 @@
   "bouwkosten_index.py": "f28b149e1b4b",
   "bouwnorm.py": "0e31713d956d",
   "brief_logboek.py": "3667d1e9fdaa",
-  "brief_verhalend.py": "aebebf40eeb4",
+  "brief_verhalend.py": "9b6097d34cd8",
   "bronnen.py": "8219d3f3997c",
   "buurten_tabel.py": "be9f6ffee4ec",
   "corop_prijzen.py": "ac3a1de9f344",
   "diagnose.py": "6b5cfc5f3961",
-  "funda_mail.py": "eada57dbb1f9",
+  "funda_mail.py": "eef8e4b77757",
   "funda_verkocht_plak.py": "44255967014f",
-  "gezondheid.py": "ddf0c0029d66",
+  "gezondheid.py": "29d4df5eb632",
   "grootte_premie.py": "dc1fe4744a6e",
   "huur_dekking.py": "e3db912f5bb8",
   "kamernet_plak.py": "7b673395ed06",
@@ -26,7 +26,7 @@
   "marktprijzen_bag.py": "e7a5438245b0",
   "misdrijven_buurt.py": "60a769179821",
   "onderwerpen_signaal.py": "2e2017c0c698",
-  "pandgeschiedenis.py": "088ee3be4e57",
+  "pandgeschiedenis.py": "8c48cee8c9fe",
   "pandlezer.py": "5ef344795556",
   "publicaties_vastgoed.py": "93d577ba3a88",
   "regelgeving_monitor.py": "3a32888de289",
@@ -39,5 +39,5 @@
   "woningprijsindex.py": "8bc8f9f2c72f",
   "wwso.py": "878418125bec"
  },
- "gemaakt": "2026-10-06"
+ "gemaakt": "2026-10-07"
 }
