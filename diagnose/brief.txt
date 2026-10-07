@@ -161,3 +161,6 @@ De brief eindigt midden in een zin: '...n de gaten, al raakt het ons niet rechts
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
 De brief eindigt midden in een zin: '...Stadscentrum de hoogste prijs per vierkante meter van de zes'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...ringstraat 2 en Stieltjesstraat 10 in de gaten.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

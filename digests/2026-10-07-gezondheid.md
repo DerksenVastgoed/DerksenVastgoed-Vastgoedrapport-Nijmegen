@@ -17,7 +17,7 @@
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
-- **Versies**: paklijst van 2026-10-07: 38 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
+- **Versies**: paklijst van 2026-10-07: 39 gelijk, 0 met andere inhoud, 0 niet aanwezig, 1 niet in de paklijst
 - **Huurdata**: 61 huurwaarnemingen, waarvan 21 Pararius en 40 Kamernet; 27 in de laatste week
 - **Aanbod**: 98 koopobjecten, 2 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -30,7 +30,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
 - **Geschiedenis per pand**: 1726 panden gevolgd, 1406 met meer dan een gebeurtenis; 1568 met BAG-gegevens (6323 woningen, 7398 dubbel geteld zonder deze correctie), 1372 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Van 1 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 70 panden te koop, mediaan 18 dagen geleden voor het laatst bevestigd, oudste 35 dagen
 - **Aanbodreeks**: 6 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 2 koop, 9 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -47,7 +47,7 @@
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
 - **3D BAG eigen snapshot**: 1247 panden in de eigen snapshot, 1247 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-07
-- **Achtergronddekking**: 30 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **Achtergronddekking**: 36 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 6 brieven vastgelegd, laatste 2026-10-07; 88 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
