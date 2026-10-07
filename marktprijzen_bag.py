@@ -1537,7 +1537,12 @@ VERHUURBAAR_AANDEEL = 0.79
 # Ondergrens per zelfstandige eenheid. Er is geen wettelijke norm; Nijmegen
 # verleende in september 2026 een vergunning voor eenheden van 53, 43 en 32 m2
 # (Plein 1944 142), dus 30 is realistischer dan de 40 die we eerst aanhielden.
-MIN_UNIT_M2 = 30
+# Een gemeten ondergrens in plaats van een aanname. In de aanvragen die we
+# hebben gezien worden eenheden van 22 m2 gemaakt (Berg en Dalseweg 70, vijf
+# appartementen van 39, 24, 24, 22 en 22 m2), en in het aanbod staan studio's
+# van 23, 24 en 28 m2 te koop. Dertig was dus te ruim en vijfenveertig, de
+# grens die hieronder gold, sloot de beste variant helemaal uit.
+MIN_UNIT_M2 = 22
 VERHUURBAAR_SPLITSING = 0.90  # verlies aan gedeelde entree en trappenhuis
 MAX_UNITS = 6               # boven dit aantal is het geen splitsing meer
 
@@ -1576,10 +1581,37 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     al_bekend = len(w.get("eenheden_in_pand") or [])
     if 1 < al_bekend <= MAX_UNITS:
         aantal = al_bekend
-    elif bruikbaar / aantal < 45 and bruikbaar >= 2 * 45:
-        # Eenheden onder 45 m2 zijn krap; twee ruimere etages is vaak
-        # realistischer dan vier kleine.
-        aantal = max(2, int(bruikbaar // 60))
+    elif aantal > 2:
+        # Welke opdeling het meest oplevert, is niet vooraf te zeggen: het
+        # puntenstelsel kent per woning een vaste voet, dus kleine eenheden
+        # leveren per m2 meer op, terwijl een grote woning juist in de vrije
+        # sector kan vallen. Eerder stond hier een ondergrens van 45 m2 per
+        # eenheid, en die sloot bij de Berg en Dalseweg 70 de werkelijk
+        # aangevraagde variant van vijf eenheden uit. Nu rekenen we de
+        # varianten door en houden de beste over.
+        beste, beste_maand = aantal, 0.0
+        for kandidaat in range(2, aantal + 1):
+            unit = bruikbaar / kandidaat
+            if unit < MIN_UNIT_M2:
+                continue
+            hm2, _b = huur_voor_buurt(buurt, huur_bk, huur_k, unit, "woning")
+            maand_k = hm2 * bruikbaar
+            if wws_punten and wws_max_huur:
+                try:
+                    ep_k = w.get("energielabel") or {}
+                    r_k = wws_punten(unit, w["prijs"] / kandidaat,
+                                     label=ep_k.get("label"),
+                                     monument=bool(w.get("monument")),
+                                     heeft_buiten=False)
+                    if r_k["gereguleerd"]:
+                        mx = wws_max_huur(r_k["punten"])
+                        if mx:
+                            maand_k = min(maand_k, mx * kandidaat)
+                except Exception:
+                    pass
+            if maand_k > beste_maand:
+                beste, beste_maand = kandidaat, maand_k
+        aantal = beste
 
     unit_m2 = bruikbaar / aantal
     huur_m2, bron = huur_voor_buurt(buurt, huur_bk, huur_k, unit_m2, "woning")
@@ -1628,6 +1660,12 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
             "verkoopwaarde": opbrengst,
             "verkoopmarge": (opbrengst - w["prijs"]) if opbrengst else None,
             "opp": round(bruikbaar), "bron": bron, "aantal": aantal,
+            # De verbouwkosten zitten hier NIET in. Elke extra eenheid vraagt
+            # een eigen keuken, badkamer, meterkast en entree, en dat is bij
+            # vijf eenheden een veelvoud van bij twee. De huuropbrengst zegt
+            # dus welke opdeling het meest opbrengt, niet welke het meest
+            # oplevert.
+            "zonder_verbouwkosten": True,
             "unit_m2": round(unit_m2), "unit_waarde": unit_waarde,
             "beschermd": beschermd, "punten": punten, "segment": segment,
             "gereguleerd": bool(segment and segment != "vrije sector")}
@@ -4910,6 +4948,25 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         afgevallen = " ".join(r for r, _x in geblokkeerd).lower()
         if alt and not ("splitsen" in alt.lower() and "splitsen" in afgevallen):
             f("alternatief", alt, "eigen doorrekening")
+            # Zodra splitsen als route in beeld komt, erbij zetten wat er voor
+            # zo'n aanvraag nodig is en wat er nu al klaar kan liggen. De
+            # parkeerberekening kan altijd; de ruimtetabel en de ventilatie
+            # vragen kamermaten en kunnen dus pas na een bezichtiging.
+            m_aantal = re.search(r"splitsen in (\d+)", alt.lower())
+            if m_aantal:
+                try:
+                    from splitsingstoets import voorbereiding
+                    f("voorbereiding aanvraag",
+                      "zie het blok onderaan dit dossier: parkeerberekening en "
+                      "de lijst met bijlagen met wie wat levert",
+                      "Beleidsregels Parkeren 2025 en twee echte aanvragen")
+                    w.setdefault("_voorbereiding", voorbereiding(
+                        w.get("adres", "dit pand"),
+                        max(1, len(w.get("eenheden_in_pand") or [])),
+                        int(m_aantal.group(1))))
+                except Exception as e:  # noqa
+                    print(f"Voorbereiding niet gemaakt: {str(e)[:70]}",
+                          file=sys.stderr)
 
         # Een richtprijs boven de vraagprijs is een uitzondering. Rust die op
         # een aangenomen huur, dan is het geen bevinding maar een aanname.

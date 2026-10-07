@@ -6118,6 +6118,36 @@ er in de ring ontwikkelt; dat zou ik als volgende bouwen.
 
 ---
 
+## 62. Het model sloot de beste splitsing uit — 7 oktober 2026
+
+**Mark:** wordt er op deze manier ook naar het huidige Funda-aanbod gekeken?
+
+**Deels, en op een beslissend punt niet.** Het goede nieuws: de doorrekening
+past per nieuwe eenheid al het wettelijk maximum toe. Een splitsing wordt dus
+niet op markthuur gerekend als die eenheden gereguleerd zijn, en de vergelijking
+met de ene woning gaat ook door het puntenstelsel.
+
+**Maar het model hield een ondergrens van 45 m2 per eenheid aan met de
+toelichting dat kleinere eenheden krap zijn.** Dat is een aanname, en de
+aanvragen van vandaag weerspreken hem: de Berg en Dalseweg 70 wordt gesplitst in
+vijf eenheden van 39, 24, 24, 22 en 22 m2, en in het aanbod staan studio's van
+23, 24 en 28 m2 te koop. Die grens sloot dus precies de variant uit die een
+ontwikkelaar werkelijk aanvraagt, en dat is de variant die het meest opbrengt
+doordat het puntenstelsel per woning een vaste voet kent.
+
+Nu rekent het model de varianten van twee tot zes eenheden door, met het
+wettelijk maximum per variant, en houdt de beste over. De ondergrens is verlaagd
+naar 22 m2, en dat is een gemeten grens in plaats van een aanname. Getest op vijf
+pandmaten: 131 m2 kiest vier eenheden, 158 m2 vijf, 102 m2 drie, 70 m2 twee.
+
+**Eén waarschuwing die er hard bij moet, en die staat nu ook in de opdracht aan
+de brief:** de verbouwkosten zitten er niet in. Elke extra eenheid vraagt een
+eigen keuken, badkamer, meterkast en entree. De doorrekening zegt dus welke
+opdeling het meest OPBRENGT, niet welke het meest OPLEVERT. Bij vijf eenheden is
+dat verschil groot genoeg om de rangorde om te gooien.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
