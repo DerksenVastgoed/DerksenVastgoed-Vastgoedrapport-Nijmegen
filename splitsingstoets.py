@@ -159,6 +159,112 @@ def parkeren(kop, aantal_nieuw):
             "vrijstelling": gereguleerd and tekort > 0}
 
 
+# De bijlagen die bij beide bekeken aanvragen zijn meegestuurd. Wie het
+# aanlevert staat erbij, want dat bepaalt wat vooraf klaar kan liggen en wat
+# pas na de aankoop kan.
+BIJLAGEN = [
+    ("Plattegronden, doorsneden en detailtekeningen", "tekenbureau"),
+    ("Situatietekening bestaande en nieuwe toestand", "tekenbureau"),
+    ("Constructieve berekening", "constructeur, mag worden nagestuurd"),
+    ("Toelichting op ontwerp constructie", "constructeur"),
+    ("Ruimtetabel met de 55%-toets uit het Bbl", "zelf, met kamermaten"),
+    ("Ventilatieberekening per ruimte", "zelf, met kamermaten"),
+    ("Spuivoorziening per verblijfsgebied", "zelf, met kamermaten"),
+    ("Parkeerberekening", "zelf, nu al"),
+    ("Thermische isolatie", "zelf of adviseur, afhankelijk van de ingreep"),
+    ("Bruikbaarheid en toegankelijkheid", "tekenbureau"),
+    ("Bouwwerkinstallaties", "installateur"),
+    ("Kwaliteitsverklaringen en CE-markeringen", "leverancier"),
+    ("Bodemonderzoek", "niet nodig bij een interne verbouwing"),
+    ("Gegevens over participatie", "zelf, vooraf te regelen"),
+]
+
+# Extra bijlagen die er alleen bij komen als er ook bouwkundig wordt
+# uitgebreid, en dus een buitenplanse omgevingsplanactiviteit nodig is. Uit het
+# verleende dossier van de Biezenstraat 110: eenentwintig bijlagen in totaal.
+BIJLAGEN_BOPA = [
+    ("Motivering bopa: waarom afwijken en wat de gevolgen zijn",
+     "zelf, vaste opzet"),
+    ("Gevelaanzichten en doorsneden nieuwe situatie", "tekenbureau"),
+    ("Erfafscheidingen met bebouwing", "tekenbureau"),
+    ("Berekening waterberging", "adviseur"),
+    ("Hemelwater- en vuilwaterafvoer bestaand en nieuw", "tekenbureau"),
+    ("Quickscan flora en fauna", "ecoloog"),
+    ("Checklist natuurinclusief bouwen met groenmaatregelen",
+     "zelf, met een tekening erbij"),
+    ("Brandveiligheid", "adviseur, advies Veiligheidsregio volgt"),
+    ("Foto's bestaande situatie", "zelf"),
+    ("Verkennend bodemonderzoek", "alleen nodig boven 50 m2 of bij een "
+     "andere bodemgevoelige functie"),
+    ("Onderzoek ontplofbare oorlogsresten", "alleen in verdacht gebied, "
+     "verplicht voordat de grond in gaat"),
+]
+# Wat het in de praktijk kostte en duurde, uit dat ene verleende dossier.
+BIOZENSTRAAT_LEGES = 2218.21
+BIEZENSTRAAT_DAGEN = 300          # 3 december 2025 tot 29 september 2026
+
+
+def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
+    """
+    Wat er klaar kan liggen voordat er een pand is gekocht.
+
+    Voor een pand dat we nog niet bezitten kennen we geen kamermaten, dus de
+    ruimtetabel en de ventilatieberekening kunnen nog niet. De
+    parkeerberekening wel, want die heeft alleen het aantal woningen voor en na
+    nodig. En de lijst met bijlagen is bekend uit twee echte aanvragen, dus die
+    kan er altijd bij: dan is vooraf duidelijk wie wat moet leveren en wat pas
+    na de aankoop kan.
+    """
+    park = parkeren({"bestaand": str(aantal_nu),
+                     "gereguleerd parkeergebied": "ja" if gereguleerd else "nee"},
+                    aantal_na)
+    r = [f"### Voorbereiding splitsingsaanvraag {adres}", "",
+         f"_Van {aantal_nu} naar {aantal_na} woningen. Dit blok zegt wat er nu "
+         f"al klaar kan liggen en wat pas kan als de kamermaten bekend zijn._",
+         ""]
+    if park["vrijstelling"]:
+        r.append(f"**Parkeren: geen eis.** Norm {PARKEERNORM} per woning geeft "
+                 f"{park['eis_nieuw']} tegen {park['eis_oud']} nu, dus een "
+                 f"tekort van {park['tekort']}. In het gereguleerde "
+                 f"parkeergebied geldt bij splitsing geen parkeereis "
+                 f"(Beleidsregels Parkeren 2025, bijzonder geval VII): de "
+                 f"nieuwe huisnummers krijgen geen parkeervergunning.")
+    elif park["tekort"] > 0:
+        r.append(f"**Parkeren: tekort van {park['tekort']} plaats(en)** en geen "
+                 f"vrijstelling, want dit pand ligt buiten het gereguleerde "
+                 f"gebied. Dit is hier de kritieke toets.")
+    else:
+        r.append("**Parkeren: geen tekort.**")
+    r.append("")
+    r.append("| bijlage | wie levert |")
+    r.append("|---|---|")
+    for naam, wie in BIJLAGEN:
+        r.append(f"| {naam} | {wie} |")
+    r.append("")
+    r.append("_Komt er ook bouwkundig iets bij, bijvoorbeeld een aanbouw die "
+             "buiten het omgevingsplan valt, dan is het een buitenplanse "
+             "omgevingsplanactiviteit en komen deze bijlagen erbij:_")
+    r.append("")
+    r.append("| extra bijlage bij een bopa | wie levert |")
+    r.append("|---|---|")
+    for naam, wie in BIJLAGEN_BOPA:
+        r.append(f"| {naam} | {wie} |")
+    r.append("")
+    r.append(f"_Uit het verleende dossier van de Biezenstraat 110: aanvraag 3 "
+             f"december 2025, vergunning 29 september 2026, dus ongeveer "
+             f"{BIEZENSTRAAT_DAGEN} dagen, met leges van "
+             f"€{BIOZENSTRAAT_LEGES:,.2f}".replace(",", ".") + " en "
+             "eenentwintig bijlagen. Reken op groenmaatregelen als voorschrift "
+             "en op zes weken bezwaartermijn waarin beginnen op eigen risico "
+             "is._")
+    r.append("")
+    r.append("_Nog nodig voor de eigen berekeningen: een plattegrond met de "
+             "kamermaten per ruimte. Die is er bij een bezichtiging in een half "
+             "uur, en dan geeft splitsingstoets.py de ruimtetabel, de "
+             "ventilatie en de spuivoorziening._")
+    return "\n".join(r)
+
+
 def rapport(kop, resultaat, park):
     r = [f"# Splitsingstoets {kop.get('pand', 'onbekend pand')}", "",
          f"_Opgesteld {dt.date.today().isoformat()} met de formules uit het "

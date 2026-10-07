@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Een verleende splitsingsvergunning van begin tot eind": [
+        "bopa", "buitenplans", "vergunning verleend", "besluit", "leges",
+        "natuurinclusief", "welstand", "omgevingskwaliteit", "doorlooptijd"],
     "Parkeren bij splitsen": [
         "parkeren", "parkeereis", "parkeernorm", "parkeerdruk",
         "parkeervergunning", "parkeerberekening", "beleidsregels parkeren"],
@@ -653,6 +656,43 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("Een verleende splitsingsvergunning van begin tot eind",
+     "Van de Biezenstraat 110 is het hele dossier openbaar: aanvraag, "
+     "onderbouwing en besluit. Daaruit volgen getallen die nergens anders "
+     "staan. "
+     "De aanvraag is ingediend op 3 december 2025 en de vergunning is verleend "
+     "op 29 september 2026: bijna tien maanden. De leges bedroegen €2.218,21 en "
+     "er zaten eenentwintig bijlagen bij. "
+     "Belangrijker is waarvoor de buitenplanse omgevingsplanactiviteit nodig "
+     "was. Niet voor de splitsing: die past binnen het omgevingsplan. De "
+     "strijdigheid zat in de aanbouw, die vier meter achter de achtergevellijn "
+     "komt waar het bestemmingsplan Nijmegen Oud West 2015 maximaal drie meter "
+     "toestaat, en er zijn geen afwijkingsregels. Een splitsing zonder "
+     "bouwkundige uitbreiding hoeft dus niet per se een bopa te zijn. "
+     "Het besluit bevestigt ook de parkeerregel: de locatie ligt in "
+     "gereguleerd gebied, dus geldt er geen parkeereis bij woningsplitsing, "
+     "maar een parkeervergunning voor het nieuwe huisnummer wordt niet "
+     "verleend. "
+     "Wat er als voorschrift bij kwam, is het deel dat geld en tijd kost. De "
+     "adviescommissie Omgevingskwaliteit adviseerde positief onder "
+     "voorwaarden, waarna op 14 september aangepaste tekeningen met "
+     "groenmaatregelen zijn ingediend. Voor de huismus moeten vier "
+     "groenmaatregelen worden aangebracht, binnen een jaar geplant en duurzaam "
+     "onderhouden: beplanting naast de gevel, een natuurlijke haag, een "
+     "kruidenrijke zoom met bossage en een cluster bomen. De erfafscheiding "
+     "aan de straatzijde moet een groene haag van maximaal een meter zijn, met "
+     "een gaashekwerk met klimplanten op de overgang. En omdat het gebied "
+     "verdacht is voor ontplofbare oorlogsresten, moet daar nog onderzoek naar "
+     "worden gedaan voordat de grond in gaat. "
+     "Twee dingen die niet nodig bleken: bodemonderzoek, omdat de aanbouw "
+     "kleiner is dan 50 m2 en niet tot een andere bodemgevoelige functie "
+     "leidt, en archeologisch onderzoek, omdat de aanbouw met 30,4 m2 onder de "
+     "drempel van 50 m2 blijft. Toch zijn een verkennend bodemonderzoek en een "
+     "quickscan flora en fauna meegestuurd. "
+     "Tot slot twee termijnen om te kennen: belanghebbenden kunnen zes weken "
+     "bezwaar maken en beginnen binnen die termijn is op eigen risico, en de "
+     "vergunning moet binnen een jaar worden gebruikt, anders kan hij worden "
+     "ingetrokken."),
     ("Parkeren bij splitsen",
      "De parkeernorm lijkt een drempel bij woningsplitsing, maar in de ring is "
      "dat hij vaak niet. De Beleidsregels Parkeren 2025 van Nijmegen kennen "

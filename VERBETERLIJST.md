@@ -5877,6 +5877,86 @@ te zien of drie eenheden passen.
 
 ---
 
+## 56. De aanvraagstukken bij de investeringscase — 7 oktober 2026
+
+**Mark:** zodra de brief voorstelt een woning in twee appartementen te
+splitsen, hoort daar gelijk bij wat er aan documenten nodig is en wat we
+automatisch kunnen maken.
+
+**Eens, en het valt in twee delen uiteen.** Wat nu al kan, en wat kamermaten
+vraagt.
+
+Nu al: de parkeerberekening, want die heeft alleen het aantal woningen voor en
+na nodig en of het pand in het gereguleerde gebied ligt. En de lijst met
+bijlagen, die uit twee echte aanvragen bekend is, met erbij wie wat levert: het
+tekenbureau de tekeningen, de constructeur de berekening (die mag worden
+nagestuurd), de installateur de bouwwerkinstallaties, en wij de ruimtetabel, de
+ventilatie, de spui en het parkeren.
+
+Pas na een bezichtiging: de ruimtetabel, de ventilatieberekening en de
+spuivoorziening. Die vragen de maten per ruimte, en die staan in geen enkele
+registratie. Dat is een half uur werk met een rolmaat.
+
+**Het dossier zet dat blok er nu bij zodra splitsen als alternatief in beeld
+komt**, met het aantal eenheden uit de doorrekening zelf. Getest: "splitsen in
+2" en "splitsen in 3" leveren het blok op, een kamerverhuurregel niet.
+
+**Over meer aanvragen toevoegen: dat is waardevol en om een specifieke reden.**
+Elke aanvraag legt een formule of een drempel bloot die we niet kenden. Uit de
+Staringstraat kwamen de ventilatiewaarden, de 55%-toets en de parkeervrijstelling
+die mijn eerdere oordeel onderuit haalde. Uit de Berg en Dalseweg kwam dat het
+om huurwoningen gaat en dat er twee nieuwe huisnummers bij horen. Twee
+aanvragen leverden meer op dan een maand bekendmakingen.
+
+Wat ik bij een volgende vooral zou willen zien: een aanvraag die is GEWEIGERD,
+of een met een conceptverzoek vooraf. Dan weten we waar de gemeente op afwijst,
+en dat is precies wat er nu ontbreekt.
+
+---
+
+## 57. Het volledige verleende dossier van de Biezenstraat 110 — 7 oktober 2026
+
+Hetzelfde pand waarmee deze hele draad begon, nu met het besluit erbij. Dit is
+de rijkste bron tot nu toe, en hij corrigeert een aanname die we weken
+meedroegen.
+
+**De bopa was niet nodig voor de splitsing.** Die past binnen het
+omgevingsplan. De strijdigheid zat in de aanbouw: vier meter achter de
+achtergevellijn waar het bestemmingsplan Nijmegen Oud West 2015 maximaal drie
+meter toestaat, zonder afwijkingsregels. De brief schreef steeds dat splitsen in
+Nijmegen via een bopa loopt; dat hoeft dus niet. De opdracht zegt dat nu ook.
+
+**Getallen die nergens anders staan:**
+- aanvraag 3 december 2025, vergunning 29 september 2026, dus bijna tien
+  maanden;
+- leges €2.218,21;
+- eenentwintig bijlagen;
+- aanbouw 30,4 m2, vier meter diep en acht meter breed.
+
+**De parkeerregel is nu bevestigd uit een besluit en niet uit een berekening van
+een aanvrager:** de locatie ligt in gereguleerd gebied, dus geen parkeereis bij
+woningsplitsing, maar een parkeervergunning voor het nieuwe huisnummer wordt
+niet verleend.
+
+**Wat er als voorschrift bij kwam, is het deel dat geld en tijd kost.** De
+adviescommissie Omgevingskwaliteit adviseerde positief onder voorwaarden, waarna
+er aangepaste tekeningen met groenmaatregelen zijn ingediend. Voor de huismus
+moeten vier groenmaatregelen worden aangebracht en binnen een jaar geplant: 
+beplanting naast de gevel, een natuurlijke haag, een kruidenrijke zoom met
+bossage en een cluster bomen. De erfafscheiding aan de straatzijde moet een
+groene haag van maximaal een meter zijn. En het gebied is verdacht voor
+ontplofbare oorlogsresten, dus daar moet nog onderzoek naar worden gedaan.
+
+**Twee onderzoeken bleken niet nodig maar zijn wel meegestuurd:**
+bodemonderzoek, omdat de aanbouw onder 50 m2 blijft en niet tot een andere
+bodemgevoelige functie leidt, en archeologisch onderzoek om dezelfde drempel.
+Dat is dus geld dat niet hoefde.
+
+Dit alles staat nu als achtergrondstuk, het tweeëndertigste, en de extra
+bijlagen bij een bopa staan in splitsingstoets.py met erbij wie ze levert.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
