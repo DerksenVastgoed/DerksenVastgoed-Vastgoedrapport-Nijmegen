@@ -121,3 +121,6 @@ Ziekerstraat 5 |  | 2026   # prijsklasse 450k tot 600k
 van Slichtenhorststraat 14 |  | 2026   # prijsklasse 450k tot 600k
 van Welderenstraat 5 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
+
+# Werklijst (1): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
+Jan de Wittstraat 6-8 studio 9 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 41 m2, buiten het middengebied

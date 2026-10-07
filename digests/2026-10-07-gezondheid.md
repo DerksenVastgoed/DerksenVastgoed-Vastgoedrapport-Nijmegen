@@ -1,17 +1,19 @@
 # Gezondheidsrapport 2026-10-07
 
-39 in orde, 6 aandachtspunten, 0 fouten.
+39 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
   We missen het grootste deel van het huuraanbod. Een extra bron erbij weegt dan zwaarder dan welke verfijning van de berekening ook.
+- **Bronnen die niets opleveren**: funda: 528, pararius: 21, kamernet: 41, huislijn: 0; geen enkele waarneming van: huislijn
+  Controleer of het afzenderdomein in AFZENDERS klopt en of de attendering bij die partij aanstaat. Een verkeerd domein levert geen foutmelding op, alleen stilte.
 - **Adressen met meerdere maten**: 1 adressen met meerdere woningmaten: st. annastraat 30 (23, 31 m2)
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
 - **WOZ zonder pand**: 4 ingevulde WOZ-regels horen bij geen pand in ons aanbod: Daalseweg 56a, Koningshofje 3, St. Annastraat 165, van Welderenstraat 89a
   Waarschijnlijk is het huisnummer aangepast omdat het wozwaardeloket alleen een variant kende, bijvoorbeeld 19-A in plaats van 19. Die waarde landt dan nergens. Zet het adres terug zoals het in het aanbod staat, of voeg beide regels toe.
-- **WOZ-schatting**: geijkt op 98 panden: correctie 0.984 (2% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 13.7% (103), prijs 10.3% (98), beste: prijs; kenmerken uit 75 straten en 11 buurten; nakijken: Jan de Wittstraat 6 (+1132%, telt niet mee), Derde Walstraat 108 (+112%), Havenweg 34 (-67%); 1 waarde(n) buiten beschouwing gelaten als vermoedelijke tikfout
+- **WOZ-schatting**: geijkt op 98 panden: correctie 0.984 (2% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 13.7% (103), prijs 10.3% (98), beste: prijs; kenmerken uit 75 straten en 11 buurten; nakijken: Derde Walstraat 108 (+112%), Havenweg 34 (-67%), Havenweg 70 (-53%)
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-07: kamernet: 22 mails, 16 objecten, 6 bewust overgeslagen; pararius: 2 mails, 2 objecten, 1 bewust overgeslagen; regulier: 3 mails, 2 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
@@ -30,7 +32,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-01
 - **Geschiedenis per pand**: 1727 panden gevolgd, 1406 met meer dan een gebeurtenis; 1568 met BAG-gegevens (6323 woningen, 7398 dubbel geteld zonder deze correctie), 1372 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Van 1 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 70 panden te koop, mediaan 18 dagen geleden voor het laatst bevestigd, oudste 35 dagen
 - **Aanbodreeks**: 6 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 2 koop, 10 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -41,7 +43,7 @@
 - **Doorlooptijden**: mediane verkooptijd 93 dagen (118 panden); mediane bezitsduur 0.8 jaar (65); onbetrouwbaar zolang de geplakte verkopen de plakdatum dragen; prijsgroei per pand 4.8% per jaar (26)
 - **Verkooptijd bovengrens**: 73 panden van te koop naar onder bod of verkocht gezien; mediaan hoogstens 129 dagen; alleen in onderhandeling: 37 panden, mediaan hoogstens 88 dagen. Dat is de scherpste maat, want daar legt de koper zich vast. Een bovengrens uit twee eigen waarnemingen, geen schatting: de werkelijke tijd is korter of gelijk
 - **Gemeubileerd**: 3 gemeubileerde advertenties apart bewaard; de opslag wordt binnen hetzelfde huurregime vergeleken, want een hoge huur komt eerder door de vrije sector dan door het meubilair
-- **WOZ-bestand**: 108 bruikbare regels, 9 nog in te vullen; 6 panden in het aanbod nog zonder WOZ
+- **WOZ-bestand**: 108 bruikbare regels, 10 nog in te vullen; 6 panden in het aanbod nog zonder WOZ
 - **Nieuwbouw apart**: geen nieuwbouwprojecten in het aanbodbestand
 - **Opnieuw aangeboden**: 9 adressen vaker aangeboden: 5 voor minder, 4 voor meer; lager bij: van welderenstraat van €705 naar €670; berg en dalseweg van €1100 naar €799; weezenhof van €750 naar €550
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand

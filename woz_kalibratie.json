@@ -6,14 +6,8 @@
   0.7511961722488039,
   1.1391076115485563
  ],
- "niet_meegeteld": 1,
+ "niet_meegeteld": 0,
  "uitschieters": [
-  {
-   "adres": "Jan de Wittstraat 6",
-   "verhouding": 12.133,
-   "afwijking_pct": 1132,
-   "telt_niet_mee": true
-  },
   {
    "adres": "Derde Walstraat 108",
    "verhouding": 2.086,
@@ -38,7 +32,7 @@
  "vergelijking": {
   "kenmerken": {
    "aantal": 103,
-   "mediane_fout": 0.1372093023255814,
+   "mediane_fout": 0.13742690058479531,
    "negentig": 0.5741127348643006
   },
   "prijs": {
@@ -50,6 +44,6 @@
  "kenmerken_beschikbaar": {
   "straten": 75,
   "buurten": 11,
-  "panden": 104
+  "panden": 103
  }
 }

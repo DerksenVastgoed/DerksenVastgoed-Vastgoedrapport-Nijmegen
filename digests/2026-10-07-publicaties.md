@@ -3,43 +3,36 @@
 _Vastgoedartikelen laatste 24u, met marktduiding. 07-10-2026._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQTWJoSHRCajJrNUtqR05GQUNvT0xrV2IxeEJXeFNUSmt6a1NSbm9NaTV1ODN6MS1rTW9OdjlDOXpvbEhvR015eFh3Q2pzeTZ5V01nSkF3Uldjd25IRHNqZ3dXVEoyZ0poaVR6V3FyZHBzVUNEZ3lRT29JX3BBS05aZjZxaw?oc=5" style="color:#12242c;text-decoration:none">Huurprijzen en woningmarkt in Nederland in 2026 - Schiedam24</a></span></div>
-<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het artikel bespreekt verwachte ontwikkelingen in huurprijzen en de woningmarkt voor 2026.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Ontwikkelingen in landelijke huurprijzen beïnvloeden indirect de huurpotentie en waardering van binnenstedelijke huurwoningen.</div>
-<div style="font-size:11px;color:#7a8a92;margin-top:8px">Woningmarkt NL . <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQTWJoSHRCajJrNUtqR05GQUNvT0xrV2IxeEJXeFNUSmt6a1NSbm9NaTV1ODN6MS1rTW9OdjlDOXpvbEhvR015eFh3Q2pzeTZ5V01nSkF3Uldjd25IRHNqZ3dXVEoyZ0poaVR6V3FyZHBzVUNEZ3lRT29JX3BBS05aZjZxaw?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
-</div>
-
-<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNQWQxQzQzU1R4YzRnU3JHZk5zX096UjUyTnAtT1kxeUhoMFgzSkJjTTlHRHJWaDQ5ODhWcG9qMTR6UEl2X1FIQTNNMjc0Rl9Zcm9DSTZEa3MxNmdDdFdHU3I1T24xOFBPeERJMF9sTGlleHFDUEtxU3F3S2pUNXhVQzdNV2YwaUpyS3dEeHQ4RTRrdi1VcmUxYS1CanlScDZEbzJGdA?oc=5" style="color:#12242c;text-decoration:none">Verzwaring box 3 blijft staan na nipte stemming in Tweede Kamer - Vastgoedjournaal.nl</a></span></div>
-<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De verzwaring van box 3 blijft gehandhaafd na een nipte stemming in de Tweede Kamer.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Hogere box 3-heffing verlaagt het netto rendement na belasting voor particuliere verhuurders in dit segment.</div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De Tweede Kamer heeft ingestemd met een verzwaring van box 3 voor vastgoedbeleggers.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Een hogere box 3-heffing verlaagt het nettorendement na belasting op verhuurd vastgoed in dit segment.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">Box 3 vastgoed . <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNQWQxQzQzU1R4YzRnU3JHZk5zX096UjUyTnAtT1kxeUhoMFgzSkJjTTlHRHJWaDQ5ODhWcG9qMTR6UEl2X1FIQTNNMjc0Rl9Zcm9DSTZEa3MxNmdDdFdHU3I1T24xOFBPeERJMF9sTGlleHFDUEtxU3F3S2pUNXhVQzdNV2YwaUpyS3dEeHQ4RTRrdi1VcmUxYS1CanlScDZEbzJGdA?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNaVk2LVNzTTRBbVNSZmxjQnZGQmxYanphODJzZzZLX29YeTU3UWFJdEl6c2hMT3hMSjcwUmZ0OW9pY2NlbnhWTjJaWG5VRHByQVYtUG9vbmF6ZzFKUlY5aEpXeUpPZm1seVZqenNOLWNEcE5KcUE3MmVZVGRtRVhGN05HSDYxZFlDVzhRaU5uZ1psX0k2bm83QXNoS2themF1VW93YjFMVjBxZ184ME41S3A1ZFlhcVNHaXhwSzhhRDRZMC1mTExCQUdSUDRLbkp2aFE?oc=5" style="color:#12242c;text-decoration:none">Oproep brancheorganisaties: laat verhoging forfait in box 3 achterwege - PropertyNL</a></span></div>
-<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Brancheorganisaties roepen op om de verhoging van het box 3-forfait niet door te voeren.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Als de oproep wordt genegeerd, stijgt de fiscale druk op bestaand vastgoed en daalt het nettorendement.</div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Brancheorganisaties roepen de politiek op de verhoging van het forfait in box 3 niet door te voeren.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Als de oproep genegeerd wordt, stijgt de fiscale druk op buy-and-hold verhuur en wordt uitponden relatief aantrekkelijker.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">Box 3 vastgoed . <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNaVk2LVNzTTRBbVNSZmxjQnZGQmxYanphODJzZzZLX29YeTU3UWFJdEl6c2hMT3hMSjcwUmZ0OW9pY2NlbnhWTjJaWG5VRHByQVYtUG9vbmF6ZzFKUlY5aEpXeUpPZm1seVZqenNOLWNEcE5KcUE3MmVZVGRtRVhGN05HSDYxZFlDVzhRaU5uZ1psX0k2bm83QXNoS2themF1VW93YjFMVjBxZ184ME41S3A1ZFlhcVNHaXhwSzhhRDRZMC1mTExCQUdSUDRLbkp2aFE?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#B8860B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">uitponden</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNOHJwNWgyS0tVS2U5dEJ5ZThocnJUMXlqUFBlVlFhV2VEWmZaSzZTLTlkN3pVU3F2Nmhad2l2UFd2NWl3bU1GQlNxcmpYb01yMVZnTHFON0V5c3NxYjZjdE14ZHZMdktiVGlLR1dzTzk1NmJQNVpnY1FVOFNBZ19JNnpiOEIxeWJzNzlEcGZVTFdvRy00VU1Vd2FzQndVd252UjV3SWUzcG9YTU9OaDBGUkR0YkV2UQ?oc=5" style="color:#12242c;text-decoration:none">Pararius: Duurste huurwoningen nu vaakst verkocht - PropertyNL</a></span></div>
 <div style="font-size:13px;color:#1a2830;margin-bottom:4px">Pararius meldt dat vooral de duurste huurwoningen momenteel worden verkocht.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Dit bevestigt dat uitponden van hogere segmenten woningen aantrekkelijker is dan doorverhuren tegen huidige yields.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Dit ondersteunt de uitpondstrategie waarbij huurwoningen bij mutatie leeg en met meerwaarde worden verkocht.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">Pararius huurmarkt . <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxNOHJwNWgyS0tVS2U5dEJ5ZThocnJUMXlqUFBlVlFhV2VEWmZaSzZTLTlkN3pVU3F2Nmhad2l2UFd2NWl3bU1GQlNxcmpYb01yMVZnTHFON0V5c3NxYjZjdE14ZHZMdktiVGlLR1dzTzk1NmJQNVpnY1FVOFNBZ19JNnpiOEIxeWJzNzlEcGZVTFdvRy00VU1Vd2FzQndVd252UjV3SWUzcG9YTU9OaDBGUkR0YkV2UQ?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/kamer-wijst-moties-tegen-hoger-forfait-in-box-3-af-verhoging-naar-787-procent-is-nu-waarschijnlijker/" style="color:#12242c;text-decoration:none">Kamer wijst moties tegen hoger forfait in box 3 af, verhoging naar 7,87 procent wordt zo waarschijnlijker</a></span></div>
-<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De Tweede Kamer verwierp moties tegen een verhoging van het box 3-forfait naar 7,87 procent in 2027.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Een forfait van 7,87 procent verhoogt de fiscale last op vastgoedbezit en drukt het nettorendement verder.</div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De Tweede Kamer verwierp moties tegen een hoger box 3-forfait, waardoor een verhoging naar 7,87 procent waarschijnlijker wordt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Een forfait van 7,87 procent verhoogt de fiscale last op vastgoedvermogen en drukt het nettorendement van buy-and-hold beleggers.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/kamer-wijst-moties-tegen-hoger-forfait-in-box-3-af-verhoging-naar-787-procent-is-nu-waarschijnlijker/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://www.propertynl.com/nieuws/Cushman--Wakefield--kwaliteit-vastgoed-bepalend-voor-beleggingsstrategie/7f565622-ef51-45e7-92ba-d676ffa1bc60" style="color:#12242c;text-decoration:none">Cushman & Wakefield: 'kwaliteit vastgoed bepalend voor beleggingsstrategie'</a></span></div>
-<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Cushman & Wakefield concludeert dat waardestijging minder bepalend wordt voor rendement op de Nederlandse woningmarkt.</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Dit onderstreept dat rendement steeds meer uit actieve waardecreatie moet komen in plaats van uit autonome waardestijging.</div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Cushman & Wakefield concludeert dat waardestijging minder bepalend wordt voor het rendement op de Nederlandse woningbeleggingsmarkt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Dit bevestigt dat beleggers in dit segment actief moeten sturen op waardecreatie via renovatie of transformatie in plaats van op autonome prijsstijging.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">PropertyNL . <a href="https://www.propertynl.com/nieuws/Cushman--Wakefield--kwaliteit-vastgoed-bepalend-voor-beleggingsstrategie/7f565622-ef51-45e7-92ba-d676ffa1bc60" style="color:#4a7a72;text-decoration:none">lezen</a></div>
 </div>

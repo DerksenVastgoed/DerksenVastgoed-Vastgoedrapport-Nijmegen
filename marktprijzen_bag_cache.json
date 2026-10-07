@@ -10690,8 +10690,93 @@
     }
   },
   "Jan de Wittstraat 6-8 studio 9|Nijmegen": {
-    "gefaald": true,
-    "reden": "bag_geen_oppervlakte"
+    "oppervlakte": 41,
+    "bouwjaar": "1897",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EJ",
+    "adresseerbaarObjectIdentificatie": "0268010000012725",
+    "pand": "0268100000011141",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-0af08710704efbf502beb17a831d684d",
+    "eenheden_in_pand": [
+      {
+        "adres": "Graafseweg 35",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Graafseweg 35A",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Graafseweg 35B",
+        "oppervlakte": 62,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Graafseweg 35C",
+        "oppervlakte": 62,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Graafseweg 35D",
+        "oppervlakte": 59,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Graafseweg 35E",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Jan de Wittstraat 6",
+        "oppervlakte": 595,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Jan de Wittstraat 8",
+        "oppervlakte": 595,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 595,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2022-11-17",
+      "geldig_tot": "2032-11-08",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
   },
   "Groesbeekseweg 71|Nijmegen": {
     "oppervlakte": 228,
@@ -72354,6 +72439,7 @@
     "oppervlakte": 24,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   }
 }
