@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Waarom splitsen loont ondanks het puntenstelsel": [
+        "splitsen", "puntenstelsel", "wws", "gereguleerd", "maximumhuur",
+        "groottepremie", "rendement", "appartementen"],
     "De schone route: inpandig splitsen zonder bopa": [
         "inpandig", "vergunningsvrij", "brandcompartiment", "souterrain",
         "splitsen", "woningvorming", "doorlooptijd", "voorgevel"],
@@ -665,6 +668,31 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("Waarom splitsen loont ondanks het puntenstelsel",
+     "Splitsen duwt een pand bijna altijd het gereguleerde segment in, en toch "
+     "levert het meestal meer op. Dat lijkt tegenstrijdig en is het niet. "
+     "Neem de Berg en Dalseweg 70, waarvoor op 17 september 2026 een aanvraag "
+     "is ingediend om een woning naar vijf appartementen te splitsen van 39, "
+     "24, 24, 22 en 22 m2, samen 131 m2. Als een woning van 131 m2 met een WOZ "
+     "rond vijf ton komt dat pand op ruim tweehonderd punten en dus in de vrije "
+     "sector, waar de markthuur geldt: bij het gemeten niveau van €18 per m2 is "
+     "dat ongeveer €2.350 per maand. Als vijf losse eenheden komt elke woning "
+     "op negentig tot honderd punten en geldt er een wettelijk maximum, samen "
+     "ongeveer €3.000. "
+     "Het maximum van vijf kleine woningen is dus hoger dan de vrije huur van "
+     "een grote. De reden is dat het puntenstelsel per woning een vaste voet "
+     "kent en dat kleine woningen per vierkante meter meer punten opleveren; "
+     "dezelfde groottepremie die bij verkoop zichtbaar is, zit ook in de "
+     "huurregels. "
+     "Wat je ervoor terugkrijgt is minder vrijheid. Boven dat maximum mag niet "
+     "worden verhuurd, het stijgt alleen met de jaarlijkse indexering, en elk "
+     "van die vijf huurders kan de huur laten toetsen. De opbrengst is hoger, "
+     "de bovengrens ligt vast. "
+     "Dat verschilt per pand en per maat. Bij de Berg en Dalseweg 11 leverde "
+     "een splitsing van twee naar vier woningen van 43 tot 62 m2 maar ongeveer "
+     "€590 per maand extra op, omdat de bestaande woningen daar al klein waren. "
+     "De winst zit dus in het verschil tussen een grote woning en kleine "
+     "eenheden, niet in het splitsen zelf."),
     ("De schone route: inpandig splitsen zonder bopa",
      "De Heydenrijckstraat 40 laat zien hoe licht een splitsing kan zijn als er "
      "van buiten niets verandert. De woning op de begane grond is gescheiden van "

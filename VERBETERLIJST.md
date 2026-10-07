@@ -6077,6 +6077,47 @@ jaar kost.
 
 ---
 
+## 61. Berg en Dalseweg 70: vijf appartementen, en de rekensom erachter — 7 oktober 2026
+
+Zesde dossier, ingediend 17 september 2026 door Ampire Bouw B.V. aan de
+Oranjesingel 13A, KvK 83440453. Geen particulier opdrachtgeverschap: dit is een
+ontwikkelaar.
+
+**Opnieuw de lichte route.** De aanvraag kent maar een activiteit: bouwactiviteit
+(technisch). Geen omgevingsplan-activiteit, dus de aanvrager gaat ervan uit dat
+die vergunningsvrij is, net als bij de Heydenrijckstraat. En dat bij een
+splitsing naar VIJF eenheden. De lichte route schaalt dus; het gaat niet om het
+aantal woningen maar om de buitenkant.
+
+**De vijf eenheden meten 39, 24, 24, 22 en 22 m2 GBO, samen 131 m2.** Daarmee is
+de rekensom te maken, en die is verrassend:
+
+- als een woning van 131 m2 met een WOZ rond vijf ton: ruim 210 punten, dus
+  vrije sector, markthuur ongeveer €2.350 bij het gemeten niveau van €18 per m2;
+- als vijf losse eenheden: elk negentig tot honderd punten, dus allemaal
+  gereguleerd, samen een wettelijk maximum van ongeveer €3.000.
+
+**Het maximum van vijf kleine woningen ligt dus hoger dan de vrije huur van een
+grote**, ongeveer €665 per maand, 28 procent. De reden is dat het puntenstelsel
+per woning een vaste voet kent en dat kleine woningen per vierkante meter meer
+punten opleveren. Dezelfde groottepremie die bij verkoop zichtbaar is, zit ook
+in de huurregels.
+
+Wat je ervoor inlevert is vrijheid: boven dat maximum mag niet worden verhuurd,
+het stijgt alleen met de indexering, en elk van die vijf huurders kan de huur
+laten toetsen.
+
+**En dat verklaart het verschil met de Berg en Dalseweg 11**, waar splitsen van
+twee naar vier maar €590 opleverde: daar waren de bestaande woningen al klein.
+De winst zit in het verschil tussen een grote woning en kleine eenheden, niet in
+het splitsen zelf. Dat staat nu als achtergrondstuk.
+
+**Vier partijen in zes dossiers:** DD21 B.V., Bouwplan, Ampire Bouw B.V. en een
+tekenbureau uit Siebengewald. Dat is genoeg om een register te beginnen van wie
+er in de ring ontwikkelt; dat zou ik als volgende bouwen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
