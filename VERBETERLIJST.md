@@ -5713,6 +5713,39 @@ meerdere eenheden onder hetzelfde adres; dat is geen fout in onze invoer.
 
 ---
 
+## 52. Wat de Burg. Hustinxstraat 56 oplevert voor de brief — 7 oktober 2026
+
+Mark leverde de volledige brochure van een pand dat in onze tabel stond met
+"ondergrens 186 punten, onder de 187" en daardoor met een huur van €1.228. Met
+de echte kenmerken erbij komt het pand op 191 punten met het balkon van 14 m2,
+196 met de berging van 7 m2, en rond de 200 met het ligbad en het tweede toilet.
+Dus ruim vrije sector, en de markthuur is €1.836 in plaats van €1.228.
+
+**Dat is geen detail maar een rekenfout van zeshonderd euro per maand**, en
+daarmee ruim honderdduizend euro in de richtprijs. De oorzaak: onze telling kent
+alleen oppervlakte, WOZ en label.
+
+**Drie dingen aangepast.**
+
+Een ondergrens binnen zeventien punten van de 187 levert nu geen conclusie meer
+op. In plaats van "gereguleerd" staat er dat het regime niet is bepaald, met de
+reden erbij en een verbod om er een wettelijk maximum op te plakken. Getest:
+186, 179 en 172 punten geven die melding, 161 en 98 blijven gereguleerd, 192 en
+210 blijven vrije sector.
+
+De opdracht aan de brief zegt hetzelfde in woorden, en eist dat een bekende
+VvE-bijdrage voorgaat op het percentage uit de aannames. Bij dit pand is €311
+per maand bijna het dubbele van de aanname, en dat zakt het nettorendement van
+3,68% naar 3,37%.
+
+**En er is een kental uit gekomen dat op een bezichtiging bruikbaar is:** bij 70%
+financiering tegen 5,50% is de koopsom waarbij de huur de rente dekt ongeveer
+207 maal de maandhuur. Bij €1.750 huur is dat €363.000. Dat getal rust op vier
+doorrekeningen uit de brief van vandaag en is dus gemeten binnen het eigen
+model, niet geschat.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

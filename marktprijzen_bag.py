@@ -1919,6 +1919,20 @@ def wws_indicatie(w):
     if punten >= 187:
         oordeel = ("vrije sector: de ondergrens ligt al op of boven 187 punten, "
                    "en verwarming telt nog mee")
+    elif punten >= 170:
+        # Binnen zeventien punten van de grens. De telling mist buitenruimte,
+        # berging, sanitair en verwarming, en die leveren bij elkaar makkelijk
+        # twintig punten op. Bij de Burg. Hustinxstraat 56 stond de ondergrens
+        # op 186 terwijl het pand met balkon, berging en ligbad rond de 196
+        # uitkomt. Dan is "gereguleerd" de verkeerde conclusie en is een
+        # wettelijk maximum als huur een rekenfout van honderden euro's.
+        oordeel = (f"{187 - punten} punten onder de grens van 187, maar het "
+                   f"regime is hiermee NIET bepaald: buitenruimte, berging, "
+                   f"sanitair en verwarming zitten niet in deze telling en "
+                   f"leveren samen makkelijk twintig punten op. Een balkon van "
+                   f"14 m2 en een berging van 7 m2 zijn al elf punten. Reken "
+                   f"dit pand niet door op een wettelijk maximum zonder de "
+                   f"werkelijke telling")
     else:
         oordeel = ("onder de 187 op basis van wat bekend is; keuken, sanitair en "
                    "verwarming bepalen of het middenhuur blijft of vrije sector "
