@@ -19,7 +19,7 @@ _12 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">256 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Omzetten van één pand naar drie appartementen voegt kleinere zelfstandige units toe en verkleint het aanbod grote panden.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Omzetting naar 3 appartementen uit een pand van 256 m2 voegt kleinere verhuureenheden toe aan de voorraad.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-05 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -78,7 +78,7 @@ _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">101 m² . label A (2023)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie duidt op renovatie tussen huurperiodes, een vorm van waardecreatie zonder splitsing.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie markeert het moment waarop de eigenaar het pand van 101 m2 kan renoveren voordat een nieuwe huurder intrekt.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-06 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -89,6 +89,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 816 panden, waarvan er 109 nu in aanbod zijn. Bijgewerkt 07 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 817 panden, waarvan er 109 nu in aanbod zijn. Bijgewerkt 07 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

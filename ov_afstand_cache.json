@@ -7,6 +7,14 @@
   "omweg": 1.37,
   "soort": "bus"
  },
+ "51.80439,5.80259": {
+  "geschat": false,
+  "hemelsbreed": 80,
+  "meters": 103,
+  "naam": "Aldenhof 12/32 str.",
+  "omweg": 1.29,
+  "soort": "bus"
+ },
  "51.80537,5.83031": {
   "geschat": false,
   "hemelsbreed": 113,

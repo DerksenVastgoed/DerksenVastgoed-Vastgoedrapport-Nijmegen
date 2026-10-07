@@ -941,3 +941,6 @@ Waterstraat | Nijmegen | 650 | te huur kamer | 2026-10-07 | kamernet-incl | 11 |
 
 # Automatisch toegevoegd uit Funda-attendering op 07-10-2026
 de Ruyterstraat | Nijmegen | 350 | te huur kamer | 2026-10-07 | kamernet-incl | 24 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 07-10-2026
+Aldenhof | Nijmegen | 772 | te huur kamer | 2026-10-07 | kamernet-incl | 24 | 
