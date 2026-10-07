@@ -1061,10 +1061,15 @@ def controle_verkooptijd():
         return (OK, "nog geen pand dat wij eerst te koop en daarna verkocht "
                 "zagen; dat begint te lopen nu de verkochtmeldingen binnenkomen",
                 "")
-    return (OK, f"{d['aantal']} panden van te koop naar verkocht gezien; "
-            f"mediaan hoogstens {d.get('mediaan_hoogstens_dagen')} dagen te "
-            f"koop. Een bovengrens uit twee eigen waarnemingen, geen schatting: "
-            f"de werkelijke tijd is korter of gelijk", "")
+    deel = (f"{d['aantal']} panden van te koop naar onder bod of verkocht "
+            f"gezien; mediaan hoogstens {d.get('mediaan_hoogstens_dagen')} "
+            f"dagen")
+    if d.get("aantal_onder_bod"):
+        deel += (f"; alleen onder bod: {d['aantal_onder_bod']} panden, mediaan "
+                 f"hoogstens {d['mediaan_tot_onder_bod']} dagen. Dat is de "
+                 f"scherpste maat, want onder bod legt de koper zich vast")
+    return (OK, deel + ". Een bovengrens uit twee eigen waarnemingen, geen "
+            "schatting: de werkelijke tijd is korter of gelijk", "")
 
 
 def controle_doorlooptijden():

@@ -187,6 +187,17 @@ def uit_verkopen(geschiedenis):
                                   + (" (verkoopdatum onbekend; uit een geplakte "
                                      "lijst)" if zonder_datum else ""),
                                   "aanbod")
+            elif r["status"].startswith(("onder bod", "onder voorbehoud")):
+                # Onder bod is een scherper signaal dan de verkoop zelf: dit is
+                # het moment dat een koper zich vastlegt, terwijl de overdracht
+                # pas maanden later bij de notaris passeert. Zonder deze regel
+                # viel die status buiten de geschiedenis.
+                nieuw += voeg_toe(pand, r["datum"], "onder bod",
+                                  "onder bod of verkocht onder voorbehoud, "
+                                  "vraagprijs "
+                                  + f"€{r['prijs']:,}".replace(",", ".")
+                                  + (f", {r['opp']} m2" if r["opp"] else ""),
+                                  "aanbod")
     return nieuw
 
 
@@ -807,7 +818,8 @@ def verkooptijd_bovengrens(geschiedenis):
         tekoop = [g["datum"] for g in gebeurtenissen
                   if g.get("soort") == "te koop" and g.get("datum")]
         verkocht = [g for g in gebeurtenissen
-                    if g.get("soort") == "verkocht" and g.get("datum")]
+                    if g.get("soort") in ("verkocht", "onder bod")
+                    and g.get("datum")]
         if not (tekoop and verkocht):
             continue
         laatste = verkocht[-1]
@@ -821,12 +833,20 @@ def verkooptijd_bovengrens(geschiedenis):
         rijen.append({"adres": pand.get("adres"),
                       "eerst_gezien": eerder[0],
                       "verkocht_gezien": laatste["datum"],
+                      "soort": laatste.get("soort"),
                       "hoogstens_dagen": dagen})
     rijen.sort(key=lambda r: r["verkocht_gezien"], reverse=True)
     uit = {"aantal": len(rijen), "panden": rijen[:20]}
     if rijen:
         waarden = sorted(r["hoogstens_dagen"] for r in rijen)
         uit["mediaan_hoogstens_dagen"] = waarden[len(waarden) // 2]
+    # Onder bod apart, want dat is het moment dat een koper zich vastlegt en
+    # dus de scherpste maat voor hoe snel de markt loopt.
+    bod = sorted(r["hoogstens_dagen"] for r in rijen
+                 if r.get("soort") == "onder bod")
+    if bod:
+        uit["aantal_onder_bod"] = len(bod)
+        uit["mediaan_tot_onder_bod"] = bod[len(bod) // 2]
     return uit
 
 

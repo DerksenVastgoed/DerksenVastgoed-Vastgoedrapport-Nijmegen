@@ -5622,6 +5622,39 @@ niet stil lijkt te staan terwijl er wel mails binnenkomen.
 
 ---
 
+## 50. Onder bod is het scherpste signaal — 7 oktober 2026
+
+Mark plakte vijftien panden die onder bod of verkocht onder voorbehoud staan.
+Tien ervan stonden bij ons als te koop: van Goorstraat 91, Mr. Franckenstraat 6,
+Staringstraat 21, Krayenhofflaan 104, Gulden Wagengas 1, Burg. Hustinxstraat 208,
+Veemarkt 213, Pontanusstraat 19, Scholenhof 8 en Palembangstraat 44. Vijf waren
+nieuw, waaronder een nieuwbouwproject.
+
+**Die status viel helemaal buiten de geschiedenis.** Er was een tak voor te koop,
+voor te huur en voor verkocht, maar niet voor onder bod. Nu wel, als eigen soort
+gebeurtenis.
+
+**En het is een beter signaal dan de verkoop zelf.** Onder bod is het moment dat
+een koper zich vastlegt; de overdracht bij de notaris volgt maanden later. Een
+verkoop die nu wordt gemeld, is dus vaak weken oud nieuws, terwijl onder bod
+vers is.
+
+De bovengrens op de verkooptijd rekent nu ook met onder bod, en meldt die apart.
+Getest op drie panden: Pontanusstraat 19 hoogstens 21 dagen tot onder bod,
+Staringstraat 21 hoogstens 17 dagen, en Hofdijkstraat 17 hoogstens 25 dagen tot
+verkocht.
+
+De opdracht aan de brief zegt erbij dat onder bod nog geen verkoop is en dat een
+bod kan afketsen.
+
+**Wat opvalt aan deze vijftien, en het is te vroeg om er iets van te vinden:**
+twaalf staan er twee tot drie weken. Als dat zo blijft, loopt de markt in de
+ring snel, en dan zegt de huidige "mediaan 15 dagen sinds laatst bevestigd" in
+het aanbodbestand iets heel anders dan het lijkt. Over een maand is dat te
+toetsen met eigen cijfers.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
