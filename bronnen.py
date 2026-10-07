@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Een aanvraag die buiten behandeling wordt gesteld": [
+        "buiten behandeling", "onvolledig", "conceptaanvraag", "vooroverleg",
+        "conceptverzoek", "transformatie", "bedrijfsruimte", "vergunningsvrij"],
     "De welstandscommissie is de echte poortwachter": [
         "welstand", "omgevingskwaliteit", "aon", "beeldkwaliteit",
         "negatief advies", "nokverhoging", "dakopbouw", "optoppen"],
@@ -659,6 +662,32 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("Een aanvraag die buiten behandeling wordt gesteld",
+     "Bij de Willemsweg 98 is te zien hoe een plan strandt zonder dat er "
+     "inhoudelijk over is beslist. Het ging om het bouwkundig splitsen van een "
+     "fietsenwinkel met showroom en werkplaats in twee zelfstandige "
+     "huurwoningen op de begane grond; de eigenaar bezit ook de bovenwoning. "
+     "De aanvraag kwam binnen op 27 april 2026. De gemeente vroeg om de "
+     "aanvraag compleet te maken, maar de nieuwe stukken bleken nagenoeg "
+     "identiek aan de eerste en de gevraagde punten waren niet uitgewerkt. Op "
+     "22 september 2026 is de aanvraag daarom buiten behandeling gesteld: vijf "
+     "maanden kwijt, €482,53 aan leges betaald, en geen vergunning. Een besluit "
+     "om niet te behandelen gaat niet over de inhoud; het plan kan dus nog "
+     "steeds kansrijk zijn. "
+     "Een tweede punt staat er als waarschuwing bij: de voorgestelde "
+     "vergunningsvrije aanbouw was niet met een ingevulde checklist "
+     "aangetoond, en gezien de geringe diepte van de achtertuin twijfelt de "
+     "gemeente of die wel vergunningsvrij kan zijn. Vergunningsvrij bouwen "
+     "moet je dus onderbouwen en niet aannemen. "
+     "De gemeente geeft zelf de route mee: dien eerst een conceptaanvraag in, "
+     "dan laat je beoordelen of het bouwvoornemen kansrijk is voordat je een "
+     "volledige aanvraag doet. Bij twee van de andere bekeken aanvragen is dat "
+     "niet gedaan. "
+     "Let ook op het soort ingreep. Dit is geen splitsing van een woning maar "
+     "een functiewijziging van bedrijfsruimte naar wonen, en dat is een "
+     "zwaarder traject: er komt een nieuwe woonfunctie bij op een plek waar die "
+     "er niet was, met de toetsen op geluid, bodem en daglicht die daarbij "
+     "horen."),
     ("De welstandscommissie is de echte poortwachter",
      "Bij de St. Annastraat 456 is te zien wat een negatief welstandsadvies "
      "kost. De aanvraag voor een extra verdieping is ingediend op 14 oktober "

@@ -5999,6 +5999,45 @@ in splitsingstoets.py.
 
 ---
 
+## 59. Een gestrande aanvraag, en een fout in ons eigen filter — 7 oktober 2026
+
+De Willemsweg 98: het bouwkundig splitsen van een fietsenwinkel met showroom en
+werkplaats in twee huurwoningen op de begane grond. Aanvraag 27 april 2026, op
+22 september buiten behandeling gesteld. Vijf maanden kwijt, €482,53 leges
+betaald, geen vergunning.
+
+**De reden is leerzaam:** de gemeente vroeg om de aanvraag compleet te maken, en
+de nieuwe stukken waren nagenoeg identiek aan de eerste. De gevraagde punten
+twee tot en met vier waren niet uitgewerkt. Een besluit om niet te behandelen
+gaat niet over de inhoud, dus het plan kan nog steeds kansrijk zijn.
+
+Daarbij een waarschuwing die breder geldt: de voorgestelde vergunningsvrije
+aanbouw was niet met een ingevulde checklist aangetoond, en gezien de geringe
+diepte van de achtertuin twijfelt de gemeente of die wel vergunningsvrij kan
+zijn. Vergunningsvrij bouwen moet je onderbouwen en niet aannemen.
+
+En de gemeente geeft de route zelf mee: dien eerst een conceptaanvraag in. Bij
+de Staringstraat staat in het formulier expliciet dat dat niet is gedaan.
+
+**De fout in ons filter.** "Buiten behandeling" en "intrekking" stonden in de
+lijst met uit te sluiten woorden, dus zulke bekendmakingen werden weggegooid als
+ruis. Dat is precies verkeerd: een gestrande aanvraag is een uitkomst. Nu komen
+ze door als er ook een onderwerp in zit dat ons raakt. Getest: een buiten
+behandelingstelling over splitsen komt binnen, een over het kappen van een boom
+niet.
+
+Daarmee wordt ook die oude melding begrijpelijk: in de brief van 2 oktober stond
+"op 24 september buiten behandeling gesteld: de procedure is gestaakt voordat er
+een besluit lag". Dat kwam toen uit een ander kanaal; nu is het een regulier
+signaal.
+
+**En dit is het vierde soort ingreep dat we nu hebben gezien:** splitsen van een
+woning, een aanbouw, een nokverhoging, en een functiewijziging van bedrijfsruimte
+naar wonen. Die laatste is het zwaarste traject, want er komt een woonfunctie bij
+op een plek waar die er niet was.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

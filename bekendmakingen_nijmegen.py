@@ -51,7 +51,7 @@ UITSLUITEN = [
     "hekwerk", "erfafscheiding", "schutting", "schuur", "tuinhuis", "zwembad",
     "alcohol", "leidinggevende", "exploitatievergunning", "terras", "evenement",
     "standplaats", "kappen", "kapvergunning", "boom", "bomen",
-    "termijnverlenging", "buiten behandeling", "intrekking", "rectificatie",
+    "termijnverlenging", "rectificatie",
 ]
 KERN = [
     "splits", "samenvoeg", "omzetten", "omgezet", "omzetting",
@@ -258,10 +258,22 @@ def in_ring(item: dict) -> bool:
     return True
 
 
+# Een aanvraag die buiten behandeling is gesteld of is ingetrokken, is geen
+# ruis maar een uitkomst: daar is een plan niet doorgegaan. Bij de Willemsweg 98
+# kostte dat vijf maanden en €482 leges, en de gemeente adviseerde een
+# conceptaanvraag. Zulke berichten stonden bij de uit te sluiten woorden en
+# werden dus weggegooid; alleen zijn ze pas interessant als het over een van
+# onze onderwerpen gaat.
+AFLOOP = ["buiten behandeling", "intrekking", "geweigerd", "afgewezen"]
+
+
 def classificeer(item: dict):
     hooi = (item["titel"] + " " + item["type"]).lower()
     if any(w in hooi for w in KERN):
         return "kern"
+    if any(w in hooi for w in AFLOOP) and any(w in hooi for w in REL_BASIS):
+        # Een afloop op een onderwerp dat ons raakt: wel melden, als overige.
+        return "overige"
     if any(w in hooi for w in UITSLUITEN):
         return None
     if any(w in hooi for w in REL_BASIS):
