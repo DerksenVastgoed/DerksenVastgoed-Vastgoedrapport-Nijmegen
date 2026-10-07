@@ -5771,6 +5771,43 @@ staan nu in de brief, dus elke aanvraag is in een klik na te lezen.
 
 ---
 
+## 54. Twee aanvragen naast elkaar, en een regel die ik fout had — 7 oktober 2026
+
+Mark leverde de volledige aanvragen van beide splitsingszaken. Daaruit komt meer
+dan uit een maand bekendmakingen.
+
+**Berg en Dalseweg 11: twee HUURwoningen naar vier.** Ingediend 29 september
+door DD21 B.V., Bijleveldsingel 38, KvK 84657650. De woningen 11 en 11A zijn al
+gesplitst in 11 plus 11B en 11A plus 11C; er worden twee nieuwe huisnummers
+aangevraagd. De tekening geeft 51 en 43 m2 boven en 57 en 62 m2 op de tweede.
+Bruto vloeroppervlakte verandert niet.
+
+Doorgerekend: alle vier de eenheden komen op 95 tot 122 punten, dus diep
+gereguleerd, met samen ongeveer €2.805 wettelijk maximum. De twee bestaande
+woningen van 94 en 119 m2 zitten op 154 en 183 punten, samen €2.216. De
+splitsing levert dus ongeveer €590 per maand extra, niet de sprong die
+uitponden geeft. Op de vrije markt zouden die vier €3.834 doen bij onze gemeten
+€18 per m2; het puntenstelsel pakt daar ruim duizend euro per maand af.
+
+**Staringstraat 2: één KOOPwoning naar drie.** Ingediend 22 september door
+Bouwplan, Daalseweg 229, KvK 09127400, met Ontwerp & Tekenburo uit Siebengewald.
+Drie appartementen van 69,4, 55,9 en 45,3 m2, interne verbouwing, geen
+vooroverleg en geen participatie. Dit is dus een uitpondcase en geen
+verhuurcase, en daar geldt de groottepremie wel.
+
+**En de regel die ik fout had.** Ik schreef dat het ontbreken van parkeren op
+eigen terrein een reële weigeringsgrond is. De parkeerberekening van de
+Staringstraat laat zien dat dat in de ring vaak niet zo is: de Beleidsregels
+Parkeren 2025 kennen onder bijzonder geval VII een vrijstelling voor splitsing
+in het gereguleerde gebied, omdat de nieuwe huisnummers geen parkeervergunning
+krijgen en de parkeerdruk dus niet stijgt. Daarmee is er geen parkeereis.
+
+Dat staat nu als achtergrondstuk, het eenendertigste, met de keerzijde erbij:
+een huurder op zo'n nieuw huisnummer kan geen parkeervergunning krijgen, en
+buiten het gereguleerde gebied geldt de eis juist wel.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

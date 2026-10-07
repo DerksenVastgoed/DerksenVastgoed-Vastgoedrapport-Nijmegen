@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "Parkeren bij splitsen": [
+        "parkeren", "parkeereis", "parkeernorm", "parkeerdruk",
+        "parkeervergunning", "parkeerberekening", "beleidsregels parkeren"],
     "Legaliseren achteraf": [
         "legaliseren", "legalisatie", "legalisering", "achteraf",
         "handhaving", "dwangsom", "bestuursdwang", "herstelsanctie",
@@ -650,6 +653,27 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("Parkeren bij splitsen",
+     "De parkeernorm lijkt een drempel bij woningsplitsing, maar in de ring is "
+     "dat hij vaak niet. De Beleidsregels Parkeren 2025 van Nijmegen kennen "
+     "onder bijzonder geval VII een uitzondering voor splitsing en verkamering "
+     "van bestaande woningen: voor een woning in het gereguleerd gebied, dus "
+     "waar betaald parkeren geldt, worden bij splitsing geen "
+     "parkeervergunningen of abonnementen uitgegeven aan de nieuwe "
+     "huisnummers, en daarom geldt er geen parkeereis. De gedachte is dat de "
+     "parkeerdruk niet stijgt als de nieuwe adressen geen vergunning kunnen "
+     "krijgen. "
+     "Dat is te zien in een echte aanvraag: bij de Staringstraat 2 rekende het "
+     "bureau uit dat de norm van 0,70 per woning bij drie appartementen op drie "
+     "plaatsen komt tegen een bestaande eis van een, dus een tekort van twee, "
+     "en beroept zich vervolgens op die vrijstelling. "
+     "Wat de uitzondering wel bewaakt: de splitsing mag geen onevenredig grote "
+     "negatieve invloed hebben op het verkeer en de parkeerdruk in de "
+     "omgeving. Daar kan de gemeente op toetsen. En de keerzijde raakt de "
+     "verhuurbaarheid: de nieuwe huisnummers krijgen geen parkeervergunning, "
+     "dus een huurder met een auto kan daar niet parkeren. Bij een pand buiten "
+     "het gereguleerde gebied geldt de parkeereis juist wel, en daar is een "
+     "tekort van twee plaatsen een reëel probleem."),
     ("Legaliseren achteraf",
      "Een aanvraag om een al uitgevoerde splitsing of verkamering alsnog "
      "vergund te krijgen heet legaliseren, en zo'n aanvraag doet meer dan "
