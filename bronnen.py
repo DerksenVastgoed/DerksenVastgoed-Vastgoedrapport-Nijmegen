@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "De welstandscommissie is de echte poortwachter": [
+        "welstand", "omgevingskwaliteit", "aon", "beeldkwaliteit",
+        "negatief advies", "nokverhoging", "dakopbouw", "optoppen"],
     "Een verleende splitsingsvergunning van begin tot eind": [
         "bopa", "buitenplans", "vergunning verleend", "besluit", "leges",
         "natuurinclusief", "welstand", "omgevingskwaliteit", "doorlooptijd"],
@@ -656,6 +659,37 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("De welstandscommissie is de echte poortwachter",
+     "Bij de St. Annastraat 456 is te zien wat een negatief welstandsadvies "
+     "kost. De aanvraag voor een extra verdieping is ingediend op 14 oktober "
+     "2025. De adviescommissie Omgevingskwaliteit Nijmegen adviseerde op 11 "
+     "juni 2026 NEGATIEF. Daarna is het plan op drie punten aangepast: de "
+     "aansluiting van het voordakvlak met een grotere hoek, de kap geheel "
+     "afgedekt met leien, en de kozijnen in de rechterzijgevel verkleind voor "
+     "een eenduidiger gevelbeeld. Op 10 september 2026 was het advies positief, "
+     "en op 24 september is de vergunning verleend. "
+     "Dat is dus bijna een jaar van aanvraag tot besluit, waarvan ongeveer drie "
+     "maanden het gevolg van dat ene negatieve advies. De commissie toetst aan "
+     "de Uitwerkingsnota beeldkwaliteit, en haar oordeel gaat over het uiterlijk: "
+     "of de opbouw een logische voortzetting van de onderbouw is en of de "
+     "karakteristieke elementen van het pand leesbaar blijven. "
+     "De strijdigheid zelf was meetbaar en klein: het bestemmingsplan Nijmegen "
+     "Zuid 2017 staat negen meter bouwhoogte en zes meter goothoogte toe, en het "
+     "plan kwam op 9,45 meter bouwhoogte met een verholen goot op 8,866 meter. "
+     "Voor zo'n nokverhoging bestaat een standaardmotivering met een vaste "
+     "inhoudsopgave: beschrijving van plan en omgeving, beeldkwaliteit, geluid, "
+     "flora en fauna, cultuurhistorie, financiële uitvoerbaarheid, participatie "
+     "en de evenwichtige toedeling van functies aan locaties. Dat format is "
+     "herbruikbaar. "
+     "Twee voorschriften komen uit dit besluit die bij de andere niet stonden: "
+     "de start van het werk moet twee dagen vooraf worden gemeld, en uiterlijk "
+     "vier weken voor de start moet er een ingevulde risicomatrix liggen. Scoort "
+     "die twaalf punten of meer, dan is er ook een bouwveiligheidsplan nodig met "
+     "een veiligheidscoördinator. "
+     "De les voor een ontwikkelcase: de planologische toets is te berekenen, "
+     "maar het welstandsoordeel niet. Reken bij een ingreep die het aanzicht "
+     "verandert op een extra ronde van een kwartaal, en op aanpassingen aan "
+     "materiaal en detaillering die geld kosten."),
     ("Een verleende splitsingsvergunning van begin tot eind",
      "Van de Biezenstraat 110 is het hele dossier openbaar: aanvraag, "
      "onderbouwing en besluit. Daaruit volgen getallen die nergens anders "

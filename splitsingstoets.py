@@ -198,6 +198,18 @@ BIJLAGEN_BOPA = [
      "andere bodemgevoelige functie"),
     ("Onderzoek ontplofbare oorlogsresten", "alleen in verdacht gebied, "
      "verplicht voordat de grond in gaat"),
+    ("Risicomatrix bouwveiligheid", "zelf, uiterlijk vier weken voor de start"),
+    ("Bouwveiligheidsplan met veiligheidscoordinator",
+     "alleen als de risicomatrix twaalf punten of meer scoort"),
+    ("Melding start en einde werkzaamheden",
+     "zelf, start twee dagen vooraf melden"),
+]
+# Wat twee verleende bopa-dossiers aan doorlooptijd lieten zien. Geen
+# gemiddelde van een reeks, maar twee gemeten gevallen; dat is meer dan we
+# eerder hadden.
+DOORLOOPTIJD_BOPA = [
+    ("Biezenstraat 110, splitsing met aanbouw", "2025-12-03", "2026-09-29"),
+    ("St. Annastraat 456, extra verdieping", "2025-10-14", "2026-09-24"),
 ]
 # Wat het in de praktijk kostte en duurde, uit dat ene verleende dossier.
 BIOZENSTRAAT_LEGES = 2218.21
@@ -249,6 +261,23 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
     r.append("|---|---|")
     for naam, wie in BIJLAGEN_BOPA:
         r.append(f"| {naam} | {wie} |")
+    r.append("")
+    r.append("**Doorlooptijd uit twee verleende dossiers:**")
+    r.append("")
+    for naam, van, tot in DOORLOOPTIJD_BOPA:
+        try:
+            dagen = (dt.date.fromisoformat(tot)
+                     - dt.date.fromisoformat(van)).days
+            r.append(f"- {naam}: {van} tot {tot}, {dagen} dagen "
+                     f"({dagen // 30} maanden)")
+        except ValueError:
+            continue
+    r.append("")
+    r.append("_Bij de St. Annastraat kwam daar een negatief welstandsadvies "
+             "tussen: op 11 juni 2026 afgewezen, na aanpassing van de "
+             "dakaansluiting, de leien en de kozijnen op 10 september positief. "
+             "Reken bij een ingreep die het aanzicht verandert op zo'n extra "
+             "ronde van ongeveer een kwartaal._")
     r.append("")
     r.append(f"_Uit het verleende dossier van de Biezenstraat 110: aanvraag 3 "
              f"december 2025, vergunning 29 september 2026, dus ongeveer "

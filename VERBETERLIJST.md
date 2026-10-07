@@ -5957,6 +5957,48 @@ bijlagen bij een bopa staan in splitsingstoets.py met erbij wie ze levert.
 
 ---
 
+## 58. Het negatieve welstandsadvies dat ik zocht — 7 oktober 2026
+
+Bij de St. Annastraat 456 staat precies wat er bij de andere twee ontbrak: een
+afwijzing, en wat die kostte.
+
+**Het verloop.** Aanvraag 14 oktober 2025 voor een extra verdieping. De
+adviescommissie Omgevingskwaliteit adviseerde op 11 juni 2026 NEGATIEF. Het plan
+is daarna op drie punten aangepast: de aansluiting van het voordakvlak met een
+grotere hoek, de kap geheel afgedekt met leien, en de kozijnen in de
+rechterzijgevel verkleind. Op 10 september was het advies positief, op 24
+september de vergunning verleend.
+
+Dat is 345 dagen van aanvraag tot besluit, waarvan ongeveer drie maanden het
+gevolg van dat ene advies. Naast de Biezenstraat met 300 dagen hebben we nu twee
+gemeten doorlooptijden in plaats van nul.
+
+**De strijdigheid zelf was klein en meetbaar:** bestemmingsplan Nijmegen Zuid
+2017 staat negen meter bouwhoogte en zes meter goothoogte toe, het plan kwam op
+9,45 meter met een verholen goot op 8,866. Precies het soort afwijking dat op
+papier marginaal lijkt.
+
+**De les die in de doorrekening hoort:** de planologische toets is te berekenen,
+het welstandsoordeel niet. Bij een ingreep die het aanzicht verandert hoort een
+extra ronde van een kwartaal in de planning, plus aanpassingen aan materiaal en
+detaillering die geld kosten. Leien in plaats van pannen is geen detail.
+
+**Drie voorschriften erbij die we nog niet kenden:** de start twee dagen vooraf
+melden, uiterlijk vier weken voor de start een ingevulde risicomatrix, en bij
+twaalf punten of meer ook een bouwveiligheidsplan met een veiligheidscoördinator.
+Die staan nu in de bijlagenlijst.
+
+**En er bestaat een standaardmotivering voor een nokverhoging** met een vaste
+inhoudsopgave: plan en omgeving, beeldkwaliteit, geluid, flora en fauna,
+cultuurhistorie, financiële uitvoerbaarheid, participatie en de evenwichtige
+toedeling van functies aan locaties. Dat format is herbruikbaar, en daarmee is
+de motivering zelf geen reden om een bureau in te schakelen.
+
+Alles staat als achtergrondstuk, het drieëndertigste, en de doorlooptijden staan
+in splitsingstoets.py.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
