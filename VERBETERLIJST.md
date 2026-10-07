@@ -6489,6 +6489,37 @@ oppervlakte.
 
 ---
 
+## 73. Een landelijk ijkpunt voor onze eigen huurmeting — 7 oktober 2026
+
+Het artikel dat Mark stuurde verwijst naar Pararius, en dat is dezelfde bron die
+wij zelf uitlezen voor de ring. Daarmee is er voor het eerst een landelijk
+getal om onze eigen meting tegen te houden: €20,92 per m2 in de vrije sector
+over het derde kwartaal van 2026, oftewel €1.914 per maand voor een doorsnee
+woning van ongeveer 91 m2.
+
+**Dat zet onze meting in een verontrustend licht.** In het dossier van Burg.
+Hustinxstraat 46 staat "gemeten €12/m2 op 3 panden, gewogen met de referentie
+€20/m2 tot €18/m2". Die gemeten €12 ligt 43% onder het landelijke cijfer, en dat
+is te veel om alleen aan Nijmegen toe te schrijven.
+
+Drie verklaringen die allemaal kunnen meespelen, en die het getal niet fout
+maken maar wel beperkt: het landelijke cijfer gaat over NIEUWE verhuringen in de
+VRIJE sector, onze meting bevat ook middenhuur, en sommige van onze
+waarnemingen zijn inclusief servicekosten. Bovendien rust de €12 op drie
+panden.
+
+Er is nu een controle die onze mediane huur per m2 tegen dat landelijke cijfer
+houdt en meldt als het verschil boven een kwart komt, met die drie verklaringen
+als diagnose. Getest op beide gevallen: bij een afwijking van 9% blijft het OK,
+bij 46% komt de melding.
+
+**Waarom dit meer is dan nieuwsgierigheid.** De weging met de referentie
+verbergt nu hoe ver de meting weg ligt: er komt €18 uit, en dat ziet er
+betrouwbaar uit. Het verschil tussen €12 en €20,92 bepaalt of een richtprijs
+€250.000 of €430.000 is, en dat is geen detail dat in een weging mag verdwijnen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -110,6 +110,59 @@ def _regels(pad):
 # De controles. Elk geeft (status, bewijs, diagnose) terug.
 # ---------------------------------------------------------------------------
 
+def controle_huur_ijkpunt():
+    """
+    Onze gemeten huur per m2 tegen het landelijke cijfer van Pararius.
+
+    Pararius meldde voor het derde kwartaal van 2026 €20,92 per m2 in de vrije
+    sector. Wij lezen Pararius zelf uit voor de ring, dus een groot verschil
+    zegt iets: of onze steekproef is niet representatief, of hij bevat
+    middenhuur en servicekosten die daar niet in zitten. Het is geen fout, maar
+    het hoort zichtbaar te zijn in plaats van verstopt in een weging.
+    """
+    try:
+        from marktprijzen_bag import LANDELIJK_HUUR_M2, LANDELIJK_HUUR_PEILDATUM
+    except Exception:
+        return (OK, "geen landelijk ijkpunt beschikbaar", "")
+    waarden = []
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 7 or not v[3].lower().startswith("te huur"):
+                    continue
+                if "kamer" in v[3].lower():
+                    continue
+                try:
+                    prijs, opp = float(v[2]), float(v[6])
+                except (ValueError, IndexError):
+                    continue
+                if opp >= 20 and prijs >= 300:
+                    waarden.append(prijs / opp)
+    except Exception:
+        return (OK, "geen aanbodbestand om te toetsen", "")
+    if len(waarden) < 3:
+        return (OK, f"te weinig huurwaarnemingen met oppervlakte "
+                f"({len(waarden)}) om tegen het landelijke cijfer van "
+                f"€{LANDELIJK_HUUR_M2}/m2 te houden", "")
+    waarden.sort()
+    eigen = waarden[len(waarden) // 2]
+    afw = round((eigen / LANDELIJK_HUUR_M2 - 1) * 100)
+    bewijs = (f"onze mediaan €{eigen:.2f}/m2 uit {len(waarden)} waarnemingen "
+              f"tegen landelijk €{LANDELIJK_HUUR_M2}/m2 "
+              f"({LANDELIJK_HUUR_PEILDATUM}): {afw:+d}%")
+    if abs(afw) > 25:
+        return (LET_OP, bewijs,
+                "Een verschil van meer dan een kwart vraagt uitleg. Het "
+                "landelijke cijfer gaat over nieuwe verhuringen in de vrije "
+                "sector; onze meting bevat ook middenhuur en soms "
+                "servicekosten. Controleer of de steekproef niet uit vooral "
+                "kleine of juist grote woningen bestaat.")
+    return (OK, bewijs, "")
+
+
 def controle_afzenders():
     """
     Of elke bron waarvan we mails verwachten ook werkelijk iets oplevert.
@@ -1456,6 +1509,7 @@ CONTROLES = [
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),
+    ("Huur tegen het landelijke cijfer", controle_huur_ijkpunt),
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
     ("WOZ-bestand", controle_wozbestand),

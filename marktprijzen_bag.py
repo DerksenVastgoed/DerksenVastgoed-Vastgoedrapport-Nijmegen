@@ -1510,6 +1510,16 @@ HUUR_M2_MND = {
     "Stadscentrum": 20, "Benedenstad": 20, "Bottendaal": 18,
     "Galgenveld": 18, "Altrade": 17, "Biezen": 18,
 }
+# Een landelijk ijkpunt om onze eigen meting tegen te houden. Pararius en
+# Huurwoningen.nl meldden voor het derde kwartaal van 2026 een gemiddelde van
+# €20,92 per m2 in de vrije sector, oftewel €1.914 per maand voor een doorsnee
+# woning van ongeveer 91 m2. Dat is een landelijk cijfer voor NIEUWE verhuringen
+# in de vrije sector, dus niet een op een vergelijkbaar met onze ring: wij meten
+# ook middenhuur en soms inclusief servicekosten. Als anker tegen een meting die
+# ver wegloopt is het wel bruikbaar, en Pararius is dezelfde bron die wij zelf
+# uitlezen.
+LANDELIJK_HUUR_M2 = 20.92
+LANDELIJK_HUUR_PEILDATUM = "2026-Q3"
 
 
 
