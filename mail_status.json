@@ -1,32 +1,56 @@
 {
  "datum": "2026-10-07",
  "bronnen": {
+  "pararius": {
+   "mails": 10,
+   "objecten": 13,
+   "overgeslagen": 7,
+   "redenen": [
+    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)"
+   ]
+  },
   "regulier": {
-   "mails": 3,
-   "objecten": 2,
+   "mails": 14,
+   "objecten": 34,
    "overgeslagen": 0,
    "redenen": [
     "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht "
    ]
   },
   "kamernet": {
-   "mails": 22,
-   "objecten": 16,
-   "overgeslagen": 6,
+   "mails": 57,
+   "objecten": 43,
+   "overgeslagen": 14,
    "redenen": [
+    "Grotestraat, Cuijk: buiten Nijmegen",
+    "Keurvorststraat, Molenhoek: buiten Nijmegen",
     "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "De Heege, Westervoort: buiten Nijmegen",
-    "Stekkenberg, Groesbeek: buiten Nijmegen",
-    "Bloemfonteinstraat, Eindhoven: buiten Nijmegen",
-    "Rijksweg, Malden: buiten Nijmegen"
+    "Hegdambroek: €5 per maand is niet aannemelijk",
+    "Huissensestraat, Arnhem: buiten Nijmegen"
    ]
   },
-  "pararius": {
-   "mails": 2,
-   "objecten": 2,
+  "huislijn": {
+   "mails": 7,
+   "objecten": 0,
+   "overgeslagen": 0,
+   "redenen": [
+    "niets herkend in: Zoekopdracht Nijmegen: 6 huizen gevonden waaronder",
+    "niets herkend in: Zoekopdracht Nijmegen: 2 huizen gevonden waaronder",
+    "niets herkend in: Zoekopdracht Nijmegen: 6 huizen gevonden waaronder",
+    "niets herkend in: Zoekopdracht Nijmegen: 3 huizen gevonden waaronder",
+    "niets herkend in: Zoekopdracht Nijmegen: 4 huizen gevonden waaronder"
+   ]
+  },
+  "vendr": {
+   "mails": 1,
+   "objecten": 0,
    "overgeslagen": 1,
    "redenen": [
-    "van Spaenstraat (gemeubileerd, apart bewaard)"
+    "Stationsstraat 43 (Ermelo)"
    ]
   }
  },

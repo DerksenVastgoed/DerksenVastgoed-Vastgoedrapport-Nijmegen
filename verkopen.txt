@@ -944,3 +944,7 @@ de Ruyterstraat | Nijmegen | 350 | te huur kamer | 2026-10-07 | kamernet-incl | 
 
 # Automatisch toegevoegd uit Funda-attendering op 07-10-2026
 Aldenhof | Nijmegen | 772 | te huur kamer | 2026-10-07 | kamernet-incl | 24 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 07-10-2026
+Mr. Franckenstraat | Nijmegen | 1420 | te huur gemeubileerd | 2026-09-23 | pararius | 35 | 6522AH
+Tweede Oude Heselaan | Nijmegen | 1412 | te huur gemeubileerd | 2026-09-24 | pararius | 60 | 6542VE

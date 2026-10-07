@@ -759,6 +759,14 @@
   "omweg": 4.14,
   "soort": "bus"
  },
+ "51.84351,5.87394": {
+  "geschat": false,
+  "hemelsbreed": 49,
+  "meters": 42,
+  "naam": "Meester Franckenstraat",
+  "omweg": 0.86,
+  "soort": "bus"
+ },
  "51.84358,5.86085": {
   "geschat": false,
   "hemelsbreed": 155,

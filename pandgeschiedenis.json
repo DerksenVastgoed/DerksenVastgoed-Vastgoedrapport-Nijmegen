@@ -80658,6 +80658,20 @@
   ],
   "pand_id": null
  },
+ "mrfranckenstraat": {
+  "adres": "Mr. Franckenstraat",
+  "bag_gezien": "2026-10-07",
+  "bag_zonder_id": "2026-10-07",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-23",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.420 per maand, 35 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "mrfranckenstraat10": {
   "adres": "Mr. Franckenstraat 10",
   "gebeurtenissen": [
@@ -97674,6 +97688,12 @@
   "bag_gezien": "2026-10-05",
   "bag_zonder_id": "2026-10-05",
   "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-09-24",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.412 per maand, 60 m2"
+   },
    {
     "bron": "kamernet",
     "datum": "2026-10-05",
