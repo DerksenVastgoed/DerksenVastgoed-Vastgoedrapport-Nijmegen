@@ -208,8 +208,12 @@ BIJLAGEN_BOPA = [
 # gemiddelde van een reeks, maar twee gemeten gevallen; dat is meer dan we
 # eerder hadden.
 DOORLOOPTIJD_BOPA = [
-    ("Biezenstraat 110, splitsing met aanbouw", "2025-12-03", "2026-09-29"),
-    ("St. Annastraat 456, extra verdieping", "2025-10-14", "2026-09-24"),
+    ("Biezenstraat 110, splitsing met aanbouw (bopa)",
+     "2025-12-03", "2026-09-29"),
+    ("St. Annastraat 456, extra verdieping (bopa, na negatief welstandsadvies)",
+     "2025-10-14", "2026-09-24"),
+    ("Heydenrijckstraat 40, inpandig splitsen (alleen technisch)",
+     "2026-04-15", "2026-09-23"),
 ]
 # Wat het in de praktijk kostte en duurde, uit dat ene verleende dossier.
 BIOZENSTRAAT_LEGES = 2218.21
@@ -262,7 +266,8 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
     for naam, wie in BIJLAGEN_BOPA:
         r.append(f"| {naam} | {wie} |")
     r.append("")
-    r.append("**Doorlooptijd uit twee verleende dossiers:**")
+    r.append(f"**Doorlooptijd uit {len(DOORLOOPTIJD_BOPA)} verleende "
+             f"dossiers:**")
     r.append("")
     for naam, van, tot in DOORLOOPTIJD_BOPA:
         try:
@@ -272,6 +277,15 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
                      f"({dagen // 30} maanden)")
         except ValueError:
             continue
+    r.append("")
+    r.append("_Het verschil tussen die drie zit in de buitenkant. Blijft de "
+             "voorgevel ongemoeid en gebeurt alles inpandig, in een bestemming "
+             "waar meerdere woningen zijn toegestaan, dan is de activiteit "
+             "bouwen onder het omgevingsplan vergunningsvrij en blijft alleen "
+             "de technische toets over: bij de Heydenrijckstraat drie stukken, "
+             "een voorschrift en vijf maanden. Komt er een aanbouw of een "
+             "dakopbouw bij, dan is het een bopa met twintig bijlagen, de "
+             "welstandscommissie en ongeveer een jaar._")
     r.append("")
     r.append("_Bij de St. Annastraat kwam daar een negatief welstandsadvies "
              "tussen: op 11 juni 2026 afgewezen, na aanpassing van de "

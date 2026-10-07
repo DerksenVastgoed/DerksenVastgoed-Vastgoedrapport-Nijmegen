@@ -308,6 +308,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Onttrekking van woonruimte": ["onttrekking", "onttrekken", "onttrokken",
                                    "woonruimtevoorraad", "logies"],
     "Samenvoegen van woningen": ["samenvoeging", "samenvoegen", "samengevoegd"],
+    "De schone route: inpandig splitsen zonder bopa": [
+        "inpandig", "vergunningsvrij", "brandcompartiment", "souterrain",
+        "splitsen", "woningvorming", "doorlooptijd", "voorgevel"],
     "Een aanvraag die buiten behandeling wordt gesteld": [
         "buiten behandeling", "onvolledig", "conceptaanvraag", "vooroverleg",
         "conceptverzoek", "transformatie", "bedrijfsruimte", "vergunningsvrij"],
@@ -662,6 +665,37 @@ ACHTERGROND = [
      "soepeler regime, soms met een vrijstelling bij noodzakelijk bouwkundig "
      "herstel. Wat er in Nijmegen precies geldt, staat in de "
      "huisvestingsverordening en niet in de landelijke wet."),
+    ("De schone route: inpandig splitsen zonder bopa",
+     "De Heydenrijckstraat 40 laat zien hoe licht een splitsing kan zijn als er "
+     "van buiten niets verandert. De woning op de begane grond is gescheiden van "
+     "het souterrain, waardoor daar een tweede zelfstandige woning ontstaat. "
+     "Aanvraag 15 april 2026, vergunning 23 september 2026: ruim vijf maanden, "
+     "tegen tien en elf maanden bij de twee dossiers met een buitenplanse "
+     "afwijking. "
+     "Er zijn maar drie stukken ingediend: het verzoekformulier en twee "
+     "tekeningen. Er geldt één voorschrift: de start twee dagen vooraf melden en "
+     "het einde de eerste werkdag erna. Geen groenmaatregelen, geen quickscan, "
+     "geen waterberging. "
+     "Het verschil zit in twee dingen. De activiteit bouwen onder het "
+     "omgevingsplan is hier VERGUNNINGSVRIJ: het plan past in artikel 22.27 "
+     "onder i van het omgevingsplan en in bestemmingsplan Nijmegen Oost, waar "
+     "meerdere woningen zijn toegestaan. Er verandert niets aan de voorgevel en "
+     "de wijzigingen zijn enkel inpandig; de wijzigingen in de achtergevel zijn "
+     "vergunningsvrij omdat het alleen een aandachtspand is en geen monument. "
+     "Wat wél vergunningplichtig blijft, is de technische bouwactiviteit, en de "
+     "reden is precies benoemd: doordat er een zelfstandige woning wordt "
+     "gerealiseerd ontstaat een apart brandcompartiment. Daar keken de "
+     "constructeur, een bouwtechnisch specialist en de Veiligheidsregio "
+     "Gelderland Zuid naar. "
+     "De vuistregel die hieruit volgt: ligt het pand in een bestemming waar "
+     "meerdere woningen zijn toegestaan, blijft de voorgevel ongemoeid en gebeurt "
+     "alles inpandig, dan is alleen de technische toets nodig en duurt het "
+     "ongeveer vijf maanden met een handvol stukken. Komt er een aanbouw, een "
+     "dakopbouw of een gevelwijziging bij, dan is het een buitenplanse "
+     "omgevingsplanactiviteit met twintig bijlagen, de welstandscommissie en "
+     "ongeveer een jaar. "
+     "En ook hier: gereguleerd parkeergebied, dus geen parkeereis, maar geen "
+     "parkeervergunning voor de nieuwe woning."),
     ("Een aanvraag die buiten behandeling wordt gesteld",
      "Bij de Willemsweg 98 is te zien hoe een plan strandt zonder dat er "
      "inhoudelijk over is beslist. Het ging om het bouwkundig splitsen van een "

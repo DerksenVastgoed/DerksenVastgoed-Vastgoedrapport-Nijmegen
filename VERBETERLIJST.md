@@ -6038,6 +6038,45 @@ op een plek waar die er niet was.
 
 ---
 
+## 60. De lichte route, en daarmee is het beeld rond — 7 oktober 2026
+
+De Heydenrijckstraat 40 is de schoonste van de vijf dossiers en voor Derksen
+Vastgoed de meest relevante. De woning op de begane grond is gescheiden van het
+souterrain, waardoor daar een tweede zelfstandige woning ontstaat.
+
+**Aanvraag 15 april 2026, vergunning 23 september: 161 dagen.** Drie stukken
+ingediend: het verzoekformulier en twee tekeningen. Eén voorschrift: de start
+twee dagen vooraf melden. Geen groenmaatregelen, geen quickscan, geen
+waterberging, geen welstandsronde.
+
+**Het verschil zit in de buitenkant.** De activiteit bouwen onder het
+omgevingsplan is hier vergunningsvrij: het plan past in artikel 22.27 onder i
+van het omgevingsplan en in bestemmingsplan Nijmegen Oost, waar meerdere
+woningen zijn toegestaan. Er verandert niets aan de voorgevel, de wijzigingen
+zijn enkel inpandig, en de achtergevelwijzigingen zijn vergunningsvrij omdat het
+alleen een aandachtspand is en geen monument.
+
+**Wat wel vergunningplichtig blijft, is de technische bouwactiviteit**, en de
+reden staat er precies: doordat er een zelfstandige woning wordt gerealiseerd
+ontstaat een apart brandcompartiment. Daar keken de constructeur, een
+bouwtechnisch specialist en de Veiligheidsregio Gelderland Zuid naar.
+
+**Daarmee staat de vuistregel die uit vijf dossiers volgt:**
+
+| soort ingreep | route | doorlooptijd | bijlagen |
+|---|---|---|---|
+| inpandig splitsen, voorgevel ongemoeid | alleen technisch | 5 maanden | 3 |
+| splitsen met aanbouw buiten het plan | bopa | 10 maanden | 21 |
+| dakopbouw met nokverhoging | bopa plus welstand | 11 maanden | 22 |
+| functiewijziging bedrijfsruimte naar wonen | zwaarst | gestrand na 5 maanden | onvolledig |
+
+Dat is het getal dat elke ontwikkelcase nodig heeft en dat we een week geleden
+nog niet hadden. De brief krijgt de instructie dat verschil te noemen zodra een
+bekendmaking over splitsen gaat, want het bepaalt of een plan maanden of een
+jaar kost.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
