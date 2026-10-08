@@ -6971,9 +6971,50 @@ ook daar naar de homepagina, en dan is deze bron alleen bruikbaar via de
 overzichtspagina van Nijmegen, waar het aanbod met zijn prijzen op staat. Dat
 laatste is een grotere bouw en wordt pas gedaan als het nodig blijkt.
 
-De snelste manier om dat te weten: rechtermuisknop op "Bekijk deze woning",
-link kopieren. Een run met de mails op ongelezen werkt ook, want de diagnose
-zet alle links in het logboek.
+**Opgelost, met de link die Mark stuurde.** Twee dingen bleken anders dan
+aangenomen, en beide waren met raden nooit gevonden.
+
+De link is een SendGrid-klikteller:
+u5283813.ct.sendgrid.net/ls/click?upn=... Het domein bevat dus geen "123wonen",
+en mijn filter van een uur eerder eiste dat juist wel. De les is dezelfde als
+bij de homepagina, maar omgekeerd: een filter dat op het domein let, faalt zodra
+de mail via een verzenddienst gaat, en alle attenderingen gaan via een
+verzenddienst. Een klikteller wordt nu op de vorm van het pad herkend
+(/ls/click, /c/, /r/ en een paar meer) en op welk domein dan ook, want we zitten
+dan al in een mail die als 123Wonen is herkend.
+
+Daarmee kwam het volgende probleem bovendrijven: als álle links in de mail op
+hetzelfde klikdomein staan, zegt de URL niets meer over de bestemming. De
+homepagina, de woning en de afmeldlink zien er identiek uit. Twee dingen
+onderscheiden ze wel, en die worden nu in deze volgorde gebruikt:
+
+1. De tekst om de link heen. "Bekijk deze woning" is de woning, "Wenst u geen
+   woningmail" is het niet. Alleen de regel ervoor en de regel erna, want met
+   een ruimer venster slikte de woninglink de afmeldtekst van het blok eronder
+   mee en viel hij af op zijn eigen mail.
+2. De plaats ten opzichte van het bedrag. De woninglink staat kort na de prijs,
+   in hetzelfde blok. De homepagina staat in de begroeting erboven.
+
+**En de objectpagina heeft een korte vorm.** De klikteller komt uit op
+123wonen.nl/w/1780-27, niet op de lange /huur/nijmegen/appartement/<straat>. Die
+korte vorm viel door elk filter: het pad is negen tekens en heeft geen lange
+code, dus zowel de lengte-eis als de code-eis wees hem af. Hij staat er nu als
+tweede objectvorm in.
+
+Daar hangt wel een verlies aan: in de korte vorm zit geen straatnaam, dus de
+toets "de straat uit de link moet gelijk zijn aan de straat op de pagina" viel
+weg. Die toets is er juist om te voorkomen dat een adres uit het blok
+"Vergelijkbaar aanbod" voor dit pand doorgaat. De pagina heeft zelf een even
+goed anker: het kruimelpad, "Aanbod / Nijmegen - van Spaenstraat". Dat is nu de
+toets. Getest met een pagina waarin het eerste adres uit een andere straat komt:
+dan wordt alleen de straat overgenomen en niet het huisnummer.
+
+Getest op de mail zoals hij werkelijk is, met vier kliktellers op hetzelfde
+domein: de woning komt eruit en de andere drie niet. En van vijf soorten link
+worden de drie objectvormen erkend en de homepagina en de afmeldlink niet.
+
+Nog niet te bewijzen vanaf hier: of het ophalen van 123wonen.nl op de runner
+lukt. Bij Huislijn lukte dat wel, dus er is geen principieel beletsel.
 
 ---
 
