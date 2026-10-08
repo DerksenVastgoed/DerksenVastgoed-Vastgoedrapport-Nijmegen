@@ -695,9 +695,13 @@ W1_MAX_OPHALEN = 25
 RE_W1_URL = re.compile(r"123wonen[^\s)\]]*", re.IGNORECASE)
 # De objectpagina zoals we hem nodig hebben: /huur/<plaats>/<type>/<slug>. In
 # een doorstuurlink staat hij vaak percent-gecodeerd als parameter.
+# Twee vormen van een objectpagina. De lange staat in de adresbalk als je
+# doorklikt vanaf het aanbod; de korte is waar de mail op uitkomt en die is
+# het echte adres van de advertentie: /w/1780-27.
 RE_W1_OBJECT = re.compile(
-    r"https?://(?:[a-z0-9\-]+\.)*123wonen\.nl/huur/[a-z\-]+/[a-z\-]+/"
-    r"[a-z0-9\-]+", re.IGNORECASE)
+    r"https?://(?:[a-z0-9\-]+\.)*123wonen\.nl/"
+    r"(?:huur/[a-z\-]+/[a-z\-]+/[a-z0-9\-]+|w/\d+[\d\-]*)",
+    re.IGNORECASE)
 
 
 # Links in een 123Wonen-mail die nooit een woning zijn. De attendering opent
@@ -709,6 +713,22 @@ W1_GEEN_OBJECT = ("dounsubscribe", "/woningmail", "unsubscribe", "/afmelden",
                   "/privacy", "/sitemap", "/contact", "/over-ons",
                   "/vacatures", "/algemene-voorwaarden", "/referenties",
                   "/blog", "/beleggen", "/franchise")
+# De mail gaat via SendGrid, en dan staat elke link op een eigen domein:
+# https://u5283813.ct.sendgrid.net/ls/click?upn=... Het domein zegt dus niets
+# meer over de bestemming; het pad wel. Wij zitten hier al in een mail die als
+# 123Wonen is herkend, dus een klikteller in deze mail is een 123Wonen-link.
+RE_W1_TRACKER = re.compile(
+    r"https?://[^\s)\]]*?(?:/ls/click|/wf/click|/c/|/cl/|/click|/r/|/track"
+    r"|/tr/|/redirect)[^\s)\]]*", re.IGNORECASE)
+# De tekst achter de link. strip_html zet de link op een eigen regel, dus de
+# ankertekst staat op de regels erna. Dat is het betrouwbaarste onderscheid dat
+# we hebben zodra alle links op hetzelfde klikdomein staan.
+W1_LINKTEKST_JA = ("bekijk deze woning", "bekijk de woning", "bekijk woning",
+                   "uitgebreide presentatie", "meer informatie over deze")
+W1_LINKTEKST_NEE = ("afmeld", "unsubscribe", "woningmail", "onze website",
+                    "actuele aanbod", "privacy", "voorwaarden", "sitemap",
+                    "klik dan hier", "vacature", "referenties",
+                    "wenst u geen")
 
 
 def _w1_objectlink(regel):
@@ -740,6 +760,15 @@ def _w1_objectlink(regel):
         if m:
             return m.group(0).rstrip(").,")
     for kandidaat in kandidaten:
+        for m in RE_W1_TRACKER.finditer(kandidaat):
+            url = m.group(0).rstrip(").,")
+            laag = url.lower()
+            if any(w in laag for w in W1_GEEN_OBJECT):
+                continue
+            if not re.search(r"[a-z0-9]{10,}", laag.split("?", 1)[-1] + laag):
+                continue
+            return url
+    for kandidaat in kandidaten:
         for m in re.finditer(r"https?://[^\s)\]]+", kandidaat):
             url = m.group(0).rstrip(").,")
             laag = url.lower()
@@ -750,14 +779,20 @@ def _w1_objectlink(regel):
             pad = re.sub(r"^https?://[^/]+", "", laag)
             if len(pad.strip("/")) < 10:
                 continue
-            # Een klikteller heeft een code in het pad. Een sitepagina zoals
-            # /huren of /aanbod heeft dat niet.
+            # Een sitepagina zoals /huren of /aanbod heeft geen code in het pad.
             if not re.search(r"[a-z0-9]{10,}", pad):
                 continue
             return url
     return None
 RE_W1_SLUG = re.compile(r"123wonen\.nl/huur/[a-z\-]+/[a-z\-]+/([a-z0-9\-]+)",
                         re.IGNORECASE)
+# Bij de korte vorm /w/1780-27 zit er geen straatnaam in de link. De pagina
+# heeft er zelf een die even goed is: het kruimelpad, "Aanbod / Nijmegen - van
+# Spaenstraat". Daarmee blijft de toets op het adres bestaan, en dat is nodig,
+# want verderop staat een blok "Vergelijkbaar aanbod" met andere adressen.
+RE_W1_KRUIMEL = re.compile(
+    r"Aanbod\s*/\s*[A-Za-zÀ-ÿ.'\- ]{3,30}?\s+-\s+"
+    r"([A-Za-zÀ-ÿ.'\- ]{3,40}?)\s*(?:\||$)", re.IGNORECASE)
 RE_W1_HUUR = re.compile(r"Huurprijs\s*€\s*([\d][\d.,]*)", re.IGNORECASE)
 RE_W1_ADRES = re.compile(
     r"\b([A-Za-zÀ-ÿ.'\-]+(?:\s+[A-Za-zÀ-ÿ.'\-]+){0,3}?)\s+(\d{1,4})\s*,\s*"
@@ -819,12 +854,19 @@ def wonen123_kenmerken(url, cache, opgehaald):
             sleutel, headers={"User-Agent": "Mozilla/5.0 (vastgoedbrief)"})
         with urllib.request.urlopen(verzoek, timeout=20) as antwoord:
             rauw = antwoord.read().decode("utf-8", errors="replace")
+            # Waar de klikteller op uitkwam. Die URL is de echte objectpagina
+            # en daarmee de sleutel die over mails heen hetzelfde blijft; de
+            # klikteller zelf is per mail anders.
+            eind = antwoord.geturl() or sleutel
     except Exception as e:  # noqa
         print(f"    kenmerken niet op te halen ({str(e)[:60]}): {sleutel[:70]}",
               file=sys.stderr)
         return {}
-    uit = _w1_lees_pagina(" | ".join(strip_html(rauw)), sleutel)
+    eind_kaal = re.sub(r"[?#].*$", "", eind)
+    uit = _w1_lees_pagina(" | ".join(strip_html(rauw)), eind_kaal)
     cache[sleutel] = uit
+    if eind_kaal != sleutel and RE_W1_OBJECT.fullmatch(eind_kaal):
+        cache[eind_kaal] = uit
     time.sleep(0.5)
     return uit
 
@@ -834,6 +876,10 @@ def _w1_lees_pagina(tekst, url=""):
     uit = {}
     slug = RE_W1_SLUG.search(url or "")
     straat_link = _w1_straat_uit_slug(slug.group(1)) if slug else None
+    if not straat_link:
+        m_kruimel = RE_W1_KRUIMEL.search(tekst)
+        if m_kruimel:
+            straat_link = m_kruimel.group(1).strip()
 
     m = RE_W1_ADRES.search(tekst)
     if m:
@@ -923,34 +969,73 @@ def parse_123wonen(regels):
         gevonden.append(f"{adres} | Nijmegen | {prijs} | {status} | "
                         f"{vandaag} | 123wonen | {opp} | ")
 
-    # De link mag voor of na de prijs staan. In de mail hangt hij soms aan de
-    # foto boven het bedrag en soms aan "Bekijk deze woning" eronder; beide
-    # vormen moeten werken. Zodra prijs en link bekend zijn, wordt het paar
-    # weggeschreven en begint een nieuwe woning.
-    for regel in regels:
-        kaal = regel.strip()
-        if not kaal:
-            continue
-        m = RE_W1_HUUR.search(kaal)
+    # Welke link bij welke prijs hoort, is niet uit de URL te halen zodra de
+    # mail via SendGrid gaat: dan staan de homepagina, de woning en de
+    # afmeldlink alle drie op hetzelfde klikdomein. Twee dingen onderscheiden
+    # ze wel, en die gebruiken we in deze volgorde:
+    #
+    # 1. De tekst achter de link. "Bekijk deze woning" is de woning, "Wenst u
+    #    geen woningmail" is het niet. strip_html zet de link op een eigen
+    #    regel, dus die tekst staat op de regels erna.
+    # 2. De plaats in de mail. De woninglink staat kort NA het bedrag, in
+    #    hetzelfde blok. De homepagina staat in de begroeting erboven, en die
+    #    werd daardoor eerder als woning opgehaald.
+    schoon = [r.strip() for r in regels if r.strip()]
+
+    def omringend(i):
+        """De regel voor en de regel na de link, want daar staat de tekst.
+
+        Alleen die twee. Met een ruimer venster slikte de woninglink de regel
+        "Wenst u geen woningmail meer te ontvangen" van het blok eronder mee,
+        en viel hij af op de afmeldtekst van de mail zelf.
+        """
+        deel = []
+        if i > 0:
+            deel.append(schoon[i - 1])
+        if i + 1 < len(schoon):
+            deel.append(schoon[i + 1])
+        return " ".join(deel).lower()
+
+    # Alle links en alle prijzen met hun plaats in de mail.
+    links, prijzen = [], []
+    for i, regel in enumerate(schoon):
+        url = _w1_objectlink(regel)
+        if url:
+            tekst = omringend(i)
+            links.append({"i": i, "url": url, "tekst": tekst,
+                          "ja": any(w in tekst for w in W1_LINKTEKST_JA),
+                          "nee": any(w in tekst for w in W1_LINKTEKST_NEE)})
+        m = RE_W1_HUUR.search(regel)
         if m:
             bedrag = m.group(1).rstrip(".,").replace(".", "").replace(",", "")
             try:
                 bedrag = int(bedrag)
             except ValueError:
-                bedrag = None
-            if bedrag and 150 <= bedrag <= 10000:
-                if prijs:
-                    overgeslagen.append(f"123wonen €{prijs} (geen link)")
-                prijs = bedrag
-        if RE_W1_URL.search(kaal):
-            gevonden_link = _w1_objectlink(kaal)
-            if gevonden_link:
-                link = gevonden_link
-        if prijs and link:
-            bewaar(prijs, link)
-            prijs, link = None, None
-    if prijs:
-        overgeslagen.append(f"123wonen €{prijs} (geen link)")
+                continue
+            if 150 <= bedrag <= 10000:
+                prijzen.append({"i": i, "prijs": bedrag})
+
+    gebruikt = set()
+    for p in prijzen:
+        # Eerst een link met "bekijk deze woning" erachter, waar hij ook staat
+        # binnen dit blok. Anders de eerste bruikbare link na het bedrag.
+        keuze = None
+        na = [l for l in links if l["i"] > p["i"] and l["i"] not in gebruikt
+              and not l["nee"]]
+        volgende_prijs = min((q["i"] for q in prijzen if q["i"] > p["i"]),
+                             default=len(schoon))
+        binnen_blok = [l for l in na if l["i"] < volgende_prijs]
+        for l in binnen_blok:
+            if l["ja"]:
+                keuze = l
+                break
+        if keuze is None and binnen_blok:
+            keuze = binnen_blok[0]
+        if keuze is None:
+            overgeslagen.append(f"123wonen €{p['prijs']} (geen link)")
+            continue
+        gebruikt.add(keuze["i"])
+        bewaar(p["prijs"], keuze["url"])
     # Komt er niets uit, dan is de vorm van de mail anders dan verwacht. Zonder
     # te zien wat er dan wel staat is dat niet op te lossen, dus zetten we de
     # eerste regels in het logboek. Dit is de enige manier om een parser te
