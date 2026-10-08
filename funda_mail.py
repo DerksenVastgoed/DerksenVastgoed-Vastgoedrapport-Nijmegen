@@ -700,15 +700,33 @@ RE_W1_OBJECT = re.compile(
     r"[a-z0-9\-]+", re.IGNORECASE)
 
 
+# Links in een 123Wonen-mail die nooit een woning zijn. De attendering opent
+# met "Kijk altijd op onze website" en sluit met een afmeldlink, en de eerste
+# stond VOOR de prijs. Daardoor werd de homepagina als objectlink gebruikt,
+# opgehaald, en vond de parser daar geen adres: precies de melding "geen adres
+# te vinden" die twee mails opleverden.
+W1_GEEN_OBJECT = ("dounsubscribe", "/woningmail", "unsubscribe", "/afmelden",
+                  "/privacy", "/sitemap", "/contact", "/over-ons",
+                  "/vacatures", "/algemene-voorwaarden", "/referenties",
+                  "/blog", "/beleggen", "/franchise")
+
+
 def _w1_objectlink(regel):
     """
     De objectlink uit een regel, ook uit een doorstuurlink.
 
-    Een attendering verstuurd via een mailprogramma linkt zelden rechtstreeks:
-    de href wijst naar een klikteller en het echte adres staat als parameter
-    erin, percent-gecodeerd. Daarom eerst decoderen en dan zoeken. Levert dat
-    niets op maar staat er wel een 123wonen-adres in de regel, dan geven we dat
-    terug: urllib volgt een doorverwijzing zelf, dus een klikteller werkt ook.
+    Drie poorten, van zeker naar waarschijnlijk:
+
+    1. Een rechtstreekse objectpagina: /huur/<plaats>/<type>/<slug>. Staat die
+       percent-gecodeerd in een klikteller, dan vindt hij hem na decoderen.
+    2. Een klikteller zonder zichtbare bestemming. Die herken je aan een pad
+       met een lange ondoorzichtige code erin; urllib volgt de doorverwijzing
+       zelf, dus zo'n link werkt ook.
+    3. Niets. Dan is er geen woning uit te halen en wordt dat gemeld.
+
+    Wat er expliciet NIET door mag: de homepagina en de vaste sitepagina's. Die
+    hebben geen of een kort pad zonder code, en juist die stonden in de mail
+    boven de prijs.
     """
     kandidaten = [regel]
     try:
@@ -722,9 +740,21 @@ def _w1_objectlink(regel):
         if m:
             return m.group(0).rstrip(").,")
     for kandidaat in kandidaten:
-        m = re.search(r"https?://[^\s)\]]+", kandidaat)
-        if m and "123wonen" in m.group(0).lower():
-            return m.group(0).rstrip(").,")
+        for m in re.finditer(r"https?://[^\s)\]]+", kandidaat):
+            url = m.group(0).rstrip(").,")
+            laag = url.lower()
+            if "123wonen" not in laag:
+                continue
+            if any(w in laag for w in W1_GEEN_OBJECT):
+                continue
+            pad = re.sub(r"^https?://[^/]+", "", laag)
+            if len(pad.strip("/")) < 10:
+                continue
+            # Een klikteller heeft een code in het pad. Een sitepagina zoals
+            # /huren of /aanbod heeft dat niet.
+            if not re.search(r"[a-z0-9]{10,}", pad):
+                continue
+            return url
     return None
 RE_W1_SLUG = re.compile(r"123wonen\.nl/huur/[a-z\-]+/[a-z\-]+/([a-z0-9\-]+)",
                         re.IGNORECASE)
@@ -926,10 +956,20 @@ def parse_123wonen(regels):
     # eerste regels in het logboek. Dit is de enige manier om een parser te
     # repareren op een mail die wij niet in handen hebben.
     if not gevonden:
-        print("    123Wonen leverde niets op; eerste regels van de mail:",
-              file=sys.stderr)
-        for regel in [r.strip() for r in regels if r.strip()][:15]:
-            print(f"      | {regel[:150]}", file=sys.stderr)
+        print("    123Wonen leverde niets op. Alle links en prijsregels uit "
+              "deze mail:", file=sys.stderr)
+        geprint = 0
+        for regel in regels:
+            kaal = regel.strip()
+            if not kaal or geprint >= 20:
+                continue
+            if ("http" in kaal.lower() or "__LINK__" in kaal
+                    or RE_W1_HUUR.search(kaal)):
+                print(f"      | {kaal[:220]}", file=sys.stderr)
+                geprint += 1
+        if not geprint:
+            print("      | (geen enkele link en geen prijsregel gevonden)",
+                  file=sys.stderr)
     if opgehaald[0]:
         print(f"    kenmerken opgehaald voor {opgehaald[0]} 123Wonen-panden",
               file=sys.stderr)

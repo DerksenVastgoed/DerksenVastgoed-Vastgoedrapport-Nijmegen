@@ -6933,6 +6933,50 @@ en een wordt bewaard voor later.
 
 ---
 
+## 82. De parser hield de homepagina voor een woning - 8 oktober 2026
+
+Mark stuurde de mail zelf, en daarmee was de oorzaak van "2 mails, 0 objecten"
+in een minuut te zien. In de mail staan drie links: de homepagina bovenaan
+("Kijk altijd op onze website"), de link achter "Bekijk deze woning", en de
+afmeldlink onderaan.
+
+Mijn parser had een laatste redmiddel: staat er een adres met 123wonen in de
+regel, pak dat dan, want urllib volgt een doorverwijzing zelf. Dat redmiddel
+pakte de homepagina. Die staat namelijk VOOR de prijs, dus de koppeling
+prijs-link, die ik vanmorgen juist in beide richtingen had laten werken, zette
+het paar bij elkaar: prijs 2425 en link homepagina. Daarna werd de homepagina
+opgehaald, stond daar geen adres op, en kwam de melding "geen adres te vinden".
+
+De tolerantie die ik voor de kliktellers inbouwde was dus precies de reden dat
+het misging. Dat is een patroon om te onthouden: een laatste redmiddel dat
+alles accepteert, accepteert ook het verkeerde, en dan faalt het stil in plaats
+van luid.
+
+**Drie poorten nu, van zeker naar waarschijnlijk.** Een rechtstreekse
+objectpagina. Een klikteller, te herkennen aan een lange ondoorzichtige code in
+het pad. En anders niets, met een melding. De homepagina, de afmeldlink en de
+vaste sitepagina's vallen af op een zwarte lijst plus de eis dat het pad een
+code bevat. Getest: van zeven links worden er drie als woning gezien en vier
+niet, en de mail zoals hij werkelijk is meldt nu "geen link" in plaats van stil
+de homepagina op te halen.
+
+**De diagnose is gerichter.** Niet de eerste vijftien regels, maar alle links en
+alle prijsregels uit de mail. Dat is precies wat nodig is om dit af te maken.
+
+**Wat nog niet vaststaat.** De tekstversie van de mail die Mark stuurde heeft
+geen adres achter "Bekijk deze woning". De parser leest het HTML-deel, en daar
+zit die href wel, maar welk adres erin staat weten we niet. Twee mogelijkheden:
+het is een objectlink of een klikteller, en dan werkt het nu; of de mail linkt
+ook daar naar de homepagina, en dan is deze bron alleen bruikbaar via de
+overzichtspagina van Nijmegen, waar het aanbod met zijn prijzen op staat. Dat
+laatste is een grotere bouw en wordt pas gedaan als het nodig blijkt.
+
+De snelste manier om dat te weten: rechtermuisknop op "Bekijk deze woning",
+link kopieren. Een run met de mails op ongelezen werkt ook, want de diagnose
+zet alle links in het logboek.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
