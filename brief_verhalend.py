@@ -294,6 +294,10 @@ DE AANVRAAG BEPAALT WELK HUURSTELSEL JE BESPREEKT. Gaat een bekendmaking over wo
 
 EEN PRIJSWIJZIGING IS ALLEEN NIEUWS ALS HIJ VAN VANDAAG OF GISTEREN IS. In de tabel met prijswijzigingen staat een kolom "Gewijzigd op" met de datum waarop de prijs werkelijk veranderde. Die tabel vergelijkt met de prijs van de eerste keer dat we het pand zagen, dus een verlaging van twee weken terug blijft erin staan. Schrijf dus niet "de grootste verlaging was X" als die kolom een oude datum toont: de verlaging van de Palmstraat 40 stond zo op 6 EN op 8 oktober als nieuws van die dag. Is er niets recent gewijzigd, laat het dan weg of zeg erbij wanneer het gebeurde.
 
+HET BLOK "WAT PA AL HEEFT GELEZEN" GAAT VOOR OP AL HET ANDERE. Lees dat eerst. Alles wat daar staat heeft pa al in een brief gehad, met de datum erbij. Dat mag niet opnieuw als nieuws, als vondst of als nieuw aanbod in de brief komen, hoe interessant het ook is. Een pand dat daar staat introduceer je niet met "staat nu te koop" of "is nieuw in het aanbod", want dat is niet waar en pa merkt het. Je mag zo'n onderwerp alleen aanhalen als er vandaag een feit bij is gekomen dat er eerder niet was: een besluit op een eerder gemelde aanvraag, een prijs die sinds gisteren is veranderd, een label dat is bijgekomen. Noem dan dat nieuwe feit, zeg dat het een vervolg is op wat je eerder schreef, en herhaal het oude verhaal niet. Staat er midden in de gegevens een regel die begint met "LET OP, HIERONDER STAAT AL GEMELD NIEUWS", dan geldt dat voor de adressen die daar genoemd staan en voor niets anders in dat blok.
+
+EEN PAND IS ALLEEN NIEUW ALS HET VANDAAG VOOR HET EERST IN DE GEGEVENS STAAT. Bij elk pand staat hoeveel dagen het in het aanbod is. Staat daar meer dan een dag, dan is het geen nieuw aanbod en schrijf je niet "staat nu te koop". Je mag het pand gewoon behandelen, maar dan als een pand dat er al staat: "de Nieuwe Markt 90, al drie weken te koop". Dat is ook eerlijker, want een pand dat al weken staat zegt iets anders over de markt dan een pand van vandaag.
+
 EEN SPLITSING IS NIET AUTOMATISCH EEN BOPA. Bij de Biezenstraat 110 was de buitenplanse omgevingsplanactiviteit niet nodig voor de splitsing, want die paste binnen het omgevingsplan, maar voor de aanbouw die vier meter achter de achtergevellijn komt waar drie meter mag. Schrijf dus niet dat splitsen via een bopa loopt zonder te weten of er ook bouwkundig iets verandert. Staat er in de titel alleen splitsen of woningvorming, dan loopt het via het omgevingsplan en is een bopa alleen nodig als het plan daarmee in strijd is.
 
 DE WOZ-GRENS VAN €396.000 HOORT BIJ KAMERS, NIET BIJ SPLITSEN. Die grens bepaalt of een omzettingsvergunning nodig is om een woning naar kamers te brengen, en of de opkoopbescherming geldt. Voor woningvorming, dus een pand opdelen in zelfstandige woningen, is die grens niet de toets: dat loopt via het omgevingsplan en zo nodig een buitenplanse omgevingsplanactiviteit (BOPA). Gaat een bekendmaking over splitsen, haal er dan niet de WOZ-grens bij alsof die erover gaat, ook niet als achtergrond bij de buurt. Dat schuift de lezer ongemerkt van het ene regime naar het andere.
@@ -1367,14 +1371,34 @@ def main():
     args = ap.parse_args()
     d = args.datum
 
+    # Wat pa al heeft gelezen, en een gerichte waarschuwing bij de bronnen waar
+    # de herhaling werkelijk optrad. Op 8 oktober stonden er drie dingen in de
+    # brief die pa al had gehad: een prijsverlaging van twee dagen eerder, twee
+    # vergunningen en een pand dat al weken te koop stond. De brief kon dat niet
+    # weten, want hij kreeg elke dag dezelfde gegevens zonder te horen wat er
+    # eerder was verstuurd.
+    try:
+        import verteld as _verteld
+        _al = _verteld.tekst()
+        _waarschuw = _verteld.waarschuwing
+    except Exception as e:  # noqa
+        print(f"Geheugen van verstuurde brieven niet gelezen: {str(e)[:80]}",
+              file=sys.stderr)
+        _al = ""
+        _waarschuw = lambda _t: ""
+
+    _aanbod = strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))
+    _dossiers = strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)
+    _besluiten = (week_terug("bekendmakingen", d) if _weekelijks()
+                  else strip_opmaak(lees(f"digests/{d}-bekendmakingen.md")))
+
     bronnen = [
+        ("WAT PA AL HEEFT GELEZEN", _al),
         ("Cijfers per buurt", buurtcijfers_tekst()),
         ("Achtergrond bij het nieuws van vandaag", achtergrondtekst()),
-        ("Aanbod en buurten", strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))),
-        ("Dossiers per pand", strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)),
-        ("Gemeentelijke besluiten",
-         week_terug("bekendmakingen", d) if _weekelijks()
-         else strip_opmaak(lees(f"digests/{d}-bekendmakingen.md"))),
+        ("Aanbod en buurten", _waarschuw(_aanbod) + _aanbod),
+        ("Dossiers per pand", _waarschuw(_dossiers) + _dossiers),
+        ("Gemeentelijke besluiten", _waarschuw(_besluiten) + _besluiten),
         ("Nieuws",
          week_terug("publicaties", d) if _weekelijks()
          else strip_opmaak(lees(f"digests/{d}-publicaties.md"), 6000)),
@@ -1397,6 +1421,17 @@ def main():
         _leg_keuze_vast(brief, bronnen)
     except Exception as e:
         print(f"Logboek niet bijgewerkt: {str(e)[:80]}", file=sys.stderr)
+
+    # En vastleggen welke panden en bekendmakingen er werkelijk in stonden, zodat
+    # de brief van morgen weet wat pa al weet. Hier wordt naar de tekst gekeken
+    # en niet aan de brief gevraagd waar hij over ging; dat laatste is minder
+    # betrouwbaar. Een testrun schrijft niets; dat regelt verteld.py zelf.
+    try:
+        import verteld as _v
+        _v.markeer(brief)
+    except Exception as e:
+        print(f"Geheugen van verstuurde brieven niet bijgewerkt: "
+              f"{str(e)[:80]}", file=sys.stderr)
 
     datum_nl = dt.date.fromisoformat(d).strftime("%d %B %Y")
     for en, nl in {"January": "januari", "February": "februari", "March": "maart",
