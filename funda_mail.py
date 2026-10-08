@@ -881,16 +881,22 @@ def _w1_lees_pagina(tekst, url=""):
         if m_kruimel:
             straat_link = m_kruimel.group(1).strip()
 
+    plat = lambda s: re.sub(r"[^a-z]", "", (s or "").lower())
     m = RE_W1_ADRES.search(tekst)
-    if m:
-        straat, nummer = m.group(1).strip(), m.group(2)
-        plat = lambda s: re.sub(r"[^a-z]", "", (s or "").lower())
-        if not straat_link or plat(straat) == plat(straat_link):
-            uit["adres"] = f"{straat} {nummer}"
-        elif straat_link:
-            uit["adres"] = straat_link
+    if m and (not straat_link
+              or plat(m.group(1).strip()) == plat(straat_link)):
+        uit["adres"] = f"{m.group(1).strip()} {m.group(2)}"
     elif straat_link:
-        uit["adres"] = straat_link
+        # Tweede route naar het huisnummer. De vorm "Straat 20, Nijmegen" staat
+        # alleen in het contactformulier onderaan, en dat kan door de pagina
+        # zelf worden ingevuld en dus in de opgehaalde HTML ontbreken. De
+        # straat kennen we al uit het kruimelpad, dus er is maar een nummer
+        # nodig, en dat staat ook in de omschrijving: "aan de Van Spaenstraat
+        # 20 combineert". Omdat de straatnaam vooraf bekend is, kan hier geen
+        # nummer van een andere straat tussendoor komen.
+        nr = re.search(re.escape(straat_link) + r"\s+(\d{1,4}[a-zA-Z]?)\b"
+                       r"(?!\s*(?:m²|m2|%))", tekst, re.IGNORECASE)
+        uit["adres"] = (f"{straat_link} {nr.group(1)}" if nr else straat_link)
 
     opp = tekst_opp = sout = None
     m = RE_W1_OPP.search(tekst)
