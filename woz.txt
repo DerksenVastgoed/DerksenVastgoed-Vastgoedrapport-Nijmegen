@@ -111,8 +111,9 @@ van Slichtenhorststraat 42 | 689.000 | 2026   # prijsklasse boven 600k; straat n
 van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 
-# Nog in te vullen (11): vul het bedrag tussen de eerste twee streepjes
+# Nog in te vullen (12): vul het bedrag tussen de eerste twee streepjes
 Daalseweg 58 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
+Hofdijkstraat 9 |  | 2026   # prijsklasse boven 600k; Nije Veld heeft nog maar 1 eigen WOZ-waarden
 Jan de Wittstraat 6-8 studio 9 |  | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 41 m2, buiten het middengebied
 Koningstraat 4 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 134 m2, buiten het middengebied
 Krayenhofflaan 321 |  | 2026
@@ -123,6 +124,3 @@ van Slichtenhorststraat 14 |  | 2026   # prijsklasse 450k tot 600k
 van Welderenstraat 5 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 |  | 2026
-
-# Werklijst (1): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
-Hofdijkstraat 9 |  | 2026   # prijsklasse boven 600k; Nije Veld heeft nog maar 1 eigen WOZ-waarden

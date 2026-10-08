@@ -7,6 +7,14 @@
   "omweg": 1.37,
   "soort": "bus"
  },
+ "51.80294,5.82728": {
+  "geschat": false,
+  "hemelsbreed": 265,
+  "meters": 307,
+  "naam": "Middachtenstraat",
+  "omweg": 1.16,
+  "soort": "bus"
+ },
  "51.80439,5.80259": {
   "geschat": false,
   "hemelsbreed": 80,
@@ -23,6 +31,46 @@
   "omweg": 0.97,
   "soort": "bus"
  },
+ "51.80623,5.83461": {
+  "geschat": false,
+  "hemelsbreed": 33,
+  "meters": 61,
+  "naam": "van der Duyn van Maasdamstraat",
+  "omweg": 1.85,
+  "soort": "bus"
+ },
+ "51.80730,5.83699": {
+  "geschat": false,
+  "hemelsbreed": 41,
+  "meters": 33,
+  "naam": "Irene Vorrinkstraat",
+  "omweg": 0.8,
+  "soort": "bus"
+ },
+ "51.80816,5.82534": {
+  "geschat": false,
+  "hemelsbreed": 144,
+  "meters": 269,
+  "naam": "Couwenbergstraat",
+  "omweg": 1.87,
+  "soort": "bus"
+ },
+ "51.80994,5.81884": {
+  "geschat": false,
+  "hemelsbreed": 403,
+  "meters": 432,
+  "naam": "Hatert-Centrum",
+  "omweg": 1.07,
+  "soort": "bus"
+ },
+ "51.81029,5.79802": {
+  "geschat": false,
+  "hemelsbreed": 42,
+  "meters": 136,
+  "naam": "Sporthal Meijhorst",
+  "omweg": 3.24,
+  "soort": "bus"
+ },
  "51.81797,5.79892": {
   "geschat": false,
   "hemelsbreed": 119,
@@ -37,6 +85,22 @@
   "meters": 123,
   "naam": "Akkerlaan",
   "omweg": 0.98,
+  "soort": "bus"
+ },
+ "51.82249,5.79321": {
+  "geschat": false,
+  "hemelsbreed": 177,
+  "meters": 722,
+  "naam": "Nijmegen Dukenburg",
+  "omweg": 4.08,
+  "soort": "station"
+ },
+ "51.82359,5.82483": {
+  "geschat": false,
+  "hemelsbreed": 326,
+  "meters": 637,
+  "naam": "Sanadome",
+  "omweg": 1.95,
   "soort": "bus"
  },
  "51.82495,5.84986": {
@@ -109,6 +173,14 @@
   "meters": 127,
   "naam": "Aubadestraat",
   "omweg": 1.81,
+  "soort": "bus"
+ },
+ "51.83109,5.80489": {
+  "geschat": false,
+  "hemelsbreed": 290,
+  "meters": 343,
+  "naam": "De Hoefkamp",
+  "omweg": 1.18,
   "soort": "bus"
  },
  "51.83134,5.84321": {
@@ -199,6 +271,14 @@
   "omweg": 0.98,
   "soort": "bus"
  },
+ "51.83395,5.86882": {
+  "geschat": false,
+  "hemelsbreed": 188,
+  "meters": 272,
+  "naam": "Archipelstraat",
+  "omweg": 1.45,
+  "soort": "bus"
+ },
  "51.83413,5.85952": {
   "geschat": false,
   "hemelsbreed": 444,
@@ -223,6 +303,14 @@
   "omweg": 1.45,
   "soort": "bus"
  },
+ "51.83500,5.88699": {
+  "geschat": false,
+  "hemelsbreed": 189,
+  "meters": 210,
+  "naam": "Hengstdalseweg/Broerdijk",
+  "omweg": 1.11,
+  "soort": "bus"
+ },
  "51.83505,5.86699": {
   "geschat": false,
   "hemelsbreed": 476,
@@ -237,6 +325,14 @@
   "meters": 584,
   "naam": "Fransestraat",
   "omweg": 1.26,
+  "soort": "bus"
+ },
+ "51.83523,5.85184": {
+  "geschat": false,
+  "hemelsbreed": 269,
+  "meters": 361,
+  "naam": "Tollensstraat",
+  "omweg": 1.34,
   "soort": "bus"
  },
  "51.83543,5.86458": {
@@ -271,6 +367,14 @@
   "omweg": 1.13,
   "soort": "bus"
  },
+ "51.83620,5.88693": {
+  "geschat": false,
+  "hemelsbreed": 140,
+  "meters": 479,
+  "naam": "Broerweg",
+  "omweg": 3.42,
+  "soort": "bus"
+ },
  "51.83635,5.86491": {
   "geschat": false,
   "hemelsbreed": 302,
@@ -295,12 +399,28 @@
   "omweg": 1.31,
   "soort": "bus"
  },
+ "51.83664,5.85655": {
+  "geschat": false,
+  "hemelsbreed": 215,
+  "meters": 310,
+  "naam": "Spoorkuil",
+  "omweg": 1.44,
+  "soort": "bus"
+ },
  "51.83675,5.87854": {
   "geschat": false,
   "hemelsbreed": 186,
   "meters": 191,
   "naam": "Badhuis",
   "omweg": 1.03,
+  "soort": "bus"
+ },
+ "51.83695,5.82690": {
+  "geschat": false,
+  "hemelsbreed": 218,
+  "meters": 331,
+  "naam": "Paul Krugerstraat",
+  "omweg": 1.52,
   "soort": "bus"
  },
  "51.83701,5.85938": {
@@ -471,6 +591,14 @@
   "omweg": 3.89,
   "soort": "bus"
  },
+ "51.83924,5.85220": {
+  "geschat": false,
+  "hemelsbreed": 345,
+  "meters": 415,
+  "naam": "Centraal Station",
+  "omweg": 1.2,
+  "soort": "bus"
+ },
  "51.83927,5.86185": {
   "geschat": false,
   "hemelsbreed": 134,
@@ -639,6 +767,14 @@
   "omweg": 1.62,
   "soort": "bus"
  },
+ "51.84084,5.83739": {
+  "geschat": false,
+  "hemelsbreed": 199,
+  "meters": 267,
+  "naam": "Fuchsiastraat",
+  "omweg": 1.34,
+  "soort": "bus"
+ },
  "51.84113,5.87317": {
   "geschat": false,
   "hemelsbreed": 164,
@@ -783,6 +919,14 @@
   "omweg": 1.32,
   "soort": "bus"
  },
+ "51.84347,5.86013": {
+  "geschat": false,
+  "hemelsbreed": 116,
+  "meters": 390,
+  "naam": "Smetiusstraat",
+  "omweg": 3.36,
+  "soort": "bus"
+ },
  "51.84350,5.84382": {
   "geschat": false,
   "hemelsbreed": 102,
@@ -885,6 +1029,14 @@
   "meters": 24,
   "naam": "Meester Franckenstraat",
   "omweg": 0.62,
+  "soort": "bus"
+ },
+ "51.84432,5.87471": {
+  "geschat": false,
+  "hemelsbreed": 107,
+  "meters": 159,
+  "naam": "Terwindtstraat",
+  "omweg": 1.49,
   "soort": "bus"
  },
  "51.84436,5.86781": {
@@ -1135,6 +1287,14 @@
   "omweg": 1.49,
   "soort": "bus"
  },
+ "51.84679,5.86729": {
+  "geschat": false,
+  "hemelsbreed": 150,
+  "meters": 192,
+  "naam": "Voerweg",
+  "omweg": 1.28,
+  "soort": "bus"
+ },
  "51.84744,5.86218": {
   "geschat": false,
   "hemelsbreed": 312,
@@ -1165,6 +1325,14 @@
   "meters": 336,
   "naam": "Havenweg",
   "omweg": 1.33,
+  "soort": "bus"
+ },
+ "51.84788,5.84653": {
+  "geschat": false,
+  "hemelsbreed": 291,
+  "meters": 546,
+  "naam": "Biezenstraat",
+  "omweg": 1.88,
   "soort": "bus"
  },
  "51.84825,5.86179": {
@@ -1357,6 +1525,22 @@
   "meters": 274,
   "naam": "Nyma",
   "omweg": 1.08,
+  "soort": "bus"
+ },
+ "51.87134,5.84658": {
+  "geschat": false,
+  "hemelsbreed": 336,
+  "meters": 367,
+  "naam": "Italiëstraat",
+  "omweg": 1.09,
+  "soort": "bus"
+ },
+ "51.87875,5.85027": {
+  "geschat": false,
+  "hemelsbreed": 64,
+  "meters": 1134,
+  "naam": "Terracottastraat",
+  "omweg": 17.72,
   "soort": "bus"
  },
  "51.88062,5.83680": {

@@ -1,42 +1,61 @@
 {
  "datum": "2026-10-08",
  "bronnen": {
-  "huislijn": {
-   "mails": 4,
-   "objecten": 0,
-   "overgeslagen": 0,
+  "pararius": {
+   "mails": 11,
+   "objecten": 14,
+   "overgeslagen": 7,
    "redenen": [
-    "niets herkend in: Zoekopdracht Nijmegen: 4 huizen gevonden waaronder",
-    "niets herkend in: Zoekopdracht Nijmegen: 1 huis gevonden waaronder v",
-    "niets herkend in: Zoekopdracht Nijmegen: 8 huizen gevonden waaronder",
-    "niets herkend in: Zoekopdracht Nijmegen: 4 huizen gevonden waaronder"
-   ]
-  },
-  "kamernet": {
-   "mails": 21,
-   "objecten": 16,
-   "overgeslagen": 5,
-   "redenen": [
-    "Stekkenberg, Groesbeek: buiten Nijmegen",
-    "Bloemfonteinstraat, Eindhoven: buiten Nijmegen",
-    "Rijksweg, Malden: buiten Nijmegen",
-    "Nieuweweg, Wijchen: buiten Nijmegen",
-    "Achterstraat: €36 per maand is niet aannemelijk"
+    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)",
+    "IJsvogelpassage (gemeubileerd, apart bewaard)",
+    "van Spaenstraat (gemeubileerd, apart bewaard)"
    ]
   },
   "regulier": {
-   "mails": 3,
-   "objecten": 4,
+   "mails": 14,
+   "objecten": 33,
    "overgeslagen": 1,
    "redenen": [
+    "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht ",
     "Weurtseweg 17 (geen prijs gevonden)"
    ]
   },
-  "pararius": {
-   "mails": 2,
-   "objecten": 2,
+  "kamernet": {
+   "mails": 61,
+   "objecten": 46,
+   "overgeslagen": 15,
+   "redenen": [
+    "Grotestraat, Cuijk: buiten Nijmegen",
+    "Keurvorststraat, Molenhoek: buiten Nijmegen",
+    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
+    "Hegdambroek: €5 per maand is niet aannemelijk",
+    "Huissensestraat, Arnhem: buiten Nijmegen"
+   ]
+  },
+  "huislijn": {
+   "mails": 8,
+   "objecten": 34,
    "overgeslagen": 0,
    "redenen": []
+  },
+  "123wonen": {
+   "mails": 2,
+   "objecten": 0,
+   "overgeslagen": 2,
+   "redenen": [
+    "123wonen €1995 (geen link)",
+    "123wonen €2425 (geen link)"
+   ]
+  },
+  "vendr": {
+   "mails": 1,
+   "objecten": 0,
+   "overgeslagen": 1,
+   "redenen": [
+    "Stationsstraat 43 (Ermelo)"
+   ]
   }
  },
  "opmerking": "",

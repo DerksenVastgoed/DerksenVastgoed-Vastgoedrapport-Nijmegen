@@ -42518,6 +42518,34 @@
   ],
   "pand_id": "0268100000026275"
  },
+ "breehofstraat": {
+  "adres": "Breehofstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €750 per maand, 64 m2"
+   }
+  ],
+  "pand_id": null
+ },
+ "broerdijk": {
+  "adres": "Broerdijk",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €570 per maand, 104 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "broerdijk10": {
   "adres": "Broerdijk 10",
   "gebeurtenissen": [
@@ -42703,6 +42731,20 @@
    }
   ],
   "pand_id": "0268100000010084"
+ },
+ "burchtstraat": {
+  "adres": "Burchtstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €3.525 per maand, 150 m2"
+   }
+  ],
+  "pand_id": null
  },
  "burchtstraat140": {
   "adres": "Burchtstraat 140",
@@ -57048,6 +57090,20 @@
   ],
   "pand_id": "0268100000007773"
  },
+ "goemanborgesiusstraat": {
+  "adres": "Goeman Borgesiusstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €660 per maand, 70 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "goemanborgesiusstraat88": {
   "adres": "Goeman Borgesiusstraat 88",
   "gebeurtenissen": [
@@ -57151,6 +57207,20 @@
    }
   ],
   "pand_id": "0268100000015907"
+ },
+ "graadtvanroggenstraat": {
+  "adres": "Graadt van Roggenstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-04",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.193 per maand"
+   }
+  ],
+  "pand_id": null
  },
  "graadtvanroggenstraat14": {
   "adres": "Graadt van Roggenstraat 14",
@@ -57313,6 +57383,12 @@
     "datum": "2026-10-01",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €835 per maand, 20 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-04",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.995 per maand, 68 m2"
    },
    {
     "bron": "kamernet-incl",
@@ -61502,6 +61578,20 @@
   ],
   "pand_id": "0268100000002630"
  },
+ "hackfortstraat": {
+  "adres": "Hackfortstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €574 per maand, 31 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "hatertseveldweg": {
   "adres": "Hatertseveldweg",
   "bag_gezien": "2026-10-03",
@@ -62158,6 +62248,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €5 per maand, 20 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €530 per maand"
    }
   ],
   "pand_id": null
@@ -63165,6 +63261,12 @@
     "datum": "2026-09-27",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.995 per maand, 49 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.520 per maand, 91 m2"
    }
   ],
   "pand_id": null
@@ -63801,6 +63903,20 @@
    }
   ],
   "pand_id": "0268100000001158"
+ },
+ "heyendaalseweg": {
+  "adres": "Heyendaalseweg",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.595 per maand"
+   }
+  ],
+  "pand_id": null
  },
  "heyendaalseweg117": {
   "adres": "Heyendaalseweg 117",
@@ -64622,6 +64738,20 @@
   ],
   "pand_id": null
  },
+ "indebetouwstraat": {
+  "adres": "In de Betouwstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.250 per maand, 85 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "indebetouwstraat13": {
   "adres": "In De Betouwstraat 13",
   "bag_pogingen": 1,
@@ -65177,6 +65307,20 @@
   ],
   "pand_id": "0268100000002077"
  },
+ "jacobvancampenstraat": {
+  "adres": "Jacob van Campenstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €670 per maand, 70 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "jandewittstraat": {
   "adres": "Jan de Wittstraat",
   "bag_gezien": "2026-10-06",
@@ -65449,6 +65593,20 @@
    }
   ],
   "pand_id": "0268100000019915"
+ },
+ "janvanspeykstraat": {
+  "adres": "Jan van Speykstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €698 per maand, 75 m2"
+   }
+  ],
+  "pand_id": null
  },
  "janwillempasstraat133": {
   "adres": "Jan Willem Passtraat 133",
@@ -66142,6 +66300,20 @@
    }
   ],
   "pand_id": "0268100000008909"
+ },
+ "jozefisraelsstraat": {
+  "adres": "Jozef Israelsstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.650 per maand, 148 m2"
+   }
+  ],
+  "pand_id": null
  },
  "jozefisralsstraat": {
   "adres": "Jozef Israëlsstraat",
@@ -69049,6 +69221,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €864 per maand, 19 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €713 per maand, 64 m2"
    }
   ],
   "pand_id": null
@@ -73495,6 +73673,20 @@
   ],
   "pand_id": "0268100000009610"
  },
+ "malderburchtstraat": {
+  "adres": "Malderburchtstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €500 per maand, 150 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "malderburchtstraat11": {
   "adres": "Malderburchtstraat 11",
   "gebeurtenissen": [
@@ -75942,6 +76134,20 @@
    }
   ],
   "pand_id": "0268100000048917"
+ },
+ "meijhorst": {
+  "adres": "Meijhorst",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €710 per maand, 85 m2"
+   }
+  ],
+  "pand_id": null
  },
  "meijhorst2001": {
   "adres": "Meijhorst 2001",
@@ -81918,6 +82124,20 @@
   ],
   "pand_id": "0268100000018584"
  },
+ "mvasalisstraat": {
+  "adres": "M Vasalisstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €650 per maand, 80 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "niersstraat72": {
   "adres": "Niersstraat 72",
   "gebeurtenissen": [
@@ -81935,6 +82155,20 @@
    }
   ],
   "pand_id": "0268100000046832"
+ },
+ "nieuwedukenburgseweg": {
+  "adres": "Nieuwe Dukenburgseweg",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €781 per maand, 43 m2"
+   }
+  ],
+  "pand_id": null
  },
  "nieuwedukenburgseweg7": {
   "adres": "Nieuwe Dukenburgseweg 7",
@@ -85028,6 +85262,20 @@
    }
   ],
   "pand_id": "0268100000110655"
+ },
+ "plataanstraat": {
+  "adres": "Plataanstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €945 per maand, 105 m2"
+   }
+  ],
+  "pand_id": null
  },
  "plein1944": {
   "adres": "Plein 1944",
@@ -91254,6 +91502,20 @@
   ],
   "pand_id": "0268100000012537"
  },
+ "simonedebeauvoirstraat": {
+  "adres": "Simone de Beauvoirstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.580 per maand"
+   }
+  ],
+  "pand_id": null
+ },
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
   "bag_gezien": "2026-10-03",
@@ -91629,6 +91891,20 @@
   ],
   "pand_id": "0268100000087732"
  },
+ "spijkerhofplein": {
+  "adres": "Spijkerhofplein",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €705 per maand, 72 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "spoelenbleek7": {
   "adres": "Spoelenbleek 7",
   "gebeurtenissen": [
@@ -91705,6 +91981,26 @@
    }
   ],
   "pand_id": "0268100000026111"
+ },
+ "stagnetenweg": {
+  "adres": "St. Agnetenweg",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.379 per maand, 71 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.295 per maand"
+   }
+  ],
+  "pand_id": null
  },
  "stagnetenweg45": {
   "adres": "St. Agnetenweg 45",
@@ -97233,6 +97529,20 @@
   ],
   "pand_id": "0268100000043300"
  },
+ "treubstraat": {
+  "adres": "Treubstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €995 per maand, 88 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "treubstraat148": {
   "adres": "Treubstraat 148",
   "gebeurtenissen": [
@@ -99661,6 +99971,20 @@
    }
   ],
   "pand_id": "0268100000011458"
+ },
+ "vandiemerbroeckstraat": {
+  "adres": "Van Diemerbroeckstraat",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-06",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €485 per maand, 30 m2"
+   }
+  ],
+  "pand_id": null
  },
  "vandulckenstraat32a": {
   "adres": "van Dulckenstraat 32-A",
@@ -108634,6 +108958,20 @@
   ],
   "pand_id": "0268100000018388"
  },
+ "voorstadslaan": {
+  "adres": "Voorstadslaan",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €475 per maand, 40 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "voorstadslaan119": {
   "adres": "Voorstadslaan 119",
   "gebeurtenissen": [
@@ -109120,6 +109458,20 @@
   ],
   "pand_id": "0268100000022055"
  },
+ "vossendijk": {
+  "adres": "Vossendijk",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €594 per maand, 14 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "vossenlaan": {
   "adres": "Vossenlaan",
   "bag_gezien": "2026-10-08",
@@ -109331,6 +109683,20 @@
    }
   ],
   "pand_id": "0268100000020989"
+ },
+ "waaijenstein": {
+  "adres": "Waaijenstein",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.330 per maand"
+   }
+  ],
+  "pand_id": null
  },
  "waalbandijk": {
   "adres": "Waalbandijk",
@@ -111601,6 +111967,12 @@
     "datum": "2026-10-04",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €550 per maand, 18 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €870 per maand, 97 m2"
    }
   ],
   "pand_id": null

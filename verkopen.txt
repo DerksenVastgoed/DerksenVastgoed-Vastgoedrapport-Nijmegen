@@ -956,3 +956,35 @@ van Heutszstraat | Nijmegen | 715 | te huur | 2026-10-08 | pararius | 18 | 6521C
 Graafseweg | Nijmegen | 800 | te huur | 2026-10-08 | kamernet-incl | 35 | 
 St. Jacobslaan | Nijmegen | 390 | te huur kamer | 2026-10-08 | kamernet-incl | 11 | 
 Vossenlaan | Nijmegen | 735 | te huur kamer | 2026-10-08 | kamernet-incl | 18 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 08-10-2026
+Voorstadslaan | Nijmegen | 475 | te huur | 2026-10-01 | huislijn | 40 | 6541AB
+Broerdijk | Nijmegen | 570 | te huur | 2026-10-01 | huislijn | 104 | 6523GR
+Hertogplein | Nijmegen | 1520 | te huur | 2026-10-01 | huislijn | 91 | 6511SK
+Goeman Borgesiusstraat | Nijmegen | 660 | te huur | 2026-10-01 | huislijn | 70 | 6535WH
+Malderburchtstraat | Nijmegen | 500 | te huur | 2026-10-01 | huislijn | 150 | 6535NJ
+Waaijenstein | Nijmegen | 1330 | te huur | 2026-10-02 | huislijn |  | 7311LA
+Vossendijk | Nijmegen | 594 | te huur | 2026-10-02 | huislijn | 14 | 6534TL
+Simone de Beauvoirstraat | Nijmegen | 1580 | te huur | 2026-10-03 | huislijn |  | 7311LA
+Jozef Israelsstraat | Nijmegen | 2650 | te huur | 2026-10-03 | huislijn | 148 | 6521MX
+In de Betouwstraat | Nijmegen | 1250 | te huur | 2026-10-03 | huislijn | 85 | 6511GB
+M Vasalisstraat | Nijmegen | 650 | te huur | 2026-10-03 | huislijn | 80 | 6531AK
+Jacob van Campenstraat | Nijmegen | 670 | te huur | 2026-10-03 | huislijn | 70 | 6543LA
+Hackfortstraat | Nijmegen | 574 | te huur | 2026-10-03 | huislijn | 31 | 6535PN
+Graafseweg | Nijmegen | 1995 | te huur | 2026-10-04 | huislijn | 68 | 6512BR
+Graadt van Roggenstraat | Nijmegen | 1193 | te huur | 2026-10-04 | huislijn |  | 7311LA
+Heyendaalseweg | Nijmegen | 1595 | te huur | 2026-10-05 | huislijn |  | 7311LA
+Weezenhof | Nijmegen | 870 | te huur | 2026-10-05 | huislijn | 97 | 6536DM
+Krayenhofflaan | Nijmegen | 713 | te huur | 2026-10-05 | huislijn | 64 | 6541PP
+Van Diemerbroeckstraat | Nijmegen | 485 | te huur | 2026-10-06 | huislijn | 30 | 6512BA
+Plataanstraat | Nijmegen | 945 | te huur | 2026-10-07 | huislijn | 105 | 6522JG
+Hegdambroek | Nijmegen | 530 | te huur | 2026-10-07 | huislijn |  | 7311LA
+St. Agnetenweg | Nijmegen | 1379 | te huur | 2026-10-07 | huislijn | 71 | 6545AT
+Spijkerhofplein | Nijmegen | 705 | te huur | 2026-10-07 | huislijn | 72 | 6538SM
+Breehofstraat | Nijmegen | 750 | te huur | 2026-10-07 | huislijn | 64 | 6542RB
+St. Agnetenweg | Nijmegen | 1295 | te huur | 2026-10-07 | huislijn |  | 
+Jan van Speykstraat | Nijmegen | 698 | te huur | 2026-10-07 | huislijn | 75 | 6512GX
+Treubstraat | Nijmegen | 995 | te huur | 2026-10-08 | huislijn | 88 | 6535ZN
+Nieuwe Dukenburgseweg | Nijmegen | 781 | te huur | 2026-10-08 | huislijn | 43 | 6534AD
+Meijhorst | Nijmegen | 710 | te huur | 2026-10-08 | huislijn | 85 | 6537KT
+Burchtstraat | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn | 150 | 6511RC

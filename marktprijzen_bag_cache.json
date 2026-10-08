@@ -72517,18 +72517,217 @@
     "oppervlakte": 11,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Vossenlaan|Nijmegen": {
     "oppervlakte": 18,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Buurmansweg 46|Nijmegen": {
     "postcode": "6525RX",
     "buurtnaam": "Brakkenstein",
     "wijknaam": "Nijmegen-Zuid",
     "nummeraanduiding": "adr-dc618942713598982430b55fe95c18eb"
+  },
+  "Voorstadslaan|Nijmegen": {
+    "oppervlakte": 40,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AB",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Broerdijk|Nijmegen": {
+    "oppervlakte": 104,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523GR",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Goeman Borgesiusstraat|Nijmegen": {
+    "oppervlakte": 70,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535WH",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Malderburchtstraat|Nijmegen": {
+    "oppervlakte": 150,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535NJ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Waaijenstein|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Vossendijk|Nijmegen": {
+    "oppervlakte": 14,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6534TL",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Simone de Beauvoirstraat|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Jozef Israelsstraat|Nijmegen": {
+    "oppervlakte": 148,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521MX",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "In de Betouwstraat|Nijmegen": {
+    "oppervlakte": 85,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GB",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "M Vasalisstraat|Nijmegen": {
+    "oppervlakte": 80,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6531AK",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Jacob van Campenstraat|Nijmegen": {
+    "oppervlakte": 70,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6543LA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Hackfortstraat|Nijmegen": {
+    "oppervlakte": 31,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535PN",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Graadt van Roggenstraat|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Heyendaalseweg|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Van Diemerbroeckstraat|Nijmegen": {
+    "oppervlakte": 30,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512BA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Plataanstraat|Nijmegen": {
+    "oppervlakte": 105,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6522JG",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "St. Agnetenweg|Nijmegen": {
+    "oppervlakte": 71,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6545AT",
+    "buurtnaam": "",
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Spijkerhofplein|Nijmegen": {
+    "oppervlakte": 72,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6538SM",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Breehofstraat|Nijmegen": {
+    "oppervlakte": 64,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542RB",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Jan van Speykstraat|Nijmegen": {
+    "oppervlakte": 75,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GX",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Treubstraat|Nijmegen": {
+    "oppervlakte": 88,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535ZN",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Nieuwe Dukenburgseweg|Nijmegen": {
+    "oppervlakte": 43,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6534AD",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Meijhorst|Nijmegen": {
+    "oppervlakte": 85,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6537KT",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Burchtstraat|Nijmegen": {
+    "oppervlakte": 150,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511RC",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

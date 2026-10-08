@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-110 panden in beeld, 3 nieuw of gewijzigd, waarvan 3 met een prijswijziging. Dichtst bij haalbaar is **van den Havestraat 10** in Altrade: €419.000 voor 77 m². Als één woning loopt het rond tot €284.379, dus -32% ten opzichte van de vraagprijs; per m² staat het +6% ten opzichte van de mediaan van zijn klasse. Dat is verder dan 10% van de vraagprijs, dus geen reden om de brief mee te openen. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 5 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
+110 panden in beeld, geen mutaties sinds gisteren, waarvan 3 met een prijswijziging. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 5 gemeentelijke berichten, waarvan 1 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -61,38 +61,16 @@ _6 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 **Altrade**
 _mediaan €5.128/m² op 97 waarnemingen . +5,7% in vier weken (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
-| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan | Waarom | Verhuurd als | Richtprijs | Dagen |
-|---|---:|---:|---:|---:|---|---|---:|---:|
-| [van den Havestraat 10](https://www.google.com/maps/search/?api=1&query=van+den+Havestraat+10%2C+Nijmegen) | €419.000 | 77 | €5.441 | 🟡 +6% | splitsen staat open als route | één woning, €1.359/mnd . pand bevat al 2 woningen volgens de BAG | €284.379 (-32%) | 0 |
-
-_Vraagprijs uit de attendering, oppervlakte en bouwjaar uit de BAG, energielabel uit EP-Online, huur uit de gemeten advertenties. [1,2,15,16]_
-
-| Adres | Investering | Lening | Eigen inleg | Operationeel per jaar | NAR |
-|---|---:|---:|---:|---:|---:|
-| [van den Havestraat 10](https://www.google.com/maps/search/?api=1&query=van+den+Havestraat+10%2C+Nijmegen) | €489.510 | €189.833 | €299.676 | €2.610 | 2,7% |
-
-_Investering is de koopsom plus 8,0% overdrachtsbelasting, 2% notaris en makelaar, de verbouwing en 3 maanden rente zonder huur. Operationeel is de nettohuur min de rente; de aflossing staat daar los van, want dat is vermogensopbouw. NAR is het netto aanvangsrendement over de hele investering. De lening is begrensd door de rentedekking. [17,19,20,24]_
-
-_Met het beschikbare eigen vermogen kom je: van den Havestraat 10 tot €170.900._
-
-_Alle panden hier komen bij de berekende huur boven de maximale rekenhuur van €932,93 voor huurtoeslag uit. Je huurders krijgen dus geen toeslag._
-
-_Altrade is deels de negentiende-eeuwse schil. Voor wijzigingen aan het uiterlijk is een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen aan de voorzijde._
-
-_**van den Havestraat 10** is volgens de BAG een van de 2 woningen in hetzelfde pand: van den Havestraat 8 (79 m²), van den Havestraat 10 (82 m²). Dat is bij een appartementencomplex normaal en op zichzelf geen bijzonderheid. De oppervlakte per adres komt uit de BAG en kan afwijken van de advertentie. Dat de BAG aparte woningen telt, zegt niet of het pand juridisch in appartementsrechten is gesplitst; dat staat in het Kadaster. Een splitsingsvergunning kent Nijmegen niet._
-
-_Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-18% t.o.v. de buurtmediaan, 27 dagen in aanbod) . [Jacob Canisstraat 51](https://www.google.com/maps/search/?api=1&query=Jacob+Canisstraat+51%2C+Nijmegen) €565.000 (+0% t.o.v. de buurtmediaan, 22 dagen in aanbod) . [Groesbeeksedwarsweg 99](https://www.google.com/maps/search/?api=1&query=Groesbeeksedwarsweg+99%2C+Nijmegen) €495.000 (+0% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [Beijensstraat 80](https://www.google.com/maps/search/?api=1&query=Beijensstraat+80%2C+Nijmegen) €575.000 (+28% t.o.v. de buurtmediaan, 10 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
+_Stond er al, vraagprijs ongewijzigd: [Dominicanenstraat 30](https://www.google.com/maps/search/?api=1&query=Dominicanenstraat+30%2C+Nijmegen) €735.000 (-18% t.o.v. de buurtmediaan, 27 dagen in aanbod) . [Jacob Canisstraat 51](https://www.google.com/maps/search/?api=1&query=Jacob+Canisstraat+51%2C+Nijmegen) €565.000 (+0% t.o.v. de buurtmediaan, 22 dagen in aanbod) . [Groesbeeksedwarsweg 99](https://www.google.com/maps/search/?api=1&query=Groesbeeksedwarsweg+99%2C+Nijmegen) €495.000 (+0% t.o.v. de buurtmediaan, 10 dagen in aanbod) . [van den Havestraat 10](https://www.google.com/maps/search/?api=1&query=van+den+Havestraat+10%2C+Nijmegen) €419.000 (+6% t.o.v. de buurtmediaan, 0 dagen in aanbod) . [Beijensstraat 80](https://www.google.com/maps/search/?api=1&query=Beijensstraat+80%2C+Nijmegen) €575.000 (+28% t.o.v. de buurtmediaan, 10 dagen in aanbod). Het percentage is de afwijking van de mediaanprijs per vierkante meter in die buurt, niet een prijswijziging._
 
 _Bekende WOZ-waarden: Dominicanenstraat 30 €614.000 (2026) (174 m2): Groter dan 150 m2, dus niet als een huishouden doorgerekend; een telling voor een zelfstandige woning zegt hier weinig . Jacob Canisstraat 51 €520.000 (2026), puntenstelsel ondergrens 231 punten (138 m2, WOZ €520.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Groesbeeksedwarsweg 99 €443.000 (2026), puntenstelsel ondergrens 181 punten (93 m2, WOZ €443.000, label B): 6 punten onder de grens van 187, maar het regime is hiermee NIET bepaald: buitenruimte, berging, sanitair en verwarming zitten niet in deze telling en leveren samen makkelijk twintig punten op. Een balkon van 14 m2 en een berging van 7 m2 zijn al elf punten. Reken dit pand niet door op een wettelijk maximum zonder de werkelijke telling. Draai het liever om: zie de regel 'programma van eisen' voor wat de verbouwing moet opleveren om de grens wel te halen . Beijensstraat 80 €475.000 (2026), puntenstelsel ondergrens 147 punten (88 m2, WOZ €475.000, label E): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
 _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
-_Grensgeval voor de opkoopbescherming: van den Havestraat 10. Controleer de WOZ, want onder €396.000 mag je niet zonder meer verhuren._
-
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#12242c;text-decoration:none">Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">101 m² . label A (2023)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie markeert het moment waarop de woning wordt opgeknapt, kenmerkend voor waardecreatie bij huurderswisseling.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Asbestverwijdering bij mutatie maakt de weg vrij voor renovatie, een voorwaarde voor verdere labelverbetering bij wisseling van bewoner.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-06 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -103,6 +81,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 824 panden, waarvan er 110 nu in aanbod zijn. Bijgewerkt 08 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 854 panden, waarvan er 110 nu in aanbod zijn. Bijgewerkt 08 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._
