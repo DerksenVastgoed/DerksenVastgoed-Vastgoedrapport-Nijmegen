@@ -3470,38 +3470,82 @@ def render_prijswijzigingen(woningen):
     except Exception:
         wanneer = {}
 
-    r.append("### Prijswijzigingen")
-    r.append("")
-    r.append("| Adres | Buurt | Eerst | Nu | Verschil | Gewijzigd op | "
-             "Dagen in aanbod |")
-    r.append("|---|---|---:|---:|---:|---|---:|")
+    # Drie bakken in plaats van een tabel. De waarschuwing dat een oude
+    # verlaging geen nieuws is, stond hier als tekst onder de tabel, en de
+    # brief las hem drie dagen achter elkaar niet: de verlaging van de
+    # Palmstraat 40 stond op 6, 7 en 8 oktober als "de grootste wijziging van
+    # de dag". Een waarschuwing die genegeerd kan worden, wordt genegeerd.
+    # Daarom staat wat oud is niet langer in de nieuwstabel. Weggooien doen we
+    # het niet, want een oude verlaging is bruikbare achtergrond bij een bod.
+    recent, eerder, onbekend = [], [], []
     for _, verschil, pct, w in sorted(gewijzigd, reverse=True):
-        buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
-        eerst_s = f"{w['prijs_eerst']:,}".replace(",", ".")
-        nu_s = f"{w['prijs']:,}".replace(",", ".")
-        teken = "▼" if verschil < 0 else "▲"
-        versch_s = f"{abs(verschil):,}".replace(",", ".")
-        dagen = _dagen_sinds(w.get("datum_eerst"))
         _sl = "".join(c for c in w["adres"].lower() if c.isalnum())
         _op = wanneer.get(_sl)
         _op_dagen = _dagen_sinds(_op) if _op else None
-        if _op and _op_dagen is not None:
-            _op_s = (f"{_op} (vandaag)" if _op_dagen == 0
-                     else f"{_op} ({_op_dagen} dagen terug)")
+        rij = (verschil, pct, w, _op, _op_dagen)
+        if _op_dagen is None:
+            onbekend.append(rij)
+        elif _op_dagen <= 1:
+            recent.append(rij)
         else:
-            _op_s = "datum onbekend"
-        r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | €{eerst_s} | €{nu_s} | "
-                 f"{teken} €{versch_s} ({pct:+.1f}%) | {_op_s} | "
-                 f"{dagen if dagen is not None else '?'} |")
+            eerder.append(rij)
+
+    def _tabel(rijen, met_datum=True):
+        uit = ["| Adres | Buurt | Eerst | Nu | Verschil | Gewijzigd op | "
+               "Dagen in aanbod |", "|---|---|---:|---:|---:|---|---:|"]
+        for verschil, pct, w, _op, _op_dagen in rijen:
+            buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
+            eerst_s = f"{w['prijs_eerst']:,}".replace(",", ".")
+            nu_s = f"{w['prijs']:,}".replace(",", ".")
+            teken = "▼" if verschil < 0 else "▲"
+            versch_s = f"{abs(verschil):,}".replace(",", ".")
+            dagen = _dagen_sinds(w.get("datum_eerst"))
+            if _op and _op_dagen is not None:
+                _op_s = (f"{_op} (vandaag)" if _op_dagen == 0
+                         else f"{_op} (gisteren)" if _op_dagen == 1
+                         else f"{_op} ({_op_dagen} dagen terug)")
+            else:
+                _op_s = "datum onbekend"
+            uit.append(
+                f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                f"| {buurt} | €{eerst_s} | €{nu_s} | "
+                f"{teken} €{versch_s} ({pct:+.1f}%) | {_op_s} | "
+                f"{dagen if dagen is not None else '?'} |")
+        return uit
+
+    r.append("### Prijswijzigingen van vandaag en gisteren")
     r.append("")
-    r.append("_Een verlaging na langere tijd in de markt is vaak het moment waarop "
-             "onderhandelen zin heeft. Dagen in aanbod telt vanaf de eerste keer dat "
-             "dit pand in de attendering verscheen, niet vanaf de plaatsing op Funda._")
+    if recent:
+        r += _tabel(recent)
+        r.append("")
+        r.append("_Dit is het enige blok waaruit een prijswijziging als nieuws "
+                 "van vandaag mag worden gebracht._")
+    else:
+        r.append("**Vandaag en gisteren is er geen enkele vraagprijs "
+                 "veranderd.** Schrijf dus niet over een prijsverlaging als "
+                 "nieuws van vandaag; er is er geen.")
     r.append("")
-    r.append("_De kolom Gewijzigd op zegt wanneer de prijs werkelijk veranderde. "
-             "Deze tabel vergelijkt met de prijs van de eerste keer dat we het "
-             "pand zagen, dus een oude verlaging blijft hier staan; alleen een "
-             "wijziging van de laatste dagen is nieuws._")
+    if eerder or onbekend:
+        r.append("### Eerdere prijswijzigingen, als achtergrond")
+        r.append("")
+        r.append("_GEEN NIEUWS. Deze prijzen zijn langer dan twee dagen "
+                 "geleden veranderd, of we weten niet wanneer. Ze staan hier "
+                 "omdat een verlaging na langere tijd in de markt het moment "
+                 "kan zijn waarop onderhandelen zin heeft, niet omdat er "
+                 "vandaag iets is gebeurd._")
+        r.append("")
+        if eerder:
+            r += _tabel(eerder)
+            r.append("")
+        if onbekend:
+            r.append("_Hieronder staat de wijzigingsdatum niet in de "
+                     "pandgeschiedenis. Dan is de verandering ouder dan onze "
+                     "meting en zeker geen nieuws van vandaag._")
+            r.append("")
+            r += _tabel(onbekend)
+            r.append("")
+    r.append("_Dagen in aanbod telt vanaf de eerste keer dat dit pand in de "
+             "attendering verscheen, niet vanaf de plaatsing op Funda._")
     r.append("")
     return r
 
