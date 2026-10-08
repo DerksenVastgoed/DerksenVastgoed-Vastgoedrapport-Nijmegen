@@ -92,9 +92,16 @@ def strip_html(tekst):
     oorspronkelijke advertentie kunnen meegeven.
     """
     tekst = re.sub(r"(?is)<(script|style).*?</\1>", " ", tekst)
-    # Objectlinks markeren voordat de tags verdwijnen
+    # Objectlinks markeren voordat de tags verdwijnen. Alleen Funda-links
+    # werden bewaard, waardoor bij Huislijn elke URL verdween. Juist daar zit
+    # de straatnaam in de link (/huurwoning/.../maasstraat-nijmegen), en dat is
+    # het enige dat een tekstomzetting altijd overleeft. Een link naar een
+    # objectpagina van Huislijn blijft nu ook staan.
     tekst = re.sub(
-        r'(?is)<a[^>]+href=["\']([^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*)["\'][^>]*>',
+        r'(?is)<a[^>]+href=["\']('
+        r'[^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*'
+        r'|[^"\']*huislijn\.nl/huurwoning/[^"\']*'
+        r')["\'][^>]*>',
         lambda m: f"\n__LINK__{m.group(1)}\n", tekst)
     tekst = re.sub(r"(?i)<br\s*/?>", "\n", tekst)
     tekst = re.sub(r"(?i)</(p|div|tr|td|h\d|li)>", "\n", tekst)

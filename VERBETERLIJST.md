@@ -6647,10 +6647,28 @@ waarschijnlijkste vorm zit die tekst juist aan de prijsregel vast. Nu geldt een
 regel met een BEDRAG erin nooit als reclame. Getest: alle drie de vormen geven
 nu de panden, en een mail met alleen reclame geeft nul.
 
-**En de log zegt het al zonder dat ik hoef te gokken.** De mailstap print bij
-nul objecten de eerste vijfendertig regels van die mail naar het logboek. Die
-staan dus in de run van vanmorgen, en daarmee is de echte vorm na te kijken in
-plaats van te voorspellen.
+**En toen bleek de echte oorzaak ergens anders te zitten.** Mark stuurde de
+tekst van de mail, en daarop werkte de oude parser gewoon. Het verschil zit in
+wat het SCRIPT van die mail maakt. `strip_html` bewaart de href van een link
+alleen als er "funda" in staat; elke andere URL verdwijnt met de tags. Bij
+Huislijn was dus precies het betrouwbaarste gegeven weggegooid: de straatnaam
+zit in de link.
+
+En wat eroverblijft hangt af van de opmaak. Staat de prijs in een eigen
+tabelcel, dan komt hij op een eigen regel en werkte het. Staat hij in dezelfde
+cel als de straatnaam, dan wordt het een regel: "Meijhorst Nijmegen Huur: € 710
+Bekijk deze woning". Dat is de vorm waar de oude parser op stukliep.
+
+Twee reparaties dus. Een link naar een objectpagina van Huislijn blijft nu
+bewaard, naast de Funda-links, en de parser leest beide opmaakvormen. Getest op
+echte HTML in beide varianten: allebei leveren de panden op, inclusief de
+straatnaam uit de link als vangnet.
+
+**Wat de mails opleveren is overigens vooral aanbod buiten de ring:**
+Treubstraat, Nieuwe Dukenburgseweg, Meijhorst, Burchtstraat. Alleen die laatste
+ligt in het Stadscentrum. Dat is geen bezwaar maar wel goed om te weten: deze
+waarnemingen helpen de huurdekking van 42%, want die steekproef toetst juist of
+wij de adressen kennen die elders te huur staan.
 
 ---
 
