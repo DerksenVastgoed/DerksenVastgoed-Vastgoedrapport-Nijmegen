@@ -6672,6 +6672,42 @@ wij de adressen kennen die elders te huur staan.
 
 ---
 
+## 77. Een handmatig aangevulde huurwaarneming — 8 oktober 2026
+
+Mark leidde uit de foto af dat de huurwoning van €3.525 de Burchtstraat 71 C
+is, en haalde er 150 m2 bij uit de BAG. Dat is €23,50 per m2 per maand.
+
+**Dat getal verandert het beeld.** Het ligt 12% boven het landelijke cijfer van
+Pararius (€20,92 in de vrije sector, derde kwartaal 2026) en 96% boven onze
+eigen meting van €12 voor Stadscentrum. Het is de eerste grote
+vrije-sectorwaarneming in de ring die we hebben, en hij steunt de referentie van
+€20 in plaats van de meting van €12.
+
+**Maar het adres komt van een foto.** De oppervlakte uit de BAG is hard MITS het
+adres klopt; is het een ander pand, dan is de oppervlakte van een ander pand.
+Zo'n waarneming is te goed om weg te laten en te onzeker om als meting weg te
+zetten.
+
+Daarom een markering, naar het voorbeeld van de tilde bij een overgenomen
+WOZ-waarde: "+hand" achter de bron. De waarneming telt gewoon mee in de huur per
+m2, want de oppervlakte is een BAG-gegeven, en het rapport meldt hoeveel
+waarnemingen op een herkenning rusten. Getest: de suffix wordt geteld en
+"huislijn+hand" geldt nog steeds als een Huislijn-waarneming voor de
+bronnencontrole.
+
+**Waarom dit bij Huislijn vaker zal spelen.** Die bron geeft geen huisnummer,
+dus elke waarneming daar is per definitie onvolledig en valt buiten de huur per
+m2. Herkent Mark een pand van de foto, dan wordt hij bruikbaar. Dat is handwerk,
+maar het is wel de goedkoopste manier om de huurmeting te verbeteren: een
+waarneming van 150 m2 in de vrije sector weegt zwaarder dan tien kleine
+kamerwaarnemingen.
+
+De regel om in verkopen.txt te zetten:
+
+    Burchtstraat 71 C | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn+hand | 150 | 6511
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

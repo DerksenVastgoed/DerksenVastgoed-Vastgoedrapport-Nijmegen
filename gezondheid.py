@@ -251,12 +251,22 @@ def controle_huurdata():
         v = [x.strip() for x in r.split("|")]
         if len(v) < 7 or not v[6]:
             zonder_m2 += 1
+    # Waarnemingen waarvan het adres of de oppervlakte met de hand is
+    # aangevuld, gemarkeerd met "+hand" achter de bron. Huislijn geeft geen
+    # huisnummer, dus elke waarneming daar is onvolledig; herkent Mark een pand
+    # van de foto, dan is de oppervlakte uit de BAG hard MITS het adres klopt.
+    # Dat voorbehoud hoort zichtbaar te zijn, net als de tilde bij een
+    # overgenomen WOZ-waarde.
+    met_hand = [r for r in huur if "+hand" in r.lower()]
     bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
               f"en {len(kamernet)} Kamernet"
               + (f" en {len(huislijn)} Huislijn" if huislijn else "")
               + f"; {len(recent)} in de laatste week"
               + (f"; {zonder_m2} zonder oppervlakte, die tellen niet mee in de "
                  f"huur per m2" if zonder_m2 else "")
+              + (f"; {len(met_hand)} met een handmatig aangevuld adres, die "
+                 f"tellen wel mee maar rusten op een herkenning"
+                 if met_hand else "")
               + (f"; {(_json('huur_dubbel.json') or {}).get('samengevoegd')} "
                  f"waarschijnlijke dubbelingen tussen platforms samengevoegd"
                  if (_json("huur_dubbel.json") or {}).get("samengevoegd")
