@@ -1,0 +1,923 @@
+name: Bekendmakingen Nijmegen
+
+# Twee runs tegelijk botsen bij het terugcommitten: op 27 september liep een
+# handmatige run tegen de geplande run aan en ging een hele run verloren. Met
+# deze instelling wacht de tweede tot de eerste klaar is in plaats van hem af
+# te breken; niets gaat verloren, het duurt alleen even.
+concurrency:
+  group: vastgoedbrief
+  cancel-in-progress: false
+
+on:
+  schedule:
+    # De run mag 's nachts draaien; de brief hoeft pas om 7:00 leesbaar te zijn.
+    # Dat is met opzet ruim gekozen, want daarmee past er een TWEEDE poging voor
+    # zevenen in. Op 8 oktober leverde de ochtendrun geen brief op en was er
+    # geen tijd meer om het nog eens te proberen.
+    #
+    # Alle tijden staan na middernacht UTC, want de run leidt de briefdatum af
+    # uit de UTC-datum van de runner. Een cron van 23:17 zou de brief van
+    # gisteren opleveren.
+    #
+    # Werkdagen: eerste poging, en een tweede als de eerste niets opleverde.
+    # De wachter "Is er al een brief van vandaag" hieronder slaat de tweede
+    # over als de eerste wel is gelukt.
+    - cron: "17 1 * * 1-5"   # 3:17 in Nijmegen (zomertijd), 2:17 in wintertijd
+    - cron: "17 3 * * 1-5"   # tweede poging, 5:17 zomertijd, 4:17 wintertijd
+    # Zondag de weekeditie. Die werkt de hele pandgeschiedenis bij en kan uren
+    # duren, dus hij begint zo vroeg als kan zonder de datumgrens te raken.
+    - cron: "17 0 * * 0"     # 2:17 in Nijmegen (zomertijd), 1:17 in wintertijd
+  workflow_dispatch:
+    inputs:
+      backfill_vanaf:
+        description: "Eenmalige backfill van het bekendmakingen-archief, bijvoorbeeld 2012-01-01. Leeg laten voor een gewone run."
+        required: false
+        default: ""
+      backfill_tot:
+        description: "Einddatum van de backfill, bijvoorbeeld 2018-07-01. Leeg laten voor vandaag."
+        required: false
+        default: ""
+      volledig:
+        description: "Ook de BAG en de energielabels bijwerken. Dat duurt uren en hoeft doordeweeks niet; in de weekeditie gebeurt het altijd."
+        required: false
+        type: boolean
+        default: false
+      vervolg:
+        description: "Interne teller voor een vervolgronde van de BAG-controle. Zelf leeg laten."
+        required: false
+        default: "0"
+      mail_dagen:
+        description: "Hoeveel dagen aan mails ophalen (standaard 3; hoger om oude attenderingen in te halen)"
+        required: false
+        default: "3"
+      alleen_naar_mij:
+        description: "Stuur de brief alleen naar jezelf, niet naar de kopie. Aanvinken bij een testrun."
+        type: boolean
+        required: false
+        default: false
+      sru_pauze:
+        description: "Seconden tussen bevragingen. Bij 503-fouten hoger zetten, bijvoorbeeld 3."
+        required: false
+        default: "1"
+
+permissions:
+  contents: write
+
+jobs:
+  # Ligt er voor vandaag al een brief in de repo, dan is dit de tweede poging
+  # en hoeft hij niet te draaien. Zo kost een tweede cron niets zolang de
+  # eerste het werk heeft gedaan, en springt hij wel bij als de eerste faalde.
+  # Een handmatige run komt er altijd langs.
+  nodig:
+    runs-on: ubuntu-latest
+    outputs:
+      door: ${{ steps.toets.outputs.door }}
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+      - name: Is er al een brief van vandaag
+        id: toets
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Handmatige run, altijd doorlaten"
+            echo "door=ja" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          DATUM=$(date +%F)
+          if [ -f "digests/$DATUM-brief.md" ]; then
+            echo "De brief van $DATUM staat er al; deze poging is niet nodig."
+            echo "door=nee" >> "$GITHUB_OUTPUT"
+          else
+            echo "Nog geen brief van $DATUM; draaien."
+            echo "door=ja" >> "$GITHUB_OUTPUT"
+          fi
+
+  digest:
+    needs: nodig
+    if: needs.nodig.outputs.door == 'ja'
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Welke versie draait
+        run: |
+          # De paklijst vergelijkt de vingerafdruk van elk bestand met wat er
+          # bij de laatste oplevering is meegegeven. Staat er ANDERE VERSIE of
+          # ONTBREEKT, dan draait deze run niet op de code die je denkt.
+          echo "Commit: $(git log -1 --format='%h %ci %s')"
+          echo "Branch: ${GITHUB_REF_NAME}"
+          python paklijst.py --controleer || echo "Versiecontrole overgeslagen"
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencies installeren
+        run: pip install -r requirements.txt
+
+      - name: Bekendmakingen ophalen
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+          VERHAAL_ADRES: ${{ secrets.MAIL_TO_VERHAAL }}
+        run: |
+          mkdir -p digests
+          DATUM=$(date +%F)
+          # Zondag is dag 7. Dan de uitgebreide brief, doordeweeks de korte.
+          # Vrijdag na achten en het hele weekend geldt als weekeditie, zodat
+          # een run die vrijdagnacht begint en zaterdag klaar is de juiste
+          # brief oplevert.
+          DAG=$(date +%u); UUR=$(date +%H)
+          if [ "$DAG" = "6" ] || [ "$DAG" = "7" ] \
+             || { [ "$DAG" = "5" ] && [ "$UUR" -ge 20 ]; }; then
+            MODUS=weekelijks
+          else
+            MODUS=dagelijks
+          fi
+          echo "MODUS=$MODUS" >> "$GITHUB_ENV"
+          # Een handmatige run met "alleen naar mij" is een test. Die mag het
+          # geheugen van geziene panden niet bijwerken, anders is een nieuw pand
+          # bij de echte brief van morgen niet meer nieuw.
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] \
+             && [ "${{ github.event.inputs.alleen_naar_mij }}" = "true" ]; then
+            echo "TESTRUN=1" >> "$GITHUB_ENV"
+            # Ook hier zetten, zodat elke stap hem ziet. Hij stond alleen in de
+            # marktprijzenstap, waardoor de briefstap dacht dat het geen testrun
+            # was en het logboek toch bijwerkte.
+            echo "GEHEUGEN_ALLEEN_LEZEN=1" >> "$GITHUB_ENV"
+            # Bij een testrun gaat de brief alleen naar Mark. Dit hier bepalen
+            # en niet in de mailstap zelf: in een GitHub-expressie telt een lege
+            # string als onwaar, waardoor "voorwaarde && '' || secret" altijd
+            # het secret oplevert. Daardoor kreeg zijn vader toch een brief.
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
+          else
+            echo "TESTRUN=0" >> "$GITHUB_ENV"
+            echo "GEHEUGEN_ALLEEN_LEZEN=0" >> "$GITHUB_ENV"
+            echo "CC_VERHAAL=${{ secrets.MAIL_TO_VERHAAL }}" >> "$GITHUB_ENV"
+          fi
+          if [ -n "${VERHAAL_ADRES}" ]; then
+            echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
+          else
+            echo "HEEFT_VERHAAL=0" >> "$GITHUB_ENV"
+          fi
+          echo "Modus: $MODUS"
+          python bekendmakingen_nijmegen.py --dagen 2 --modus "$MODUS" \
+            --uit "digests/$DATUM-bekendmakingen.md" \
+            || echo "Bekendmakingen-stap overgeslagen"
+          echo "DATUM=$DATUM" >> "$GITHUB_ENV"
+
+      - name: Vergunningen aan buurten koppelen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Straten verhuizen niet, dus dit hoeft maar een keer. Verwijder
+          # vergunningen_per_buurt.json om opnieuw te koppelen.
+          # Niet alleen kijken of het bestand bestaat, maar of er ook iets in
+          # staat. Een leeg bestand met {} telt anders als aanwezig, en dan
+          # wordt de koppeling nooit gemaakt.
+          AANTAL=$(python -c "import json;print(len(json.load(open('vergunningen_per_buurt.json'))))" 2>/dev/null || echo 0)
+          if [ "$AANTAL" -lt 3 ] && [ -s kamervergunningen.json ]; then
+            echo "Koppeling bevat $AANTAL buurten, opnieuw opbouwen"
+            python vergunningen_buurten.py || echo "Buurtkoppeling overgeslagen"
+          else
+            echo "Buurtkoppeling aanwezig met $AANTAL buurten, overslaan"
+          fi
+
+      - name: Misdrijfcijfers verversen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Jaarcijfers, dus eens per jaar ophalen is genoeg. Wil je verversen,
+          # verwijder dan misdrijven_per_buurt.json.
+          if [ ! -s misdrijven_per_buurt.json ]; then
+            python misdrijven_buurt.py --jaren 3 || echo "Misdrijven-stap overgeslagen"
+          else
+            echo "Misdrijfcijfers aanwezig, overslaan"
+          fi
+
+      - name: Buurtcijfers verversen
+        run: |
+          # Levert buurten_cbs.json, dat het marktprijzen-script per buurt toont
+          # bij het aanbod. De losse tabel staat niet meer in de brief.
+          python buurten_tabel.py --uit "digests/${DATUM}-buurten.md" || echo "Buurten-stap overgeslagen"
+
+      - name: Rente ophalen
+        run: |
+          python rente_verhuurhypotheek.py --modus "$MODUS" --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
+
+      - name: Regelgeving controleren op wijzigingen
+        continue-on-error: true
+        run: |
+          # De verordeningen en wetten waarop de brief rekent. Wekelijks is
+          # genoeg: een verordening verandert niet dagelijks.
+          if [ "$MODUS" != "dagelijks" ] || [ ! -s regelgeving_status.json ]; then
+            python regelgeving_monitor.py --uit regelgeving_wijzigingen.md \
+              || echo "Regelgeving-stap overgeslagen"
+          else
+            echo "Regelgeving wordt op zondag gecontroleerd"
+          fi
+
+      - name: Onderwerpen zonder achtergrondstuk signaleren
+        # Ook bij een handmatige start, niet alleen in de weekeditie. Anders
+        # draait deze stap alleen op zondag en is er doordeweeks geen manier om
+        # te zien of hij werkt; de vier bestanden die hij wegschrijft stonden
+        # daardoor weken als ONTBREEKT in het terugcommitten.
+        if: env.MODUS != 'dagelijks' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: |
+          # Wekelijks kijken of er termen terugkeren waar we niets over zeggen.
+          # Het script schrijft alleen een voorstel; de tekst maken we zelf.
+          python onderwerpen_signaal.py || echo "Signaalstap overgeslagen"
+
+      - name: Publicaties ophalen
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python publicaties_vastgoed.py --uit "digests/${DATUM}-publicaties.md" || echo "Publicaties-stap overgeslagen"
+
+      # Eenmalig een volledige backfill draaien voor de leefbaarheidstoets:
+      #   python bekendmakingen_archief.py --vanaf 2012-01-01
+      # Dat duurt lang en hoeft maar een keer; daarna volstaat de dagelijkse stap.
+      - name: Archief backfill (alleen bij handmatige start met een datum)
+        if: ${{ github.event.inputs.backfill_vanaf != '' }}
+        continue-on-error: true
+        env:
+          SRU_PAUZE: ${{ github.event.inputs.sru_pauze }}
+        run: |
+          TOT="${{ github.event.inputs.backfill_tot }}"
+          echo "Backfill vanaf ${{ github.event.inputs.backfill_vanaf }} tot ${TOT:-vandaag}"
+          if [ -n "$TOT" ]; then
+            python bekendmakingen_archief.py \
+              --vanaf "${{ github.event.inputs.backfill_vanaf }}" --tot "$TOT"
+          else
+            python bekendmakingen_archief.py \
+              --vanaf "${{ github.event.inputs.backfill_vanaf }}" --stil
+          fi
+
+      - name: Bekendmakingen-archief bijwerken
+        run: |
+          VANAF=$(date -d "-7 days" +%F)
+          python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
+
+      - name: Funda-attenderingen uitlezen
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: |
+          # Standaard drie dagen; bij een handmatige start kun je verder
+          # terugkijken om oude attenderingen alsnog in te lezen. De datum van
+          # de waarneming komt uit de mail zelf, dus dat vertekent de reeks niet.
+          DAGEN="${{ github.event.inputs.mail_dagen || '3' }}"
+          # Loopt de stap vast, dan mag dat niet stil gebeuren: dan schrijven we
+          # zelf een stand met de reden, zodat het gezondheidsrapport het meldt.
+          if ! python funda_mail.py --dagen "$DAGEN"; then
+            echo "Funda-mail-stap is vastgelopen"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'bronnen': {}, 'opmerking': 'de mailstap is vastgelopen; zie het logboek van die stap'}, open('mail_status.json', 'w'), ensure_ascii=False, indent=1)"
+          fi
+
+      - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
+        run: |
+          # Deze stap duurt ongeveer drie kwartier, want de RCE levert linked data
+          # die pagina voor pagina doorlopen moet worden. Het register verandert
+          # nauwelijks, dus we halen het alleen op als het bestand er niet is.
+          # Wil je handmatig verversen: verwijder rijksmonumenten_nijmegen.json.
+          GROOTTE=0
+          if [ -f rijksmonumenten_nijmegen.json ]; then
+            GROOTTE=$(wc -c < rijksmonumenten_nijmegen.json)
+          fi
+          if [ "$GROOTTE" -lt 200 ]; then
+            echo "Monumentenbestand ontbreekt of is leeg ($GROOTTE bytes), ophalen"
+            python rijksmonumenten.py || echo "Monumenten-stap overgeslagen"
+          else
+            echo "Monumentenbestand aanwezig ($GROOTTE bytes), overslaan"
+          fi
+
+      - name: OV-haltes ophalen (alleen als het bestand ontbreekt)
+        continue-on-error: true
+        run: |
+          # Haltes verplaatsen zelden, dus dit hoeft maar een keer per jaar.
+          # Verwijder ov_haltes.json om opnieuw op te halen.
+          if [ ! -s ov_haltes.json ]; then
+            python ov_haltes.py --verversen || echo "Haltes-stap overgeslagen"
+          else
+            echo "Haltebestand aanwezig, overslaan"
+          fi
+
+      - name: Bouwkostenindex bijwerken
+        continue-on-error: true
+        run: |
+          # Het CBS publiceert circa dertig dagen na de verslagmaand, dus
+          # het script vernieuwt alleen als er een maand bij kan zijn.
+          python bouwkosten_index.py || echo "Bouwkostenindex overgeslagen"
+
+      - name: Stadsbegroting Nijmegen lezen
+        continue-on-error: true
+        run: |
+          # De begroting is een raadsstuk en geen bekendmaking; de monitor ziet
+          # hem niet. Het script haalt hooguit een keer per week op en meldt
+          # alleen wat nieuw is.
+          python begroting_monitor.py --uit "digests/${DATUM}-begroting.md" \
+            || echo "Begroting overgeslagen"
+
+      - name: Woningprijsindex CBS bijwerken
+        continue-on-error: true
+        run: |
+          # Landelijk per maand, Nijmegen per kwartaal. Het CBS publiceert circa
+          # 22 dagen na de periode, dus dagelijks ophalen is ruim voldoende.
+          python woningprijsindex.py || echo "Woningprijsindex overgeslagen"
+
+      - name: Prijzen en transacties COROP Arnhem/Nijmegen
+        continue-on-error: true
+        run: |
+          # Dichter bij onze markt dan het provinciecijfer, en het aantal
+          # transacties zegt iets over de krapte. Landelijk, provincie en COROP
+          # blijven naast elkaar staan; het verschil is zelf een signaal.
+          python corop_prijzen.py --stil || echo "COROP-cijfers overgeslagen"
+
+      - name: Kamerverhuurregister bijwerken
+        continue-on-error: true
+        run: |
+          # Vergunningen en meldingen brandveilig gebruik samen, per buurt.
+          # Draait na het archief, zodat de meldingen van vandaag meetellen.
+          python kamerverhuur_register.py || echo "Kamerverhuurregister overgeslagen"
+
+      - name: Geplakte Funda-verkooplijst verwerken
+        continue-on-error: true
+        run: |
+          # Verkopen worden waarnemingen, panden die bij ons nog te koop staan
+          # worden gemeld, en elk verkocht adres wordt tegen het archief gelegd.
+          python funda_verkocht_plak.py --uit "digests/${DATUM}-verkocht.md" \
+            || echo "Verkooplijst overgeslagen"
+
+      - name: Geplakte Kamernet-tekst verwerken
+        continue-on-error: true
+        run: |
+          # Kamernet laat automatisch uitlezen niet toe; Mark plakt de tekst in
+          # kamernet_plak.txt en dit zet er huurwaarnemingen van.
+          python kamernet_plak.py || echo "Kamernet-plak overgeslagen"
+
+      - name: Geschiedenis per pand bijwerken
+        continue-on-error: true
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          # De code leest EP_API_KEY; met de oude naam kwam er geen enkel
+          # energielabel binnen en zweeg de stap daarover.
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+        run: |
+          # Dagelijks de gebeurtenissen uit het aanbod en het archief; op zondag
+          # ook de BAG en de energielabels, want die kosten verzoeken en
+          # veranderen niet dagelijks.
+          # Op zondag, en bij elke handmatige start. Zo kun je een achterstand
+          # inlopen zonder tot zondag te wachten.
+          # De volledige ronde kost uren en was bedoeld voor de weekeditie.
+          # Hij stond ook aan bij elke handmatige start om de achterstand in te
+          # lopen; die is weg, dus nu alleen op verzoek. Let op: de
+          # energielabels groeien alleen mee tijdens zo'n volledige ronde.
+          EXTRA=""
+          if [ "$MODUS" = "weekelijks" ] \
+             || [ "${{ github.event.inputs.volledig }}" = "true" ]; then
+            EXTRA="--volledig"
+          fi
+          # In de weekeditie gaat de rem eraf: zoveel panden als in vier uur
+          # passen. Een GitHub-job stopt hoe dan ook na zes uur, dus het script
+          # stopt zelf eerder en bewaart wat af is.
+          if [ "$MODUS" = "weekelijks" ]; then
+            export BAG_PER_RONDE=100000
+            # De job stopt na 330 minuten; de rest van de pijplijn heeft daar
+            # zo'n 25 minuten van nodig. Vandaar 295 en niet 240.
+            export BAG_MINUTEN=295
+          fi
+          python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
+            $EXTRA || echo "Geschiedenis overgeslagen"
+
+      - name: Hoogtes en oppervlakken uit de 3D BAG
+        continue-on-error: true
+        run: |
+          # Eigen snapshot in de repo, per ronde aangevuld. Zo hebben we onze
+          # panden nog als de bron wegvalt. Het landelijke bestand is ruim een
+          # gigabyte en past niet in een repo; onze paar duizend panden wel.
+          # In het weekend een grotere ronde, doordeweeks klein.
+          # Dezelfde keuze als bij de geschiedenisstap: groot in de weekeditie
+          # of op verzoek, anders een kleine ronde die alleen nieuwe panden
+          # bijwerkt.
+          if [ "$MODUS" = "weekelijks" ] \
+             || [ "${{ github.event.inputs.volledig }}" = "true" ]; then
+            AANTAL=2000
+          else
+            AANTAL=300
+          fi
+          python bag3d.py --per-ronde "$AANTAL" \
+            || echo "3D BAG-stap overgeslagen"
+
+      - name: Marktprijzen (BAG) verrijken
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EIGEN_VERMOGEN: ${{ secrets.EIGEN_VERMOGEN }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # Bij een testrun het geheugen niet bijwerken, anders is een nieuw
+          # pand bij de echte brief van morgen niet meer nieuw.
+          export GEHEUGEN_ALLEEN_LEZEN="${TESTRUN:-0}"
+          python marktprijzen_bag.py --modus "$MODUS" \
+            --uit "digests/${DATUM}-marktprijzen.md" \
+            --bijlage "digests/${DATUM}-bijlage.md" \
+            --dossiers "digests/${DATUM}-dossiers.md" \
+            --input verkopen.txt || echo "Marktprijzen-stap overgeslagen"
+
+      - name: Achtergrond en bronnen klaarzetten
+        continue-on-error: true
+        run: |
+          cat "digests/${DATUM}-publicaties.md" \
+              "digests/${DATUM}-bekendmakingen.md" 2>/dev/null \
+              > nieuws_vandaag.md || true
+          python bronnen.py --achtergrond --nieuws nieuws_vandaag.md \
+            --uit achtergrond_vandaag.md > /dev/null \
+            || echo "Achtergrond overgeslagen"
+          if [ "$MODUS" = "dagelijks" ]; then
+            python bronnen.py --kort --uit bronnen_vandaag.md > /dev/null \
+              || echo "Bronnen overgeslagen"
+          else
+            python bronnen.py --uit bronnen_vandaag.md > /dev/null \
+              || echo "Bronnen overgeslagen"
+          fi
+
+      - name: Brief samenstellen
+        continue-on-error: true
+        run: |
+          BRIEF="digests/${DATUM}-brief.md"
+          {
+            # De kaartlink zit nu in de introtekst van het aanbodblok
+            # Per gebied: aanbod met de gemeentelijke berichten erbij
+            if [ -s "digests/${DATUM}-marktprijzen.md" ]; then
+              cat "digests/${DATUM}-marktprijzen.md"
+              echo ""
+              echo "---"
+              echo ""
+            else
+              # Vangnet: is het aanbodblok er niet, toon dan de bekendmakingen los
+              cat "digests/${DATUM}-bekendmakingen.md"
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            # Algemeen nieuws, met daarachter de berichten zonder herkenbare buurt.
+            # Op zondag niet: de brief behandelt dan de hele week, en een blok
+            # "laatste 24 uur" eronder is dan een losse dag zonder betekenis.
+            if [ "$MODUS" = "weekelijks" ]; then
+              :
+            elif [ -s "digests/${DATUM}-publicaties.md" ]; then
+              cat "digests/${DATUM}-publicaties.md"
+              if [ -s overige_berichten.md ]; then
+                echo ""
+                cat overige_berichten.md
+              fi
+              echo ""
+              echo "---"
+              echo ""
+            elif [ -s overige_berichten.md ]; then
+              echo "## Publicaties"
+              echo ""
+              cat overige_berichten.md
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            if [ -s regelgeving_wijzigingen.md ]; then
+              cat regelgeving_wijzigingen.md
+              echo ""
+              echo "---"
+              echo ""
+              rm -f regelgeving_wijzigingen.md
+            fi
+            if [ -s beleid_vandaag.md ]; then
+              cat beleid_vandaag.md
+              echo ""
+              echo "---"
+              echo ""
+            fi
+            if [ -s "digests/${DATUM}-rente.md" ]; then
+              cat "digests/${DATUM}-rente.md"
+              echo ""
+            fi
+            # Voltooide splitsingen: alleen als er werkelijk iets is gezien.
+            if [ -s splitsingen_vandaag.md ]; then
+              echo ""
+              cat splitsingen_vandaag.md
+              echo ""
+              rm -f splitsingen_vandaag.md
+            fi
+            # Alleen een kop als er ook iets onder staat; een lege kop
+            # "Achtergrond van de dag" stond vandaag in de brief.
+            if [ -s achtergrond_vandaag.md ] \
+               && grep -q "[a-zA-Z]" achtergrond_vandaag.md; then
+              echo "## Achtergrond van de dag"
+              cat achtergrond_vandaag.md
+              echo ""
+              rm -f achtergrond_vandaag.md
+            fi
+            # De voorstellenlijst stond hier ook in. Die is bedoeld voor Mark
+            # en bevat instructies als "voeg het toe aan ACHTERGROND in
+            # bronnen.py"; dat hoort niet in een brief aan pa. Hij staat in het
+            # digestbestand en in het gezondheidsrapport.
+            if [ -s bronnen_vandaag.md ]; then
+              echo ""
+              echo "---"
+              cat bronnen_vandaag.md
+              rm -f bronnen_vandaag.md
+            fi
+          } > "$BRIEF"
+          echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
+
+      - name: Verhalende brief maken
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
+        run: |
+          python brief_verhalend.py --datum "$DATUM" \
+            --uit "digests/${DATUM}-verhaal.md" || echo "Verhalende brief overgeslagen"
+          if [ -s "digests/${DATUM}-verhaal.md" ]; then
+            echo "Brief gemaakt: $(wc -w < "digests/${DATUM}-verhaal.md") woorden"
+          else
+            echo "LET OP: er is geen verhalende brief gemaakt"
+          fi
+
+      - name: Brief en bijlage samenvoegen tot een HTML
+        continue-on-error: true
+        run: |
+          python - << 'EOF'
+          import markdown, os
+          d = os.environ["DATUM"]
+
+          def lees(pad):
+              try:
+                  with open(pad, encoding="utf-8") as f:
+                      return f.read().strip()
+              except Exception:
+                  return ""
+
+          verhaal = lees(f"digests/{d}-verhaal.md")
+
+          # Doordeweeks de tabelversie, want dan gaat het om de cijfers.
+          # Op zondag de volledige werkbrief, want daar staan de
+          # investeringscases, de referentietabellen, de beleggingslijst en de
+          # regelgevingsmonitor in. Die tabelversie kent die onderdelen niet.
+          modus = os.environ.get("MODUS", "dagelijks")
+          if modus == "dagelijks":
+              werk = lees(f"digests/{d}-bijlage.md") or lees(f"digests/{d}-brief.md")
+          else:
+              werk = lees(f"digests/{d}-brief.md") or lees(f"digests/{d}-bijlage.md")
+          print(f"Bijlage in de mail: {'tabellen' if modus == 'dagelijks' else 'volledige werkbrief'}")
+
+          # De brief bovenaan om rustig te lezen, de cijfers eronder als
+          # bijlage om in te duiken. Een mail in plaats van twee.
+          delen = []
+          if verhaal:
+              delen.append(markdown.markdown(verhaal, extensions=["extra"]))
+              if werk:
+                  delen.append('<hr><h1 id="bijlage">Bijlage: de cijfers</h1>'
+                               '<p class="inleiding">Het volledige overzicht per '
+                               'buurt, met de panden die nu worden aangeboden, de '
+                               'doorrekening en de gemeentelijke berichten.</p>')
+          if werk:
+              delen.append(markdown.markdown(werk, extensions=["extra", "tables"]))
+
+          stijl = (
+            "body{font:17px/1.75 Georgia,'Times New Roman',serif;color:#1a2830;"
+            "max-width:700px;margin:0 auto;padding:28px}"
+            "h1{font-size:21px;font-weight:normal;color:#4a5b63;"
+            "border-bottom:2px solid #E0A458;padding-bottom:10px;margin-top:40px}"
+            "h2{font-size:17px;color:#12242c;margin:32px 0 10px;"
+            "border-bottom:1px solid #e3e8ea;padding-bottom:6px}"
+            "h3{font-size:16px;color:#12242c;margin:26px 0 8px}"
+            "p{margin:0 0 18px}a{color:#4a7a72}"
+            "hr{border:0;border-top:2px solid #e3e8ea;margin:48px 0 8px}"
+            ".inleiding{color:#4a5b63;font-size:15px}"
+            "table{border-collapse:collapse;width:100%;font:14px/1.5 "
+            "-apple-system,Segoe UI,sans-serif;margin:0 0 18px}"
+            "th{text-align:left;border-bottom:2px solid #12242c;padding:6px 8px}"
+            "td{border-bottom:1px solid #e3e8ea;padding:6px 8px;vertical-align:top}"
+            "em{color:#4a5b63;font-size:15px}")
+
+          with open(f"digests/{d}-mail.html", "w", encoding="utf-8") as f:
+              f.write("<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
+                      f"<style>{stijl}</style></head><body>"
+                      + "".join(delen) + "</body></html>")
+          print(f"Mail samengesteld: verhaal {len(verhaal.split())} woorden, "
+                f"bijlage {len(werk.split())} woorden")
+          EOF
+
+      - name: Brief naar HTML converteren
+        continue-on-error: true
+        run: |
+          pip install markdown
+          HTML_PAD="digests/${DATUM}-brief.html"
+          python -c "
+          import markdown, sys
+          md = open('${{ env.BRIEF_PAD }}', encoding='utf-8').read()
+          body = markdown.markdown(md, extensions=['tables', 'nl2br'])
+          css = '''
+          <style>
+            body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; color: #1a2830; line-height: 1.55; max-width: 780px; margin: 0 auto; padding: 20px; }
+            h1 { font-size: 22px; border-bottom: 2px solid #E0A458; padding-bottom: 6px; }
+            h2 { font-size: 17px; color: #12242c; margin-top: 28px; }
+            h3, h4 { font-size: 14px; margin-top: 18px; }
+            table { border-collapse: collapse; margin: 12px 0; width: 100%; }
+            th, td { border: 1px solid #d0d7dc; padding: 6px 10px; text-align: left; font-size: 13px; }
+            th { background: #f2f5f7; }
+            a { color: #4a7a72; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            hr { border: none; border-top: 1px solid #d0d7dc; margin: 24px 0; }
+            em { color: #4a5b63; }
+            code { background: #f2f5f7; padding: 1px 4px; border-radius: 3px; }
+          </style>
+          '''
+          html = f'<!DOCTYPE html><html><head><meta charset=\"utf-8\">{css}</head><body>{body}</body></html>'
+          open('$HTML_PAD', 'w', encoding='utf-8').write(html)
+          "
+          echo "HTML_PAD=$HTML_PAD" >> "$GITHUB_ENV"
+          if [ "$MODUS" = "weekelijks" ]; then
+            echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM} (weekoverzicht)" >> "$GITHUB_ENV"
+          else
+            echo "ONDERWERP=Vastgoedbrief Nijmegen ${DATUM}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Vervolgronde starten als er werk blijft liggen
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Een GitHub-job stopt na zes uur. Blijft er werk over, dan starten we
+          # zelf een vervolgronde; elke ronde krijgt weer zes uur. De teller
+          # voorkomt dat dit blijft rondzingen.
+          REST=$(python -c "import json;print((json.load(open('bag_rest.json')) or {}).get('rest',0))" 2>/dev/null || echo 0)
+          RONDE="${{ github.event.inputs.vervolg || '0' }}"
+          echo "Nog te doen: $REST panden, dit is ronde $RONDE, modus $MODUS"
+          # Alleen in het weekend doorketenen. Een ketting die op een doordeweekse
+          # avond begint, kan door de concurrency-groep de brief van 5:17 uit de
+          # wachtrij houden; dan krijgt pa 's ochtends niets. In het weekend is
+          # dat geen probleem, want daar is de ketting juist voor bedoeld.
+          if [ "$MODUS" != "weekelijks" ]; then
+            echo "Geen vervolgronde: buiten het weekend blijft het ochtendvenster vrij"
+            REST=0
+          fi
+          if [ "$REST" -gt 0 ] && [ "$RONDE" -lt 3 ]; then
+            gh workflow run "${{ github.workflow }}" \
+              -f vervolg="$((RONDE + 1))" -f alleen_naar_mij=true \
+              && echo "Vervolgronde gestart" \
+              || echo "Vervolgronde kon niet worden gestart"
+          fi
+
+      - name: Aanbodreeks bijwerken
+        continue-on-error: true
+        run: |
+          # Zonder reeks is een uitpondgolf niet te zien. De instroom is de
+          # zuivere maat; de voorraad groeit bij ons alleen aan en zegt dus
+          # minder. Dezelfde dag overschrijft, dus een tweede run telt niet
+          # dubbel.
+          python aanbod_reeks.py || echo "Aanbodreeks overgeslagen"
+
+      - name: Verkoopdatums ophalen
+        # UIT. Deze stap stelt per pand een vraag met webzoeken aan, en dat
+        # kostte twee runs lang ongeveer twintig euro per keer. Dat staat in
+        # geen verhouding tot wat het aan de brief toevoegt, en het geld op dat
+        # account is bedoeld voor het schrijven van de brief zelf, een paar cent
+        # per keer. De verkoopgeschiedenis van een pand verandert bovendien
+        # vrijwel nooit, dus het is een eenmalige inhaalslag en geen dagelijkse
+        # taak. Het script blijft bestaan en kan met de hand worden gedraaid;
+        # de gegevens vullen we voorlopig aan vanuit de chat.
+        if: false
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # De geplakte verkopen dragen allemaal de plakdatum, en dat is
+          # aantoonbaar onjuist. Dit haalt een indicatie op, met bronvermelding;
+          # zonder bron wordt een antwoord weggegooid. Datums mogen meerekenen,
+          # bedragen niet. Alleen in de weekeditie of op verzoek, want het kost
+          # tijd en geld per pand.
+          python verkoopdatum_model.py --per-ronde 50 \
+            || echo "Verkoopdatums overgeslagen"
+
+      - name: Voltooide splitsingen uit de BAG
+        continue-on-error: true
+        run: |
+          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
+          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
+          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
+          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
+          # zonder dat wij een vergunning kennen.
+          python splitsing_voltooid.py --tekst splitsingen_vandaag.md \
+            || echo "Splitsingen overgeslagen"
+
+      - name: Groottepremie meten
+        continue-on-error: true
+        run: |
+          # Wat een vierkante meter kost in een klein pand tegen een groot. Dit
+          # is de basis van elke splitsingscase, en het rekent elke run opnieuw
+          # uit wat er op dat moment bekend is; meer waarnemingen maken de
+          # curve vanzelf beter.
+          python grootte_premie.py || echo "Groottepremie overgeslagen"
+
+      - name: Profiel van het nieuwe aanbod
+        continue-on-error: true
+        run: |
+          # Niet hoeveel panden erbij komen, maar wat voor panden. Dertig dagen
+          # tegen de dertig daarvoor, met een voortschrijdend jaar als ijkpunt.
+          python aanbodprofiel.py || echo "Aanbodprofiel overgeslagen"
+
+      - name: Gezondheidsrapport
+        continue-on-error: true
+        run: |
+          # Per onderdeel wat er werkelijk is opgeleverd, met de oorzaak bij een
+          # probleem. Kopieer dit blok om het samen te bekijken.
+          python gezondheid.py --uit "digests/${DATUM}-gezondheid.md" \
+            || echo "Gezondheidsrapport kon niet worden gemaakt"
+
+      - name: Digests + gegevensbestanden terugcommitten
+        run: |
+          git config user.name "vastgoedmonitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+
+          # Alles wat de scripts wegschrijven en wat bewaard moet blijven.
+          # Staat een bestand hier niet in, dan is het na de run verdwenen.
+          BESTANDEN="
+            verkopen.txt
+            woz.txt
+            huidige_huur.txt
+            brief_gezien.json
+            regelgeving_status.json
+            weetjes_gezien.json
+            achtergrond_gezien.json
+            onderwerpen_gezien.json
+            onderwerpen_volgen.json
+            onderwerpen_volgen.txt
+            onderwerpen_voorstel.md
+            prijstrend.json
+            misdrijven_per_buurt.json
+            kamervergunningen.json
+            vergunningen_per_buurt.json
+            straat_buurt_cache.json
+            ov_haltes.json
+            bouwkosten_index.json
+            kamerverhuur_objecten.json
+            kamerverhuur_per_buurt.json
+            woningprijsindex.json
+            corop_prijzen.json
+            bag3d.json
+            begroting_nijmegen.json
+            verkocht_details.json
+            pandgeschiedenis.json
+            buurtbeeld.json
+            vergund_verkocht.json
+            brief_logboek.json
+            aanbod_reeks.json
+            aanbodprofiel.json
+            grootte_premie.json
+            splitsingen.json
+            verkoopdatums_model.json
+            doorlooptijden.json
+            verkooptijd.json
+            mail_status.json
+            woz_kalibratie.json
+            gezondheid_vorige.json
+            vve_kosten.txt
+            huur_elders.txt
+            bouwkosten_eigen.txt
+            ov_afstand_cache.json
+            rente_actueel.json
+            rente_historie.json
+            buurten_cbs.json
+            bekendmakingen_vandaag.json
+            bekendmakingen_archief.json
+            publicaties_gezien.json
+            marktprijzen_bag_cache.json
+            huislijn_kenmerken.json
+            wonen123_kenmerken.json
+            rijksmonumenten_nijmegen.json
+            top3-kaart.html
+            digests/
+            diagnose/
+          "
+          for f in $BESTANDEN; do
+            if [ -e "$f" ]; then
+              git add "$f" && echo "  toegevoegd: $f"
+            else
+              echo "  ONTBREEKT: $f"
+            fi
+          done
+
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd, niets te committen"
+            exit 0
+          fi
+
+          git commit -m "Brief ${{ env.DATUM }}"
+
+          # De repo kan intussen zijn veranderd, bijvoorbeeld door een tweede
+          # run of een upload. Dan eerst ophalen en opnieuw proberen.
+          #
+          # Bij bestanden waar alleen regels bij komen, zoals woz.txt en
+          # verkopen.txt, kan git beide kanten samenvoegen. Zonder die instelling
+          # loopt de rebase vast op een conflict en gaat de hele run verloren,
+          # zoals op 27 september gebeurde.
+          for poging in 1 2 3; do
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            echo "Push mislukt, poging $poging; repo ophalen en opnieuw"
+            if ! git pull --rebase --autostash origin "${GITHUB_REF_NAME}"; then
+              # Conflicten die blijven staan zelf afhandelen: bij tekstbestanden
+              # beide kanten houden, bij de rest de versie van deze run.
+              for bestand in $(git diff --name-only --diff-filter=U); do
+                case "$bestand" in
+                  *.txt)
+                    echo "  conflict in $bestand: beide kanten samenvoegen"
+                    git checkout --theirs -- "$bestand" 2>/dev/null || true
+                    git show ":2:$bestand" > /tmp/ours.txt 2>/dev/null || true
+                    git show ":3:$bestand" > /tmp/theirs.txt 2>/dev/null || true
+                    cat /tmp/ours.txt /tmp/theirs.txt 2>/dev/null \
+                      | awk '!gezien[$0]++' > "$bestand" || true
+                    ;;
+                  *)
+                    echo "  conflict in $bestand: versie van deze run"
+                    git checkout --theirs -- "$bestand" 2>/dev/null \
+                      || git checkout --ours -- "$bestand" 2>/dev/null || true
+                    ;;
+                esac
+                git add "$bestand"
+              done
+              git -c core.editor=true rebase --continue || git rebase --abort || true
+            fi
+            sleep 5
+          done
+          echo "LET OP: terugcommitten is niet gelukt. De gegevensbestanden van"
+          echo "vandaag zijn daardoor verloren en morgen begint alles opnieuw."
+          exit 1
+
+          convert_markdown: false
+
+      - name: Mail versturen
+        if: ${{ hashFiles(format('digests/{0}-mail.html', env.DATUM)) != '' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO }}
+          # Alleen bij een handmatige run kan de kopie worden weggelaten. Een
+          # geplande ochtendrun gaat altijd naar beiden, wat er ook in het
+          # formulier van een eerdere handmatige run stond.
+          cc: ${{ env.CC_VERHAAL }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          html_body: file://digests/${{ env.DATUM }}-mail.html
+
+      # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
+      - name: Mail versturen zonder verhaal
+        if: ${{ hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) != '' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          html_body: file://digests/${{ env.DATUM }}-brief.html
+
+      # Komt er geen brief uit, dan werd er tot nu toe niets verstuurd en ook
+      # niets gemeld: de stilte zag eruit als "geen nieuws". Op 8 oktober viel
+      # de ochtendbrief daardoor weg en bleef dat tot half twaalf onopgemerkt.
+      # Dit bericht gaat alleen naar Mark, niet naar pa.
+      - name: Melden dat er geen brief is
+        # Alleen bij de laatste poging van de dag, anders meldt de eerste
+        # poging al dat er geen brief is terwijl de tweede hem nog gaat maken.
+        if: ${{ always() && github.event.schedule == '17 3 * * 1-5' && hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) == '' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO }}
+          subject: "GEEN BRIEF ${{ env.DATUM }} - de ochtendrun is niet afgekomen"
+          body: |
+            De geplande run van ${{ env.DATUM }} heeft geen brief opgeleverd.
+
+            Kijk in het logboek van deze run welke stap rood werd:
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Er is dus geen brief verstuurd, ook niet naar pa.

@@ -6752,6 +6752,69 @@ verwerkt, dus alleen nieuwe mails krijgen de oppervlakte vanzelf.
 
 ---
 
+## 79. Een hele verhuurmakelaar die wij niet zagen - 8 oktober 2026
+
+Mark stuurde een attendering van 123Wonen. Die afzender stond niet in de lijst
+van bronnen die we uitlezen, en ook niet in de lijst van kandidaten die we
+alleen tellen. Hij stond dus nergens: de mails kwamen binnen, niemand deed er
+iets mee, en geen enkele controle kon dat melden. Dat is de vierde bron deze
+week die stil ontbrak, en dit keer ontbrak zelfs de melding van het ontbreken.
+
+**De mail is bijna leeg.** Er staat "Huurprijs EUR 2.425 per maand", "Nijmegen
+()" en een link. Geen straat, geen nummer, geen oppervlakte. Achter die link
+staat alles, en meer dan bij Huislijn: het volledige adres met huisnummer, de
+oppervlakte, het aantal kamers, het bouwjaar en het energielabel. Dus dezelfde
+oplossing als gisteren: link bewaren, pagina een keer ophalen, in een cache
+zetten.
+
+Drie valkuilen die eruit kwamen bij het echte voorbeeld, de Van Spaenstraat 20.
+
+**De postcode op de pagina is die van de makelaar.** Oranjesingel 51, 6511 NP:
+het kantoor van 123Wonen Nijmegen, niet de woning. Een algemene postcodezoeker
+zoals bij Huislijn pakt die dus verkeerd. Wij laten de postcode daarom leeg; met
+een huisnummer haalt de BAG hem zelf op, en dat is hoe het hoort.
+
+**De opgegeven woonoppervlakte bevat een souterrain.** De specificaties zeggen
+103 m2. De omschrijving zegt circa 65 m2 woonoppervlakte plus een souterrain van
+38 m2 "met stahoogte, ideaal voor opslag, hobby's of een eigen fitnessruimte".
+65 plus 38 is 103. Dat is het verschil tussen EUR 23,54 en EUR 37,31 per m2 per
+maand, oftewel 59%. Als dit getal ongezien de meting in gaat, verpest een enkele
+waarneming de huur per m2 van een hele buurt.
+
+De regel die er nu staat is hard en niet geschat: alleen als de som klopt
+(omschrijving plus souterrain is gelijk aan de specificatie, met twee meter
+marge) staat vast dat het souterrain erin zit, en dan telt het getal uit de
+omschrijving. Het advertentiegetal blijft bewaard en de brief moet het
+voorbehoud noemen.
+
+**Het aanbod is gemeubileerd.** "Hoogwaardig gestoffeerde en gemeubileerde
+oplevering". Dan zit de inrichting in de prijs en hoort de waarneming niet in de
+mediaan. Dat mechanisme bestond al voor Pararius, met de eigen status "te huur
+gemeubileerd", en 123Wonen gebruikt het nu ook. De herkenning moest wel anders:
+de Pararius-regel eist dat "gestoffeerd" NIET in de tekst staat, want daar
+betekent "gestoffeerd of gemeubileerd" dat de huurder kan kiezen. In een
+omschrijving van een pagina staan beide woorden gewoon door elkaar.
+
+**Wat het oplevert.** Deze ene woning:
+
+    van Spaenstraat 20 | Nijmegen | 2425 | te huur gemeubileerd | 2026-10-08 | 123wonen | 65 |
+
+Met een huisnummer, dus de BAG kan hem oppakken: oppervlakte, bouwjaar, label,
+WOZ. Dat kan Huislijn niet, want daar is geen huisnummer. 123Wonen is daarmee
+de betere van de twee bronnen.
+
+**En een fout van gisteren hersteld.** huislijn_kenmerken.json stond niet in de
+lijst van bestanden die worden teruggecommit. De cache werd dus elke run
+weggegooid en elke pagina opnieuw opgehaald. Niet fataal, maar het haalt de
+zin uit een cache en het loopt sneller tegen de grens van 25 per run aan. Beide
+cachebestanden staan er nu in.
+
+**Twee nieuwe briefregels**, want dit zijn fouten die de brief zelf kan maken:
+dat een opgegeven woonoppervlakte niet altijd woonoppervlakte is, en dat een
+gemeubileerde huur geen huur per m2 is.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -38,7 +38,13 @@ AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
              # werden opgehaald: ze stonden ongelezen in de mailbox en de
              # woningen kwamen niet in het bestand. Beide domeinen blijven
              # staan; Huisly is een andere dienst.
-             "huislijn.nl", "huisly.nl"]
+             "huislijn.nl", "huisly.nl",
+             # 123Wonen stuurt een attendering waarin alleen de prijs staat en
+             # "Nijmegen ()" als plaats: geen straat, geen oppervlakte. Alles
+             # staat achter de link, inclusief het huisnummer. Deze afzender
+             # stond nergens, ook niet bij de kandidaten, dus de mails waren
+             # volledig onzichtbaar.
+             "123wonen.nl"]
 
 # Platforms waarvan we nog geen parser hebben, maar waar Mark zich wel bij kan
 # hebben aangemeld. We lezen ze niet uit; we tellen alleen of er post van komt.
@@ -104,6 +110,7 @@ def strip_html(tekst):
         r'(?is)<a[^>]+href=["\']('
         r'[^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*'
         r'|[^"\']*huislijn\.nl/huurwoning/[^"\']*'
+        r'|[^"\']*123wonen\.nl/huur/[^"\']*'
         r')["\'][^>]*>',
         lambda m: f"\n__LINK__{m.group(1)}\n", tekst)
     tekst = re.sub(r"(?i)<br\s*/?>", "\n", tekst)
@@ -660,6 +667,235 @@ def parse_huislijn(regels):
     return gevonden, overgeslagen
 
 
+# ---------------------------------------------------------------------------
+# 123Wonen
+#
+# De attendering zelf is vrijwel leeg: "Huurprijs EUR 2.425 per maand",
+# "Nijmegen ()" en een link. Geen straat, geen oppervlakte. Achter die link
+# staat wel alles, en meer dan bij Huislijn: het volledige adres met
+# huisnummer, de oppervlakte, het aantal kamers, het bouwjaar en het label.
+#
+# Drie dingen waar je bij deze bron op moet letten, en die hieronder zijn
+# afgedekt:
+#
+# 1. De postcode op de pagina is die van het kantoor van de makelaar
+#    (Oranjesingel 51, 6511 NP) en niet die van de woning. Een algemene
+#    postcodezoeker pakt de verkeerde. Wij laten de postcode daarom leeg; met
+#    een huisnummer haalt de BAG hem zelf op.
+# 2. De opgegeven woonoppervlakte kan een souterrain bevatten. Bij de Van
+#    Spaenstraat staat "Woonoppervlakte 103 m2" in de specificaties, terwijl de
+#    omschrijving spreekt van circa 65 m2 woonoppervlakte plus een souterrain
+#    van 38 m2. Dat is 59% verschil in de huur per m2. Klopt de som, dan nemen
+#    we de woonoppervlakte uit de omschrijving.
+# 3. Het aanbod is vaak gemeubileerd. Dan zit de inrichting in de prijs en
+#    hoort de waarneming niet in de mediaan, net als bij Pararius.
+W1_KENMERKEN_PAD = "wonen123_kenmerken.json"
+W1_MAX_OPHALEN = 25
+RE_W1_URL = re.compile(r"123wonen\.nl/huur/[^\s)\]]+", re.IGNORECASE)
+RE_W1_SLUG = re.compile(r"123wonen\.nl/huur/[a-z\-]+/[a-z\-]+/([a-z0-9\-]+)",
+                        re.IGNORECASE)
+RE_W1_HUUR = re.compile(r"Huurprijs\s*€\s*([\d][\d.,]*)", re.IGNORECASE)
+RE_W1_ADRES = re.compile(
+    r"\b([A-Za-zÀ-ÿ.'\-]+(?:\s+[A-Za-zÀ-ÿ.'\-]+){0,3}?)\s+(\d{1,4})\s*,\s*"
+    r"Nijmegen\b")
+RE_W1_OPP = re.compile(r"Woonoppervlakte\D{0,20}?(\d{2,4})\s*m", re.IGNORECASE)
+RE_W1_OPP_TEKST = re.compile(r"circa\s+(\d{2,4})\s*m.{0,3}?\s*woonoppervlakte",
+                             re.IGNORECASE)
+RE_W1_SOUT = re.compile(r"(?:souterrain|kelderruimte|kelder)\D{0,60}?(\d{2,3})"
+                        r"\s*m", re.IGNORECASE)
+RE_W1_KAMERS = re.compile(r"\bKamers\s*(\d{1,2})\b", re.IGNORECASE)
+RE_W1_BOUWJAAR = re.compile(r"\bBouwjaar\s*(1[6-9]\d\d|20[0-2]\d)\b",
+                            re.IGNORECASE)
+RE_W1_LABEL = re.compile(r"Energielabel\s*([A-G]\+{0,4})\b")
+
+
+def _w1_cache():
+    try:
+        with open(W1_KENMERKEN_PAD, encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
+def _w1_straat_uit_slug(slug):
+    """
+    "van-spaenstraat-20" wordt "van Spaenstraat", zonder huisnummer.
+
+    Het nummer uit de slug laten we bewust vallen. Bij "aldenhof-1761-27" is
+    niet te zeggen of 27 een huisnummer of een advertentienummer is, en een
+    verkeerd huisnummer is erger dan geen huisnummer: dan matcht de BAG een
+    andere woning. Het huisnummer komt alleen van de pagina zelf.
+    """
+    delen = [d for d in slug.split("-") if d and not d.isdigit()]
+    return _hl_straat_uit_slug("-".join(delen)) if delen else None
+
+
+def wonen123_kenmerken(url, cache, opgehaald):
+    """
+    Adres, oppervlakte, kamers, bouwjaar en label van een 123Wonen-advertentie.
+
+    Het huisnummer wordt alleen overgenomen als de straat uit de pagina
+    overeenkomt met de straat uit de link. Zo kan een adres uit een blok
+    "vergelijkbaar aanbod" nooit voor het adres van deze woning doorgaan.
+    """
+    sleutel = re.sub(r"[?#].*$", "", url)
+    if sleutel in cache:
+        return cache[sleutel]
+    if opgehaald[0] >= W1_MAX_OPHALEN:
+        return {}
+    if os.environ.get("WONEN123_KENMERKEN", "1") == "0":
+        return {}
+    opgehaald[0] += 1
+    try:
+        verzoek = urllib.request.Request(
+            sleutel, headers={"User-Agent": "Mozilla/5.0 (vastgoedbrief)"})
+        with urllib.request.urlopen(verzoek, timeout=20) as antwoord:
+            rauw = antwoord.read().decode("utf-8", errors="replace")
+    except Exception as e:  # noqa
+        print(f"    kenmerken niet op te halen ({str(e)[:60]}): {sleutel[:70]}",
+              file=sys.stderr)
+        return {}
+    uit = _w1_lees_pagina(" | ".join(strip_html(rauw)), sleutel)
+    cache[sleutel] = uit
+    time.sleep(0.5)
+    return uit
+
+
+def _w1_lees_pagina(tekst, url=""):
+    """De kenmerken uit de paginatekst. Apart, zodat hij te testen is."""
+    uit = {}
+    slug = RE_W1_SLUG.search(url or "")
+    straat_link = _w1_straat_uit_slug(slug.group(1)) if slug else None
+
+    m = RE_W1_ADRES.search(tekst)
+    if m:
+        straat, nummer = m.group(1).strip(), m.group(2)
+        plat = lambda s: re.sub(r"[^a-z]", "", (s or "").lower())
+        if not straat_link or plat(straat) == plat(straat_link):
+            uit["adres"] = f"{straat} {nummer}"
+        elif straat_link:
+            uit["adres"] = straat_link
+    elif straat_link:
+        uit["adres"] = straat_link
+
+    opp = tekst_opp = sout = None
+    m = RE_W1_OPP.search(tekst)
+    if m:
+        opp = int(m.group(1))
+    m = RE_W1_OPP_TEKST.search(tekst)
+    if m:
+        tekst_opp = int(m.group(1))
+    m = RE_W1_SOUT.search(tekst)
+    if m:
+        sout = int(m.group(1))
+    # Alleen als de som klopt staat vast dat het souterrain in de opgegeven
+    # oppervlakte zit. Dan is de omschrijving het eerlijkere getal.
+    if opp and tekst_opp and sout and abs(tekst_opp + sout - opp) <= 2:
+        uit["opp_advertentie"] = opp
+        uit["souterrain"] = sout
+        opp = tekst_opp
+    if opp and 10 <= opp <= 1000:
+        uit["opp"] = opp
+
+    for naam, regex, omzet in (("kamers", RE_W1_KAMERS, int),
+                               ("bouwjaar", RE_W1_BOUWJAAR, int),
+                               ("label", RE_W1_LABEL, str)):
+        m = regex.search(tekst)
+        if m:
+            try:
+                uit[naam] = omzet(m.group(1))
+            except ValueError:
+                pass
+
+    laag = tekst.lower()
+    if "ongemeubileerd" in laag or "ongemeubeld" in laag:
+        uit["staat"] = "kaal"
+    elif "gestoffeerd of gemeubileerd" in laag:
+        uit["staat"] = "gestoffeerd"
+    elif "gemeubileerd" in laag or "gemeubeld" in laag:
+        uit["staat"] = "gemeubileerd"
+    elif "gestoffeerd" in laag:
+        uit["staat"] = "gestoffeerd"
+    return uit
+
+
+def parse_123wonen(regels):
+    """
+    Leest een 123Wonen-attendering: de prijs uit de mail, de rest van de pagina.
+
+    Zonder link is er niets: de mail noemt de straat niet. Zo'n regel wordt
+    overgeslagen en gemeld, zodat het zichtbaar is in plaats van stil.
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = waarnemingsdatum()
+    cache = _w1_cache()
+    opgehaald = [0]
+    prijs = None
+    link = None
+
+    def bewaar(prijs, url):
+        ken = wonen123_kenmerken(url, cache, opgehaald)
+        adres = ken.get("adres")
+        if not adres:
+            overgeslagen.append(f"123wonen €{prijs} (geen adres te vinden)")
+            return
+        sleutel = (adres.lower(), prijs)
+        if sleutel in gezien:
+            return
+        gezien.add(sleutel)
+        opp = ken.get("opp") or ""
+        status = ("te huur gemeubileerd" if ken.get("staat") == "gemeubileerd"
+                  else "te huur")
+        if ken.get("staat") == "gemeubileerd":
+            overgeslagen.append(f"{adres} (gemeubileerd, apart bewaard)")
+        if ken.get("souterrain"):
+            overgeslagen.append(
+                f"{adres} (advertentie noemt {ken['opp_advertentie']} m2, "
+                f"waarvan {ken['souterrain']} m2 souterrain; {opp} m2 gebruikt)")
+        gevonden.append(f"{adres} | Nijmegen | {prijs} | {status} | "
+                        f"{vandaag} | 123wonen | {opp} | ")
+
+    for regel in regels:
+        kaal = regel.strip()
+        if not kaal:
+            continue
+        m = RE_W1_HUUR.search(kaal)
+        if m:
+            bedrag = m.group(1).rstrip(".,").replace(".", "").replace(",", "")
+            try:
+                bedrag = int(bedrag)
+            except ValueError:
+                bedrag = None
+            if bedrag and 150 <= bedrag <= 10000:
+                # Een nieuwe prijs zonder dat de vorige een link kreeg: die
+                # vorige woning had geen objectlink en is niet te plaatsen.
+                if prijs and not link:
+                    overgeslagen.append(f"123wonen €{prijs} (geen link)")
+                prijs, link = bedrag, None
+        m = RE_W1_URL.search(kaal)
+        if m and prijs:
+            # De hele URL, niet alleen het stuk vanaf het domein: zonder
+            # "https://" is hij niet op te halen.
+            m_vol = re.search(r"https?://[^\s)\]]+123wonen\.nl/huur/[^\s)\]]+"
+                              r"|https?://[^\s)\]]*123wonen[^\s)\]]+", kaal,
+                              re.IGNORECASE)
+            link = (m_vol.group(0) if m_vol
+                    else "https://www." + m.group(0)).rstrip(").,")
+            bewaar(prijs, link)
+            prijs, link = None, None
+    if prijs and not link:
+        overgeslagen.append(f"123wonen €{prijs} (geen link)")
+    if opgehaald[0]:
+        print(f"    kenmerken opgehaald voor {opgehaald[0]} 123Wonen-panden",
+              file=sys.stderr)
+        try:
+            with open(W1_KENMERKEN_PAD, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
+    return gevonden, overgeslagen
+
+
 def parse_pararius(regels):
     """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
     gevonden, gezien, overgeslagen = [], set(), []
@@ -963,6 +1199,8 @@ def main():
             soort_bron, status_label = "pararius", "te huur"
         elif "huislijn" in afzender or "huislijn" in blob:
             soort_bron, status_label = "huislijn", "te huur"
+        elif "123wonen" in afzender or "123wonen" in blob:
+            soort_bron, status_label = "123wonen", "te huur"
         elif "funda in business" in blob or "bedrijfspanden" in blob:
             soort_bron, status_label = "business", "belegging"
         else:
@@ -1004,6 +1242,8 @@ def main():
             objecten, overgeslagen = parse_pararius(regels)
         elif soort_bron == "huislijn":
             objecten, overgeslagen = parse_huislijn(regels)
+        elif soort_bron == "123wonen":
+            objecten, overgeslagen = parse_123wonen(regels)
         else:
             objecten, overgeslagen = parse_objecten(regels, status_label)
         alle_overgeslagen.extend(overgeslagen)

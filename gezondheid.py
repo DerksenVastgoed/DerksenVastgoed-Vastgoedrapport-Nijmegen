@@ -209,7 +209,8 @@ def controle_afzenders():
     woningen kwamen nergens terecht. Dat was alleen te zien doordat Mark het
     opmerkte, en dat is precies het soort fout dat een controle hoort te doen.
     """
-    bronnen_verwacht = ("funda", "pararius", "kamernet", "huislijn")
+    bronnen_verwacht = ("funda", "pararius", "kamernet", "huislijn",
+                        "123wonen")
     gezien = {}
     try:
         with open("verkopen.txt", encoding="utf-8") as f:
@@ -243,6 +244,7 @@ def controle_huurdata():
     recent = [r for r in huur
               if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(8))]
     huislijn = [r for r in huur if "huislijn" in r.lower()]
+    wonen123 = [r for r in huur if "123wonen" in r.lower()]
     # Waarnemingen zonder oppervlakte: bruikbaar om te zien wat er te huur
     # staat, niet om een prijs per vierkante meter uit te rekenen. Huislijn
     # geeft alleen een straatnaam en een huurprijs, dus die vallen hieronder.
@@ -262,15 +264,25 @@ def controle_huurdata():
     # gehaald. Zijn er Huislijn-waarnemingen en heeft GEEN ervan een
     # oppervlakte, dan lukt dat ophalen niet, en dan vallen ze allemaal buiten
     # de huur per m2 zonder dat iets dat zegt.
-    hl_met_m2 = 0
-    for r in huislijn:
-        v = [x.strip() for x in r.split("|")]
-        if len(v) > 6 and v[6]:
-            hl_met_m2 += 1
-    hl_stil = bool(huislijn) and not hl_met_m2
+    # Dit geldt voor elke bron waarvan de oppervlakte van de advertentiepagina
+    # komt. 123Wonen is de tweede: de mail noemt daar zelfs de straat niet.
+    stille_bron = None
+    for naam in ("huislijn", "123wonen"):
+        rijen = [r for r in huur if naam in r.lower()]
+        if not rijen:
+            continue
+        met_m2 = 0
+        for r in rijen:
+            v = [x.strip() for x in r.split("|")]
+            if len(v) > 6 and v[6]:
+                met_m2 += 1
+        if not met_m2:
+            stille_bron = (naam, len(rijen))
+            break
     bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
               f"en {len(kamernet)} Kamernet"
               + (f" en {len(huislijn)} Huislijn" if huislijn else "")
+              + (f" en {len(wonen123)} 123Wonen" if wonen123 else "")
               + f"; {len(recent)} in de laatste week"
               + (f"; {zonder_m2} zonder oppervlakte, die tellen niet mee in de "
                  f"huur per m2" if zonder_m2 else "")
@@ -290,10 +302,11 @@ def controle_huurdata():
         return (LET_OP, bewijs,
                 "Wel huurdata, maar niets nieuws deze week. Komen de Pararius-mails "
                 "nog binnen, en worden ze herkend? Zie stap 14.")
-    if hl_stil:
-        return (LET_OP, bewijs + f"; geen van de {len(huislijn)} "
-                f"Huislijn-waarnemingen heeft een oppervlakte",
-                "De oppervlakte van een Huislijn-pand komt van de "
+    if stille_bron:
+        naam, aantal = stille_bron
+        return (LET_OP, bewijs + f"; geen van de {aantal} "
+                f"{naam}-waarnemingen heeft een oppervlakte",
+                f"De oppervlakte van een {naam}-pand komt van de "
                 "advertentiepagina, niet uit de mail. Lukt dat ophalen niet, "
                 "dan tellen die waarnemingen nergens mee. Zoek in het logboek "
                 "van de mailstap op 'kenmerken niet op te halen'.")
