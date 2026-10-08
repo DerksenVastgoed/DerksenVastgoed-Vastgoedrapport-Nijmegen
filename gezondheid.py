@@ -846,6 +846,52 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+def controle_verteld():
+    """
+    Weet de brief wat pa al heeft gelezen?
+
+    Dit is de controle op de reparatie van 8 oktober. Die dag stonden er drie
+    dingen in de brief die pa al had gehad: een prijsverlaging van twee dagen
+    eerder, twee vergunningen en een pand dat al weken te koop stond. De
+    oorzaak was dat niets bijhield wat er eerder was verstuurd.
+
+    Het geheugen wordt alleen door een echte brief bijgewerkt, nooit door een
+    testrun. Groeit het dus niet terwijl er wel brieven uitgaan, dan is de
+    herhaling terug zonder dat iemand het ziet, en dat is precies het soort
+    stille uitval waar dit rapport voor bestaat.
+    """
+    d = _json("verteld.json") or {}
+    onderwerpen = d.get("onderwerpen") or {}
+    if not onderwerpen:
+        return (LET_OP, "nog geen geheugen van verstuurde brieven",
+                "Vanaf de eerste echte brief komt hier per pand en per "
+                "bekendmaking te staan wanneer het is gemeld. Een testrun "
+                "schrijft hier niets, dus na alleen handruns is dit leeg. "
+                "Blijft het leeg na een geplande ochtendrun, kijk dan in het "
+                "logboek van de briefstap naar 'Verteld:'.")
+    laatst = max((r.get("laatst") or "") for r in onderwerpen.values())
+    leeftijd = None
+    try:
+        leeftijd = (VANDAAG - dt.date.fromisoformat(laatst)).days
+    except Exception:
+        pass
+    binnen = sum(1 for r in onderwerpen.values()
+                 if (r.get("laatst") or "") >= str(VANDAAG - dt.timedelta(days=21)))
+    herhaald = sum(1 for r in onderwerpen.values() if int(r.get("keer") or 1) > 1)
+    bewijs = (f"{len(onderwerpen)} onderwerpen bekend, {binnen} in het venster "
+              f"van drie weken, laatste brief {laatst}")
+    if herhaald:
+        bewijs += (f"; {herhaald} onderwerpen kwamen in meer dan een brief "
+                   f"terug")
+    if leeftijd is not None and leeftijd > 3:
+        return (LET_OP, bewijs,
+                f"De laatste echte brief is {leeftijd} dagen geleden "
+                f"vastgelegd. Gaan er wel brieven uit, dan wordt dit geheugen "
+                f"niet bijgewerkt en komt de herhaling terug. Zoek in het "
+                f"logboek van de briefstap op 'Verteld:'.")
+    return (OK, bewijs, "")
+
+
 def controle_nieuwe_onderwerpen():
     """
     Onderwerpen die in het nieuws terugkomen en waar nog geen stuk over is.
@@ -1612,6 +1658,7 @@ def controle_commit():
 
 CONTROLES = [
     ("Versies", controle_versies),
+    ("Geheugen verstuurde brieven", controle_verteld),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),
