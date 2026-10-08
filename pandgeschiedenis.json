@@ -2900,6 +2900,23 @@
     "van den Havestraat 2": "D"
    }
   },
+  "0268100000002742": {
+   "bag_eenheden": [
+    [
+     "van den Havestraat 10",
+     82
+    ],
+    [
+     "van den Havestraat 8",
+     79
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "van den Havestraat 10": "B",
+    "van den Havestraat 8": "C"
+   }
+  },
   "0268100000002752": {
    "bag_eenheden": [
     [
@@ -12146,6 +12163,18 @@
     "Ganzenheuvel 48": "B",
     "Ganzenheuvel 50": "A",
     "Noorderkerktrappen 1": "D"
+   }
+  },
+  "0268100000010404": {
+   "bag_eenheden": [
+    [
+     "Kanunnik Pelsstraat 15",
+     107
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Kanunnik Pelsstraat 15": "A"
    }
   },
   "0268100000010494": {
@@ -23196,6 +23225,26 @@
     "Voorstadslaan 133": "C"
    }
   },
+  "0268100000023519": {
+   "bag_eenheden": [
+    [
+     "Couwenbergstraat 20",
+     665
+    ],
+    [
+     "Couwenbergstraat 22",
+     1787
+    ],
+    [
+     "De Kempenaerstraat 60",
+     952
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Couwenbergstraat 22": "A"
+   }
+  },
   "0268100000023593": {
    "bag_eenheden": [
     [
@@ -30355,6 +30404,15 @@
    ],
    "bag_gezien": "2026-10-04"
   },
+  "0268100000039310": {
+   "bag_eenheden": [
+    [
+     "Lankforst 2207",
+     137
+    ]
+   ],
+   "bag_gezien": "2026-10-08"
+  },
   "0268100000039815": {
    "bag_eenheden": [
     [
@@ -31357,6 +31415,18 @@
     "Hatertseweg 15": "B"
    }
   },
+  "0268100000041536": {
+   "bag_eenheden": [
+    [
+     "Kerkenbos 1024",
+     454
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Kerkenbos 1024": "C"
+   }
+  },
   "0268100000041548": {
    "bag_eenheden": [
     [
@@ -31923,6 +31993,18 @@
    "labels": {
     "St. Annastraat 213": "D",
     "St. Annastraat 215": "D"
+   }
+  },
+  "0268100000043107": {
+   "bag_eenheden": [
+    [
+     "Meijhorst 5248",
+     120
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Meijhorst 5248": "A"
    }
   },
   "0268100000043300": {
@@ -33879,6 +33961,18 @@
     "van Welderenstraat 119E": "A++++"
    }
   },
+  "0268100000048887": {
+   "bag_eenheden": [
+    [
+     "Buurmansweg 46",
+     109
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Buurmansweg 46": "D"
+   }
+  },
   "0268100000048917": {
    "bag_eenheden": [
     [
@@ -35405,6 +35499,18 @@
     "Kroonstraat 182": "A",
     "Kroonstraat 184": "A",
     "Kroonstraat 188": "A"
+   }
+  },
+  "0268100000084171": {
+   "bag_eenheden": [
+    [
+     "Hofdijkstraat 9",
+     119
+    ]
+   ],
+   "bag_gezien": "2026-10-08",
+   "labels": {
+    "Hofdijkstraat 9": "A"
    }
   },
   "0268100000084175": {
@@ -46687,6 +46793,24 @@
   ],
   "pand_id": "0268100000045934"
  },
+ "buurmansweg46": {
+  "adres": "Buurmansweg 46",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-10-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Buurmansweg 46 is D, geregistreerd 2024-10-28"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van de bestaande aanbouw, aan Buurmansweg 46, 6525RX Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000048887"
+ },
  "buurmansweg47": {
   "adres": "Buurmansweg 47",
   "gebeurtenissen": [
@@ -47360,6 +47484,24 @@
    }
   ],
   "pand_id": "0268100000045871"
+ },
+ "couwenbergstraat20": {
+  "adres": "Couwenbergstraat 20",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2019-11-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Couwenbergstraat 22 is A, geregistreerd 2019-11-18"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Melding melding brandveilig gebruik, aan Couwenbergstraat 20, 6535RZ Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000023519"
  },
  "csardasstraat43": {
   "adres": "Csardasstraat 43",
@@ -57171,6 +57313,12 @@
     "datum": "2026-10-01",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €835 per maand, 20 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €800 per maand, 35 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -63818,6 +63966,24 @@
   ],
   "pand_id": "0268100000084175"
  },
+ "hofdijkstraat9": {
+  "adres": "Hofdijkstraat 9",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-06-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hofdijkstraat 9 is A, geregistreerd 2022-06-01"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-08",
+    "soort": "te koop",
+    "tekst": "te koop voor €645.000"
+   }
+  ],
+  "pand_id": "0268100000084171"
+ },
  "holtermanstraat2": {
   "adres": "Holtermanstraat 2",
   "bag_pogingen": 1,
@@ -67102,6 +67268,24 @@
   ],
   "pand_id": "0268100000022353"
  },
+ "kanunnikpelsstraat15": {
+  "adres": "Kanunnik Pelsstraat 15",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2019-02-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Kanunnik Pelsstraat 15 is A, geregistreerd 2019-02-04"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel aan de voor en achtergevel, aan Kanunnik Pelsstraat 15, 6525VW Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000010404"
+ },
  "kanunnikvanosstraat2": {
   "adres": "Kanunnik van Osstraat 2",
   "gebeurtenissen": [
@@ -68181,6 +68365,24 @@
    }
   ],
   "pand_id": "0268100000002960"
+ },
+ "kerkenbos1024": {
+  "adres": "Kerkenbos 1024",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Kerkenbos 1024 is C, geregistreerd 2022-02-28"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen van een bedrijfspand, aan Kerkenbos 1024, 6546BA Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000041536"
  },
  "kerkstraat65": {
   "adres": "Kerkstraat 65",
@@ -73027,6 +73229,18 @@
   ],
   "pand_id": "0268100000008260"
  },
+ "lankforst2207": {
+  "adres": "Lankforst 2207",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel aan de voorzijde van het huis, aan Lankforst 2207, 6538GJ Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000039310"
+ },
  "lankforst2912": {
   "adres": "Lankforst 2912",
   "gebeurtenissen": [
@@ -76040,6 +76254,24 @@
    }
   ],
   "pand_id": "0268100000089357"
+ },
+ "meijhorst5248": {
+  "adres": "Meijhorst 5248",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Meijhorst 5248 is A, geregistreerd 2023-02-11"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-08",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor Interne verbouwing met constructieve wijzigingen in het gebouw., aan Meijhorst 5248, 6537HN Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000043107"
  },
  "meijhorst5413": {
   "adres": "Meijhorst 5413",
@@ -93643,6 +93875,20 @@
   ],
   "pand_id": "0268100000021000"
  },
+ "stjacobslaan": {
+  "adres": "St. Jacobslaan",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €390 per maand, 11 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
  "stjacobslaan179": {
   "adres": "St. Jacobslaan 179",
   "gebeurtenissen": [
@@ -99056,6 +99302,30 @@
   ],
   "pand_id": "0268100000002832"
  },
+ "vandenhavestraat10": {
+  "adres": "van den Havestraat 10",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-07-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van van den Havestraat 8 is C, geregistreerd 2026-07-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van van den Havestraat 10 is B, geregistreerd 2026-10-04"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-08",
+    "soort": "te koop",
+    "tekst": "te koop voor €419.000, 77 m2"
+   }
+  ],
+  "pand_id": "0268100000002742"
+ },
  "vandenhavestraat83": {
   "adres": "van den Havestraat 83",
   "gebeurtenissen": [
@@ -99883,6 +100153,12 @@
     "datum": "2026-09-09",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €655 per maand, 14 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €715 per maand, 18 m2"
    }
   ],
   "pand_id": null
@@ -108843,6 +109119,20 @@
    }
   ],
   "pand_id": "0268100000022055"
+ },
+ "vossenlaan": {
+  "adres": "Vossenlaan",
+  "bag_gezien": "2026-10-08",
+  "bag_zonder_id": "2026-10-08",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €735 per maand, 18 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "vossenlaan177": {
   "adres": "Vossenlaan 177",

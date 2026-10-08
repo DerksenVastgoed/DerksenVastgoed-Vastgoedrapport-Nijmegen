@@ -1,23 +1,10 @@
 [
  {
-  "datum": "2026-10-05",
-  "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een pand naar 3 appartementen, aan Staringstraat 2, 6511PD Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-463651.html",
-  "strategie": "splitsen",
-  "duiding": "Aanvraag voor omzetting naar drie appartementen zou het pand geschikt maken voor losse verkoop of verhuur, mits vergund.",
-  "feiten": {
-   "oppervlakte_m2": 256
-  },
-  "straat": "Staringstraat",
-  "huisnummer": "2",
-  "kern": true
- },
- {
   "datum": "2026-10-06",
   "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466573.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag legaliseert bestaande splitsing van twee naar vier woningen; bij label F telt verkamering zwaarder mee in de WWS-punten.",
+  "duiding": "Aanvraag (nog geen besluit) voor legalisatie van 2 naar 4 woningen; bij label F telt verkamering zwaarder mee in de WWS-punten.",
   "feiten": {
    "energielabel": "F (2017)",
    "label_alleen_dit_adres": true,
@@ -28,11 +15,25 @@
   "kern": true
  },
  {
+  "datum": "2026-10-08",
+  "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de bestaande aanbouw, aan Buurmansweg 46, 6525RX Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-470593.html",
+  "strategie": "geen",
+  "duiding": "Verbouwing van de aanbouw is een lokale ingreep zonder directe relevantie voor waardecreatie-strategieën.",
+  "feiten": {
+   "energielabel": "D (2024)",
+   "oppervlakte_m2": 109
+  },
+  "straat": "Buurmansweg",
+  "huisnummer": "46",
+  "kern": false
+ },
+ {
   "datum": "2026-10-07",
   "titel": "Melding voor het uitvoeren van sloopwerkzaamheden (advies) op de locatie Groesbeeksedwarsweg 91-93-95-97-99-101 te Nijmegen zaaknummer Z26MA.2191",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-468054.html",
-  "strategie": "geen",
-  "duiding": "Sloopmelding over meerdere adressen is procedureel en geeft op zichzelf geen marktsignaal.",
+  "strategie": "transformatie",
+  "duiding": "Sloopmelding voor zes aaneengesloten adressen wijst op voorbereiding van grootschalige herontwikkeling van het bouwblok.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
@@ -42,8 +43,8 @@
   "datum": "2026-10-06",
   "titel": "Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Asbestsanering bij mutatie wijst op renovatie bij huurderswisseling, een gangbare waardecreatie binnen bestaand bezit.",
+  "strategie": "verduurzaming",
+  "duiding": "Asbestverwijdering bij mutatie markeert het moment waarop de woning wordt opgeknapt, kenmerkend voor waardecreatie bij huurderswisseling.",
   "feiten": {
    "energielabel": "A (2023)",
    "oppervlakte_m2": 101
@@ -57,7 +58,7 @@
   "titel": "Besluit voor  het vervangen van de kozijnen, aan Oude Nonnendaalseweg 188, 6542WX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466966.html",
   "strategie": "verduurzaming",
-  "duiding": "Vergunde kozijnvervanging verbetert de isolatie en daarmee het energielabel zodra een nieuwe opname plaatsvindt.",
+  "duiding": "Vergunde kozijnvervanging verbetert het energielabel en toont dat labelverbetering ook bij dit pand vergunbaar is.",
   "feiten": {
    "energielabel": "D (2026)",
    "oppervlakte_m2": 125
@@ -71,7 +72,7 @@
   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465994.html",
   "strategie": "buy-and-hold",
-  "duiding": "Vergunning voor tijdelijke verhuur wijst op overbrugging richting verkoop of verbouwing, het pand komt mogelijk later vrij.",
+  "duiding": "Tijdelijke verhuur wijst op overbrugging richting verkoop of verbouwing; het pand komt mogelijk op termijn op de markt.",
   "feiten": {
    "energielabel": "C (2026)",
    "oppervlakte_m2": 125

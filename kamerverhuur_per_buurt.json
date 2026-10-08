@@ -1,7 +1,7 @@
 {
  "meldingen_per_jaar": {
   "2025": 102,
-  "2026": 84
+  "2026": 85
  },
  "per_buurt": {
   "'t Acker": {
@@ -83,10 +83,10 @@
    "totaal": 12
   },
   "Hatert": {
-   "alleen_melding_of_besluit": 6,
+   "alleen_melding_of_besluit": 7,
    "alleen_vergunning": 12,
    "beide": 0,
-   "totaal": 18
+   "totaal": 19
   },
   "Hatertse Hei": {
    "alleen_melding_of_besluit": 9,

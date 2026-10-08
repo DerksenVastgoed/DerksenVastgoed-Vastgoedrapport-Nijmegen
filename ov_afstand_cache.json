@@ -31,6 +31,22 @@
   "omweg": 3.78,
   "soort": "bus"
  },
+ "51.82096,5.85030": {
+  "geschat": false,
+  "hemelsbreed": 126,
+  "meters": 123,
+  "naam": "Akkerlaan",
+  "omweg": 0.98,
+  "soort": "bus"
+ },
+ "51.82495,5.84986": {
+  "geschat": false,
+  "hemelsbreed": 272,
+  "meters": 420,
+  "naam": "Akkerlaan",
+  "omweg": 1.54,
+  "soort": "bus"
+ },
  "51.82524,5.86010": {
   "geschat": false,
   "hemelsbreed": 281,
@@ -165,6 +181,14 @@
   "meters": 23,
   "naam": "Hengstdalseweg/Broerdijk",
   "omweg": 0.92,
+  "soort": "bus"
+ },
+ "51.83384,5.85117": {
+  "geschat": false,
+  "hemelsbreed": 159,
+  "meters": 312,
+  "naam": "Thijmstraat",
+  "omweg": 1.96,
   "soort": "bus"
  },
  "51.83392,5.83983": {
@@ -645,6 +669,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.84239,5.87202": {
+  "geschat": false,
+  "hemelsbreed": 188,
+  "meters": 365,
+  "naam": "Meester Franckenstraat",
+  "omweg": 1.94,
   "soort": "bus"
  },
  "51.84241,5.87371": {

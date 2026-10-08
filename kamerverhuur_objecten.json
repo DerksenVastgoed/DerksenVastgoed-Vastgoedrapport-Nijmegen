@@ -1369,6 +1369,18 @@
   "buurt": "Hengstdal",
   "straat": "Corduwenerstraat"
  },
+ "couwenbergstraat20": {
+  "adres": "Couwenbergstraat 20",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Hatert",
+  "straat": "Couwenbergstraat"
+ },
  "csardasstraat43": {
   "adres": "Csardasstraat 43",
   "bronnen": [

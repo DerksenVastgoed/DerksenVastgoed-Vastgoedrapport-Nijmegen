@@ -72449,6 +72449,86 @@
     ],
     "postcode": "6522AH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "van den Havestraat 10|Nijmegen": {
+    "oppervlakte": 77,
+    "bouwjaar": "1901",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521JS",
+    "adresseerbaarObjectIdentificatie": "0268010000030261",
+    "pand": "0268100000002742",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-db1321641e28e7b0940f3b3906bd1bad",
+    "eenheden_in_pand": [
+      {
+        "adres": "van den Havestraat 8",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van den Havestraat 10",
+        "oppervlakte": 82,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 82,
+    "energielabel": {
+      "label": "B",
+      "registratiedatum": "2026-10-04",
+      "geldig_tot": "2036-09-30",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Hofdijkstraat 9|Nijmegen": {
+    "oppervlakte": 119,
+    "bouwjaar": "2012",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6531BR",
+    "adresseerbaarObjectIdentificatie": "0268010000086885",
+    "pand": "0268100000084171",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Nije Veld",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-a343883cb4b5d07b78d8b38ddbedc555",
+    "energielabel": {
+      "label": "A",
+      "registratiedatum": "2022-06-01",
+      "geldig_tot": "2032-05-25",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "St. Jacobslaan|Nijmegen": {
+    "oppervlakte": 11,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Vossenlaan|Nijmegen": {
+    "oppervlakte": 18,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Buurmansweg 46|Nijmegen": {
+    "postcode": "6525RX",
+    "buurtnaam": "Brakkenstein",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-dc618942713598982430b55fe95c18eb"
   }
 }
