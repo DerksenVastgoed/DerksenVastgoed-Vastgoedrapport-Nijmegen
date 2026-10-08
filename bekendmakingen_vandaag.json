@@ -4,7 +4,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466573.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag legaliseert bestaande splitsing naar vier woningen; label F uit 2017 beperkt WWS-punten bij latere kamerverhuur.",
+  "duiding": "Aanvraag om de bestaande splitsing naar 4 woningen te legaliseren toont praktische haalbaarheid, al is besluit nog niet genomen.",
   "feiten": {
    "energielabel": "F (2017)",
    "label_alleen_dit_adres": true,
@@ -19,7 +19,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de bestaande aanbouw, aan Buurmansweg 46, 6525RX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-470593.html",
   "strategie": "geen",
-  "duiding": "Verbouwing van de aanbouw raakt alleen de padindeling, geen signaal voor waardecreatie-strategieën.",
+  "duiding": "Verbouwing van een aanbouw raakt vooral gebruiksoppervlak, geen signaal voor waardecreatie-strategie.",
   "feiten": {
    "energielabel": "D (2024)",
    "oppervlakte_m2": 109
@@ -32,8 +32,8 @@
   "datum": "2026-10-07",
   "titel": "Melding voor het uitvoeren van sloopwerkzaamheden (advies) op de locatie Groesbeeksedwarsweg 91-93-95-97-99-101 te Nijmegen zaaknummer Z26MA.2191",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-468054.html",
-  "strategie": "uitponden",
-  "duiding": "Sloopmelding voor zes adressen tegelijk wijst op grootschalige herontwikkeling die toekomstig aanbod in dit blok wijzigt.",
+  "strategie": "transformatie",
+  "duiding": "Sloopmelding voor meerdere aaneengesloten adressen wijst op voorbereiding van grootschalige herontwikkeling van het blok.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
@@ -43,8 +43,8 @@
   "datum": "2026-10-06",
   "titel": "Melding voor het verwijderen van asbest (mutatiewoning) op de locatie Daalseweg 96 te Nijmegen zaaknummer Z26MA.2177",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465042.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Asbestverwijdering bij mutatie wijst op renovatie tussen huurders, gangbaar bij doorexploitatie zonder verkoop.",
+  "strategie": "verduurzaming",
+  "duiding": "Asbestverwijdering bij mutatie maakt de weg vrij voor renovatie en isolatie van de woning na huurderswisseling.",
   "feiten": {
    "energielabel": "A (2023)",
    "oppervlakte_m2": 101
@@ -58,7 +58,7 @@
   "titel": "Besluit voor  het vervangen van de kozijnen, aan Oude Nonnendaalseweg 188, 6542WX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466966.html",
   "strategie": "verduurzaming",
-  "duiding": "Vergunde kozijnvervanging verbetert de isolatie en daarmee het energielabel zodra een nieuwe opname plaatsvindt.",
+  "duiding": "Vergunde kozijnvervanging verbetert de isolatie, wat pas na nieuwe opname in een hoger energielabel kan resulteren.",
   "feiten": {
    "energielabel": "D (2026)",
    "oppervlakte_m2": 125
@@ -72,7 +72,7 @@
   "titel": "Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-465994.html",
   "strategie": "buy-and-hold",
-  "duiding": "Verleende tijdelijke verhuurvergunning wijst op overbrugging richting verkoop of renovatie, het pand blijft voorlopig verhuurd.",
+  "duiding": "Tijdelijke verhuurvergunning wijst op overbrugging richting verkoop of verbouwing van de woning.",
   "feiten": {
    "energielabel": "C (2026)",
    "oppervlakte_m2": 125
