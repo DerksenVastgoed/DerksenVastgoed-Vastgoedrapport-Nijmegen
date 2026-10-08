@@ -988,3 +988,6 @@ Treubstraat | Nijmegen | 995 | te huur | 2026-10-08 | huislijn | 88 | 6535ZN
 Nieuwe Dukenburgseweg | Nijmegen | 781 | te huur | 2026-10-08 | huislijn | 43 | 6534AD
 Meijhorst | Nijmegen | 710 | te huur | 2026-10-08 | huislijn | 85 | 6537KT
 Burchtstraat | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn | 150 | 6511RC
+
+# Automatisch toegevoegd uit Funda-attendering op 08-10-2026
+Waalkade | Nijmegen | 635 | te huur kamer | 2026-10-08 | kamernet-incl | 10 | 

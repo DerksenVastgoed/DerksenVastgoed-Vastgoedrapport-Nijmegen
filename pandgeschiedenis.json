@@ -111320,6 +111320,12 @@
     "datum": "2026-09-29",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €565 per maand, 14 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €635 per maand, 10 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
