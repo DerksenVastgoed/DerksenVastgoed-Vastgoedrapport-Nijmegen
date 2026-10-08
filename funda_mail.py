@@ -445,9 +445,45 @@ RE_PA_TITEL = re.compile(
 PA_UITSLUITEN = ("ad hoc", "camelot", "leegstandbeheer", "anti-kraak", "antikraak")
 
 
-RE_HL_STRAAT = re.compile(r"^\[?([A-Za-zÀ-ÿ.'\- ]{3,40}?)\s+Nijmegen\]?",
+# Drie manieren om dezelfde Huislijn-mail te lezen, want de omzetting van HTML
+# naar tekst levert niet altijd dezelfde vorm op. Op 8 oktober kwamen er vier
+# mails binnen waar nul objecten uit kwamen: de eerste versie eiste dat de
+# straatnaam en de prijs op APARTE regels stonden, met de prijsregel beginnend
+# met "Huur:". In de werkelijke mail staan ze vermoedelijk op een regel.
+#
+# 1. De straatnaam uit de URL. Die is het betrouwbaarst, want een link
+#    overleeft elke tekstomzetting:
+#    .../huurwoning/nederland/gelderland/4433366/maasstraat-nijmegen?utm...
+RE_HL_URL = re.compile(r"huislijn\.nl/huurwoning/[^\s)]*?/([a-z0-9\-]+?)-nijmegen",
+                       re.IGNORECASE)
+# 2. Een straatnaam met Nijmegen erachter, met of zonder blokhaken.
+RE_HL_STRAAT = re.compile(r"\[?([A-Za-zÀ-ÿ.'\- ]{3,40}?)\s+Nijmegen\b",
                           re.IGNORECASE)
-RE_HL_HUUR = re.compile(r"^Huur:\s*€\s*([\d.,]+)", re.IGNORECASE)
+# 3. Een bedrag, waar het ook in de regel staat.
+RE_HL_HUUR = re.compile(r"(?:huur|prijs)?\s*€\s*([\d][\d.,]*)", re.IGNORECASE)
+# Regels uit de reclameblokken die geen aanbod zijn.
+HL_RUIS = ("kan ik dit huis betalen", "aanmelden", "wooninspiratie",
+           "nieuwsbrief", "wooninfluencers", "laat je inspireren",
+           "bekijk deze woning", "hypotheekaanvraag")
+
+
+def _hl_straat_uit_slug(slug):
+    """"jan-van-speykstraat" wordt "Jan van Speykstraat"."""
+    klein = {"van", "de", "den", "der", "het", "ter", "te", "op", "aan"}
+    delen = [d for d in slug.split("-") if d]
+    if not delen:
+        return None
+    uit = []
+    for i, d in enumerate(delen):
+        if d == "st":
+            # De slug laat de punt weg, maar ons aanbod kent "St. Annastraat".
+            # Zonder de punt matcht het adres niet met wat er al in staat.
+            uit.append("St.")
+        elif i and d in klein:
+            uit.append(d)
+        else:
+            uit.append(d.capitalize())
+    return " ".join(uit)
 
 
 def parse_huislijn(regels):
@@ -460,46 +496,65 @@ def parse_huislijn(regels):
     voor de dekking van wat er in de stad te huur staat, maar niet voor de
     gemeten huur per m2. Dat laatste gaat automatisch goed, want een regel
     zonder oppervlakte valt buiten die berekening.
+
+    Straatnaam en prijs mogen op dezelfde regel staan of op aparte regels, en
+    de straatnaam mag ook uit de link komen. Dat laatste is het betrouwbaarst.
     """
     gevonden, gezien, overgeslagen = [], set(), []
     vandaag = waarnemingsdatum()
     straat = None
+
+    def bewaar(naam, prijs):
+        if not (150 <= prijs <= 10000):
+            overgeslagen.append(f"{naam} (huur €{prijs} onmogelijk)")
+            return
+        sleutel = (naam.lower(), prijs)
+        if sleutel in gezien:
+            return
+        gezien.add(sleutel)
+        # Geen huisnummer en geen oppervlakte: het veld voor m2 blijft leeg.
+        gevonden.append(f"{naam} | Nijmegen | {prijs} | te huur | "
+                        f"{vandaag} | huislijn |  | ")
+
     for regel in regels:
         kaal = regel.strip()
         if not kaal:
             continue
-        # Reclameblokken dragen geen huurprijs en vallen dus vanzelf af, maar
-        # een link als "Kan ik dit huis betalen" mag de straatnaam niet
-        # overschrijven.
-        if "kan ik dit huis betalen" in kaal.lower() or "aanmelden" in kaal.lower():
-            continue
-        huur = RE_HL_HUUR.match(kaal)
-        if huur and straat:
-            bedrag = huur.group(1).replace(".", "").replace(",", "")
+        laag = kaal.lower()
+        # Een reclameregel mag de straatnaam niet overschrijven. Maar een regel
+        # met een BEDRAG erin is geen reclame, ook als er "Bekijk deze woning"
+        # achter staat: in de tekstomzetting zit dat vaak aan de prijsregel
+        # vast, en daar sneuvelde vorm B op.
+        ruis = (any(w in laag for w in HL_RUIS)
+                and not RE_HL_HUUR.search(kaal))
+
+        # De straatnaam, eerst uit de link en anders uit de tekst.
+        kandidaat = None
+        m_url = RE_HL_URL.search(kaal)
+        if m_url:
+            kandidaat = _hl_straat_uit_slug(m_url.group(1))
+        if not kandidaat and not ruis:
+            m = RE_HL_STRAAT.search(kaal)
+            if m:
+                k = m.group(1).strip().strip("[]").strip()
+                # "Op 7 oktober 2026 zijn er 8 nieuwe huizen gevonden" bevat
+                # geen straatnaam; die regels dragen geen hoofdletter aan het
+                # begin van het laatste woord of zijn te lang.
+                if 3 <= len(k) <= 40 and "huislijn" not in k.lower():
+                    kandidaat = k
+        if kandidaat:
+            straat = kandidaat
+
+        # Het bedrag, waar het ook staat. Een los jaartal of huisnummer telt
+        # niet mee, want er moet een euroteken voor staan.
+        m_huur = RE_HL_HUUR.search(kaal)
+        if m_huur and straat:
+            bedrag = m_huur.group(1).rstrip(".,").replace(".", "").replace(",", "")
             try:
-                prijs = int(bedrag)
+                bewaar(straat, int(bedrag))
             except ValueError:
-                straat = None
-                continue
-            if not 150 <= prijs <= 10000:
-                overgeslagen.append(f"{straat} (huur €{prijs} onmogelijk)")
-                straat = None
-                continue
-            sleutel = (straat.lower(), prijs)
-            if sleutel in gezien:
-                straat = None
-                continue
-            gezien.add(sleutel)
-            # Geen huisnummer en geen oppervlakte: het veld voor m2 blijft leeg.
-            gevonden.append(f"{straat} | Nijmegen | {prijs} | te huur | "
-                            f"{vandaag} | huislijn |  | ")
+                pass
             straat = None
-            continue
-        m = RE_HL_STRAAT.match(kaal)
-        if m:
-            kandidaat = m.group(1).strip().strip("[]").strip()
-            if 3 <= len(kandidaat) <= 40 and "huislijn" not in kandidaat.lower():
-                straat = kandidaat
     return gevonden, overgeslagen
 
 

@@ -6520,6 +6520,140 @@ betrouwbaar uit. Het verschil tussen €12 en €20,92 bepaalt of een richtprijs
 
 ---
 
+## 74. De ochtendbrief viel weg en niemand merkte het — 8 oktober 2026
+
+**Mark om 11:06:** de brief van vandaag is nog niet binnen, en het liefst
+ontvang ik hem rond 7:00. Later: de run mag ook in de nacht draaien, als wij de
+brief maar kunnen lezen vanaf 7:00.
+
+**Die tweede zin veranderde de oplossing, en maakte hem eenvoudiger.** Eerst
+had ik elke editie twee keer ingepland met een wachter die alleen de run op het
+juiste lokale uur doorliet, omdat GitHub cron in UTC rekent en de brief bij de
+overgang naar wintertijd een uur opschuift. Als de brief pas om 7:00 gelezen
+hoeft te worden, is dat uur verschuiving niet erg en kan die hele constructie
+eruit.
+
+**Wat er nu staat:**
+- werkdagen een eerste poging om 1:17 UTC, dus 3:17 in Nijmegen in de zomer en
+  2:17 in de winter;
+- een TWEEDE poging om 3:17 UTC, die alleen draait als er nog geen brief van
+  vandaag in de repo staat;
+- de weekeditie op zondag om 0:17 UTC, zo vroeg als kan, want die werkt de hele
+  pandgeschiedenis bij en kan uren duren.
+
+Alle tijden staan na middernacht UTC, want de run leidt de briefdatum af uit de
+UTC-datum van de runner: een cron van 23:17 zou de brief van gisteren opleveren.
+Getest op zomer- en wintertijd: de UTC-datum is bij alle drie dezelfde dag, en
+de krapste marge tot 7:00 is 103 minuten.
+
+**Die tweede poging is de winst van 's nachts draaien.** Een mislukte eerste
+run kostte tot nu toe de hele ochtendbrief, omdat hij om 5:17 begon en er geen
+tijd meer was. Nu probeert het systeem het zelf nog eens, en de wachter voorkomt
+dat hij dubbel werk doet als de eerste poging wel is gelukt.
+
+**Maar de echte fout is dat de stilte niet opviel.** De mailstap stuurt alleen
+iets als het briefbestand bestaat. Faalt er een stap daarvoor, dan is er geen
+brief EN geen bericht, en dan ziet een mislukte run eruit als een rustige dag.
+Vandaag duurde het tot half twaalf voordat dat opviel, en alleen omdat Mark het
+zelf miste.
+
+Twee dingen daartegen. Een mailstap die een kort bericht naar Mark stuurt als er
+geen brief uitkwam, met de link naar het logboek; die staat op `always()`, dus
+hij gaat ook af als de run halverwege klapt, en alleen bij de LAATSTE poging van
+de dag, anders meldt de eerste poging al dat er niets is terwijl de tweede hem
+nog gaat maken. En een controle in het gezondheidsrapport die meldt wanneer de
+laatste brief is gemaakt: twee dagen stilte is altijd een probleem, een dag niet,
+want de weekeditie draait op zondag. Getest op vier gevallen.
+
+**Dit is de derde fout van deze soort in twee dagen**, na het verkeerde
+afzenderdomein van Huislijn en de buiten-behandelingstelling die als ruis werd
+weggefilterd. Alle drie kwamen aan het licht doordat Mark iets miste, niet
+doordat het systeem iets zei. Dat is het patroon om te blijven afdekken: een
+fout die zich uit als afwezigheid.
+
+---
+
+## 75. Twee fouten in de brief van 8 oktober — 8 oktober 2026
+
+De handrun leverde een brief op waarin de uitpondroute voor het eerst staat, met
+de Nieuwe Markt 90 als voorbeeld: vier eenheden van 40 m2 die samen €1.201.152
+doen, €568.652 over na aankoop en kosten koper, en een huur van €2.139 die een
+koopsom tot €436.212 draagt. De rekensom is narekenbaar en klopt.
+
+**Fout een: de brief maakt van een splitsingsaanvraag een kamerverhuurverhaal.**
+Bij de Berg en Dalseweg 11-11A staat dat een slecht label "bij verkamering de
+maximale huur per kamer drukt" en dat wie daar kamers verhuurt eerst het label
+moet opkrikken. Maar de aanvraag gaat over vier ZELFSTANDIGE huurwoningen; in
+het formulier staat letterlijk dat het aantal huurwoningen van 2 naar 4 gaat.
+Kamerverhuur komt er niet in voor.
+
+Daarbij mengt die ene zin twee stelsels: het WWS geldt per zelfstandige woning,
+het WWSO per kamer. De opdracht zegt nu dat de aanvraag bepaalt welk stelsel je
+bespreekt, en dat de brief geen route mag verzinnen die de aanvraag niet noemt.
+Dat is dezelfde zwakte als de drie eerdere regimewissels van deze week.
+
+**Fout twee: een prijswijziging van twee dagen terug als nieuws van vandaag.**
+"De grootste verlaging was Palmstraat 40, vijftigduizend euro omlaag naar
+€485.000" stond ook al in de brief van 6 oktober. De oorzaak zit in de tabel:
+die vergelijkt met de prijs van de eerste keer dat we het pand zagen, dus een
+verlaging blijft er weken in staan.
+
+Er staat nu een kolom "Gewijzigd op" met de datum waarop de prijs werkelijk
+veranderde, uit de pandgeschiedenis waar elke prijswijziging als gebeurtenis
+met datum staat. De opdracht verbiedt het woord verlaging als nieuws zodra die
+datum ouder is dan gisteren.
+
+**En wat Mark als gezondheidsrapport stuurde, was de broncode van
+gezondheid.py.** Het script zelf draait: in een lege map levert het netjes een
+rapport op met elf onderdelen in orde en de rest als fout, zoals het hoort
+zonder gegevens. Daar is dus niets stuk; het verkeerde bestand is geplakt.
+
+---
+
+## 76. De controle van gisteren vond de fout van vandaag — 8 oktober 2026
+
+Het rapport staat op 41 in orde, 7 aandachtspunten, nul fouten, en de nieuwe
+briefcontrole staat op OK. Maar er staat een regel die er gisteren nog niet kon
+staan:
+
+    Bronnen die niets opleveren: funda: 528, pararius: 24, kamernet: 44,
+    huislijn: 0; geen enkele waarneming van: huislijn
+
+En bij de attenderingen: `huislijn: 4 mails, 0 objecten`.
+
+**Dat is precies waarvoor die controle is gemaakt.** De domeinfix werkt, de
+mails komen binnen, en nu blijkt de parser ze niet te lezen. Zonder die controle
+had Huislijn er maanden tussen kunnen zitten als een bron die wel wordt
+opgehaald en niets oplevert.
+
+**De oorzaak is te voorspellen.** Ik heb de parser gebouwd op de tekst die Mark
+in het gesprek plakte, met de straatnaam en de prijs op aparte regels en de
+prijsregel beginnend met "Huur:". In een echte mail gaat HTML door een
+tekstomzetting, en dan staan straat en prijs vaak op een regel.
+
+De parser leest nu drie vormen:
+- straatnaam en prijs op aparte regels, met of zonder blokhaken;
+- straatnaam en prijs op dezelfde regel, ook met "Bekijk deze woning" erachter;
+- alleen een kale URL plus een bedrag, waarbij de straatnaam uit de link komt.
+
+Die derde is de betrouwbaarste, want een link overleeft elke tekstomzetting:
+`/huurwoning/nederland/gelderland/4433366/maasstraat-nijmegen` geeft
+"Maasstraat". Een slug die met "st" begint krijgt de punt terug, anders matcht
+"St Agnetenweg" niet met de "St. Annastraat" die al in het aanbod staat.
+
+**Een fout in mijn eerste poging, gevonden door te testen op vier vormen:** het
+ruisfilter blokkeerde een regel met "Bekijk deze woning" erin, en in de
+waarschijnlijkste vorm zit die tekst juist aan de prijsregel vast. Nu geldt een
+regel met een BEDRAG erin nooit als reclame. Getest: alle drie de vormen geven
+nu de panden, en een mail met alleen reclame geeft nul.
+
+**En de log zegt het al zonder dat ik hoef te gokken.** De mailstap print bij
+nul objecten de eerste vijfendertig regels van die mail naar het logboek. Die
+staan dus in de run van vanmorgen, en daarmee is de echte vorm na te kijken in
+plaats van te voorspellen.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

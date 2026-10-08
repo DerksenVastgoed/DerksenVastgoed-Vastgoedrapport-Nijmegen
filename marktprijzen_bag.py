@@ -3360,10 +3360,32 @@ def render_prijswijzigingen(woningen):
     if not gewijzigd:
         return r
 
+    # Wanneer is die prijs veranderd? De vergelijking hierboven loopt vanaf de
+    # eerste keer dat we het pand zagen, dus een verlaging van vorige week
+    # blijft weken in deze tabel staan. De brief las dat als nieuws van
+    # vandaag: de verlaging van de Palmstraat 40 stond op 6 EN op 8 oktober
+    # als "de grootste verlaging". De datum komt uit de pandgeschiedenis, waar
+    # elke prijswijziging als gebeurtenis met datum staat.
+    wanneer = {}
+    try:
+        from pandlezer import laad as _laad_pw
+        for _pand in (_laad_pw("pandgeschiedenis.json") or {}).values():
+            if not isinstance(_pand, dict):
+                continue
+            _rij = [g["datum"] for g in (_pand.get("gebeurtenissen") or [])
+                    if g.get("soort") == "prijswijziging" and g.get("datum")]
+            if _rij:
+                _sl = "".join(c for c in (_pand.get("adres") or "").lower()
+                              if c.isalnum())
+                wanneer[_sl] = max(_rij)
+    except Exception:
+        wanneer = {}
+
     r.append("### Prijswijzigingen")
     r.append("")
-    r.append("| Adres | Buurt | Eerst | Nu | Verschil | Dagen in aanbod |")
-    r.append("|---|---|---:|---:|---:|---:|")
+    r.append("| Adres | Buurt | Eerst | Nu | Verschil | Gewijzigd op | "
+             "Dagen in aanbod |")
+    r.append("|---|---|---:|---:|---:|---|---:|")
     for _, verschil, pct, w in sorted(gewijzigd, reverse=True):
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         eerst_s = f"{w['prijs_eerst']:,}".replace(",", ".")
@@ -3371,12 +3393,26 @@ def render_prijswijzigingen(woningen):
         teken = "▼" if verschil < 0 else "▲"
         versch_s = f"{abs(verschil):,}".replace(",", ".")
         dagen = _dagen_sinds(w.get("datum_eerst"))
+        _sl = "".join(c for c in w["adres"].lower() if c.isalnum())
+        _op = wanneer.get(_sl)
+        _op_dagen = _dagen_sinds(_op) if _op else None
+        if _op and _op_dagen is not None:
+            _op_s = (f"{_op} (vandaag)" if _op_dagen == 0
+                     else f"{_op} ({_op_dagen} dagen terug)")
+        else:
+            _op_s = "datum onbekend"
         r.append(f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | €{eerst_s} | €{nu_s} | "
-                 f"{teken} €{versch_s} ({pct:+.1f}%) | {dagen if dagen is not None else '?'} |")
+                 f"{teken} €{versch_s} ({pct:+.1f}%) | {_op_s} | "
+                 f"{dagen if dagen is not None else '?'} |")
     r.append("")
     r.append("_Een verlaging na langere tijd in de markt is vaak het moment waarop "
              "onderhandelen zin heeft. Dagen in aanbod telt vanaf de eerste keer dat "
              "dit pand in de attendering verscheen, niet vanaf de plaatsing op Funda._")
+    r.append("")
+    r.append("_De kolom Gewijzigd op zegt wanneer de prijs werkelijk veranderde. "
+             "Deze tabel vergelijkt met de prijs van de eerste keer dat we het "
+             "pand zagen, dus een oude verlaging blijft hier staan; alleen een "
+             "wijziging van de laatste dagen is nieuws._")
     r.append("")
     return r
 
