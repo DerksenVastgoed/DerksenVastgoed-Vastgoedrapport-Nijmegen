@@ -10,20 +10,23 @@ concurrency:
 
 on:
   schedule:
-    # GitHub rekent cron in UTC en kent geen tijdzones, dus bij de overgang naar
-    # wintertijd schoof de brief een uur op. Daarom staat elke editie er TWEE
-    # keer in, een uur na elkaar, en laat de wachter "Juiste tijd" hieronder
-    # alleen de run door die in Nijmegen op het bedoelde uur valt. Zo komt de
-    # brief het hele jaar rond 6:17 binnen, zomer en winter.
+    # De run mag 's nachts draaien; de brief hoeft pas om 7:00 leesbaar te zijn.
+    # Dat is met opzet ruim gekozen, want daarmee past er een TWEEDE poging voor
+    # zevenen in. Op 8 oktober leverde de ochtendrun geen brief op en was er
+    # geen tijd meer om het nog eens te proberen.
     #
-    # Werkdagen: korte brief, bedoeld lokaal uur 6. Niet op het hele uur, want
-    # dan staat de wachtrij bij GitHub vol.
-    - cron: "17 4 * * 1-5"   # zomertijd: 6:17 in Nijmegen
-    - cron: "17 5 * * 1-5"   # wintertijd: 6:17 in Nijmegen
-    # Zondag de weekeditie, bedoeld lokaal uur 5: hij werkt de hele
-    # pandgeschiedenis bij en dat duurt uren, dus die begint een uur eerder.
-    - cron: "17 3 * * 0"     # zomertijd: 5:17 in Nijmegen
-    - cron: "17 4 * * 0"     # wintertijd: 5:17 in Nijmegen
+    # Alle tijden staan na middernacht UTC, want de run leidt de briefdatum af
+    # uit de UTC-datum van de runner. Een cron van 23:17 zou de brief van
+    # gisteren opleveren.
+    #
+    # Werkdagen: eerste poging, en een tweede als de eerste niets opleverde.
+    # De wachter "Is er al een brief van vandaag" hieronder slaat de tweede
+    # over als de eerste wel is gelukt.
+    - cron: "17 1 * * 1-5"   # 3:17 in Nijmegen (zomertijd), 2:17 in wintertijd
+    - cron: "17 3 * * 1-5"   # tweede poging, 5:17 zomertijd, 4:17 wintertijd
+    # Zondag de weekeditie. Die werkt de hele pandgeschiedenis bij en kan uren
+    # duren, dus hij begint zo vroeg als kan zonder de datumgrens te raken.
+    - cron: "17 0 * * 0"     # 2:17 in Nijmegen (zomertijd), 1:17 in wintertijd
   workflow_dispatch:
     inputs:
       backfill_vanaf:
@@ -61,16 +64,18 @@ permissions:
   contents: write
 
 jobs:
-  # Welke van de twee geplande tijdstippen hoort bij vandaag? Deze job kost
-  # een paar seconden en voorkomt dat de brief twee keer draait of een uur
-  # verschuift bij de overgang naar winter- of zomertijd. Een handmatige run
-  # komt er altijd langs.
-  tijd:
+  # Ligt er voor vandaag al een brief in de repo, dan is dit de tweede poging
+  # en hoeft hij niet te draaien. Zo kost een tweede cron niets zolang de
+  # eerste het werk heeft gedaan, en springt hij wel bij als de eerste faalde.
+  # Een handmatige run komt er altijd langs.
+  nodig:
     runs-on: ubuntu-latest
     outputs:
       door: ${{ steps.toets.outputs.door }}
     steps:
-      - name: Juiste tijd voor deze editie
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+      - name: Is er al een brief van vandaag
         id: toets
         run: |
           if [ "${{ github.event_name }}" != "schedule" ]; then
@@ -78,20 +83,18 @@ jobs:
             echo "door=ja" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          DAG=$(TZ=Europe/Amsterdam date +%u)
-          UUR=$(TZ=Europe/Amsterdam date +%H)
-          if [ "$DAG" = "7" ]; then DOEL=05; else DOEL=06; fi
-          echo "In Nijmegen is het dag $DAG, uur $UUR; bedoeld uur $DOEL"
-          if [ "$UUR" = "$DOEL" ]; then
-            echo "door=ja" >> "$GITHUB_OUTPUT"
-          else
+          DATUM=$(date +%F)
+          if [ -f "digests/$DATUM-brief.md" ]; then
+            echo "De brief van $DATUM staat er al; deze poging is niet nodig."
             echo "door=nee" >> "$GITHUB_OUTPUT"
-            echo "Dit is de andere helft van het zomer-winterpaar; overslaan."
+          else
+            echo "Nog geen brief van $DATUM; draaien."
+            echo "door=ja" >> "$GITHUB_OUTPUT"
           fi
 
   digest:
-    needs: tijd
-    if: needs.tijd.outputs.door == 'ja'
+    needs: nodig
+    if: needs.nodig.outputs.door == 'ja'
     runs-on: ubuntu-latest
     timeout-minutes: 330
     permissions:
@@ -896,7 +899,9 @@ jobs:
       # de ochtendbrief daardoor weg en bleef dat tot half twaalf onopgemerkt.
       # Dit bericht gaat alleen naar Mark, niet naar pa.
       - name: Melden dat er geen brief is
-        if: ${{ always() && github.event_name == 'schedule' && hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) == '' }}
+        # Alleen bij de laatste poging van de dag, anders meldt de eerste
+        # poging al dat er geen brief is terwijl de tweede hem nog gaat maken.
+        if: ${{ always() && github.event.schedule == '17 3 * * 1-5' && hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) == '' }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
