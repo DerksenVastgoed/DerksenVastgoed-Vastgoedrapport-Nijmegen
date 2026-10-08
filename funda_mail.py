@@ -24,6 +24,9 @@ import imaplib
 import os
 import re
 import sys
+import time
+import urllib.error
+import urllib.request
 from email.header import decode_header
 
 IMAP_HOST = "imap.gmail.com"
@@ -474,6 +477,78 @@ HL_RUIS = ("kan ik dit huis betalen", "aanmelden", "wooninspiratie",
            "bekijk deze woning", "hypotheekaanvraag")
 
 
+# De kenmerken staan niet in de mail maar op de advertentiepagina, achter de
+# link die we sinds vandaag bewaren. Daar staat "Woon oppervlakte 150" en de
+# postcode. Daarmee krijgt een Huislijn-waarneming een oppervlakte en telt hij
+# mee in de huur per m2, zonder dat iemand een pand van een foto hoeft te
+# herkennen. Het huisnummer staat er niet; dat hebben we ook niet nodig.
+HL_KENMERKEN_PAD = "huislijn_kenmerken.json"
+HL_MAX_OPHALEN = 25          # per run, want het zijn een paar panden per dag
+RE_HL_OPP = re.compile(r"Woon\s*oppervlakte\D{0,60}?(\d{2,4})", re.IGNORECASE)
+RE_HL_KAMERS = re.compile(r"Aantal\s*kamers\D{0,60}?(\d{1,2})", re.IGNORECASE)
+RE_HL_POSTCODE = re.compile(r"\b(\d{4}\s?[A-Z]{2})\b")
+
+
+def _hl_kenmerken_cache():
+    try:
+        with open(HL_KENMERKEN_PAD, encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
+def huislijn_kenmerken(url, cache, opgehaald):
+    """
+    Oppervlakte, kamers en postcode van een Huislijn-advertentie.
+
+    Eenmaal opgehaald blijft het in de cache staan: een pand dat in meerdere
+    mails voorkomt wordt niet twee keer bevraagd. Lukt het ophalen niet, dan
+    komt er niets terug en blijft de waarneming gewoon staan zonder
+    oppervlakte; dat is hoe het hiervoor altijd was.
+    """
+    sleutel = re.sub(r"[?#].*$", "", url)
+    if sleutel in cache:
+        return cache[sleutel]
+    if opgehaald[0] >= HL_MAX_OPHALEN:
+        return {}
+    if os.environ.get("HUISLIJN_KENMERKEN", "1") == "0":
+        return {}
+    opgehaald[0] += 1
+    try:
+        verzoek = urllib.request.Request(
+            sleutel, headers={"User-Agent": "Mozilla/5.0 (vastgoedbrief)"})
+        with urllib.request.urlopen(verzoek, timeout=20) as antwoord:
+            rauw = antwoord.read().decode("utf-8", errors="replace")
+    except Exception as e:  # noqa
+        print(f"    kenmerken niet op te halen ({str(e)[:60]}): {sleutel[:70]}",
+              file=sys.stderr)
+        return {}
+    tekst = " | ".join(strip_html(rauw))
+    uit = {}
+    m = RE_HL_OPP.search(tekst)
+    if m:
+        try:
+            opp = int(m.group(1))
+            # Een woonoppervlakte onder 10 of boven 1000 m2 is geen woning maar
+            # een ander getal dat per ongeluk is meegepakt.
+            if 10 <= opp <= 1000:
+                uit["opp"] = opp
+        except ValueError:
+            pass
+    m = RE_HL_KAMERS.search(tekst)
+    if m:
+        try:
+            uit["kamers"] = int(m.group(1))
+        except ValueError:
+            pass
+    m = RE_HL_POSTCODE.search(tekst)
+    if m:
+        uit["postcode"] = m.group(1).replace(" ", "")
+    cache[sleutel] = uit
+    time.sleep(0.5)
+    return uit
+
+
 def _hl_straat_uit_slug(slug):
     """"jan-van-speykstraat" wordt "Jan van Speykstraat"."""
     klein = {"van", "de", "den", "der", "het", "ter", "te", "op", "aan"}
@@ -510,8 +585,11 @@ def parse_huislijn(regels):
     gevonden, gezien, overgeslagen = [], set(), []
     vandaag = waarnemingsdatum()
     straat = None
+    link = None
+    cache = _hl_kenmerken_cache()
+    opgehaald = [0]
 
-    def bewaar(naam, prijs):
+    def bewaar(naam, prijs, url):
         if not (150 <= prijs <= 10000):
             overgeslagen.append(f"{naam} (huur €{prijs} onmogelijk)")
             return
@@ -519,9 +597,14 @@ def parse_huislijn(regels):
         if sleutel in gezien:
             return
         gezien.add(sleutel)
-        # Geen huisnummer en geen oppervlakte: het veld voor m2 blijft leeg.
+        # De mail geeft geen huisnummer en geen oppervlakte. De oppervlakte
+        # staat wel op de advertentiepagina, dus die halen we daar op; zonder
+        # oppervlakte valt de waarneming buiten de huur per m2.
+        ken = huislijn_kenmerken(url, cache, opgehaald) if url else {}
+        opp = ken.get("opp") or ""
+        postcode = ken.get("postcode") or ""
         gevonden.append(f"{naam} | Nijmegen | {prijs} | te huur | "
-                        f"{vandaag} | huislijn |  | ")
+                        f"{vandaag} | huislijn | {opp} | {postcode}")
 
     for regel in regels:
         kaal = regel.strip()
@@ -540,6 +623,9 @@ def parse_huislijn(regels):
         m_url = RE_HL_URL.search(kaal)
         if m_url:
             kandidaat = _hl_straat_uit_slug(m_url.group(1))
+            m_vol = re.search(r"https?://[^\s\])]+", kaal)
+            if m_vol:
+                link = m_vol.group(0)
         if not kandidaat and not ruis:
             m = RE_HL_STRAAT.search(kaal)
             if m:
@@ -558,10 +644,19 @@ def parse_huislijn(regels):
         if m_huur and straat:
             bedrag = m_huur.group(1).rstrip(".,").replace(".", "").replace(",", "")
             try:
-                bewaar(straat, int(bedrag))
+                bewaar(straat, int(bedrag), link)
             except ValueError:
                 pass
             straat = None
+            link = None
+    if opgehaald[0]:
+        print(f"    kenmerken opgehaald voor {opgehaald[0]} Huislijn-panden",
+              file=sys.stderr)
+        try:
+            with open(HL_KENMERKEN_PAD, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
     return gevonden, overgeslagen
 
 

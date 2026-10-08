@@ -6702,9 +6702,53 @@ maar het is wel de goedkoopste manier om de huurmeting te verbeteren: een
 waarneming van 150 m2 in de vrije sector weegt zwaarder dan tien kleine
 kamerwaarnemingen.
 
-De regel om in verkopen.txt te zetten:
+**Achterhaald op dezelfde dag.** Zie punt 78: de oppervlakte blijkt op de
+advertentiepagina zelf te staan en wordt nu automatisch opgehaald. De markering
+blijft bestaan voor waarnemingen die wel op een herkenning rusten, maar bij
+Huislijn is hij niet meer nodig.
 
-    Burchtstraat 71 C | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn+hand | 150 | 6511
+---
+
+## 78. De oppervlakte stond op de advertentie, niet in de mail - 8 oktober 2026
+
+De vorige conclusie was fout om een reden die het nakijken waard is. Ik nam aan
+dat Mark de oppervlakte uit de BAG had gehaald bij een adres dat hij van de foto
+herkende, en bouwde daar een markering voor onzekerheid op. Hij haalde hem
+gewoon van de advertentiepagina: "Woon oppervlakte 150", bij de kenmerken, een
+klik verder dan de mail.
+
+**Daarmee is het geen handwerk meer.** De mail bevat die kenmerken niet, maar wel
+de link naar het object, en die link bewaren we sinds vandaag; de HTML-opschoner
+hield eerder alleen Funda-links over. Dus kan de stap die Mark met de hand deed
+ook door de mailstap zelf gezet worden.
+
+**Wat er nu gebeurt.** Per Huislijn-object wordt de advertentiepagina een keer
+opgehaald en daaruit komen drie dingen: de woonoppervlakte, het aantal kamers en
+de postcode. Dat gaat in huislijn_kenmerken.json, zodat een pand dat in vijf
+mails langskomt een keer wordt opgehaald. Maximaal 25 per run, een halve seconde
+tussen de verzoeken, en met HUISLIJN_KENMERKEN=0 staat het hele ophalen uit.
+
+**Wat er gebeurt als het misgaat.** Dat is het belangrijkste deel. Mislukt het
+ophalen, dan verschijnt "kenmerken niet op te halen" in het logboek en gaat de
+waarneming zonder oppervlakte verder. Dat is precies het soort stille uitval
+waarmee deze week drie keer iets wegviel zonder dat iemand het zag, dus staat er
+nu ook een controle op: heeft geen van de Huislijn-waarnemingen een oppervlakte,
+dan meldt het gezondheidsrapport dat het ophalen vermoedelijk faalt, met de
+zoekterm voor het logboek erbij. Een bron die zwijgt moet zichzelf melden.
+
+**Niet te bewijzen vanaf hier.** De regexen zijn getest op de werkelijke
+paginatekst (150, 3 kamers, 6511RC) en de parser levert uit de cache de juiste
+regel op. Het live ophalen lukt in deze omgeving niet: het uitgaande verkeer
+loopt over een lijst van toegestane adressen en huislijn.nl staat daar niet op.
+Of het op de GitHub-runner werkt blijkt dus pas bij de volgende run, en als het
+niet werkt meldt de nieuwe controle het.
+
+De regel voor verkopen.txt wordt daarmee eenvoudiger, zonder markering:
+
+    Burchtstraat | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn | 150 | 6511RC
+
+De vier Huislijn-mails van vandaag zijn al gelezen en worden niet opnieuw
+verwerkt, dus alleen nieuwe mails krijgen de oppervlakte vanzelf.
 
 ---
 

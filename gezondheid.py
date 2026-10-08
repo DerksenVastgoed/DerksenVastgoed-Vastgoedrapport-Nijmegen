@@ -258,6 +258,16 @@ def controle_huurdata():
     # Dat voorbehoud hoort zichtbaar te zijn, net als de tilde bij een
     # overgenomen WOZ-waarde.
     met_hand = [r for r in huur if "+hand" in r.lower()]
+    # Huislijn levert zelf geen oppervlakte; die wordt van de advertentiepagina
+    # gehaald. Zijn er Huislijn-waarnemingen en heeft GEEN ervan een
+    # oppervlakte, dan lukt dat ophalen niet, en dan vallen ze allemaal buiten
+    # de huur per m2 zonder dat iets dat zegt.
+    hl_met_m2 = 0
+    for r in huislijn:
+        v = [x.strip() for x in r.split("|")]
+        if len(v) > 6 and v[6]:
+            hl_met_m2 += 1
+    hl_stil = bool(huislijn) and not hl_met_m2
     bewijs = (f"{len(huur)} huurwaarnemingen, waarvan {len(pararius)} Pararius "
               f"en {len(kamernet)} Kamernet"
               + (f" en {len(huislijn)} Huislijn" if huislijn else "")
@@ -280,6 +290,13 @@ def controle_huurdata():
         return (LET_OP, bewijs,
                 "Wel huurdata, maar niets nieuws deze week. Komen de Pararius-mails "
                 "nog binnen, en worden ze herkend? Zie stap 14.")
+    if hl_stil:
+        return (LET_OP, bewijs + f"; geen van de {len(huislijn)} "
+                f"Huislijn-waarnemingen heeft een oppervlakte",
+                "De oppervlakte van een Huislijn-pand komt van de "
+                "advertentiepagina, niet uit de mail. Lukt dat ophalen niet, "
+                "dan tellen die waarnemingen nergens mee. Zoek in het logboek "
+                "van de mailstap op 'kenmerken niet op te halen'.")
     if len(huur) < 30:
         return (LET_OP, bewijs,
                 "Er wordt gemeten, maar het aantal is nog te klein voor een "
