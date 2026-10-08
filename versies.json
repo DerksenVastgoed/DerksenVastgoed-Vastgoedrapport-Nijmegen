@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "2e7552ed05a3",
+  ".github/workflows/bekendmakingen.yml": "028295831859",
   "aanbod_reeks.py": "81d5a7aa0aa2",
   "aanbodprofiel.py": "23697f8f4d8f",
   "bag3d.py": "b7cbb69df264",
@@ -17,7 +17,7 @@
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "5f8019df8b06",
   "funda_verkocht_plak.py": "44255967014f",
-  "gezondheid.py": "7dca1c5b2e98",
+  "gezondheid.py": "9d13c955d362",
   "grootte_premie.py": "dc1fe4744a6e",
   "huur_dekking.py": "e3db912f5bb8",
   "kamernet_plak.py": "7b673395ed06",
@@ -41,5 +41,5 @@
   "woningprijsindex.py": "8bc8f9f2c72f",
   "wwso.py": "f4b919fb6ec7"
  },
- "gemaakt": "2026-10-07"
+ "gemaakt": "2026-10-08"
 }
