@@ -163,6 +163,43 @@ def controle_huur_ijkpunt():
     return (OK, bewijs, "")
 
 
+def controle_brieven():
+    """
+    Wanneer is er voor het laatst een brief gemaakt?
+
+    Op 8 oktober viel de ochtendbrief weg en bleef dat tot half twaalf
+    onopgemerkt: de mailstap stuurt alleen iets als het briefbestand bestaat,
+    dus een mislukte run leverde geen brief EN geen melding op. Het ontbreken
+    van post ziet eruit als een rustige dag.
+
+    De weekeditie draait op zondag, dus op maandag mag de jongste brief van
+    gisteren zijn. Twee dagen stilte is altijd een probleem.
+    """
+    datums = []
+    try:
+        for naam in os.listdir("digests"):
+            if naam.endswith("-brief.md") and len(naam) >= 10:
+                try:
+                    datums.append(dt.date.fromisoformat(naam[:10]))
+                except ValueError:
+                    continue
+    except FileNotFoundError:
+        return (OK, "geen digestmap in deze run", "")
+    if not datums:
+        return (LET_OP, "geen enkele brief in de digestmap",
+                "Dit is de eerste run, of de map is leeg gelopen.")
+    laatste = max(datums)
+    dagen = (VANDAAG - laatste).days
+    bewijs = (f"{len(datums)} brieven bewaard, laatste van {laatste} "
+              f"({'vandaag' if not dagen else f'{dagen} dagen terug'})")
+    if dagen >= 2:
+        return (LET_OP, bewijs,
+                "Er is minstens een werkdag geen brief gemaakt. Kijk in het "
+                "logboek van de geplande run welke stap rood werd; de mailstap "
+                "stuurt niets als het briefbestand ontbreekt.")
+    return (OK, bewijs, "")
+
+
 def controle_afzenders():
     """
     Of elke bron waarvan we mails verwachten ook werkelijk iets oplevert.
@@ -1509,6 +1546,7 @@ CONTROLES = [
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),
+    ("Brieven verstuurd", controle_brieven),
     ("Huur tegen het landelijke cijfer", controle_huur_ijkpunt),
     ("Gemeubileerd", controle_gemeubileerd),
     ("Adressen met meerdere maten", controle_adressen_met_meerdere_maten),
