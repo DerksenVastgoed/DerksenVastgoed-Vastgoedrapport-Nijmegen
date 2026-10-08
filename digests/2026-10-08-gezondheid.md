@@ -1,10 +1,8 @@
 # Gezondheidsrapport 2026-10-08
 
-41 in orde, 8 aandachtspunten, 0 fouten.
+42 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-08: 39 gelijk, 2 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (42494 bytes, 924 regels), funda_mail.py (63584 bytes, 1509 regels)
-  Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
 - **Geheugen verstuurde brieven**: nog geen geheugen van verstuurde brieven
   Vanaf de eerste echte brief komt hier per pand en per bekendmaking te staan wanneer het is gemeld. Een testrun schrijft hier niets, dus na alleen handruns is dit leeg. Blijft het leeg na een geplande ochtendrun, kijk dan in het logboek van de briefstap naar 'Verteld:'.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
@@ -21,6 +19,7 @@
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
+- **Versies**: paklijst van 2026-10-08: 41 gelijk, 0 met andere inhoud, 0 niet aanwezig, 2 niet in de paklijst
 - **Huurdata**: 99 huurwaarnemingen, waarvan 24 Pararius en 45 Kamernet en 30 Huislijn; 61 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2
 - **Aanbod**: 100 koopobjecten, 4 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
