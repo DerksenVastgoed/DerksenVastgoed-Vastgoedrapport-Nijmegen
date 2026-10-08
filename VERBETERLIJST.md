@@ -6743,6 +6743,11 @@ loopt over een lijst van toegestane adressen en huislijn.nl staat daar niet op.
 Of het op de GitHub-runner werkt blijkt dus pas bij de volgende run, en als het
 niet werkt meldt de nieuwe controle het.
 
+**Bewezen op 8 oktober.** De handrun gaf 8 Huislijn-mails, 34 objecten en 30
+waarnemingen in het aanbodbestand, waar het nul was. De stiltecontrole zweeg,
+dus minstens een van die waarnemingen heeft een oppervlakte van de
+advertentiepagina. Het ophalen werkt op de runner.
+
 De regel voor verkopen.txt wordt daarmee eenvoudiger, zonder markering:
 
     Burchtstraat | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn | 150 | 6511RC
@@ -6812,6 +6817,29 @@ cachebestanden staan er nu in.
 **Twee nieuwe briefregels**, want dit zijn fouten die de brief zelf kan maken:
 dat een opgegeven woonoppervlakte niet altijd woonoppervlakte is, en dat een
 gemeubileerde huur geen huur per m2 is.
+
+**Eerste run: 2 mails, 0 objecten.** De prijs werd gevonden, daarna ging het
+mis. Twee fouten, beide gevonden door de vormen van een attenderingsmail na te
+spelen in plaats van te gokken.
+
+De eerste: de koppeling eiste dat de link na de prijs stond. In de mail hangt
+hij soms aan de foto erboven. Nu werkt het in beide richtingen.
+
+De tweede, en die is de interessantste: een attendering linkt zelden
+rechtstreeks. De href wijst naar een klikteller en het echte adres staat
+percent-gecodeerd als parameter erin. Twee dingen gingen daar mis. Het patroon
+pakte door de gulzige voorkant de klikteller zelf in plaats van het adres dat
+erin verstopt zat; de host moet nu echt op 123wonen.nl eindigen, zodat
+"click.mail123wonen.nl" er niet voor doorgaat. En de sleutel van de cache was
+ook de URL die werd opgehaald, en die sleutel knipte alle parameters eraf: bij
+een rechtstreekse link zijn dat telcodes, bij een klikteller is dat de hele
+bestemming. Nu worden de parameters alleen verwijderd bij een link die zelf al
+een objectpagina is.
+
+**En een diagnose voor de volgende keer.** Levert 123Wonen niets op, dan komen
+de eerste vijftien regels van de mail in het logboek. Een parser repareren op
+een mail die wij niet in handen hebben gaat anders op raden neer, en dat heeft
+deze week al twee runs gekost.
 
 ---
 
