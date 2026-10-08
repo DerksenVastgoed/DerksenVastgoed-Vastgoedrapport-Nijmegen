@@ -882,7 +882,16 @@ def _regel(it: dict) -> str:
     if feiten:
         delen = []
         if feiten.get("oppervlakte_m2"):
-            delen.append(f"{feiten['oppervlakte_m2']} m²")
+            # Hetzelfde voorbehoud als bij het label, en om dezelfde reden.
+            # Gaat de bekendmaking over een pand met meerdere woningen, dan is
+            # dit de oppervlakte van dit ene verblijfsobject en niet van het
+            # gebouw. De brief schreef "het pand is 116 m2" bij een pand dat
+            # naar vier woningen wordt gesplitst, en dat is een getal van een
+            # van de vier.
+            deel = f"{feiten['oppervlakte_m2']} m²"
+            if feiten.get("label_alleen_dit_adres"):
+                deel += " op dit adres, niet van het hele pand"
+            delen.append(deel)
         if feiten.get("bouwjaar"):
             delen.append(f"bouwjaar {feiten['bouwjaar']}")
         if feiten.get("m2_per_kamer"):

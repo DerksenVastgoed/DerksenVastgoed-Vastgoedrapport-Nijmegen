@@ -7117,6 +7117,95 @@ verdwijnen.
 
 ---
 
+## 84. De versiecontrole ving mijn eigen fout en een van Mark - 8 oktober 2026
+
+Na het inbouwen van verteld.py sprong de versiecontrole van OK naar LET OP, met
+twee bestanden die niet overeenkwamen. Dat bleken twee verschillende problemen
+te zijn, en het is een goed voorbeeld van waarvoor die controle bestaat.
+
+**De workflow: mijn fout.** Ik bouw de paklijst in een werkmap en kopieer daar
+per keer de gewijzigde bestanden in. De workflow staat daar op zijn eigen pad,
+.github/workflows/, en die had ik twee keer niet meegekopieerd. De paklijst was
+dus gemaakt met een kopie van 10:01 terwijl het bestand van 15:54 was. Het
+bestand in de repo was gewoon goed; de paklijst had het mis. Hetzelfde soort
+fout als het verdwenen regeleinde van vorige week: niet de code maar de
+boekhouding erover.
+
+Opgelost door het niet meer met de hand te doen. Er staat nu een scriptje dat
+alles uit de uitvoermap synchroniseert, inclusief de workflow op zijn eigen pad,
+en daarna de paklijst opbouwt. Twee keer dezelfde fout is er een te veel om op
+oplettendheid te vertrouwen.
+
+**funda_mail.py: het bestand in de repo is ouder.** De paklijst klopt daar wel:
+de vingerafdruk komt exact overeen met wat ik heb. Het bestand in de repo is
+63.584 bytes en 1.509 regels, dat van mij 64.199 bytes en 1.515 regels. Er is
+dus een versie overgeslagen bij het uploaden, vermoedelijk omdat ik funda_mail.py
+drie keer achter elkaar heb gestuurd. Dat verklaart ook waarom 123Wonen nog
+niets oplevert: de tweede route naar het huisnummer en mogelijk ook de
+SendGrid-herkenning zitten niet in de repo.
+
+Dat is precies waar deze controle voor is. Zonder hem zou ik zijn gaan zoeken
+naar een fout in code die daar helemaal niet draait.
+
+---
+
+## 85. Vier fouten in de brief van 8 oktober - 8 oktober 2026
+
+De Palmstraat is weg uit het nieuws; die splitsing werkt. Vier andere dingen
+niet.
+
+**Vijf keer een vraagprijs als koopsom gepresenteerd.** "Drie eenheden die al
+zijn verkocht, voor €385.000, €415.000 en €395.000", "ging voor €235.000", "voor
+€700.000". In de gegevens staat bij elk van die bedragen letterlijk "laatste
+vraagprijs"; dat woord is bij het schrijven weggelaten. De regel bestaat sinds
+september. Dit is de zwaarste van de vier, want het verschil tussen vraagprijs
+en koopsom is in deze markt tienduizenden euro's en pa leest zo'n bedrag als wat
+een pand heeft opgebracht.
+
+Hier is geen gegevensoplossing zoals bij de prijswijzigingen. Daar kon wat oud
+is uit het nieuwsblok worden gehaald; hier is er geen beter getal om in de plaats
+te zetten, want de koopsom staat alleen bij het Kadaster. Het enige dat kan is
+het label naast het bedrag laten staan, en dat stond er al. De regel is daarom
+aangescherpt met de letterlijke fout van vandaag erin.
+
+**"Het pand is 116 m2" bij een pand dat naar vier woningen wordt gesplitst.**
+Dat is de maat van een van de vier. Bij het energielabel was dit op 7 oktober al
+hersteld met een voorbehoud "alleen van dit adres bekend", en daarbij bleek nu
+iets anders: **dat blok wordt op twee plekken gerenderd**, in
+bekendmakingen_nijmegen.py en in marktprijzen_bag.py, en alleen de eerste had
+het voorbehoud. Twee renderers van hetzelfde blok die van elkaar afwijken, is
+hoe een regel die al bestaat alsnog wordt overtreden. Ze staan nu gelijk, en het
+voorbehoud staat nu ook bij de oppervlakte, want die heeft precies hetzelfde
+probleem.
+
+Dat is het nakijken waard als patroon: bij een fout die al eerder is hersteld,
+eerst tellen op hoeveel plekken de code dat ding maakt.
+
+**Een verzonnen mechanisme in de regelgeving.** "Met 158 m2 is het te groot om
+als één huishouden door te rekenen in het puntenstelsel; dat wijst vanzelf
+richting opdelen." Het woningwaarderingsstelsel kent geen bovengrens aan
+oppervlakte. Een grote woning krijgt juist veel punten, komt boven de 187 en valt
+in de vrije sector, en dat is voor een verhuurder een voordeel. De werkelijke
+reden dat opdelen bij een groot pand beter uitkomt is de gemeten groottepremie:
+onder 40 m2 brengt een eenheid 1,422 keer de prijs per m2 van de ijkklasse op.
+Dat is een gemeten getal en het klopt; het verzonnen argument stond ernaast en
+klonk even goed. Dat is het gevaarlijke eraan.
+
+**Een conclusie die niet uit het feit volgt.** "Dat zo'n aanvraag wordt ingediend
+laat zien dat de splitsing in de praktijk al werkt." Een aanvraag om te
+legaliseren laat zien dat er zonder vergunning is gesplitst en dat de eigenaar
+dat rechtgetrokken wil hebben. Of het werkt blijkt uit het besluit, en tot die
+tijd loopt de eigenaar het risico dat hij moet terugbouwen. De aanvraag is dus
+eerder een risicosignaal dan een bewijs van haalbaarheid.
+
+**Wat nog niet te beoordelen was.** Berg en Dalseweg staat weer bovenaan en
+Nieuwe Markt 90 wordt weer behandeld, maar het geheugen van verstuurde brieven
+is leeg omdat een testrun daar niets in schrijft. Dat kan dus pas na de eerste
+echte ochtendbrief worden getoetst. Wel is "staat nu te koop" van gisteren nu
+"staat te koop", dus de scherpste formulering is er al af.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

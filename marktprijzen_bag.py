@@ -801,14 +801,24 @@ def bekendmakingregels(items):
 
         feiten = it.get("feiten") or {}
         delen = []
+        # Dit blok staat ook in bekendmakingen_nijmegen.py, en daar stond het
+        # voorbehoud bij het label wel en hier niet. Twee renderers van
+        # hetzelfde blok die van elkaar afwijken, is hoe een regel die al
+        # bestaat alsnog wordt overtreden. Nu staan ze gelijk.
         if feiten.get("oppervlakte_m2"):
-            delen.append(f"{feiten['oppervlakte_m2']} m²")
+            deel = f"{feiten['oppervlakte_m2']} m²"
+            if feiten.get("label_alleen_dit_adres"):
+                deel += " op dit adres, niet van het hele pand"
+            delen.append(deel)
         if feiten.get("bouwjaar"):
             delen.append(f"bouwjaar {feiten['bouwjaar']}")
         if feiten.get("m2_per_kamer"):
             delen.append(f"{feiten['m2_per_kamer']} m² per kamer")
         if feiten.get("energielabel"):
-            delen.append(f"label {feiten['energielabel']}")
+            deel = f"label {feiten['energielabel']}"
+            if feiten.get("label_alleen_dit_adres"):
+                deel += " (alleen van dit adres bekend)"
+            delen.append(deel)
         if feiten.get("rijksmonument"):
             nr = feiten.get("monumentnr")
             delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
