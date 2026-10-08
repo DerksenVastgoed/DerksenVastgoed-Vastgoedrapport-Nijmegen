@@ -1,7 +1,7 @@
 # WOZ-waarden per adres. Formaat: adres | bedrag | jaar
 # Op te zoeken via wozwaardeloket.nl. Ingevulde regels blijven staan en komen niet opnieuw terug.
 
-# Ingevuld (108)
+# Ingevuld (120)
 Achter de Bank 4 | 429.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 Arsenaalplaats 6 | 505.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Bankastraat 10 | 393.000  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
@@ -19,6 +19,7 @@ Burg. Hustinxstraat 56 | 419.000 | 2026
 Castellastraat 15 | 522.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Castellastraat 16 | 384.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
 Daalseweg 56a | 461.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
+Daalseweg 58 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
 Delistraat 20 | 419.000 | 2026
 Delistraat 45 | 390.000 | 2026   # prijsklasse 450k tot 600k
 Delistraat 55 | 470.000 | 2026   # prijsklasse 450k tot 600k
@@ -44,17 +45,21 @@ Gulden Wagengas 1 | 296.000 | 2026   # prijsklasse 300k tot 450k; straat nog zon
 Havenweg 34 | 249.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 152 m2, buiten het middengebied
 Havenweg 70 | 297.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 135 m2, buiten het middengebied
 Hofdijkstraat 17 | 570.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
+Hofdijkstraat 9 | 567.000 | 2026   # prijsklasse boven 600k; Nije Veld heeft nog maar 1 eigen WOZ-waarden
 Houtstraat 31 | 302.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 In de Betouwstraat 35 | 408.000 | 2026
 In de Betouwstraat 37 | 177.000 | 2026   # prijsklasse 300k tot 450k
 Jacob Canisstraat 51 | 520.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 138 m2, buiten het middengebied
 Jan de Wittstraat 4 | 360.000 | 2026
 Jan de Wittstraat 6 | 2.196.000 | 2026   # prijsklasse onder 300k; 22 m2, buiten het middengebied
+Jan de Wittstraat 6-8 studio 9 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 41 m2, buiten het middengebied
 Johannes Vijghstraat 6 | 284.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ
 Kaapstander 264 | 985.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 151 m2, buiten het middengebied
 Koningshofje 3 | 451.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
+Koningstraat 4 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 134 m2, buiten het middengebied
 Korhoenstraat 4 | 620.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 165 m2, buiten het middengebied
 Krayenhofflaan 104 | 573.000 | 2026   # prijsklasse 450k tot 600k; 135 m2, buiten het middengebied
+Krayenhofflaan 321 | 449.000 | 2026
 Krayenhofflaan 47 | 360.000  | 2026
 Lage Markt 21 | 314.000 | 2026
 Marialaan 111 | 312000 | 2026
@@ -83,6 +88,8 @@ Professor Cornelissenstraat 3 | 350.000 | 2026   # prijsklasse 300k tot 450k; st
 Scholenhof 8 | 513.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Schoolstraat 135 | 379000 | 2026
 St. Annastraat 165 | 936.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
+St. Annastraat 165-B | geen | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
+St. Annastraat 165-E | geen | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 St. Annastraat 28 | 1021000 | 2026
 St. Annastraat 7 | 982.009 | 2026   # prijsklasse boven 600k; 330 m2, buiten het middengebied
 St. Annastraat 96 | 702.000 | 2026   # prijsklasse boven 600k; 146 m2, buiten het middengebied
@@ -100,6 +107,7 @@ Voorstadslaan 63 | 476.000 | 2026   # prijsklasse 450k tot 600k; straat nog zond
 Waalbandijk 479 | 535.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
 Ziekerstraat 10D | 162.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 28 m2, buiten het middengebied
 Ziekerstraat 36 | 293.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Ziekerstraat 5 | geen | 2026   # prijsklasse 450k tot 600k
 Zwaluwstraat 175 | 376.000 | 2026
 Zwaluwstraat 7 | 342000 | 2026
 de Ruyterstraat 37 | 514.000 | 2026
@@ -107,20 +115,10 @@ van Dulckenstraat 47 | 410.000 | 2026   # prijsklasse boven 600k; straat nog zon
 van Goorstraat 34 | 295.000 | 2026   # prijsklasse 300k tot 450k
 van Goorstraat 91 | 434.000 | 2026
 van Slichtenhorststraat 100 | 523.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 137 m2, buiten het middengebied
-van Slichtenhorststraat 42 | 689.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 144 m2, buiten het middengebied
-van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
-van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
-
-# Nog in te vullen (12): vul het bedrag tussen de eerste twee streepjes
-Daalseweg 58 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
-Hofdijkstraat 9 | 567.000 | 2026   # prijsklasse boven 600k; Nije Veld heeft nog maar 1 eigen WOZ-waarden
-Jan de Wittstraat 6-8 studio 9 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 41 m2, buiten het middengebied
-Koningstraat 4 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 134 m2, buiten het middengebied
-Krayenhofflaan 321 | 449.000 | 2026
-St. Annastraat 165-B | geen | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 49 m2, buiten het middengebied
-St. Annastraat 165-E | geen | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-Ziekerstraat 5 | geen | 2026   # prijsklasse 450k tot 600k
 van Slichtenhorststraat 14 | 407.000 | 2026   # prijsklasse 450k tot 600k
+van Slichtenhorststraat 42 | 689.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 144 m2, buiten het middengebied
 van Welderenstraat 5 | geen | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
+van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
+van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 | 407.000 | 2026

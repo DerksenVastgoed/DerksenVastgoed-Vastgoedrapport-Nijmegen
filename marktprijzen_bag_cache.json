@@ -72540,7 +72540,8 @@
     ],
     "postcode": "6541AB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Broerdijk|Nijmegen": {
     "oppervlakte": 104,
@@ -72549,7 +72550,8 @@
     ],
     "postcode": "6523GR",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Goeman Borgesiusstraat|Nijmegen": {
     "oppervlakte": 70,
@@ -72558,7 +72560,8 @@
     ],
     "postcode": "6535WH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Malderburchtstraat|Nijmegen": {
     "oppervlakte": 150,
@@ -72567,7 +72570,8 @@
     ],
     "postcode": "6535NJ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Waaijenstein|Nijmegen": {
     "gefaald": true,
@@ -72580,7 +72584,8 @@
     ],
     "postcode": "6534TL",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Simone de Beauvoirstraat|Nijmegen": {
     "gefaald": true,
@@ -72593,7 +72598,8 @@
     ],
     "postcode": "6521MX",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "In de Betouwstraat|Nijmegen": {
     "oppervlakte": 85,
@@ -72602,7 +72608,8 @@
     ],
     "postcode": "6511GB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "M Vasalisstraat|Nijmegen": {
     "oppervlakte": 80,
@@ -72611,7 +72618,8 @@
     ],
     "postcode": "6531AK",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Jacob van Campenstraat|Nijmegen": {
     "oppervlakte": 70,
@@ -72620,7 +72628,8 @@
     ],
     "postcode": "6543LA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Hackfortstraat|Nijmegen": {
     "oppervlakte": 31,
@@ -72629,7 +72638,8 @@
     ],
     "postcode": "6535PN",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Graadt van Roggenstraat|Nijmegen": {
     "gefaald": true,
@@ -72646,7 +72656,8 @@
     ],
     "postcode": "6512BA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Plataanstraat|Nijmegen": {
     "oppervlakte": 105,
@@ -72655,7 +72666,8 @@
     ],
     "postcode": "6522JG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "St. Agnetenweg|Nijmegen": {
     "oppervlakte": 71,
@@ -72674,7 +72686,8 @@
     ],
     "postcode": "6538SM",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Breehofstraat|Nijmegen": {
     "oppervlakte": 64,
@@ -72683,7 +72696,8 @@
     ],
     "postcode": "6542RB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Jan van Speykstraat|Nijmegen": {
     "oppervlakte": 75,
@@ -72692,7 +72706,8 @@
     ],
     "postcode": "6512GX",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Treubstraat|Nijmegen": {
     "oppervlakte": 88,
@@ -72701,7 +72716,8 @@
     ],
     "postcode": "6535ZN",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Nieuwe Dukenburgseweg|Nijmegen": {
     "oppervlakte": 43,
@@ -72710,7 +72726,8 @@
     ],
     "postcode": "6534AD",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Meijhorst|Nijmegen": {
     "oppervlakte": 85,
@@ -72719,7 +72736,8 @@
     ],
     "postcode": "6537KT",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Burchtstraat|Nijmegen": {
     "oppervlakte": 150,
@@ -72728,6 +72746,7 @@
     ],
     "postcode": "6511RC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   }
 }

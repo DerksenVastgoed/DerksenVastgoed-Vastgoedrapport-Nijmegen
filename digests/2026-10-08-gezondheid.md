@@ -13,7 +13,7 @@
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
 - **WOZ zonder pand**: 4 ingevulde WOZ-regels horen bij geen pand in ons aanbod: Daalseweg 56a, Koningshofje 3, St. Annastraat 165, van Welderenstraat 89a
   Waarschijnlijk is het huisnummer aangepast omdat het wozwaardeloket alleen een variant kende, bijvoorbeeld 19-A in plaats van 19. Die waarde landt dan nergens. Zet het adres terug zoals het in het aanbod staat, of voeg beide regels toe.
-- **WOZ-schatting**: geijkt op 98 panden: correctie 0.984 (2% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 13.7% (103), prijs 10.3% (98), beste: prijs; kenmerken uit 75 straten en 11 buurten; nakijken: Derde Walstraat 108 (+112%), Havenweg 34 (-67%), Havenweg 70 (-53%)
+- **WOZ-schatting**: geijkt op 102 panden: correctie 0.984 (2% stelselmatig), spreiding ±18.4%; mediane fout per methode: kenmerken 13.7% (107), prijs 10.1% (102), beste: prijs; kenmerken uit 76 straten en 11 buurten; nakijken: Derde Walstraat 108 (+112%), Havenweg 34 (-67%), Havenweg 70 (-53%)
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-08: 123wonen: 2 mails, 0 objecten, 2 bewust overgeslagen; huislijn: 8 mails, 34 objecten; kamernet: 61 mails, 46 objecten, 15 bewust overgeslagen; pararius: 11 mails, 14 objecten, 7 bewust overgeslagen; regulier: 14 mails, 33 objecten, 1 bewust overgeslagen; vendr: 1 mails, 0 objecten, 1 bewust overgeslagen
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
@@ -32,7 +32,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
 - **Geschiedenis per pand**: 1762 panden gevolgd, 1419 met meer dan een gebeurtenis; 1576 met BAG-gegevens (6334 woningen, 7398 dubbel geteld zonder deze correctie), 1379 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12127 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Van 24 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 72 panden te koop, mediaan 18 dagen geleden voor het laatst bevestigd, oudste 36 dagen
 - **Aanbodreeks**: 7 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 4 koop, 18 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -45,7 +45,7 @@
 - **Brieven verstuurd**: 42 brieven bewaard, laatste van 2026-10-08 (vandaag)
 - **Huur tegen het landelijke cijfer**: onze mediaan €17.91/m2 uit 51 waarnemingen tegen landelijk €20.92/m2 (2026-Q3): -14%
 - **Gemeubileerd**: 5 gemeubileerde advertenties apart bewaard; de opslag wordt binnen hetzelfde huurregime vergeleken, want een hoge huur komt eerder door de vrije sector dan door het meubilair
-- **WOZ-bestand**: 108 bruikbare regels, 12 nog in te vullen; 6 panden in het aanbod nog zonder WOZ
+- **WOZ-bestand**: 112 bruikbare regels, 8 nog in te vullen; 6 panden in het aanbod nog zonder WOZ
 - **Nieuwbouw apart**: geen nieuwbouwprojecten in het aanbodbestand
 - **Opnieuw aangeboden**: 15 adressen vaker aangeboden: 7 voor minder, 8 voor meer; lager bij: van welderenstraat van €705 naar €670; hertogplein van €1995 naar €1520; berg en dalseweg van €1100 naar €799
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand

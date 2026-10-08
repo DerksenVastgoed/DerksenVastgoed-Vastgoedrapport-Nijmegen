@@ -1,10 +1,10 @@
 {
- "aantal": 98,
+ "aantal": 102,
  "correctie": 0.9844985763998735,
- "spreiding": 0.19395571964987623,
+ "spreiding": 0.18354581458993136,
  "band": [
-  0.7511961722488039,
-  1.1391076115485563
+  0.7621722846441947,
+  1.1292639138240574
  ],
  "niet_meegeteld": 0,
  "uitschieters": [
@@ -31,19 +31,19 @@
  ],
  "vergelijking": {
   "kenmerken": {
-   "aantal": 103,
+   "aantal": 107,
    "mediane_fout": 0.13742690058479531,
    "negentig": 0.5741127348643006
   },
   "prijs": {
-   "aantal": 98,
-   "mediane_fout": 0.10302380754182969,
-   "negentig": 0.398989898989899
+   "aantal": 102,
+   "mediane_fout": 0.10056428714830642,
+   "negentig": 0.3723958333333333
   }
  },
  "kenmerken_beschikbaar": {
-  "straten": 75,
+  "straten": 76,
   "buurten": 11,
-  "panden": 103
+  "panden": 107
  }
 }
