@@ -3014,9 +3014,61 @@ def lees_woz():
     return uit
 
 
+# Hoeveel WOZ-waarden via de letterroute hieronder zijn gevonden. Gaat naar
+# het gezondheidsrapport, zodat die route zichtbaar is en niet stil werkt.
+WOZ_VIA_LETTER = set()
+_WOZ_LETTERINDEX = {"n": -1, "index": {}}
+
+
+def _woz_letterindex(woz_tabel):
+    """
+    Een index van WOZ-adressen zonder hun letter: daalseweg56a -> daalseweg56.
+
+    Alleen adressen waar het weghalen van de letter werkelijk iets verandert en
+    waar daarna een cijfer overblijft. Staan er twee letters onder hetzelfde
+    nummer, dan is er niet te kiezen en doet het adres niet mee.
+    """
+    if _WOZ_LETTERINDEX["n"] == len(woz_tabel):
+        return _WOZ_LETTERINDEX["index"]
+    ruw = {}
+    for sleutel in woz_tabel:
+        kaal = re.sub(r"[a-z]+$", "", sleutel)
+        if not kaal or kaal == sleutel or not kaal[-1].isdigit():
+            continue
+        ruw.setdefault(kaal, []).append(sleutel)
+    _WOZ_LETTERINDEX["index"] = {k: v[0] for k, v in ruw.items() if len(v) == 1}
+    _WOZ_LETTERINDEX["n"] = len(woz_tabel)
+    return _WOZ_LETTERINDEX["index"]
+
+
 def woz_van(w, woz_tabel):
-    """De bekende WOZ, anders None."""
-    return woz_tabel.get(_woz_sleutel(w["adres"]))
+    """
+    De bekende WOZ, anders None.
+
+    Met een tweede poging zonder de letter. Het wozwaardeloket geeft een waarde
+    per WOZ-object, en soms staat het object onder 56-A terwijl ons aanbod het
+    pand als 56 kent. Mark zoekt dan 56-A op en vult die waarde in, en tot nu
+    toe landde die nergens: vier van zulke regels stonden drie dagen in het
+    rapport als opzoekwerk dat niets opleverde.
+
+    Zo'n waarde is niet de WOZ van dit adres zelf, want 56 en 56-A kunnen twee
+    woningen in hetzelfde gebouw zijn. Daarom krijgt hij dezelfde markering als
+    een met de hand overgenomen waarde: hij doet mee in de doorrekening en in
+    de toets op opkoopbescherming, maar nooit in de ijking. Anders zou de
+    schatting worden getoetst aan het buurpand.
+    """
+    sleutel = _woz_sleutel(w["adres"])
+    gegevens = woz_tabel.get(sleutel)
+    if gegevens is not None:
+        return gegevens
+    anders = _woz_letterindex(woz_tabel).get(sleutel)
+    if anders:
+        WOZ_VIA_LETTER.add(sleutel)
+        overgenomen = dict(woz_tabel[anders])
+        overgenomen["benadering"] = True
+        overgenomen["overgenomen_van"] = anders
+        return overgenomen
+    return None
 
 
 def werklijst_woz(kandidaten, woz_tabel, aantal=18):
@@ -3038,7 +3090,7 @@ def werklijst_woz(kandidaten, woz_tabel, aantal=18):
 
     Geeft een lijst met per pand de reden waarom het erop staat.
     """
-    _ingevuld, _open, bekend = _woz_regels()
+    _ingevuld, _open, _geen, bekend = _woz_regels()
     straten_bekend, per_buurt = set(), {}
     for regel in _ingevuld:
         adres = regel.split("|")[0].strip()
@@ -3108,16 +3160,36 @@ def werklijst_woz(kandidaten, woz_tabel, aantal=18):
     return uit[:aantal]
 
 
+# Wat Mark in het bedragveld kan zetten om te melden dat er geen WOZ te vinden
+# is. Zonder zo'n markering is "opgezocht en niets gevonden" niet te
+# onderscheiden van "nog niet opgezocht", en dan komt het adres terug.
+WOZ_GEEN = ("geen", "-", "--", "nvt", "n.v.t.", "nvt.", "niet beschikbaar",
+            "onbekend", "x")
+
+
+def _woz_geen_waarde(veld):
+    return (veld or "").strip().lower().rstrip(".") in [
+        w.rstrip(".") for w in WOZ_GEEN]
+
+
 def _woz_regels(pad=WOZ_PAD):
     """
-    Het WOZ-bestand als twee lijsten: ingevuld en nog in te vullen.
+    Het WOZ-bestand als drie lijsten: ingevuld, nog in te vullen, en geen WOZ.
 
     Nodig omdat het bestand eerder alleen werd aangevuld. Een adres zonder
     bedrag werd niet herkend als al aanwezig en kwam dus elke dag opnieuw
     onderaan te staan, met een nieuwe datumkop erboven. Na tien dagen stond
     hetzelfde adres tien keer in het bestand.
+
+    De derde lijst is er sinds 8 oktober. Bij een deel van de adressen geeft
+    het WOZ-waardeloket niets, bijvoorbeeld omdat het adres geen eigen
+    WOZ-object is. Zo'n adres weghalen is het slechtste van beide: het staat
+    niet meer in de weg, maar de volgende run zet het er gewoon weer bij en
+    dan wordt het voor de tweede keer opgezocht. Daarom blijft het staan met
+    een markering, telt het niet mee als openstaand werk, en telt het ook niet
+    mee als meting.
     """
-    ingevuld, open_regels, gezien = [], [], set()
+    ingevuld, open_regels, geen, gezien = [], [], [], set()
     try:
         with open(pad, encoding="utf-8") as f:
             for regel in f:
@@ -3130,13 +3202,16 @@ def _woz_regels(pad=WOZ_PAD):
                 if not sleutel or sleutel in gezien:
                     continue
                 gezien.add(sleutel)
-                if len(delen) > 1 and delen[1]:
+                veld = delen[1] if len(delen) > 1 else ""
+                if _woz_geen_waarde(veld):
+                    geen.append(kaal)
+                elif veld:
                     ingevuld.append(kaal)
                 else:
                     open_regels.append(kaal)
     except FileNotFoundError:
         pass
-    return ingevuld, open_regels, gezien
+    return ingevuld, open_regels, geen, gezien
 
 
 def vul_woz_aan(kandidaten, woz_tabel):
@@ -3149,7 +3224,7 @@ def vul_woz_aan(kandidaten, woz_tabel):
     dan de openstaande. Zo groeit het als een tabel in plaats van als een
     stapel dagblokken, en verdwijnen eerdere dubbelingen vanzelf.
     """
-    ingevuld, open_regels, bekend = _woz_regels()
+    ingevuld, open_regels, geen_woz, bekend = _woz_regels()
     nieuw = []
     for k in kandidaten:
         w = k[-1]
@@ -3191,13 +3266,16 @@ def vul_woz_aan(kandidaten, woz_tabel):
                 werk.append(f"{p['adres']} |  | {jaar}   # {p['reden']}")
         except Exception as e:
             print(f"Werklijst niet gemaakt: {str(e)[:80]}", file=sys.stderr)
-    if not nieuw and not open_regels and not ingevuld:
+    if not nieuw and not open_regels and not ingevuld and not geen_woz:
         return 0
     try:
         with open(WOZ_PAD, "w", encoding="utf-8") as f:
             f.write("# WOZ-waarden per adres. Formaat: adres | bedrag | jaar\n")
             f.write("# Op te zoeken via wozwaardeloket.nl. Ingevulde regels "
-                    "blijven staan en komen niet opnieuw terug.\n\n")
+                    "blijven staan en komen niet opnieuw terug.\n")
+            f.write("# Geeft het loket geen waarde voor een adres, zet dan "
+                    "'geen' in het bedragveld. Weghalen helpt niet: dan komt "
+                    "het adres bij de volgende run terug op de werklijst.\n\n")
             if ingevuld:
                 f.write(f"# Ingevuld ({len(ingevuld)})\n")
                 for regel in sorted(ingevuld):
@@ -3207,6 +3285,14 @@ def vul_woz_aan(kandidaten, woz_tabel):
                         f"bedrag tussen de eerste twee streepjes\n")
                 for regel in sorted(open_regels):
                     f.write(regel + "\n")
+            if geen_woz:
+                f.write(f"\n# Geen WOZ beschikbaar ({len(geen_woz)}): "
+                        f"opgezocht, het loket geeft niets. Deze regels "
+                        f"blijven staan zodat ze niet opnieuw op de werklijst "
+                        f"komen. Vind je er later toch een waarde, vervang "
+                        f"dan de markering door het bedrag.\n")
+                for regel in sorted(geen_woz):
+                    f.write(regel + "\n")
             if werk:
                 f.write(f"\n# Werklijst ({len(werk)}): deze panden verbeteren "
                         f"de eigen WOZ-schatting het meest. Niet meer "
@@ -3215,6 +3301,9 @@ def vul_woz_aan(kandidaten, woz_tabel):
                 for regel in werk:
                     f.write(regel + "\n")
         print(f"{WOZ_PAD}: {len(ingevuld)} ingevuld, {len(open_regels)} open"
+              + (f", {len(geen_woz)} zonder WOZ" if geen_woz else "")
+              + (f", {len(WOZ_VIA_LETTER)} gevonden via de letterroute"
+                 if WOZ_VIA_LETTER else "")
               + (f", {len(set(nieuw))} nieuw" if nieuw else "")
               + (f", werklijst {len(werk)}" if werk else ""),
               file=sys.stderr)

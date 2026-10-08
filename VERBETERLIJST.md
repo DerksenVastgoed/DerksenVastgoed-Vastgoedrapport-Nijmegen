@@ -6843,6 +6843,96 @@ deze week al twee runs gekost.
 
 ---
 
+## 80. Een adres zonder WOZ weghalen kost je het werk twee keer - 8 oktober 2026
+
+Mark stelde voor de adressen waarvoor het WOZ-waardeloket niets geeft uit het
+bestand te halen en er nieuwe voor terug te zetten. De helft daarvan is goed en
+de helft kost hem een tweede ronde opzoekwerk.
+
+**Waarom weghalen niet werkt.** Het bestand wordt elke run opnieuw opgebouwd,
+en de werklijst slaat alleen adressen over die al in het bestand staan, met of
+zonder bedrag. Haal je een regel weg, dan is dat adres niet meer bekend, en
+komt het bij de volgende run gewoon weer op de werklijst. Mark zoekt het dan
+opnieuw op, vindt opnieuw niets, en haalt het opnieuw weg. Een leeg veld
+betekent "nog niet opgezocht" en er was geen manier om "opgezocht, niets
+gevonden" op te schrijven.
+
+**Waarom het weg moet uit de werklijst.** Daar had Mark wel gelijk in. Er geldt
+een rem van 25 openstaande regels: staan er al 25 open, dan komt er geen nieuwe
+werklijst bij. Onvervulbare regels bezetten die plekken dan voor altijd en
+blokkeren het werk dat wel iets oplevert.
+
+**Een derde toestand.** Zet "geen" in het bedragveld, en het adres is bekend,
+telt niet als openstaand werk, telt niet mee als meting, en komt niet terug.
+Ook "-", "nvt" en "onbekend" worden herkend; het gaat erom dat het veld niet
+leeg is. Die regels komen in een eigen blok te staan: "Geen WOZ beschikbaar".
+Vind je er later toch een waarde, dan vervang je de markering door het bedrag
+en doet hij gewoon mee.
+
+Getest op alle drie de toestanden: van negen regels komen er drie als meting
+door, staan er twee open en zijn er drie gemarkeerd, en de controle op
+WOZ-regels zonder pand slaat de gemarkeerde over omdat daar geen cijfer in
+staat.
+
+**Wat dit ook zegt over het pand.** Het loket geeft een waarde per WOZ-object,
+niet per adres. Geeft een adres niets, dan is het vaak geen eigen WOZ-object,
+bijvoorbeeld omdat het met het buurpand als een geheel is beschikt. Dat is
+precies wat er bij huisnummer 19 en 19-A speelde. Bewijs is het niet, want het
+loket heeft ook gaten, maar het is een reden om het feit te bewaren in plaats
+van weg te gooien. Er hangt ook iets praktisch aan: zonder eigen WOZ is de
+toets op opkoopbescherming voor dat adres niet te doen met een hard getal, en
+valt het model terug op de eigen schatting.
+
+**Wat Mark moet doen.** In woz.txt de lege velden vervangen door "geen", wat
+met een zoek-en-vervang van "|  | 2026" naar "| geen | 2026" in een keer kan.
+Daarna staan er nul regels open en zet de volgende run 25 nieuwe adressen op de
+werklijst, gekozen op prijsklasse, straat en buurten waar we nog weinig weten.
+Dat is meer dan de twaalf van nu, dus de volgende ronde is een grotere.
+
+---
+
+## 81. Een controle die een andere sleutel gebruikt dan het model, liegt - 8 oktober 2026
+
+Vier WOZ-regels stonden sinds 6 oktober in het rapport als opzoekwerk dat
+nergens landde: Daalseweg 56a, Koningshofje 3, St. Annastraat 165 en van
+Welderenstraat 89a. Drie dagen dezelfde melding, en geen van beide kanten deed
+er iets. Bij het oplossen bleken er twee dingen aan de hand.
+
+**Het model en de controle gebruikten niet dezelfde sleutel.** Het model maakt
+"sint" en "st." gelijk, en ook "professor" en "prof.", want anders matcht geen
+enkel adres in de ring. De controle deed dat niet: die gooide gewoon alles weg
+wat geen letter of cijfer was. Een adres dat in het aanbod als "Sint
+Annastraat" staat en in het WOZ-bestand als "St. Annastraat" werd daardoor als
+niet-passend gemeld, terwijl het model het wel vond. Een controle die een
+andere sleutel gebruikt dan het ding dat hij controleert, meldt verschillen die
+er niet zijn. De controle gebruikt nu dezelfde sleutel.
+
+**En de letterregels landden werkelijk nergens.** Het wozwaardeloket geeft een
+waarde per WOZ-object, niet per adres. Staat het object onder 56-A en kent ons
+aanbod het pand als 56, dan vulde Mark 56-A in en vond het model die waarde
+niet. Dat is nu een tweede poging in woz_van: lukt het exacte adres niet, dan
+wordt het nummer zonder letter geprobeerd. Staan er twee letters onder hetzelfde
+nummer, dan is er niet te kiezen en doet het adres niet mee.
+
+Zo'n waarde is niet de WOZ van dat adres zelf, want 56 en 56-A kunnen twee
+woningen in hetzelfde gebouw zijn. Hij krijgt daarom dezelfde markering als een
+met de hand overgenomen waarde: hij doet mee in de doorrekening en in de toets
+op opkoopbescherming, maar nooit in de ijking. Anders zou de schatting worden
+getoetst aan het buurpand en is dat rondje rond.
+
+**De controle meldt nu drie uitkomsten in plaats van een.** Het adres hoort bij
+een pand; het landt via de letterroute als overgenomen waarde; of er is
+helemaal geen pand met dat adres en dan is het een waarde die we bewaren voor
+later. Alleen dat laatste was al geen werk, en het stond toch als LET OP in het
+rapport. Een pand kan uit het aanbod zijn verdwenen nadat het werd opgezocht;
+daar is niets aan te doen en niets aan mis.
+
+Getest op alle drie: van vijf WOZ-regels landen er twee via de letterroute als
+benadering, een exact ondanks het verschil tussen "Sint" en "St.", een gewoon,
+en een wordt bewaard voor later.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

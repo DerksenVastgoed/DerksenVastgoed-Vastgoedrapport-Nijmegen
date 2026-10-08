@@ -18,6 +18,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import sys
 
 OK, LET_OP, FOUT = "OK", "LET OP", "FOUT"
@@ -987,8 +988,14 @@ def controle_opnieuw_aangeboden():
 
 def controle_wozbestand():
     """Of elke regel in het WOZ-bestand te lezen is."""
-    goed = slecht = open_regels = benaderingen = 0
+    goed = slecht = open_regels = benaderingen = zonder_woz = 0
     voorbeelden = []
+    # "geen" in het bedragveld betekent: opgezocht, het loket geeft niets. Dat
+    # is geen openstaand werk en ook geen fout, maar een eigen toestand. Werd
+    # dat bij "nog in te vullen" geteld, dan leek er meer werk open te staan
+    # dan er is, en dat is precies het getal waarop Mark afgaat.
+    geen_markering = ("geen", "-", "--", "nvt", "n.v.t", "nvt.",
+                      "niet beschikbaar", "onbekend", "x")
     try:
         with open("woz.txt", encoding="utf-8") as f:
             for nummer, regel in enumerate(f, 1):
@@ -1004,7 +1011,10 @@ def controle_wozbestand():
                 if delen[1].lstrip().startswith(("~", "ca", "±")):
                     benaderingen += 1
                 cijfers = "".join(c for c in delen[1] if c.isdigit())
-                if not cijfers:
+                if delen[1].strip().lower().rstrip(".") in [
+                        m.rstrip(".") for m in geen_markering]:
+                    zonder_woz += 1
+                elif not cijfers:
                     # Leeg bedrag is geen fout: dat is een regel die nog moet
                     # worden ingevuld.
                     open_regels += 1
@@ -1039,6 +1049,9 @@ def controle_wozbestand():
     except Exception:
         te_doen = -1
     bewijs = f"{goed} bruikbare regels, {open_regels} nog in te vullen"
+    if zonder_woz:
+        bewijs += (f", {zonder_woz} opgezocht zonder dat het loket een waarde "
+                   f"geeft")
     if te_doen == 0:
         bewijs += ("; geen nieuwe kandidaten, elk pand in het aanbod heeft al "
                    "een WOZ of staat al op de lijst")
@@ -1057,14 +1070,37 @@ def controle_wozbestand():
     return (OK, bewijs, "")
 
 
+def _wozsleutel(adres):
+    """
+    Dezelfde sleutel als het model gebruikt.
+
+    Dit stond hier eerder anders: de controle vergeleek met een simpele
+    sleutel zonder de afkortingen, terwijl het model "sint" en "st." gelijk
+    maakt. Een controle die een andere sleutel gebruikt dan het ding dat hij
+    controleert, meldt verschillen die er niet zijn. Precies dat is hier
+    gebeurd.
+    """
+    a = (adres or "").lower()
+    a = a.replace("professor ", "prof").replace("prof. ", "prof")
+    a = a.replace("burgemeester ", "burg").replace("burg. ", "burg")
+    a = a.replace("sint ", "st").replace("st. ", "st")
+    return re.sub(r"[^a-z0-9]", "", a)
+
+
 def controle_woz_zonder_pand():
     """
     WOZ-regels waarvan het adres bij geen enkel pand hoort dat wij volgen.
 
-    Dit komt voor als een huisnummer bij het wozwaardeloket niets oplevert en
-    het object onder 19-A geregistreerd staat. Dan is 19-A de juiste meting,
-    maar in ons aanbod staat het pand nog als 19, en dan vindt het model die
-    WOZ niet. Het opzoekwerk is dan gedaan maar landt nergens.
+    Drie uitkomsten, en alleen de laatste is werk:
+
+    1. Het adres hoort bij een pand. Goed.
+    2. Het adres heeft een letter en zonder die letter is er wel een pand.
+       Dan landt de waarde sinds 8 oktober via de letterroute in woz_van, als
+       overgenomen waarde die niet in de ijking meedoet. Geen werk meer, maar
+       wel iets om te melden, want die route hoort zichtbaar te zijn.
+    3. Er is helemaal geen pand met dat adres. Dan is het een waarde die we
+       bewaren voor later; dat is geen fout. Zo'n pand kan uit het aanbod zijn
+       verdwenen nadat het werd opgezocht.
     """
     adressen = set()
     try:
@@ -1074,10 +1110,10 @@ def controle_woz_zonder_pand():
                     continue
                 naam = regel.split("|", 1)[0].strip()
                 if naam:
-                    adressen.add("".join(c for c in naam.lower() if c.isalnum()))
+                    adressen.add(_wozsleutel(naam))
     except Exception:
         return (OK, "geen aanbodbestand om tegen te toetsen", "")
-    los = []
+    via_letter, bewaard = [], []
     try:
         with open("woz.txt", encoding="utf-8") as f:
             for regel in f:
@@ -1089,20 +1125,34 @@ def controle_woz_zonder_pand():
                     continue
                 if not any(c.isdigit() for c in delen[1]):
                     continue
-                sleutel = "".join(c for c in delen[0].lower() if c.isalnum())
-                if sleutel not in adressen:
-                    los.append(delen[0])
+                sleutel = _wozsleutel(delen[0])
+                if sleutel in adressen:
+                    continue
+                zonder = re.sub(r"[a-z]+$", "", sleutel)
+                if (zonder and zonder != sleutel and zonder[-1].isdigit()
+                        and zonder in adressen):
+                    via_letter.append(delen[0])
+                else:
+                    bewaard.append(delen[0])
     except FileNotFoundError:
         return (OK, "geen WOZ-bestand", "")
-    if not los:
+    delen_bewijs = []
+    if via_letter:
+        delen_bewijs.append(f"{len(via_letter)} landen via de letterroute "
+                            f"als overgenomen waarde: "
+                            f"{', '.join(via_letter[:4])}")
+    if bewaard:
+        delen_bewijs.append(f"{len(bewaard)} horen bij geen pand in het "
+                            f"aanbod en zijn bewaard voor later: "
+                            f"{', '.join(bewaard[:4])}")
+    if not delen_bewijs:
         return (OK, "elke ingevulde WOZ hoort bij een pand dat we volgen", "")
-    return (LET_OP,
-            f"{len(los)} ingevulde WOZ-regels horen bij geen pand in ons "
-            f"aanbod: {', '.join(los[:4])}",
-            "Waarschijnlijk is het huisnummer aangepast omdat het "
-            "wozwaardeloket alleen een variant kende, bijvoorbeeld 19-A in "
-            "plaats van 19. Die waarde landt dan nergens. Zet het adres terug "
-            "zoals het in het aanbod staat, of voeg beide regels toe.")
+    return (OK, "; ".join(delen_bewijs),
+            "De letterroute vult een pand aan met de waarde van hetzelfde "
+            "nummer met een letter, bijvoorbeeld 56-A bij 56. Die waarde doet "
+            "mee in de doorrekening maar niet in de ijking, want het kunnen "
+            "twee woningen in hetzelfde gebouw zijn. Wil je hem als eigen "
+            "meting, zoek dan het adres op zoals het in het aanbod staat.")
 
 
 def controle_nieuwbouw():
