@@ -776,6 +776,7 @@ jobs:
             buurtbeeld.json
             vergund_verkocht.json
             brief_logboek.json
+            verteld.json
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
@@ -797,6 +798,8 @@ jobs:
             bekendmakingen_archief.json
             publicaties_gezien.json
             marktprijzen_bag_cache.json
+            huislijn_kenmerken.json
+            wonen123_kenmerken.json
             rijksmonumenten_nijmegen.json
             top3-kaart.html
             digests/
