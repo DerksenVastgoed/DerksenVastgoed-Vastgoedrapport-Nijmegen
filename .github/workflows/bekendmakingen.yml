@@ -10,14 +10,20 @@ concurrency:
 
 on:
   schedule:
-    - cron: "17 3 * * 1-5"  # werkdagen: korte brief (niet op het hele uur,
-                            # want dan staat de wachtrij bij GitHub vol)
-    # De weekendrun begint vrijdagnacht, niet zondagochtend: hij werkt de hele
-    # pandgeschiedenis bij en dat duurt uren. De brief is dan zaterdag of
-    # zondagochtend klaar en wordt als weekeditie verstuurd.
-    - cron: "17 3 * * 0"   # zondagochtend: weekeditie met volledige geschiedenis
-                           # (stond op vrijdagnacht, waardoor de zondagsbrief
-                           # zaterdagochtend binnenkwam)
+    # GitHub rekent cron in UTC en kent geen tijdzones, dus bij de overgang naar
+    # wintertijd schoof de brief een uur op. Daarom staat elke editie er TWEE
+    # keer in, een uur na elkaar, en laat de wachter "Juiste tijd" hieronder
+    # alleen de run door die in Nijmegen op het bedoelde uur valt. Zo komt de
+    # brief het hele jaar rond 6:17 binnen, zomer en winter.
+    #
+    # Werkdagen: korte brief, bedoeld lokaal uur 6. Niet op het hele uur, want
+    # dan staat de wachtrij bij GitHub vol.
+    - cron: "17 4 * * 1-5"   # zomertijd: 6:17 in Nijmegen
+    - cron: "17 5 * * 1-5"   # wintertijd: 6:17 in Nijmegen
+    # Zondag de weekeditie, bedoeld lokaal uur 5: hij werkt de hele
+    # pandgeschiedenis bij en dat duurt uren, dus die begint een uur eerder.
+    - cron: "17 3 * * 0"     # zomertijd: 5:17 in Nijmegen
+    - cron: "17 4 * * 0"     # wintertijd: 5:17 in Nijmegen
   workflow_dispatch:
     inputs:
       backfill_vanaf:
@@ -55,7 +61,37 @@ permissions:
   contents: write
 
 jobs:
+  # Welke van de twee geplande tijdstippen hoort bij vandaag? Deze job kost
+  # een paar seconden en voorkomt dat de brief twee keer draait of een uur
+  # verschuift bij de overgang naar winter- of zomertijd. Een handmatige run
+  # komt er altijd langs.
+  tijd:
+    runs-on: ubuntu-latest
+    outputs:
+      door: ${{ steps.toets.outputs.door }}
+    steps:
+      - name: Juiste tijd voor deze editie
+        id: toets
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Handmatige run, altijd doorlaten"
+            echo "door=ja" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          DAG=$(TZ=Europe/Amsterdam date +%u)
+          UUR=$(TZ=Europe/Amsterdam date +%H)
+          if [ "$DAG" = "7" ]; then DOEL=05; else DOEL=06; fi
+          echo "In Nijmegen is het dag $DAG, uur $UUR; bedoeld uur $DOEL"
+          if [ "$UUR" = "$DOEL" ]; then
+            echo "door=ja" >> "$GITHUB_OUTPUT"
+          else
+            echo "door=nee" >> "$GITHUB_OUTPUT"
+            echo "Dit is de andere helft van het zomer-winterpaar; overslaan."
+          fi
+
   digest:
+    needs: tijd
+    if: needs.tijd.outputs.door == 'ja'
     runs-on: ubuntu-latest
     timeout-minutes: 330
     permissions:
@@ -854,3 +890,27 @@ jobs:
           to: ${{ secrets.MAIL_TO }}
           subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
           html_body: file://digests/${{ env.DATUM }}-brief.html
+
+      # Komt er geen brief uit, dan werd er tot nu toe niets verstuurd en ook
+      # niets gemeld: de stilte zag eruit als "geen nieuws". Op 8 oktober viel
+      # de ochtendbrief daardoor weg en bleef dat tot half twaalf onopgemerkt.
+      # Dit bericht gaat alleen naar Mark, niet naar pa.
+      - name: Melden dat er geen brief is
+        if: ${{ always() && github.event_name == 'schedule' && hashFiles(format('digests/{0}-mail.html', env.DATUM)) == '' && hashFiles(format('digests/{0}-brief.html', env.DATUM)) == '' }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO }}
+          subject: "GEEN BRIEF ${{ env.DATUM }} - de ochtendrun is niet afgekomen"
+          body: |
+            De geplande run van ${{ env.DATUM }} heeft geen brief opgeleverd.
+
+            Kijk in het logboek van deze run welke stap rood werd:
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Er is dus geen brief verstuurd, ook niet naar pa.
