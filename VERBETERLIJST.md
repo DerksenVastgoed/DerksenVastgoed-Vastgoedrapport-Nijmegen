@@ -7013,8 +7013,107 @@ Getest op de mail zoals hij werkelijk is, met vier kliktellers op hetzelfde
 domein: de woning komt eruit en de andere drie niet. En van vijf soorten link
 worden de drie objectvormen erkend en de homepagina en de afmeldlink niet.
 
+**Het huisnummer hing aan een enkele regel, en dat is nu niet meer zo.** De
+vorm "van Spaenstraat 20, Nijmegen" staat alleen in het contactformulier
+onderaan de pagina, en dat soort velden wordt vaak door de pagina zelf
+ingevuld. Dan staat het niet in de opgehaalde HTML en hadden we wel de straat
+maar geen nummer. Er is nu een tweede route: de straat kennen we uit het
+kruimelpad, dus er is alleen een nummer nodig, en dat staat ook in de
+omschrijving ("aan de Van Spaenstraat 20 combineert"). Doordat de straatnaam
+vooraf bekend is, kan daar geen nummer van een andere straat tussendoor komen.
+Getest op vier varianten: met contactformulier, zonder, zonder nummer waar dan
+ook (dan alleen de straat), en een pagina waar "Treubstraat 103 m2" staat, want
+een oppervlakte mag nooit als huisnummer doorgaan.
+
 Nog niet te bewijzen vanaf hier: of het ophalen van 123wonen.nl op de runner
 lukt. Bij Huislijn lukte dat wel, dus er is geen principieel beletsel.
+
+---
+
+## 83. De brief wist niet wat pa al had gelezen - 8 oktober 2026
+
+Mark noemde drie fouten in de brief van vandaag. De verlaging van de Palmstraat
+40 stond er voor de derde dag op rij in. Over beide vergunningen had pa al
+bericht gehad. En de Nieuwe Markt 90 werd geintroduceerd als pand dat "nu te
+koop staat" terwijl het er al weken in staat.
+
+Dat zijn drie symptomen van een ding: **de brief had geen enkele notie van wat
+er eerder is verstuurd.** Hij kreeg elke dag dezelfde gegevens en moest zelf
+bedenken wat daarvan nieuw was. Dat kan hij niet weten.
+
+Het pijnlijke deel: er is wel een brieflogboek, en dat legt al weken vast wat
+er verteld is. Maar niets las het ooit terug. Het diende alleen de weekeditie,
+voor het blokje "wat bleef liggen". Het geheugen was er dus wel, en werd nooit
+gebruikt.
+
+**Waarom de instructie niet werkte.** Sinds 6 oktober staat in de opdracht de
+regel dat een prijswijziging alleen nieuws is als hij van vandaag of gisteren
+is, met de Palmstraat er als voorbeeld bij, en een kolom "Gewijzigd op" in de
+tabel. Die regel is drie dagen achter elkaar niet gevolgd. De conclusie daaruit
+is niet dat de regel beter moet worden opgeschreven. Een waarschuwing die
+genegeerd kan worden, wordt genegeerd. De gegevens moeten het verschil maken.
+
+**De prijswijzigingen zijn daarom gesplitst.** Niet een tabel met een
+waarschuwing eronder, maar twee koppen: "Prijswijzigingen van vandaag en
+gisteren" en "Eerdere prijswijzigingen, als achtergrond". Staat er vandaag
+niets, dan staat er letterlijk "Vandaag en gisteren is er geen enkele
+vraagprijs veranderd". De brief kan de Palmstraat nu niet als nieuws van vandaag
+brengen, want hij staat niet in het blok waar het nieuws staat. Weggegooid wordt
+hij niet: een oude verlaging is bruikbare achtergrond bij een bod. Een derde bak
+is voor wijzigingen waarvan de datum niet in de pandgeschiedenis staat; die zijn
+ouder dan onze meting en dus zeker geen nieuws.
+
+**En er is nu een geheugen van verstuurde brieven**, verteld.py. Dat houdt per
+pand en per bekendmaking bij wanneer het voor het eerst en voor het laatst in
+een verstuurde brief stond, en hoe vaak. De brief krijgt dat als eerste blok in
+de gegevens: "WAT PA AL HEEFT GELEZEN", met de datums erbij. Daarnaast staat er
+middenin de bronnen een gerichte waarschuwing die de adressen noemt die in dat
+specifieke blok staan en al gemeld zijn. Een algemene regel bovenaan is
+genegeerd; een regel die de adressen noemt staat er niet los van maar ertussen.
+
+Vastleggen gebeurt door naar de verstuurde tekst te kijken, niet door de brief
+te vragen waar hij over ging. Dat laatste is minder betrouwbaar.
+
+**De adresherkenning kostte drie pogingen**, en dat is het vermelden waard
+omdat het laat zien hoe makkelijk zo'n geheugen stil fout gaat. Eerste versie:
+elk hoofdletterwoord met een getal erachter. Dan wordt "Gelderland 5,6%" een
+adres. Dus een lijst van straatuitgangen erbij. Tweede versie: "Nieuwe Markt 90"
+viel af, want "markt" stond met kleine letter in de lijst en de regex was
+gevoelig voor hoofdletters, en "Berg en Dalseweg 11-11A" werd "Dalseweg 11-11A",
+want "en" stond niet als tussenwoord. Dat laatste is erger dan het lijkt: de
+Dalseweg en de Berg en Dalseweg zijn twee verschillende straten in Nijmegen.
+Derde versie: "Bij Berg en Dalseweg 11" leverde een andere sleutel dan "Berg en
+Dalseweg 11", omdat het woord ervoor werd meegenomen. Dan denkt het geheugen dat
+het twee panden zijn en werkt het niet. Nu gaat er een vaste lijst stopwoorden
+vanaf, altijd op dezelfde manier, want een sleutel die van de zin afhangt is
+geen sleutel.
+
+Getest op tien adressen in een lopende tekst: alle tien goed, inclusief
+Doddendaal 101, Koningshofje 3 en Burg. Hustinxstraat 56, en zonder dat
+"Gelderland 5,6%", "BOPA 20" of "Galgenveld +6,0%" wordt meegerekend. En de
+sleutels blijven gelijk als dezelfde adressen in een andere zin staan.
+
+**Twee nieuwe briefregels.** Dat het blok met wat pa al heeft gelezen voorgaat
+op al het andere, en dat een pand alleen nieuw is als het vandaag voor het eerst
+in de gegevens staat. Bij elk pand staat hoeveel dagen het in het aanbod is, dus
+dat is te controleren. Een pand dat al weken staat mag gewoon behandeld worden,
+maar dan als pand dat er al staat, en dat is ook eerlijker: dat zegt iets anders
+over de markt dan een pand van vandaag.
+
+**Een controle erop**, want dit geheugen wordt alleen door een echte brief
+bijgewerkt en nooit door een testrun. Groeit het niet terwijl er wel brieven
+uitgaan, dan is de herhaling terug zonder dat iemand het ziet. Het rapport meldt
+nu hoeveel onderwerpen bekend zijn, hoeveel er in het venster van drie weken
+vallen, hoeveel er in meer dan een brief terugkwamen, en of de laatste
+vastlegging ouder is dan drie dagen.
+
+**Wat hier niet gebeurt: wegfilteren.** Een besluit op een eerder gemelde
+aanvraag is wel nieuws, en een pand dat na drie weken in prijs zakt ook. Dat
+onderscheid valt alleen bij het schrijven te maken. Lukt dat met dit blok nog
+niet, dan is de volgende stap de al gemelde bekendmakingen uit de brontekst
+halen en apart zetten, net als bij de prijswijzigingen. Dat is bewaard als
+reserve, want het kost iets echts: een vervolgbesluit zou dan ook uit beeld
+verdwijnen.
 
 ---
 
