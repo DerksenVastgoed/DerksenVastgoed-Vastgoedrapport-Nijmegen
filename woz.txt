@@ -2,7 +2,7 @@
 # Op te zoeken via wozwaardeloket.nl. Ingevulde regels blijven staan en komen niet opnieuw terug.
 # Geeft het loket geen waarde voor een adres, zet dan 'geen' in het bedragveld. Weghalen helpt niet: dan komt het adres bij de volgende run terug op de werklijst.
 
-# Ingevuld (112)
+# Ingevuld (114)
 Achter de Bank 4 | 429.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 Arsenaalplaats 6 | 505.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Bankastraat 10 | 393.000  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
@@ -89,6 +89,8 @@ St. Annastraat 165 | 936.000 | 2026   # prijsklasse 300k tot 450k; straat nog zo
 St. Annastraat 28 | 1021000 | 2026
 St. Annastraat 7 | 982.009 | 2026   # prijsklasse boven 600k; 330 m2, buiten het middengebied
 St. Annastraat 96 | 702.000 | 2026   # prijsklasse boven 600k; 146 m2, buiten het middengebied
+St. Canisiussingel 6 | 408.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+St. Canisiussingel 8 | 408.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 St. Stephanusstraat 13 | 569.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 146 m2, buiten het middengebied
 Staringstraat 21 | 270.000 | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 48 m2, buiten het middengebied
 Stieltjesstraat 10 | 594.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 158 m2, buiten het middengebied
@@ -115,10 +117,6 @@ van Slichtenhorststraat 42 | 689.000 | 2026   # prijsklasse boven 600k; straat n
 van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 | 407.000 | 2026
-
-# Nog in te vullen (2): vul het bedrag tussen de eerste twee streepjes
-St. Canisiussingel 6 | 408.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-St. Canisiussingel 8 | 408.000 | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 
 # Geen WOZ beschikbaar (8): opgezocht, het loket geeft niets. Deze regels blijven staan zodat ze niet opnieuw op de werklijst komen. Vind je er later toch een waarde, vervang dan de markering door het bedrag.
 Daalseweg 58 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied

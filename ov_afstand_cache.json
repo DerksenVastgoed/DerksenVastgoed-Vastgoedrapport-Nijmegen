@@ -103,6 +103,14 @@
   "omweg": 0.98,
   "soort": "bus"
  },
+ "51.82219,5.82475": {
+  "geschat": false,
+  "hemelsbreed": 151,
+  "meters": 408,
+  "naam": "Sportcentrum Nimma Nova",
+  "omweg": 2.7,
+  "soort": "bus"
+ },
  "51.82249,5.79321": {
   "geschat": false,
   "hemelsbreed": 177,

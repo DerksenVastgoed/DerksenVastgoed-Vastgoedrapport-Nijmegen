@@ -1,10 +1,8 @@
 # Gezondheidsrapport 2026-10-09
 
-46 in orde, 7 aandachtspunten, 0 fouten.
+47 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Geheugen verstuurde brieven**: nog geen geheugen van verstuurde brieven
-  Vanaf de eerste echte brief komt hier per pand en per bekendmaking te staan wanneer het is gemeld. Een testrun schrijft hier niets, dus na alleen handruns is dit leeg. Blijft het leeg na een geplande ochtendrun, kijk dan in het logboek van de briefstap naar 'Verteld:'.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
 - **Huurdekking**: steekproef van 12 adressen elders: 5 kennen we al (42%)
@@ -13,13 +11,14 @@
   Controleer of het afzenderdomein in AFZENDERS klopt en of de attendering bij die partij aanstaat. Een verkeerd domein levert geen foutmelding op, alleen stilte.
 - **Adressen met meerdere maten**: 1 adressen met meerdere woningmaten: st. annastraat 30 (23, 31 m2)
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
-- **WOZ-schatting**: geijkt op 102 panden: correctie 0.984 (2% stelselmatig), spreiding ±18.4%; mediane fout per methode: kenmerken 13.7% (107), prijs 10.1% (102), beste: prijs; kenmerken uit 76 straten en 11 buurten; nakijken: Derde Walstraat 108 (+112%), Havenweg 34 (-67%), Havenweg 70 (-53%)
+- **WOZ-schatting**: geijkt op 104 panden: correctie 0.988 (1% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 14.6% (109), prijs 11.3% (104), beste: prijs; kenmerken uit 77 straten en 11 buurten; nakijken: Derde Walstraat 108 (+111%), Havenweg 34 (-67%), Havenweg 70 (-53%)
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-09: huislijn: 4 mails, 17 objecten; kamernet: 19 mails, 13 objecten, 6 bewust overgeslagen; pararius: 3 mails, 6 objecten, 1 bewust overgeslagen; regulier: 4 mails, 6 objecten, 1 bewust overgeslagen; rentola: 1 mails, 1 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
 - **Versies**: paklijst van 2026-10-09: 41 gelijk, 0 met andere inhoud, 0 niet aanwezig, 2 niet in de paklijst
+- **Geheugen verstuurde brieven**: 9 onderwerpen bekend, 9 in het venster van drie weken, laatste brief 2026-10-09
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-08-verhaal.md
 - **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
 - **Bekende onwaarheden in de brief**: 4 bekende onwaarheden getoetst, geen ervan staat in de brief
@@ -27,7 +26,7 @@
 - **Huurdata**: 109 huurwaarnemingen, waarvan 28 Pararius en 46 Kamernet en 34 Huislijn en 1 Rentola, zonder adres maar met oppervlakte; 63 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2
 - **Aanbod**: 102 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
-- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,54% (2026-10-07), opslag bij 70% financiering 1,96 procentpunt
+- **Kapitaalmarkt (ECB)**: tienjaars AAA-rente 3,52% (2026-10-08), opslag bij 70% financiering 1,98 procentpunt
 - **Bouwkostenindex**: 104 maanden, laatste 2026-08
 - **Eigen bouwkosten**: 5 eigen tarieven ingevuld
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
@@ -49,7 +48,7 @@
 - **Brieven verstuurd**: 43 brieven bewaard, laatste van 2026-10-09 (vandaag)
 - **Huur tegen het landelijke cijfer**: onze mediaan €17.91/m2 uit 58 waarnemingen tegen landelijk €20.92/m2 (2026-Q3): -14%
 - **Gemeubileerd**: 6 gemeubileerde advertenties apart bewaard; de opslag wordt binnen hetzelfde huurregime vergeleken, want een hoge huur komt eerder door de vrije sector dan door het meubilair
-- **WOZ-bestand**: 112 bruikbare regels, 2 nog in te vullen, 8 opgezocht zonder dat het loket een waarde geeft; 6 panden in het aanbod nog zonder WOZ
+- **WOZ-bestand**: 114 bruikbare regels, 0 nog in te vullen, 8 opgezocht zonder dat het loket een waarde geeft; 6 panden in het aanbod nog zonder WOZ
 - **WOZ zonder pand**: 2 landen via de letterroute als overgenomen waarde: Daalseweg 56a, van Welderenstraat 89a; 2 horen bij geen pand in het aanbod en zijn bewaard voor later: Koningshofje 3, St. Annastraat 165
   De letterroute vult een pand aan met de waarde van hetzelfde nummer met een letter, bijvoorbeeld 56-A bij 56. Die waarde doet mee in de doorrekening maar niet in de ijking, want het kunnen twee woningen in hetzelfde gebouw zijn. Wil je hem als eigen meting, zoek dan het adres op zoals het in het aanbod staat.
 - **Nieuwbouw apart**: geen nieuwbouwprojecten in het aanbodbestand
@@ -59,12 +58,12 @@
 - **3D BAG eigen snapshot**: 1256 panden in de eigen snapshot, 1256 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-09
 - **Achtergronddekking**: 36 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
-- **Logboek van de brief**: 7 brieven vastgelegd, laatste 2026-10-08; 110 onderwerpen bleven liggen
+- **Logboek van de brief**: 8 brieven vastgelegd, laatste 2026-10-09; 128 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
-- **OV-haltes**: 333 haltes, 200 panden gerouteerd
+- **OV-haltes**: 333 haltes, 201 panden gerouteerd
 - **Bekendmakingen-archief**: 341 adressen, 475 publicaties
 - **Regelgevingsmonitor**: 80 verordeningen, 5 wetten
-- **Geheugen en trend**: 120 panden onthouden, prijstrend over 9 metingen
+- **Geheugen en trend**: 122 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard
 
