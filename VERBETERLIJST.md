@@ -7652,6 +7652,68 @@ Benedenstad is precies 20%.
 
 ---
 
+## 93. Drie gemeten bestanden die de brief nooit heeft gezien - 9 oktober 2026
+
+Mark vroeg of we alle beschikbare gegevens wel benutten, of of er verbanden
+tussen de bronnen ontbreken. Het antwoord is ja, er ontbreken verbanden, en het
+grootste was geen gemiste gedachte maar kapotte leidingen.
+
+**Het dossier per pand legt al 44 verbanden.** Aanbod, WOZ, opkoopbescherming,
+puntenstelsel, kamerverhuur op dit pand en bij de buren, bekendmakingen op dit
+adres en eerder in deze straat, gebruiksdoel, bouwlagen uit de 3D BAG,
+energielabel en labelsprong, monument, OV-afstand, uitponden, beide routes
+gedekt, programma van eisen, gemeentelijke lasten. Dat deel is rijk.
+
+**Maar drie bestanden die we elke dag maken en in het rapport controleren,
+worden door de brief niet gelezen.**
+
+Het ernstigste: splitsingen.json en het tekstblok erbij. Dat is het enige harde
+bewijs dat een splitsing werkelijk is uitgevoerd, plus de gemeten mediane tijd
+tussen besluit en registratie in de BAG. Dat laatste is een getal dat nergens
+anders te vinden is en dat elke ontwikkelcase nodig heeft. Er staat zelfs een
+briefregel die zegt dat een splitsing in de BAG sterker nieuws is dan een
+vergunning.
+
+De oorzaak is bizar simpel: de stap "Voltooide splitsingen uit de BAG" draaide
+op plek 36 van de workflow, en de stap "Brief samenstellen", die het blok moest
+opnemen, op plek 29. Het bestand werd dus zeven stappen te laat gemaakt. De
+samenstelstap zocht een bestand dat nog niet bestond, sloeg het over, en gooide
+het daarna voor de zekerheid ook nog weg met rm -f. Tien dagen lang is dat blok
+elke dag gemaakt en nooit ergens terechtgekomen.
+
+Dat is de vijfde keer deze week dat iets stil wegviel, en de eerste keer dat de
+oorzaak louter de volgorde van twee stappen was. De stap staat nu op plek 29,
+vóór het samenstellen, schrijft naar digests met de datum erin zodat het bestand
+bewaard blijft, en de verhalende brief krijgt het als eigen bron met een naam.
+
+**En een controle erop**, want het bestand bestond wel en het rapport meldde het
+netjes: zijn er gerealiseerde splitsingen in de json maar is er geen tekstblok
+voor vandaag, dan is dat LET OP met de uitleg dat de stapvolgorde fout staat.
+Getest op beide kanten.
+
+**De twee andere bestanden, nog niet aangesloten.** Dit zijn aanbevelingen, geen
+reparaties:
+
+verkooptijd.json bevat de bovengrens op de verkooptijd uit onze eigen
+waarnemingen. De aanbodtabel toont "dagen te koop" van wat nú te koop staat,
+maar niet hoe snel een straat verkoopt op basis van afgeronde verkopen. Dat is
+liquiditeit per straat, en dat is precies wat de uitpondroute nodig heeft: die
+staat of valt bij de vraag of je vier eenheden kwijt kunt.
+
+doorlooptijden.json bevat de gemeten verkooptijd, bezitsduur en prijsgroei per
+pand. De brief praat over "ruim vijf maanden" en "bijna tien maanden" op basis
+van losse dossiers die Mark aanlevert, terwijl er een gemeten reeks ligt. Een
+regel als "een splitsingsvergunning duurt hier mediaan X dagen, gemeten op N
+besluiten" is sterker dan twee anekdotes.
+
+**Wat verder ontbreekt en niet met code op te lossen is.** De eigen
+portefeuille zit niet in de gegevens, en dat is de meest directe benchmark die
+er is. En de verbouwkosten per gesplitste eenheid uit Twans facturen: zolang dat
+getal ontbreekt is alles wat de brief over uitponden zegt een bovengrens en geen
+beslissing.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

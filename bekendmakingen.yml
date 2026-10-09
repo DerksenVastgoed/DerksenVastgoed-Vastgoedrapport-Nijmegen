@@ -447,6 +447,17 @@ jobs:
               || echo "Bronnen overgeslagen"
           fi
 
+      - name: Voltooide splitsingen uit de BAG
+        continue-on-error: true
+        run: |
+          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
+          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
+          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
+          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
+          # zonder dat wij een vergunning kennen.
+          python splitsing_voltooid.py --tekst "digests/${DATUM}-splitsingen.md" \
+            || echo "Splitsingen overgeslagen"
+
       - name: Brief samenstellen
         continue-on-error: true
         run: |
@@ -506,11 +517,14 @@ jobs:
               echo ""
             fi
             # Voltooide splitsingen: alleen als er werkelijk iets is gezien.
-            if [ -s splitsingen_vandaag.md ]; then
+            # Dit las eerder splitsingen_vandaag.md, een bestand dat pas zeven
+            # stappen LATER werd gemaakt. Het stond dus nooit in een brief, en
+            # werd daarna ook nog weggegooid. Nu het gedateerde bestand, en de
+            # stap die het maakt staat hierboven.
+            if [ -s "digests/${DATUM}-splitsingen.md" ]; then
               echo ""
-              cat splitsingen_vandaag.md
+              cat "digests/${DATUM}-splitsingen.md"
               echo ""
-              rm -f splitsingen_vandaag.md
             fi
             # Alleen een kop als er ook iets onder staat; een lege kop
             # "Achtergrond van de dag" stond vandaag in de brief.
@@ -539,12 +553,30 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
         run: |
+          # Toetsen of het bestand door DEZE run is geschreven, niet of het
+          # bestaat. Bij een tweede run op dezelfde dag staat de brief van de
+          # eerste run er al, en als het schrijven dan mislukt werd die oude
+          # brief opnieuw verstuurd met de melding "Brief gemaakt". Zo ging op
+          # 8 oktober 's avonds dezelfde brief uit als die ochtend, woord voor
+          # woord, met de fouten die al waren gemeld.
+          VERHAAL="digests/${DATUM}-verhaal.md"
+          VOOR=0
+          [ -f "$VERHAAL" ] && VOOR=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
           python brief_verhalend.py --datum "$DATUM" \
-            --uit "digests/${DATUM}-verhaal.md" || echo "Verhalende brief overgeslagen"
-          if [ -s "digests/${DATUM}-verhaal.md" ]; then
-            echo "Brief gemaakt: $(wc -w < "digests/${DATUM}-verhaal.md") woorden"
-          else
+            --uit "$VERHAAL" || echo "Verhalende brief overgeslagen"
+          NA=0
+          [ -f "$VERHAAL" ] && NA=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
+          if [ "$NA" = "0" ]; then
             echo "LET OP: er is geen verhalende brief gemaakt"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'er is geen brief gemaakt'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+          elif [ "$NA" = "$VOOR" ]; then
+            echo "LET OP: de brief is NIET opnieuw geschreven. Dit is de brief van"
+            echo "een eerdere run van vandaag. Zoek hierboven waarom het schrijven"
+            echo "is mislukt; verstuur dit niet als nieuwe brief."
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'het schrijven mislukte; de brief van een eerdere run van vandaag stond er nog'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+          else
+            echo "Brief gemaakt: $(wc -w < "$VERHAAL") woorden"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': True, 'reden': ''}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
           fi
 
       - name: Brief en bijlage samenvoegen tot een HTML
@@ -704,17 +736,6 @@ jobs:
           python verkoopdatum_model.py --per-ronde 50 \
             || echo "Verkoopdatums overgeslagen"
 
-      - name: Voltooide splitsingen uit de BAG
-        continue-on-error: true
-        run: |
-          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
-          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
-          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
-          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
-          # zonder dat wij een vergunning kennen.
-          python splitsing_voltooid.py --tekst splitsingen_vandaag.md \
-            || echo "Splitsingen overgeslagen"
-
       - name: Groottepremie meten
         continue-on-error: true
         run: |
@@ -738,6 +759,38 @@ jobs:
           # probleem. Kopieer dit blok om het samen te bekijken.
           python gezondheid.py --uit "digests/${DATUM}-gezondheid.md" \
             || echo "Gezondheidsrapport kon niet worden gemaakt"
+
+      # Draait de run op een halve update, dan passen de bestanden niet bij
+      # elkaar en kan de brief uit twee verschillende versies van de code
+      # komen. Op 9 oktober brak een geplande run precies tijdens het uploaden
+      # aan, en Mark heeft die met de hand afgebroken om te voorkomen dat zijn
+      # vader een brief uit die halve set zou krijgen. Dat hoort niet van
+      # oplettendheid af te hangen.
+      #
+      # Wat deze stap doet: de kopie naar pa eraf halen en in het onderwerp
+      # zetten dat de code niet klopt. Mark krijgt de brief dus wel, met de
+      # reden erbij. De brief helemaal tegenhouden doen we niet: een brief die
+      # niet aankomt is het probleem waar we twee dagen aan hebben besteed.
+      - name: Geen kopie naar pa bij een halve update
+        continue-on-error: true
+        run: |
+          RAPPORT="digests/${DATUM}-gezondheid.md"
+          if [ ! -f "$RAPPORT" ]; then
+            echo "Geen gezondheidsrapport om te toetsen; brief gaat gewoon uit."
+            exit 0
+          fi
+          if grep -qE "[1-9][0-9]* met andere inhoud|[1-9][0-9]* niet aanwezig" "$RAPPORT"; then
+            echo "LET OP: de code in de repo wijkt af van de paklijst."
+            echo "Deze brief kan uit een halve update komen. De kopie naar pa"
+            echo "gaat er daarom af; de brief gaat alleen naar Mark, met een"
+            echo "onderwerp dat de reden noemt."
+            grep -E "Versies" "$RAPPORT" | head -3
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
+            echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
+          else
+            echo "De bestanden passen bij elkaar; de brief gaat naar beiden."
+            echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
+          fi
 
       - name: Digests + gegevensbestanden terugcommitten
         run: |
@@ -776,6 +829,8 @@ jobs:
             buurtbeeld.json
             vergund_verkocht.json
             brief_logboek.json
+            verteld.json
+            briefstand.json
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
@@ -799,6 +854,7 @@ jobs:
             marktprijzen_bag_cache.json
             huislijn_kenmerken.json
             wonen123_kenmerken.json
+            rentola_kenmerken.json
             rijksmonumenten_nijmegen.json
             top3-kaart.html
             digests/
@@ -878,7 +934,7 @@ jobs:
           # geplande ochtendrun gaat altijd naar beiden, wat er ook in het
           # formulier van een eerdere handmatige run stond.
           cc: ${{ env.CC_VERHAAL }}
-          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
       # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
@@ -893,7 +949,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-brief.html
 
       # Komt er geen brief uit, dan werd er tot nu toe niets verstuurd en ook

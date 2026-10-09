@@ -1419,6 +1419,12 @@ def main():
         ("Verkochte woningen", strip_opmaak(lees(f"digests/{d}-verkocht.md"), 3000)),
         ("Wat er met eerdere panden gebeurde",
          strip_opmaak(lees(f"digests/{d}-geschiedenis.md"), 4000)),
+        # Voltooide splitsingen uit de BAG: het enige harde bewijs dat een
+        # splitsing werkelijk is uitgevoerd, met de gemeten tijd tussen besluit
+        # en registratie. Dit blok werd elke dag gemaakt en door niets gelezen,
+        # omdat de stap die het maakte na de stap liep die het moest opnemen.
+        ("Splitsingen die de BAG inmiddels telt",
+         strip_opmaak(lees(f"digests/{d}-splitsingen.md"), 3000)),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:

@@ -1703,6 +1703,26 @@ def controle_splitsingen():
     if vergund:
         delen.append(f"{len(vergund)} vergund maar na een jaar nog niets in "
                      f"de BAG")
+    # En komt het ook in een brief terecht? Het blok werd elke dag gemaakt en
+    # door niets gelezen, omdat de stap die het schreef na de stap liep die het
+    # moest opnemen. Dat is tien dagen onzichtbaar geweest: het bestand bestond,
+    # het rapport meldde het, en in geen enkele brief stond het. Een bron die
+    # niets oplevert moet zichzelf melden, ook als het bestand er is.
+    if ger or zonder:
+        pad = os.path.join("digests", f"{VANDAAG}-splitsingen.md")
+        try:
+            leeg = os.path.getsize(pad) < 20
+        except Exception:
+            leeg = True
+        if leeg:
+            return (LET_OP, "; ".join(delen) + "; maar er is geen tekstblok "
+                    f"voor vandaag, dus de brief heeft dit niet gezien",
+                    "Het bestand digests/<datum>-splitsingen.md ontbreekt of is "
+                    "leeg. Dan maakt splitsing_voltooid.py wel de json maar "
+                    "komt de tekst nergens terecht. Controleer dat de stap "
+                    "'Voltooide splitsingen uit de BAG' vóór 'Brief "
+                    "samenstellen' staat.")
+        delen.append("en het tekstblok van vandaag staat er")
     return (OK, "; ".join(delen), "")
 
 
