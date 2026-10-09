@@ -991,11 +991,13 @@ def samenstellingseffect(historie, buurten=None, terug=4):
     per_jaar = ((1 + mediaan / 100) ** (52 / (terug * 1.0)) - 1) * 100
     laag = min(pcts.values())
     hoog = max(pcts.values())
+    # Komma als decimaalteken, zoals overal elders in de brief
+    kom = lambda x, teken="+": f"{x:{teken}.1f}".replace(".", ",")
     return (
         f"**LET OP, DIT IS GEEN MARKTBEWEGING.** {eenzelfde} van de "
         f"{len(pcts)} buurten gaan in deze {terug} weken dezelfde kant op, "
-        f"{richting}, van {laag:+.1f}% tot {hoog:+.1f}%, mediaan "
-        f"{mediaan:.1f}%. Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
+        f"{richting}, van {kom(laag)}% tot {kom(hoog)}%, mediaan "
+        f"{kom(mediaan, '')}%. Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
         f"geen woningmarkt. Als alle buurten tegelijk evenveel bewegen, "
         f"verandert niet de markt maar onze steekproef: er komen andere panden "
         f"in de meting. Gebruik deze cijfers dus niet als bewijs dat de markt "
@@ -1003,7 +1005,21 @@ def samenstellingseffect(historie, buurten=None, terug=4):
         f"van het CBS of de NVM, want die meten verkoopprijzen van dezelfde "
         f"soort woningen. Wil je er iets over zeggen, zeg dan dat ons aanbod "
         f"van samenstelling is veranderd."
-    ).replace(".", ",", 0)
+    )
+
+
+def _voorop(melding, regels):
+    """
+    Zet een melding bovenaan een blok, of laat het blok zoals het is.
+
+    Dit bestaat omdat een waarschuwing die vroeg in de lijst wordt gezet,
+    verdwijnt zodra de lijst later opnieuw wordt opgebouwd. Door het invoegen
+    pas bij de return te doen, kan er geen stap meer tussen komen die het
+    weggooit.
+    """
+    if not melding:
+        return regels
+    return ["", melding, ""] + list(regels)
 
 
 def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
@@ -2029,15 +2045,31 @@ def wws_indicatie(w):
     opp = w.get("oppervlakte")
     if not woz or not opp:
         return None
-    # Zo groot dat het script het niet als een huishouden doorrekent: dan zegt
-    # de telling voor een zelfstandige woning weinig over de verhuur.
+    # Boven onze eigen grens rekenen we het pand niet door als één woning. Let
+    # op de formulering hieronder. Hier stond "Groter dan 150 m2, dus niet als
+    # een huishouden doorgerekend; een telling voor een zelfstandige woning
+    # zegt hier weinig". Die regel ging naar de brief en kwam er op 7, 8 en 9
+    # oktober uit als de bewering dat het puntenstelsel bij een groot pand niet
+    # opgaat. Drie dagen heb ik dat als een verzinsel van de brief behandeld en
+    # er regels en patronen tegen gezet, terwijl de zin hier werd gemaakt.
+    #
+    # De 150 m2 is onze aanname over de huurmarkt en geen grens van het
+    # stelsel. Het stelsel kent geen bovengrens: een groot pand haalt juist
+    # veel punten en zit dus in de vrije sector. Daarom staat dat er nu bij.
     if opp > MAX_M2_EEN_HUISHOUDEN:
         return {"punten": None, "kamerpand": bool(bekend),
                 "basis": f"{opp} m2",
                 "oordeel": kamer_tekst + (
-                    f"Groter dan {MAX_M2_EEN_HUISHOUDEN} m2, dus niet als een "
-                    f"huishouden doorgerekend; een telling voor een zelfstandige "
-                    f"woning zegt hier weinig")}
+                    f"Wij rekenen dit pand niet door als één zelfstandige "
+                    f"woning: boven {MAX_M2_EEN_HUISHOUDEN} m2 betaalt de "
+                    f"markt de huur voor één huishouden niet, dus is kamers "
+                    f"het scenario. Dat is onze aanname en geen grens van het "
+                    f"puntenstelsel. Het puntenstelsel kent geen bovengrens "
+                    f"aan oppervlakte: {opp} m2 levert juist veel punten op en "
+                    f"komt daarmee ruim in de vrije sector, wat voor een "
+                    f"verhuurder gunstig is. Reken dit pand door als "
+                    f"kamerverhuur, met het puntenstelsel voor onzelfstandige "
+                    f"woonruimte per kamer")}
     label = (w.get("energielabel") or {}).get("label")
     uit = wws_punten(opp, woz, label=label, monument=bool(w.get("monument")))
     punten = uit.get("punten")
@@ -5634,6 +5666,15 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
              "kort gepubliceerd._")
     r.append("")
 
+    # Bewegen alle buurten dezelfde kant op, dan is dat onze steekproef en niet
+    # de markt. Die waarschuwing hoort pal boven de prijspeilregels per buurt,
+    # want hij bepaalt wat je over die cijfers mag zeggen. Hij staat ook boven
+    # de brief zelf: op twee plekken, omdat de bijlage los wordt gelezen.
+    _samenstelling_b = samenstellingseffect(trend)
+    if _samenstelling_b:
+        r.append(_samenstelling_b)
+        r.append("")
+
     # Dan per buurt de panden
     for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
         panden = [w for _p, w in per_buurt.get(buurt, [])
@@ -7057,12 +7098,16 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     historie = bewaar_prijspeil(per_buurt, stad_breed)
 
     # Bewegen alle buurten tegelijk dezelfde kant op, dan is dat de steekproef
-    # en niet de markt. Dit staat bovenaan, want het bepaalt wat je over de
+    # en niet de markt. Dit hoort bovenaan, want het bepaalt wat je over de
     # prijspeilcijfers eronder mag zeggen.
+    #
+    # Hier alleen berekenen en nog niet in r zetten. In de dagelijkse editie
+    # wordt r hieronder opnieuw opgebouwd uit de samenvatting en de blokken;
+    # alles wat er nu in staat gaat dan verloren. Dat is precies wat er op 9
+    # oktober gebeurde: de waarschuwing werd gemaakt en weggegooid, en de brief
+    # gebruikte de stijgende buurtcijfers als bewijs dat de ring niet afkoelt.
+    # Het invoegen gebeurt daarom pas vlak voor de return, in beide edities.
     _samenstelling = samenstellingseffect(historie)
-    if _samenstelling:
-        r.append(_samenstelling)
-        r.append("")
 
     if onbetrouwbaar:
         print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
@@ -7125,7 +7170,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         r.append("_Referentietabellen, rendement en de beleggingslijst staan in de "
                  "uitgebreide brief van zondag._")
         r.append("")
-        return "\n".join(r)
+        return "\n".join(_voorop(_samenstelling, r))
 
     # Zondag: uitgewerkte investeringscases, en verder niets. De referentie-
     # tabellen zaten hier eerder onder, maar die informatie zit nu in de cases.
@@ -7135,7 +7180,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
                                       huur_bk, huur_k, bm_per_buurt,
                                       beleggingen=beleggingen))
-    return "\n".join(r)
+    return "\n".join(_voorop(_samenstelling, r))
 
     r.append("### Referentie: prijspeil per buurt")
     r.append("")
