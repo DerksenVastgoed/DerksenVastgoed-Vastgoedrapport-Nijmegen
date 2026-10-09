@@ -447,6 +447,17 @@ jobs:
               || echo "Bronnen overgeslagen"
           fi
 
+      - name: Voltooide splitsingen uit de BAG
+        continue-on-error: true
+        run: |
+          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
+          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
+          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
+          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
+          # zonder dat wij een vergunning kennen.
+          python splitsing_voltooid.py --tekst "digests/${DATUM}-splitsingen.md" \
+            || echo "Splitsingen overgeslagen"
+
       - name: Brief samenstellen
         continue-on-error: true
         run: |
@@ -506,11 +517,14 @@ jobs:
               echo ""
             fi
             # Voltooide splitsingen: alleen als er werkelijk iets is gezien.
-            if [ -s splitsingen_vandaag.md ]; then
+            # Dit las eerder splitsingen_vandaag.md, een bestand dat pas zeven
+            # stappen LATER werd gemaakt. Het stond dus nooit in een brief, en
+            # werd daarna ook nog weggegooid. Nu het gedateerde bestand, en de
+            # stap die het maakt staat hierboven.
+            if [ -s "digests/${DATUM}-splitsingen.md" ]; then
               echo ""
-              cat splitsingen_vandaag.md
+              cat "digests/${DATUM}-splitsingen.md"
               echo ""
-              rm -f splitsingen_vandaag.md
             fi
             # Alleen een kop als er ook iets onder staat; een lege kop
             # "Achtergrond van de dag" stond vandaag in de brief.
@@ -721,17 +735,6 @@ jobs:
           # tijd en geld per pand.
           python verkoopdatum_model.py --per-ronde 50 \
             || echo "Verkoopdatums overgeslagen"
-
-      - name: Voltooide splitsingen uit de BAG
-        continue-on-error: true
-        run: |
-          # Een vergunning zegt dat het mag, de BAG zegt dat het gebeurd is.
-          # Zodra het aantal woningen in een pand omhoog gaat, staan de nieuwe
-          # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
-          # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
-          # zonder dat wij een vergunning kennen.
-          python splitsing_voltooid.py --tekst splitsingen_vandaag.md \
-            || echo "Splitsingen overgeslagen"
 
       - name: Groottepremie meten
         continue-on-error: true
