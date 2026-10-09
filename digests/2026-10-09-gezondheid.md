@@ -1,10 +1,6 @@
 # Gezondheidsrapport 2026-10-09
 
-46 in orde, 6 aandachtspunten, 1 fouten.
-
-## FOUT
-- **Woningprijsindex CBS**: woningprijsindex.json leeg
-  Alle ingangen mislukt voor 85773NED. opendata.cbs.nl: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85773NED. v4: HTTPSConnectionPool(host='odata4.cbs.nl', port=443): Max retries exceeded with url: /CBS/85773NED/MeasureCodes Regio's van 85792NED niet op te halen, ook niet via de v4-API: HTTPSConnectionPool(host='odata4.cbs.nl', port=443): Max retries exceeded with url: /CBS/85792NED/RegioSCodes (Caused by
+48 in orde, 6 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
@@ -15,8 +11,8 @@
   Controleer of het afzenderdomein in AFZENDERS klopt en of de attendering bij die partij aanstaat. Een verkeerd domein levert geen foutmelding op, alleen stilte.
 - **Adressen met meerdere maten**: 1 adressen met meerdere woningmaten: st. annastraat 30 (23, 31 m2)
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
-- **WOZ-schatting**: geijkt op 0 panden, te weinig om iets te zeggen
-  Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint de schatting zichzelf te corrigeren.
+- **WOZ-schatting**: geijkt op 104 panden: correctie 0.988 (1% stelselmatig), spreiding ±19.4%; mediane fout per methode: kenmerken 14.6% (109), prijs 11.3% (104), beste: prijs; kenmerken uit 77 straten en 11 buurten; nakijken: Derde Walstraat 108 (+111%), Havenweg 34 (-67%), Havenweg 70 (-53%)
+  De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-09: huislijn: 4 mails, 17 objecten; kamernet: 19 mails, 13 objecten, 6 bewust overgeslagen; pararius: 3 mails, 6 objecten, 1 bewust overgeslagen; regulier: 4 mails, 6 objecten, 1 bewust overgeslagen; rentola: 1 mails, 1 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
@@ -27,6 +23,7 @@
 - **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
 - **Bekende onwaarheden in de brief**: 4 bekende onwaarheden getoetst, geen ervan staat in de brief
 - **Verkocht pand nog in het aanbod**: geen pand dat zowel verkocht is als te koop staat
+- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4552, kamervergunningen.json: 7246, pandgeschiedenis.json: 114884, verkopen.txt: 885, verteld.json: 58, woz.txt: 122
 - **Huurdata**: 109 huurwaarnemingen, waarvan 28 Pararius en 46 Kamernet en 34 Huislijn en 1 Rentola, zonder adres maar met oppervlakte; 63 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2
 - **Aanbod**: 102 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -36,6 +33,7 @@
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
 - **Kamerverhuurregister**: 951 panden in de ring, waarvan 192 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 85
+- **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
 - **Geschiedenis per pand**: 1770 panden gevolgd, 1425 met meer dan een gebeurtenis; 1579 met BAG-gegevens (6338 woningen, 7446 dubbel geteld zonder deze correctie), 1382 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12221 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
   Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?

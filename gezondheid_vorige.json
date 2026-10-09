@@ -35,6 +35,7 @@
   "Nieuwbouw apart": "OK",
   "Nieuwe onderwerpen": "OK",
   "OV-haltes": "OK",
+  "Omvang van de gegevensbestanden": "OK",
   "Opnieuw aangeboden": "OK",
   "Oude verlaging in de brief": "OK",
   "Profiel nieuw aanbod": "OK",
@@ -52,7 +53,7 @@
   "WOZ zonder pand": "OK",
   "WOZ-bestand": "OK",
   "WOZ-schatting": "LET OP",
-  "Woningprijsindex CBS": "FOUT"
+  "Woningprijsindex CBS": "OK"
  },
  "datum": "2026-10-09"
 }
