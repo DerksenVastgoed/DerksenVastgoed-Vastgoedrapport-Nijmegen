@@ -45,7 +45,13 @@ AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
              # staat achter de link, inclusief het huisnummer. Deze afzender
              # stond nergens, ook niet bij de kandidaten, dus de mails waren
              # volledig onzichtbaar.
-             "123wonen.nl"]
+             "123wonen.nl",
+             # Rentola stond alleen op de kandidatenlijst: de mails werden
+             # geteld en niet gelezen. Zonde, want deze bron zet type,
+             # aantal kamers, oppervlakte EN prijs in de mail zelf, en dat is
+             # precies wat bij Huislijn en 123Wonen van een pagina moet komen.
+             # Wat hij niet geeft is een straat.
+             "rentola.nl"]
 
 # Platforms waarvan we nog geen parser hebben, maar waar Mark zich wel bij kan
 # hebben aangemeld. We lezen ze niet uit; we tellen alleen of er post van komt.
@@ -112,6 +118,8 @@ def strip_html(tekst):
         r'[^"\']*funda[^"\']*/(?:koop|huur|detail|object)[^"\']*'
         r'|[^"\']*huislijn\.nl/huurwoning/[^"\']*'
         r'|[^"\']*123wonen[^"\']*'
+        r'|[^"\']*rentola[^"\']*'
+        r'|[^"\']*customer\.io[^"\']*'
         r')["\'][^>]*>',
         lambda m: f"\n__LINK__{m.group(1)}\n", tekst)
     tekst = re.sub(r"(?i)<br\s*/?>", "\n", tekst)
@@ -1072,6 +1080,321 @@ def parse_123wonen(regels):
     return gevonden, overgeslagen
 
 
+# ---------------------------------------------------------------------------
+# Rentola
+#
+# De attendering is de makkelijkste van alle bronnen: per woning staat er een
+# regel "Nijmegen — Room — 1 kamer(s) — 11.0 m²" en daaronder de prijs. Geen
+# pagina ophalen, geen klikteller.
+#
+# Twee dingen om op te letten.
+#
+# 1. Onderaan staat een blok "Dit is wat u zoekt" met de zoekopdracht zelf:
+#    "Max. huurprijs 10 - 5000", "Oppervlakte 5 - 250 m²", "Kamers 1 - Max.".
+#    Dat lijkt op gegevens en is het niet, net als de homepagina in de
+#    123Wonen-mail. We knippen die staart er daarom af voordat we iets lezen.
+# 2. Er is geen straat, alleen "Nijmegen" en een advertentietitel. Zo'n
+#    waarneming kan dus nooit aan de BAG, de WOZ of een buurtmediaan worden
+#    gekoppeld. Het adresveld krijgt daarom "(zonder adres)" met de titel
+#    erachter: dat matcht geen enkel BAG-adres en is in een rapport meteen te
+#    zien voor wat het is. Een verzonnen adres invullen om de pijplijn blij te
+#    maken is precies hoe een afgeleid getal eerder als meting in de brief
+#    belandde.
+RT_STAART = ("dit is wat u zoekt", "meldingen bewerken", "customer support",
+             "unsubscribe", "wijzig je wachtwoord", "beheer je abonnement")
+RT_RUIS = ("bekijk alle nieuwe woningen", "neem contact op met de verhuurder",
+           "mijn profiel", "nieuwe woningen net toegevoegd",
+           "passen bij uw zoekopdracht", "hier zijn uw beste keuzes",
+           "bekijk de nieuwste woningen")
+# De streep tussen de velden kan een gewone, een halve of een lange zijn.
+RE_RT_WONING = re.compile(
+    r"([A-Za-zÀ-ÿ.'\- ]{3,40}?)\s*[-–—]\s*"
+    r"(Room|House|Apartment|Studio|Student\s+apartment|Kamer|Woning|"
+    r"Appartement|Studentenkamer)\s*[-–—]\s*"
+    r"(\d{1,2})\s*kamer", re.IGNORECASE)
+RE_RT_OPP = re.compile(r"(\d{1,4}(?:[.,]\d)?)\s*m[²2]\b", re.IGNORECASE)
+RE_RT_PRIJS = re.compile(r"(?:€\s*(\d[\d.,]*)|(\d[\d.,]*)\s*EUR)",
+                         re.IGNORECASE)
+# Welke typen onzelfstandig zijn. Een studio en een studentenappartement zijn
+# zelfstandig: eigen keuken en eigen voorzieningen. Een kamer niet, en die valt
+# daarmee onder het WWSO en niet onder het WWS.
+RT_ONZELFSTANDIG = ("room", "kamer", "studentenkamer")
+
+
+def _rt_getal(tekst):
+    """"11.0" en "11,0" worden 11; "1.250" wordt 1250."""
+    kaal = (tekst or "").strip()
+    if re.fullmatch(r"\d{1,3}(?:\.\d{3})+", kaal):
+        return int(kaal.replace(".", ""))
+    kaal = kaal.replace(",", ".")
+    try:
+        return int(round(float(kaal)))
+    except ValueError:
+        return None
+
+
+# De advertentiepagina van Rentola geeft wat de mail niet geeft: een volledig
+# adres met postcode, de buurt, en de prijs per m2 die zij zelf rekenen.
+#
+# Twee dingen om op te letten, en het tweede is belangrijker dan het lijkt.
+#
+# 1. Onderaan staat een blok "Vergelijkbare huurwoningen in Nijmegen" met
+#    ANDERE adressen en ANDERE prijzen. Dat blok wordt eraf geknipt voordat er
+#    iets wordt gelezen, net als de zoekopdracht onderaan de mail. Zonder dat
+#    zou de kamer aan de Sint Jacobslaan de Heydenrijckstraat 1 als adres
+#    krijgen.
+# 2. Het adres bij Rentola is afgeleid en niet overgenomen uit een registratie.
+#    Het bewijs staat in dat vergelijkingsblok zelf: daar staat "Eetcafe Wij
+#    Ook, de Ruyterstraat 23" als adres van een huurkamer. Een eetcafe is geen
+#    huurkamer, dus dat veld kan een nabijgelegen plaats bevatten in plaats van
+#    de woning. De straat en de postcode zijn daarmee bruikbaar, het huisnummer
+#    is waarschijnlijk en niet zeker.
+#
+# Dat laatste is minder erg dan het klinkt, om een reden die al in het model
+# zit: de oppervlakte uit de advertentie gaat altijd voor op die uit de BAG. Een
+# kamer van 11 m2 op het adres van een huis van 100 m2 levert dus geen huur per
+# m2 van 3,90 op maar van 35,45, en het verschil wordt gemeld.
+RT_KENMERKEN_PAD = "rentola_kenmerken.json"
+RT_MAX_OPHALEN = 20
+RT_PAGINA_STAART = ("vergelijkbare huurwoningen", "vergelijkbare advertenties",
+                    "populaire zoekopdrachten", "bekijk vergelijkbare")
+RE_RT_URL = re.compile(r"https?://[^\s)\]]*rentola[^\s)\]]*/listings/[^\s)\]]*",
+                       re.IGNORECASE)
+RE_RT_LINK = re.compile(r"https?://[^\s)\]]*(?:rentola|customer\.io)[^\s)\]]*",
+                        re.IGNORECASE)
+# "De advertentie bevindt zich op Sint Jacobslaan 114, 6533 BW Nijmegen" is de
+# enige plek waar met zoveel woorden staat dat dit adres bij DEZE advertentie
+# hoort. Daarom is dat het eerste anker.
+RE_RT_ADRES_ANKER = re.compile(
+    r"advertentie bevindt zich op\s+(.{5,90}?),\s*(\d{4}\s?[A-Z]{2})",
+    re.IGNORECASE)
+# En los daarvan het adres onder de titel, als tweede anker om tegen te toetsen.
+RE_RT_ADRES_LOS = re.compile(
+    r"([A-Za-zÀ-ÿ.'\- ]{3,40}?\s+\d{1,4}[A-Za-z]?),\s*(\d{4}\s?[A-Z]{2})\s+"
+    r"Nijmegen", re.IGNORECASE)
+RE_RT_BUURT = re.compile(r"Nijmegen\s*[|/>]\s*Nijmegen-[A-Za-zÀ-ÿ\-]+\s*"
+                         r"[|/>]\s*([A-Za-zÀ-ÿ.'\- ]{3,30}?)\s*[|/>]",
+                         re.IGNORECASE)
+RE_RT_PPM2 = re.compile(r"Prijs per m[²2]\s*[|/>]*\s*€\s*(\d{1,4})",
+                        re.IGNORECASE)
+
+
+def _rt_cache():
+    try:
+        with open(RT_KENMERKEN_PAD, encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
+def _rt_zonder_plaatsnaam(adres):
+    """
+    "Eetcafe Wij Ook, de Ruyterstraat 23" wordt "de Ruyterstraat 23".
+
+    Rentola zet voor de straat soms een nabijgelegen plaats. Dat moet eraf
+    voordat twee ankers met elkaar worden vergeleken, anders lijkt de pagina
+    zichzelf tegen te spreken terwijl het om dezelfde straat gaat.
+    """
+    kaal = (adres or "").strip()
+    return kaal.rsplit(",", 1)[-1].strip() if "," in kaal else kaal
+
+
+def _rt_straat(adres):
+    """De straatnaam uit een adres, voor de vergelijking van twee ankers."""
+    kaal = re.sub(r"\s*\d.*$", "", _rt_zonder_plaatsnaam(adres)).strip()
+    return re.sub(r"[^a-z]", "", kaal.lower())
+
+
+def _rt_lees_pagina(tekst):
+    """
+    Adres, postcode en buurt van een Rentola-advertentie.
+
+    Apart van het ophalen, zodat hij te testen is zonder netwerk.
+    """
+    # Eerst de staart eraf: alles vanaf het blok met vergelijkbare woningen.
+    laag = tekst.lower()
+    knip = len(tekst)
+    for woord in RT_PAGINA_STAART:
+        plek = laag.find(woord)
+        if plek != -1:
+            knip = min(knip, plek)
+    kop = tekst[:knip]
+
+    uit = {}
+    adres = postcode = None
+    m = RE_RT_ADRES_ANKER.search(kop)
+    if m:
+        adres, postcode = m.group(1).strip(), m.group(2)
+    m2 = RE_RT_ADRES_LOS.search(kop)
+    if m2 and not adres:
+        adres, postcode = m2.group(1).strip(), m2.group(2)
+    elif m2 and adres and _rt_straat(m2.group(1)) != _rt_straat(adres):
+        # Twee ankers die niet dezelfde straat noemen: dan weten we het niet.
+        # Liever geen adres dan het verkeerde.
+        uit["adres_twijfel"] = f"{adres} tegenover {m2.group(1).strip()}"
+        adres = postcode = None
+    if adres:
+        if "," in adres:
+            uit["adres_via_plaatsnaam"] = adres
+            adres = _rt_zonder_plaatsnaam(adres)
+        uit["adres"] = adres
+    if postcode:
+        uit["postcode"] = postcode.replace(" ", "")
+    m = RE_RT_BUURT.search(kop)
+    if m:
+        uit["buurt"] = m.group(1).strip()
+    m = RE_RT_PPM2.search(kop)
+    if m:
+        uit["prijs_per_m2_rentola"] = int(m.group(1))
+    return uit
+
+
+def rentola_kenmerken(url, cache, opgehaald):
+    """Het adres van de advertentiepagina. Lukt het niet, dan niets."""
+    sleutel = re.sub(r"[?#].*$", "", url)
+    if not RE_RT_URL.match(sleutel):
+        sleutel = url
+    if sleutel in cache:
+        return cache[sleutel]
+    if opgehaald[0] >= RT_MAX_OPHALEN:
+        return {}
+    if os.environ.get("RENTOLA_KENMERKEN", "1") == "0":
+        return {}
+    opgehaald[0] += 1
+    try:
+        verzoek = urllib.request.Request(
+            sleutel, headers={"User-Agent": "Mozilla/5.0 (vastgoedbrief)"})
+        with urllib.request.urlopen(verzoek, timeout=20) as antwoord:
+            rauw = antwoord.read().decode("utf-8", errors="replace")
+            eind = antwoord.geturl() or sleutel
+    except Exception as e:  # noqa
+        print(f"    kenmerken niet op te halen ({str(e)[:60]}): {sleutel[:70]}",
+              file=sys.stderr)
+        return {}
+    uit = _rt_lees_pagina(" | ".join(strip_html(rauw)))
+    cache[sleutel] = uit
+    eind_kaal = re.sub(r"[?#].*$", "", eind)
+    if eind_kaal != sleutel and RE_RT_URL.match(eind_kaal):
+        cache[eind_kaal] = uit
+    time.sleep(0.5)
+    return uit
+
+
+def parse_rentola(regels):
+    """
+    Leest een Rentola-attendering: type, kamers, oppervlakte en prijs.
+
+    Geen straat, dus geen koppeling aan de BAG. Wat deze bron wel levert is
+    een kamerwaarneming MET oppervlakte, en die zijn dun: de kamerhuur rustte
+    eerder op drie kleine panden. Een kamer van 11 m² voor €390 is €35,45 per
+    m² per maand, en dat zit onder de kleinste grootteklasse die we meten.
+    """
+    gevonden, gezien, overgeslagen = [], set(), []
+    vandaag = waarnemingsdatum()
+    cache = _rt_cache()
+    opgehaald = [0]
+
+    # De staart met de zoekopdracht eraf, voordat er iets wordt gelezen.
+    schoon = []
+    for regel in regels:
+        kaal = regel.strip()
+        if not kaal:
+            continue
+        if any(w in kaal.lower() for w in RT_STAART):
+            break
+        schoon.append(kaal)
+
+    for i, regel in enumerate(schoon):
+        m = RE_RT_WONING.search(regel)
+        if not m:
+            continue
+        plaats, soort, kamers = (m.group(1).strip(), m.group(2).strip().lower(),
+                                 m.group(3))
+        if "nijmegen" not in plaats.lower():
+            overgeslagen.append(f"rentola: {plaats} is niet Nijmegen")
+            continue
+        # De oppervlakte staat op dezelfde regel, achter de laatste streep.
+        m_opp = RE_RT_OPP.search(regel)
+        opp = _rt_getal(m_opp.group(1)) if m_opp else None
+        if opp is not None and not (4 <= opp <= 1000):
+            opp = None
+
+        # De titel: de eerste bruikbare regel hiervoor. Die staat er twee keer,
+        # een keer als tekst bij de foto en een keer als kop.
+        titel = ""
+        for j in range(i - 1, max(-1, i - 5), -1):
+            kandidaat = schoon[j]
+            laag = kandidaat.lower()
+            if (any(w in laag for w in RT_RUIS) or RE_RT_WONING.search(kandidaat)
+                    or RE_RT_PRIJS.search(kandidaat) or len(kandidaat) < 6):
+                continue
+            titel = kandidaat
+            break
+
+        # De prijs: de eerste bruikbare regel hierna.
+        prijs = None
+        for j in range(i + 1, min(len(schoon), i + 6)):
+            m_p = RE_RT_PRIJS.search(schoon[j])
+            if m_p:
+                prijs = _rt_getal(m_p.group(1) or m_p.group(2))
+                break
+        if not prijs or not (100 <= prijs <= 10000):
+            overgeslagen.append(f"rentola: {titel[:40] or soort} (geen prijs)")
+            continue
+
+        status = ("te huur kamer" if soort.replace(" ", "") in
+                  [s.replace(" ", "") for s in RT_ONZELFSTANDIG]
+                  else "te huur")
+
+        # De link naar de advertentie, de eerste na deze regel. Daarachter
+        # staat het volledige adres met postcode, en dat is wat deze bron van
+        # een kamerwaarneming zonder adres tot een bruikbaar pand maakt.
+        link = None
+        for j in range(i, min(len(schoon), i + 8)):
+            m_l = RE_RT_LINK.search(schoon[j])
+            if m_l:
+                link = m_l.group(0).rstrip(").,")
+                break
+        ken = rentola_kenmerken(link, cache, opgehaald) if link else {}
+        adres = ken.get("adres")
+        postcode = ken.get("postcode") or ""
+        if ken.get("adres_twijfel"):
+            overgeslagen.append(f"rentola: twee adressen op de pagina, "
+                                f"{ken['adres_twijfel']}; adres weggelaten")
+        if ken.get("adres_via_plaatsnaam"):
+            overgeslagen.append(
+                f"rentola: {adres} stond op de pagina als "
+                f"\"{ken['adres_via_plaatsnaam']}\"; het adres bij Rentola is "
+                f"afgeleid en het huisnummer dus niet zeker")
+
+        # Zonder adres valt de waarneming terug op de mail alleen. Dan telt hij
+        # nog mee in de huur per m2 en nergens waar een adres nodig is.
+        naam = adres or ("(zonder adres) "
+                         + (re.sub(r"[|]", " ", titel).strip(" .") or soort))
+        sleutel = (naam.lower()[:60], prijs, opp)
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        gevonden.append(f"{naam[:70]} | Nijmegen | {prijs} | {status} | "
+                        f"{vandaag} | rentola | {opp or ''} | {postcode}")
+    if opgehaald[0]:
+        print(f"    kenmerken opgehaald voor {opgehaald[0]} Rentola-panden",
+              file=sys.stderr)
+        try:
+            with open(RT_KENMERKEN_PAD, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=1)
+        except Exception:
+            pass
+    if not gevonden:
+        print("    Rentola leverde niets op; links en prijsregels uit de mail:",
+              file=sys.stderr)
+        for regel in schoon[:20]:
+            if ("http" in regel.lower() or RE_RT_PRIJS.search(regel)
+                    or RE_RT_WONING.search(regel)):
+                print(f"      | {regel[:200]}", file=sys.stderr)
+    return gevonden, overgeslagen
+
+
 def parse_pararius(regels):
     """Leest een Pararius-overzicht met kale huurprijs, oppervlakte en buurt."""
     gevonden, gezien, overgeslagen = [], set(), []
@@ -1377,6 +1700,8 @@ def main():
             soort_bron, status_label = "huislijn", "te huur"
         elif "123wonen" in afzender or "123wonen" in blob:
             soort_bron, status_label = "123wonen", "te huur"
+        elif "rentola" in afzender or "rentola" in blob:
+            soort_bron, status_label = "rentola", "te huur"
         elif "funda in business" in blob or "bedrijfspanden" in blob:
             soort_bron, status_label = "business", "belegging"
         else:
@@ -1420,6 +1745,8 @@ def main():
             objecten, overgeslagen = parse_huislijn(regels)
         elif soort_bron == "123wonen":
             objecten, overgeslagen = parse_123wonen(regels)
+        elif soort_bron == "rentola":
+            objecten, overgeslagen = parse_rentola(regels)
         else:
             objecten, overgeslagen = parse_objecten(regels, status_label)
         alle_overgeslagen.extend(overgeslagen)

@@ -7259,6 +7259,110 @@ gemaakt" betekent dat de API niets opleverde, en daarboven staat waarom.
 
 ---
 
+## 87. Rentola erbij, de eerste bron die alles in de mail zet - 9 oktober 2026
+
+Mark stuurde een attendering van info@rentola.nl. Die afzender stond op de
+kandidatenlijst: we tellen de post en lezen hem niet. Zonde, want deze bron is
+de makkelijkste van allemaal.
+
+**Alles staat in de mail.** Per woning een regel "Nijmegen — Room — 1 kamer(s)
+— 11.0 m²" en daaronder "390 EUR / maandelijks". Geen pagina ophalen, geen
+klikteller, geen kruimelpad. Bij Huislijn en 123Wonen moet de oppervlakte van de
+advertentiepagina komen; hier niet.
+
+**Wat hij niet geeft is een straat.** Alleen "Nijmegen" en een
+advertentietitel. Zo'n waarneming kan dus nooit aan de BAG, de WOZ of een
+buurtmediaan worden gekoppeld. Het adresveld krijgt daarom "(zonder adres)" met
+de titel erachter. Dat matcht geen enkel BAG-adres, is in een rapport meteen te
+zien voor wat het is, en de huisnummersplitser geeft er een leeg resultaat op
+terug zodat er geen BAG-poging en dus geen FAIL BAG uit volgt. Getest.
+
+Een verzonnen adres invullen om de pijplijn blij te maken was de andere optie,
+en dat is precies hoe een afgeleid getal eerder als meting in de brief belandde.
+
+**De val in deze mail.** Onderaan staat een blok "Dit is wat u zoekt" met de
+zoekopdracht zelf: "Max. huurprijs 10 - 5000", "Oppervlakte 5 - 250 m²",
+"Kamers 1 - Max.". Dat lijkt op gegevens en is het niet, precies zoals de
+homepagina in de 123Wonen-mail. Die staart wordt eraf geknipt voordat er iets
+wordt gelezen. Getest op de echte mail: één woning eruit, en de 5, de 250, de 10
+en de 5000 blijven buiten beeld.
+
+**Waarom dit de moeite is.** Niet om het volume, maar omdat het kamerwaarnemingen
+mét oppervlakte zijn. Die zijn dun: de kamerhuur rustte op drie kleine panden, en
+dat was de reden dat een kamerprijs ten onrechte op een pand van 158 m² werd
+toegepast. Deze kamer is €35,45 per m² per maand. Dat zit onder de kleinste
+grootteklasse die we meten, want onze premie loopt tot "onder 40 m²" op 1,422
+keer de ijkklasse. Eén waarneming zegt niets, maar een reeks hiervan kan laten
+zien of die premie onder 40 m² nog verder doorstijgt. Dat getal hebben we nu
+niet.
+
+Een studio en een studentenappartement gelden als zelfstandig, een Room en een
+Kamer als onzelfstandig; dat laatste bepaalt of het WWSO of het WWS geldt.
+Woningen buiten Nijmegen worden gemeld en overgeslagen. Getest op drie
+woningen, waarvan een in Arnhem.
+
+**En toen bleek er wel een adres te zijn.** Mark klikte door en stuurde de
+advertentiepagina: "Sint Jacobslaan 114, 6533 BW Nijmegen". Daarmee is dit geen
+waarneming zonder adres meer maar een kamerwaarneming met een volledig adres,
+een postcode en een buurt. Die kan aan de BAG, aan het kamerverhuurregister en
+aan de buurtmediaan.
+
+Dat is belangrijker dan het lijkt. Een kamer die te huur staat op een adres
+waarvoor geen omzettingsvergunning bekend is, is een signaal. Dat konden we tot
+nu toe alleen bij Kamernet zien.
+
+Drie dingen zijn daarbij nodig geweest.
+
+**De pagina heeft dezelfde val als de mail, maar erger.** Onderaan staat
+"Vergelijkbare huurwoningen in Nijmegen" met ANDERE adressen en ANDERE prijzen:
+de Ruyterstraat 23 voor €350 en Heydenrijckstraat 1 voor €420. Zonder die staart
+eraf te knippen zou de kamer aan de Sint Jacobslaan de Heydenrijckstraat als
+adres krijgen. Getest: hij pakt de Sint Jacobslaan.
+
+**Het adres bij Rentola is afgeleid, en het bewijs staat in die val zelf.** In
+dat vergelijkingsblok staat als adres van een huurkamer: "Eetcafe Wij Ook, de
+Ruyterstraat 23". Een eetcafe is geen huurkamer. Dat veld kan dus een
+nabijgelegen plaats bevatten in plaats van de woning zelf. De straat en de
+postcode zijn bruikbaar, het huisnummer is waarschijnlijk en niet zeker. De
+plaatsnaam wordt eraf gehaald en er komt een melding bij dat het adres is
+afgeleid.
+
+Dat is minder erg dan het klinkt, om een reden die al in het model zat: de
+oppervlakte uit de advertentie gaat altijd voor op die uit de BAG, met een
+melding als ze meer dan twintig procent uiteenlopen. Een kamer van 11 m2 op het
+adres van een huis van 100 m2 levert dus geen huur van €3,90 per m2 op maar van
+€35,45. Dat is precies het geval waar die regel voor is gemaakt, en hij werkt.
+
+**Twee ankers in plaats van een.** Het adres staat op de pagina onder de titel
+en nog een keer bij de kaart, als "De advertentie bevindt zich op ...". Die
+laatste zegt met zoveel woorden dat het bij DEZE advertentie hoort. Noemen de
+twee verschillende straten, dan wordt er geen adres overgenomen en komt er een
+melding. Liever geen adres dan het verkeerde. Getest op alle drie de gevallen:
+een gewoon adres, een adres via een eetcafe, en twee ankers die het oneens zijn.
+
+Lukt het ophalen niet, dan valt de waarneming terug op de mail alleen, met
+"(zonder adres)" en de oppervlakte uit de mail. Dan telt hij nog mee in de huur
+per m2 en nergens waar een adres nodig is. Getest met het ophalen uitgezet.
+
+**Het adres staat er zonder in te loggen.** Dat was de enige openstaande
+onzekerheid en Mark heeft hem weggenomen: hij was niet ingelogd toen hij de
+pagina bekeek. Wat achter een account zit zijn de foto's en de volledige
+beschrijving, niet het adres. Het ophalen heeft dus geen sessie nodig.
+
+Wat nog steeds niet van hier te bewijzen is, is of rentola.nl op de runner
+bereikbaar is; deze omgeving mag alleen naar een vaste lijst adressen. Bij
+Huislijn lukte het wel, dus er is geen principieel beletsel, en bij een
+mislukking staat er "Rentola leverde niets op" of "kenmerken niet op te halen"
+in het logboek en valt alles terug op de mail.
+
+**Let op bij het volgende rapport.** De bronnencontrole verwacht nu ook rentola,
+dus die blijft op LET OP staan tot er een waarneming binnen is, net als 123wonen
+nu. Dat is bedoeld: een bron die zwijgt moet zichtbaar zijn. Maar het betekent
+dat die ene regel amber blijft om twee bronnen die allebei nog moeten bewijzen
+dat ze werken.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -211,7 +211,7 @@ def controle_afzenders():
     opmerkte, en dat is precies het soort fout dat een controle hoort te doen.
     """
     bronnen_verwacht = ("funda", "pararius", "kamernet", "huislijn",
-                        "123wonen")
+                        "123wonen", "rentola")
     gezien = {}
     try:
         with open("verkopen.txt", encoding="utf-8") as f:
@@ -246,6 +246,7 @@ def controle_huurdata():
               if any(str(VANDAAG - dt.timedelta(days=d)) in r for d in range(8))]
     huislijn = [r for r in huur if "huislijn" in r.lower()]
     wonen123 = [r for r in huur if "123wonen" in r.lower()]
+    rentola = [r for r in huur if "rentola" in r.lower()]
     # Waarnemingen zonder oppervlakte: bruikbaar om te zien wat er te huur
     # staat, niet om een prijs per vierkante meter uit te rekenen. Huislijn
     # geeft alleen een straatnaam en een huurprijs, dus die vallen hieronder.
@@ -284,6 +285,8 @@ def controle_huurdata():
               f"en {len(kamernet)} Kamernet"
               + (f" en {len(huislijn)} Huislijn" if huislijn else "")
               + (f" en {len(wonen123)} 123Wonen" if wonen123 else "")
+              + (f" en {len(rentola)} Rentola, zonder adres maar met "
+                 f"oppervlakte" if rentola else "")
               + f"; {len(recent)} in de laatste week"
               + (f"; {zonder_m2} zonder oppervlakte, die tellen niet mee in de "
                  f"huur per m2" if zonder_m2 else "")
