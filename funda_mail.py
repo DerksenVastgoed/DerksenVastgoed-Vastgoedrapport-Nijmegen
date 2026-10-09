@@ -170,14 +170,49 @@ def haal_tekst(bericht):
     return regels
 
 
-def parse_objecten(regels, basis_status):
+# Het stadium van een verkoop, zoals Funda het schrijft. Funda vat drie stadia
+# samen als "in onderhandeling": onder bod, onder optie en verkocht onder
+# voorbehoud. We bewaren wat er staat, want ze zeggen niet hetzelfde. De
+# volgorde is die van streng naar minder streng; de eerste die past, geldt.
+STADIA = (
+    ("verkocht onder voorbehoud", "verkocht onder voorbehoud"),
+    ("onder optie", "onder optie"),
+    ("onder bod", "onder bod"),
+    ("in onderhandeling", "in onderhandeling"),
+    ("verkocht", "verkocht"),
+)
+
+
+def _stadium_uit(tekst):
+    """
+    Het verkoopstadium in deze tekst, of None als er niets over in staat.
+
+    Een functie en geen reeks losse regels, omdat dit op twee plekken nodig is:
+    per object in de advertentieregels, en per mail als terugval bij een mail
+    met precies een object. Twee kopieen van dezelfde cascade zouden uit elkaar
+    gaan lopen, en dat is deze week al vaker de oorzaak geweest.
+    """
+    laag = (tekst or "").lower()
+    for woord, label in STADIA:
+        if woord in laag:
+            return label
+    return None
+
+
+def parse_objecten(regels, basis_status, mail_stadium=None):
     """
     Haalt objecten uit de regels van een attenderingsmail.
     Twee vormen:
       'Waalkade 60, Nijmegen'  gevolgd door  '€ 495.000 k.k.'
       'Vondelstraat 26'  '6512 BG Nijmegen'  '€ 545.000 k.k.'
+
+    Het verkoopstadium wordt per object gezocht, in de regels van dat object
+    zelf. Staat het daar niet en bevat de mail precies een object, dan geldt
+    het stadium uit de mailtekst: bij een mail over een woning is die tekst
+    ook de tekst van dat object. Bij meer objecten vervalt die terugval, want
+    anders krijgt elk object het stadium van het ene object dat verkocht is.
     """
-    gevonden, gezien, overgeslagen = [], set(), []
+    gevonden, gezien, overgeslagen, vast = [], set(), [], []
 
     for i, regel in enumerate(regels):
         if regel.startswith("__LINK__"):
@@ -253,13 +288,15 @@ def parse_objecten(regels, basis_status):
             overgeslagen.append(f"{adres} (geen prijs gevonden)")
             continue
 
-        # De status hangt af van wat voor prijs we vonden
+        # De status hangt af van wat voor prijs we vonden. Bij een koopsom
+        # wordt het stadium hierna bepaald, als de grenzen tussen de objecten
+        # bekend zijn.
         if soort == "maand":
             status = "te huur"
         elif soort == "pm2jr":
             status = "te huur pm2"
         else:
-            status = basis_status
+            status = None
 
         sleutel = (adres.lower(), prijs)
         if sleutel in gezien:
@@ -282,7 +319,37 @@ def parse_objecten(regels, basis_status):
                 opp = om.group(1)
                 break
 
-        vandaag = waarnemingsdatum()
+        vast.append([adres, plaats, prijs, status, soort, bron, opp,
+                     postcode_gevonden, adres_idx, i])
+
+    # Nu de grenzen bekend zijn: het stadium van elk object uit zijn eigen
+    # regels, van zijn adres tot aan het adres van het volgende object. Een
+    # ruimer venster loopt over de buren heen. Met een venster van acht regels
+    # kreeg in de proef het pand voor en het pand na het verkochte pand ook de
+    # status verkocht, omdat Funda maar twee regels per woning gebruikt.
+    #
+    # Staat het stadium boven het adres in plaats van eronder, dan vinden we
+    # het niet en blijft het pand te koop. Dat is de veilige kant: een verkocht
+    # pand dat in het aanbod blijft staan valt op en wordt door een controle
+    # opgemerkt, vijf verdwenen panden niet.
+    for k, rij in enumerate(vast):
+        if rij[3] is not None:
+            continue
+        tot = (vast[k + 1][8] if k + 1 < len(vast)
+               else min(len(regels), rij[9] + 8))
+        rij[3] = _stadium_uit(" ".join(regels[rij[8]:tot])) or basis_status
+
+    # Terugval bij een mail met precies een object: dan is de mailtekst ook de
+    # tekst van dat object, en mag het stadium uit de mail gelden. Bij meer
+    # objecten vervalt die terugval. Anders sleept het ene verkochte pand de
+    # andere vijf mee, en verdwijnen die vijf uit het aanbod.
+    if len(vast) == 1 and mail_stadium:
+        if vast[0][4] not in ("maand", "pm2jr") and vast[0][3] == basis_status:
+            vast[0][3] = mail_stadium
+
+    vandaag = waarnemingsdatum()
+    for (adres, plaats, prijs, status, _soort, bron, opp,
+         postcode_gevonden, _ai, _pi) in vast:
         regel_uit = f"{adres} | {plaats} | {prijs} | {status} | {vandaag}"
         regel_uit += f" | {bron}" if bron else " | "
         regel_uit += f" | {opp}" if opp else " | "
@@ -1690,6 +1757,7 @@ def main():
         # Per bron een ander basisgeval. Kamernet gaat over onzelfstandige
         # eenheden; die moeten apart blijven, anders trekken ze de huur per m2
         # voor gewone woningen omhoog.
+        mail_stadium = None
         if "vendr" in afzender or "vendr" in blob:
             soort_bron, status_label = "vendr", "bieden"
         elif "kamernet" in afzender or "kamernet" in blob:
@@ -1706,10 +1774,6 @@ def main():
             soort_bron, status_label = "business", "belegging"
         else:
             soort_bron, status_label = "regulier", "te koop"
-            # Sinds het filter op verkocht aanstaat komen er ook mails over
-            # panden die zijn verkocht of onder voorbehoud staan. Zonder dit
-            # kwamen die als "te koop" binnen en bleef een verkocht pand
-            # eeuwig in het aanbod staan.
             # Nieuwbouw apart houden. Een prijs vrij op naam is niet
             # vergelijkbaar met kosten koper, en een bouwnummer is geen
             # bestaande woning. In de mediaan per m2 of in de groottepremie
@@ -1719,19 +1783,16 @@ def main():
             if any(w in blob for w in ("nieuwbouwwoning", "bouwnr.", "v.o.n.",
                                        "vrij op naam")):
                 status_label = "project"
-            # Funda vat drie stadia samen als "in onderhandeling": onder bod,
-            # onder optie en verkocht onder voorbehoud. We bewaren het stadium
-            # dat in de mail staat, want ze zeggen niet hetzelfde.
-            if "verkocht onder voorbehoud" in blob:
-                status_label = "verkocht onder voorbehoud"
-            elif "onder optie" in blob:
-                status_label = "onder optie"
-            elif "onder bod" in blob:
-                status_label = "onder bod"
-            elif "in onderhandeling" in blob:
-                status_label = "in onderhandeling"
-            elif "verkocht" in blob:
-                status_label = "verkocht"
+            # Het stadium van de verkoop wordt per object bepaald en niet hier.
+            # Hier stond de hele mailtekst afgezocht op "verkocht", "onder bod"
+            # en "onder optie", en de uitkomst ging naar elk object in die
+            # mail. Een attendering met zes woningen waarvan er een verkocht
+            # is, zette dus alle zes op verkocht. Dat is nooit afgegaan omdat
+            # er tot nu toe geen enkele verkoop via de mail binnenkwam: alle
+            # 505 verkocht-regels in verkopen.txt komen uit de geplakte lijst.
+            # Het zou afgaan op de dag dat het filter op verkocht in Funda
+            # aangaat, en dat is precies wat het gezondheidsrapport adviseert.
+            mail_stadium = _stadium_uit(blob)
 
         if soort_bron == "vendr":
             objecten, overgeslagen = parse_vendr(regels)
@@ -1748,7 +1809,8 @@ def main():
         elif soort_bron == "rentola":
             objecten, overgeslagen = parse_rentola(regels)
         else:
-            objecten, overgeslagen = parse_objecten(regels, status_label)
+            objecten, overgeslagen = parse_objecten(regels, status_label,
+                                                    mail_stadium)
         alle_overgeslagen.extend(overgeslagen)
 
         toegevoegd = 0
