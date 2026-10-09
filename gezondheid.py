@@ -846,6 +846,58 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+def controle_briefherhaling():
+    """
+    Is de brief van vandaag werkelijk opnieuw geschreven?
+
+    Op 8 oktober ging 's avonds dezelfde brief uit als die ochtend, woord voor
+    woord, met de vier fouten die al waren gemeld. De oorzaak: brief_verhalend
+    schreef bij mislukken geen bestand en gaf toch exitcode nul, en de workflow
+    zag het verhaalbestand van de eerdere run van die dag staan en meldde
+    "Brief gemaakt". Mislukken zag eruit als slagen.
+
+    Twee dingen worden getoetst. De workflow legt vast of het bestand door deze
+    run is geschreven. En los daarvan vergelijken we de brief van vandaag met de
+    vorige: zijn ze letterlijk gelijk, dan is er iets fout, wat de oorzaak ook
+    is. Dat tweede is de vangnetcontrole, want die werkt ook als de eerste om
+    een onvoorziene reden niets zegt.
+    """
+    stand = _json("briefstand.json") or {}
+    if stand.get("datum") == str(VANDAAG) and not stand.get("opnieuw_geschreven"):
+        return (FOUT, f"de brief van {stand['datum']} is niet opnieuw "
+                f"geschreven: {stand.get('reden') or 'onbekende reden'}",
+                "Er is een oude brief verstuurd of klaargezet. Zoek in het "
+                "logboek van de stap 'Verhalende brief maken' waarom het "
+                "schrijven mislukte.")
+    try:
+        namen = sorted(n for n in os.listdir("digests")
+                       if n.endswith("-verhaal.md"))
+    except Exception:
+        return (OK, "geen briefmap om te vergelijken", "")
+    if len(namen) < 2:
+        return (OK, f"{len(namen)} brieven, te weinig om te vergelijken", "")
+
+    def inhoud(naam):
+        try:
+            with open(os.path.join("digests", naam), encoding="utf-8") as f:
+                return " ".join(f.read().split())
+        except Exception:
+            return ""
+
+    laatste, vorige = inhoud(namen[-1]), inhoud(namen[-2])
+    if laatste and laatste == vorige:
+        return (FOUT, f"{namen[-1]} is woord voor woord gelijk aan "
+                f"{namen[-2]}",
+                "Twee identieke brieven op rij betekent dat het schrijven is "
+                "mislukt en een oude brief is hergebruikt. Zoek in het logboek "
+                "van de stap 'Verhalende brief maken' op 'NIET opnieuw "
+                "geschreven'.")
+    if stand.get("datum") == str(VANDAAG):
+        return (OK, f"de brief van vandaag is opnieuw geschreven en wijkt af "
+                f"van {namen[-2]}", "")
+    return (OK, f"{len(namen)} brieven, de laatste twee verschillen", "")
+
+
 def controle_verteld():
     """
     Weet de brief wat pa al heeft gelezen?
@@ -1659,6 +1711,7 @@ def controle_commit():
 CONTROLES = [
     ("Versies", controle_versies),
     ("Geheugen verstuurde brieven", controle_verteld),
+    ("Brief opnieuw geschreven", controle_briefherhaling),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),

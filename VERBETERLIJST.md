@@ -7206,6 +7206,59 @@ echte ochtendbrief worden getoetst. Wel is "staat nu te koop" van gisteren nu
 
 ---
 
+## 86. De brief van gisteravond was woord voor woord die van de ochtend - 9 oktober 2026
+
+Mark stuurde de brief van de handrun van 21:57. Die is letterlijk identiek aan
+die van 's ochtends: zelfde opening, zelfde "116 m2", zelfde verzonnen
+puntenstelsel-argument, zelfde vijf vraagprijzen als koopsom, zelfde slotzin
+over Biezen. Alle vier de fouten die ik die avond had hersteld stonden er
+onveranderd in, en de nieuwe briefregels hadden dus niets gedaan.
+
+Dat was geen toeval en geen hergeneratie die toevallig hetzelfde opleverde. De
+brief wordt elke run door de API geschreven, zonder overslaan, dus woord voor
+woord gelijk kan niet. Er was iets anders aan de hand.
+
+**De oorzaak.** Mislukt het schrijven, dan schrijft brief_verhalend.py geen
+bestand en geeft het **exitcode nul**. Het vangnet in de workflow hangt aan die
+exitcode, dus dat ging niet af. Daarna toetst de workflow `[ -s ...verhaal.md ]`,
+en bij een tweede run op dezelfde dag staat het verhaalbestand van de eerste run
+er nog. Die toets slaagt dus, de workflow meldt "Brief gemaakt: 715 woorden", en
+de oude brief gaat de HTML in en de mail uit.
+
+Mislukken zag eruit als slagen. Dat is de vijfde keer deze week dat een fout
+zich voordeed als afwezigheid, en de eerste waarbij de afwezigheid actief werd
+gemaskeerd door een melding dat het goed ging.
+
+**Drie dingen eraan gedaan**, op drie niveaus, want elk niveau kan zelf falen.
+
+Het script geeft nu exitcode 1 als er geen brief uitkomt. Dan gaat het vangnet
+in de workflow wel af. Getest: zonder API-sleutel komt er nu een 1 uit waar
+eerst een 0 uit kwam.
+
+De workflow toetst niet meer of het bestand bestaat maar of het door DEZE run is
+geschreven, door de wijzigingstijd ervoor en erna te vergelijken. Staat het er
+nog van een eerdere run, dan komt er in het logboek te staan dat de brief niet
+opnieuw is geschreven en dat dit niet als nieuwe brief verstuurd moet worden, en
+dat wordt in briefstand.json vastgelegd.
+
+En er is een vangnetcontrole die het vangt wat de oorzaak ook is: de brief van
+vandaag wordt letterlijk vergeleken met de vorige. Twee identieke brieven op rij
+is FOUT, want dat kan niets anders betekenen. Getest op allebei de kanten:
+identiek op witruimte na geeft FOUT, werkelijk verschillend geeft OK.
+
+**Wat dit ook betekent voor het testen.** Een tweede handrun op dezelfde dag
+toont bij een mislukking de brief van de eerste run. Elke brief die Mark deze
+week na de eerste run van de dag heeft gestuurd, kan dus de brief van die eerste
+run zijn geweest. Dat is de reden om een briefwijziging te toetsen op een nieuwe
+dag of op de eerste run van de dag, en het verklaart waarom de vier fouten van
+8 oktober bleven staan in een brief die daarna is gemaakt.
+
+**Wat nog onbekend is.** Waarom het schrijven om 21:57 mislukte. Dat staat in
+het logboek van de stap "Verhalende brief maken" van die run: "Geen brief
+gemaakt" betekent dat de API niets opleverde, en daarboven staat waarom.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

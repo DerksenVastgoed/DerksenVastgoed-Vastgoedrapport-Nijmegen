@@ -1418,8 +1418,15 @@ def main():
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
+        # Met een foutcode en niet stil. Dit gaf exitcode 0 en schreef geen
+        # bestand, en dan ziet de workflow het verhaalbestand van een eerdere
+        # run van vandaag staan en meldt "Brief gemaakt: N woorden". Zo werd de
+        # brief van 8 oktober 's avonds opnieuw verstuurd, woord voor woord
+        # dezelfde, met alle fouten die die ochtend al waren gemeld. Mislukken
+        # moet luid zijn, want een oude brief die als nieuwe doorgaat is erger
+        # dan geen brief.
         print("Geen brief gemaakt", file=sys.stderr)
-        return
+        return 1
 
     # Vastleggen waar de brief over ging en wat er bleef liggen. Een testrun
     # schrijft hier niets; dat regelt brief_logboek zelf.
@@ -1485,7 +1492,8 @@ def main():
         f.write(tekst)
     print(f"Brief weggeschreven naar {uit}", file=sys.stderr)
     print(tekst)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
