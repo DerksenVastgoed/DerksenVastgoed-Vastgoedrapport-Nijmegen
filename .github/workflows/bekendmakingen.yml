@@ -539,12 +539,30 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
         run: |
+          # Toetsen of het bestand door DEZE run is geschreven, niet of het
+          # bestaat. Bij een tweede run op dezelfde dag staat de brief van de
+          # eerste run er al, en als het schrijven dan mislukt werd die oude
+          # brief opnieuw verstuurd met de melding "Brief gemaakt". Zo ging op
+          # 8 oktober 's avonds dezelfde brief uit als die ochtend, woord voor
+          # woord, met de fouten die al waren gemeld.
+          VERHAAL="digests/${DATUM}-verhaal.md"
+          VOOR=0
+          [ -f "$VERHAAL" ] && VOOR=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
           python brief_verhalend.py --datum "$DATUM" \
-            --uit "digests/${DATUM}-verhaal.md" || echo "Verhalende brief overgeslagen"
-          if [ -s "digests/${DATUM}-verhaal.md" ]; then
-            echo "Brief gemaakt: $(wc -w < "digests/${DATUM}-verhaal.md") woorden"
-          else
+            --uit "$VERHAAL" || echo "Verhalende brief overgeslagen"
+          NA=0
+          [ -f "$VERHAAL" ] && NA=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
+          if [ "$NA" = "0" ]; then
             echo "LET OP: er is geen verhalende brief gemaakt"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'er is geen brief gemaakt'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+          elif [ "$NA" = "$VOOR" ]; then
+            echo "LET OP: de brief is NIET opnieuw geschreven. Dit is de brief van"
+            echo "een eerdere run van vandaag. Zoek hierboven waarom het schrijven"
+            echo "is mislukt; verstuur dit niet als nieuwe brief."
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'het schrijven mislukte; de brief van een eerdere run van vandaag stond er nog'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+          else
+            echo "Brief gemaakt: $(wc -w < "$VERHAAL") woorden"
+            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': True, 'reden': ''}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
           fi
 
       - name: Brief en bijlage samenvoegen tot een HTML
@@ -777,6 +795,7 @@ jobs:
             vergund_verkocht.json
             brief_logboek.json
             verteld.json
+            briefstand.json
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
