@@ -210,6 +210,26 @@ jobs:
         run: |
           python rente_verhuurhypotheek.py --modus "$MODUS" --uit "digests/${DATUM}-rente.md" || echo "Rente-stap overgeslagen"
 
+      - name: Welke panden er in de zes buurten staan
+        continue-on-error: true
+        run: |
+          # Telt per buurt de adressen en panden uit de PDOK-locatieserver, en
+          # hoeveel daarvan we al hebben nagekeken. Dit is voorlopig alleen een
+          # meting: we kennen de oppervlakte van 6.338 adressen terwijl het CBS
+          # 19.061 woningen in de ring telt, en voordat we daar BAG- en
+          # EP-Online-aanroepen op gaan zetten willen we de echte aantallen
+          # weten in plaats van een deling.
+          #
+          # Wekelijks is ruim genoeg: de woningvoorraad van een buurt verandert
+          # niet per dag. Bij een handmatige start draait hij ook, zodat de stap
+          # te testen is zonder op zondag te wachten.
+          if [ "$MODUS" != "dagelijks" ] || [ ! -s buurtinventaris.json ] \
+             || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python buurtinventaris.py || echo "Buurtinventaris overgeslagen"
+          else
+            echo "Inventaris is er al; wordt op zondag ververst."
+          fi
+
       - name: Regelgeving controleren op wijzigingen
         continue-on-error: true
         run: |
@@ -827,6 +847,7 @@ jobs:
             verkocht_details.json
             pandgeschiedenis.json
             buurtbeeld.json
+            buurtinventaris.json
             vergund_verkocht.json
             brief_logboek.json
             verteld.json

@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "af73e8ef0f84",
+  ".github/workflows/bekendmakingen.yml": "9d7a9113016e",
   "aanbod_reeks.py": "81d5a7aa0aa2",
   "aanbodprofiel.py": "23697f8f4d8f",
   "bag3d.py": "b7cbb69df264",
@@ -13,6 +13,7 @@
   "brief_verhalend.py": "dd4ff3c872ec",
   "bronnen.py": "f0dc6650f0f9",
   "buurten_tabel.py": "be9f6ffee4ec",
+  "buurtinventaris.py": "93a37a38de8d",
   "corop_prijzen.py": "ac3a1de9f344",
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "7b92e5018811",
@@ -33,7 +34,7 @@
   "regelgeving_monitor.py": "3a32888de289",
   "rente_verhuurhypotheek.py": "e9f628b66fcc",
   "splitsing_voltooid.py": "02d0aa467f94",
-  "splitsingstoets.py": "e1a1792da768",
+  "splitsingstoets.py": "d52078138d1e",
   "subsidie_svoh.py": "472d184dfba8",
   "toets_artikel15.py": "b9b1c1ced005",
   "vergunningen_buurten.py": "f220305bc7bc",
