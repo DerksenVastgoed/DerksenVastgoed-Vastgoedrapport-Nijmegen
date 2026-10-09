@@ -4,7 +4,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de bestaande aanbouw, aan Buurmansweg 46, 6525RX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-470593.html",
   "strategie": "geen",
-  "duiding": "Aanvraag voor verbouw van de aanbouw is nog geen besluit; het bepaalt pas iets zodra de vergunning wordt verleend.",
+  "duiding": "Aanvraag betreft enkel de bestaande aanbouw, zonder aanwijzing voor functiewijziging of woningvermeerdering.",
   "feiten": {
    "energielabel": "D (2024)",
    "oppervlakte_m2": 109
@@ -17,8 +17,8 @@
   "datum": "2026-10-07",
   "titel": "Melding voor het uitvoeren van sloopwerkzaamheden (advies) op de locatie Groesbeeksedwarsweg 91-93-95-97-99-101 te Nijmegen zaaknummer Z26MA.2191",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-468054.html",
-  "strategie": "geen",
-  "duiding": "Sloopmelding (advies) voor meerdere adressen in één blok is een voorbereidende stap zonder vastgestelde herbestemming of nieuwbouwplan.",
+  "strategie": "transformatie",
+  "duiding": "Sloopmelding voor meerdere aaneengesloten adressen wijst op grootschalige herontwikkeling die het toekomstige aanbod kan wijzigen.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
@@ -29,7 +29,7 @@
   "titel": "Besluit voor  het vervangen van de kozijnen, aan Oude Nonnendaalseweg 188, 6542WX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-466966.html",
   "strategie": "verduurzaming",
-  "duiding": "Besluit tot vervangen van kozijnen verbetert de isolatie, wat het energielabel pas wijzigt na een nieuwe opname.",
+  "duiding": "Besluit tot kozijnvervanging verbetert de energieprestatie, wat bij een volgende opname tot een hoger label kan leiden.",
   "feiten": {
    "energielabel": "D (2026)",
    "oppervlakte_m2": 125
