@@ -1,0 +1,2 @@
+Alle ingangen mislukt voor 85773NED. opendata.cbs.nl: HTTPSConnectionPool(host='opendata.cbs.nl', port=443): Max retries exceeded with url: /ODataApi/OData/85773NED. v4: HTTPSConnectionPool(host='odata4.cbs.nl', port=443): Max retries exceeded with url: /CBS/85773NED/MeasureCodes
+Regio's van 85792NED niet op te halen, ook niet via de v4-API: HTTPSConnectionPool(host='odata4.cbs.nl', port=443): Max retries exceeded with url: /CBS/85792NED/RegioSCodes (Caused by

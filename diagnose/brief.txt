@@ -188,3 +188,7 @@ Groet, Mark'. Controleer of het antwoord is afgekapt.
 De brief eindigt midden in een zin: '...oorzichtig met harde uitspraken over die buurt.
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...te volgen zodra er een aanvraag achteraan komt.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.

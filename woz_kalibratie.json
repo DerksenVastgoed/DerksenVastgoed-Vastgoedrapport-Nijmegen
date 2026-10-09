@@ -1,44 +1,12 @@
 {
- "aantal": 104,
- "correctie": 0.9883573612931411,
- "spreiding": 0.1940390663590379,
- "band": [
-  0.7621722846441947,
-  1.1502504173622705
- ],
- "niet_meegeteld": 0,
- "uitschieters": [
-  {
-   "adres": "Derde Walstraat 108",
-   "verhouding": 2.086,
-   "afwijking_pct": 111
-  },
-  {
-   "adres": "Havenweg 34",
-   "verhouding": 0.325,
-   "afwijking_pct": -67
-  },
-  {
-   "adres": "Havenweg 70",
-   "verhouding": 0.463,
-   "afwijking_pct": -53
-  },
-  {
-   "adres": "van Dulckenstraat 47",
-   "verhouding": 0.467,
-   "afwijking_pct": -53
-  }
- ],
+ "aantal": 0,
+ "correctie": 1.0,
+ "spreiding": null,
  "vergelijking": {
   "kenmerken": {
    "aantal": 109,
    "mediane_fout": 0.14619883040935672,
    "negentig": 0.5741127348643006
-  },
-  "prijs": {
-   "aantal": 104,
-   "mediane_fout": 0.11296365680029974,
-   "negentig": 0.3617021276595745
   }
  },
  "kenmerken_beschikbaar": {
