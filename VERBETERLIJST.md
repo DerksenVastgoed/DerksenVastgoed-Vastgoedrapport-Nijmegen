@@ -7714,6 +7714,62 @@ beslissing.
 
 ---
 
+## 94. Mijn eigen uitvoermap heeft 97 WOZ-waarden gewist - 9 oktober 2026
+
+De WOZ-ijking viel van 104 panden naar nul. De oorzaak is mijn fout, en het is
+de duurste van de week, want het gaat om handwerk van Mark dat niet door een
+script te herhalen is.
+
+In de map waaruit Mark de bestanden uploadt stond een verouderde woz.txt uit het
+begin van de sessie, met zeven waarden. En een verouderde verkopen.txt met 184
+regels. Mark voegde "alle bestanden" toe, en daarmee ging die woz.txt over de
+versie met 104 waarden die hij de afgelopen dagen met de hand had opgezocht.
+
+**Waarom geen enkele controle dit zag.** Drie lagen lieten het door.
+
+De versiecontrole slaat gegevensbestanden bewust over. Dat is ook juist: woz.txt
+en verkopen.txt veranderen elke run en zouden anders elke dag een valse melding
+geven. Maar daarmee is precies dit bestand onbeschermd.
+
+De WOZ-bestandscontrole zag zeven leesbare regels en nul onleesbare, en meldde
+dat als OK. Hij toetst op leesbaarheid, niet op hoeveelheid.
+
+En het rapport zei zelfs "Versies: van LET OP naar OK" in dezelfde run. Alles
+klopte, behalve de inhoud.
+
+Alleen de WOZ-ijking verraadde het, met "geijkt op 0 panden", en dat was een
+gevolg en geen melding.
+
+**Drie dingen gedaan.**
+
+De verouderde woz.txt en verkopen.txt zijn uit de uitvoermap gehaald. Daar
+hadden ze nooit mogen staan: ik lever code en documentatie, en de
+gegevensbestanden van de repo horen daar niet tussen. Dat ik ze er maanden heb
+laten staan is een slordigheid met een prijs.
+
+Er is een controle op de omvang van de gegevensbestanden. Per bestand wordt het
+aantal regels bijgehouden in bestandsomvang.json, en krimp boven een drempel is
+FOUT, met in de diagnose hoe je het bestand terughaalt uit de git-geschiedenis.
+De drempels: woz.txt 10%, verkopen.txt en pandgeschiedenis 5%, het
+bekendmakingen-archief en de kamervergunningen 2%, verteld.json 0%. Deze
+bestanden groeien alleen; ze worden nooit kleiner behalve door een ongeluk.
+Getest op beide kanten, inclusief het echte geval van 104 naar 3.
+
+En de waarden zelf zijn niet weg. Elke run commit woz.txt, dus de versie met 104
+waarden staat in de geschiedenis. Terughalen met git log en git checkout.
+
+**De les die breder geldt dan dit geval.** Een controle die op leesbaarheid
+toetst, mist leegte. Dat is dezelfde fout als de brief die bestond maar van
+gisteren was, en als het splitsingenblok dat werd gemaakt maar nooit gelezen.
+Bestaan is niet hetzelfde als goed zijn, en dat geldt voor een bestand net zo
+goed als voor een stap in de workflow.
+
+**Los hiervan: woningprijsindex.json is leeg.** Dat bestand stond niet in mijn
+map, dus dat is een andere oorzaak: de CBS-stap van deze run heeft niets
+opgeleverd. Dat staat in het logboek van die stap.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -878,6 +878,83 @@ VERZONNEN = (
 )
 
 
+# De gegevensbestanden waarvan het aantal regels alleen mag groeien, met hoeveel
+# procent krimp nog aanvaardbaar is. Deze bestanden bouwen jarenlang op uit
+# handwerk en uit dagelijkse metingen; ze worden nooit kleiner behalve door een
+# ongeluk. De versiecontrole ziet dit niet, want die slaat gegevensbestanden
+# bewust over: die veranderen elke dag en zouden anders elke dag klagen.
+OMVANG_PAD = "bestandsomvang.json"
+OMVANG_LETTEN_OP = {
+    "woz.txt": 10,
+    "verkopen.txt": 5,
+    "pandgeschiedenis.json": 5,
+    "bekendmakingen_archief.json": 2,
+    "kamervergunningen.json": 2,
+    "verteld.json": 0,
+}
+
+
+def _omvang_nu():
+    uit = {}
+    for naam in OMVANG_LETTEN_OP:
+        try:
+            with open(naam, encoding="utf-8") as f:
+                uit[naam] = sum(1 for r in f if r.strip()
+                                and not r.lstrip().startswith("#"))
+        except Exception:
+            continue
+    return uit
+
+
+def controle_bestandsomvang():
+    """
+    Is een gegevensbestand plotseling veel kleiner geworden?
+
+    Op 9 oktober stond er een verouderde woz.txt met zeven waarden in de map
+    waaruit Mark de bestanden uploadt. Met "alle bestanden toevoegen" ging die
+    over de 104 waarden die hij met de hand had opgezocht. Het rapport meldde
+    niets: de versiecontrole slaat gegevensbestanden bewust over, en de
+    WOZ-controle zag zeven leesbare regels en noemde dat OK. Alleen de ijking
+    die van 104 naar 0 panden viel verraadde het.
+
+    Deze controle houdt per bestand het aantal regels bij en vergelijkt met de
+    vorige run. Krimp boven de drempel is FOUT, want deze bestanden groeien
+    alleen: ze komen uit handwerk en uit dagelijkse metingen.
+    """
+    nu = _omvang_nu()
+    vorige = _json(OMVANG_PAD) or {}
+    gedaald = []
+    for naam, aantal in nu.items():
+        was = (vorige.get("bestanden") or {}).get(naam)
+        if not was or aantal >= was:
+            continue
+        krimp = (was - aantal) / was * 100
+        if krimp > OMVANG_LETTEN_OP[naam]:
+            gedaald.append(f"{naam}: van {was} naar {aantal} regels "
+                           f"({krimp:.0f}% minder)")
+    # De stand van nu bewaren, ook als er iets fout is: anders blijft de melding
+    # eeuwig staan nadat het is opgelost.
+    try:
+        with open(OMVANG_PAD, "w", encoding="utf-8") as f:
+            json.dump({"datum": str(VANDAAG), "bestanden": nu}, f,
+                      ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+    bewijs = ", ".join(f"{n}: {a}" for n, a in sorted(nu.items()))
+    if not vorige:
+        return (OK, bewijs + " (eerste meting, nog niets om mee te "
+                "vergelijken)", "")
+    if gedaald:
+        return (FOUT, "; ".join(gedaald),
+                "Deze bestanden groeien alleen. Een plotselinge krimp betekent "
+                "dat er een oude versie over een nieuwe is gezet, bijvoorbeeld "
+                "door alle bestanden uit een map te uploaden. Haal het bestand "
+                "terug met 'git log -- <bestand>' en 'git checkout <commit> -- "
+                "<bestand>'; elke run commit deze bestanden, dus de goede "
+                "versie staat in de geschiedenis.")
+    return (OK, bewijs, "")
+
+
 def controle_verkocht_nog_in_aanbod():
     """
     Staat een pand dat verkocht is nog in de aanbodtabel?
@@ -1958,6 +2035,7 @@ CONTROLES = [
     ("Oude verlaging in de brief", controle_oude_verlaging),
     ("Bekende onwaarheden in de brief", controle_verzonnen_beweringen),
     ("Verkocht pand nog in het aanbod", controle_verkocht_nog_in_aanbod),
+    ("Omvang van de gegevensbestanden", controle_bestandsomvang),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),
