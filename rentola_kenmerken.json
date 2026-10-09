@@ -10,5 +10,19 @@
   "postcode": "6533BW",
   "buurt": "Sint Anna",
   "prijs_per_m2_rentola": 35
+ },
+ "https://email.rentola.nl/e/c/eyJlbWFpbF9pZCI6ImRnU1RqZ2dCQVBxZU5mbWVOUUdoSW5UNkVndF9keUc0RUQ2ZXF3VT0iLCJocmVmIjoiaHR0cHM6Ly9yZW50b2xhLm5sL2xpc3RpbmdzL2thbWVyLW9wLWxvb3BhZnN0YW5kLXZhbi11bml2ZXJzaXRlaXQtcGNhNTcyOT91dG1fY2FtcGFpZ249ZW1haWxfY2FtcGFpZ25fbm90aWZpY2F0aW9uc192MVx1MDAyNnV0bV9jb250ZW50PW1zZzFfZW1haWxfbm90aWZpY2F0aW9uX25sX3ZhcmlhbnRfYlx1MDAyNnV0bV9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fc291cmNlPWN1c3RvbWVyLmlvIiwiaW50ZXJuYWwiOiI5MzhlMDgxZDg5MTJmYTllMzUiLCJsaW5rX2lkIjozOTl9/410abc9f9eebe6185c70c59b0f156a91141fd4af8cbe6b6a0fe1b89cef9a95ea": {
+  "adres_via_plaatsnaam": "De Bruin & De Bruin, Heyendaalseweg 219",
+  "adres": "Heyendaalseweg 219",
+  "postcode": "6525SG",
+  "buurt": "Brakkenstein",
+  "prijs_per_m2_rentola": 32
+ },
+ "https://rentola.nl/listings/kamer-op-loopafstand-van-universiteit-pca5729": {
+  "adres_via_plaatsnaam": "De Bruin & De Bruin, Heyendaalseweg 219",
+  "adres": "Heyendaalseweg 219",
+  "postcode": "6525SG",
+  "buurt": "Brakkenstein",
+  "prijs_per_m2_rentola": 32
  }
 }

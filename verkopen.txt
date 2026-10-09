@@ -1007,3 +1007,6 @@ Wolfskuilseweg | Nijmegen | 1345 | te huur | 2026-10-09 | pararius | 78 | 6542JK
 Berg en Dalseweg | Nijmegen | 1397 | te huur gemeubileerd | 2026-10-09 | pararius | 35 | 6522BC
 Broerdijk | Nijmegen | 540 | te huur | 2026-10-09 | pararius | 23 | 6523GR
 Broerdijk | Nijmegen | 390 | te huur | 2026-10-09 | pararius | 10 | 6523GR
+
+# Automatisch toegevoegd uit Funda-attendering op 09-10-2026
+Heyendaalseweg 219 | Nijmegen | 450 | te huur | 2026-10-09 | rentola | 14 | 6525SG

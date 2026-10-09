@@ -73224,5 +73224,21 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Heyendaalseweg 219|Nijmegen": {
+    "oppervlakte": 14,
+    "bouwjaar": "1931",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6525SG",
+    "adresseerbaarObjectIdentificatie": "0268010000013768",
+    "pand": "0268100000046017",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Brakkenstein",
+    "wijknaam": "Nijmegen-Zuid",
+    "nummeraanduiding": "adr-97a901ff29c638c77c67062b8b348b03",
+    "oppervlakte_bag": 111,
+    "opp_verschil": true
   }
 }

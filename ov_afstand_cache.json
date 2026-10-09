@@ -79,6 +79,14 @@
   "omweg": 3.24,
   "soort": "bus"
  },
+ "51.81331,5.86738": {
+  "geschat": false,
+  "hemelsbreed": 201,
+  "meters": 265,
+  "naam": "Kanunnik Faberstraat",
+  "omweg": 1.32,
+  "soort": "bus"
+ },
  "51.81797,5.79892": {
   "geschat": false,
   "hemelsbreed": 119,

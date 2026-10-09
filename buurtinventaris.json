@@ -1,0 +1,98 @@
+{
+ "bron": "PDOK locatieserver v3_1, filter op buurtnaam",
+ "opgehaald": "2026-10-09",
+ "panden_per_buurt": {
+  "Altrade": [],
+  "Benedenstad": [],
+  "Biezen": [],
+  "Bottendaal": [],
+  "Galgenveld": [],
+  "Stadscentrum": []
+ },
+ "per_buurt": {
+  "Altrade": {
+   "adressen": 3452,
+   "adressen_gemeld": 3452,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 220,
+   "volledig": true,
+   "zonder_pandid": 3452
+  },
+  "Benedenstad": {
+   "adressen": 5098,
+   "adressen_gemeld": 5098,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 210,
+   "volledig": true,
+   "zonder_pandid": 5098
+  },
+  "Biezen": {
+   "adressen": 9443,
+   "adressen_gemeld": 9443,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 410,
+   "volledig": true,
+   "zonder_pandid": 9443
+  },
+  "Bottendaal": {
+   "adressen": 2568,
+   "adressen_gemeld": 2568,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 133,
+   "volledig": true,
+   "zonder_pandid": 2568
+  },
+  "Galgenveld": {
+   "adressen": 4285,
+   "adressen_gemeld": 4285,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 318,
+   "volledig": true,
+   "zonder_pandid": 4285
+  },
+  "Stadscentrum": {
+   "adressen": 10100,
+   "adressen_gemeld": 11975,
+   "panden": 0,
+   "panden_al_nagekeken": 0,
+   "panden_nog_te_doen": 0,
+   "postcodes": 452,
+   "volledig": false,
+   "zonder_pandid": 10100
+  }
+ },
+ "totaal": {
+  "adressen": 34946,
+  "buurten_gevraagd": 6,
+  "buurten_volledig": 5,
+  "panden": 0,
+  "panden_al_nagekeken": 0,
+  "panden_nog_te_doen": 0
+ },
+ "velden_gemist": [
+  "pandid"
+ ],
+ "velden_gevraagd": [
+  "id",
+  "type",
+  "weergavenaam",
+  "straatnaam",
+  "huis_nlt",
+  "postcode",
+  "buurtnaam",
+  "wijknaam",
+  "adresseerbaarobject_id",
+  "nummeraanduiding_id",
+  "pandid"
+ ]
+}

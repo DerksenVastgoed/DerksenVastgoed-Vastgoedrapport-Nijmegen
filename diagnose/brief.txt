@@ -196,3 +196,6 @@ De brief eindigt midden in een zin: '... er in Bottendaal weer een aanvraag vers
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...ar zit het verschil tussen plannen en praktijk.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

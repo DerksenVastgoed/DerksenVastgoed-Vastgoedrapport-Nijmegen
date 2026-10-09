@@ -10,7 +10,15 @@
    "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen"
   }
  ],
- "zonder_bekende_vergunning": [],
+ "zonder_bekende_vergunning": [
+  {
+   "adres": "Hatertseweg 338",
+   "datum": "2026-10-09",
+   "van": 1,
+   "naar": 7,
+   "aanvraag": null
+  }
+ ],
  "vergund_maar_niets_gebeurd": [
   {
    "adres": "Pontanusstraat 9",

@@ -1,40 +1,41 @@
 {
  "verkooptijd_aantal": 118,
- "bezitsduur_aantal": 65,
- "prijsgroei_aantal": 26,
+ "bezitsduur_aantal": 15,
+ "bezitsduur_bij_benadering": 3,
+ "prijsgroei_aantal": 5,
+ "minimum_paren": 10,
  "verkooptijd_mediaan_dagen": 93,
- "bezitsduur_mediaan_jaar": 0.8,
- "prijsgroei_mediaan_pct": 4.8,
+ "bezitsduur_mediaan_jaar": 3.3,
  "voorbeelden": [
   {
-   "adres": "Achter de Oude Gracht 17",
-   "van": "2024-02-14",
-   "tot": "2026-09-28",
-   "per_jaar": 8.9
+   "adres": "St. Annastraat 30",
+   "van": "2025-06-27",
+   "tot": "2026-09-27",
+   "per_jaar": 11.5
   },
   {
-   "adres": "Biesmanstraat 3",
-   "van": "2014-09-02",
-   "tot": "2026-09-28",
-   "per_jaar": 5.3
+   "adres": "Graafsedwarsstraat 65",
+   "van": "2022-01-01",
+   "tot": "2026-06-01",
+   "per_jaar": 10.4
   },
   {
-   "adres": "Braamhof 11",
-   "van": "2026-01-01",
-   "tot": "2026-09-28",
-   "per_jaar": 0.0
+   "adres": "Tollensstraat 147-B",
+   "van": "2025-07-26",
+   "tot": "2026-06-01",
+   "per_jaar": 11.5
   },
   {
-   "adres": "Daalseweg 56",
-   "van": "2019-10-23",
-   "tot": "2026-09-28",
-   "per_jaar": -7.0
+   "adres": "Palmstraat 40",
+   "van": "2025-11-04",
+   "tot": "2026-05-22",
+   "per_jaar": 19.7
   },
   {
-   "adres": "Eilbrachtstraat 6",
-   "van": "2025-04-22",
-   "tot": "2026-09-28",
-   "per_jaar": 0.0
+   "adres": "Jacob Canisstraat 79",
+   "van": "2019-06-11",
+   "tot": "2021-11-07",
+   "per_jaar": 16.4
   }
  ]
 }

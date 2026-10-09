@@ -50,9 +50,9 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-10-03: de BAG telt nu 3 woningen in dit pand, was 1: 168, 203, 44 m2 (Basisregistratie Adressen en Gebouwen) **nieuw**
 - 2026-10-03: energielabels van 1 woningen in dit pand (G: 1) (EP-Online)
 
-## Hatertseweg 827
-- 2025-03-28: Aanvraag Omgevingsvergunning voor het samenvoegen van drie winkels, aan Hatertseweg 827, 6535ZT Nijmegen (officiele bekendmakingen)
-- 2025-05-28: Besluit voor het samenvoegen van drie winkels, aan Hatertseweg 827, 6535ZT Nijmegen (officiele bekendmakingen)
-- 2025-06-02: Melding Melding brandveilig gebruik, aan Hatertseweg 827, 6535ZT Nijmegen (officiele bekendmakingen)
-- 2026-10-03: energielabels van 4 woningen in dit pand (A++: 3, A+++: 1) (EP-Online)
+## Hatertseweg 338
+- 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
+- 2026-10-06: Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen (officiele bekendmakingen) **nieuw**
+- 2026-10-09: de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46, 24, 19, 23, 19 m2 (Basisregistratie Adressen en Gebouwen) **nieuw**
+- 2026-10-01: energielabels van 1 woningen in dit pand (E: 1) (EP-Online)
 
