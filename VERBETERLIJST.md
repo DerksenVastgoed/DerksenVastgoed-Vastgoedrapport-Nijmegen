@@ -7401,6 +7401,75 @@ geheel stil te maken, en dat is iets om te weten voordat je het nog eens doet.
 
 ---
 
+## 89. De Palmstraat, vierde dag, en de laatste plek - 9 oktober 2026
+
+De verlaging van €50.000 bij de Palmstraat 40 stond voor de vierde dag op rij
+in de brief. Drie keer is er iets aan gedaan: een regel in de opdracht op 6
+oktober, een kolom met de wijzigingsdatum, en op 8 oktober het splitsen van de
+tabel in nieuws en achtergrond. Elke keer bleek er een plek te zijn die ik niet
+had gezien.
+
+**De plek van vandaag.** In de samenvattingsregels van het aanbodblok staat:
+
+    if gewijzigd:
+        w = sorted(gewijzigd, key=lambda x: x["prijs"] - x["prijs_eerst"])[0]
+        zinnen.append(f"Grootste verlaging: **{w['adres']}** ging ... omlaag")
+
+Geen datumfilter. En "gewijzigd" betekent: elk pand waarvan de prijs afwijkt van
+de eerste keer dat we het zagen. De brief nam die zin bijna letterlijk over. Het
+commentaar erboven luidde "want dat is het enige dat sinds gisteren veranderde",
+en dat was precies de onjuiste aanname.
+
+Dit is dezelfde fout als die van gisteren met het blok met de pandfeiten: twee
+plekken die hetzelfde maken en van elkaar afwijken. Daarom staat de berekening
+nu in een eigen functie, prijswijziging_datums, met drie gebruikers: de tabel,
+de samenvattingsregel en de kopregel. Die kunnen niet meer uit elkaar lopen.
+
+De kopregel was trouwens ook misleidend: "waarvan 5 met een prijswijziging",
+zonder periode, leest als "sinds gisteren". Er staat nu bij over welke periode
+het gaat en hoeveel er van vandaag of gisteren zijn.
+
+**En een controle die niet op de code kijkt maar op de brief.** Dat is de
+belangrijkste verandering van vandaag. Vier dagen lang heb ik de oorzaak in de
+code gezocht en elke keer een plek gemist. Een toets op de verstuurde tekst is
+daar immuun voor: staat er een prijsverlaging in de brief bij een adres waarvan
+de wijzigingsdatum ouder is dan gisteren, dan is dat FOUT, hoeveel plekken er
+ook zijn die zo'n zin kunnen maken. Getest op de brief van vandaag: die valt
+erdoor.
+
+**Een tweede lijst in dezelfde geest: bekende onwaarheden.** De brief van
+vandaag bevatte weer een verzonnen mechanisme, nu als "met een WOZ-waarde van
+€982.009 is dit te groot om als één huishouden door te rekenen". Dat is de
+tweede variant van dezelfde onwaarheid, en gisteren was er een regel voor in de
+opdracht geschreven. Dus ook die gaat naar de uitkomst: er staat nu een lijst
+van beweringen die deze week fout bleken, met voor elk een patroon, en die wordt
+op de brieftekst getoetst. Vier beweringen staan erin:
+
+- een bovengrens aan oppervlakte in het puntenstelsel, die niet bestaat;
+- een vraagprijs die als koopsom wordt gepresenteerd;
+- een aanvraag die als bewijs van haalbaarheid wordt gelezen;
+- oppervlakte en label toegeschreven aan een pand in plaats van een adres.
+
+Getest op de brief van 8 oktober: die valt op drie van de vier. Op die van
+vandaag: op een. Op een goed geschreven versie: op geen.
+
+Die lijst hoort te groeien. Dat is geen teken dat het slechter gaat maar dat een
+fout die eenmaal is gemaakt niet meer ongemerkt terug kan komen.
+
+**Wat er vandaag wel goed ging.** Rentola werkt: 1 mail, 1 object, en de bron
+staat niet meer bij de zwijgende bronnen. De huurwaarnemingen gingen van 99 naar
+105. De controle "Brief opnieuw geschreven" staat op OK, dus deze brief is
+werkelijk nieuw en niet die van een eerdere run. En de vijf vraagprijzen die
+gisteren als koopsom werden gepresenteerd, staan er nu alle vijf als "laatste
+vraagprijs".
+
+**123Wonen is nu niet te toetsen.** Die bron staat niet meer in de
+attenderingsregel, wat betekent dat er geen 123Wonen-mail van de laatste drie
+dagen meer is. De mails van 8 oktober zijn uit het venster gevallen. Pas bij een
+volgende mail blijkt of de SendGrid-herkenning werkt.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

@@ -3438,6 +3438,57 @@ def _dagen_sinds(datum):
         return None
 
 
+_PW_DATUMS = {"geladen": False, "map": {}}
+
+
+def prijswijziging_datums():
+    """
+    Wanneer de vraagprijs van elk pand werkelijk veranderde, uit de
+    pandgeschiedenis.
+
+    Eén functie voor alle plekken die dit nodig hebben. Dat is de hele reden
+    dat hij bestaat: de tabel met prijswijzigingen had dit inline staan en
+    filterde sinds 8 oktober op datum, maar de samenvattingsregel "Grootste
+    verlaging" had zijn eigen berekening zonder datum. Daardoor stond de
+    verlaging van de Palmstraat 40 van 6 oktober op 9 oktober nog steeds in de
+    brief, terwijl de tabel hem al bij "eerdere wijzigingen" had gezet.
+    """
+    if _PW_DATUMS["geladen"]:
+        return _PW_DATUMS["map"]
+    uit = {}
+    try:
+        from pandlezer import laad as _laad_pw
+        for _pand in (_laad_pw("pandgeschiedenis.json") or {}).values():
+            if not isinstance(_pand, dict):
+                continue
+            _rij = [g["datum"] for g in (_pand.get("gebeurtenissen") or [])
+                    if g.get("soort") == "prijswijziging" and g.get("datum")]
+            if _rij:
+                _sl = "".join(c for c in (_pand.get("adres") or "").lower()
+                              if c.isalnum())
+                uit[_sl] = max(_rij)
+    except Exception:
+        uit = {}
+    _PW_DATUMS["geladen"] = True
+    _PW_DATUMS["map"] = uit
+    return uit
+
+
+def prijswijziging_recent(w, dagen=1):
+    """
+    Is de prijs van dit pand in de laatste dagen veranderd?
+
+    Onbekende datum betekent nee. Dat is bewust: dan is de verandering ouder
+    dan onze meting en zeker geen nieuws van vandaag.
+    """
+    sleutel = "".join(c for c in (w.get("adres") or "").lower() if c.isalnum())
+    op = prijswijziging_datums().get(sleutel)
+    if not op:
+        return False
+    sinds = _dagen_sinds(op)
+    return sinds is not None and sinds <= dagen
+
+
 def render_prijswijzigingen(woningen):
     """Panden waarvan de vraagprijs is veranderd sinds we ze voor het eerst zagen."""
     r = []
@@ -3465,20 +3516,7 @@ def render_prijswijzigingen(woningen):
     # vandaag: de verlaging van de Palmstraat 40 stond op 6 EN op 8 oktober
     # als "de grootste verlaging". De datum komt uit de pandgeschiedenis, waar
     # elke prijswijziging als gebeurtenis met datum staat.
-    wanneer = {}
-    try:
-        from pandlezer import laad as _laad_pw
-        for _pand in (_laad_pw("pandgeschiedenis.json") or {}).values():
-            if not isinstance(_pand, dict):
-                continue
-            _rij = [g["datum"] for g in (_pand.get("gebeurtenissen") or [])
-                    if g.get("soort") == "prijswijziging" and g.get("datum")]
-            if _rij:
-                _sl = "".join(c for c in (_pand.get("adres") or "").lower()
-                              if c.isalnum())
-                wanneer[_sl] = max(_rij)
-    except Exception:
-        wanneer = {}
+    wanneer = prijswijziging_datums()
 
     # Drie bakken in plaats van een tabel. De waarschuwing dat een oude
     # verlaging geen nieuws is, stond hier als tekst onder de tabel, en de
@@ -6633,7 +6671,11 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
     else:
         kop += ", geen mutaties sinds gisteren"
     if gewijzigd:
-        kop += f", waarvan {len(gewijzigd)} met een prijswijziging"
+        _recent = [w for w in gewijzigd if prijswijziging_recent(w)]
+        kop += (f", waarvan {len(gewijzigd)} met een prijswijziging sinds we ze "
+                f"voor het eerst zagen"
+                + (f" en {len(_recent)} van vandaag of gisteren" if _recent
+                   else ", geen daarvan van vandaag of gisteren"))
     zinnen.append(kop + ".")
 
     # Het scherpst geprijsde pand, met het scenario erbij
@@ -6700,13 +6742,27 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
                         f"vraagprijs, dus geen reden om de brief mee te openen")
             zinnen.append(zin + ".")
 
-    # Bewegingen benoemen, want dat is het enige dat sinds gisteren veranderde
-    if gewijzigd:
-        w = sorted(gewijzigd, key=lambda x: (x["prijs"] - x["prijs_eerst"]))[0]
+    # Bewegingen benoemen, maar alleen die van vandaag of gisteren. De oude
+    # versie pakte de grootste verlaging uit ALLE panden waarvan de prijs ooit
+    # is veranderd, want "gewijzigd" vergelijkt met de eerste keer dat we een
+    # pand zagen. De verlaging van de Palmstraat 40 van 6 oktober stond daardoor
+    # op 6, 7, 8 EN 9 oktober in de brief als beweging van de dag, ook nadat de
+    # tabel hem al naar "eerdere wijzigingen" had verplaatst. Dezelfde fout als
+    # bij het blok met de pandfeiten: twee plekken die hetzelfde maken en van
+    # elkaar afwijken.
+    recent_gewijzigd = [w for w in gewijzigd if prijswijziging_recent(w)]
+    if recent_gewijzigd:
+        w = sorted(recent_gewijzigd,
+                   key=lambda x: (x["prijs"] - x["prijs_eerst"]))[0]
         verschil = w["prijs"] - w["prijs_eerst"]
         if verschil < 0:
-            zinnen.append(f"Grootste verlaging: **{w['adres']}** ging €{n(abs(verschil))} "
+            zinnen.append(f"Grootste verlaging van vandaag of gisteren: "
+                          f"**{w['adres']}** ging €{n(abs(verschil))} "
                           f"omlaag naar €{n(w['prijs'])}.")
+    elif gewijzigd:
+        zinnen.append(f"Geen enkele vraagprijs is vandaag of gisteren "
+                      f"veranderd; de {len(gewijzigd)} prijswijzigingen in de "
+                      f"tabel zijn ouder en zijn geen nieuws.")
 
     # Gemeentelijke berichten
     bm = bm_per_buurt or {}

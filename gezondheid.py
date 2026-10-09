@@ -849,6 +849,157 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+# Beweringen die deze week in een brief stonden en die onwaar zijn. Elke regel
+# is een patroon plus de reden. Dit is een lijst die groeit, en dat is het punt:
+# een regel in de opdracht kan genegeerd worden, een toets op de verstuurde
+# tekst niet. Drie keer is deze week geprobeerd een fout met een instructie te
+# verhelpen en drie keer stond hij er de volgende dag weer.
+VERZONNEN = (
+    (r"te groot om .{0,40}(?:huishouden|puntenstelsel|door te rekenen)"
+     r"|te groot voor het puntenstelsel",
+     "Het woningwaarderingsstelsel kent geen bovengrens aan oppervlakte. Een "
+     "grote woning krijgt juist veel punten en valt daarmee in de vrije "
+     "sector, wat voor een verhuurder een voordeel is. De werkelijke reden dat "
+     "opdelen loont is de gemeten groottepremie, en die staat in de gegevens."),
+    (r"verkocht[,;:\s]+voor\s*€|verkoopprijs (?:was|is|bedroeg)"
+     r"|ging(?: toen)? voor\s*€|opgebracht van\s*€"
+     r"|verkocht[,;:\s]+voor\s*\d",
+     "Wij kennen geen koopsommen; die staan alleen bij het Kadaster. Funda "
+     "toont de laatste vraagprijs. Schrijf 'laatste vraagprijs €X'."),
+    (r"aanvraag.{0,60}laat zien dat.{0,40}(?:werkt|kan|mag|mogelijk is)",
+     "Een aanvraag om te legaliseren laat zien dat er zonder vergunning is "
+     "gesplitst en dat de eigenaar dat rechtgetrokken wil hebben. Of het mag, "
+     "blijkt pas uit het besluit; tot die tijd loopt de eigenaar het risico "
+     "dat hij moet terugbouwen."),
+    (r"het pand (?:is|heeft|meet) \d{2,4} m2 en heeft energielabel",
+     "Oppervlakte en energielabel horen bij een adres en niet bij een pand. "
+     "Staat er bij de gegevens 'op dit adres, niet van het hele pand', neem "
+     "dat voorbehoud dan over."),
+)
+
+
+def controle_verzonnen_beweringen():
+    """
+    Staan er beweringen in de brief die we al eens fout hebben bevonden?
+
+    Een lijst van bekende onwaarheden, getoetst op de verstuurde tekst. Dat is
+    de enige plek waar het zeker werkt: de gegevens kunnen kloppen en de
+    opdracht kan de regel bevatten, en toch staat het er. Deze week gebeurde
+    dat met de bovengrens die het puntenstelsel niet heeft, met vraagprijzen
+    die als koopsom werden gepresenteerd, en met een aanvraag die als bewijs
+    van haalbaarheid werd gelezen.
+    """
+    try:
+        namen = sorted(n for n in os.listdir("digests")
+                       if n.endswith("-verhaal.md"))
+        if not namen:
+            return (OK, "geen brief om te toetsen", "")
+        with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
+            brief = " ".join(f.read().split())
+    except Exception:
+        return (OK, "geen brief om te toetsen", "")
+    raak = []
+    for patroon, waarom in VERZONNEN:
+        m = re.search(patroon, brief, re.IGNORECASE)
+        if m:
+            raak.append((m.group(0)[:70], waarom))
+    if not raak:
+        return (OK, f"{len(VERZONNEN)} bekende onwaarheden getoetst, geen "
+                f"ervan staat in de brief", "")
+    return (FOUT,
+            (f"{len(raak)} bekende onwaarheden" if len(raak) > 1
+             else "1 bekende onwaarheid")
+            + " in de brief: " + "; ".join(f'"{z}"' for z, _ in raak),
+            " ".join(w for _, w in raak))
+
+
+def controle_oude_verlaging():
+    """
+    Noemt de brief een prijsverlaging die niet van vandaag of gisteren is?
+
+    Dit is een controle op de uitkomst en niet op de code, en dat is met
+    opzet. De verlaging van de Palmstraat 40 van 6 oktober stond op 6, 7, 8 en
+    9 oktober in de brief. Drie keer is er iets aan gedaan: een regel in de
+    opdracht, een kolom met de datum, en het splitsen van de tabel in nieuws en
+    achtergrond. Elke keer bleek er een plek te zijn die ik niet had gezien;
+    de laatste was de samenvattingsregel "Grootste verlaging", met een eigen
+    berekening zonder datum.
+
+    Een controle op de brieftekst is immuun voor dat probleem. Hoeveel plekken
+    er ook zijn die een prijswijziging kunnen melden, als er een oude verlaging
+    in de brief staat, valt hij hier door de mand.
+    """
+    try:
+        namen = sorted(n for n in os.listdir("digests")
+                       if n.endswith("-verhaal.md"))
+    except Exception:
+        return (OK, "geen brief om te toetsen", "")
+    if not namen:
+        return (OK, "geen brief om te toetsen", "")
+    try:
+        with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
+            brief = " ".join(f.read().split())
+    except Exception:
+        return (OK, "brief niet te lezen", "")
+    if not any(w in brief.lower() for w in
+               ("omlaag", "verlaging", "verlaagd", "zakte", "gezakt")):
+        return (OK, "de brief noemt geen prijsverlaging", "")
+
+    # De datums van prijswijzigingen uit de pandgeschiedenis, net als het model
+    # die gebruikt.
+    datums = {}
+    try:
+        from pandlezer import laad
+        for pand in (laad("pandgeschiedenis.json") or {}).values():
+            if not isinstance(pand, dict):
+                continue
+            rij = [g["datum"] for g in (pand.get("gebeurtenissen") or [])
+                   if g.get("soort") == "prijswijziging" and g.get("datum")]
+            if rij:
+                sleutel = "".join(c for c in (pand.get("adres") or "").lower()
+                                  if c.isalnum())
+                datums[sleutel] = max(rij)
+    except Exception:
+        return (OK, "geen pandgeschiedenis om tegen te toetsen", "")
+    if not datums:
+        return (OK, "nog geen prijswijzigingen in de pandgeschiedenis", "")
+
+    try:
+        import verteld
+        adressen = verteld.adressen_uit(brief)
+    except Exception:
+        return (OK, "adressen niet uit de brief te halen", "")
+
+    oud_genoemd = []
+    for sleutel, zoals in adressen.items():
+        op = datums.get(sleutel)
+        if not op:
+            continue
+        try:
+            dagen = (VANDAAG - dt.date.fromisoformat(op)).days
+        except Exception:
+            continue
+        if dagen <= 1:
+            continue
+        # Staat dit adres in de buurt van het woord verlaging of omlaag?
+        plek = brief.lower().find(zoals.lower())
+        if plek == -1:
+            continue
+        omgeving = brief.lower()[max(0, plek - 200):plek + 200]
+        if any(w in omgeving for w in ("omlaag", "verlaging", "verlaagd",
+                                       "zakte", "gezakt")):
+            oud_genoemd.append(f"{zoals} (gewijzigd op {op}, {dagen} dagen "
+                               f"terug)")
+    if oud_genoemd:
+        return (FOUT, "de brief noemt een prijsverlaging die niet van vandaag "
+                "of gisteren is: " + "; ".join(oud_genoemd[:4]),
+                "Een oude verlaging hoort bij de achtergrond en niet bij het "
+                "nieuws. Zoek in marktprijzen_bag.py naar elke plek die een "
+                "prijswijziging meldt; er is er vermoedelijk een die niet op "
+                "datum filtert.")
+    return (OK, "elke genoemde prijsverlaging is van vandaag of gisteren", "")
+
+
 def controle_briefherhaling():
     """
     Is de brief van vandaag werkelijk opnieuw geschreven?
@@ -1715,6 +1866,8 @@ CONTROLES = [
     ("Versies", controle_versies),
     ("Geheugen verstuurde brieven", controle_verteld),
     ("Brief opnieuw geschreven", controle_briefherhaling),
+    ("Oude verlaging in de brief", controle_oude_verlaging),
+    ("Bekende onwaarheden in de brief", controle_verzonnen_beweringen),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),
