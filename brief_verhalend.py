@@ -519,7 +519,15 @@ def wist_je_dat(cbs, verg, misdrijven=None):
     try:
         from diagnose import alleen_lezen
         if alleen_lezen():
-            print("Testrun: het weetje wordt niet afgestreept", file=sys.stderr)
+            # Een testrun streept niets af. Dat is goed, want pa heeft dit niet
+            # gezien, maar het betekent wel dat elke handrun hetzelfde eerste
+            # weetje pakt. Op 8 en 9 oktober stond daarom drie brieven achter
+            # elkaar hetzelfde weetje over het inkomen in Galgenveld. Daarom
+            # rouleert een testrun op de datum: niet onthouden, wel afwisselen.
+            keuze = nieuw[dt.date.today().toordinal() % len(nieuw)]
+            print(f"Testrun: het weetje wordt niet afgestreept, keuze "
+                  f"{nieuw.index(keuze) + 1} van {len(nieuw)} op datum",
+                  file=sys.stderr)
             return keuze
     except Exception:
         pass
