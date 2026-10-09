@@ -819,6 +819,7 @@ jobs:
             marktprijzen_bag_cache.json
             huislijn_kenmerken.json
             wonen123_kenmerken.json
+            rentola_kenmerken.json
             rijksmonumenten_nijmegen.json
             top3-kaart.html
             digests/
