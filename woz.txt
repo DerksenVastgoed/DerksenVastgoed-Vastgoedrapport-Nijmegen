@@ -116,6 +116,10 @@ van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog
 van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 | 407.000 | 2026
 
+# Nog in te vullen (2): vul het bedrag tussen de eerste twee streepjes
+St. Canisiussingel 6 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+St. Canisiussingel 8 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+
 # Geen WOZ beschikbaar (8): opgezocht, het loket geeft niets. Deze regels blijven staan zodat ze niet opnieuw op de werklijst komen. Vind je er later toch een waarde, vervang dan de markering door het bedrag.
 Daalseweg 58 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 34 m2, buiten het middengebied
 Jan de Wittstraat 6-8 studio 9 | geen | 2026   # prijsklasse onder 300k; straat nog zonder eigen WOZ; 41 m2, buiten het middengebied
@@ -125,7 +129,3 @@ St. Annastraat 165-E | geen | 2026   # prijsklasse 300k tot 450k; straat nog zon
 Ziekerstraat 5 | geen | 2026   # prijsklasse 450k tot 600k
 van Welderenstraat 5 | geen | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
-
-# Werklijst (2): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
-St. Canisiussingel 6 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
-St. Canisiussingel 8 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ

@@ -33,6 +33,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
 - **Geschiedenis per pand**: 1769 panden gevolgd, 1424 met meer dan een gebeurtenis; 1579 met BAG-gegevens (6338 woningen, 7446 dubbel geteld zonder deze correctie), 1382 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12221 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 74 panden te koop, mediaan 17 dagen geleden voor het laatst bevestigd, oudste 37 dagen
 - **Aanbodreeks**: 8 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 6 koop, 24 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan

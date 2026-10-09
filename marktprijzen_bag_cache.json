@@ -72649,7 +72649,8 @@
     "oppervlakte": 14,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Van Diemerbroeckstraat|Nijmegen": {
     "oppervlakte": 30,
@@ -73181,7 +73182,8 @@
     ],
     "postcode": "6545GR",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Irene Vorrinkstraat|Nijmegen": {
     "oppervlakte": 90,
@@ -73190,7 +73192,8 @@
     ],
     "postcode": "6535NA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Cortenaerpad|Nijmegen": {
     "oppervlakte": 41,
@@ -73199,7 +73202,8 @@
     ],
     "postcode": "6512GD",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Fenikshof|Nijmegen": {
     "oppervlakte": 97,
@@ -73208,6 +73212,7 @@
     ],
     "postcode": "6541SP",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   }
 }
