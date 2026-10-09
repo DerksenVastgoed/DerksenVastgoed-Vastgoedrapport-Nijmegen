@@ -1898,23 +1898,36 @@ def controle_doorlooptijden():
         return (LET_OP, "nog geen doorlooptijden te berekenen",
                 "Hiervoor zijn per pand twee gebeurtenissen nodig; dat groeit "
                 "met elke ronde verkoopdatums.")
+    minimum = d.get("minimum_paren", 10)
     delen = []
     if d.get("verkooptijd_mediaan_dagen"):
         delen.append(f"mediane verkooptijd {d['verkooptijd_mediaan_dagen']} "
-                     f"dagen ({d['verkooptijd_aantal']} panden)")
+                     f"dagen ({d['verkooptijd_aantal']} panden, bovengrens)")
+
+    # Bezitsduur en prijsgroei rusten op twee verkopen van hetzelfde pand, en
+    # dus op echte verkoopdatums. De 505 geplakte verkopen hebben die niet: hun
+    # datum is de dag dat de lijst werd geplakt. Zolang die meededen stond hier
+    # een mediane bezitsduur van 0,8 jaar, en dat is geen bezitsduur maar de
+    # tijd tot onze eigen plakronde. Nu alleen echte datums meetellen, meldt
+    # dit wat er werkelijk te meten is, en niets zodra dat te weinig is.
+    aantal_b = d.get("bezitsduur_aantal", 0)
     if d.get("bezitsduur_mediaan_jaar"):
-        # Met een waarschuwing zolang de geplakte verkopen allemaal de
-        # plakdatum dragen: dan meet dit cijfer vooral onze eigen invoer. Een
-        # mediane bezitsduur van onder het jaar is in een woonbuurt niet
-        # geloofwaardig.
-        kort = d["bezitsduur_mediaan_jaar"] < 3
+        bij_benadering = d.get("bezitsduur_bij_benadering", 0)
         delen.append(f"mediane bezitsduur {d['bezitsduur_mediaan_jaar']} jaar "
-                     f"({d['bezitsduur_aantal']})"
-                     + ("; onbetrouwbaar zolang de geplakte verkopen de "
-                        "plakdatum dragen" if kort else ""))
+                     f"({aantal_b} paren met een echte verkoopdatum"
+                     + (f", waarvan {bij_benadering} op een jaar bij "
+                        f"benadering" if bij_benadering else "") + ")")
+    else:
+        delen.append(f"bezitsduur nog niet te meten: {aantal_b} paren met een "
+                     f"echte verkoopdatum, minimaal {minimum} nodig")
+
+    aantal_p = d.get("prijsgroei_aantal", 0)
     if d.get("prijsgroei_mediaan_pct"):
         delen.append(f"prijsgroei per pand {d['prijsgroei_mediaan_pct']}% per "
-                     f"jaar ({d['prijsgroei_aantal']})")
+                     f"jaar ({aantal_p} paren, vraagprijzen en geen koopsommen)")
+    else:
+        delen.append(f"prijsgroei per pand nog niet te meten: {aantal_p} paren, "
+                     f"minimaal {minimum} nodig")
     return (OK, "; ".join(delen), "")
 
 

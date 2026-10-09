@@ -866,6 +866,43 @@ def _dagen_tussen(van, tot):
         return None
 
 
+# Onder dit aantal paren publiceren we geen mediaan. Vijf waarnemingen leveren
+# wel een getal op, maar niet een getal waar een besluit op mag rusten, en in de
+# brief is het verschil tussen die twee niet te zien.
+MIN_PAREN = 10
+
+
+def verkoopdatum_bekend(g):
+    """
+    Is de datum van deze verkocht-gebeurtenis een echte verkoopdatum?
+
+    Bij 505 van de verkocht-gebeurtenissen is dat niet zo. Die komen uit de
+    geplakte Funda-lijst, die alleen meldt DAT een pand verkocht is en niet
+    wanneer. De datum is dan de dag waarop wij de lijst plakten, en de tekst
+    zegt dat ook: "verkoopdatum onbekend; uit een geplakte lijst".
+
+    Dat die datum toch als verkoopdatum werd gebruikt, leverde een mediane
+    bezitsduur van 0,8 jaar op. Dat is geen bezitsduur maar de tijd tussen een
+    oudere echte verkoop en de dag dat wij de lijst plakten: 505 gebeurtenissen
+    dragen alle dezelfde datum 2026-09-28. Met alleen echte verkoopdatums komen
+    er 15 paren uit met een mediaan van 3,3 jaar.
+    """
+    if g.get("bron") == "aanbod":
+        return False
+    return "verkoopdatum onbekend" not in (g.get("tekst") or "")
+
+
+def _bij_benadering(datum):
+    """
+    Een datum op 1 januari is in deze reeks een jaar bij benadering.
+
+    Zo staan ze in de bronnen die we met de hand hebben nagezocht: bekend is
+    het jaar, niet de dag. Dat mag meetellen, maar dan wel met de kanttekening
+    dat er een jaar speling in zit.
+    """
+    return (datum or "")[4:] == "-01-01"
+
+
 def doorlooptijden(geschiedenis):
     """
     Wat de reeks per pand oplevert zodra er meer dan een gebeurtenis in staat.
@@ -873,8 +910,15 @@ def doorlooptijden(geschiedenis):
     Drie dingen die nergens op te zoeken zijn: hoe lang een pand te koop stond,
     hoeveel jaar er tussen twee verkopen zat, en hoe de prijs van datzelfde pand
     zich heeft ontwikkeld.
+
+    De bezitsduur en de prijsgroei rusten op twee verkopen van hetzelfde pand,
+    en daarvoor zijn echte verkoopdatums nodig. Zie verkoopdatum_bekend().
+    De verkooptijd is anders: die loopt van onze eigen eerste waarneming "te
+    koop" tot de dag dat het pand als verkocht in beeld kwam, en is daarmee een
+    bovengrens. Dat staat zo in het gezondheidsrapport en blijft zo.
     """
     verkoop_duur, bezit_duur, prijsgroei = [], [], []
+    bezit_benadering = []
     for pand in geschiedenis.values():
         tekoop = sorted(g["datum"] for g in pand["gebeurtenissen"]
                         if g["soort"] == "te koop")
@@ -891,7 +935,10 @@ def doorlooptijden(geschiedenis):
                     continue
                 if 0 < dagen < 1500:
                     verkoop_duur.append(dagen)
-        datums = [v["datum"] for v in verkocht]
+        # Alleen verkopen met een echte verkoopdatum. Een datum uit de geplakte
+        # lijst is de dag dat wij plakten en niet de dag van de verkoop.
+        met_datum = [v for v in verkocht if verkoopdatum_bekend(v)]
+        datums = [v["datum"] for v in met_datum]
         for eerst, later in zip(datums, datums[1:]):
             try:
                 jaren = (dt.date.fromisoformat(later)
@@ -900,8 +947,10 @@ def doorlooptijden(geschiedenis):
                 continue
             if 0.2 < jaren < 60:
                 bezit_duur.append(round(jaren, 1))
+                if _bij_benadering(eerst) or _bij_benadering(later):
+                    bezit_benadering.append(round(jaren, 1))
         bedragen = []
-        for v in verkocht:
+        for v in met_datum:
             m = re.search(r"€([\d.]+)", v["tekst"])
             if m:
                 try:
@@ -922,14 +971,20 @@ def doorlooptijden(geschiedenis):
                                        ((p2 / p1) ** (1 / jaren) - 1) * 100, 1)})
     uit = {"verkooptijd_aantal": len(verkoop_duur),
            "bezitsduur_aantal": len(bezit_duur),
-           "prijsgroei_aantal": len(prijsgroei)}
+           "bezitsduur_bij_benadering": len(bezit_benadering),
+           "prijsgroei_aantal": len(prijsgroei),
+           "minimum_paren": MIN_PAREN}
     if verkoop_duur:
         uit["verkooptijd_mediaan_dagen"] = int(st.median(verkoop_duur))
-    if bezit_duur:
+    # Een mediaan pas vanaf MIN_PAREN paren. Daaronder wel het aantal melden,
+    # want dat groeit met elke ronde verkoopdatums, maar geen getal dat in de
+    # brief kan belanden als was het een marktcijfer.
+    if len(bezit_duur) >= MIN_PAREN:
         uit["bezitsduur_mediaan_jaar"] = st.median(bezit_duur)
-    if prijsgroei:
+    if len(prijsgroei) >= MIN_PAREN:
         uit["prijsgroei_mediaan_pct"] = round(
             st.median([p["per_jaar"] for p in prijsgroei]), 1)
+    if prijsgroei:
         uit["voorbeelden"] = sorted(prijsgroei,
                                     key=lambda p: p["tot"], reverse=True)[:5]
     return uit
