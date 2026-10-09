@@ -216,7 +216,7 @@ DOORLOOPTIJD_BOPA = [
      "2026-04-15", "2026-09-23"),
 ]
 # Wat het in de praktijk kostte en duurde, uit dat ene verleende dossier.
-BIOZENSTRAAT_LEGES = 2218.21
+BIEZENSTRAAT_LEGES = 2218.21
 BIEZENSTRAAT_DAGEN = 300          # 3 december 2025 tot 29 september 2026
 
 
@@ -296,7 +296,7 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
     r.append(f"_Uit het verleende dossier van de Biezenstraat 110: aanvraag 3 "
              f"december 2025, vergunning 29 september 2026, dus ongeveer "
              f"{BIEZENSTRAAT_DAGEN} dagen, met leges van "
-             f"€{BIOZENSTRAAT_LEGES:,.2f}".replace(",", ".") + " en "
+             f"€{BIEZENSTRAAT_LEGES:,.2f}".replace(",", ".") + " en "
              "eenentwintig bijlagen. Reken op groenmaatregelen als voorschrift "
              "en op zes weken bezwaartermijn waarin beginnen op eigen risico "
              "is._")
