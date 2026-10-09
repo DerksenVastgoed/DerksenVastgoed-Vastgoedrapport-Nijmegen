@@ -7925,11 +7925,16 @@ zes was er geen enkele te zien in een foutmelding. De enige toets die ze alle
 zes vindt is: staat het in wat eruit komt.
 
 
-## 98. Hetzelfde weetje drie brieven achter elkaar - 9 oktober 2026
+## 98. Hetzelfde weetje in drie handruns op één dag - 9 oktober 2026
 
 Het weetje onder de brief rouleert langs weetjes_gezien.json, zodat er niet met
 een rekentruc op het dagnummer wordt gewerkt. Dat werkt, en toch stond er drie
 brieven achter elkaar hetzelfde weetje over het inkomen in Galgenveld.
+
+Eerst de meting, want mijn eerste lezing was dat de rotatie stuk was en dat is
+niet zo. In weetjes_gezien.json staan 26 afgestreepte weetjes, en de brief van
+8 oktober had een ander weetje dan die van 9 oktober. Over de dagen heen werkt
+het dus. De drie brieven waren drie handruns van dezelfde dag.
 
 De oorzaak is de testrun. Die schrijft met opzet niets weg, want pa heeft de
 brief van een handrun niet gezien en het weetje is dan nog niet verbruikt. Maar
@@ -7944,6 +7949,11 @@ weetje, en dat is eerlijk, want er is niets veranderd.
 een handrun ziet is dus niet wat pa krijgt. Dat was hier onschuldig. Het is wel
 een reden om bij een klacht over de brief eerst te vragen of het de geplande
 run of een handrun was.
+
+En het was bijna de vijfde keer dat een geloofwaardig verhaal mij de verkeerde
+kant op stuurde. Ik had opgeschreven dat de rotatie over de dagen heen faalde.
+Eén blik in weetjes_gezien.json en in de brief van 8 oktober liet zien dat dat
+niet waar was. Die blik kon ik doen omdat de repo nu te lezen is.
 
 
 
