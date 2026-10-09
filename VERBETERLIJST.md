@@ -7587,6 +7587,71 @@ eigen vraagprijzen is juist, en precies het onderscheid dat eerder ontbrak.
 
 ---
 
+## 92. Alle vijf de buurten stegen zes procent, en dat kan niet - 9 oktober 2026
+
+De brief van vandaag opent met het contrast tussen de landelijke pers en onze
+eigen ring: RTL en de NOS melden dat de gekte voorbij is, en de brief zet daar
++4,1% in Stadscentrum en +6,0% in Galgenveld tegenover. De conclusie: "van een
+markt die afkoelt zie ik in onze buurten weinig", en "zou ik niet te veel waarde
+hechten aan berichten over een afkoelende markt".
+
+Dat is de ene fout die je met deze cijfers kunt maken. Kijk naar alle buurten
+tegelijk, en het beeld kantelt:
+
+    Stadscentrum   +4,1%
+    Galgenveld     +6,0%
+    Altrade        +5,7%
+    Biezen         +6,9%
+    Bottendaal     +7,8%
+
+Vijf van vijf, dezelfde kant op, allemaal tussen vier en acht procent in vier
+weken. De mediaan is 6,0%, en dat is op jaarbasis +113%. Geen woningmarkt doet
+dat, en zeker niet in vijf buurten tegelijk met verschillende prijsniveaus,
+verschillende eigendomsverhoudingen en verschillend aanbod. Wat hier beweegt is
+onze steekproef: er komen andere panden in de meting.
+
+**Waarom het voorbehoud dat er al stond niet hielp.** Bij elke buurtregel staat
+sinds lang dat de mediaan ook verschuift doordat er panden bij- of afvallen, en
+de brief nam dat voorbehoud zelfs netjes over. Maar dat voorbehoud is per buurt,
+en het bewijs zit in het patroon over de buurten heen. Lees je de buurten los,
+dan zie je vijf keer een voorbehoud bij een cijfer dat op zichzelf niet raar is.
+Lees je ze samen, dan zie je dat het onmogelijk is.
+
+Dat is een nieuw type fout voor deze lijst: niet een verkeerd getal en niet een
+ontbrekend voorbehoud, maar een conclusie die alleen fout is als je het geheel
+overziet.
+
+**Daarom rekent het model het nu zelf uit.** Gaan vier of meer buurten in vier
+weken dezelfde kant op met een mediane beweging boven de drie procent, dan komt
+er boven de buurtcijfers een melding te staan die begint met "LET OP, DIT IS
+GEEN MARKTBEWEGING", met het bereik, de mediaan en de uitkomst op jaarbasis
+erin, en met de instructie om het niet tegenover de landelijke cijfers te
+zetten. Gaan de buurten door elkaar heen, of is de beweging klein, dan komt er
+niets. Getest op de werkelijke cijfers van vandaag, op een gemengd beeld en op
+een kleine beweging: alleen het eerste geeft een melding.
+
+Plus twee briefregels: dat alle buurten dezelfde kant op de steekproef is en
+niet de markt, en dat het voorbehoud per buurt niet hetzelfde is als het patroon
+over de buurten.
+
+**Wat ik hier niet heb gedaan.** Deze fout op de brieftekst toetsen, zoals bij de
+bekende onwaarheden. Elk patroon dat ik bedacht, raakte ook de juiste
+formulering: een brief die schrijft "onze cijfers zeggen niets over afkoeling,
+want ze meten de samenstelling" zou er net zo goed door vallen. Dit is een
+beoordelingsfout en geen onwaarheid, en daar is een zoekpatroon het verkeerde
+gereedschap voor. De melding in de gegevens is hier de sterkere plek.
+
+**Twee dingen die ik en passant tegenkwam.** Er staat 285 regels dode code in de
+bijlagefunctie, na een return: de referentietabellen per buurt met percentielen.
+Het commentaar erboven zegt dat die informatie naar de investeringscases is
+verhuisd, dus het is bewust uitgezet en niet opgeruimd. Geen haast, maar het is
+een val: wie daar iets wijzigt, wijzigt iets dat nooit draait.
+
+En het "wist je dat" van vandaag klopt: €36.000 in Galgenveld tegen €30.000 in
+Benedenstad is precies 20%.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

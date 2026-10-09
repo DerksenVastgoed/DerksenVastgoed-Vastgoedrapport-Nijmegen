@@ -950,6 +950,62 @@ def trendregel(buurt, historie):
     return ". ".join(stukken)
 
 
+def samenstellingseffect(historie, buurten=None, terug=4):
+    """
+    Bewegen alle buurten dezelfde kant op met ongeveer hetzelfde percentage?
+
+    Dan is dat vrijwel zeker de samenstelling van onze eigen steekproef en niet
+    de markt. Op 9 oktober stond in de brief dat de ring niet afkoelt, met als
+    bewijs +4,1% in Stadscentrum en +6,0% in Galgenveld in vier weken. Wat er
+    niet bij stond: alle vijf de buurten met een cijfer stonden op +4,1% tot
+    +7,8%. Vijf buurten die in vier weken allemaal zes procent stijgen is op
+    jaarbasis meer dan een verdubbeling, en dat doet geen woningmarkt. Er komen
+    dus andere panden in de meting, en de conclusie over de markt was onjuist.
+
+    Bij elke buurtregel staat al dat de mediaan ook verschuift door panden die
+    erbij komen of afgaan. Dat voorbehoud per buurt is niet genoeg: het patroon
+    over de buurten heen is het bewijs, en dat ziet niemand als je de buurten
+    los leest. Daarom staat het hier als eigen melding.
+    """
+    weken = sorted(w for w in (historie or {}) if not w.startswith("_"))
+    if len(weken) <= terug:
+        return ""
+    nu_week, toen_week = historie[weken[-1]], historie[weken[-1 - terug]]
+    buurten = buurten or FOCUS_BUURTEN
+    pcts = {}
+    for buurt in buurten:
+        nu, toen = nu_week.get(buurt), toen_week.get(buurt)
+        if nu and toen:
+            pcts[buurt] = (nu - toen) / toen * 100
+    if len(pcts) < 4:
+        return ""
+    omhoog = sum(1 for v in pcts.values() if v > 0)
+    omlaag = sum(1 for v in pcts.values() if v < 0)
+    eenzelfde = max(omhoog, omlaag)
+    if eenzelfde < len(pcts) - 1:
+        return ""          # geen eenduidige richting: dan zegt dit niets
+    mediaan = st.median([abs(v) for v in pcts.values()])
+    if mediaan < 3:
+        return ""          # klein genoeg om gewoon ruis te kunnen zijn
+    richting = "omhoog" if omhoog >= omlaag else "omlaag"
+    per_jaar = ((1 + mediaan / 100) ** (52 / (terug * 1.0)) - 1) * 100
+    laag = min(pcts.values())
+    hoog = max(pcts.values())
+    return (
+        f"**LET OP, DIT IS GEEN MARKTBEWEGING.** {eenzelfde} van de "
+        f"{len(pcts)} buurten gaan in deze {terug} weken dezelfde kant op, "
+        f"{richting}, van {laag:+.1f}% tot {hoog:+.1f}%, mediaan "
+        f"{mediaan:.1f}%. Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
+        f"geen woningmarkt. Als alle buurten tegelijk evenveel bewegen, "
+        f"verandert niet de markt maar onze steekproef: er komen andere panden "
+        f"in de meting. Gebruik deze cijfers dus niet als bewijs dat de markt "
+        f"stijgt of afkoelt, en zet ze niet tegenover de landelijke cijfers "
+        f"van het CBS of de NVM, want die meten verkoopprijzen van dezelfde "
+        f"soort woningen. Wil je er iets over zeggen, zeg dan dat ons aanbod "
+        f"van samenstelling is veranderd."
+    ).replace(".", ",", 0)
+
+
 def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
                _trend_historie=None):
     """
@@ -6999,6 +7055,14 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         per_buurt[buurt].append((ppm2, w))
 
     historie = bewaar_prijspeil(per_buurt, stad_breed)
+
+    # Bewegen alle buurten tegelijk dezelfde kant op, dan is dat de steekproef
+    # en niet de markt. Dit staat bovenaan, want het bepaalt wat je over de
+    # prijspeilcijfers eronder mag zeggen.
+    _samenstelling = samenstellingseffect(historie)
+    if _samenstelling:
+        r.append(_samenstelling)
+        r.append("")
 
     if onbetrouwbaar:
         print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
