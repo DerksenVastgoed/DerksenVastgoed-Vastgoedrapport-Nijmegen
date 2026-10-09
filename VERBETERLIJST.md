@@ -7470,6 +7470,100 @@ volgende mail blijkt of de SendGrid-herkenning werkt.
 
 ---
 
+## 90. De onderwerpendetector las onze eigen brief - 9 oktober 2026
+
+De twee nieuwe controles staan op OK, dus de verlaging van de Palmstraat is weg
+en er staat geen bekende onwaarheid in de brief. Maar er kwam een nieuwe melding
+bij: "1 voorgestelde onderwerpen, 0 gevolgd: besluit plaatsvond".
+
+"Besluit plaatsvond" is geen onderwerp. Het is een stuk van een zin uit onze
+eigen brief van gisteren: "we weten niet of de verkoop voor of na het besluit
+plaatsvond". Het systeem stelde dus voor om een achtergrondstuk te schrijven
+over een woordgroep die het zelf had opgeschreven.
+
+**De oorzaak is circulair.** De onderwerpendetector leest elk bestand in de map
+digests waarvan de naam met een datum begint. Daar staan niet alleen de
+bekendmakingen en het nieuws, maar ook onze eigen brief, onze eigen bijlage, de
+samengestelde werkbrief en het gezondheidsrapport. De detector zoekt naar
+woordgroepen die vaak voorkomen, en onze eigen teksten herhalen vanzelf de
+termen die wij belangrijk vinden. Dan vindt hij zichzelf.
+
+Dat is ook de echte oorzaak van een eerder punt: de controle meldde een keer
+"_88 keer genoemd._" als onderwerp. Dat is toen bij de controle weggefilterd in
+plaats van bij de bron. Vandaag kwam dezelfde fout langs een andere kant terug.
+Dat is het patroon van deze week in één regel: een symptoom dichtgooien laat de
+oorzaak staan.
+
+**De oplossing is een witte lijst en geen zwarte.** Alleen de digestbestanden
+met berichten van buiten mogen meedoen: bekendmakingen, publicaties, beleid,
+regelgeving en verkochte woningen. Plus het bekendmakingen-archief, dat al apart
+werd gelezen. Een zwarte lijst zou betekenen dat een nieuw soort digestbestand
+ongemerkt meedoet, en dat is precies hoe dit is ontstaan.
+
+Een onderwerp moet komen uit wat de wereld zegt, niet uit wat wij schrijven.
+
+Getest: onze eigen brief en het gezondheidsrapport zitten er niet meer in, de
+bekendmakingen wel, en "besluit plaatsvond" komt niet meer door. Dat die
+woordgroep zes keer in de testbrief staat maakt nu niets meer uit.
+
+**Stand van vandaag.** 44 ok, 8 let op, 0 fout. De huurwaarnemingen staan op
+109, van 98 aan het begin van de dag. Rentola levert, Huislijn levert 34, en
+123Wonen is niet te toetsen tot er een nieuwe mail komt.
+
+---
+
+## 91. De brief sprak zichzelf tegen over de St. Annastraat 165-B - 9 oktober 2026
+
+De brief van vandaag is de beste van de week: geen Palmstraat, geen verzonnen
+puntenstelsel, en de vijf vraagprijzen staan netjes als "laatste vraagprijs". De
+twee nieuwe controles stonden op OK en dat klopte.
+
+Maar er zit een tegenspraak in die geen van beide controles kon zien. In het
+verhaal staat dat de eenheden B, C en E van de St. Annastraat 165 verkocht zijn.
+In de bijlage staan 165-B en 165-E in de aanbodtabel van Galgenveld, te koop,
+elf dagen in de markt. Dezelfde brief, twee tegengestelde beweringen over
+hetzelfde adres.
+
+**En het bestand bevat ook echt twee regels.** De geplakte Funda-lijst voegt
+voor een verkocht pand een nieuwe regel toe met status "verkocht"; de oude
+te-koopregel uit de attendering blijft staan. Dat is op zich goed, want de
+historie bepaalt hoe lang een pand te koop stond. De bedoeling is dat het model
+de regels per pand groepeert en dan de nieuwste status laat gelden, en die code
+is er.
+
+**Waarom het toch misging.** De groeperingssleutel was het BAG-objectnummer als
+dat er was, en anders het adres. De te-koopregel had een objectnummer, want daar
+lukte de BAG-opzoeking. De verkochtregel niet. Daardoor werden het twee groepen,
+dus twee panden, en gold voor de een "te koop" en voor de ander "verkocht".
+
+Een sleutel die afhangt van de vraag of een opzoeking lukte, is geen sleutel.
+Dat is dezelfde fout als die bij het geheugen van verstuurde brieven, waar "Bij
+Berg en Dalseweg 11" een andere sleutel gaf dan "Berg en Dalseweg 11".
+
+Nu wordt eerst per adres vastgelegd welke sleutel geldt, en daarna krijgen alle
+regels met dat adres die sleutel, met of zonder objectnummer. Getest op het
+echte geval: zonder de reparatie twee groepen met tegengestelde statussen, met
+de reparatie een groep waarin "verkocht" geldt omdat die regel nieuwer is.
+
+**En een controle erop, weer op de uitkomst.** Heeft een adres een
+verkoopregel die nieuwer is dan zijn nieuwste te-koopregel, dan hoort het niet
+meer in de aanbodtabel van vandaag. Staat het er toch, dan is dat FOUT. Getest,
+inclusief het omgekeerde geval: een pand dat eerst verkocht was en daarna
+opnieuw te koop is gezet, telt terecht niet als fout.
+
+**Nog een kleinigheid uit dezelfde brief.** Onder de bijlagetabel stond "de
+mediaanafwijking is gemeten. negatief betekent te duur voor verhuur" - twee
+zinnen aan elkaar met een kleine letter na de punt. Hersteld.
+
+**Wat verder is nagekeken en klopt.** Het aandeel kamerverhuur in Bottendaal van
+3,5% is 77 op 2.193 woningen en is inderdaad de op een na hoogste van de zes;
+Stadscentrum staat op 4,3%. De gemiddelde WOZ van €394.000 klopt met de tabel.
+De sortering van de aanbodtabel op de laatste kolom klopt in alle zes buurten.
+En de omschrijving van de CBS-index als gemeten verkoopprijzen tegenover onze
+eigen vraagprijzen is juist, en precies het onderscheid dat eerder ontbrak.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.

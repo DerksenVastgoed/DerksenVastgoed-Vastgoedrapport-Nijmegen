@@ -5674,8 +5674,9 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
              "en op die kolom is de tabel gesorteerd, want dat is wat telt bij "
              "aankoop voor verhuur. De afwijking van de buurtmediaan staat "
              "ernaast als context. Let op: de richtprijs rust op aannames voor "
-             "huur, exploitatie en rente; de mediaanafwijking is gemeten. "
-             "negatief betekent te duur voor verhuur._")
+             "huur, exploitatie en rente; de mediaanafwijking is gemeten. Een "
+             "negatieve waarde in die laatste kolom betekent te duur voor "
+             "verhuur._")
     return r
 
 
@@ -7417,14 +7418,31 @@ def main():
     # Waarnemingen groeperen per BAG-object. Hetzelfde pand kan meerdere keren
     # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
     # We houden de volledige reeks bij, want daaruit volgt de prijshistorie.
+    # Eerst vastleggen welke sleutel bij welk adres hoort. Zonder deze stap
+    # hing de groepering af van de vraag of de BAG-opzoeking lukte: een regel
+    # mét objectnummer kwam in een andere groep dan een regel met hetzelfde
+    # adres zónder objectnummer. Daardoor stond de St. Annastraat 165-B op
+    # 9 oktober in dezelfde brief zowel in het aanbod als in de lijst
+    # verkochte panden: de verkoopregel en de te-koopregel waren twee panden
+    # geworden. Twee regels voor hetzelfde adres horen altijd in dezelfde
+    # groep; welke status geldt, bepaalt daarna de datum.
+    adres_naar_sleutel = {}
+    for w in woningen:
+        obj = w.get("adresseerbaarObjectIdentificatie")
+        if not obj or not re.search(r"\d", w["adres"]):
+            continue
+        adres_naar_sleutel.setdefault(
+            re.sub(r"[^a-z0-9]", "", w["adres"].lower()), obj)
+
     per_object, volgorde = {}, []
     for i, w in enumerate(woningen):
         obj = w.get("adresseerbaarObjectIdentificatie")
         heeft_nummer = bool(re.search(r"\d", w["adres"]))
-        if obj:
+        if heeft_nummer:
+            adressleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+            sleutel = adres_naar_sleutel.get(adressleutel) or obj or adressleutel
+        elif obj:
             sleutel = obj
-        elif heeft_nummer:
-            sleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
         else:
             # Adres zonder huisnummer, zoals Pararius en Kamernet dat tonen.
             # Die mogen niet samengevoegd worden: twee advertenties aan dezelfde

@@ -878,6 +878,71 @@ VERZONNEN = (
 )
 
 
+def controle_verkocht_nog_in_aanbod():
+    """
+    Staat een pand dat verkocht is nog in de aanbodtabel?
+
+    Op 9 oktober stond de St. Annastraat 165-B in dezelfde brief twee keer: in
+    het verhaal als verkocht, en in de bijlage als te koop met elf dagen in de
+    markt. Het bestand bevatte ook echt twee regels voor dat adres, een
+    te-koopregel uit de attendering en een verkochtregel uit de geplakte lijst,
+    en die kwamen in verschillende groepen terecht omdat de BAG-opzoeking bij
+    de een lukte en bij de ander niet.
+
+    Deze controle kijkt naar de uitkomst en niet naar de groepering. Heeft een
+    adres een verkochtregel die nieuwer is dan zijn nieuwste te-koopregel, dan
+    hoort het niet meer in de aanbodtabel van vandaag te staan.
+    """
+    nieuwste = {}
+    try:
+        with open("verkopen.txt", encoding="utf-8") as f:
+            for regel in f:
+                if regel.startswith("#"):
+                    continue
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 5 or not v[0]:
+                    continue
+                status, datum = v[3].lower(), v[4]
+                soort = ("verkocht" if "verkocht" in status
+                         else "tekoop" if status.startswith(("te koop", "nieuw"))
+                         else None)
+                if not soort:
+                    continue
+                sleutel = "".join(c for c in v[0].lower() if c.isalnum())
+                rij = nieuwste.setdefault(sleutel, {"adres": v[0]})
+                if datum > rij.get(soort, ""):
+                    rij[soort] = datum
+    except Exception:
+        return (OK, "geen aanbodbestand om te toetsen", "")
+    verkocht = [r for r in nieuwste.values()
+                if r.get("verkocht") and r.get("tekoop")
+                and r["verkocht"] > r["tekoop"]]
+    if not verkocht:
+        return (OK, "geen pand dat zowel verkocht is als te koop staat", "")
+
+    # En dan: staat zo'n pand nog in de aanbodtabel van vandaag?
+    try:
+        pad = os.path.join("digests", f"{VANDAAG}-marktprijzen.md")
+        with open(pad, encoding="utf-8") as f:
+            aanbod = f.read().lower()
+    except Exception:
+        return (OK, f"{len(verkocht)} panden zijn na het aanbod verkocht; geen "
+                f"aanbodtabel van vandaag om tegen te toetsen", "")
+    fout = [r["adres"] for r in verkocht if r["adres"].lower() in aanbod]
+    bewijs = (f"{len(verkocht)} panden hebben een verkoopregel die nieuwer is "
+              f"dan hun te-koopregel")
+    if not fout:
+        return (OK, bewijs + "; geen van die panden staat nog in de "
+                "aanbodtabel", "")
+    return (FOUT, bewijs + f"; {len(fout)} staan nog in de aanbodtabel van "
+            f"vandaag: " + ", ".join(fout[:4]),
+            "Dan spreekt de brief zichzelf tegen: in het verhaal verkocht, in "
+            "de bijlage te koop. De oorzaak zit in de groepering per pand in "
+            "marktprijzen_bag.py; twee regels voor hetzelfde adres horen in "
+            "dezelfde groep, ook als de BAG-opzoeking bij maar een van de twee "
+            "lukte.")
+
+
 def controle_verzonnen_beweringen():
     """
     Staan er beweringen in de brief die we al eens fout hebben bevonden?
@@ -1868,6 +1933,7 @@ CONTROLES = [
     ("Brief opnieuw geschreven", controle_briefherhaling),
     ("Oude verlaging in de brief", controle_oude_verlaging),
     ("Bekende onwaarheden in de brief", controle_verzonnen_beweringen),
+    ("Verkocht pand nog in het aanbod", controle_verkocht_nog_in_aanbod),
     ("Huurdata", controle_huurdata),
     ("Aanbod", controle_aanbod),
     ("Marktrente", controle_rente),

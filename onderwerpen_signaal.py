@@ -143,8 +143,29 @@ STAARTWOORDEN = {"wordt", "worden", "werd", "is", "was", "blijft", "blijven",
                  "particuliere", "tijdelijke", "voor", "het", "de", "een"}
 
 
+# Welke digestbestanden mogen meetellen bij het zoeken naar nieuwe onderwerpen.
+# Dit was eerst alles in de map, en dat is circulair: dan leest de detector onze
+# eigen brief, onze eigen bijlage en ons eigen gezondheidsrapport, en stelt een
+# onderwerp voor dat wij gisteren zelf hebben opgeschreven. Op 9 oktober kwam er
+# zo "besluit plaatsvond" uit, een stuk van de zin "we weten niet of de verkoop
+# voor of na het besluit plaatsvond" uit de brief van de dag ervoor. Dezelfde
+# oorzaak als het eerdere "_88 keer genoemd._": dat is toen bij de controle
+# weggefilterd in plaats van bij de bron.
+#
+# Een onderwerp moet komen uit wat de wereld zegt, niet uit wat wij schrijven.
+# Daarom een witte lijst en geen zwarte: een nieuw soort digestbestand gaat
+# anders ongemerkt meedoen.
+TOEGESTANE_DIGESTS = ("-bekendmakingen.md", "-publicaties.md", "-beleid.md",
+                      "-regelgeving.md", "-verkocht.md")
+
+
 def _tekstbronnen(dagen):
-    """Alle tekst uit de digests en het archief van de laatste periode."""
+    """
+    De tekst van buiten, uit de digests en het archief van de laatste periode.
+
+    Alleen de bestanden met berichten van buiten; onze eigen brief en bijlage
+    horen hier niet bij. Zie TOEGESTANE_DIGESTS.
+    """
     grens = dt.date.today() - dt.timedelta(days=dagen)
     stukken = []
 
@@ -152,6 +173,8 @@ def _tekstbronnen(dagen):
         for naam in sorted(os.listdir("digests")):
             m = re.match(r"(\d{4}-\d{2}-\d{2})-", naam)
             if not m:
+                continue
+            if not naam.endswith(TOEGESTANE_DIGESTS):
                 continue
             try:
                 if dt.date.fromisoformat(m.group(1)) < grens:
