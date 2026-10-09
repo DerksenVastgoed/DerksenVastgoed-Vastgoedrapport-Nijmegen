@@ -72646,8 +72646,10 @@
     "reden": "parse"
   },
   "Heyendaalseweg|Nijmegen": {
-    "gefaald": true,
-    "reden": "parse"
+    "oppervlakte": 14,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   },
   "Van Diemerbroeckstraat|Nijmegen": {
     "oppervlakte": 30,
@@ -72748,5 +72750,464 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Sint Jacobslaan 114|Nijmegen": {
+    "oppervlakte": 11,
+    "bouwjaar": "1909",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6533BW",
+    "adresseerbaarObjectIdentificatie": "0268010000027102",
+    "pand": "0268100000032755",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "St. Anna",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-5a0fdd35342946edecf813663addd2cf",
+    "oppervlakte_bag": 89,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "E",
+      "registratiedatum": "2020-12-22",
+      "geldig_tot": "2030-12-22",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "St. Canisiussingel 6|Nijmegen": {
+    "oppervlakte": 90,
+    "bouwjaar": "1959",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511TH",
+    "adresseerbaarObjectIdentificatie": "0268010000050187",
+    "pand": "0268100000025584",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-c0311c5cad6cc59ae8535b337e9e545a",
+    "eenheden_in_pand": [
+      {
+        "adres": "St. Canisiussingel 4",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 6",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 8",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 10",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 12",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 14",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 40",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 42",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 44",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 46",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 48",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 50",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 52",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 54",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 56",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 58",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 60",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 62",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 64",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 66",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 68",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 70",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 90,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2024-09-17",
+      "geldig_tot": "2034-08-19",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "St. Canisiussingel 8|Nijmegen": {
+    "oppervlakte": 89,
+    "bouwjaar": "1959",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511TH",
+    "adresseerbaarObjectIdentificatie": "0268010000031359",
+    "pand": "0268100000025584",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-0657d7e0e82ead0e2b970bff43193ad7",
+    "eenheden_in_pand": [
+      {
+        "adres": "St. Canisiussingel 4",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 6",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 8",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 10",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 12",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Canisiussingel 14",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 40",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 42",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 44",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 46",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 48",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 50",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 52",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 54",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 56",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 58",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 60",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 62",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 64",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 66",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 68",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "St. Jorisstraat 70",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 90,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2024-11-13",
+      "geldig_tot": "2034-08-19",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "De Voorstenkamp|Nijmegen": {
+    "oppervlakte": 83,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6545GR",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Irene Vorrinkstraat|Nijmegen": {
+    "oppervlakte": 90,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535NA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Cortenaerpad|Nijmegen": {
+    "oppervlakte": 41,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GD",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Fenikshof|Nijmegen": {
+    "oppervlakte": 97,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541SP",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

@@ -79,5 +79,25 @@
   "opp": 150,
   "kamers": 3,
   "postcode": "6511RC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4434550/de-voorstenkamp-nijmegen": {
+  "opp": 83,
+  "kamers": 4,
+  "postcode": "6545GR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4434901/irene-vorrinkstraat-nijmegen": {
+  "opp": 90,
+  "kamers": 4,
+  "postcode": "6535NA"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4434709/cortenaerpad-nijmegen": {
+  "opp": 41,
+  "kamers": 2,
+  "postcode": "6512GD"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4434839/fenikshof-nijmegen": {
+  "opp": 97,
+  "kamers": 3,
+  "postcode": "6541SP"
  }
 }

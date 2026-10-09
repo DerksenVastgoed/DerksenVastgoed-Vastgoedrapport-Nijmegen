@@ -991,3 +991,13 @@ Burchtstraat | Nijmegen | 3525 | te huur | 2026-10-08 | huislijn | 150 | 6511RC
 
 # Automatisch toegevoegd uit Funda-attendering op 08-10-2026
 Waalkade | Nijmegen | 635 | te huur kamer | 2026-10-08 | kamernet-incl | 10 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 09-10-2026
+Sint Jacobslaan 114 | Nijmegen | 390 | te huur kamer | 2026-10-08 | rentola | 11 | 6533BW
+St. Canisiussingel 6 | Nijmegen | 375000 | te koop | 2026-10-09 |  | 90 | 6511TH
+St. Canisiussingel 8 | Nijmegen | 375000 | te koop | 2026-10-09 |  | 89 | 6511TH
+De Voorstenkamp | Nijmegen | 1140 | te huur | 2026-10-09 | huislijn | 83 | 6545GR
+Irene Vorrinkstraat | Nijmegen | 1335 | te huur | 2026-10-09 | huislijn | 90 | 6535NA
+Cortenaerpad | Nijmegen | 464 | te huur | 2026-10-09 | huislijn | 41 | 6512GD
+Fenikshof | Nijmegen | 700 | te huur | 2026-10-09 | huislijn | 97 | 6541SP
+Heyendaalseweg | Nijmegen | 450 | te huur kamer | 2026-10-09 | kamernet-incl | 14 | 

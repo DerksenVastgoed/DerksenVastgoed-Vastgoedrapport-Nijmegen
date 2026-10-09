@@ -25092,7 +25092,7 @@
      899
     ]
    ],
-   "bag_gezien": "2026-10-04",
+   "bag_gezien": "2026-10-09",
    "labels": {
     "St. Canisiussingel 10": "C",
     "St. Canisiussingel 12": "C",
@@ -36278,6 +36278,32 @@
    "labels": {
     "Hertogstraat 37": "C",
     "St. Josephhof 1": "E"
+   }
+  },
+  "0268100000088703": {
+   "bag_eenheden": [
+    [
+     "van Welderenstraat 108",
+     89
+    ],
+    [
+     "van Welderenstraat 110",
+     150
+    ],
+    [
+     "van Welderenstraat 114",
+     262
+    ],
+    [
+     "van Welderenstraat 116",
+     501
+    ]
+   ],
+   "bag_gezien": "2026-10-09",
+   "labels": {
+    "van Welderenstraat 110": "E",
+    "van Welderenstraat 114": "A",
+    "van Welderenstraat 116": "B"
    }
   },
   "0268100000088710": {
@@ -47489,6 +47515,20 @@
   ],
   "pand_id": "0268100000000763"
  },
+ "cortenaerpad": {
+  "adres": "Cortenaerpad",
+  "bag_gezien": "2026-10-09",
+  "bag_zonder_id": "2026-10-09",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €464 per maand, 41 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "cortvanderlindenstraat": {
   "adres": "Cort van der Lindenstraat",
   "bag_gezien": "2026-10-07",
@@ -49858,7 +49898,7 @@
   "pand_id": null
  },
  "devoorstenkamp": {
-  "adres": "de Voorstenkamp",
+  "adres": "De Voorstenkamp",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -49868,6 +49908,12 @@
     "datum": "2026-09-29",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €990 per maand, 30 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.140 per maand, 83 m2"
    }
   ],
   "pand_id": null
@@ -55274,6 +55320,20 @@
    }
   ],
   "pand_id": "0268100000006328"
+ },
+ "fenikshof": {
+  "adres": "Fenikshof",
+  "bag_gezien": "2026-10-09",
+  "bag_zonder_id": "2026-10-09",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €700 per maand, 97 m2"
+   }
+  ],
+  "pand_id": null
  },
  "floraweg17": {
   "adres": "Floraweg 17",
@@ -63914,6 +63974,12 @@
     "datum": "2026-10-05",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.595 per maand"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €450 per maand, 14 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -64960,6 +65026,20 @@
    }
   ],
   "pand_id": "0268100000003781"
+ },
+ "irenevorrinkstraat": {
+  "adres": "Irene Vorrinkstraat",
+  "bag_gezien": "2026-10-09",
+  "bag_zonder_id": "2026-10-09",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.335 per maand, 90 m2"
+   }
+  ],
+  "pand_id": null
  },
  "jacobcanisstraat26": {
   "adres": "Jacob Canisstraat 26",
@@ -91516,6 +91596,20 @@
   ],
   "pand_id": null
  },
+ "sintjacobslaan114": {
+  "adres": "Sint Jacobslaan 114",
+  "bag_gezien": "2026-10-09",
+  "bag_zonder_id": "2026-10-09",
+  "gebeurtenissen": [
+   {
+    "bron": "rentola",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €390 per maand, 11 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
   "bag_gezien": "2026-10-03",
@@ -93696,6 +93790,168 @@
    }
   ],
   "pand_id": "0268100000002885"
+ },
+ "stcanisiussingel6": {
+  "adres": "St. Canisiussingel 6",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2017-10-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 66 is D, geregistreerd 2017-10-12"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2021-12-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 72 is C, geregistreerd 2021-12-09"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 4 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 6 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 40 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 42 is B, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 44 is B, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 46 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 48 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 50 is B, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 54 is C, geregistreerd 2024-09-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 10 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 12 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 14 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Canisiussingel 8 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 58 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 62 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 64 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 70 is C, geregistreerd 2024-11-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 56 is C, geregistreerd 2025-04-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-08-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 52 is C, geregistreerd 2025-08-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-08-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 60 is B, geregistreerd 2025-08-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-08-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jorisstraat 68 is B, geregistreerd 2025-08-25"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-09",
+    "soort": "te koop",
+    "tekst": "te koop voor €375.000, 90 m2"
+   }
+  ],
+  "pand_id": "0268100000025584"
+ },
+ "stcanisiussingel8": {
+  "adres": "St. Canisiussingel 8",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-09",
+    "soort": "te koop",
+    "tekst": "te koop voor €375.000, 89 m2"
+   }
+  ],
+  "pand_id": "0268100000025584"
  },
  "stenenkruisstraat3": {
   "adres": "Stenenkruisstraat 3",
@@ -102504,6 +102760,36 @@
    }
   ],
   "pand_id": "0268100000004310"
+ },
+ "vanwelderenstraat108": {
+  "adres": "van Welderenstraat 108",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2016-11-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 110 is E, geregistreerd 2016-11-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-11-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 114 is A, geregistreerd 2019-11-30"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-11-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 116 is B, geregistreerd 2019-11-30"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-09",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het ophogen van het dak en maken van constructieve doorbraak, aan van Welderenstraat 108, 6511MT Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000088703"
  },
  "vanwelderenstraat109": {
   "adres": "Van Welderenstraat 109",

@@ -3,36 +3,36 @@
   "0-40 m2": {
    "aantal": 56,
    "verhouding": 1.32,
-   "premie": 1.422
+   "premie": 1.431
   },
   "40-60 m2": {
    "aantal": 110,
    "verhouding": 1.146,
-   "premie": 1.235
+   "premie": 1.242
   },
   "60-80 m2": {
    "aantal": 168,
    "verhouding": 0.985,
-   "premie": 1.061
+   "premie": 1.068
   },
   "80-100 m2": {
-   "aantal": 84,
-   "verhouding": 0.928,
+   "aantal": 86,
+   "verhouding": 0.922,
    "premie": 1.0
   },
   "100-130 m2": {
    "aantal": 83,
    "verhouding": 0.897,
-   "premie": 0.967
+   "premie": 0.972
   },
   "130 m2 en groter": {
    "aantal": 73,
    "verhouding": 0.841,
-   "premie": 0.906
+   "premie": 0.912
   }
  },
  "buurten_met_ijkpunt": 9,
- "waarnemingen": 574,
+ "waarnemingen": 576,
  "ijkklasse": "80-100 m2",
  "basis_gemeten": true
 }

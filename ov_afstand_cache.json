@@ -55,6 +55,14 @@
   "omweg": 1.87,
   "soort": "bus"
  },
+ "51.80826,5.83720": {
+  "geschat": false,
+  "hemelsbreed": 121,
+  "meters": 131,
+  "naam": "Irene Vorrinkstraat",
+  "omweg": 1.08,
+  "soort": "bus"
+ },
  "51.80994,5.81884": {
   "geschat": false,
   "hemelsbreed": 403,
@@ -77,6 +85,14 @@
   "meters": 450,
   "naam": "Steve Bikoplein",
   "omweg": 3.78,
+  "soort": "bus"
+ },
+ "51.82032,5.85017": {
+  "geschat": false,
+  "hemelsbreed": 191,
+  "meters": 190,
+  "naam": "Beemdstraat",
+  "omweg": 0.99,
   "soort": "bus"
  },
  "51.82096,5.85030": {
@@ -453,6 +469,14 @@
   "meters": 349,
   "naam": "Dominicanenstraat",
   "omweg": 1.21,
+  "soort": "bus"
+ },
+ "51.83796,5.85691": {
+  "geschat": false,
+  "hemelsbreed": 322,
+  "meters": 475,
+  "naam": "Spoorkuil",
+  "omweg": 1.48,
   "soort": "bus"
  },
  "51.83798,5.85757": {
@@ -1135,6 +1159,14 @@
   "omweg": 0.86,
   "soort": "bus"
  },
+ "51.84502,5.87209": {
+  "geschat": false,
+  "hemelsbreed": 39,
+  "meters": 32,
+  "naam": "Centrum Oost",
+  "omweg": 0.82,
+  "soort": "bus"
+ },
  "51.84517,5.84264": {
   "geschat": false,
   "hemelsbreed": 116,
@@ -1197,6 +1229,14 @@
   "meters": 660,
   "naam": "Tunnelweg",
   "omweg": 3.13,
+  "soort": "bus"
+ },
+ "51.84576,5.84291": {
+  "geschat": false,
+  "hemelsbreed": 161,
+  "meters": 195,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.21,
   "soort": "bus"
  },
  "51.84602,5.84970": {

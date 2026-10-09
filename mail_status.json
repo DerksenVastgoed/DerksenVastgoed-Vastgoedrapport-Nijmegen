@@ -1,61 +1,43 @@
 {
- "datum": "2026-10-08",
+ "datum": "2026-10-09",
  "bronnen": {
-  "pararius": {
-   "mails": 11,
-   "objecten": 14,
-   "overgeslagen": 7,
-   "redenen": [
-    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
-    "van Spaenstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
-    "van Spaenstraat (gemeubileerd, apart bewaard)"
-   ]
-  },
   "regulier": {
-   "mails": 14,
-   "objecten": 33,
+   "mails": 4,
+   "objecten": 6,
    "overgeslagen": 1,
    "redenen": [
-    "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht ",
     "Weurtseweg 17 (geen prijs gevonden)"
    ]
   },
-  "kamernet": {
-   "mails": 62,
-   "objecten": 47,
-   "overgeslagen": 15,
-   "redenen": [
-    "Grotestraat, Cuijk: buiten Nijmegen",
-    "Keurvorststraat, Molenhoek: buiten Nijmegen",
-    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "Hegdambroek: €5 per maand is niet aannemelijk",
-    "Huissensestraat, Arnhem: buiten Nijmegen"
-   ]
-  },
   "huislijn": {
-   "mails": 8,
-   "objecten": 34,
+   "mails": 4,
+   "objecten": 17,
    "overgeslagen": 0,
    "redenen": []
   },
-  "123wonen": {
+  "pararius": {
    "mails": 2,
-   "objecten": 0,
-   "overgeslagen": 2,
+   "objecten": 2,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "kamernet": {
+   "mails": 19,
+   "objecten": 13,
+   "overgeslagen": 6,
    "redenen": [
-    "123wonen €1995 (geen link)",
-    "123wonen €2425 (geen link)"
+    "Rijksweg, Malden: buiten Nijmegen",
+    "Nieuweweg, Wijchen: buiten Nijmegen",
+    "Achterstraat: €36 per maand is niet aannemelijk",
+    "Aalburgstraat, Arnhem: buiten Nijmegen",
+    "Pius XII straat, Wijchen: buiten Nijmegen"
    ]
   },
-  "vendr": {
+  "rentola": {
    "mails": 1,
-   "objecten": 0,
-   "overgeslagen": 1,
-   "redenen": [
-    "Stationsstraat 43 (Ermelo)"
-   ]
+   "objecten": 1,
+   "overgeslagen": 0,
+   "redenen": []
   }
  },
  "opmerking": "",
