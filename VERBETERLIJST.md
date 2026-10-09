@@ -7956,6 +7956,120 @@ Eén blik in weetjes_gezien.json en in de brief van 8 oktober liet zien dat dat
 niet waar was. Die blik kon ik doen omdat de repo nu te lezen is.
 
 
+## 99. De status kwam uit de mail en niet uit het pand - 9 oktober 2026
+
+In funda_mail.py werd één keer per mail de hele tekst afgezocht op "verkocht",
+"onder bod" en "onder optie", en de uitkomst ging naar elk object in die mail.
+Een attendering met zes woningen waarvan er één verkocht is, zette dus alle zes
+op verkocht.
+
+Dat is nooit afgegaan, en daarom valt het niet op: alle 505 verkocht-regels in
+verkopen.txt komen uit de geplakte lijst, er is nog geen enkele verkoop via de
+mail binnengekomen. Het zou afgaan op de dag dat het filter op verkocht in
+Funda aangaat, en dat is precies wat het gezondheidsrapport elke dag adviseert.
+Het rapport raadde dus een wijziging aan die een sluimerende fout zou wekken.
+
+**De reparatie.** Het stadium wordt nu per object gezocht, in de regels van dat
+object zelf, begrensd door het adres van het volgende object. Mijn eerste
+poging gebruikte een venster van acht regels en viel direct door de mand in de
+proef: Funda gebruikt maar twee regels per woning, dus kregen het pand ervoor
+en het pand erna ook de status verkocht. Met de grens op het volgende adres
+gaan alle vijf de proeven goed, inclusief een mail over één woning met
+"verkocht" in de kop, en een huurmail met het woord verkocht erin die te huur
+blijft.
+
+Staat het stadium boven het adres in plaats van eronder, dan vinden we het niet
+en blijft het pand te koop. Dat is bewust de veilige kant: een verkocht pand
+dat in het aanbod blijft valt op en er is een controle op, vijf verdwenen
+panden niet.
+
+
+## 100. De geplande run begint vijf tot zeven uur te laat - 9 oktober 2026
+
+Hier is uren over nagedacht: de cron staat na middernacht UTC zodat de brief om
+zeven uur leesbaar is, met ruimte voor een tweede poging. Gemeten gebeurt er
+iets anders.
+
+    cron tot 8 oktober: 03:17 UTC
+    werkelijke starts:  08:14, 08:27, 08:32, 08:34, 08:48, 08:56,
+                        09:41, 09:45, 09:46, 10:15, 10:16, 10:25
+    cron sinds 8 oktober: 01:17 UTC
+    werkelijke start:     10:42
+
+Vijf tot zeven en een half uur vertraging, consequent, over drie verschillende
+cron-instellingen. GitHub zet geplande runs in een wachtrij en garandeert geen
+starttijd. Pa krijgt de brief dus laat in de ochtend of begin van de middag, en
+de tweede poging helpt niet, want die wordt even hard vertraagd.
+
+Een handmatig gestarte run begint wel meteen en duurt op een werkdag zes tot
+twaalf minuten. Daarom start een geplande taak de run nu van buitenaf, elke
+werkdag om 02:48 UTC, en die meldt ook of er een brief uit kwam. De cron blijft
+staan als achtervang; de wachter "Is er al een brief van vandaag" zorgt ervoor
+dat die dan nul minuten kost.
+
+**Waarom het gezondheidsrapport dit nooit kon melden.** Het draait binnen de
+run. Vanuit de run gezien was alles in orde, elke dag, en dat was ook zo. Het
+rapport ziet niet wanneer de run begon, of dat hij helemaal niet begon: van
+deze workflow is er één mislukt, een geplande run op 15 september, en die dag
+was er geen rapport en dus geen signaal. Dat is de reden dat deze wachter
+buiten de run moest komen.
+
+
+## 101. Twee bestanden die bij het uploaden verkeerd landden - 9 oktober 2026
+
+Gevonden binnen een uur nadat de repo met schrijfrechten te lezen was, en
+allebei onvindbaar zolang bestanden met de hand werden overgezet.
+
+**bouwkosten_eigen.py.** Dit was de bijgewerkte inhoud van
+bouwkosten_eigen.txt, geüpload met de verkeerde extensie. De echte .txt stond
+nog op de oude inhoud. De uitleg die ik die middag schreef over waarom
+splitsen-eenheid leeg blijft, werd dus door geen enkel script gelezen, en een
+.py met alleen commentaarregels valt nergens op.
+
+**bekendmakingen.yml in de hoofdmap.** Een kopie van de workflow, 43 regels
+achter op de echte in .github/workflows en met nul regels die daar niet in
+staan. GitHub leest die kopie niet, de versiecontrole wel, dus die zou gaan
+klagen over een verschil dat nergens over gaat.
+
+Beide zijn weg. Dit is ook het einde van een hele categorie: zolang een mens
+bestanden moest downloaden en uploaden, kon een verkeerde extensie of een kopie
+op de verkeerde plek dagen meelopen. Dat kan niet meer ontstaan.
+
+
+## 102. Een mediane bezitsduur van 0,8 jaar - 9 oktober 2026
+
+doorlooptijden.json meldde een mediane bezitsduur van 0,8 jaar. Dat bestaat
+niet in een woonbuurt.
+
+Van de verkocht-gebeurtenissen in de reeks dragen 505 exact dezelfde datum,
+2026-09-28: de dag waarop de Funda-lijst is geplakt. Bij elk van die
+gebeurtenissen staat in de tekst "verkoopdatum onbekend; uit een geplakte
+lijst". De berekening las dat voorbehoud niet en gebruikte de datum alsnog. Wat
+er gemeten werd was de tijd tussen een oudere echte verkoop en onze eigen
+plakronde. Bloemerstraat 22 laat het zien: 2014 naar juni 2026 is 12,4 jaar en
+plausibel, juni 2026 naar de plakdatum is 0,3 jaar en niets.
+
+Met alleen echte verkoopdatums:
+
+    bezitsduur   65 paren, mediaan 0,8 jaar  ->  15 paren, mediaan 3,3 jaar
+    prijsgroei   26 paren, mediaan 4,8%      ->   5 paren, geen mediaan
+    verkooptijd  118 panden, 93 dagen        ->  ongewijzigd, bovengrens
+
+Drie van de vijftien paren rusten op een datum van 1 januari, dus op een jaar
+bij benadering, en dat staat er nu bij. Onder de tien paren komt er geen
+mediaan meer uit, wel het aantal, want dat groeit met elke ronde verkoopdatums.
+Bij de prijsgroei staat er voortaan bij dat het vraagprijzen zijn.
+
+**Wat dit over het geheel zegt.** Dit is dezelfde fout als met de zin over het
+puntenstelsel: de gegevens vermeldden eerlijk wat er niet bekend was, en de
+laag erboven negeerde dat. Een voorbehoud in een tekstveld is geen filter. Waar
+een getal onbekend kan zijn, hoort dat in een veld te staan dat de code moet
+lezen, niet in proza dat de code overslaat.
+
+En het groeit niet mee met het plakken: een verse Funda-verkocht-lijst levert
+geen verkoopdatums. Die vijftien paren komen uit dossiers die met de hand zijn
+nagezocht, en dat is de enige route naar meer.
+
 
 ---
 
