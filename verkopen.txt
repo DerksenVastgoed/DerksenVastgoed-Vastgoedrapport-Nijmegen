@@ -1001,3 +1001,9 @@ Irene Vorrinkstraat | Nijmegen | 1335 | te huur | 2026-10-09 | huislijn | 90 | 6
 Cortenaerpad | Nijmegen | 464 | te huur | 2026-10-09 | huislijn | 41 | 6512GD
 Fenikshof | Nijmegen | 700 | te huur | 2026-10-09 | huislijn | 97 | 6541SP
 Heyendaalseweg | Nijmegen | 450 | te huur kamer | 2026-10-09 | kamernet-incl | 14 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 09-10-2026
+Wolfskuilseweg | Nijmegen | 1345 | te huur | 2026-10-09 | pararius | 78 | 6542JK
+Berg en Dalseweg | Nijmegen | 1397 | te huur gemeubileerd | 2026-10-09 | pararius | 35 | 6522BC
+Broerdijk | Nijmegen | 540 | te huur | 2026-10-09 | pararius | 23 | 6523GR
+Broerdijk | Nijmegen | 390 | te huur | 2026-10-09 | pararius | 10 | 6523GR

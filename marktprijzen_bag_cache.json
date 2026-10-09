@@ -73214,5 +73214,14 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Wolfskuilseweg|Nijmegen": {
+    "oppervlakte": 78,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542JK",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

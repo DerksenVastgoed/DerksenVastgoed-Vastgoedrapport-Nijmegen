@@ -1,7 +1,7 @@
 
 ## Vandaag
 
-112 panden in beeld, 2 nieuw of gewijzigd, waarvan 3 met een prijswijziging. Grootste verlaging: **Palmstraat 40** ging €50.000 omlaag naar €485.000. 2 gemeentelijke berichten.
+112 panden in beeld, 2 nieuw of gewijzigd, waarvan 3 met een prijswijziging sinds we ze voor het eerst zagen, geen daarvan van vandaag of gisteren. Geen enkele vraagprijs is vandaag of gisteren veranderd; de 3 prijswijzigingen in de tabel zijn ouder en zijn geen nieuws. 2 gemeentelijke berichten.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
@@ -73,6 +73,6 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 863 panden, waarvan er 112 nu in aanbod zijn. Bijgewerkt 09 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 867 panden, waarvan er 112 nu in aanbod zijn. Bijgewerkt 09 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

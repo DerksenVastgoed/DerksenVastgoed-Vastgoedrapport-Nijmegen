@@ -319,6 +319,14 @@
   "omweg": 1.45,
   "soort": "bus"
  },
+ "51.83490,5.83966": {
+  "geschat": false,
+  "hemelsbreed": 188,
+  "meters": 187,
+  "naam": "Graafseweg/Wolfskuilseweg",
+  "omweg": 0.99,
+  "soort": "bus"
+ },
  "51.83500,5.88699": {
   "geschat": false,
   "hemelsbreed": 189,

@@ -40134,6 +40134,12 @@
     "datum": "2026-10-02",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €799 per maand, 30 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.397 per maand, 35 m2"
    }
   ],
   "pand_id": null
@@ -42568,6 +42574,18 @@
     "datum": "2026-10-01",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €570 per maand, 104 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €540 per maand, 23 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €390 per maand, 10 m2"
    }
   ],
   "pand_id": null
@@ -113312,6 +113330,20 @@
    }
   ],
   "pand_id": "0268100000048935"
+ },
+ "wolfskuilseweg": {
+  "adres": "Wolfskuilseweg",
+  "bag_gezien": "2026-10-09",
+  "bag_zonder_id": "2026-10-09",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.345 per maand, 78 m2"
+   }
+  ],
+  "pand_id": null
  },
  "wolfskuilseweg108": {
   "adres": "Wolfskuilseweg 108",
