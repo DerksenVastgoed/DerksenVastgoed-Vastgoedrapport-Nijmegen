@@ -831,6 +831,7 @@ jobs:
             brief_logboek.json
             verteld.json
             briefstand.json
+            bestandsomvang.json
             aanbod_reeks.json
             aanbodprofiel.json
             grootte_premie.json
