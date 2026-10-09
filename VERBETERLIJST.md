@@ -7363,6 +7363,44 @@ dat ze werken.
 
 ---
 
+## 88. Een halve update hoort niet van oplettendheid af te hangen - 9 oktober 2026
+
+Er brak een geplande run aan terwijl Mark de nieuwe bestanden aan het uploaden
+was. Hij heeft die met de hand afgebroken, om te voorkomen dat zijn vader een
+brief zou krijgen die uit een halve set code komt. Dat was de juiste keuze, en
+het is tegelijk een gat.
+
+**Waarom het een echt risico was.** Elk bestand wordt als eigen commit
+opgeslagen. Valt de checkout van de run tussen twee van die commits, dan draait
+de nieuwe funda_mail met de oude gezondheid, of een briefgenerator met regels
+die de bronnen nog niet hebben. De versiecontrole ziet dat, maar die staat op
+stap 39 en de mail op stap 41: de code wist het dus al vóór het versturen en
+deed er niets mee.
+
+**Wat er nu gebeurt.** Tussen die twee stappen staat een toets op het
+gezondheidsrapport. Wijkt de code in de repo af van de paklijst, of mist er een
+bestand, dan gaat de kopie naar pa eraf en krijgt het onderwerp "ALLEEN VOOR
+JOU, halve update". Mark krijgt de brief dus wel, met de reden erbij, en pa
+niet.
+
+De brief helemaal tegenhouden doen we niet. Dat is de afweging: een brief die
+niet aankomt is precies het probleem waar 7 en 8 oktober aan zijn opgegaan, en
+een brief met een fout erin is deze week vaker voorgekomen zonder dat het ergens
+schade deed. De fout moet luid zijn, niet onderdrukt.
+
+Getest op drie echte rapportregels: twee bestanden met andere inhoud houdt hem
+tegen, een ontbrekend bestand ook, en nul en nul laat hem door. Bij een testrun
+verandert er niets, want daar staat de kopie naar pa al uit.
+
+**Wat Mark hiervan moet weten voor deze keer.** De afgebroken run heeft geen
+brief weggeschreven, dus de tweede cron van die ochtend draait wel: de poort
+voor de tweede poging kijkt of er een brief van vandaag bestaat, en die bestaat
+niet. Maar een afgebroken run bereikt de alarmstap niet, dus van een
+afgebroken run komt geen melding. Afbreken is daarmee de enige manier om dit
+geheel stil te maken, en dat is iets om te weten voordat je het nog eens doet.
+
+---
+
 ## 8. Kleinere punten
 
 - **Verkoopprijzen ontbreken.** Alles wat de brief vergelijkt zijn vraagprijzen.
