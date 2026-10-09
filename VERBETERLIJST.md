@@ -7829,6 +7829,123 @@ melden van losse onderdelen en zwak in het tonen van wat waarvan afhangt. Dat is
 het volgende dat aandacht verdient.
 
 
+## 96. De bewering over het puntenstelsel kwam uit onze eigen code - 9 oktober 2026
+
+Drie dagen heb ik de verkeerde dader achtervolgd.
+
+Op 7 oktober stond in de brief dat een pand te groot was om als één huishouden
+door te rekenen in het puntenstelsel. Dat is onwaar: het stelsel kent geen
+bovengrens aan oppervlakte. Ik heb er een regel in de opdracht tegen gezet. Op
+8 oktober stond het er weer, in andere woorden, en toen heb ik er een patroon
+op de brieftekst tegen gezet, met de notitie dat de instructieroute niet
+volstond. Op 9 oktober stond er: "Met 158 vierkante meter wordt het pand niet
+als één huishouden doorgerekend in het puntenstelsel; die telling zegt hier dus
+weinig." Weer een formulering langs het patroon heen.
+
+Waar de zin werkelijk vandaan kwam, staat in wws_indicatie() in
+marktprijzen_bag.py:
+
+    if opp > MAX_M2_EEN_HUISHOUDEN:
+        "Groter dan 150 m2, dus niet als een huishouden doorgerekend;
+         een telling voor een zelfstandige woning zegt hier weinig"
+
+De brief verzon niets. Hij nam over wat er in zijn gegevens stond. Drie dagen
+heb ik de laatste tekst bewaakt terwijl de zin een niveau hoger werd gemaakt.
+
+**De fout in die zin.** MAX_M2_EEN_HUISHOUDEN is 150 en is onze eigen aanname
+over de huurmarkt: boven die maat betaalt niemand de huur voor één huishouden,
+dus rekenen we met kamers. De commentaarregel erboven zegt dat ook eerlijk
+("zo groot dat het script het niet als een huishouden doorrekent"), maar in de
+uitgaande tekst viel "het script" weg. Wat overbleef las als een uitspraak over
+het stelsel. Een grens van ons werd een grens van de wet.
+
+**Wat er nu staat.** Dezelfde situatie, maar met de herkomst erbij: wij rekenen
+dit pand niet door als één woning omdat de markt die huur niet betaalt, dat is
+onze aanname en geen grens van het puntenstelsel, en het stelsel kent geen
+bovengrens: zo'n pand haalt juist veel punten en zit dus in de vrije sector.
+
+**Twee dingen aan de controle veranderd.** De toets op bekende onwaarheden
+mocht één reguliere expressie per fout gebruiken, en liep daarmee altijd één
+formulering achter. Deze fout wordt nu op zijn bestanddelen getoetst: een maat,
+het puntenstelsel of de telling, en een afwijzing, alle drie in één zin. Zeven
+formuleringen van de fout vallen erdoor, en tien ware uitspraken over punten en
+oppervlakte blijven staan, waaronder "een kamerpand wordt niet als één
+huishouden doorgerekend", want dat is waar: onzelfstandige verhuur gaat per
+kamer.
+
+Daarnaast toetst de controle niet meer alleen de brief maar ook de teksten die
+de brief voeden: de marktanalyse, de bijlage en de dossiers. Die zijn van ons.
+De publicaties en de bekendmakingen blijven erbuiten, want daarin staat tekst
+van anderen en "verkocht voor €X" in een nieuwsbericht is geen fout van ons.
+
+**Wat dit over het geheel zegt.** Dit is dezelfde fout als bij de Palmstraat,
+een niveau hoger. Daar bleek na drie reparaties dat een vierde plek de oude
+verlaging meldde; de oplossing was toetsen op de uitkomst in plaats van op de
+code. Nu blijkt dat "de uitkomst" niet alleen de laatste tekst is. Wat de brief
+schrijft, staat vaak al ergens in zijn bronnen. Toets dus de hele keten van
+eigen teksten, niet alleen het eindproduct.
+
+
+## 97. De waarschuwing over de steekproef werd gemaakt en weggegooid - 9 oktober 2026
+
+Punt 92 van vandaag ging erover dat alle vijf de buurten zes procent stegen en
+dat dat onze steekproef is en niet de markt. Daar is samenstellingseffect()
+voor gemaakt, met een melding in hoofdletters bovenaan de brief.
+
+Die melding stond er niet. De functie werkt, de voorwaarde was gehaald, en de
+melding werd die ochtend gemaakt. Daarna werd hij weggegooid. In render() werd
+hij aan de regellijst toegevoegd, en zestien regels verder begint de dagelijkse
+editie met:
+
+    r = (render_samenvatting(...) + aanbod_regels + render_bieden(...) + ...)
+
+Een nieuwe lijst. Alles wat er in stond, inclusief de waarschuwing, verdwijnt.
+In de zondagsbrief blijft hij staan, want daar wordt r niet opnieuw opgebouwd.
+Zes dagen per week dus weg, en niemand ziet het, want een gemaakte en
+weggegooide regel ziet er precies uit als een regel die nooit is gemaakt.
+
+Het is dezelfde fout als met het splitsingenblok: gemaakt bij stap 36, gelezen
+bij stap 29. Produceren en opleveren zijn twee dingen, en wij toetsen het
+eerste.
+
+**Wat er nu staat.** De melding wordt berekend waar hij werd berekend, maar
+pas vlak voor de return ingevoegd, in beide edities, via _voorop(). Daar kan
+geen stap meer tussen komen. Hij staat ook boven de bijlage, want de
+prijspeilregels per buurt staan daarin en de bijlage wordt los gelezen.
+
+**En een controle erop.** controle_samenstelling() leest prijstrend.json, roept
+dezelfde functie aan die de melding maakt, en kijkt dan of de melding in de
+brief en in de bijlage staat. Zo niet, dan is dat een FOUT. Dit is bewust geen
+toets op de code: de code werkte.
+
+**Wat dit over het geheel zegt.** Vijf keer deze week was de fout een afwezige
+uitkomst in plaats van een foute: de Huislijn-afzender, de 123Wonen-link, de
+identieke brief, het splitsingenblok, de prijsindex. Nu de zesde. Van al die
+zes was er geen enkele te zien in een foutmelding. De enige toets die ze alle
+zes vindt is: staat het in wat eruit komt.
+
+
+## 98. Hetzelfde weetje drie brieven achter elkaar - 9 oktober 2026
+
+Het weetje onder de brief rouleert langs weetjes_gezien.json, zodat er niet met
+een rekentruc op het dagnummer wordt gewerkt. Dat werkt, en toch stond er drie
+brieven achter elkaar hetzelfde weetje over het inkomen in Galgenveld.
+
+De oorzaak is de testrun. Die schrijft met opzet niets weg, want pa heeft de
+brief van een handrun niet gezien en het weetje is dan nog niet verbruikt. Maar
+daardoor pakt elke handrun het eerste niet-geziene weetje, en dat is elke keer
+hetzelfde. Het geheugen was niet stuk; het stond terecht uit.
+
+Een testrun kiest nu op het dagnummer uit de niet-geziene weetjes: niet
+onthouden, wel afwisselen. Twee handruns op dezelfde dag geven hetzelfde
+weetje, en dat is eerlijk, want er is niets veranderd.
+
+**Wat dit over het geheel zegt.** Een handrun is geen echte run, en wat je in
+een handrun ziet is dus niet wat pa krijgt. Dat was hier onschuldig. Het is wel
+een reden om bij een klacht over de brief eerst te vragen of het de geplande
+run of een handrun was.
+
+
 
 ---
 
