@@ -7555,6 +7555,29 @@ opnieuw te koop is gezet, telt terecht niet als fout.
 mediaanafwijking is gemeten. negatief betekent te duur voor verhuur" - twee
 zinnen aan elkaar met een kleine letter na de punt. Hersteld.
 
+**En de reparatie was niet genoeg.** In de volgende handrun stond 165-B er nog,
+en de oorzaak zat een laag dieper: de groeperingssleutel gooide alleen alles weg
+wat geen letter of cijfer is, terwijl de rest van het model _woz_sleutel
+gebruikt, dat ook "sint" en "st." gelijkmaakt en "professor" en "prof.". De
+geplakte Funda-lijst en de attendering spellen zo'n adres niet altijd gelijk.
+"Sint Annastraat 165-B" en "St. Annastraat 165-B" waren dus nog steeds twee
+panden, en de reparatie met het objectnummer hielp daar niets.
+
+Dat is dezelfde fout als die ik gisteren in de controle op WOZ-regels zonder
+pand heb hersteld: twee sleutels voor hetzelfde adres. Gisteren bij de controle,
+vandaag bij de groepering, en de nieuwe controle die ik er een uur eerder bij
+bouwde gebruikte diezelfde zwakke sleutel en zou het geval dus ook hebben
+gemist. Alle drie gebruiken nu dezelfde sleutel.
+
+Getest op het echte geval, met "St." in de ene regel en "Sint" in de andere:
+met de zwakke sleutel twee groepen die elkaar tegenspreken, met de goede sleutel
+een groep waarin "verkocht" geldt.
+
+Wat hieruit volgt als regel voor later: een sleutel hoort op een plek te staan.
+Er zijn in dit systeem inmiddels drie plekken geweest waar een eigen variant van
+hetzelfde adres werd gemaakt, en alle drie leverden een fout op die eruitzag als
+iets anders.
+
 **Wat verder is nagekeken en klopt.** Het aandeel kamerverhuur in Bottendaal van
 3,5% is 77 op 2.193 woningen en is inderdaad de op een na hoogste van de zes;
 Stadscentrum staat op 4,3%. De gemiddelde WOZ van €394.000 klopt met de tabel.

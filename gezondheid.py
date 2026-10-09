@@ -908,7 +908,11 @@ def controle_verkocht_nog_in_aanbod():
                          else None)
                 if not soort:
                     continue
-                sleutel = "".join(c for c in v[0].lower() if c.isalnum())
+                # Dezelfde sleutel als het model, met de afkortingen erin.
+                # Met alleen letters en cijfers zou deze controle precies het
+                # geval missen waarvoor hij is gemaakt: "Sint Annastraat" naast
+                # "St. Annastraat".
+                sleutel = _wozsleutel(v[0])
                 rij = nieuwste.setdefault(sleutel, {"adres": v[0]})
                 if datum > rij.get(soort, ""):
                     rij[soort] = datum

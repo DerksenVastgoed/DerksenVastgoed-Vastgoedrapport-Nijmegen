@@ -7426,20 +7426,26 @@ def main():
     # verkochte panden: de verkoopregel en de te-koopregel waren twee panden
     # geworden. Twee regels voor hetzelfde adres horen altijd in dezelfde
     # groep; welke status geldt, bepaalt daarna de datum.
+    # De sleutel komt van _woz_sleutel, dezelfde die het model elders gebruikt.
+    # Hier stond alleen "letters en cijfers", en dat is niet hetzelfde: "Sint
+    # Annastraat 165-B" en "St. Annastraat 165-B" werden daarmee twee panden,
+    # terwijl de rest van het model ze als één ziet. De geplakte Funda-lijst en
+    # de attendering spellen zo'n adres niet altijd gelijk, en dan hielp de
+    # reparatie van een uur eerder niets. Dezelfde fout als gisteren bij de
+    # controle op WOZ-regels zonder pand: twee sleutels voor hetzelfde adres.
     adres_naar_sleutel = {}
     for w in woningen:
         obj = w.get("adresseerbaarObjectIdentificatie")
         if not obj or not re.search(r"\d", w["adres"]):
             continue
-        adres_naar_sleutel.setdefault(
-            re.sub(r"[^a-z0-9]", "", w["adres"].lower()), obj)
+        adres_naar_sleutel.setdefault(_woz_sleutel(w["adres"]), obj)
 
     per_object, volgorde = {}, []
     for i, w in enumerate(woningen):
         obj = w.get("adresseerbaarObjectIdentificatie")
         heeft_nummer = bool(re.search(r"\d", w["adres"]))
         if heeft_nummer:
-            adressleutel = re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+            adressleutel = _woz_sleutel(w["adres"])
             sleutel = adres_naar_sleutel.get(adressleutel) or obj or adressleutel
         elif obj:
             sleutel = obj
