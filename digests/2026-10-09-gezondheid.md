@@ -1,6 +1,6 @@
 # Gezondheidsrapport 2026-10-09
 
-44 in orde, 8 aandachtspunten, 0 fouten.
+46 in orde, 7 aandachtspunten, 0 fouten.
 
 ## LET OP
 - **Geheugen verstuurde brieven**: nog geen geheugen van verstuurde brieven
@@ -15,16 +15,15 @@
   Waarschijnlijk is het huisnummer-achtervoegsel bij het plakken weggevallen. Zoek het juiste adres op en pas de regel aan, anders delen twee woningen een dossier.
 - **WOZ-schatting**: geijkt op 102 panden: correctie 0.984 (2% stelselmatig), spreiding ±18.4%; mediane fout per methode: kenmerken 13.7% (107), prijs 10.1% (102), beste: prijs; kenmerken uit 76 straten en 11 buurten; nakijken: Derde Walstraat 108 (+112%), Havenweg 34 (-67%), Havenweg 70 (-53%)
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
-- **Nieuwe onderwerpen**: 1 voorgestelde onderwerpen, 0 gevolgd: besluit plaatsvond
-  Deze komen terug in het nieuws en hebben nog geen achtergrondstuk. Bespreek ze, dan kan er een stuk met bronnen bij; het script schrijft die niet zelf, want juridische tekst zonder gecontroleerde bron is precies wat we niet willen.
 - **Attenderingen**: laatste ronde 2026-10-09: huislijn: 4 mails, 17 objecten; kamernet: 19 mails, 13 objecten, 6 bewust overgeslagen; pararius: 3 mails, 6 objecten, 1 bewust overgeslagen; regulier: 4 mails, 6 objecten, 1 bewust overgeslagen; rentola: 1 mails, 1 objecten
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
 
 ## OK
 - **Versies**: paklijst van 2026-10-09: 41 gelijk, 0 met andere inhoud, 0 niet aanwezig, 2 niet in de paklijst
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-08-verhaal.md
-- **Oude verlaging in de brief**: nog geen prijswijzigingen in de pandgeschiedenis
+- **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
 - **Bekende onwaarheden in de brief**: 4 bekende onwaarheden getoetst, geen ervan staat in de brief
+- **Verkocht pand nog in het aanbod**: geen pand dat zowel verkocht is als te koop staat
 - **Huurdata**: 109 huurwaarnemingen, waarvan 28 Pararius en 46 Kamernet en 34 Huislijn en 1 Rentola, zonder adres maar met oppervlakte; 63 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2
 - **Aanbod**: 102 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -37,7 +36,7 @@
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
 - **Geschiedenis per pand**: 1770 panden gevolgd, 1425 met meer dan een gebeurtenis; 1579 met BAG-gegevens (6338 woningen, 7446 dubbel geteld zonder deze correctie), 1382 met een energielabel, 0 nog nooit nagekeken waarvan 148 na drie pogingen opgegeven; 12221 regels bespaard door gedeelde pandgegevens; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
-  Van 1 bekeken panden leverde er geen een pand-id op. Waarschijnlijk komt het adres niet door de BAG-opzoeking, of ontbreekt de sleutel in deze stap.
+  Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 74 panden te koop, mediaan 17 dagen geleden voor het laatst bevestigd, oudste 37 dagen
 - **Aanbodreeks**: 8 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 6 koop, 28 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -59,6 +58,7 @@
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
 - **3D BAG eigen snapshot**: 1256 panden in de eigen snapshot, 1256 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-09
 - **Achtergronddekking**: 36 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
+- **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 7 brieven vastgelegd, laatste 2026-10-08; 110 onderwerpen bleven liggen
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
