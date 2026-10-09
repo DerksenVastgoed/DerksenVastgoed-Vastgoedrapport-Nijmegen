@@ -757,6 +757,38 @@ jobs:
           python gezondheid.py --uit "digests/${DATUM}-gezondheid.md" \
             || echo "Gezondheidsrapport kon niet worden gemaakt"
 
+      # Draait de run op een halve update, dan passen de bestanden niet bij
+      # elkaar en kan de brief uit twee verschillende versies van de code
+      # komen. Op 9 oktober brak een geplande run precies tijdens het uploaden
+      # aan, en Mark heeft die met de hand afgebroken om te voorkomen dat zijn
+      # vader een brief uit die halve set zou krijgen. Dat hoort niet van
+      # oplettendheid af te hangen.
+      #
+      # Wat deze stap doet: de kopie naar pa eraf halen en in het onderwerp
+      # zetten dat de code niet klopt. Mark krijgt de brief dus wel, met de
+      # reden erbij. De brief helemaal tegenhouden doen we niet: een brief die
+      # niet aankomt is het probleem waar we twee dagen aan hebben besteed.
+      - name: Geen kopie naar pa bij een halve update
+        continue-on-error: true
+        run: |
+          RAPPORT="digests/${DATUM}-gezondheid.md"
+          if [ ! -f "$RAPPORT" ]; then
+            echo "Geen gezondheidsrapport om te toetsen; brief gaat gewoon uit."
+            exit 0
+          fi
+          if grep -qE "[1-9][0-9]* met andere inhoud|[1-9][0-9]* niet aanwezig" "$RAPPORT"; then
+            echo "LET OP: de code in de repo wijkt af van de paklijst."
+            echo "Deze brief kan uit een halve update komen. De kopie naar pa"
+            echo "gaat er daarom af; de brief gaat alleen naar Mark, met een"
+            echo "onderwerp dat de reden noemt."
+            grep -E "Versies" "$RAPPORT" | head -3
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
+            echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
+          else
+            echo "De bestanden passen bij elkaar; de brief gaat naar beiden."
+            echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
+          fi
+
       - name: Digests + gegevensbestanden terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
@@ -899,7 +931,7 @@ jobs:
           # geplande ochtendrun gaat altijd naar beiden, wat er ook in het
           # formulier van een eerdere handmatige run stond.
           cc: ${{ env.CC_VERHAAL }}
-          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
       # Vangnet: is het samenvoegen misgegaan, stuur dan alleen de werkbrief
@@ -914,7 +946,7 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-brief.html
 
       # Komt er geen brief uit, dan werd er tot nu toe niets verstuurd en ook
