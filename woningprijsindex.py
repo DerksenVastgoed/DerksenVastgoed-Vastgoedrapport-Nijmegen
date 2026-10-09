@@ -21,6 +21,7 @@ Gebruik:
 Schrijft woningprijsindex.json.
 """
 
+import datetime as dt
 import json
 import re
 import socket
@@ -455,6 +456,39 @@ def main():
             "regio": veilig(regio, "Regionale reeks"),
             "ingang": GEBRUIKT["ingang"]}
     data["vergelijking"] = vergelijk(data)
+    data["opgehaald"] = dt.date.today().isoformat()
+
+    # Een mislukte ophaalronde mag goede gegevens niet overschrijven.
+    #
+    # Dit ging op 9 oktober mis en de gevolgen reikten verder dan deze reeks.
+    # Het CBS leverde die run niets, het bestand werd leeggeschreven, en daarmee
+    # viel de hele WOZ-schatting om: die herleidt de vraagprijs met deze index
+    # naar de waardepeildatum. Zonder factor geeft woz_schatting None, dus voor
+    # elk pand zonder handmatig ingevoerde WOZ was er geen schatting meer, en de
+    # ijking viel van 104 panden naar nul. In het rapport stonden dat als twee
+    # losse meldingen, zonder dat iets zei dat het een oorzaak was.
+    #
+    # Hetzelfde principe als bij de brief: een mislukte run hoort geen goede
+    # uitkomst door niets te vervangen.
+    if not (data.get("landelijk") or data.get("regio")):
+        try:
+            with open(UIT_PAD, encoding="utf-8") as f:
+                oud_bestand = json.load(f) or {}
+        except Exception:
+            oud_bestand = {}
+        if oud_bestand.get("landelijk") or oud_bestand.get("regio"):
+            oud_bestand["laatste_poging_mislukt"] = dt.date.today().isoformat()
+            with open(UIT_PAD, "w", encoding="utf-8") as f:
+                json.dump(oud_bestand, f, ensure_ascii=False, indent=1)
+            print("LET OP: het CBS leverde nu niets. Het bestaande bestand van "
+                  f"{oud_bestand.get('opgehaald', 'onbekende datum')} blijft "
+                  "staan; de WOZ-schatting blijft dus werken met die reeks.",
+                  file=sys.stderr)
+            return 0
+        print("LET OP: het CBS leverde niets en er is ook geen eerdere reeks. "
+              "Daarmee valt de WOZ-schatting voor elk pand zonder eigen "
+              "WOZ-waarde weg.", file=sys.stderr)
+
     with open(UIT_PAD, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     print(omschrijf(data) or "Geen woningprijsindex opgehaald", file=sys.stderr)

@@ -17,7 +17,7 @@
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "125ab425db98",
   "funda_verkocht_plak.py": "44255967014f",
-  "gezondheid.py": "d48cd17aeedf",
+  "gezondheid.py": "8a98d3187696",
   "grootte_premie.py": "dc1fe4744a6e",
   "huur_dekking.py": "e3db912f5bb8",
   "kamernet_plak.py": "7b673395ed06",
@@ -39,7 +39,7 @@
   "vergunningen_buurten.py": "f220305bc7bc",
   "verkoopdatum_model.py": "e24a889d332d",
   "verteld.py": "8cd8b14f3742",
-  "woningprijsindex.py": "8bc8f9f2c72f",
+  "woningprijsindex.py": "f371a0f4f57b",
   "wwso.py": "f4b919fb6ec7"
  },
  "gemaakt": "2026-10-09"

@@ -442,9 +442,31 @@ def controle_woningprijzen():
     d = _json("woningprijsindex.json") or {}
     l, r = d.get("landelijk"), d.get("regio")
     if not l and not r:
-        return (FOUT, "woningprijsindex.json leeg",
-                diagnose("woningprijzen") or "Zie de stap Woningprijsindex CBS.")
+        return (FOUT, "woningprijsindex.json leeg; daarmee valt ook de "
+                "WOZ-schatting weg voor elk pand zonder eigen WOZ-waarde",
+                (diagnose("woningprijzen") or "Zie de stap Woningprijsindex "
+                 "CBS.") + " Sinds 9 oktober overschrijft een mislukte "
+                "ophaalronde een goede reeks niet meer; staat dit er toch, "
+                "dan was er ook geen eerdere reeks.")
     delen = []
+    # Een reeks die is blijven staan omdat het ophalen vandaag mislukte. Beter
+    # dan niets, maar het hoort zichtbaar te zijn: de reeks veroudert.
+    if d.get("laatste_poging_mislukt"):
+        leeftijd = None
+        try:
+            leeftijd = (VANDAAG - dt.date.fromisoformat(
+                d.get("opgehaald") or "")).days
+        except Exception:
+            pass
+        return (LET_OP,
+                f"de reeks van {d.get('opgehaald', 'onbekende datum')} is "
+                f"bewaard; het ophalen mislukte voor het laatst op "
+                f"{d['laatste_poging_mislukt']}"
+                + (f", de reeks is {leeftijd} dagen oud" if leeftijd else ""),
+                "De WOZ-schatting blijft werken met de bewaarde reeks, dus dit "
+                "is geen storing met gevolgen. Blijft het meer dan een paar "
+                "dagen mislukken, kijk dan in het logboek van de stap "
+                "Woningprijsindex CBS: het CBS wijzigt soms kolomnamen.")
     if l:
         delen.append(f"landelijk {l['periode']}")
     if r:
@@ -773,6 +795,34 @@ def controle_wozschatting():
     d = _json("woz_kalibratie.json") or {}
     aantal = d.get("aantal") or 0
     if aantal < 8:
+        # Eerst kijken of de oorzaak elders ligt. De schatting herleidt de
+        # vraagprijs met de landelijke prijsindex naar de waardepeildatum;
+        # zonder die index is er voor geen enkel pand een schatting en valt de
+        # ijking naar nul, hoeveel WOZ-waarden er ook zijn ingevoerd. Op 9
+        # oktober stond dat als twee losse meldingen in het rapport, en ik heb
+        # er een uur in de verkeerde richting naar gezocht.
+        index = _json("woningprijsindex.json") or {}
+        if not (index.get("landelijk") or index.get("regio")):
+            woz_regels = 0
+            try:
+                with open("woz.txt", encoding="utf-8") as f:
+                    woz_regels = sum(
+                        1 for r in f
+                        if not r.lstrip().startswith("#")
+                        and len(r.split("|")) > 1
+                        and any(c.isdigit() for c in r.split("|")[1]))
+            except Exception:
+                pass
+            return (FOUT, f"geijkt op {aantal} panden, maar de oorzaak is de "
+                    f"woningprijsindex: die is leeg, en zonder die reeks is er "
+                    f"voor geen enkel pand een WOZ-schatting"
+                    + (f". De {woz_regels} ingevoerde WOZ-waarden zijn er nog"
+                       if woz_regels else ""),
+                    "Dit is geen WOZ-probleem. De schatting herleidt de "
+                    "vraagprijs met de landelijke prijsindex naar de "
+                    "waardepeildatum; zonder index geen factor en dus geen "
+                    "schatting. Kijk bij 'Woningprijsindex CBS' en in het "
+                    "logboek van die stap.")
         return (LET_OP, f"geijkt op {aantal} panden, te weinig om iets te zeggen",
                 "Voer WOZ-waarden in bij grensgevallen; vanaf acht panden begint "
                 "de schatting zichzelf te corrigeren.")

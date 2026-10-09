@@ -7764,9 +7764,71 @@ gisteren was, en als het splitsingenblok dat werd gemaakt maar nooit gelezen.
 Bestaan is niet hetzelfde als goed zijn, en dat geldt voor een bestand net zo
 goed als voor een stap in de workflow.
 
-**Los hiervan: woningprijsindex.json is leeg.** Dat bestand stond niet in mijn
-map, dus dat is een andere oorzaak: de CBS-stap van deze run heeft niets
-opgeleverd. Dat staat in het logboek van die stap.
+**En toen bleek mijn hele diagnose fout.** Mark stuurde het bestand: er staan
+114 waarden in en 8 markeringen "geen". Er is niets gewist. De run heeft het
+bestand zelfs netjes opnieuw opgebouwd, met mijn nieuwe kopregels en de sectie
+"Geen WOZ beschikbaar" erin. Ik heb een kwartier aan een reparatie en een
+waarschuwing besteed voor een probleem dat er niet was.
+
+Wat ik had moeten doen voordat ik die conclusie trok: het bestand opvragen. Het
+was één vraag. In plaats daarvan zag ik twee aanwijzingen die bij elkaar pasten,
+een oud bestand in mijn map en een ijking op nul, en ben ik gaan bouwen. Dat is
+de vierde keer vandaag dat een plausibele verklaring me de verkeerde kant op
+stuurde.
+
+De omvangcontrole blijft wel staan. Dat die fout niet was opgetreden betekent
+niet dat hij niet kan optreden: die verouderde bestanden stonden werkelijk in de
+map waaruit Mark uploadt, en de versiecontrole slaat gegevensbestanden bewust
+over. De bestanden zijn uit die map gehaald en de controle bewaakt vanaf nu de
+omvang.
+
+## 95. Eén CBS-storing zette de hele WOZ-schatting uit - 9 oktober 2026
+
+De echte oorzaak van de ijking op nul panden zit in een heel andere hoek, en de
+keten erheen is het nakijken waard.
+
+De WOZ-schatting herleidt de vraagprijs met de landelijke prijsindex naar de
+waardepeildatum. Geen index betekent geen factor, en woz_schatting geeft dan
+None. Voor elk pand. Dus:
+
+    CBS levert niets
+      -> woningprijsindex.json leeg
+      -> geen prijsindexfactor
+      -> geen WOZ-schatting voor enig pand
+      -> ijking op 0 panden, ondanks 114 ingevoerde waarden
+
+In het rapport stonden dat als twee losse meldingen, een FOUT bij de
+woningprijsindex en een LET OP bij de WOZ-schatting, zonder dat iets zei dat het
+een oorzaak en een gevolg waren. Nagemeten op Marks eigen bestand: lees_woz
+geeft 114 waarden, de sleutels matchen, en woz_kalibratie geeft toch nul. Daarna
+was het in één test duidelijk.
+
+**De fout zelf: het bestand werd altijd weggeschreven.** Ook als beide
+CBS-reeksen afbraken, werd er een bestand met twee keer null overheen gezet. Eén
+storing bij het CBS wiste dus een goede reeks, en omdat het bestand wordt
+gecommit, ook in de repo.
+
+Dat is hetzelfde principe als bij de brief van 8 oktober: een mislukte run hoort
+geen goede uitkomst door niets te vervangen. Nu blijft de bestaande reeks staan
+als er niets is opgehaald, met een melding erbij en een datum van de laatste
+mislukte poging. Getest met twee afbrekende ophalers: de reeks van gisteren
+blijft staan en de WOZ-schatting blijft dus werken.
+
+**En de twee meldingen zijn aan elkaar geknoopt.** Staat de ijking op nul
+terwijl de prijsindex leeg is, dan meldt de WOZ-controle dat de oorzaak de
+prijsindex is, met het aantal ingevoerde WOZ-waarden erbij zodat niemand gaat
+denken dat die weg zijn. En de prijsindexcontrole noemt nu het gevolg: zonder
+die reeks valt de schatting weg voor elk pand zonder eigen WOZ-waarde. Een
+bewaarde oude reeks geeft LET OP met de leeftijd erbij, geen FOUT, want de
+schatting werkt dan gewoon.
+
+**Wat dit over het geheel zegt.** Dit is de tweede keer vandaag dat een
+afhankelijkheid tussen twee delen onzichtbaar was: eerst de stapvolgorde bij de
+splitsingen, nu de prijsindex onder de WOZ-schatting. Het rapport is goed in het
+melden van losse onderdelen en zwak in het tonen van wat waarvan afhangt. Dat is
+het volgende dat aandacht verdient.
+
+
 
 ---
 
