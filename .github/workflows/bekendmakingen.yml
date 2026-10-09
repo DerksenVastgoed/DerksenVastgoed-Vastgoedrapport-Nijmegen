@@ -861,9 +861,30 @@ jobs:
             digests/
             diagnose/
           "
+          # Bestanden die een script met opzet weghaalt zodra er niets meer in
+          # staat. Verdwijnt zo'n bestand, dan hoort die verwijdering ook
+          # gecommit te worden. Anders blijft de oude inhoud in de repo staan en
+          # blijft het gezondheidsrapport erover melden.
+          #
+          # Dit overkwam onderwerpen_voorstel.md. De onderwerpendetector las
+          # eerst onze eigen brief en stelde daardoor "besluit plaatsvond" voor.
+          # Dat is op 9 oktober opgelost met een witte lijst, de detector stelt
+          # nu niets meer voor en haalt het bestand weg, maar de lus hieronder
+          # keek alleen of een bestand bestond. Bestond het niet, dan werd het
+          # overgeslagen met ONTBREEKT, dus bleef het oude voorstel staan.
+          #
+          # De lijst is kort met opzet. Een bestand dat onverwacht verdwijnt moet
+          # NIET stilletjes uit de repo worden gehaald: als woz.txt na een
+          # mislukte stap even weg is, zijn dat 114 met de hand opgezochte
+          # waarden. Daarvoor blijft ONTBREEKT het juiste antwoord.
+          MAG_VERDWIJNEN="onderwerpen_voorstel.md"
+
           for f in $BESTANDEN; do
             if [ -e "$f" ]; then
               git add "$f" && echo "  toegevoegd: $f"
+            elif echo " $MAG_VERDWIJNEN " | grep -q " $f " \
+                 && git ls-files --error-unmatch "$f" >/dev/null 2>&1; then
+              git add -A -- "$f" && echo "  verwijdering vastgelegd: $f"
             else
               echo "  ONTBREEKT: $f"
             fi
