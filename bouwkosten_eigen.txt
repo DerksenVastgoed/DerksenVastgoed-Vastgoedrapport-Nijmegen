@@ -49,7 +49,29 @@ verduurzaming-e | 240 | 2026-03-11 | zelfde ingreep als verduurzaming-f; het pan
 # pand dat al op C staat is de ingreep kleiner en geldt het kental van de RVO,
 # tot we daar ook een eigen factuur van hebben.
 
-# Nog in te vullen, met dezelfde onderbouwing:
+# Nog in te vullen, zodra er een factuur van is:
 # verhuurklaar     | ... | ... | wat een pand kost om zonder ingreep te kunnen verhuren
 # dakisolatie      | ... | ... | per m2 dakvlak
-# splitsen-eenheid | ... | ... | per extra zelfstandige eenheid, dus geen bedrag per m2
+#
+# splitsen-eenheid blijft leeg, en dat is geen achterstand. Derksen Vastgoed
+# heeft nog nooit een appartement op deze manier gesplitst, dus er is geen
+# factuur van en die komt er ook niet vanzelf. Vragen om "de cijfers van Twan"
+# heeft dus geen zin; die zijn er al, het zijn de posten hierboven van de
+# Eerste Oude Heselaan 88.
+#
+# Wat deze post wel kan vullen, in volgorde van hardheid:
+#  1. Een prijsopgave van een aannemer voor het splitsen van een eigen pand.
+#     Dat is ook een hard getal en kost een telefoontje, maar pas als er een
+#     splitsing op tafel ligt.
+#  2. De vaste posten eromheen, die publiek zijn en geen opgave nodig hebben:
+#     leges omgevingsvergunning (bij de Biezenstraat 110 was dat EUR 2.218,21
+#     volgens het verleende besluit), inschrijving van de splitsingsakte bij
+#     het Kadaster, en een extra aansluiting voor elektra en gas volgens het
+#     gepubliceerde tarief van Liander. Dat is een ondergrens per eenheid.
+#  3. Het bouwkundige deel, dus een tweede keuken, een tweede badkamer, de
+#     brand- en geluidsscheiding en een eigen voordeur. Niemand heeft dat voor
+#     ons geprijsd en wij gaan het niet schatten.
+#
+# Tot 1 of 2 er is, blijft de uitpondsom in de brief een bovengrens: wat er na
+# aankoop en kosten koper per eenheid overblijft voor de verbouwing. Dat is een
+# berekening en geen aanname, en zo hoort het er ook te staan.
