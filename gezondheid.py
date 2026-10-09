@@ -899,14 +899,59 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+def _groot_dus_geen_punten(brief):
+    """
+    De bewering dat het puntenstelsel niet opgaat omdat het pand groot is.
+
+    Deze fout is deze week drie keer in drie formuleringen langsgekomen: "te
+    groot om als één huishouden door te rekenen", "te groot voor het
+    puntenstelsel" en op 9 oktober "met 158 vierkante meter wordt het pand niet
+    als één huishouden doorgerekend in het puntenstelsel; die telling zegt hier
+    dus weinig". Een patroon per formulering loopt altijd een formulering
+    achter, dus wordt hier op de drie bestanddelen getoetst in plaats van op de
+    woorden: een maat, het puntenstelsel, en een afwijzing. Staan die drie in
+    één zin, dan is het deze fout.
+
+    De losse zin "een kamerpand wordt niet als één huishouden doorgerekend" is
+    wel waar, want onzelfstandige verhuur gaat per kamer. Daarom moet de maat
+    erbij staan: de onwaarheid zit in het verband tussen de grootte en de
+    telling, niet in de telling zelf.
+    """
+    maat = re.compile(r"te groot|groter dan|\d{2,4}\s*(?:m2|m²|vierkante meter)",
+                      re.I)
+    # "telling" hoort er bij: de bron schreef "een telling voor een
+    # zelfstandige woning zegt hier weinig", zonder het woord puntenstelsel.
+    stelsel = re.compile(r"puntenstelsel|woningwaarderingsstelsel|wwso?\b"
+                         r"|puntentelling|punten\b|\btelling", re.I)
+    afwijzing = re.compile(
+        r"te groot"
+        r"|zegt[^.]{0,30}(?:weinig|niets)"
+        r"|niet van toepassing"
+        r"|gaat (?:hier )?niet op"
+        r"|telt[^.]{0,30}niet mee"
+        r"|niet mee(?:geteld|gerekend)"
+        r"|niet (?:als|per)[^.]{0,25}(?:huishouden|woning)[^.]{0,25}"
+        r"(?:doorgerekend|gerekend|geteld)"
+        r"|niet doorgerekend"
+        r"|valt[^.]{0,20}buiten", re.I)
+    # Niet op de puntkomma splitsen: de bewering liep juist over de puntkomma
+    # heen, met de maat ervoor en de afwijzing erna.
+    for zin in re.split(r"(?<=[.!?])\s+", brief):
+        if maat.search(zin) and stelsel.search(zin) and afwijzing.search(zin):
+            return zin.strip()
+    return ""
+
+
 # Beweringen die deze week in een brief stonden en die onwaar zijn. Elke regel
-# is een patroon plus de reden. Dit is een lijst die groeit, en dat is het punt:
-# een regel in de opdracht kan genegeerd worden, een toets op de verstuurde
-# tekst niet. Drie keer is deze week geprobeerd een fout met een instructie te
-# verhelpen en drie keer stond hij er de volgende dag weer.
+# is een patroon plus de reden. Een patroon mag ook een functie zijn die de
+# gevonden tekst teruggeeft, voor een fout die in te veel formuleringen
+# voorkomt om in één reguliere expressie te vatten. Dit is een lijst die
+# groeit, en dat is het punt: een regel in de opdracht kan genegeerd worden,
+# een toets op de verstuurde tekst niet. Vier keer is deze week geprobeerd een
+# fout met een instructie te verhelpen en vier keer stond hij er de volgende
+# dag weer.
 VERZONNEN = (
-    (r"te groot om .{0,40}(?:huishouden|puntenstelsel|door te rekenen)"
-     r"|te groot voor het puntenstelsel",
+    (_groot_dus_geen_punten,
      "Het woningwaarderingsstelsel kent geen bovengrens aan oppervlakte. Een "
      "grote woning krijgt juist veel punten en valt daarmee in de vrije "
      "sector, wat voor een verhuurder een voordeel is. De werkelijke reden dat "
@@ -1074,39 +1119,123 @@ def controle_verkocht_nog_in_aanbod():
             "lukte.")
 
 
+# Welke opgeleverde teksten op bekende onwaarheden worden getoetst. Alleen
+# teksten die wij zelf uit onze eigen gegevens schrijven. De publicaties en de
+# bekendmakingen staan er bewust niet bij: daarin staat tekst van anderen, en
+# "verkocht voor €X" in een nieuwsbericht is geen fout van ons.
+EIGEN_TEKSTEN = (("-verhaal.md", "de brief"),
+                 ("-marktprijzen.md", "de marktanalyse"),
+                 ("-bijlage.md", "de bijlage"),
+                 ("-dossiers.md", "de dossiers"))
+
+
 def controle_verzonnen_beweringen():
     """
-    Staan er beweringen in de brief die we al eens fout hebben bevonden?
+    Staan er beweringen in onze eigen teksten die we al eens fout bevonden?
 
-    Een lijst van bekende onwaarheden, getoetst op de verstuurde tekst. Dat is
+    Een lijst van bekende onwaarheden, getoetst op de opgeleverde tekst. Dat is
     de enige plek waar het zeker werkt: de gegevens kunnen kloppen en de
     opdracht kan de regel bevatten, en toch staat het er. Deze week gebeurde
     dat met de bovengrens die het puntenstelsel niet heeft, met vraagprijzen
     die als koopsom werden gepresenteerd, en met een aanvraag die als bewijs
     van haalbaarheid werd gelezen.
+
+    Niet alleen de brief wordt getoetst maar ook de teksten die de brief
+    voeden, en dat is de les van 9 oktober. De bewering over het puntenstelsel
+    bleek niet verzonnen in de brief: wws_indicatie() in marktprijzen_bag.py
+    schreef hem in de marktanalyse en de brief nam hem braaf over. Drie dagen
+    heb ik regels en patronen op de brief gezet terwijl de zin een niveau
+    hoger werd gemaakt. Wie alleen de laatste tekst toetst, ziet de bron niet.
     """
+    teksten = []
     try:
-        namen = sorted(n for n in os.listdir("digests")
-                       if n.endswith("-verhaal.md"))
-        if not namen:
-            return (OK, "geen brief om te toetsen", "")
-        with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
-            brief = " ".join(f.read().split())
+        bestanden = os.listdir("digests")
     except Exception:
-        return (OK, "geen brief om te toetsen", "")
+        return (OK, "geen teksten om te toetsen", "")
+    for achtervoegsel, wat in EIGEN_TEKSTEN:
+        namen = sorted(n for n in bestanden if n.endswith(achtervoegsel))
+        if not namen:
+            continue
+        try:
+            with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
+                teksten.append((wat, " ".join(f.read().split())))
+        except Exception:
+            continue
+    if not teksten:
+        return (OK, "geen teksten om te toetsen", "")
     raak = []
     for patroon, waarom in VERZONNEN:
-        m = re.search(patroon, brief, re.IGNORECASE)
-        if m:
-            raak.append((m.group(0)[:70], waarom))
+        for wat, tekst in teksten:
+            if callable(patroon):
+                gevonden = patroon(tekst)
+            else:
+                m = re.search(patroon, tekst, re.IGNORECASE)
+                gevonden = m.group(0) if m else ""
+            if gevonden:
+                raak.append((wat, gevonden[:70], waarom))
+                break        # eerste vindplaats is genoeg; die is de bron
     if not raak:
-        return (OK, f"{len(VERZONNEN)} bekende onwaarheden getoetst, geen "
-                f"ervan staat in de brief", "")
+        return (OK, f"{len(VERZONNEN)} bekende onwaarheden getoetst op "
+                f"{len(teksten)} teksten, geen ervan komt voor", "")
     return (FOUT,
             (f"{len(raak)} bekende onwaarheden" if len(raak) > 1
              else "1 bekende onwaarheid")
-            + " in de brief: " + "; ".join(f'"{z}"' for z, _ in raak),
-            " ".join(w for _, w in raak))
+            + ": " + "; ".join(f'in {w}: "{z}"' for w, z, _ in raak),
+            " ".join(r[2] for r in raak))
+
+
+def controle_samenstelling():
+    """
+    Bewegen alle buurten dezelfde kant op, staat de waarschuwing dan in de brief?
+
+    Op 9 oktober stonden vijf van de vijf buurten met een cijfer op +4,1% tot
+    +7,8% in vier weken. Dat is op jaarbasis meer dan een verdubbeling, dus is
+    het onze steekproef en niet de markt. De brief trok de omgekeerde
+    conclusie: de ring koelt niet af. De waarschuwing die dat moet voorkomen
+    was er wel, hij werd die ochtend gemaakt en daarna weggegooid, want de
+    dagelijkse editie bouwt de regellijst erna opnieuw op.
+
+    Dit is dezelfde fout als met het splitsingenblok: iets wordt gemaakt en
+    bereikt de brief niet. De code toont dat niet, want de functie werkt. Deze
+    controle toetst daarom de opgeleverde tekst, en gebruikt dezelfde functie
+    die de waarschuwing maakt om te bepalen of hij er had moeten staan.
+    """
+    try:
+        from marktprijzen_bag import samenstellingseffect
+        with open("prijstrend.json", encoding="utf-8") as f:
+            historie = json.load(f)
+    except Exception as e:
+        return (OK, f"niet te toetsen ({type(e).__name__})", "")
+    melding = samenstellingseffect(historie)
+    if not melding:
+        return (OK, "de buurten bewegen niet allemaal dezelfde kant op; "
+                "geen waarschuwing nodig", "")
+    kern = "GEEN MARKTBEWEGING"
+    mist = []
+    for achtervoegsel, wat in (("-verhaal.md", "de brief"),
+                               ("-bijlage.md", "de bijlage")):
+        try:
+            namen = sorted(n for n in os.listdir("digests")
+                           if n.endswith(achtervoegsel))
+            if not namen:
+                continue
+            with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
+                if kern not in f.read():
+                    mist.append(wat)
+        except Exception:
+            continue
+    beweging = melding.split("**")[-1].split(" Dat is")[0].strip()[:160]
+    if not mist:
+        return (OK, "alle buurten bewegen dezelfde kant op en de waarschuwing "
+                f"staat in de brief: {beweging}", "")
+    return (FOUT,
+            "alle buurten bewegen dezelfde kant op, maar de waarschuwing staat "
+            f"niet in {' en '.join(mist)}: {beweging}",
+            "Zonder die waarschuwing leest pa de buurtcijfers als een "
+            "marktbeweging, en dat zijn ze niet: er komen andere panden in de "
+            "meting. De waarschuwing wordt gemaakt in samenstellingseffect() "
+            "en moet vlak voor de return worden ingevoegd, anders gooit de "
+            "opbouw van de dagelijkse editie hem weg.")
 
 
 def controle_oude_verlaging():
@@ -2084,6 +2213,7 @@ CONTROLES = [
     ("Brief opnieuw geschreven", controle_briefherhaling),
     ("Oude verlaging in de brief", controle_oude_verlaging),
     ("Bekende onwaarheden in de brief", controle_verzonnen_beweringen),
+    ("Samenstelling in plaats van markt", controle_samenstelling),
     ("Verkocht pand nog in het aanbod", controle_verkocht_nog_in_aanbod),
     ("Omvang van de gegevensbestanden", controle_bestandsomvang),
     ("Huurdata", controle_huurdata),
