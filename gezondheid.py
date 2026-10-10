@@ -1921,6 +1921,52 @@ def controle_verkooptijd():
             "schatting: de werkelijke tijd is korter of gelijk", "")
 
 
+def controle_voorraad():
+    """
+    Hoe ver de voorraad van de hele ring is gevuld.
+
+    Dit telt niet de panden die te koop staan maar de woningvoorraad zelf, met
+    oppervlakte en energielabel. De labels gaan per adres bij EP-Online, dus
+    dat is een achterstand die per run een stuk opschuift; deze regel maakt
+    zichtbaar of dat werkelijk gebeurt. Blijft het aantal twee runs lang
+    gelijk, dan loopt de stap ergens op vast.
+    """
+    d = _json("voorraad.json") or {}
+    adressen = d.get("adressen") or {}
+    if not adressen:
+        inv = _json("buurtinventaris.json") or {}
+        postcodes = (inv.get("totaal") or {}).get("postcodes")
+        if not postcodes:
+            return (OK, "voorraad nog niet opgehaald en nog geen postcodes om "
+                    "het mee te doen", "")
+        return (LET_OP, f"voorraad nog leeg terwijl er {postcodes} postcodes "
+                f"klaarstaan",
+                "De stap 'Oppervlakte en gebruiksdoel van de hele voorraad' "
+                "draait in de weekeditie en bij een handmatige start. Levert "
+                "hij niets op, kijk dan of BAG_API_KEY nog geldig is.")
+    met_opp = sum(1 for r in adressen.values() if r.get("oppervlakte"))
+    met_label = sum(1 for r in adressen.values() if r.get("label"))
+    nog = sum(1 for r in adressen.values()
+              if not r.get("label") and not r.get("label_gezien"))
+    ronde = d.get("laatste_ronde") or {}
+    labels = ronde.get("labels") or {}
+    bewijs = (f"{len(adressen)} woningen in de ring, {met_opp} met "
+              f"oppervlakte, {met_label} met label; nog {nog} adressen te "
+              f"vragen")
+    if labels.get("gevraagd"):
+        bewijs += (f"; laatste ronde {labels['gevraagd']} gevraagd, "
+                   f"{labels.get('label_gevonden', 0)} labels gevonden")
+    for fase in ("bag", "labels"):
+        fouten = (ronde.get(fase) or {}).get("fouten") or 0
+        if fouten:
+            laatste = (ronde.get(fase) or {}).get("laatste_fout") or ""
+            return (LET_OP, bewijs + f"; {fouten} fouten in fase {fase}"
+                    + (f", laatste: {laatste}" if laatste else ""),
+                    "Bij een geweigerde sleutel of een 429 stopt de fase "
+                    "meteen en gaat hij de volgende run verder.")
+    return (OK, bewijs, "")
+
+
 def controle_doorlooptijden():
     """Wat de reeks per pand oplevert: verkooptijd, bezitsduur, prijsgroei."""
     d = _json("doorlooptijden.json") or {}
@@ -2280,6 +2326,7 @@ CONTROLES = [
     ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),
+    ("Voorraad van de ring", controle_voorraad),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),
