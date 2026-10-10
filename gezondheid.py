@@ -942,6 +942,41 @@ def _groot_dus_geen_punten(brief):
     return ""
 
 
+def _snelle_route(brief):
+    """
+    De bewering dat een splitsingsroute snel is, op grond van de registratie.
+
+    Op 9 oktober stond in de brief: "van besluit naar registratie zat hier maar
+    één dag. Dat is het eerste bewijs dat deze route in de praktijk ook snel
+    kan lopen." Die ene dag is echt, maar het is de laatste stap. Bij datzelfde
+    pand, de Biezenstraat 110, zaten er 241 dagen tussen de gepubliceerde
+    aanvraag en het gepubliceerde besluit, en 300 dagen volgens het dossier
+    zelf. De route duurde dus acht tot tien maanden en alleen het afstempelen
+    duurde een dag.
+
+    Dit is dezelfde fout als de bezitsduur van 0,8 jaar: een administratieve
+    datum wordt gelezen als een gebeurtenis in de werkelijkheid. Hij wordt hier
+    over twee zinnen gezocht, want de bewering en het bewijs stonden niet in
+    dezelfde zin. Noemt de brief de aanvraag erbij, dan is het verhaal compleet
+    en slaat deze toets niet aan.
+    """
+    gap = re.compile(r"besluit", re.IGNORECASE)
+    reg = re.compile(r"registratie|geregistreerd|\bBAG\b", re.IGNORECASE)
+    snel = re.compile(r"\bsnel|\bvlot|korte doorlooptijd|in (?:een|één) dag"
+                      r"|binnen (?:een|één) dag", re.IGNORECASE)
+    kort = re.compile(r"\b(?:maar|slechts)?\s?(?:een|één|1|2|twee|3|drie)\s"
+                      r"dag(?:en)?\b", re.IGNORECASE)
+    volledig = re.compile(r"aanvraag|ingediend", re.IGNORECASE)
+    zinnen = re.split(r"(?<=[.!?])\s+", brief)
+    for i in range(len(zinnen)):
+        venster = " ".join(zinnen[i:i + 2])
+        if (gap.search(venster) and reg.search(venster)
+                and snel.search(venster) and kort.search(venster)
+                and not volledig.search(venster)):
+            return venster.strip()
+    return ""
+
+
 # Beweringen die deze week in een brief stonden en die onwaar zijn. Elke regel
 # is een patroon plus de reden. Een patroon mag ook een functie zijn die de
 # gevonden tekst teruggeeft, voor een fout die in te veel formuleringen
@@ -970,6 +1005,13 @@ VERZONNEN = (
      "Oppervlakte en energielabel horen bij een adres en niet bij een pand. "
      "Staat er bij de gegevens 'op dit adres, niet van het hele pand', neem "
      "dat voorbehoud dan over."),
+    (_snelle_route,
+     "De tijd tussen een besluit en de BAG-registratie is de laatste stap en "
+     "niet de doorlooptijd van de route. Die begint bij de aanvraag. Bij de "
+     "Biezenstraat 110 was het verschil 1 dag, terwijl er 241 dagen tussen de "
+     "gepubliceerde aanvraag en het besluit zaten en 300 dagen volgens het "
+     "dossier. Noem de aanvraagdatum erbij; die staat per pand in het blok "
+     "over de splitsingen die de BAG inmiddels telt."),
 )
 
 
