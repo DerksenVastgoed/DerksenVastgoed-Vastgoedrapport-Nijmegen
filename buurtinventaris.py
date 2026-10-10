@@ -98,6 +98,9 @@ def _vraag(params):
         return None
 
 
+VELDEN = "postcode straatnaam buurtnaam"
+
+
 def aantal_adressen(buurt):
     """
     Hoeveel adresseerbare objecten deze buurt heeft, uit numFound.
@@ -112,36 +115,76 @@ def aantal_adressen(buurt):
     return None if antwoord is None else antwoord.get("numFound")
 
 
-def postcodes_van(buurt, pauze=0.2):
+def _sweep(fq, pauze, grens=None):
     """
-    De postcodes van een buurt, met paginering.
+    Doorbladeren tot de server niets meer geeft, of tot de grens.
 
-    Geeft (postcodes, gemeld) terug. Het gemelde aantal is wat de server zegt
-    te hebben; dat vergelijken we met wat we ophaalden, want een stil afgekapte
-    pagina is anders niet te zien.
+    Geeft (records, gemeld, volledig) terug. Het gemelde aantal is wat de
+    server zegt te hebben; dat vergelijken we met wat we ophaalden, want een
+    stil afgekapte pagina is anders niet te zien.
     """
-    gevonden, gemeld, start = set(), None, 0
-    while start < MAX_PER_BUURT:
-        antwoord = _vraag({
-            "q": "*",
-            "fq": ["type:postcode", f'buurtnaam:"{buurt}"'],
-            "rows": PER_VRAAG, "start": start,
-            "fl": "postcode buurtnaam wijknaam", "wt": "json",
-        })
+    # Niet als standaardwaarde in de functiekop: die wordt bij het inlezen
+    # vastgeklonken, en dan heeft het aanpassen van MAX_PER_BUURT geen effect.
+    # Dat kostte me een proef die leek te slagen terwijl de grens nooit werd
+    # geraakt.
+    if grens is None:
+        grens = MAX_PER_BUURT
+    records, gemeld, start = [], None, 0
+    while start < grens:
+        antwoord = _vraag({"q": "*", "fq": fq, "rows": PER_VRAAG,
+                           "start": start, "fl": VELDEN, "wt": "json"})
         if antwoord is None:
-            break
+            return records, gemeld, False
         if gemeld is None:
             gemeld = antwoord.get("numFound")
         docs = antwoord.get("docs") or []
-        for d in docs:
-            pc = (d.get("postcode") or "").replace(" ", "").upper()
-            if pc:
-                gevonden.add(pc)
+        records.extend(docs)
         if len(docs) < PER_VRAAG:
             break
         start += PER_VRAAG
         time.sleep(pauze)
-    return sorted(gevonden), gemeld
+    volledig = gemeld is not None and len(records) >= gemeld
+    return records, gemeld, volledig
+
+
+def postcodes_van(buurt, pauze=0.2):
+    """
+    De postcodes van een buurt, uit de adresrecords.
+
+    EERST GEPROBEERD EN HET WERKTE NIET: type:postcode met een filter op
+    buurtnaam. Dat leverde op 10 oktober nul records voor alle zes de buurten,
+    terwijl dezelfde filter op type:adres er 34.946 gaf. Een postcoderecord
+    geeft buurtnaam wel terug als je het opvraagt, maar je kunt er blijkbaar
+    niet op filteren: in Solr kan een veld bewaard zijn zonder doorzoekbaar te
+    zijn. Daarmee brak ik een route die werkte, en de stap meldde toch succes
+    omdat er "|| echo overgeslagen" achter stond.
+
+    Dus nu weer via de adressen, die bewezen werken, en de postcode staat op
+    elk adresrecord. Blijft de buurt onder de grens die Solr aan diep
+    doorbladeren stelt, dan is de lijst compleet. Stadscentrum liep daar op 9
+    oktober tegenaan: 11.975 gemeld en 10.100 opgehaald. Voor die buurten komt
+    er een tweede ronde per straat, want per straat zijn het er nooit meer dan
+    een paar honderd. De straatnamen komen uit de eerste ronde, en een straat
+    die volledig buiten de eerste tienduizend viel wordt daarmee gemist; de
+    uitvoer zegt dan ook niet dat de buurt volledig is.
+    """
+    fq = ["type:adres", f'buurtnaam:"{buurt}"']
+    records, gemeld, volledig = _sweep(fq, pauze)
+    postcodes = {(d.get("postcode") or "").replace(" ", "").upper()
+                 for d in records}
+    postcodes.discard("")
+    straten = {d.get("straatnaam") for d in records if d.get("straatnaam")}
+    extra_vragen = 0
+    if not volledig and straten:
+        for straat in sorted(straten):
+            deel, _g, _v = _sweep(fq + [f'straatnaam:"{straat}"'], pauze,
+                                  grens=2000)
+            extra_vragen += 1
+            for d in deel:
+                pc = (d.get("postcode") or "").replace(" ", "").upper()
+                if pc:
+                    postcodes.add(pc)
+    return sorted(postcodes), gemeld, len(records), volledig, extra_vragen
 
 
 def bekend_uit_geschiedenis():
@@ -174,18 +217,22 @@ def main():
     per_buurt, postcodes_per_buurt, alle_postcodes = {}, {}, set()
     for naam in buurten:
         adressen = aantal_adressen(naam)
-        postcodes, gemeld = postcodes_van(naam, args.pauze)
+        (postcodes, gemeld, doorgebladerd,
+         volledig, extra) = postcodes_van(naam, args.pauze)
         alle_postcodes |= set(postcodes)
         postcodes_per_buurt[naam] = postcodes
         per_buurt[naam] = {
             "adressen": adressen,
+            "adressen_doorgebladerd": doorgebladerd,
+            "adressen_gemeld": gemeld,
             "postcodes": len(postcodes),
-            "postcodes_gemeld": gemeld,
-            "volledig": (gemeld is not None and len(postcodes) >= gemeld),
+            "volledig": volledig,
+            "tweede_ronde_per_straat": extra,
         }
-        print(f"{naam}: {adressen} adressen, {len(postcodes)} postcodes"
-              + (f" van {gemeld} gemeld" if gemeld is not None else "")
-              + ("" if per_buurt[naam]["volledig"] else "  LET OP: onvolledig"),
+        print(f"{naam}: {adressen} adressen, {doorgebladerd} doorgebladerd, "
+              f"{len(postcodes)} postcodes"
+              + (f", {extra} straten apart opgehaald" if extra else "")
+              + ("" if volledig else "  LET OP: eerste ronde onvolledig"),
               file=sys.stderr)
 
     totaal_adressen = sum(g["adressen"] or 0 for g in per_buurt.values())

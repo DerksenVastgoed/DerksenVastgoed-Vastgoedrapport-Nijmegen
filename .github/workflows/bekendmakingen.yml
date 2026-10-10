@@ -225,7 +225,12 @@ jobs:
           # te testen is zonder op zondag te wachten.
           if [ "$MODUS" != "dagelijks" ] || [ ! -s buurtinventaris.json ] \
              || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            python buurtinventaris.py || echo "Buurtinventaris overgeslagen"
+            # Geen "|| echo" meer. Dat maakte van een mislukking een groene
+            # stap: op 10 oktober leverde dit script nul postcodes en meldde
+            # de stap toch succes. continue-on-error houdt de run heel en
+            # laat de stap wel als mislukt zien, en dat is het verschil
+            # tussen een fout die je ziet en een die je niet ziet.
+            python buurtinventaris.py
           else
             echo "Inventaris is er al; wordt op zondag ververst."
           fi
@@ -808,8 +813,7 @@ jobs:
           # bij 1,1 seconde per vraag is dit in één run rond. Daarna slaat het
           # script een postcode een halfjaar over, en dan is het een paar
           # minuten werk.
-          python voorraad_bag.py --alleen bag --bag-minuten 35 \
-            || echo "Voorraad-BAG overgeslagen"
+          python voorraad_bag.py --alleen bag --bag-minuten 35
 
       - name: Energielabels van de voorraad bijwerken (EP-Online)
         continue-on-error: true
@@ -820,8 +824,7 @@ jobs:
           # de weekeditie 35, samen ongeveer 7.900 adressen per week, dus de
           # ring is in twee weken rond.
           if [ "$MODUS" = "dagelijks" ]; then MIN=25; else MIN=35; fi
-          python voorraad_bag.py --alleen labels --labels-minuten "$MIN" \
-            || echo "Voorraad-labels overgeslagen"
+          python voorraad_bag.py --alleen labels --labels-minuten "$MIN"
 
       - name: Gezondheidsrapport
         continue-on-error: true

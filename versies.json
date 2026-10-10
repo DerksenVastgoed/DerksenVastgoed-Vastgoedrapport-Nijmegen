@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "00aba67e2e4a",
+  ".github/workflows/bekendmakingen.yml": "eaf3d09942e3",
   "aanbod_reeks.py": "81d5a7aa0aa2",
   "aanbodprofiel.py": "23697f8f4d8f",
   "bag3d.py": "b7cbb69df264",
@@ -14,7 +14,7 @@
   "briefvoet.py": "4c42cfd26424",
   "bronnen.py": "f0dc6650f0f9",
   "buurten_tabel.py": "be9f6ffee4ec",
-  "buurtinventaris.py": "9eeb45c6e1bf",
+  "buurtinventaris.py": "28d56a31136c",
   "corop_prijzen.py": "ac3a1de9f344",
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "7b92e5018811",
