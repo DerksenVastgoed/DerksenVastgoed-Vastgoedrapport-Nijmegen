@@ -1028,6 +1028,20 @@ def _beleid_versoepeling(brief):
         r"|staat .{0,25}(?:toe|toegestaan)|opent de deur|stimuleer"
         r"|moedigt .{0,15}aan|komt er .{0,25}bij|wordt mogelijk"
         r"|maakt .{0,40}mogelijk|zonder vergunning")
+    # EN NIET AFGAAN OP EEN ZIN DIE HET JUIST ONTKENT. De brief van 10 oktober
+    # schreef: "De titel klinkt alsof het makkelijker wordt, maar het is het
+    # omgekeerde: wie in het kernwinkelgebied een woning op de begane grond wil
+    # toevoegen, heeft daarvoor voortaan een vergunning nodig." Dat is precies
+    # wat de brief hoort te doen, en deze toets meldde het als onwaarheid.
+    #
+    # Dezelfde fout als bij controle_samenstelling eerder deze week: een toets
+    # die correct gedrag afstraft. Dat is erger dan een gemiste onwaarheid,
+    # want dan leer je het rapport te negeren.
+    ontkenning = (r"omgekeerde|tegendeel|juist niet|niet makkelijker"
+                  r"|niet eenvoudiger|klinkt alsof|lijkt alsof|suggereert"
+                  r"|in werkelijkheid|schijn|maar het is|terwijl .{0,40}"
+                  r"(?:vergunning|verbod|beschermen|plicht)")
+
     # De zin zelf teruggeven en niet True: controle_verzonnen_beweringen()
     # zet de vondst in het rapport, zodat Mark ziet wat er werkelijk stond.
     #
@@ -1039,6 +1053,8 @@ def _beleid_versoepeling(brief):
     for zin in re.split(r"(?<=[.!?])\s+", brief):
         z = zin.lower()
         if not re.search(onderwerp, z):
+            continue
+        if re.search(ontkenning, z):
             continue
         m = re.search(versoepeling, z)
         if m:
