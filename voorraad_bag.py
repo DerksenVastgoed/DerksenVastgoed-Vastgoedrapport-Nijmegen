@@ -458,8 +458,8 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
     anders = voorraad.setdefault("niet_woningen", {})
     panden = panden or {}
 
-    tel = {"nieuw": 0, "bijgewerkt": 0, "woningen": 0, "overig": 0,
-           "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
+    tel = {"nieuw": 0, "bijgewerkt": 0, "onveranderd": 0, "woningen": 0,
+           "overig": 0, "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
            "zonder_pandsleutel": 0}
     per_postcode = {}
     statussen = {}
@@ -513,9 +513,21 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 "pand": pand,
                 "vbo": a.get("adresseerbaarObjectIdentificatie") or "",
                 "status": status,
-                "bag_gezien": vandaag,
             }
             sleutel = adressleutel(straat, nr, letter, toev)
+
+            # BAG_GEZIEN ALLEEN BIJWERKEN ALS ER WERKELIJK IETS VERANDERDE.
+            # Zou hier de datum van vandaag staan, dan verandert elk van de
+            # 26.561 records elke ronde en is de dagelijkse wijziging het hele
+            # bestand van ruim zes megabyte. De repo zou dan met megabytes per
+            # run groeien terwijl er niets nieuws in staat, en in de
+            # geschiedenis zou niet te zien zijn wát er veranderde. Nu is de
+            # wijziging per ronde precies dat wat de BAG anders meldt.
+            bestaand = (adressen.get(sleutel) if _is_woning(doelen)
+                        else anders.get(sleutel)) or {}
+            zelfde = all(bestaand.get(v) == rec[v] for v in rec)
+            rec["bag_gezien"] = (bestaand.get("bag_gezien") or vandaag
+                                 if zelfde else vandaag)
             if not _is_woning(doelen):
                 tel["overig"] += 1
                 anders[sleutel] = rec
@@ -523,15 +535,16 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
             tel["woningen"] += 1
             vbo = rec["vbo"]
             objecten[vbo] = objecten.get(vbo, 0) + 1
-            oud = adressen.get(sleutel) or {}
             # Een eerder opgehaald label blijft staan; dat komt uit fase 2.
             for veld in ("label", "label_datum", "label_gezien"):
-                if oud.get(veld) is not None:
-                    rec[veld] = oud[veld]
-            if sleutel in adressen:
-                tel["bijgewerkt"] += 1
-            else:
+                if bestaand.get(veld) is not None:
+                    rec[veld] = bestaand[veld]
+            if not bestaand:
                 tel["nieuw"] += 1
+            elif zelfde:
+                tel["onveranderd"] += 1
+            else:
+                tel["bijgewerkt"] += 1
             adressen[sleutel] = rec
 
     stand = doorloop("verblijfsobject", minuten * 60, verwerk)
@@ -548,6 +561,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
         "postcodes_leeg_voorbeeld": leeg[:12],
         "adressen_nieuw": tel["nieuw"],
         "adressen_bijgewerkt": tel["bijgewerkt"],
+        "adressen_onveranderd": tel["onveranderd"],
         "woningen_gezien": tel["woningen"],
         "niet_woonfunctie": tel["overig"],
         "niet_woningen_bewaard": len(anders),
@@ -762,6 +776,12 @@ def proef():
         kaart = {"uuid-een": "0268100000000011",
                  "uuid-twee": "0268100000000022"}
         uit = fase_bag(voorraad, pcs, 1, kaart)
+        # TWEEDE RONDE OP DEZELFDE GEGEVENS. Hieraan hangt of het bestand van
+        # ruim zes megabyte elke dag ongewijzigd blijft of elke dag helemaal
+        # verandert. Dat verschil is in de uitkomst niet te zien en alleen
+        # hier te meten.
+        voorraad_na = json.loads(json.dumps(voorraad))
+        tweede = fase_bag(voorraad_na, pcs, 1, kaart)
     finally:
         doorloop = echt
 
@@ -819,10 +839,27 @@ def proef():
     if _pand_uuids({}) != []:
         afwijkingen.append("een object zonder pand moet een lege lijst geven")
 
+    # De tweede ronde op dezelfde gegevens mag niets veranderen.
+    if tweede.get("adressen_onveranderd") != 3:
+        afwijkingen.append(
+            f"tweede ronde meldt {tweede.get('adressen_onveranderd')} "
+            f"onveranderd in plaats van 3; dan verandert het hele bestand "
+            f"elke ronde")
+    if tweede.get("adressen_nieuw") or tweede.get("adressen_bijgewerkt"):
+        afwijkingen.append(
+            f"tweede ronde meldt {tweede.get('adressen_nieuw')} nieuw en "
+            f"{tweede.get('adressen_bijgewerkt')} bijgewerkt, terwijl er "
+            f"niets veranderd is")
+    if json.dumps(voorraad, sort_keys=True) != json.dumps(voorraad_na,
+                                                          sort_keys=True):
+        afwijkingen.append("twee rondes op dezelfde gegevens leveren een "
+                           "ander bestand op; dan groeit de repo per run "
+                           "met het hele bestand")
+
     for a in afwijkingen:
         print(f"AFWIJKING: {a}", file=sys.stderr)
     print(f"Proef: {len(afwijkingen)} afwijkingen, "
-          f"{len(verwacht) + 10} controles.", file=sys.stderr)
+          f"{len(verwacht) + 13} controles.", file=sys.stderr)
     return 1 if afwijkingen else 0
 
 
