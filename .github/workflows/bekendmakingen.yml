@@ -859,9 +859,23 @@ jobs:
       # gemaakt, dus wat hier gebeurt kan die nooit ophouden of breken. Wat ze
       # ophalen wordt hieronder meegecommit en is pas iets voor de brief als we
       # hebben gezien wat het waard is.
+      # OP WERKDAGEN EN NIET IN DE WEEKEDITIE, precies omgekeerd aan wat hier
+      # stond. De gedachte was dat de weekeditie de ruimte heeft. De meting
+      # zegt het tegendeel: over de geplande runs van 22 september tot 10
+      # oktober duurt een werkdagbrief 5,8 minuten (mediaan van tien) en een
+      # weekeditie 120 tot 298,6 minuten, omdat pandgeschiedenis dan de hele
+      # voorraad op veranderingen nakijkt.
+      #
+      # De job stopt bij 330 minuten. Die weekeditie van 298,6 plus de twee
+      # fases van 35 minuten is 368,6, dus 39 minuten over de grens, en dan
+      # gaat de hele brief niet de deur uit. Op een werkdag is 5,8 plus 60
+      # juist 66 minuten, met 264 minuten marge.
+      #
+      # Het werkt ook sneller: de achterstand wordt nu op 22 werkdagen per
+      # maand weggewerkt in plaats van op 4,3 weekedities.
       - name: Oppervlakte en gebruiksdoel van de hele voorraad (BAG)
         continue-on-error: true
-        if: env.MODUS != 'dagelijks' || github.event_name == 'workflow_dispatch'
+        if: env.MODUS == 'dagelijks' || github.event_name == 'workflow_dispatch'
         env:
           # DEZE SLEUTEL STOND ER NIET, EN DAAR GING HET MIS. De stap draaide op
           # 10 oktober voor het eerst, meldde succes in 0,0 minuten en haalde
@@ -888,8 +902,12 @@ jobs:
           # minuten werk.
           python voorraad_bag.py --alleen bag --bag-minuten 35
 
+      # Zelfde reden als bij de BAG-fase: niet in de weekeditie, want die zit
+      # al tegen de 330 minuten aan. Deze stap had helemaal geen voorwaarde en
+      # liep dus ook in de weekeditie mee.
       - name: Energielabels van de voorraad bijwerken (EP-Online)
         continue-on-error: true
+        if: env.MODUS == 'dagelijks' || github.event_name == 'workflow_dispatch'
         env:
           # Zelfde verhaal als bij de BAG-fase hierboven: zonder sleutel stopt
           # het script meteen. En de BAG-sleutel staat er ook bij, want deze
