@@ -8,17 +8,17 @@ Drie fasen, elk met een tijdbudget:
   1. De panden uit de BAG via PDOK, om PDOK's eigen pandsleutel om te zetten
      naar de zestiencijferige BAG-pandidentificatie. Zonder die omzetting
      sluit voorraad.json niet aan op pandgeschiedenis.json.
-  2. De verblijfsobjecten uit de BAG via PDOK, in één ronde over een doos om
-     Nijmegen, daarna lokaal gezeefd op onze 1.733 postcodes.
+  2. De verblijfsobjecten uit de BAG via PDOK, in een ronde over een raster
+     van tegels om Nijmegen, daarna lokaal gezeefd op onze 1.733 postcodes.
 
      WAAROM PER GEBIED EN NIET PER POSTCODE. Dit heeft op 10 oktober vier
      keer gefaald, elke keer omdat ik een eigenschap van een dienst aannam.
      De BAG-API van het Kadaster weigert een postcode zonder huisnummer. PDOK
      laat alleen geometry en identificatie als filter toe, op alle zes
      collecties, dus een vraag per postcode kan daar niet. Wat wel kan is een
-     ronde over een doos, en dat blijkt goedkoper dan beide: 164.634 objecten
-     in 120,8 seconden. De postcode staat wel in het antwoord, dus zeven kan
-     lokaal.
+     ronde over een gebied, en dat blijkt goedkoper dan beide: 164.634
+     objecten in 248,4 seconden over 22 tegels. De postcode staat wel in het
+     antwoord, dus zeven kan lokaal.
 
      Dat maakt deze fase ook eenvoudiger dan hij was. Geen achterstand, geen
      versheid per postcode, geen bewaarde cursor, geen hervatten. Elke ronde
@@ -94,8 +94,10 @@ PDOK_LIMIT = 1000
 #
 # Deze doos is met opzet te groot: hij is een bovengrens om Nijmegen heen, geen
 # schatting van de ring. Dat mag, want hij kost niets. Gemeten op 10 oktober:
-# 165 pagina's, 164.634 objecten, 120,8 seconden, 1.363 objecten per seconde.
-# De hele doos leest in twee minuten uit.
+# 164.634 objecten, in één doos 165 pagina's in 146,7 seconden en in tegels
+# 201 pagina's in 248,4 seconden. In tegels duurt het langer omdat elke tegel
+# zijn eigen eerste pagina heeft en een gedeelde tegel opnieuw wordt gelezen,
+# en dat is de prijs voor een ronde die het haalt (zie doorloop).
 #
 # EN HIJ KAPT NIETS AF. De doos om de gevonden treffers was
 # 5,83189-5,88500 bij 51,82759-51,85880. De marge tot deze doos is west
@@ -146,10 +148,11 @@ TEMPO = 1.1
 # houdt het netjes en kost veertig seconden per ronde.
 TEMPO_PDOK = 0.25
 
-# NIET MEER IN GEBRUIK VOOR FASE 1. Toen er per postcode werd gevraagd was
-# versheid per postcode nodig om 1.733 vragen over meer runs te verdelen. Een
-# hele ronde kost nu twee minuten, dus elke ronde leest alles opnieuw en er is
-# geen achterstand om bij te houden.
+# GEEN VERSHEID PER POSTCODE MEER. Toen er per postcode werd gevraagd was dat
+# nodig om 1.733 vragen over meer runs te verdelen. Een hele ronde kost nu vier
+# minuten, dus elke ronde leest alles opnieuw en er is geen achterstand om bij
+# te houden. De constante die dat regelde is weg; deze uitleg staat er omdat
+# de vraag "waarom wordt een postcode niet overgeslagen" anders terugkomt.
 
 # Een adres waarvan EP-Online geen label kende, na een jaar nog eens vragen.
 # Een label wordt geregistreerd bij een verkoop of een verbouwing, dus "niet
@@ -454,7 +457,8 @@ def doorloop(collectie, budget, per_pagina):
         # probleem: fase_bag slaat een object over dat hij deze ronde al zag,
         # dus de tellingen blijven kloppen en het schrijven is onschadelijk.
         gedeeld += 1
-        tegels_totaal += 4
+        # Vier kinderen erbij, de ouder eraf: netto drie.
+        tegels_totaal += 3
         wacht.extend((d, diepte + 1) for d in _deel(doos))
     return {"paginas": paginas, "objecten": objecten,
             "tegels": klaar_tegels, "tegels_gedeeld": gedeeld,
@@ -542,7 +546,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
 
     WAAROM NIET MEER PER POSTCODE. PDOK laat postcode niet als filter toe, op
     geen van de zes collecties. Een vraag per postcode kan dus niet. Maar een
-    ronde over de hele doos om Nijmegen kostte gemeten 146,7 seconden voor
+    ronde over het gebied om Nijmegen kostte gemeten 248,4 seconden voor
     164.634 objecten, dus het alternatief is niet duurder maar goedkoper dan de
     1.733 losse vragen die het ooit zouden zijn geweest.
 
@@ -588,10 +592,31 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
     per_postcode = {}
     statussen = {}
     gezien_woning, gezien_anders = set(), set()
+    # Elk object dat deze ronde al door verwerk() is gegaan, ook de objecten
+    # buiten de ring en de historie, want ook die hebben tellers.
+    gezien_alle = set()
 
     def verwerk(kenmerken):
         for k in kenmerken:
             p = k.get("properties") or {}
+
+            # AL GEZIEN DEZE RONDE? HELEMAAL VOORAAN. Een tegel die pagina's
+            # heeft afgeleverd en daarna mislukt wordt in vieren gedeeld en
+            # opnieuw gelopen, dus dezelfde objecten komen nog een keer
+            # voorbij. Stond deze regel verderop, dan liep alles wat ervoor
+            # geteld wordt dubbel op: de statussen, de historie, nog_gevormd
+            # en buiten_de_ring. Dat laatste is onschuldig, maar nog_gevormd
+            # gedeeld door woningen_gezien is een drempel in het
+            # gezondheidsrapport, en dan stond de teller voor en de noemer
+            # achter de dedup. Een deling in een drukke tegel zou die drempel
+            # dan halen zonder dat er iets aan de hand is.
+            ident = str(p.get("identificatie") or "")
+            if ident and ident in gezien_alle:
+                tel["opnieuw_gezien"] += 1
+                continue
+            if ident:
+                gezien_alle.add(ident)
+
             pc = (p.get("postcode") or "").replace(" ", "").upper()
             buurten = pcs.get(pc)
             if not buurten:
@@ -619,14 +644,6 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 # Zonder identificatie is er geen sleutel die niet botst, en
                 # dan is weglaten eerlijker dan terugvallen op het adres.
                 tel["zonder_vbo"] += 1
-                continue
-            # AL GEZIEN DEZE RONDE? Een tegel die halverwege mislukt wordt in
-            # vieren gedeeld en opnieuw gelopen, dus dezelfde objecten komen
-            # dan nog een keer voorbij. Het schrijven zou onschadelijk zijn,
-            # maar de tellingen zouden dubbel oplopen en woningen_gezien is
-            # een getal waar de brief op rekent.
-            if vbo in gezien_woning or vbo in gezien_anders:
-                tel["opnieuw_gezien"] += 1
                 continue
             letter = a.get("huisletter") or ""
             toev = a.get("huisnummertoevoeging") or ""
@@ -712,9 +729,18 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
     # weggooien.
     verwijderd = 0
     if stand["ronde_af"]:
+        # EN ALLEEN BINNEN DE GEVRAAGDE POSTCODES. Zonder deze voorwaarde
+        # wiste "python voorraad_bag.py --buurt Bottendaal" de andere vijf
+        # buurten: die objecten komen binnen als buiten_de_ring, staan niet in
+        # gezien, en zouden dus verdwijnen. Dat commando staat in de docstring
+        # aanbevolen als manier om één buurt te proeven, dus het was een
+        # proefdraai die 22.096 woningen op ongeveer 1.700 zette en dat
+        # commit, zonder dat er iets faalde.
         for lijst, gezien in ((adressen, gezien_woning),
                               (anders, gezien_anders)):
-            for vbo in [v for v in lijst if v not in gezien]:
+            for vbo in [v for v, r in lijst.items()
+                        if v not in gezien
+                        and (r.get("postcode") or "") in pcs]:
                 del lijst[vbo]
                 verwijderd += 1
         # En de postcodes die niet meer in de zeef zitten, zodat de dekking
@@ -1026,7 +1052,83 @@ def proef_tegels():
         afw.append(f"{len(gezien)} objecten gezien in plaats van "
                    f"{TEGELS ** 2 + 3}")
 
-    # 4. EEN TEGEL DIE BLIJFT MISLUKKEN STOPT DE RONDE MET EEN REDEN.
+    # 4. EEN TEGEL DIE MISLUKT NA AL PAGINA'S TE HEBBEN AFGELEVERD. Dit is
+    # wat op 10 oktober werkelijk gebeurde: pagina 123 van 165, dus ná
+    # aflevering. De tegel wordt gedeeld en de al afgeleverde objecten komen
+    # in de kleintjes nog een keer voorbij, dus hier hangt aan of de dedup op
+    # de juiste plek staat. Stond hij verderop, dan liepen de statussen, de
+    # historie en nog_gevormd dubbel op, en nog_gevormd gedeeld door
+    # woningen_gezien is een drempel in het gezondheidsrapport.
+    laat = {"doos": tegels[5], "pagina": 0}
+    # De kinderen van de mislukte tegel leveren hetzelfde object als de ouder
+    # al had afgeleverd. Zo gaat het in het echt ook: een kindtegel ligt in de
+    # ouder, dus de objecten die de ouder al gaf komen opnieuw voorbij. Stond
+    # hier een nieuw object per kind, dan meette deze proef de dedup niet, en
+    # dat was de eerste versie ervan.
+    kinderen = set(_deel(tegels[5]))
+
+    def nep_laat(url, params):
+        doos = (params or {}).get("bbox") or ""
+        if doos in kinderen:
+            return {"features": [{"id": doos, "properties": {
+                "identificatie": "vbo-in-de-stukke-tegel",
+                "postcode": "6521AB",
+                "status": "Verblijfsobject in gebruik",
+                "gebruiksdoel": "woonfunctie", "oppervlakte": 60,
+                "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 99,
+                "pand.href": []}}], "links": []}, ""
+        if doos == laat["doos"]:
+            laat["pagina"] += 1
+            if laat["pagina"] == 1:
+                # Eén object afleveren, met een next-link zodat er een tweede
+                # pagina komt.
+                return {"features": [{"id": doos, "properties": {
+                    "identificatie": "vbo-in-de-stukke-tegel",
+                    "postcode": "6521AB", "status": "Verblijfsobject in "
+                    "gebruik", "gebruiksdoel": "woonfunctie",
+                    "oppervlakte": 60, "openbare_ruimte_naam": "Bottelstraat",
+                    "huisnummer": 99, "pand.href": []}}],
+                        "links": [{"rel": "next", "href": "verder"}]}, ""
+            return {}, ("HTTP 500: querying the features took too long "
+                        "(timeout encountered)")
+        if url == "verder":
+            return {}, "HTTP 500: querying the features took too long"
+        return {"features": [{"id": doos, "properties": {
+            "identificatie": f"vbo-{doos}", "postcode": "6521AB",
+            "status": "Verblijfsobject in gebruik",
+            "gebruiksdoel": "woonfunctie", "oppervlakte": 70,
+            "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 1,
+            "pand.href": []}}], "links": []}, ""
+
+    try:
+        _pagina = nep_laat
+        voorraad_laat = {}
+        uit_laat = fase_bag(voorraad_laat, {"6521AB": ("Bottendaal",)}, 30, {})
+    finally:
+        _pagina = echt_pagina
+    if not uit_laat.get("ronde_ronde_af"):
+        afw.append(f"een tegel die laat mislukt bracht de ronde niet rond: "
+                   f"{uit_laat.get('laatste_fout')}")
+    # De vier kinderen leveren alle vier het object dat de ouder al had
+    # afgeleverd, dus dat hoort vier keer als opnieuw_gezien te worden
+    # overgeslagen en één keer te zijn geteld.
+    if uit_laat.get("opnieuw_gezien") != 4:
+        afw.append(f"opnieuw_gezien is {uit_laat.get('opnieuw_gezien')} in "
+                   f"plaats van 4; dan meet deze proef de dedup niet of staat "
+                   f"de dedup op de verkeerde plek")
+    if uit_laat.get("woningen_gezien") != 16:
+        afw.append(f"woningen_gezien is {uit_laat.get('woningen_gezien')} in "
+                   f"plaats van 16; elk object hoort één keer te tellen, ook "
+                   f"na een deling")
+    # En de tellers die vóór de dedup stonden mogen ook niet dubbel lopen.
+    if (uit_laat.get("statussen") or {}).get(
+            "Verblijfsobject in gebruik") != 16:
+        afw.append(f"de statustelling is "
+                   f"{(uit_laat.get('statussen') or {}).get('Verblijfsobject in gebruik')} "
+                   f"in plaats van 16; dan staat de dedup achter de "
+                   f"statustelling en loopt die dubbel bij een deling")
+
+    # 5. EEN TEGEL DIE BLIJFT MISLUKKEN STOPT DE RONDE MET EEN REDEN.
     def altijd_stuk(url, params):
         return {}, "HTTP 500: querying the features took too long"
 
@@ -1309,10 +1411,11 @@ def proef():
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--uit", default=UIT)
-    # Gemeten op 10 oktober: de objectronde 146,7 seconden over 165 pagina's,
-    # de pandronde 196,5 seconden over 188 pagina's. Tien minuten is dus drie
-    # tot vier keer de gemeten duur, ruim genoeg voor een trage dag en kort
-    # genoeg om niet een half uur te blijven hangen als de dienst hapert.
+    # Gemeten op 10 oktober met tegels: de objectronde 248,4 seconden over 201
+    # pagina's en 22 tegels, de pandronde 247,0 seconden over 228 pagina's en
+    # 19 tegels. Tien minuten is dus ruim twee keer de gemeten duur: genoeg
+    # voor een trage dag en voor een paar delingen, en kort genoeg om niet een
+    # half uur te blijven hangen als de dienst hapert.
     p.add_argument("--bag-minuten", type=float, default=10)
     p.add_argument("--panden-minuten", type=float, default=10)
     p.add_argument("--labels-minuten", type=float, default=45)

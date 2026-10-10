@@ -91,7 +91,7 @@ MIN_OBJECTEN = 20
 # ook dat "onder_woningen" dan stil op 0 blijft staan, omdat de panden met
 # woonfunctie nog niet waren opgehaald.
 #
-# Sinds 10 oktober gaat het ophalen per gebied en is een hele ronde in 146,7
+# Sinds 10 oktober gaat het ophalen per gebied en is een hele ronde in 248,4
 # seconden klaar, dus die geleidelijke opbouw bestaat niet meer. De drempel
 # blijft staan voor het geval dat wél kan gebeuren: een ronde die halverwege
 # afbreekt. Dat is nu ook wat dekking() meet, want de optelsom van opgehaalde
@@ -156,19 +156,21 @@ def dekking(voorraad, inventaris=None):
     gedaan = voorraad.get("postcodes") or {}
     uit = sum(1 for pc in alle if pc in gedaan)
 
-    # DE HUIDIGE RONDE WEEGT MEE, NIET ALLEEN DE OPTELSOM. voorraad["postcodes"]
-    # werd alleen gevuld en stond na één geslaagde ronde permanent op volledig.
-    # Een latere ronde die halverwege afbrak werd daardoor niet meer door deze
-    # drempel opgemerkt, en het getal in de brief was dan een mengsel van verse
-    # en oude records. Breekt de ronde van vandaag af, dan is de dekking die
-    # van die ronde en niet die van de optelsom.
+    # EEN AFGEBROKEN RONDE IS GEEN DEKKING. voorraad["postcodes"] werd alleen
+    # gevuld en stond na één geslaagde ronde permanent op volledig, dus een
+    # latere ronde die halverwege afbrak werd door deze drempel niet meer
+    # opgemerkt en het getal in de brief was een mengsel van verse en oude
+    # records.
+    #
+    # Dit woog eerst met postcodes_gedaan gedeeld door postcodes_nijmegen, en
+    # dat hield geen stand: er zitten ruim achttien woningen in een postcode,
+    # dus na een kwart van de pagina's is bijna elke postcode al één keer
+    # geraakt. Een echte afgebroken ronde (122 van de 165 pagina's) kwam zo op
+    # 98,7% uit en publiceerde gewoon. Dus niet wegen maar weigeren: is de
+    # ronde niet af, dan is er geen dekking om over te publiceren.
     bag = ((voorraad.get("laatste_ronde") or {}).get("bag") or {})
     if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
-        vandaag = bag.get("postcodes_gedaan") or 0
-        totaal = bag.get("postcodes_nijmegen") or bag.get("postcodes_totaal") or 0
-        if totaal:
-            # Dezelfde verhouding, toegepast op dit gebied.
-            uit = min(uit, int(len(alle) * vandaag / totaal))
+        return 0, len(alle)
     return uit, len(alle)
 
 
@@ -427,9 +429,15 @@ def zelftest():
     # opgehaalde postcodes staat na één geslaagde ronde permanent op volledig
     # en zou een afgebroken ronde daarna nooit meer opmerken.
     afgebroken = json.loads(json.dumps(voorraad))
+    # DE ECHTE GETALLEN VAN DE AFGEBROKEN RONDE VAN 10 OKTOBER. Eerst stond
+    # hier 300 van 1.242, en dat is vier keer extremer dan wat er werkelijk
+    # gebeurde: de ronde stopte bij pagina 122 van 165 met 1.228 van de 1.242
+    # postcodes al geraakt, want er zitten ruim achttien woningen in een
+    # postcode. Een proef op een extremer geval dan de werkelijkheid slaagt
+    # terwijl het echte geval erdoor komt.
     afgebroken["laatste_ronde"] = {"bag": {
-        "ronde_paginas": 40, "ronde_ronde_af": False,
-        "postcodes_gedaan": 300, "postcodes_nijmegen": 1242}}
+        "ronde_paginas": 122, "ronde_ronde_af": False,
+        "postcodes_gedaan": 1228, "postcodes_nijmegen": 1242}}
     gestopt = meet(afgebroken, straten=[], inventaris=inv)
     if gestopt.get("meetbaar") is not False:
         print("AFWIJKING: na een afgebroken ronde hoort er geen aantal te "
