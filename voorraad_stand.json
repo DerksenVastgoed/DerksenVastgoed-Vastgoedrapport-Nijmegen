@@ -1,0 +1,24 @@
+{
+ "datum": "2026-10-10",
+ "ronde": {
+  "bag": {
+   "adressen_bijgewerkt": 0,
+   "adressen_nieuw": 0,
+   "fouten": 10,
+   "laatste_fout": "6521AX: HTTP 400",
+   "niet_woningen_bewaard": 0,
+   "niet_woonfunctie": 0,
+   "objecten_met_meer_adressen": 0,
+   "postcodes_gedaan": 0,
+   "postcodes_totaal": 0,
+   "woningen_gezien": 0
+  },
+  "bijgewerkt": "2026-10-10",
+  "stand": {
+   "met_label": 0,
+   "met_oppervlakte": 0,
+   "postcodes_gedaan": 0,
+   "woningen": 0
+  }
+ }
+}
