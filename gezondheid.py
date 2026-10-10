@@ -2060,8 +2060,14 @@ def controle_beleidsduiding():
     # blokken terug zonder dat we HTML hoeven te ontleden.
     blokken = tekst.split('border-left:3px solid #E0A458')[1:]
     if not blokken:
-        return (LET_OP, "beleid_vandaag.md bevat geen enkel blok",
-                "Dan is het bestand wel geschreven maar staat er niets in.")
+        # Sinds de relevantiepoort schrijft bekendmakingen_nijmegen.py dit
+        # bestand alleen nog als er stukken zijn die ons raken; de titels van
+        # de rest staan in beleid_staart.md. Een bestand zonder blok hoort dus
+        # niet te bestaan, en dat is een fout en geen melding.
+        return (FOUT, "beleid_vandaag.md bevat geen enkel blok",
+                "Dit bestand wordt alleen geschreven als er beleid is dat ons "
+                "raakt, dus een bestand zonder blok betekent dat het "
+                "wegschrijven halverwege is gestrand.")
     try:
         from bekendmakingen_nijmegen import GEEN_INHOUD
     except Exception:
@@ -2105,6 +2111,126 @@ def controle_beleidsduiding():
                 "naar de melding 'Beleidsstukken zonder publicatietekst'.")
     return (OK, f"{len(blokken)} {stuk}, {met_duiding} met een duiding die op "
             f"de publicatietekst rust", "")
+
+
+def controle_beleid_in_mail():
+    """
+    Haalt gemeentelijk beleid de mail, of blijft het in een bestand staan?
+
+    Het beleidsblok werd alleen in brief.md gezet, en doordeweeks mailt de
+    workflow bijlage.md; brief.md gaat alleen in de weekeditie mee. Op
+    werkdagen kwam gemeentelijk beleid dus niet in de inbox. Dat bleef maanden
+    onopgemerkt omdat er niets faalde: het blok werd netjes gemaakt en netjes
+    opgeslagen, alleen niet verstuurd. Dat is de zevende keer dat een fout zich
+    als afwezigheid voordeed en niet als melding.
+
+    Daarom toetst dit het verstuurde bestand en niet de workflow. Een
+    voorwaarde in YAML kan opnieuw omvallen zonder dat iets rood wordt; een
+    mail zonder het blok is hier zichtbaar.
+    """
+    vandaag = dt.date.today().isoformat()
+    # DE STAND EERST, EN NIET HET BESTAAN VAN HET BLOK. Een losse beoordelaar
+    # wees erop dat "beleid_vandaag.md bestaat niet" drie dingen kan betekenen:
+    # er was geen beleid, de bekendmakingenstap is omgevallen, of de bron gaf
+    # niets terug. Alleen de eerste is goed nieuws, en de toets las ze alle
+    # drie als OK. beleid_stand.json wordt elke run geschreven, dus een stand
+    # van vandaag bewijst dat de stap heeft gelopen.
+    stand = {}
+    try:
+        with open("beleid_stand.json", encoding="utf-8") as f:
+            stand = json.load(f)
+    except Exception:
+        pass
+    if stand.get("datum") != vandaag:
+        if not os.path.exists("beleid_vandaag.md"):
+            return (LET_OP, "de beleidsstap heeft vandaag niet gelopen",
+                    "Zonder stand van vandaag is niet te zeggen of er geen "
+                    "beleid was of dat de stap Bekendmakingen is omgevallen. "
+                    "Kijk in het logboek van die stap.")
+    elif not stand.get("gevonden"):
+        return (OK, "geen beleidsstuk vandaag gepubliceerd", "")
+    elif not stand.get("raakt_ons"):
+        return (OK, f"{stand['gevonden']} beleidsstukken vandaag, alle "
+                f"{stand['buiten_onderwerp']} buiten ons onderwerp", "")
+    if not os.path.exists("beleid_vandaag.md"):
+        return (FOUT, f"{stand.get('raakt_ons', '?')} beleidsstukken raken ons "
+                f"maar beleid_vandaag.md is er niet",
+                "Het blok is dus niet geschreven terwijl er wel relevante "
+                "stukken waren. Kijk of het wegschrijven in "
+                "bekendmakingen_nijmegen.py een uitzondering gaf.")
+    try:
+        with open("beleid_vandaag.md", encoding="utf-8") as f:
+            blok = f.read()
+    except Exception as e:
+        return (LET_OP, f"beleid_vandaag.md is niet te lezen "
+                f"({type(e).__name__})", "")
+    if "border-left:3px solid #E0A458" not in blok:
+        return (FOUT, "beleid_vandaag.md bestaat maar bevat geen enkel blok",
+                "Het bestand is dus geopend en niet gevuld, bijvoorbeeld "
+                "doordat het schrijven halverwege strandde. Een leeg bestand "
+                "haalt de brief wel en zegt niets.")
+    paden = [(f"digests/{vandaag}-mail.html", "de mail"),
+             (f"digests/{vandaag}-brief.html", "de brief zonder verhaal")]
+    gevonden = [(p, w) for p, w in paden if os.path.exists(p)]
+    if not gevonden:
+        return (OK, "geen verstuurde brief van vandaag om te toetsen", "")
+    mist = []
+    for pad, wat in gevonden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                if "Beleid gemeente Nijmegen" not in f.read():
+                    mist.append(wat)
+        except Exception as e:
+            mist.append(f"{wat} ({type(e).__name__})")
+    if not mist:
+        return (OK, "het beleidsblok staat in "
+                + " en ".join(w for _, w in gevonden), "")
+    return (FOUT, "het beleidsblok staat NIET in " + " en ".join(mist),
+            "Er is wel gemeentelijk beleid gevonden dat ons raakt, maar het "
+            "haalt de inbox niet. Doordeweeks mailt de workflow bijlage.md, "
+            "dus kijk of de stap 'Beleid ook in de dagelijkse bijlage' heeft "
+            "gelopen en of die bijlage van vandaag is.")
+
+
+def controle_plintregel():
+    """
+    Hoe ver de telling van de plintobjecten staat.
+
+    De brief laat dit blok weg zolang er geen betrouwbaar aantal is, want een
+    bestandsnaam of een halve meting hoort niet in een brief aan pa. Maar dan
+    moet Mark wel ergens kunnen zien hoe ver het staat, anders is het stil
+    weglaten net zo onzichtbaar als de fouten die dit project steeds opleverde.
+    Dat is hier.
+    """
+    try:
+        import plintregel
+    except Exception as e:
+        return (FOUT, f"plintregel.py is niet te lezen ({type(e).__name__})",
+                "Dan komt het aantal objecten nooit in de brief.")
+    try:
+        uit = plintregel.meet()
+    except Exception as e:
+        return (FOUT, f"de plinttelling gaf een uitzondering "
+                f"({type(e).__name__}: {str(e)[:60]})",
+                "De stap in de workflow vangt dit op met een lege regel, dus "
+                "de brief gaat wel door, maar het blok ontbreekt.")
+    if not uit.get("meetbaar"):
+        return (LET_OP, f"nog geen aantal: {uit.get('reden', 'onbekend')}",
+                "Zolang dit staat, laat de brief het blok weg. De BAG-fase "
+                "van voorraad_bag.py vult dit, Stadscentrum staat daarin "
+                "alfabetisch achteraan.")
+    kort = (f"{uit['objecten']} plintobjecten in {uit['gebied']}, "
+            f"{uit['volle_50']} groot genoeg voor de volle 50 m2, "
+            f"{uit['onder_woningen']} onder woningen")
+    if uit["gedaan_pc"] < uit["totaal_pc"]:
+        return (LET_OP, kort + f"; {uit['gedaan_pc']} van {uit['totaal_pc']} "
+                f"postcodes opgehaald, dus dit loopt nog op", "")
+    if uit.get("gebied_is_ruimer"):
+        return (LET_OP, kort + "; dit is heel Stadscentrum en niet alleen het "
+                "kernwinkelgebied",
+                f"Zet de straatnamen van het kaartje in "
+                f"{plintregel.GEBIED} en dit wordt de werkelijke telling.")
+    return (OK, kort, "")
 
 
 def controle_voorraad():
@@ -2515,6 +2641,8 @@ CONTROLES = [
     ("Voorraad van de ring", controle_voorraad),
     ("Voet onder de brief", controle_briefvoet),
     ("Duiding bij beleidsstukken", controle_beleidsduiding),
+    ("Beleid haalt de mail", controle_beleid_in_mail),
+    ("Plintobjecten geteld", controle_plintregel),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),

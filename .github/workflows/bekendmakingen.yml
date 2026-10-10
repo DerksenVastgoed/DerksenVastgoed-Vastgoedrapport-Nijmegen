@@ -483,6 +483,30 @@ jobs:
           python splitsing_voltooid.py --tekst "digests/${DATUM}-splitsingen.md" \
             || echo "Splitsingen overgeslagen"
 
+      - name: Hoeveel panden de plintregel raakt
+        continue-on-error: true
+        run: |
+          # De beleidsregel over de eerste bouwlaag in de binnenstad laat
+          # hoogstens 30% van de plint toe met een maximum van 50 m2. Hoeveel
+          # objecten dat raakt volgt uit de niet-woonfunctie in voorraad.json,
+          # die de BAG-fase al meestuurt. Die fase draait verderop in deze run,
+          # dus dit rekent op de stand van de vorige run. Dat is met opzet: de
+          # brief hoeft niet te wachten op een fase van 35 minuten.
+          #
+          # WAAROM HIER WEL EEN TERUGVAL STAAT. Ik had deze stap eerst zonder
+          # terugval neergezet, met het argument dat een mislukking rood hoort
+          # te zijn en niet groen. Een losse beoordelaar wees erop dat deze
+          # stap vóór "Brief samenstellen" en vóór de terugcommitstap loopt, en
+          # dat de mailstappen een `if:` zonder always() hebben. Een niet-nul
+          # exitcode hier betekende dus: geen brief, geen mail naar Mark en
+          # niet naar pa, en alles wat de dure stappen ervoor hadden opgehaald
+          # ongecommit kwijt. Op zondag zou zelfs de stap "Melden dat er geen
+          # brief is" niet vuren, want die hangt aan het werkdagschema. Een
+          # bijblok mag de brief niet tegenhouden. De afwezigheid wordt
+          # gemeld door de toets in gezondheid.py, niet door een dode run.
+          python plintregel.py > plint_vandaag.md || : > plint_vandaag.md
+          wc -c plint_vandaag.md
+
       - name: Brief samenstellen
         continue-on-error: true
         run: |
@@ -533,6 +557,34 @@ jobs:
             fi
             if [ -s beleid_vandaag.md ]; then
               cat beleid_vandaag.md
+              # Het aantal objecten dat de plintregel raakt hoort bij het
+              # beleidsblok: pa leest "er komt een vergunningplicht" en wil in
+              # dezelfde adem weten hoeveel panden dat betreft. Alleen als er
+              # werkelijk een stuk over de plint langskomt, in elke modus
+              # dezelfde voorwaarde. Mijn eerste opzet liet het in de
+              # weekeditie altijd mee, en dan hing "Hoeveel panden dit raakt"
+              # onder de Beleidsregel veilige jaarwisseling.
+              if [ -s plint_vandaag.md ] && grep -qiE \
+                   "bouwlaag|plint|begane grond" beleid_vandaag.md; then
+                cat plint_vandaag.md
+                echo ""
+              fi
+              # De staart als laatste: die gaat over stukken die ons niet
+              # raken, en daar hoort niets onder te hangen.
+              if [ -s beleid_staart.md ]; then
+                cat beleid_staart.md
+              fi
+              echo ""
+              echo "---"
+              echo ""
+            elif [ -s beleid_staart.md ]; then
+              # Alleen beleid buiten ons onderwerp: dan is er geen blok, maar
+              # de titels blijven staan zodat een verkeerd woord in de lijsten
+              # zichtbaar is in de brief zelf.
+              echo ""
+              echo "## Beleid gemeente Nijmegen"
+              echo ""
+              cat beleid_staart.md
               echo ""
               echo "---"
               echo ""
@@ -572,6 +624,60 @@ jobs:
             fi
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
+
+      - name: Beleid ook in de dagelijkse bijlage
+        continue-on-error: true
+        run: |
+          # WAAROM DIT BESTAAT. Het beleidsblok werd alleen in brief.md gezet,
+          # en doordeweeks mailt de stap hieronder bijlage.md; brief.md gaat
+          # alleen in de weekeditie mee. Gemeentelijk beleid kwam dus op
+          # werkdagen niet in de inbox. Dat kwam uit toen de intrekking van de
+          # Beleidsregels omzetting en onttrekking van zelfstandige woonruimte
+          # langskwam, het stuk dat precies over verkamering en splitsen gaat.
+          #
+          # Dubbel komt het er niet in: de mail gebruikt of bijlage.md of
+          # brief.md, nooit beide. In de weekeditie is dit dus overbodig werk
+          # aan een bestand dat niet wordt verstuurd, en dat is goedkoper dan
+          # een voorwaarde die bij een wijziging van de modus omvalt.
+          BIJLAGE="digests/${DATUM}-bijlage.md"
+          if [ ! -s beleid_vandaag.md ] && [ ! -s beleid_staart.md ]; then
+            echo "Geen beleidsstuk vandaag, niets toe te voegen"
+            exit 0
+          fi
+          if [ ! -s "$BIJLAGE" ]; then
+            echo "Geen bijlage van vandaag; beleid staat in de brief"
+            exit 0
+          fi
+          if grep -q "Beleid gemeente Nijmegen" "$BIJLAGE"; then
+            echo "Staat er al in, niets gedaan"
+            exit 0
+          fi
+          # Dezelfde opbouw als in "Brief samenstellen": blok, dan het aantal
+          # objecten als er een plintstuk bij zit, dan de staart. Twee keer
+          # dezelfde volgorde opschrijven is kwetsbaar, maar de ene kant is
+          # shell in een heredoc en de andere kant ook, en een derde bestand
+          # om dit te delen maakt het geheel niet duidelijker.
+          {
+            echo ""
+            echo "---"
+            echo ""
+            echo "## Beleid gemeente Nijmegen"
+            echo ""
+            if [ -s beleid_vandaag.md ]; then
+              # De kop staat al in dat bestand; die hierboven is voor de dag
+              # waarop er alleen een staart is.
+              sed '/^## Beleid gemeente Nijmegen$/d' beleid_vandaag.md
+              if [ -s plint_vandaag.md ] && grep -qiE \
+                   "bouwlaag|plint|begane grond" beleid_vandaag.md; then
+                cat plint_vandaag.md
+                echo ""
+              fi
+            fi
+            if [ -s beleid_staart.md ]; then
+              cat beleid_staart.md
+            fi
+          } >> "$BIJLAGE"
+          grep -c "Beleid gemeente Nijmegen" "$BIJLAGE"
 
       - name: Verhalende brief maken
         env:
