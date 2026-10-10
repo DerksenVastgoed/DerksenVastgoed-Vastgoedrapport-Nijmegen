@@ -150,6 +150,50 @@ def splits(items, alleen_promoveren=False):
     return raakt, overig
 
 
+def verwijzing(beleid, buiten_onderwerp=()):
+    """
+    De regel die altijd in de bijlage komt: welke stukken er vandaag waren.
+
+    WAAROM DIT GEEN BLOK IS. Mark wil het beleid in de brief zelf en niet
+    dubbel. De inhoud staat dus in de brief, en hier staat alleen waar het
+    vandaan komt: de titel, de datum en de bron.
+
+    EN WAAROM HET ER ALTIJD STAAT. Eerst stond hier een blok dat alleen werd
+    toegevoegd als de brief het stuk had overgeslagen, vastgesteld door de
+    titelwoorden in de brief te zoeken. Een losse beoordelaar rekende dat na op
+    de 28 bewaarde brieven: van de 27 keer dat die toets "behandeld" zei, waren
+    er 26 onjuist, en 19 van de 28 brieven zouden een blok stil hebben laten
+    verdwijnen. De oorzaak is niet de afstelling maar het idee: de titels
+    bestaan uit woorden als "woonruimte", "zelfstandige" en "omzetting", en die
+    staan in elke brief over verkamering. Strenger afstellen laat de toets
+    nooit meer aanslaan, losser laat hij stukken verdwijnen.
+
+    Een verwijzing die er altijd staat heeft dat probleem niet. Hij kan niets
+    verbergen, hij is kort, en hij dubbelt de inhoud niet. Dat de brief over
+    een stuk schrijft is aan de brief; dat het stuk vindbaar blijft is aan deze
+    regel.
+    """
+    regels = []
+    for it in beleid:
+        url = (it.get("url") or "").strip()
+        titel = it.get("titel", "")
+        datum = (it.get("datum") or "")[:10]
+        kop = (f'<a href="{url}" style="color:#4a7a72;text-decoration:none">'
+               f'{titel}</a>' if url else titel)
+        regels.append(f"{kop}{f' ({datum})' if datum else ''}")
+    if not regels and not buiten_onderwerp:
+        return ""
+    uit = []
+    if regels:
+        uit.append('<div style="font-size:12px;color:#4a5b63;margin:0 0 6px 0">'
+                   'Gemeentelijk beleid van vandaag, besproken in de brief: '
+                   + "; ".join(regels) + "</div>")
+    staart = staartregel(buiten_onderwerp)
+    if staart:
+        uit.append(staart)
+    return "\n".join(uit) + "\n\n"
+
+
 def staartregel(overig):
     """
     Eén regel onder het beleidsblok met de stukken die ons niet raken.
@@ -169,59 +213,6 @@ def staartregel(overig):
     return (f'<div style="font-size:12px;color:#7a8a92;margin:0 0 12px 0">'
             f'Ook gepubliceerd, buiten ons onderwerp: {len(overig)} {woord}. '
             f'{", ".join(namen)}</div>')
-
-
-# Woorden die in een beleidstitel niets onderscheidend zeggen. Zonder deze
-# lijst zou "Beleidsregels" in elke brief te vinden zijn en zou elk stuk als
-# genoemd gelden.
-LOOS = {
-    "beleidsregel", "beleidsregels", "verordening", "wijzigingsverordening",
-    "gemeente", "nijmegen", "besluit", "aanwijzingsbesluit", "intrekking",
-    "regeling", "subsidieregeling", "nadere", "regels", "ontwerp",
-    "kennisgeving", "digitaal", "toevoegen", "gemeentelijke", "algemene",
-}
-
-# Hoeveel onderscheidende woorden uit de titel in de brief moeten staan voordat
-# we aannemen dat de brief het stuk heeft behandeld. Eén woord is te weinig:
-# "binnenstad" staat in veel brieven.
-MIN_WOORDEN_GENOEMD = 2
-
-
-def kernwoorden(titel):
-    """De onderscheidende woorden uit een beleidstitel."""
-    woorden = re.findall(r"[a-zà-ÿ]{6,}", (titel or "").lower())
-    uit, gezien = [], set()
-    for w in woorden:
-        if w in LOOS or w in gezien:
-            continue
-        gezien.add(w)
-        uit.append(w)
-    return uit
-
-
-def genoemd(brief, titel):
-    """
-    Heeft de brief dit beleidsstuk behandeld?
-
-    WAAROM DIT NODIG IS. Het beleid gaat nu de brief in, zodat het meeloopt in
-    het geheel in plaats van als los blok naast de brief te staan. Maar het
-    model kiest zelf waarover het schrijft, dus het kan een stuk overslaan. Dan
-    moet het blok alsnog in de bijlage komen, anders is het nergens, en
-    afwezigheid is in dit project steeds de fout geweest die niemand zag.
-
-    Dit is een benadering en geen zekerheid: twee onderscheidende woorden uit de
-    titel in de brief betekent niet dat het goed is behandeld. Maar het
-    onderscheidt wel "hij heeft het erover gehad" van "hij heeft het laten
-    liggen", en dat is waarvoor het dient. Een valse treffer kost een blok in
-    de bijlage, een gemiste treffer kost een dubbel vermeld stuk. Beide zijn
-    kleiner dan het stuk helemaal kwijt zijn.
-    """
-    kern = kernwoorden(titel)
-    if not kern:
-        return False
-    tekst = (brief or "").lower()
-    raak = sum(1 for w in kern if w in tekst)
-    return raak >= min(MIN_WOORDEN_GENOEMD, len(kern))
 
 
 # De achttien stukken die sinds september werkelijk in de brief stonden, met de
@@ -311,36 +302,8 @@ def proef():
             print(f"AFWIJKING (weglijst): '{titel[:50]}' gaf {uit} ({reden})")
     print(f"{len(VALKUILEN) + 2} bekende valkuilen: {vk} afwijkend")
 
-    # De toets of de brief een stuk heeft behandeld, op de echte brief van 10
-    # oktober (die het beleidsstuk NIET noemde) en op een brief die het wel
-    # doet.
-    gn = 0
-    titel = "Beleidsregels Woonruimte op de eerste bouwlaag toevoegen binnenstad"
-    if kernwoorden(titel) != ["woonruimte", "eerste", "bouwlaag", "binnenstad"]:
-        print(f"AFWIJKING: kernwoorden gaf {kernwoorden(titel)}")
-        gn += 1
-    gevallen = (
-        (False, "Goedenavond pa, vandaag kwam de Hatertseweg 338 langs met een "
-                "splitsing van een naar zeven woningen."),
-        (True, "De gemeente voert een vergunningplicht in voor woonruimte op de "
-               "eerste bouwlaag in de binnenstad."),
-        # Eén woord is niet genoeg: "binnenstad" staat in veel brieven.
-        (False, "In de binnenstad kwamen deze week drie panden te koop."),
-    )
-    for verwacht, brief in gevallen:
-        uit = genoemd(brief, titel)
-        if uit != verwacht:
-            gn += 1
-            print(f"AFWIJKING (genoemd): '{brief[:55]}' gaf {uit}, "
-                  f"verwacht {verwacht}")
-    # Een titel zonder onderscheidend woord geldt nooit als genoemd, want dan
-    # zou elk stuk met zo'n titel stil uit de bijlage verdwijnen.
-    if genoemd("Beleidsregels gemeente Nijmegen", "Beleidsregels gemeente Nijmegen"):
-        print("AFWIJKING (genoemd): een loze titel hoort niet als genoemd te gelden")
-        gn += 1
-    print(f"{len(gevallen) + 2} toetsen op 'heeft de brief het behandeld': "
-          f"{gn} afwijkend")
-    return fout + vk + gn
+    return fout + vk
+
 
 
 if __name__ == "__main__":

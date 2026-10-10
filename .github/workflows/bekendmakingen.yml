@@ -556,13 +556,12 @@ jobs:
               rm -f regelgeving_wijzigingen.md
             fi
             # HIER STAAT GEEN BELEIDSBLOK MEER. Gemeentelijk beleid gaat de
-            # brief zelf in: beleid_vandaag.md staat in de bronnen die
+            # brief zelf in: beleid_brieftekst.md staat in de bronnen die
             # brief_verhalend.py krijgt, met een eigen tussenkopje. Zo leest de
             # brief als geheel in plaats van met een los blok ernaast.
-            # Wat de brief overslaat komt alsnog in de bijlage terecht, via de
-            # stap "Beleid dat de brief oversloeg" die na het schrijven loopt
-            # en beleid_rest.md achter dit bestand plakt. Een stuk staat dus
-            # precies één keer in de mail.
+            # Onder de bijlage komt alleen een verwijzing met titel, datum en
+            # bron, via de stap "Verwijzing naar het beleid onder de bijlage".
+            # De inhoud staat dus één keer in de mail, in de brief.
             if [ -s "digests/${DATUM}-rente.md" ]; then
               cat "digests/${DATUM}-rente.md"
               echo ""
@@ -630,34 +629,35 @@ jobs:
             python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': True, 'reden': ''}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
           fi
 
-      - name: Beleid dat de brief oversloeg
+      - name: Verwijzing naar het beleid onder de bijlage
         continue-on-error: true
         run: |
-          # Beleid gaat de brief zelf in, want Mark wil geen los blok naast een
-          # brief die als geheel hoort te lezen. Maar het model kiest zelf
-          # waarover het schrijft, en een stuk dat het overslaat zou dan
-          # nergens staan. Dat is precies de fout die in dit project zeven keer
-          # is voorgekomen: niet een melding die misgaat, maar iets dat wordt
-          # gemaakt en niet opgeleverd.
+          # De inhoud van een beleidsstuk staat in de brief zelf; hier gaat
+          # alleen de verwijzing: titel, datum, bron. Zo staat het niet dubbel
+          # en kan het ook niet wegvallen.
           #
-          # Dit script kijkt dus na het schrijven welke stukken de brief
-          # werkelijk heeft behandeld, en zet alleen de overgeslagen stukken
-          # plus de staartregel in beleid_rest.md. Daarna gaat dat achter beide
-          # bijlagen, want in dagelijkse modus mailt de volgende stap
-          # bijlage.md en in de weekeditie brief.md. Een stuk staat zo precies
-          # één keer in de mail.
-          python beleid_plaatsen.py --brief "digests/${DATUM}-verhaal.md" \
-            || echo "Beleidsplaatsing overgeslagen"
-          if [ -s beleid_rest.md ]; then
-            for DOEL in "digests/${DATUM}-bijlage.md" "digests/${DATUM}-brief.md"; do
-              if [ -s "$DOEL" ] && ! grep -q "Beleid gemeente Nijmegen" "$DOEL"; then
-                { echo ""; echo "---"; echo ""; cat beleid_rest.md; } >> "$DOEL"
-                echo "Toegevoegd aan $DOEL"
-              fi
-            done
-          else
-            echo "Niets voor de bijlage: de brief heeft het beleid opgepakt"
+          # WAT HIER EERST STOND. Een script dat uit de titelwoorden afleidde
+          # of de brief een stuk had behandeld, en alleen de overgeslagen
+          # stukken als blok toevoegde. Een losse beoordelaar rekende dat na op
+          # de 28 bewaarde brieven: van de 27 keer dat die toets "behandeld"
+          # zei waren er 26 onjuist, en 19 van de 28 brieven zouden een blok
+          # stil hebben laten verdwijnen. Dat is niet af te stellen: de titels
+          # bestaan uit woorden als "woonruimte" en "zelfstandige", en die
+          # staan in elke brief over verkamering. Een verwijzing die er altijd
+          # staat kan niets verbergen en hoeft niets te raden.
+          #
+          # Beide bestanden, want dagelijks mailt de volgende stap bijlage.md
+          # en in de weekeditie brief.md. Nooit beide in één mail.
+          if [ ! -s beleid_verwijzing.md ]; then
+            echo "Geen beleid vandaag, geen verwijzing"
+            exit 0
           fi
+          for DOEL in "digests/${DATUM}-bijlage.md" "digests/${DATUM}-brief.md"; do
+            if [ -s "$DOEL" ] && ! grep -q "Beleid gemeente Nijmegen" "$DOEL"; then
+              { echo ""; echo "---"; echo ""; cat beleid_verwijzing.md; } >> "$DOEL"
+              echo "Verwijzing toegevoegd aan $DOEL"
+            fi
+          done
 
       - name: Brief en bijlage samenvoegen tot een HTML
         continue-on-error: true
