@@ -61,6 +61,17 @@ jobs:
       - name: Dependencies installeren
         run: pip install requests
 
+      - name: TIJDELIJK inventaris verversen en terugcommitten
+        continue-on-error: true
+        run: |
+          python buurtinventaris.py --proef
+          python buurtinventaris.py 2>&1 | tee inventaris_log.md
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f buurtinventaris.json inventaris_log.md
+          git commit -q -m "Inventaris met gemeentefilter" || echo niets
+          git push -q origin HEAD:"${GITHUB_REF_NAME}" || echo "push mislukt"
+
       - name: De zeef nameten voordat er iets wordt opgehaald
         # EERST DE PROEF, DAN HET WERK. Twee keer op 10 oktober leverde een
         # aanname over de vorm van een veld een lege voorraad op zonder dat er
