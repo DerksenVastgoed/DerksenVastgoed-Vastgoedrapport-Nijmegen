@@ -1028,6 +1028,20 @@ def _beleid_versoepeling(brief):
         r"|staat .{0,25}(?:toe|toegestaan)|opent de deur|stimuleer"
         r"|moedigt .{0,15}aan|komt er .{0,25}bij|wordt mogelijk"
         r"|maakt .{0,40}mogelijk|zonder vergunning")
+    # EN NIET AFGAAN OP EEN ZIN DIE HET JUIST ONTKENT. De brief van 10 oktober
+    # schreef: "De titel klinkt alsof het makkelijker wordt, maar het is het
+    # omgekeerde: wie in het kernwinkelgebied een woning op de begane grond wil
+    # toevoegen, heeft daarvoor voortaan een vergunning nodig." Dat is precies
+    # wat de brief hoort te doen, en deze toets meldde het als onwaarheid.
+    #
+    # Dezelfde fout als bij controle_samenstelling eerder deze week: een toets
+    # die correct gedrag afstraft. Dat is erger dan een gemiste onwaarheid,
+    # want dan leer je het rapport te negeren.
+    ontkenning = (r"omgekeerde|tegendeel|juist niet|niet makkelijker"
+                  r"|niet eenvoudiger|klinkt alsof|lijkt alsof|suggereert"
+                  r"|in werkelijkheid|schijn|maar het is|terwijl .{0,40}"
+                  r"(?:vergunning|verbod|beschermen|plicht)")
+
     # De zin zelf teruggeven en niet True: controle_verzonnen_beweringen()
     # zet de vondst in het rapport, zodat Mark ziet wat er werkelijk stond.
     #
@@ -1039,6 +1053,8 @@ def _beleid_versoepeling(brief):
     for zin in re.split(r"(?<=[.!?])\s+", brief):
         z = zin.lower()
         if not re.search(onderwerp, z):
+            continue
+        if re.search(ontkenning, z):
             continue
         m = re.search(versoepeling, z)
         if m:
@@ -2478,11 +2494,37 @@ def controle_voorraad():
         if not postcodes:
             return (OK, "voorraad nog niet opgehaald en nog geen postcodes om "
                     "het mee te doen", "")
+        # DE REDEN ERBIJ, UIT HET STANDSBESTAND. Op 10 oktober liep de BAG-fase
+        # 35 minuten met een geldige sleutel en kwam er niets uit, en deze regel
+        # kon alleen "voorraad nog leeg" melden. De reden stond in de uitkomst
+        # van die fase, en die werd weggegooid omdat voorraad.json niet wordt
+        # overschreven als er niets is opgehaald. Sindsdien schrijft
+        # voorraad_bag.py de stand altijd apart weg, juist voor dit geval.
+        stand = (_json("voorraad_stand.json") or {}).get("ronde") or {}
+        bag = stand.get("bag") or {}
+        if bag.get("fouten"):
+            return (FOUT, f"voorraad leeg na {bag['fouten']} mislukte "
+                    f"BAG-aanroepen: {bag.get('laatste_fout', 'onbekend')}",
+                    "De sleutel wordt nu wel meegegeven, dus dit is de "
+                    "aanroep zelf. Vergelijk de parameters in haal_postcode() "
+                    "met de aanroep in marktprijzen_bag.py, die dezelfde BAG "
+                    "al weken bevraagt. De fase stopt sinds 10 oktober na tien "
+                    "mislukkingen op rij in plaats van het hele budget vol te "
+                    "lopen.")
+        if bag.get("niet_woningen_bewaard"):
+            return (FOUT, f"geen enkele woning herkend, wel "
+                    f"{bag['niet_woningen_bewaard']} andere adressen",
+                    "De BAG antwoordt dus wel. Dan heet het veld "
+                    "gebruiksdoelen anders of is het anders opgebouwd dan "
+                    "_is_woning() aanneemt. Die records zijn bewaard, dus kijk "
+                    "in voorraad.json onder niet_woningen hoe ze er werkelijk "
+                    "uitzien.")
         return (LET_OP, f"voorraad nog leeg terwijl er {postcodes} postcodes "
                 f"klaarstaan",
                 "De stap 'Oppervlakte en gebruiksdoel van de hele voorraad' "
-                "draait in de weekeditie en bij een handmatige start. Levert "
-                "hij niets op, kijk dan of BAG_API_KEY nog geldig is.")
+                "draait op werkdagen en bij een handmatige start. Levert hij "
+                "niets op, kijk dan in voorraad_stand.json wat de laatste "
+                "ronde heeft gedaan.")
     met_opp = sum(1 for r in adressen.values() if r.get("oppervlakte"))
     met_label = sum(1 for r in adressen.values() if r.get("label"))
     nog = sum(1 for r in adressen.values()
