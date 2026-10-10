@@ -5,7 +5,7 @@
    "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
    "fouten": 10,
-   "laatste_fout": "6521AX: HTTP 400",
+   "laatste_fout": "6521AX: HTTP 400: Minimale combinatie van parameters moet worden opgegeven. Bad request. paramsCombination",
    "niet_woningen_bewaard": 0,
    "niet_woonfunctie": 0,
    "objecten_met_meer_adressen": 0,
