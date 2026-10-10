@@ -114,6 +114,18 @@ DOOS = "5.75,51.76,5.98,51.90"
 # zonder dat er iets faalt.
 NIET_BESTAAND = ("ingetrokken", "niet gerealiseerd", "ten onrechte opgevoerd")
 
+# IN HOEVEEL TEGELS DE DOOS WORDT GEDEELD. Vier bij vier is zestien tegels,
+# gemiddeld ruim tienduizend objecten per tegel bij de 164.634 die er in de
+# hele doos staan. Dat is ongeveer elf pagina's per tegel, en zo diep
+# doorbladeren hield PDOK wel vol. In één doos ging het de tweede keer mis bij
+# pagina 123 van 165.
+TEGELS = 4
+
+# Een tegel die het alsnog niet haalt wordt in vieren gedeeld. Drie keer delen
+# maakt van één tegel maximaal 64 kleintjes, en dan is de vraag zo eenvoudig
+# dat de oorzaak ergens anders ligt dan in de omvang.
+MAX_DELINGEN = 3
+
 # GEEN BAG-SLEUTEL MEER. De BAG-API van het Kadaster weigert een postcode
 # zonder huisnummer, dus die route is vervallen; PDOK vraagt geen sleutel. De
 # sleutel stond hier nog en werd nergens gebruikt, en de workflow geeft hem
@@ -316,58 +328,139 @@ def _normaliseer(p):
     }
 
 
-def doorloop(collectie, budget, per_pagina):
+def _deel(doos):
+    """Een doos in vier gelijke dozen."""
+    x1, y1, x2, y2 = [float(v) for v in doos.split(",")]
+    mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+    return [f"{a:.6f},{b:.6f},{c:.6f},{d:.6f}" for a, b, c, d in
+            ((x1, y1, mx, my), (mx, y1, x2, my),
+             (x1, my, mx, y2), (mx, my, x2, y2))]
+
+
+def _raster(doos, n):
+    """Een doos in n bij n gelijke dozen, van links naar rechts."""
+    x1, y1, x2, y2 = [float(v) for v in doos.split(",")]
+    bx, by = (x2 - x1) / n, (y2 - y1) / n
+    uit = []
+    for i in range(n):
+        for j in range(n):
+            uit.append(f"{x1 + i * bx:.6f},{y1 + j * by:.6f},"
+                       f"{x1 + (i + 1) * bx:.6f},{y1 + (j + 1) * by:.6f}")
+    return uit
+
+
+def _tegel(collectie, doos, per_pagina, stoppen):
     """
-    Alle kenmerken van een PDOK-collectie in DOOS, pagina voor pagina.
+    Eén tegel doorbladeren. Geeft (gelukt, paginas, objecten, reden) terug.
 
-    per_pagina(kenmerken) krijgt elke pagina zodra hij binnen is, zodat een
-    ronde die halverwege afbreekt niet alles verliest wat er al was.
-
-    WAAROM GEEN CURSOR BEWAARD WORDT. Een hele ronde over de doos kostte op 10
-    oktober 120,8 seconden. Hervatten over meer runs is dus niet nodig, en een
-    bewaarde cursor zou een stand zijn die kan verlopen terwijl niemand merkt
-    dat hij verlopen is. Opnieuw beginnen is hier goedkoper dan onthouden.
-
-    Geeft een dict met de stand terug; de fout staat erin en wordt niet
-    opgeworpen, want een mislukte ronde moet zijn reden bewaren.
+    stoppen() zegt of het tijdbudget om is. Werpt niets op: een mislukking
+    moet haar reden meenemen, want die bepaalt of de tegel wordt gedeeld.
     """
-    start = time.time()
     url = f"{PDOK}/{collectie}/items"
-    params = {"f": "json", "limit": PDOK_LIMIT, "bbox": DOOS}
+    params = {"f": "json", "limit": PDOK_LIMIT, "bbox": doos}
     paginas = objecten = 0
-    fout = ""
-    klaar = False
     while True:
-        if time.time() - start > budget:
-            fout = (f"tijdbudget van {budget:.0f}s om na {paginas} pagina's; "
-                    f"de ronde is niet af")
-            break
+        if stoppen():
+            return False, paginas, objecten, "tijdbudget om"
         body, reden = _pagina(url, params)
+        if reden and "netwerk" in reden:
+            # Eén herkansing bij een netwerkhapering. Bij een antwoord van de
+            # dienst zelf heeft herhalen geen zin; dan is delen het antwoord.
+            time.sleep(2)
+            body, reden = _pagina(url, params)
         if reden:
-            fout = f"pagina {paginas + 1}: {reden}"
-            break
+            return False, paginas, objecten, reden
         kenmerken = body.get("features")
         if kenmerken is None:
-            fout = ("geen features in het antwoord; velden: "
+            return (False, paginas, objecten,
+                    "geen features in het antwoord; velden: "
                     + ", ".join(sorted(body)[:8]))
-            break
         paginas += 1
         objecten += len(kenmerken)
         try:
             per_pagina(kenmerken)
         except Exception as e:
-            fout = f"verwerken van pagina {paginas} mislukte: {e}"
-            break
+            return False, paginas, objecten, f"verwerken mislukte: {e}"
         volgende = next((l.get("href") or "" for l in (body.get("links") or [])
                          if l.get("rel") == "next"), "")
         if not volgende:
-            klaar = True
-            break
+            return True, paginas, objecten, ""
         url, params = volgende, None
         time.sleep(TEMPO_PDOK)
+
+
+def doorloop(collectie, budget, per_pagina):
+    """
+    Alle kenmerken van een PDOK-collectie in DOOS, tegel voor tegel.
+
+    per_pagina(kenmerken) krijgt elke pagina zodra hij binnen is, zodat een
+    ronde die halverwege afbreekt niet alles verliest wat er al was.
+
+    WAAROM IN TEGELS EN NIET IN ÉÉN DOOS. Eerst ging dit in één doos. Dat
+    lukte de eerste keer (165 pagina's, 164.634 objecten, 146,7 seconden) en
+    de tweede keer niet: PDOK antwoordde op pagina 123 met HTTP 500, "querying
+    the features took too long (timeout encountered). Simplify your request
+    and try again". Diep doorbladeren in een verzameling van ruim 160.000
+    objecten zit dus aan de rand van wat de dienst volhoudt, en of het lukt is
+    wisselvallig. Dat is het ergste soort grens: hij valt soms weg en laat dan
+    een voorraad achter die voor driekwart klopt.
+
+    "Simplify your request" is letterlijk het antwoord. Een kleinere doos is
+    een eenvoudiger vraag, dus de ronde gaat per tegel. En een tegel die het
+    alsnog niet haalt wordt in vieren gedeeld en opnieuw geprobeerd, tot
+    MAX_DELINGEN diep. Dat stelt zich zelf in op de werkelijke dichtheid: de
+    binnenstad is druk en de uiterwaarden zijn leeg, en dat hoef ik dan niet
+    te weten.
+
+    WAAROM GEEN CURSOR BEWAARD WORDT. Een hele ronde kost twee tot drie
+    minuten. Hervatten over meer runs is dus niet nodig, en een bewaarde
+    cursor zou een stand zijn die kan verlopen terwijl niemand merkt dat hij
+    verlopen is. Opnieuw beginnen is hier goedkoper dan onthouden.
+
+    Geeft een dict met de stand terug; de fout staat erin en wordt niet
+    opgeworpen, want een mislukte ronde moet zijn reden bewaren.
+    """
+    start = time.time()
+
+    def stoppen():
+        return time.time() - start > budget
+
+    wacht = [(t, 0) for t in _raster(DOOS, TEGELS)]
+    tegels_totaal = len(wacht)
+    paginas = objecten = gedeeld = klaar_tegels = 0
+    fout = ""
+    while wacht:
+        if stoppen():
+            fout = (f"tijdbudget van {budget:.0f}s om na {klaar_tegels} van de "
+                    f"{tegels_totaal} tegels; de ronde is niet af")
+            break
+        doos, diepte = wacht.pop()
+        gelukt, p, o, reden = _tegel(collectie, doos, per_pagina, stoppen)
+        paginas += p
+        objecten += o
+        if gelukt:
+            klaar_tegels += 1
+            continue
+        if "tijdbudget" in reden:
+            fout = (f"tijdbudget van {budget:.0f}s om in tegel {doos} na "
+                    f"{klaar_tegels} van de {tegels_totaal} tegels")
+            break
+        if diepte >= MAX_DELINGEN:
+            fout = (f"tegel {doos} bleef mislukken na {diepte} delingen: "
+                    f"{reden}")
+            break
+        # DELEN EN OPNIEUW. De objecten die deze tegel al heeft afgeleverd
+        # komen in de kleinere tegels nog een keer voorbij. Dat is geen
+        # probleem: fase_bag slaat een object over dat hij deze ronde al zag,
+        # dus de tellingen blijven kloppen en het schrijven is onschadelijk.
+        gedeeld += 1
+        tegels_totaal += 4
+        wacht.extend((d, diepte + 1) for d in _deel(doos))
     return {"paginas": paginas, "objecten": objecten,
+            "tegels": klaar_tegels, "tegels_gedeeld": gedeeld,
+            "tegels_over": len(wacht),
             "seconden": round(time.time() - start, 1),
-            "ronde_af": klaar, "fout": fout}
+            "ronde_af": not wacht and not fout, "fout": fout}
 
 
 def _pagina(url, params):
@@ -491,7 +584,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
     tel = {"nieuw": 0, "bijgewerkt": 0, "onveranderd": 0, "woningen": 0,
            "overig": 0, "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
            "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
-           "zonder_vbo": 0, "van_soort_gewisseld": 0}
+           "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0}
     per_postcode = {}
     statussen = {}
     gezien_woning, gezien_anders = set(), set()
@@ -526,6 +619,14 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 # Zonder identificatie is er geen sleutel die niet botst, en
                 # dan is weglaten eerlijker dan terugvallen op het adres.
                 tel["zonder_vbo"] += 1
+                continue
+            # AL GEZIEN DEZE RONDE? Een tegel die halverwege mislukt wordt in
+            # vieren gedeeld en opnieuw gelopen, dus dezelfde objecten komen
+            # dan nog een keer voorbij. Het schrijven zou onschadelijk zijn,
+            # maar de tellingen zouden dubbel oplopen en woningen_gezien is
+            # een getal waar de brief op rekent.
+            if vbo in gezien_woning or vbo in gezien_anders:
+                tel["opnieuw_gezien"] += 1
                 continue
             letter = a.get("huisletter") or ""
             toev = a.get("huisnummertoevoeging") or ""
@@ -658,6 +759,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
         "nog_gevormd": tel["gevormd"],
         "zonder_adres": tel["zonder_adres"],
         "zonder_vbo": tel["zonder_vbo"],
+        "opnieuw_gezien": tel["opnieuw_gezien"],
         # ALLE OBJECTEN EN NIET ALLEEN DE WONINGEN, want de teller
         # wordt ook voor winkels verhoogd. Heette dit woningen_met_pand, dan
         # deelde het gezondheidsrapport door het verkeerde getal en kwam er
@@ -844,6 +946,102 @@ PROEF_KENMERKEN = [
         "pand.href": ["https://api.pdok.nl/kadaster/bag/ogc/v2/collections/"
                       "pand/items/uuid-onbekend"]}},
 ]
+
+
+def proef_tegels():
+    """
+    De tegelindeling en het delen nameten, zonder netwerk.
+
+    Dit is de code die op 10 oktober nieuw was omdat PDOK in één doos een
+    eigen timeout gaf. Wat hier misgaat is niet te zien aan een foutmelding
+    maar aan een gat in de dekking: een tegel die wordt overgeslagen of een
+    strook tussen twee tegels waar niemand kijkt.
+    """
+    global _pagina
+    afw = []
+
+    # 1. HET RASTER DEKT DE DOOS PRECIES. Geen gaten en geen overlap.
+    tegels = _raster(DOOS, TEGELS)
+    if len(tegels) != TEGELS * TEGELS:
+        afw.append(f"{len(tegels)} tegels in plaats van {TEGELS ** 2}")
+    x1, y1, x2, y2 = [float(v) for v in DOOS.split(",")]
+    oppervlak = sum((float(t.split(",")[2]) - float(t.split(",")[0]))
+                    * (float(t.split(",")[3]) - float(t.split(",")[1]))
+                    for t in tegels)
+    if abs(oppervlak - (x2 - x1) * (y2 - y1)) > 1e-9:
+        afw.append(f"de tegels dekken {oppervlak} en de doos "
+                   f"{(x2 - x1) * (y2 - y1)}; dan zit er een gat of overlap "
+                   f"in en vallen er adressen buiten elke tegel")
+    hoeken = [[float(v) for v in t.split(",")] for t in tegels]
+    if (abs(min(h[0] for h in hoeken) - x1) > 1e-9
+            or abs(max(h[2] for h in hoeken) - x2) > 1e-9
+            or abs(min(h[1] for h in hoeken) - y1) > 1e-9
+            or abs(max(h[3] for h in hoeken) - y2) > 1e-9):
+        afw.append("de buitenrand van het raster is niet die van de doos")
+
+    # 2. DELEN DEKT DE OUDERTEGEL PRECIES.
+    ouder = "5.0,51.0,6.0,52.0"
+    vier = _deel(ouder)
+    if len(vier) != 4:
+        afw.append(f"_deel gaf {len(vier)} dozen")
+    opp4 = sum((float(t.split(",")[2]) - float(t.split(",")[0]))
+               * (float(t.split(",")[3]) - float(t.split(",")[1]))
+               for t in vier)
+    if abs(opp4 - 1.0) > 1e-9:
+        afw.append(f"vier delen dekken {opp4} in plaats van 1,0")
+
+    echt_pagina = _pagina
+    stuk = {"doos": tegels[5]}
+
+    def nep_pagina(url, params):
+        """Elke tegel levert één object, behalve één tegel die PDOK's
+        eigen timeout geeft zolang hij zo groot is."""
+        doos = (params or {}).get("bbox") or ""
+        if doos == stuk["doos"]:
+            return {}, ("HTTP 500: Internal Server Error failed to retrieve "
+                        "feature collection verblijfsobject: querying the "
+                        "features took too long (timeout encountered)")
+        return {"features": [{"id": doos, "properties": {}}], "links": []}, ""
+
+    try:
+        _pagina = nep_pagina
+        gezien = []
+        stand = doorloop("verblijfsobject", 30,
+                         lambda ks: gezien.extend(ks))
+    finally:
+        _pagina = echt_pagina
+
+    # 3. EEN MISLUKTE TEGEL WORDT GEDEELD EN DE RONDE KOMT ALSNOG ROND.
+    if not stand["ronde_af"]:
+        afw.append(f"de ronde kwam niet rond terwijl alleen één tegel "
+                   f"haperde: {stand['fout']}")
+    if stand["tegels_gedeeld"] != 1:
+        afw.append(f"{stand['tegels_gedeeld']} delingen in plaats van 1")
+    if stand["tegels"] != TEGELS * TEGELS - 1 + 4:
+        afw.append(f"{stand['tegels']} tegels gelukt in plaats van "
+                   f"{TEGELS ** 2 + 3}")
+    # De vier kleintjes samen moeten precies de mislukte tegel dekken, dus
+    # geen enkel adres in die tegel mag ongezien blijven.
+    if len(gezien) != TEGELS * TEGELS - 1 + 4:
+        afw.append(f"{len(gezien)} objecten gezien in plaats van "
+                   f"{TEGELS ** 2 + 3}")
+
+    # 4. EEN TEGEL DIE BLIJFT MISLUKKEN STOPT DE RONDE MET EEN REDEN.
+    def altijd_stuk(url, params):
+        return {}, "HTTP 500: querying the features took too long"
+
+    try:
+        _pagina = altijd_stuk
+        hard = doorloop("verblijfsobject", 30, lambda ks: None)
+    finally:
+        _pagina = echt_pagina
+    if hard["ronde_af"]:
+        afw.append("een tegel die altijd mislukt leverde toch een afgeronde "
+                   "ronde op; dan wordt er verwijderd op een halve meting")
+    if "delingen" not in (hard["fout"] or ""):
+        afw.append(f"de reden noemt het delen niet: {hard['fout']!r}")
+
+    return afw
 
 
 def proef():
@@ -1090,6 +1288,8 @@ def proef():
                            "ander bestand op; dan groeit de repo per run "
                            "met het hele bestand")
 
+    afwijkingen.extend(proef_tegels())
+
     for a in afwijkingen:
         print(f"AFWIJKING: {a}", file=sys.stderr)
     # GEEN AANTAL CONTROLES MEER. Dat getal stond er eerst bij en was fout,
@@ -1101,7 +1301,8 @@ def proef():
           f"pandsleutel, beide buurten bij een dubbele postcode, verwijderen "
           f"na een afgemaakte ronde, niets verwijderen na een afgebroken "
           f"ronde, wisselen tussen woning en niet-woning, en twee gelijke "
-          f"rondes die hetzelfde bestand opleveren.", file=sys.stderr)
+          f"rondes die hetzelfde bestand opleveren, en het raster met "
+          f"het delen van een tegel die PDOK niet aankan.", file=sys.stderr)
     return 1 if afwijkingen else 0
 
 
