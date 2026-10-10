@@ -50,8 +50,11 @@ Benedenstad gold als het uiterste bewijs dat een adres geen woning is, 5.098
 adressen tegen 1.639 woningen van het CBS. Dat was geen eigenaardigheid van
 Benedenstad maar 62 procent vervuiling: 1.911 tegen 1.639 is gewoon
 plausibel. En Stadscentrum liep tegen de grens van tienduizend aan met 11.975,
-maar werkelijk zijn het er 7.357, dus die grens wordt niet meer geraakt en de
-tweede ronde per straat zal niet meer afgaan. Die blijft staan als
+maar werkelijk zijn het er 7.357. Daarmee wordt de grens van Solr niet meer
+geraakt. De eigen noodrem MAX_PER_BUURT stond op vijfduizend en werd door
+Stadscentrum en Biezen nog wel geraakt, en die is daarom naar 9.500 gezet:
+nu past elke buurt in één ronde, is die ronde compleet, en gaat de tweede
+ronde per straat met haar bekende gat niet meer af. Hij blijft staan als
 vangnet, niet als vaste werkwijze.
 
 Daarom haalt dit script nu twee dingen op, en geen adressen meer. Het aantal
@@ -88,10 +91,21 @@ GESCHIEDENIS = "pandgeschiedenis.json"
 # Honderd per vraag is wat de locatieserver aan een gewone zoekopdracht geeft.
 PER_VRAAG = 100
 
-# Noodrem tegen een eindeloze lus. Een Nijmeegse buurt heeft een paar honderd
-# postcodes; vijfduizend is ruim en blijft onder de grens die Solr aan diep
-# doorbladeren stelt.
-MAX_PER_BUURT = 5000
+# Noodrem tegen een eindeloze lus, en niet de grens van de dienst zelf. Solr
+# stopt bij tienduizend; dit blijft daaronder.
+#
+# WAAROM DIT VAN VIJFDUIZEND OMHOOG IS. Met het gemeentefilter erbij is de
+# grootste buurt Stadscentrum met 7.357 adressen en de tweede Biezen met
+# 6.083. Op vijfduizend raakten die twee dus de noodrem, en dan gaat de tweede
+# ronde per straat af. Die ronde heeft een bekend gat: een straat die volledig
+# buiten de eerste ronde viel komt er niet in voor, want de straatnamen komen
+# uit de eerste ronde. Met 9.500 past elke buurt in één ronde en is die ronde
+# compleet, en blijft de noodrem bestaan voor het geval een buurt ooit groeit.
+#
+# Zonder het filter was Stadscentrum 11.975 en liep hij ook tegen de grens van
+# Solr aan: 11.975 gemeld, 10.100 geleverd. Dat is dus twee keer hetzelfde
+# probleem, en de vervuiling was in beide gevallen de oorzaak.
+MAX_PER_BUURT = 9500
 
 
 def buurten_lijst():
