@@ -2562,6 +2562,54 @@ def controle_voorraad():
                     + (f", laatste: {laatste}" if laatste else ""),
                     "Bij een geweigerde sleutel of een 429 stopt de fase "
                     "meteen en gaat hij de volgende run verder.")
+
+    # IS DE RONDE WEL AF? De voorraad komt sinds 10 oktober uit één ronde over
+    # een doos om Nijmegen. Breekt die ronde halverwege af, dan staat er een
+    # voorraad die klopt voor het deel dat gelezen is en stil te laag is voor
+    # de rest. Dat is niet aan het aantal woningen te zien, alleen hieraan.
+    bag = ronde.get("bag") or {}
+    if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
+        return (FOUT, bewijs + f"; de ronde over het gebied is niet afgemaakt "
+                f"na {bag['ronde_paginas']} pagina's",
+                "Dan is de voorraad te laag voor het deel dat niet gelezen is, "
+                "en dat is aan het aantal niet te zien. Verhoog "
+                "--bag-minuten of kijk in voorraad_stand.json waarom de ronde "
+                "stopte. Een hele ronde kostte gemeten 120,8 seconden.")
+
+    # LEGE POSTCODES. Dit is de controle op de doos: raakt hij de ring ergens
+    # niet, dan blijven de postcodes daar leeg. Een te kleine doos faalt
+    # daarmee hier en mist niet stil adressen.
+    leeg = bag.get("postcodes_leeg") or 0
+    totaal = bag.get("postcodes_totaal") or 0
+    if totaal and leeg > totaal * 0.35:
+        return (LET_OP, bewijs + f"; {leeg} van de {totaal} postcodes leverden "
+                f"geen enkel object",
+                "Voorbeelden staan in voorraad_stand.json onder "
+                "postcodes_leeg_voorbeeld. Twee verklaringen zijn mogelijk: de "
+                "doos in voorraad_bag.py raakt een deel van de ring niet, of "
+                "de inventaris bevat postcodes waar de BAG geen "
+                "verblijfsobject heeft staan, bijvoorbeeld postbussen. Het "
+                "eerste is te zien doordat de lege postcodes bij elkaar "
+                "liggen, het tweede doordat ze verspreid zijn.")
+
+    panden = ronde.get("panden") or {}
+    if panden and not panden.get("omzettingen"):
+        return (LET_OP, bewijs + "; geen enkele pandsleutel omgezet naar een "
+                "BAG-identificatie",
+                "Dan staat het veld pand leeg in de hele voorraad en sluit "
+                "voorraad.json niet aan op pandgeschiedenis.json. De reden "
+                "staat in voorraad_stand.json onder panden.fout. Leeg is hier "
+                "met opzet: een uuid in dat veld zou op een pandidentificatie "
+                "lijken en nergens op aansluiten.")
+    zonder = bag.get("zonder_pandsleutel") or 0
+    if zonder and bag.get("woningen_gezien"):
+        deel = zonder / max(bag["woningen_gezien"], 1)
+        if deel > 0.10:
+            return (LET_OP, bewijs + f"; {zonder} objecten hadden een pand dat "
+                    f"niet in de omzetting zat ({deel:.0%})",
+                    "De pandronde en de objectronde gebruiken dezelfde doos, "
+                    "dus dit hoort klein te zijn. Is het groot, dan is de "
+                    "pandronde niet afgemaakt.")
     return (OK, bewijs, "")
 
 
