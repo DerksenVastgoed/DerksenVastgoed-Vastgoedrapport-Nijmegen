@@ -1,6 +1,72 @@
 {
  "datum": "2026-10-10",
  "ronde": {
-  "bijgewerkt": "2026-10-10"
+  "bag": {
+   "adressen_bijgewerkt": 0,
+   "adressen_nieuw": 17324,
+   "adressen_onveranderd": 0,
+   "adressen_verwijderd": 0,
+   "buiten_de_ring": 100705,
+   "datum": "2026-10-10",
+   "fouten": 1,
+   "historie_overgeslagen": 2078,
+   "laatste_fout": "pagina 123: HTTP 500: Internal Server Error failed to retrieve feature collection verblijfsobject: querying the features took too long (timeout encountered). Simplify your request and try again, or contact support",
+   "niet_woningen_bewaard": 1893,
+   "niet_woonfunctie": 1893,
+   "nog_gevormd": 699,
+   "objecten_met_pand": 19217,
+   "postcodes_buiten_nijmegen": 491,
+   "postcodes_gedaan": 1228,
+   "postcodes_leeg": 505,
+   "postcodes_leeg_nijmegen": 14,
+   "postcodes_leeg_voorbeeld": [
+    "6511GT",
+    "6511GV",
+    "6511GW",
+    "6511GX",
+    "6511XT",
+    "6512CL",
+    "6521EH",
+    "6521EL",
+    "6521EP",
+    "6521GB",
+    "6521GD",
+    "6524AG"
+   ],
+   "postcodes_nijmegen": 1242,
+   "postcodes_totaal": 1733,
+   "ronde_objecten": 122000,
+   "ronde_paginas": 122,
+   "ronde_ronde_af": false,
+   "ronde_seconden": 115.6,
+   "statussen": {
+    "Niet gerealiseerd verblijfsobject": 210,
+    "Verblijfsobject gevormd": 699,
+    "Verblijfsobject in gebruik": 18417,
+    "Verblijfsobject ingetrokken": 1868,
+    "Verbouwing verblijfsobject": 101
+   },
+   "van_soort_gewisseld": 0,
+   "woningen_gezien": 17324,
+   "zonder_adres": 0,
+   "zonder_pandsleutel": 0,
+   "zonder_vbo": 0
+  },
+  "bijgewerkt": "2026-10-10",
+  "panden": {
+   "datum": "2026-10-10",
+   "fout": "",
+   "objecten": 187211,
+   "omzettingen": 187211,
+   "paginas": 188,
+   "ronde_af": true,
+   "seconden": 183.7
+  },
+  "stand": {
+   "met_label": 0,
+   "met_oppervlakte": 17324,
+   "postcodes_gedaan": 1228,
+   "woningen": 17324
+  }
  }
 }
