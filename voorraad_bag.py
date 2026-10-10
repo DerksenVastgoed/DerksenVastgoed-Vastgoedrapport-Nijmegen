@@ -166,7 +166,23 @@ def haal_postcode(pc):
         if r.status_code == 404:
             return [], ""
         if r.status_code != 200:
-            return None, f"HTTP {r.status_code}"
+            # HET ANTWOORD ERBIJ, want de BAG zet er zelf in wat er mis is.
+            # Op 10 oktober kwam er tien keer "HTTP 400" uit en dat vertelde
+            # alleen dat de vraag werd geweigerd, niet waarom. Het antwoord
+            # bevat een title en een detail met precies welke
+            # parametercombinatie niet mag. Dat is de derde keer vandaag dat
+            # een melding de helft weglaat die het probleem oplost.
+            reden = ""
+            try:
+                body = r.json()
+                reden = " ".join(str(body.get(k, "")) for k in
+                                 ("title", "detail", "code")).strip()
+                for inval in (body.get("invalidParams") or []):
+                    reden += (f" | {inval.get('name', '?')}: "
+                              f"{inval.get('reason', '?')}")
+            except Exception:
+                reden = r.text[:200]
+            return None, f"HTTP {r.status_code}: {reden[:300]}"
         try:
             blok = r.json().get("_embedded", {}).get("adressen", [])
         except Exception as e:
