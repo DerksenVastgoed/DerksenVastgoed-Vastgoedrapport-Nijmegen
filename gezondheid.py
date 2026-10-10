@@ -2313,18 +2313,30 @@ def controle_sleutels_in_stappen():
     De toets is met opzet ruim: hij kijkt alleen naar namen die op _API_KEY
     eindigen, want dat zijn de sleutels waarzonder een bron niets oplevert.
     """
-    pad = ".github/workflows/bekendmakingen.yml"
-    if not os.path.exists(pad):
-        return (OK, "geen workflowbestand om te toetsen", "")
+    # ALLE WORKFLOWS EN NIET ALLEEN DIE VAN DE BRIEF. Deze toets stond op één
+    # bestandsnaam, en toen er op 10 oktober een tweede workflow bij kwam voor
+    # de voorraad, dekte hij die niet. Een toets die alleen het bestand kent
+    # waarvoor hij is geschreven, mist juist het nieuwe.
+    map_pad = ".github/workflows"
+    if not os.path.isdir(map_pad):
+        return (OK, "geen workflowmap om te toetsen", "")
     try:
         import yaml
     except Exception:
         return (OK, "yaml niet beschikbaar, stappen niet te toetsen", "")
-    try:
-        with open(pad, encoding="utf-8") as f:
-            spec = yaml.safe_load(f)
-    except Exception as e:
-        return (LET_OP, f"{pad} is niet te lezen ({type(e).__name__})", "")
+    specs, onleesbaar = {}, []
+    for naam in sorted(os.listdir(map_pad)):
+        if not naam.endswith((".yml", ".yaml")):
+            continue
+        try:
+            with open(os.path.join(map_pad, naam), encoding="utf-8") as f:
+                specs[naam] = yaml.safe_load(f)
+        except Exception as e:
+            onleesbaar.append(f"{naam} ({type(e).__name__})")
+    if onleesbaar:
+        return (LET_OP, "niet te lezen: " + ", ".join(onleesbaar), "")
+    if not specs:
+        return (OK, "geen workflowbestand om te toetsen", "")
 
     # Per module welke sleutels hij uit de omgeving leest.
     nodig_per_module = {}
@@ -2342,19 +2354,23 @@ def controle_sleutels_in_stappen():
         if sleutels:
             nodig_per_module[naam] = sleutels
 
-    mist = []
-    for job in (spec.get("jobs") or {}).values():
-        for stap in job.get("steps") or []:
-            script = stap.get("run") or ""
-            if not script:
-                continue
-            gegeven = set(stap.get("env") or {})
-            for module, sleutels in nodig_per_module.items():
-                if not re.search(r"\bpython3?\s+" + re.escape(module), script):
+    mist, stappen = [], 0
+    for bestand, spec in specs.items():
+        for job in ((spec or {}).get("jobs") or {}).values():
+            for stap in job.get("steps") or []:
+                script = stap.get("run") or ""
+                if not script:
                     continue
-                for s in sorted(sleutels - gegeven):
-                    mist.append(f"{(stap.get('name') or '?')[:40]} mist {s} "
-                                f"voor {module}")
+                stappen += 1
+                gegeven = set(stap.get("env") or {})
+                for module, sleutels in nodig_per_module.items():
+                    if not re.search(r"\bpython3?\s+" + re.escape(module),
+                                     script):
+                        continue
+                    for s in sorted(sleutels - gegeven):
+                        mist.append(f"{bestand}: "
+                                    f"{(stap.get('name') or '?')[:36]} mist "
+                                    f"{s} voor {module}")
     if mist:
         return (FOUT, f"{len(mist)} stappen missen een sleutel: "
                 + "; ".join(mist[:3]),
@@ -2363,7 +2379,8 @@ def controle_sleutels_in_stappen():
                 "bij de twee voorraadstappen, die daardoor nooit een enkele "
                 "BAG-aanroep hebben gedaan terwijl ze succes meldden.")
     telling = sum(len(v) for v in nodig_per_module.values())
-    return (OK, f"{len(nodig_per_module)} modules vragen samen {telling} "
+    return (OK, f"{len(specs)} workflows met {stappen} scriptstappen; "
+            f"{len(nodig_per_module)} modules vragen samen {telling} "
             f"sleutels, en elke stap die ze aanroept geeft die mee", "")
 
 
