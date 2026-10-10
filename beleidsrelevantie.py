@@ -185,8 +185,13 @@ def verwijzing(beleid, buiten_onderwerp=()):
         return ""
     uit = []
     if regels:
+        # GEEN BEWERING OVER DE BRIEF. Hier stond "besproken in de brief", en op
+        # 10 oktober was dat onwaar: de publicatietekst was niet opgehaald, dus
+        # de brief kreeg het stuk niet eens te zien en schreef er niets over.
+        # De verwijzing wist dat niet en kan dat ook niet weten. Hij zegt nu
+        # alleen wat er is gepubliceerd, en dat is wat hij werkelijk weet.
         uit.append('<div style="font-size:12px;color:#4a5b63;margin:0 0 6px 0">'
-                   'Gemeentelijk beleid van vandaag, besproken in de brief: '
+                   'Gemeentelijk beleid dat ons raakt, gepubliceerd: '
                    + "; ".join(regels) + "</div>")
     staart = staartregel(buiten_onderwerp)
     if staart:
