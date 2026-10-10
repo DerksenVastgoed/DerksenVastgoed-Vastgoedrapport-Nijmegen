@@ -1,0 +1,148 @@
+# De woningvoorraad van de zes ringbuurten ophalen, los van de brief.
+#
+# WAAROM DIT EEN EIGEN WORKFLOW IS. De twee voorraadfases zaten in de
+# briefworkflow, achteraan. Dat gaf drie problemen.
+#
+# Ze konden de brief kosten. De weekeditie duurt 120 tot 298,6 minuten en de
+# job stopt bij 330; met twee fases van 35 minuten erbij komt die op 368,6 en
+# dan gaat er geen brief uit. Dat is op 10 oktober net voorkomen.
+#
+# Ze kostten drie uur per antwoord. Om te zien wat de BAG-fase doet moest de
+# hele brief eerst langs pandgeschiedenis, en die nam 147 van de 163 minuten.
+# Een fout in een fase van 35 minuten mag geen run van drie uur kosten om te
+# bekijken.
+#
+# En ze hebben niets met de brief te maken. De voorraad vult een bestand dat
+# de brief pas later gebruikt. Dat hoort niet in dezelfde job als iets dat om
+# 02:48 de deur uit moet.
+#
+# Deze workflow doet alleen de voorraad. Hij draait op werkdagen na de brief en
+# is met de hand te starten voor een snel antwoord.
+
+name: Voorraad van de ring
+
+on:
+  schedule:
+    # Op werkdagen om 04:40 UTC, ruim na de brief van 02:48 en ruim voor de
+    # tweede poging van de brief. Zo botsen de twee niet om dezelfde repo.
+    - cron: "40 4 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      bag_minuten:
+        description: "Tijdbudget voor de BAG-fase in minuten. 0 slaat hem over."
+        default: "35"
+      labels_minuten:
+        description: "Tijdbudget voor de labelfase in minuten. 0 slaat hem over."
+        default: "25"
+
+# Twee rondes tegelijk zouden elkaars bestand overschrijven.
+concurrency:
+  group: voorraad
+  cancel-in-progress: false
+
+jobs:
+  voorraad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencies installeren
+        run: pip install requests
+
+      - name: Oppervlakte en gebruiksdoel uit de BAG
+        continue-on-error: true
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+        run: |
+          MIN="${{ github.event.inputs.bag_minuten || '35' }}"
+          if [ "$MIN" = "0" ]; then
+            echo "Overgeslagen op verzoek"
+            exit 0
+          fi
+          # Geen || echo: deze stap is het product van deze workflow, en een
+          # mislukking hoort hier rood te zijn. continue-on-error zorgt dat de
+          # labelfase en de commitstap daarna alsnog lopen, zodat de diagnose
+          # in voorraad_stand.json wordt bewaard.
+          python voorraad_bag.py --alleen bag --bag-minuten "$MIN"
+
+      - name: Energielabels uit EP-Online
+        continue-on-error: true
+        env:
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+        run: |
+          MIN="${{ github.event.inputs.labels_minuten || '25' }}"
+          if [ "$MIN" = "0" ]; then
+            echo "Overgeslagen op verzoek"
+            exit 0
+          fi
+          python voorraad_bag.py --alleen labels --labels-minuten "$MIN"
+
+      - name: Wat er nu in de voorraad staat
+        continue-on-error: true
+        run: |
+          # De stand in het logboek, zodat een mislukking hier te lezen is en
+          # niet pas in het gezondheidsrapport van de volgende brief.
+          python - <<'EOF'
+          import json, os
+          for pad in ("voorraad_stand.json", "voorraad.json"):
+              if not os.path.exists(pad):
+                  print(f"{pad} bestaat niet")
+                  continue
+              d = json.load(open(pad, encoding="utf-8"))
+              if pad == "voorraad_stand.json":
+                  print(json.dumps(d, ensure_ascii=False, indent=1)[:2000])
+              else:
+                  ad = d.get("adressen") or {}
+                  nw = d.get("niet_woningen") or {}
+                  print(f"voorraad.json: {len(ad)} woningen, {len(nw)} "
+                        f"niet-woningen, "
+                        f"{len(d.get('postcodes') or {})} postcodes gedaan, "
+                        f"{sum(1 for r in ad.values() if r.get('oppervlakte'))}"
+                        f" met oppervlakte, "
+                        f"{sum(1 for r in ad.values() if r.get('label'))} met label")
+                  # Een voorbeeld van een niet-woning, want juist dat vertelt
+                  # hoe het veld gebruiksdoelen er werkelijk uitziet.
+                  for k, r in list(nw.items())[:2]:
+                      print(f"  voorbeeld {k}: {json.dumps(r, ensure_ascii=False)[:300]}")
+          EOF
+
+      - name: Voorraad terugcommitten
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in voorraad.json voorraad_stand.json; do
+            if [ -f "$f" ]; then
+              git add "$f"
+              echo "  $f ($(wc -c < "$f") bytes)"
+            else
+              echo "  $f ONTBREEKT"
+            fi
+          done
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd, niets te committen"
+            exit 0
+          fi
+          git commit -m "Voorraad $(date +%F)"
+          # Dezelfde opzet als de briefworkflow: de repo kan intussen zijn
+          # veranderd door de brief van vandaag, dus ophalen en opnieuw.
+          for poging in 1 2 3; do
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            echo "Push mislukt, poging $poging"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+          done
+          echo "Terugcommitten mislukt na drie pogingen"
+          exit 1
