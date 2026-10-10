@@ -459,23 +459,42 @@ def haal_publicatietekst(url, maxlen=6000):
     """
     if not url:
         return ""
-    try:
-        r = requests.get(url, timeout=25,
-                         headers={"User-Agent": "NijmegenVastgoedMonitor/1.0"})
-        r.raise_for_status()
-        tekst = r.text
-    except Exception as e:
-        print(f"  Tekst ophalen mislukt: {e}", file=sys.stderr)
-        return ""
-    tekst = re.sub(r"(?is)<(script|style|nav|header|footer).*?</\1>", " ", tekst)
-    tekst = re.sub(r"(?i)</(p|div|li|tr|h\d)>", "\n", tekst)
-    tekst = re.sub(r"<[^>]+>", " ", tekst)
-    for k, v in {"&nbsp;": " ", "&amp;": "&", "&euro;": "€",
-                 "&quot;": '"', "&#39;": "'"}.items():
-        tekst = tekst.replace(k, v)
-    regels = [re.sub(r"[ \t]+", " ", x).strip() for x in tekst.split("\n")]
-    regels = [x for x in regels if len(x) > 30]
-    return "\n".join(regels)[:maxlen]
+    # TWEE ADRESSEN, EN HET XML EERST. Op 10 oktober liep deze functie voor het
+    # eerst op een beleidsstuk dat werkelijk de brief in moest, en ze gaf niets
+    # terug. Het gezondheidsrapport meldde "1 beleidsstuk raakt ons, maar de
+    # brief kreeg van geen enkel stuk de publicatietekst". Welke van de drie
+    # mogelijke oorzaken het was, viel niet te zien: een foutcode, een pagina
+    # die alleen naar een PDF wijst, of een filter dat niets overlaat. Daarom
+    # nu een melding met de getallen, en het XML-adres als tweede poging.
+    # Officiële bekendmakingen staan onder hetzelfde nummer ook als XML, en
+    # daar zit de tekst zonder opmaak in.
+    adressen = [url]
+    if url.endswith(".html"):
+        adressen.append(url[:-5] + ".xml")
+    for adres in adressen:
+        try:
+            r = requests.get(adres, timeout=25,
+                             headers={"User-Agent": "NijmegenVastgoedMonitor/1.0"})
+            r.raise_for_status()
+            rauw = r.text
+        except Exception as e:
+            print(f"  Tekst ophalen mislukt bij {adres[-24:]}: {e}",
+                  file=sys.stderr)
+            continue
+        tekst = re.sub(r"(?is)<(script|style|nav|header|footer).*?</\1>", " ", rauw)
+        tekst = re.sub(r"(?i)</(p|div|li|tr|h\d|al|tussenkop|titel)>", "\n", tekst)
+        tekst = re.sub(r"<[^>]+>", " ", tekst)
+        for k, v in {"&nbsp;": " ", "&amp;": "&", "&euro;": "€",
+                     "&quot;": '"', "&#39;": "'"}.items():
+            tekst = tekst.replace(k, v)
+        alle = [re.sub(r"[ \t]+", " ", x).strip() for x in tekst.split("\n")]
+        regels = [x for x in alle if len(x) > 30]
+        print(f"  Publicatietekst {adres[-24:]}: {len(rauw)} tekens binnen, "
+              f"{len(alle)} regels, {len(regels)} langer dan 30 tekens",
+              file=sys.stderr)
+        if regels:
+            return "\n".join(regels)[:maxlen]
+    return ""
 
 
 # Wat het model schrijft als er geen inhoud was om samen te vatten. Dit staat
