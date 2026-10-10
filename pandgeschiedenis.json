@@ -38607,6 +38607,7 @@
  "aubadestraat": {
   "adres": "Aubadestraat",
   "bag_gezien": "2026-10-10",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -41027,6 +41028,7 @@
  "biezendwarsstraat": {
   "adres": "Biezendwarsstraat",
   "bag_gezien": "2026-10-10",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -54994,6 +54996,7 @@
  "evertsenstraat": {
   "adres": "Evertsenstraat",
   "bag_gezien": "2026-10-10",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -62513,6 +62516,7 @@
  "heidebloemstraat": {
   "adres": "Heidebloemstraat",
   "bag_gezien": "2026-10-10",
+  "bag_pogingen": 1,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {

@@ -11,4 +11,4 @@ _Verbouw, renovatie, sloop, verduurzaming e.d._
 
 - **2026-10-08** . Aanvraag omgevingsvergunning voor het verbouwen van de bestaande aanbouw, aan Buurmansweg 46, 6525RX Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/gmb-2026-470593.html))
   `109 m² . label D (2024)`
-  _Verbouwing van een bestaande aanbouw is een kleine fysieke aanpassing zonder direct effect op woningvoorraad of waardecreatie-mogelijkheden._
+  _Betreft enkel de verbouwing van een bestaande aanbouw, zonder aanwijzingen voor functiewijziging of verduurzaming._

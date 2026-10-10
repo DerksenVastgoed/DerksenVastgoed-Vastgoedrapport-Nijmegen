@@ -73330,7 +73330,8 @@
     ],
     "postcode": "6512JL",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Heidebloemstraat|Nijmegen": {
     "oppervlakte": 83,
@@ -73339,7 +73340,8 @@
     ],
     "postcode": "6533SL",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Aubadestraat|Nijmegen": {
     "oppervlakte": 61,
@@ -73348,7 +73350,8 @@
     ],
     "postcode": "6544ZA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Biezendwarsstraat|Nijmegen": {
     "oppervlakte": 77,
@@ -73357,6 +73360,7 @@
     ],
     "postcode": "6541ZH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   }
 }
