@@ -772,6 +772,35 @@ jobs:
           # tegen de dertig daarvoor, met een voortschrijdend jaar als ijkpunt.
           python aanbodprofiel.py || echo "Aanbodprofiel overgeslagen"
 
+      # De twee stappen hieronder vullen de voorraad van de hele ring en niet
+      # alleen van wat te koop staat. Ze staan hier met opzet: de brief is al
+      # gemaakt, dus wat hier gebeurt kan die nooit ophouden of breken. Wat ze
+      # ophalen wordt hieronder meegecommit en is pas iets voor de brief als we
+      # hebben gezien wat het waard is.
+      - name: Oppervlakte en gebruiksdoel van de hele voorraad (BAG)
+        continue-on-error: true
+        if: env.MODUS != 'dagelijks' || github.event_name == 'workflow_dispatch'
+        run: |
+          # Eén vraag per postcode levert alle adressen daarin met oppervlakte,
+          # gebruiksdoel en pand-id. De inventaris telde 1.743 postcodes, dus
+          # bij 1,1 seconde per vraag is dit in één run rond. Daarna slaat het
+          # script een postcode een halfjaar over, en dan is het een paar
+          # minuten werk.
+          python voorraad_bag.py --alleen bag --bag-minuten 35 \
+            || echo "Voorraad-BAG overgeslagen"
+
+      - name: Energielabels van de voorraad bijwerken (EP-Online)
+        continue-on-error: true
+        run: |
+          # EP-Online gaat per adres, dus 15.000 vragen voor de ring: 4,6 uur.
+          # Dat past in geen enkele run, dus werkt dit elke keer een stuk van
+          # de achterstand weg, de oudste eerst. Doordeweeks 25 minuten en in
+          # de weekeditie 35, samen ongeveer 7.900 adressen per week, dus de
+          # ring is in twee weken rond.
+          if [ "$MODUS" = "dagelijks" ]; then MIN=25; else MIN=35; fi
+          python voorraad_bag.py --alleen labels --labels-minuten "$MIN" \
+            || echo "Voorraad-labels overgeslagen"
+
       - name: Gezondheidsrapport
         continue-on-error: true
         run: |
@@ -848,6 +877,7 @@ jobs:
             pandgeschiedenis.json
             buurtbeeld.json
             buurtinventaris.json
+            voorraad.json
             vergund_verkocht.json
             brief_logboek.json
             verteld.json
