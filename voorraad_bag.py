@@ -49,6 +49,7 @@ import json
 import os
 import sys
 import time
+import urllib.parse
 
 import requests
 
@@ -67,6 +68,13 @@ STAND = "voorraad_stand.json"
 # doorploeteren verspilde tijd die de fout niet duidelijker maakt. Op 10
 # oktober is precies dat gebeurd.
 MAX_FOUT_OP_RIJ = 10
+
+# De BAG via PDOK, als OGC API Features. Open data, geen sleutel.
+PDOK_BASE = ("https://api.pdok.nl/kadaster/bag/ogc/v2/collections/"
+             "verblijfsobject/items")
+# Een postcode heeft zelden meer dan een paar tientallen objecten; 200 is ruim
+# en houdt het antwoord klein.
+PDOK_LIMIT = 200
 
 BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
 BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
@@ -142,41 +150,84 @@ def _is_woning(doelen):
     return any("woonfunctie" == d for d in (doelen or []))
 
 
+def _normaliseer(p):
+    """
+    Een PDOK-verblijfsobject in de vorm die de rest van deze module verwacht.
+
+    WAAROM DIT ER IS. Fase 1 haalde eerst bij de BAG-API van het Kadaster alle
+    adressen in een postcode op. Dat kan niet: die dienst antwoordt met
+    "Minimale combinatie van parameters moet worden opgegeven", want op
+    adressenuitgebreid moet er minstens een huisnummer bij de postcode. Per
+    adres zou 34.946 aanroepen zijn, bijna elf uur.
+
+    PDOK biedt dezelfde registratie als OGC API Features, en daar staat het
+    verblijfsobject met oppervlakte, gebruiksdoel, postcode, straat en pand in
+    één collectie. Open data, geen sleutel nodig.
+
+    De veldnamen verschillen alleen. Die omzetting staat hier en niet in
+    fase_bag(), zodat de rest van de module niet weet uit welke dienst de
+    gegevens komen en een volgende wisseling één functie kost.
+
+    Let op het enkelvoud: PDOK geeft gebruiksdoel als één tekst, de BAG-API gaf
+    gebruiksdoelen als lijst. _is_woning() verwacht een lijst, dus dat wordt
+    hier een lijst. Was dat niet gebeurd, dan had geen enkel adres een
+    woonfunctie gehad en was de voorraad leeg gebleven zonder dat er iets
+    faalde, precies zoals vandaag al twee keer is gebeurd.
+    """
+    doel = p.get("gebruiksdoel")
+    doelen = ([d.strip() for d in doel.split(",") if d.strip()]
+              if isinstance(doel, str) else list(doel or []))
+    panden = p.get("pand")
+    if isinstance(panden, str):
+        panden = [panden]
+    return {
+        "openbareRuimteNaam": p.get("openbare_ruimte_naam") or "",
+        "huisnummer": p.get("huisnummer") or "",
+        "huisletter": p.get("huisletter") or "",
+        "huisnummertoevoeging": p.get("toevoeging") or "",
+        "gebruiksdoelen": doelen,
+        "oppervlakte": p.get("oppervlakte"),
+        "pandIdentificaties": list(panden or []),
+        "adresseerbaarObjectIdentificatie": p.get("identificatie") or "",
+        "adresseerbaarObjectStatus": p.get("status") or "",
+        "postcode": p.get("postcode") or "",
+    }
+
+
 def haal_postcode(pc):
     """
-    Alle adressen in één postcode, uit de BAG.
+    Alle verblijfsobjecten in één postcode, uit de BAG via PDOK.
 
-    pageSize 100 omdat een postcode zelden meer adressen heeft; staat er meer,
-    dan meldt de BAG dat in de paginering en halen we de rest op.
+    Filtert met CQL op postcode. Of PDOK dat veld als filter toestaat is van
+    buiten niet te zien, en deze omgeving mag PDOK niet benaderen. Maar de
+    foutmelding van de dienst komt sinds 10 oktober voluit in
+    voorraad_stand.json te staan, en de losse voorraadworkflow geeft binnen
+    zestien seconden antwoord. Uitproberen is daarmee goedkoper dan uitdenken.
     """
-    rijen, pagina = [], 1
-    while pagina <= 5:
+    rijen, cursor = [], None
+    for _ronde in range(20):
+        params = {"f": "json", "limit": PDOK_LIMIT,
+                  "filter": f"postcode = '{pc}'",
+                  "filter-lang": "cql2-text"}
+        if cursor:
+            params["cursor"] = cursor
         try:
-            r = requests.get(f"{BAG_BASE}/adressenuitgebreid",
-                             headers=BAG_HEADERS,
-                             params={"postcode": pc, "pageSize": 100,
-                                     "page": pagina},
-                             timeout=(15, 60))
+            r = requests.get(PDOK_BASE, params=params, timeout=(15, 60))
         except Exception as e:
             return None, f"netwerk: {e}"
         if r.status_code == 429:
             return None, "429 te veel vragen"
-        if r.status_code in (401, 403):
-            return None, f"{r.status_code} sleutel geweigerd"
         if r.status_code == 404:
             return [], ""
         if r.status_code != 200:
-            # HET ANTWOORD ERBIJ, want de BAG zet er zelf in wat er mis is.
-            # Op 10 oktober kwam er tien keer "HTTP 400" uit en dat vertelde
-            # alleen dat de vraag werd geweigerd, niet waarom. Het antwoord
-            # bevat een title en een detail met precies welke
-            # parametercombinatie niet mag. Dat is de derde keer vandaag dat
-            # een melding de helft weglaat die het probleem oplost.
+            # HET ANTWOORD ERBIJ, want de dienst zet er zelf in wat er mis is.
+            # Bij de BAG-API kwam er tien keer "HTTP 400" uit en dat vertelde
+            # alleen dat de vraag werd geweigerd, niet waarom.
             reden = ""
             try:
                 body = r.json()
                 reden = " ".join(str(body.get(k, "")) for k in
-                                 ("title", "detail", "code")).strip()
+                                 ("title", "detail", "code", "description")).strip()
                 for inval in (body.get("invalidParams") or []):
                     reden += (f" | {inval.get('name', '?')}: "
                               f"{inval.get('reason', '?')}")
@@ -184,22 +235,36 @@ def haal_postcode(pc):
                 reden = r.text[:200]
             return None, f"HTTP {r.status_code}: {reden[:300]}"
         try:
-            blok = r.json().get("_embedded", {}).get("adressen", [])
+            body = r.json()
         except Exception as e:
             return None, f"antwoord onleesbaar: {e}"
-        rijen.extend(blok)
-        if len(blok) < 100:
+        kenmerken = body.get("features")
+        if kenmerken is None:
+            return None, ("geen features in het antwoord; velden: "
+                          + ", ".join(sorted(body)[:8]))
+        for k in kenmerken:
+            rijen.append(_normaliseer(k.get("properties") or {}))
+        # Paginering gaat via een cursor in de link met rel=next.
+        volgende = next((l.get("href") or "" for l in (body.get("links") or [])
+                         if l.get("rel") == "next"), "")
+        if not volgende or len(kenmerken) < PDOK_LIMIT:
             break
-        pagina += 1
+        gevonden = urllib.parse.parse_qs(
+            urllib.parse.urlparse(volgende).query).get("cursor")
+        if not gevonden:
+            break
+        cursor = gevonden[0]
         time.sleep(TEMPO)
     return rijen, ""
 
 
 def fase_bag(voorraad, werk, minuten):
-    """Fase 1: de BAG per postcode, tot het tijdbudget om is."""
-    if not BAG_API_KEY:
-        print("Geen BAG_API_KEY; fase BAG overgeslagen", file=sys.stderr)
-        return {"overgeslagen": "geen sleutel"}
+    """Fase 1: de verblijfsobjecten per postcode, tot het tijdbudget om is.
+
+    Geen sleutelpoort meer: PDOK is open data onder Public Domain Mark en
+    vraagt geen sleutel. Stond die poort er nog, dan zou deze fase blijven
+    weigeren om een sleutel die ze niet gebruikt.
+    """
 
     vandaag = dt.date.today().isoformat()
     grens = (dt.date.today() - dt.timedelta(days=VERS_DAGEN)).isoformat()
