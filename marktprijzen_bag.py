@@ -5102,6 +5102,41 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("WOZ", "onbekend, dus vergunningplicht, opkoopbescherming en puntentelling "
           "zijn niet te toetsen", "WOZ-invoer")
 
+    # GEPUBLICEERDE REGELS UIT regelset.txt. De vier regels hierboven staan als
+    # code: de WOZ-ondergrens voor omzetting, de opkoopbescherming, de
+    # kamerverhuurtoets en de splitsingstoets. Dat werkt precies zoals het
+    # hoort, maar een regel die de gemeente vandaag publiceert kan daar niet in
+    # komen zonder dat iemand Python schrijft. Daardoor kwam de beleidsregel
+    # over wonen op de eerste bouwlaag wel als nieuws in de brief, maar nooit
+    # bij een pand waarop hij van toepassing is, en over een half jaar was hij
+    # vergeten terwijl hij dan nog geldt.
+    #
+    # In een try, want regelset.txt wordt met de hand bijgewerkt en een fout
+    # daarin mag het dossier van een pand niet kosten. De fouten in dat bestand
+    # worden gemeld door controle_regelset() in gezondheid.py, niet hier.
+    # PER REGEL EEN EIGEN TRY. Stond de lus in één try, dan konden de eerste
+    # twee regels in het dossier staan en de rest stil verdwijnen. En een fout
+    # komt nu ook in het dossier zelf te staan en niet alleen op de
+    # foutuitvoer: die laatste is de Actions-log, en die leest niemand.
+    try:
+        import regelset
+        passend = regelset.regels_voor(w, buurt)
+    except Exception as e:  # noqa
+        passend = []
+        f("gepubliceerde regels", f"niet te toetsen, regelset.txt gaf een fout "
+          f"({type(e).__name__}). Er kunnen dus regels gelden die hier niet "
+          f"staan", "regelset.txt")
+    for r in passend:
+        try:
+            bron = r.get("bron") or "regelset.txt"
+            sinds = (f", gepubliceerd {r['sinds']}" if r.get("sinds") else "")
+            f(r["naam"], r["gevolg"] + sinds, bron)
+            if r.get("let_op"):
+                f(f"{r['naam']}, let op", r["let_op"], bron)
+        except Exception as e:  # noqa
+            f("gepubliceerde regels", f"een regel uit regelset.txt is niet te "
+              f"lezen ({type(e).__name__})", "regelset.txt")
+
     # Puntentelling
     wws = wws_indicatie(w)
     if wws and wws.get("punten") is not None:

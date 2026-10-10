@@ -2226,6 +2226,74 @@ def controle_beleid_in_mail():
     return (OK, f"{len(titels)} {woord} met een verwijzing in {wat}", "")
 
 
+def controle_regelset():
+    """
+    Staan de gepubliceerde regels er goed in, en gelden ze niet te breed?
+
+    regelset.txt wordt met de hand bijgewerkt en elke regel erin loopt mee in
+    de doorrekening van elk pand. Een fout daarin is dus duur: een verkeerd
+    gespeld veldnaam zou een regel op elk pand in de stad laten gelden, en dan
+    staat er bij een pand in Biezen een vergunningplicht die alleen in de
+    binnenstad bestaat.
+
+    Daarom twee dingen. De fouten die regelset.py in het bestand vindt, want
+    een regel die daardoor niet wordt gebruikt is onzichtbaar afwezig. En
+    regels zonder enige voorwaarde, want die gelden overal; dat kan bedoeld
+    zijn maar het is bijna nooit de bedoeling.
+    """
+    try:
+        import regelset
+    except Exception as e:
+        return (FOUT, f"regelset.py is niet te lezen ({type(e).__name__})",
+                "Dan loopt geen enkele gepubliceerde regel mee in de "
+                "doorrekening per pand.")
+    if not os.path.exists(regelset.PAD):
+        return (LET_OP, f"{regelset.PAD} bestaat niet",
+                "Dan staan er geen gepubliceerde regels bij de panden. De vier "
+                "regels die als code in marktprijzen_bag.py staan werken wel.")
+    regels, fouten = regelset.lees()
+    if fouten:
+        return (FOUT, f"{len(regels)} regels gelezen, {len(fouten)} fouten in "
+                f"{regelset.PAD}: " + "; ".join(fouten[:3]),
+                "Een regel met een fout wordt niet gebruikt, en dat is niet te "
+                "zien bij de panden. Een onbekend veld maakt met opzet de hele "
+                "regel ongeldig, want anders zou die regel zonder die "
+                "voorwaarde te breed gaan gelden.")
+    if not regels:
+        return (LET_OP, f"{regelset.PAD} bevat geen regels", "")
+    # OP WAARDE EN NIET OP SLEUTEL. Een veld met een lege waarde stond wel in
+    # de dict, dus een regel met "buurt:" zonder waarde gold overal en werd
+    # hier niet gemeld. lees() meldt dat nu als fout, maar de telling hier
+    # hoort ook op waarde te gaan.
+    #
+    # EN OP GEBIED EN NIET OP ELKE VOORWAARDE. Een regel met alleen "label: F"
+    # heeft formeel een voorwaarde en gold toch in alle zes buurten; 144 van de
+    # 886 panden hebben geen bruikbaar label, dus zo'n regel raakt honderden
+    # panden. Een gemeentelijke regel hoort een buurt of een straat te noemen.
+    zonder_gebied = [r["naam"] for r in regels
+                     if not r.get("buurt") and not r.get("straten")]
+    if zonder_gebied:
+        return (LET_OP, f"{len(regels)} regels, waarvan {len(zonder_gebied)} "
+                f"zonder buurt of straat: {', '.join(zonder_gebied[:3])}",
+                "Zo'n regel komt bij elk pand in alle zes buurten te staan. "
+                "Dat kan bedoeld zijn bij een landelijke regel, maar bij een "
+                "gemeentelijke bijna nooit.")
+    try:
+        from brief_verhalend import ZES_BUURTEN
+    except Exception:
+        ZES_BUURTEN = ()
+    buiten = sorted({b for r in regels for b in regelset._lijst(r.get("buurt"))}
+                    - {b.lower() for b in ZES_BUURTEN})
+    if buiten:
+        return (LET_OP, f"{len(regels)} regels, met buurten die wij niet "
+                f"meten: {', '.join(buiten)}",
+                "Die regel gaat dus nooit af, want de brief kijkt alleen naar "
+                "de zes ringbuurten. Controleer de spelling van de buurtnaam.")
+    woord = "regel" if len(regels) == 1 else "regels"
+    return (OK, f"{len(regels)} {woord} in {regelset.PAD}: "
+            + ", ".join(r["naam"] for r in regels[:4]), "")
+
+
 def controle_plintregel():
     """
     Hoe ver de telling van de plintobjecten staat.
@@ -2677,6 +2745,7 @@ CONTROLES = [
     ("Duiding bij beleidsstukken", controle_beleidsduiding),
     ("Beleid haalt de mail", controle_beleid_in_mail),
     ("Plintobjecten geteld", controle_plintregel),
+    ("Gepubliceerde regels bij de panden", controle_regelset),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),

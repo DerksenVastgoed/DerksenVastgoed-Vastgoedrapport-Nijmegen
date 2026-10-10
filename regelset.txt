@@ -1,0 +1,92 @@
+# De gepubliceerde regels die bij een pand horen te worden gemeld.
+#
+# WAT DIT BESTAND DOET. Elke regel hier loopt mee in de doorrekening van elk
+# pand dat te koop komt, vandaag en over een half jaar. Past hij, dan staat hij
+# in het dossier van dat pand, net als de opkoopbescherming en de WOZ-grens
+# voor kamerverhuur. Die vier staan nog als code in marktprijzen_bag.py; alles
+# wat erbij komt hoort hier.
+#
+# HOE JE EEN REGEL TOEVOEGT. Een blok begint met een regel die alleen --- is.
+# Daarna velden, één per regel, als "veld: waarde". Commentaar met #.
+#
+#   Verplicht:
+#     naam     de korte naam waaronder het in het dossier komt
+#     gevolg   wat er bij het pand komt te staan. Schrijf wat de regel REGELT
+#              en niet wat de titel suggereert.
+#
+#   Mag, en toetst alleen als je het invult:
+#     bron            de link naar de publicatie
+#     sinds           datum van publicatie
+#     buurt           een of meer buurtnamen, met komma's
+#     straten         straatnamen met komma's, OF een bestandsnaam die op .txt
+#                     eindigt. Wijst hij naar een leeg bestand, dan toetst hij
+#                     niet op straat en geldt de regel in de hele buurt.
+#     functie         gebruiksdoelen uit de BAG: winkelfunctie, kantoorfunctie,
+#                     woonfunctie, bijeenkomstfunctie, logiesfunctie,
+#                     industriefunctie, onderwijsfunctie. Een pand met meer
+#                     dan één doel matcht als een ervan in de lijst staat.
+#     label           energielabels met komma's, bijvoorbeeld: F, G. Let op:
+#                     A, A+, A++ en A+++ zijn verschillende waarden, dus
+#                     "label: A" matcht A+ niet.
+#     monument        ja of nee. Alleen rijksmonumenten zijn bekend, dus
+#                     "monument: nee" geldt ook voor een gemeentelijk monument.
+#     oppervlakte_min, oppervlakte_max    in m2. Komma als decimaalteken.
+#     woz_min, woz_max                    in euro, punten als duizendscheiding
+#     prijs_min, prijs_max                in euro
+#     eenheden_min, eenheden_max          aantal woningen in het pand. Let op:
+#                     dit veld wordt alleen gevuld als de BAG meer dan één
+#                     woning in het pand vindt, dus "eenheden_max: 1" matcht
+#                     nooit. Alleen bruikbaar als ondergrens vanaf 2.
+#     let op          een tweede regel bij hetzelfde onderwerp
+#
+# LET OP BIJ HET SCHRIJVEN. Een voorwaarde die je niet invult, toetst niets.
+# Een voorwaarde die je wel invult en waarvan wij het veld van dat pand niet
+# kennen, laat de regel afvallen: zonder oppervlakte is niet vast te stellen
+# dat een pand boven een ondergrens zit, en dan melden we hem niet.
+#
+# Een veld dat hier niet in de lijst staat, maakt de HELE regel ongeldig en
+# komt als fout in het gezondheidsrapport. Dat is met opzet: een verkeerd
+# gespeld "buurt" zou de regel anders op elk pand in de stad laten gelden.
+#
+# WAT HIER NIET IN PAST. "Achterin het pand, niet zichtbaar van de straat,
+# hoogstens 30% van de eerste bouwlaag" is geen veld in een register. Dat soort
+# voorwaarde zet je in het gevolg als tekst, zodat het bij het pand te lezen
+# staat, en dan is het aan degene die het pand bekijkt.
+#
+# WELKE PANDEN EEN REGEL BEREIKT, EN DAT IS EEN BEPERKING. Deze regels lopen
+# mee in het dossier per pand, en een dossier wordt alleen gemaakt voor
+# woningen en gemengde panden in de zes ringbuurten. Een pand dat als
+# belegging wordt aangeboden valt eruit, en een pand zonder woonfunctie ook.
+# Een losse beoordelaar rekende dat na op het aanbod van 10 oktober: van de
+# 665 panden met een dossier raakte de plintregel er nul, terwijl er zes
+# panden in Stadscentrum wel een winkel- of kantoorfunctie hadden. Die zes
+# vielen allemaal eerder weg, vijf als belegging en een op de woonfunctie.
+#
+# Een zuivere winkelplint bereikt dus geen dossier. Een gemengd pand, winkel
+# met een woning erboven, wel. Dat gemengde pand is ook het pand dat wij
+# zouden kopen, dus voor deze regel is dat de nuttige helft. Wil je ook de
+# zuivere plinten, dan moet er een dossierpad bij voor beleggingen, en dat is
+# meer werk dan dit bestand.
+#
+# ZET DIT BESTAND NIET IN DE TERUGCOMMITLIJST van de workflow en niet op
+# merge=union. De conflictafhandeling voor .txt-bestanden gooit dubbele regels
+# weg, dus alle --- behalve de eerste, en dan versmelten alle blokken tot één
+# regel met de laatste waarde per veld. Dat is precies de te breed geldende
+# regel waartegen de rest van dit bestand beschermt.
+
+---
+naam: wonen op de eerste bouwlaag binnenstad
+bron: https://zoek.officielebekendmakingen.nl/gmb-2026-470088.html
+sinds: 2026-10-08
+buurt: Stadscentrum
+straten: plintgebied.txt
+# Dezelfde vijf doelen als PLINTDOELEN in plintregel.py. Die twee lijsten
+# horen gelijk te blijven: eerst stond industriefunctie hier niet, en dan
+# telde plintregel.py een pand mee dat deze regel oversloeg.
+functie: winkelfunctie, kantoorfunctie, bijeenkomstfunctie, logiesfunctie, industriefunctie
+gevolg: woonruimte toevoegen op de begane grond is hier vergunningplichtig, bedoeld om winkelvloeroppervlak te beschermen. Een vergunning geldt alleen voor het achterste, van de straat onzichtbare deel van het pand, hoogstens 30% van de eerste bouwlaag met een maximum van 50 m2. Die 50 m2 is pas haalbaar vanaf 167 m2 plint; daaronder is de 30% de bindende grens
+let op: bestaande woningen op de begane grond blijven toegestaan, maar dat recht vervalt zodra de eigenaar het pand naar een andere functie transformeert. Een bestaande plintwoning hier is dus een recht dat je kunt verliezen en niet meer kunt maken, en transformeren is een deur die één kant op gaat
+
+# Zolang plintgebied.txt leeg is, geldt deze regel in heel Stadscentrum en niet
+# alleen in het kernwinkelgebied en de ringstraten. Dat staat zo ook in het
+# gevolg van plintregel.py. Vul die straatnamen in en het wordt scherper.
