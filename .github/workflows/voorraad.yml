@@ -61,6 +61,16 @@ jobs:
       - name: Dependencies installeren
         run: pip install requests
 
+      - name: Inventaris verkennen (alleen op de verkenningsbranch)
+        continue-on-error: true
+        run: |
+          python inventaris_verkenning.py 2>&1 | tee inventaris_antwoord.md
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f inventaris_antwoord.md
+          git commit -q -m "Antwoord van de inventarisverkenning" || echo niets
+          git push -q origin HEAD:"${GITHUB_REF_NAME}" || echo "push mislukt"
+
       - name: De zeef nameten voordat er iets wordt opgehaald
         # EERST DE PROEF, DAN HET WERK. Twee keer op 10 oktober leverde een
         # aanname over de vorm van een veld een lege voorraad op zonder dat er
