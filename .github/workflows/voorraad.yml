@@ -131,30 +131,28 @@ jobs:
                       print(f"  voorbeeld {k}: {json.dumps(r, ensure_ascii=False)[:300]}")
           EOF
 
-      - name: Stand bewaren als artifact
-        # WAAROM DIT ERBIJ MOET. Het logboek van een run is van buiten niet te
-        # lezen, de logserver van GitHub wordt door de proxy geweigerd. Zonder
-        # deze stap is de uitkomst van een proefrun op een branch alleen te
-        # zien door hem terug te committen, en dat gaf twee keer een
-        # botsende push. Dit is een eigen kanaal dat niets in de repo zet.
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: voorraad-stand
-          path: voorraad_stand.json
-          if-no-files-found: warn
-          retention-days: 7
-
       - name: Voorraad terugcommitten
-        # ALLEEN OP MAIN. Een proefrun op een branch hoort geen gegevens terug
-        # te schrijven. Deed hij dat wel, dan stond er in de branch een
-        # voorraad uit een tussenversie van de code, en liep elke volgende
-        # push ertegenaan. Op 10 oktober twee keer gebeurd.
-        if: github.ref_name == github.event.repository.default_branch
+        # WAT ER OP EEN BRANCH WEL EN NIET TERUGKOMT. Op main gaan beide
+        # bestanden terug, want dat is het product. Op een branch alleen de
+        # stand van een paar kilobyte, en niet de voorraad van ruim vijf
+        # megabyte: die zou uit een tussenversie van de code komen en elke
+        # volgende push laten botsen. Dat is op 10 oktober twee keer gebeurd.
+        #
+        # EN WAAROM DIT NIET VIA HET LOGBOEK OF EEN ARTIFACT GAAT. Beide zijn
+        # van buiten de run niet te lezen: de logserver van GitHub en de
+        # blobserver waar artifacts op staan worden geweigerd. Git is het
+        # enige kanaal dat werkt, dus de stand moet door git terug.
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in voorraad.json voorraad_stand.json; do
+          BESTANDEN="voorraad.json voorraad_stand.json"
+          if [ "${GITHUB_REF_NAME}" != "${DEFAULT_BRANCH}" ]; then
+            BESTANDEN="voorraad_stand.json"
+            echo "Niet op ${DEFAULT_BRANCH}: alleen de stand gaat terug"
+          fi
+          for f in $BESTANDEN; do
             if [ -f "$f" ]; then
               git add "$f"
               echo "  $f ($(wc -c < "$f") bytes)"
