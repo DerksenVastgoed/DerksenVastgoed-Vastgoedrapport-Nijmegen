@@ -2522,12 +2522,12 @@ def controle_voorraad():
         if bag.get("fouten"):
             return (FOUT, f"voorraad leeg na {bag['fouten']} mislukte "
                     f"BAG-aanroepen: {bag.get('laatste_fout', 'onbekend')}",
-                    "De sleutel wordt nu wel meegegeven, dus dit is de "
-                    "aanroep zelf. Vergelijk de parameters in haal_postcode() "
-                    "met de aanroep in marktprijzen_bag.py, die dezelfde BAG "
-                    "al weken bevraagt. De fase stopt sinds 10 oktober na tien "
-                    "mislukkingen op rij in plaats van het hele budget vol te "
-                    "lopen.")
+                    "De voorraad gaat sinds 10 oktober naar PDOK en niet "
+                    "naar de BAG-API van het Kadaster, dus een sleutel kan "
+                    "het niet zijn: PDOK vraagt er geen. De melding hierboven "
+                    "komt woordelijk van de dienst zelf. Is het een geweigerd "
+                    "filter, dan staat erbij welke velden wel filterbaar "
+                    "zijn.")
         if bag.get("niet_woningen_bewaard"):
             return (FOUT, f"geen enkele woning herkend, wel "
                     f"{bag['niet_woningen_bewaard']} andere adressen",
@@ -2535,7 +2535,9 @@ def controle_voorraad():
                     "gebruiksdoelen anders of is het anders opgebouwd dan "
                     "_is_woning() aanneemt. Die records zijn bewaard, dus kijk "
                     "in voorraad.json onder niet_woningen hoe ze er werkelijk "
-                    "uitzien.")
+                    "uitzien. De proef in voorraad_bag.py --proef draait op de "
+                    "echte antwoordvorm en hoort dit vóór een ronde te "
+                    "melden.")
         return (LET_OP, f"voorraad nog leeg terwijl er {postcodes} postcodes "
                 f"klaarstaan",
                 "De stap 'Oppervlakte en gebruiksdoel van de hele voorraad' "
@@ -2554,6 +2556,24 @@ def controle_voorraad():
     if labels.get("gevraagd"):
         bewijs += (f"; laatste ronde {labels['gevraagd']} gevraagd, "
                    f"{labels.get('label_gevonden', 0)} labels gevonden")
+    # IS DE RONDE WEL AF? EERST DEZE, VOOR DE ALGEMENE FOUTENREGEL. De voorraad
+    # komt sinds 10 oktober uit één ronde over een doos om Nijmegen. Breekt die
+    # ronde halverwege af, dan staat er een voorraad die klopt voor het deel
+    # dat gelezen is en stil te laag is voor de rest, en dat is aan het aantal
+    # woningen niet te zien. Stond deze regel ná de foutenlus, dan was hij
+    # onbereikbaar: een afgebroken ronde zet altijd ook fouten op 1, dus de
+    # lus hieronder kwam er altijd eerst bij en meldde LET_OP met een advies
+    # over sleutels en 429's, die hier geen van beide de oorzaak zijn.
+    bag = ronde.get("bag") or {}
+    if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
+        return (FOUT, bewijs + f"; de ronde over het gebied is niet afgemaakt "
+                f"na {bag['ronde_paginas']} pagina's",
+                "Dan is de voorraad te laag voor het deel dat niet gelezen is, "
+                "en dat is aan het aantal niet te zien. Er wordt dan ook niets "
+                "verwijderd, dus wat er niet meer is blijft staan. Verhoog "
+                "--bag-minuten of kijk in voorraad_stand.json waarom de ronde "
+                "stopte. Een hele ronde kostte gemeten 146,7 seconden.")
+
     for fase in ("bag", "labels"):
         fouten = (ronde.get(fase) or {}).get("fouten") or 0
         if fouten:
@@ -2563,34 +2583,40 @@ def controle_voorraad():
                     "Bij een geweigerde sleutel of een 429 stopt de fase "
                     "meteen en gaat hij de volgende run verder.")
 
-    # IS DE RONDE WEL AF? De voorraad komt sinds 10 oktober uit één ronde over
-    # een doos om Nijmegen. Breekt die ronde halverwege af, dan staat er een
-    # voorraad die klopt voor het deel dat gelezen is en stil te laag is voor
-    # de rest. Dat is niet aan het aantal woningen te zien, alleen hieraan.
-    bag = ronde.get("bag") or {}
-    if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
-        return (FOUT, bewijs + f"; de ronde over het gebied is niet afgemaakt "
-                f"na {bag['ronde_paginas']} pagina's",
-                "Dan is de voorraad te laag voor het deel dat niet gelezen is, "
-                "en dat is aan het aantal niet te zien. Verhoog "
-                "--bag-minuten of kijk in voorraad_stand.json waarom de ronde "
-                "stopte. Een hele ronde kostte gemeten 120,8 seconden.")
-
-    # LEGE POSTCODES. Dit is de controle op de doos: raakt hij de ring ergens
-    # niet, dan blijven de postcodes daar leeg. Een te kleine doos faalt
-    # daarmee hier en mist niet stil adressen.
-    leeg = bag.get("postcodes_leeg") or 0
-    totaal = bag.get("postcodes_totaal") or 0
-    if totaal and leeg > totaal * 0.35:
-        return (LET_OP, bewijs + f"; {leeg} van de {totaal} postcodes leverden "
-                f"geen enkel object",
+    # LEGE NIJMEEGSE POSTCODES. Dit is de controle op de doos: raakt hij de
+    # ring ergens niet, dan blijven de postcodes daar leeg.
+    #
+    # ALLEEN DE NIJMEEGSE. De eerste echte ronde liet zien dat 491 van de
+    # 1.733 postcodes in buurtinventaris.json helemaal niet in Nijmegen
+    # liggen, maar in Boskoop, Gorinchem, Dongen, Assen en vier andere
+    # plaatsen. Op het totaal gerekend zou de drempel daar permanent op staan
+    # en nooit meer iets zeggen. En de drempel moet laag: de grootste buurt,
+    # Stadscentrum, is 471 van de 1.242 Nijmeegse postcodes, dus een drempel
+    # van een derde zou het wegvallen van een hele buurt doorlaten.
+    nijmeegs = bag.get("postcodes_nijmegen") or 0
+    leeg_nij = bag.get("postcodes_leeg_nijmegen")
+    if nijmeegs and leeg_nij is not None and leeg_nij > max(nijmeegs * 0.02,
+                                                            25):
+        return (LET_OP, bewijs + f"; {leeg_nij} van de {nijmeegs} Nijmeegse "
+                f"postcodes leverden geen enkel object",
                 "Voorbeelden staan in voorraad_stand.json onder "
-                "postcodes_leeg_voorbeeld. Twee verklaringen zijn mogelijk: de "
-                "doos in voorraad_bag.py raakt een deel van de ring niet, of "
-                "de inventaris bevat postcodes waar de BAG geen "
-                "verblijfsobject heeft staan, bijvoorbeeld postbussen. Het "
-                "eerste is te zien doordat de lege postcodes bij elkaar "
-                "liggen, het tweede doordat ze verspreid zijn.")
+                "postcodes_leeg_voorbeeld. Liggen ze bij elkaar, dan raakt de "
+                "doos in voorraad_bag.py een deel van de ring niet en moet "
+                "DOOS ruimer. Liggen ze verspreid, dan staan er postcodes in "
+                "de inventaris waar de BAG geen verblijfsobject heeft. In de "
+                "eerste echte ronde waren het er 2 van de 1.242.")
+
+    buiten = bag.get("postcodes_buiten_nijmegen") or 0
+    if buiten > 50:
+        return (LET_OP, bewijs + f"; {buiten} postcodes in de inventaris "
+                f"liggen niet in Nijmegen",
+                "Dit is een fout in buurtinventaris.py en niet in de "
+                "voorraad: die kent postcodes aan onze buurten toe die in "
+                "andere plaatsen liggen. Gemeten op 10 oktober 491 van de "
+                "1.733, onder meer 2771 Boskoop, 4201 Gorinchem, 5103 Dongen "
+                "en 9401 Assen. Ze kunnen de voorraad niet vervuilen, want de "
+                "doos ligt om Nijmegen, maar alles wat verder op de "
+                "inventaris rekent telt ze wel mee.")
 
     panden = ronde.get("panden") or {}
     if panden and not panden.get("omzettingen"):
@@ -2600,16 +2626,39 @@ def controle_voorraad():
                 "voorraad.json niet aan op pandgeschiedenis.json. De reden "
                 "staat in voorraad_stand.json onder panden.fout. Leeg is hier "
                 "met opzet: een uuid in dat veld zou op een pandidentificatie "
-                "lijken en nergens op aansluiten.")
+                "lijken en nergens op aansluiten. Let op dat ook de zin in de "
+                "brief over plintobjecten in een pand met woonadressen dan "
+                "wegvalt.")
     zonder = bag.get("zonder_pandsleutel") or 0
-    if zonder and bag.get("woningen_gezien"):
-        deel = zonder / max(bag["woningen_gezien"], 1)
+    met = bag.get("objecten_met_pand") or 0
+    if zonder and (zonder + met):
+        # DELEN DOOR HET JUISTE GETAL. Dit deelde eerst door woningen_gezien,
+        # terwijl de teller ook voor winkels wordt verhoogd; dat gaf een
+        # percentage dat boven honderd kon uitkomen.
+        deel = zonder / (zonder + met)
         if deel > 0.10:
             return (LET_OP, bewijs + f"; {zonder} objecten hadden een pand dat "
                     f"niet in de omzetting zat ({deel:.0%})",
                     "De pandronde en de objectronde gebruiken dezelfde doos, "
-                    "dus dit hoort klein te zijn. Is het groot, dan is de "
-                    "pandronde niet afgemaakt.")
+                    "dus dit hoort klein te zijn. In de eerste echte ronde "
+                    "was het 0 van 22.096. Is het groot, dan is de pandronde "
+                    "niet afgemaakt of heet het veld pand.href anders.")
+
+    # NOG GEVORMD, NIET IN GEBRUIK. Deze objecten worden meegeteld, en dat is
+    # een open keuze en geen vaststaand feit. Daarom blijft het getal zichtbaar
+    # in plaats van dat het stil in de voorraad verdwijnt.
+    gevormd = bag.get("nog_gevormd") or 0
+    woningen = bag.get("woningen_gezien") or 0
+    if woningen and gevormd > woningen * 0.05:
+        return (LET_OP, bewijs + f"; {gevormd} van de {woningen} objecten "
+                f"hebben status gevormd en zijn nog niet in gebruik gemeld",
+                "Ze worden meegeteld. Die status betekent dat het object in de "
+                "registratie is gevormd maar niet als in gebruik is gemeld, en "
+                "dat is in de praktijk vaak een gewone woning waarvan de "
+                "status nooit is bijgewerkt. Ze eruit halen zou de voorraad "
+                "ruim een tiende kleiner maken, dus dat hoort niet op een "
+                "vermoeden te gebeuren. Te zeven is het altijd nog: de status "
+                "staat per record in voorraad.json.")
     return (OK, bewijs, "")
 
 

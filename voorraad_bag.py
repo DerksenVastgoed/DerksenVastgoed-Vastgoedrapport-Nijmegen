@@ -27,7 +27,8 @@ Drie fasen, elk met een tijdbudget:
      per adres en niet per postcode, dus 15.000 vragen, ongeveer 4,6 uur. Dat
      past niet in één run. Daarom werkt deze fase een achterstand weg: elke
      run een tijdbudget, de oudste eerst, en de stand blijft staan. Bij 45
-     minuten per run is de ring in zes runs rond.
+     minuten per run zijn 2.455 adressen, dus de ring is in zeven runs
+     rond.
 
 WAAROM EEN TIJDBUDGET EN GEEN AANTAL. Ik kan deze code hier niet proeven: de
 sleutels zitten in de repo-secrets en deze omgeving mag de BAG en EP-Online
@@ -42,12 +43,15 @@ wat ze waard zijn, dan pas de brief. Andersom levert een mooie regel op basis
 van een bestand dat nog nergens over gaat.
 
 LET OP BIJ DE OPPERVLAKTE. Een verblijfsobject kan meer dan één adres hebben,
-een hoofdadres met nevenadressen. De oppervlakte die de BAG teruggeeft is dan
-die van het hele object en niet van wat achter één huisnummer zit. Dit script
-bewaart daarom het adresseerbaarObjectIdentificatie en telt hoe vaak twee
-adressen er een delen, zodat die gevallen later apart te behandelen zijn.
+een hoofdadres met nevenadressen. De oppervlakte is dan die van het hele
+object en niet van wat achter één huisnummer zit. Sinds het ophalen per gebied
+gaat is dat geen probleem meer voor de telling: er wordt rechtstreeks naar
+verblijfsobjecten gevraagd, dus elk object komt één keer voorbij en de
+oppervlakte hoort bij precies dat object. Wie de nevenadressen zelf wil zien,
+moet de collectie adres bevragen; die staat hier niet in.
 
-Vereist env: BAG_API_KEY voor fase 1, EP_API_KEY voor fase 2.
+Vereist env: EP_API_KEY voor fase 3. Fase 1 en 2 gaan naar PDOK
+en vragen geen sleutel.
 
 Gebruik:
   python voorraad_bag.py                          # beide fasen, standaardbudget
@@ -75,12 +79,6 @@ UIT = "voorraad.json"
 # wissen.
 STAND = "voorraad_stand.json"
 
-# Na zoveel aanroepen op rij die allemaal mislukken, stoppen. Gaat de eerste
-# tien keer hetzelfde mis, dan gaat de elfde dat ook, en dan is 35 minuten
-# doorploeteren verspilde tijd die de fout niet duidelijker maakt. Op 10
-# oktober is precies dat gebeurd.
-MAX_FOUT_OP_RIJ = 10
-
 # De BAG via PDOK, als OGC API Features. Open data, geen sleutel.
 PDOK = "https://api.pdok.nl/kadaster/bag/ogc/v2/collections"
 PDOK_BASE = f"{PDOK}/verblijfsobject/items"
@@ -100,11 +98,13 @@ PDOK_LIMIT = 1000
 # De hele doos leest in twee minuten uit.
 #
 # EN HIJ KAPT NIETS AF. De doos om de gevonden treffers was
-# 5,83189-5,88500 bij 51,82759-51,85880, aan alle vier de kanten ruim acht
-# honderdsten van een graad binnen deze doos. Zou de doos de ring ergens
-# raken, dan zouden de postcodes daar leeg blijven, en dat wordt per ronde
-# geteld (zie postcodes_leeg in de stand). Een te kleine doos faalt hier dus
-# hardop en niet stil.
+# 5,83189-5,88500 bij 51,82759-51,85880. De marge tot deze doos is west
+# 0,082, oost 0,095, zuid 0,068 en noord 0,041 graad; noord is de kleinste en
+# dat is nog altijd ruim vier kilometer. Zou de doos de ring ergens raken, dan
+# zouden de Nijmeegse postcodes daar leeg blijven, en dat wordt per ronde
+# geteld (zie postcodes_leeg_nijmegen in de stand; in de eerste echte ronde
+# waren dat 2 van de 1.242). Een te kleine doos faalt hier dus hardop en niet
+# stil.
 DOOS = "5.75,51.76,5.98,51.90"
 
 # Statussen waarbij het object niet bestaat. De collectie bevat ook historie:
@@ -114,11 +114,11 @@ DOOS = "5.75,51.76,5.98,51.90"
 # zonder dat er iets faalt.
 NIET_BESTAAND = ("ingetrokken", "niet gerealiseerd", "ten onrechte opgevoerd")
 
-BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
-BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
-BAG_HEADERS = {"X-Api-Key": BAG_API_KEY,
-               "Accept": "application/hal+json",
-               "Accept-Crs": "epsg:28992"}
+# GEEN BAG-SLEUTEL MEER. De BAG-API van het Kadaster weigert een postcode
+# zonder huisnummer, dus die route is vervallen; PDOK vraagt geen sleutel. De
+# sleutel stond hier nog en werd nergens gebruikt, en de workflow geeft hem
+# nog mee. Dat is niet erg, maar het suggereert een afhankelijkheid die er
+# niet is.
 
 EP_API_KEY = os.environ.get("EP_API_KEY", "")
 EP_BASE = "https://public.ep-online.nl/api/v5/PandEnergielabel"
@@ -176,9 +176,15 @@ def postcodes_uit_inventaris(buurten=None):
     Een dict en geen lijst, want er wordt niet meer per postcode gevraagd maar
     per gebied, en daarna wordt elk object in de doos hierin opgezocht.
 
-    Achtentwintig postcodes staan in twee buurten. De eerste op alfabet wint,
-    zodat dezelfde postcode niet per ronde van buurt wisselt, en het aantal
-    wordt gemeld zodat die willekeur zichtbaar is in plaats van verborgen.
+    ALLE BUURTEN PER POSTCODE, NIET ÉÉN. Achtentwintig postcodes staan in twee
+    buurten. Werd daar de eerste op alfabet gekozen, dan verloor Stadscentrum
+    er elke keer een, want die staat alfabetisch laatste van de zes. En
+    Stadscentrum is precies de buurt waarover de plintregel in de brief
+    rekent, dus dat was een vaste afwijking in één richting: 24 van de 471
+    postcodes van Stadscentrum vielen uit de telling, zonder dat er iets
+    faalde en zonder dat de dekking erop reageerde. Welke van de twee buurten
+    het werkelijk is, is uit een postcode niet te zeggen. Dan is beide
+    bewaren eerlijker dan één kiezen.
     """
     d = _lees(INVENTARIS, {})
     per_buurt = d.get("postcodes_per_buurt") or {}
@@ -186,22 +192,30 @@ def postcodes_uit_inventaris(buurten=None):
         print(f"Geen postcodes in {INVENTARIS}; draai eerst "
               f"buurtinventaris.py", file=sys.stderr)
         return {}
-    uit, dubbel = {}, 0
+    uit = {}
     for buurt, lijst in sorted(per_buurt.items()):
         if buurten and buurt not in buurten:
             continue
         for pc in lijst:
             sleutel = (pc or "").replace(" ", "").upper()
-            if not sleutel:
-                continue
-            if sleutel in uit:
-                dubbel += 1
-                continue
-            uit[sleutel] = buurt
+            if sleutel:
+                uit.setdefault(sleutel, []).append(buurt)
+    dubbel = sum(1 for b in uit.values() if len(b) > 1)
+    buiten = sum(1 for pc in uit if not pc.startswith("65"))
     if dubbel:
-        print(f"{dubbel} postcodes staan in meer dan één buurt; de eerste op "
-              f"alfabet is gebruikt", file=sys.stderr)
-    return uit
+        print(f"{dubbel} postcodes staan in meer dan één buurt; alle buurten "
+              f"worden bewaard", file=sys.stderr)
+    if buiten:
+        # DIT IS EEN FOUT IN DE INVENTARIS EN NIET HIER. Gemeten op 10
+        # oktober: 491 van de 1.733 postcodes liggen niet in Nijmegen, maar in
+        # Boskoop, Gorinchem, Dongen, Assen en vier andere plaatsen. Ze kunnen
+        # hier geen schade doen, want de doos ligt om Nijmegen en ze matchen
+        # dus nooit een object. Maar ze verdoezelden wel het signaal dat de
+        # doos moet bewaken, en daarom staan ze apart gemeld.
+        print(f"{buiten} van de {len(uit)} postcodes in {INVENTARIS} liggen "
+              f"niet in Nijmegen (beginnen niet met 65); dat is een fout in de "
+              f"inventaris", file=sys.stderr)
+    return {pc: tuple(b) for pc, b in uit.items()}
 
 
 def anders_aantal(voorraad):
@@ -435,13 +449,29 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
 
     WAAROM NIET MEER PER POSTCODE. PDOK laat postcode niet als filter toe, op
     geen van de zes collecties. Een vraag per postcode kan dus niet. Maar een
-    ronde over de hele doos om Nijmegen kost 120,8 seconden voor 164.634
-    objecten, dus het alternatief is niet duurder maar goedkoper dan de 1.733
-    losse vragen die het ooit zouden zijn geweest.
+    ronde over de hele doos om Nijmegen kostte gemeten 146,7 seconden voor
+    164.634 objecten, dus het alternatief is niet duurder maar goedkoper dan de
+    1.733 losse vragen die het ooit zouden zijn geweest.
 
     Dat verandert ook de aard van de fase. Er is geen achterstand meer, geen
     versheid per postcode en geen hervatten: elke ronde leest alles opnieuw en
     is binnen een paar minuten klaar. Het tijdbudget blijft als noodrem.
+
+    DE SLEUTEL IS HET VERBLIJFSOBJECT EN NIET HET ADRES. Dat was eerst
+    adressleutel(), straat plus nummer plus letter plus toevoeging zonder
+    scheidingsteken. Daarin botsen huisnummer 1 toevoeging 2 en huisnummer 12
+    op dezelfde sleutel, en 1B als huisletter met 1-B als toevoeging ook. De
+    eerste echte ronde maakte zichtbaar hoe groot dat is: 22.096 objecten
+    kwamen binnen en er bleven 22.003 records over, dus 93 woningen
+    overschreven elkaar. Stil, en in de richting die het ergst is. De
+    identificatie van het verblijfsobject kan niet botsen.
+
+    EN ER WORDT NU OOK VERWIJDERD. Daarvoor werd alleen toegevoegd en
+    overschreven. Een gesloopte woning bleef dan staan met haar oude status, en
+    een winkel die woning werd stond in beide lijsten en werd twee keer
+    geteld. Het aantal in de brief zou daardoor langzaam te hoog oplopen en
+    plausibel blijven. Verwijderen gebeurt alleen na een afgemaakte ronde: een
+    halve ronde weet niet wat er niet meer is.
 
     Geen sleutel nodig: PDOK is open data onder Public Domain Mark.
     """
@@ -460,32 +490,42 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
 
     tel = {"nieuw": 0, "bijgewerkt": 0, "onveranderd": 0, "woningen": 0,
            "overig": 0, "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
-           "zonder_pandsleutel": 0}
+           "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
+           "zonder_vbo": 0, "van_soort_gewisseld": 0}
     per_postcode = {}
     statussen = {}
-    objecten = {}
+    gezien_woning, gezien_anders = set(), set()
 
     def verwerk(kenmerken):
         for k in kenmerken:
             p = k.get("properties") or {}
             pc = (p.get("postcode") or "").replace(" ", "").upper()
-            buurt = pcs.get(pc)
-            if not buurt:
+            buurten = pcs.get(pc)
+            if not buurten:
                 tel["buiten_de_ring"] += 1
                 continue
             status = p.get("status") or ""
             statussen[status] = statussen.get(status, 0) + 1
             # DE HISTORIE ERUIT. De collectie bevat ook ingetrokken en nooit
             # gerealiseerde objecten. Die meetellen zou elk aantal in de brief
-            # te hoog maken zonder dat er iets faalt.
+            # te hoog maken zonder dat er iets faalt. Gemeten in de eerste
+            # ronde: 1.955 ingetrokken en 427 niet gerealiseerd.
             if not _bestaat(status):
                 tel["weg"] += 1
                 continue
+            if "gevormd" in status.lower():
+                tel["gevormd"] += 1
             a = _normaliseer(p)
             straat = a.get("openbareRuimteNaam", "")
             nr = a.get("huisnummer", "")
             if not straat or not nr:
                 tel["zonder_adres"] += 1
+                continue
+            vbo = a.get("adresseerbaarObjectIdentificatie") or ""
+            if not vbo:
+                # Zonder identificatie is er geen sleutel die niet botst, en
+                # dan is weglaten eerlijker dan terugvallen op het adres.
+                tel["zonder_vbo"] += 1
                 continue
             letter = a.get("huisletter") or ""
             toev = a.get("huisnummertoevoeging") or ""
@@ -501,40 +541,57 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 pand = panden.get(sleutel) or ""
                 if pand:
                     break
-            if not pand and (a.get("pandIdentificaties") or []):
+            if pand:
+                tel["met_pand"] += 1
+            elif a.get("pandIdentificaties"):
                 tel["zonder_pandsleutel"] += 1
 
+            woning = _is_woning(doelen)
             rec = {
                 "adres": f"{straat} {nr}{letter}{('-' + toev) if toev else ''}",
+                "sleutel": adressleutel(straat, nr, letter, toev),
                 "postcode": pc,
-                "buurt": buurt,
+                # ALLE BUURTEN EN NIET DE EERSTE OP ALFABET. Achtentwintig
+                # postcodes staan in twee buurten. Werd daar de eerste op
+                # alfabet gekozen, dan verloor Stadscentrum er elke keer een,
+                # want die staat alfabetisch laatste. En Stadscentrum is
+                # precies de buurt waarover de plintregel in de brief rekent,
+                # dus dat was een vaste afwijking in één richting: 24 van de
+                # 471 postcodes van Stadscentrum, zonder dat er iets faalde.
+                "buurten": list(buurten),
                 "oppervlakte": a.get("oppervlakte"),
                 "doelen": doelen,
                 "pand": pand,
-                "vbo": a.get("adresseerbaarObjectIdentificatie") or "",
+                "vbo": vbo,
                 "status": status,
             }
-            sleutel = adressleutel(straat, nr, letter, toev)
 
             # BAG_GEZIEN ALLEEN BIJWERKEN ALS ER WERKELIJK IETS VERANDERDE.
             # Zou hier de datum van vandaag staan, dan verandert elk van de
-            # 26.561 records elke ronde en is de dagelijkse wijziging het hele
-            # bestand van ruim zes megabyte. De repo zou dan met megabytes per
+            # 22.000 records elke ronde en is de dagelijkse wijziging het hele
+            # bestand van ruim vijf megabyte. De repo zou dan met megabytes per
             # run groeien terwijl er niets nieuws in staat, en in de
-            # geschiedenis zou niet te zien zijn wát er veranderde. Nu is de
-            # wijziging per ronde precies dat wat de BAG anders meldt.
-            bestaand = (adressen.get(sleutel) if _is_woning(doelen)
-                        else anders.get(sleutel)) or {}
-            zelfde = all(bestaand.get(v) == rec[v] for v in rec)
+            # geschiedenis zou niet te zien zijn wát er veranderde.
+            bestaand = (adressen if woning else anders).get(vbo) or {}
+            zelfde = bool(bestaand) and all(bestaand.get(v) == rec[v]
+                                            for v in rec)
             rec["bag_gezien"] = (bestaand.get("bag_gezien") or vandaag
                                  if zelfde else vandaag)
-            if not _is_woning(doelen):
+
+            # VAN SOORT GEWISSELD. Een winkel die woning wordt stond eerst in
+            # beide lijsten en werd twee keer geteld.
+            anderskant = anders if woning else adressen
+            if vbo in anderskant:
+                del anderskant[vbo]
+                tel["van_soort_gewisseld"] += 1
+
+            if not woning:
                 tel["overig"] += 1
-                anders[sleutel] = rec
+                anders[vbo] = rec
+                gezien_anders.add(vbo)
                 continue
             tel["woningen"] += 1
-            vbo = rec["vbo"]
-            objecten[vbo] = objecten.get(vbo, 0) + 1
+            gezien_woning.add(vbo)
             # Een eerder opgehaald label blijft staan; dat komt uit fase 2.
             for veld in ("label", "label_datum", "label_gezien"):
                 if bestaand.get(veld) is not None:
@@ -545,31 +602,67 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 tel["onveranderd"] += 1
             else:
                 tel["bijgewerkt"] += 1
-            adressen[sleutel] = rec
+            adressen[vbo] = rec
 
     stand = doorloop("verblijfsobject", minuten * 60, verwerk)
 
-    # DE LEGE POSTCODES TELLEN. Dit is de controle op de doos. Raakt de doos de
-    # ring ergens niet, dan blijven de postcodes daar leeg en staat dat hier.
-    # Een te kleine doos faalt daarmee hardop in plaats van stil adressen te
-    # missen, en dat is precies het soort fout dat dit project steeds inhaalt.
+    # WAT ER NIET MEER IS, GAAT ERUIT. Alleen na een afgemaakte ronde, want een
+    # halve ronde weet niet wat er niet meer is en zou de helft van de ring
+    # weggooien.
+    verwijderd = 0
+    if stand["ronde_af"]:
+        for lijst, gezien in ((adressen, gezien_woning),
+                              (anders, gezien_anders)):
+            for vbo in [v for v in lijst if v not in gezien]:
+                del lijst[vbo]
+                verwijderd += 1
+        # En de postcodes die niet meer in de zeef zitten, zodat de dekking
+        # niet op een postcode blijft staan die er niet meer bij hoort.
+        for pc in [x for x in gedaan if x not in pcs]:
+            del gedaan[pc]
+
+    # DE LEGE POSTCODES TELLEN, GESPLITST. Dit is de controle op de doos: raakt
+    # hij de ring ergens niet, dan blijven de postcodes daar leeg. Maar de
+    # eerste echte ronde liet zien dat 491 van de 1.733 postcodes in de
+    # inventaris helemaal niet in Nijmegen liggen: 2771 Boskoop, 4201
+    # Gorinchem, 5103 Dongen, 9401 Assen en nog vier. Die zouden het signaal
+    # over de doos voorgoed verdoezelen. Daarom apart: alleen een lege
+    # Nijmeegse postcode zegt iets over de doos.
     leeg = sorted(pc for pc in pcs if pc not in per_postcode)
+    leeg_nijmegen = [pc for pc in leeg if pc.startswith("65")]
     uit = {
         "postcodes_gedaan": len(per_postcode),
         "postcodes_totaal": len(pcs),
+        "postcodes_nijmegen": sum(1 for pc in pcs if pc.startswith("65")),
         "postcodes_leeg": len(leeg),
-        "postcodes_leeg_voorbeeld": leeg[:12],
+        "postcodes_leeg_nijmegen": len(leeg_nijmegen),
+        "postcodes_buiten_nijmegen": len(leeg) - len(leeg_nijmegen),
+        "postcodes_leeg_voorbeeld": leeg_nijmegen[:12] or leeg[:6],
         "adressen_nieuw": tel["nieuw"],
         "adressen_bijgewerkt": tel["bijgewerkt"],
         "adressen_onveranderd": tel["onveranderd"],
+        "adressen_verwijderd": verwijderd,
+        "van_soort_gewisseld": tel["van_soort_gewisseld"],
         "woningen_gezien": tel["woningen"],
         "niet_woonfunctie": tel["overig"],
         "niet_woningen_bewaard": len(anders),
-        "objecten_met_meer_adressen": sum(1 for n in objecten.values()
-                                          if n > 1),
         "buiten_de_ring": tel["buiten_de_ring"],
         "historie_overgeslagen": tel["weg"],
+        # NOG GEVORMD, NIET IN GEBRUIK. In de eerste ronde 2.238 objecten,
+        # ruim een tiende van de voorraad. Die status betekent dat het object
+        # in de registratie is gevormd maar nog niet als in gebruik is
+        # gemeld. Ze worden meegeteld, want tien procent eruit gooien op een
+        # vermoeden is een grotere ingreep dan ze laten staan, en de status
+        # staat per record bewaard zodat het later te zeven is. Het getal
+        # staat hier zodat de vraag open blijft in plaats van stil beslist.
+        "nog_gevormd": tel["gevormd"],
         "zonder_adres": tel["zonder_adres"],
+        "zonder_vbo": tel["zonder_vbo"],
+        # ALLE OBJECTEN EN NIET ALLEEN DE WONINGEN, want de teller
+        # wordt ook voor winkels verhoogd. Heette dit woningen_met_pand, dan
+        # deelde het gezondheidsrapport door het verkeerde getal en kwam er
+        # een percentage boven honderd uit.
+        "objecten_met_pand": tel["met_pand"],
         "zonder_pandsleutel": tel["zonder_pandsleutel"],
         "statussen": dict(sorted(statussen.items(), key=lambda x: -x[1])[:8]),
         "fouten": 1 if stand["fout"] else 0,
@@ -769,19 +862,65 @@ def proef():
         return {"paginas": 1, "objecten": len(PROEF_KENMERKEN),
                 "seconden": 0.0, "ronde_af": True, "fout": ""}
 
+    def nep_panden(collectie, budget, per_pagina):
+        per_pagina([
+            {"id": "uuid-een", "properties": {
+                "identificatie": "0268100000000011"}},
+            {"id": "uuid-twee", "properties": {
+                "identificatie": "0268100000000022"}},
+            # Zonder identificatie: mag de kaart niet vervuilen.
+            {"id": "uuid-drie", "properties": {}},
+        ])
+        return {"paginas": 1, "objecten": 3, "seconden": 0.0,
+                "ronde_af": True, "fout": ""}
+
     doorloop = nep
     try:
         voorraad = {}
-        pcs = {"6521AB": "Bottendaal", "6511AA": "Stadscentrum"}
+        pcs = {"6521AB": ("Bottendaal",),
+               "6511AA": ("Benedenstad", "Stadscentrum")}
         kaart = {"uuid-een": "0268100000000011",
                  "uuid-twee": "0268100000000022"}
         uit = fase_bag(voorraad, pcs, 1, kaart)
         # TWEEDE RONDE OP DEZELFDE GEGEVENS. Hieraan hangt of het bestand van
-        # ruim zes megabyte elke dag ongewijzigd blijft of elke dag helemaal
+        # ruim vijf megabyte elke dag ongewijzigd blijft of elke dag helemaal
         # verandert. Dat verschil is in de uitkomst niet te zien en alleen
         # hier te meten.
         voorraad_na = json.loads(json.dumps(voorraad))
         tweede = fase_bag(voorraad_na, pcs, 1, kaart)
+
+        # DERDE RONDE WAARIN DINGEN VERDWIJNEN EN VAN SOORT WISSELEN. Hier
+        # hangt aan of het aantal in de brief langzaam te hoog oploopt.
+        voorraad_weg = json.loads(json.dumps(voorraad))
+        korter = [k for k in PROEF_KENMERKEN if k["id"] != "v5"]
+        # En de winkel op Broerstraat 3 wordt een woning.
+        werd_woning = json.loads(json.dumps(
+            [k for k in PROEF_KENMERKEN if k["id"] == "v4"][0]))
+        werd_woning["properties"]["gebruiksdoel"] = "woonfunctie"
+        korter = [k for k in korter if k["id"] != "v4"] + [werd_woning]
+
+        def nep_korter(collectie, budget, per_pagina):
+            per_pagina(korter)
+            return {"paginas": 1, "objecten": len(korter), "seconden": 0.0,
+                    "ronde_af": True, "fout": ""}
+
+        doorloop = nep_korter
+        derde = fase_bag(voorraad_weg, pcs, 1, kaart)
+
+        # VIERDE RONDE DIE HALVERWEGE AFBREEKT: dan mag er niets verdwijnen.
+        voorraad_half = json.loads(json.dumps(voorraad))
+
+        def nep_half(collectie, budget, per_pagina):
+            per_pagina(korter)
+            return {"paginas": 1, "objecten": len(korter), "seconden": 0.0,
+                    "ronde_af": False, "fout": "tijdbudget om"}
+
+        doorloop = nep_half
+        vierde = fase_bag(voorraad_half, pcs, 1, kaart)
+
+        # En de pandfase zelf, op de vorm die PDOK werkelijk levert.
+        doorloop = nep_panden
+        pandkaart, pandstand = fase_panden(1)
     finally:
         doorloop = echt
 
@@ -794,10 +933,15 @@ def proef():
         "buiten_de_ring": 1,           # 6
         "zonder_adres": 1,             # 7
         "zonder_pandsleutel": 1,       # 8
+        "objecten_met_pand": 3,        # 1, 4 en 5
         "postcodes_gedaan": 2,
         "postcodes_totaal": 2,
+        "postcodes_nijmegen": 2,
         "postcodes_leeg": 0,
+        "postcodes_leeg_nijmegen": 0,
         "adressen_nieuw": 3,
+        "adressen_verwijderd": 0,
+        "van_soort_gewisseld": 0,
         "niet_woningen_bewaard": 1,
     }
     afwijkingen = []
@@ -805,24 +949,114 @@ def proef():
         if uit.get(veld) != moet:
             afwijkingen.append(f"{veld}: {uit.get(veld)} in plaats van {moet}")
 
+    # DE SLEUTEL IS DE VBO-IDENTIFICATIE. Met de adressleutel botsten in de
+    # echte ring 93 van de 22.096 objecten op elkaar.
+    if set(adressen) != {"0268010000000001", "0268010000000005",
+                         "0268010000000008"}:
+        afwijkingen.append(f"adressen zijn niet op vbo gesleuteld: "
+                           f"{sorted(adressen)}")
+    # En een botsende adressleutel mag geen record meer opslokken.
+    bots = [
+        {"id": "b1", "properties": {
+            "postcode": "6521AB", "status": "Verblijfsobject in gebruik",
+            "gebruiksdoel": "woonfunctie", "oppervlakte": 40,
+            "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 1,
+            "toevoeging": "2", "identificatie": "0268010000000101",
+            "pand.href": []}},
+        {"id": "b2", "properties": {
+            "postcode": "6521AB", "status": "Verblijfsobject in gebruik",
+            "gebruiksdoel": "woonfunctie", "oppervlakte": 90,
+            "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 12,
+            "identificatie": "0268010000000102", "pand.href": []}},
+    ]
+    if adressleutel("Bottelstraat", 1, "", "2") != adressleutel(
+            "Bottelstraat", 12, "", ""):
+        afwijkingen.append("de proef op de botsing meet niets, want deze twee "
+                           "adressen botsen niet meer")
+    bewaar = doorloop
+
+    def nep_bots(collectie, budget, per_pagina):
+        per_pagina(bots)
+        return {"paginas": 1, "objecten": 2, "seconden": 0.0,
+                "ronde_af": True, "fout": ""}
+
+    doorloop = nep_bots
+    try:
+        vb = {}
+        botsuit = fase_bag(vb, {"6521AB": ("Bottendaal",)}, 1, {})
+    finally:
+        doorloop = bewaar
+    if len(vb.get("adressen") or {}) != 2:
+        afwijkingen.append(
+            f"twee objecten met een botsende adressleutel leverden "
+            f"{len(vb.get('adressen') or {})} records in plaats van 2; dan "
+            f"slokt de sleutel nog woningen op")
+    if botsuit.get("woningen_gezien") != 2:
+        afwijkingen.append("de botsproef zag geen twee woningen")
+
     # De pandsleutel moet de BAG-identificatie zijn en niet PDOK's uuid.
-    bottel12 = adressen.get("bottelstraat12") or {}
+    bottel12 = adressen.get("0268010000000001") or {}
     if bottel12.get("pand") != "0268100000000011":
         afwijkingen.append(f"pand van Bottelstraat 12: "
                            f"{bottel12.get('pand')!r} in plaats van de "
                            f"BAG-identificatie")
-    bottel18 = adressen.get("bottelstraat18") or {}
+    bottel18 = adressen.get("0268010000000008") or {}
     if bottel18.get("pand") != "":
         afwijkingen.append("een onbekend pand moet leeg blijven en geen uuid "
                            f"krijgen, maar werd {bottel18.get('pand')!r}")
     # Gemengd gebruik hoort bij de woningen en niet bij de winkels.
-    if "broerstraat5" not in adressen:
+    if "0268010000000005" not in adressen:
         afwijkingen.append("winkelfunctie,woonfunctie werd niet als woning "
                            "gezien; dan is de komma-splitsing stuk")
-    if "broerstraat3" not in anders:
+    if "0268010000000004" not in anders:
         afwijkingen.append("de winkel staat niet onder niet_woningen")
-    if "bonenkampstraat4" in adressen:
+    if "0268010000000006" in adressen:
         afwijkingen.append("een adres buiten de ring is toch bewaard")
+
+    # BEIDE BUURTEN BEWAARD. Koos dit de eerste op alfabet, dan verloor
+    # Stadscentrum 24 van zijn 471 postcodes uit de plinttelling.
+    winkel = anders.get("0268010000000004") or {}
+    if winkel.get("buurten") != ["Benedenstad", "Stadscentrum"]:
+        afwijkingen.append(f"een postcode in twee buurten levert "
+                           f"{winkel.get('buurten')!r} in plaats van beide")
+
+    # WAT ER NIET MEER IS, MOET ERUIT.
+    if derde.get("adressen_verwijderd") != 1:
+        afwijkingen.append(
+            f"een verdwenen object leverde "
+            f"{derde.get('adressen_verwijderd')} verwijderingen in plaats "
+            f"van 1; dan loopt het aantal in de brief op")
+    if "0268010000000005" in (voorraad_weg.get("adressen") or {}):
+        afwijkingen.append("een object dat de BAG niet meer teruggeeft staat "
+                           "er nog in")
+    if derde.get("van_soort_gewisseld") != 1:
+        afwijkingen.append(
+            f"een winkel die woning werd gaf "
+            f"{derde.get('van_soort_gewisseld')} wisselingen in plaats van 1")
+    dubbel = (set(voorraad_weg.get("adressen") or {})
+              & set(voorraad_weg.get("niet_woningen") or {}))
+    if dubbel:
+        afwijkingen.append(f"{len(dubbel)} objecten staan in beide lijsten en "
+                           f"worden dus dubbel geteld: {sorted(dubbel)}")
+
+    # EEN HALVE RONDE MAG NIETS WEGGOOIEN.
+    if vierde.get("adressen_verwijderd") != 0:
+        afwijkingen.append(
+            f"een afgebroken ronde verwijderde "
+            f"{vierde.get('adressen_verwijderd')} records; dan gooit een "
+            f"haperende dienst de halve ring weg")
+    if not vierde.get("fouten"):
+        afwijkingen.append("een afgebroken ronde meldt geen fout")
+
+    # DE PANDFASE OP DE ECHTE VORM.
+    if pandkaart != {"uuid-een": "0268100000000011",
+                     "uuid-twee": "0268100000000022"}:
+        afwijkingen.append(f"fase_panden gaf {pandkaart!r}")
+    if pandstand.get("omzettingen") != 2:
+        afwijkingen.append(f"fase_panden meldt "
+                           f"{pandstand.get('omzettingen')} omzettingen")
+    if pandstand.get("fout"):
+        afwijkingen.append(f"fase_panden meldde een fout: {pandstand['fout']}")
 
     for status, moet in (("Verblijfsobject in gebruik", True),
                          ("Verblijfsobject buiten gebruik", True),
@@ -858,16 +1092,25 @@ def proef():
 
     for a in afwijkingen:
         print(f"AFWIJKING: {a}", file=sys.stderr)
-    print(f"Proef: {len(afwijkingen)} afwijkingen, "
-          f"{len(verwacht) + 13} controles.", file=sys.stderr)
+    # GEEN AANTAL CONTROLES MEER. Dat getal stond er eerst bij en was fout,
+    # en een fout getal in een proefverslag is erger dan geen getal: het wekt
+    # vertrouwen dat het niet verdient. Wat de proef dekt staat er wel.
+    print(f"Proef: {len(afwijkingen)} afwijkingen. Gedekt: de vorm van het "
+          f"antwoord, de komma in gebruiksdoel, de historiezeef, de "
+          f"vbo-sleutel en de botsing die hij vervangt, de omzetting van de "
+          f"pandsleutel, beide buurten bij een dubbele postcode, verwijderen "
+          f"na een afgemaakte ronde, niets verwijderen na een afgebroken "
+          f"ronde, wisselen tussen woning en niet-woning, en twee gelijke "
+          f"rondes die hetzelfde bestand opleveren.", file=sys.stderr)
     return 1 if afwijkingen else 0
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--uit", default=UIT)
-    # Een ronde over de doos kostte gemeten 120,8 seconden. Tien minuten is
-    # dus vijf keer de gemeten duur, ruim genoeg voor een trage dag en kort
+    # Gemeten op 10 oktober: de objectronde 146,7 seconden over 165 pagina's,
+    # de pandronde 196,5 seconden over 188 pagina's. Tien minuten is dus drie
+    # tot vier keer de gemeten duur, ruim genoeg voor een trage dag en kort
     # genoeg om niet een half uur te blijven hangen als de dienst hapert.
     p.add_argument("--bag-minuten", type=float, default=10)
     p.add_argument("--panden-minuten", type=float, default=10)
@@ -886,7 +1129,20 @@ def main():
     if not pcs and args.alleen != "labels":
         return 1
 
-    uit = {"bijgewerkt": dt.date.today().isoformat()}
+    # DE DIAGNOSE VAN DE ANDERE FASE NIET WISSEN. De workflow doet twee aparte
+    # aanroepen: eerst --alleen bag, daarna --alleen labels. Begon dit met een
+    # lege dict, dan schreef de labelronde een stand zonder de sleutels bag en
+    # panden, en waren postcodes_leeg, ronde_af en de hele pandronde weg
+    # voordat het gezondheidsrapport ernaar keek. Alle vier de controles die
+    # erop staan vuurden dan nooit, en de voorraad kon stil te laag zijn
+    # terwijl het rapport OK meldde. Precies de fout die dit standsbestand
+    # moest voorkomen, nu in het bestand zelf. Daarom opbouwen op wat er al
+    # staat.
+    #
+    # Elke fase stempelt haar eigen datum, zodat een fase die vandaag niet
+    # draaide niet als vers wordt gelezen.
+    uit = dict(_lees(STAND, {}).get("ronde") or {})
+    uit["bijgewerkt"] = dt.date.today().isoformat()
     if args.alleen != "labels":
         # EERST DE PANDEN, DAN DE OBJECTEN. De omzetting van PDOK's pandsleutel
         # naar de BAG-pandidentificatie moet klaar zijn voordat de objecten
@@ -894,13 +1150,16 @@ def main():
         # die nergens op aansluit. Mislukt deze ronde, dan blijft het veld pand
         # leeg en gaat de rest door; de reden staat in de stand.
         panden, uit["panden"] = fase_panden(args.panden_minuten * 60)
+        uit["panden"]["datum"] = dt.date.today().isoformat()
         print("Panden: " + json.dumps(uit["panden"], ensure_ascii=False),
               file=sys.stderr)
         uit["bag"] = fase_bag(voorraad, pcs, args.bag_minuten, panden)
+        uit["bag"]["datum"] = dt.date.today().isoformat()
         print("BAG: " + json.dumps(uit["bag"], ensure_ascii=False),
               file=sys.stderr)
     if args.alleen != "bag":
         uit["labels"] = fase_labels(voorraad, args.labels_minuten)
+        uit["labels"]["datum"] = dt.date.today().isoformat()
         print("Labels: " + json.dumps(uit["labels"], ensure_ascii=False),
               file=sys.stderr)
 
