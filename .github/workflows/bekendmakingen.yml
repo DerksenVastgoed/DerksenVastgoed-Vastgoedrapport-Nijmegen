@@ -555,40 +555,14 @@ jobs:
               echo ""
               rm -f regelgeving_wijzigingen.md
             fi
-            if [ -s beleid_vandaag.md ]; then
-              cat beleid_vandaag.md
-              # Het aantal objecten dat de plintregel raakt hoort bij het
-              # beleidsblok: pa leest "er komt een vergunningplicht" en wil in
-              # dezelfde adem weten hoeveel panden dat betreft. Alleen als er
-              # werkelijk een stuk over de plint langskomt, in elke modus
-              # dezelfde voorwaarde. Mijn eerste opzet liet het in de
-              # weekeditie altijd mee, en dan hing "Hoeveel panden dit raakt"
-              # onder de Beleidsregel veilige jaarwisseling.
-              if [ -s plint_vandaag.md ] && grep -qiE \
-                   "bouwlaag|plint|begane grond" beleid_vandaag.md; then
-                cat plint_vandaag.md
-                echo ""
-              fi
-              # De staart als laatste: die gaat over stukken die ons niet
-              # raken, en daar hoort niets onder te hangen.
-              if [ -s beleid_staart.md ]; then
-                cat beleid_staart.md
-              fi
-              echo ""
-              echo "---"
-              echo ""
-            elif [ -s beleid_staart.md ]; then
-              # Alleen beleid buiten ons onderwerp: dan is er geen blok, maar
-              # de titels blijven staan zodat een verkeerd woord in de lijsten
-              # zichtbaar is in de brief zelf.
-              echo ""
-              echo "## Beleid gemeente Nijmegen"
-              echo ""
-              cat beleid_staart.md
-              echo ""
-              echo "---"
-              echo ""
-            fi
+            # HIER STAAT GEEN BELEIDSBLOK MEER. Gemeentelijk beleid gaat de
+            # brief zelf in: beleid_vandaag.md staat in de bronnen die
+            # brief_verhalend.py krijgt, met een eigen tussenkopje. Zo leest de
+            # brief als geheel in plaats van met een los blok ernaast.
+            # Wat de brief overslaat komt alsnog in de bijlage terecht, via de
+            # stap "Beleid dat de brief oversloeg" die na het schrijven loopt
+            # en beleid_rest.md achter dit bestand plakt. Een stuk staat dus
+            # precies één keer in de mail.
             if [ -s "digests/${DATUM}-rente.md" ]; then
               cat "digests/${DATUM}-rente.md"
               echo ""
@@ -625,60 +599,6 @@ jobs:
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
-      - name: Beleid ook in de dagelijkse bijlage
-        continue-on-error: true
-        run: |
-          # WAAROM DIT BESTAAT. Het beleidsblok werd alleen in brief.md gezet,
-          # en doordeweeks mailt de stap hieronder bijlage.md; brief.md gaat
-          # alleen in de weekeditie mee. Gemeentelijk beleid kwam dus op
-          # werkdagen niet in de inbox. Dat kwam uit toen de intrekking van de
-          # Beleidsregels omzetting en onttrekking van zelfstandige woonruimte
-          # langskwam, het stuk dat precies over verkamering en splitsen gaat.
-          #
-          # Dubbel komt het er niet in: de mail gebruikt of bijlage.md of
-          # brief.md, nooit beide. In de weekeditie is dit dus overbodig werk
-          # aan een bestand dat niet wordt verstuurd, en dat is goedkoper dan
-          # een voorwaarde die bij een wijziging van de modus omvalt.
-          BIJLAGE="digests/${DATUM}-bijlage.md"
-          if [ ! -s beleid_vandaag.md ] && [ ! -s beleid_staart.md ]; then
-            echo "Geen beleidsstuk vandaag, niets toe te voegen"
-            exit 0
-          fi
-          if [ ! -s "$BIJLAGE" ]; then
-            echo "Geen bijlage van vandaag; beleid staat in de brief"
-            exit 0
-          fi
-          if grep -q "Beleid gemeente Nijmegen" "$BIJLAGE"; then
-            echo "Staat er al in, niets gedaan"
-            exit 0
-          fi
-          # Dezelfde opbouw als in "Brief samenstellen": blok, dan het aantal
-          # objecten als er een plintstuk bij zit, dan de staart. Twee keer
-          # dezelfde volgorde opschrijven is kwetsbaar, maar de ene kant is
-          # shell in een heredoc en de andere kant ook, en een derde bestand
-          # om dit te delen maakt het geheel niet duidelijker.
-          {
-            echo ""
-            echo "---"
-            echo ""
-            echo "## Beleid gemeente Nijmegen"
-            echo ""
-            if [ -s beleid_vandaag.md ]; then
-              # De kop staat al in dat bestand; die hierboven is voor de dag
-              # waarop er alleen een staart is.
-              sed '/^## Beleid gemeente Nijmegen$/d' beleid_vandaag.md
-              if [ -s plint_vandaag.md ] && grep -qiE \
-                   "bouwlaag|plint|begane grond" beleid_vandaag.md; then
-                cat plint_vandaag.md
-                echo ""
-              fi
-            fi
-            if [ -s beleid_staart.md ]; then
-              cat beleid_staart.md
-            fi
-          } >> "$BIJLAGE"
-          grep -c "Beleid gemeente Nijmegen" "$BIJLAGE"
-
       - name: Verhalende brief maken
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -708,6 +628,35 @@ jobs:
           else
             echo "Brief gemaakt: $(wc -w < "$VERHAAL") woorden"
             python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': True, 'reden': ''}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+          fi
+
+      - name: Beleid dat de brief oversloeg
+        continue-on-error: true
+        run: |
+          # Beleid gaat de brief zelf in, want Mark wil geen los blok naast een
+          # brief die als geheel hoort te lezen. Maar het model kiest zelf
+          # waarover het schrijft, en een stuk dat het overslaat zou dan
+          # nergens staan. Dat is precies de fout die in dit project zeven keer
+          # is voorgekomen: niet een melding die misgaat, maar iets dat wordt
+          # gemaakt en niet opgeleverd.
+          #
+          # Dit script kijkt dus na het schrijven welke stukken de brief
+          # werkelijk heeft behandeld, en zet alleen de overgeslagen stukken
+          # plus de staartregel in beleid_rest.md. Daarna gaat dat achter beide
+          # bijlagen, want in dagelijkse modus mailt de volgende stap
+          # bijlage.md en in de weekeditie brief.md. Een stuk staat zo precies
+          # één keer in de mail.
+          python beleid_plaatsen.py --brief "digests/${DATUM}-verhaal.md" \
+            || echo "Beleidsplaatsing overgeslagen"
+          if [ -s beleid_rest.md ]; then
+            for DOEL in "digests/${DATUM}-bijlage.md" "digests/${DATUM}-brief.md"; do
+              if [ -s "$DOEL" ] && ! grep -q "Beleid gemeente Nijmegen" "$DOEL"; then
+                { echo ""; echo "---"; echo ""; cat beleid_rest.md; } >> "$DOEL"
+                echo "Toegevoegd aan $DOEL"
+              fi
+            done
+          else
+            echo "Niets voor de bijlage: de brief heeft het beleid opgepakt"
           fi
 
       - name: Brief en bijlage samenvoegen tot een HTML

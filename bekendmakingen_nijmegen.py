@@ -1223,7 +1223,11 @@ def main():
             json.dump({"datum": dt.date.today().isoformat(),
                        "gevonden": len(beleid) + len(buiten_onderwerp),
                        "raakt_ons": len(beleid),
-                       "buiten_onderwerp": len(buiten_onderwerp)}, f,
+                       "buiten_onderwerp": len(buiten_onderwerp),
+                       # De titels erbij, zodat beleid_plaatsen.py na het
+                       # schrijven van de brief kan nakijken welk stuk de brief
+                       # heeft behandeld en welk stuk alsnog in de bijlage moet.
+                       "titels": [it.get("titel", "") for it in beleid]}, f,
                       ensure_ascii=False, indent=1)
     except Exception as e:
         print(f"Kon beleid_stand.json niet schrijven: {e}", file=sys.stderr)

@@ -234,6 +234,12 @@ VAN BESLUIT NAAR REGISTRATIE IS DE LAATSTE STAP, NIET DE ROUTE. Op 9 oktober sto
 
 DE BAG EN DE VERGUNNING KUNNEN EEN ANDER AANTAL NOEMEN, EN DAT IS NIEUWS. Staat er een blok "De BAG telt een ander aantal dan de vergunning noemt", dan is dat het interessantste wat er die dag in de gegevens staat. Bij de Biezenstraat 110 noemt het besluit twee zelfstandige woningen en telt de BAG er drie, van 168, 203 en 44 m2. Op 9 oktober stonden beide getallen in één alinea van de brief zonder dat het verschil werd opgemerkt; dat mag niet nog eens gebeuren. Schrijf het wel als wat het is: een aanwijzing om na te kijken en geen conclusie. Een verschil kan betekenen dat er meer is gerealiseerd dan mocht, maar ook dat de vergunningtekst iets anders telt dan de BAG, want een garage die een eigen adres krijgt is in de BAG een woning en in de aanvraag een bijgebouw. Beide uitkomsten zijn het melden waard.
 
+GEMEENTELIJK BELEID. Staat er een blok "Gemeentelijk beleid dat ons raakt", dan hoort dat in de brief onder een eigen tussenkopje en niet als losse mededeling achteraan. Twee regels, en ze zijn er met reden:
+
+Ten eerste: schrijf wat het stuk REGELT, en haal dat uit de samenvatting en nooit uit de titel. De titel "Woonruimte op de eerste bouwlaag toevoegen binnenstad" klinkt alsof er iets bij mag komen, terwijl het stuk een vergunningplicht invoert om winkelvloer te beschermen en hoogstens 30% van de plint toestaat met een maximum van 50 m2. Op 8 en 10 oktober stond er daarom dat de regel omzetting "vergemakkelijkt", het omgekeerde van wat er staat. Zegt de samenvatting dat er een verbod of een vergunningplicht bij komt, schrijf dan nooit dat iets eenvoudiger wordt.
+
+Ten tweede: zeg wat het voor ONS betekent, en gebruik daarvoor wat er in de gegevens staat. Staat er een blok "Hoeveel objecten dat beleid raakt", neem dat aantal dan over met het voorbehoud dat erbij staat. Staat er een pand in het aanbod of in de dossiers waarop deze regel van toepassing zou zijn, leg die twee dan naast elkaar; dat is het nuttigste wat je met zo'n stuk kunt doen. Is er geen aantal en geen pand, zeg dan alleen wat de regel verandert en verzin geen gevolg.
+
 VERKOCHTE WONINGEN. Staat er een pand bij dat bij ons nog te koop stond, meld dat dan kort: dan klopte onze lijst niet meer. Staat er een bekendmaking bij een verkocht adres, dan is dat een aanwijzing dat de koper iets met het pand doet, en geen bewijs; de verkoopdatum is een benadering. Neem die kanttekening over als je het noemt.
 
 WAT DE BUREN DEDEN. Bij een pand dat te koop komt, staat in het dossier onder "eerder in deze straat" wat er met vergelijkbare panden in diezelfde straat is gebeurd: gekocht, gesplitst, verduurzaamd, opnieuw te koop. Dat is het sterkste dat je over een nieuw pand kunt zeggen, want het laat zien wat de gemeente daar toestond en wat een koper er zag. Staat er "geen pand met een vergunning in onze geschiedenis", neem dan de kanttekening mee dat we alleen zien wat sinds 2012 is gepubliceerd.
@@ -1437,6 +1443,21 @@ def main():
         # omdat de stap die het maakte na de stap liep die het moest opnemen.
         ("Splitsingen die de BAG inmiddels telt",
          strip_opmaak(lees(f"digests/{d}-splitsingen.md"), 3000)),
+        # GEMEENTELIJK BELEID HOORT IN DE BRIEF EN NIET ERNAAST. Dit blok werd
+        # gemaakt, in de bijlage gezet en door niets gelezen: het stond niet in
+        # deze lijst, dus het model dat de brief schrijft zag het nooit. Daarom
+        # kon de brief een beleidsstuk niet aan een pand hangen en niet zeggen
+        # wat het voor de voorraad betekent, en stond het als los blok naast
+        # een brief die als geheel hoort te lezen.
+        #
+        # Wat hier binnenkomt is de samenvatting uit de publicatietekst zelf,
+        # niet de titel. Dat onderscheid is de reden dat de brief op 8 en 10
+        # oktober schreef dat een vergunningplicht het omzetten van
+        # winkelplinten "vergemakkelijkt".
+        ("Gemeentelijk beleid dat ons raakt",
+         strip_opmaak(lees("beleid_vandaag.md"), 4000)),
+        ("Hoeveel objecten dat beleid raakt",
+         strip_opmaak(lees("plint_vandaag.md"), 1500)),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
