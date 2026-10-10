@@ -5,7 +5,7 @@
    "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
    "fouten": 10,
-   "laatste_fout": "6521AX: HTTP 400: Minimale combinatie van parameters moet worden opgegeven. Bad request. paramsCombination",
+   "laatste_fout": "6521AX: HTTP 400: Bad Request failed to parse CQL filter:\nerror: property 'postcode' cannot be used in CQL filter, is not a queryable property",
    "niet_woningen_bewaard": 0,
    "niet_woonfunctie": 0,
    "objecten_met_meer_adressen": 0,
