@@ -13,12 +13,12 @@
   "brief_verhalend.py": "dd4ff3c872ec",
   "bronnen.py": "f0dc6650f0f9",
   "buurten_tabel.py": "be9f6ffee4ec",
-  "buurtinventaris.py": "93a37a38de8d",
+  "buurtinventaris.py": "9eeb45c6e1bf",
   "corop_prijzen.py": "ac3a1de9f344",
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "7b92e5018811",
   "funda_verkocht_plak.py": "44255967014f",
-  "gezondheid.py": "9ed29f779efb",
+  "gezondheid.py": "402db1cb5bdf",
   "grootte_premie.py": "dc1fe4744a6e",
   "huur_dekking.py": "e3db912f5bb8",
   "kamernet_plak.py": "7b673395ed06",
@@ -43,5 +43,5 @@
   "woningprijsindex.py": "f371a0f4f57b",
   "wwso.py": "f4b919fb6ec7"
  },
- "gemaakt": "2026-10-09"
+ "gemaakt": "2026-10-10"
 }
