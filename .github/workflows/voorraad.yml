@@ -60,7 +60,17 @@ jobs:
 
       - name: PDOK verkennen (alleen op de verkenningsbranch)
         continue-on-error: true
-        run: python pdok_verkenning.py
+        run: |
+          # Naar een bestand én naar het logboek. Het logboek van een run is
+          # vanaf mijn kant niet te lezen, de logserver van GitHub wordt door
+          # de proxy geweigerd. Het bestand komt wel terug via git, en dat is
+          # de enige weg waarlangs het antwoord mij bereikt.
+          python pdok_verkenning.py 2>&1 | tee pdok_antwoord.md
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f pdok_antwoord.md
+          git commit -q -m "Antwoord van de verkenning" || echo "niets gewijzigd"
+          git push -q origin HEAD:"${GITHUB_REF_NAME}" || echo "push mislukt"
 
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true
