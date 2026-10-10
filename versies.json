@@ -1,6 +1,6 @@
 {
  "bestanden": {
-  ".github/workflows/bekendmakingen.yml": "329064e8a028",
+  ".github/workflows/bekendmakingen.yml": "00aba67e2e4a",
   "aanbod_reeks.py": "81d5a7aa0aa2",
   "aanbodprofiel.py": "23697f8f4d8f",
   "bag3d.py": "b7cbb69df264",
@@ -11,6 +11,7 @@
   "bouwnorm.py": "0e31713d956d",
   "brief_logboek.py": "3667d1e9fdaa",
   "brief_verhalend.py": "162480f2c14b",
+  "briefvoet.py": "4c42cfd26424",
   "bronnen.py": "f0dc6650f0f9",
   "buurten_tabel.py": "be9f6ffee4ec",
   "buurtinventaris.py": "9eeb45c6e1bf",
@@ -18,7 +19,7 @@
   "diagnose.py": "6b5cfc5f3961",
   "funda_mail.py": "7b92e5018811",
   "funda_verkocht_plak.py": "44255967014f",
-  "gezondheid.py": "b9a3d6e2c50a",
+  "gezondheid.py": "ccadee54a0fc",
   "grootte_premie.py": "dc1fe4744a6e",
   "huur_dekking.py": "e3db912f5bb8",
   "kamernet_plak.py": "7b673395ed06",

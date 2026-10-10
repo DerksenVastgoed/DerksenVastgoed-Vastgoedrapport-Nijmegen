@@ -1963,6 +1963,57 @@ def controle_verkooptijd():
             "schatting: de werkelijke tijd is korter of gelijk", "")
 
 
+def controle_briefvoet():
+    """
+    Staat er in de verstuurde mail dat de brief machinewerk is?
+
+    De brief spreekt in de eerste persoon, dus de ontvanger leest een analyse
+    van zijn zoon. In oktober stonden er vijf beweringen in die onwaar waren.
+    De voet verandert daar niets aan; hij verandert hoe de brief wordt gelezen,
+    en dat is de enige maatregel die ook werkt tegen de fouten die we nog niet
+    kennen. Daarom is het niet genoeg dat de regel bestaat: hij moet in de mail
+    staan die eruit gaat. Dat is precies het soort "gemaakt maar niet
+    opgeleverd" dat deze week zes keer voorkwam.
+
+    DE VALKUIL DIE EEN LOSSE BEOORDELAAR HIER VOND. De eerste opzet las het
+    nieuwste bestand dat op -mail.html eindigt. Dat is niet hetzelfde als de
+    mail van vandaag: mislukt de samenvoegstap, dan staat die van gisteren er
+    nog en meldt de toets OK over een mail die niemand heeft gekregen, terwijl
+    de werkelijke verzending via brief.html liep. Daarom kijkt hij nu naar de
+    datum van vandaag en naar beide verzendpaden.
+    """
+    try:
+        from briefvoet import TOETSTEKST
+    except Exception as e:
+        return (FOUT, f"briefvoet.py is niet te lezen ({type(e).__name__})",
+                "Zonder dat bestand gaat de brief zonder voet de deur uit.")
+    vandaag = dt.date.today().isoformat()
+    # Beide paden waarlangs er werkelijk een brief wordt verstuurd. mail.html
+    # is het gewone pad; brief.html is het pad "Mail versturen zonder verhaal".
+    paden = [(f"digests/{vandaag}-mail.html", "de mail"),
+             (f"digests/{vandaag}-brief.html", "de brief zonder verhaal")]
+    gevonden = [(pad, wat) for pad, wat in paden if os.path.exists(pad)]
+    if not gevonden:
+        return (OK, "geen brief van vandaag om te toetsen", "")
+    mist = []
+    for pad, wat in gevonden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                if TOETSTEKST not in f.read():
+                    mist.append(wat)
+        except Exception as e:
+            mist.append(f"{wat} ({type(e).__name__})")
+    if not mist:
+        return (OK, "de voet staat boven "
+                + " en ".join(w for _, w in gevonden), "")
+    return (FOUT, "de voet staat NIET in " + " en ".join(mist),
+            "Die tekst gaat dan uit zonder dat er in staat dat de tekst door "
+            "een taalmodel is geschreven. De stap 'Brief en bijlage "
+            "samenvoegen tot een HTML' zet GEEN_VOET=1 als het invoegen "
+            "mislukt, en dan gaat de kopie naar pa er vanzelf af; staat die "
+            "melding er niet, dan is er iets anders aan de hand.")
+
+
 def controle_voorraad():
     """
     Hoe ver de voorraad van de hele ring is gevuld.
@@ -2369,6 +2420,7 @@ CONTROLES = [
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),
     ("Voorraad van de ring", controle_voorraad),
+    ("Voet onder de brief", controle_briefvoet),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),
