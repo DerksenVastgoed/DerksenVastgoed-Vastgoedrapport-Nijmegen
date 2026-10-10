@@ -203,3 +203,6 @@ De brief eindigt midden in een zin: '...oning aan de Hatertseweg nog wordt opgeh
 
 Groet,
 Mark'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...n buurtcijfers. Ik hou dat dossier in de gaten.
+
+Groet, Mark'. Controleer of het antwoord is afgekapt.

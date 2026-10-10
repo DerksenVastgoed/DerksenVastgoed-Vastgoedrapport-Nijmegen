@@ -99,5 +99,35 @@
   "opp": 97,
   "kamers": 3,
   "postcode": "6541SP"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435181/evertsenstraat-nijmegen": {
+  "opp": 100,
+  "kamers": 3,
+  "postcode": "6512JL"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435311/broerdijk-nijmegen": {
+  "opp": 23,
+  "kamers": 1,
+  "postcode": "6523GR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435313/broerdijk-nijmegen": {
+  "opp": 10,
+  "kamers": 1,
+  "postcode": "6523GR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435809/heidebloemstraat-nijmegen": {
+  "opp": 83,
+  "kamers": 4,
+  "postcode": "6533SL"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435390/wolfskuilseweg-nijmegen": {
+  "opp": 78,
+  "kamers": 2,
+  "postcode": "6542JK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4435810/aubadestraat-nijmegen": {
+  "opp": 61,
+  "kamers": 3,
+  "postcode": "6544ZA"
  }
 }

@@ -16520,6 +16520,32 @@
    "b3_kwaliteitsindicator": true,
    "identificatie": "NL.IMBAG.Pand.0268100000046017",
    "opgehaald": "2026-10-09"
+  },
+  "0268100000021801": {
+   "b3_opp_buitenmuur": 164.14,
+   "b3_opp_dak_plat": 71.09,
+   "b3_opp_dak_schuin": 10.54,
+   "b3_opp_grond": 77.02,
+   "b3_bouwlagen": 5,
+   "b3_h_maaiveld": 29.003000259399414,
+   "b3_dak_type": "slanted",
+   "b3_volume_lod13": 720.9674682617188,
+   "b3_kwaliteitsindicator": true,
+   "identificatie": "NL.IMBAG.Pand.0268100000021801",
+   "opgehaald": "2026-10-10"
+  },
+  "0268100000026862": {
+   "b3_opp_buitenmuur": 139.14,
+   "b3_opp_dak_plat": 41.99,
+   "b3_opp_dak_schuin": 29.98,
+   "b3_opp_grond": 65.39,
+   "b3_bouwlagen": 3,
+   "b3_h_maaiveld": 11.821000099182129,
+   "b3_dak_type": "slanted",
+   "b3_volume_lod13": 588.4697265625,
+   "b3_kwaliteitsindicator": true,
+   "identificatie": "NL.IMBAG.Pand.0268100000026862",
+   "opgehaald": "2026-10-10"
   }
  },
  "bijgewerkt": "2026-10-10",

@@ -87,6 +87,14 @@
   "omweg": 1.32,
   "soort": "bus"
  },
+ "51.81574,5.84696": {
+  "geschat": false,
+  "hemelsbreed": 109,
+  "meters": 172,
+  "naam": "Heidebloemstraat",
+  "omweg": 1.58,
+  "soort": "bus"
+ },
  "51.81797,5.79892": {
   "geschat": false,
   "hemelsbreed": 119,
@@ -173,6 +181,14 @@
   "meters": 1,
   "naam": "Winkelcentrum Notenhout",
   "omweg": 0.03,
+  "soort": "bus"
+ },
+ "51.82979,5.82056": {
+  "geschat": false,
+  "hemelsbreed": 240,
+  "meters": 350,
+  "naam": "Aubadestraat",
+  "omweg": 1.46,
   "soort": "bus"
  },
  "51.82985,5.86795": {
@@ -405,6 +421,14 @@
   "meters": 322,
   "naam": "Spoorkuil",
   "omweg": 1.13,
+  "soort": "bus"
+ },
+ "51.83614,5.85850": {
+  "geschat": false,
+  "hemelsbreed": 332,
+  "meters": 394,
+  "naam": "Spoorkuil",
+  "omweg": 1.19,
   "soort": "bus"
  },
  "51.83620,5.88693": {
@@ -727,6 +751,14 @@
   "omweg": 1.54,
   "soort": "bus"
  },
+ "51.84011,5.85737": {
+  "geschat": false,
+  "hemelsbreed": 371,
+  "meters": 565,
+  "naam": "Centraal Station",
+  "omweg": 1.52,
+  "soort": "bus"
+ },
  "51.84019,5.85579": {
   "geschat": false,
   "hemelsbreed": 341,
@@ -901,6 +933,14 @@
   "meters": 54,
   "naam": "Centraal Station",
   "omweg": 0.79,
+  "soort": "bus"
+ },
+ "51.84291,5.84782": {
+  "geschat": false,
+  "hemelsbreed": 174,
+  "meters": 305,
+  "naam": "2e Oude Heselaan",
+  "omweg": 1.75,
   "soort": "bus"
  },
  "51.84297,5.86312": {
@@ -1365,6 +1405,14 @@
   "meters": 431,
   "naam": "Waalkade",
   "omweg": 1.38,
+  "soort": "bus"
+ },
+ "51.84745,5.84482": {
+  "geschat": false,
+  "hemelsbreed": 229,
+  "meters": 391,
+  "naam": "Biezenstraat",
+  "omweg": 1.71,
   "soort": "bus"
  },
  "51.84748,5.84732": {

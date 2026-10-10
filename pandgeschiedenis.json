@@ -22426,6 +22426,23 @@
     "Jan de Wittstraat 61": "C"
    }
   },
+  "0268100000021801": {
+   "bag_eenheden": [
+    [
+     "Jan de Wittstraat 21",
+     96
+    ],
+    [
+     "Jan de Wittstraat 23",
+     137
+    ]
+   ],
+   "bag_gezien": "2026-10-10",
+   "labels": {
+    "Jan de Wittstraat 21": "D",
+    "Jan de Wittstraat 23": "A++"
+   }
+  },
   "0268100000021808": {
    "bag_eenheden": [
     [
@@ -25958,6 +25975,23 @@
    "bag_gezien": "2026-10-10",
    "labels": {
     "Ziekerstraat 116": "B"
+   }
+  },
+  "0268100000026862": {
+   "bag_eenheden": [
+    [
+     "Koninginnelaan 213",
+     103
+    ],
+    [
+     "Koninginnelaan 215",
+     55
+    ]
+   ],
+   "bag_gezien": "2026-10-10",
+   "labels": {
+    "Koninginnelaan 213": "D",
+    "Koninginnelaan 215": "C"
    }
   },
   "0268100000026865": {
@@ -38288,7 +38322,7 @@
  "aldenhof": {
   "adres": "Aldenhof",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -38569,6 +38603,20 @@
    }
   ],
   "pand_id": "0268100000006202"
+ },
+ "aubadestraat": {
+  "adres": "Aubadestraat",
+  "bag_gezien": "2026-10-10",
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €825 per maand, 61 m2"
+   }
+  ],
+  "pand_id": null
  },
  "aubadestraat12": {
   "adres": "Aubadestraat 12",
@@ -40976,6 +41024,20 @@
   ],
   "pand_id": "0268100000028313"
  },
+ "biezendwarsstraat": {
+  "adres": "Biezendwarsstraat",
+  "bag_gezien": "2026-10-10",
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.750 per maand, 77 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "biezendwarsstraat18": {
   "adres": "Biezendwarsstraat 18",
   "gebeurtenissen": [
@@ -42593,7 +42655,7 @@
  "breehofstraat": {
   "adres": "Breehofstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -42608,7 +42670,7 @@
  "broerdijk": {
   "adres": "Broerdijk",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -42821,7 +42883,7 @@
  "burchtstraat": {
   "adres": "Burchtstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -47579,7 +47641,7 @@
  "cortenaerpad": {
   "adres": "Cortenaerpad",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -47594,7 +47656,7 @@
  "cortvanderlindenstraat": {
   "adres": "Cort van der Lindenstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -49604,7 +49666,7 @@
  "deruyterstraat": {
   "adres": "de Ruyterstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -54929,6 +54991,20 @@
   ],
   "pand_id": "0268100000018898"
  },
+ "evertsenstraat": {
+  "adres": "Evertsenstraat",
+  "bag_gezien": "2026-10-10",
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.700 per maand, 100 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "evertsenstraat1": {
   "adres": "Evertsenstraat 1",
   "gebeurtenissen": [
@@ -55430,7 +55506,7 @@
  "fenikshof": {
   "adres": "Fenikshof",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -57260,7 +57336,7 @@
  "goemanborgesiusstraat": {
   "adres": "Goeman Borgesiusstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -57379,7 +57455,7 @@
  "graadtvanroggenstraat": {
   "adres": "Graadt van Roggenstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -61750,7 +61826,7 @@
  "hackfortstraat": {
   "adres": "Hackfortstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -62430,6 +62506,20 @@
     "datum": "2026-10-07",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €530 per maand"
+   }
+  ],
+  "pand_id": null
+ },
+ "heidebloemstraat": {
+  "adres": "Heidebloemstraat",
+  "bag_gezien": "2026-10-10",
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €890 per maand, 83 m2"
    }
   ],
   "pand_id": null
@@ -64089,7 +64179,7 @@
  "heyendaalseweg": {
   "adres": "Heyendaalseweg",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -64942,7 +65032,7 @@
  "indebetouwstraat": {
   "adres": "In de Betouwstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -65166,7 +65256,7 @@
  "irenevorrinkstraat": {
   "adres": "Irene Vorrinkstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -65527,7 +65617,7 @@
  "jacobvancampenstraat": {
   "adres": "Jacob van Campenstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -65542,7 +65632,7 @@
  "jandewittstraat": {
   "adres": "Jan de Wittstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -65553,6 +65643,24 @@
    }
   ],
   "pand_id": null
+ },
+ "jandewittstraat23": {
+  "adres": "Jan de Wittstraat 23",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2018-03-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 21 is D, geregistreerd 2018-03-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-03-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 23 is A++, geregistreerd 2025-03-13"
+   }
+  ],
+  "pand_id": "0268100000021801"
  },
  "jandewittstraat4": {
   "adres": "Jan de Wittstraat 4",
@@ -65816,7 +65924,7 @@
  "janvanspeykstraat": {
   "adres": "Jan van Speykstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -66524,7 +66632,7 @@
  "jozefisraelsstraat": {
   "adres": "Jozef Israelsstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -69118,6 +69226,24 @@
    }
   ],
   "pand_id": "0268100000026865"
+ },
+ "koninginnelaan215": {
+  "adres": "Koninginnelaan 215",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2017-06-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Koninginnelaan 215 is C, geregistreerd 2017-06-03"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Koninginnelaan 213 is D, geregistreerd 2020-12-16"
+   }
+  ],
+  "pand_id": "0268100000026862"
  },
  "koninginnelaan225": {
   "adres": "Koninginnelaan 225",
@@ -73865,7 +73991,7 @@
  "maasstraat": {
   "adres": "Maasstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -73904,7 +74030,7 @@
  "malderburchtstraat": {
   "adres": "Malderburchtstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -76367,7 +76493,7 @@
  "meijhorst": {
   "adres": "Meijhorst",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -81335,7 +81461,7 @@
  "mrfranckenstraat": {
   "adres": "Mr. Franckenstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -82364,7 +82490,7 @@
  "mvasalisstraat": {
   "adres": "M Vasalisstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -82397,7 +82523,7 @@
  "nieuwedukenburgseweg": {
   "adres": "Nieuwe Dukenburgseweg",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -85505,7 +85631,7 @@
  "plataanstraat": {
   "adres": "Plataanstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -91757,7 +91883,7 @@
  "simonedebeauvoirstraat": {
   "adres": "Simone de Beauvoirstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -91772,7 +91898,7 @@
  "sintjacobslaan114": {
   "adres": "Sint Jacobslaan 114",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -92162,7 +92288,7 @@
  "spijkerhofplein": {
   "adres": "Spijkerhofplein",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -92228,7 +92354,7 @@
  "sprengenweg": {
   "adres": "Sprengenweg",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -92255,7 +92381,7 @@
  "stagnetenweg": {
   "adres": "St. Agnetenweg",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -94607,7 +94733,7 @@
  "stjacobslaan": {
   "adres": "St. Jacobslaan",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -97703,7 +97829,7 @@
  "tooropstraat": {
   "adres": "Tooropstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -97967,7 +98093,7 @@
  "treubstraat": {
   "adres": "Treubstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -98678,7 +98804,7 @@
  "tweedeoudeheselaan": {
   "adres": "Tweede Oude Heselaan",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -100412,7 +100538,7 @@
  "vandiemerbroeckstraat": {
   "adres": "Van Diemerbroeckstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -101429,7 +101555,7 @@
  "vanoldenbarneveltstraat": {
   "adres": "van Oldenbarneveltstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -102787,6 +102913,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €577 per maand, 16 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-10",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.275 per maand, 30 m2"
    }
   ],
   "pand_id": null
@@ -109430,7 +109562,7 @@
  "voorstadslaan": {
   "adres": "Voorstadslaan",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -109931,7 +110063,7 @@
  "vossendijk": {
   "adres": "Vossendijk",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -109946,7 +110078,7 @@
  "vossenlaan": {
   "adres": "Vossenlaan",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -110159,7 +110291,7 @@
  "waaijenstein": {
   "adres": "Waaijenstein",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -112382,7 +112514,7 @@
  "waterstraat": {
   "adres": "Waterstraat",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
@@ -113504,7 +113636,7 @@
  "wolfskuilseweg": {
   "adres": "Wolfskuilseweg",
   "bag_gezien": "2026-10-10",
-  "bag_pogingen": 2,
+  "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {

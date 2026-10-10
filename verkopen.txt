@@ -1010,3 +1010,13 @@ Broerdijk | Nijmegen | 390 | te huur | 2026-10-09 | pararius | 10 | 6523GR
 
 # Automatisch toegevoegd uit Funda-attendering op 09-10-2026
 Heyendaalseweg 219 | Nijmegen | 450 | te huur | 2026-10-09 | rentola | 14 | 6525SG
+
+# Automatisch toegevoegd uit Funda-attendering op 10-10-2026
+Koninginnelaan 215 | Nijmegen | 325000 | project | 2026-10-10 |  | 54 | 6542ZR
+Pontanusstraat 40 | Nijmegen | 550000 | project | 2026-10-10 |  | 133 | 6524HG
+Jan de Wittstraat 23 | Nijmegen | 625000 | project | 2026-10-10 |  | 104 | 6512EG
+Evertsenstraat | Nijmegen | 1700 | te huur | 2026-10-10 | huislijn | 100 | 6512JL
+Heidebloemstraat | Nijmegen | 890 | te huur | 2026-10-10 | huislijn | 83 | 6533SL
+Aubadestraat | Nijmegen | 825 | te huur | 2026-10-10 | huislijn | 61 | 6544ZA
+Biezendwarsstraat | Nijmegen | 1750 | te huur | 2026-10-10 | pararius | 77 | 6541ZH
+van Trieststraat | Nijmegen | 1275 | te huur gemeubileerd | 2026-10-10 | pararius | 30 | 6512CW

@@ -1,9 +1,9 @@
 {
- "datum": "2026-10-09",
+ "datum": "2026-10-10",
  "bronnen": {
   "regulier": {
    "mails": 4,
-   "objecten": 6,
+   "objecten": 8,
    "overgeslagen": 1,
    "redenen": [
     "Weurtseweg 17 (geen prijs gevonden)"
@@ -11,28 +11,28 @@
   },
   "huislijn": {
    "mails": 4,
-   "objecten": 17,
+   "objecten": 22,
    "overgeslagen": 0,
    "redenen": []
   },
-  "pararius": {
-   "mails": 3,
-   "objecten": 6,
-   "overgeslagen": 1,
-   "redenen": [
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)"
-   ]
-  },
   "kamernet": {
-   "mails": 19,
-   "objecten": 13,
-   "overgeslagen": 6,
+   "mails": 12,
+   "objecten": 8,
+   "overgeslagen": 4,
    "redenen": [
-    "Rijksweg, Malden: buiten Nijmegen",
-    "Nieuweweg, Wijchen: buiten Nijmegen",
     "Achterstraat: €36 per maand is niet aannemelijk",
     "Aalburgstraat, Arnhem: buiten Nijmegen",
-    "Pius XII straat, Wijchen: buiten Nijmegen"
+    "Pius XII straat, Wijchen: buiten Nijmegen",
+    "Bellefleur, Zetten: buiten Nijmegen"
+   ]
+  },
+  "pararius": {
+   "mails": 3,
+   "objecten": 7,
+   "overgeslagen": 2,
+   "redenen": [
+    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
+    "van Trieststraat (gemeubileerd, apart bewaard)"
    ]
   },
   "rentola": {

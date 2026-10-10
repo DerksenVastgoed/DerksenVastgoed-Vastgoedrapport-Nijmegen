@@ -73241,5 +73241,122 @@
     "oppervlakte_bag": 111,
     "opp_verschil": true,
     "energielabel": null
+  },
+  "Koninginnelaan 215|Nijmegen": {
+    "oppervlakte": 54,
+    "bouwjaar": "1915",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542ZR",
+    "adresseerbaarObjectIdentificatie": "0268010000017927",
+    "pand": "0268100000026862",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-cdef15615a102a825820ac7ca0b7b4f9",
+    "eenheden_in_pand": [
+      {
+        "adres": "Koninginnelaan 213",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Koninginnelaan 215",
+        "oppervlakte": 55,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 55,
+    "energielabel": {
+      "label": "C",
+      "registratiedatum": "2017-06-03",
+      "geldig_tot": "2027-06-03",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Jan de Wittstraat 23|Nijmegen": {
+    "oppervlakte": 104,
+    "bouwjaar": "1913",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512EG",
+    "adresseerbaarObjectIdentificatie": "0268010000079063",
+    "pand": "0268100000021801",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-511cca2efcaf5290f0d54c76a52c0111",
+    "eenheden_in_pand": [
+      {
+        "adres": "Jan de Wittstraat 21",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Jan de Wittstraat 23",
+        "oppervlakte": 137,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 137,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "A++",
+      "registratiedatum": "2025-03-13",
+      "geldig_tot": "2035-03-10",
+      "gebouwklasse": "Woningbouw",
+      "prive": false
+    }
+  },
+  "Evertsenstraat|Nijmegen": {
+    "oppervlakte": 100,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512JL",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Heidebloemstraat|Nijmegen": {
+    "oppervlakte": 83,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6533SL",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Aubadestraat|Nijmegen": {
+    "oppervlakte": 61,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6544ZA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Biezendwarsstraat|Nijmegen": {
+    "oppervlakte": 77,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ZH",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

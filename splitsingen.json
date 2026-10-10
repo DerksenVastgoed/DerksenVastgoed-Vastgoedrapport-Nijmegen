@@ -7,7 +7,11 @@
    "naar": 3,
    "besluit": "2026-10-02",
    "dagen_na_besluit": 1,
-   "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen"
+   "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
+   "aanvraag": "2026-02-03",
+   "dagen_aanvraag_tot_besluit": 241,
+   "vergund_aantal": 2,
+   "wijkt_af": 1
   }
  ],
  "zonder_bekende_vergunning": [
@@ -91,6 +95,21 @@
    "besluit": "2025-05-19",
    "dagen": 509,
    "tekst": "Besluit voor het plaatsen van een dakopbouw en splitsten van de woning, aan Albardastraat 34, 6535VK Nijmegen"
+  }
+ ],
+ "wijkt_af_van_vergunning": [
+  {
+   "adres": "Biezenstraat 110",
+   "datum": "2026-10-03",
+   "van": 1,
+   "naar": 3,
+   "besluit": "2026-10-02",
+   "dagen_na_besluit": 1,
+   "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
+   "aanvraag": "2026-02-03",
+   "dagen_aanvraag_tot_besluit": 241,
+   "vergund_aantal": 2,
+   "wijkt_af": 1
   }
  ],
  "mediaan_dagen_besluit_tot_bag": 1,
