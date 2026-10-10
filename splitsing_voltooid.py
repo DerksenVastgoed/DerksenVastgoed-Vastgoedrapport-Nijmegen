@@ -51,6 +51,46 @@ def _aantallen(tekst):
     return int(m.group(2)), int(m.group(1))
 
 
+WOORDGETAL = {"een": 1, "één": 1, "twee": 2, "drie": 3, "vier": 4, "vijf": 5,
+              "zes": 6, "zeven": 7, "acht": 8, "negen": 9, "tien": 10}
+
+# Hoeveel eenheden de vergunning noemt. Bij een reeks als "van 2 naar 4" is het
+# laatste getal de uitkomst, dus pakken we de laatste treffer en niet de eerste.
+RE_VERGUND = re.compile(
+    r"(?:tot|naar|in)\s+(\d{1,2}|een|één|twee|drie|vier|vijf|zes|zeven|acht|"
+    r"negen|tien)\s+(?:zelfstandige\s+|nieuwe\s+|extra\s+)*"
+    r"(?:woningen|woning|wooneenheden|appartementen|appartement|studio's)",
+    re.IGNORECASE)
+
+
+def _vergund_aantal(tekst):
+    """
+    Hoeveel eenheden de vergunningtekst noemt, of None.
+
+    Dit bestaat om één vraag te kunnen stellen die we tot nu toe niet stelden:
+    klopt het aantal dat de BAG na een splitsing telt met het aantal waarvoor
+    vergunning is gegeven? Bij de Biezenstraat 110 stond in het besluit "tot 2
+    zelfstandige woningen" en telt de BAG er sinds 3 oktober 3, van 168, 203 en
+    44 m2. Die 44 is vermoedelijk de garage. De brief van 9 oktober noemde
+    beide getallen in één alinea zonder het verschil op te merken.
+
+    Let op wat dit NIET vaststelt. Een verschil kan betekenen dat er meer is
+    gerealiseerd dan mocht, maar ook dat de vergunningtekst iets anders telt
+    dan de BAG: een garage die een eigen adres krijgt is in de BAG een woning
+    en in de aanvraag een bijgebouw. Het is dus een aanwijzing om na te kijken
+    en nooit een conclusie. Die formulering staat ook in de uitvoer.
+    """
+    treffers = RE_VERGUND.findall(tekst or "")
+    if not treffers:
+        return None
+    ruw = treffers[-1].lower()
+    if ruw.isdigit():
+        n = int(ruw)
+    else:
+        n = WOORDGETAL.get(ruw)
+    return n if n and 1 <= n <= 30 else None
+
+
 def _dagen(van, tot):
     try:
         return (dt.date.fromisoformat(tot[:10])
@@ -90,9 +130,24 @@ def zoek(geschiedenis):
             rij = {"adres": pand.get("adres"), "datum": datum,
                    "van": van, "naar": naar}
             if eerder:
-                rij["besluit"] = eerder[-1]["datum"]
-                rij["dagen_na_besluit"] = _dagen(eerder[-1]["datum"], datum)
-                rij["tekst"] = eerder[-1].get("tekst", "")[:160]
+                besluit = eerder[-1]
+                rij["besluit"] = besluit["datum"]
+                rij["dagen_na_besluit"] = _dagen(besluit["datum"], datum)
+                rij["tekst"] = besluit.get("tekst", "")[:160]
+                # De aanvraag die bij dit besluit hoort, voor de echte
+                # doorlooptijd. Besluit tot registratie is de laatste stap en
+                # niet de route: bij de Biezenstraat 110 was dat één dag,
+                # terwijl er 241 dagen tussen aanvraag en besluit zaten.
+                voor = [a for a in aanvragen if a["datum"] <= besluit["datum"]]
+                if voor:
+                    rij["aanvraag"] = voor[-1]["datum"]
+                    rij["dagen_aanvraag_tot_besluit"] = _dagen(
+                        voor[-1]["datum"], besluit["datum"])
+                vergund = _vergund_aantal(besluit.get("tekst"))
+                if vergund:
+                    rij["vergund_aantal"] = vergund
+                    if vergund != naar:
+                        rij["wijkt_af"] = naar - vergund
                 gerealiseerd.append(rij)
             else:
                 # Geen besluit gevonden voor de registratie. Dat betekent niet
@@ -116,7 +171,9 @@ def zoek(geschiedenis):
                  reverse=True)
     uit = {"gerealiseerd": gerealiseerd,
            "zonder_bekende_vergunning": zonder_vergunning,
-           "vergund_maar_niets_gebeurd": vergund_niets}
+           "vergund_maar_niets_gebeurd": vergund_niets,
+           "wijkt_af_van_vergunning": [r for r in gerealiseerd
+                                       if r.get("wijkt_af")]}
     looptijden = [r["dagen_na_besluit"] for r in gerealiseerd
                   if r.get("dagen_na_besluit") is not None
                   and 0 <= r["dagen_na_besluit"] < 3000]
@@ -144,12 +201,38 @@ def tekst(uit):
             if rij.get("dagen_na_besluit") is not None:
                 deel += (f", {rij['dagen_na_besluit']} dagen na het besluit van "
                          f"{rij['besluit']}")
+            if rij.get("dagen_aanvraag_tot_besluit") is not None:
+                deel += (f". De route zelf duurde langer: "
+                         f"{rij['dagen_aanvraag_tot_besluit']} dagen van "
+                         f"aanvraag ({rij['aanvraag']}) tot besluit")
             r.append(deel + ".")
         if uit.get("mediaan_dagen_besluit_tot_bag"):
             r.append("")
             r.append(f"_Mediane tijd tussen besluit en registratie: "
                      f"{uit['mediaan_dagen_besluit_tot_bag']} dagen, gemeten op "
-                     f"{uit['aantal_looptijden']} panden._")
+                     f"{uit['aantal_looptijden']} panden. Dat is de laatste "
+                     f"stap en niet de doorlooptijd van de route: de procedure "
+                     f"begint bij de aanvraag, en die staat per pand hierboven "
+                     f"waar we hem kennen._")
+        r.append("")
+    afw = uit.get("wijkt_af_van_vergunning") or []
+    if afw:
+        r.append("## De BAG telt een ander aantal dan de vergunning noemt")
+        r.append("")
+        r.append("_Dit is een aanwijzing om na te kijken en geen conclusie. "
+                 "Een verschil kan betekenen dat er meer is gerealiseerd dan "
+                 "mocht, maar ook dat de vergunningtekst iets anders telt dan "
+                 "de BAG: een garage die een eigen adres krijgt is in de BAG "
+                 "een woning en in de aanvraag een bijgebouw._")
+        r.append("")
+        for rij in afw[:8]:
+            meer = rij["wijkt_af"]
+            r.append(f"- **{rij['adres']}**: de vergunning noemt "
+                     f"{rij['vergund_aantal']}, de BAG telt {rij['naar']}, "
+                     f"dus {abs(meer)} "
+                     f"{'meer' if meer > 0 else 'minder'}. Besluit "
+                     f"{rij['besluit']}, geregistreerd {rij['datum']}. "
+                     f"Vergunningtekst: \"{(rij.get('tekst') or '')[:110]}\".")
         r.append("")
     zon = uit.get("zonder_bekende_vergunning") or []
     if zon:
