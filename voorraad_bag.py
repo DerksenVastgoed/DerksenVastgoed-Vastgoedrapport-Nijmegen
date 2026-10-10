@@ -171,6 +171,14 @@ def fase_bag(voorraad, werk, minuten):
     grens = (dt.date.today() - dt.timedelta(days=VERS_DAGEN)).isoformat()
     gedaan = voorraad.setdefault("postcodes", {})
     adressen = voorraad.setdefault("adressen", {})
+    # WAAROM DIT APART STAAT. Een adres zonder woonfunctie werd geteld en
+    # daarna weggegooid, terwijl de BAG hem in hetzelfde antwoord meestuurt.
+    # Winkels, kantoren en horeca in de plint zijn precies de verzameling die
+    # de beleidsregel over de eerste bouwlaag raakt, en ze bewaren kost geen
+    # enkele extra vraag. Ze staan onder een eigen sleutel en niet bij
+    # "adressen", zodat fase 2 en alles wat later de woningvoorraad leest niet
+    # ineens winkels meekrijgt. "adressen" blijft dus de woningvoorraad.
+    anders = voorraad.setdefault("niet_woningen", {})
 
     einde = time.time() + minuten * 60
     gedaan_nu = fouten = nieuw = bijgewerkt = woningen = overig = gedeeld = 0
@@ -202,6 +210,18 @@ def fase_bag(voorraad, werk, minuten):
             doelen = a.get("gebruiksdoelen") or []
             if not _is_woning(doelen):
                 overig += 1
+                anders[adressleutel(straat, nr, letter, toev)] = {
+                    "adres": f"{straat} {nr}{letter}{('-' + toev) if toev else ''}",
+                    "postcode": pc,
+                    "buurt": buurt,
+                    "oppervlakte": a.get("oppervlakte"),
+                    "doelen": doelen,
+                    "pand": (a.get("pandIdentificaties") or [None])[0]
+                            or a.get("pandIdentificatie"),
+                    "vbo": a.get("adresseerbaarObjectIdentificatie") or "",
+                    "status": a.get("adresseerbaarObjectStatus", ""),
+                    "bag_gezien": vandaag,
+                }
                 continue
             woningen += 1
             vbo = a.get("adresseerbaarObjectIdentificatie") or ""
@@ -234,6 +254,7 @@ def fase_bag(voorraad, werk, minuten):
     return {"postcodes_gedaan": gedaan_nu, "postcodes_totaal": len(gedaan),
             "adressen_nieuw": nieuw, "adressen_bijgewerkt": bijgewerkt,
             "woningen_gezien": woningen, "niet_woonfunctie": overig,
+            "niet_woningen_bewaard": len(anders),
             "objecten_met_meer_adressen": gedeeld,
             "fouten": fouten, "laatste_fout": laatste_fout}
 

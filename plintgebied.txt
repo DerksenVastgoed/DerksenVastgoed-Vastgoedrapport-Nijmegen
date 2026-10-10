@@ -1,0 +1,24 @@
+# De straten waar de beleidsregel over woonruimte op de eerste bouwlaag geldt:
+# het kernwinkelgebied en de ringstraten van de Nijmeegse binnenstad, inclusief
+# Mariënburg en Klein Mariënburg.
+#
+# WAAROM DIT BESTAND LEEG IS. Die begrenzing staat op een kaartje in de bijlage
+# van het besluit en niet in een register. Er is dus geen bestand dat wij
+# kunnen ophalen. Zolang hier geen straatnamen staan, rekent plintregel.py over
+# heel Stadscentrum, en dat is ruimer dan het gebied waar de regel geldt. Het
+# aantal objecten in de brief is dan een bovengrens, en dat staat er ook bij.
+#
+# HOE JE HET SCHERPER MAAKT. Zet hieronder de straatnamen van het kaartje, één
+# per regel, zonder huisnummer. Vanaf de volgende run rekent de telling alleen
+# over die straten en vervalt het voorbehoud over de bovengrens. Er hoeft geen
+# code bij.
+#
+# Schrijf de naam zoals de BAG hem kent, dus "Sint Annastraat" en niet
+# "St. Annastraat". Hoofdletters maken niet uit.
+#
+# Voorbeeld:
+# Broerstraat
+# Burchtstraat
+# Molenstraat
+#
+# ---- hieronder de straatnamen ----
