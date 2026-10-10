@@ -227,13 +227,65 @@ def controle_afzenders():
         return (OK, "geen aanbodbestand om te toetsen", "")
     stil = [b for b in bronnen_verwacht if not gezien.get(b)]
     bewijs = ", ".join(f"{b}: {gezien.get(b, 0)}" for b in bronnen_verwacht)
-    if stil:
-        return (LET_OP, bewijs + f"; geen enkele waarneming van: "
+    if not stil:
+        return (OK, bewijs, "")
+
+    # WELKE KANT MOET JE OP ZOEKEN. "Nul waarnemingen" betekent twee heel
+    # verschillende dingen. Kwam er geen mail, dan staat de attendering niet
+    # aan of klopt het afzenderdomein niet, zoals bij Huislijn dat van
+    # huisly.nl bleek te sturen. Kwam er wel mail, dan kunnen wij hem niet
+    # lezen en is de parser het probleem. Die melding heeft weken gestaan
+    # zonder dat iemand wist welke van de twee het was.
+    #
+    # funda_mail.py schrijft sinds 10 oktober per afzenderdomein hoeveel
+    # berichten er in de mailbox stonden. Staat dat veld er niet, dan is de
+    # stand van voor die wijziging en zeggen we dat er nog niets te splitsen is.
+    post = {}
+    try:
+        with open("mail_status.json", encoding="utf-8") as f:
+            post = (json.load(f) or {}).get("berichten_per_afzender") or {}
+    except Exception:
+        pass
+    if not post:
+        return (LET_OP, bewijs + "; geen enkele waarneming van: "
                 + ", ".join(stil),
-                "Controleer of het afzenderdomein in AFZENDERS klopt en of de "
-                "attendering bij die partij aanstaat. Een verkeerd domein "
-                "levert geen foutmelding op, alleen stilte.")
-    return (OK, bewijs, "")
+                "Of er van die partij werkelijk post komt, is nog niet "
+                "gemeten; dat staat in de volgende mailstand. Tot dan: "
+                "controleer of de attendering aanstaat en of het "
+                "afzenderdomein in AFZENDERS klopt.")
+
+    def berichten(bron):
+        """Berichten van elk domein dat bij deze bron hoort."""
+        raak = [n for d, n in post.items() if bron in d.lower()]
+        if not raak or all(n is None for n in raak):
+            return None
+        return sum(n for n in raak if n)
+
+    geen_post = [b for b in stil if berichten(b) == 0]
+    wel_post = [b for b in stil if (berichten(b) or 0) > 0]
+    onbekend = [b for b in stil if berichten(b) is None]
+
+    delen = []
+    if geen_post:
+        delen.append(f"geen post van {', '.join(geen_post)}")
+    if wel_post:
+        delen.append("post maar geen waarneming van "
+                     + ", ".join(f"{b} ({berichten(b)} berichten)"
+                                 for b in wel_post))
+    if onbekend:
+        delen.append(f"niet gemeten: {', '.join(onbekend)}")
+    raad = []
+    if geen_post:
+        raad.append(f"Bij {', '.join(geen_post)} staat de attendering niet aan "
+                    f"of stuurt die partij van een ander domein dan in "
+                    f"AFZENDERS staat. Dat was bij Huislijn het geval: die "
+                    f"stuurde van huisly.nl. Kijk in de mailbox van wie die "
+                    f"post komt.")
+    if wel_post:
+        raad.append(f"Bij {', '.join(wel_post)} komt de post wel binnen maar "
+                    f"lezen wij hem niet. Daar is de parser het probleem en "
+                    f"niet de aanmelding.")
+    return (LET_OP, bewijs + "; " + "; ".join(delen), " ".join(raad))
 
 
 def controle_huurdata():

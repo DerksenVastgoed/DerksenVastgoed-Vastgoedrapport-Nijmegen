@@ -1650,6 +1650,13 @@ def tel_kandidaten(verbinding, sinds):
     return uit
 
 
+# Hoeveel berichten er per afzenderdomein in de mailbox stonden. Wordt gevuld
+# door de zoeklus en meegeschreven in mail_status.json, zodat het
+# gezondheidsrapport "er kwam geen mail" kan onderscheiden van "er kwam mail
+# die wij niet konden lezen". None betekent dat de zoekopdracht zelf faalde.
+_PER_AFZENDER = {}
+
+
 def bewaar_stand(tellers, opmerking="", kandidaten=None):
     """
     De mailstand wegschrijven, ook als er niets te doen viel.
@@ -1661,7 +1668,8 @@ def bewaar_stand(tellers, opmerking="", kandidaten=None):
         with open("mail_status.json", "w", encoding="utf-8") as f:
             json.dump({"datum": dt.date.today().isoformat(),
                        "bronnen": tellers, "opmerking": opmerking,
-                       "kandidaten": kandidaten or {}},
+                       "kandidaten": kandidaten or {},
+                       "berichten_per_afzender": _PER_AFZENDER},
                       f, ensure_ascii=False, indent=1)
     except Exception:
         pass
@@ -1708,6 +1716,17 @@ def main():
     # Buiten de lus, want de kandidaattelling verderop gebruikt hem ook.
     sinds = ((dt.date.today() - dt.timedelta(days=args.dagen or 3))
              .strftime("%d-%b-%Y"))
+    # PER AFZENDER TELLEN, EN NIET ALLEEN DE SOM. Alle treffers gingen in één
+    # verzameling, dus achteraf was niet te zien van wie er post was gekomen.
+    # Daardoor kon het gezondheidsrapport bij 123wonen alleen melden dat er nul
+    # waarnemingen waren, en dat betekent twee heel verschillende dingen met
+    # twee heel verschillende oplossingen: er komt geen mail (de attendering
+    # staat niet aan, of het afzenderdomein is anders, zoals bij Huislijn dat
+    # van huisly.nl bleek te sturen), of er komt wel mail die wij niet kunnen
+    # lezen (dan is de parser het probleem). Zonder dit onderscheid is de
+    # melding een maand lang blijven staan zonder dat iemand wist welke kant
+    # hij op moest zoeken.
+    per_afzender = {}
     for afzender in AFZENDERS:
         zoek = f'(FROM "{afzender}")'
         if args.dagen:
@@ -1717,12 +1736,34 @@ def main():
         try:
             status, data = verbinding.search(None, zoek)
             if status == "OK":
-                ids.update(data[0].split())
+                treffers = (data[0] or b"").split()
+                per_afzender[afzender] = len(treffers)
+                ids.update(treffers)
+            else:
+                per_afzender[afzender] = None   # de zoekopdracht faalde
         except Exception as e:
+            per_afzender[afzender] = None
             print(f"Zoekfout bij {afzender}: {e}", file=sys.stderr)
+    print("Berichten per afzender: " + ", ".join(
+        f"{a}={'?' if n is None else n}" for a, n in per_afzender.items()),
+        file=sys.stderr)
+    global _PER_AFZENDER
+    _PER_AFZENDER = per_afzender
 
     print(f"Gevonden berichten van Funda: {len(ids)}", file=sys.stderr)
     if not ids:
+        # OOK HIER DE STAND WEGSCHRIJVEN. Deze return sloeg bewaar_stand over,
+        # dus op een dag zonder enige mail bleef mail_status.json van gisteren
+        # staan en leek het alsof de stap niet had gelopen. Juist dan zegt de
+        # telling per afzender het meest: nul van iedereen betekent iets anders
+        # dan nul van één partij.
+        try:
+            kand = tel_kandidaten(verbinding, sinds)
+        except Exception as e:  # noqa
+            kand = None
+            print(f"Kandidaten niet geteld: {str(e)[:80]}", file=sys.stderr)
+        bewaar_stand({}, "geen enkele mail van de gevolgde afzenders",
+                     kandidaten=kand)
         verbinding.logout()
         return
 
