@@ -2,23 +2,62 @@
  "datum": "2026-10-10",
  "ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
-   "adressen_nieuw": 0,
-   "fouten": 10,
-   "laatste_fout": "6521AX: HTTP 400: Bad Request failed to parse CQL filter:\nerror: property 'postcode' cannot be used in CQL filter, is not a queryable property | WEL FILTERBAAR: geometry, identificatie",
-   "niet_woningen_bewaard": 0,
-   "niet_woonfunctie": 0,
+   "adressen_bijgewerkt": 93,
+   "adressen_nieuw": 22003,
+   "buiten_de_ring": 138073,
+   "fouten": 0,
+   "historie_overgeslagen": 2382,
+   "laatste_fout": "",
+   "niet_woningen_bewaard": 2070,
+   "niet_woonfunctie": 2083,
    "objecten_met_meer_adressen": 0,
-   "postcodes_gedaan": 0,
-   "postcodes_totaal": 0,
-   "woningen_gezien": 0
+   "postcodes_gedaan": 1240,
+   "postcodes_leeg": 493,
+   "postcodes_leeg_voorbeeld": [
+    "2771AE",
+    "2771AG",
+    "2771AH",
+    "2771AJ",
+    "2771AK",
+    "2771AL",
+    "2771AN",
+    "2771AP",
+    "2771AR",
+    "2771AS",
+    "2771AT",
+    "2771AV"
+   ],
+   "postcodes_totaal": 1733,
+   "ronde_objecten": 164634,
+   "ronde_paginas": 165,
+   "ronde_ronde_af": true,
+   "ronde_seconden": 146.7,
+   "statussen": {
+    "Niet gerealiseerd verblijfsobject": 427,
+    "Verblijfsobject gevormd": 2238,
+    "Verblijfsobject in gebruik": 21766,
+    "Verblijfsobject in gebruik (niet ingemeten)": 5,
+    "Verblijfsobject ingetrokken": 1955,
+    "Verbouwing verblijfsobject": 170
+   },
+   "woningen_gezien": 22096,
+   "zonder_adres": 0,
+   "zonder_pandsleutel": 0
   },
   "bijgewerkt": "2026-10-10",
+  "panden": {
+   "fout": "",
+   "objecten": 187211,
+   "omzettingen": 187211,
+   "paginas": 188,
+   "ronde_af": true,
+   "seconden": 196.5
+  },
   "stand": {
    "met_label": 0,
-   "met_oppervlakte": 0,
-   "postcodes_gedaan": 0,
-   "woningen": 0
+   "met_oppervlakte": 22003,
+   "postcodes_gedaan": 1240,
+   "woningen": 22003
   }
  }
 }
