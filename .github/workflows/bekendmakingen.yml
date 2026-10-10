@@ -656,6 +656,23 @@ jobs:
             "td{border-bottom:1px solid #e3e8ea;padding:6px 8px;vertical-align:top}"
             "em{color:#4a5b63;font-size:15px}")
 
+          # De voet die zegt wat deze brief is, bovenaan en niet onderaan: een
+          # waarschuwing achteraf is geen waarschuwing. Hier en niet in de
+          # brieftekst, want dit is het laatste punt waar alles langskomt wat de
+          # ontvanger te zien krijgt en de schrijvende stap kan er niet omheen.
+          #
+          # Lukt het niet, dan gaat de brief niet naar pa. Dat is de hele reden
+          # dat deze voet bestaat, dus een stille uitzondering mag hier niet tot
+          # een gewone verzending leiden.
+          if delen:
+              try:
+                  import briefvoet
+                  delen.insert(0, briefvoet.html())
+              except Exception as e:
+                  print(f"LET OP: de briefvoet ontbreekt in de mail: {e}")
+                  with open(os.environ["GITHUB_ENV"], "a") as fh:
+                      fh.write("GEEN_VOET=1\n")
+
           with open(f"digests/{d}-mail.html", "w", encoding="utf-8") as f:
               f.write("<!DOCTYPE html><html lang=nl><head><meta charset=utf-8>"
                       f"<style>{stijl}</style></head><body>"
@@ -672,6 +689,11 @@ jobs:
           python -c "
           import markdown, sys
           md = open('${{ env.BRIEF_PAD }}', encoding='utf-8').read()
+          try:
+              import briefvoet
+              md += briefvoet.markdown()
+          except Exception as e:
+              print('LET OP: de briefvoet ontbreekt in de losse HTML:', e)
           body = markdown.markdown(md, extensions=['tables', 'nl2br'])
           css = '''
           <style>
@@ -823,6 +845,17 @@ jobs:
       - name: Geen kopie naar pa bij een halve update
         continue-on-error: true
         run: |
+          # Zonder de voet gaat de brief niet naar pa. Die voet is er juist voor
+          # hem: hij leest een brief in de eerste persoon en moet weten dat de
+          # tekst machinewerk is. Ontbreekt hij, dan is de enige ontvanger voor
+          # wie het uitmaakt ook de enige die hem niet mag krijgen.
+          if [ "${GEEN_VOET:-0}" = "1" ]; then
+            echo "LET OP: de voet onder de brief kon niet worden toegevoegd."
+            echo "De kopie naar pa gaat er daarom af."
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
+            echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
+            exit 0
+          fi
           RAPPORT="digests/${DATUM}-gezondheid.md"
           if [ ! -f "$RAPPORT" ]; then
             echo "Geen gezondheidsrapport om te toetsen; brief gaat gewoon uit."
