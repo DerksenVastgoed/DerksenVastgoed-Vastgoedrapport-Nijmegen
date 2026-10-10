@@ -58,6 +58,10 @@ jobs:
       - name: Dependencies installeren
         run: pip install requests
 
+      - name: PDOK verkennen (alleen op de verkenningsbranch)
+        continue-on-error: true
+        run: python pdok_verkenning.py
+
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true
         env:
