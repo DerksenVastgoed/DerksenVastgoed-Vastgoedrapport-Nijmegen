@@ -55,6 +55,19 @@ import requests
 INVENTARIS = "buurtinventaris.json"
 UIT = "voorraad.json"
 
+# De stand van de laatste ronde, los van de gegevens. Dit bestand wordt altijd
+# overschreven, ook als er niets is opgehaald, want juist dan moet de reden
+# bewaard blijven. voorraad.json wordt alleen overschreven als er werkelijk
+# iets in staat; anders zou een mislukte ronde de voorraad van vorige week
+# wissen.
+STAND = "voorraad_stand.json"
+
+# Na zoveel aanroepen op rij die allemaal mislukken, stoppen. Gaat de eerste
+# tien keer hetzelfde mis, dan gaat de elfde dat ook, en dan is 35 minuten
+# doorploeteren verspilde tijd die de fout niet duidelijker maakt. Op 10
+# oktober is precies dat gebeurd.
+MAX_FOUT_OP_RIJ = 10
+
 BAG_API_KEY = os.environ.get("BAG_API_KEY", "")
 BAG_BASE = "https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2"
 BAG_HEADERS = {"X-Api-Key": BAG_API_KEY,
@@ -120,6 +133,11 @@ def postcodes_uit_inventaris(buurten=None):
     return uit
 
 
+def anders_aantal(voorraad):
+    """Hoeveel niet-woningen er in de voorraad staan."""
+    return len(voorraad.get("niet_woningen") or {})
+
+
 def _is_woning(doelen):
     return any("woonfunctie" == d for d in (doelen or []))
 
@@ -182,6 +200,7 @@ def fase_bag(voorraad, werk, minuten):
 
     einde = time.time() + minuten * 60
     gedaan_nu = fouten = nieuw = bijgewerkt = woningen = overig = gedeeld = 0
+    fout_op_rij = 0
     laatste_fout = ""
     for pc, buurt in werk:
         if time.time() > einde:
@@ -192,11 +211,20 @@ def fase_bag(voorraad, werk, minuten):
         time.sleep(TEMPO)
         if rijen is None:
             fouten += 1
+            fout_op_rij += 1
             laatste_fout = f"{pc}: {fout}"
             # Bij een geweigerde sleutel of een rem heeft doorgaan geen zin.
             if "sleutel" in fout or "429" in fout:
                 break
+            # En bij tien dezelfde mislukkingen op rij ook niet. Zonder deze
+            # grens liep de fase op 10 oktober het volle budget van 35 minuten
+            # vol met aanroepen die allemaal faalden.
+            if fout_op_rij >= MAX_FOUT_OP_RIJ:
+                print(f"{fout_op_rij} mislukkingen op rij, gestopt. "
+                      f"Laatste: {laatste_fout}", file=sys.stderr)
+                break
             continue
+        fout_op_rij = 0
         gedaan[pc] = vandaag
         gedaan_nu += 1
         objecten = {}
@@ -402,10 +430,29 @@ def main():
     }
     voorraad["laatste_ronde"] = uit
 
-    if not adressen:
-        print("Geen enkel adres opgehaald; bestand niet overschreven.",
-              file=sys.stderr)
+    # DE DIAGNOSE ALTIJD WEGSCHRIJVEN, OOK ALS ER NIETS IS OPGEHAALD. Op 10
+    # oktober liep de BAG-fase 35 minuten met een geldige sleutel en kwam er
+    # niets uit. Het gezondheidsrapport kon alleen melden "voorraad nog leeg",
+    # want deze functie gaf exitcode 1 en schreef niets, dus de teller met
+    # fouten en de laatste foutmelding gingen mee de prullenbak in. Daarmee was
+    # niet te zien of de BAG de vraag weigerde, of hij wel antwoordde maar niets
+    # als woning werd herkend, of dat er echt niets stond.
+    #
+    # Dat is dezelfde fout als de rest: de melding die vertelt wat er mis is,
+    # verdwijnt juist wanneer er iets mis is. Daarom een eigen standsbestand
+    # dat altijd wordt overschreven, los van de gegevens.
+    _schrijf(STAND, {"datum": dt.date.today().isoformat(), "ronde": uit})
+
+    if not adressen and not anders_aantal(voorraad):
+        print("Geen enkel adres opgehaald; bestand niet overschreven. "
+              f"Zie {STAND} voor de fouten.", file=sys.stderr)
         return 1
+    if not adressen:
+        # Wel niet-woningen, geen woningen. Dat kan betekenen dat het veld
+        # gebruiksdoelen anders heet of anders is opgebouwd dan _is_woning()
+        # aanneemt, en dan is het zonde om die records weg te gooien.
+        print(f"Geen woningen maar wel {anders_aantal(voorraad)} andere "
+              f"adressen opgehaald; wel bewaard.", file=sys.stderr)
     if not _schrijf(args.uit, voorraad):
         return 1
 

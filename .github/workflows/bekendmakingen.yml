@@ -1012,6 +1012,7 @@ jobs:
             buurtbeeld.json
             buurtinventaris.json
             voorraad.json
+            voorraad_stand.json
             vergund_verkocht.json
             brief_logboek.json
             verteld.json
