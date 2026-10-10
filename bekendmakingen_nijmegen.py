@@ -100,6 +100,7 @@ ABSOLUUT VERBOD OP VERZONNEN CIJFERS. Dit is de belangrijkste regel.
 - Verzin NOOIT huurprijzen, koopsommen, rendementen, yields, percentages, investeringsbedragen of huurstromen. Die gegevens heb je niet.
 - Schrijf ook geen vage schattingen als "circa", "ruwweg" of "naar schatting" bij een bedrag. Als je het bedrag niet hebt gekregen, noem je het niet.
 - Staan er geen cijfers in de feiten? Dan is je duiding puur kwalitatief. Dat is prima en beter dan een gok.
+- Staat er bij een stuk een regel INHOUD VAN HET STUK, dan is dat samengevat uit het document zelf en gelden die zinnen en die getallen als aangeleverd feit. Duid dan op die inhoud en niet op de titel, ook niet als de titel iets anders suggereert. Zegt de inhoud dat er een verbod of een vergunningplicht bij komt, schrijf dan niet dat iets eenvoudiger of makkelijker wordt.
 
 NAUWKEURIG OVER DE JURIDISCHE STATUS. Even belangrijk.
 - Een MELDING (bijvoorbeeld brandveilig gebruik) is GEEN vergunning. Schrijf nooit "vergund" of "vergunbaar" bij een melding. Een melding betekent dat de eigenaar het gebruik heeft aangemeld.
@@ -475,6 +476,14 @@ def haal_publicatietekst(url, maxlen=6000):
     return "\n".join(regels)[:maxlen]
 
 
+# Wat het model schrijft als er geen inhoud was om samen te vatten. Dit staat
+# hier als constante en niet twee keer als losse tekst, omdat de duiding
+# hierop moet afgaan: een samenvatting die hieraan gelijk is, is geen
+# samenvatting, en dan mag er geen duiding onder het stuk komen te staan.
+# Stonden deze twee teksten los van elkaar, dan zou een kleine aanpassing van
+# de prompt de toets stil uitschakelen.
+GEEN_INHOUD = "De publicatie bevat geen inhoudelijke wijziging die uit de tekst blijkt."
+
 BELEID_PROFIEL = """Je vat gemeentelijke beleidsstukken samen voor een vastgoedbrief over Nijmegen. Lezers zijn particuliere verhuurders en kleine ontwikkelaars.
 
 Je krijgt de titel en de tekst van een publicatie. Vat in twee tot drie zinnen samen WAT ER FEITELIJK IN STAAT en wat het praktisch verandert voor wie in Nijmegen verhuurt, splitst of verkamert.
@@ -483,19 +492,41 @@ REGELS:
 - Herhaal niet de titel. Beschrijf de inhoud.
 - Noem concreet wat verandert: welke regel, per wanneer, voor wie.
 - Gebruik alleen wat in de tekst staat. Verzin geen bedragen, termijnen of gevolgen.
-- Is de tekst leeg of zegt hij niets inhoudelijks, schrijf dan: "De publicatie bevat geen inhoudelijke wijziging die uit de tekst blijkt."
+- Is de tekst leeg of zegt hij niets inhoudelijks, schrijf dan exact deze zin: "GEEN_INHOUD_HIER"
 - Geen gedachtestreepjes. Nederlands. Maximaal 60 woorden."""
+
+BELEID_PROFIEL = BELEID_PROFIEL.replace("GEEN_INHOUD_HIER", GEEN_INHOUD)
+
+
+def heeft_inhoud(it):
+    """
+    Is er werkelijk een publicatietekst samengevat, of staat er een terugval?
+
+    Dit is het verschil tussen een samenvatting en een lege plek met een zin
+    erin. De terugvalzin is niet leeg, dus een toets op `if samenvatting` laat
+    hem door, en dan duidt het model alsnog op de titel. In de 48 bewaarde
+    beleidsblokken stond die terugvalzin zeven keer, elke keer met een duiding
+    ernaast. Een losse beoordelaar vond dit gat; zonder deze functie zou de
+    reparatie voor een op de zeven stukken niets hebben gedaan.
+    """
+    samen = (it.get("samenvatting") or "").strip()
+    return bool(it.get("tekst_gevonden")) and bool(samen) and samen != GEEN_INHOUD
 
 
 def vat_beleid_samen(items):
     """Laat het model per beleidsstuk de inhoud samenvatten, niet de titel."""
     if not ANTHROPIC_API_KEY or not items:
+        for it in items:
+            it["tekst_gevonden"] = False
         return
     for it in items:
         it["samenvatting"] = ""
     blokken = []
     for i, it in enumerate(items):
         tekst = haal_publicatietekst(it.get("url", ""))
+        # Of er tekst wás, is iets anders dan of er een samenvatting staat.
+        # Zonder tekst is elke duiding een gok uit de titel.
+        it["tekst_gevonden"] = bool(tekst)
         time.sleep(0.3)
         blokken.append(f"STUK {i}\nTITEL: {it['titel']}\nTEKST:\n{tekst or '(geen tekst)'}")
     prompt = ("\n\n".join(blokken) +
@@ -838,15 +869,25 @@ def verrijk(items: list):
                                     "2013; kan ouder zijn of niet vereist zijn")
         elif verg:
             feiten["vergunning"] = f"op dit adres ligt al een {verg}"
+        # De inhoud van een beleidsstuk is geen getal maar een lopende tekst, en
+        # die hoort niet in de komma-lijst met feiten te verdwijnen.
+        inhoud = feiten.pop("inhoud", "")
         if feiten:
             feitentekst = ", ".join(f"{k}={v}" for k, v in feiten.items())
             regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: {feitentekst}")
         else:
             regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: geen")
+        if inhoud:
+            # Platslaan: de lijst werkt op regels die met "0. ", "1. " beginnen,
+            # en een harde regelovergang in de samenvatting breekt die opbouw.
+            regels[-1] += "\n   INHOUD VAN HET STUK: " + " ".join(inhoud.split())
     lijst = "\n".join(regels)
     prompt = (f"Bekendmakingen:\n{lijst}\n\n"
               "Gebruik uitsluitend de getallen onder BEKENDE FEITEN. Staat daar 'geen', "
               "noem dan geen enkel cijfer in je duiding.\n\n"
+              "Staat er INHOUD VAN HET STUK bij, dan is die inhoud samengevat "
+              "uit het document zelf en geldt hij als aangeleverd feit, ook de "
+              "getallen erin. Duid daarop en niet op de titel.\n\n"
               "Antwoord met ALLEEN een JSON-array, per bekendmaking een object "
               '{"i": <index>, "strategie": "<label>", "duiding": "<een zin>"}. '
               "Geen tekst eromheen.")
@@ -1034,11 +1075,33 @@ def main():
         verkoop_bij_items(kern + overige, laatste_verkoop_per_adres())
     except Exception as e:  # noqa
         print(f"Laatste verkoop niet toegevoegd: {str(e)[:80]}", file=sys.stderr)
-    verrijk(kern + overige + beleid)  # duiding voor alle getoonde items in een call
-
+    # EERST SAMENVATTEN, DAN DUIDEN. De duiding van een beleidsstuk moet op de
+    # inhoud rusten en niet op de titel. Omgekeerd ging het mis op 8 en 10
+    # oktober 2026: verrijk() zag alleen de titel "Beleidsregels Woonruimte op
+    # de eerste bouwlaag toevoegen binnenstad" en schreef eronder dat de regel
+    # "omzetting van winkel- of kantoorplinten naar wonen vergemakkelijkt",
+    # terwijl het stuk juist een vergunningplicht invoert om winkelvloer te
+    # beschermen en hoogstens 30% met een maximum van 50 m2 achterin toestaat.
+    # De samenvatting in hetzelfde blok zei dus het tegenovergestelde van de
+    # regel eronder, en de lezer kan niet zien welke van de twee het document
+    # heeft gelezen. Dit is dezelfde soort fout als de andere: niet een melding
+    # die misgaat, maar een stap die een antwoord geeft zonder de bron te
+    # hebben gezien.
     if beleid:
         print(f"Beleidsstukken gevonden: {len(beleid)}", file=sys.stderr)
         vat_beleid_samen(beleid)
+        for it in beleid:
+            if heeft_inhoud(it):
+                feiten = dict(it.get("feiten") or {})
+                feiten["inhoud"] = it["samenvatting"]
+                it["feiten"] = feiten
+        zonder = sum(1 for it in beleid if not heeft_inhoud(it))
+        if zonder:
+            print(f"Beleidsstukken zonder publicatietekst: {zonder} "
+                  f"(die krijgen geen duiding)", file=sys.stderr)
+    verrijk(kern + overige + beleid)  # duiding voor alle getoonde items in een call
+
+    if beleid:
         try:
             with open("beleid_vandaag.md", "w", encoding="utf-8") as f:
                 f.write("\n## Beleid gemeente Nijmegen\n\n")
@@ -1061,7 +1124,13 @@ def main():
                     if it.get("samenvatting"):
                         f.write(f'<div style="font-size:13px;color:#1a2830;margin-bottom:4px">'
                                 f'{it["samenvatting"]}</div>\n')
-                    if it.get("gevolg"):
+                    # Geen duiding zonder echte publicatietekst. Mislukt het
+                    # ophalen of het samenvatten, dan heeft verrijk() alleen de
+                    # titel gezien en is de duiding een gok. Dan liever niets:
+                    # een ontbrekende regel is zichtbaar, een verkeerde regel
+                    # niet. heeft_inhoud() en niet `if samenvatting`, want de
+                    # terugvalzin is ook een samenvatting.
+                    if it.get("gevolg") and heeft_inhoud(it):
                         f.write(f'<div style="font-size:13px;color:#4a5b63;font-style:italic">'
                                 f'{it["gevolg"]}</div>\n')
                     voet = it.get("datum", "")

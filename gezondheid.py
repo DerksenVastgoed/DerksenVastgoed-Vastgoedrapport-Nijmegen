@@ -1012,6 +1012,17 @@ VERZONNEN = (
      "gepubliceerde aanvraag en het besluit zaten en 300 dagen volgens het "
      "dossier. Noem de aanvraagdatum erbij; die staat per pand in het blok "
      "over de splitsingen die de BAG inmiddels telt."),
+    (r"(?:vergemakkelijkt|maakt .{0,30}(?:eenvoudiger|makkelijker)"
+     r"|wordt .{0,20}(?:eenvoudiger|makkelijker))[^.]{0,80}"
+     r"(?:plint|begane grond|eerste bouwlaag|winkel|kantoor)"
+     r"|(?:plint|begane grond|eerste bouwlaag)[^.]{0,80}"
+     r"(?:vergemakkelijkt|wordt .{0,20}(?:eenvoudiger|makkelijker))",
+     "De beleidsregel Woonruimte op de eerste bouwlaag doet het omgekeerde: "
+     "hij voert een vergunningplicht in om winkelvloeroppervlak in het "
+     "kernwinkelgebied en de ringstraten te beschermen, en laat hoogstens 30% "
+     "van de plint met een maximum van 50 m2 achterin toe. De gemeente noemt "
+     "het zelf 'geen wonen in winkels meer'. Schrijf wat het stuk regelt en "
+     "niet wat de titel suggereert."),
 )
 
 
@@ -1168,7 +1179,12 @@ def controle_verkocht_nog_in_aanbod():
 EIGEN_TEKSTEN = (("-verhaal.md", "de brief"),
                  ("-marktprijzen.md", "de marktanalyse"),
                  ("-bijlage.md", "de bijlage"),
-                 ("-dossiers.md", "de dossiers"))
+                 ("-dossiers.md", "de dossiers"),
+                 # -brief.md is de samengevoegde tekst en de enige plek waar
+                 # het blok met gemeentelijk beleid staat. Zonder dit pad bleef
+                 # de duiding onder een beleidsstuk buiten elke toets, en daar
+                 # stond de onwaarheid van 8 en 10 oktober.
+                 ("-brief.md", "de samengevoegde brief"))
 
 
 def controle_verzonnen_beweringen():
@@ -2014,6 +2030,83 @@ def controle_briefvoet():
             "melding er niet, dan is er iets anders aan de hand.")
 
 
+def controle_beleidsduiding():
+    """
+    Rust de duiding onder een beleidsstuk op het document of op de titel?
+
+    Op 8 en 10 oktober 2026 stond onder "Beleidsregels Woonruimte op de eerste
+    bouwlaag toevoegen binnenstad" de regel dat de beleidsregel omzetting van
+    winkelplinten naar wonen "vergemakkelijkt". Het stuk doet het omgekeerde:
+    het voert een vergunningplicht in om winkelvloer te beschermen. De
+    samenvatting in hetzelfde blok zei dat ook, dus het blok sprak zichzelf
+    tegen. De oorzaak was de volgorde: verrijk() schreef de duiding voordat de
+    publicatietekst was opgehaald, dus met alleen de titel in beeld.
+
+    Deze toets kijkt naar het opgeleverde bestand en niet naar de code, want de
+    volgorde in de code kan opnieuw omvallen zonder dat er iets faalt. Per
+    beleidsblok geldt: staat er een cursieve duiding, dan moet er in hetzelfde
+    blok ook een samenvatting staan. Een duiding zonder samenvatting is per
+    definitie uit de titel geraden.
+    """
+    pad = "beleid_vandaag.md"
+    if not os.path.exists(pad):
+        return (OK, "geen beleidsstuk vandaag", "")
+    try:
+        with open(pad, encoding="utf-8") as f:
+            tekst = f.read()
+    except Exception as e:
+        return (LET_OP, f"{pad} is niet te lezen ({type(e).__name__})", "")
+    # Elk blok begint met de rand links; splitsen op die opening geeft de
+    # blokken terug zonder dat we HTML hoeven te ontleden.
+    blokken = tekst.split('border-left:3px solid #E0A458')[1:]
+    if not blokken:
+        return (LET_OP, "beleid_vandaag.md bevat geen enkel blok",
+                "Dan is het bestand wel geschreven maar staat er niets in.")
+    try:
+        from bekendmakingen_nijmegen import GEEN_INHOUD
+    except Exception:
+        GEEN_INHOUD = ("De publicatie bevat geen inhoudelijke wijziging die "
+                       "uit de tekst blijkt.")
+    geraden, terugval, stil, met_duiding = 0, 0, 0, 0
+    for blok in blokken:
+        heeft_duiding = "font-style:italic" in blok
+        heeft_samenvatting = "color:#1a2830" in blok
+        if heeft_duiding:
+            met_duiding += 1
+        if heeft_duiding and not heeft_samenvatting:
+            geraden += 1
+        # De terugvalzin is wél een samenvatting maar bevat geen inhoud. Staat
+        # daar een duiding naast, dan is die uit de titel geraden en is de
+        # voorwaarde in de rendering niet streng genoeg.
+        if heeft_duiding and GEEN_INHOUD in blok:
+            terugval += 1
+        if not heeft_duiding:
+            stil += 1
+    stuk = "beleidsstuk" if len(blokken) == 1 else "beleidsstukken"
+    if geraden or terugval:
+        reden = []
+        if geraden:
+            reden.append(f"{geraden} met een duiding zonder samenvatting")
+        if terugval:
+            reden.append(f"{terugval} met een duiding naast een lege "
+                         f"samenvatting")
+        return (FOUT, f"{len(blokken)} {stuk}, " + " en ".join(reden),
+                "Zo'n duiding is uit de titel geraden en kan het "
+                "tegenovergestelde zeggen van wat het stuk regelt, zoals op 8 "
+                "en 10 oktober. De rendering hoort die regel weg te laten: "
+                "staat hij er toch, dan is heeft_inhoud() in "
+                "bekendmakingen_nijmegen.py niet meer streng genoeg.")
+    if stil:
+        return (LET_OP, f"{len(blokken)} {stuk}, waarvan {stil} zonder duiding",
+                "Daar is de publicatietekst niet opgehaald of niet samengevat, "
+                "dus het blok toont alleen de titel en de datum. Dat is met "
+                "opzet: een duiding zonder brontekst is een gok. Blijft dit "
+                "staan, kijk dan in het logboek van de stap Bekendmakingen "
+                "naar de melding 'Beleidsstukken zonder publicatietekst'.")
+    return (OK, f"{len(blokken)} {stuk}, {met_duiding} met een duiding die op "
+            f"de publicatietekst rust", "")
+
+
 def controle_voorraad():
     """
     Hoe ver de voorraad van de hele ring is gevuld.
@@ -2421,6 +2514,7 @@ CONTROLES = [
     ("Doorlooptijden", controle_doorlooptijden),
     ("Voorraad van de ring", controle_voorraad),
     ("Voet onder de brief", controle_briefvoet),
+    ("Duiding bij beleidsstukken", controle_beleidsduiding),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),
