@@ -73239,6 +73239,7 @@
     "wijknaam": "Nijmegen-Zuid",
     "nummeraanduiding": "adr-97a901ff29c638c77c67062b8b348b03",
     "oppervlakte_bag": 111,
-    "opp_verschil": true
+    "opp_verschil": true,
+    "energielabel": null
   }
 }

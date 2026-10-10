@@ -1,5 +1,5 @@
 {
- "gemaakt": "2026-10-09",
+ "gemaakt": "2026-10-10",
  "nu": {
   "aantal": 67,
   "mediane_opp": 89,
@@ -12,8 +12,8 @@
   "label_bekend": 67,
   "label_onbekend": 0,
   "in_complex": 33,
-  "vanaf": "2026-09-09",
-  "tot": "2026-10-10"
+  "vanaf": "2026-09-10",
+  "tot": "2026-10-11"
  },
  "vorige": {
   "aantal": 6,
@@ -26,8 +26,8 @@
   "label_bekend": 6,
   "label_onbekend": 0,
   "in_complex": 3,
-  "vanaf": "2026-08-10",
-  "tot": "2026-09-09"
+  "vanaf": "2026-08-11",
+  "tot": "2026-09-10"
  },
  "jaar": {
   "aantal": 73,
@@ -41,8 +41,8 @@
   "label_bekend": 73,
   "label_onbekend": 0,
   "in_complex": 36,
-  "vanaf": "2025-10-09",
-  "tot": "2026-10-10"
+  "vanaf": "2025-10-10",
+  "tot": "2026-10-11"
  },
  "jaar_te_klein": true
 }

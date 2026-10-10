@@ -40,7 +40,7 @@
   "Oude verlaging in de brief": "OK",
   "Profiel nieuw aanbod": "OK",
   "Regelgevingsmonitor": "OK",
-  "Samenstelling in plaats van markt": "FOUT",
+  "Samenstelling in plaats van markt": "OK",
   "Stadsbegroting": "OK",
   "Terugschrijven": "OK",
   "Verkocht pand nog in het aanbod": "OK",
@@ -50,11 +50,12 @@
   "Veroudering aanbod": "OK",
   "Versies": "OK",
   "Voltooide splitsingen": "OK",
+  "Voorraad van de ring": "OK",
   "VvE-bijdragen": "OK",
   "WOZ zonder pand": "OK",
   "WOZ-bestand": "OK",
   "WOZ-schatting": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-09"
+ "datum": "2026-10-10"
 }
