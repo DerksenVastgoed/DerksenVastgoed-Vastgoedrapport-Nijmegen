@@ -500,57 +500,36 @@ REGELS:
 BELEID_PROFIEL = BELEID_PROFIEL.replace("GEEN_INHOUD_HIER", GEEN_INHOUD)
 
 
-def beleidsblok(beleid):
+def beleid_voor_de_brief(beleid):
     """
-    Het blok "Beleid gemeente Nijmegen" als tekst, zonder de staartregel.
+    Het beleid zoals het model dat de brief schrijft het hoort te krijgen.
 
-    Dit stond als veertig regels in main(), midden in een open bestand, en was
-    daardoor niet te toetsen zonder de hele run te draaien. Juist hier zat de
-    fout van 8 en 10 oktober, dus dit hoort een functie te zijn met een
-    uitkomst die je kunt nakijken.
+    WAAROM NIET HET BLOK ZELF. Het blok is HTML, en strip_opmaak() in
+    brief_verhalend.py maakt dat plat. Daarmee verdwijnt het onderscheid tussen
+    de samenvatting, die uit de publicatietekst komt, en onze eigen duiding,
+    die een afgeleide is. Het model ziet dan twee gewone regels naast elkaar,
+    en de duiding is de kortste en meest citeerbare van de twee. Juist die
+    duiding was op 8 en 10 oktober onwaar. Een losse beoordelaar wees erop dat
+    de instructie "haal het uit de samenvatting en niet uit de titel" dan niet
+    uitvoerbaar is, omdat het model de twee niet kan onderscheiden.
 
-    DE STAARTREGEL STAAT IN EEN EIGEN BESTAND. De brief zet het plintblok
-    tussen de beleidsstukken en die staartregel, want een kop "Hoeveel panden
-    dit raakt" hoort niet onder een regel met stukken die ons niet raken. Dat
-    kan met twee bestanden gewoon met cat, en hoefde eerst met grep uit één
-    bestand gepeuterd te worden. Een tekst die met grep uit een bestand wordt
-    gevist, breekt zodra iemand die tekst aanpast.
+    Daarom benoemde velden, en daarom gaat de duiding er helemaal niet in. Die
+    is ons eigen werk en geen bron. Wat het stuk regelt staat in de
+    samenvatting; wat het voor ons betekent is wat de brief zelf moet bedenken,
+    uit de aantallen en de panden die hij er ook bij krijgt.
     """
-    uit = ["\n## Beleid gemeente Nijmegen\n\n"]
+    uit = []
     for it in beleid:
-        url = it.get("url", "")
-        kop = (f'<a href="{url}" style="color:#12242c;text-decoration:none">'
-               f'{it["titel"]}</a>' if url else it["titel"])
-        strat = (it.get("strategie") or "").strip()
-        chip = ""
-        if strat and strat != "geen":
-            chip = ('<span style="display:inline-block;background:#2E6DA4;'
-                    'color:#fff;font-size:11px;font-weight:700;padding:2px 8px;'
-                    'border-radius:10px;margin-right:8px;vertical-align:middle">'
-                    f'{strat}</span> ')
-        uit.append('<div style="border-left:3px solid #E0A458;background:#f7f9fa;'
-                   'border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">\n')
-        uit.append(f'<div style="margin-bottom:6px">{chip}'
-                   f'<span style="font-weight:700;font-size:14px;line-height:1.35">'
-                   f'{kop}</span></div>\n')
-        if it.get("samenvatting"):
-            uit.append(f'<div style="font-size:13px;color:#1a2830;margin-bottom:4px">'
-                       f'{it["samenvatting"]}</div>\n')
-        # Geen duiding zonder echte publicatietekst. Mislukt het ophalen of het
-        # samenvatten, dan heeft verrijk() alleen de titel gezien en is de
-        # duiding een gok. Dan liever niets: een ontbrekende regel is
-        # zichtbaar, een verkeerde regel niet. heeft_inhoud() en niet
-        # `if samenvatting`, want de terugvalzin is ook een samenvatting.
-        if it.get("gevolg") and heeft_inhoud(it):
-            uit.append(f'<div style="font-size:13px;color:#4a5b63;font-style:italic">'
-                       f'{it["gevolg"]}</div>\n')
-        voet = it.get("datum", "")
-        if url:
-            voet += (f' . <a href="{url}" style="color:#4a7a72;'
-                     f'text-decoration:none">bron</a>')
-        uit.append(f'<div style="font-size:11px;color:#7a8a92;margin-top:8px">'
-                   f'{voet}</div>\n</div>\n\n')
-    return "".join(uit)
+        if not heeft_inhoud(it):
+            # Zonder publicatietekst heeft het model niets om op te staan dan
+            # de titel, en dat is precies waar de fout vandaan kwam.
+            continue
+        uit.append(
+            f"TITEL (dit is geen bron voor wat de regel doet, de titel kan het "
+            f"omgekeerde suggereren): {it.get('titel', '')}\n"
+            f"WAT DE PUBLICATIE ZELF ZEGT: {' '.join(it['samenvatting'].split())}\n"
+            f"GEPUBLICEERD: {(it.get('datum') or '')[:10]}")
+    return "\n\n".join(uit)
 
 
 def heeft_inhoud(it):
@@ -1195,27 +1174,31 @@ def main():
     # bestand. Zo blijft de titel zichtbaar, staat de reden erbij, en kan de
     # brief het plintblok ertussen zetten zonder in dit bestand te hoeven
     # knippen.
-    if buiten_onderwerp:
+    verwijs = beleidsrelevantie.verwijzing(beleid, buiten_onderwerp)
+    if verwijs:
         try:
-            with open("beleid_staart.md", "w", encoding="utf-8") as f:
-                f.write(beleidsrelevantie.staartregel(buiten_onderwerp) + "\n\n")
+            with open("beleid_verwijzing.md", "w", encoding="utf-8") as f:
+                f.write("\n## Beleid gemeente Nijmegen\n\n" + verwijs)
         except Exception as e:
-            print(f"Kon beleid_staart.md niet schrijven: {e}", file=sys.stderr)
-    elif os.path.exists("beleid_staart.md"):
-        os.remove("beleid_staart.md")
+            print(f"Kon beleid_verwijzing.md niet schrijven: {e}",
+                  file=sys.stderr)
+    elif os.path.exists("beleid_verwijzing.md"):
+        os.remove("beleid_verwijzing.md")
 
-    if beleid:
+    brieftekst = beleid_voor_de_brief(beleid)
+    if brieftekst:
         try:
-            with open("beleid_vandaag.md", "w", encoding="utf-8") as f:
-                f.write(beleidsblok(beleid))
+            with open("beleid_brieftekst.md", "w", encoding="utf-8") as f:
+                f.write(brieftekst)
         except Exception as e:
-            print(f"Kon beleid_vandaag.md niet schrijven: {e}", file=sys.stderr)
-    elif os.path.exists("beleid_vandaag.md"):
-        os.remove("beleid_vandaag.md")
+            print(f"Kon beleid_brieftekst.md niet schrijven: {e}",
+                  file=sys.stderr)
+    elif os.path.exists("beleid_brieftekst.md"):
+        os.remove("beleid_brieftekst.md")
 
     # De stand in een eigen bestand, zodat het gezondheidsrapport kan zien dat
-    # deze stap heeft gelopen. Zonder dit leest een ontbrekend beleid_vandaag.md
-    # als "er was vandaag geen beleid", ook als deze stap is omgevallen. Dat is
+    # deze stap heeft gelopen. Zonder dit leest een ontbrekende verwijzing als
+    # "er was vandaag geen beleid", ook als deze stap is omgevallen. Dat is
     # dezelfde fout als alle andere in dit project: afwezigheid die zich
     # voordoet als een geldige uitkomst.
     try:
@@ -1224,9 +1207,9 @@ def main():
                        "gevonden": len(beleid) + len(buiten_onderwerp),
                        "raakt_ons": len(beleid),
                        "buiten_onderwerp": len(buiten_onderwerp),
-                       # De titels erbij, zodat beleid_plaatsen.py na het
-                       # schrijven van de brief kan nakijken welk stuk de brief
-                       # heeft behandeld en welk stuk alsnog in de bijlage moet.
+                       # De titels erbij, zodat het gezondheidsrapport per stuk
+                       # kan nakijken of de verwijzing in de verstuurde mail
+                       # staat, en niet alleen of er een kop staat.
                        "titels": [it.get("titel", "") for it in beleid]}, f,
                       ensure_ascii=False, indent=1)
     except Exception as e:

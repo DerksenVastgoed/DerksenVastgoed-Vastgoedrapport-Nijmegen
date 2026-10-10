@@ -572,6 +572,13 @@ def nieuwswaarde(bronnen):
     punten += 2 * tekst.count("[kamerverhuur]")
     punten += 2 * tekst.count("prijs verlaagd")
     punten += 2 * tekst.count("nieuw of gewijzigd")
+    # Een beleidsstuk dat onze portefeuille raakt is nieuws, en dat werd hier
+    # niet geteld. Op een dag waarin een ingrijpende verordening het enige
+    # nieuws is, kreeg de brief de sturing "er is vandaag weinig actualiteit"
+    # en de opdracht om van de verdieping het hoofdstuk te maken. Dat werkt
+    # tegen de instructie over gemeentelijk beleid in. Drie punten per stuk,
+    # evenveel als een splitsing.
+    punten += 3 * tekst.count("wat de publicatie zelf zegt")
     punten += tekst.count("besluit voor")
     punten += tekst.count("lezen]")          # ruwweg het aantal artikelen
     return punten
@@ -1415,6 +1422,26 @@ def main():
         _al = ""
         _waarschuw = lambda _t: ""
 
+    # GEMEENTELIJK BELEID HOORT IN DE BRIEF EN NIET ERNAAST. Dit blok werd
+    # gemaakt, in de bijlage gezet en door niets gelezen: het stond niet in de
+    # bronnenlijst, dus het model dat de brief schrijft zag het nooit. Daarom
+    # kon de brief een beleidsstuk niet aan een pand hangen en niet zeggen wat
+    # het voor de voorraad betekent.
+    #
+    # Niet het HTML-blok maar beleid_brieftekst.md, met benoemde velden en
+    # zonder onze eigen duiding: zie beleid_voor_de_brief() in
+    # bekendmakingen_nijmegen.py voor waarom dat verschil ertoe doet.
+    _beleid = lees("beleid_brieftekst.md")[:4000]
+    # HET AANTAL OBJECTEN ALLEEN BIJ EEN STUK DAT ER OVER GAAT. plint_vandaag.md
+    # staat er elke dag, ook op een dag met alleen een regeling over
+    # blokverwarming of zonder beleid. Gaf ik het onvoorwaardelijk mee, dan
+    # krijgt het model plintgetallen onder de kop "dat beleid" plus de opdracht
+    # het aantal over te nemen, en kan het die aan het verkeerde stuk hangen.
+    # Dezelfde voorwaarde stond eerder in de workflow, met dezelfde reden.
+    _plint = (strip_opmaak(lees("plint_vandaag.md"), 1500)
+              if re.search(r"bouwlaag|plint|begane grond", _beleid, re.I)
+              else "")
+
     _aanbod = strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))
     _dossiers = strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)
     _besluiten = (week_terug("bekendmakingen", d) if _weekelijks()
@@ -1454,10 +1481,8 @@ def main():
         # niet de titel. Dat onderscheid is de reden dat de brief op 8 en 10
         # oktober schreef dat een vergunningplicht het omzetten van
         # winkelplinten "vergemakkelijkt".
-        ("Gemeentelijk beleid dat ons raakt",
-         strip_opmaak(lees("beleid_vandaag.md"), 4000)),
-        ("Hoeveel objecten dat beleid raakt",
-         strip_opmaak(lees("plint_vandaag.md"), 1500)),
+        ("Gemeentelijk beleid dat ons raakt", _beleid),
+        ("Hoeveel objecten dat beleid raakt", _plint),
     ]
     brief = zet_aanhef(haal_ondertekening_weg(schrijf_brief(bronnen) or ""), AANHEF)
     if not brief:
