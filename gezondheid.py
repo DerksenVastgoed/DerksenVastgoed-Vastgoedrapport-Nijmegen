@@ -1199,6 +1199,17 @@ def controle_samenstelling():
     bereikt de brief niet. De code toont dat niet, want de functie werkt. Deze
     controle toetst daarom de opgeleverde tekst, en gebruikt dezelfde functie
     die de waarschuwing maakt om te bepalen of hij er had moeten staan.
+
+    TWEE SOORTEN TEKST, TWEE SOORTEN TOETS. De bijlage en de marktanalyse
+    worden door ons gegenereerd; daar hoort de waarschuwing woordelijk in te
+    staan. De brief wordt geschreven en hoort de dingen in eigen woorden te
+    zeggen. Op 9 oktober stond er: "alle vijf de gemeten buurten dezelfde kant
+    op, van +4,1% tot +7,8%. Dat is onze steekproef die verandert, niet de
+    markt, dus die zet ik er niet tegenover." Dat is precies goed, en toch
+    meldde deze controle een FOUT, want hij zocht de hoofdletters van het
+    bronblok. Een controle die goed gedrag afstraft leert je het rapport
+    negeren, dus kijkt hij in de brief nu naar de inhoud: noemt de brief de
+    beweging, dan moet het voorbehoud er in welke woorden ook bij staan.
     """
     try:
         from marktprijzen_bag import samenstellingseffect
@@ -1210,28 +1221,47 @@ def controle_samenstelling():
     if not melding:
         return (OK, "de buurten bewegen niet allemaal dezelfde kant op; "
                 "geen waarschuwing nodig", "")
-    kern = "GEEN MARKTBEWEGING"
-    mist = []
-    for achtervoegsel, wat in (("-verhaal.md", "de brief"),
-                               ("-bijlage.md", "de bijlage")):
+    beweging = melding.split("**")[-1].split(" Dat is")[0].strip()[:160]
+
+    def laatste(achtervoegsel):
         try:
             namen = sorted(n for n in os.listdir("digests")
                            if n.endswith(achtervoegsel))
             if not namen:
-                continue
+                return None
             with open(os.path.join("digests", namen[-1]), encoding="utf-8") as f:
-                if kern not in f.read():
-                    mist.append(wat)
+                return f.read()
         except Exception:
-            continue
-    beweging = melding.split("**")[-1].split(" Dat is")[0].strip()[:160]
+            return None
+
+    # De gegenereerde teksten: woordelijk, want die schrijven wij.
+    mist = []
+    for achtervoegsel, wat in (("-bijlage.md", "de bijlage"),
+                               ("-marktprijzen.md", "de marktanalyse")):
+        tekst = laatste(achtervoegsel)
+        if tekst is not None and "GEEN MARKTBEWEGING" not in tekst:
+            mist.append(wat)
+
+    # De brief: alleen streng als hij de beweging zelf noemt.
+    brief = laatste("-verhaal.md") or ""
+    noemt = bool(re.search(r"\ballemaal dezelfde kant|dezelfde kant op"
+                           r"|alle (?:vijf|zes|vier)\b", brief, re.IGNORECASE))
+    voorbehoud = bool(re.search(r"steekproef|samenstelling|GEEN MARKTBEWEGING"
+                                r"|andere panden in de meting",
+                                brief, re.IGNORECASE))
+    if noemt and not voorbehoud:
+        mist.append("de brief, die de beweging wel noemt maar zonder "
+                    "voorbehoud")
+
     if not mist:
-        return (OK, "alle buurten bewegen dezelfde kant op en de waarschuwing "
-                f"staat in de brief: {beweging}", "")
+        hoe = ("de brief zegt het in eigen woorden" if voorbehoud
+               else "de brief laat het erbuiten")
+        return (OK, f"alle buurten bewegen dezelfde kant op, de waarschuwing "
+                f"staat in de bijlage en {hoe}: {beweging}", "")
     return (FOUT,
             "alle buurten bewegen dezelfde kant op, maar de waarschuwing staat "
             f"niet in {' en '.join(mist)}: {beweging}",
-            "Zonder die waarschuwing leest pa de buurtcijfers als een "
+            "Zonder dat voorbehoud leest pa de buurtcijfers als een "
             "marktbeweging, en dat zijn ze niet: er komen andere panden in de "
             "meting. De waarschuwing wordt gemaakt in samenstellingseffect() "
             "en moet vlak voor de return worden ingevoegd, anders gooit de "
