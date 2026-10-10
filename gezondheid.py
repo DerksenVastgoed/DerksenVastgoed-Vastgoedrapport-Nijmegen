@@ -2174,22 +2174,74 @@ def controle_beleid_in_mail():
     gevonden = [(p, w) for p, w in paden if os.path.exists(p)]
     if not gevonden:
         return (OK, "geen verstuurde brief van vandaag om te toetsen", "")
-    mist = []
+    # PER STUK EN NIET PER KOP. Beleid gaat nu de brief zelf in, dus de kop
+    # "Beleid gemeente Nijmegen" staat er alleen nog als de brief een stuk
+    # heeft overgeslagen. Grepen op die kop zou vanaf nu FOUT melden juist
+    # wanneer het goed gaat. Daarom per titel: staat hij als blok in de mail,
+    # of heeft de brief hem behandeld? Precies één van de twee hoort te gelden,
+    # en geen van de twee is de fout die ertoe doet.
+    try:
+        import beleidsrelevantie
+    except Exception as e:
+        return (LET_OP, f"beleidsrelevantie.py is niet te lezen "
+                f"({type(e).__name__})", "")
+    titels = [t for t in (stand.get("titels") or []) if t]
+    if not titels:
+        return (LET_OP, "de stand noemt geen titels, dus per stuk is het niet "
+                "te toetsen",
+                "Oudere standen hadden dat veld niet; na een verse run staat "
+                "het er.")
+    kwijt, als_blok, in_brief, dubbel = [], 0, 0, []
     for pad, wat in gevonden:
         try:
             with open(pad, encoding="utf-8") as f:
-                if "Beleid gemeente Nijmegen" not in f.read():
-                    mist.append(wat)
+                mail = f.read()
         except Exception as e:
-            mist.append(f"{wat} ({type(e).__name__})")
-    if not mist:
-        return (OK, "het beleidsblok staat in "
-                + " en ".join(w for _, w in gevonden), "")
-    return (FOUT, "het beleidsblok staat NIET in " + " en ".join(mist),
-            "Er is wel gemeentelijk beleid gevonden dat ons raakt, maar het "
-            "haalt de inbox niet. Doordeweeks mailt de workflow bijlage.md, "
-            "dus kijk of de stap 'Beleid ook in de dagelijkse bijlage' heeft "
-            "gelopen en of die bijlage van vandaag is.")
+            kwijt.append(f"{wat} ({type(e).__name__})")
+            continue
+        # DE BRIEF EN DE BIJLAGE APART. Het blok bevat de titel letterlijk, dus
+        # genoemd() slaat ook aan op een mail waarin de brief er niets over
+        # zegt en alleen het blok staat. Dan zou elke mail "op beide plekken"
+        # melden. De samenvoegstap zet de bijlage achter een kop met
+        # id="bijlage", dus daarop splitsen geeft precies de twee delen.
+        if 'id="bijlage"' in mail:
+            briefdeel, bijlagedeel = mail.split('id="bijlage"', 1)
+        else:
+            # Het pad "Mail versturen zonder verhaal": alles is bijlage.
+            briefdeel, bijlagedeel = "", mail
+        for titel in titels:
+            blok = titel in bijlagedeel
+            verteld = beleidsrelevantie.genoemd(briefdeel, titel)
+            if blok and verteld:
+                dubbel.append(titel)
+            elif blok:
+                als_blok += 1
+            elif verteld:
+                in_brief += 1
+            else:
+                kwijt.append(f"{titel[:50]} in {wat}")
+    if kwijt:
+        return (FOUT, f"{len(kwijt)} beleidsstukken halen de mail niet: "
+                + "; ".join(kwijt[:3]),
+                "Er is beleid gevonden dat ons raakt, maar het staat niet in "
+                "de brief en ook niet als blok in de bijlage. Kijk of de stap "
+                "'Beleid dat de brief oversloeg' heeft gelopen.")
+    kort = (f"{len(titels)} beleidsstuk" if len(titels) == 1
+            else f"{len(titels)} beleidsstukken") + " in de mail"
+    if in_brief:
+        kort += f", {in_brief} in de brief zelf"
+    if als_blok:
+        kort += f", {als_blok} als blok in de bijlage"
+    if dubbel:
+        # Dubbel is geen ramp, maar het is wel wat Mark niet wil, en het
+        # betekent dat de toets op "heeft de brief het behandeld" anders
+        # uitpakte dan bij het plaatsen.
+        return (LET_OP, kort + f", {len(dubbel)} op beide plekken",
+                "Dat stuk staat zowel in de brief als als blok in de bijlage. "
+                "beleid_plaatsen.py vond het niet behandeld en deze toets wel, "
+                "dus de titelwoorden vallen net aan de andere kant van de "
+                "grens in beleidsrelevantie.genoemd().")
+    return (OK, kort, "")
 
 
 def controle_plintregel():
