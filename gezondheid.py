@@ -2278,6 +2278,79 @@ def controle_beleid_in_mail():
     return (OK, f"{len(titels)} {woord} met een verwijzing in {wat}", "")
 
 
+def controle_sleutels_in_stappen():
+    """
+    Krijgt elke stap die een API-sleutel nodig heeft die sleutel ook mee?
+
+    WAAROM DIT BESTAAT. Op 10 oktober liepen de twee voorraadstappen voor het
+    eerst. Ze meldden succes in 0,0 minuten en haalden niets op: er stond geen
+    `env:` bij, dus voorraad_bag.py stopte zonder BAG_API_KEY. De module deed
+    het goed en gaf exitcode 1, maar continue-on-error maakte de stap groen.
+    Het hele doel van die fase is de BAG bevragen, en hij heeft nog nooit een
+    aanroep gedaan.
+
+    Dat was te zien geweest zonder een run. Een script dat os.environ.get op
+    een sleutel doet, hoort die sleutel in de stap te krijgen die het aanroept.
+    Dat is een vergelijking tussen twee bestanden en geen gok, dus hoort het
+    hier en niet in een logboek dat niemand leest.
+
+    De toets is met opzet ruim: hij kijkt alleen naar namen die op _API_KEY
+    eindigen, want dat zijn de sleutels waarzonder een bron niets oplevert.
+    """
+    pad = ".github/workflows/bekendmakingen.yml"
+    if not os.path.exists(pad):
+        return (OK, "geen workflowbestand om te toetsen", "")
+    try:
+        import yaml
+    except Exception:
+        return (OK, "yaml niet beschikbaar, stappen niet te toetsen", "")
+    try:
+        with open(pad, encoding="utf-8") as f:
+            spec = yaml.safe_load(f)
+    except Exception as e:
+        return (LET_OP, f"{pad} is niet te lezen ({type(e).__name__})", "")
+
+    # Per module welke sleutels hij uit de omgeving leest.
+    nodig_per_module = {}
+    for naam in os.listdir("."):
+        if not naam.endswith(".py"):
+            continue
+        try:
+            with open(naam, encoding="utf-8") as f:
+                broncode = f.read()
+        except Exception:
+            continue
+        sleutels = set(re.findall(
+            r"os\.environ(?:\.get)?[\(\[]\s*[\"']([A-Z0-9_]*_API_KEY)[\"']",
+            broncode))
+        if sleutels:
+            nodig_per_module[naam] = sleutels
+
+    mist = []
+    for job in (spec.get("jobs") or {}).values():
+        for stap in job.get("steps") or []:
+            script = stap.get("run") or ""
+            if not script:
+                continue
+            gegeven = set(stap.get("env") or {})
+            for module, sleutels in nodig_per_module.items():
+                if not re.search(r"\bpython3?\s+" + re.escape(module), script):
+                    continue
+                for s in sorted(sleutels - gegeven):
+                    mist.append(f"{(stap.get('name') or '?')[:40]} mist {s} "
+                                f"voor {module}")
+    if mist:
+        return (FOUT, f"{len(mist)} stappen missen een sleutel: "
+                + "; ".join(mist[:3]),
+                "Zo'n stap draait wel en haalt niets op. Zet de sleutel in de "
+                "env van die stap, zoals de andere stappen doen. Dit ging mis "
+                "bij de twee voorraadstappen, die daardoor nooit een enkele "
+                "BAG-aanroep hebben gedaan terwijl ze succes meldden.")
+    telling = sum(len(v) for v in nodig_per_module.values())
+    return (OK, f"{len(nodig_per_module)} modules vragen samen {telling} "
+            f"sleutels, en elke stap die ze aanroept geeft die mee", "")
+
+
 def controle_regelset():
     """
     Staan de gepubliceerde regels er goed in, en gelden ze niet te breed?
@@ -2798,6 +2871,7 @@ CONTROLES = [
     ("Beleid haalt de mail", controle_beleid_in_mail),
     ("Plintobjecten geteld", controle_plintregel),
     ("Gepubliceerde regels bij de panden", controle_regelset),
+    ("Sleutels in de workflowstappen", controle_sleutels_in_stappen),
     ("Verkooptijd bovengrens", controle_verkooptijd),
     ("Huurdekking", controle_huurdekking),
     ("Bronnen die niets opleveren", controle_afzenders),

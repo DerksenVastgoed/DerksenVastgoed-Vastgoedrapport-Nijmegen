@@ -862,9 +862,27 @@ jobs:
       - name: Oppervlakte en gebruiksdoel van de hele voorraad (BAG)
         continue-on-error: true
         if: env.MODUS != 'dagelijks' || github.event_name == 'workflow_dispatch'
+        env:
+          # DEZE SLEUTEL STOND ER NIET, EN DAAR GING HET MIS. De stap draaide op
+          # 10 oktober voor het eerst, meldde succes in 0,0 minuten en haalde
+          # niets op: voorraad_bag.py stopt zonder BAG_API_KEY en geeft
+          # exitcode 1, en continue-on-error maakte die stap groen. Het hele
+          # doel van deze fase is de BAG bevragen, en hij heeft nog nooit een
+          # aanroep gedaan. Alleen controle_voorraad() in het
+          # gezondheidsrapport zag het, met precies het goede advies erbij:
+          # "kijk dan of BAG_API_KEY nog geldig is".
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          # EP_API_KEY hoort deze fase niet te gebruiken, maar voorraad_bag.py
+          # leest beide sleutels bij het inlezen van de module. De toets
+          # controle_sleutels_in_stappen() vergelijkt dat met de env van de
+          # stap, en die blijft daarom met opzet eenvoudig: een stap die een
+          # module aanroept geeft alles mee wat die module leest. Slimmer maken
+          # betekent de vlaggen van de aanroep gaan ontleden, en dan toetst hij
+          # iets anders dan hij belooft.
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
           # Eén vraag per postcode levert alle adressen daarin met oppervlakte,
-          # gebruiksdoel en pand-id. De inventaris telde 1.743 postcodes, dus
+          # gebruiksdoel en pand-id. De inventaris telde 1.761 postcodes, dus
           # bij 1,1 seconde per vraag is dit in één run rond. Daarna slaat het
           # script een postcode een halfjaar over, en dan is het een paar
           # minuten werk.
@@ -872,6 +890,13 @@ jobs:
 
       - name: Energielabels van de voorraad bijwerken (EP-Online)
         continue-on-error: true
+        env:
+          # Zelfde verhaal als bij de BAG-fase hierboven: zonder sleutel stopt
+          # het script meteen. En de BAG-sleutel staat er ook bij, want deze
+          # fase leest voorraad.json dat door fase 1 wordt gevuld en zou bij
+          # een lege voorraad anders alsnog niets doen.
+          BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
           # EP-Online gaat per adres, dus 15.000 vragen voor de ring: 4,6 uur.
           # Dat past in geen enkele run, dus werkt dit elke keer een stuk van
