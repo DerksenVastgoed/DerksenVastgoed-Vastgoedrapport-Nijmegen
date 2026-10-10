@@ -150,6 +150,50 @@ def splits(items, alleen_promoveren=False):
     return raakt, overig
 
 
+def verwijzing(beleid, buiten_onderwerp=()):
+    """
+    De regel die altijd in de bijlage komt: welke stukken er vandaag waren.
+
+    WAAROM DIT GEEN BLOK IS. Mark wil het beleid in de brief zelf en niet
+    dubbel. De inhoud staat dus in de brief, en hier staat alleen waar het
+    vandaan komt: de titel, de datum en de bron.
+
+    EN WAAROM HET ER ALTIJD STAAT. Eerst stond hier een blok dat alleen werd
+    toegevoegd als de brief het stuk had overgeslagen, vastgesteld door de
+    titelwoorden in de brief te zoeken. Een losse beoordelaar rekende dat na op
+    de 28 bewaarde brieven: van de 27 keer dat die toets "behandeld" zei, waren
+    er 26 onjuist, en 19 van de 28 brieven zouden een blok stil hebben laten
+    verdwijnen. De oorzaak is niet de afstelling maar het idee: de titels
+    bestaan uit woorden als "woonruimte", "zelfstandige" en "omzetting", en die
+    staan in elke brief over verkamering. Strenger afstellen laat de toets
+    nooit meer aanslaan, losser laat hij stukken verdwijnen.
+
+    Een verwijzing die er altijd staat heeft dat probleem niet. Hij kan niets
+    verbergen, hij is kort, en hij dubbelt de inhoud niet. Dat de brief over
+    een stuk schrijft is aan de brief; dat het stuk vindbaar blijft is aan deze
+    regel.
+    """
+    regels = []
+    for it in beleid:
+        url = (it.get("url") or "").strip()
+        titel = it.get("titel", "")
+        datum = (it.get("datum") or "")[:10]
+        kop = (f'<a href="{url}" style="color:#4a7a72;text-decoration:none">'
+               f'{titel}</a>' if url else titel)
+        regels.append(f"{kop}{f' ({datum})' if datum else ''}")
+    if not regels and not buiten_onderwerp:
+        return ""
+    uit = []
+    if regels:
+        uit.append('<div style="font-size:12px;color:#4a5b63;margin:0 0 6px 0">'
+                   'Gemeentelijk beleid van vandaag, besproken in de brief: '
+                   + "; ".join(regels) + "</div>")
+    staart = staartregel(buiten_onderwerp)
+    if staart:
+        uit.append(staart)
+    return "\n".join(uit) + "\n\n"
+
+
 def staartregel(overig):
     """
     Eén regel onder het beleidsblok met de stukken die ons niet raken.
@@ -257,7 +301,9 @@ def proef():
             vk += 1
             print(f"AFWIJKING (weglijst): '{titel[:50]}' gaf {uit} ({reden})")
     print(f"{len(VALKUILEN) + 2} bekende valkuilen: {vk} afwijkend")
+
     return fout + vk
+
 
 
 if __name__ == "__main__":

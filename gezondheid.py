@@ -942,6 +942,59 @@ def _groot_dus_geen_punten(brief):
     return ""
 
 
+def _beleid_versoepeling(brief):
+    """
+    De bewering dat een nieuwe regel iets eenvoudiger maakt, terwijl hij dat
+    niet doet.
+
+    Op 8 en 10 oktober stond er dat de beleidsregel over de eerste bouwlaag
+    omzetting van winkelplinten naar wonen "vergemakkelijkt". Het stuk voert
+    juist een vergunningplicht in. Daar stond eerst een regex op die het woord
+    "vergemakkelijkt" zocht, plus "maakt" of "wordt" dicht bij "eenvoudiger".
+
+    WAAROM DAT NIET GENOEG WAS. Een losse beoordelaar legde elf formuleringen
+    naast die regex die een model plausibel zou schrijven en die onwaar zijn.
+    Acht glipten erdoor: versoepelt, biedt ruimte, mag je voortaan, opent de
+    deur, stimuleert, staat vanaf nu toe, komt er woonruimte bij, en zelfs
+    "maakt het omzetten van winkelplinten naar woningen eenvoudiger", omdat er
+    45 tekens tussen "maakt" en "eenvoudiger" zaten en het venster 30 was.
+
+    Dat is wat er gebeurt als je een onwaarheid op haar formulering toetst in
+    plaats van op haar richting. Sinds het beleid de brief zelf in gaat
+    herschrijft het model elk stuk in eigen woorden, dus het aantal mogelijke
+    formuleringen is niet te overzien. Deze toets kijkt daarom naar de
+    richting: staat er in één zin een versoepeling én het onderwerp van de
+    plintregel, dan is dat onwaar, want die regel verbiedt en versoepelt niet.
+    """
+    onderwerp = (r"plint|eerste bouwlaag|begane grond|winkelpand|winkelplint"
+                 r"|winkelvloer|kernwinkelgebied|ringstra")
+    versoepeling = (
+        r"vergemakkelijk|versoepel|soepeler|minder streng|ruimer"
+        r"|eenvoudiger|makkelijker|gemakkelijker"
+        r"|biedt ruimte|meer ruimte|ruimte (?:om|voor)"
+        r"|mag (?:je |men |de eigenaar )?(?:voortaan|nu|vanaf)"
+        r"|staat .{0,25}(?:toe|toegestaan)|opent de deur|stimuleer"
+        r"|moedigt .{0,15}aan|komt er .{0,25}bij|wordt mogelijk"
+        r"|maakt .{0,40}mogelijk|zonder vergunning")
+    # De zin zelf teruggeven en niet True: controle_verzonnen_beweringen()
+    # zet de vondst in het rapport, zodat Mark ziet wat er werkelijk stond.
+    #
+    # En een venster om het versoepelingswoord heen, niet de eerste tekens van
+    # de zin. In een samengevoegde brief zit HTML tussen de zinnen en ontbreekt
+    # het zinseinde, dus een "zin" kan een hele alinea zijn. Het rapport
+    # citeerde dan een ware zin terwijl de onwaarheid er honderd tekens verder
+    # in stond, en dan lijkt de melding onzin terwijl hij klopt.
+    for zin in re.split(r"(?<=[.!?])\s+", brief):
+        z = zin.lower()
+        if not re.search(onderwerp, z):
+            continue
+        m = re.search(versoepeling, z)
+        if m:
+            van = max(0, m.start() - 45)
+            return ("..." if van else "") + zin[van:m.end() + 55].strip()
+    return ""
+
+
 def _snelle_route(brief):
     """
     De bewering dat een splitsingsroute snel is, op grond van de registratie.
@@ -1012,11 +1065,7 @@ VERZONNEN = (
      "gepubliceerde aanvraag en het besluit zaten en 300 dagen volgens het "
      "dossier. Noem de aanvraagdatum erbij; die staat per pand in het blok "
      "over de splitsingen die de BAG inmiddels telt."),
-    (r"(?:vergemakkelijkt|maakt .{0,30}(?:eenvoudiger|makkelijker)"
-     r"|wordt .{0,20}(?:eenvoudiger|makkelijker))[^.]{0,80}"
-     r"(?:plint|begane grond|eerste bouwlaag|winkel|kantoor)"
-     r"|(?:plint|begane grond|eerste bouwlaag)[^.]{0,80}"
-     r"(?:vergemakkelijkt|wordt .{0,20}(?:eenvoudiger|makkelijker))",
+    (_beleid_versoepeling,
      "De beleidsregel Woonruimte op de eerste bouwlaag doet het omgekeerde: "
      "hij voert een vergunningplicht in om winkelvloeroppervlak in het "
      "kernwinkelgebied en de ringstraten te beschermen, en laat hoogstens 30% "
@@ -2032,85 +2081,65 @@ def controle_briefvoet():
 
 def controle_beleidsduiding():
     """
-    Rust de duiding onder een beleidsstuk op het document of op de titel?
+    Kreeg de brief van elk beleidsstuk de publicatietekst, of alleen de titel?
 
-    Op 8 en 10 oktober 2026 stond onder "Beleidsregels Woonruimte op de eerste
-    bouwlaag toevoegen binnenstad" de regel dat de beleidsregel omzetting van
-    winkelplinten naar wonen "vergemakkelijkt". Het stuk doet het omgekeerde:
-    het voert een vergunningplicht in om winkelvloer te beschermen. De
-    samenvatting in hetzelfde blok zei dat ook, dus het blok sprak zichzelf
-    tegen. De oorzaak was de volgorde: verrijk() schreef de duiding voordat de
-    publicatietekst was opgehaald, dus met alleen de titel in beeld.
+    Op 8 en 10 oktober schreef de brief dat de beleidsregel over de eerste
+    bouwlaag omzetting van winkelplinten "vergemakkelijkt". Het stuk voert
+    juist een vergunningplicht in. De oorzaak was dat de duiding uit de titel
+    werd geraden, voordat de publicatietekst was opgehaald.
 
-    Deze toets kijkt naar het opgeleverde bestand en niet naar de code, want de
-    volgorde in de code kan opnieuw omvallen zonder dat er iets faalt. Per
-    beleidsblok geldt: staat er een cursieve duiding, dan moet er in hetzelfde
-    blok ook een samenvatting staan. Een duiding zonder samenvatting is per
-    definitie uit de titel geraden.
+    Die duiding bestaat niet meer. Het beleid gaat nu de brief zelf in, en
+    beleid_voor_de_brief() laat een stuk zonder publicatietekst er helemaal uit:
+    zonder tekst heeft het model niets dan de titel, en dat is precies waar de
+    fout vandaan kwam. Deze toets kijkt of dat filter werkt en hoeveel stukken
+    eraan sneuvelen. Sneuvelt er een, dan staat het stuk wel in de verwijzing
+    onder de bijlage, maar schrijft de brief er niets over, en dat hoort Mark
+    te weten.
     """
-    pad = "beleid_vandaag.md"
-    if not os.path.exists(pad):
-        return (OK, "geen beleidsstuk vandaag", "")
+    vandaag = dt.date.today().isoformat()
+    stand = {}
     try:
-        with open(pad, encoding="utf-8") as f:
-            tekst = f.read()
-    except Exception as e:
-        return (LET_OP, f"{pad} is niet te lezen ({type(e).__name__})", "")
-    # Elk blok begint met de rand links; splitsen op die opening geeft de
-    # blokken terug zonder dat we HTML hoeven te ontleden.
-    blokken = tekst.split('border-left:3px solid #E0A458')[1:]
-    if not blokken:
-        # Sinds de relevantiepoort schrijft bekendmakingen_nijmegen.py dit
-        # bestand alleen nog als er stukken zijn die ons raken; de titels van
-        # de rest staan in beleid_staart.md. Een bestand zonder blok hoort dus
-        # niet te bestaan, en dat is een fout en geen melding.
-        return (FOUT, "beleid_vandaag.md bevat geen enkel blok",
-                "Dit bestand wordt alleen geschreven als er beleid is dat ons "
-                "raakt, dus een bestand zonder blok betekent dat het "
-                "wegschrijven halverwege is gestrand.")
-    try:
-        from bekendmakingen_nijmegen import GEEN_INHOUD
+        with open("beleid_stand.json", encoding="utf-8") as f:
+            stand = json.load(f)
     except Exception:
-        GEEN_INHOUD = ("De publicatie bevat geen inhoudelijke wijziging die "
-                       "uit de tekst blijkt.")
-    geraden, terugval, stil, met_duiding = 0, 0, 0, 0
-    for blok in blokken:
-        heeft_duiding = "font-style:italic" in blok
-        heeft_samenvatting = "color:#1a2830" in blok
-        if heeft_duiding:
-            met_duiding += 1
-        if heeft_duiding and not heeft_samenvatting:
-            geraden += 1
-        # De terugvalzin is wél een samenvatting maar bevat geen inhoud. Staat
-        # daar een duiding naast, dan is die uit de titel geraden en is de
-        # voorwaarde in de rendering niet streng genoeg.
-        if heeft_duiding and GEEN_INHOUD in blok:
-            terugval += 1
-        if not heeft_duiding:
-            stil += 1
-    stuk = "beleidsstuk" if len(blokken) == 1 else "beleidsstukken"
-    if geraden or terugval:
-        reden = []
-        if geraden:
-            reden.append(f"{geraden} met een duiding zonder samenvatting")
-        if terugval:
-            reden.append(f"{terugval} met een duiding naast een lege "
-                         f"samenvatting")
-        return (FOUT, f"{len(blokken)} {stuk}, " + " en ".join(reden),
-                "Zo'n duiding is uit de titel geraden en kan het "
-                "tegenovergestelde zeggen van wat het stuk regelt, zoals op 8 "
-                "en 10 oktober. De rendering hoort die regel weg te laten: "
-                "staat hij er toch, dan is heeft_inhoud() in "
-                "bekendmakingen_nijmegen.py niet meer streng genoeg.")
-    if stil:
-        return (LET_OP, f"{len(blokken)} {stuk}, waarvan {stil} zonder duiding",
-                "Daar is de publicatietekst niet opgehaald of niet samengevat, "
-                "dus het blok toont alleen de titel en de datum. Dat is met "
-                "opzet: een duiding zonder brontekst is een gok. Blijft dit "
-                "staan, kijk dan in het logboek van de stap Bekendmakingen "
-                "naar de melding 'Beleidsstukken zonder publicatietekst'.")
-    return (OK, f"{len(blokken)} {stuk}, {met_duiding} met een duiding die op "
-            f"de publicatietekst rust", "")
+        pass
+    if stand.get("datum") != vandaag:
+        return (OK, "geen beleidsstand van vandaag om te toetsen", "")
+    raakt = stand.get("raakt_ons") or 0
+    if not raakt:
+        return (OK, "geen beleid dat ons raakt vandaag", "")
+    tekst = ""
+    if os.path.exists("beleid_brieftekst.md"):
+        try:
+            with open("beleid_brieftekst.md", encoding="utf-8") as f:
+                tekst = f.read()
+        except Exception as e:
+            return (LET_OP, f"beleid_brieftekst.md is niet te lezen "
+                    f"({type(e).__name__})", "")
+    met_tekst = tekst.count("WAT DE PUBLICATIE ZELF ZEGT:")
+    if met_tekst and "TITEL (dit is geen bron" not in tekst:
+        return (FOUT, "beleid_brieftekst.md mist het voorbehoud bij de titel",
+                "De brief krijgt de titel dan zonder de waarschuwing dat die "
+                "het omgekeerde kan suggereren van wat het stuk regelt. Kijk "
+                "naar beleid_voor_de_brief() in bekendmakingen_nijmegen.py.")
+    zonder = raakt - met_tekst
+    woord = "beleidsstuk" if raakt == 1 else "beleidsstukken"
+    if met_tekst == 0:
+        return (FOUT, f"{raakt} {woord} {'raakt' if raakt == 1 else 'raken'} ons, "
+                f"maar de brief kreeg van "
+                f"geen enkel stuk de publicatietekst",
+                "De brief kan er dan niets over schrijven, want wij geven hem "
+                "alleen tekst die uit het document komt. Kijk of "
+                "haal_publicatietekst() en vat_beleid_samen() hebben gewerkt; "
+                "de stap Bekendmakingen meldt 'Beleidsstukken zonder "
+                "publicatietekst'.")
+    if zonder > 0:
+        return (LET_OP, f"{met_tekst} van de {raakt} {woord} met "
+                f"publicatietekst naar de brief, {zonder} zonder",
+                "Van die stukken is de tekst niet opgehaald of niet "
+                "samengevat, dus de brief schrijft er niets over. Ze staan wel "
+                "met titel en bron in de verwijzing onder de bijlage.")
+    return (OK, f"{raakt} {woord} met publicatietekst naar de brief", "")
 
 
 def controle_beleid_in_mail():
@@ -2130,7 +2159,7 @@ def controle_beleid_in_mail():
     """
     vandaag = dt.date.today().isoformat()
     # DE STAND EERST, EN NIET HET BESTAAN VAN HET BLOK. Een losse beoordelaar
-    # wees erop dat "beleid_vandaag.md bestaat niet" drie dingen kan betekenen:
+    # wees erop dat een ontbrekende verwijzing drie dingen kan betekenen:
     # er was geen beleid, de bekendmakingenstap is omgevallen, of de bron gaf
     # niets terug. Alleen de eerste is goed nieuws, en de toets las ze alle
     # drie als OK. beleid_stand.json wordt elke run geschreven, dus een stand
@@ -2142,54 +2171,59 @@ def controle_beleid_in_mail():
     except Exception:
         pass
     if stand.get("datum") != vandaag:
-        if not os.path.exists("beleid_vandaag.md"):
-            return (LET_OP, "de beleidsstap heeft vandaag niet gelopen",
-                    "Zonder stand van vandaag is niet te zeggen of er geen "
-                    "beleid was of dat de stap Bekendmakingen is omgevallen. "
-                    "Kijk in het logboek van die stap.")
-    elif not stand.get("gevonden"):
+        return (LET_OP, "de beleidsstap heeft vandaag niet gelopen",
+                "Zonder stand van vandaag is niet te zeggen of er geen beleid "
+                "was of dat de stap Bekendmakingen is omgevallen. Kijk in het "
+                "logboek van die stap.")
+    if not stand.get("gevonden"):
         return (OK, "geen beleidsstuk vandaag gepubliceerd", "")
-    elif not stand.get("raakt_ons"):
+    if not stand.get("raakt_ons"):
         return (OK, f"{stand['gevonden']} beleidsstukken vandaag, alle "
                 f"{stand['buiten_onderwerp']} buiten ons onderwerp", "")
-    if not os.path.exists("beleid_vandaag.md"):
+    if not os.path.exists("beleid_verwijzing.md"):
         return (FOUT, f"{stand.get('raakt_ons', '?')} beleidsstukken raken ons "
-                f"maar beleid_vandaag.md is er niet",
-                "Het blok is dus niet geschreven terwijl er wel relevante "
+                f"maar beleid_verwijzing.md is er niet",
+                "De verwijzing is dus niet geschreven terwijl er wel relevante "
                 "stukken waren. Kijk of het wegschrijven in "
                 "bekendmakingen_nijmegen.py een uitzondering gaf.")
-    try:
-        with open("beleid_vandaag.md", encoding="utf-8") as f:
-            blok = f.read()
-    except Exception as e:
-        return (LET_OP, f"beleid_vandaag.md is niet te lezen "
-                f"({type(e).__name__})", "")
-    if "border-left:3px solid #E0A458" not in blok:
-        return (FOUT, "beleid_vandaag.md bestaat maar bevat geen enkel blok",
-                "Het bestand is dus geopend en niet gevuld, bijvoorbeeld "
-                "doordat het schrijven halverwege strandde. Een leeg bestand "
-                "haalt de brief wel en zegt niets.")
-    paden = [(f"digests/{vandaag}-mail.html", "de mail"),
-             (f"digests/{vandaag}-brief.html", "de brief zonder verhaal")]
-    gevonden = [(p, w) for p, w in paden if os.path.exists(p)]
-    if not gevonden:
+    # WELK BESTAND ER WERKELIJK UITGAAT. mail.html is het gewone pad;
+    # brief.html wordt elke run gemaakt en alleen verstuurd als mail.html
+    # ontbreekt. Mijn eerste opzet toetste ze beide en gaf daardoor FOUT juist
+    # wanneer het goed ging: brief.html bevat het verhaal niet, dus een stuk
+    # dat de brief netjes had behandeld was daar niet te vinden. Een losse
+    # beoordelaar speelde dat na. Dus: het bestand dat verstuurd wordt.
+    pad = f"digests/{vandaag}-mail.html"
+    wat = "de mail"
+    if not os.path.exists(pad):
+        pad, wat = f"digests/{vandaag}-brief.html", "de brief zonder verhaal"
+    if not os.path.exists(pad):
         return (OK, "geen verstuurde brief van vandaag om te toetsen", "")
-    mist = []
-    for pad, wat in gevonden:
-        try:
-            with open(pad, encoding="utf-8") as f:
-                if "Beleid gemeente Nijmegen" not in f.read():
-                    mist.append(wat)
-        except Exception as e:
-            mist.append(f"{wat} ({type(e).__name__})")
-    if not mist:
-        return (OK, "het beleidsblok staat in "
-                + " en ".join(w for _, w in gevonden), "")
-    return (FOUT, "het beleidsblok staat NIET in " + " en ".join(mist),
-            "Er is wel gemeentelijk beleid gevonden dat ons raakt, maar het "
-            "haalt de inbox niet. Doordeweeks mailt de workflow bijlage.md, "
-            "dus kijk of de stap 'Beleid ook in de dagelijkse bijlage' heeft "
-            "gelopen en of die bijlage van vandaag is.")
+    try:
+        with open(pad, encoding="utf-8") as f:
+            mail = f.read()
+    except Exception as e:
+        return (LET_OP, f"{wat} is niet te lezen ({type(e).__name__})", "")
+
+    # De inhoud van een beleidsstuk staat in de brief zelf; in de bijlage staat
+    # alleen de verwijzing met de titel en de bron. Die verwijzing hoort er
+    # altijd te staan, dus daarop is wel te toetsen. Of de brief over een stuk
+    # heeft geschreven, leest Mark in de brief; dat uit de tekst afleiden
+    # leverde 26 valse uitkomsten op 27, dus dat doen we niet meer.
+    titels = [t for t in (stand.get("titels") or []) if t]
+    if not titels:
+        return (LET_OP, "de stand noemt geen titels, dus per stuk is het niet "
+                "te toetsen",
+                "Oudere standen hadden dat veld niet; na een verse run staat "
+                "het er.")
+    kwijt = [t for t in titels if t not in mail]
+    if kwijt:
+        return (FOUT, f"{len(kwijt)} van de {len(titels)} beleidsstukken staan "
+                f"niet in {wat}: " + "; ".join(t[:45] for t in kwijt[:3]),
+                "De verwijzing met titel en bron hoort er altijd te staan. "
+                "Kijk of de stap 'Verwijzing naar het beleid onder de bijlage' "
+                "heeft gelopen en of die bijlage van vandaag is.")
+    woord = "beleidsstuk" if len(titels) == 1 else "beleidsstukken"
+    return (OK, f"{len(titels)} {woord} met een verwijzing in {wat}", "")
 
 
 def controle_plintregel():
