@@ -150,6 +150,26 @@ def _is_woning(doelen):
     return any("woonfunctie" == d for d in (doelen or []))
 
 
+def _queryables():
+    """
+    Welke velden PDOK wel als filter toestaat.
+
+    Alleen bedoeld voor de foutmelding. De dienst zegt bij een geweigerd filter
+    welk veld niet mag, maar niet welke wel mogen, en die lijst staat op een
+    eigen pagina. In een try, want een mislukking hier mag de eigenlijke
+    foutmelding niet opeten.
+    """
+    try:
+        r = requests.get(PDOK_BASE.replace("/items", "/queryables"),
+                         params={"f": "json"}, timeout=(10, 30))
+        if r.status_code != 200:
+            return f"queryables gaf HTTP {r.status_code}"
+        eigenschappen = (r.json() or {}).get("properties") or {}
+        return ", ".join(sorted(eigenschappen)) or "geen velden gemeld"
+    except Exception as e:
+        return f"queryables niet op te halen ({type(e).__name__})"
+
+
 def _normaliseer(p):
     """
     Een PDOK-verblijfsobject in de vorm die de rest van deze module verwacht.
@@ -233,7 +253,16 @@ def haal_postcode(pc):
                               f"{inval.get('reason', '?')}")
             except Exception:
                 reden = r.text[:200]
-            return None, f"HTTP {r.status_code}: {reden[:300]}"
+            # GAAT HET OVER HET FILTER, VRAAG DAN WELKE VELDEN WEL MOGEN.
+            # PDOK antwoordde op 10 oktober: "property 'postcode' cannot be
+            # used in CQL filter, is not a queryable property". Dat zegt wat er
+            # niet mag en niet wat er wel mag, en die lijst staat op een eigen
+            # pagina van dezelfde dienst. Die er dan maar bij vragen: één
+            # aanroep in het foutpad, en de volgende ronde van zestien seconden
+            # vertelt het meteen in plaats van na nog een poging.
+            if "queryable" in reden.lower() or "cql" in reden.lower():
+                reden += " | WEL FILTERBAAR: " + _queryables()
+            return None, f"HTTP {r.status_code}: {reden[:600]}"
         try:
             body = r.json()
         except Exception as e:
