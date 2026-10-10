@@ -15,7 +15,7 @@ plint, 50). Die twee grenzen kruisen elkaar bij 50 / 0,30 = 166,7 m2. Een
 plint onder 167 m2 levert dus minder dan de 50 m2 op, en bij 100 m2 plint is
 het 30 m2. Dat is geen schatting maar de regel zelf, doorgerekend.
 
-WAAR DE AANTALLEN VANDAAN KOMEN. voorraad_bag.py vraagt de BAG per postcode en
+WAAR DE AANTALLEN VANDAAN KOMEN. voorraad_bag.py haalt de BAG per gebied op en
 krijgt elk adres met oppervlakte, gebruiksdoel en pandidentificatie terug. De
 adressen zonder woonfunctie werden geteld en weggegooid; sinds 10 oktober
 staan ze onder "niet_woningen" in voorraad.json. Dat zijn de winkels, kantoren
@@ -83,15 +83,20 @@ MIN_OBJECTEN = 20
 
 # Onder deze dekking publiceren we helemaal geen aantal.
 #
-# WAAROM DIT ER MOEST KOMEN. De voorraad wordt per postcode gevuld met een
-# tijdbudget, buurten op alfabet, en Stadscentrum staat achteraan: 1.291 van de
-# 1.743 postcodes komen eerst. Na de eerste run is Stadscentrum dus maar half
-# gedaan. Zonder deze drempel zou de brief zeggen "in heel Stadscentrum staan
-# 60 objecten" terwijl dat de stand van een halve meting is, en zou dat getal
-# week na week groeien zonder dat de zin verandert. Een losse beoordelaar
-# speelde dat na en zag ook dat "onder_woningen" dan stil op 0 blijft staan,
-# omdat de panden met woonfunctie nog niet zijn opgehaald. Een getal dat
-# groeit terwijl de zin "de stand" suggereert, is misleidend.
+# WAAROM DIT ER MOEST KOMEN. De voorraad werd eerst per postcode gevuld met
+# een tijdbudget, buurten op alfabet, en Stadscentrum stond achteraan. Na de
+# eerste run was Stadscentrum dus maar half gedaan, en zonder deze drempel zou
+# de brief zeggen "in heel Stadscentrum staan 60 objecten" terwijl dat de
+# stand van een halve meting was. Een losse beoordelaar speelde dat na en zag
+# ook dat "onder_woningen" dan stil op 0 blijft staan, omdat de panden met
+# woonfunctie nog niet waren opgehaald.
+#
+# Sinds 10 oktober gaat het ophalen per gebied en is een hele ronde in 248,4
+# seconden klaar, dus die geleidelijke opbouw bestaat niet meer. De drempel
+# blijft staan voor het geval dat wél kan gebeuren: een ronde die halverwege
+# afbreekt. Dat is nu ook wat dekking() meet, want de optelsom van opgehaalde
+# postcodes staat na één geslaagde ronde permanent op volledig en zou een
+# afgebroken ronde daarna nooit meer opmerken.
 MIN_DEKKING = 0.90
 
 
@@ -145,9 +150,28 @@ def dekking(voorraad, inventaris=None):
                 inventaris = json.load(f)
         except Exception:
             inventaris = {}
-    alle = ((inventaris.get("postcodes_per_buurt") or {}).get(BUURT) or [])
+    alle = {(pc or "").replace(" ", "").upper()
+            for pc in ((inventaris.get("postcodes_per_buurt") or {})
+                       .get(BUURT) or [])}
     gedaan = voorraad.get("postcodes") or {}
-    return sum(1 for pc in alle if pc in gedaan), len(alle)
+    uit = sum(1 for pc in alle if pc in gedaan)
+
+    # EEN AFGEBROKEN RONDE IS GEEN DEKKING. voorraad["postcodes"] werd alleen
+    # gevuld en stond na één geslaagde ronde permanent op volledig, dus een
+    # latere ronde die halverwege afbrak werd door deze drempel niet meer
+    # opgemerkt en het getal in de brief was een mengsel van verse en oude
+    # records.
+    #
+    # Dit woog eerst met postcodes_gedaan gedeeld door postcodes_nijmegen, en
+    # dat hield geen stand: er zitten ruim achttien woningen in een postcode,
+    # dus na een kwart van de pagina's is bijna elke postcode al één keer
+    # geraakt. Een echte afgebroken ronde (122 van de 165 pagina's) kwam zo op
+    # 98,7% uit en publiceerde gewoon. Dus niet wegen maar weigeren: is de
+    # ronde niet af, dan is er geen dekking om over te publiceren.
+    bag = ((voorraad.get("laatste_ronde") or {}).get("bag") or {})
+    if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
+        return 0, len(alle)
+    return uit, len(alle)
 
 
 def meet(voorraad=None, straten=None, inventaris=None):
@@ -194,7 +218,14 @@ def meet(voorraad=None, straten=None, inventaris=None):
 
     objecten, buiten_gebied, zonder_maat = [], 0, 0
     for r in anders.values():
-        if r.get("buurt") != BUURT:
+        # BUURTEN EN NIET BUURT. Achtentwintig postcodes staan in twee
+        # buurten, en toen de voorraad er één van koos was dat de eerste op
+        # alfabet. Stadscentrum staat alfabetisch laatste van de zes, dus het
+        # verloor er elke keer een: 24 van zijn 471 postcodes vielen uit deze
+        # telling, in één richting en zonder dat de dekking erop reageerde.
+        # Nu bewaart de voorraad alle buurten van een postcode en telt een
+        # object mee zodra Stadscentrum erbij staat.
+        if BUURT not in (r.get("buurten") or [r.get("buurt")]):
             continue
         if not any(d in PLINTDOELEN for d in (r.get("doelen") or [])):
             continue
@@ -374,6 +405,44 @@ def zelftest():
         if uit.get(k) != v:
             print(f"AFWIJKING: {k} gaf {uit.get(k)}, verwacht {v}")
             fout += 1
+
+    # EEN POSTCODE IN TWEE BUURTEN. De voorraad bewaart sinds 10 oktober alle
+    # buurten van een postcode in het veld buurten. Koos hij er één, dan was
+    # dat de eerste op alfabet en verloor Stadscentrum er 24 van zijn 471,
+    # altijd in dezelfde richting. Dit toetst dat een object met Stadscentrum
+    # erbij meetelt en een object zonder Stadscentrum niet.
+    met_buurten = json.loads(json.dumps(voorraad))
+    met_buurten["niet_woningen"]["keizer9"] = {
+        "adres": "Keizer Karelplein 9", "buurten": ["Benedenstad",
+                                                    "Stadscentrum"],
+        "oppervlakte": 120, "doelen": ["winkelfunctie"], "pand": "P5"}
+    met_buurten["niet_woningen"]["elders1"] = {
+        "adres": "Elders 1", "buurten": ["Benedenstad"],
+        "oppervlakte": 120, "doelen": ["winkelfunctie"], "pand": "P4"}
+    tweede = meet(met_buurten, straten=[], inventaris=inv)
+    if tweede.get("objecten") != 4:
+        print(f"AFWIJKING: met een postcode in twee buurten hoort het aantal "
+              f"4 te zijn, werd {tweede.get('objecten')}")
+        fout += 1
+
+    # EEN AFGEBROKEN RONDE MOET DE DEKKING OMLAAG HALEN. De optelsom van
+    # opgehaalde postcodes staat na één geslaagde ronde permanent op volledig
+    # en zou een afgebroken ronde daarna nooit meer opmerken.
+    afgebroken = json.loads(json.dumps(voorraad))
+    # DE ECHTE GETALLEN VAN DE AFGEBROKEN RONDE VAN 10 OKTOBER. Eerst stond
+    # hier 300 van 1.242, en dat is vier keer extremer dan wat er werkelijk
+    # gebeurde: de ronde stopte bij pagina 122 van 165 met 1.228 van de 1.242
+    # postcodes al geraakt, want er zitten ruim achttien woningen in een
+    # postcode. Een proef op een extremer geval dan de werkelijkheid slaagt
+    # terwijl het echte geval erdoor komt.
+    afgebroken["laatste_ronde"] = {"bag": {
+        "ronde_paginas": 122, "ronde_ronde_af": False,
+        "postcodes_gedaan": 1228, "postcodes_nijmegen": 1242}}
+    gestopt = meet(afgebroken, straten=[], inventaris=inv)
+    if gestopt.get("meetbaar") is not False:
+        print("AFWIJKING: na een afgebroken ronde hoort er geen aantal te "
+              "komen, want de voorraad is dan half vers en half oud")
+        fout += 1
 
     # HALVE DEKKING: geen aantal. Dit is de bevinding van de losse beoordelaar:
     # Stadscentrum staat achteraan in de BAG-fase en is na de eerste run maar

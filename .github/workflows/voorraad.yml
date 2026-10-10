@@ -29,8 +29,11 @@ on:
   workflow_dispatch:
     inputs:
       bag_minuten:
-        description: "Tijdbudget voor de BAG-fase in minuten. 0 slaat hem over."
-        default: "35"
+        description: "Tijdbudget voor de objectronde in minuten. 0 slaat hem over."
+        default: "10"
+      panden_minuten:
+        description: "Tijdbudget voor de pandronde in minuten. 0 slaat hem over."
+        default: "10"
       labels_minuten:
         description: "Tijdbudget voor de labelfase in minuten. 0 slaat hem over."
         default: "25"
@@ -58,13 +61,23 @@ jobs:
       - name: Dependencies installeren
         run: pip install requests
 
+      - name: De zeef nameten voordat er iets wordt opgehaald
+        # EERST DE PROEF, DAN HET WERK. Twee keer op 10 oktober leverde een
+        # aanname over de vorm van een veld een lege voorraad op zonder dat er
+        # iets faalde: gebruiksdoel bleek een string waar een lijst werd
+        # verwacht, en pand staat als pand.href in het antwoord. Deze proef
+        # draait op echte antwoordvormen, kost geen seconde en geen aanroep,
+        # en is rood voordat er tien minuten in gaat zitten.
+        run: python voorraad_bag.py --proef
+
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true
         env:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
-          MIN="${{ github.event.inputs.bag_minuten || '35' }}"
+          MIN="${{ github.event.inputs.bag_minuten || '10' }}"
+          PANDEN="${{ github.event.inputs.panden_minuten || '10' }}"
           if [ "$MIN" = "0" ]; then
             echo "Overgeslagen op verzoek"
             exit 0
@@ -73,7 +86,8 @@ jobs:
           # mislukking hoort hier rood te zijn. continue-on-error zorgt dat de
           # labelfase en de commitstap daarna alsnog lopen, zodat de diagnose
           # in voorraad_stand.json wordt bewaard.
-          python voorraad_bag.py --alleen bag --bag-minuten "$MIN"
+          python voorraad_bag.py --alleen bag --bag-minuten "$MIN" \
+            --panden-minuten "$PANDEN"
 
       - name: Energielabels uit EP-Online
         continue-on-error: true
@@ -118,10 +132,27 @@ jobs:
           EOF
 
       - name: Voorraad terugcommitten
+        # WAT ER OP EEN BRANCH WEL EN NIET TERUGKOMT. Op main gaan beide
+        # bestanden terug, want dat is het product. Op een branch alleen de
+        # stand van een paar kilobyte, en niet de voorraad van ruim vijf
+        # megabyte: die zou uit een tussenversie van de code komen en elke
+        # volgende push laten botsen. Dat is op 10 oktober twee keer gebeurd.
+        #
+        # EN WAAROM DIT NIET VIA HET LOGBOEK OF EEN ARTIFACT GAAT. Beide zijn
+        # van buiten de run niet te lezen: de logserver van GitHub en de
+        # blobserver waar artifacts op staan worden geweigerd. Git is het
+        # enige kanaal dat werkt, dus de stand moet door git terug.
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in voorraad.json voorraad_stand.json; do
+          BESTANDEN="voorraad.json voorraad_stand.json"
+          if [ "${GITHUB_REF_NAME}" != "${DEFAULT_BRANCH}" ]; then
+            BESTANDEN="voorraad_stand.json"
+            echo "Niet op ${DEFAULT_BRANCH}: alleen de stand gaat terug"
+          fi
+          for f in $BESTANDEN; do
             if [ -f "$f" ]; then
               git add "$f"
               echo "  $f ($(wc -c < "$f") bytes)"

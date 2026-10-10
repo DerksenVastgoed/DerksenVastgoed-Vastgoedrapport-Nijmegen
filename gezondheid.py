@@ -2522,12 +2522,12 @@ def controle_voorraad():
         if bag.get("fouten"):
             return (FOUT, f"voorraad leeg na {bag['fouten']} mislukte "
                     f"BAG-aanroepen: {bag.get('laatste_fout', 'onbekend')}",
-                    "De sleutel wordt nu wel meegegeven, dus dit is de "
-                    "aanroep zelf. Vergelijk de parameters in haal_postcode() "
-                    "met de aanroep in marktprijzen_bag.py, die dezelfde BAG "
-                    "al weken bevraagt. De fase stopt sinds 10 oktober na tien "
-                    "mislukkingen op rij in plaats van het hele budget vol te "
-                    "lopen.")
+                    "De voorraad gaat sinds 10 oktober naar PDOK en niet "
+                    "naar de BAG-API van het Kadaster, dus een sleutel kan "
+                    "het niet zijn: PDOK vraagt er geen. De melding hierboven "
+                    "komt woordelijk van de dienst zelf. Is het een geweigerd "
+                    "filter, dan staat erbij welke velden wel filterbaar "
+                    "zijn.")
         if bag.get("niet_woningen_bewaard"):
             return (FOUT, f"geen enkele woning herkend, wel "
                     f"{bag['niet_woningen_bewaard']} andere adressen",
@@ -2535,7 +2535,9 @@ def controle_voorraad():
                     "gebruiksdoelen anders of is het anders opgebouwd dan "
                     "_is_woning() aanneemt. Die records zijn bewaard, dus kijk "
                     "in voorraad.json onder niet_woningen hoe ze er werkelijk "
-                    "uitzien.")
+                    "uitzien. De proef in voorraad_bag.py --proef draait op de "
+                    "echte antwoordvorm en hoort dit vóór een ronde te "
+                    "melden.")
         return (LET_OP, f"voorraad nog leeg terwijl er {postcodes} postcodes "
                 f"klaarstaan",
                 "De stap 'Oppervlakte en gebruiksdoel van de hele voorraad' "
@@ -2554,15 +2556,169 @@ def controle_voorraad():
     if labels.get("gevraagd"):
         bewijs += (f"; laatste ronde {labels['gevraagd']} gevraagd, "
                    f"{labels.get('label_gevonden', 0)} labels gevonden")
+    # ALLE CONTROLES LOPEN, NIET TOT DE EERSTE TREFFER.
+    #
+    # Dit retourneerde bij de eerste treffer, en daardoor is drie keer een
+    # controle doodgegaan achter een tak die altijd waar was. Eerst de
+    # foutenlus, die de melding over een niet-afgemaakte ronde opat. Daarna de
+    # tak over postcodes buiten Nijmegen, die permanent waar is zolang de
+    # inventaris die 491 postcodes bevat, en die daarmee de pandronde, de
+    # pandsleutel en de melding over gevormde objecten alle drie onbereikbaar
+    # maakte. Dat is geen toeval maar de vorm: deze controles meten
+    # onafhankelijke dingen, dus ze horen allemaal te lopen en samen gemeld te
+    # worden. Anders verbergt de minst belangrijke de belangrijkste.
+    bevindingen = []
+
+    def meld(ernst, tekst, reparatie):
+        bevindingen.append((ernst, tekst, reparatie))
+
+    bag = ronde.get("bag") or {}
+    panden = ronde.get("panden") or {}
+    vandaag = dt.date.today().isoformat()
+
+    # 1. IS DE RONDE AF? Breekt de ronde halverwege af, dan staat er een
+    # voorraad die klopt voor het deel dat gelezen is en stil te laag is voor
+    # de rest, en dat is aan het aantal woningen niet te zien.
+    if bag.get("ronde_paginas") and not bag.get("ronde_ronde_af"):
+        meld(FOUT, f"de ronde over het gebied is niet afgemaakt na "
+             f"{bag['ronde_paginas']} pagina's en "
+             f"{bag.get('ronde_tegels', '?')} tegels",
+             "Dan is de voorraad te laag voor het deel dat niet gelezen is. Er "
+             "wordt dan ook niets verwijderd, dus wat er niet meer is blijft "
+             "staan. De reden staat in voorraad_stand.json onder "
+             "bag.laatste_fout. Een hele ronde kostte gemeten 248,4 seconden "
+             "over 22 tegels.")
+
+    # 2. HOEVEEL IS ER VERWIJDERD? Een tegel die HTTP 200 met een lege lijst
+    # teruggeeft is voor de ronde geslaagd, en dan verdwijnt alles wat in die
+    # tegel stond zonder dat er iets faalt. Dat is de nieuwe richting van de
+    # fout sinds er wordt verwijderd: stil te laag in plaats van stil te hoog.
+    # Het getal stond al in de stand en werd door niemand gelezen.
+    weg = bag.get("adressen_verwijderd") or 0
+    staat = len(adressen) + len(d.get("niet_woningen") or {})
+    if weg and staat and weg > max(staat * 0.01, 50):
+        meld(FOUT, f"{weg} records verwijderd, {weg / max(staat + weg, 1):.0%} "
+             f"van het bestand",
+             "Zoveel verdwijnt er niet op één dag uit de BAG. Een tegel die "
+             "een lege lijst teruggaf is voor de ronde geslaagd, en dan wordt "
+             "alles wat erin stond opgeruimd. Kijk in voorraad_stand.json naar "
+             "bag.ronde_tegels en bag.ronde_objecten, en vergelijk met de "
+             "vorige ronde. Herstellen kost één volledige ronde van vier "
+             "minuten.")
+
+    # 3. DE FOUTEN VAN DE FASEN ZELF.
     for fase in ("bag", "labels"):
         fouten = (ronde.get(fase) or {}).get("fouten") or 0
         if fouten:
             laatste = (ronde.get(fase) or {}).get("laatste_fout") or ""
-            return (LET_OP, bewijs + f"; {fouten} fouten in fase {fase}"
-                    + (f", laatste: {laatste}" if laatste else ""),
-                    "Bij een geweigerde sleutel of een 429 stopt de fase "
-                    "meteen en gaat hij de volgende run verder.")
-    return (OK, bewijs, "")
+            meld(LET_OP, f"{fouten} fouten in fase {fase}"
+                 + (f", laatste: {laatste}" if laatste else ""),
+                 "Bij een geweigerde sleutel of een rem stopt de fase meteen "
+                 "en gaat hij de volgende run verder.")
+
+    # 4. IS DE RONDE VAN VANDAAG? De bagstap heeft continue-on-error en wordt
+    # bij bag_minuten=0 overgeslagen. Gebeurt dat, dan houdt de stand de
+    # cijfers van de laatste keer dat hij wél liep. Zonder deze regel werd het
+    # datumstempel geschreven en door niemand gelezen, en las iedereen die
+    # oude cijfers als die van vandaag.
+    for naam, fase in (("objectronde", bag), ("pandronde", panden)):
+        if fase and fase.get("datum") and fase["datum"] != vandaag:
+            meld(LET_OP, f"de {naam} is van {fase['datum']} en niet van "
+                 f"vandaag",
+                 "De stap is overgeslagen of mislukt. De cijfers hieronder "
+                 "zijn dus die van de laatste geslaagde ronde, en de voorraad "
+                 "is zo oud als die datum.")
+
+    # 5. LEGE NIJMEEGSE POSTCODES: de controle op de doos.
+    nijmeegs = bag.get("postcodes_nijmegen") or 0
+    leeg_nij = bag.get("postcodes_leeg_nijmegen")
+    if nijmeegs and leeg_nij is not None and leeg_nij > max(nijmeegs * 0.02,
+                                                            25):
+        meld(LET_OP, f"{leeg_nij} van de {nijmeegs} Nijmeegse postcodes "
+             f"leverden geen enkel object",
+             "Voorbeelden staan in voorraad_stand.json onder "
+             "postcodes_leeg_voorbeeld. Liggen ze bij elkaar, dan raakt de "
+             "doos in voorraad_bag.py een deel van de ring niet en moet DOOS "
+             "ruimer. Liggen ze verspreid, dan staan er postcodes in de "
+             "inventaris waar de BAG geen verblijfsobject heeft. In een "
+             "geslaagde ronde waren het er 2 van de 1.242.")
+
+    # 6. DE VERVUILDE INVENTARIS. Dit is een fout in buurtinventaris.py.
+    buiten = bag.get("postcodes_buiten_nijmegen") or 0
+    if buiten > 50:
+        meld(LET_OP, f"{buiten} lege postcodes in de inventaris liggen niet "
+             f"in Nijmegen",
+             "buurtinventaris.py filtert op buurtnaam zonder gemeente erbij, "
+             "en die buurtnamen bestaan elders ook. Gemeten op 10 oktober: 491 "
+             "van de 1.733 postcodes, namelijk 2771 Boskoop, 3431 Nieuwegein, "
+             "3828 Amersfoort, 4131 Vianen, 4201 Gorinchem, 5103 Dongen, 7001 "
+             "Doetinchem en 9401 Assen. Altrade en Bottendaal zijn als "
+             "buurtnaam uniek voor Nijmegen en hebben nul vervuiling; de "
+             "andere vier hebben het wel. De voorraad zelf kan er niet door "
+             "vervuilen, want de doos ligt om Nijmegen, maar alles wat verder "
+             "op de inventaris rekent telt ze mee.")
+
+    # 7. DE PANDOMZETTING.
+    if panden and not panden.get("omzettingen"):
+        meld(LET_OP, "geen enkele pandsleutel omgezet naar een "
+             "BAG-identificatie",
+             "Dan staat het veld pand leeg in de hele voorraad en sluit "
+             "voorraad.json niet aan op pandgeschiedenis.json. De reden staat "
+             "in voorraad_stand.json onder panden.fout. Leeg is met opzet: een "
+             "uuid in dat veld zou op een pandidentificatie lijken en nergens "
+             "op aansluiten. Let op dat ook de zin in de brief over "
+             "plintobjecten in een pand met woonadressen dan wegvalt.")
+
+    # 8. GEEN ENKEL OBJECT MET EEN PAND. Dit is het stille geval: heet het veld
+    # pand.href bij PDOK morgen anders, dan is de lijst met panden per object
+    # leeg, wordt zonder_pandsleutel niet verhoogd, en meldt de pandronde
+    # tegelijk 187.211 geslaagde omzettingen. Niets faalt en niets wijst erop.
+    met = bag.get("objecten_met_pand")
+    if bag.get("woningen_gezien") and met == 0:
+        meld(FOUT, "geen enkel object heeft een pand, terwijl de pandronde "
+             f"{panden.get('omzettingen', 0)} omzettingen meldt",
+             "Dan komt het niet door de pandronde maar door het uitlezen van "
+             "het object: PDOK levert het pand als pand.href en die veldnaam "
+             "staat in _pand_uuids(). Heet hij anders, dan is de lijst leeg en "
+             "verhoogt zonder_pandsleutel niet, dus deze regel is de enige die "
+             "het opmerkt.")
+
+    # 9. PANDEN DIE NIET IN DE OMZETTING ZATEN.
+    zonder = bag.get("zonder_pandsleutel") or 0
+    if zonder and (zonder + (met or 0)):
+        deel = zonder / (zonder + (met or 0))
+        if deel > 0.10:
+            meld(LET_OP, f"{zonder} objecten hadden een pand dat niet in de "
+                 f"omzetting zat ({deel:.0%})",
+                 "De pandronde en de objectronde gebruiken dezelfde doos, dus "
+                 "dit hoort klein te zijn. In een geslaagde ronde was het 0 "
+                 "van 24.179. Is het groot, dan is de pandronde niet "
+                 "afgemaakt.")
+
+    # 10. NOG GEVORMD, NIET IN GEBRUIK GEMELD. Een open keuze die zichtbaar
+    # moet blijven in plaats van stil beslist te worden.
+    gevormd = bag.get("nog_gevormd") or 0
+    woningen = bag.get("woningen_gezien") or 0
+    if woningen and gevormd > woningen * 0.05:
+        meld(LET_OP, f"{gevormd} van de {woningen} objecten hebben status "
+             f"gevormd en zijn nog niet in gebruik gemeld",
+             "Ze worden meegeteld. Die status betekent dat het object in de "
+             "registratie is gevormd maar niet als in gebruik is gemeld, en "
+             "dat is in de praktijk vaak een gewone woning waarvan de status "
+             "nooit is bijgewerkt. Ze eruit halen zou de voorraad ruim een "
+             "tiende kleiner maken, dus dat hoort niet op een vermoeden te "
+             "gebeuren. Te zeven is het altijd nog: de status staat per record "
+             "in voorraad.json.")
+
+    if not bevindingen:
+        return (OK, bewijs, "")
+    ernstig = FOUT if any(e == FOUT for e, _t, _r in bevindingen) else LET_OP
+    # Alles melden, de ernstigste eerst, zodat de minst belangrijke bevinding
+    # de belangrijkste niet meer kan verbergen.
+    op_orde = ([b for b in bevindingen if b[0] == FOUT]
+               + [b for b in bevindingen if b[0] != FOUT])
+    return (ernstig, bewijs + "; " + "; ".join(t for _e, t, _r in op_orde),
+            " ".join(r for _e, _t, r in op_orde))
 
 
 def controle_doorlooptijden():
