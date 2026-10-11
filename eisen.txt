@@ -237,6 +237,18 @@ let op: Het echte antwoord komt uit de workflow, want de EP-sleutel staat
   veldnaam alleen nagemeten op een gemaakt antwoord.
 
 ---
+eis: Een energielabel wordt nooit met een ander label vergeleken zonder de
+  rekenmethode erbij.
+waarom: 12 oktober. Het eerste echte antwoord van EP-Online dat in de repo
+  terechtkwam, bracht aan het licht dat in pand 0268100000026050 vijf labels
+  staan onder twee methodes: D en D volgens de Rekenmethodiek Definitief
+  Energielabel van 2014, en C, B en C volgens NTA 8800:2024. Wij bewaarden
+  alleen de letter en de datum, dus elke vergelijking tussen die labels liep
+  over twee grondslagen. Zie eponline_antwoordvorm.json.
+proef: eponline:de rekenmethode komt mee
+soort: gegevens
+
+---
 eis: Een energielabel hoort bij een verblijfsobject en niet bij een pand.
 waarom: 12 oktober. Het voorstel was om pand-id plus verblijfsobject-id als
   sleutel te nemen, omdat een label op pandniveau zou worden afgemeld. Dat is
