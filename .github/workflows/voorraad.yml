@@ -37,6 +37,9 @@ on:
       labels_minuten:
         description: "Tijdbudget voor de labelfase in minuten. 0 slaat hem over."
         default: "25"
+      ruwe_vbos:
+        description: "Verblijfsobject-id's (komma's) ruw bij EP-Online opvragen en vastleggen. Leeg slaat over."
+        default: ""
 
 # Twee rondes tegelijk zouden elkaars bestand overschrijven.
 concurrency:
@@ -78,6 +81,28 @@ jobs:
           # woningvoorraad in plaats van als een fout. Deze proef kost geen
           # seconde en geen aanroep.
           python eponline.py --proef
+
+      - name: Een echt antwoord van EP-Online vastleggen
+        # ALLEEN OP VERZOEK, en daarom met een lege standaard. Dit is geen
+        # stap die de voorraad vult maar het gereedschap dat op 10 oktober
+        # ontbrak: er was geen manier om naar één antwoord van EP-Online te
+        # kijken, en daarom zag 818 aanroepen met nul labels eruit als een
+        # eigenschap van de woningvoorraad.
+        #
+        # WAAROM HET NIET VANAF EEN WERKPLEK KAN. De sleutel staat hier, als
+        # repo-secret, en nergens anders. Een proef op een werkplek kan dus
+        # alleen de vorm meten die wij zelf hebben opgeschreven, en niet de
+        # vorm die de API werkelijk geeft. Deze stap haalt dat verschil weg.
+        #
+        # EN WAAROM HET DOOR GIT TERUG MOET. De logserver van GitHub en de
+        # blobserver voor artifacts zijn van buiten de run niet te lezen. Het
+        # antwoord staat daarom in eponline_antwoordvorm.json, dat hieronder
+        # wordt teruggecommit, en niet alleen in de log van deze stap.
+        if: github.event.inputs.ruwe_vbos != ''
+        env:
+          EP_API_KEY: ${{ secrets.EP_API_KEY }}
+        run: |
+          python eponline.py --ruw --vbo "${{ github.event.inputs.ruwe_vbos }}"
 
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true
@@ -156,10 +181,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          BESTANDEN="voorraad.json voorraad_stand.json"
+          BESTANDEN="voorraad.json voorraad_stand.json eponline_antwoordvorm.json"
           if [ "${GITHUB_REF_NAME}" != "${DEFAULT_BRANCH}" ]; then
-            BESTANDEN="voorraad_stand.json"
-            echo "Niet op ${DEFAULT_BRANCH}: alleen de stand gaat terug"
+            # Op een branch gaat de voorraad van ruim vijf megabyte niet terug
+            # (die zou uit een tussenversie van de code komen), maar de stand
+            # en het vastgelegde antwoord wel: samen een paar kilobyte, en het
+            # zijn juist de twee bestanden waarvoor een branchrun wordt
+            # gestart. Zonder het antwoord erbij is die run niet te lezen,
+            # want de log is van buiten niet bereikbaar.
+            BESTANDEN="voorraad_stand.json eponline_antwoordvorm.json"
+            echo "Niet op ${DEFAULT_BRANCH}: alleen de stand en de antwoordvorm gaan terug"
           fi
           for f in $BESTANDEN; do
             if [ -f "$f" ]; then

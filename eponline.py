@@ -20,19 +20,41 @@ Dat is dezelfde fout als met de pandsleutel, en dezelfde oplossing: één
 implementatie, en een proef die hem vasthoudt.
 
 WAT DEZE PROEF WEL EN NIET AANTOONT. De vormen hieronder zijn afgeleid van de
-veldnamen die de twee werkende implementaties aankunnen, en niet van een
-vastgelegd antwoord van EP-Online; dat staat nergens in de repo. De proef
-toetst dus of het lezen klopt, en niet of de API er werkelijk zo uitziet. Zou
-EP-Online een zevende veldnaam gebruiken, dan vangt deze proef dat niet. Wat
-hij wel vangt: dat een lezer met één veldnaam langs de andere vijf heen
-loopt, en dat een privélabel geen "niet bekend" wordt.
+veldnamen die de twee werkende implementaties aankunnen. De proef toetst dus
+of het lezen klopt, en niet of de API er werkelijk zo uitziet. Wat hij wel
+vangt: dat een lezer met één veldnaam langs de andere vijf heen loopt, en dat
+een privélabel geen "niet bekend" wordt.
+
+EN DAAROM LIGT ER NU EEN ECHT ANTWOORD BIJ. Hierboven stond tot 12 oktober
+dat een zevende veldnaam niet gevangen zou worden, omdat er in de repo geen
+enkel echt antwoord van EP-Online stond. Dat kon ook niet anders: de sleutel
+staat in de workflow en niet op een werkplek. ruw() vraagt een paar
+verblijfsobjecten onbewerkt op en legt het antwoord vast in
+eponline_antwoordvorm.json, en proef_vastgelegd() meet daarop na of lees() er
+hetzelfde uit haalt en of er een veldnaam in staat die op een label lijkt en
+die wij niet kennen. Zolang dat bestand er niet is, meldt de proef dat hij
+over de API zelf niets zegt. "Niet gekeken" en "gekeken en niets gevonden"
+mogen nooit hetzelfde woord krijgen.
+
+WAT ER AAN DE BUITENKANT VASTLIGT. Een W-label hoort bij één verblijfsobject
+en niet bij het pand: BRL 9500-W zegt dat registratie op een woongebouw geen
+energielabel oplevert, en het ISSO-protocol noemt de pand-id de bovengrens en
+de object-id de ondergrens, met één W-label per object-id. Het recordformaat
+van RVO past daarbij: één BAGVerblijfsobjectID en BAGPandIDs als herhalend
+veld. Bij utiliteitsbouw mag een label wel over meerdere panden en meerdere
+objecten gaan, dus voor de plint geldt dit niet.
 """
 import argparse
+import datetime as dt
+import json
 import os
 import re
 import sys
 
 BASIS = "https://public.ep-online.nl/api/v5/PandEnergielabel"
+
+# Waar een echt antwoord van EP-Online wordt vastgelegd. Zie ruw().
+VORM = "eponline_antwoordvorm.json"
 
 # De veldnamen waaronder het label kan staan. _veld() vergelijkt zonder te
 # letten op hoofdletters en liggende streepjes, dus dit zijn vormen en geen
@@ -239,6 +261,155 @@ def energielabel(vbo_id=None, postcode="", huisnr="", letter="", toev="",
     return (None, laatste or "geen antwoord", def_alles)
 
 
+def aantal(data):
+    """Hoeveel records er in dit antwoord zitten."""
+    if isinstance(data, list):
+        return len(data)
+    if isinstance(data, dict):
+        for naam in ("results", "data", "items"):
+            binnen = data.get(naam)
+            if isinstance(binnen, list):
+                return len(binnen)
+        return 1
+    return 0
+
+
+def _kaal(naam):
+    """De veldnaam zoals veld() hem vergelijkt."""
+    return str(naam).lower().replace("_", "")
+
+
+BEKENDE_VELDEN = tuple(_kaal(n) for groep in
+                       (VELD_LABEL, VELD_PRIVE, VELD_DATUM, VELD_GELDIG,
+                        VELD_KLASSE) for n in groep)
+
+
+def ruw(vbo_ids, haler=None):
+    """
+    De onbewerkte antwoorden van EP-Online, zonder enige interpretatie.
+
+    WAAROM DIT ER IS. De proef hieronder meet of ons lezen klopt, en niet of
+    de API er werkelijk zo uitziet; dat staat ook zo in de docstring van deze
+    module, want in de repo stond geen enkel echt antwoord van EP-Online. Een
+    zevende veldnaam zou die proef dus niet vangen, en dat is precies de fout
+    die op 10 oktober 818 aanroepen en nul labels kostte.
+
+    Dit is ook het gereedschap dat toen ontbrak. Er was geen manier om naar
+    één antwoord te kijken: de werkende aanroep en de stukke gaven beide een
+    leeg resultaat terug, en in de logs stond alleen het aantal. Vanaf nu kan
+    één verblijfsobject ruw worden opgevraagd en teruggelezen.
+
+    EN WAAROM DE UITKOMST DOOR GIT TERUG MOET. De logserver van GitHub en de
+    blobserver voor artifacts zijn van buiten de run niet te lezen, dus een
+    antwoord dat alleen naar stdout gaat is er niet. vastleggen() schrijft het
+    in een bestand dat de workflow terugcommit.
+
+    Geeft per verblijfsobject een rij met de HTTP-code, het aantal records in
+    het antwoord, de veldnamen, het record zelf en wat lees() eruit haalt.
+    """
+    if haler is None:
+        if not _sleutel():
+            return [{"vbo": v, "fout": "geen EP_API_KEY"} for v in vbo_ids]
+        import requests
+
+        def haler(url, params):
+            r = requests.get(url, headers=_koppen(), params=params, timeout=20)
+            return (r.status_code, (lambda: r.json()))
+
+    uit = []
+    for vbo in vbo_ids:
+        rij = {"vbo": vbo}
+        try:
+            code, json_van = haler(f"{BASIS}/AdresseerbaarObject/{vbo}", None)
+        except Exception as e:
+            rij["fout"] = f"netwerk: {str(e)[:60]}"
+            uit.append(rij)
+            continue
+        rij["http"] = code
+        if code != 200:
+            uit.append(rij)
+            continue
+        try:
+            data = json_van()
+        except Exception as e:
+            rij["fout"] = f"antwoord onleesbaar: {str(e)[:50]}"
+            uit.append(rij)
+            continue
+        rec = eerste(data)
+        # HOEVEEL RECORDS. Dit is geen bijzaak maar de meting zelf: als één
+        # verblijfsobject meer dan één label kan hebben, staat dat hier. De
+        # norm zegt van niet (één W-label per Object-ID), en een aanname over
+        # de norm is iets anders dan een getal uit het antwoord.
+        rij["records_in_antwoord"] = aantal(data)
+        rij["vorm"] = type(data).__name__
+        rij["velden"] = sorted(rec.keys()) if isinstance(rec, dict) else []
+        rij["record"] = rec if isinstance(rec, dict) else None
+        rij["gelezen"] = lees(rec)
+        uit.append(rij)
+    return uit
+
+
+def vastleggen(rijen, pad=VORM):
+    """Het echte antwoord bewaren, zodat de proef erop kan draaien."""
+    blok = {
+        "opgehaald": dt.date.today().isoformat(),
+        "bron": BASIS,
+        "waarvoor": "Een echt antwoord van EP-Online, zodat proef() niet "
+                    "alleen op afgeleide vormen draait. Zie ruw().",
+        "antwoorden": rijen,
+    }
+    with open(pad, "w", encoding="utf-8") as f:
+        json.dump(blok, f, ensure_ascii=False, indent=1, sort_keys=True)
+    return blok
+
+
+def proef_vastgelegd(pad=VORM):
+    """
+    Het vastgelegde echte antwoord nameten. Geeft (fouten, hoeveel gekeken).
+
+    Dit is het enige deel van de proef dat iets zegt over de API zelf in
+    plaats van over ons lezen. Twee dingen worden gemeten: dat lees() het
+    label uit elk vastgelegd record haalt, en dat er geen veldnaam in staat
+    die op een label lijkt en die wij niet kennen. Dat laatste is de zevende
+    veldnaam uit de docstring hierboven.
+
+    Bestaat het bestand niet, dan is dat "niet gekeken" en geen "gekeken en
+    niets gevonden". Die twee mogen nooit met hetzelfde woord worden gezegd,
+    dus hier wordt geen groene controle gemeld maar nul gekeken.
+    """
+    fouten, gekeken = [], 0
+    if not os.path.exists(pad):
+        return (fouten, 0)
+    try:
+        with open(pad, encoding="utf-8") as f:
+            blok = json.load(f)
+    except Exception as e:
+        return ([f"{pad} niet te lezen: {str(e)[:60]}"], 0)
+    for rij in blok.get("antwoorden") or []:
+        rec = rij.get("record")
+        if not isinstance(rec, dict) or not rec:
+            continue
+        gekeken += 1
+        vbo = rij.get("vbo") or "?"
+        # Wat er bij het ophalen uit dit record kwam, moet er nu nog uit
+        # komen. Verandert ons lezen, dan is dit rood op een echt antwoord.
+        toen = rij.get("gelezen")
+        nu = lees(rec)
+        if (toen or {}).get("label") != (nu or {}).get("label"):
+            fouten.append(f"vastgelegd antwoord {vbo}: bij het ophalen las "
+                          f"lees() {(toen or {}).get('label')!r}, nu "
+                          f"{(nu or {}).get('label')!r}")
+        # Een veldnaam die op een label lijkt en die wij niet kennen.
+        for k in rec:
+            kaal = _kaal(k)
+            if kaal in BEKENDE_VELDEN:
+                continue
+            if "label" in kaal or "klasse" in kaal:
+                fouten.append(f"vastgelegd antwoord {vbo} heeft veldnaam "
+                              f"{k!r} die wij niet lezen; de zevende veldnaam")
+    return (fouten, gekeken)
+
+
 def proef():
     """De vormen nameten zonder één aanroep te doen."""
     fouten = []
@@ -392,12 +563,89 @@ def proef():
         if "labelLetter" in bron and "eponline" not in bron:
             fouten.append(f"{pad} leest labelLetter zelf")
 
+    # HOEVEEL RECORDS ER IN EEN ANTWOORD ZITTEN, in alle drie de vormen.
+    check("aantal uit een lijst", aantal([{"a": 1}, {"a": 2}]), 2)
+    check("aantal uit een enkel object", aantal({"energieklasse": "C"}), 1)
+    check("aantal onder results", aantal({"results": [{"a": 1}]}), 1)
+    check("aantal uit een lege lijst onder results",
+          aantal({"results": []}), 0)
+    check("aantal uit niets", aantal(None), 0)
+
+    # DE RUWE OPVRAGING, zonder aanroep. Wat hier wordt nagemeten is dat de
+    # rij alles bewaart wat nodig is om later naar het antwoord te kijken:
+    # de code, het aantal records, de veldnamen en het record zelf.
+    rijen = ruw(["0268010000045931"],
+                haler=nep({"vbo": 200},
+                          {"Pand_energieklasse": "D",
+                           "Pand_bagverblijfsobjectid": "0268010000045931",
+                           "Pand_bagpandid": "0268100000026050"}))
+    check("ruw geeft een rij per vbo", len(rijen), 1)
+    check("ruw bewaart de code", rijen[0].get("http"), 200)
+    check("ruw telt de records", rijen[0].get("records_in_antwoord"), 1)
+    check("ruw bewaart de veldnamen",
+          "Pand_energieklasse" in (rijen[0].get("velden") or []), True)
+    check("ruw leest het label ook",
+          (rijen[0].get("gelezen") or {}).get("label"), "D")
+    rijen = ruw(["X"], haler=nep({"vbo": 404}))
+    check("ruw bij 404 geen record", rijen[0].get("record"), None)
+    check("ruw bij 404 wel de code", rijen[0].get("http"), 404)
+
+    # EN DE CONTROLE OP HET VASTGELEGDE ANTWOORD, OPZETTELIJK GEBROKEN. Een
+    # controle die nooit rood heeft gestaan is een bewering. Hier wordt een
+    # vastgelegd antwoord gemaakt met een zevende veldnaam erin, en de
+    # controle hoort die te noemen.
+    import tempfile
+    with tempfile.TemporaryDirectory() as map_:
+        leeg = os.path.join(map_, "bestaat-niet.json")
+        f_leeg, n_leeg = proef_vastgelegd(leeg)
+        check("zonder vastgelegd antwoord: nul gekeken", (f_leeg, n_leeg),
+              ([], 0))
+
+        goed = os.path.join(map_, "goed.json")
+        vastleggen([{"vbo": "A", "http": 200,
+                     "record": {"Pand_energieklasse": "C"},
+                     "gelezen": lees({"Pand_energieklasse": "C"})}], goed)
+        f_goed, n_goed = proef_vastgelegd(goed)
+        check("een goed vastgelegd antwoord geeft geen fout",
+              (f_goed, n_goed), ([], 1))
+
+        zevende = os.path.join(map_, "zevende.json")
+        vastleggen([{"vbo": "A", "http": 200,
+                     "record": {"Pand_energieklasse": "C",
+                                "nieuwLabelVeld": "B"},
+                     "gelezen": lees({"Pand_energieklasse": "C"})}], zevende)
+        f_zev, _n = proef_vastgelegd(zevende)
+        check("een onbekende labelveldnaam wordt gemeld", len(f_zev), 1)
+        check("en hij noemt de veldnaam",
+              "nieuwLabelVeld" in (f_zev[0] if f_zev else ""), True)
+
+        anders = os.path.join(map_, "anders.json")
+        vastleggen([{"vbo": "A", "http": 200,
+                     "record": {"Pand_energieklasse": "C"},
+                     "gelezen": {"label": "G"}}], anders)
+        f_and, _n = proef_vastgelegd(anders)
+        check("een ander label dan bij het ophalen wordt gemeld",
+              len(f_and), 1)
+
+    # HET ECHTE VASTGELEGDE ANTWOORD, als het er is.
+    echte_fouten, echt_gekeken = proef_vastgelegd()
+    fouten.extend(echte_fouten)
+
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
+    if echt_gekeken:
+        vastgelegd = f"{echt_gekeken} vastgelegde echte antwoorden nagemeten"
+    elif os.path.exists(VORM):
+        vastgelegd = (f"{VORM} bestaat maar bevat geen enkel record, dus over "
+                      f"de API zelf zegt deze proef niets")
+    else:
+        vastgelegd = (f"GEEN vastgelegd echt antwoord ({VORM} bestaat niet), "
+                      f"dus over de API zelf zegt deze proef niets")
     print(f"Proef: {len(fouten)} fouten. Gedekt: de zes veldnamen, het "
           f"privelabel, de drie antwoordvormen, het huisnummer met letter en "
-          f"toevoeging, de route vbo-eerst, en dat 404 een antwoord is en 400 "
-          f"een weigering. Geen enkele aanroep.", file=sys.stderr)
+          f"toevoeging, de route vbo-eerst, de ruwe opvraging, en dat 404 een "
+          f"antwoord is en 400 een weigering. Geen enkele aanroep. "
+          f"{vastgelegd}.", file=sys.stderr)
     return 1 if fouten else 0
 
 
@@ -408,10 +656,42 @@ if __name__ == "__main__":
     ap.add_argument("--adres", default="",
                     help="Eén adres opvragen, met EP_API_KEY in de omgeving.")
     ap.add_argument("--postcode", default="")
-    ap.add_argument("--vbo", default="")
+    ap.add_argument("--vbo", default="",
+                    help="Verblijfsobject-id. Bij --ruw mogen er meer, "
+                         "gescheiden door komma's.")
+    ap.add_argument("--ruw", action="store_true",
+                    help="De antwoorden ruw opvragen en vastleggen, zonder "
+                         "interpretatie. Vraagt EP_API_KEY in de omgeving.")
+    ap.add_argument("--uit", default=VORM,
+                    help=f"Waar --ruw het antwoord vastlegt. Standaard "
+                         f"{VORM}.")
     a = ap.parse_args()
     if a.proef:
         sys.exit(proef())
+    if a.ruw:
+        ids = [v.strip() for v in a.vbo.split(",") if v.strip()]
+        if not ids:
+            print("--ruw vraagt --vbo met een of meer verblijfsobject-id's",
+                  file=sys.stderr)
+            sys.exit(1)
+        rijen = ruw(ids)
+        # De uitkomst naar stdout, voor wie wel in de log kan kijken.
+        for r in rijen:
+            print(json.dumps(r, ensure_ascii=False, sort_keys=True))
+        met_record = [r for r in rijen if isinstance(r.get("record"), dict)]
+        # ALLEEN VASTLEGGEN ALS ER IETS IN ZIT. Zonder sleutel of met alleen
+        # 404's komt er geen record binnen, en dan zou dit een bestand
+        # opleveren dat er is maar niets zegt. Juist dat verschil moet
+        # zichtbaar blijven: een bestand dat bestaat leest als "gekeken".
+        if met_record:
+            vastleggen(rijen, a.uit)
+        print(f"Ruw opgevraagd: {len(rijen)} verblijfsobjecten, "
+              f"{sum(1 for r in rijen if r.get('http') == 200)} met HTTP 200, "
+              f"{len(met_record)} met een record"
+              + (f", vastgelegd in {a.uit}" if met_record else
+                 ", niets vastgelegd"), file=sys.stderr)
+        # Een ronde waarin geen enkel record binnenkwam is geen succes.
+        sys.exit(0 if met_record else 1)
     if a.adres or a.vbo:
         nr, letter, toev = uit_adres(a.adres) if a.adres else ("", "", "")
         print(energielabel(a.vbo or None, a.postcode, nr, letter, toev))
