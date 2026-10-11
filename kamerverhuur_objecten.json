@@ -1203,6 +1203,18 @@
   "buurt": "Haven- en industrieterrein",
   "straat": "Cargadoorweg"
  },
+ "cargadoorweg3": {
+  "adres": "de Cargadoorweg 3",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Haven- en industrieterrein",
+  "straat": "de Cargadoorweg"
+ },
  "carmelhof3": {
   "adres": "Carmelhof 3",
   "bronnen": [
@@ -1619,179 +1631,6 @@
   "buurt": "Nije Veld",
   "straat": "da Costastraat"
  },
- "decargadoorweg3": {
-  "adres": "de Cargadoorweg 3",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Haven- en industrieterrein",
-  "straat": "de Cargadoorweg"
- },
- "defranshalsstraat35": {
-  "adres": "de Frans Halsstraat 35",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Altrade",
-  "straat": "de Frans Halsstraat"
- },
- "degeerkamp1652": {
-  "adres": "De Geerkamp 1652",
-  "bronnen": [
-   {
-    "bron": "vergunning",
-    "jaar": "2018",
-    "soort": "onttrekking"
-   }
-  ],
-  "buurt": "De Kamp",
-  "straat": "De Geerkamp"
- },
- "degildekamp6006": {
-  "adres": "de Gildekamp 6006",
-  "bronnen": [
-   {
-    "bron": "vergunning",
-    "jaar": "2018",
-    "soort": "omgevingsvergunning"
-   }
-  ],
-  "buurt": "De Kamp",
-  "straat": "de Gildekamp"
- },
- "degraafsedwarsstraat71": {
-  "adres": "de Graafsedwarsstraat 71",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Bottendaal",
-  "straat": "de Graafsedwarsstraat"
- },
- "degrotestraat11": {
-  "adres": "de Grotestraat 11",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Benedenstad",
-  "straat": "de Grotestraat"
- },
- "degrotestraat7": {
-  "adres": "de Grotestraat 7",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Benedenstad",
-  "straat": "de Grotestraat"
- },
- "dekapittelweg33": {
-  "adres": "de Kapittelweg 33",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Heijendaal",
-  "straat": "de Kapittelweg"
- },
- "dekerkstraat65": {
-  "adres": "de Kerkstraat 65",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Hees",
-  "straat": "de Kerkstraat"
- },
- "dekluijskamp1281": {
-  "adres": "De Kluijskamp 1281",
-  "bronnen": [
-   {
-    "bron": "vergunning",
-    "jaar": "2018",
-    "soort": "onttrekking"
-   }
-  ],
-  "buurt": "De Kamp",
-  "straat": "De Kluijskamp"
- },
- "dekluijskamp1401": {
-  "adres": "de Kluijskamp 1401",
-  "bronnen": [
-   {
-    "bron": "vergunning",
-    "jaar": "2023",
-    "soort": "onttrekking"
-   },
-   {
-    "bron": "vergunning",
-    "jaar": "2024",
-    "soort": "onttrekking"
-   }
-  ],
-  "buurt": "De Kamp",
-  "straat": "de Kluijskamp"
- },
- "dekroonstraat2": {
-  "adres": "de Kroonstraat 2",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2026",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Stadscentrum",
-  "straat": "de Kroonstraat"
- },
- "delaanvanscheut10": {
-  "adres": "de Laan van Scheut 10",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Heijendaal",
-  "straat": "de Laan van Scheut"
- },
- "delimoslaan25": {
-  "adres": "de Limoslaan 25",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Hengstdal",
-  "straat": "de Limoslaan"
- },
  "delistraat45": {
   "adres": "Delistraat 45",
   "bronnen": [
@@ -1816,18 +1655,6 @@
   "buurt": "Galgenveld",
   "straat": "Delistraat"
  },
- "denijmeegsebaan143": {
-  "adres": "de Nijmeegsebaan 143",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Groenewoud",
-  "straat": "de Nijmeegsebaan"
- },
  "dennenstraat104": {
   "adres": "Dennenstraat 104",
   "bronnen": [
@@ -1839,54 +1666,6 @@
   ],
   "buurt": "Neerbosch-Oost",
   "straat": "Dennenstraat"
- },
- "deoudegraafseweg11": {
-  "adres": "de Oude Graafseweg 11",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Heseveld",
-  "straat": "de Oude Graafseweg"
- },
- "dephawinkelsstraat100": {
-  "adres": "de Pé Hawinkelsstraat 100",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Neerbosch-Oost",
-  "straat": "de Pé Hawinkelsstraat"
- },
- "depijnboomstraat17": {
-  "adres": "de Pijnboomstraat 17",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Hengstdal",
-  "straat": "de Pijnboomstraat"
- },
- "depijnboomstraat19": {
-  "adres": "de Pijnboomstraat 19",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Hengstdal",
-  "straat": "de Pijnboomstraat"
  },
  "derdevanhezewijkstraat21": {
   "adres": "Derde van Hezewijkstraat 21",
@@ -1971,74 +1750,6 @@
   ],
   "buurt": "Stadscentrum",
   "straat": "Derde Walstraat"
- },
- "deriekstraat3": {
-  "adres": "de Riekstraat 3",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Nije Veld",
-  "straat": "de Riekstraat"
- },
- "devoorstenkamp1142": {
-  "adres": "de Voorstenkamp 1142",
-  "bronnen": [
-   {
-    "bron": "besluit",
-    "jaar": "2026",
-    "soort": "besluit kamerverhuur"
-   },
-   {
-    "bron": "besluit",
-    "jaar": "2026",
-    "soort": "besluit kamerverhuur"
-   },
-   {
-    "bron": "besluit",
-    "jaar": "2026",
-    "soort": "besluit kamerverhuur"
-   },
-   {
-    "bron": "besluit",
-    "jaar": "2026",
-    "soort": "besluit kamerverhuur"
-   },
-   {
-    "bron": "melding",
-    "jaar": "2026",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "De Kamp",
-  "straat": "de Voorstenkamp"
- },
- "devredestraat12": {
-  "adres": "de Vredestraat 12",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Stadscentrum",
-  "straat": "de Vredestraat"
- },
- "dewaalkade68": {
-  "adres": "de Waalkade 68",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Benedenstad",
-  "straat": "de Waalkade"
  },
  "dikkeboomweg36": {
   "adres": "Dikkeboomweg 36",
@@ -2920,6 +2631,18 @@
   "buurt": "Galgenveld",
   "straat": "Fransestraat"
  },
+ "franshalsstraat35": {
+  "adres": "de Frans Halsstraat 35",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Altrade",
+  "straat": "de Frans Halsstraat"
+ },
  "galvanistraat22": {
   "adres": "Galvanistraat 22",
   "bronnen": [
@@ -2955,6 +2678,18 @@
   ],
   "buurt": "De Kamp",
   "straat": "Geerkamp"
+ },
+ "geerkamp1652": {
+  "adres": "De Geerkamp 1652",
+  "bronnen": [
+   {
+    "bron": "vergunning",
+    "jaar": "2018",
+    "soort": "onttrekking"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "De Geerkamp"
  },
  "gerardnoodtstraat10": {
   "adres": "Gerard Noodtstraat 10",
@@ -3044,6 +2779,18 @@
   ],
   "buurt": "Stadscentrum",
   "straat": "Gerard Noodtstraat"
+ },
+ "gildekamp6006": {
+  "adres": "de Gildekamp 6006",
+  "bronnen": [
+   {
+    "bron": "vergunning",
+    "jaar": "2018",
+    "soort": "omgevingsvergunning"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "de Gildekamp"
  },
  "glashuis11": {
   "adres": "Glashuis 11",
@@ -3164,6 +2911,18 @@
   ],
   "buurt": "Hunnerberg",
   "straat": "Graadt van Roggenstraat"
+ },
+ "graafsedwarsstraat71": {
+  "adres": "de Graafsedwarsstraat 71",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Bottendaal",
+  "straat": "de Graafsedwarsstraat"
  },
  "graafseweg1": {
   "adres": "Graafseweg 1",
@@ -3997,6 +3756,30 @@
   "buurt": "Stadscentrum",
   "straat": "Grote Markt"
  },
+ "grotestraat11": {
+  "adres": "de Grotestraat 11",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Benedenstad",
+  "straat": "de Grotestraat"
+ },
+ "grotestraat7": {
+  "adres": "de Grotestraat 7",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Benedenstad",
+  "straat": "de Grotestraat"
+ },
  "gruitberg43": {
   "adres": "Gruitberg 43",
   "bronnen": [
@@ -4742,18 +4525,6 @@
   "buurt": "Stadscentrum",
   "straat": "Hertogstraat"
  },
- "hetjonkerbosplein52": {
-  "adres": "het Jonkerbosplein 52",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Goffert",
-  "straat": "het Jonkerbosplein"
- },
  "heyendaalseweg117": {
   "adres": "Heyendaalseweg 117",
   "bronnen": [
@@ -5333,6 +5104,18 @@
   "buurt": "Benedenstad",
   "straat": "Jonckerhof"
  },
+ "jonkerbosplein52": {
+  "adres": "het Jonkerbosplein 52",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Goffert",
+  "straat": "het Jonkerbosplein"
+ },
  "kaaplandstraat33": {
   "adres": "Kaaplandstraat 33",
   "bronnen": [
@@ -5445,6 +5228,18 @@
   ],
   "buurt": "Brakkenstein",
   "straat": "Kanunnik Mijllinckstraat"
+ },
+ "kapittelweg33": {
+  "adres": "de Kapittelweg 33",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Heijendaal",
+  "straat": "de Kapittelweg"
  },
  "karbouwstraat25": {
   "adres": "Karbouwstraat 25",
@@ -5617,6 +5412,7 @@
    }
   ],
   "buurt": "Hees",
+  "gebeurtenissen": [],
   "straat": "Kerkstraat"
  },
  "klaverstraat23": {
@@ -5659,6 +5455,35 @@
   ],
   "buurt": "Heseveld",
   "straat": "Klimopstraat"
+ },
+ "kluijskamp1281": {
+  "adres": "De Kluijskamp 1281",
+  "bronnen": [
+   {
+    "bron": "vergunning",
+    "jaar": "2018",
+    "soort": "onttrekking"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "De Kluijskamp"
+ },
+ "kluijskamp1401": {
+  "adres": "de Kluijskamp 1401",
+  "bronnen": [
+   {
+    "bron": "vergunning",
+    "jaar": "2023",
+    "soort": "onttrekking"
+   },
+   {
+    "bron": "vergunning",
+    "jaar": "2024",
+    "soort": "onttrekking"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "de Kluijskamp"
  },
  "konijnenpad10": {
   "adres": "Konijnenpad 10",
@@ -5869,6 +5694,18 @@
   "buurt": "Stadscentrum",
   "straat": "Kronenburgersingel"
  },
+ "kroonstraat2": {
+  "adres": "de Kroonstraat 2",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "de Kroonstraat"
+ },
  "kwakkenbergweg27": {
   "adres": "Kwakkenbergweg 27",
   "bronnen": [
@@ -5904,6 +5741,18 @@
   ],
   "buurt": "Kwakkenberg",
   "straat": "Kwakkenbergweg"
+ },
+ "laanvanscheut10": {
+  "adres": "de Laan van Scheut 10",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Heijendaal",
+  "straat": "de Laan van Scheut"
  },
  "langehezelstraat113": {
   "adres": "Lange Hezelstraat 113",
@@ -6143,6 +5992,18 @@
   "buurt": "Heseveld",
   "straat": "ligusterstraat"
  },
+ "limoslaan25": {
+  "adres": "de Limoslaan 25",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Hengstdal",
+  "straat": "de Limoslaan"
+ },
  "loevesteinstraat61": {
   "adres": "Loevesteinstraat 61",
   "bronnen": [
@@ -6215,7 +6076,7 @@
   "buurt": "Malvert",
   "straat": "Malvert"
  },
- "margaklomplaan37": {
+ "margaklompelaan37": {
   "adres": "Marga Klompélaan 37",
   "bronnen": [
    {
@@ -6407,6 +6268,18 @@
   "buurt": "Biezen",
   "straat": "Marialaan"
  },
+ "marienburg39": {
+  "adres": "Mariënburg 39",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "Mariënburg"
+ },
  "marienburg74": {
   "adres": "Marienburg 74",
   "bronnen": [
@@ -6430,18 +6303,6 @@
   ],
   "buurt": "Stadscentrum",
   "straat": "Marienburgsestraat"
- },
- "marinburg39": {
-  "adres": "Mariënburg 39",
-  "bronnen": [
-   {
-    "bron": "melding",
-    "jaar": "2025",
-    "soort": "melding brandveilig gebruik"
-   }
-  ],
-  "buurt": "Stadscentrum",
-  "straat": "Mariënburg"
  },
  "marterstraat6": {
   "adres": "Marterstraat 6",
@@ -7219,6 +7080,18 @@
   "buurt": "De Kamp",
   "straat": "Nieuwstadweg"
  },
+ "nijmeegsebaan143": {
+  "adres": "de Nijmeegsebaan 143",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Groenewoud",
+  "straat": "de Nijmeegsebaan"
+ },
  "nijmeegsebaan69": {
   "adres": "Nijmeegsebaan 69",
   "bronnen": [
@@ -7374,6 +7247,18 @@
   ],
   "buurt": "Wolfskuil",
   "straat": "Oude Azaleastraat"
+ },
+ "oudegraafseweg11": {
+  "adres": "de Oude Graafseweg 11",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Heseveld",
+  "straat": "de Oude Graafseweg"
  },
  "oudemolenweg301": {
   "adres": "Oude Molenweg 301",
@@ -7584,6 +7469,18 @@
   "buurt": "Stadscentrum",
   "straat": "Pauwelstraat"
  },
+ "pehawinkelsstraat100": {
+  "adres": "de Pé Hawinkelsstraat 100",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Neerbosch-Oost",
+  "straat": "de Pé Hawinkelsstraat"
+ },
  "piersonstraat75": {
   "adres": "Piersonstraat 75",
   "bronnen": [
@@ -7606,6 +7503,7 @@
    }
   ],
   "buurt": "Hengstdal",
+  "gebeurtenissen": [],
   "straat": "Pijnboomstraat"
  },
  "pijnboomstraat19": {
@@ -7618,6 +7516,7 @@
    }
   ],
   "buurt": "Hengstdal",
+  "gebeurtenissen": [],
   "straat": "Pijnboomstraat"
  },
  "planetenstraat30": {
@@ -8041,6 +7940,18 @@
   ],
   "buurt": "St. Anna",
   "straat": "Rentmeesterlaan"
+ },
+ "riekstraat3": {
+  "adres": "de Riekstraat 3",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Nije Veld",
+  "straat": "de Riekstraat"
  },
  "roukensstraat32": {
   "adres": "Roukensstraat 32",
@@ -11131,6 +11042,38 @@
   "buurt": "Biezen",
   "straat": "Voorstadslaan"
  },
+ "voorstenkamp1142": {
+  "adres": "de Voorstenkamp 1142",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2026",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2026",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2026",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2026",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "de Voorstenkamp"
+ },
  "vossenlaan177": {
   "adres": "Vossenlaan 177",
   "bronnen": [
@@ -11201,6 +11144,7 @@
    }
   ],
   "buurt": "Stadscentrum",
+  "gebeurtenissen": [],
   "straat": "Vredestraat"
  },
  "vrouweudasingel211": {
@@ -11238,6 +11182,18 @@
   ],
   "buurt": "Biezen",
   "straat": "Waalbandijk"
+ },
+ "waalkade68": {
+  "adres": "de Waalkade 68",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Benedenstad",
+  "straat": "de Waalkade"
  },
  "waalplein2": {
   "adres": "Waalplein 2",
