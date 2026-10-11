@@ -26,6 +26,8 @@ from collections import defaultdict
 
 import requests
 
+
+import pandsleutel as _psl
 # --- CONFIG ---
 INPUT_PAD = "verkopen.txt"
 CACHE_PAD = "marktprijzen_bag_cache.json"
@@ -82,13 +84,14 @@ def lees_archief():
 
 
 def archief_sleutel(straat, huisnr):
-    """Zelfde normalisatie als in bekendmakingen_archief.py, anders matcht niets."""
-    s = straat.lower()
-    s = s.replace("sint ", "st ").replace("st. ", "st ")
-    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
-    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
-    s = re.sub(r"[^a-z0-9]", "", s)
-    return f"{s}{huisnr}"
+    """De sleutel van het bekendmakingenarchief: per publicatietitel.
+
+    De docstring zei hier "zelfde normalisatie als in
+    bekendmakingen_archief.py, anders matcht niets", en dat was precies de
+    afspraak die niemand kon handhaven. Nu komt die vorm uit een plek.
+    pandsleutel.sleutel_archief() legt uit waarom het archief een eigen
+    conventie houdt."""
+    return _psl.sleutel_archief(straat, huisnr)
 
 
 def lees_cache():
@@ -3344,12 +3347,12 @@ WOZ_PAD = "woz.txt"
 
 
 def _woz_sleutel(adres):
-    """Adressen matchen ongeacht punten, spaties en afkortingen."""
-    a = adres.lower()
-    a = a.replace("professor ", "prof").replace("prof. ", "prof")
-    a = a.replace("burgemeester ", "burg").replace("burg. ", "burg")
-    a = a.replace("sint ", "st").replace("st. ", "st")
-    return re.sub(r"[^a-z0-9]", "", a)
+    """Adressen matchen ongeacht punten, spaties en afkortingen.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 def lees_woz():
@@ -5156,7 +5159,12 @@ def schrijf_gezien(gezien):
 
 
 def _pandsleutel(w):
-    return re.sub(r"[^a-z0-9]", "", w["adres"].lower())
+    """De sleutel van brief_gezien.json: per woning.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel(w.get("adres") or "")
 
 
 def is_nieuw_of_gewijzigd(w, gezien):

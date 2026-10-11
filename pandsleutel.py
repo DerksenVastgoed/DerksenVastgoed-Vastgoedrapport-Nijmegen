@@ -145,6 +145,45 @@ def sleutel_huisnummer(adres, nummer=None):
     return _straatvorm(straat) + (m.group(1) if m else _kaal(str(nummer)))
 
 
+def sleutel_archief(straat, huisnr=None):
+    """
+    De sleutel van het bekendmakingenarchief, dat zijn eigen conventie heeft.
+
+    DRIE CONVENTIES, EN DAT IS GEEN ROMMEL. Het doel van deze module is één
+    implementatie per conventie, niet één conventie voor alles. Er zijn er
+    werkelijk drie:
+
+      sleutel()            per woning. De identiteit van een pand waar wij
+                           gebeurtenissen aan hangen.
+      sleutel_huisnummer() per huisnummer. Een onttrekking of omzetting wordt
+                           op het pand gegeven, niet op een eenheid, en
+                           kamervergunningen.json sleutelt daarop.
+      sleutel_archief()    per publicatietitel. Het archief kent een pand
+                           alleen zoals de gemeente het opschreef, en "aan de
+                           Pijnboomstraat 4" levert "de Pijnboomstraat" als
+                           straatnaam op.
+
+    Deze derde laat het lidwoord dus staan en gooit accenten weg in plaats van
+    ze te vouwen, precies zoals bekendmakingen_archief.py het altijd deed. Dat
+    is met opzet niet veranderd: de sleutels in bekendmakingen_archief.json
+    komen uit titels en niet uit een adresregistratie, en dat bestand
+    omzetten zou betekenen dat we uit elke titel opnieuw een adres parsen om
+    een sleutel te repareren die werkt. varianten() kent deze vorm, dus wie
+    van een schoon adres naar het archief zoekt vindt hem alsnog.
+
+    Wat hier wél verandert: deze vorm stond in twee bestanden woordelijk
+    uitgeschreven, in bekendmakingen_archief.py en in marktprijzen_bag.py,
+    met in het tweede de regel "zelfde normalisatie als in
+    bekendmakingen_archief.py, anders matcht niets". Twee kopieën van één
+    regel lopen uiteen, en dat is het probleem dat deze module oplost.
+    """
+    s = (straat or "").lower()
+    for lang, kort in TITELS:
+        s = s.replace(lang, kort)
+    s = re.sub(r"[^a-z0-9]", "", s)
+    return f"{s}{'' if huisnr is None else huisnr}"
+
+
 def varianten(adres, nummer=None, op_huisnummer=False):
     """
     Alle vormen waaronder dit pand op schijf kan staan, de huidige vooraan.
@@ -627,6 +666,77 @@ def proef():
           sorted(s for _k, _o, _n, s in verslag4), ["omgezet", "overgeslagen"])
     check("geen gebeurtenis kwijt bij een botsing",
           _tel_gebeurtenissen(nieuw4), _tel_gebeurtenissen(bots))
+
+    # DE ZESTIEN FUNCTIES MOETEN HETZELFDE ZEGGEN ALS HUN CONVENTIE.
+    #
+    # Ze staan er nog, want hun aanroepers gebruiken ze, maar ze rekenen niet
+    # meer zelf. Deze controle importeert ze en legt ze naast de functie
+    # waartoe ze horen, op de adressen waar ze vroeger uiteenliepen. Zonder
+    # deze controle kan iemand er weer een eigen regel in zetten en loopt het
+    # stil opnieuw uit elkaar, en dat is precies wat er is gebeurd: vijf van
+    # hen hadden "zelfde normalisatie als in de andere scripts" in hun eigen
+    # docstring staan, als afspraak die niemand kon handhaven.
+    #
+    # Alle dertien modules importeren kost samen 0,35 seconde en geen aanroep.
+    LASTIG = ("Professor Molkenboerstraat 18", "Sint Annastraat 7",
+              "St. Annastraat 7", "Mariënburg 82-A", "de Pijnboomstraat 17",
+              "Marga Klompélaan 37", "Augustijnenstraat 25B",
+              "Dr. Claas Noorduijnstraat 4", "Abeelstraat 4")
+    PER_WONING = (
+        ("aanbod_reeks", "_sleutel"), ("aanbodprofiel", "_sleutel"),
+        ("funda_verkocht_plak", "_sleutel"), ("gezondheid", "_wozsleutel"),
+        ("verkoopdatum_model", "_sleutel"), ("verteld", "sleutel_adres"),
+        ("pandgeschiedenis", "sleutel"), ("marktprijzen_bag", "_woz_sleutel"),
+    )
+    PER_WONING_2 = (("kamerverhuur_register", "sleutel"),
+                    ("rijksmonumenten", "sleutel"),
+                    ("bekendmakingen_nijmegen", "_mon_sleutel"))
+    PER_HUISNUMMER = (("bekendmakingen_nijmegen", "_verg_sleutel"),
+                      ("toets_artikel15", "_sleutel"))
+    PER_TITEL = (("bekendmakingen_archief", "sleutel"),
+                 ("marktprijzen_bag", "archief_sleutel"))
+    import importlib
+    gezien = 0
+    for groep, eigen, twee in ((PER_WONING, sleutel, False),
+                               (PER_WONING_2, sleutel, True),
+                               (PER_HUISNUMMER, sleutel_huisnummer, True),
+                               (PER_TITEL, sleutel_archief, True)):
+        for mod, naam in groep:
+            try:
+                f = getattr(importlib.import_module(mod), naam)
+            except Exception as e:
+                fouten.append(f"{mod}.{naam} niet te importeren: "
+                              f"{type(e).__name__} {str(e)[:50]}")
+                continue
+            gezien += 1
+            for a in LASTIG:
+                straat, nr = splits(a)
+                try:
+                    echt = f(straat, nr) if twee else f(a)
+                except Exception as e:
+                    fouten.append(f"{mod}.{naam}({a!r}) valt om: "
+                                  f"{type(e).__name__} {str(e)[:40]}")
+                    break
+                wil = eigen(straat, nr) if twee else eigen(a)
+                if echt != wil:
+                    fouten.append(f"{mod}.{naam} wijkt af op {a!r}: "
+                                  f"{echt!r} tegen {wil!r}")
+    # marktprijzen_bag._pandsleutel neemt een hele advertentie en geen adres.
+    try:
+        from marktprijzen_bag import _pandsleutel
+        gezien += 1
+        for a in LASTIG:
+            if _pandsleutel({"adres": a}) != sleutel(a):
+                fouten.append(f"marktprijzen_bag._pandsleutel wijkt af op "
+                              f"{a!r}")
+    except Exception as e:
+        fouten.append(f"_pandsleutel niet na te meten: {type(e).__name__}")
+    # Zestien en niet veertien: de oorspronkelijke telling van veertien
+    # pandsleutelfuncties liet pandgeschiedenis.sleutel en
+    # marktprijzen_bag._pandsleutel buiten beschouwing omdat die al waren
+    # omgezet. Dit getal staat hier zodat een nieuwe eigen sleutelregel in
+    # een twaalfde bestand niet stil langs deze controle glipt.
+    check("alle zestien sleutelfuncties nagemeten", gezien, 16)
 
     # En nu de echte bestanden: elke opgeslagen sleutel moet te vinden zijn.
     bestanden_inhoud = {}
