@@ -355515,14 +355515,15 @@
   "bijgewerkt": "2026-10-11",
   "labels": {
    "datum": "2026-10-11",
-   "fouten": 46,
-   "geen_label_bekend": 0,
+   "fouten": 0,
+   "geen_label_bekend": 46,
    "gevraagd": 113,
    "laatste_fout": "Beijensstraat 64: HTTP 404",
    "label_gevonden": 67,
    "label_prive": 0,
    "nog_nooit_gevraagd": 21180,
-   "opnieuw_aan_de_beurt": 0
+   "opnieuw_aan_de_beurt": 0,
+   "toelichting": "de 46 HTTP 404 van deze ronde zijn geen fouten maar het antwoord dat EP-Online dit object niet kent"
   },
   "panden": {
    "datum": "2026-10-10",
