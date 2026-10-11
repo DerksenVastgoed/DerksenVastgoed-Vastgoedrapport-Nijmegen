@@ -7,15 +7,15 @@
 
 _Het object in de ring waar de richtprijs het dichtst bij de vraagprijs ligt (+44%), beoordeeld als exploitatieobject: wat kost het, wat brengt het op, en wat is de meest realistische route naar meer huur of waarde._
 
-### 1. [St. Annastraat 7](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+7%2C+Nijmegen), Galgenveld
+### 1. [Stieltjesstraat 10](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen), Stadscentrum
 
-St. Annastraat 7 valt op door omvang: 330 m² voor €3.333/m² ligt 34% onder de buurtmediaan. De WOZ van €982.009 ligt ruim boven de grens van €396.000, dus geen opkoopbescherming en geen omzettingsvergunning nodig voor kamers; wel blijft een omgevingsvergunning verplicht om het pand geschikt te maken.
+Stieltjesstraat 10 valt op door de omvang: 158 m² tegen €3.411/m², 37% onder de mediaan. Bij die oppervlakte rekenen we niet met één huishouden maar met kamerverhuur, als aanname. De WOZ van €594.000 ligt ruim boven de opkoopbeschermingsgrens en de omzettingsvergunning is niet nodig, al blijft een omgevingsvergunning vanaf drie kamers verplicht.
 
-De doorrekening gaat uit van kamerverhuur: 13 kamers à €622, wettelijk WWSO-maximum, €8.083 per maand. Dat draagt een richtprijs van €1.585.317, boven de vraagprijs, maar eigen inleg loopt op tot €668.339 (inclusief €170.000 verbouwing, een aanname die nog niet aan eigen bouwkosten is getoetst) en het operationeel resultaat is nagenoeg nul (-€39/jaar). BAR 6,0%, NAR 3,6%, rendement op eigen vermogen 1,5%: dit draait rond, niet meer.
+Bij €17/m² (stadsbreed gemeten) en 25% exploitatiekosten (aanname) is het resultaat nagenoeg nul: -€19 per jaar, BAR 5,9%, NAR 3,5%, rendement op eigen vermogen 1,4% bij €333.165 inleg. De richtprijs van €775.161 ligt ruim boven de vraagprijs, maar komt uit een eigen doorrekening met huur- en verbouwaannames, geen gemeten referentie.
 
-Uitvoerbaarheid is het knelpunt. Buurman St. Annastraat 11 is al onttrokken voor kamers (2018); de max-van-twee-regel laat dit pand er nog net naast toe, maar vijf van de tien toetspunten (omgevingsplan, geluidhinder, fietsenstalling, Bouwbesluit kamerverhuur, brandveilig gebruik) zijn niet getoetst en vragen bouwkundig onderzoek. Bekijken waard, maar eerst de omgevingsvergunning en akoestische/bouwkundige haalbaarheid uitzoeken voordat je biedt.
+Stieltjesstraat 2 (10 woningen gesplitst) en Stieltjesstraat 22 (melding brandveilig gebruik, 6 kamers, mei 2026) tonen dat kamerverhuur hier voorkomt; slechts 1 vergunning in de hele straat sinds 2013 wijst op ruimte, geen verzadiging. Nog te toetsen: omgevingsplan, geluidwering (bouwjaar 1938), fietsenstalling en Bouwbesluit. Het bekijken waard, eerst de omgevingsvergunning en bouwkundige toets laten uitzoeken.
 
-_€1.100.000 . 330 m2 . €3.333 . 1888 . C (2025). [Bekijk op straatniveau](https://www.google.com/maps/search/?api=1&query=St.+Annastraat+7%2C+Nijmegen&layer=c)_
+_€539.000 . 158 m2 . €3.411 . 1938 . C (2025). [Bekijk op straatniveau](https://www.google.com/maps/search/?api=1&query=Stieltjesstraat+10%2C+Nijmegen&layer=c)_
 
 [Bekijk het pand op de kaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html)
 

@@ -1,6 +1,18 @@
 {
  "gerealiseerd": [
   {
+   "adres": "Hatertseweg 338",
+   "datum": "2026-10-09",
+   "van": 1,
+   "naar": 7,
+   "besluit": "2026-10-06",
+   "dagen_na_besluit": 3,
+   "tekst": "Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen",
+   "vergund_aantal": 6,
+   "bag_nu": 7,
+   "wijkt_af": 1
+  },
+  {
    "adres": "Biezenstraat 110",
    "datum": "2026-10-03",
    "van": 1,
@@ -11,19 +23,18 @@
    "aanvraag": "2026-02-03",
    "dagen_aanvraag_tot_besluit": 241,
    "vergund_aantal": 2,
+   "bag_nu": 3,
    "wijkt_af": 1
   }
  ],
- "zonder_bekende_vergunning": [
-  {
-   "adres": "Hatertseweg 338",
-   "datum": "2026-10-09",
-   "van": 1,
-   "naar": 7,
-   "aanvraag": null
-  }
- ],
+ "zonder_bekende_vergunning": [],
  "vergund_maar_niets_gebeurd": [
+  {
+   "adres": "St. Canisiussingel 32",
+   "besluit": "2025-10-08",
+   "dagen": 368,
+   "tekst": "Besluit voor het verbouwen van een kantoorpand naar 12 zelfstandige wooneenheden aan St. Canisiussingel 32, 6511TJ Nijmegen"
+  },
   {
    "adres": "Pontanusstraat 9",
    "besluit": "2025-10-06",
@@ -95,9 +106,27 @@
    "besluit": "2025-05-19",
    "dagen": 510,
    "tekst": "Besluit voor het plaatsen van een dakopbouw en splitsten van de woning, aan Albardastraat 34, 6535VK Nijmegen"
+  },
+  {
+   "adres": "van Peltlaan 197",
+   "besluit": "2025-05-08",
+   "dagen": 521,
+   "tekst": "Besluit voor het verbouwen van een cafetaria met bovenwoning naar 5 zelfstandige wooneenheden, aan van Peltlaan 197, 6533ZE Nijmegen"
   }
  ],
  "wijkt_af_van_vergunning": [
+  {
+   "adres": "Hatertseweg 338",
+   "datum": "2026-10-09",
+   "van": 1,
+   "naar": 7,
+   "besluit": "2026-10-06",
+   "dagen_na_besluit": 3,
+   "tekst": "Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen",
+   "vergund_aantal": 6,
+   "bag_nu": 7,
+   "wijkt_af": 1
+  },
   {
    "adres": "Biezenstraat 110",
    "datum": "2026-10-03",
@@ -109,9 +138,11 @@
    "aanvraag": "2026-02-03",
    "dagen_aanvraag_tot_besluit": 241,
    "vergund_aantal": 2,
+   "bag_nu": 3,
    "wijkt_af": 1
   }
  ],
- "mediaan_dagen_besluit_tot_bag": 1,
- "aantal_looptijden": 1
+ "wacht_op_woningtelling": [],
+ "mediaan_dagen_besluit_tot_bag": 3,
+ "aantal_looptijden": 2
 }

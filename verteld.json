@@ -50,9 +50,15 @@
   },
   "biezenstraat110": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-11",
+   "keer": 2,
    "omschrijving": "Biezenstraat 110"
+  },
+  "hatertseweg338": {
+   "eerst": "2026-10-11",
+   "laatst": "2026-10-11",
+   "keer": 1,
+   "omschrijving": "Hatertseweg 338"
   }
  }
 }
