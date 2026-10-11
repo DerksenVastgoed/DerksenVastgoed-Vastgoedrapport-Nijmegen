@@ -2411,10 +2411,17 @@ def kamerbeeld(adres, archief=None, vergunningen=None, bereik=4):
                 "ingesloten": [], "onbekend_tussen": [], "gesplitst": []}
     straat, nummer = m.group(1), int(m.group(2))
     straatbeeld = voorraad_per_straat(straat)
+    # GECACHED, want kamerbeeld wordt enkele keren per pand aangeroepen en las
+    # deze twee bestanden elke keer opnieuw: samen 1,5 ms per aanroep, wat over
+    # honderden panden oploopt tot seconden aan hetzelfde werk.
     if archief is None:
-        archief = lees_archief()
+        if "_archief" not in _VOORRAAD:
+            _VOORRAAD["_archief"] = lees_archief()
+        archief = _VOORRAAD["_archief"]
     if vergunningen is None:
-        vergunningen = lees_kamervergunningen()
+        if "_verg" not in _VOORRAAD:
+            _VOORRAAD["_verg"] = lees_kamervergunningen()
+        vergunningen = _VOORRAAD["_verg"]
 
     kamerburen, ingesloten, onbekend, gesplitst = [], [], [], []
     reeks = {}
@@ -2422,15 +2429,26 @@ def kamerbeeld(adres, archief=None, vergunningen=None, bereik=4):
         aansluitend = 0
         nog_aansluitend = True
         ingesloten_deze_kant = False
+        # STAP VOOR STAP VANAF HET VORIGE NUMMER, en niet telkens een offset
+        # vanaf het eigen nummer. Dat laatste rekende buur = nummer + 2*stap en
+        # wisselde naar nummer + (2*stap - 1) als dat in hetzelfde pand zat.
+        # In een doorgenummerd pand liep de wandeling daardoor over ±1, ±3, ±5
+        # en kwam ze nooit op ±2, ±4: precies in de straten waar de
+        # bouwbloktoets moest helpen werd elk tweede huis overgeslagen. Op het
+        # Keizer Karelplein, waar 20 tot en met 31 in één pand zitten, zag
+        # nummer 31 de vergunning op 29 daardoor nooit, terwijl de melding
+        # "gemeten over de hele straatzijde" zei.
+        huidig = nummer
+        tussenliggend = None
         for stap in range(1, bereik + 1):
-            buur = nummer + kant * 2 * stap
-            over = nummer + kant * (2 * stap - 1)
-            # Hoort het tussenliggende oneven/even nummer tot hetzelfde pand,
-            # dan is het geen overzijde maar de echte buur.
-            if _zelfde_bouwblok(nummer, over, straatbeeld):
-                buur = over
+            naastgelegen = huidig + kant
+            if _zelfde_bouwblok(huidig, naastgelegen, straatbeeld):
+                buur = naastgelegen
+            else:
+                buur = huidig + kant * 2
             if buur < 1:
                 break
+            vorige, huidig = huidig, buur
             vg = _kamervergunning(straat, buur, vergunningen, archief)
             zelfst, aantal, maten, _p = _woningen_op_nummer(buur, straatbeeld)
             if vg:
@@ -2439,6 +2457,8 @@ def kamerbeeld(adres, archief=None, vergunningen=None, bereik=4):
                     aansluitend += 1
             else:
                 nog_aansluitend = False
+            if stap == 1:
+                tussenliggend = buur
             if zelfst:
                 gesplitst.append({"adres": f"{straat} {buur}", "positie": stap,
                                   "woningen": aantal, "maten": maten})
@@ -2454,7 +2474,7 @@ def kamerbeeld(adres, archief=None, vergunningen=None, bereik=4):
             # insluiting, en het leverde ook drie keer dezelfde melding op
             # omdat 11, 13 en 15 alle drie kamerpanden zijn.
             if vg and stap == 2 and not ingesloten_deze_kant:
-                tussen = nummer + kant * 2
+                tussen = tussenliggend
                 tz, ta, tm, _tp = _woningen_op_nummer(tussen, straatbeeld)
                 if tz:
                     ingesloten.append({"nummer": tussen, "woningen": ta,
@@ -2492,6 +2512,16 @@ def kamerroute_geblokkeerd(adres, archief=None, vergunningen=None):
     bronvermelding eronder die ze niet verdienden.
     """
     beeld = kamerbeeld(adres, archief, vergunningen)
+    # DE REEKS EERST, want die komt uit de vergunningenlijst en heeft de
+    # voorraad niet nodig. Stond de dekkingspoort ervoor, dan bleef een pand in
+    # een straat buiten de voorraad ongeblokkeerd terwijl toetspunt 5 in
+    # dezelfde brief wel "drie kamerpanden aansluitend" meldde. Dat is
+    # woordelijk de tegenspraak van 11 oktober.
+    for kant, n in (beeld.get("reeks") or {}).items():
+        if n >= 2:
+            return [], "reeks"
+    if len([n for n in (beeld.get("reeks") or {}).values() if n >= 1]) >= 2:
+        return [], "weerszijden"
     if not beeld["gedekt"]:
         return None, "deze straat staat niet in de BAG-voorraad"
     if beeld["ingesloten"]:
@@ -2503,9 +2533,6 @@ def kamerroute_geblokkeerd(adres, archief=None, vergunningen=None):
     # insluitingspunt schreef daar "nummer None bestaat uit 0 zelfstandige
     # woningen" van. De reeks hoort bij toetspunt 5 en de insluiting bij
     # toetspunt 6; wie ze door één lijst laat lopen krijgt onzin in de brief.
-    for kant, n in (beeld.get("reeks") or {}).items():
-        if n >= 2:
-            return [], "reeks"
     if beeld["onbekend_tussen"]:
         return None, ("het tussenliggende huisnummer staat niet in de "
                       "voorraad, dus insluiting is hier niet te toetsen")
@@ -2682,15 +2709,28 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
     # geldt alleen voor een omzetting die nog moet gebeuren.
     if not kamerpand:
         _ingesloten, _reden = kamerroute_geblokkeerd(w.get("adres"))
-        if _reden in ("insluiting", "reeks"):
+        if _reden in ("insluiting", "reeks", "weerszijden"):
             x = (_ingesloten or [{}])[0]
-            if _reden == "reeks":
+            if _reden in ("reeks", "weerszijden"):
                 _b = kamerbeeld(w.get("adres") or "")
-                _n = max((_b.get("reeks") or {}).values() or [0])
-                _namen = ", ".join(b["adres"] for b in _b["kamerburen"][:3])
-                blokkade = (f"naast dit pand liggen al {_n} kamerpanden "
-                            f"aansluitend ({_namen}); de verordening staat "
-                            f"niet meer dan twee toe")
+                _r = _b.get("reeks") or {}
+                _n = max(_r.values() or [0])
+                # DE NAMEN VAN DE JUISTE KANT. Dit nam de eerste drie
+                # kamerburen zonder op zijde te filteren, en noemde dan drie
+                # namen bij een reeks van twee met een pand van de andere kant
+                # erbij. Twintig gevallen in de ring.
+                _kant = max(_r, key=lambda k: _r[k]) if _r else None
+                _namen = ", ".join(b["adres"] for b in _b["kamerburen"]
+                                   if b.get("kant") == _kant)
+                if _reden == "weerszijden":
+                    blokkade = ("aan beide zijden van dit pand ligt een "
+                                "kamerpand, dus het zou de middelste van drie "
+                                "op een rij worden; de verordening staat niet "
+                                "meer dan twee toe")
+                else:
+                    blokkade = (f"naast dit pand liggen al {_n} kamerpanden "
+                                f"aansluitend ({_namen}); de verordening staat "
+                                f"niet meer dan twee toe")
             else:
                 blokkade = (f"verkameren zou nummer {x.get('nummer')} "
                             f"insluiten, {x.get('woningen')} zelfstandige "
@@ -4952,6 +4992,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
                 regels_t = toets_kamerverhuur(
                     w, ingesloten=kamerroute_geblokkeerd(w.get("adres"))[0],
                     reeks=kamerbeeld(w.get("adres") or "").get("reeks"),
+                    kamerpand=bool(kamerverhuur_bekend(w)),
                     aantal_kamers=kamers_n, vergunningen=vergunningen_c,
                     woz=w.get("woz"))
                 f.append("TOETS artikel 15, " + toets_samenvatting(regels_t))
@@ -5426,18 +5467,24 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           "vergunningenlijst en bekendmakingenarchief")
 
     # Buren, voor de regel van niet meer dan twee naast elkaar
-    buren = buren_met_kamerverhuur(w["adres"], archief, lees_kamervergunningen())
+    # UIT HETZELFDE BEELD ALS DE TOETSPUNTEN. Dit haalde de buren apart op met
+    # een bereik van twee posities terwijl de reeksregel vier posities gebruikt,
+    # en dan noemden twee regels in hetzelfde dossier verschillende lijstjes.
+    _beeld_b = kamerbeeld(w.get("adres") or "", archief)
+    buren = _beeld_b["kamerburen"]
     if buren:
         # DE POSITIE ERBIJ, want de regel gaat over woningen die direct naast
         # elkaar liggen. Een kamerpand op positie 2 raakt de max-van-twee niet;
         # een op positie 1 wel. Zonder die positie was dit een lijst namen waar
         # de lezer zelf een regel op moest toepassen.
         f("kamerverhuur bij de buren", ", ".join(
-            f"{b.get('adres')} ({b.get('soort', '')}"
-            + (", aan de overzijde, telt niet voor de max-van-twee"
-               if b.get("overzijde") else
-               f", {'direct naast dit pand' if b.get('positie') == 1 else 'een pand verder op dezelfde zijde'}")
-            + ")" for b in buren[:4]),
+            f"{b.get('adres')} ({b.get('soort', '')}, "
+            + ("direct naast dit pand" if b.get("positie") == 1
+               else f"{b.get('positie')} panden verder op dezelfde zijde")
+            + ")" for b in buren[:4])
+          + ". Let op wat dit is: verleende vergunningen uit een lijst die van "
+            "2013 tot 2025 loopt en niet wordt bijgewerkt, geen vaststelling "
+            "van het huidige gebruik",
           "vergunningenlijst en bekendmakingenarchief")
     else:
         f("kamerverhuur bij de buren", "geen aanwijzing gevonden, met dezelfde "
@@ -5448,7 +5495,7 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
     # zelfstandig bewoonde woning insluit. Beide werden verkeerd getoetst, en
     # de investeringscase van 11 oktober rekende daarop 13 kamers door voor
     # een pand waar verkameren vermoedelijk niet mag.
-    _beeld = kamerbeeld(w.get("adres") or "", archief)
+    _beeld = _beeld_b
     for x in _beeld["ingesloten"]:
         f("omzetting zou een zelfstandige woning insluiten",
           f"nummer {x['nummer']} bestaat uit {x['woningen']} zelfstandige "
@@ -5487,18 +5534,7 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
             "alleen zou ingeven",
           "voorraad uit de BAG")
 
-    # HET SPLITSINGSPRECEDENT. Wat de buren werkelijk hebben gedaan is het
-    # sterkste gegeven voor de routekeuze, en het werd nergens aangeleverd.
-    _gesplitst = buren_al_gesplitst(w.get("adres") or "", _straatbeeld)
-    if _gesplitst:
-        f("buren die al gesplitst zijn", "; ".join(
-            f"{x['adres']} is {x['woningen']} zelfstandige woningen van "
-            f"{', '.join(str(m) for m in x['maten'])} m2"
-            for x in _gesplitst[:3])
-          + ". Dat is hetzelfde bouwblok en het staat in de registratie, dus "
-            "een harder gegeven dan een straatbeeld. Weeg de splitsingsroute "
-            "hier zwaarder dan de omvang alleen zou ingeven",
-          "voorraad uit de BAG")
+
 
     # Bekendmakingen op het adres
     m_a = re.match(r"^(.+?)\s+(\d+)", w["adres"])
@@ -6259,6 +6295,7 @@ def haalbare_routes(w, sc, vergunningen=None):
         regels = toets_kamerverhuur(
             w, ingesloten=kamerroute_geblokkeerd(w.get("adres"))[0],
             reeks=kamerbeeld(w.get("adres") or "").get("reeks"),
+            kamerpand=bool(kamerverhuur_bekend(w)),
             aantal_kamers=kamers_n, vergunningen=vergunningen,
             woz=w.get("woz"))
         blok = [g for g, o, _t in regels if o == "voldoet niet"]

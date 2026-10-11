@@ -89,7 +89,7 @@ def _buren(adres, vergunningen):
 
 
 def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
-                       ingesloten=None, reeks=None):
+                       ingesloten=None, reeks=None, kamerpand=False):
     """
     Loopt de weigeringsgronden van artikel 15 langs. Geeft een lijst van
     (grond, oordeel, toelichting).
@@ -167,7 +167,36 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
     buren = _buren(w.get("adres", ""), vergunningen or {})
     links, rechts = buren.get("links"), buren.get("rechts")
     langste = max((reeks or {}).values()) if reeks else None
-    if langste is not None and langste >= 2:
+    # BEIDE ZIJDEN SAMEN, want dit pand wordt dan de middelste van drie. De
+    # reeks wordt per zijde geteld, dus een kamerpand links én rechts geeft
+    # {-1: 1, 1: 1} en dat is per zijde "nog toegestaan". Alleen keek de oude
+    # tak links-en-rechts daar al naar, en die werd door de reeks-takken
+    # onbereikbaar. Zeventien adressen in de ring kregen daardoor een
+    # goedkeuring die er eerder niet was, onder meer Groesbeekseweg 53 met 51
+    # en 55 beide vergund.
+    # EEN PAND DAT ZELF AL KAMERPAND IS WORDT NIETS DERDE. Er is dan geen
+    # omzetting die de rij verlengt, dus deze toets gaat over een handeling die
+    # niet meer hoeft. St. Annastraat 15 heeft zijn eigen vergunning uit 2018
+    # en kreeg toch "dit pand zou het derde of verdere in de rij worden".
+    if kamerpand:
+        uit.append(("maximaal twee naast elkaar", VOLDOET,
+                    "dit pand is zelf al kamergewijs vergund, dus er is geen "
+                    "omzetting die de rij verlengt. De regel gaat over een "
+                    "nieuwe omzetting en niet over bestaand gebruik"))
+        reeks = None
+        langste = "n.v.t."
+    weerszijden = reeks and len([n for n in reeks.values() if n >= 1]) >= 2
+    if langste == "n.v.t.":
+        pass
+    elif weerszijden:
+        namen = [b.get("adres") for b in [links, rechts] if b]
+        uit.append(("maximaal twee naast elkaar", VOLDOET_NIET,
+                    "aan beide zijden ligt een kamerpand"
+                    + (f" ({', '.join(n for n in namen if n)})" if any(namen)
+                       else "")
+                    + ", dus dit pand zou de middelste van drie op een rij "
+                      "worden en de verordening staat niet meer dan twee toe"))
+    elif langste is not None and langste >= 2:
         uit.append(("maximaal twee naast elkaar", VOLDOET_NIET,
                     f"aan één zijde liggen al {langste} kamerpanden "
                     f"aansluitend naast dit pand. Dit pand zou het derde of "
@@ -466,6 +495,60 @@ def proef():
             elif reden_moet == "reeks" and ing:
                 afw.append(f"{adres}: een reeksblokkade hoort geen "
                            f"insluitingsrecords te geven, kreeg {ing}")
+
+        # 5b. DE VIER TAKKEN VAN TOETSPUNT 5. De proef gaf hier eerst nooit
+        # reeks mee, dus alleen de terugvaltak liep en zes fouten kwamen groen
+        # door.
+        def t5(reeks, kamerpand=False):
+            rs = toets_kamerverhuur(w, ingesloten=[], reeks=reeks,
+                                    kamerpand=kamerpand, aantal_kamers=13)
+            return oordeel(rs, "maximaal twee naast elkaar")
+
+        for reeks, kamerpand, moet, waarom in (
+                ({-1: 0, 1: 0}, False, VOLDOET, "niets naast dit pand"),
+                ({-1: 1, 1: 0}, False, VOLDOET, "één naast, dit wordt de tweede"),
+                ({-1: 2, 1: 0}, False, VOLDOET_NIET, "twee aansluitend"),
+                ({-1: 3, 1: 0}, False, VOLDOET_NIET, "drie aansluitend"),
+                # De middelste van drie: per zijde één, samen te veel. Dit gaf
+                # zeventien adressen in de ring een onterechte goedkeuring.
+                ({-1: 1, 1: 1}, False, VOLDOET_NIET, "aan beide zijden één"),
+                # Een pand dat zelf al kamerpand is wordt niets derde.
+                ({-1: 2, 1: 0}, True, VOLDOET, "eigen kamerpand"),
+                (None, False, ONBEKEND, "geen reeks meegegeven"),
+        ):
+            o, _t = t5(reeks, kamerpand)
+            if o != moet:
+                afw.append(f"toetspunt 5 met reeks={reeks} kamerpand={kamerpand} "
+                           f"({waarom}) gaf {o!r} in plaats van {moet!r}")
+
+        # 5c. EN DE ECHTE GEVALLEN DIE DAARBIJ HOREN.
+        for adres, reden_moet in (("Groesbeekseweg 53", "weerszijden"),
+                                  ("Keizer Karelplein 31",
+                                   "gekeken en niets gevonden"),
+                                  # Buiten de voorraad, maar de reeks komt uit
+                                  # de vergunningenlijst en moet wel blokkeren.
+                                  ("Jan van Goyenstraat 52", "reeks")):
+            _ing, _reden = _M.kamerroute_geblokkeerd(adres)
+            if _reden != reden_moet:
+                afw.append(f"{adres}: reden {_reden!r} in plaats van "
+                           f"{reden_moet!r}")
+
+        # 5d. PAND_DOSSIER MOET DRAAIEN. Op 11 oktober stond er een aanroep
+        # naar een functie die niet meer bestond, in een try/except die naar
+        # stderr schrijft. De brief ging door, het dossierblok verdween, en
+        # juist daarin staan de feiten die de kamerroute blokkeren. Geen enkele
+        # proef raakte dit aan.
+        try:
+            _w = {"adres": "St. Annastraat 7", "oppervlakte": 330,
+                  "prijs": 1100000, "buurt": "Galgenveld", "m2": 3333}
+            _feiten = _M.pand_dossier(_w, "Galgenveld", -34.0, {},
+                                      _M.lees_archief(), {})
+            _tekst = " ".join(str(x) for x in (_feiten or []))
+            if "insluiten" not in _tekst:
+                afw.append("pand_dossier levert geen insluitingsfeit voor St. "
+                           "Annastraat 7, dus de brief mist de reden")
+        except Exception as e:
+            afw.append(f"pand_dossier faalt: {type(e).__name__}: {e}")
 
         # Een straat buiten de ring is onbekend en blokkeert niets.
         ing, reden = _M.kamerroute_geblokkeerd("Nergensweg 7")
