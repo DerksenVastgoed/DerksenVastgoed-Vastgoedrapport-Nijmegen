@@ -556,7 +556,7 @@ def fase_panden(budget):
     leeg terug, dan meldt de stand dat en blijft het veld pand leeg; de rest
     van de ronde gaat gewoon door.
     """
-    kaart, status_per_pand, velden = {}, {}, set()
+    kaart, status_per_pand, bouwjaar_per_pand, velden = {}, {}, {}, set()
 
     def per_pagina(kenmerken):
         for k in kenmerken:
@@ -582,10 +582,28 @@ def fase_panden(budget):
                 st = p.get("status") or ""
                 if st:
                     status_per_pand[str(bag)] = str(st)
+                # EN HET BOUWJAAR, OM DEZELFDE REDEN. Dit veld stond op 11
+                # oktober al in velden_in_antwoord en werd toch weggegooid.
+                # Het beslist de groep die de pandstatus alleen niet kan
+                # splitsen: 697 van de 2.168 pijplijnwoningen zitten in een
+                # pand dat al in gebruik is, en dat is of een splitsing van
+                # bestaande voorraad of nieuwbouw die net is opgeleverd
+                # terwijl de objecten nog niet in gebruik zijn gemeld. Een
+                # pand van 1920 zegt het eerste, een pand van 2025 het
+                # tweede. Zonder dit veld is dat een gok.
+                jaar = p.get("bouwjaar")
+                if jaar not in (None, ""):
+                    try:
+                        bouwjaar_per_pand[str(bag)] = int(str(jaar)[:4])
+                    except ValueError:
+                        # Een bouwjaar dat geen jaar is, is geen bouwjaar.
+                        # Liever niets dan een getal dat nergens op slaat.
+                        pass
 
     stand = doorloop("pand", budget, per_pagina)
     stand["omzettingen"] = len(kaart)
     stand["met_status"] = len(status_per_pand)
+    stand["met_bouwjaar"] = len(bouwjaar_per_pand)
     stand["velden_in_antwoord"] = sorted(velden)[:25]
     if status_per_pand:
         tel = {}
@@ -599,11 +617,12 @@ def fase_panden(budget):
     # De statuskaart gaat mee in de stand en niet als derde returnwaarde,
     # zodat elke bestaande aanroeper blijft werken.
     stand["_status_per_pand"] = status_per_pand
+    stand["_bouwjaar_per_pand"] = bouwjaar_per_pand
     return kaart, stand
 
 
 def fase_bag(voorraad, pcs, minuten, panden=None,
-             pandstatus=None):
+             pandstatus=None, pandbouwjaar=None):
     """
     Fase 1: alle verblijfsobjecten in de doos, daarna zeven op onze postcodes.
 
@@ -799,6 +818,17 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 rec["pand_status"] = statussen_pand[0]
                 if len(set(x for x in statussen_pand if x)) > 1:
                     rec["pand_statussen"] = statussen_pand
+
+            # HET BOUWJAAR VAN HET PAND. Bij een object in twee panden wordt
+            # het oudste genomen en niet het eerste: het gaat erom of dit
+            # object in bestaande voorraad zit, en dan is het oudste pand het
+            # antwoord. Dat is een keuze, dus hij staat hier opgeschreven.
+            jaren = [(pandbouwjaar or {}).get(x) for x in alle_panden]
+            jaren = [j for j in jaren if j]
+            if jaren:
+                rec["pand_bouwjaar"] = min(jaren)
+                if len(set(jaren)) > 1:
+                    rec["pand_bouwjaren"] = sorted(set(jaren))
 
             # BAG_GEZIEN ALLEEN BIJWERKEN ALS ER WERKELIJK IETS VERANDERDE.
             # Zou hier de datum van vandaag staan, dan verandert elk van de
@@ -1072,10 +1102,23 @@ def fase_labels(voorraad, minuten):
 
     resterend = sum(1 for r in adressen.values()
                     if not r.get("label") and not r.get("label_gezien"))
+    # DE GRONDSLAG IN DE STAND, EN NIET ALLEEN IN DE RECORDS. Een veld dat
+    # per woning wordt opgeschreven en nergens wordt geteld, ziet niemand.
+    # Gemeten op 11 oktober: van de 698 labels zijn er 221 bepaald met de
+    # methode van 2014 en 410 met NTA 8800, en 67 hebben geen methode omdat
+    # ze zijn opgehaald voordat dat veld werd bewaard. Die verhouding hoort
+    # in de stand, want zij bepaalt of twee labels naast elkaar mogen staan.
+    alle = [r for r in adressen.values() if r.get("label")]
     return {"gevraagd": gevraagd, "label_gevonden": met_label,
             "geen_label_bekend": zonder, "label_prive": prive,
             "nog_nooit_gevraagd": resterend,
             "opnieuw_aan_de_beurt": len(verlopen),
+            "labels_nta8800": sum(1 for r in alle
+                                  if r.get("label_nta8800") is True),
+            "labels_methode_2014": sum(1 for r in alle
+                                       if r.get("label_nta8800") is False),
+            "labels_zonder_methode": sum(1 for r in alle
+                                         if r.get("label_nta8800") is None),
             "fouten": fouten, "laatste_fout": laatste_fout}
 
 
@@ -1148,6 +1191,45 @@ def tekst_pijplijn(pad=UIT):
                  + ", ".join(f"{st} ({n})" for st, n
                              in sorted(soorten.items(), key=lambda x: -x[1]))
                  + "._")
+        # DE GROEP DIE DE PANDSTATUS NIET SPLITST. Een object dat gevormd is
+        # in een pand dat AL IN GEBRUIK is, is twee dingen die niets met
+        # elkaar te maken hebben: een splitsing van bestaande voorraad, of
+        # nieuwbouw die net is opgeleverd terwijl de objecten nog niet in
+        # gebruik zijn gemeld. Op 11 oktober waren dat 697 van de 2.168, dus
+        # bijna een derde, en samengevoegd zeggen ze niets. Het bouwjaar van
+        # het pand beslist het, en dat halen we sinds 12 oktober op.
+        in_gebruik = [rec for rec in pl.values()
+                      if (rec.get("pand_status") or "") == "Pand in gebruik"]
+        if in_gebruik:
+            met_jaar = [rec for rec in in_gebruik if rec.get("pand_bouwjaar")]
+            r.append("")
+            if not met_jaar:
+                r.append(f"_Van die groep zitten er {len(in_gebruik)} in een "
+                         f"pand dat al in gebruik is. Dat is of een splitsing "
+                         f"van bestaande voorraad of nieuwbouw die net is "
+                         f"opgeleverd, en zonder het bouwjaar van het pand is "
+                         f"dat niet te scheiden. Dat bouwjaar wordt sinds 12 "
+                         f"oktober opgehaald en staat er nog niet bij: dit is "
+                         f"dus nog niet gekeken en niet niets gevonden._")
+            else:
+                grens = dt.date.today().year - 5
+                oud = [rec for rec in met_jaar
+                       if rec["pand_bouwjaar"] < grens]
+                nieuw = [rec for rec in met_jaar
+                         if rec["pand_bouwjaar"] >= grens]
+                zonder = len(in_gebruik) - len(met_jaar)
+                r.append(f"_Van die groep zitten er {len(in_gebruik)} in een "
+                         f"pand dat al in gebruik is. Met het bouwjaar van "
+                         f"het pand erbij: {len(oud)} in een pand van voor "
+                         f"{grens}, dus nieuwe woningen in bestaande "
+                         f"voorraad, en {len(nieuw)} in een pand van "
+                         f"{grens} of later, dus nieuwbouw waarvan het pand "
+                         f"al klaar is en de woningen nog niet in gebruik "
+                         f"gemeld."
+                         + (f" Van {zonder} is het bouwjaar niet bekend."
+                            if zonder else "")
+                         + " De grens van vijf jaar is een keuze en geen"
+                           " definitie van het CBS._")
     r.append("")
     r.append("| buurt | onderweg | staat er nu | erbij |")
     r.append("|---|---:|---:|---:|")
@@ -1591,12 +1673,15 @@ def proef():
             # Met status, want die scheidt nieuwbouw van transformatie en die
             # werd hier weggegooid. Twee verschillende, zodat een object in
             # beide panden aantoonbaar twee statussen heeft.
+            # Met bouwjaar, want dat veld stond in velden_in_antwoord en
+            # werd weggegooid. Twee verschillende jaren, zodat bij een object
+            # in beide panden aantoonbaar het OUDSTE wordt gekozen.
             {"id": "uuid-een", "properties": {
                 "identificatie": "0268100000000011",
-                "status": "Pand in gebruik"}},
+                "status": "Pand in gebruik", "bouwjaar": 1912}},
             {"id": "uuid-twee", "properties": {
                 "identificatie": "0268100000000022",
-                "status": "Bouw gestart"}},
+                "status": "Bouw gestart", "bouwjaar": 2025}},
             # Zonder identificatie: mag de kaart niet vervuilen.
             {"id": "uuid-drie", "properties": {}},
         ])
@@ -1608,21 +1693,26 @@ def proef():
         voorraad = {}
         pcs = {"6521AB": ("Bottendaal",),
                "6511AA": ("Benedenstad", "Stadscentrum")}
-        kaart = {"uuid-een": "0268100000000011",
-                 "uuid-twee": "0268100000000022"}
-        # MET DE PANDSTATUSSEN ERBIJ. Zonder deze kaart was pand_status
-        # altijd leeg in de proef en toetste niets dat veld, terwijl het sinds
-        # vandaag het verschil tussen nieuwbouw en transformatie moet maken.
-        pandstatussen = {"0268100000000011": "Pand in gebruik",
-                         "0268100000000022": "Bouw gestart"}
-        uit = fase_bag(voorraad, pcs, 1, kaart, pandstatussen)
+        # EERST DE PANDFASE, ZOALS MAIN DAT OOK DOET, en de kaarten uit
+        # fase_panden zelf halen. Hier stonden de pandstatussen als een eigen
+        # lijstje in de proef, en dan toetst de proef zijn eigen aanname in
+        # plaats van wat fase_panden werkelijk teruggeeft. Precies de fout
+        # waarvan deze week drie keer bleek hoe stil hij is.
+        doorloop = nep_panden
+        pandkaart, pandstand = fase_panden(1)
+        pandstatussen = pandstand.pop("_status_per_pand", {})
+        pandbouwjaren = pandstand.pop("_bouwjaar_per_pand", {})
+        doorloop = nep
+        kaart = dict(pandkaart)
+        uit = fase_bag(voorraad, pcs, 1, kaart, pandstatussen,
+                       pandbouwjaren)
         # TWEEDE RONDE OP DEZELFDE GEGEVENS. Hieraan hangt of het bestand van
         # ruim vijf megabyte elke dag ongewijzigd blijft of elke dag helemaal
         # verandert. Dat verschil is in de uitkomst niet te zien en alleen
         # hier te meten.
         voorraad_na = json.loads(json.dumps(voorraad))
         tweede = fase_bag(voorraad_na, pcs, 1, kaart,
-                          pandstatussen)
+                          pandstatussen, pandbouwjaren)
 
         # DERDE RONDE WAARIN DINGEN VERDWIJNEN EN VAN SOORT WISSELEN. Hier
         # hangt aan of het aantal in de brief langzaam te hoog oploopt.
@@ -1653,9 +1743,6 @@ def proef():
         doorloop = nep_half
         vierde = fase_bag(voorraad_half, pcs, 1, kaart)
 
-        # En de pandfase zelf, op de vorm die PDOK werkelijk levert.
-        doorloop = nep_panden
-        pandkaart, pandstand = fase_panden(1)
     finally:
         doorloop = echt
 
@@ -1708,6 +1795,28 @@ def proef():
         afwijkingen.append(f"de ronde telt "
                            f"{uit.get('objecten_in_meer_panden')} objecten in "
                            f"meer panden in plaats van 1")
+    # HET BOUWJAAR VAN HET PAND, EN BIJ TWEE PANDEN HET OUDSTE. Dit veld
+    # stond al in het antwoord van PDOK en werd weggegooid. Het beslist de
+    # groep die de pandstatus niet splitst: een gevormd object in een pand
+    # dat al in gebruik is, is een splitsing van bestaande voorraad bij een
+    # pand van 1912 en bijna opgeleverde nieuwbouw bij een pand van 2025.
+    if tweepands.get("pand_bouwjaar") != 1912:
+        afwijkingen.append(f"bij twee panden wordt niet het oudste bouwjaar "
+                           f"genomen: {tweepands.get('pand_bouwjaar')!r} in "
+                           f"plaats van 1912")
+    if tweepands.get("pand_bouwjaren") != [1912, 2025]:
+        afwijkingen.append(f"beide bouwjaren staan niet in het record: "
+                           f"{tweepands.get('pand_bouwjaren')!r}")
+    een_pand = adressen.get("0268010000000001") or {}
+    if een_pand.get("pand_bouwjaar") != 1912:
+        afwijkingen.append(f"het bouwjaar van het pand wordt niet bewaard: "
+                           f"{een_pand.get('pand_bouwjaar')!r}")
+    if "pand_bouwjaren" in een_pand:
+        afwijkingen.append("bij een object in een pand staat pand_bouwjaren "
+                           "er toch bij; dat veld hoort alleen bij verschil")
+    if pandstand.get("met_bouwjaar") != 2:
+        afwijkingen.append(f"de pandfase meldt {pandstand.get('met_bouwjaar')}"
+                           f" panden met een bouwjaar in plaats van 2")
     # Twee panden met een verschillende status: dan is "de" pandstatus geen
     # enkel getal, en dat hoort in het record te staan in plaats van
     # weggewerkt te worden.
@@ -1938,6 +2047,52 @@ def proef():
     # GEEN AANTAL CONTROLES MEER. Dat getal stond er eerst bij en was fout,
     # en een fout getal in een proefverslag is erger dan geen getal: het wekt
     # vertrouwen dat het niet verdient. Wat de proef dekt staat er wel.
+    # HET BLOK DAT PA LEEST, EN NIET ALLEEN DE RECORDS. Een veld dat goed in
+    # het bestand staat en verkeerd in de tekst komt, is voor de lezer
+    # hetzelfde als een verkeerd veld. Daarom hier de twee zinnen die het
+    # bouwjaar van het pand gebruiken, op een pijplijn die met de hand is
+    # gemaakt: twee woningen in een pand uit 1912 en een in een pand uit dit
+    # jaar.
+    nu_jaar = dt.date.today().year
+    nep_voorraad = {
+        "adressen": {"a1": {"adres": "Bottelstraat 1", "buurten": ["Bottendaal"],
+                            "postcode": "6521AB"}},
+        "pijplijn": {
+            "p1": {"adres": "Oudestraat 1", "buurten": ["Bottendaal"],
+                   "pand_status": "Pand in gebruik", "pand_bouwjaar": 1912},
+            "p2": {"adres": "Oudestraat 3", "buurten": ["Bottendaal"],
+                   "pand_status": "Pand in gebruik", "pand_bouwjaar": 1912},
+            "p3": {"adres": "Nieuwstraat 1", "buurten": ["Bottendaal"],
+                   "pand_status": "Pand in gebruik",
+                   "pand_bouwjaar": nu_jaar},
+            "p4": {"adres": "Nieuwstraat 3", "buurten": ["Bottendaal"],
+                   "pand_status": "Bouw gestart", "pand_bouwjaar": nu_jaar},
+        }}
+    import tempfile
+    with tempfile.TemporaryDirectory() as map_:
+        pad = os.path.join(map_, "voorraad.json")
+        with open(pad, "w", encoding="utf-8") as f:
+            json.dump(nep_voorraad, f)
+        blok = tekst_pijplijn(pad)
+    if "2 in een pand van voor" not in blok:
+        afwijkingen.append("de pijplijntekst splitst de groep in een pand "
+                           "dat al in gebruik is niet op bouwjaar")
+    if "1 in een pand van" not in blok:
+        afwijkingen.append("de pijplijntekst noemt de bijna opgeleverde "
+                           "nieuwbouw niet apart")
+    # En zonder bouwjaar hoort er "nog niet gekeken" te staan en geen nul.
+    for r in nep_voorraad["pijplijn"].values():
+        r.pop("pand_bouwjaar", None)
+    with tempfile.TemporaryDirectory() as map_:
+        pad = os.path.join(map_, "voorraad.json")
+        with open(pad, "w", encoding="utf-8") as f:
+            json.dump(nep_voorraad, f)
+        kaal = tekst_pijplijn(pad)
+    if "nog niet gekeken" not in kaal:
+        afwijkingen.append("zonder bouwjaar zegt de pijplijntekst niet dat "
+                           "het nog niet gekeken is, en dan leest het als "
+                           "gekeken en niets gevonden")
+
     print(f"Proef: {len(afwijkingen)} afwijkingen. Gedekt: de vorm van het "
           f"antwoord, de komma in gebruiksdoel, de historiezeef, de "
           f"vbo-sleutel en de botsing die hij vervangt, de omzetting van de "
@@ -1945,8 +2100,10 @@ def proef():
           f"na een afgemaakte ronde, niets verwijderen na een afgebroken "
           f"ronde, wisselen tussen woning en niet-woning, en twee gelijke "
           f"rondes die hetzelfde bestand opleveren, het raster met "
-          f"het delen van een tegel die PDOK niet aankan, en de wachtrij van "
-          f"de labelfase: wat opnieuw aan de beurt komt na een gevonden "
+          f"het delen van een tegel die PDOK niet aankan, het bouwjaar van "
+          f"het pand en het oudste daarvan bij twee panden, de "
+          f"pijplijntekst die de groep in een pand dat al in gebruik is op "
+          f"bouwjaar splitst, en de wachtrij van de labelfase: wat opnieuw aan de beurt komt na een gevonden "
           f"label, een privelabel, een definitieve weigering en een "
           f"tijdelijke storing.", file=sys.stderr)
     return 1 if afwijkingen else 0
@@ -2020,11 +2177,12 @@ def main():
         # De statuskaart eruit halen: die hoort bij de ronde en niet in het
         # standsbestand, want het zijn duizenden regels.
         pandstatus = uit["panden"].pop("_status_per_pand", {})
+        pandbouwjaar = uit["panden"].pop("_bouwjaar_per_pand", {})
         uit["panden"]["datum"] = dt.date.today().isoformat()
         print("Panden: " + json.dumps(uit["panden"], ensure_ascii=False),
               file=sys.stderr)
         uit["bag"] = fase_bag(voorraad, pcs, args.bag_minuten, panden,
-                              pandstatus)
+                              pandstatus, pandbouwjaar)
         uit["bag"]["datum"] = dt.date.today().isoformat()
         print("BAG: " + json.dumps(uit["bag"], ensure_ascii=False),
               file=sys.stderr)
