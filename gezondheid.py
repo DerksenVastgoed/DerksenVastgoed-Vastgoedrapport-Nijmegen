@@ -2844,6 +2844,38 @@ def controle_verkoopdatums():
     return (OK, bewijs, "")
 
 
+def controle_eisen():
+    """
+    Wat we van de brief eisen, en hoeveel daarvan werkelijk vastligt.
+
+    Dit staat in het rapport zodat het verschil tussen "wat we willen" en
+    "wat gecontroleerd wordt" zichtbaar is in plaats van impliciet. Een eis
+    zonder proef is geen schande; een eis waarvan we denken dat hij vastligt
+    terwijl dat niet zo is, wel.
+    """
+    try:
+        from eisen import lees
+        eisen, fouten = lees()
+    except Exception as e:
+        return (LET_OP, f"eisen.txt niet te lezen: {str(e)[:60]}",
+                "Zonder dit bestand staan de regels van de brief alleen nog "
+                "in docstrings, en die leest niemand terug.")
+    if not eisen:
+        return (LET_OP, "geen enkele eis gelezen uit eisen.txt",
+                "Het bestand bestaat maar levert niets op. Klopt de vorm nog, "
+                "met --- tussen de blokken?")
+    met = [e for e in eisen if (e.get("proef") or "-") != "-"]
+    zonder = [e for e in eisen if (e.get("proef") or "-") == "-"]
+    bewijs = (f"{len(eisen)} eisen aan de brief, {len(met)} afgedwongen door "
+              f"een proef, {len(zonder)} bewust niet")
+    if zonder:
+        bewijs += (": " + "; ".join((e.get("eis") or "")[:60] for e in zonder[:3]))
+    if fouten:
+        return (LET_OP, bewijs + f"; {len(fouten)} fouten in de vorm",
+                "; ".join(fouten[:3]))
+    return (OK, bewijs, "")
+
+
 def controle_splitsingen():
     """Panden waarvan de BAG laat zien dat ze werkelijk zijn opgedeeld."""
     d = _json("splitsingen.json") or {}
@@ -3152,6 +3184,7 @@ CONTROLES = [
     ("Aanbodreeks", controle_aanbodreeks),
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
+    ("Eisen aan de brief", controle_eisen),
     ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
     ("Doorlooptijden", controle_doorlooptijden),

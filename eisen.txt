@@ -1,0 +1,210 @@
+# Wat de brief moet doen, en vooral wat hij nooit mag doen.
+#
+# WAAROM DIT BESTAAT. De regels waaraan de brief zich houdt stonden verspreid
+# over 33.000 regels docstrings en workflowcommentaar, elk opgeschreven op de
+# dag dat het misging. Dat leest niemand terug, en op 11 oktober kostte het
+# twee keer iets: drie sleutelconventies die nergens stonden, en een
+# voorbehoud dat op twee plekken stond en uiteen was gelopen zonder dat
+# iemand het zag.
+#
+# WAAROM HET GEEN MARKDOWN IS. Een overzichtsdocument veroudert stil. Dit
+# bestand wordt gelezen door eisen.py, en elke eis noemt de proef die hem
+# handhaaft. Verwijst een eis naar een controle die niet bestaat of niet
+# draait, dan is eisen.py --proef rood. Een eis die niemand handhaaft hoort
+# dat eerlijk te zeggen in plaats van te suggereren dat hij veilig is.
+#
+# HOE JE EEN EIS TOEVOEGT. Een blok begint met een regel die alleen --- is.
+# Daarna velden, één per regel, als "veld: waarde". Commentaar met #. Een
+# waarde mag doorlopen op de volgende regel als die met twee spaties begint.
+#
+#   Verplicht:
+#     eis        wat er moet gebeuren of nooit mag gebeuren, in één zin.
+#                Schrijf het als een eis en niet als een beschrijving van de
+#                code: "de brief spreekt zichzelf niet tegen", niet "er is
+#                een controle op tegenspraak".
+#     waarom     de datum en de gebeurtenis waardoor deze eis er staat. Zonder
+#                die herkomst wordt een eis bij de eerste verbouwing
+#                weggehaald omdat niemand meer weet waar hij voor stond.
+#     proef      welke controle hem handhaaft, als "module" of
+#                "module:naam van de controle". De naam moet letterlijk in de
+#                bron van die module staan. Staat er "-", dan wordt deze eis
+#                NIET gehandhaafd, en dat is een eerlijk antwoord.
+#
+#   Mag:
+#     soort      brief, gegevens of werking. Alleen voor de groepering in het
+#                gezondheidsrapport.
+#     let op     een waarschuwing bij deze eis, bijvoorbeeld waarom hij niet
+#                verder te handhaven is dan hij nu is.
+
+---
+eis: De brief spreekt zichzelf niet tegen. Staat er een voorbehoud in een
+  bijlageblok, dan neemt de brieftekst dat over en bedenkt er geen ander bij.
+waarom: 11 oktober. In het blok stond dat wordt vergeleken op het aantal
+  objecten met een woonfunctie, dus dat een garage met een eigen adres niet
+  meetelt. In de openingsalinea stond het omgekeerde. Pa leest de opening als
+  eerste, en die verklaring praatte juist het signaal weg.
+proef: splitsing_voltooid:het blok noemt de grondslag
+soort: brief
+
+---
+eis: Een getal wordt nooit vergeleken met een getal op een andere grondslag.
+waarom: 11 oktober. De vergunning noemde 6 zelfstandige woonruimtes, de BAG
+  telde 7 adresseerbare objecten, en dat verschil van 1 werd het hoofdthema
+  van de brief aan pa. Het was zes tegen zes op de ene grondslag en zeven
+  tegen zes op de andere.
+proef: splitsing_voltooid:zes tegen zes geen verschil
+soort: brief
+
+---
+eis: Een hoofdstuk dat niets kan zeggen, zegt dat het niets kan zeggen, met
+  hoeveel panden het betreft.
+waarom: 11 oktober. Toen de vergelijking op woonfunctie overging, kon het
+  hoofdstuk over verschillen tijdelijk niets zeggen over 1.582 panden. Een
+  leeg hoofdstuk leest als "niets gevonden" terwijl het "nog niet gekeken" is.
+proef: splitsing_voltooid:zonder telling tekst noemt het
+soort: brief
+
+---
+eis: Een pand komt nooit onder "opgedeeld zonder dat wij een vergunning
+  kennen" als het besluit in ons eigen bestand staat.
+waarom: 11 oktober. Hatertseweg 338 stond daar, terwijl het besluit van 6
+  oktober vijf dagen eerder in pandgeschiedenis.json stond. Het kwam daar
+  terecht omdat het woord "woonruimtes" niet werd herkend. Dat is geen
+  afrondingsfout maar een valse beschuldiging in een brief aan pa.
+proef: splitsing_voltooid:niet onder zonder vergunning
+soort: brief
+
+---
+eis: Een pand dat al aan pa is verteld, opent de brief niet opnieuw als het
+  opvallendste nieuws van de week.
+waarom: 11 oktober. De instructie zei dat een verschil tussen BAG en
+  vergunning "het interessantste is wat er die dag in de gegevens staat". Dat
+  promoveert elk verschil van één eenheid tot opening, elke dag.
+proef: -
+let op: Dit is een schrijfinstructie aan het model en geen regel in code, dus
+  er is geen proef die het afdwingt. Wat er wel is: verteld.json houdt bij
+  wat al verteld is, en de instructie verwijst daarnaar. Of het model zich
+  eraan houdt, blijkt alleen uit de brief zelf.
+soort: brief
+
+---
+eis: Een getal uit een gebeurtenis van vóór 12 oktober heet "objecten met een
+  eigen adres" en geen "woningen", want dat is wat het toen was.
+waarom: 11 oktober. Oude gebeurtenisteksten worden met opzet niet herschreven,
+  want dat zou valse wijzigingen melden op de panden die al gevolgd worden.
+  Dan moet de lezer weten welke grondslag onder een getal zit, en de enige
+  harde grens die daarvoor bestaat is de datum waarop de code veranderde.
+proef: splitsing_voltooid:oude grondslag heet anders
+soort: brief
+
+---
+eis: Eén pand is één record. Een pand staat nooit onder twee sleutels in
+  hetzelfde bestand.
+waarom: 11 oktober. pandgeschiedenis.json had 1.777 records voor 1.721 panden
+  en kamerverhuur_objecten.json 951 voor 947. In de helft die een lezer met de
+  schone sleutel niet vindt, zaten 56 gebeurtenissen, waaronder de onttrekking
+  van 2018 op Professor Molkenboerstraat 18. Voor de kamerverhuurtoets is dat
+  het verschil tussen onttrokken en schoon.
+proef: pandsleutel:de de-vorm is weg
+soort: gegevens
+
+---
+eis: Elk record staat onder zijn canonieke sleutel, en een stap die records
+  aanmaakt maakt er geen tweede aan voor een pand dat er al staat.
+waarom: 11 oktober. uit_archief() nam de sleutel uit het bekendmakingenarchief
+  over, lidwoord en al, en keek bij het aanmaken maar naar één vorm. Dat is de
+  oorzaak van de 60 dubbele records.
+proef: pandgeschiedenis
+soort: gegevens
+
+---
+eis: Een opzoeking vindt dit pand, of niets. Nooit de buren.
+waarom: 11 oktober. De zoeklijst die ruim genoeg is om elke oude sleutelvorm
+  te vinden, is ook ruim genoeg om mis te grijpen: met de vorm zonder
+  huisletter erbij kwam "Augustijnenstraat 25B" uit op het record van 25, bij
+  139 van de 2.105 adressen die we kennen.
+proef: pandsleutel:bezette sleutel wordt niet overschreven
+soort: gegevens
+
+---
+eis: Een veld dat bij het gebouw hoort, staat bij het gebouw en verhuist niet
+  naar een adresrecord.
+waarom: 11 oktober. Het samenvoegen van dubbele records vulde lege velden aan
+  uit de andere helft, ook bag_gezien, en dat zette bij 53 panden een datum
+  van acht dagen oud terug op het adresrecord terwijl in _panden de verse
+  datum stond. pandlezer.laad() laat wat bij het adres staat winnen.
+proef: pandsleutel:_panden blijft
+soort: gegevens
+
+---
+eis: Een sleutelconventie bestaat één keer in code.
+waarom: 11 oktober. De sleutel van een pand werd op veertien plekken in elf
+  bestanden gemaakt, en vijf daarvan hadden "zelfde normalisatie als in de
+  andere scripts, anders matcht niets" in hun eigen docstring staan. Op 41 van
+  onze adressen was die afspraak niet nagekomen.
+proef: pandsleutel:alle zestien sleutelfuncties nagemeten
+soort: gegevens
+
+---
+eis: Een stap die niets oplevert, meldt dat zelf. Een lege uitkomst is nooit
+  een stille success.
+waarom: 10 oktober, twee keer. De voorraadstap leverde nul adressen op en
+  meldde toch succes, omdat er een "|| echo" achter stond. En het
+  splitsingenblok werd tien dagen lang elke dag gemaakt en door niets gelezen,
+  omdat de stap die het schreef na de stap liep die het moest opnemen.
+proef: voorraad_bag
+soort: werking
+
+---
+eis: Een proef die rood staat, geeft een exitcode die niet 0 is.
+waarom: 11 oktober. pandgeschiedenis.py eindigde op main() in plaats van
+  sys.exit(main()), dus het proces gaf exitcode 0 ook als de proef rood stond.
+  Dan is de poort in de workflow altijd groen en controleert hij niets.
+proef: eisen:elke proef eindigt op sys.exit
+soort: werking
+
+---
+eis: Een proef die niets kan vinden, valt niet om met een KeyError of een
+  IndexError maar meldt welke controle rood staat.
+waarom: 11 oktober, twee keer op één dag. Een proef die crasht verbergt de
+  andere negentien controles die er onder stonden, en dan is niet te lezen wat
+  er werkelijk aan de hand is.
+proef: -
+let op: Niet machinaal te handhaven zonder elke proef opzettelijk te breken.
+  Wat er wel is: hulpfuncties in de proeven zelf, zoals eerste() en
+  veld_van(), die None teruggeven in plaats van om te vallen.
+soort: werking
+
+---
+eis: Een controle wordt nagemeten door hem opzettelijk te breken, en de fout
+  die hij moet vangen staat in de commit erbij.
+waarom: Twee keer op 11 oktober bleef een nieuwe controle groen terwijl hij
+  precies de fout niet zag die hij moest vangen: de sleutelcontrole keek
+  alleen naar adressen die al sleutel waren, en de botsingstest raakte de tak
+  niet die hij testte. Een controle die nooit rood heeft gestaan, is geen
+  controle maar een bewering.
+proef: -
+let op: Dit is een werkafspraak en geen eigenschap van de code, dus niets kan
+  hem afdwingen. Hij staat hier omdat dit de enige fout is die alle andere
+  eisen stil kan uithollen.
+soort: werking
+
+---
+eis: Een toets zegt "niet gekeken" en "gekeken en niets gevonden" nooit met
+  hetzelfde woord.
+waarom: 11 oktober. De insluitingstoets stond op VOLDOET in het enige geval
+  dat werkelijk bindt, en daarop rekende de investeringscase dertien kamers
+  door voor een pand waar verkameren vermoedelijk niet mag. Dat is het
+  zwaarste soort fout dat deze brief kan maken: geen verkeerd getal maar een
+  verkeerd advies.
+proef: toets_artikel15
+soort: brief
+
+---
+eis: De buurtoets kijkt naar panden aan dezelfde kant van de straat, want
+  oneven en even liggen tegenover elkaar.
+waarom: 11 oktober. De toets liep langs de overkant van de straat, waardoor
+  17 adressen in de ring een goedkeuring kregen die bij een juiste toets
+  geblokkeerd was.
+proef: toets_artikel15
+soort: gegevens
