@@ -69,6 +69,8 @@ import time
 
 import requests
 
+
+import eponline as _epo
 INVENTARIS = "buurtinventaris.json"
 UIT = "voorraad.json"
 
@@ -801,50 +803,27 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
 
 
 def haal_label(rec):
-    """Het energielabel van één adres, uit EP-Online."""
-    pc = (rec.get("postcode") or "").replace(" ", "")
-    adres = rec.get("adres") or ""
-    deel = adres.split()
-    if not pc or len(deel) < 2:
-        return None, "geen postcode of huisnummer"
-    nr = "".join(c for c in deel[-1] if c.isdigit())
-    if not nr:
-        return None, "huisnummer niet te lezen"
-    params = {"postcode": pc, "huisnummer": nr}
-    rest = deel[-1][len(nr):]
-    if rest:
-        if "-" in rest:
-            letter, toev = rest.split("-", 1)
-            if letter:
-                params["huisletter"] = letter
-            if toev:
-                params["huisnummertoevoeging"] = toev
-        else:
-            params["huisletter"] = rest
-    try:
-        r = requests.get(f"{EP_BASE}/Adres", headers=EP_HEADERS,
-                         params=params, timeout=20)
-    except Exception as e:
-        return None, f"netwerk: {e}"
-    if r.status_code in (401, 403):
-        return None, f"{r.status_code} sleutel geweigerd"
-    if r.status_code == 429:
-        return None, "429 te veel vragen"
-    if r.status_code == 404:
-        return {}, ""          # geen label bekend: dat is een antwoord
-    if r.status_code != 200:
-        return None, f"HTTP {r.status_code}"
-    try:
-        data = r.json()
-    except Exception as e:
-        return None, f"antwoord onleesbaar: {e}"
-    rijen = data if isinstance(data, list) else [data]
-    for rij in rijen:
-        if isinstance(rij, dict) and rij.get("labelLetter"):
-            return {"label": rij.get("labelLetter"),
-                    "datum": (rij.get("registratiedatum")
-                              or rij.get("geldigTot") or "")[:10]}, ""
-    return {}, ""
+    """
+    Het energielabel van één adres, uit EP-Online. Geeft (uit, fout, klaar).
+
+    DEZE FUNCTIE WAS STUK, EN HET ZAG ERUIT ALS EEN FEIT. Hij vroeg alleen op
+    postcode en las alleen het veld "labelLetter". Op 10 oktober kwamen zo 803
+    van 818 adressen terug als "geen label bekend" en 15 als HTTP 400: nul
+    labels, terwijl de pandgeschiedenis er met de werkende aanroep 1.384 kent.
+    Die 803 waren geen antwoord maar een veldnaam die niet bestond. De API gaf
+    HTTP 200, de lus vond geen "labelLetter", en dat werd opgeschreven als een
+    eigenschap van de woningvoorraad.
+
+    Twee dingen die er nu bij komen. De route op verblijfsobject-id, die exact
+    is en die de twee andere aanroepers altijd al gebruikten; elk record in de
+    voorraad heeft dat id al, want het is de sleutel van het bestand. En het
+    derde element klaar: of opnieuw vragen zin heeft. Zonder dat bleven de 15
+    adressen met HTTP 400 elke ronde vooraan in de wachtrij staan, want
+    label_gezien werd bij een fout niet gezet.
+    """
+    nr, letter, toev = _epo.uit_adres(rec.get("adres") or "")
+    return _epo.energielabel(rec.get("vbo") or None,
+                             rec.get("postcode") or "", nr, letter, toev)
 
 
 def fase_labels(voorraad, minuten):
@@ -877,33 +856,51 @@ def fase_labels(voorraad, minuten):
            + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", "")))
 
     einde = time.time() + minuten * 60
-    gevraagd = met_label = zonder = fouten = 0
+    gevraagd = met_label = zonder = fouten = prive = 0
     laatste_fout = ""
     for sleutel in nog:
         if time.time() > einde:
             break
         rec = adressen[sleutel]
-        uit, fout = haal_label(rec)
+        uit, fout, klaar = haal_label(rec)
         time.sleep(TEMPO)
         gevraagd += 1
         if uit is None:
             fouten += 1
             laatste_fout = f"{rec.get('adres')}: {fout}"
-            if "sleutel" in fout or "429" in fout:
+            # EEN DEFINITIEVE WEIGERING IS EEN ANTWOORD OVER DIT ADRES.
+            # HTTP 400 en 404 op alle routes betekenen dat deze vraag nooit
+            # gaat lukken. Zonder dit op te schrijven blijft het adres
+            # vooraan in de wachtrij staan en kost het elke ronde opnieuw een
+            # aanroep: op 10 oktober waren dat 15 van de 818. Een
+            # netwerkstoring of een 429 is iets van ons en niet van het
+            # adres, en die wordt dus wel opnieuw geprobeerd.
+            if klaar:
+                rec["label_gezien"] = vandaag
+                rec["label_fout"] = fout
+            elif "429" in fout or "401" in fout or "403" in fout:
                 break
             continue
         rec["label_gezien"] = vandaag
+        rec.pop("label_fout", None)
         if uit.get("label"):
             rec["label"] = uit["label"]
-            rec["label_datum"] = uit.get("datum") or ""
+            rec["label_datum"] = uit.get("registratiedatum") or ""
             met_label += 1
+        elif uit.get("prive"):
+            # Er IS een label, het is alleen niet openbaar. Dat als "niet
+            # bekend" opschrijven betekent dat we het volgend jaar opnieuw
+            # vragen en hetzelfde krijgen.
+            rec["label_prive"] = True
+            prive += 1
         else:
             zonder += 1
 
     resterend = sum(1 for r in adressen.values()
                     if not r.get("label") and not r.get("label_gezien"))
     return {"gevraagd": gevraagd, "label_gevonden": met_label,
-            "geen_label_bekend": zonder, "nog_nooit_gevraagd": resterend,
+            "geen_label_bekend": zonder, "label_prive": prive,
+            "nog_nooit_gevraagd": resterend,
             "opnieuw_aan_de_beurt": len(verlopen),
             "fouten": fouten, "laatste_fout": laatste_fout}
 
@@ -1143,6 +1140,115 @@ def proef_tegels():
     if "delingen" not in (hard["fout"] or ""):
         afw.append(f"de reden noemt het delen niet: {hard['fout']!r}")
 
+    return afw
+
+
+def proef_labels():
+    """
+    De wachtrij van de labelfase nameten, zonder één aanroep.
+
+    WAAROM JUIST DEZE. De labelfase vroeg op 10 oktober 818 adressen op en
+    vond nul labels, en dat zag eruit als een eigenschap van de
+    woningvoorraad in plaats van als een kapotte aanroep. Die aanroep staat
+    nu in eponline.py met zijn eigen proef. Wat hier wordt gemeten is het
+    stuk dat daar niet zit: welk adres opnieuw aan de beurt komt.
+
+    Dat is de helft die geld kost. Een fout die niet wordt opgeschreven laat
+    het adres vooraan in de wachtrij staan, en dan kost het elke ronde
+    opnieuw een aanroep. Vijftien van de 818 deden dat, elke run.
+    """
+    # EP_API_KEY wordt bij import gelezen en niet bij aanroep, dus de
+    # omgevingsvariabele zetten helpt hier niet: de modulewaarde moet om.
+    # Dat die constante bij import wordt vastgelegd is zelf een val, want
+    # een sleutel die later in de omgeving komt wordt niet meer gezien. Hier
+    # alleen omgezet voor de duur van de proef.
+    global haal_label, EP_API_KEY
+    afw = []
+    echte_haler, echte_sleutel = haal_label, EP_API_KEY
+    EP_API_KEY = "proef"
+    antwoorden = {}
+
+    def nep(rec):
+        return antwoorden.get(rec.get("adres"), ({}, "", True))
+
+    def voorraadje():
+        return {"adressen": {
+            "v1": {"adres": "Gevonden 1", "postcode": "6500AA", "vbo": "v1"},
+            "v2": {"adres": "Prive 2", "postcode": "6500AA", "vbo": "v2"},
+            "v3": {"adres": "Definitief 3", "postcode": "6500AA", "vbo": "v3"},
+            "v4": {"adres": "Tijdelijk 4", "postcode": "6500AA", "vbo": "v4"},
+        }}
+
+    try:
+        haal_label = nep
+        antwoorden = {
+            "Gevonden 1": ({"label": "C", "prive": False,
+                            "registratiedatum": "2025-03-04"}, "", True),
+            "Prive 2": ({"label": None, "prive": True}, "", True),
+            "Definitief 3": (None, "HTTP 400", True),
+            "Tijdelijk 4": (None, "netwerk: verbinding weg", False),
+        }
+        v = voorraadje()
+        uit = fase_labels(v, 5)
+        ad = v["adressen"]
+        if uit.get("gevraagd") != 4:
+            afw.append(f"labelfase vroeg {uit.get('gevraagd')} adressen op in "
+                       f"plaats van 4")
+        if ad["v1"].get("label") != "C":
+            afw.append(f"gevonden label niet bewaard: {ad['v1'].get('label')!r}")
+        if ad["v1"].get("label_datum") != "2025-03-04":
+            afw.append(f"registratiedatum niet bewaard: "
+                       f"{ad['v1'].get('label_datum')!r}")
+        # Een privelabel is een antwoord: er IS een label, het is niet
+        # openbaar. Als "niet bekend" opschrijven betekent volgend jaar
+        # dezelfde vraag en hetzelfde antwoord.
+        if not ad["v2"].get("label_prive"):
+            afw.append("een privelabel wordt niet als prive opgeschreven")
+        if uit.get("label_prive") != 1:
+            afw.append(f"de stand telt {uit.get('label_prive')} prive in "
+                       f"plaats van 1")
+        if uit.get("geen_label_bekend") != 0:
+            afw.append(f"een privelabel telt mee als 'geen label bekend' "
+                       f"({uit.get('geen_label_bekend')})")
+        # Een definitieve weigering is een antwoord over dit adres.
+        if not ad["v3"].get("label_gezien"):
+            afw.append("een definitieve fout wordt niet opgeschreven, dus dit "
+                       "adres komt elke ronde opnieuw vooraan")
+        if ad["v3"].get("label_fout") != "HTTP 400":
+            afw.append("de reden van een definitieve fout wordt niet bewaard")
+        # Een tijdelijke fout is van ons en niet van het adres.
+        if ad["v4"].get("label_gezien"):
+            afw.append("een tijdelijke fout wordt opgeschreven als gevraagd, "
+                       "en dan wordt dit adres een jaar lang niet opnieuw "
+                       "geprobeerd")
+
+        # De tweede ronde: alleen de tijdelijke fout hoort terug te komen.
+        tweede = fase_labels(v, 5)
+        if tweede.get("gevraagd") != 1:
+            afw.append(f"tweede ronde vraagt {tweede.get('gevraagd')} adressen "
+                       f"in plaats van alleen het adres met de tijdelijke fout")
+
+        # Een geweigerde sleutel of een 429 hoort de ronde af te breken, want
+        # doorgaan kost alleen quotum.
+        for fout in ("HTTP 429", "HTTP 401"):
+            antwoorden = {a: (None, fout, False)
+                          for a in ("Gevonden 1", "Prive 2", "Definitief 3",
+                                    "Tijdelijk 4")}
+            v2 = voorraadje()
+            u2 = fase_labels(v2, 5)
+            if u2.get("gevraagd") != 1:
+                afw.append(f"bij {fout} vroeg de fase {u2.get('gevraagd')} "
+                           f"adressen op; hij hoort na de eerste te stoppen")
+
+        # Zonder sleutel gebeurt er niets, en dat hoort het te zeggen.
+        EP_API_KEY = ""
+        u3 = fase_labels(voorraadje(), 5)
+        if not u3.get("overgeslagen"):
+            afw.append("zonder EP_API_KEY meldt de fase niet dat hij is "
+                       "overgeslagen")
+    finally:
+        haal_label = echte_haler
+        EP_API_KEY = echte_sleutel
     return afw
 
 
@@ -1391,6 +1497,7 @@ def proef():
                            "met het hele bestand")
 
     afwijkingen.extend(proef_tegels())
+    afwijkingen.extend(proef_labels())
 
     for a in afwijkingen:
         print(f"AFWIJKING: {a}", file=sys.stderr)
@@ -1403,8 +1510,11 @@ def proef():
           f"pandsleutel, beide buurten bij een dubbele postcode, verwijderen "
           f"na een afgemaakte ronde, niets verwijderen na een afgebroken "
           f"ronde, wisselen tussen woning en niet-woning, en twee gelijke "
-          f"rondes die hetzelfde bestand opleveren, en het raster met "
-          f"het delen van een tegel die PDOK niet aankan.", file=sys.stderr)
+          f"rondes die hetzelfde bestand opleveren, het raster met "
+          f"het delen van een tegel die PDOK niet aankan, en de wachtrij van "
+          f"de labelfase: wat opnieuw aan de beurt komt na een gevonden "
+          f"label, een privelabel, een definitieve weigering en een "
+          f"tijdelijke storing.", file=sys.stderr)
     return 1 if afwijkingen else 0
 
 

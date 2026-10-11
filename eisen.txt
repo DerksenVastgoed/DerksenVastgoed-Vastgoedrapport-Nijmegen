@@ -208,3 +208,25 @@ waarom: 11 oktober. De toets liep langs de overkant van de straat, waardoor
   geblokkeerd was.
 proef: toets_artikel15
 soort: gegevens
+
+---
+eis: Een lege uitkomst van een externe bron wordt nooit opgeschreven als een
+  eigenschap van de woningvoorraad.
+waarom: 10 oktober. De labelfase vroeg 818 adressen op en vond nul labels:
+  803 kwamen terug als "geen label bekend" en 15 als HTTP 400. Die 803 waren
+  geen antwoord maar een veldnaam die niet bestond. De API gaf HTTP 200, de
+  lus zocht alleen "labelLetter" van de zes mogelijke namen, en dat werd
+  opgeschreven alsof die woningen geen label hebben. De pandgeschiedenis kent
+  er met de werkende aanroep 1.384.
+proef: eponline:alle zes veldnamen gelezen
+soort: gegevens
+
+---
+eis: Een fout van ons wordt opnieuw geprobeerd, een weigering over een adres
+  niet.
+waarom: 10 oktober. De labelfase schreef bij een fout niet op dat het adres
+  gevraagd was, dus bleven de 15 adressen met HTTP 400 elke ronde vooraan in
+  de wachtrij staan. Een netwerkstoring of een 429 is van ons en hoort wel
+  opnieuw; een 400 of 404 op alle routes gaat nooit lukken.
+proef: eponline:400 is definitief
+soort: werking

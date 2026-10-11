@@ -28,6 +28,8 @@ import requests
 
 
 import pandsleutel as _psl
+
+import eponline as _epo
 # --- CONFIG ---
 INPUT_PAD = "verkopen.txt"
 CACHE_PAD = "marktprijzen_bag_cache.json"
@@ -312,60 +314,20 @@ def _ep_veld(rec, namen):
 
 def ep_energielabel(vbo_id, postcode, huisnr, letter, toev):
     """
-    Haalt het energielabel op uit EP-Online.
-    Bij voorkeur op VBO-id (exact), anders op postcode plus huisnummer.
-    Geeft None terug als er geen key is of niets gevonden wordt.
+    Energielabel uit EP-Online, bij voorkeur op verblijfsobject-id.
+
+    Rekent niet meer zelf. Deze aanroep stond drie keer in de repo en de derde
+    kopie was stuk: die vroeg alleen op postcode en las alleen het veld
+    "labelLetter", waardoor op 10 oktober 803 van 818 adressen terugkwamen als
+    "geen label bekend" terwijl er niets aan de hand was. Zie eponline.py.
+
+    Geeft een dict met het label, of None als er niets bekend is. Een leeg
+    antwoord van eponline betekent "dit adres heeft geen label"; dat wordt
+    hier None, want dat is wat de aanroepers van deze functie verwachten.
     """
-    if not EP_API_KEY:
-        return None
-
-    pogingen = []
-    if vbo_id:
-        pogingen.append((f"{EP_BASE}/AdresseerbaarObject/{vbo_id}", None))
-    if postcode and huisnr:
-        params = {"postcode": postcode.replace(" ", ""), "huisnummer": huisnr}
-        if letter:
-            params["huisletter"] = letter
-        if toev:
-            params["huisnummertoevoeging"] = toev
-        pogingen.append((f"{EP_BASE}/Adres", params))
-
-    for url, params in pogingen:
-        try:
-            r = requests.get(url, headers=EP_HEADERS, params=params, timeout=20)
-            if r.status_code in (401, 403):
-                print("  EP-Online: key geweigerd of nog niet actief", file=sys.stderr)
-                return None
-            if r.status_code == 404:
-                continue
-            r.raise_for_status()
-            rec = _ep_eerste(r.json())
-        except Exception as e:
-            print(f"  EP-Online-fout: {e}", file=sys.stderr)
-            continue
-        if not isinstance(rec, dict) or not rec:
-            continue
-
-        prive = _ep_veld(rec, ["Pand_energielabel_is_prive", "isPrive", "prive"])
-        if str(prive) in ("1", "True", "true"):
-            return {"label": None, "prive": True}
-
-        label = _ep_veld(rec, ["Pand_energieklasse", "energieklasse", "labelLetter",
-                               "Pand_labelletter", "energielabel", "labelletter"])
-        if not label:
-            continue
-        return {
-            "label": str(label).strip(),
-            "registratiedatum": str(_ep_veld(rec, ["Pand_registratiedatum",
-                                                   "registratiedatum"]) or "")[:10],
-            "geldig_tot": str(_ep_veld(rec, ["Meting_geldig_tot", "geldigTot",
-                                             "metingGeldigTot"]) or "")[:10],
-            "gebouwklasse": _ep_veld(rec, ["Pand_gebouwklasse", "gebouwklasse"]) or "",
-            "prive": False,
-        }
-    return None
-
-
+    uit, _fout, _def = _epo.energielabel(vbo_id, postcode, huisnr,
+                                         letter, toev)
+    return uit or None
 
 
 def bag_dump(adres, plaats="Nijmegen"):

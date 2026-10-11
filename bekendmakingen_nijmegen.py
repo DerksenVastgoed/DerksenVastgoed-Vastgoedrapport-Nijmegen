@@ -30,6 +30,8 @@ import beleidsrelevantie
 
 
 import pandsleutel as _psl
+
+import eponline as _epo
 # --------------------------------------------------------------------------
 # CONFIG
 # --------------------------------------------------------------------------
@@ -320,42 +322,22 @@ def _ep_veld(rec, namen):
     return None
 
 
-def ep_energielabel(vbo_id, postcode, huisnr, letter):
-    """Energielabel uit EP-Online, bij voorkeur op VBO-id."""
-    if not EP_API_KEY:
-        return None
-    headers = {"Authorization": EP_API_KEY, "Accept": "application/json"}
-    pogingen = []
-    if vbo_id:
-        pogingen.append((f"{EP_BASE}/AdresseerbaarObject/{vbo_id}", None))
-    if postcode and huisnr:
-        params = {"postcode": postcode.replace(" ", ""), "huisnummer": huisnr}
-        if letter:
-            params["huisletter"] = letter
-        pogingen.append((f"{EP_BASE}/Adres", params))
+def ep_energielabel(vbo_id, postcode, huisnr, letter, toev=""):
+    """
+    Energielabel uit EP-Online, bij voorkeur op verblijfsobject-id.
 
-    for url, params in pogingen:
-        try:
-            r = requests.get(url, headers=headers, params=params, timeout=20)
-            if r.status_code in (401, 403, 404):
-                continue
-            r.raise_for_status()
-            data = r.json()
-        except Exception:
-            continue
-        rec = data[0] if isinstance(data, list) and data else data
-        if not isinstance(rec, dict) or not rec:
-            continue
-        prive = _ep_veld(rec, ["Pand_energielabel_is_prive", "isPrive"])
-        if str(prive) in ("1", "True", "true"):
-            return {"label": None, "prive": True}
-        label = _ep_veld(rec, ["Pand_energieklasse", "energieklasse",
-                               "labelLetter", "energielabel"])
-        if not label:
-            continue
-        datum = str(_ep_veld(rec, ["Pand_registratiedatum", "registratiedatum"]) or "")
-        return {"label": str(label).strip(), "registratiedatum": datum[:10], "prive": False}
-    return None
+    Rekent niet meer zelf. Deze aanroep stond drie keer in de repo en de derde
+    kopie was stuk: die vroeg alleen op postcode en las alleen het veld
+    "labelLetter", waardoor op 10 oktober 803 van 818 adressen terugkwamen als
+    "geen label bekend" terwijl er niets aan de hand was. Zie eponline.py.
+
+    Geeft een dict met het label, of None als er niets bekend is. Een leeg
+    antwoord van eponline betekent "dit adres heeft geen label"; dat wordt
+    hier None, want dat is wat de aanroepers van deze functie verwachten.
+    """
+    uit, _fout, _def = _epo.energielabel(vbo_id, postcode, huisnr,
+                                         letter, toev)
+    return uit or None
 
 
 def _adres_uit_titel(titel: str):
