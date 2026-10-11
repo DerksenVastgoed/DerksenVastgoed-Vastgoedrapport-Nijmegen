@@ -121,6 +121,24 @@ jobs:
       - name: Dependencies installeren
         run: pip install -r requirements.txt
 
+      - name: De eisen aan de brief nameten
+        # WAT DIT CONTROLEERT. eisen.txt zegt wat de brief moet doen en vooral
+        # wat hij nooit mag doen, en per eis welke proef dat afdwingt. Deze
+        # stap toetst dat die verwijzingen kloppen: bestaat de module, draagt
+        # hij de genoemde controle nog, en geeft elke module met een proef een
+        # exitcode die niet 0 is als die proef rood staat.
+        #
+        # Die laatste is de reden dat dit vooraan staat. Op 11 oktober
+        # eindigde pandgeschiedenis.py op main() in plaats van
+        # sys.exit(main()), dus gaf het proces altijd 0 terug en was de poort
+        # een formaliteit. Een poort die niet kan falen is erger dan geen
+        # poort, want hij geeft dekking.
+        #
+        # --snel: de verwezen proeven zelf draaien verderop als eigen poort,
+        # naast de stap die ze gebruikt. Daar horen ze, want een fout hoort
+        # rood te zijn op de plek waar hij ontstaat.
+        run: python eisen.py --proef --snel
+
       - name: De pandsleutels nameten voordat er iets wordt gelezen
         # EERST DE SLEUTELS. Tien bestanden bevatten feiten per pand, en die
         # sleutel werd op veertien plekken opnieuw gemaakt. Op de adressen die
