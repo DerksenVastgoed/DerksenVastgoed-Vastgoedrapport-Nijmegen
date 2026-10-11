@@ -2323,7 +2323,18 @@ def controle_sleutels_in_stappen():
     try:
         import yaml
     except Exception:
-        return (OK, "yaml niet beschikbaar, stappen niet te toetsen", "")
+        # GEEN OK MEER. Dit meldde OK terwijl het niets toetste, en in de
+        # briefworkflow van 11 oktober stond er precies dat: "yaml niet
+        # beschikbaar, stappen niet te toetsen", met een groen vinkje ervoor.
+        # Een controle die niet kan falen is geen controle, en dit is de
+        # controle die moet opmerken dat een stap zijn API-sleutel niet
+        # meekrijgt. Op 10 oktober liepen daardoor twee voorraadfases 35
+        # minuten zonder sleutel en meldden ze succes.
+        return (LET_OP, "yaml niet beschikbaar, dus de stappen zijn niet "
+                "getoetst",
+                "Zet pyyaml in requirements.txt. Zolang dit er staat, is de "
+                "controle op ontbrekende API-sleutels in de workflowstappen "
+                "niet gelopen, en die melding mag niet op groen staan.")
     specs, onleesbaar = {}, []
     for naam in sorted(os.listdir(map_pad)):
         if not naam.endswith((".yml", ".yaml")):
@@ -2359,11 +2370,28 @@ def controle_sleutels_in_stappen():
         for job in ((spec or {}).get("jobs") or {}).values():
             for stap in job.get("steps") or []:
                 script = stap.get("run") or ""
+
+                # EEN OFFLINE PROEF HEEFT GEEN SLEUTEL NODIG. Deze controle
+                # kijkt of een stap die een module aanroept ook de sleutels
+                # meegeeft die de module uit de omgeving leest. Dat is te
+                # grof voor een stap die de module met --proef of --zelftest
+                # aanroept: zo'n aanroep doet per definitie geen enkele
+                # netwerkvraag en gebruikt de sleutel dus niet.
+                #
+                # Zonder deze uitzondering meldde de controle op 11 oktober
+                # FOUT op de proefstap in voorraad.yml, die juist goed staat.
+                # Een controle die correct gedrag afstraft is erger dan een
+                # gemiste fout: hij leert de lezer het rapport te negeren. En
+                # de sleutel er dan toch maar bij zetten zou een
+                # afhankelijkheid suggereren die er niet is.
                 if not script:
                     continue
                 stappen += 1
                 gegeven = set(stap.get("env") or {})
                 for module, sleutels in nodig_per_module.items():
+                    if re.search(r"\bpython3?\s+" + re.escape(module)
+                                 + r"\s+--(?:proef|zelftest)\b", script):
+                        continue
                     if not re.search(r"\bpython3?\s+" + re.escape(module),
                                      script):
                         continue
@@ -2616,18 +2644,38 @@ def controle_voorraad():
                  "Bij een geweigerde sleutel of een rem stopt de fase meteen "
                  "en gaat hij de volgende run verder.")
 
-    # 4. IS DE RONDE VAN VANDAAG? De bagstap heeft continue-on-error en wordt
-    # bij bag_minuten=0 overgeslagen. Gebeurt dat, dan houdt de stand de
-    # cijfers van de laatste keer dat hij wél liep. Zonder deze regel werd het
-    # datumstempel geschreven en door niemand gelezen, en las iedereen die
-    # oude cijfers als die van vandaag.
+    # 4. IS DE RONDE VERS GENOEG? De voorraadstap heeft continue-on-error en
+    # wordt bij bag_minuten=0 overgeslagen. Gebeurt dat, dan houdt de stand de
+    # cijfers van de laatste keer dat hij wél liep, en zonder deze regel werd
+    # het datumstempel geschreven en door niemand gelezen.
+    #
+    # NIET "VAN VANDAAG" MAAR "NIET TE OUD". Eerst stond hier dat de ronde van
+    # vandaag moest zijn. Dat ging elk weekend af, want de voorraadworkflow
+    # draait op werkdagen (cron 40 4 * * 1-5), en het advies erbij zei dan "de
+    # stap is overgeslagen of mislukt" terwijl er niets mis was. Zo'n melding
+    # is erger dan een gemiste fout: hij leert de lezer het rapport te
+    # negeren. In de zondagsbrief van 11 oktober stond hij twee keer.
+    #
+    # Hoe oud mag het dan? De nieuwste mogelijke ronde is die van de laatste
+    # werkdag. Op zondag is dat vrijdag, twee dagen terug. Op maandag voor
+    # 04:40 UTC is dat ook vrijdag, drie dagen terug. Drie dagen is dus de
+    # ruimte die het rooster zelf nodig heeft; alles daarboven betekent dat er
+    # werkelijk een ronde is weggevallen.
     for naam, fase in (("objectronde", bag), ("pandronde", panden)):
-        if fase and fase.get("datum") and fase["datum"] != vandaag:
-            meld(LET_OP, f"de {naam} is van {fase['datum']} en niet van "
-                 f"vandaag",
-                 "De stap is overgeslagen of mislukt. De cijfers hieronder "
-                 "zijn dus die van de laatste geslaagde ronde, en de voorraad "
-                 "is zo oud als die datum.")
+        stempel = (fase or {}).get("datum")
+        if not stempel:
+            continue
+        try:
+            oud_dagen = (dt.date.today()
+                         - dt.date.fromisoformat(stempel)).days
+        except Exception:
+            continue
+        if oud_dagen > 3:
+            meld(LET_OP, f"de {naam} is van {stempel}, {oud_dagen} dagen oud",
+                 "De voorraadworkflow draait op werkdagen om 04:40 UTC, dus "
+                 "meer dan drie dagen oud betekent dat er een ronde is "
+                 "weggevallen. Kijk in de rungeschiedenis van voorraad.yml en "
+                 "in voorraad_stand.json onder bag.laatste_fout.")
 
     # 5. LEGE NIJMEEGSE POSTCODES: de controle op de doos.
     nijmeegs = bag.get("postcodes_nijmegen") or 0

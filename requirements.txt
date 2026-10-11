@@ -1,2 +1,7 @@
 requests
 markdown
+# Voor controle_sleutels_in_stappen() in gezondheid.py, die de env van elke
+# workflowstap vergelijkt met de sleutels die de modules opvragen. Zonder deze
+# regel viel die controle terug op "yaml niet beschikbaar" en meldde OK zonder
+# iets te toetsen. Dat is precies de fout die hij moet opsporen.
+pyyaml
