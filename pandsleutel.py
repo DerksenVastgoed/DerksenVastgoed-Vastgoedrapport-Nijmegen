@@ -399,7 +399,25 @@ def samenvoeg(bestand, op_huisnummer=False):
                 if not isinstance(ander, dict):
                     continue
                 for veld, waarde in ander.items():
-                    if veld == "gebeurtenissen":
+                    if veld == "gebeurtenissen" or veld in _gedeelde_velden():
+                        # PANDVELDEN VERHUIZEN NIET TUSSEN TWEE ADRESRECORDS.
+                        # bag_eenheden, bag_woningen, labels en bag_gezien
+                        # horen bij het gebouw en staan daarom in _panden,
+                        # onder het pand-id. Een adresrecord dat ze toch bij
+                        # zich heeft, is een record zonder pand-id waarvan
+                        # pandlezer.compact() ze niet kon delen.
+                        #
+                        # Het gat vullen uit de andere helft is hier dus fout.
+                        # Op 11 oktober zette deze lus bij 53 samengevoegde
+                        # panden een bag_gezien van 8 dagen oud terug op het
+                        # adresrecord, terwijl in _panden de verse datum
+                        # stond. pandlezer.laad() laat wat bij het adres
+                        # staat winnen, dus elke lezer had tot de volgende
+                        # compacte schrijfronde de oude waarde gezien. Bij
+                        # bag_gezien kost dat niets, want compact() neemt het
+                        # maximum; bij bag_eenheden zou het een oude
+                        # woningtelling zijn, en dat is precies het soort
+                        # fout dat niets meldt.
                         continue
                     if waarde and not samen.get(veld):
                         samen[veld] = waarde
@@ -439,6 +457,21 @@ def samenvoeg(bestand, op_huisnummer=False):
         verslag.append((kan, sorted(s for s in sleutels if s != basis_sl),
                         erbij, "samengevoegd"))
     return (uit, sorted(verslag))
+
+
+def _gedeelde_velden():
+    """
+    De velden die bij het gebouw horen, uit pandlezer en niet uit een kopie.
+
+    Valt die import weg, dan geeft dit de velden die pandlezer vandaag deelt.
+    Een lege rij teruggeven zou erger zijn dan een verouderde kopie: dan
+    verhuist samenvoeg() stil weer pandvelden tussen adresrecords.
+    """
+    try:
+        from pandlezer import GEDEELDE_VELDEN
+        return GEDEELDE_VELDEN
+    except Exception:
+        return ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
 
 
 def json_sleutelbaar(x):
@@ -601,9 +634,23 @@ def proef():
     check("op datum gesorteerd", [g.get("datum") for g in geb],
           ["2026-10-01", "2026-10-02", "2026-10-03"])
     samen = nieuw.get("bergendalseweg287") or {}
-    check("leeg veld aangevuld uit de andere helft",
-          samen.get("labels"), {"Berg en Dalseweg 287": "C"})
-    check("gevuld veld blijft van de basis", samen.get("pand_id"), "P9")
+    # PANDVELDEN NIET AANVULLEN UIT DE ANDERE HELFT. labels hoort bij het
+    # gebouw en staat in _panden; op het adresrecord zetten laat
+    # pandlezer.laad() die waarde winnen van de gedeelde, en dan leest
+    # iedereen een oude telling tot de volgende compacte schrijfronde. Op 11
+    # oktober deed deze lus dat bij 53 panden met bag_gezien.
+    check("pandveld niet overgenomen", samen.get("labels"), None)
+    check("gewoon veld blijft van de basis", samen.get("pand_id"), "P9")
+    # Een pand-id dat de basis mist, mag wel uit de andere helft komen: dat
+    # is geen gedeeld veld maar de verwijzing ernaar.
+    zonder_id = {"a": {"adres": "Berg en Dalseweg 287", "pand_id": None,
+                       "gebeurtenissen": []},
+                 "debergendalseweg287": {"adres": "de Berg en Dalseweg 287",
+                                         "pand_id": "P9",
+                                         "gebeurtenissen": []}}
+    nieuw5, _v5 = samenvoeg(zonder_id)
+    check("pand-id wel aangevuld",
+          veld_van(nieuw5, "bergendalseweg287", "pand_id"), "P9")
     # Eén erbij en niet twee: de andere helft had twee gebeurtenissen, maar
     # "een" stond al in de basis. Het verslag telt wat er werkelijk bijkwam,
     # niet wat er in de andere helft stond.

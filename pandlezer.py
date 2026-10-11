@@ -21,6 +21,13 @@ import json
 
 GEDEELD = "_panden"
 
+# De velden die bij het GEBOUW horen en niet bij het adres. Ze staan hier als
+# constante en niet als lokale rij in compact(), want pandsleutel.samenvoeg()
+# moet dezelfde rij kennen: die mag deze velden juist niet tussen twee
+# adresrecords verplaatsen. Twee kopieen van deze rij is precies het soort
+# duplicatie dat deze module bestaat om te voorkomen.
+GEDEELDE_VELDEN = ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
+
 
 def laad(pad="pandgeschiedenis.json"):
     """
@@ -72,7 +79,7 @@ def compact(geschiedenis):
     delen.
     """
     gedeeld, uit = {}, {}
-    velden = ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
+    velden = GEDEELDE_VELDEN
     for sleutel, pand in geschiedenis.items():
         if sleutel == GEDEELD or not isinstance(pand, dict):
             continue
