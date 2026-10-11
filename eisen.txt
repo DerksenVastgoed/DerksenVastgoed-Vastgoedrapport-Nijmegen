@@ -265,3 +265,17 @@ let op: Niet af te dwingen; een proef kan niet weten welk veld een bron
   meegeeft. Wat er wel is: de pandfase noteert de ontvangen veldnamen in de
   stand, dus een weggegooid veld is daarna te zien in plaats van te raden.
 soort: werking
+
+---
+eis: Een verblijfsobject kan in meer dan een pand liggen, en dan houden we ze
+  beide.
+waarom: 11 oktober. De omzetting van PDOK's pandsleutel nam de eerste sleutel
+  die oploste en gooide de rest weg met een break. De Waarderingskamer zegt
+  het zo: "In de BAG ligt bij elk verblijfsobject vast in welk pand (of
+  panden) het verblijfsobject is gelegen." Welk pand je te pakken had, hing
+  dus af van de volgorde in het antwoord, en dat raakt alles wat op pand
+  joint: de pandgeschiedenis, de 3D BAG, de bouwblokcontrole bij
+  kamerverhuur, en de pandstatus die nieuwbouw van transformatie scheidt.
+  Hoe vaak het voorkomt konden we niet eens meten, want we bewaarden er een.
+proef: voorraad_bag
+soort: gegevens
