@@ -655,7 +655,8 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
            "overig": 0, "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
            "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
            "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0,
-           "in_de_pijplijn": 0, "opgeleverd": 0, "terug_in_de_pijplijn": 0}
+           "in_de_pijplijn": 0, "opgeleverd": 0, "terug_in_de_pijplijn": 0,
+           "meerdere_panden": 0}
     per_postcode = {}
     statussen = {}
     gezien_woning, gezien_anders = set(), set()
@@ -723,11 +724,34 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             # PDOK's pandsleutel omzetten naar de BAG-identificatie. Lukt dat
             # niet, dan blijft pand leeg: liever geen sleutel dan een sleutel
             # die op een pandidentificatie lijkt en nergens op aansluit.
-            pand = ""
+            #
+            # EEN VERBLIJFSOBJECT KAN IN MEER DAN EEN PAND LIGGEN. De
+            # Waarderingskamer zegt het zo: "In de BAG ligt bij elk
+            # verblijfsobject vast in welk pand (of panden) het
+            # verblijfsobject is gelegen." Een woning over twee panden heen is
+            # dus normaal, en de relatie is veel-op-veel.
+            #
+            # Hier stond een break op de eerste sleutel die oploste, en de
+            # rest ging weg. Dat is dezelfde fout als met het gebruiksdoel en
+            # met de zes veldnamen van EP-Online: de bron geeft een lijst en
+            # wij houden er een over. Het raakt alles wat op pand joint: de
+            # pandgeschiedenis, de 3D BAG, de bouwblokcontrole bij
+            # kamerverhuur, en sinds vandaag de pandstatus die nieuwbouw van
+            # transformatie scheidt. Welk pand je dan te pakken had, hing af
+            # van de volgorde in het antwoord.
+            #
+            # Nu gaan ze alle mee. Het veld pand blijft de eerste, zodat elke
+            # bestaande lezer blijft werken; wie het preciezer wil, leest
+            # panden. En hoe vaak dit voorkomt staat in de stand, want tot nu
+            # toe konden we dat niet eens meten.
+            alle_panden = []
             for sleutel in a.get("pandIdentificaties") or []:
-                pand = panden.get(sleutel) or ""
-                if pand:
-                    break
+                bag_pand = panden.get(sleutel) or ""
+                if bag_pand and bag_pand not in alle_panden:
+                    alle_panden.append(bag_pand)
+            pand = alle_panden[0] if alle_panden else ""
+            if len(alle_panden) > 1:
+                tel["meerdere_panden"] += 1
             if pand:
                 tel["met_pand"] += 1
             elif a.get("pandIdentificaties"):
@@ -752,6 +776,11 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 "vbo": vbo,
                 "status": status,
             }
+            # Alleen opschrijven als er werkelijk meer dan een is: anders
+            # staat er bij 22.000 records een lijst van een, en dat is een
+            # megabyte aan niets.
+            if len(alle_panden) > 1:
+                rec["panden"] = alle_panden
             # DE STATUS VAN HET PAND, ALS DE PANDFASE HEM MEEGAF. Dit is het
             # verschil tussen nieuwbouw en transformatie: een object met
             # status "gevormd" in een pand dat vergunning heeft of in bouw is,
@@ -759,8 +788,17 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             # gebruik is, is een transformatie en rekent het CBS niet tot de
             # pijplijn. Zonder dit veld is dat onderscheid niet te maken, en
             # op 11 oktober was het dat dus niet.
-            if pand and (pandstatus or {}).get(pand):
-                rec["pand_status"] = pandstatus[pand]
+            statussen_pand = [(pandstatus or {}).get(x) or ""
+                               for x in alle_panden]
+            if any(statussen_pand):
+                # Bij een object in twee panden staan hier twee statussen, en
+                # dan is "de" pandstatus geen enkel getal. Dat verschil hoort
+                # zichtbaar te zijn in het record en niet weggewerkt: welk van
+                # de twee de doorslag geeft is een keuze die later wordt
+                # gemaakt, met de gegevens erbij.
+                rec["pand_status"] = statussen_pand[0]
+                if len(set(x for x in statussen_pand if x)) > 1:
+                    rec["pand_statussen"] = statussen_pand
 
             # BAG_GEZIEN ALLEEN BIJWERKEN ALS ER WERKELIJK IETS VERANDERDE.
             # Zou hier de datum van vandaag staan, dan verandert elk van de
@@ -896,6 +934,9 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
         # staat per record bewaard zodat het later te zeven is. Het getal
         # staat hier zodat de vraag open blijft in plaats van stil beslist.
         "nog_gevormd": tel["gevormd"],
+        # Hoe vaak een verblijfsobject in meer dan een pand ligt. Tot 11
+        # oktober hielden we er een over en konden we dit niet meten.
+        "objecten_in_meer_panden": tel["meerdere_panden"],
         # DE PIJPLIJN, APART GETELD EN APART GEMELD. nog_gevormd hierboven
         # telt elk object met die status, ook de niet-woningen; deze drie gaan
         # over de woningen en over wat er met ze gebeurde.
@@ -1194,6 +1235,20 @@ PROEF_KENMERKEN = [
         "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 12,
         "huisletter": "A",
         "identificatie": "0268010000000010", "pand.href": []}},
+    # 12. Een woning die in TWEE panden ligt. De Waarderingskamer: "In de BAG
+    #     ligt bij elk verblijfsobject vast in welk pand (of panden) het
+    #     verblijfsobject is gelegen." Hier stond een break op de eerste
+    #     sleutel die oploste, en de rest ging weg; welk pand je dan te pakken
+    #     had, hing af van de volgorde in het antwoord.
+    {"id": "v12", "properties": {
+        "postcode": "6521AB", "status": "Verblijfsobject in gebruik",
+        "gebruiksdoel": "woonfunctie", "oppervlakte": 210,
+        "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 22,
+        "identificatie": "0268010000000012",
+        "pand.href": ["https://api.pdok.nl/kadaster/bag/ogc/v2/collections/"
+                      "pand/items/uuid-een",
+                      "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/"
+                      "pand/items/uuid-twee"]}},
     # 11. Gevormd zonder woonfunctie: hoort bij de niet-woningen en niet bij
     #     de pijplijn, want die gaat over woningen. Op 11 oktober waren dit
     #     de 70 die het verschil waren tussen 2.238 en 2.168.
@@ -1504,10 +1559,15 @@ def proef():
 
     def nep_panden(collectie, budget, per_pagina):
         per_pagina([
+            # Met status, want die scheidt nieuwbouw van transformatie en die
+            # werd hier weggegooid. Twee verschillende, zodat een object in
+            # beide panden aantoonbaar twee statussen heeft.
             {"id": "uuid-een", "properties": {
-                "identificatie": "0268100000000011"}},
+                "identificatie": "0268100000000011",
+                "status": "Pand in gebruik"}},
             {"id": "uuid-twee", "properties": {
-                "identificatie": "0268100000000022"}},
+                "identificatie": "0268100000000022",
+                "status": "Bouw gestart"}},
             # Zonder identificatie: mag de kaart niet vervuilen.
             {"id": "uuid-drie", "properties": {}},
         ])
@@ -1521,13 +1581,19 @@ def proef():
                "6511AA": ("Benedenstad", "Stadscentrum")}
         kaart = {"uuid-een": "0268100000000011",
                  "uuid-twee": "0268100000000022"}
-        uit = fase_bag(voorraad, pcs, 1, kaart)
+        # MET DE PANDSTATUSSEN ERBIJ. Zonder deze kaart was pand_status
+        # altijd leeg in de proef en toetste niets dat veld, terwijl het sinds
+        # vandaag het verschil tussen nieuwbouw en transformatie moet maken.
+        pandstatussen = {"0268100000000011": "Pand in gebruik",
+                         "0268100000000022": "Bouw gestart"}
+        uit = fase_bag(voorraad, pcs, 1, kaart, pandstatussen)
         # TWEEDE RONDE OP DEZELFDE GEGEVENS. Hieraan hangt of het bestand van
         # ruim vijf megabyte elke dag ongewijzigd blijft of elke dag helemaal
         # verandert. Dat verschil is in de uitkomst niet te zien en alleen
         # hier te meten.
         voorraad_na = json.loads(json.dumps(voorraad))
-        tweede = fase_bag(voorraad_na, pcs, 1, kaart)
+        tweede = fase_bag(voorraad_na, pcs, 1, kaart,
+                          pandstatussen)
 
         # DERDE RONDE WAARIN DINGEN VERDWIJNEN EN VAN SOORT WISSELEN. Hier
         # hangt aan of het aantal in de brief langzaam te hoog oploopt.
@@ -1568,19 +1634,19 @@ def proef():
     anders = voorraad.get("niet_woningen") or {}
     pijplijn = voorraad.get("pijplijn") or {}
     verwacht = {
-        "woningen_gezien": 3,          # 1, 5 en 8
+        "woningen_gezien": 4,          # 1, 5, 8 en 12
         "niet_woonfunctie": 2,         # 4 en 11 (gevormde winkel)
         "historie_overgeslagen": 2,    # 2 en 3
         "buiten_de_ring": 1,           # 6
         "zonder_adres": 1,             # 7
         "zonder_pandsleutel": 1,       # 8
-        "objecten_met_pand": 3,        # 1, 4 en 5
+        "objecten_met_pand": 4,        # 1, 4, 5 en 12
         "postcodes_gedaan": 2,
         "postcodes_totaal": 2,
         "postcodes_nijmegen": 2,
         "postcodes_leeg": 0,
         "postcodes_leeg_nijmegen": 0,
-        "adressen_nieuw": 3,
+        "adressen_nieuw": 4,
         "adressen_verwijderd": 0,
         "van_soort_gewisseld": 0,
         "niet_woningen_bewaard": 2,
@@ -1597,6 +1663,40 @@ def proef():
     for veld, moet in verwacht.items():
         if uit.get(veld) != moet:
             afwijkingen.append(f"{veld}: {uit.get(veld)} in plaats van {moet}")
+
+    # EEN OBJECT IN TWEE PANDEN HOUDT ZE BEIDE. Hier stond een break op de
+    # eerste sleutel die oploste; welk pand je te pakken had, hing af van de
+    # volgorde in het antwoord. Dat raakt alles wat op pand joint, en sinds
+    # vandaag ook de pandstatus die nieuwbouw van transformatie scheidt.
+    tweepands = adressen.get("0268010000000012") or {}
+    if tweepands.get("panden") != ["0268100000000011", "0268100000000022"]:
+        afwijkingen.append(f"een object in twee panden houdt "
+                           f"{tweepands.get('panden')} over")
+    if tweepands.get("pand") != "0268100000000011":
+        afwijkingen.append(f"het veld pand is {tweepands.get('pand')!r} en "
+                           f"niet de eerste; dan breekt elke bestaande lezer")
+    if uit.get("objecten_in_meer_panden") != 1:
+        afwijkingen.append(f"de ronde telt "
+                           f"{uit.get('objecten_in_meer_panden')} objecten in "
+                           f"meer panden in plaats van 1")
+    # Twee panden met een verschillende status: dan is "de" pandstatus geen
+    # enkel getal, en dat hoort in het record te staan in plaats van
+    # weggewerkt te worden.
+    if tweepands.get("pand_status") != "Pand in gebruik":
+        afwijkingen.append(f"pand_status is {tweepands.get('pand_status')!r}")
+    if tweepands.get("pand_statussen") != ["Pand in gebruik", "Bouw gestart"]:
+        afwijkingen.append(f"pand_statussen is "
+                           f"{tweepands.get('pand_statussen')!r}; bij twee "
+                           f"verschillende statussen horen ze er beide te "
+                           f"staan")
+    # En een object in EEN pand hoort geen lijst te krijgen: dat zou bij
+    # 22.000 records een megabyte aan niets zijn.
+    een = adressen.get("0268010000000001") or {}
+    if "panden" in een:
+        afwijkingen.append("een object in een pand krijgt toch een lijst")
+    if "pand_statussen" in een:
+        afwijkingen.append("een object in een pand krijgt toch een "
+                           "statuslijst")
 
     if set(pijplijn) != {"0268010000000009", "0268010000000010"}:
         afwijkingen.append(f"de pijplijn houdt de verkeerde objecten: "
@@ -1631,7 +1731,8 @@ def proef():
     voorraad_klaar = _copy.deepcopy(voorraad)
     echt2, globals()["doorloop"] = doorloop, nep_klaar
     try:
-        na = fase_bag(voorraad_klaar, pcs, 1, kaart)
+        na = fase_bag(voorraad_klaar, pcs, 1, kaart,
+                      pandstatussen)
     finally:
         globals()["doorloop"] = echt2
     pijplijn_na = voorraad_klaar.get("pijplijn") or {}
@@ -1647,10 +1748,10 @@ def proef():
                            "dus die woning telt twee keer")
     if "0268010000000009" not in adressen_na:
         afwijkingen.append("het opgeleverde object staat niet in de voorraad")
-    if na.get("woningen_gezien") != 4:
+    if na.get("woningen_gezien") != 5:
         afwijkingen.append(f"na de oplevering telt de ronde "
                            f"{na.get('woningen_gezien')} woningen in plaats "
-                           f"van 4")
+                           f"van 5")
     if na.get("pijplijn_bewaard") != 1:
         afwijkingen.append(f"na de oplevering houdt de pijplijn "
                            f"{na.get('pijplijn_bewaard')} over in plaats van 1")
@@ -1662,7 +1763,7 @@ def proef():
     # DE SLEUTEL IS DE VBO-IDENTIFICATIE. Met de adressleutel botsten in de
     # echte ring 93 van de 22.096 objecten op elkaar.
     if set(adressen) != {"0268010000000001", "0268010000000005",
-                         "0268010000000008"}:
+                         "0268010000000008", "0268010000000012"}:
         afwijkingen.append(f"adressen zijn niet op vbo gesleuteld: "
                            f"{sorted(adressen)}")
     # En een botsende adressleutel mag geen record meer opslokken.
@@ -1784,7 +1885,7 @@ def proef():
         afwijkingen.append("een object zonder pand moet een lege lijst geven")
 
     # De tweede ronde op dezelfde gegevens mag niets veranderen.
-    if tweede.get("adressen_onveranderd") != 3:
+    if tweede.get("adressen_onveranderd") != 4:
         afwijkingen.append(
             f"tweede ronde meldt {tweede.get('adressen_onveranderd')} "
             f"onveranderd in plaats van 3; dan verandert het hele bestand "
