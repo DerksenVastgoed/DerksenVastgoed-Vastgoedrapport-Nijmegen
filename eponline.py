@@ -147,10 +147,23 @@ def lees(rec):
     }
 
 
-# Wat een foutcode betekent. definitief: dit adres gaat het nooit worden, dus
-# opschrijven dat het gevraagd is en niet elke ronde opnieuw proberen.
-# stoppen: iets is mis met ons, niet met het adres, dus de ronde afbreken.
-DEFINITIEF = (400, 404)
+# Wat een foutcode betekent.
+#
+# GEEN_LABEL: EP-Online kent dit object niet. Dat is een ANTWOORD en geen
+# fout: deze woning heeft geen geregistreerd label. Dat onderscheid is op 11
+# oktober gemeten en niet bedacht. Een eerste versie rekende 404 bij de
+# weigeringen, en toen leverde de eerste echte ronde 67 labels en "46 fouten"
+# op terwijl die 46 precies het antwoord "geen label" waren. Een foutenteller
+# die oploopt bij correct gedrag leert je de teller negeren, en dat is erger
+# dan geen teller.
+#
+# GEWEIGERD: de vraag zelf wordt niet aangenomen. Dat gaat nooit lukken voor
+# dit adres, dus niet elke ronde opnieuw, maar het is wel iets om te zien:
+# het betekent dat wij de vraag verkeerd stellen.
+#
+# STOPPEN: iets is mis met ons en niet met het adres, dus de ronde afbreken.
+GEEN_LABEL = (404,)
+GEWEIGERD = (400,)
 STOPPEN = (401, 403, 429)
 
 
@@ -190,20 +203,24 @@ def energielabel(vbo_id=None, postcode="", huisnr="", letter="", toev="",
     if not pogingen:
         return (None, "geen vbo-id en geen postcode met huisnummer", True)
 
-    laatste, def_alles = "", True
+    laatste, def_alles, alles_onbekend = "", True, True
     for url, params in pogingen:
         try:
             code, json_van = haler(url, params)
         except Exception as e:
-            laatste, def_alles = f"netwerk: {str(e)[:60]}", False
+            laatste, def_alles, alles_onbekend = (
+                f"netwerk: {str(e)[:60]}", False, False)
             continue
         if code in STOPPEN:
             return (None, f"HTTP {code}", False)
-        if code in DEFINITIEF:
+        if code in GEEN_LABEL:
             laatste = f"HTTP {code}"
             continue
+        if code in GEWEIGERD:
+            laatste, alles_onbekend = f"HTTP {code}", False
+            continue
         if code != 200:
-            laatste, def_alles = f"HTTP {code}", False
+            laatste, def_alles, alles_onbekend = f"HTTP {code}", False, False
             continue
         try:
             rec = eerste(json_van())
@@ -214,6 +231,10 @@ def energielabel(vbo_id=None, postcode="", huisnr="", letter="", toev="",
         if uit is not None:
             return (uit, "", True)
         # HTTP 200 zonder label is een echt antwoord: dit adres heeft er geen.
+        return ({}, "", True)
+    # Elke route gaf 404: EP-Online kent dit object niet, en dat is hetzelfde
+    # antwoord als HTTP 200 zonder label. Niet als fout melden.
+    if alles_onbekend and laatste.startswith("HTTP 4"):
         return ({}, "", True)
     return (None, laatste or "geen antwoord", def_alles)
 
@@ -313,7 +334,22 @@ def proef():
     check("200 zonder label geeft een leeg antwoord", uit, {})
     check("en dat is definitief", definitief, True)
 
-    # 400 en 404 op alle routes: definitief, dus niet elke ronde opnieuw.
+    # 404 OP ALLE ROUTES IS EEN ANTWOORD EN GEEN FOUT. Op 11 oktober leverde
+    # de eerste echte ronde 67 labels en "46 fouten" op, en die 46 waren alle
+    # 46 HTTP 404: EP-Online kent dat object niet, dus die woning heeft geen
+    # geregistreerd label. Dat is hetzelfde antwoord als HTTP 200 zonder
+    # label. Een foutenteller die oploopt bij correct gedrag leert je de
+    # teller negeren.
+    uit, fout, definitief = energielabel(
+        vbo_id="X", postcode="6524LR", huisnr="20",
+        haler=nep({"vbo": 404, "adres": 404}))
+    check("404 overal geeft een leeg antwoord", uit, {})
+    check("404 overal is geen fout", fout, "")
+    check("404 overal is definitief", definitief, True)
+
+    # 400 is iets anders: de vraag wordt niet aangenomen. Definitief voor dit
+    # adres, maar wel iets om te zien, want het betekent dat wij hem verkeerd
+    # stellen.
     uit, fout, definitief = energielabel(
         vbo_id="X", postcode="6524LR", huisnr="29", letter="A", toev="24",
         haler=nep({"vbo": 404, "adres": 400}))
@@ -360,8 +396,8 @@ def proef():
         print(f"FOUT {f}", file=sys.stderr)
     print(f"Proef: {len(fouten)} fouten. Gedekt: de zes veldnamen, het "
           f"privelabel, de drie antwoordvormen, het huisnummer met letter en "
-          f"toevoeging, de route vbo-eerst, en welke foutcodes definitief "
-          f"zijn. Geen enkele aanroep.", file=sys.stderr)
+          f"toevoeging, de route vbo-eerst, en dat 404 een antwoord is en 400 "
+          f"een weigering. Geen enkele aanroep.", file=sys.stderr)
     return 1 if fouten else 0
 
 
