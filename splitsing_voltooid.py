@@ -76,12 +76,47 @@ def _aantallen(tekst):
 WOORDGETAL = {"een": 1, "één": 1, "twee": 2, "drie": 3, "vier": 4, "vijf": 5,
               "zes": 6, "zeven": 7, "acht": 8, "negen": 9, "tien": 10}
 
+# VANAF WELKE DATUM "WONINGEN" IN EEN GEBEURTENISTEKST OOK WONINGEN BETEKENT.
+# Tot en met 11 oktober telde pandgeschiedenis.py elk adresseerbaar object in
+# een pand en noemde dat een woning, dus ook een garage of berging met een
+# eigen adres. Vanaf de eerste ronde met de nieuwe code wordt de woonfunctie
+# apart geteld. Oude teksten worden niet herschreven, want dat zou valse
+# wijzigingen melden op de 1.777 panden die al gevolgd worden. Dus moet deze
+# lezer weten welke grondslag onder een getal zit, en de enige harde grens die
+# daarvoor bestaat is de datum waarop de code veranderde.
+GRONDSLAG_VANAF = "2026-10-12"
+
+
+def _eenheid(datum, meervoud=True):
+    """Hoe een getal uit een gebeurtenistekst van die datum mag heten."""
+    if (datum or "") >= GRONDSLAG_VANAF:
+        return "woningen" if meervoud else "woning"
+    return ("objecten met een eigen adres" if meervoud
+            else "object met een eigen adres")
+
+
+def _dag(n):
+    """'1 dag' en niet '1 dagen'."""
+    return f"{n} dag" if n == 1 else f"{n} dagen"
+
 # Hoeveel eenheden de vergunning noemt. Bij een reeks als "van 2 naar 4" is het
 # laatste getal de uitkomst, dus pakken we de laatste treffer en niet de eerste.
+#
+# "WOONRUIMTES" STOND ER NIET BIJ, EN DAT DEKTE EEN FOUT. Het besluit voor
+# Hatertseweg 338 noemt "6 zelfstandige woonruimtes"; dit stond er niet in,
+# dus het vergunde aantal bleef onbekend en het pand kwam niet in het
+# hoofdstuk over verschillen. Dat zag eruit als goed gedrag, maar het was
+# toeval: de BAG telde daar 7 objecten, en zodra dit woord erbij kwam was dat
+# een verschil van 1 dat er niet is. Het echte verschil zat in de telling, en
+# die is apart rechtgezet (zie de vergelijking in zoek()). Beide moeten
+# kloppen; hierop vertrouwen om het andere te verbergen is geen ontwerp.
 RE_VERGUND = re.compile(
-    r"(?:tot|naar|in)\s+(\d{1,2}|een|één|twee|drie|vier|vijf|zes|zeven|acht|"
-    r"negen|tien)\s+(?:zelfstandige\s+|nieuwe\s+|extra\s+)*"
-    r"(?:woningen|woning|wooneenheden|appartementen|appartement|studio's)",
+    # \b rond het voorzetsel, want "in" zonder woordgrens zit ook in het eind
+    # van een ander woord ("terrein 2 woningen" zou dan matchen).
+    r"\b(?:tot|naar|in)\b\s+(\d{1,2}|een|één|twee|drie|vier|vijf|zes|zeven|"
+    r"acht|negen|tien)\s+(?:zelfstandige\s+|nieuwe\s+|extra\s+)*"
+    r"(?:woningen|woning|wooneenheden|woonruimtes|woonruimten|woonruimte|"
+    r"appartementen|appartement|studio's)",
     re.IGNORECASE)
 
 
@@ -129,6 +164,7 @@ def zoek(geschiedenis):
     hoort niet bij deze splitsing en telt dus niet mee.
     """
     gerealiseerd, zonder_vergunning, vergund_niets = [], [], []
+    wacht = []
     for pand in geschiedenis.values():
         if not isinstance(pand, dict):
             continue
@@ -168,8 +204,35 @@ def zoek(geschiedenis):
                 vergund = _vergund_aantal(besluit.get("tekst"))
                 if vergund:
                     rij["vergund_aantal"] = vergund
-                    if vergund != naar:
-                        rij["wijkt_af"] = naar - vergund
+                    # TEGEN DE TELLING VAN NU, NIET TEGEN DE TEKST VAN TOEN.
+                    # Het getal in "naar" komt uit de tekst van een
+                    # gebeurtenis van vroeger, en die tekst telde elk
+                    # adresseerbaar object in het pand als woning: een garage
+                    # of een berging met een eigen adres telde mee. De
+                    # vergunning telt zelfstandige woonruimtes. Die twee naast
+                    # elkaar leggen levert een verschil op dat er niet is, en
+                    # bij Hatertseweg 338 was dat verschil op 11 oktober het
+                    # hoofdthema van de brief: 7 objecten tegen 6 vergunde
+                    # woonruimtes, terwijl het zes tegen zes was.
+                    #
+                    # Oude gebeurtenisteksten worden niet herschreven, met
+                    # opzet: de vergelijking in pandgeschiedenis.py blijft op
+                    # bag_eenheden staan zodat er geen valse wijziging wordt
+                    # gemeld op de panden die al gevolgd worden. Dus moet dit
+                    # hoofdstuk de telling van nu gebruiken.
+                    #
+                    # Is die er nog niet, dan zegt dit hoofdstuk niets. Een
+                    # pand komt pas in beeld als het opnieuw is opgehaald. Dat
+                    # is stil, en stilte is deze week vaker een fout gebleken
+                    # dan een foutmelding, dus het aantal wachtende panden
+                    # gaat mee naar buiten in plaats van weg te vallen.
+                    nu_woon = pand.get("bag_woningen")
+                    if isinstance(nu_woon, list):
+                        rij["bag_nu"] = len(nu_woon)
+                        if vergund != len(nu_woon):
+                            rij["wijkt_af"] = len(nu_woon) - vergund
+                    else:
+                        wacht.append(pand.get("adres"))
                 gerealiseerd.append(rij)
             else:
                 # Geen besluit gevonden voor de registratie. Dat betekent niet
@@ -195,7 +258,8 @@ def zoek(geschiedenis):
            "zonder_bekende_vergunning": zonder_vergunning,
            "vergund_maar_niets_gebeurd": vergund_niets,
            "wijkt_af_van_vergunning": [r for r in gerealiseerd
-                                       if r.get("wijkt_af")]}
+                                       if r.get("wijkt_af")],
+           "wacht_op_woningtelling": sorted(a for a in wacht if a)}
     looptijden = [r["dagen_na_besluit"] for r in gerealiseerd
                   if r.get("dagen_na_besluit") is not None
                   and 0 <= r["dagen_na_besluit"] < 3000]
@@ -218,14 +282,22 @@ def tekst(uit):
                  "gaat, staan de nieuwe eenheden geregistreerd._")
         r.append("")
         for rij in ger[:8]:
+            # De eenheid komt uit de datum van de gebeurtenis en niet uit de
+            # tekst van dit hoofdstuk. Tot 12 oktober heette elk adresseerbaar
+            # object hier een woning, en bij Hatertseweg 338 werd dat verschil
+            # van 1 het hoofdthema van de zondagsbrief.
             deel = (f"- **{rij['adres']}**: van {rij['van']} naar "
-                    f"{rij['naar']} woningen, gezien op {rij['datum']}")
+                    f"{rij['naar']} {_eenheid(rij['datum'])}, gezien op "
+                    f"{rij['datum']}")
+            if rij.get("bag_nu") is not None:
+                deel += (f", waarvan er nu {rij['bag_nu']} een woonfunctie "
+                         f"hebben")
             if rij.get("dagen_na_besluit") is not None:
-                deel += (f", {rij['dagen_na_besluit']} dagen na het besluit van "
-                         f"{rij['besluit']}")
+                deel += (f", {_dag(rij['dagen_na_besluit'])} na het besluit "
+                         f"van {rij['besluit']}")
             if rij.get("dagen_aanvraag_tot_besluit") is not None:
                 deel += (f". De route zelf duurde langer: "
-                         f"{rij['dagen_aanvraag_tot_besluit']} dagen van "
+                         f"{_dag(rij['dagen_aanvraag_tot_besluit'])} van "
                          f"aanvraag ({rij['aanvraag']}) tot besluit")
             r.append(deel + ".")
         if uit.get("mediaan_dagen_besluit_tot_bag"):
@@ -238,23 +310,39 @@ def tekst(uit):
                      f"waar we hem kennen._")
         r.append("")
     afw = uit.get("wijkt_af_van_vergunning") or []
-    if afw:
+    wacht = uit.get("wacht_op_woningtelling") or []
+    if afw or wacht:
         r.append("## De BAG telt een ander aantal dan de vergunning noemt")
         r.append("")
         r.append("_Dit is een aanwijzing om na te kijken en geen conclusie. "
                  "Een verschil kan betekenen dat er meer is gerealiseerd dan "
                  "mocht, maar ook dat de vergunningtekst iets anders telt dan "
-                 "de BAG: een garage die een eigen adres krijgt is in de BAG "
-                 "een woning en in de aanvraag een bijgebouw._")
+                 "de BAG. Vergeleken wordt het aantal objecten met een "
+                 "woonfunctie, dus een garage met een eigen adres telt hier "
+                 "niet mee._")
         r.append("")
         for rij in afw[:8]:
             meer = rij["wijkt_af"]
             r.append(f"- **{rij['adres']}**: de vergunning noemt "
-                     f"{rij['vergund_aantal']}, de BAG telt {rij['naar']}, "
-                     f"dus {abs(meer)} "
+                     f"{rij['vergund_aantal']}, de BAG telt {rij['bag_nu']} "
+                     f"woningen, dus {abs(meer)} "
                      f"{'meer' if meer > 0 else 'minder'}. Besluit "
                      f"{rij['besluit']}, geregistreerd {rij['datum']}. "
                      f"Vergunningtekst: \"{(rij.get('tekst') or '')[:110]}\".")
+        if not afw:
+            r.append("- Geen verschil gevonden in wat we nu kunnen "
+                     "vergelijken.")
+        if wacht:
+            r.append("")
+            r.append(f"_Van {len(wacht)} "
+                     f"{'pand' if len(wacht) == 1 else 'panden'} met een "
+                     f"vergunning en een opdeling is hier niets over te "
+                     f"zeggen: de woningen zijn daar nog niet apart van de "
+                     f"bergingen en garages geteld. Dat gebeurt zodra het pand "
+                     f"weer langskomt in de BAG-ronde. "
+                     f"{'Dat is' if len(wacht) == 1 else 'Dat zijn'}: "
+                     f"{', '.join(wacht[:6])}"
+                     + (" en meer" if len(wacht) > 6 else "") + "._")
         r.append("")
     zon = uit.get("zonder_bekende_vergunning") or []
     if zon:
@@ -266,16 +354,182 @@ def tekst(uit):
         r.append("")
         for rij in zon[:5]:
             r.append(f"- **{rij['adres']}**: van {rij['van']} naar "
-                     f"{rij['naar']} woningen, gezien op {rij['datum']}.")
+                     f"{rij['naar']} {_eenheid(rij['datum'])}, gezien op "
+                     f"{rij['datum']}.")
         r.append("")
     return "\n".join(r)
+
+
+def _pand(adres, pand_id, gebeurtenissen, woningen=None):
+    """Een pandrecord in de vorm die pandlezer.laad() oplevert."""
+    p = {"adres": adres, "pand_id": pand_id,
+         "gebeurtenissen": list(gebeurtenissen)}
+    if woningen is not None:
+        p["bag_woningen"] = [[adres, 50] for _ in range(woningen)]
+        p["bag_eenheden"] = [[adres, 50] for _ in range(woningen + 1)]
+    return p
+
+
+def proef():
+    """
+    De zeef nameten op echte teksten, zonder een aanroep te doen.
+
+    Dit bestaat omdat dit bestand twee keer stil het verkeerde deed. Het
+    vergunde aantal werd niet gelezen als het besluit "woonruimtes" schreef in
+    plaats van "woningen", en het gelezen aantal werd vergeleken met een getal
+    uit een oude gebeurtenistekst dat elk adresseerbaar object als woning
+    telde. Beide gaven geen foutmelding. De eerste leek zelfs goed te gaan,
+    omdat de ene fout de andere verborg.
+    """
+    fouten = []
+
+    def check(naam, echt, verwacht):
+        if echt != verwacht:
+            fouten.append(f"{naam}: {echt!r}, verwacht {verwacht!r}")
+
+    def eerste(rijen, veld):
+        """Het veld van de eerste rij, of None. Zonder dit valt de proef om
+        met een IndexError zodra een rij ontbreekt, en dan is niet te lezen
+        welke controle rood stond."""
+        return (rijen[0].get(veld) if rijen else None)
+
+    # Echte besluitteksten uit pandgeschiedenis.json.
+    hatert = ("Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige "
+              "woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen")
+    biezen = ("Besluit (met BOPA) voor  het splitsen van een bestaande woning "
+              "met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, "
+              "6541ZW Nijmegen")
+    check("vergund woonruimtes", _vergund_aantal(hatert), 6)
+    check("vergund woningen", _vergund_aantal(biezen), 2)
+    check("vergund woord", _vergund_aantal("omzetten naar twee woningen"), 2)
+    check("vergund reeks", _vergund_aantal("van 2 naar 4 appartementen"), 4)
+    check("vergund niets", _vergund_aantal("Besluit voor een dakkapel"), None)
+    check("vergund geen getal", _vergund_aantal("tot zelfstandige woningen"),
+          None)
+    # "in" mag geen woordstaart zijn.
+    check("vergund woordgrens",
+          _vergund_aantal("een terrein 3 woningen"), None)
+    check("splitswoord woonruimte", _is_splitsing(hatert), True)
+    check("splitswoord omzetting",
+          _is_splitsing("het omzetten tot 4 onzelfstandige kamers"), False)
+
+    # De gebeurtenistekst, in beide vormen die pandgeschiedenis.py schrijft.
+    check("aantallen oud", _aantallen(
+        "de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46 m2"),
+        (1, 7))
+    check("aantallen met staart", _aantallen(
+        "de BAG telt nu 3 woningen in dit pand, was 1: 168, 203 m2; "
+        "daarnaast 1 ander object met een eigen adres"), (1, 3))
+    check("aantallen zonder was", _aantallen(
+        "de BAG telt nu 6 woningen in dit pand: 147, 46 m2"), None)
+
+    gebeurtenissen = [
+        {"datum": "2026-10-06", "soort": "bekendmaking", "tekst": hatert},
+        {"datum": "2026-10-09", "soort": "bag",
+         "tekst": "de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46, "
+                  "24, 19, 23, 19 m2"},
+    ]
+
+    # 1. Zes vergund, zes woningen in de BAG: geen verschil, ook al zegt de
+    #    oude gebeurtenistekst zeven. Dit is het geval van Hatertseweg 338.
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, 6)})
+    check("zes tegen zes geen verschil", uit["wijkt_af_van_vergunning"], [])
+    check("zes tegen zes wel gerealiseerd", len(uit["gerealiseerd"]), 1)
+    # NIET IN HET HOOFDSTUK ZONDER VERGUNNING. Dat is geen schoonheidsfoutje
+    # maar een valse beschuldiging: de brief van 11 oktober zette Hatertseweg
+    # 338 onder "Opgedeeld zonder dat wij een vergunning kennen", terwijl het
+    # besluit van 6 oktober in hetzelfde bestand stond. Het kwam daar terecht
+    # omdat _is_splitsing() "woonruimtes" niet herkende en er dus geen besluit
+    # bij de groei te vinden was. Beide hoofdstukken hangen aan dat ene woord,
+    # dus hoort het hier vast te staan.
+    check("niet onder zonder vergunning", uit["zonder_bekende_vergunning"],
+          [])
+    check("zes tegen zes bag_nu", eerste(uit["gerealiseerd"], "bag_nu"), 6)
+    check("zes tegen zes vergund",
+          eerste(uit["gerealiseerd"], "vergund_aantal"), 6)
+    check("zes tegen zes wacht niet", uit["wacht_op_woningtelling"], [])
+
+    # 2. Zeven woningen met woonfunctie tegen zes vergund: wel een verschil.
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, 7)})
+    check("zeven tegen zes verschil", len(uit["wijkt_af_van_vergunning"]), 1)
+    check("zeven tegen zes hoeveel",
+          eerste(uit["wijkt_af_van_vergunning"], "wijkt_af"), 1)
+
+    # 3. Nog geen woningtelling: niets melden, maar wel laten weten dat er
+    #    gewacht wordt. Zonder deze regel zou het hoofdstuk er stil uit zien
+    #    alsof er niets te vinden was.
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen)})
+    check("zonder telling geen verschil", uit["wijkt_af_van_vergunning"], [])
+    check("zonder telling wacht", uit["wacht_op_woningtelling"],
+          ["Hatertseweg 338"])
+    blok = tekst(uit)
+    check("zonder telling tekst noemt het",
+          "nog niet apart" in blok, True)
+    # De eenheid in het eerste hoofdstuk hangt van de datum af, want een
+    # getal van voor 12 oktober telde ook garages en bergingen.
+    check("oude grondslag heet anders", _eenheid("2026-10-09"),
+          "objecten met een eigen adres")
+    check("nieuwe grondslag heet woningen", _eenheid("2026-10-12"), "woningen")
+    check("oude eenheid in de tekst",
+          "naar 7 objecten met een eigen adres" in blok, True)
+    check("een dag enkelvoud", _dag(1), "1 dag")
+    check("twee dagen meervoud", _dag(2), "2 dagen")
+    for geval, n in (("zes", 6), ("zeven", 7), ("geen", None)):
+        uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, n)})
+        try:
+            tekst(uit)
+        except Exception as e:
+            fouten.append(f"tekst() valt om bij {geval}: {type(e).__name__} {e}")
+
+    # 4. Een besluit zonder leesbaar aantal hoort niet te wachten: er valt
+    #    niets te vergelijken, dus er is ook niets in te halen.
+    zonder = [dict(gebeurtenissen[0], tekst="Besluit voor het splitsen van "
+                                            "een woning"), gebeurtenissen[1]]
+    uit = zoek({"a": _pand("Ergens 1", "P2", zonder)})
+    check("onleesbaar aantal wacht niet", uit["wacht_op_woningtelling"], [])
+
+    # 5. De weg waarlangs bag_woningen bij dit bestand aankomt. Het veld werd
+    #    per pand opgeslagen maar stond niet in de rij gedeelde velden van
+    #    pandlezer, dus het kwam er per adres in terecht. Twee adressen op
+    #    hetzelfde pand laten dat zien.
+    try:
+        from pandlezer import compact, laad as _laad
+        heen = {"a": _pand("Aubadestraat 12", "P3", gebeurtenissen, 6),
+                "b": _pand("Aubadestraat 16", "P3", gebeurtenissen, 6)}
+        kort = compact(heen)
+        check("compact deelt bag_woningen",
+              "bag_woningen" in (kort.get("_panden", {}).get("P3") or {}), True)
+        check("compact laat niets per adres staan",
+              [s for s in ("a", "b") if "bag_woningen" in kort[s]], [])
+        import tempfile, os as _os
+        fd, pad = tempfile.mkstemp(suffix=".json")
+        _os.close(fd)
+        with open(pad, "w", encoding="utf-8") as f:
+            json.dump(kort, f)
+        terug = _laad(pad)
+        _os.unlink(pad)
+        check("laad vouwt bag_woningen weer uit",
+              len(terug["a"].get("bag_woningen") or []), 6)
+        check("zoek na de ronde om schijf",
+              zoek(terug)["wijkt_af_van_vergunning"], [])
+    except ImportError:
+        fouten.append("pandlezer niet te importeren")
+
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
+    return 1 if fouten else 0
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default=UIT_PAD)
     ap.add_argument("--tekst", default="")
+    ap.add_argument("--proef", action="store_true",
+                    help="De zeef nameten zonder iets op te halen.")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
     try:
         from pandlezer import laad
         geschiedenis = laad("pandgeschiedenis.json")
