@@ -481,6 +481,57 @@ def proef():
         except Exception as e:
             fouten.append(f"tekst() valt om bij {geval}: {type(e).__name__} {e}")
 
+    # 3b. HET VOORBEHOUD MOET OOK IN DE BRIEFINSTRUCTIE KLOPPEN.
+    #
+    # Dit blok zegt wat er wordt vergeleken. De schrijfinstructie in
+    # brief_verhalend.py zei tot 11 oktober iets anders: dat een garage met
+    # een eigen adres in de BAG als woning meetelt. Dat was juist tot de
+    # telling op woonfunctie overging, en daarna niet meer. Het model volgde
+    # de instructie, dus stonden er die dag twee tegengestelde beweringen in
+    # één brief aan pa, en de verkeerde stond bovenaan.
+    #
+    # Erger: die verklaring praatte het signaal weg. Bij de Biezenstraat 110
+    # noemt het besluit "een bestaande woning met garage tot 2 zelfstandige
+    # woningen" en telt de BAG er drie met een woonfunctie, van 168, 203 en
+    # 44 m2. Die 44 m2 is de garage, en die staat dus als wooneenheid
+    # geregistreerd. Dat is precies het interessante.
+    #
+    # Dezelfde tekst op twee plekken loopt uiteen, dus bindt deze controle de
+    # twee aan elkaar: verandert het voorbehoud hier, dan is de proef rood
+    # tot de instructie mee is.
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, 7)})
+    blok = tekst(uit)
+    check("het blok noemt de grondslag", "woonfunctie" in blok, True)
+    try:
+        with open("brief_verhalend.py", encoding="utf-8") as f:
+            instructie = f.read()
+    except Exception:
+        instructie = ""
+    if instructie:
+        # De grondslag uit het blok zelf halen en díe in de instructie
+        # zoeken, niet een eigen kopie van de zin. Anders bindt deze
+        # controle de twee teksten niet: een eerste versie vergeleek twee
+        # hardgecodeerde zinnen, en toen "objecten" in het blok veranderde
+        # bleef de proef groen terwijl de twee uiteen waren gelopen.
+        m = re.search(r"Vergeleken wordt ([^,.]+)", blok)
+        if not m:
+            fouten.append("het blok zegt niet meer waarop wordt vergeleken, "
+                          "dus de brief kan het voorbehoud niet overnemen")
+        else:
+            grondslag = m.group(1).strip()
+            check(f"de briefinstructie noemt de grondslag {grondslag!r}",
+                  grondslag in instructie, True)
+        for verboden in ("is in de BAG een woning",
+                         "telt daar als woning mee"):
+            if verboden in instructie:
+                fouten.append(
+                    f"brief_verhalend.py zegt nog {verboden!r}; sinds de "
+                    f"telling op woonfunctie staat is dat onjuist en praat "
+                    f"het het verschil weg")
+    else:
+        fouten.append("brief_verhalend.py niet te lezen, dus het voorbehoud "
+                      "in de briefinstructie is niet nagemeten")
+
     # 4. Een besluit zonder leesbaar aantal hoort niet te wachten: er valt
     #    niets te vergelijken, dus er is ook niets in te halen.
     zonder = [dict(gebeurtenissen[0], tekst="Besluit voor het splitsen van "
