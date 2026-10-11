@@ -222,6 +222,38 @@ proef: eponline:alle zes veldnamen gelezen
 soort: gegevens
 
 ---
+eis: De vorm van een antwoord van buiten wordt vastgelegd uit een echt
+  antwoord, en niet alleen afgeleid uit onze eigen lezers.
+waarom: 10 oktober. De labelfase las een van de zes veldnamen waaronder het
+  label kan staan, en in de repo stond geen enkel echt antwoord van EP-Online
+  om dat tegen te houden. 818 aanroepen, nul labels, en het zag eruit als een
+  eigenschap van de woningvoorraad. Een proef op vormen die wij zelf hebben
+  opgeschreven, ziet een zevende veldnaam niet.
+proef: eponline:een onbekende labelveldnaam wordt gemeld
+soort: gegevens
+let op: Het echte antwoord komt uit de workflow, want de EP-sleutel staat
+  alleen daar. Zolang eponline_antwoordvorm.json er niet is, zegt de proef
+  dat hij over de API zelf niets zegt, en is de controle op de zevende
+  veldnaam alleen nagemeten op een gemaakt antwoord.
+
+---
+eis: Een energielabel hoort bij een verblijfsobject en niet bij een pand.
+waarom: 12 oktober. Het voorstel was om pand-id plus verblijfsobject-id als
+  sleutel te nemen, omdat een label op pandniveau zou worden afgemeld. Dat is
+  niet zo: 485 van de 591 panden met twee of meer gelabelde adressen hebben
+  verschillende labels binnen hetzelfde pand, BRL 9500-W zegt dat registratie
+  op een woongebouw geen energielabel oplevert, en het ISSO-protocol noemt de
+  object-id de ondergrens met een W-label per object-id. Op pand sleutelen
+  zou elke woning in twee panden dubbel tellen.
+proef: -
+soort: gegevens
+let op: Dit is een eigenschap van de buitenwereld en niet van onze code, dus
+  er is geen controle die hem kan afdwingen. Wat er wel is: voorraad.json
+  heeft het verblijfsobject als sleutel, en de meting hierboven staat in de
+  commit. Bij utiliteitsbouw geldt dit niet, want een U-label mag wel over
+  meerdere panden en meerdere objecten gaan.
+
+---
 eis: Een fout van ons wordt opnieuw geprobeerd, een weigering over een adres
   niet.
 waarom: 10 oktober. De labelfase schreef bij een fout niet op dat het adres
