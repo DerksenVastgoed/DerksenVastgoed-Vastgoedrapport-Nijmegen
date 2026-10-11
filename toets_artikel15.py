@@ -88,7 +88,8 @@ def _buren(adres, vergunningen):
     return uit
 
 
-def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
+def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
+                       ingesloten=None):
     """
     Loopt de weigeringsgronden van artikel 15 langs. Geeft een lijst van
     (grond, oordeel, toelichting).
@@ -172,14 +173,45 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
                     "panden boven de WOZ-grens staan er niet in"))
 
     # 6. Insluiting van een zelfstandig bewoonde woning
-    if links and rechts:
+    #
+    # DIT KEEK NAAR HET VERKEERDE GEVAL. De toets vroeg of béide directe buren
+    # verkamerd zijn, en zei anders VOLDOET. Maar insluiting ontstaat juist als
+    # de directe buur zelfstandig is en de kamers één pand verder liggen: dan
+    # komt die zelfstandige woning tussen twee kamerpanden te zitten. Bij St.
+    # Annastraat 7 is dat precies de situatie. Nummer 9 is vier zelfstandige
+    # appartementen, nummer 11 is onttrokken voor kamers, en deze toets gaf
+    # VOLDOET op de regel die als enige bindt. De investeringscase van 11
+    # oktober rekende daarop 13 kamers door.
+    #
+    # Het antwoord komt nu van de aanroeper, die de voorraad uit de BAG heeft
+    # en dus kan zien uit hoeveel zelfstandige woningen een buurpand bestaat.
+    # None betekent niet gekeken, een lege lijst betekent gekeken en niets
+    # gevonden. Dat onderscheid staat hier, want anders leest "niets gevonden"
+    # als een goedkeuring die niemand heeft gegeven.
+    if ingesloten:
+        x = ingesloten[0]
+        maten = ", ".join(str(m) for m in (x.get("maten") or []))
+        uit.append(("insluiting", VOLDOET_NIET,
+                    f"nummer {x.get('nummer')} bestaat uit "
+                    f"{x.get('woningen')} zelfstandige woningen"
+                    + (f" van {maten} m²" if maten else "")
+                    + f" en ligt tussen dit pand en {x.get('kamerbuur')}, dat "
+                      f"al voor kamers is onttrokken. Verkameren zou die "
+                      f"woningen insluiten, en dat verbiedt de verordening"))
+    elif ingesloten == []:
+        uit.append(("insluiting", VOLDOET,
+                    "tussen dit pand en een kamerpand op dezelfde straatzijde "
+                    "ligt geen pand dat aantoonbaar uit meer zelfstandige "
+                    "woningen bestaat, gemeten op de BAG-voorraad"))
+    elif links and rechts:
         uit.append(("insluiting", ONBEKEND,
                     "beide buren zijn vergund; controleer of er geen zelfstandig "
                     "bewoonde woning tussen komt te liggen"))
     else:
-        uit.append(("insluiting", VOLDOET,
-                    "geen aanwijzing dat een zelfstandig bewoonde woning wordt "
-                    "ingesloten door kamerpanden"))
+        uit.append(("insluiting", ONBEKEND,
+                    "niet getoetst: deze straat staat niet in de "
+                    "BAG-voorraad, dus of er een zelfstandig bewoonde woning "
+                    "wordt ingesloten is hier niet te zeggen"))
 
     # 7. Bouwbesluit: ruwe toets op oppervlakte per kamer
     if opp and aantal_kamers:
@@ -302,3 +334,76 @@ def samenvatting(regels):
     return (f"geen blokkades gevonden, {len(open_punten)} punt"
             + ("en" if len(open_punten) != 1 else "") + " uit te zoeken: "
             + ", ".join(r[0] for r in open_punten[:4]))
+
+
+def proef():
+    """
+    De insluitingstoets nameten, zonder netwerk en zonder bestanden.
+
+    WAAROM JUIST DEZE TOETS EEN PROEF KRIJGT. Hij stond op VOLDOET in het ene
+    geval dat werkelijk bindt, en op grond daarvan rekende de
+    investeringscase in de brief van 11 oktober dertien kamers door voor een
+    pand waar verkameren vermoedelijk niet mag. Dat is het zwaarste soort fout
+    dat deze brief kan maken: geen verkeerd getal maar een verkeerd advies.
+
+    De drie uitkomsten die uit elkaar moeten blijven: gekeken en ingesloten,
+    gekeken en niets gevonden, en niet gekeken. Die laatste twee zijn het
+    makkelijkst te verwarren, en dan leest "niets gevonden" als een
+    goedkeuring die niemand heeft gegeven.
+    """
+    import sys
+    afw = []
+    w = {"adres": "St. Annastraat 7", "oppervlakte": 330, "woz": 982009}
+
+    def oordeel(regels, naam):
+        for n, o, t in regels:
+            if n == naam:
+                return o, t
+        return None, ""
+
+    # 1. GEKEKEN EN INGESLOTEN: de regel valt.
+    ing = [{"nummer": 9, "woningen": 4, "maten": [100, 78, 76, 61],
+            "kamerbuur": "St. Annastraat 11"}]
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=ing, aantal_kamers=13),
+                   "insluiting")
+    if o != VOLDOET_NIET:
+        afw.append(f"met een ingesloten woning gaf de toets {o!r} in plaats "
+                   f"van {VOLDOET_NIET!r}")
+    for stuk in ("9", "4 zelfstandige woningen", "St. Annastraat 11"):
+        if stuk not in t:
+            afw.append(f"de melding noemt {stuk!r} niet: {t[:90]!r}")
+
+    # 2. GEKEKEN EN NIETS GEVONDEN: dan mag er VOLDOET staan.
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=[], aantal_kamers=13),
+                   "insluiting")
+    if o != VOLDOET:
+        afw.append(f"met een lege uitkomst gaf de toets {o!r} in plaats van "
+                   f"{VOLDOET!r}")
+    if "voorraad" not in t.lower():
+        afw.append("de melding zegt niet waarop is gemeten")
+
+    # 3. NIET GEKEKEN: dan hoort er ONBEKEND te staan en geen goedkeuring.
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=None, aantal_kamers=13),
+                   "insluiting")
+    if o != ONBEKEND:
+        afw.append(f"zonder meting gaf de toets {o!r} in plaats van "
+                   f"{ONBEKEND!r}; dan leest niet-gekeken als goedgekeurd")
+
+    # 4. EN DE TOETS MOET DE KAMERROUTE WERKELIJK LATEN VALLEN.
+    regels = toets_kamerverhuur(w, ingesloten=ing, aantal_kamers=13)
+    if not [g for g, o, _t in regels if o == VOLDOET_NIET]:
+        afw.append("geen enkel toetspunt staat op 'voldoet niet', dus de "
+                   "kamerroute valt niet af")
+
+    for a in afw:
+        print(f"AFWIJKING: {a}", file=sys.stderr)
+    print(f"Proef: {len(afw)} afwijkingen. Gedekt: de insluitingstoets in de "
+          f"drie toestanden die uit elkaar moeten blijven (ingesloten, "
+          f"gekeken en schoon, niet gekeken), en dat een insluiting de "
+          f"kamerroute werkelijk laat afvallen.", file=sys.stderr)
+    return 1 if afw else 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(proef())
