@@ -3,7 +3,7 @@
 53 in orde, 9 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-10: 37 gelijk, 11 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (57605 bytes, 1167 regels), .github/workflows/voorraad.yml (7553 bytes, 179 regels), buurtinventaris.py (20478 bytes, 464 regels), gezondheid.py (163042 bytes, 3403 regels), marktprijzen_bag.py (374492 bytes, 8043 regels), pandgeschiedenis.py (67957 bytes, 1487 regels)
+- **Versies**: paklijst van 2026-10-10: 28 gelijk, 20 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (58584 bytes, 1183 regels), .github/workflows/voorraad.yml (7553 bytes, 179 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (8098 bytes, 218 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56724 bytes, 1274 regels)
   Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
 - **Verkopen**: 505 verkopen: 505 geplakt; laatste 2026-09-28
   Er komt nog geen enkele verkoop uit de attendering. Controleer of het filter op verkocht daar echt aan staat.
@@ -26,9 +26,9 @@
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-10-verhaal.md
 - **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
 - **Bekende onwaarheden in de brief**: 6 bekende onwaarheden getoetst op 5 teksten, geen ervan komt voor
-- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief laat het erbuiten: 5 van de 5 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van +4,1% tot +8,9%, mediaan 6,0%.
+- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief zegt het in eigen woorden: 5 van de 5 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van +4,1% tot +8,9%, mediaan 6,0%.
 - **Verkocht pand nog in het aanbod**: geen pand dat zowel verkocht is als te koop staat
-- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4552, kamervergunningen.json: 7246, pandgeschiedenis.json: 139257, verkopen.txt: 894, verteld.json: 64, woz.txt: 122
+- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4552, kamervergunningen.json: 7246, pandgeschiedenis.json: 138847, verkopen.txt: 894, verteld.json: 64, woz.txt: 122
 - **Huurdata**: 115 huurwaarnemingen, waarvan 30 Pararius en 46 Kamernet en 37 Huislijn en 2 Rentola, zonder adres maar met oppervlakte; 54 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2; 1 waarschijnlijke dubbelingen tussen platforms samengevoegd
 - **Aanbod**: 102 koopobjecten, 4 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -37,10 +37,10 @@
 - **Eigen bouwkosten**: 5 eigen tarieven ingevuld
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
-- **Kamerverhuurregister**: 951 panden in de ring, waarvan 192 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 85
+- **Kamerverhuurregister**: 947 panden in de ring, waarvan 188 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 85
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
-- **Geschiedenis per pand**: 1777 panden gevolgd, 1430 met meer dan een gebeurtenis; 1582 met BAG-gegevens (6349 woningen, 7446 dubbel geteld zonder deze correctie), 1384 met een energielabel, 0 nog nooit nagekeken waarvan 195 na drie pogingen opgegeven; 18690 regels bespaard door gedeelde pandgegevens; 55 wachten nog op de telling van woningen apart van bergingen en garages; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
+- **Geschiedenis per pand**: 1721 panden gevolgd, 1441 met meer dan een gebeurtenis; 1580 met BAG-gegevens (6349 woningen, 7442 dubbel geteld zonder deze correctie), 1382 met een energielabel, 0 nog nooit nagekeken waarvan 188 na drie pogingen opgegeven; 18680 regels bespaard door gedeelde pandgegevens; 55 wachten nog op de telling van woningen apart van bergingen en garages; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 575 verkochte woningen verwerkt
 - **Veroudering aanbod**: 74 panden te koop, mediaan 19 dagen geleden voor het laatst bevestigd, oudste 39 dagen
 - **Aanbodreeks**: 10 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 6 koop, 34 huur, 1 uitpond. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
@@ -53,7 +53,7 @@
 - **Duiding bij beleidsstukken**: geen beleid dat ons raakt vandaag
 - **Beleid haalt de mail**: geen beleidsstuk vandaag gepubliceerd
 - **Gepubliceerde regels bij de panden**: 1 regel in regelset.txt: wonen op de eerste bouwlaag binnenstad
-- **Sleutels in de workflowstappen**: 2 workflows met 50 scriptstappen; 6 modules vragen samen 10 sleutels, en elke stap die ze aanroept geeft die mee
+- **Sleutels in de workflowstappen**: 2 workflows met 51 scriptstappen; 6 modules vragen samen 10 sleutels, en elke stap die ze aanroept geeft die mee
 - **Verkooptijd bovengrens**: 73 panden van te koop naar onder bod of verkocht gezien; mediaan hoogstens 129 dagen; alleen in onderhandeling: 37 panden, mediaan hoogstens 88 dagen. Dat is de scherpste maat, want daar legt de koper zich vast. Een bovengrens uit twee eigen waarnemingen, geen schatting: de werkelijke tijd is korter of gelijk
 - **Brieven verstuurd**: 45 brieven bewaard, laatste van 2026-10-11 (vandaag)
 - **Huur tegen het landelijke cijfer**: onze mediaan €17.35/m2 uit 63 waarnemingen tegen landelijk €20.92/m2 (2026-Q3): -17%

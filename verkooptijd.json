@@ -65,13 +65,6 @@
    "hoogstens_dagen": 265
   },
   {
-   "adres": "de Ruyterstraat 135",
-   "eerst_gezien": "2026-07-01",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 89
-  },
-  {
    "adres": "Doddendaal 117",
    "eerst_gezien": "2026-07-02",
    "verkocht_gezien": "2026-09-28",
@@ -140,6 +133,13 @@
    "verkocht_gezien": "2026-09-28",
    "soort": "in onderhandeling",
    "hoogstens_dagen": 26
+  },
+  {
+   "adres": "Groesbeekseweg 118",
+   "eerst_gezien": "2026-06-22",
+   "verkocht_gezien": "2026-09-28",
+   "soort": "verkocht",
+   "hoogstens_dagen": 98
   }
  ],
  "mediaan_hoogstens_dagen": 129,

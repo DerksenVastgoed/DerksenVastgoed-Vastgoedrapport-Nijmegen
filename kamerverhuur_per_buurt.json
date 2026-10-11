@@ -107,10 +107,10 @@
    "totaal": 38
   },
   "Hees": {
-   "alleen_melding_of_besluit": 4,
+   "alleen_melding_of_besluit": 3,
    "alleen_vergunning": 11,
    "beide": 0,
-   "totaal": 15
+   "totaal": 14
   },
   "Heijendaal": {
    "alleen_melding_of_besluit": 2,
@@ -119,10 +119,10 @@
    "totaal": 5
   },
   "Hengstdal": {
-   "alleen_melding_of_besluit": 7,
+   "alleen_melding_of_besluit": 5,
    "alleen_vergunning": 19,
    "beide": 0,
-   "totaal": 26
+   "totaal": 24
   },
   "Heseveld": {
    "alleen_melding_of_besluit": 8,
@@ -203,10 +203,10 @@
    "totaal": 64
   },
   "Stadscentrum": {
-   "alleen_melding_of_besluit": 32,
+   "alleen_melding_of_besluit": 31,
    "alleen_vergunning": 148,
    "beide": 5,
-   "totaal": 185
+   "totaal": 184
   },
   "Tolhuis": {
    "alleen_melding_of_besluit": 2,

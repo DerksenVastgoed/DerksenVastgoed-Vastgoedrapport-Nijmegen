@@ -213,3 +213,7 @@ De brief eindigt midden in een zin: '... bij Hatertseweg 338 wil ik nog scherp k
 
 Groet, Mark'. Controleer of het antwoord is afgekapt.
 De brief eindigt midden in een zin: '...bod in de vrije sector kan volgens datzelfde bericht de verk'. Controleer of het antwoord is afgekapt.
+De brief eindigt midden in een zin: '...krijgen. Daar houd ik volgende week een oog op.
+
+Groet,
+Mark'. Controleer of het antwoord is afgekapt.

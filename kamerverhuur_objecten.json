@@ -5403,8 +5403,13 @@
   "straat": "Kerkegasje"
  },
  "kerkstraat65": {
-  "adres": "Kerkstraat 65",
+  "adres": "de Kerkstraat 65",
   "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   },
    {
     "bron": "melding",
     "jaar": "2025",
@@ -5412,8 +5417,7 @@
    }
   ],
   "buurt": "Hees",
-  "gebeurtenissen": [],
-  "straat": "Kerkstraat"
+  "straat": "de Kerkstraat"
  },
  "klaverstraat23": {
   "adres": "Klaverstraat 23",
@@ -7494,8 +7498,13 @@
   "straat": "Piersonstraat"
  },
  "pijnboomstraat17": {
-  "adres": "Pijnboomstraat 17",
+  "adres": "de Pijnboomstraat 17",
   "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   },
    {
     "bron": "melding",
     "jaar": "2025",
@@ -7503,12 +7512,16 @@
    }
   ],
   "buurt": "Hengstdal",
-  "gebeurtenissen": [],
-  "straat": "Pijnboomstraat"
+  "straat": "de Pijnboomstraat"
  },
  "pijnboomstraat19": {
-  "adres": "Pijnboomstraat 19",
+  "adres": "de Pijnboomstraat 19",
   "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   },
    {
     "bron": "melding",
     "jaar": "2025",
@@ -7516,8 +7529,7 @@
    }
   ],
   "buurt": "Hengstdal",
-  "gebeurtenissen": [],
-  "straat": "Pijnboomstraat"
+  "straat": "de Pijnboomstraat"
  },
  "planetenstraat30": {
   "adres": "Planetenstraat 30",
@@ -11135,8 +11147,13 @@
   "straat": "Vossenlaan"
  },
  "vredestraat12": {
-  "adres": "Vredestraat 12",
+  "adres": "de Vredestraat 12",
   "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2025",
+    "soort": "melding brandveilig gebruik"
+   },
    {
     "bron": "besluit",
     "jaar": "2026",
@@ -11144,8 +11161,7 @@
    }
   ],
   "buurt": "Stadscentrum",
-  "gebeurtenissen": [],
-  "straat": "Vredestraat"
+  "straat": "de Vredestraat"
  },
  "vrouweudasingel211": {
   "adres": "Vrouwe Udasingel 211",

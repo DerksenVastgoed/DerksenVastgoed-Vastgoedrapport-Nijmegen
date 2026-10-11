@@ -8,6 +8,12 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-10-09: de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46, 24, 19, 23, 19 m2 (Basisregistratie Adressen en Gebouwen) **nieuw**
 - 2026-10-01: energielabels van 1 woningen in dit pand (E: 1) (EP-Online)
 
+## Lange Hezelstraat 75
+- 2015-01-01: omgevingsvergunning bekend (jaar bij benadering) (vergunning)
+- 2025-01-01: melding brandveilig gebruik bekend (jaar bij benadering) (melding)
+- 2025-08-21: Melding brandveilig gebruik aan de Lange Hezelstraat 75A, 6511CD Nijmegen (officiele bekendmakingen)
+- 2026-10-09: energielabels van 2 woningen in dit pand (D: 1, A++: 1) (EP-Online)
+
 ## Couwenbergstraat 123
 - 2025-03-26: Aanvraag omgevingsvergunning voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen (officiele bekendmakingen)
 - 2025-08-20: Besluit voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen (officiele bekendmakingen)
@@ -17,11 +23,6 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-08-21: Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen (officiele bekendmakingen)
 - 2026-10-06: Besluit voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Kanunnik van Osstraat 53, 6525TW Nijmegen (officiele bekendmakingen) **nieuw**
 - 2026-10-03: energielabels van 1 woningen in dit pand (C: 1) (EP-Online)
-
-## Lange Hezelstraat 75
-- 2015-01-01: omgevingsvergunning bekend (jaar bij benadering) (vergunning)
-- 2025-01-01: melding brandveilig gebruik bekend (jaar bij benadering) (melding)
-- 2026-10-09: energielabels van 2 woningen in dit pand (D: 1, A++: 1) (EP-Online)
 
 ## Meijhorst 9233
 - 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
