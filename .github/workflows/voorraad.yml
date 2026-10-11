@@ -68,7 +68,16 @@ jobs:
         # verwacht, en pand staat als pand.href in het antwoord. Deze proef
         # draait op echte antwoordvormen, kost geen seconde en geen aanroep,
         # en is rood voordat er tien minuten in gaat zitten.
-        run: python voorraad_bag.py --proef
+        run: |
+          python voorraad_bag.py --proef
+          # EN DE AANROEP VAN EP-ONLINE APART. Die stond drie keer in de repo
+          # en de kopie die deze workflow gebruikte was stuk: hij vroeg alleen
+          # op postcode en las een van de zes veldnamen waaronder het label
+          # kan staan. Op 10 oktober leverde dat 818 aanroepen en nul labels
+          # op, 25 minuten per run, en het zag eruit als een eigenschap van de
+          # woningvoorraad in plaats van als een fout. Deze proef kost geen
+          # seconde en geen aanroep.
+          python eponline.py --proef
 
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true

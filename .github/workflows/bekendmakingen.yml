@@ -137,7 +137,14 @@ jobs:
         # --snel: de verwezen proeven zelf draaien verderop als eigen poort,
         # naast de stap die ze gebruikt. Daar horen ze, want een fout hoort
         # rood te zijn op de plek waar hij ontstaat.
-        run: python eisen.py --proef --snel
+        run: |
+          python eisen.py --proef --snel
+          # Ook hier de aanroep van EP-Online, want deze workflow haalt
+          # energielabels op via marktprijzen_bag en bekendmakingen_nijmegen.
+          # De eisenproef hierboven draait met --snel en komt er dus niet
+          # langs, en een poort die de ene workflow dekt en de andere niet is
+          # geen poort.
+          python eponline.py --proef
 
       - name: De pandsleutels nameten voordat er iets wordt gelezen
         # EERST DE SLEUTELS. Tien bestanden bevatten feiten per pand, en die
