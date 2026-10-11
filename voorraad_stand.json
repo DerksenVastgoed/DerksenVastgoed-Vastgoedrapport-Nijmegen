@@ -1,5 +1,5 @@
 {
- "datum": "2026-10-10",
+ "datum": "2026-10-11",
  "ronde": {
   "bag": {
    "adressen_bijgewerkt": 0,
@@ -47,15 +47,16 @@
    "zonder_pandsleutel": 0,
    "zonder_vbo": 0
   },
-  "bijgewerkt": "2026-10-10",
+  "bijgewerkt": "2026-10-11",
   "labels": {
-   "datum": "2026-10-10",
-   "fouten": 15,
-   "geen_label_bekend": 803,
-   "gevraagd": 818,
-   "laatste_fout": "Bachstraat 29A-24: HTTP 400",
-   "label_gevonden": 0,
-   "nog_nooit_gevraagd": 21293,
+   "datum": "2026-10-11",
+   "fouten": 46,
+   "geen_label_bekend": 0,
+   "gevraagd": 113,
+   "laatste_fout": "Beijensstraat 64: HTTP 404",
+   "label_gevonden": 67,
+   "label_prive": 0,
+   "nog_nooit_gevraagd": 21180,
    "opnieuw_aan_de_beurt": 0
   },
   "panden": {
@@ -71,7 +72,7 @@
    "tegels_over": 0
   },
   "stand": {
-   "met_label": 0,
+   "met_label": 67,
    "met_oppervlakte": 22096,
    "postcodes_gedaan": 1240,
    "woningen": 22096
