@@ -242,6 +242,15 @@ jobs:
             echo "Inventaris is er al; wordt op zondag ververst."
           fi
 
+      - name: De toets op artikel 15 nameten
+        # WAAROM DIT HIER STAAT. De investeringscase in de brief rust op deze
+        # toets, en op 11 oktober gaf hij een kamerroute vrij die de
+        # verordening verbiedt: 13 kamers doorgerekend voor een pand waar
+        # verkameren een zelfstandige woning zou insluiten. De proef draait op
+        # zes echte adressen uit de ring, kost geen seconde en geen aanroep,
+        # en is rood voordat er een case wordt geschreven.
+        run: python toets_artikel15.py
+
       - name: Regelgeving controleren op wijzigingen
         continue-on-error: true
         run: |

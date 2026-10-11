@@ -88,7 +88,8 @@ def _buren(adres, vergunningen):
     return uit
 
 
-def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
+def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
+                       ingesloten=None, reeks=None, kamerpand=False):
     """
     Loopt de weigeringsgronden van artikel 15 langs. Geeft een lijst van
     (grond, oordeel, toelichting).
@@ -152,34 +153,117 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None):
         uit.append(("fietsenstalling", ONBEKEND,
                     f"{FIETS_PER_BEWONER} m² per bewoner nodig op eigen terrein"))
 
-    # 5. Maximaal twee naast elkaar, en geen insluiting
+    # 5. Maximaal twee naast elkaar
+    #
+    # DIT TELDE DE BUUR EN NIET DE RIJ. De toets keek alleen of de twee
+    # directe buren vergund zijn. Bij St. Annastraat 9 meldde hij daarom
+    # "nummer 11 is al vergund; dit pand zou de tweede zijn, wat nog is
+    # toegestaan", terwijl 11, 13 én 15 vergund zijn en dit pand de vierde op
+    # rij zou worden. Dat is een goedkeuring die de verordening niet geeft.
+    #
+    # Het aantal aansluitende kamerpanden per zijde komt nu van de aanroeper,
+    # die de hele straat kan overzien. Zonder dat getal valt deze toets terug
+    # op de buurtelling, en dan zegt hij ook dat hij dat doet.
     buren = _buren(w.get("adres", ""), vergunningen or {})
     links, rechts = buren.get("links"), buren.get("rechts")
-    if links and rechts:
+    langste = max((reeks or {}).values()) if reeks else None
+    # BEIDE ZIJDEN SAMEN, want dit pand wordt dan de middelste van drie. De
+    # reeks wordt per zijde geteld, dus een kamerpand links én rechts geeft
+    # {-1: 1, 1: 1} en dat is per zijde "nog toegestaan". Alleen keek de oude
+    # tak links-en-rechts daar al naar, en die werd door de reeks-takken
+    # onbereikbaar. Zeventien adressen in de ring kregen daardoor een
+    # goedkeuring die er eerder niet was, onder meer Groesbeekseweg 53 met 51
+    # en 55 beide vergund.
+    # EEN PAND DAT ZELF AL KAMERPAND IS WORDT NIETS DERDE. Er is dan geen
+    # omzetting die de rij verlengt, dus deze toets gaat over een handeling die
+    # niet meer hoeft. St. Annastraat 15 heeft zijn eigen vergunning uit 2018
+    # en kreeg toch "dit pand zou het derde of verdere in de rij worden".
+    if kamerpand:
+        uit.append(("maximaal twee naast elkaar", VOLDOET,
+                    "dit pand is zelf al kamergewijs vergund, dus er is geen "
+                    "omzetting die de rij verlengt. De regel gaat over een "
+                    "nieuwe omzetting en niet over bestaand gebruik"))
+        reeks = None
+        langste = "n.v.t."
+    weerszijden = reeks and len([n for n in reeks.values() if n >= 1]) >= 2
+    if langste == "n.v.t.":
+        pass
+    elif weerszijden:
+        namen = [b.get("adres") for b in [links, rechts] if b]
+        uit.append(("maximaal twee naast elkaar", VOLDOET_NIET,
+                    "aan beide zijden ligt een kamerpand"
+                    + (f" ({', '.join(n for n in namen if n)})" if any(namen)
+                       else "")
+                    + ", dus dit pand zou de middelste van drie op een rij "
+                      "worden en de verordening staat niet meer dan twee toe"))
+    elif langste is not None and langste >= 2:
+        uit.append(("maximaal twee naast elkaar", VOLDOET_NIET,
+                    f"aan één zijde liggen al {langste} kamerpanden "
+                    f"aansluitend naast dit pand. Dit pand zou het derde of "
+                    f"verdere in de rij worden, en de verordening staat niet "
+                    f"meer dan twee toe"))
+    elif langste == 1:
+        uit.append(("maximaal twee naast elkaar", VOLDOET,
+                    "er ligt één kamerpand direct naast dit pand; dit pand zou "
+                    "het tweede zijn, wat nog is toegestaan. Er is dan geen "
+                    "ruimte meer voor een derde"))
+    elif langste == 0:
+        uit.append(("maximaal twee naast elkaar", VOLDOET,
+                    "er ligt geen kamerpand direct naast dit pand, gemeten "
+                    "over de hele straatzijde. Let op: de vergunningenlijst "
+                    "loopt van 2013 tot 2025 en wordt niet bijgewerkt, en "
+                    "panden boven de WOZ-grens hadden geen vergunning nodig"))
+    elif links and rechts:
         uit.append(("maximaal twee naast elkaar", VOLDOET_NIET,
                     f"zowel {links.get('adres')} als {rechts.get('adres')} is al "
                     f"kamergewijs vergund. Dit pand zou de derde op rij worden"))
-    elif links or rechts:
-        buur = links or rechts
-        uit.append(("maximaal twee naast elkaar", VOLDOET,
-                    f"{buur.get('adres')} is al vergund; dit pand zou de tweede "
-                    f"zijn, wat nog is toegestaan. Er is dan geen ruimte meer "
-                    f"voor een derde"))
     else:
-        uit.append(("maximaal twee naast elkaar", VOLDOET,
-                    "de aangrenzende panden aan weerszijden staan niet in de "
-                    "vergunningenlijst vanaf 2013. Let op: oudere vergunningen en "
-                    "panden boven de WOZ-grens staan er niet in"))
+        uit.append(("maximaal twee naast elkaar", ONBEKEND,
+                    "de rij aansluitende kamerpanden is niet geteld, dus "
+                    "alleen de twee directe buren zijn nagekeken en die staan "
+                    "niet in de vergunningenlijst. Een derde op rij is daarmee "
+                    "niet uitgesloten"))
 
     # 6. Insluiting van een zelfstandig bewoonde woning
-    if links and rechts:
+    #
+    # DIT KEEK NAAR HET VERKEERDE GEVAL. De toets vroeg of béide directe buren
+    # verkamerd zijn, en zei anders VOLDOET. Maar insluiting ontstaat juist als
+    # de directe buur zelfstandig is en de kamers één pand verder liggen: dan
+    # komt die zelfstandige woning tussen twee kamerpanden te zitten. Bij St.
+    # Annastraat 7 is dat precies de situatie. Nummer 9 is vier zelfstandige
+    # appartementen, nummer 11 is onttrokken voor kamers, en deze toets gaf
+    # VOLDOET op de regel die als enige bindt. De investeringscase van 11
+    # oktober rekende daarop 13 kamers door.
+    #
+    # Het antwoord komt nu van de aanroeper, die de voorraad uit de BAG heeft
+    # en dus kan zien uit hoeveel zelfstandige woningen een buurpand bestaat.
+    # None betekent niet gekeken, een lege lijst betekent gekeken en niets
+    # gevonden. Dat onderscheid staat hier, want anders leest "niets gevonden"
+    # als een goedkeuring die niemand heeft gegeven.
+    if ingesloten:
+        x = ingesloten[0]
+        maten = ", ".join(str(m) for m in (x.get("maten") or []))
+        uit.append(("insluiting", VOLDOET_NIET,
+                    f"nummer {x.get('nummer')} bestaat uit "
+                    f"{x.get('woningen')} zelfstandige woningen"
+                    + (f" van {maten} m²" if maten else "")
+                    + f" en ligt tussen dit pand en {x.get('kamerbuur')}, dat "
+                      f"al voor kamers is onttrokken. Verkameren zou die "
+                      f"woningen insluiten, en dat verbiedt de verordening"))
+    elif ingesloten == []:
+        uit.append(("insluiting", VOLDOET,
+                    "tussen dit pand en een kamerpand op dezelfde straatzijde "
+                    "ligt geen pand dat aantoonbaar uit meer zelfstandige "
+                    "woningen bestaat, gemeten op de BAG-voorraad"))
+    elif links and rechts:
         uit.append(("insluiting", ONBEKEND,
                     "beide buren zijn vergund; controleer of er geen zelfstandig "
                     "bewoonde woning tussen komt te liggen"))
     else:
-        uit.append(("insluiting", VOLDOET,
-                    "geen aanwijzing dat een zelfstandig bewoonde woning wordt "
-                    "ingesloten door kamerpanden"))
+        uit.append(("insluiting", ONBEKEND,
+                    "niet getoetst: deze straat staat niet in de "
+                    "BAG-voorraad, dus of er een zelfstandig bewoonde woning "
+                    "wordt ingesloten is hier niet te zeggen"))
 
     # 7. Bouwbesluit: ruwe toets op oppervlakte per kamer
     if opp and aantal_kamers:
@@ -302,3 +386,206 @@ def samenvatting(regels):
     return (f"geen blokkades gevonden, {len(open_punten)} punt"
             + ("en" if len(open_punten) != 1 else "") + " uit te zoeken: "
             + ", ".join(r[0] for r in open_punten[:4]))
+
+
+def proef():
+    """
+    De insluitingstoets nameten, zonder netwerk en zonder bestanden.
+
+    WAAROM JUIST DEZE TOETS EEN PROEF KRIJGT. Hij stond op VOLDOET in het ene
+    geval dat werkelijk bindt, en op grond daarvan rekende de
+    investeringscase in de brief van 11 oktober dertien kamers door voor een
+    pand waar verkameren vermoedelijk niet mag. Dat is het zwaarste soort fout
+    dat deze brief kan maken: geen verkeerd getal maar een verkeerd advies.
+
+    De drie uitkomsten die uit elkaar moeten blijven: gekeken en ingesloten,
+    gekeken en niets gevonden, en niet gekeken. Die laatste twee zijn het
+    makkelijkst te verwarren, en dan leest "niets gevonden" als een
+    goedkeuring die niemand heeft gegeven.
+    """
+    import sys
+    afw = []
+    w = {"adres": "St. Annastraat 7", "oppervlakte": 330, "woz": 982009}
+
+    def oordeel(regels, naam):
+        for n, o, t in regels:
+            if n == naam:
+                return o, t
+        return None, ""
+
+    # 1. GEKEKEN EN INGESLOTEN: de regel valt.
+    ing = [{"nummer": 9, "woningen": 4, "maten": [100, 78, 76, 61],
+            "kamerbuur": "St. Annastraat 11"}]
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=ing, aantal_kamers=13),
+                   "insluiting")
+    if o != VOLDOET_NIET:
+        afw.append(f"met een ingesloten woning gaf de toets {o!r} in plaats "
+                   f"van {VOLDOET_NIET!r}")
+    for stuk in ("9", "4 zelfstandige woningen", "St. Annastraat 11"):
+        if stuk not in t:
+            afw.append(f"de melding noemt {stuk!r} niet: {t[:90]!r}")
+
+    # 2. GEKEKEN EN NIETS GEVONDEN: dan mag er VOLDOET staan.
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=[], aantal_kamers=13),
+                   "insluiting")
+    if o != VOLDOET:
+        afw.append(f"met een lege uitkomst gaf de toets {o!r} in plaats van "
+                   f"{VOLDOET!r}")
+    if "voorraad" not in t.lower():
+        afw.append("de melding zegt niet waarop is gemeten")
+
+    # 3. NIET GEKEKEN: dan hoort er ONBEKEND te staan en geen goedkeuring.
+    o, t = oordeel(toets_kamerverhuur(w, ingesloten=None, aantal_kamers=13),
+                   "insluiting")
+    if o != ONBEKEND:
+        afw.append(f"zonder meting gaf de toets {o!r} in plaats van "
+                   f"{ONBEKEND!r}; dan leest niet-gekeken als goedgekeurd")
+
+    # 4. EN DE TOETS MOET DE KAMERROUTE WERKELIJK LATEN VALLEN.
+    regels = toets_kamerverhuur(w, ingesloten=ing, aantal_kamers=13)
+    if not [g for g, o, _t in regels if o == VOLDOET_NIET]:
+        afw.append("geen enkel toetspunt staat op 'voldoet niet', dus de "
+                   "kamerroute valt niet af")
+
+    # 5. DE HELE KETEN OP DE ECHTE VOORRAAD.
+    #
+    # De proef hierboven toetst de vertaalslag van een uitkomst naar een
+    # toetspunt, met de hand gebouwde invoer. Dat is te weinig: de beoordelaar
+    # vond vier fouten die hier ongemerkt door kwamen, allemaal in het rekenen
+    # zelf. Deze zes adressen zijn echte gevallen uit de ring, elk met een
+    # eigen reden, en ze worden door de echte functies gehaald.
+    try:
+        import marktprijzen_bag as _M
+        _heeft = bool(_M.voorraad_per_straat("St. Annastraat"))
+    except Exception as e:
+        print(f"keten niet getoetst: {type(e).__name__}: {e}", file=sys.stderr)
+        _heeft = False
+    if _heeft:
+        verwacht = {
+            # Insluiting: nummer 9 is vier zelfstandige appartementen en ligt
+            # tussen 7 en het onttrokken 11.
+            "St. Annastraat 7": ("insluiting", 9),
+            # Reeks: 11, 13 en 15 zijn drie aansluitende kamerpanden, dus 9
+            # zou de vierde worden. De oude toets zei "nog toegestaan".
+            "St. Annastraat 9": ("reeks", None),
+            # Vrij: de buren 3 en 7 hebben geen vergunning, en tussen 5 en 11
+            # liggen twee panden, dus geen insluiting.
+            "St. Annastraat 5": ("gekeken en niets gevonden", None),
+            # Twee woningen op één nummer in twee verschillende panden; dat
+            # werd eerder als één woning geteld en de insluiting gemist.
+            "St. Annastraat 51": ("insluiting", 49),
+            # Hier stonden een nog in gebruik zijnd object en zijn eigen nieuwe
+            # eenheden samen in de BAG, wat "7 woningen van 382, 122, ..."
+            # opleverde: 727 m2 in een pand van 382. Nu blokkeert de reeks.
+            "Graafseweg 62": ("reeks", None),
+            # Hier is binnen één pand doorgenummerd, dus nummer 24 is wél de
+            # directe buur van 25 en niet de overzijde.
+            "Keizer Karelplein 25": ("reeks", None),
+        }
+        for adres, (reden_moet, nummer_moet) in verwacht.items():
+            ing, reden = _M.kamerroute_geblokkeerd(adres)
+            if reden != reden_moet:
+                afw.append(f"{adres}: reden {reden!r} in plaats van "
+                           f"{reden_moet!r}")
+            if nummer_moet is not None:
+                nrs = [x.get("nummer") for x in (ing or [])]
+                if nrs != [nummer_moet]:
+                    afw.append(f"{adres}: ingesloten {nrs} in plaats van "
+                               f"[{nummer_moet}]")
+            elif reden_moet == "reeks" and ing:
+                afw.append(f"{adres}: een reeksblokkade hoort geen "
+                           f"insluitingsrecords te geven, kreeg {ing}")
+
+        # 5b. DE VIER TAKKEN VAN TOETSPUNT 5. De proef gaf hier eerst nooit
+        # reeks mee, dus alleen de terugvaltak liep en zes fouten kwamen groen
+        # door.
+        def t5(reeks, kamerpand=False):
+            rs = toets_kamerverhuur(w, ingesloten=[], reeks=reeks,
+                                    kamerpand=kamerpand, aantal_kamers=13)
+            return oordeel(rs, "maximaal twee naast elkaar")
+
+        for reeks, kamerpand, moet, waarom in (
+                ({-1: 0, 1: 0}, False, VOLDOET, "niets naast dit pand"),
+                ({-1: 1, 1: 0}, False, VOLDOET, "één naast, dit wordt de tweede"),
+                ({-1: 2, 1: 0}, False, VOLDOET_NIET, "twee aansluitend"),
+                ({-1: 3, 1: 0}, False, VOLDOET_NIET, "drie aansluitend"),
+                # De middelste van drie: per zijde één, samen te veel. Dit gaf
+                # zeventien adressen in de ring een onterechte goedkeuring.
+                ({-1: 1, 1: 1}, False, VOLDOET_NIET, "aan beide zijden één"),
+                # Een pand dat zelf al kamerpand is wordt niets derde.
+                ({-1: 2, 1: 0}, True, VOLDOET, "eigen kamerpand"),
+                (None, False, ONBEKEND, "geen reeks meegegeven"),
+        ):
+            o, _t = t5(reeks, kamerpand)
+            if o != moet:
+                afw.append(f"toetspunt 5 met reeks={reeks} kamerpand={kamerpand} "
+                           f"({waarom}) gaf {o!r} in plaats van {moet!r}")
+
+        # 5c. EN DE ECHTE GEVALLEN DIE DAARBIJ HOREN.
+        for adres, reden_moet in (("Groesbeekseweg 53", "weerszijden"),
+                                  ("Keizer Karelplein 31",
+                                   "gekeken en niets gevonden"),
+                                  # Buiten de voorraad, maar de reeks komt uit
+                                  # de vergunningenlijst en moet wel blokkeren.
+                                  ("Jan van Goyenstraat 52", "reeks")):
+            _ing, _reden = _M.kamerroute_geblokkeerd(adres)
+            if _reden != reden_moet:
+                afw.append(f"{adres}: reden {_reden!r} in plaats van "
+                           f"{reden_moet!r}")
+
+        # 5d. PAND_DOSSIER MOET DRAAIEN. Op 11 oktober stond er een aanroep
+        # naar een functie die niet meer bestond, in een try/except die naar
+        # stderr schrijft. De brief ging door, het dossierblok verdween, en
+        # juist daarin staan de feiten die de kamerroute blokkeren. Geen enkele
+        # proef raakte dit aan.
+        try:
+            _w = {"adres": "St. Annastraat 7", "oppervlakte": 330,
+                  "prijs": 1100000, "buurt": "Galgenveld", "m2": 3333}
+            _feiten = _M.pand_dossier(_w, "Galgenveld", -34.0, {},
+                                      _M.lees_archief(), {})
+            _tekst = " ".join(str(x) for x in (_feiten or []))
+            if "insluiten" not in _tekst:
+                afw.append("pand_dossier levert geen insluitingsfeit voor St. "
+                           "Annastraat 7, dus de brief mist de reden")
+        except Exception as e:
+            afw.append(f"pand_dossier faalt: {type(e).__name__}: {e}")
+
+        # Een straat buiten de ring is onbekend en blokkeert niets.
+        ing, reden = _M.kamerroute_geblokkeerd("Nergensweg 7")
+        if ing is not None or "voorraad" not in reden:
+            afw.append(f"een straat buiten de voorraad gaf ({ing!r}, {reden!r}) "
+                       f"in plaats van onbekend")
+
+        # Samenvoeging is het tegendeel van verkameren en mag niet meetellen.
+        _vg = _M._kamervergunning("Tooropstraat", 61,
+                                  _M.lees_kamervergunningen(), {})
+        if _vg and "samenvoeg" in (_vg.get("soort") or "").lower():
+            afw.append("een samenvoeging wordt nog als kamersignaal geteld")
+
+        # En de cache moet werken: de tweede aanroep mag niet opnieuw het hele
+        # bestand van 22.096 records doorlopen.
+        import time as _t
+        _M.kamerbeeld("St. Annastraat 7")
+        _start = _t.time()
+        for _ in range(20):
+            _M.kamerbeeld("St. Annastraat 7")
+        _per = (_t.time() - _start) / 20
+        if _per > 0.015:
+            afw.append(f"kamerbeeld kost {_per * 1000:.0f} ms per aanroep; "
+                       f"dan is de cache per straat stuk en kost een briefrun "
+                       f"er minuten aan")
+
+    for a in afw:
+        print(f"AFWIJKING: {a}", file=sys.stderr)
+    print(f"Proef: {len(afw)} afwijkingen. Gedekt: de insluitingstoets in de "
+          f"drie toestanden die uit elkaar moeten blijven (ingesloten, "
+          f"gekeken en schoon, niet gekeken), en dat een insluiting de "
+          f"kamerroute werkelijk laat afvallen, plus de hele keten op zes "
+          f"echte adressen uit de ring, een straat buiten de voorraad, de "
+          f"samenvoegingen en de cache.", file=sys.stderr)
+    return 1 if afw else 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(proef())
