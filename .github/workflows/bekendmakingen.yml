@@ -230,6 +230,13 @@ jobs:
             # de stap toch succes. continue-on-error houdt de run heel en
             # laat de stap wel als mislukt zien, en dat is het verschil
             # tussen een fout die je ziet en een die je niet ziet.
+            # EERST DE PROEF. Solr geeft geen fout op een veld waarop niet
+            # te filteren is: het negeert de filter en geeft dezelfde telling.
+            # Daardoor stonden er 491 postcodes uit Boskoop, Gorinchem, Dongen
+            # en Assen in de inventaris, en zou een reparatie die stil niets
+            # doet op precies dezelfde manier onopgemerkt blijven. Deze proef
+            # kost geen seconde en geen aanroep.
+            python buurtinventaris.py --proef
             python buurtinventaris.py
           else
             echo "Inventaris is er al; wordt op zondag ververst."
