@@ -63,8 +63,33 @@ VELD_LABEL = ("Pand_energieklasse", "energieklasse", "labelLetter",
               "Pand_labelletter", "energielabel", "labelletter")
 VELD_PRIVE = ("Pand_energielabel_is_prive", "isPrive", "prive")
 VELD_DATUM = ("Pand_registratiedatum", "registratiedatum")
-VELD_GELDIG = ("Meting_geldig_tot", "geldigTot", "metingGeldigTot")
+VELD_GELDIG = ("Meting_geldig_tot", "geldigTot", "metingGeldigTot",
+               "Geldig_tot")
 VELD_KLASSE = ("Pand_gebouwklasse", "gebouwklasse")
+
+# DE VELDEN DIE WIJ EERST WEGGOOIDEN. Het echte antwoord van 11 oktober heeft
+# zestien velden; lees() bewaarde er vijf. Dat is de eis "een veld dat een
+# bron meegeeft, wordt opgeschreven of met reden weggelaten", en de reden
+# ontbrak. Het zwaarste is Berekeningstype: in pand 0268100000026050 staan
+# twee labels volgens de Rekenmethodiek van 2014 en drie volgens NTA 8800,
+# en een D van 2017 is dus geen slechter huis dan een C van 2026 maar een
+# andere rekenmethode. Zonder dit veld vergelijkt de brief twee grondslagen.
+VELD_METHODE = ("Berekeningstype", "berekeningstype")
+VELD_OPNAME = ("Opnamedatum", "opnamedatum")
+VELD_TYPE = ("Gebouwtype", "gebouwtype")
+VELD_SUBTYPE = ("Gebouwsubtype", "gebouwsubtype")
+VELD_REFERENTIE = ("Op_basis_van_referentiegebouw",
+                   "opBasisVanReferentiegebouw")
+VELD_VBO = ("BAGVerblijfsobjectID", "bagVerblijfsobjectId")
+VELD_PANDEN = ("BAGPandIDs", "bagPandIds", "BAGPandID")
+VELD_VERBRUIK = ("BerekendeEnergieverbruik", "berekendeEnergieverbruik")
+VELD_BOUWJAAR = ("Bouwjaar", "bouwjaar")
+
+# Wat met reden WEL wordt weggelaten: Certificaathouder (de adviseur, niet
+# het pand), BerekendeCO2Emissie (stond op 0.0 in alle vijf de echte
+# antwoorden, dus daar valt niets op te bouwen), en Postcode en Huisnummer
+# (die hebben wij al uit de BAG en een tweede bron voor hetzelfde adres is
+# precies de soort dubbeling die we deze week hebben opgeruimd).
 
 
 def _sleutel():
@@ -154,19 +179,55 @@ def lees(rec):
     if not isinstance(rec, dict) or not rec:
         return None
     prive = veld(rec, VELD_PRIVE)
-    if str(prive).lower() in ("1", "true", "ja"):
-        return {"label": None, "prive": True, "registratiedatum": "",
-                "geldig_tot": "", "gebouwklasse": ""}
+    is_prive = str(prive).lower() in ("1", "true", "ja")
     letter = veld(rec, VELD_LABEL)
-    if not letter:
+    if not is_prive and not letter:
         return None
+    panden = veld(rec, VELD_PANDEN)
+    if isinstance(panden, str):
+        panden = [panden]
+    methode = str(veld(rec, VELD_METHODE) or "")
     return {
-        "label": str(letter).strip(),
-        "prive": False,
+        # Bij een privelabel IS er een label, maar de letter niet. De rest
+        # van het record staat er wel, en die werd eerst ook weggegooid.
+        "label": None if is_prive else str(letter).strip(),
+        "prive": is_prive,
         "registratiedatum": str(veld(rec, VELD_DATUM) or "")[:10],
+        "opnamedatum": str(veld(rec, VELD_OPNAME) or "")[:10],
         "geldig_tot": str(veld(rec, VELD_GELDIG) or "")[:10],
         "gebouwklasse": veld(rec, VELD_KLASSE) or "",
+        "gebouwtype": veld(rec, VELD_TYPE) or "",
+        "gebouwsubtype": veld(rec, VELD_SUBTYPE) or "",
+        "methode": methode,
+        "nta8800": volgens_nta8800(methode),
+        "referentiegebouw": veld(rec, VELD_REFERENTIE),
+        "vbo": str(veld(rec, VELD_VBO) or ""),
+        "panden": list(panden or []),
+        "verbruik": veld(rec, VELD_VERBRUIK),
+        "bouwjaar": veld(rec, VELD_BOUWJAAR),
     }
+
+
+def volgens_nta8800(methode):
+    """
+    Of dit label volgens NTA 8800 is bepaald. None als het veld leeg is.
+
+    WAAROM DIT EEN EIGEN FUNCTIE IS EN GEEN REGEL ONDERWEG. Dit is de
+    grondslag onder de letter, en de eis zegt dat een getal nooit met een
+    getal op een andere grondslag wordt vergeleken. Een label van voor 2021
+    is bepaald met de Rekenmethodiek Definitief Energielabel van 2014 en een
+    label daarna met NTA 8800, en die twee geven voor hetzelfde huis een
+    andere letter. Gemeten in pand 0268100000026050: D en D volgens de oude
+    methode, C, B en C volgens NTA 8800.
+
+    De tekst van het veld is de bron en niet de datum, want er zijn labels
+    die later onder de oude methode zijn geregistreerd en een opnamedatum
+    telt tien jaar door.
+    """
+    kaal = str(methode or "").lower().replace(" ", "").replace("-", "")
+    if not kaal:
+        return None
+    return "nta8800" in kaal
 
 
 # Wat een foutcode betekent.
@@ -281,7 +342,9 @@ def _kaal(naam):
 
 BEKENDE_VELDEN = tuple(_kaal(n) for groep in
                        (VELD_LABEL, VELD_PRIVE, VELD_DATUM, VELD_GELDIG,
-                        VELD_KLASSE) for n in groep)
+                        VELD_KLASSE, VELD_METHODE, VELD_OPNAME, VELD_TYPE,
+                        VELD_SUBTYPE, VELD_REFERENTIE, VELD_VBO, VELD_PANDEN,
+                        VELD_VERBRUIK, VELD_BOUWJAAR) for n in groep)
 
 
 def ruw(vbo_ids, haler=None):
@@ -377,7 +440,7 @@ def proef_vastgelegd(pad=VORM):
     niets gevonden". Die twee mogen nooit met hetzelfde woord worden gezegd,
     dus hier wordt geen groene controle gemeld maar nul gekeken.
     """
-    fouten, gekeken = [], 0
+    fouten, gekeken, zonder_methode = [], 0, 0
     if not os.path.exists(pad):
         return (fouten, 0)
     try:
@@ -407,6 +470,15 @@ def proef_vastgelegd(pad=VORM):
             if "label" in kaal or "klasse" in kaal:
                 fouten.append(f"vastgelegd antwoord {vbo} heeft veldnaam "
                               f"{k!r} die wij niet lezen; de zevende veldnaam")
+        # DE GRONDSLAG MOET ERIN STAAN. Zonder Berekeningstype is niet te
+        # zeggen of deze letter met NTA 8800 of met de methode van 2014 is
+        # bepaald, en dan vergelijkt de brief twee grondslagen.
+        if (nu or {}).get("nta8800") is None:
+            zonder_methode += 1
+    if zonder_methode:
+        fouten.append(f"{zonder_methode} van de {gekeken} vastgelegde "
+                      f"antwoorden hebben geen rekenmethode, dus de grondslag "
+                      f"onder die letters is niet te zien")
     return (fouten, gekeken)
 
 
@@ -434,6 +506,60 @@ def proef():
     check("leeg veld telt niet", lees({"energieklasse": ""}), None)
     check("leeg record", lees({}), None)
     check("geen dict", lees(None), None)
+
+    # DE REKENMETHODE KOMT MEE. Dit is de grondslag onder de letter. Een D
+    # van 2017 volgens de Rekenmethodiek van 2014 en een C van 2026 volgens
+    # NTA 8800 zijn geen vergelijkbare getallen, en ze stonden in hetzelfde
+    # pand.
+    oud = ("Rekenmethodiek Definitief Energielabel, versie 1.2, "
+           "16 september 2014")
+    nieuw = "NTA 8800:2024 (basisopname woningbouw)"
+    check("de rekenmethode komt mee",
+          (lees({"Energieklasse": "D", "Berekeningstype": oud}) or {}
+           ).get("methode"), oud)
+    check("de oude methode is niet NTA 8800", volgens_nta8800(oud), False)
+    check("NTA 8800 wordt herkend", volgens_nta8800(nieuw), True)
+    check("NTA 8800 met een streepje ook",
+          volgens_nta8800("NTA-8800:2020 detailopname"), True)
+    check("zonder methode geen aanname", volgens_nta8800(""), None)
+    check("en dan staat dat in de uitkomst",
+          (lees({"Energieklasse": "D"}) or {}).get("nta8800"), None)
+
+    # De overige velden uit het echte antwoord.
+    echt = {"BAGVerblijfsobjectID": "0268010000045931",
+            "Energieklasse": "D", "Gebouwklasse": "Woningbouw",
+            "Gebouwtype": "Flatwoning (overig)",
+            "Gebouwsubtype": "Tussenmidden", "Bouwjaar": 1955,
+            "BerekendeEnergieverbruik": 63499.91,
+            "Op_basis_van_referentiegebouw": False,
+            "Opnamedatum": "2020-12-28T00:00:00",
+            "Geldig_tot": "2030-12-28T00:00:00",
+            "Registratiedatum": "2020-12-28T22:02:04.443",
+            "Berekeningstype": oud}
+    u = lees(echt) or {}
+    check("het verblijfsobject uit het antwoord", u.get("vbo"),
+          "0268010000045931")
+    check("gebouwtype", u.get("gebouwtype"), "Flatwoning (overig)")
+    check("gebouwsubtype", u.get("gebouwsubtype"), "Tussenmidden")
+    check("bouwjaar", u.get("bouwjaar"), 1955)
+    check("verbruik", u.get("verbruik"), 63499.91)
+    check("referentiegebouw blijft False en wordt geen None",
+          u.get("referentiegebouw"), False)
+    check("opnamedatum afgekapt", u.get("opnamedatum"), "2020-12-28")
+    check("geldig_tot uit Geldig_tot", u.get("geldig_tot"), "2030-12-28")
+    # Het echte antwoord van de objectroute geeft GEEN pand-id. Dat is geen
+    # gemis maar het antwoord zelf: EP-Online identificeert het label met het
+    # verblijfsobject. In het totaalbestand staat BAGPandIDs wel, als
+    # herhalend veld, dus het lezen moet een lijst aankunnen.
+    check("geen pand-id in het antwoord van de objectroute", u.get("panden"),
+          [])
+    check("een pand-id als lijst",
+          (lees({"Energieklasse": "A", "BAGPandIDs":
+                 ["0268100000026050", "0268100000026051"]}) or {}
+           ).get("panden"), ["0268100000026050", "0268100000026051"])
+    check("een pand-id als losse tekst wordt een lijst",
+          (lees({"Energieklasse": "A", "BAGPandID": "0268100000026050"}) or {}
+           ).get("panden"), ["0268100000026050"])
 
     # Een privélabel is een antwoord en geen leegte.
     p = lees({"Pand_energielabel_is_prive": True, "Pand_energieklasse": "B"})
@@ -602,30 +728,40 @@ def proef():
               ([], 0))
 
         goed = os.path.join(map_, "goed.json")
-        vastleggen([{"vbo": "A", "http": 200,
-                     "record": {"Pand_energieklasse": "C"},
-                     "gelezen": lees({"Pand_energieklasse": "C"})}], goed)
+        # Met de rekenmethode erin, want een vastgelegd antwoord zonder
+        # grondslag is zelf een fout en dat wordt hieronder apart gemeten.
+        ok = {"Pand_energieklasse": "C", "Berekeningstype": nieuw}
+        vastleggen([{"vbo": "A", "http": 200, "record": ok,
+                     "gelezen": lees(ok)}], goed)
         f_goed, n_goed = proef_vastgelegd(goed)
         check("een goed vastgelegd antwoord geeft geen fout",
               (f_goed, n_goed), ([], 1))
 
         zevende = os.path.join(map_, "zevende.json")
-        vastleggen([{"vbo": "A", "http": 200,
-                     "record": {"Pand_energieklasse": "C",
-                                "nieuwLabelVeld": "B"},
-                     "gelezen": lees({"Pand_energieklasse": "C"})}], zevende)
+        zev = dict(ok, nieuwLabelVeld="B")
+        vastleggen([{"vbo": "A", "http": 200, "record": zev,
+                     "gelezen": lees(ok)}], zevende)
         f_zev, _n = proef_vastgelegd(zevende)
         check("een onbekende labelveldnaam wordt gemeld", len(f_zev), 1)
         check("en hij noemt de veldnaam",
               "nieuwLabelVeld" in (f_zev[0] if f_zev else ""), True)
 
         anders = os.path.join(map_, "anders.json")
-        vastleggen([{"vbo": "A", "http": 200,
-                     "record": {"Pand_energieklasse": "C"},
+        vastleggen([{"vbo": "A", "http": 200, "record": ok,
                      "gelezen": {"label": "G"}}], anders)
         f_and, _n = proef_vastgelegd(anders)
         check("een ander label dan bij het ophalen wordt gemeld",
               len(f_and), 1)
+
+        geen = os.path.join(map_, "geen-methode.json")
+        kaal = {"Pand_energieklasse": "C"}
+        vastleggen([{"vbo": "A", "http": 200, "record": kaal,
+                     "gelezen": lees(kaal)}], geen)
+        f_geen, _n = proef_vastgelegd(geen)
+        check("een vastgelegd antwoord zonder rekenmethode wordt gemeld",
+              len(f_geen), 1)
+        check("en hij noemt de grondslag",
+              "grondslag" in (f_geen[0] if f_geen else ""), True)
 
     # HET ECHTE VASTGELEGDE ANTWOORD, als het er is.
     echte_fouten, echt_gekeken = proef_vastgelegd()

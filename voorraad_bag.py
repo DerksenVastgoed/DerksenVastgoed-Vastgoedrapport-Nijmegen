@@ -1005,6 +1005,20 @@ def fase_labels(voorraad, minuten):
         if uit.get("label"):
             rec["label"] = uit["label"]
             rec["label_datum"] = uit.get("registratiedatum") or ""
+            # DE GRONDSLAG ERBIJ, EN NIET DE HELE TEKST. EP-Online geeft de
+            # rekenmethode als lange zin mee, en in pand 0268100000026050
+            # staan twee labels volgens de Rekenmethodiek van 2014 naast drie
+            # volgens NTA 8800. Een D van 2017 is dan geen slechter huis dan
+            # een C van 2026 maar een andere methode, en de eis zegt dat een
+            # getal nooit met een getal op een andere grondslag wordt
+            # vergeleken.
+            #
+            # Alleen de ja-of-nee gaat mee en niet de zin zelf: die is zo'n
+            # zeventig tekens, en bij ruim twintigduizend adressen zou dat
+            # anderhalve megabyte aan hetzelfde zinnetje in een bestand van
+            # vijf zijn. De volle tekst staat in eponline_antwoordvorm.json.
+            if uit.get("nta8800") is not None:
+                rec["label_nta8800"] = uit["nta8800"]
             met_label += 1
         elif uit.get("prive"):
             # Er IS een label, het is alleen niet openbaar. Dat als "niet
@@ -1411,28 +1425,43 @@ def proef_labels():
             "v2": {"adres": "Prive 2", "postcode": "6500AA", "vbo": "v2"},
             "v3": {"adres": "Definitief 3", "postcode": "6500AA", "vbo": "v3"},
             "v4": {"adres": "Tijdelijk 4", "postcode": "6500AA", "vbo": "v4"},
+            "v5": {"adres": "Oude methode 5", "postcode": "6500AA",
+                   "vbo": "v5"},
         }}
 
     try:
         haal_label = nep
         antwoorden = {
             "Gevonden 1": ({"label": "C", "prive": False,
-                            "registratiedatum": "2025-03-04"}, "", True),
+                            "registratiedatum": "2025-03-04",
+                            "nta8800": True}, "", True),
             "Prive 2": ({"label": None, "prive": True}, "", True),
+            "Oude methode 5": ({"label": "D", "prive": False,
+                                "registratiedatum": "2017-03-15",
+                                "nta8800": False}, "", True),
             "Definitief 3": (None, "HTTP 400", True),
             "Tijdelijk 4": (None, "netwerk: verbinding weg", False),
         }
         v = voorraadje()
         uit = fase_labels(v, 5)
         ad = v["adressen"]
-        if uit.get("gevraagd") != 4:
+        if uit.get("gevraagd") != 5:
             afw.append(f"labelfase vroeg {uit.get('gevraagd')} adressen op in "
-                       f"plaats van 4")
+                       f"plaats van 5")
         if ad["v1"].get("label") != "C":
             afw.append(f"gevonden label niet bewaard: {ad['v1'].get('label')!r}")
         if ad["v1"].get("label_datum") != "2025-03-04":
             afw.append(f"registratiedatum niet bewaard: "
                        f"{ad['v1'].get('label_datum')!r}")
+        # DE GRONDSLAG ONDER DE LETTER. Twee labels in hetzelfde pand kunnen
+        # met twee rekenmethodes zijn bepaald; zonder dit veld vergelijkt de
+        # brief een D van 2017 met een C van 2026 alsof dat hetzelfde is.
+        if ad["v1"].get("label_nta8800") is not True:
+            afw.append(f"de rekenmethode wordt niet bewaard: "
+                       f"{ad['v1'].get('label_nta8800')!r}")
+        if ad["v5"].get("label_nta8800") is not False:
+            afw.append(f"een label volgens de oude methode wordt niet als "
+                       f"zodanig bewaard: {ad['v5'].get('label_nta8800')!r}")
         # Een privelabel is een antwoord: er IS een label, het is niet
         # openbaar. Als "niet bekend" opschrijven betekent volgend jaar
         # dezelfde vraag en hetzelfde antwoord.
