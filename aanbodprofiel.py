@@ -32,6 +32,8 @@ import json
 import statistics as st
 import sys
 
+
+import pandsleutel as _psl
 UIT_PAD = "aanbodprofiel.json"
 AANBOD_PAD = "verkopen.txt"
 GESCHIEDENIS_PAD = "pandgeschiedenis.json"
@@ -44,7 +46,13 @@ MINIMUM_VENSTER = 15        # minder: geen mediaan noemen
 
 
 def _sleutel(adres):
-    return "".join(c for c in (adres or "").lower() if c.isalnum())
+    """Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen: of een titel werd afgekort,
+    of een accent wegviel of bleef staan, en of "doctor" meedeed. Op de
+    adressen die we volgen gaven twee van die veertien 41 keer een andere
+    sleutel. De functie blijft staan omdat de aanroepers hem gebruiken, maar
+    hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 def lees_kenmerken(pad=GESCHIEDENIS_PAD):

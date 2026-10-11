@@ -43,6 +43,8 @@ import os
 import re
 import sys
 
+
+import pandsleutel as _psl
 PAD = "verteld.json"
 BEWAAR_DAGEN = 90
 # Hoe lang een onderwerp als "pa kent dit al" geldt. Langer dan drie weken is
@@ -112,8 +114,15 @@ def _alleen_lezen():
 
 
 def sleutel_adres(adres):
-    """Een adres tot een sleutel. 11-11A en 11 11a worden hetzelfde."""
-    return re.sub(r"[^a-z0-9]", "", (adres or "").lower())
+    """Een adres tot een sleutel. 11-11A en 11 11a worden hetzelfde.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen: of een titel werd afgekort,
+    of een accent wegviel of bleef staan, en of "doctor" meedeed. Op de
+    adressen die we volgen gaven twee van die veertien 41 keer een andere
+    sleutel. De functie blijft staan omdat de aanroepers hem gebruiken, maar
+    hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 def lees(pad=PAD):

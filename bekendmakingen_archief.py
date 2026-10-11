@@ -39,6 +39,8 @@ import xml.etree.ElementTree as ET
 
 import requests
 
+
+import pandsleutel as _psl
 SRU_URL = "https://repository.overheid.nl/sru"
 GEMEENTE = "Nijmegen"
 ARCHIEF_PAD = "bekendmakingen_archief.json"
@@ -189,13 +191,15 @@ def adres_uit_titel(titel):
 
 
 def sleutel(straat, huisnr):
-    """Normaliseert straat+nummer tot een matchbare sleutel."""
-    s = straat.lower()
-    s = s.replace("sint ", "st ").replace("st. ", "st ")
-    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
-    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
-    s = re.sub(r"[^a-z0-9]", "", s)
-    return f"{s}{huisnr}"
+    """De sleutel van dit archief: per publicatietitel.
+
+    Die vorm laat het lidwoord staan en gooit accenten weg, want een titel
+    als "aan de Pijnboomstraat 4" levert "de Pijnboomstraat" als straatnaam
+    op. Dat is met opzet niet gelijkgetrokken met de sleutel per woning:
+    pandsleutel.sleutel_archief() legt uit waarom. Hij stond hier en in
+    marktprijzen_bag.py woordelijk uitgeschreven, en twee kopieen van een
+    regel lopen uiteen."""
+    return _psl.sleutel_archief(straat, huisnr)
 
 
 def signalen_in(titel):

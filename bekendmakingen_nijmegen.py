@@ -28,6 +28,8 @@ import requests
 
 import beleidsrelevantie
 
+
+import pandsleutel as _psl
 # --------------------------------------------------------------------------
 # CONFIG
 # --------------------------------------------------------------------------
@@ -291,13 +293,12 @@ MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
 
 
 def _mon_sleutel(straat, huisnr):
-    """Zelfde normalisatie als in de andere scripts, anders matcht niets."""
-    s = straat.lower()
-    s = s.replace("sint ", "st ").replace("st. ", "st ")
-    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
-    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
-    s = re.sub(r"[^a-z0-9]", "", s)
-    return f"{s}{huisnr}"
+    """De sleutel van rijksmonumenten_nijmegen.json: per woning.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel(straat, huisnr)
 
 
 def lees_monumenten():
@@ -613,12 +614,15 @@ VERGUNNINGEN_PAD = "kamervergunningen.json"
 
 
 def _verg_sleutel(straat, nr):
-    a = straat.lower()
-    for lang, kort in (("sint ", "st"), ("st. ", "st"), ("professor ", "prof"),
-                       ("prof. ", "prof"), ("burgemeester ", "burg"),
-                       ("burg. ", "burg"), ("doctor ", "dr"), ("dr. ", "dr")):
-        a = a.replace(lang, kort)
-    return re.sub(r"[^a-z0-9]", "", a) + str(nr)
+    """De sleutel van kamervergunningen.json: per huisnummer en niet per
+    woning, want een onttrekking of omzetting wordt op het pand gegeven en
+    niet op een afzonderlijke eenheid. 83 van de 766 sleutels in dat bestand
+    staan daarom zonder huisletter.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel_huisnummer(straat, nr)
 
 
 

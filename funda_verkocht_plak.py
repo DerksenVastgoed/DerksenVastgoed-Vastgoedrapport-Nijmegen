@@ -31,6 +31,8 @@ import os
 import re
 import sys
 
+
+import pandsleutel as _psl
 PLAK_PAD = "funda_verkocht_plak.txt"
 UIT_PAD = "verkopen.txt"
 DETAIL_PAD = "verkocht_details.json"
@@ -66,7 +68,13 @@ SINDS = re.compile(r"^Sinds\s+(\d+)\s+(week|weken|maand|maanden)", re.I)
 
 
 def _sleutel(adres):
-    return re.sub(r"[^a-z0-9]", "", adres.lower())
+    """Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen: of een titel werd afgekort,
+    of een accent wegviel of bleef staan, en of "doctor" meedeed. Op de
+    adressen die we volgen gaven twee van die veertien 41 keer een andere
+    sleutel. De functie blijft staan omdat de aanroepers hem gebruiken, maar
+    hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 # Een korte regel voor handwerk, naast de geplakte pagina:

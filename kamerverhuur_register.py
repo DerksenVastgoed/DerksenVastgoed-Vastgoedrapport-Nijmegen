@@ -30,6 +30,8 @@ import os
 import re
 import sys
 
+
+import pandsleutel as _psl
 REGISTER_PAD = "kamerverhuur_objecten.json"
 PER_BUURT_PAD = "kamerverhuur_per_buurt.json"
 VERGUNNINGEN_PAD = "kamervergunningen.json"
@@ -54,13 +56,15 @@ def _json(pad):
 
 
 def sleutel(straat, nr):
-    """Dezelfde normalisatie als het archief en marktprijzen_bag.py."""
-    s = straat.lower()
-    s = s.replace("sint ", "st ").replace("st. ", "st ")
-    s = s.replace("professor ", "prof ").replace("prof. ", "prof ")
-    s = s.replace("burgemeester ", "burg ").replace("burg. ", "burg ")
-    s = re.sub(r"[^a-z0-9]", "", s)
-    return f"{s}{nr}"
+    """De sleutel van kamerverhuur_objecten.json: per woning.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen: of een titel werd afgekort,
+    of een accent wegviel of bleef staan, en of "doctor" meedeed. Op de
+    adressen die we volgen gaven twee van die veertien 41 keer een andere
+    sleutel. De functie blijft staan omdat de aanroepers hem gebruiken, maar
+    hij rekent niet meer zelf."""
+    return _psl.sleutel(straat, nr)
 
 
 def _straat_nr(adres):

@@ -21,6 +21,8 @@ import os
 import re
 import sys
 
+
+import pandsleutel as _psl
 OK, LET_OP, FOUT = "OK", "LET OP", "FOUT"
 
 # De scripts schrijven bij een probleem hun eigen diagnose weg in deze map.
@@ -1876,11 +1878,7 @@ def _wozsleutel(adres):
     controleert, meldt verschillen die er niet zijn. Precies dat is hier
     gebeurd.
     """
-    a = (adres or "").lower()
-    a = a.replace("professor ", "prof").replace("prof. ", "prof")
-    a = a.replace("burgemeester ", "burg").replace("burg. ", "burg")
-    a = a.replace("sint ", "st").replace("st. ", "st")
-    return re.sub(r"[^a-z0-9]", "", a)
+    return _psl.sleutel(adres)
 
 
 def controle_woz_zonder_pand():

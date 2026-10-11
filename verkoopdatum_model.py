@@ -39,6 +39,8 @@ import re
 import sys
 import urllib.request
 
+
+import pandsleutel as _psl
 UIT_PAD = "verkoopdatums_model.json"
 AANBOD_PAD = "verkopen.txt"
 API = "https://api.anthropic.com/v1/messages"
@@ -82,7 +84,10 @@ de verkoopprijs. Vul dat in als vraagprijs.
 
 
 def _sleutel(adres):
-    return "".join(c for c in (adres or "").lower() if c.isalnum())
+    """Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 def lees(pad=UIT_PAD):
