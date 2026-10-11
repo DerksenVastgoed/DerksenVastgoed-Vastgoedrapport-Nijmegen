@@ -26,7 +26,13 @@ import sys
 
 PAD = "eisen.txt"
 VERPLICHT = ("eis", "waarom", "proef")
-TOEGESTAAN = VERPLICHT + ("soort", "let op")
+TOEGESTAAN = VERPLICHT + ("soort", "let op", "deels")
+
+# DRIE STANDEN EN NIET TWEE. Een eis met een proef EN een "let op" dat zegt
+# dat hij niet verder te handhaven is, is deels afgedwongen. Die bij de
+# afgedwongen eisen tellen overdrijft, en bij de niet-afgedwongen
+# onderschat. Dat verschil zichtbaar houden is precies waarvoor dit bestand
+# bestaat, dus krijgt het een eigen veld: "deels: ja".
 
 
 def lees(pad=PAD):
@@ -156,8 +162,16 @@ def proef(snel=False):
     if not eisen:
         fouten.append("geen enkele eis gelezen")
 
-    met_proef = [e for e in eisen if (e.get("proef") or "-") != "-"]
+    heeft = [e for e in eisen if (e.get("proef") or "-") != "-"]
+    deels = [e for e in heeft if (e.get("deels") or "").lower() == "ja"]
+    met_proef = [e for e in heeft if e not in deels]
     zonder = [e for e in eisen if (e.get("proef") or "-") == "-"]
+    # Een eis die als deels is gemarkeerd moet zeggen waarom, net als een eis
+    # zonder proef. Anders leest "deels" als een slag om de arm.
+    for e in deels:
+        if not e.get("let op"):
+            fouten.append(f"eis met deels: ja maar zonder uitleg: "
+                          f"{e['eis'][:60]}")
 
     # Een eis zonder proef moet uitleggen waarom, anders leest "-" als
     # vergeten in plaats van als bewuste keuze.
@@ -168,7 +182,7 @@ def proef(snel=False):
 
     beschikbaar = set(_modules_met_proef())
     gedraaid = {}
-    for e in met_proef:
+    for e in heeft:
         verwijzing = e["proef"]
         module, _, label = verwijzing.partition(":")
         module, label = module.strip(), label.strip()
@@ -207,9 +221,10 @@ def proef(snel=False):
             fouten.append(f"{module}.py heeft een --proef maar eindigt niet op "
                           f"sys.exit: {reden}. De exitcode is dan altijd 0.")
 
-    print(f"Eisen: {len(eisen)} gelezen, {len(met_proef)} met een proef, "
-          f"{len(zonder)} bewust zonder, {len(beschikbaar)} modules met een "
-          f"proef nagekeken op hun exitcode" + ("" if snel else f", {len(gedraaid)} gedraaid"),
+    print(f"Eisen: {len(eisen)} gelezen, {len(met_proef)} afgedwongen, "
+          f"{len(deels)} deels, {len(zonder)} bewust zonder, "
+          f"{len(beschikbaar)} modules met een proef nagekeken op hun "
+          f"exitcode" + ("" if snel else f", {len(gedraaid)} gedraaid"),
           file=sys.stderr)
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
@@ -222,13 +237,16 @@ def tekst(pad=PAD):
     eisen, _f = lees(pad)
     if not eisen:
         return ""
-    met = [e for e in eisen if (e.get("proef") or "-") != "-"]
+    heeft = [e for e in eisen if (e.get("proef") or "-") != "-"]
+    deelt = [e for e in heeft if (e.get("deels") or "").lower() == "ja"]
+    met = [e for e in heeft if e not in deelt]
     zonder = [e for e in eisen if (e.get("proef") or "-") == "-"]
     r = ["## Wat de brief moet doen, en wat daarvan vastligt", ""]
-    r.append(f"_{len(eisen)} eisen, waarvan {len(met)} worden afgedwongen door "
-             f"een proef die bij elke run draait. De overige {len(zonder)} "
-             f"staan er met de reden waarom ze niet verder te handhaven zijn; "
-             f"dat verschil hoort zichtbaar te zijn in plaats van impliciet._")
+    r.append(f"_{len(eisen)} eisen. {len(met)} worden volledig afgedwongen "
+             f"door een proef die bij elke run draait, {len(deelt)} deels, en "
+             f"{len(zonder)} niet. Die laatste twee groepen staan er met de "
+             f"reden waarom ze niet verder te handhaven zijn; dat verschil "
+             f"hoort zichtbaar te zijn in plaats van impliciet._")
     r.append("")
     for soort, kop in (("brief", "Over de brief"),
                        ("gegevens", "Over de gegevens"),
@@ -239,9 +257,13 @@ def tekst(pad=PAD):
         r.append(f"### {kop}")
         r.append("")
         for e in groep:
-            vast = (e.get("proef") or "-") != "-"
-            r.append(f"- {'**Vastgelegd.**' if vast else '**Niet afgedwongen.**'}"
-                     f" {e['eis']}")
+            if (e.get("proef") or "-") == "-":
+                kop = "**Niet afgedwongen.**"
+            elif (e.get("deels") or "").lower() == "ja":
+                kop = "**Deels vastgelegd.**"
+            else:
+                kop = "**Vastgelegd.**"
+            r.append(f"- {kop} {e['eis']}")
         r.append("")
     return "\n".join(r)
 

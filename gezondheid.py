@@ -2545,6 +2545,13 @@ def controle_voorraad():
     """
     d = _json("voorraad.json") or {}
     adressen = d.get("adressen") or {}
+    # DE PIJPLIJN APART. Woningen met status gevormd zijn geregistreerd maar
+    # nog niet gereedgemeld, en horen dus niet in de voorraad; het CBS rekent
+    # ze ook niet mee. Op 11 oktober stonden er 2.168 in adressen, bijna 11
+    # procent, en dat trok ons cijfer 15,9 procent boven het CBS-cijfer in
+    # plaats van 4,5. Dit getal hoort in het rapport: het zegt hoeveel er
+    # onderweg is, en het hoort te zakken als er wordt opgeleverd.
+    pijplijn = d.get("pijplijn") or {}
     if not adressen:
         inv = _json("buurtinventaris.json") or {}
         postcodes = (inv.get("totaal") or {}).get("postcodes")
@@ -2593,6 +2600,12 @@ def controle_voorraad():
     bewijs = (f"{len(adressen)} woningen in de ring, {met_opp} met "
               f"oppervlakte, {met_label} met label; nog {nog} adressen te "
               f"vragen")
+    if pijplijn:
+        opg = (ronde.get("bag") or {}).get("opgeleverd") or 0
+        bewijs += (f"; {len(pijplijn)} woningen onderweg, geregistreerd maar "
+                   f"nog niet gereedgemeld"
+                   + (f", {opg} opgeleverd in de laatste ronde" if opg
+                      else ""))
     if labels.get("gevraagd"):
         bewijs += (f"; laatste ronde {labels['gevraagd']} gevraagd, "
                    f"{labels.get('label_gevonden', 0)} labels gevonden")
@@ -2755,20 +2768,41 @@ def controle_voorraad():
                  "van 24.179. Is het groot, dan is de pandronde niet "
                  "afgemaakt.")
 
-    # 10. NOG GEVORMD, NIET IN GEBRUIK GEMELD. Een open keuze die zichtbaar
-    # moet blijven in plaats van stil beslist te worden.
-    gevormd = bag.get("nog_gevormd") or 0
-    woningen = bag.get("woningen_gezien") or 0
-    if woningen and gevormd > woningen * 0.05:
-        meld(LET_OP, f"{gevormd} van de {woningen} objecten hebben status "
-             f"gevormd en zijn nog niet in gebruik gemeld",
-             "Ze worden meegeteld. Die status betekent dat het object in de "
-             "registratie is gevormd maar niet als in gebruik is gemeld, en "
-             "dat is in de praktijk vaak een gewone woning waarvan de status "
-             "nooit is bijgewerkt. Ze eruit halen zou de voorraad ruim een "
-             "tiende kleiner maken, dus dat hoort niet op een vermoeden te "
-             "gebeuren. Te zeven is het altijd nog: de status staat per record "
-             "in voorraad.json.")
+    # 10. BLIJFT DE PIJPLIJN UIT DE VOORRAAD?
+    #
+    # Hier stond een waarschuwing dat er objecten met status gevormd werden
+    # MEEGETELD, met de aantekening dat het een open keuze was die zichtbaar
+    # moest blijven in plaats van stil beslist te worden. Die keuze is op 11
+    # oktober gemaakt en onderbouwd: het CBS rekent zulke objecten tot de
+    # pijplijn en niet tot de woonvoorraad, en sindsdien doen wij dat ook.
+    #
+    # De aanname in die oude waarschuwing bleek trouwens fout. Er stond dat
+    # het "in de praktijk vaak een gewone woning is waarvan de status nooit is
+    # bijgewerkt". Toen we het opmaten, clusterden ze juist: 314 in de
+    # Silostraat, 276 in de Burg. Hustinxstraat, 243 in de Stadsbinderstraat,
+    # 19 straten met twintig of meer en maar 9 straten met een enkel object.
+    # Dat is nieuwbouw in projecten en geen vergeten administratie.
+    #
+    # Dus bewaakt deze controle nu het omgekeerde: dat ze apart BLIJVEN. Komen
+    # ze terug in adressen, dan groeit de voorraad met woningen waar niemand
+    # kan wonen, en dat werkt door in de plintregel en in de insluitingstoets
+    # voor kamerverhuur.
+    in_voorraad = sum(1 for r in adressen.values()
+                      if "gevormd" in (r.get("status") or "").lower())
+    if in_voorraad:
+        meld(LET_OP, f"{in_voorraad} woningen met status gevormd staan in de "
+             f"voorraad in plaats van in de pijplijn",
+             "Die woningen bestaan nog niet: het object is geregistreerd maar "
+             "niet gereedgemeld. Meetellen maakt de voorraad te groot, laat "
+             "huisnummers lijken alsof ze uit meer woningen bestaan dan er in "
+             "gebruik zijn, en verschuift het aandeel niet-woonfunctie in de "
+             "plint. Een volledige BAG-ronde zet ze op hun plek; "
+             "voorraad_bag.py scheidt ze sinds 11 oktober zelf.")
+    if pijplijn and not adressen:
+        meld(LET_OP, f"de pijplijn heeft {len(pijplijn)} woningen en de "
+             f"voorraad is leeg",
+             "Dat is omgekeerd: dan is er iets mis met de statuszeef en niet "
+             "met de pijplijn.")
 
     if not bevindingen:
         return (OK, bewijs, "")

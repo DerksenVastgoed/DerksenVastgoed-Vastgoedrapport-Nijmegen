@@ -16,6 +16,7 @@
    "nog_gevormd": 2238,
    "objecten_met_pand": 24179,
    "opnieuw_gezien": 0,
+   "pijplijn_bewaard": 2168,
    "postcodes_buiten_nijmegen": 491,
    "postcodes_gedaan": 1240,
    "postcodes_leeg": 493,
@@ -75,8 +76,9 @@
   "stand": {
    "met_label": 67,
    "met_oppervlakte": 22096,
+   "pijplijn": 2168,
    "postcodes_gedaan": 1240,
-   "woningen": 22096
+   "woningen": 19928
   }
  }
 }

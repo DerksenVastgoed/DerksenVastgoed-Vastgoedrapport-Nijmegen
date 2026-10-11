@@ -230,3 +230,38 @@ waarom: 10 oktober. De labelfase schreef bij een fout niet op dat het adres
   opnieuw; een 400 of 404 op alle routes gaat nooit lukken.
 proef: eponline:400 is definitief
 soort: werking
+
+---
+eis: Wat de brief over een pand zegt, komt uit de pandgegevens en niet uit de
+  objectgegevens. Die twee hebben elk hun eigen status in de BAG.
+waarom: 11 oktober. In het blok over de pijplijn stond "het pand heeft
+  vergunning of de bouw is gestart". Dat is de definitie van het CBS en die
+  gaat over de status van het PAND, terwijl wij de status van het
+  verblijfsOBJECT meten; de pandstatus sloegen we niet eens op. De zin
+  beweerde dus iets wat niet gemeten was. Mark vroeg of dit niet het verschil
+  tussen een pand-id en een object-id was, en dat was het.
+proef: voorraad_bag
+deels: ja
+let op: Dat de tekst geen pandstatus beweert zonder hem te hebben, is niet
+  machinaal te toetsen. Wat de proef wel vasthoudt is de scheiding zelf:
+  objecten met status gevormd horen in de pijplijn en niet in de voorraad.
+  De pandfase schrijft de pandstatus nu op, dus na een volledige ronde is het
+  onderscheid tussen nieuwbouw en transformatie wel te maken.
+soort: brief
+
+---
+eis: Een veld dat een bron meegeeft, wordt opgeschreven of met reden
+  weggelaten, niet stilzwijgend weggegooid.
+waarom: Drie keer dezelfde fout. Op 10 oktober gooide de objectfase het
+  gebruiksdoel weg, waardoor elk adresseerbaar object een woning heette. Op
+  11 oktober las de labelfase een van de zes veldnamen van EP-Online en vond
+  nul labels. En dezelfde dag gooide de pandfase alles weg behalve de
+  identificatie, inclusief de pandstatus die nieuwbouw van transformatie
+  scheidt. De pandfase schrijft nu op welke velden PDOK werkelijk meegeeft,
+  zodat de volgende ronde het vertelt in plaats van dat wij het aannemen.
+proef: voorraad_bag
+deels: ja
+let op: Niet af te dwingen; een proef kan niet weten welk veld een bron
+  meegeeft. Wat er wel is: de pandfase noteert de ontvangen veldnamen in de
+  stand, dus een weggegooid veld is daarna te zien in plaats van te raden.
+soort: werking

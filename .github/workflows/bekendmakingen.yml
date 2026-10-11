@@ -550,6 +550,14 @@ jobs:
           # gebeurtenistekst dat elk adresseerbaar object als woning telde.
           # Beide gaven geen foutmelding, en de eerste fout verborg de tweede.
           python splitsing_voltooid.py --proef
+          # DE PIJPLIJN ERBIJ. Woningen met status gevormd zijn
+          # geregistreerd maar nog niet gereedgemeld, dus geen voorraad; het
+          # CBS rekent ze ook niet mee. Sinds 11 oktober staan ze apart in
+          # voorraad.json, en 2.168 woningen die naar zes buurten komen is
+          # nieuws: Stadscentrum krijgt er 24 procent bovenop. Dit leest
+          # alleen voorraad.json en doet geen aanroep.
+          python voorraad_bag.py --pijplijn-uit "digests/${DATUM}-pijplijn.md" \
+            || echo "Pijplijnblok overgeslagen"
           python splitsing_voltooid.py --tekst "digests/${DATUM}-splitsingen.md" \
             || echo "Splitsingen overgeslagen"
 
@@ -644,6 +652,13 @@ jobs:
             if [ -s "digests/${DATUM}-splitsingen.md" ]; then
               echo ""
               cat "digests/${DATUM}-splitsingen.md"
+              echo ""
+            fi
+            # Woningen onderweg naar de ring. Alleen als er iets in staat,
+            # net als hierboven: een lege kop is erger dan geen kop.
+            if [ -s "digests/${DATUM}-pijplijn.md" ]; then
+              echo ""
+              cat "digests/${DATUM}-pijplijn.md"
               echo ""
             fi
             # Alleen een kop als er ook iets onder staat; een lege kop
