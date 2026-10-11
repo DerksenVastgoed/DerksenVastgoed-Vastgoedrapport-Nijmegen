@@ -20,6 +20,8 @@ omgevingsplan vragen onderzoek dat wij niet kunnen doen.
 
 import re
 
+
+import pandsleutel as _psl
 # Grenzen uit de verordening
 WOZ_ONDERGRENS = 278_000
 WOZ_BOVENGRENS = 396_000
@@ -56,12 +58,15 @@ def _getal(waarde):
 
 
 def _sleutel(straat, nr):
-    a = straat.lower()
-    for lang, kort in (("sint ", "st"), ("st. ", "st"), ("professor ", "prof"),
-                       ("prof. ", "prof"), ("burgemeester ", "burg"),
-                       ("burg. ", "burg"), ("doctor ", "dr"), ("dr. ", "dr")):
-        a = a.replace(lang, kort)
-    return re.sub(r"[^a-z0-9]", "", a) + str(nr)
+    """De sleutel van kamervergunningen.json: per huisnummer en niet per
+    woning, want een onttrekking of omzetting wordt op het pand gegeven en
+    niet op een afzonderlijke eenheid. 83 van de 766 sleutels in dat bestand
+    staan daarom zonder huisletter.
+
+    Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
+    de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
+    return _psl.sleutel_huisnummer(straat, nr)
 
 
 def _buren(adres, vergunningen):

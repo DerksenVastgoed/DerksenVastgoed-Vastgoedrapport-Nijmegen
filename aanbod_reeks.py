@@ -24,13 +24,21 @@ import datetime as dt
 import json
 import sys
 
+
+import pandsleutel as _psl
 REEKS_PAD = "aanbod_reeks.json"
 AANBOD_PAD = "verkopen.txt"
 KAMER_PAD = "kamerverhuur_objecten.json"
 
 
 def _sleutel(adres):
-    return "".join(c for c in (adres or "").lower() if c.isalnum())
+    """Een van de veertien sleutelfuncties in elf bestanden die allemaal hetzelfde
+    bedoelden en op drie punten uiteenliepen: of een titel werd afgekort,
+    of een accent wegviel of bleef staan, en of "doctor" meedeed. Op de
+    adressen die we volgen gaven twee van die veertien 41 keer een andere
+    sleutel. De functie blijft staan omdat de aanroepers hem gebruiken, maar
+    hij rekent niet meer zelf."""
+    return _psl.sleutel(adres)
 
 
 def lees_kamerpanden(pad=KAMER_PAD):
