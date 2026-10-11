@@ -64,6 +64,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import sys
 import time
 
@@ -117,6 +118,30 @@ DOOS = "5.75,51.76,5.98,51.90"
 # woningen meetellen, en elk aantal dat de brief eruit haalt zou te hoog zijn
 # zonder dat er iets faalt.
 NIET_BESTAAND = ("ingetrokken", "niet gerealiseerd", "ten onrechte opgevoerd")
+
+# DE PIJPLIJN IS GEEN VOORRAAD. Een verblijfsobject met status "gevormd" is
+# geregistreerd maar nog niet gereedgemeld: het pand heeft vergunning of de
+# bouw is gestart, en pas bij de gereedmelding komt het object in de
+# woonvoorraad. Het CBS rekent ze daarom tot de pijplijn en niet tot de
+# voorraad.
+#
+# Wat het ons kostte, gemeten op 11 oktober. Van de 22.096 woningen in de ring
+# hadden 2.168 deze status, bijna 11 procent. Daardoor stond onze voorraad
+# 15,9 procent boven het CBS-cijfer van 19.061; zonder de pijplijn is dat 4,5
+# procent. En het werkte door in twee dingen die de brief werkelijk zegt:
+#
+#   134 huisnummers leken uit meer dan een woning te bestaan terwijl er
+#   hoogstens een in gebruik was. Dat is de telling waar de insluitingstoets
+#   voor kamerverhuur op leunt, dus daar hing een advies aan.
+#
+#   In de plint van Stadscentrum stond het aandeel niet-woonfunctie op 18,0
+#   procent in plaats van 21,4, en de beleidsregel laat hoogstens 30 procent
+#   toe. Dat is het verschil tussen ruim onder de grens en er dichtbij.
+#
+# Ze gaan niet weg maar apart. 2.168 woningen die naar de ring komen is voor
+# ons geen ruis: het is bijna 11 procent extra voorraad in zes buurten, en per
+# straat te zien.
+PIJPLIJN = ("gevormd",)
 
 # IN HOEVEEL TEGELS DE DOOS WORDT GEDEELD. Vier bij vier is zestien tegels,
 # gemiddeld ruim tienduizend objecten per tegel bij de 164.634 die er in de
@@ -268,6 +293,12 @@ def _bestaat(status):
     """Of de status van een object zegt dat het er werkelijk staat."""
     s = (status or "").lower()
     return not any(w in s for w in NIET_BESTAAND)
+
+
+def _in_pijplijn(status):
+    """Of dit object geregistreerd is maar nog niet in gebruik gemeld."""
+    s = (status or "").lower()
+    return any(w in s for w in PIJPLIJN)
 
 
 def _pand_uuids(p):
@@ -525,24 +556,54 @@ def fase_panden(budget):
     leeg terug, dan meldt de stand dat en blijft het veld pand leeg; de rest
     van de ronde gaat gewoon door.
     """
-    kaart = {}
+    kaart, status_per_pand, velden = {}, {}, set()
 
     def per_pagina(kenmerken):
         for k in kenmerken:
             sleutel = k.get("id") or ""
-            bag = ((k.get("properties") or {}).get("identificatie") or "")
+            p = k.get("properties") or {}
+            # WELKE VELDEN PDOK HIER WERKELIJK GEEFT. Deze fase las alleen
+            # identificatie en gooide de rest weg, net als de objectfase op 10
+            # oktober met gebruiksdoelen. Toen bleek het veld er wel te zijn.
+            # Dus eerst opschrijven wat er binnenkomt, en dan pas iets
+            # beweren: zonder meting is "de pandstatus hebben we niet" ook een
+            # aanname.
+            velden.update(p.keys())
+            bag = (p.get("identificatie") or "")
             if sleutel and bag:
                 kaart[str(sleutel)] = str(bag)
+                # DE PANDSTATUS, ALS HIJ ERIN ZIT. Die is het verschil tussen
+                # nieuwbouw en transformatie. Het CBS rekent een object met
+                # status "gevormd" tot de pijplijn als het PAND vergunning
+                # heeft of in bouw is; zit datzelfde object in een pand dat al
+                # in gebruik is, dan is het een transformatie en valt het
+                # buiten de pijplijn. Dat onderscheid konden we op 11 oktober
+                # niet maken, en met dit veld wel.
+                st = p.get("status") or ""
+                if st:
+                    status_per_pand[str(bag)] = str(st)
 
     stand = doorloop("pand", budget, per_pagina)
     stand["omzettingen"] = len(kaart)
+    stand["met_status"] = len(status_per_pand)
+    stand["velden_in_antwoord"] = sorted(velden)[:25]
+    if status_per_pand:
+        tel = {}
+        for st in status_per_pand.values():
+            tel[st] = tel.get(st, 0) + 1
+        stand["pandstatussen"] = dict(sorted(tel.items(),
+                                             key=lambda x: -x[1])[:10])
     if not kaart and not stand["fout"]:
         stand["fout"] = ("geen enkele omzetting; de pandcollectie levert geen "
                          "id met identificatie zoals verwacht")
+    # De statuskaart gaat mee in de stand en niet als derde returnwaarde,
+    # zodat elke bestaande aanroeper blijft werken.
+    stand["_status_per_pand"] = status_per_pand
     return kaart, stand
 
 
-def fase_bag(voorraad, pcs, minuten, panden=None):
+def fase_bag(voorraad, pcs, minuten, panden=None,
+             pandstatus=None):
     """
     Fase 1: alle verblijfsobjecten in de doos, daarna zeven op onze postcodes.
 
@@ -585,15 +646,21 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
     # "adressen", zodat fase 2 en alles wat later de woningvoorraad leest niet
     # ineens winkels meekrijgt. "adressen" blijft dus de woningvoorraad.
     anders = voorraad.setdefault("niet_woningen", {})
+    # DE PIJPLIJN APART. Woningen met status "gevormd" horen hier en niet in
+    # adressen; zie de uitleg bij de constante PIJPLIJN.
+    pijplijn = voorraad.setdefault("pijplijn", {})
     panden = panden or {}
 
     tel = {"nieuw": 0, "bijgewerkt": 0, "onveranderd": 0, "woningen": 0,
            "overig": 0, "buiten_de_ring": 0, "weg": 0, "zonder_adres": 0,
            "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
-           "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0}
+           "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0,
+           "in_de_pijplijn": 0, "opgeleverd": 0, "terug_in_de_pijplijn": 0}
     per_postcode = {}
     statussen = {}
     gezien_woning, gezien_anders = set(), set()
+    gezien_pijplijn = set()
+    opgeleverd = []
     # Elk object dat deze ronde al door verwerk() is gegaan, ook de objecten
     # buiten de ring en de historie, want ook die hebben tellers.
     gezien_alle = set()
@@ -685,6 +752,15 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
                 "vbo": vbo,
                 "status": status,
             }
+            # DE STATUS VAN HET PAND, ALS DE PANDFASE HEM MEEGAF. Dit is het
+            # verschil tussen nieuwbouw en transformatie: een object met
+            # status "gevormd" in een pand dat vergunning heeft of in bouw is,
+            # is nieuwbouw en pijplijn; hetzelfde object in een pand dat al in
+            # gebruik is, is een transformatie en rekent het CBS niet tot de
+            # pijplijn. Zonder dit veld is dat onderscheid niet te maken, en
+            # op 11 oktober was het dat dus niet.
+            if pand and (pandstatus or {}).get(pand):
+                rec["pand_status"] = pandstatus[pand]
 
             # BAG_GEZIEN ALLEEN BIJWERKEN ALS ER WERKELIJK IETS VERANDERDE.
             # Zou hier de datum van vandaag staan, dan verandert elk van de
@@ -692,7 +768,21 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
             # bestand van ruim vijf megabyte. De repo zou dan met megabytes per
             # run groeien terwijl er niets nieuws in staat, en in de
             # geschiedenis zou niet te zien zijn wát er veranderde.
-            bestaand = (adressen if woning else anders).get(vbo) or {}
+            # WAAR DIT OBJECT HOORT, EN WAAR HET VANDAAN KOMT. Drie secties:
+            # woningen in gebruik, woningen in de pijplijn, en de rest. Een
+            # object kan tussen alle drie bewegen, dus het bestaande record
+            # wordt in alle drie opgezocht en niet alleen in de sectie waar
+            # het nu in hoort. Zonder dat zou een oplevering een nieuw record
+            # lijken en zou het oude blijven staan: dezelfde woning twee keer.
+            in_pijplijn = _in_pijplijn(status)
+            doel = pijplijn if (woning and in_pijplijn) else (
+                adressen if woning else anders)
+            vorige = None
+            for sectie in (adressen, pijplijn, anders):
+                if vbo in sectie:
+                    vorige = sectie
+                    break
+            bestaand = (vorige.get(vbo) if vorige else None) or {}
             zelfde = bool(bestaand) and all(bestaand.get(v) == rec[v]
                                             for v in rec)
             rec["bag_gezien"] = (bestaand.get("bag_gezien") or vandaag
@@ -700,15 +790,35 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
 
             # VAN SOORT GEWISSELD. Een winkel die woning wordt stond eerst in
             # beide lijsten en werd twee keer geteld.
-            anderskant = anders if woning else adressen
-            if vbo in anderskant:
-                del anderskant[vbo]
-                tel["van_soort_gewisseld"] += 1
+            if vorige is not None and vorige is not doel:
+                del vorige[vbo]
+                if vorige is pijplijn and doel is adressen:
+                    # DIT IS EEN OPLEVERING, EN HET ENIGE MOMENT WAAROP DE
+                    # VOORRAAD WERKELIJK GROEIT. Een vergunning zegt dat het
+                    # mag en een gevormd object zegt dat het geregistreerd is;
+                    # pas de gereedmelding zegt dat er iemand kan wonen. Dat
+                    # hoort geteld en gemeld, want het is het soort nieuws
+                    # waar de brief voor bestaat.
+                    tel["opgeleverd"] += 1
+                    opgeleverd.append(rec["adres"])
+                elif doel is pijplijn and vorige is adressen:
+                    # De andere kant op: een object dat in gebruik was en nu
+                    # weer gevormd heet. Dat hoort niet te gebeuren, dus als
+                    # het gebeurt wil ik het zien in plaats van het stil te
+                    # verwerken.
+                    tel["terug_in_de_pijplijn"] += 1
+                else:
+                    tel["van_soort_gewisseld"] += 1
 
             if not woning:
                 tel["overig"] += 1
                 anders[vbo] = rec
                 gezien_anders.add(vbo)
+                continue
+            if in_pijplijn:
+                tel["in_de_pijplijn"] += 1
+                gezien_pijplijn.add(vbo)
+                pijplijn[vbo] = rec
                 continue
             tel["woningen"] += 1
             gezien_woning.add(vbo)
@@ -739,6 +849,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
         # proefdraai die 22.096 woningen op ongeveer 1.700 zette en dat
         # commit, zonder dat er iets faalde.
         for lijst, gezien in ((adressen, gezien_woning),
+                              (pijplijn, gezien_pijplijn),
                               (anders, gezien_anders)):
             for vbo in [v for v, r in lijst.items()
                         if v not in gezien
@@ -785,6 +896,14 @@ def fase_bag(voorraad, pcs, minuten, panden=None):
         # staat per record bewaard zodat het later te zeven is. Het getal
         # staat hier zodat de vraag open blijft in plaats van stil beslist.
         "nog_gevormd": tel["gevormd"],
+        # DE PIJPLIJN, APART GETELD EN APART GEMELD. nog_gevormd hierboven
+        # telt elk object met die status, ook de niet-woningen; deze drie gaan
+        # over de woningen en over wat er met ze gebeurde.
+        "pijplijn_bewaard": len(pijplijn),
+        "pijplijn_gezien": tel["in_de_pijplijn"],
+        "opgeleverd": tel["opgeleverd"],
+        "opgeleverde_adressen": sorted(opgeleverd)[:40],
+        "terug_in_de_pijplijn": tel["terug_in_de_pijplijn"],
         "zonder_adres": tel["zonder_adres"],
         "zonder_vbo": tel["zonder_vbo"],
         "opnieuw_gezien": tel["opnieuw_gezien"],
@@ -911,6 +1030,94 @@ def fase_labels(voorraad, minuten):
 # vormen hebben vandaag twee keer een stille fout opgeleverd: gebruiksdoelen
 # bleek een lijst waar een string stond, en energielabel een dict waar een
 # tekst stond. Daarom hier de echte vorm.
+def tekst_pijplijn(pad=UIT):
+    """
+    Een blok voor de bijlage: wat er aan woningen onderweg is naar de ring.
+
+    DIT IS GEEN RUIS DIE WE WEGGOOIEN. De pijplijn hoort niet in de voorraad,
+    want die woningen zijn er nog niet. Maar 2.168 woningen die naar zes
+    buurten komen is precies het soort cijfer waar deze brief voor bestaat, en
+    het staat per straat in onze eigen gegevens. Stadscentrum krijgt er 24
+    procent bovenop wat er nu staat.
+
+    Wat dit NIET zegt: wanneer. De BAG kent de status gevormd en de
+    gereedmelding, maar geen opleverdatum, dus hier staat geen jaartal. En het
+    zegt niet of het nieuwbouw of transformatie is: dat hangt aan de status
+    van het PAND en die slaan wij niet op.
+    """
+    try:
+        with open(pad, encoding="utf-8") as f:
+            d = json.load(f)
+    except Exception:
+        return ""
+    pl = d.get("pijplijn") or {}
+    ad = d.get("adressen") or {}
+    if not pl:
+        return ""
+    per_buurt, per_straat, in_buurt = {}, {}, {}
+    for rec in pl.values():
+        for b in rec.get("buurten") or []:
+            per_buurt[b] = per_buurt.get(b, 0) + 1
+        m = re.match(r"^(.+?)\s+\d", rec.get("adres") or "")
+        if m:
+            per_straat[m.group(1)] = per_straat.get(m.group(1), 0) + 1
+    for rec in ad.values():
+        for b in rec.get("buurten") or []:
+            in_buurt[b] = in_buurt.get(b, 0) + 1
+
+    r = ["## Woningen onderweg naar de ring", ""]
+    # WAT HIER OVER HET PAND STAAT, EN WAT NIET. Hier stond eerst "het pand
+    # heeft vergunning of de bouw is gestart". Dat is de definitie van het
+    # CBS, en die gaat over de status van het PAND. Wij meten de status van
+    # het verblijfsOBJECT: een pandidentificatie slaan we op, een pandstatus
+    # tot 11 oktober niet. Dus beweerde die zin iets wat niet gemeten was,
+    # precies de fout die deze brief steeds inhaalt. De pandfase schrijft die
+    # status nu wel op, dus zodra er een ronde over is geweest kan dit scherper.
+    met_pandstatus = sum(1 for rec in pl.values() if rec.get("pand_status"))
+    r.append(f"_{len(pl)} woningen in de zes buurten hebben in de BAG de "
+             f"status 'gevormd': het verblijfsobject is geregistreerd maar "
+             f"nog niet als in gebruik gemeld. Het CBS rekent zulke objecten "
+             f"tot de pijplijn en niet tot de woonvoorraad, en wij nu ook. Ze "
+             f"komen in de voorraad op het moment dat ze in gebruik worden "
+             f"gemeld, en dat moment melden wij dan ook. De BAG kent geen "
+             f"opleverdatum, dus hier staat niet wanneer._")
+    if met_pandstatus:
+        soorten = {}
+        for rec in pl.values():
+            st = rec.get("pand_status") or ""
+            if st:
+                soorten[st] = soorten.get(st, 0) + 1
+        r.append("")
+        r.append("_De status van het pand erbij, want die scheidt nieuwbouw "
+                 "van transformatie: "
+                 + ", ".join(f"{st} ({n})" for st, n
+                             in sorted(soorten.items(), key=lambda x: -x[1]))
+                 + "._")
+    r.append("")
+    r.append("| buurt | onderweg | staat er nu | erbij |")
+    r.append("|---|---:|---:|---:|")
+    for b, n in sorted(per_buurt.items(), key=lambda x: -x[1]):
+        nu = in_buurt.get(b, 0)
+        deel = f"+{n / nu * 100:.0f}%" if nu else "onbekend"
+        r.append(f"| {b} | {n} | {nu} | {deel} |")
+    r.append("")
+    top = sorted(per_straat.items(), key=lambda x: -x[1])[:8]
+    if top:
+        r.append("De straten waar het zit: "
+                 + ", ".join(f"{s} ({n})" for s, n in top)
+                 + f". In totaal {len(per_straat)} straten.")
+        r.append("")
+    if not met_pandstatus:
+        r.append("_Of dit nieuwbouw of transformatie van een bestaand pand "
+                 "is, staat hier nog niet: dat hangt aan de status van het "
+                 "PAND, en die hebben we pas sinds 11 oktober en nog niet "
+                 "over een hele ronde. Wat we wel zien: van de panden met een "
+                 "object in de pijplijn hebben de meeste ook woningen die al "
+                 "in gebruik zijn, dus een deel is transformatie en dat "
+                 "rekent het CBS juist niet tot de pijplijn._")
+    return "\n".join(r)
+
+
 PROEF_KENMERKEN = [
     # 1. Gewone woning in onze postcode, pand bekend in de kaart.
     {"id": "v1", "properties": {
@@ -968,6 +1175,33 @@ PROEF_KENMERKEN = [
         "identificatie": "0268010000000008",
         "pand.href": ["https://api.pdok.nl/kadaster/bag/ogc/v2/collections/"
                       "pand/items/uuid-onbekend"]}},
+    # 9. Gevormd: geregistreerd maar nog niet gereedgemeld. Dit is een woning
+    #    in de pijplijn en geen woning in de voorraad; het CBS rekent hem ook
+    #    niet mee. Op 11 oktober stonden er 2.168 van in adressen, bijna 11
+    #    procent van de ring.
+    {"id": "v9", "properties": {
+        "postcode": "6521AB", "status": "Verblijfsobject gevormd",
+        "gebruiksdoel": "woonfunctie", "oppervlakte": 68,
+        "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 20,
+        "identificatie": "0268010000000009", "pand.href": []}},
+    # 10. Een tweede gevormd object op hetzelfde huisnummer als 1. Dit is de
+    #     vorm die 134 huisnummers liet lijken alsof ze uit meer woningen
+    #     bestaan dan er in gebruik zijn, en daar hangt de insluitingstoets
+    #     voor kamerverhuur aan.
+    {"id": "v10", "properties": {
+        "postcode": "6521AB", "status": "Verblijfsobject gevormd",
+        "gebruiksdoel": "woonfunctie", "oppervlakte": 44,
+        "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 12,
+        "huisletter": "A",
+        "identificatie": "0268010000000010", "pand.href": []}},
+    # 11. Gevormd zonder woonfunctie: hoort bij de niet-woningen en niet bij
+    #     de pijplijn, want die gaat over woningen. Op 11 oktober waren dit
+    #     de 70 die het verschil waren tussen 2.238 en 2.168.
+    {"id": "v11", "properties": {
+        "postcode": "6511AA", "status": "Verblijfsobject gevormd",
+        "gebruiksdoel": "winkelfunctie", "oppervlakte": 95,
+        "openbare_ruimte_naam": "Broerstraat", "huisnummer": 7,
+        "identificatie": "0268010000000011", "pand.href": []}},
 ]
 
 
@@ -1332,9 +1566,10 @@ def proef():
 
     adressen = voorraad.get("adressen") or {}
     anders = voorraad.get("niet_woningen") or {}
+    pijplijn = voorraad.get("pijplijn") or {}
     verwacht = {
         "woningen_gezien": 3,          # 1, 5 en 8
-        "niet_woonfunctie": 1,         # 4
+        "niet_woonfunctie": 2,         # 4 en 11 (gevormde winkel)
         "historie_overgeslagen": 2,    # 2 en 3
         "buiten_de_ring": 1,           # 6
         "zonder_adres": 1,             # 7
@@ -1348,12 +1583,81 @@ def proef():
         "adressen_nieuw": 3,
         "adressen_verwijderd": 0,
         "van_soort_gewisseld": 0,
-        "niet_woningen_bewaard": 1,
+        "niet_woningen_bewaard": 2,
+        # DE PIJPLIJN APART. 9 en 10 zijn woningen met status gevormd: die
+        # horen hier en niet bij woningen_gezien, want het CBS rekent ze tot
+        # de pijplijn en niet tot de voorraad. 11 is een gevormde winkel en
+        # hoort bij de niet-woningen, want de pijplijn gaat over woningen.
+        "pijplijn_bewaard": 2,         # 9 en 10
+        "pijplijn_gezien": 2,
+        "opgeleverd": 0,
+        "terug_in_de_pijplijn": 0,
     }
     afwijkingen = []
     for veld, moet in verwacht.items():
         if uit.get(veld) != moet:
             afwijkingen.append(f"{veld}: {uit.get(veld)} in plaats van {moet}")
+
+    if set(pijplijn) != {"0268010000000009", "0268010000000010"}:
+        afwijkingen.append(f"de pijplijn houdt de verkeerde objecten: "
+                           f"{sorted(pijplijn)}")
+    if set(adressen) & set(pijplijn):
+        afwijkingen.append("een object staat in de voorraad EN in de "
+                           "pijplijn; dan telt die woning twee keer")
+
+    # DE OPLEVERING. Dit is het enige moment waarop de voorraad werkelijk
+    # groeit, en daarom het stuk dat gemeten moet worden: het object verhuist
+    # van de pijplijn naar de voorraad, het oude record blijft niet staan, en
+    # de ronde meldt het. Zonder deze controle zou een oplevering een nieuw
+    # record lijken naast het oude, en stond dezelfde woning twee keer in de
+    # ring.
+    klaar = [dict(k, properties=dict(k["properties"])) for k in PROEF_KENMERKEN]
+    for k in klaar:
+        if k["id"] == "v9":
+            k["properties"]["status"] = "Verblijfsobject in gebruik"
+
+    def nep_klaar(collectie, budget, per_pagina):
+        per_pagina(klaar)
+        return {"paginas": 1, "objecten": len(klaar), "seconden": 0.0,
+                "ronde_af": True, "fout": ""}
+
+    # OP EEN KOPIE EN NIET OP DE GEDEELDE VOORRAAD. Een eerste versie draaide
+    # deze ronde op hetzelfde dict dat de controles hieronder lezen, en toen
+    # meldde de proef dat de sleutels fout waren en dat twee gelijke rondes
+    # een ander bestand opleveren. Beide waren niet waar: mijn eigen test had
+    # de staat vervuild. Een controle die de gegevens verandert die de
+    # volgende controle leest, meet de vorige controle.
+    import copy as _copy
+    voorraad_klaar = _copy.deepcopy(voorraad)
+    echt2, globals()["doorloop"] = doorloop, nep_klaar
+    try:
+        na = fase_bag(voorraad_klaar, pcs, 1, kaart)
+    finally:
+        globals()["doorloop"] = echt2
+    pijplijn_na = voorraad_klaar.get("pijplijn") or {}
+    adressen_na = voorraad_klaar.get("adressen") or {}
+    if na.get("opgeleverd") != 1:
+        afwijkingen.append(f"een gereedmelding levert {na.get('opgeleverd')} "
+                           f"opleveringen op in plaats van 1")
+    if na.get("opgeleverde_adressen") != ["Bottelstraat 20"]:
+        afwijkingen.append(f"de opgeleverde adressen zijn "
+                           f"{na.get('opgeleverde_adressen')}")
+    if "0268010000000009" in pijplijn_na:
+        afwijkingen.append("het opgeleverde object staat nog in de pijplijn, "
+                           "dus die woning telt twee keer")
+    if "0268010000000009" not in adressen_na:
+        afwijkingen.append("het opgeleverde object staat niet in de voorraad")
+    if na.get("woningen_gezien") != 4:
+        afwijkingen.append(f"na de oplevering telt de ronde "
+                           f"{na.get('woningen_gezien')} woningen in plaats "
+                           f"van 4")
+    if na.get("pijplijn_bewaard") != 1:
+        afwijkingen.append(f"na de oplevering houdt de pijplijn "
+                           f"{na.get('pijplijn_bewaard')} over in plaats van 1")
+    if na.get("van_soort_gewisseld"):
+        afwijkingen.append("een oplevering wordt geteld als van soort "
+                           "gewisseld; dan is in het rapport niet te zien dat "
+                           "er een woning is opgeleverd")
 
     # DE SLEUTEL IS DE VBO-IDENTIFICATIE. Met de adressleutel botsten in de
     # echte ring 93 van de 22.096 objecten op elkaar.
@@ -1521,6 +1825,9 @@ def proef():
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--uit", default=UIT)
+    p.add_argument("--pijplijn-uit", default="",
+                   help="Alleen het blok over de pijplijn schrijven en "
+                        "verder niets ophalen. Leest voorraad.json.")
     # Gemeten op 10 oktober met tegels: de objectronde 248,4 seconden over 201
     # pagina's en 22 tegels, de pandronde 247,0 seconden over 228 pagina's en
     # 19 tegels. Tien minuten is dus ruim twee keer de gemeten duur: genoeg
@@ -1537,6 +1844,22 @@ def main():
 
     if args.proef:
         return proef()
+
+    # ALLEEN HET BLOK SCHRIJVEN, ZONDER OP TE HALEN. Dit leest voorraad.json
+    # en doet geen enkele aanroep, zodat de briefworkflow het blok kan maken
+    # zonder de voorraadronde te hoeven draaien. Die twee staan los van
+    # elkaar, en dat is sinds 10 oktober met opzet zo.
+    if args.pijplijn_uit:
+        blok = tekst_pijplijn(args.uit)
+        if blok:
+            with open(args.pijplijn_uit, "w", encoding="utf-8") as f:
+                f.write(blok)
+            print(f"Pijplijn: blok naar {args.pijplijn_uit}", file=sys.stderr)
+        else:
+            print("Pijplijn: niets te melden; staat er al een ronde in "
+                  "voorraad.json met objecten met status gevormd?",
+                  file=sys.stderr)
+        return 0
 
     voorraad = _lees(args.uit, {})
     pcs = postcodes_uit_inventaris(args.buurt)
@@ -1564,10 +1887,14 @@ def main():
         # die nergens op aansluit. Mislukt deze ronde, dan blijft het veld pand
         # leeg en gaat de rest door; de reden staat in de stand.
         panden, uit["panden"] = fase_panden(args.panden_minuten * 60)
+        # De statuskaart eruit halen: die hoort bij de ronde en niet in het
+        # standsbestand, want het zijn duizenden regels.
+        pandstatus = uit["panden"].pop("_status_per_pand", {})
         uit["panden"]["datum"] = dt.date.today().isoformat()
         print("Panden: " + json.dumps(uit["panden"], ensure_ascii=False),
               file=sys.stderr)
-        uit["bag"] = fase_bag(voorraad, pcs, args.bag_minuten, panden)
+        uit["bag"] = fase_bag(voorraad, pcs, args.bag_minuten, panden,
+                              pandstatus)
         uit["bag"]["datum"] = dt.date.today().isoformat()
         print("BAG: " + json.dumps(uit["bag"], ensure_ascii=False),
               file=sys.stderr)
