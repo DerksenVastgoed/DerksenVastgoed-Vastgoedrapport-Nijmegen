@@ -131,18 +131,6 @@
   "prijs": 225000,
   "status": "te koop"
  },
- "deruyterstraat135": {
-  "adres": "de Ruyterstraat 135",
-  "laatst": "2026-09-28",
-  "prijs": 925000,
-  "status": "te koop"
- },
- "deruyterstraat37": {
-  "adres": "de Ruyterstraat 37",
-  "laatst": "2026-10-11",
-  "prijs": 450000,
-  "status": "te koop"
- },
  "dikkeboomweg36": {
   "adres": "Dikkeboomweg 36",
   "laatst": "2026-10-11",
@@ -377,13 +365,13 @@
   "prijs": 450000,
   "status": "te koop"
  },
- "marinburg20": {
+ "marienburg20": {
   "adres": "Mariënburg 20",
   "laatst": "2026-09-28",
   "prijs": 629000,
   "status": "te koop"
  },
- "marinburg88d": {
+ "marienburg88d": {
   "adres": "Mariënburg 88-D",
   "laatst": "2026-10-11",
   "prijs": 535000,
@@ -497,7 +485,7 @@
   "prijs": 599000,
   "status": "te koop"
  },
- "professorcornelissenstraat3": {
+ "profcornelissenstraat3": {
   "adres": "Professor Cornelissenstraat 3",
   "laatst": "2026-10-11",
   "prijs": 370000,
@@ -513,6 +501,18 @@
   "adres": "Prof Regoutstraat 1B",
   "laatst": "2026-10-11",
   "prijs": 235000,
+  "status": "te koop"
+ },
+ "ruyterstraat135": {
+  "adres": "de Ruyterstraat 135",
+  "laatst": "2026-09-28",
+  "prijs": 925000,
+  "status": "te koop"
+ },
+ "ruyterstraat37": {
+  "adres": "de Ruyterstraat 37",
+  "laatst": "2026-10-11",
+  "prijs": 450000,
   "status": "te koop"
  },
  "scholenhof8": {

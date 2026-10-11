@@ -64445,12 +64445,21 @@
  },
  "bergendalseweg287": {
   "adres": "Berg en Dalseweg 287",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-05-28",
     "soort": "bekendmaking",
     "tekst": "Melding het brandveilig gebruiken van het gebouw, aan Berg en Dalseweg 287, 6522CH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-24",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor het gebouw aan de Berg en Dalseweg 287, 6522 CH Nijmegen"
    },
    {
     "bron": "officiele bekendmakingen",
@@ -64469,12 +64478,21 @@
  },
  "bergendalseweg32": {
   "adres": "Berg en Dalseweg 32",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Berg en Dalseweg 32, 6521JH Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -64613,12 +64631,21 @@
  },
  "bergendalseweg50": {
   "adres": "Berg en Dalseweg 50",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-30",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Berg en Dalseweg 50, 6522BM Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -65168,12 +65195,21 @@
  },
  "biezenstraat20": {
   "adres": "Biezenstraat 20",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-02-26",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor het splitsen van de bestaande woning in twee zelfstandige woningen, aan Biezenstraat 20, 6541ZT Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-07-30",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor woongebouw: het splitsen van de bestaande woning in twee zelfstandige woningen, aan de Biezenstraat 20, 6541ZT Nijmegen"
    }
   ],
   "pand_id": "0268100000011161"
@@ -66788,12 +66824,21 @@
  },
  "broerdijk85": {
   "adres": "Broerdijk 85",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Broerdijk 85, 6523GR Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -68237,12 +68282,21 @@
  },
  "burghardtvandenberghstraat53": {
   "adres": "Burghardt van den Berghstraat 53",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-08",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik pand aan de Burghardt van den Berghstraat 53, 6512DE Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -68273,12 +68327,21 @@
  },
  "burghardtvandenberghstraat7": {
   "adres": "Burghardt van den Berghstraat 7",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik pand aan de Burghardt van den Berghstraat 7, 6512 DC Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -71172,6 +71235,21 @@
   ],
   "pand_id": "0268100000092692"
  },
+ "cargadoorweg3": {
+  "adres": "de Cargadoorweg 3",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een bedrijfsruimte aan de Cargadoorweg 3, 6541BT Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "carmelhof3": {
   "adres": "Carmelhof 3",
   "gebeurtenissen": [
@@ -71534,12 +71612,21 @@
  },
  "citroenvlinderstraat45": {
   "adres": "Citroenvlinderstraat 45",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-29",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Citroenvlinderstraat 45, 6533SX Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -71558,12 +71645,21 @@
  },
  "citroenvlinderstraat46": {
   "adres": "Citroenvlinderstraat 46",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2026-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-05-26",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een BSO aan de Citroenvlinderstraat 46, 6533SZ Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -72369,630 +72465,6 @@
   ],
   "pand_id": "0268100000029037"
  },
- "debergendalseweg287": {
-  "adres": "de Berg en Dalseweg 287",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-24",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor het gebouw aan de Berg en Dalseweg 287, 6522 CH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "debergendalseweg32": {
-  "adres": "de Berg en Dalseweg 32",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-04",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Berg en Dalseweg 32, 6521JH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "debergendalseweg50": {
-  "adres": "de Berg en Dalseweg 50",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-30",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Berg en Dalseweg 50, 6522BM Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "debiezenstraat20": {
-  "adres": "de Biezenstraat 20",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-07-30",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor woongebouw: het splitsen van de bestaande woning in twee zelfstandige woningen, aan de Biezenstraat 20, 6541ZT Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "debroerdijk85": {
-  "adres": "de Broerdijk 85",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Broerdijk 85, 6523GR Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deburghardtvandenberghstraat53": {
-  "adres": "de Burghardt van den Berghstraat 53",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-08",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik pand aan de Burghardt van den Berghstraat 53, 6512DE Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deburghardtvandenberghstraat7": {
-  "adres": "de Burghardt van den Berghstraat 7",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik pand aan de Burghardt van den Berghstraat 7, 6512 DC Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "decargadoorweg3": {
-  "adres": "de Cargadoorweg 3",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een bedrijfsruimte aan de Cargadoorweg 3, 6541BT Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "decitroenvlinderstraat45": {
-  "adres": "de Citroenvlinderstraat 45",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-29",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Citroenvlinderstraat 45, 6533SX Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "decitroenvlinderstraat46": {
-  "adres": "de Citroenvlinderstraat 46",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-05-26",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een BSO aan de Citroenvlinderstraat 46, 6533SZ Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dedobbelmannweg29": {
-  "adres": "de Dobbelmannweg 29",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand aan de Dobbelmannweg 29, 6531KT Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dedommervanpoldersveldtweg112": {
-  "adres": "de Dommer van Poldersveldtweg 112",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-03",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor gebouw aan de Dommer van Poldersveldtweg 112, 6523 DC Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "defransestraat36": {
-  "adres": "de Fransestraat 36",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-06-19",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-06-26",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "defranshalsstraat35": {
-  "adres": "de Frans Halsstraat 35",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-24",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor gebouw aan de Frans Halsstraat 35, 6521 NA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degeerkamp1652": {
-  "adres": "De Geerkamp 1652",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   }
-  ],
-  "pand_id": "0268100000031616"
- },
- "degildekamp6006": {
-  "adres": "de Gildekamp 6006",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Gildekamp 5029A is nu A"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Gildekamp 6006 is nu A"
-   }
-  ],
-  "pand_id": "0268100000037774"
- },
- "degraafsedwarsstraat71": {
-  "adres": "de Graafsedwarsstraat 71",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-22",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Graafsedwarsstraat 71, 6512ER Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degraafseweg50": {
-  "adres": "de Graafseweg 50",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-06",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Graafseweg 50, 6512CD Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degriftdijk212": {
-  "adres": "de Griftdijk 212",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-04-28",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor het aanvragen van een vergunning voor het tijdelijk verhuren van een woning, aan de Griftdijk 212, 6515AG Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degroenestraat122": {
-  "adres": "de Groenestraat 122",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-05-12",
-    "soort": "bekendmaking",
-    "tekst": "Melding g brandveilig gebruik, woning aan de Groenestraat 122, 6531HV Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degroenestraat252": {
-  "adres": "de Groenestraat 252",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Groenestraat 252, 6531JA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degroesbeekseweg315": {
-  "adres": "de Groesbeekseweg 315",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een zorginstelling aan de Groesbeekseweg 315, 6523PA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degroesbeekseweg319": {
-  "adres": "de Groesbeekseweg 319",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een zorginstelling aan de Groesbeekseweg 319, 6523 PA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degrotestraat11": {
-  "adres": "de Grotestraat 11",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-29",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een bordspelwinkel met café, aan de Grotestraat 11, 6511VB Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "degrotestraat7": {
-  "adres": "de Grotestraat 7",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een horecapand aan de Grotestraat 7, 6511VB Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deheidebloemstraat1": {
-  "adres": "de Heidebloemstraat 1",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-07-31",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een dagactiviteitengebouw aan de Heidebloemstraat 1, 6533SL Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deheidebloemstraat28": {
-  "adres": "de Heidebloemstraat 28",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Heidebloemstraat 28A, 6533SP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deheidebloemstraat3": {
-  "adres": "de Heidebloemstraat 3",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-07-31",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een fysiotherapiepraktijk aan de Heidebloemstraat 3, 6533SL Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dehengstdalseweg46": {
-  "adres": "de Hengstdalseweg 46",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-21",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een kinderdagverblijf aan de Hengstdalseweg 46, 6523EM Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deheyendaalseweg117": {
-  "adres": "de Heyendaalseweg 117",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-01-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een gebouw aan de Heyendaalseweg 117, 6525AH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dehobbemastraat25": {
-  "adres": "de Hobbemastraat 25",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-04",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Hobbemastraat 25, 6521LH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dekapittelweg33": {
-  "adres": "de Kapittelweg 33",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor HAN campus, aan de Kapittelweg 33, 6525EN Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dekerkstraat65": {
-  "adres": "de Kerkstraat 65",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik zorginstelling aan de Kerkstraat 65, 6543 KG Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dekluijskamp1281": {
-  "adres": "De Kluijskamp 1281",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Kluijskamp 1281 is nu C"
-   }
-  ],
-  "pand_id": "0268100000034084"
- },
- "dekluijskamp1401": {
-  "adres": "de Kluijskamp 1401",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2023-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "vergunning",
-    "datum": "2024-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Kluijskamp 1401 is nu C"
-   }
-  ],
-  "pand_id": "0268100000034689"
- },
- "dekroonstraat2": {
-  "adres": "de Kroonstraat 2",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-08-28",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik studentenhuisvesting aan de Kroonstraat 2, 6511DW Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "delaanvanoostindi315": {
-  "adres": "de Laan van Oost-Indië 315",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-06-04",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag vergunning voor het tijdelijk verhuren van de woning, aan de Laan van Oost-Indië 315, 6541GX Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "delaanvanscheut10": {
-  "adres": "de Laan van Scheut 10",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-01",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een school aan de Laan van Scheut 10, 6525 EM Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "delangehezelstraat75": {
-  "adres": "de Lange Hezelstraat 75",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-21",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Lange Hezelstraat 75A, 6511CD Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "delimoslaan25": {
-  "adres": "de Limoslaan 25",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-07-28",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor de basisschool aan de Limoslaan 25, 6523RZ Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
  "delistraat10": {
   "adres": "Delistraat 10",
   "gebeurtenissen": [
@@ -73209,96 +72681,6 @@
   ],
   "pand_id": "0268100000024259"
  },
- "demarialaan360": {
-  "adres": "de Marialaan 360",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-04",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Marialaan 360, 6541RR Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "demolenstraat37": {
-  "adres": "de Molenstraat 37",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-23",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kerk aan de Molenstraat 37, 6511HA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "demolenstraat99": {
-  "adres": "de Molenstraat 99",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-25",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Molenstraat 99A, 6511HC Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "demolenweg11": {
-  "adres": "de Molenweg 11",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een supermarkt aan de Molenweg 11, 6542 PP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "denijmeegsebaan143": {
-  "adres": "de Nijmeegsebaan 143",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-13",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van het clubgebouw van SV Orion aan de Nijmeegsebaan 143, 6525DX Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deninasimonestraat28": {
-  "adres": "de Nina Simonestraat 28",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-22",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik gebouw aan de Nina Simonestraat 28, 6541 EA Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
  "dennenstraat104": {
   "adres": "Dennenstraat 104",
   "gebeurtenissen": [
@@ -73316,117 +72698,6 @@
    }
   ],
   "pand_id": "0268100000028581"
- },
- "deoudegraafseweg11": {
-  "adres": "de Oude Graafseweg 11",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-08",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een pand aan de Oude Graafseweg 11, 6543 PN Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "depaterbrugmanstraat73": {
-  "adres": "de Pater Brugmanstraat 73",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-14",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Pater Brugmanstraat 73, 6522EK Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dephawinkelsstraat100": {
-  "adres": "de Pé Hawinkelsstraat 100",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Pé Hawinkelsstraat 100, 6543JD Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "depijnboomstraat17": {
-  "adres": "de Pijnboomstraat 17",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-22",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik, gebouw aan de Pijnboomstraat 17, 6523 DS Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "depijnboomstraat19": {
-  "adres": "de Pijnboomstraat 19",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-30",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik aan de Pijnboomstraat 19, 6523 DS Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deprofmolkenboerstraat18": {
-  "adres": "Professor Molkenboerstraat 18",
-  "gebeurtenissen": [
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 18 is nu A++"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 18A is nu E"
-   }
-  ],
-  "pand_id": "0268100000049641"
- },
- "deprofmolkenboerstraat20": {
-  "adres": "Professor Molkenboerstraat 20",
-  "gebeurtenissen": [
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 20 is nu A+++"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 20A is nu A+"
-   }
-  ],
-  "pand_id": "0268100000049642"
  },
  "derdevanhezewijkstraat21": {
   "adres": "Derde van Hezewijkstraat 21",
@@ -73704,597 +72975,6 @@
   ],
   "pand_id": "0268100000028058"
  },
- "deriekstraat3": {
-  "adres": "de Riekstraat 3",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Riekstraat 3, 6532VL Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deruyterstraat": {
-  "adres": "de Ruyterstraat",
-  "bag_gezien": "2026-10-10",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-10",
-  "gebeurtenissen": [
-   {
-    "bron": "kamernet-incl",
-    "datum": "2026-10-07",
-    "soort": "verhuur",
-    "tekst": "kamer te huur voor €350 per maand, 24 m2 (inclusief servicekosten)"
-   }
-  ],
-  "pand_id": null
- },
- "deruyterstraat135": {
-  "adres": "de Ruyterstraat 135",
-  "gebeurtenissen": [
-   {
-    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
-    "datum": "2026-07-01",
-    "soort": "te koop",
-    "tekst": "te koop aangeboden. vraagprijs €925.000 (zekerheid laag)"
-   },
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €925.000, 169 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 135 is nu A+++"
-   }
-  ],
-  "pand_id": "0268100000025224"
- },
- "deruyterstraat189": {
-  "adres": "de Ruyterstraat 189",
-  "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €650.000, 136 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 189 is nu C"
-   }
-  ],
-  "pand_id": "0268100000010253"
- },
- "deruyterstraat205": {
-  "adres": "de Ruyterstraat 205",
-  "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €375.000, 54 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 205 is nu B"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 207 is nu B"
-   }
-  ],
-  "pand_id": "0268100000010373"
- },
- "deruyterstraat207": {
-  "adres": "de Ruyterstraat 207",
-  "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €450.000, 125 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 205 is nu B"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 207 is nu B"
-   }
-  ],
-  "pand_id": "0268100000010373"
- },
- "deruyterstraat37": {
-  "adres": "de Ruyterstraat 37",
-  "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-11",
-    "soort": "te koop",
-    "tekst": "te koop voor €450.000, 99 m2"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 37 is nu D"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 39 is nu C"
-   }
-  ],
-  "pand_id": "0268100000010512"
- },
- "deruyterstraat3l": {
-  "adres": "de Ruyterstraat 3-L",
-  "gebeurtenissen": [
-   {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
-    "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €250.000, 39 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3A is nu B"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3B is nu B"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3F is nu A"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3G is nu C"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3L is nu B"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Ruyterstraat 3M is nu B"
-   }
-  ],
-  "pand_id": "0268100000088465"
- },
- "desavorninlohmanstraat20": {
-  "adres": "de Savornin Lohmanstraat 20",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-06-03",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor het realiseren van een derde bouwlaag en het splitsen van een woning, aan de Savornin Lohmanstraat 20, 6535SX Nijmegen"
-   }
-  ],
-  "pand_id": "0268100000014819"
- },
- "desmetiusstraat7": {
-  "adres": "de Smetiusstraat 7",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-10",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor pand aan de Smetiusstraat 7A, 6511 ER Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "destjosephhof14": {
-  "adres": "de St. Josephhof 14",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-09-25",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deststevenskerkhof2": {
-  "adres": "de St. Stevenskerkhof 2",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-07-30",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor pand aan de St. Stevenskerkhof 2, 6511VZ Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanbroeckhuysenstraat17": {
-  "adres": "de van Broeckhuysenstraat 17",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een horecapand, aan de van Broeckhuysenstraat 17, 6511PE Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanheutszstraat21": {
-  "adres": "de van Heutszstraat 21",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-06",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Heutszstraat 21, 6521CS Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanheutszstraat34": {
-  "adres": "de van Heutszstraat 34",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-30",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Heutszstraat 34, 6521CW Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanoldenbarneveltstraat23": {
-  "adres": "de Van Oldenbarneveltstraat 23",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-12",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor pand aan de Van Oldenbarneveltstraat 23, 6512 AS Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanslichtenhorststraat12": {
-  "adres": "de van Slichtenhorststraat 12",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveillig gebruik voor een kamerverhuurpand, aan de van Slichtenhorststraat 12, 6524JP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devantrieststraat8": {
-  "adres": "de van Trieststraat 8",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-06",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de van Trieststraat 8, 6512CX Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanwelderenstraat101": {
-  "adres": "de van Welderenstraat 101",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-11",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Welderenstraat 101, 6511MG Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devanwelderenstraat99": {
-  "adres": "de van Welderenstraat 99",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-04",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik van een horecapand aan de van Welderenstraat 99, 6511MG Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devoorstadslaan211": {
-  "adres": "de Voorstadslaan 211",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-09-17",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devoorstadslaan28": {
-  "adres": "de Voorstadslaan 28",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-10",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik kamerverhuurpand aan de Voorstadslaan 28, 6541 SR Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "devoorstenkamp": {
-  "adres": "De Voorstenkamp",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "kamernet-incl",
-    "datum": "2026-09-29",
-    "soort": "verhuur",
-    "tekst": "te huur aangeboden voor €990 per maand, 30 m2 (inclusief servicekosten)"
-   },
-   {
-    "bron": "huislijn",
-    "datum": "2026-10-09",
-    "soort": "verhuur",
-    "tekst": "te huur aangeboden voor €1.140 per maand, 83 m2"
-   }
-  ],
-  "pand_id": null
- },
- "devoorstenkamp1142": {
-  "adres": "de Voorstenkamp 1142",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-01-09",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omgevingsvergunning voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-01-23",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-02-03",
-    "soort": "bekendmaking",
-    "tekst": "Melding melding brandveilig gebruik ten behoeve van kamerverhuur, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-02-13",
-    "soort": "bekendmaking",
-    "tekst": "Intrekking verzoek voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-02-24",
-    "soort": "bekendmaking",
-    "tekst": "Intrekking verzoek voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-03-11",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omgevingsvergunning voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-04-17",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omzettingsvergunning voor kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-05-06",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-07-01",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor een kamerverhuurvergunning aan de Voorstenkamp 1142, 6545EH Nijmegen"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-09-29",
-    "soort": "energielabel",
-    "tekst": "energielabel van de Voorstenkamp 1142 is nu C"
-   }
-  ],
-  "pand_id": "0268100000030668"
- },
- "devredestraat12": {
-  "adres": "de Vredestraat 12",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Vredestraat 12, 6511AG Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dewaalbandijk14": {
-  "adres": "de Waalbandijk 14",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-06-30",
-    "soort": "bekendmaking",
-    "tekst": "Aanvraag omgevingsvergunning voor het omzetten van kantoorfunctie naar een logiesfunctie, aan de Waalbandijk 14B, 6541AJ Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dewaalkade34": {
-  "adres": "de Waalkade 34",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2026-07-15",
-    "soort": "bekendmaking",
-    "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan de Waalkade 34, 6511XP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dewaalkade68": {
-  "adres": "de Waalkade 68",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-12-05",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik Holland Casino, aan de Waalkade 68, 6511XP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dewinkelsteegseweg1": {
-  "adres": "de Winkelsteegseweg 1",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-08-08",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor het pand aan de Winkelsteegseweg 1, 6534XB Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "dewinkelsteegseweg159": {
-  "adres": "de Winkelsteegseweg 159",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-10-24",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik, zorggebouw aan de Winkelsteegseweg 159, 6534 AP Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
- "deziekerstraat6": {
-  "adres": "de Ziekerstraat 6",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-11-20",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik MuZIEum aan de Ziekerstraat 6B, 6511LH Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
  "dikkeboomweg28": {
   "adres": "Dikkeboomweg 28",
   "gebeurtenissen": [
@@ -74447,6 +73127,9 @@
  },
  "dobbelmannweg29": {
   "adres": "Dobbelmannweg 29",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -74459,6 +73142,12 @@
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand aan de Dobbelmannweg 29, 6531KT Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -76442,12 +75131,21 @@
  },
  "dommervanpoldersveldtweg112": {
   "adres": "Dommer van Poldersveldtweg 112",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-03",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor gebouw aan de Dommer van Poldersveldtweg 112, 6523 DC Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -79806,6 +78504,27 @@
   ],
   "pand_id": "0268100000023096"
  },
+ "fransestraat36": {
+  "adres": "de Fransestraat 36",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-06-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-06-26",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "fransestraat38": {
   "adres": "Fransestraat 38",
   "gebeurtenissen": [
@@ -79901,6 +78620,21 @@
    }
   ],
   "pand_id": "0268100000031099"
+ },
+ "franshalsstraat35": {
+  "adres": "de Frans Halsstraat 35",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-24",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor gebouw aan de Frans Halsstraat 35, 6521 NA Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "fuutstraat1": {
   "adres": "Fuutstraat 1",
@@ -80180,6 +78914,18 @@
    }
   ],
   "pand_id": null
+ },
+ "geerkamp1652": {
+  "adres": "De Geerkamp 1652",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": "0268100000031616"
  },
  "gerardnoodtstraat10": {
   "adres": "Gerard Noodtstraat 10",
@@ -81294,6 +80040,30 @@
   ],
   "pand_id": null
  },
+ "gildekamp6006": {
+  "adres": "de Gildekamp 6006",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Gildekamp 5029A is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Gildekamp 6006 is nu A"
+   }
+  ],
+  "pand_id": "0268100000037774"
+ },
  "gladiolenstraat12": {
   "adres": "Gladiolenstraat 12",
   "gebeurtenissen": [
@@ -81655,6 +80425,21 @@
    }
   ],
   "pand_id": "0268100000019919"
+ },
+ "graafsedwarsstraat71": {
+  "adres": "de Graafsedwarsstraat 71",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-22",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Graafsedwarsstraat 71, 6512ER Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "graafseweg": {
   "adres": "Graafseweg",
@@ -83947,12 +82732,21 @@
  },
  "graafseweg50": {
   "adres": "Graafseweg 50",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-06",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Graafseweg 50, 6512CD Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -84163,12 +82957,21 @@
  },
  "griftdijk212": {
   "adres": "Griftdijk 212",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-03-12",
     "soort": "bekendmaking",
     "tekst": "Aanvraag vergunning tijdelijke verhuur voor het aanvragen van een vergunning voor het tijdelijk verhuren van een woning, aan Griftdijk 212, 6515AG Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-04-28",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het aanvragen van een vergunning voor het tijdelijk verhuren van een woning, aan de Griftdijk 212, 6515AG Nijmegen"
    }
   ],
   "pand_id": "0268100000007312"
@@ -84238,12 +83041,21 @@
  },
  "groenestraat122": {
   "adres": "Groenestraat 122",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2026-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-05-12",
+    "soort": "bekendmaking",
+    "tekst": "Melding g brandveilig gebruik, woning aan de Groenestraat 122, 6531HV Nijmegen"
    }
   ],
   "pand_id": "0268100000014056"
@@ -84328,12 +83140,21 @@
  },
  "groenestraat252": {
   "adres": "Groenestraat 252",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Groenestraat 252, 6531JA Nijmegen"
    }
   ],
   "pand_id": "0268100000027718"
@@ -85285,12 +84106,21 @@
  },
  "groesbeekseweg315": {
   "adres": "Groesbeekseweg 315",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een zorginstelling aan de Groesbeekseweg 315, 6523PA Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -85303,12 +84133,21 @@
  },
  "groesbeekseweg319": {
   "adres": "Groesbeekseweg 319",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een zorginstelling aan de Groesbeekseweg 319, 6523 PA Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -85720,6 +84559,9 @@
  },
  "grotestraat11": {
   "adres": "Grotestraat 11",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
@@ -85732,6 +84574,12 @@
     "datum": "2025-12-02",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het legaliseren/wijzigen van een verleende vergunning m.b.t. transformatie pand aan Grotestraat 11, 6511VB Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-29",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een bordspelwinkel met café, aan de Grotestraat 11, 6511VB Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -85765,6 +84613,21 @@
    }
   ],
   "pand_id": "0268100000047154"
+ },
+ "grotestraat7": {
+  "adres": "de Grotestraat 7",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een horecapand aan de Grotestraat 7, 6511VB Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "gruitberg37": {
   "adres": "Gruitberg 37",
@@ -86584,13 +85447,21 @@
  },
  "heidebloemstraat1": {
   "adres": "Heidebloemstraat 1",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2026-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-07-31",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een dagactiviteitengebouw aan de Heidebloemstraat 1, 6533SL Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -87038,13 +85909,21 @@
  },
  "heidebloemstraat28": {
   "adres": "Heidebloemstraat 28",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Heidebloemstraat 28A, 6533SP Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -87057,13 +85936,21 @@
  },
  "heidebloemstraat3": {
   "adres": "Heidebloemstraat 3",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2026-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-07-31",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een fysiotherapiepraktijk aan de Heidebloemstraat 3, 6533SL Nijmegen"
    }
   ],
   "pand_id": "0268100000012622"
@@ -87525,13 +86412,21 @@
  },
  "hengstdalseweg46": {
   "adres": "Hengstdalseweg 46",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-21",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een kinderdagverblijf aan de Hengstdalseweg 46, 6523EM Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -88194,21 +87089,6 @@
   ],
   "pand_id": "0268100000048929"
  },
- "hetjonkerbosplein52": {
-  "adres": "het Jonkerbosplein 52",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "officiele bekendmakingen",
-    "datum": "2025-09-04",
-    "soort": "bekendmaking",
-    "tekst": "Melding brandveilig gebruik voor het pand Fifty Two Degrees aan het Jonkerbosplein 52, 6534AB Nijmegen"
-   }
-  ],
-  "pand_id": null
- },
  "heydenrijckstraat40": {
   "adres": "Heydenrijckstraat 40",
   "bag_pogingen": 1,
@@ -88257,13 +87137,21 @@
  },
  "heyendaalseweg117": {
   "adres": "Heyendaalseweg 117",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2026-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-01-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een gebouw aan de Heyendaalseweg 117, 6525AH Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -88377,13 +87265,21 @@
  },
  "hobbemastraat25": {
   "adres": "Hobbemastraat 25",
+  "bag_gezien": "2026-10-03",
   "bag_pogingen": 1,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Hobbemastraat 25, 6521LH Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -90687,6 +89583,21 @@
   ],
   "pand_id": "0268100000008909"
  },
+ "jonkerbosplein52": {
+  "adres": "het Jonkerbosplein 52",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor het pand Fifty Two Degrees aan het Jonkerbosplein 52, 6534AB Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "jozefisraelsstraat": {
   "adres": "Jozef Israelsstraat",
   "bag_gezien": "2026-10-10",
@@ -90694,23 +89605,14 @@
   "bag_zonder_id": "2026-10-10",
   "gebeurtenissen": [
    {
-    "bron": "huislijn",
-    "datum": "2026-10-03",
-    "soort": "verhuur",
-    "tekst": "te huur aangeboden voor €2.650 per maand, 148 m2"
-   }
-  ],
-  "pand_id": null
- },
- "jozefisralsstraat": {
-  "adres": "Jozef Israëlsstraat",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
     "bron": "pararius",
     "datum": "2026-10-02",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.650 per maand, 148 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-03",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €2.650 per maand, 148 m2"
    }
@@ -91881,6 +90783,21 @@
   ],
   "pand_id": "0268100000046654"
  },
+ "kapittelweg33": {
+  "adres": "de Kapittelweg 33",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor HAN campus, aan de Kapittelweg 33, 6525EN Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "karbouwstraat25": {
   "adres": "Karbouwstraat 25",
   "gebeurtenissen": [
@@ -92945,12 +91862,21 @@
  },
  "kerkstraat65": {
   "adres": "Kerkstraat 65",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-05-08",
     "soort": "bekendmaking",
     "tekst": "Melding melding brandveilig gebruik, aan Kerkstraat 65, 6543KG Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik zorginstelling aan de Kerkstraat 65, 6543 KG Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -93203,6 +92129,48 @@
    }
   ],
   "pand_id": "0268100000027454"
+ },
+ "kluijskamp1281": {
+  "adres": "De Kluijskamp 1281",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Kluijskamp 1281 is nu C"
+   }
+  ],
+  "pand_id": "0268100000034084"
+ },
+ "kluijskamp1401": {
+  "adres": "de Kluijskamp 1401",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2023-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "vergunning",
+    "datum": "2024-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Kluijskamp 1401 is nu C"
+   }
+  ],
+  "pand_id": "0268100000034689"
  },
  "konijnenpad10": {
   "adres": "Konijnenpad 10",
@@ -96828,6 +95796,21 @@
   ],
   "pand_id": "0268100000083374"
  },
+ "kroonstraat2": {
+  "adres": "de Kroonstraat 2",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-08-28",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik studentenhuisvesting aan de Kroonstraat 2, 6511DW Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "kruidenstraat": {
   "adres": "Kruidenstraat",
   "bag_gezien": "2026-10-03",
@@ -96879,9 +95862,33 @@
   ],
   "pand_id": "0268100000005563"
  },
- "laanvanoostindi315": {
-  "adres": "Laan van Oost-Indië 315",
+ "laanvanoostindie": {
+  "adres": "Laan van Oost-Indie",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.297 per maand, 45 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
+ "laanvanoostindie315": {
+  "adres": "Laan van Oost-Indië 315",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-06-04",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag vergunning voor het tijdelijk verhuren van de woning, aan de Laan van Oost-Indië 315, 6541GX Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-09-23",
@@ -96897,17 +95904,17 @@
   ],
   "pand_id": "0268100000090586"
  },
- "laanvanoostindie": {
-  "adres": "Laan van Oost-Indie",
+ "laanvanscheut10": {
+  "adres": "de Laan van Scheut 10",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
-    "bron": "kamernet-incl",
-    "datum": "2026-09-28",
-    "soort": "verhuur",
-    "tekst": "kamer te huur voor €1.297 per maand, 45 m2 (inclusief servicekosten)"
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-01",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een school aan de Laan van Scheut 10, 6525 EM Nijmegen"
    }
   ],
   "pand_id": null
@@ -97502,6 +96509,9 @@
  },
  "langehezelstraat75": {
   "adres": "Lange Hezelstraat 75",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -97514,6 +96524,12 @@
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-21",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Lange Hezelstraat 75A, 6511CD Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -98009,6 +97025,21 @@
    }
   ],
   "pand_id": "0268100000028471"
+ },
+ "limoslaan25": {
+  "adres": "de Limoslaan 25",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-07-28",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor de basisschool aan de Limoslaan 25, 6523RZ Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "loevesteinstraat61": {
   "adres": "Loevesteinstraat 61",
@@ -98520,7 +97551,7 @@
   ],
   "pand_id": "0268100000047585"
  },
- "margaklomplaan37": {
+ "margaklompelaan37": {
   "adres": "Marga Klompélaan 37",
   "gebeurtenissen": [
    {
@@ -98672,12 +97703,21 @@
  },
  "marialaan360": {
   "adres": "Marialaan 360",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand, aan de Marialaan 360, 6541RR Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -99306,37 +98346,7 @@
   ],
   "pand_id": "0268100000006297"
  },
- "marienburg74": {
-  "adres": "Marienburg 74",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   }
-  ],
-  "pand_id": null
- },
- "marienburgsestraat45": {
-  "adres": "Marienburgsestraat 45",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   }
-  ],
-  "pand_id": null
- },
- "marinburg20": {
+ "marienburg20": {
   "adres": "Mariënburg 20",
   "gebeurtenissen": [
    {
@@ -99600,7 +98610,7 @@
   ],
   "pand_id": "0268100000021096"
  },
- "marinburg39": {
+ "marienburg39": {
   "adres": "Mariënburg 39",
   "gebeurtenissen": [
    {
@@ -99618,7 +98628,22 @@
   ],
   "pand_id": "0268100000088710"
  },
- "marinburg82a": {
+ "marienburg74": {
+  "adres": "Marienburg 74",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "marienburg82a": {
   "adres": "Mariënburg 82-A",
   "gebeurtenissen": [
    {
@@ -99720,7 +98745,7 @@
   ],
   "pand_id": "0268100000092719"
  },
- "marinburg86b": {
+ "marienburg86b": {
   "adres": "Mariënburg 86-B",
   "gebeurtenissen": [
    {
@@ -99816,7 +98841,7 @@
   ],
   "pand_id": "0268100000092719"
  },
- "marinburg88d": {
+ "marienburg88d": {
   "adres": "Mariënburg 88-D",
   "gebeurtenissen": [
    {
@@ -99918,7 +98943,7 @@
   ],
   "pand_id": "0268100000092719"
  },
- "marinburgsestraat23": {
+ "marienburgsestraat23": {
   "adres": "Mariënburgsestraat 23",
   "gebeurtenissen": [
    {
@@ -100062,7 +99087,7 @@
   ],
   "pand_id": "0268100000008084"
  },
- "marinburgsestraat25": {
+ "marienburgsestraat25": {
   "adres": "Mariënburgsestraat 25",
   "gebeurtenissen": [
    {
@@ -100206,7 +99231,7 @@
   ],
   "pand_id": "0268100000008084"
  },
- "marinburgsestraat39": {
+ "marienburgsestraat39": {
   "adres": "Mariënburgsestraat 39",
   "gebeurtenissen": [
    {
@@ -100350,7 +99375,22 @@
   ],
   "pand_id": "0268100000008084"
  },
- "marinburgsestraat47a": {
+ "marienburgsestraat45": {
+  "adres": "Marienburgsestraat 45",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "marienburgsestraat47a": {
   "adres": "Mariënburgsestraat 47-A",
   "gebeurtenissen": [
    {
@@ -101099,7 +100139,16 @@
  },
  "molenstraat37": {
   "adres": "Molenstraat 37",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-23",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kerk aan de Molenstraat 37, 6511HA Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-03-05",
@@ -102263,12 +101312,21 @@
  },
  "molenstraat99": {
   "adres": "Molenstraat 99",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-25",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Molenstraat 99A, 6511HC Nijmegen"
    }
   ],
   "pand_id": "0268100000002973"
@@ -102311,12 +101369,21 @@
  },
  "molenweg11": {
   "adres": "Molenweg 11",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een supermarkt aan de Molenweg 11, 6542 PP Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -107283,6 +106350,21 @@
   ],
   "pand_id": "0268100000042893"
  },
+ "nijmeegsebaan143": {
+  "adres": "de Nijmeegsebaan 143",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-13",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van het clubgebouw van SV Orion aan de Nijmeegsebaan 143, 6525DX Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "nijmeegsebaan65": {
   "adres": "Nijmeegsebaan 65",
   "bag_gezien": "2026-10-03",
@@ -107762,12 +106844,21 @@
  },
  "ninasimonestraat28": {
   "adres": "Nina Simonestraat 28",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-22",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik gebouw aan de Nina Simonestraat 28, 6541 EA Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -108684,6 +107775,21 @@
   ],
   "pand_id": "0268100000015740"
  },
+ "oudegraafseweg11": {
+  "adres": "de Oude Graafseweg 11",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-08",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een pand aan de Oude Graafseweg 11, 6543 PN Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "oudehaven104": {
   "adres": "Oude Haven 104",
   "gebeurtenissen": [
@@ -109322,12 +108428,21 @@
  },
  "paterbrugmanstraat73": {
   "adres": "Pater Brugmanstraat 73",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-14",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Pater Brugmanstraat 73, 6522EK Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -109451,6 +108566,21 @@
    }
   ],
   "pand_id": "0268100000088711"
+ },
+ "pehawinkelsstraat100": {
+  "adres": "de Pé Hawinkelsstraat 100",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Pé Hawinkelsstraat 100, 6543JD Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "peterscheersstraat8": {
   "adres": "Peter Scheersstraat 8",
@@ -109622,24 +108752,42 @@
  },
  "pijnboomstraat17": {
   "adres": "Pijnboomstraat 17",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-07-24",
     "soort": "bekendmaking",
     "tekst": "Melding brandveilig gebruik aan Pijnboomstraat 17, 6523DS Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik, gebouw aan de Pijnboomstraat 17, 6523 DS Nijmegen"
    }
   ],
   "pand_id": "0268100000004873"
  },
  "pijnboomstraat19": {
   "adres": "Pijnboomstraat 19",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2025-07-24",
     "soort": "bekendmaking",
     "tekst": "Melding melding brandveilig gebruik aan Pijnboomstraat 19, 6523DS Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-30",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik aan de Pijnboomstraat 19, 6523 DS Nijmegen"
    }
   ],
   "pand_id": "0268100000004872"
@@ -110938,7 +110086,7 @@
   ],
   "pand_id": "0268100000006182"
  },
- "professorcornelissenstraat3": {
+ "profcornelissenstraat3": {
   "adres": "Professor Cornelissenstraat 3",
   "gebeurtenissen": [
    {
@@ -110992,7 +110140,43 @@
   ],
   "pand_id": "0268100000024632"
  },
- "professorhoogveldstraat32": {
+ "profhoogveldstraat16": {
+  "adres": "Professor Hoogveldstraat 16",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 16 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 18 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 22 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 24 is nu B"
+   }
+  ],
+  "pand_id": "0268100000024720"
+ },
+ "profhoogveldstraat32": {
   "adres": "Professor Hoogveldstraat 32",
   "gebeurtenissen": [
    {
@@ -111034,7 +110218,7 @@
   ],
   "pand_id": "0268100000024722"
  },
- "professorhoogveldstraat4": {
+ "profhoogveldstraat4": {
   "adres": "Professor Hoogveldstraat 4",
   "gebeurtenissen": [
    {
@@ -111070,7 +110254,108 @@
   ],
   "pand_id": "0268100000024721"
  },
- "professorschlichtingstraat5": {
+ "profmolkenboerstraat18": {
+  "adres": "Professor Molkenboerstraat 18",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "melding",
+    "datum": "2025-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 18 is nu A++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 18A is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 18 is nu A++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 18A is nu E"
+   }
+  ],
+  "pand_id": "0268100000049641"
+ },
+ "profmolkenboerstraat20": {
+  "adres": "Professor Molkenboerstraat 20",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 20 is nu A+++"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 20A is nu A+"
+   }
+  ],
+  "pand_id": "0268100000049642"
+ },
+ "profmolkenboerstraat2020": {
+  "adres": "Professor Molkenboerstraat 20 & 20",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [],
+  "pand_id": null
+ },
+ "profmolkenboerstraat24": {
+  "adres": "Professor Molkenboerstraat 24",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2015-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Molkenboerstraat 24 is nu D"
+   }
+  ],
+  "pand_id": "0268100000014917"
+ },
+ "profmolkenboerstraat34": {
+  "adres": "Prof. Molkenboerstraat 34",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2013-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "profschlichtingstraat5": {
   "adres": "Professor Schlichtingstraat 5",
   "gebeurtenissen": [
    {
@@ -111088,7 +110373,19 @@
   ],
   "pand_id": "0268100000024938"
  },
- "professorvanderheijdenstraat15": {
+ "profschrijnenstraat4": {
+  "adres": "Professor Schrijnenstraat 4",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": "0268100000020272"
+ },
+ "profvanderheijdenstraat15": {
   "adres": "Professor van der Heijdenstraat 15",
   "gebeurtenissen": [
    {
@@ -111136,7 +110433,7 @@
   ],
   "pand_id": "0268100000011485"
  },
- "professorvanderheijdenstraat2": {
+ "profvanderheijdenstraat2": {
   "adres": "Professor van der Heijdenstraat 2",
   "gebeurtenissen": [
    {
@@ -111160,7 +110457,55 @@
   ],
   "pand_id": "0268100000025443"
  },
- "professorvanderheijdenstraat36": {
+ "profvanderheijdenstraat21": {
+  "adres": "Professor van der Heijdenstraat 21",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2018-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 13 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 15 is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 17 is nu F"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 19 is nu E"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 21 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 23 is nu C"
+   }
+  ],
+  "pand_id": "0268100000011485"
+ },
+ "profvanderheijdenstraat36": {
   "adres": "Professor van der Heijdenstraat 36",
   "gebeurtenissen": [
    {
@@ -111202,7 +110547,25 @@
   ],
   "pand_id": "0268100000024726"
  },
- "professorvanderveldenstraat11": {
+ "profvanderheijdenstraat5": {
+  "adres": "Professor van der Heijdenstraat 5",
+  "gebeurtenissen": [
+   {
+    "bron": "vergunning",
+    "datum": "2019-01-01",
+    "soort": "kamerverhuur",
+    "tekst": "onttrekking bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor van der Heijdenstraat 5 is nu F"
+   }
+  ],
+  "pand_id": "0268100000024267"
+ },
+ "profvanderveldenstraat11": {
   "adres": "Professor van der Veldenstraat 11",
   "gebeurtenissen": [
    {
@@ -111262,7 +110625,7 @@
   ],
   "pand_id": "0268100000024719"
  },
- "professorvanderveldenstraat32": {
+ "profvanderveldenstraat32": {
   "adres": "Professor van der Veldenstraat 32",
   "gebeurtenissen": [
    {
@@ -111286,7 +110649,7 @@
   ],
   "pand_id": "0268100000024723"
  },
- "professorvanderveldenstraat36": {
+ "profvanderveldenstraat36": {
   "adres": "Professor van der Veldenstraat 36",
   "gebeurtenissen": [
    {
@@ -111310,7 +110673,7 @@
   ],
   "pand_id": "0268100000024723"
  },
- "professorvanderveldenstraat9": {
+ "profvanderveldenstraat9": {
   "adres": "Professor van der Veldenstraat 9",
   "gebeurtenissen": [
    {
@@ -111370,7 +110733,7 @@
   ],
   "pand_id": "0268100000024719"
  },
- "professorvanweliestraat26": {
+ "profvanweliestraat26": {
   "adres": "Professor van Weliestraat 26",
   "gebeurtenissen": [
    {
@@ -111651,209 +111014,6 @@
    }
   ],
   "pand_id": "0268100000083216"
- },
- "profhoogveldstraat16": {
-  "adres": "Professor Hoogveldstraat 16",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Hoogveldstraat 16 is nu E"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Hoogveldstraat 18 is nu C"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Hoogveldstraat 22 is nu E"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Hoogveldstraat 24 is nu B"
-   }
-  ],
-  "pand_id": "0268100000024720"
- },
- "profmolkenboerstraat18": {
-  "adres": "Professor Molkenboerstraat 18",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "melding",
-    "datum": "2025-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 18 is nu A++"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 18A is nu E"
-   }
-  ],
-  "pand_id": "0268100000049641"
- },
- "profmolkenboerstraat20": {
-  "adres": "Professor Molkenboerstraat 20",
-  "gebeurtenissen": [
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 20 is nu A+++"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-01",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 20A is nu A+"
-   }
-  ],
-  "pand_id": "0268100000049642"
- },
- "profmolkenboerstraat2020": {
-  "adres": "Professor Molkenboerstraat 20 & 20",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [],
-  "pand_id": null
- },
- "profmolkenboerstraat24": {
-  "adres": "Professor Molkenboerstraat 24",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2015-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor Molkenboerstraat 24 is nu D"
-   }
-  ],
-  "pand_id": "0268100000014917"
- },
- "profmolkenboerstraat34": {
-  "adres": "Prof. Molkenboerstraat 34",
-  "bag_gezien": "2026-10-03",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2013-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
-   }
-  ],
-  "pand_id": null
- },
- "profschrijnenstraat4": {
-  "adres": "Professor Schrijnenstraat 4",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   }
-  ],
-  "pand_id": "0268100000020272"
- },
- "profvanderheijdenstraat21": {
-  "adres": "Professor van der Heijdenstraat 21",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2018-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 13 is nu D"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 15 is nu C"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 17 is nu F"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 19 is nu E"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 21 is nu D"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 23 is nu C"
-   }
-  ],
-  "pand_id": "0268100000011485"
- },
- "profvanderheijdenstraat5": {
-  "adres": "Professor van der Heijdenstraat 5",
-  "gebeurtenissen": [
-   {
-    "bron": "vergunning",
-    "datum": "2019-01-01",
-    "soort": "kamerverhuur",
-    "tekst": "onttrekking bekend (jaar bij benadering)"
-   },
-   {
-    "bron": "EP-Online",
-    "datum": "2026-10-03",
-    "soort": "energielabel",
-    "tekst": "energielabel van Professor van der Heijdenstraat 5 is nu F"
-   }
-  ],
-  "pand_id": "0268100000024267"
  },
  "raadhuishof14": {
   "adres": "Raadhuishof 14",
@@ -113445,6 +112605,21 @@
   ],
   "pand_id": "0268100000045408"
  },
+ "riekstraat3": {
+  "adres": "de Riekstraat 3",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Riekstraat 3, 6532VL Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "robijnstraat38": {
   "adres": "Robijnstraat 38",
   "gebeurtenissen": [
@@ -113616,6 +112791,183 @@
   ],
   "pand_id": "0268100000087663"
  },
+ "ruyterstraat": {
+  "adres": "de Ruyterstraat",
+  "bag_gezien": "2026-10-10",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-07",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €350 per maand, 24 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
+ },
+ "ruyterstraat135": {
+  "adres": "de Ruyterstraat 135",
+  "gebeurtenissen": [
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
+    "datum": "2026-07-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden. vraagprijs €925.000 (zekerheid laag)"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht, laatste vraagprijs €925.000, 169 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 135 is nu A+++"
+   }
+  ],
+  "pand_id": "0268100000025224"
+ },
+ "ruyterstraat189": {
+  "adres": "de Ruyterstraat 189",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht, laatste vraagprijs €650.000, 136 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 189 is nu C"
+   }
+  ],
+  "pand_id": "0268100000010253"
+ },
+ "ruyterstraat205": {
+  "adres": "de Ruyterstraat 205",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht, laatste vraagprijs €375.000, 54 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 205 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 207 is nu B"
+   }
+  ],
+  "pand_id": "0268100000010373"
+ },
+ "ruyterstraat207": {
+  "adres": "de Ruyterstraat 207",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht, laatste vraagprijs €450.000, 125 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 205 is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 207 is nu B"
+   }
+  ],
+  "pand_id": "0268100000010373"
+ },
+ "ruyterstraat37": {
+  "adres": "de Ruyterstraat 37",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-11",
+    "soort": "te koop",
+    "tekst": "te koop voor €450.000, 99 m2"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 37 is nu D"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 39 is nu C"
+   }
+  ],
+  "pand_id": "0268100000010512"
+ },
+ "ruyterstraat3l": {
+  "adres": "de Ruyterstraat 3-L",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-09-28",
+    "soort": "verkocht",
+    "tekst": "verkocht, laatste vraagprijs €250.000, 39 m2 (verkoopdatum onbekend; uit een geplakte lijst)"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3A is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3B is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3F is nu A"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3G is nu C"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3L is nu B"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Ruyterstraat 3M is nu B"
+   }
+  ],
+  "pand_id": "0268100000088465"
+ },
  "sandenburgstraat22": {
   "adres": "Sandenburgstraat 22",
   "gebeurtenissen": [
@@ -113654,6 +113006,18 @@
    }
   ],
   "pand_id": null
+ },
+ "savorninlohmanstraat20": {
+  "adres": "de Savornin Lohmanstraat 20",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-06-03",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het realiseren van een derde bouwlaag en het splitsen van een woning, aan de Savornin Lohmanstraat 20, 6535SX Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000014819"
  },
  "scheidemakershof39b": {
   "adres": "Scheidemakershof 39-B",
@@ -115953,21 +115317,6 @@
   ],
   "pand_id": null
  },
- "sintjacobslaan114": {
-  "adres": "Sint Jacobslaan 114",
-  "bag_gezien": "2026-10-10",
-  "bag_pogingen": 3,
-  "bag_zonder_id": "2026-10-10",
-  "gebeurtenissen": [
-   {
-    "bron": "rentola",
-    "datum": "2026-10-08",
-    "soort": "verhuur",
-    "tekst": "kamer te huur voor €390 per maand, 11 m2"
-   }
-  ],
-  "pand_id": null
- },
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
   "bag_gezien": "2026-10-03",
@@ -116141,12 +115490,21 @@
  },
  "smetiusstraat7": {
   "adres": "Smetiusstraat 7",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-10",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor pand aan de Smetiusstraat 7A, 6511 ER Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -118803,6 +118161,21 @@
   ],
   "pand_id": null
  },
+ "stjacobslaan114": {
+  "adres": "Sint Jacobslaan 114",
+  "bag_gezien": "2026-10-10",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-10",
+  "gebeurtenissen": [
+   {
+    "bron": "rentola",
+    "datum": "2026-10-08",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €390 per maand, 11 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "stjacobslaan179": {
   "adres": "St. Jacobslaan 179",
   "gebeurtenissen": [
@@ -119868,6 +119241,21 @@
   ],
   "pand_id": "0268100000088701"
  },
+ "stjosephhof14": {
+  "adres": "de St. Josephhof 14",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-25",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag vergunning tijdelijke verhuur van de woning aan de St. Josephhof 14, 6511SH Nijmegen"
+   }
+  ],
+  "pand_id": null
+ },
  "stockumstraat17": {
   "adres": "Stockumstraat 17",
   "gebeurtenissen": [
@@ -120029,12 +119417,21 @@
  },
  "ststevenskerkhof2": {
   "adres": "St. Stevenskerkhof 2",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-07-30",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor pand aan de St. Stevenskerkhof 2, 6511VZ Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -124103,12 +123500,21 @@
  },
  "vanbroeckhuysenstraat17": {
   "adres": "van Broeckhuysenstraat 17",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een horecapand, aan de van Broeckhuysenstraat 17, 6511PE Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -125165,6 +124571,9 @@
  },
  "vanheutszstraat21": {
   "adres": "Van Heutszstraat 21",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -125179,6 +124588,12 @@
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
    },
    {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-06",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Heutszstraat 21, 6521CS Nijmegen"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-03",
     "soort": "energielabel",
@@ -125189,12 +124604,21 @@
  },
  "vanheutszstraat34": {
   "adres": "van Heutszstraat 34",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-30",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Heutszstraat 34, 6521CW Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -125663,12 +125087,21 @@
  },
  "vanoldenbarneveltstraat23": {
   "adres": "Van Oldenbarneveltstraat 23",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-12",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor pand aan de Van Oldenbarneveltstraat 23, 6512 AS Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -126581,6 +126014,9 @@
  },
  "vanslichtenhorststraat12": {
   "adres": "van Slichtenhorststraat 12",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "vergunning",
@@ -126593,6 +126029,12 @@
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "besluit kamerverhuur bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveillig gebruik voor een kamerverhuurpand, aan de van Slichtenhorststraat 12, 6524JP Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -127022,12 +126464,21 @@
  },
  "vantrieststraat8": {
   "adres": "van Trieststraat 8",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-06",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de van Trieststraat 8, 6512CX Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -127088,7 +126539,16 @@
  },
  "vanwelderenstraat101": {
   "adres": "van Welderenstraat 101",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-11",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een kamerverhuurpand, aan de van Welderenstraat 101, 6511MG Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-04-24",
@@ -127895,12 +127355,21 @@
  },
  "vanwelderenstraat99": {
   "adres": "van Welderenstraat 99",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik van een horecapand aan de van Welderenstraat 99, 6511MG Nijmegen"
    }
   ],
   "pand_id": "0268100000007038"
@@ -133784,7 +133253,16 @@
  },
  "voorstadslaan211": {
   "adres": "Voorstadslaan 211",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-09-17",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan de Voorstadslaan 211, 6541SN Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-09-30",
@@ -133910,12 +133388,21 @@
  },
  "voorstadslaan28": {
   "adres": "Voorstadslaan 28",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-10",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik kamerverhuurpand aan de Voorstadslaan 28, 6541 SR Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -134118,6 +133605,93 @@
   ],
   "pand_id": "0268100000022055"
  },
+ "voorstenkamp": {
+  "adres": "De Voorstenkamp",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-09-29",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €990 per maand, 30 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-09",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.140 per maand, 83 m2"
+   }
+  ],
+  "pand_id": null
+ },
+ "voorstenkamp1142": {
+  "adres": "de Voorstenkamp 1142",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-01-09",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-01-23",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-02-03",
+    "soort": "bekendmaking",
+    "tekst": "Melding melding brandveilig gebruik ten behoeve van kamerverhuur, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-02-13",
+    "soort": "bekendmaking",
+    "tekst": "Intrekking verzoek voor Kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-02-24",
+    "soort": "bekendmaking",
+    "tekst": "Intrekking verzoek voor de verkamering van een bestaande woning, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-03-11",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-04-17",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omzettingsvergunning voor kamerverhuurvergunning aanvragen, aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-05-06",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor verkamering van de bestaande woning , aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-07-01",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor een kamerverhuurvergunning aan de Voorstenkamp 1142, 6545EH Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-09-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van de Voorstenkamp 1142 is nu C"
+   }
+  ],
+  "pand_id": "0268100000030668"
+ },
  "vossendijk": {
   "adres": "Vossendijk",
   "bag_gezien": "2026-10-10",
@@ -134291,7 +133865,16 @@
  },
  "vredestraat12": {
   "adres": "Vredestraat 12",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor een kamerverhuurpand aan de Vredestraat 12, 6511AG Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-01-26",
@@ -134594,7 +134177,16 @@
  },
  "waalbandijk14": {
   "adres": "Waalbandijk 14",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-06-30",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het omzetten van kantoorfunctie naar een logiesfunctie, aan de Waalbandijk 14B, 6541AJ Nijmegen"
+   },
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-08-17",
@@ -136019,12 +135611,21 @@
  },
  "waalkade34": {
   "adres": "Waalkade 34",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "officiele bekendmakingen",
     "datum": "2026-06-08",
     "soort": "bekendmaking",
     "tekst": "Vergunning aanvraag tijdelijk verhuren woning, aan Waalkade 34, 6511XP Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-07-15",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor Vergunning aanvragen tijdelijk verhuren woning, aan de Waalkade 34, 6511XP Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -136490,6 +136091,21 @@
    }
   ],
   "pand_id": "0268100000006553"
+ },
+ "waalkade68": {
+  "adres": "de Waalkade 68",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-12-05",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik Holland Casino, aan de Waalkade 68, 6511XP Nijmegen"
+   }
+  ],
+  "pand_id": null
  },
  "waalkade81": {
   "adres": "Waalkade 81",
@@ -137576,12 +137192,21 @@
  },
  "winkelsteegseweg1": {
   "adres": "Winkelsteegseweg 1",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-08-08",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor het pand aan de Winkelsteegseweg 1, 6534XB Nijmegen"
    },
    {
     "bron": "EP-Online",
@@ -137594,12 +137219,21 @@
  },
  "winkelsteegseweg159": {
   "adres": "Winkelsteegseweg 159",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-24",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik, zorggebouw aan de Winkelsteegseweg 159, 6534 AP Nijmegen"
    }
   ],
   "pand_id": "0268100000090827"
@@ -138626,12 +138260,21 @@
  },
  "ziekerstraat6": {
   "adres": "Ziekerstraat 6",
+  "bag_gezien": "2026-10-03",
+  "bag_pogingen": 3,
+  "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
    {
     "bron": "melding",
     "datum": "2025-01-01",
     "soort": "kamerverhuur",
     "tekst": "melding brandveilig gebruik bekend (jaar bij benadering)"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-20",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik MuZIEum aan de Ziekerstraat 6B, 6511LH Nijmegen"
    },
    {
     "bron": "EP-Online",

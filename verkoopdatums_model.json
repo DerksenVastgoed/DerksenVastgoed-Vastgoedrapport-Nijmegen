@@ -277,21 +277,6 @@
   ],
   "opgehaald": "2026-10-03"
  },
- "deruyterstraat135": {
-  "adres": "de Ruyterstraat 135",
-  "gebeurtenissen": [
-   {
-    "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
-    "datum": "2026-07-01",
-    "herkomst": "model met webzoeken",
-    "opgehaald": "2026-10-02",
-    "soort": "te koop",
-    "vraagprijs": 925000,
-    "zeker": "laag"
-   }
-  ],
-  "opgehaald": "2026-10-02"
- },
  "doddendaal117": {
   "adres": "Doddendaal 117",
   "bron": "https://huispedia.nl/nijmegen/6511dd/doddendaal/117",
@@ -954,7 +939,7 @@
   ],
   "opgehaald": "2026-10-03"
  },
- "mariënburg20": {
+ "marienburg20": {
   "adres": "Mariënburg 20",
   "bron": "https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
   "herkomst": "model met webzoeken",
@@ -964,7 +949,7 @@
   "verkocht_op": "2025-03-12",
   "zeker": "hoog"
  },
- "mariënburg82a": {
+ "marienburg82a": {
   "adres": "Mariënburg 82-A",
   "gebeurtenissen": [
    {
@@ -979,7 +964,7 @@
   ],
   "opgehaald": "2026-10-03"
  },
- "mariënburg88d": {
+ "marienburg88d": {
   "adres": "Mariënburg 88-D",
   "gebeurtenissen": [
    {
@@ -1399,6 +1384,21 @@
    }
   ],
   "opgehaald": "2026-10-03"
+ },
+ "ruyterstraat135": {
+  "adres": "de Ruyterstraat 135",
+  "gebeurtenissen": [
+   {
+    "bron": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
+    "datum": "2026-07-01",
+    "herkomst": "model met webzoeken",
+    "opgehaald": "2026-10-02",
+    "soort": "te koop",
+    "vraagprijs": 925000,
+    "zeker": "laag"
+   }
+  ],
+  "opgehaald": "2026-10-02"
  },
  "scholenhof8": {
   "adres": "Scholenhof 8",

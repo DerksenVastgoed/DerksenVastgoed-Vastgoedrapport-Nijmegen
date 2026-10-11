@@ -983,49 +983,6 @@
    "zaak": "W.Z17.107993.01"
   }
  ],
- "degeerkamp1652": [
-  {
-   "adres": "De Geerkamp 1652",
-   "datum": "2018-04-03",
-   "leefbaarheidsonderzoek": false,
-   "soort": "onttrekking",
-   "zaak": "W.Z18.102862.01"
-  }
- ],
- "degildekamp6006": [
-  {
-   "adres": "de Gildekamp 6006",
-   "datum": "2018-11-21",
-   "omschrijving": "wijzigen van het huidige bedrijfsgedeelte in gedeeltelijke kamerverhuur",
-   "soort": "omgevingsvergunning",
-   "zaak": "W.Z18.108926.01"
-  }
- ],
- "dekluijskamp1281": [
-  {
-   "adres": "De Kluijskamp 1281",
-   "datum": "2018-11-01",
-   "leefbaarheidsonderzoek": false,
-   "soort": "onttrekking",
-   "zaak": "W.Z18.104673.01"
-  }
- ],
- "dekluijskamp1401": [
-  {
-   "adres": "de Kluijskamp 1401",
-   "datum": "2023-06-29",
-   "leefbaarheidsonderzoek": false,
-   "soort": "onttrekking",
-   "zaak": "W.Z22.109165.01"
-  },
-  {
-   "adres": "de Kluijskamp 1401N",
-   "datum": "2024-10-15",
-   "leefbaarheidsonderzoek": false,
-   "soort": "onttrekking",
-   "zaak": "AB24.01543"
-  }
- ],
  "delistraat45": [
   {
    "adres": "Delistraat 45",
@@ -1673,6 +1630,15 @@
    "zaak": "W.Z18.102871.01"
   }
  ],
+ "geerkamp1652": [
+  {
+   "adres": "De Geerkamp 1652",
+   "datum": "2018-04-03",
+   "leefbaarheidsonderzoek": false,
+   "soort": "onttrekking",
+   "zaak": "W.Z18.102862.01"
+  }
+ ],
  "gerardnoodtstraat10": [
   {
    "adres": "Gerard Noodtstraat 10",
@@ -1741,6 +1707,15 @@
    "leefbaarheidsonderzoek": false,
    "soort": "onttrekking",
    "zaak": "W.Z18.104536.01"
+  }
+ ],
+ "gildekamp6006": [
+  {
+   "adres": "de Gildekamp 6006",
+   "datum": "2018-11-21",
+   "omschrijving": "wijzigen van het huidige bedrijfsgedeelte in gedeeltelijke kamerverhuur",
+   "soort": "omgevingsvergunning",
+   "zaak": "W.Z18.108926.01"
   }
  ],
  "gitaarstraat29": [
@@ -3452,6 +3427,31 @@
    "omschrijving": "veranderen bovenwoningen naar kamerverhuur",
    "soort": "omgevingsvergunning",
    "zaak": "Z11.003177"
+  }
+ ],
+ "kluijskamp1281": [
+  {
+   "adres": "De Kluijskamp 1281",
+   "datum": "2018-11-01",
+   "leefbaarheidsonderzoek": false,
+   "soort": "onttrekking",
+   "zaak": "W.Z18.104673.01"
+  }
+ ],
+ "kluijskamp1401": [
+  {
+   "adres": "de Kluijskamp 1401",
+   "datum": "2023-06-29",
+   "leefbaarheidsonderzoek": false,
+   "soort": "onttrekking",
+   "zaak": "W.Z22.109165.01"
+  },
+  {
+   "adres": "de Kluijskamp 1401N",
+   "datum": "2024-10-15",
+   "leefbaarheidsonderzoek": false,
+   "soort": "onttrekking",
+   "zaak": "AB24.01543"
   }
  ],
  "koninginnelaan163": [

@@ -32,6 +32,8 @@ import statistics as st
 import sys
 import time
 
+import pandsleutel as _psl
+
 PAD = "pandgeschiedenis.json"
 VERKOPEN = "verkopen.txt"
 ARCHIEF = "bekendmakingen_archief.json"
@@ -80,7 +82,14 @@ except Exception:  # noqa
 
 
 def sleutel(adres):
-    return re.sub(r"[^a-z0-9]", "", (adres or "").lower())
+    """
+    De sleutel van een pand, uit pandsleutel.
+
+    Dit was een eigen regel, een van de veertien in elf bestanden die allemaal
+    hetzelfde bedoelden en op drie punten uiteenliepen. Hij blijft hier staan
+    omdat andere modules hem importeren, maar hij rekent niet meer zelf.
+    """
+    return _psl.sleutel(adres)
 
 
 def lees(pad, standaard):
@@ -247,19 +256,43 @@ def uit_archief(geschiedenis):
                 break
         if not adres:
             continue
-        # De sleutel komt uit het archief zelf, niet uit de titel. Anders levert
-        # "aan de Dominicanenstraat 30" de sleutel "dedominicanenstraat30" op en
-        # matcht een pand niet met zijn eigen bekendmakingen. Een huisnummer met
-        # een letter hoort bij het pand van het kale nummer.
-        basis = re.sub(r"(?<=\d)[a-z]{1,2}$", "", k)
-        if basis in geschiedenis:
+        # DE SLEUTEL KOMT UIT HET ADRES EN NIET UIT HET ARCHIEF.
+        #
+        # Hier stond het omgekeerde, met de reden dat een pand anders niet
+        # matcht met zijn eigen bekendmakingen: het archief sleutelt op de
+        # straatnaam uit de titel, en "aan de Dominicanenstraat 30" levert
+        # daar "dedominicanenstraat30" op. Dat klopte voor het matchen en
+        # ging mis bij het aanmaken. De controle hieronder keek namelijk maar
+        # naar één vorm, dus een pand dat al onder "dominicanenstraat30"
+        # stond kreeg een tweede record onder de de-vorm.
+        #
+        # Dat heeft 56 panden in dit bestand dubbel gezet en 4 in
+        # kamerverhuur_objecten.json: 1.777 records voor 1.721 panden. In de
+        # helft die een lezer met de schone sleutel niet vindt, zaten 60
+        # gebeurtenissen. Bij Professor Molkenboerstraat 18 was dat de
+        # onttrekking van 2018 en de melding brandveilig gebruik van 2025,
+        # dus voor de kamerverhuurtoets het verschil tussen onttrokken en
+        # schoon.
+        #
+        # pandsleutel.zoek() kijkt naar alle vormen waaronder het pand kan
+        # staan, dus het matchen blijft werken, en aanmaken gebeurt onder de
+        # canonieke sleutel. Het lidwoord verdwijnt daarmee ook uit de
+        # weergave, dus de reparatie van een regel verder is niet meer nodig.
+        kaal = re.sub(r"(?<=\d)[a-z]{1,2}$", "", k)
+        bestaand, _rec = _psl.zoek(geschiedenis, adres)
+        if bestaand or kaal in geschiedenis:
             continue
-        # De weergave in lijn brengen met de sleutel: staat er "de" voor de
-        # straat terwijl de sleutel dat niet heeft, dan hoort het er niet bij.
-        if sleutel(adres) != basis and sleutel(adres).startswith("de"):
-            adres = re.sub(r"^de\s+", "", adres)
-        geschiedenis.setdefault(basis, {"adres": adres, "pand_id": None,
-                                        "gebeurtenissen": []})
+        # HET LIDWOORD GAAT UIT DE SLEUTEL EN NIET UIT DE WEERGAVE. Hier
+        # stond eerst een regel die "de" ook uit het adres haalde. Dat is
+        # fout: bij De Geerkamp, De Kluijskamp en De Ruyterstraat hoort het
+        # lidwoord bij de straatnaam, en die zouden dan "Geerkamp 1652" gaan
+        # heten in de brief. Uit een titel als "aan de Grotestraat 7" valt
+        # niet te zien welk van de twee het is, dus blijft staan wat de bron
+        # schreef. In de sleutel maakt het niets uit, want varianten() kent
+        # beide vormen.
+        geschiedenis.setdefault(_psl.sleutel(adres),
+                                {"adres": adres, "pand_id": None,
+                                 "gebeurtenissen": []})
 
     for sl, pand in list(geschiedenis.items()):
         m = re.match(r"^(.+?)\s+(\d+)", pand["adres"])
@@ -856,8 +889,14 @@ def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
         adres = rij.get("adres")
         if not adres:
             continue
-        pand = geschiedenis.setdefault(sleutel(adres), {
-            "adres": adres, "gebeurtenissen": []})
+        # Eerst zoeken onder alle vormen, dan pas aanmaken onder de canonieke.
+        # Een setdefault op één vorm maakt een tweede record zodra dit pand
+        # eerder onder een andere spelling is opgeslagen, en dat is precies
+        # hoe de 56 dubbele records in dit bestand zijn ontstaan.
+        _sl, pand = _psl.zoek(geschiedenis, adres)
+        if pand is None:
+            pand = geschiedenis.setdefault(_psl.sleutel(adres), {
+                "adres": adres, "gebeurtenissen": []})
         pand.setdefault("adres", adres)
         pand.setdefault("gebeurtenissen", [])
 
@@ -1119,7 +1158,10 @@ def vergund_en_verkocht(geschiedenis):
             "besluit": besluiten[-1]["tekst"][:120],
             "besluit_datum": besluiten[-1]["datum"],
             "verkoop": verkoop[-1]["tekst"][:80] if verkoop else "",
-            "makelaar": (details.get(sleutel(pand.get("adres") or "")) or {}
+            # Via zoek_in, want verkocht_details.json is door een andere
+            # module gesleuteld en die spelde "Mariënburg" anders dan deze.
+            "makelaar": (_psl.zoek_in("verkocht_details.json", details,
+                                      pand.get("adres") or "")[1] or {}
                          ).get("makelaar"),
         })
     # Wie keert er terug? Een makelaar die vaker opduikt bij vergunde en daarna
@@ -1385,6 +1427,49 @@ def proef():
         check("zonder was leest hij niets", _aantallen(m3), None)
     except ImportError:
         fouten.append("splitsing_voltooid niet te importeren")
+
+    # 10. uit_archief() MAG OP DE ECHTE DATA NIETS AANMAKEN.
+    #
+    # Dit is de controle die de 56 dubbele records had gevangen. Die stap nam
+    # de sleutel uit het bekendmakingenarchief over, lidwoord en al, en keek
+    # bij het aanmaken maar naar één vorm. Elk pand dat al onder de schone
+    # sleutel stond kreeg zo een tweede record, en de helft van de
+    # geschiedenis belandde in de helft die niemand opzoekt.
+    #
+    # Op een bestand dat al bij is, hoort deze stap niets toe te voegen: alle
+    # adressen uit het archief staan er dan in en alle bekendmakingen zijn
+    # gekoppeld. Voegt hij wel iets toe, dan is er of een nieuw adres in het
+    # archief (dan is dit geen fout maar nieuws, en dan hoort dit getal in de
+    # run te staan en niet in de proef), of er is een sleutel uit elkaar
+    # gelopen. Daarom geen harde nul maar een grens: een paar nieuwe adressen
+    # is normaal, tientallen betekent dat het sleutelen stuk is.
+    #
+    # Het kost geen aanroep: het archief en de geschiedenis staan in de repo.
+    try:
+        from pandlezer import laad as _laad
+        g = _laad("pandgeschiedenis.json")
+        if g:
+            voor = len(g)
+            uit_archief(g)
+            erbij = len(g) - voor
+            if erbij > 10:
+                fouten.append(
+                    f"uit_archief() maakt {erbij} nieuwe records aan op de "
+                    f"bestaande geschiedenis; dat zijn er te veel om nieuwe "
+                    f"adressen te zijn en wijst op sleutels die uiteenlopen")
+            else:
+                print(f"  uit_archief() op de echte data: {erbij} nieuwe "
+                      f"records", file=sys.stderr)
+            # En wat hij aanmaakt, moet onder de canonieke sleutel staan.
+            scheef = [k for k, p in g.items()
+                      if isinstance(p, dict) and p.get("adres")
+                      and k != _psl.sleutel(p["adres"])]
+            if scheef:
+                fouten.append(
+                    f"{len(scheef)} records staan niet onder hun canonieke "
+                    f"sleutel, bijvoorbeeld {scheef[0]!r}")
+    except Exception as e:
+        fouten.append(f"uit_archief() niet na te meten: {type(e).__name__} {e}")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)

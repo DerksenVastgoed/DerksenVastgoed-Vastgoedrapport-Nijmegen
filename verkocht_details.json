@@ -901,83 +901,6 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-derde-walstraat-116/43028501/",
   "woonopp": 67
  },
- "deruyterstraat135": {
-  "adres": "de Ruyterstraat 135",
-  "gezien": "2026-10-11",
-  "label": "A+++",
-  "makelaar": "Hans Janssen Makelaars Nijmegen",
-  "perceel": 125,
-  "prijs": 925000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
-  "woonopp": 169
- },
- "deruyterstraat189": {
-  "adres": "de Ruyterstraat 189",
-  "gezien": "2026-10-11",
-  "label": "C",
-  "makelaar": "Houwen Makelaars B.V.",
-  "perceel": 119,
-  "prijs": 650000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-189/43041511/",
-  "woonopp": 136
- },
- "deruyterstraat205": {
-  "adres": "de Ruyterstraat 205",
-  "gezien": "2026-10-11",
-  "label": "B",
-  "makelaar": "Zelfverkopen.nl",
-  "perceel": null,
-  "prijs": 375000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-205/43970857/",
-  "woonopp": 54
- },
- "deruyterstraat207": {
-  "adres": "de Ruyterstraat 207",
-  "gezien": "2026-10-11",
-  "label": "B",
-  "makelaar": "Zelfverkopen.nl",
-  "perceel": null,
-  "prijs": 450000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-207/43089002/",
-  "woonopp": 125
- },
- "deruyterstraat3l": {
-  "adres": "de Ruyterstraat 3-L",
-  "gezien": "2026-10-11",
-  "label": "B",
-  "makelaar": "Bob Witteveen Makelaardij",
-  "perceel": null,
-  "prijs": 250000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-3-l/89716227/",
-  "woonopp": 39
- },
- "deruyterstraat6": {
-  "adres": "de Ruyterstraat 6",
-  "gezien": "2026-10-11",
-  "label": "D",
-  "makelaar": "Hans Janssen Makelaars Nijmegen",
-  "perceel": null,
-  "prijs": 350000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-6/43332077/",
-  "woonopp": 58
- },
- "deruyterstraat74": {
-  "adres": "de Ruyterstraat 74",
-  "gezien": "2026-10-11",
-  "label": "A+",
-  "makelaar": "InBeeld Makelaardij",
-  "perceel": null,
-  "prijs": 525000,
-  "sinds_dagen": null,
-  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-74/43224745/",
-  "woonopp": 104
- },
  "doddendaal117": {
   "adres": "Doddendaal 117",
   "gezien": "2026-10-11",
@@ -3035,7 +2958,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marialaan-95/43287233/",
   "woonopp": 56
  },
- "marinburg20": {
+ "marienburg20": {
   "adres": "Mariënburg 20",
   "gezien": "2026-10-11",
   "label": "B",
@@ -3046,7 +2969,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburg-20/44560399/",
   "woonopp": 122
  },
- "marinburg82a": {
+ "marienburg82a": {
   "adres": "Mariënburg 82-A",
   "gezien": "2026-10-11",
   "label": "A",
@@ -3057,7 +2980,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburg-82-a/43248274/",
   "woonopp": 73
  },
- "marinburg86b": {
+ "marienburg86b": {
   "adres": "Mariënburg 86-B",
   "gezien": "2026-10-11",
   "label": "B",
@@ -3068,7 +2991,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburg-86-b/44419980/",
   "woonopp": 80
  },
- "marinburg88d": {
+ "marienburg88d": {
   "adres": "Mariënburg 88-D",
   "gezien": "2026-10-11",
   "label": "A",
@@ -3079,7 +3002,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburg-88-d/44584905/",
   "woonopp": 95
  },
- "marinburgsestraat23": {
+ "marienburgsestraat23": {
   "adres": "Mariënburgsestraat 23",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3090,7 +3013,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburgsestraat-23/43301919/",
   "woonopp": 79
  },
- "marinburgsestraat25": {
+ "marienburgsestraat25": {
   "adres": "Mariënburgsestraat 25",
   "gezien": "2026-10-11",
   "label": "B",
@@ -3101,7 +3024,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburgsestraat-25/44491351/",
   "woonopp": 78
  },
- "marinburgsestraat39": {
+ "marienburgsestraat39": {
   "adres": "Mariënburgsestraat 39",
   "gezien": "2026-10-11",
   "label": "D",
@@ -3112,7 +3035,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-marienburgsestraat-39/43385208/",
   "woonopp": 79
  },
- "marinburgsestraat47a": {
+ "marienburgsestraat47a": {
   "adres": "Mariënburgsestraat 47-A",
   "gezien": "2026-10-11",
   "label": "B",
@@ -3882,7 +3805,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-prins-hendrikstraat-77/43225307/",
   "woonopp": 73
  },
- "professorhoogveldstraat32": {
+ "profhoogveldstraat32": {
   "adres": "Professor Hoogveldstraat 32",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3893,7 +3816,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-hoogveldstraat-32/43112276/",
   "woonopp": 74
  },
- "professorhoogveldstraat4": {
+ "profhoogveldstraat4": {
   "adres": "Professor Hoogveldstraat 4",
   "gezien": "2026-10-11",
   "label": "E",
@@ -3904,7 +3827,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-hoogveldstraat-4/44568272/",
   "woonopp": 73
  },
- "professorschlichtingstraat5": {
+ "profschlichtingstraat5": {
   "adres": "Professor Schlichtingstraat 5",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3915,7 +3838,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/huis-professor-schlichtingstraat-5/44466166/",
   "woonopp": 172
  },
- "professorvanderheijdenstraat15": {
+ "profvanderheijdenstraat15": {
   "adres": "Professor van der Heijdenstraat 15",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3926,7 +3849,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-heijdenstraat-15/43330067/",
   "woonopp": 74
  },
- "professorvanderheijdenstraat2": {
+ "profvanderheijdenstraat2": {
   "adres": "Professor van der Heijdenstraat 2",
   "gezien": "2026-10-11",
   "label": "E",
@@ -3937,7 +3860,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-heijdenstraat-2/80852971/",
   "woonopp": 105
  },
- "professorvanderheijdenstraat36": {
+ "profvanderheijdenstraat36": {
   "adres": "Professor van der Heijdenstraat 36",
   "gezien": "2026-10-11",
   "label": "D",
@@ -3948,7 +3871,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-heijdenstraat-36/43242855/",
   "woonopp": 84
  },
- "professorvanderveldenstraat11": {
+ "profvanderveldenstraat11": {
   "adres": "Professor van der Veldenstraat 11",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3959,7 +3882,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-veldenstraat-11/43279989/",
   "woonopp": 85
  },
- "professorvanderveldenstraat32": {
+ "profvanderveldenstraat32": {
   "adres": "Professor van der Veldenstraat 32",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3970,7 +3893,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-veldenstraat-32/43379826/",
   "woonopp": 73
  },
- "professorvanderveldenstraat36": {
+ "profvanderveldenstraat36": {
   "adres": "Professor van der Veldenstraat 36",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3981,7 +3904,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-veldenstraat-36/89613668/",
   "woonopp": 85
  },
- "professorvanderveldenstraat9": {
+ "profvanderveldenstraat9": {
   "adres": "Professor van der Veldenstraat 9",
   "gezien": "2026-10-11",
   "label": "C",
@@ -3992,7 +3915,7 @@
   "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-professor-van-der-veldenstraat-9/44477443/",
   "woonopp": 71
  },
- "professorvanweliestraat26": {
+ "profvanweliestraat26": {
   "adres": "Professor van Weliestraat 26",
   "gezien": "2026-10-11",
   "label": "A+",
@@ -4211,6 +4134,83 @@
   "sinds_dagen": null,
   "url": "https://www.funda.nl/detail/koop/nijmegen/huis-ruusbroecstraat-7/43192875/",
   "woonopp": 100
+ },
+ "ruyterstraat135": {
+  "adres": "de Ruyterstraat 135",
+  "gezien": "2026-10-11",
+  "label": "A+++",
+  "makelaar": "Hans Janssen Makelaars Nijmegen",
+  "perceel": 125,
+  "prijs": 925000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
+  "woonopp": 169
+ },
+ "ruyterstraat189": {
+  "adres": "de Ruyterstraat 189",
+  "gezien": "2026-10-11",
+  "label": "C",
+  "makelaar": "Houwen Makelaars B.V.",
+  "perceel": 119,
+  "prijs": 650000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-189/43041511/",
+  "woonopp": 136
+ },
+ "ruyterstraat205": {
+  "adres": "de Ruyterstraat 205",
+  "gezien": "2026-10-11",
+  "label": "B",
+  "makelaar": "Zelfverkopen.nl",
+  "perceel": null,
+  "prijs": 375000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-205/43970857/",
+  "woonopp": 54
+ },
+ "ruyterstraat207": {
+  "adres": "de Ruyterstraat 207",
+  "gezien": "2026-10-11",
+  "label": "B",
+  "makelaar": "Zelfverkopen.nl",
+  "perceel": null,
+  "prijs": 450000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-207/43089002/",
+  "woonopp": 125
+ },
+ "ruyterstraat3l": {
+  "adres": "de Ruyterstraat 3-L",
+  "gezien": "2026-10-11",
+  "label": "B",
+  "makelaar": "Bob Witteveen Makelaardij",
+  "perceel": null,
+  "prijs": 250000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-3-l/89716227/",
+  "woonopp": 39
+ },
+ "ruyterstraat6": {
+  "adres": "de Ruyterstraat 6",
+  "gezien": "2026-10-11",
+  "label": "D",
+  "makelaar": "Hans Janssen Makelaars Nijmegen",
+  "perceel": null,
+  "prijs": 350000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-6/43332077/",
+  "woonopp": 58
+ },
+ "ruyterstraat74": {
+  "adres": "de Ruyterstraat 74",
+  "gezien": "2026-10-11",
+  "label": "A+",
+  "makelaar": "InBeeld Makelaardij",
+  "perceel": null,
+  "prijs": 525000,
+  "sinds_dagen": null,
+  "url": "https://www.funda.nl/detail/koop/nijmegen/appartement-de-ruyterstraat-74/43224745/",
+  "woonopp": 104
  },
  "scheidemakershof39b": {
   "adres": "Scheidemakershof 39-B",
