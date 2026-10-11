@@ -303,6 +303,95 @@ def uit_kamerverhuur(geschiedenis):
     return nieuw
 
 
+def _doelen(e):
+    """
+    Het gebruiksdoel als lijst, in welke vorm de BAG hem ook teruggeeft.
+
+    adressenuitgebreid geeft "gebruiksdoelen" als lijst. In de voorraadtak
+    bleek hetzelfde begrip bij een ander endpoint een string te zijn waar een
+    lijst werd verwacht, en dat leverde op 10 oktober twee keer een lege
+    uitkomst op zonder dat er iets faalde. Op een string werkt "woonfunctie"
+    in d bij toeval vaak goed, en bij "bijeenkomstfunctie" niet. Daarom hier
+    een keer omzetten in plaats van erop hopen.
+    """
+    d = e.get("gebruiksdoelen")
+    if d is None:
+        d = e.get("gebruiksdoel")
+    if isinstance(d, str):
+        return [x.strip() for x in d.replace(";", ",").split(",") if x.strip()]
+    return list(d or [])
+
+
+def tel_en_meld(eenheden, eerder, eerder_woon):
+    """
+    Uit de BAG-objecten van een pand: twee tellingen en de melding, of None.
+
+    WONINGEN APART VAN DE REST. bag_eenheden_in_pand() geeft elk adresseerbaar
+    object in het pand terug, mét gebruiksdoel, en dat gebruiksdoel werd
+    weggegooid. Daarna heette elk object een "woning", dus een garage of
+    berging met een eigen adres werd als woning geteld en gemeld.
+
+    Dat is niet onschuldig. splitsing_voltooid.py vergelijkt dit aantal met
+    het aantal dat de vergunning noemt, en de vergunning telt zelfstandige
+    woonruimtes. Twee verschillende definities naast elkaar leggen levert een
+    verschil op dat er niet is. Bij Hatertseweg 338 noemde het besluit 6
+    zelfstandige woonruimtes en telde dit 7 objecten: 20, 147, 46, 24, 19, 23
+    en 19 m2, waarvan twee op huisnummer 338 zelf en de rest op 338A tot en
+    met 338E. De zondagsbrief van 11 oktober maakte dat verschil van 1 tot
+    haar hoofdthema.
+
+    Wat het gebruiksdoel van die zeven objecten is, staat hier niet: dat veld
+    werd juist weggegooid, en zonder BAG-sleutel is het van buiten een run
+    niet op te vragen. Deze functie leest het veld en telt wat er staat; de
+    eerstvolgende ronde over dit pand zegt het.
+
+    DIT STOND IN DE LUS EN STAAT ER NU BUITEN. Niet om de lus korter te maken,
+    maar omdat de vier meldvormen hieronder alleen te beproeven zijn als er
+    geen BAG-sleutel aan te pas komt. In de lus zijn ze met de hand nagekeken
+    en dat is niet te herhalen.
+
+    Geeft (nu, nu_woon, melding). melding is None als er niets te melden is.
+    """
+    nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
+    woon = [e for e in eenheden if "woonfunctie" in _doelen(e)]
+    anders = [e for e in eenheden if "woonfunctie" not in _doelen(e)]
+    nu_woon = sorted((e.get("adres"), e.get("oppervlakte")) for e in woon)
+    if eerder is None or [tuple(x) for x in eerder] == nu:
+        return nu, nu_woon, None
+
+    maten = ", ".join(str(o) for _a, o in nu_woon if o)
+    # Geen maten betekent geen woningen, of geen oppervlakte geregistreerd.
+    # Dan hoort er geen ": m2" in de tekst te staan.
+    staart = f": {maten} m2" if maten else ""
+    extra = (f"; daarnaast "
+             + (f"{len(anders)} andere objecten" if len(anders) != 1
+                else "1 ander object")
+             + " met een eigen adres") if anders else ""
+    # DE VERGELIJKING OP DEZELFDE GRONDSLAG. Het veld bag_woningen is op 11
+    # oktober toegevoegd, dus voor panden die eerder zijn opgehaald bestaat er
+    # nog geen woningtelling van vroeger. Dan is "was N" niet te zeggen zonder
+    # appels met peren te vergelijken, en zwijgt deze regel over het aantal in
+    # plaats van een getal te noemen dat op een andere grondslag rust. De ronde
+    # erna is het wel te zeggen. De vergelijking zelf blijft op bag_eenheden
+    # staan, zodat deze toevoeging geen enkele valse wijziging meldt op de
+    # 1.777 panden die al gevolgd worden.
+    if eerder_woon is None:
+        return nu, nu_woon, (f"de BAG telt nu {len(nu_woon)} woningen in dit "
+                             f"pand{staart}{extra}")
+    if len(nu_woon) != len(eerder_woon):
+        return nu, nu_woon, (f"de BAG telt nu {len(nu_woon)} woningen in dit "
+                             f"pand, was {len(eerder_woon)}{staart}{extra}")
+    if [tuple(x) for x in eerder_woon] != nu_woon:
+        return nu, nu_woon, (f"de oppervlaktes in de BAG zijn gewijzigd"
+                             f"{staart or ' maar niet geregistreerd'}{extra}")
+    # Alleen de niet-woningen zijn veranderd. Dat is geen splitsing en hoort
+    # niet als woningtelling te klinken.
+    return nu, nu_woon, (f"de BAG kent nu {len(anders)} object"
+                         f"{'en' if len(anders) != 1 else ''} zonder "
+                         f"woonfunctie in dit pand; het aantal woningen bleef "
+                         f"{len(nu_woon)}")
+
+
 def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
     """
     De BAG opnieuw bevragen: is het aantal woningen in het pand veranderd?
@@ -420,22 +509,28 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
         pand["bag_gezien"] = vandaag
         if not eenheden:
             continue
-        nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
-        eerder = pand.get("bag_eenheden")
-        if eerder is None:
-            pand["bag_eenheden"] = nu
-            continue
-        if [tuple(x) for x in eerder] != nu:
-            oud_n, nieuw_n = len(eerder), len(nu)
-            maten = ", ".join(str(o) for _a, o in nu if o)
-            if nieuw_n != oud_n:
-                tekst = (f"de BAG telt nu {nieuw_n} woningen in dit pand, was "
-                         f"{oud_n}: {maten} m2")
-            else:
-                tekst = f"de oppervlaktes in de BAG zijn gewijzigd: {maten} m2"
-            nieuw += voeg_toe(pand, vandaag, "bag", tekst,
+        nu, nu_woon, melding = tel_en_meld(eenheden,
+                                           pand.get("bag_eenheden"),
+                                           pand.get("bag_woningen"))
+        # DE TELLING EEN KEER BIJSCHRIJVEN, OOK ALS ER NIETS VERANDERDE.
+        # Zonder dit wordt bag_woningen alleen gevuld bij een pand dat voor het
+        # eerst wordt opgehaald of waarvan de eenheden wijzigen. De 1.263
+        # panden die al eenheden hebben zouden het veld dus nooit krijgen, en
+        # splitsing_voltooid.py vergelijkt daarop. Dat hoofdstuk zou dan
+        # blijven melden dat het op een telling wacht die nooit komt: geen
+        # foutmelding, geen verkeerd getal, alleen iets dat stilstaat. Het is
+        # een inhaalslag van een ronde en daarna staat het er.
+        #
+        # Het meldt niets, en dat hoort zo: een gebeurtenis hoort bij een
+        # waargenomen verandering in het pand, en hier is alleen onze eigen
+        # administratie bijgewerkt. tel_en_meld() heeft de melding al bepaald
+        # op de oude waarde, dus de tekst zegt nog steeds geen "was N" op een
+        # grondslag die er niet was.
+        if melding:
+            nieuw += voeg_toe(pand, vandaag, "bag", melding,
                               "Basisregistratie Adressen en Gebouwen")
-            pand["bag_eenheden"] = nu
+        pand["bag_eenheden"] = nu
+        pand["bag_woningen"] = nu_woon
     over = max(nooit - gedaan, 0)
     print(f"BAG: {bekeken} panden bekeken, {gedaan} afgehandeld waarvan "
           f"{geen_id} zonder pand-id, nog {over} nooit gecontroleerd",
@@ -1185,12 +1280,128 @@ def render(geschiedenis, dagen=7):
     return r
 
 
+def proef():
+    """
+    De vier meldvormen nameten op echte objectvormen, zonder BAG-sleutel.
+
+    Deze kwamen uit een lus die alleen met een sleutel en een run van drie uur
+    te bekijken was, dus zijn ze met de hand nagekeken en nooit opnieuw. De
+    objectvorm hieronder is die van bag_eenheden_in_pand(): adres,
+    oppervlakte, gebruiksdoelen en status.
+    """
+    fouten = []
+
+    def check(naam, echt, verwacht):
+        if echt != verwacht:
+            fouten.append(f"{naam}: {echt!r}, verwacht {verwacht!r}")
+
+    def obj(adres, opp, doel="woonfunctie"):
+        return {"adres": adres, "oppervlakte": opp,
+                "gebruiksdoelen": [doel] if doel else [],
+                "status": "Verblijfsobject in gebruik"}
+
+    # De zeven objecten van Hatertseweg 338, met het object van 20 m2 als
+    # niet-woning. Welk object dat in de BAG werkelijk is, weten we hier niet;
+    # dit meet alleen of de telling en de tekst doen wat ze moeten doen.
+    hatert = [obj("Hatertseweg 338", 20, "overige gebruiksfunctie"),
+              obj("Hatertseweg 338", 147), obj("Hatertseweg 338A", 46),
+              obj("Hatertseweg 338B", 24), obj("Hatertseweg 338C", 19),
+              obj("Hatertseweg 338D", 23), obj("Hatertseweg 338E", 19)]
+
+    # 1. Een pand dat voor het eerst wordt opgehaald meldt niets, maar vult
+    #    wel beide tellingen.
+    nu, nu_woon, melding = tel_en_meld(hatert, None, None)
+    check("eerste keer geen melding", melding, None)
+    check("eerste keer eenheden", len(nu), 7)
+    check("eerste keer woningen", len(nu_woon), 6)
+
+    # 2. Niets veranderd: geen melding. Dit is de inhaalslag van de 1.263
+    #    panden die al eenheden hebben; de lus schrijft nu_woon dan weg zonder
+    #    iets te melden.
+    nu2, nu_woon2, melding = tel_en_meld(hatert, [list(x) for x in nu], None)
+    check("ongewijzigd geen melding", melding, None)
+    check("ongewijzigd wel een woningtelling", len(nu_woon2), 6)
+
+    # 3. Gewijzigd en nog geen woningtelling van vroeger: geen "was".
+    _n, _w, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
+    check("zonder vroeger geen was", "was" in (melding or ""), False)
+    check("zonder vroeger telt zes",
+          melding, "de BAG telt nu 6 woningen in dit pand: 147, 46, 24, 19, "
+                   "23, 19 m2; daarnaast 1 ander object met een eigen adres")
+
+    # 4. Gewijzigd met een woningtelling van vroeger: wel "was".
+    _n, _w, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
+                                  [["Hatertseweg 338", 167]])
+    check("met vroeger zegt was zes tegen een",
+          melding, "de BAG telt nu 6 woningen in dit pand, was 1: 147, 46, "
+                   "24, 19, 23, 19 m2; daarnaast 1 ander object met een "
+                   "eigen adres")
+
+    # 5. Even veel woningen, andere oppervlaktes.
+    anders = [obj("Hatertseweg 338", 150)]
+    _n, _w, melding = tel_en_meld(anders, [["Hatertseweg 338", 147]],
+                                  [["Hatertseweg 338", 147]])
+    check("alleen maten", melding,
+          "de oppervlaktes in de BAG zijn gewijzigd: 150 m2")
+
+    # 6. Alleen een niet-woning erbij: dat is geen splitsing en mag niet als
+    #    woningtelling klinken.
+    met_berging = [obj("Hatertseweg 338", 147),
+                   obj("Hatertseweg 338F", 8, "overige gebruiksfunctie")]
+    _n, _w, melding = tel_en_meld(met_berging, [["Hatertseweg 338", 147]],
+                                  [["Hatertseweg 338", 147]])
+    check("alleen niet-woning", melding,
+          "de BAG kent nu 1 object zonder woonfunctie in dit pand; het aantal "
+          "woningen bleef 1")
+
+    # 7. Het gebruiksdoel als string in plaats van als lijst.
+    check("doel als string",
+          _doelen({"gebruiksdoelen": "woonfunctie,bijeenkomstfunctie"}),
+          ["woonfunctie", "bijeenkomstfunctie"])
+    check("doel enkelvoud veld",
+          _doelen({"gebruiksdoel": ["woonfunctie"]}), ["woonfunctie"])
+    check("doel leeg", _doelen({}), [])
+    als_string = [{"adres": "Hatertseweg 338", "oppervlakte": 147,
+                   "gebruiksdoelen": "woonfunctie"}]
+    _n, w, _m = tel_en_meld(als_string, None, None)
+    check("string telt als woning", len(w), 1)
+
+    # 8. Geen enkele woning: geen kale ": m2" in de tekst.
+    geen = [obj("Hatertseweg 338F", 8, "overige gebruiksfunctie")]
+    _n, w, melding = tel_en_meld(geen, [["Hatertseweg 338", 147]], None)
+    check("nul woningen telling", len(w), 0)
+    check("nul woningen tekst", melding,
+          "de BAG telt nu 0 woningen in dit pand; daarnaast 1 ander object "
+          "met een eigen adres")
+
+    # 9. De tekst van 3 en 4 moet door de lezer van splitsing_voltooid heen
+    #    komen, want die twee bestanden praten hier met elkaar.
+    try:
+        from splitsing_voltooid import _aantallen
+        _n, _w, m4 = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
+                                 [["Hatertseweg 338", 167]])
+        check("splitsing_voltooid leest de melding", _aantallen(m4), (1, 6))
+        _n, _w, m3 = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
+        check("zonder was leest hij niets", _aantallen(m3), None)
+    except ImportError:
+        fouten.append("splitsing_voltooid niet te importeren")
+
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
+    return 1 if fouten else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="")
     ap.add_argument("--volledig", action="store_true",
                     help="ook de BAG en de energielabels bijwerken")
+    ap.add_argument("--proef", action="store_true",
+                    help="De meldvormen nameten zonder iets op te halen.")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
     wis("geschiedenis")
 
     try:
@@ -1269,4 +1480,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # sys.exit en niet main(): zonder dit geeft het proces exitcode 0, ook als
+    # de proef rood staat. Dan is de poort in de workflow altijd groen en
+    # controleert hij in de praktijk niets. Dat was deze week al twee keer de
+    # vorm van een fout: een stap die slaagt terwijl er niets gebeurde.
+    sys.exit(main() or 0)

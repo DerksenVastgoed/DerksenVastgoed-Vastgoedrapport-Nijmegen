@@ -564,6 +564,18 @@ def controle_geschiedenis():
     # EP-Online. Dat was tot nu toe alleen af te leiden uit een aftreksom.
     met_bag = sum(1 for p in d.values() if p.get("bag_eenheden"))
     met_label = sum(1 for p in d.values() if p.get("labels"))
+    # DE INHAALSLAG VAN DE WONINGTELLING, ZICHTBAAR TERWIJL HIJ LOOPT.
+    # bag_woningen is op 11 oktober toegevoegd: het aantal objecten met een
+    # woonfunctie, apart van garages en bergingen met een eigen adres. Elk
+    # pand krijgt het veld zodra het weer langskomt in de BAG-ronde, en
+    # splitsing_voltooid.py kan tot dat moment niets zeggen over dat pand.
+    # Dit getal hoort dus elke ronde te zakken. Blijft het staan, dan vult de
+    # ronde het veld niet, en dat is precies het soort storing dat niets
+    # meldt: geen foutmelding, geen verkeerd getal, alleen een hoofdstuk dat
+    # blijft zeggen dat het wacht.
+    zonder_telling = sum(1 for p in d.values()
+                         if p.get("bag_eenheden")
+                         and p.get("bag_woningen") is None)
     # Per pand-id tellen en niet per sleutel. Hetzelfde pand staat soms onder
     # meerdere adressen in het bestand, elk met de volledige lijst eenheden;
     # optellen over sleutels telde die woningen dan dubbel. Achter de Carmel 28
@@ -603,6 +615,8 @@ def controle_geschiedenis():
                  if opgegeven else "")
               + (f"; {bes['bespaard']} regels bespaard door gedeelde "
                  f"pandgegevens" if bes.get("bespaard") else "")
+              + (f"; {zonder_telling} wachten nog op de telling van woningen "
+                 f"apart van bergingen en garages" if zonder_telling else "")
               + ("; nieuwe panden worden elke run opgehaald, het nakijken van "
                  "de hele voorraad op veranderingen gebeurt in de weekronde"
                  if met_label < met_bag else ""))
@@ -2850,6 +2864,21 @@ def controle_splitsingen():
     if vergund:
         delen.append(f"{len(vergund)} vergund maar na een jaar nog niets in "
                      f"de BAG")
+    # Het verschil tussen vergunning en BAG wordt sinds 11 oktober getoetst op
+    # objecten met een woonfunctie en niet meer op elk adresseerbaar object.
+    # Panden die nog niet op die grondslag zijn geteld doen niet mee. Dat
+    # hoort hier te staan, want anders leest een leeg hoofdstuk als "niets
+    # gevonden" terwijl het "nog niet gekeken" is.
+    afw = d.get("wijkt_af_van_vergunning") or []
+    wacht = d.get("wacht_op_woningtelling") or []
+    if afw:
+        delen.append(f"{len(afw)} met een ander aantal dan de vergunning "
+                     f"noemt")
+    if wacht:
+        delen.append(f"{len(wacht)} nog niet te vergelijken omdat de woningen "
+                     f"daar nog niet apart van bergingen en garages zijn "
+                     f"geteld ({', '.join(wacht[:3])}"
+                     + (" en meer" if len(wacht) > 3 else "") + ")")
     # En komt het ook in een brief terecht? Het blok werd elke dag gemaakt en
     # door niets gelezen, omdat de stap die het schreef na de stap liep die het
     # moest opnemen. Dat is tien dagen onzichtbaar geweest: het bestand bestond,

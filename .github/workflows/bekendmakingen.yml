@@ -433,6 +433,13 @@ jobs:
             # zo'n 25 minuten van nodig. Vandaar 295 en niet 240.
             export BAG_MINUTEN=295
           fi
+          # EERST DE PROEF, DAN DE RONDE. De stap die hierna volgt kan in de
+          # weekeditie 295 minuten duren, dus een fout in de meldteksten kost
+          # anders een run van uren om te zien. Deze proef meet de vier
+          # meldvormen en de woningtelling op echte objectvormen, kost geen
+          # seconde en geen BAG-aanroep. Hij staat hier en niet achter een
+          # "||": is hij rood, dan hoort deze stap rood te zijn.
+          python pandgeschiedenis.py --proef
           python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
             $EXTRA || echo "Geschiedenis overgeslagen"
 
@@ -496,6 +503,12 @@ jobs:
           # eenheden geregistreerd. Daaruit volgt de werkelijke doorlooptijd van
           # besluit tot oplevering, en zijn panden zichtbaar die zijn opgedeeld
           # zonder dat wij een vergunning kennen.
+          # EERST DE PROEF. Dit bestand heeft twee keer stil het verkeerde
+          # gedaan: het las "6 zelfstandige woonruimtes" niet als een aantal,
+          # en het vergeleek het vergunde aantal met een getal uit een oude
+          # gebeurtenistekst dat elk adresseerbaar object als woning telde.
+          # Beide gaven geen foutmelding, en de eerste fout verborg de tweede.
+          python splitsing_voltooid.py --proef
           python splitsing_voltooid.py --tekst "digests/${DATUM}-splitsingen.md" \
             || echo "Splitsingen overgeslagen"
 

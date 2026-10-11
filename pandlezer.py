@@ -57,15 +57,22 @@ def compact(geschiedenis):
     De gedeelde velden een keer opslaan in plaats van per adres.
 
     Alleen velden die bij het gebouw horen en niet bij het adres:
-    bag_eenheden, labels en de datum waarop het pand is nagekeken. De
-    gebeurtenissen blijven per adres staan, want een verkoop of een vergunning
-    hoort bij een adres en niet bij het hele gebouw.
+    bag_eenheden, bag_woningen, labels en de datum waarop het pand is
+    nagekeken. De gebeurtenissen blijven per adres staan, want een verkoop of
+    een vergunning hoort bij een adres en niet bij het hele gebouw.
+
+    BAG_WONINGEN HOORT IN DEZE RIJ. Dat veld is op 11 oktober toegevoegd en
+    stond er eerst niet bij, met als gevolg dat het per adres werd bewaard in
+    plaats van een keer per pand. Dat is precies wat deze module bestaat om te
+    voorkomen: Aubadestraat 12 en 16 zijn hetzelfde pand met 24 woningen, en
+    dan staat die lijst van 24 twee keer in het bestand. Over alle panden gaat
+    het om 1.777 adressen tegen 1.263 panden.
 
     Panden zonder pand-id blijven staan zoals ze zijn; daar valt niets te
     delen.
     """
     gedeeld, uit = {}, {}
-    velden = ("bag_eenheden", "labels", "bag_gezien")
+    velden = ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
     for sleutel, pand in geschiedenis.items():
         if sleutel == GEDEELD or not isinstance(pand, dict):
             continue
@@ -94,7 +101,9 @@ def tel_besparing(geschiedenis):
     for sleutel, pand in geschiedenis.items():
         if sleutel == GEDEELD or not isinstance(pand, dict):
             continue
-        n = len(pand.get("bag_eenheden") or []) + len(pand.get("labels") or {})
+        n = (len(pand.get("bag_eenheden") or [])
+             + len(pand.get("bag_woningen") or [])
+             + len(pand.get("labels") or {}))
         per_adres += n
         pid = pand.get("pand_id")
         if pid and pid in gezien:
