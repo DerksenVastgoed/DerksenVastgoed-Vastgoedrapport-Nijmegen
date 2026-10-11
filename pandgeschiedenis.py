@@ -421,21 +421,69 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
         if not eenheden:
             continue
         nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
+
+        # WONINGEN APART VAN DE REST. bag_eenheden_in_pand() geeft elk
+        # adresseerbaar object in het pand terug, mét gebruiksdoel, en dat
+        # gebruiksdoel werd hier weggegooid. Daarna heette elk object een
+        # "woning", dus een garage of berging met een eigen adres werd als
+        # woning geteld en gemeld.
+        #
+        # Dat is niet onschuldig. splitsing_voltooid.py vergelijkt dit aantal
+        # met het aantal dat de vergunning noemt, en de vergunning telt
+        # zelfstandige woonruimtes. Twee verschillende definities naast elkaar
+        # leggen levert een verschil op dat er niet is. Bij Hatertseweg 338
+        # noemde het besluit 6 zelfstandige woonruimtes en telde dit 7
+        # objecten: 147, 46, 24, 23, 19 en 19 m2 zijn de zes woonruimtes, en
+        # het zevende is een object van 20 m2 op het basisnummer. Zes tegen
+        # zes dus, geen verschil. De zondagsbrief van 11 oktober maakte dat
+        # verschil tot haar hoofdthema.
+        woon = [e for e in eenheden
+                if "woonfunctie" in (e.get("gebruiksdoelen") or [])]
+        anders = [e for e in eenheden
+                  if "woonfunctie" not in (e.get("gebruiksdoelen") or [])]
+        nu_woon = sorted((e.get("adres"), e.get("oppervlakte")) for e in woon)
+
         eerder = pand.get("bag_eenheden")
+        eerder_woon = pand.get("bag_woningen")
         if eerder is None:
             pand["bag_eenheden"] = nu
+            pand["bag_woningen"] = nu_woon
             continue
         if [tuple(x) for x in eerder] != nu:
-            oud_n, nieuw_n = len(eerder), len(nu)
-            maten = ", ".join(str(o) for _a, o in nu if o)
-            if nieuw_n != oud_n:
-                tekst = (f"de BAG telt nu {nieuw_n} woningen in dit pand, was "
-                         f"{oud_n}: {maten} m2")
+            maten = ", ".join(str(o) for _a, o in nu_woon if o)
+            # DE VERGELIJKING OP DEZELFDE GRONDSLAG. Het veld bag_woningen is
+            # op 11 oktober toegevoegd, dus voor panden die eerder zijn
+            # opgehaald bestaat er nog geen woningtelling van vroeger. Dan is
+            # "was N" niet te zeggen zonder appels met peren te vergelijken,
+            # en zwijgt deze regel over het aantal in plaats van een getal te
+            # noemen dat op een andere grondslag rust. De ronde erna is het
+            # wel te zeggen. De vergelijking zelf blijft op bag_eenheden
+            # staan, zodat deze toevoeging geen enkele valse wijziging meldt
+            # op de 1.777 panden die al gevolgd worden.
+            extra = (f"; daarnaast "
+                     + (f"{len(anders)} andere objecten" if len(anders) != 1
+                        else "1 ander object")
+                     + " met een eigen adres") if anders else ""
+            if eerder_woon is None:
+                tekst = (f"de BAG telt nu {len(nu_woon)} woningen in dit pand: "
+                         f"{maten} m2{extra}")
+            elif len(nu_woon) != len(eerder_woon):
+                tekst = (f"de BAG telt nu {len(nu_woon)} woningen in dit pand, "
+                         f"was {len(eerder_woon)}: {maten} m2{extra}")
+            elif [tuple(x) for x in eerder_woon] != nu_woon:
+                tekst = (f"de oppervlaktes in de BAG zijn gewijzigd: "
+                         f"{maten} m2{extra}")
             else:
-                tekst = f"de oppervlaktes in de BAG zijn gewijzigd: {maten} m2"
+                # Alleen de niet-woningen zijn veranderd. Dat is geen
+                # splitsing en hoort niet als woningtelling te klinken.
+                tekst = (f"de BAG kent nu {len(anders)} object"
+                         f"{'en' if len(anders) != 1 else ''} zonder "
+                         f"woonfunctie in dit pand; het aantal woningen bleef "
+                         f"{len(nu_woon)}")
             nieuw += voeg_toe(pand, vandaag, "bag", tekst,
                               "Basisregistratie Adressen en Gebouwen")
             pand["bag_eenheden"] = nu
+            pand["bag_woningen"] = nu_woon
     over = max(nooit - gedaan, 0)
     print(f"BAG: {bekeken} panden bekeken, {gedaan} afgehandeld waarvan "
           f"{geen_id} zonder pand-id, nog {over} nooit gecontroleerd",

@@ -33,6 +33,16 @@ UIT_PAD = "splitsingen.json"
 # Woorden die op woningvorming wijzen. "Omzetten" staat er bewust niet bij:
 # dat is kamerverhuur en dat is iets anders.
 SPLITS_WOORDEN = ("splits", "woningvorming", "zelfstandige woningen",
+                  # "WOONRUIMTE" EN NIET ALLEEN "WONING". De gemeente schrijft
+                  # beide: "splitsen tot 2 zelfstandige woningen" en
+                  # "verbouwen en uitbreiden tot 6 zelfstandige woonruimtes".
+                  # Alleen de eerste werd herkend, dus het besluit voor
+                  # Hatertseweg 338 van 6 oktober bereikte dit blok niet.
+                  # Daardoor stond het verschil tussen vergunning en BAG niet
+                  # in het hoofdstuk dat er het voorbehoud bij zet, en pakte de
+                  # brief de ruwe getallen zelf op en maakte er haar
+                  # hoofdthema van.
+                  "zelfstandige woonruimte", "zelfstandige wooneenhe",
                   "appartementen", "appartementsrechten", "opdelen",
                   "verbouwen van een woning naar", "naar twee woningen",
                   "naar drie woningen")
@@ -44,7 +54,19 @@ def _is_splitsing(tekst):
 
 
 def _aantallen(tekst):
-    """Uit 'de BAG telt nu 3 woningen in dit pand, was 1' komt (1, 3)."""
+    """Uit 'de BAG telt nu 3 woningen in dit pand, was 1' komt (1, 3).
+
+    De tekst kan sinds 11 oktober een staart hebben ("; daarnaast 1 ander
+    object met een eigen adres"), want de woningen worden nu apart van de
+    overige adresseerbare objecten geteld. Die staart staat achter het stuk
+    waar deze regex op zoekt, dus hij verandert niets aan het zoeken; dit
+    commentaar staat er zodat de volgende lezer dat niet hoeft uit te vinden.
+
+    Een tekst zonder "was" wordt met opzet niet gelezen. Die vorm komt uit de
+    eerste ronde na 11 oktober, waarin er van vroeger nog geen woningtelling
+    op dezelfde grondslag bestond. Daar een groei uit lezen zou een splitsing
+    melden die niet is waargenomen.
+    """
     m = re.search(r"telt nu (\d+) woningen in dit pand, was (\d+)", tekst or "")
     if not m:
         return None
