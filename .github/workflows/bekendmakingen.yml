@@ -121,6 +121,22 @@ jobs:
       - name: Dependencies installeren
         run: pip install -r requirements.txt
 
+      - name: De pandsleutels nameten voordat er iets wordt gelezen
+        # EERST DE SLEUTELS. Tien bestanden bevatten feiten per pand, en die
+        # sleutel werd op veertien plekken opnieuw gemaakt. Op de adressen die
+        # we volgen gaven twee van die veertien 41 keer een andere sleutel, en
+        # bij 28 daarvan stond het pand wel in het bestand maar vond de lezer
+        # het niet. Dat geeft geen foutmelding: een ontbrekende sleutel is
+        # gewoon None, en dan is een dossier stil leeg.
+        #
+        # Deze proef leest de zeven bestanden die per adres gesleuteld zijn en
+        # eist twee dingen: elke sleutel die erin staat moet vindbaar zijn, en
+        # geen van de 2.105 adressen die we kennen mag uitkomen bij het record
+        # van een ander pand. Hij kost 0,6 seconde en geen enkele aanroep, en
+        # staat daarom vooraan: een verwisselde sleutel vergiftigt alles wat
+        # erna komt.
+        run: python pandsleutel.py --proef
+
       - name: Bekendmakingen ophalen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
