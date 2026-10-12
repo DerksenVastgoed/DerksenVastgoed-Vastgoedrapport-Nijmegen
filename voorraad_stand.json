@@ -2,9 +2,9 @@
  "datum": "2026-10-12",
  "ronde": {
   "bag": {
-   "adressen_bijgewerkt": 20045,
+   "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
-   "adressen_onveranderd": 0,
+   "adressen_onveranderd": 20045,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 137951,
    "datum": "2026-10-12",
@@ -34,7 +34,7 @@
    "ronde_objecten": 164634,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 176.0,
+   "ronde_seconden": 186.8,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -55,30 +55,32 @@
   },
   "bijgewerkt": "2026-10-12",
   "labels": {
+   "aanroepen_per_minuut": 35.2,
    "datum": "2026-10-12",
-   "fouten": 0,
-   "geen_label_bekend": 241,
-   "gevraagd": 1501,
-   "laatste_fout": "",
-   "label_gevonden": 562,
+   "fouten": 1,
+   "geen_label_bekend": 1173,
+   "gevraagd": 3173,
+   "laatste_fout": "Fransestraat 63: netwerk: ('Connection aborted.', RemoteDisconnected('Remote end close",
+   "label_gevonden": 1999,
    "label_prive": 0,
-   "labels_methode_2014": 701,
-   "labels_nta8800": 1140,
+   "labels_methode_2014": 1318,
+   "labels_nta8800": 2522,
    "labels_zonder_methode": 0,
    "methode_blijft_onbekend": 0,
-   "methode_ingehaald": 698,
+   "methode_ingehaald": 0,
    "methode_nog_in_te_halen": 0,
-   "nog_nooit_gevraagd": 16518,
-   "opnieuw_aan_de_beurt": 0
+   "nog_nooit_gevraagd": 13346,
+   "opnieuw_aan_de_beurt": 0,
+   "seconden": 5401.3
   },
   "panden": {
    "datum": "2026-10-12",
    "fout": "",
    "met_bouwjaar": 187211,
    "met_status": 187211,
-   "objecten": 278558,
+   "objecten": 293693,
    "omzettingen": 187211,
-   "paginas": 295,
+   "paginas": 317,
    "pandstatussen": {
     "Bouw gestart": 705,
     "Bouwvergunning verleend": 1294,
@@ -92,9 +94,9 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 460.5,
-   "tegels": 31,
-   "tegels_gedeeld": 5,
+   "seconden": 510.2,
+   "tegels": 40,
+   "tegels_gedeeld": 8,
    "tegels_over": 0,
    "velden_in_antwoord": [
     "aantal_verblijfsobjecten",
@@ -110,7 +112,7 @@
    ]
   },
   "stand": {
-   "met_label": 1841,
+   "met_label": 3840,
    "met_oppervlakte": 20045,
    "postcodes_gedaan": 1241,
    "woningen": 20045
