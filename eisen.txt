@@ -263,6 +263,30 @@ proef: eponline:de rekenmethode komt mee
 soort: gegevens
 
 ---
+eis: Een pand waarin de BAG woningen heeft gevormd, wordt gemeld en niet
+  alleen geteld.
+waarom: 12 oktober. Het pijplijnblok meldde 2.168 woningen onderweg met een
+  tabel per buurt. Daaronder zaten 697 woningen in 113 panden die al in
+  gebruik zijn, dus toevoegingen in bestaande voorraad, en van die panden
+  kenden wij er 65 niet uit de bekendmakingen. Daaronder vijf projecten van
+  samen 150 woningen in panden uit 1880, 1881, 1897 en 1951. De nieuwsketen
+  hing alleen aan publicaties, en 191 van de 446 woningen in Stadscentrum
+  zitten in een gebouw: een gemiddelde per buurt verbergt dat.
+proef: transformaties
+soort: gegevens
+
+---
+eis: Een gebeurtenis waarvan de bron geen datum kent, draagt de datum waarop
+  wij hem zagen en zegt dat er geen datum uit de bron is.
+waarom: 12 oktober. De BAG kent geen opleverdatum bij een gevormde woning.
+  Een gebeurtenis met de datum van vandaag die klinkt als "vandaag verbouwd"
+  is een valse mededeling aan pa, en dezelfde fout als de labels uit 2019 die
+  eerst als gebeurtenis van vandaag in de geschiedenis kwamen en honderden
+  panden lieten lijken alsof er net iets was gebeurd.
+proef: transformaties:de tekst zegt dat er geen opleverdatum is
+soort: brief
+
+---
 eis: Een energielabel hoort bij een verblijfsobject en niet bij een pand.
 waarom: 12 oktober. Het voorstel was om pand-id plus verblijfsobject-id als
   sleutel te nemen, omdat een label op pandniveau zou worden afgemeld. Dat is

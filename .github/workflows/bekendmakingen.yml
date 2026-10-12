@@ -488,6 +488,23 @@ jobs:
           # meldvormen en de woningtelling op echte objectvormen, kost geen
           # seconde en geen BAG-aanroep. Hij staat hier en niet achter een
           # "||": is hij rood, dan hoort deze stap rood te zijn.
+          # WONINGEN IN BESTAANDE PANDEN, EERST. Deze stap zet de projecten
+          # uit de BAG als gebeurtenis in de pandgeschiedenis, en hij staat
+          # VOOR de ronde hieronder zodat die ze in dezelfde brief kan
+          # gebruiken. Twee stappen die hetzelfde bestand schrijven kan,
+          # omdat ze op elkaar wachten: deze schrijft, de volgende leest van
+          # schijf. Draaiden ze parallel, dan overschreef de een de ander.
+          #
+          # WAAROM DIT ER MOEST KOMEN. Van de 113 panden waarin de BAG
+          # woningen heeft gevormd kenden wij er 65 niet uit de
+          # bekendmakingen, waaronder vijf projecten van samen 150 woningen
+          # in panden uit 1880, 1881, 1897 en 1951. Onze nieuwsketen hing
+          # alleen aan publicaties, en de BAG vertelt hierover zonder dat er
+          # een publicatie langskomt.
+          python transformaties.py --proef
+          python transformaties.py \
+            --uit "digests/${DATUM}-transformaties.md" \
+            || echo "Transformaties overgeslagen"
           python pandgeschiedenis.py --proef
           python pandgeschiedenis.py --uit "digests/${DATUM}-geschiedenis.md" \
             $EXTRA || echo "Geschiedenis overgeslagen"
@@ -667,6 +684,15 @@ jobs:
             if [ -s "digests/${DATUM}-pijplijn.md" ]; then
               echo ""
               cat "digests/${DATUM}-pijplijn.md"
+              echo ""
+            fi
+            # En de woningen die in bestaande panden worden gemaakt. Dat is
+            # een ander verhaal dan de pijplijn hierboven: daar gaat het om
+            # nieuwbouw, hier om toevoegingen in panden die er al staan, en
+            # de concentratie zit in een handvol gebouwen.
+            if [ -s "digests/${DATUM}-transformaties.md" ]; then
+              echo ""
+              cat "digests/${DATUM}-transformaties.md"
               echo ""
             fi
             # Alleen een kop als er ook iets onder staat; een lege kop
