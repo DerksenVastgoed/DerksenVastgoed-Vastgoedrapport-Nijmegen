@@ -73362,5 +73362,38 @@
     "buurtnaam": "",
     "wijknaam": "",
     "energielabel": null
+  },
+  "Staringstraat|Nijmegen": {
+    "oppervlakte": 94,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PC",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Burghardt van den Berghstraat|Nijmegen": {
+    "oppervlakte": 101,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Groesbeekseweg 118|Nijmegen": {
+    "postcode": "6523PB",
+    "buurtnaam": "Groenewoud",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-c9bac6c2316977342243d7d6547e480a"
+  },
+  "bm:Molenstraat 43|Nijmegen": {
+    "postcode": "6511HA",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-c865d5f792f8bebfc5bfd0e5dde7d161"
+  },
+  "bm:Fagelstraat 54|Nijmegen": {
+    "postcode": "6524CG",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-ddbd248642bc310ab39a1bbe40c122ff"
   }
 }

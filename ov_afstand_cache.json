@@ -655,6 +655,14 @@
   "omweg": 1.74,
   "soort": "bus"
  },
+ "51.83918,5.85726": {
+  "geschat": false,
+  "hemelsbreed": 440,
+  "meters": 504,
+  "naam": "Centraal Station",
+  "omweg": 1.15,
+  "soort": "bus"
+ },
  "51.83922,5.86273": {
   "geschat": false,
   "hemelsbreed": 76,
@@ -1077,6 +1085,14 @@
   "meters": 467,
   "naam": "Smetiusstraat",
   "omweg": 11.39,
+  "soort": "bus"
+ },
+ "51.84396,5.86753": {
+  "geschat": false,
+  "hemelsbreed": 51,
+  "meters": 96,
+  "naam": "Hertogplein",
+  "omweg": 1.88,
   "soort": "bus"
  },
  "51.84401,5.84686": {

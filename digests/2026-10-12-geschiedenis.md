@@ -2,6 +2,12 @@
 
 _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een splitsing en de nieuwe huisnummers horen bij dezelfde geschiedenis._
 
+## Groesbeekseweg 118
+- 2026-06-22: te koop aangeboden. vraagprijs €950.000 (zekerheid hoog) (model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-118/44400843/)
+- 2026-09-28: verkocht, laatste vraagprijs €950.000, 227 m2 (verkoopdatum onbekend; uit een geplakte lijst) (aanbod)
+- 2026-10-12: Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen (officiele bekendmakingen) **nieuw**
+- 2026-09-29: energielabels van 1 woningen in dit pand (D: 1) (EP-Online)
+
 ## Hatertseweg 338
 - 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
 - 2026-10-06: Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen (officiele bekendmakingen) **nieuw**
@@ -36,8 +42,4 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 ## Zwanenveld 2708
 - 2020-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
 - 2026-10-09: de oppervlaktes in de BAG zijn gewijzigd: 132 m2 (Basisregistratie Adressen en Gebouwen) **nieuw**
-
-## Berg en Dalseweg 11
-- 2026-10-06: Aanvraag omgevingsvergunning voor het legaliseren van de woningsplitsingen van 2 naar 4 woningen, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen (officiele bekendmakingen) **nieuw**
-- 2017-07-20: energielabels van 2 woningen in dit pand (F: 1, E: 1) (EP-Online)
 

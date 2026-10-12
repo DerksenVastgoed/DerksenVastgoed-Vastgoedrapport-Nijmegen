@@ -1,34 +1,31 @@
 {
- "datum": "2026-10-10",
+ "datum": "2026-10-12",
  "bronnen": {
   "regulier": {
-   "mails": 4,
-   "objecten": 8,
+   "mails": 3,
+   "objecten": 5,
    "overgeslagen": 1,
    "redenen": [
-    "Weurtseweg 17 (geen prijs gevonden)"
+    "van Spaenstraat 20 (geen prijs gevonden)"
    ]
   },
   "huislijn": {
    "mails": 4,
-   "objecten": 22,
+   "objecten": 12,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 12,
-   "objecten": 8,
-   "overgeslagen": 4,
+   "mails": 4,
+   "objecten": 3,
+   "overgeslagen": 1,
    "redenen": [
-    "Achterstraat: €36 per maand is niet aannemelijk",
-    "Aalburgstraat, Arnhem: buiten Nijmegen",
-    "Pius XII straat, Wijchen: buiten Nijmegen",
-    "Bellefleur, Zetten: buiten Nijmegen"
+    "Dahliastraat, Malden: buiten Nijmegen"
    ]
   },
   "pararius": {
-   "mails": 3,
-   "objecten": 7,
+   "mails": 2,
+   "objecten": 6,
    "overgeslagen": 2,
    "redenen": [
     "Berg en Dalseweg (gemeubileerd, apart bewaard)",
@@ -36,8 +33,8 @@
    ]
   },
   "rentola": {
-   "mails": 2,
-   "objecten": 2,
+   "mails": 1,
+   "objecten": 1,
    "overgeslagen": 1,
    "redenen": [
     "rentola: Heyendaalseweg 219 stond op de pagina als \"De Bruin & De Bruin, Heyenda"
@@ -45,5 +42,17 @@
   }
  },
  "opmerking": "",
- "kandidaten": {}
+ "kandidaten": {},
+ "berichten_per_afzender": {
+  "funda.nl": 3,
+  "funda.com": 0,
+  "pararius.nl": 2,
+  "pararius.com": 0,
+  "kamernet.nl": 4,
+  "vendr.nl": 0,
+  "huislijn.nl": 4,
+  "huisly.nl": 0,
+  "123wonen.nl": 0,
+  "rentola.nl": 1
+ }
 }

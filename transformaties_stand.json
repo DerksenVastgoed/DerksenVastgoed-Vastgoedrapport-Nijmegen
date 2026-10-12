@@ -1,0 +1,14 @@
+{
+ "datum": "2026-10-12",
+ "droog": false,
+ "ronde": {
+  "al_gemeld": 0,
+  "gebeurtenissen": 25,
+  "overgeslagen": 88,
+  "panden_bekend": 48,
+  "panden_nieuw": 15,
+  "projecten": 113,
+  "sleutel_bezet": 0,
+  "woningen": 697
+ }
+}

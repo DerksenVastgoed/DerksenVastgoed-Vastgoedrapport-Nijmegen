@@ -6160,6 +6160,112 @@
     "Ziekerstraat 85": "A"
    }
   },
+  "0268100000002912": {
+   "bag_eenheden": [
+    [
+     "Tweede Walstraat 18A-1",
+     64
+    ],
+    [
+     "Tweede Walstraat 18A-10",
+     50
+    ],
+    [
+     "Tweede Walstraat 18A-13",
+     60
+    ],
+    [
+     "Tweede Walstraat 18A-14",
+     56
+    ],
+    [
+     "Tweede Walstraat 18A-2",
+     49
+    ],
+    [
+     "Tweede Walstraat 18A-3",
+     53
+    ],
+    [
+     "Tweede Walstraat 18A-4",
+     65
+    ],
+    [
+     "Tweede Walstraat 18A-5",
+     50
+    ],
+    [
+     "Tweede Walstraat 18A-7",
+     40
+    ],
+    [
+     "Tweede Walstraat 18A-8",
+     39
+    ],
+    [
+     "Tweede Walstraat 18A-9",
+     65
+    ],
+    [
+     "Ziekerstraat 79",
+     1015
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Tweede Walstraat 18A-1",
+     64
+    ],
+    [
+     "Tweede Walstraat 18A-10",
+     50
+    ],
+    [
+     "Tweede Walstraat 18A-13",
+     60
+    ],
+    [
+     "Tweede Walstraat 18A-14",
+     56
+    ],
+    [
+     "Tweede Walstraat 18A-2",
+     49
+    ],
+    [
+     "Tweede Walstraat 18A-3",
+     53
+    ],
+    [
+     "Tweede Walstraat 18A-4",
+     65
+    ],
+    [
+     "Tweede Walstraat 18A-5",
+     50
+    ],
+    [
+     "Tweede Walstraat 18A-7",
+     40
+    ],
+    [
+     "Tweede Walstraat 18A-8",
+     39
+    ],
+    [
+     "Tweede Walstraat 18A-9",
+     65
+    ]
+   ],
+   "labels": {
+    "Tweede Walstraat 18A-1": "A",
+    "Tweede Walstraat 18A-2": "A",
+    "Tweede Walstraat 18A-3": "A",
+    "Tweede Walstraat 18A-7": "A+",
+    "Tweede Walstraat 18A-8": "A+"
+   }
+  },
   "0268100000002937": {
    "bag_eenheden": [
     [
@@ -6555,6 +6661,76 @@
     ]
    ]
   },
+  "0268100000002968": {
+   "bag_eenheden": [
+    [
+     "Tweede Walstraat 100",
+     40
+    ],
+    [
+     "Tweede Walstraat 104",
+     47
+    ],
+    [
+     "Tweede Walstraat 104",
+     157
+    ],
+    [
+     "Tweede Walstraat 104A",
+     35
+    ],
+    [
+     "Tweede Walstraat 106",
+     170
+    ],
+    [
+     "Tweede Walstraat 94",
+     35
+    ],
+    [
+     "Tweede Walstraat 96",
+     35
+    ],
+    [
+     "Tweede Walstraat 98",
+     40
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Tweede Walstraat 100",
+     40
+    ],
+    [
+     "Tweede Walstraat 104",
+     47
+    ],
+    [
+     "Tweede Walstraat 104",
+     157
+    ],
+    [
+     "Tweede Walstraat 104A",
+     35
+    ],
+    [
+     "Tweede Walstraat 94",
+     35
+    ],
+    [
+     "Tweede Walstraat 96",
+     35
+    ],
+    [
+     "Tweede Walstraat 98",
+     40
+    ]
+   ],
+   "labels": {
+    "Tweede Walstraat 104": "D"
+   }
+  },
   "0268100000002973": {
    "bag_eenheden": [
     [
@@ -6587,6 +6763,81 @@
     [
      "Molenstraat 99B",
      936
+    ]
+   ]
+  },
+  "0268100000002975": {
+   "bag_eenheden": [
+    [
+     "Tweede Walstraat 92",
+     56
+    ],
+    [
+     "Tweede Walstraat 92",
+     454
+    ],
+    [
+     "Tweede Walstraat 94",
+     64
+    ],
+    [
+     "Tweede Walstraat 94D",
+     37
+    ],
+    [
+     "Tweede Walstraat 94E",
+     56
+    ],
+    [
+     "Tweede Walstraat 96",
+     102
+    ],
+    [
+     "Tweede Walstraat 96D",
+     37
+    ],
+    [
+     "Tweede Walstraat 96E",
+     56
+    ],
+    [
+     "Tweede Walstraat 98C",
+     35
+    ],
+    [
+     "Tweede Walstraat 98D",
+     50
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Tweede Walstraat 94",
+     64
+    ],
+    [
+     "Tweede Walstraat 94D",
+     37
+    ],
+    [
+     "Tweede Walstraat 94E",
+     56
+    ],
+    [
+     "Tweede Walstraat 96D",
+     37
+    ],
+    [
+     "Tweede Walstraat 96E",
+     56
+    ],
+    [
+     "Tweede Walstraat 98C",
+     35
+    ],
+    [
+     "Tweede Walstraat 98D",
+     50
     ]
    ]
   },
@@ -6735,6 +6986,243 @@
     "Smetiusstraat 4E": "B",
     "Smetiusstraat 4F": "A"
    }
+  },
+  "0268100000003000": {
+   "bag_eenheden": [
+    [
+     "Karrengas 20",
+     716
+    ],
+    [
+     "Karrengas 20A-16",
+     48
+    ],
+    [
+     "Karrengas 20A-7",
+     48
+    ],
+    [
+     "Karrengas 20A-8",
+     40
+    ],
+    [
+     "Karrengas 20A-9",
+     38
+    ],
+    [
+     "Karrengas 22",
+     310
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Karrengas 20A-16",
+     48
+    ],
+    [
+     "Karrengas 20A-7",
+     48
+    ],
+    [
+     "Karrengas 20A-8",
+     40
+    ],
+    [
+     "Karrengas 20A-9",
+     38
+    ]
+   ]
+  },
+  "0268100000003001": {
+   "bag_eenheden": [
+    [
+     "Karrengas 16",
+     716
+    ],
+    [
+     "Karrengas 20A-1",
+     46
+    ],
+    [
+     "Karrengas 20A-10",
+     49
+    ],
+    [
+     "Karrengas 20A-15",
+     43
+    ],
+    [
+     "Karrengas 20A-17",
+     49
+    ],
+    [
+     "Karrengas 20A-22",
+     43
+    ],
+    [
+     "Karrengas 20A-6",
+     40
+    ],
+    [
+     "Karrengas 20B",
+     32
+    ],
+    [
+     "Karrengas 20D",
+     164
+    ],
+    [
+     "Karrengas 20E",
+     32
+    ],
+    [
+     "Karrengas 20F",
+     34
+    ],
+    [
+     "Karrengas 24",
+     385
+    ],
+    [
+     "Karrengas 26",
+     1166
+    ],
+    [
+     "Molenstraat 126",
+     310
+    ],
+    [
+     "Molenstraat 126A",
+     183
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Karrengas 20A-1",
+     46
+    ],
+    [
+     "Karrengas 20A-10",
+     49
+    ],
+    [
+     "Karrengas 20A-15",
+     43
+    ],
+    [
+     "Karrengas 20A-17",
+     49
+    ],
+    [
+     "Karrengas 20A-22",
+     43
+    ],
+    [
+     "Karrengas 20A-6",
+     40
+    ],
+    [
+     "Karrengas 20B",
+     32
+    ],
+    [
+     "Karrengas 20D",
+     164
+    ],
+    [
+     "Karrengas 20E",
+     32
+    ],
+    [
+     "Karrengas 20F",
+     34
+    ],
+    [
+     "Molenstraat 126A",
+     183
+    ]
+   ]
+  },
+  "0268100000003002": {
+   "bag_eenheden": [
+    [
+     "Ziekerstraat 60",
+     120
+    ],
+    [
+     "Ziekerstraat 62",
+     958
+    ],
+    [
+     "Ziekerstraat 64",
+     121
+    ],
+    [
+     "Ziekerstraat 66",
+     958
+    ],
+    [
+     "Ziekerstraat 74A-1",
+     55
+    ],
+    [
+     "Ziekerstraat 74A-2",
+     53
+    ],
+    [
+     "Ziekerstraat 74A-3",
+     54
+    ],
+    [
+     "Ziekerstraat 74A-4",
+     52
+    ],
+    [
+     "Ziekerstraat 74A-5",
+     43
+    ],
+    [
+     "Ziekerstraat 74A-6",
+     41
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Ziekerstraat 60",
+     120
+    ],
+    [
+     "Ziekerstraat 64",
+     121
+    ],
+    [
+     "Ziekerstraat 74A-1",
+     55
+    ],
+    [
+     "Ziekerstraat 74A-2",
+     53
+    ],
+    [
+     "Ziekerstraat 74A-3",
+     54
+    ],
+    [
+     "Ziekerstraat 74A-4",
+     52
+    ],
+    [
+     "Ziekerstraat 74A-5",
+     43
+    ],
+    [
+     "Ziekerstraat 74A-6",
+     41
+    ]
+   ]
   },
   "0268100000003005": {
    "bag_eenheden": [
@@ -8038,6 +8526,93 @@
     "Fortstraat 10": "F"
    }
   },
+  "0268100000003877": {
+   "bag_eenheden": [
+    [
+     "Karrengas 10",
+     729
+    ],
+    [
+     "Karrengas 12",
+     195
+    ],
+    [
+     "Karrengas 14",
+     716
+    ],
+    [
+     "Karrengas 20A-11",
+     42
+    ],
+    [
+     "Karrengas 20A-14",
+     42
+    ],
+    [
+     "Karrengas 20A-18",
+     36
+    ],
+    [
+     "Karrengas 20A-2",
+     43
+    ],
+    [
+     "Karrengas 20A-21",
+     42
+    ],
+    [
+     "Karrengas 20A-5",
+     41
+    ],
+    [
+     "Karrengas 4",
+     546
+    ],
+    [
+     "Molenstraat 132",
+     546
+    ],
+    [
+     "Molenstraat 134",
+     195
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Karrengas 10",
+     729
+    ],
+    [
+     "Karrengas 20A-11",
+     42
+    ],
+    [
+     "Karrengas 20A-14",
+     42
+    ],
+    [
+     "Karrengas 20A-18",
+     36
+    ],
+    [
+     "Karrengas 20A-2",
+     43
+    ],
+    [
+     "Karrengas 20A-21",
+     42
+    ],
+    [
+     "Karrengas 20A-5",
+     41
+    ]
+   ],
+   "labels": {
+    "Karrengas 10": "G",
+    "Molenstraat 132": "B"
+   }
+  },
   "0268100000003878": {
    "bag_eenheden": [
     [
@@ -9009,6 +9584,236 @@
    ],
    "labels": {
     "Eerste Walstraat 18": "B"
+   }
+  },
+  "0268100000004270": {
+   "bag_eenheden": [
+    [
+     "Eerste Walstraat 14A",
+     42
+    ],
+    [
+     "Eerste Walstraat 14B",
+     34
+    ],
+    [
+     "Eerste Walstraat 2",
+     71
+    ],
+    [
+     "Eerste Walstraat 2A",
+     80
+    ],
+    [
+     "Eerste Walstraat 2A-1",
+     47
+    ],
+    [
+     "Eerste Walstraat 2A-10",
+     37
+    ],
+    [
+     "Eerste Walstraat 2A-2",
+     38
+    ],
+    [
+     "Eerste Walstraat 2A-3",
+     41
+    ],
+    [
+     "Eerste Walstraat 2A-4",
+     32
+    ],
+    [
+     "Eerste Walstraat 2A-5",
+     50
+    ],
+    [
+     "Eerste Walstraat 2A-6",
+     39
+    ],
+    [
+     "Eerste Walstraat 2A-7",
+     41
+    ],
+    [
+     "Eerste Walstraat 2A-8",
+     32
+    ],
+    [
+     "Eerste Walstraat 2A-9",
+     41
+    ],
+    [
+     "Eerste Walstraat 2B",
+     88
+    ],
+    [
+     "Eerste Walstraat 2B-1",
+     35
+    ],
+    [
+     "Eerste Walstraat 2B-2",
+     32
+    ],
+    [
+     "Eerste Walstraat 2B-3",
+     32
+    ],
+    [
+     "Eerste Walstraat 2C-1",
+     44
+    ],
+    [
+     "Eerste Walstraat 2C-2",
+     47
+    ],
+    [
+     "Karrengas 20A-12",
+     43
+    ],
+    [
+     "Karrengas 20A-13",
+     43
+    ],
+    [
+     "Karrengas 20A-19",
+     41
+    ],
+    [
+     "Karrengas 20A-20",
+     43
+    ],
+    [
+     "Karrengas 20A-3",
+     40
+    ],
+    [
+     "Karrengas 20A-4",
+     39
+    ],
+    [
+     "Karrengas 6",
+     450
+    ],
+    [
+     "Molenstraat 140",
+     450
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Eerste Walstraat 14A",
+     42
+    ],
+    [
+     "Eerste Walstraat 14B",
+     34
+    ],
+    [
+     "Eerste Walstraat 2",
+     71
+    ],
+    [
+     "Eerste Walstraat 2A",
+     80
+    ],
+    [
+     "Eerste Walstraat 2A-1",
+     47
+    ],
+    [
+     "Eerste Walstraat 2A-10",
+     37
+    ],
+    [
+     "Eerste Walstraat 2A-2",
+     38
+    ],
+    [
+     "Eerste Walstraat 2A-3",
+     41
+    ],
+    [
+     "Eerste Walstraat 2A-4",
+     32
+    ],
+    [
+     "Eerste Walstraat 2A-5",
+     50
+    ],
+    [
+     "Eerste Walstraat 2A-6",
+     39
+    ],
+    [
+     "Eerste Walstraat 2A-7",
+     41
+    ],
+    [
+     "Eerste Walstraat 2A-8",
+     32
+    ],
+    [
+     "Eerste Walstraat 2A-9",
+     41
+    ],
+    [
+     "Eerste Walstraat 2B",
+     88
+    ],
+    [
+     "Eerste Walstraat 2B-1",
+     35
+    ],
+    [
+     "Eerste Walstraat 2B-2",
+     32
+    ],
+    [
+     "Eerste Walstraat 2B-3",
+     32
+    ],
+    [
+     "Eerste Walstraat 2C-1",
+     44
+    ],
+    [
+     "Eerste Walstraat 2C-2",
+     47
+    ],
+    [
+     "Karrengas 20A-12",
+     43
+    ],
+    [
+     "Karrengas 20A-13",
+     43
+    ],
+    [
+     "Karrengas 20A-19",
+     41
+    ],
+    [
+     "Karrengas 20A-20",
+     43
+    ],
+    [
+     "Karrengas 20A-3",
+     40
+    ],
+    [
+     "Karrengas 20A-4",
+     39
+    ]
+   ],
+   "labels": {
+    "Eerste Walstraat 14A": "A",
+    "Eerste Walstraat 14B": "A",
+    "Eerste Walstraat 2": "D",
+    "Eerste Walstraat 2A": "E",
+    "Eerste Walstraat 2B": "G"
    }
   },
   "0268100000004278": {
@@ -17452,6 +18257,244 @@
     "Biezenstraat 110": "G"
    }
   },
+  "0268100000009597": {
+   "bag_eenheden": [
+    [
+     "Krayenhofflaan 10",
+     3866
+    ],
+    [
+     "Weurtseweg 3",
+     86
+    ],
+    [
+     "Weurtseweg 3A",
+     80
+    ],
+    [
+     "Weurtseweg 3B",
+     56
+    ],
+    [
+     "Weurtseweg 3C",
+     55
+    ],
+    [
+     "Weurtseweg 3D",
+     59
+    ],
+    [
+     "Weurtseweg 3E",
+     53
+    ],
+    [
+     "Weurtseweg 5",
+     80
+    ],
+    [
+     "Weurtseweg 5A",
+     79
+    ],
+    [
+     "Weurtseweg 5B",
+     89
+    ],
+    [
+     "Weurtseweg 5C",
+     58
+    ],
+    [
+     "Weurtseweg 5D",
+     52
+    ],
+    [
+     "Weurtseweg 5E",
+     50
+    ],
+    [
+     "Weurtseweg 5F",
+     85
+    ],
+    [
+     "Weurtseweg 5G",
+     87
+    ],
+    [
+     "Weurtseweg 7",
+     79
+    ],
+    [
+     "Weurtseweg 7A",
+     75
+    ],
+    [
+     "Weurtseweg 7B",
+     49
+    ],
+    [
+     "Weurtseweg 7C",
+     47
+    ],
+    [
+     "Weurtseweg 7D",
+     61
+    ],
+    [
+     "Weurtseweg 7E",
+     58
+    ],
+    [
+     "Weurtseweg 9",
+     81
+    ],
+    [
+     "Weurtseweg 9A",
+     75
+    ],
+    [
+     "Weurtseweg 9B",
+     50
+    ],
+    [
+     "Weurtseweg 9C",
+     47
+    ],
+    [
+     "Weurtseweg 9D",
+     100
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Weurtseweg 3",
+     86
+    ],
+    [
+     "Weurtseweg 3A",
+     80
+    ],
+    [
+     "Weurtseweg 3B",
+     56
+    ],
+    [
+     "Weurtseweg 3C",
+     55
+    ],
+    [
+     "Weurtseweg 3D",
+     59
+    ],
+    [
+     "Weurtseweg 3E",
+     53
+    ],
+    [
+     "Weurtseweg 5",
+     80
+    ],
+    [
+     "Weurtseweg 5A",
+     79
+    ],
+    [
+     "Weurtseweg 5B",
+     89
+    ],
+    [
+     "Weurtseweg 5C",
+     58
+    ],
+    [
+     "Weurtseweg 5D",
+     52
+    ],
+    [
+     "Weurtseweg 5E",
+     50
+    ],
+    [
+     "Weurtseweg 5F",
+     85
+    ],
+    [
+     "Weurtseweg 5G",
+     87
+    ],
+    [
+     "Weurtseweg 7",
+     79
+    ],
+    [
+     "Weurtseweg 7A",
+     75
+    ],
+    [
+     "Weurtseweg 7B",
+     49
+    ],
+    [
+     "Weurtseweg 7C",
+     47
+    ],
+    [
+     "Weurtseweg 7D",
+     61
+    ],
+    [
+     "Weurtseweg 7E",
+     58
+    ],
+    [
+     "Weurtseweg 9",
+     81
+    ],
+    [
+     "Weurtseweg 9A",
+     75
+    ],
+    [
+     "Weurtseweg 9B",
+     50
+    ],
+    [
+     "Weurtseweg 9C",
+     47
+    ],
+    [
+     "Weurtseweg 9D",
+     100
+    ]
+   ],
+   "labels": {
+    "Weurtseweg 3": "A+",
+    "Weurtseweg 3A": "A++",
+    "Weurtseweg 3B": "A+",
+    "Weurtseweg 3C": "A++",
+    "Weurtseweg 3D": "A+",
+    "Weurtseweg 3E": "A+",
+    "Weurtseweg 5": "A+",
+    "Weurtseweg 5A": "A++",
+    "Weurtseweg 5B": "A++",
+    "Weurtseweg 5C": "A++",
+    "Weurtseweg 5D": "A++",
+    "Weurtseweg 5E": "A++",
+    "Weurtseweg 5F": "A+",
+    "Weurtseweg 5G": "A++",
+    "Weurtseweg 7": "A++",
+    "Weurtseweg 7A": "A+",
+    "Weurtseweg 7B": "A++",
+    "Weurtseweg 7C": "A++",
+    "Weurtseweg 7D": "A++",
+    "Weurtseweg 7E": "A++",
+    "Weurtseweg 9": "A+",
+    "Weurtseweg 9A": "A+",
+    "Weurtseweg 9B": "A++",
+    "Weurtseweg 9C": "A+",
+    "Weurtseweg 9D": "A++"
+   }
+  },
   "0268100000009610": {
    "bag_eenheden": [
     [
@@ -17824,6 +18867,145 @@
    "labels": {
     "Triangelstraat 59": "C"
    }
+  },
+  "0268100000009776": {
+   "bag_eenheden": [
+    [
+     "Glashuis 2",
+     22
+    ],
+    [
+     "Glashuis 2A",
+     22
+    ],
+    [
+     "Glashuis 2B",
+     21
+    ],
+    [
+     "Glashuis 2C",
+     21
+    ],
+    [
+     "Glashuis 2D",
+     20
+    ],
+    [
+     "Glashuis 2E",
+     22
+    ],
+    [
+     "Glashuis 2F",
+     21
+    ],
+    [
+     "Glashuis 2G",
+     21
+    ],
+    [
+     "Glashuis 2H",
+     20
+    ],
+    [
+     "Glashuis 2J",
+     20
+    ],
+    [
+     "Glashuis 2K",
+     20
+    ],
+    [
+     "Glashuis 2L",
+     17
+    ],
+    [
+     "Glashuis 2M",
+     17
+    ],
+    [
+     "Glashuis 2N",
+     24
+    ],
+    [
+     "Glashuis 2P",
+     20
+    ],
+    [
+     "Glashuis 2Q",
+     20
+    ],
+    [
+     "Glashuis 3",
+     809
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Glashuis 2",
+     22
+    ],
+    [
+     "Glashuis 2A",
+     22
+    ],
+    [
+     "Glashuis 2B",
+     21
+    ],
+    [
+     "Glashuis 2C",
+     21
+    ],
+    [
+     "Glashuis 2D",
+     20
+    ],
+    [
+     "Glashuis 2E",
+     22
+    ],
+    [
+     "Glashuis 2F",
+     21
+    ],
+    [
+     "Glashuis 2G",
+     21
+    ],
+    [
+     "Glashuis 2H",
+     20
+    ],
+    [
+     "Glashuis 2J",
+     20
+    ],
+    [
+     "Glashuis 2K",
+     20
+    ],
+    [
+     "Glashuis 2L",
+     17
+    ],
+    [
+     "Glashuis 2M",
+     17
+    ],
+    [
+     "Glashuis 2N",
+     24
+    ],
+    [
+     "Glashuis 2P",
+     20
+    ],
+    [
+     "Glashuis 2Q",
+     20
+    ]
+   ]
   },
   "0268100000009777": {
    "bag_eenheden": [
@@ -30466,6 +31648,92 @@
     "Stijn Buysstraat 74": "C"
    }
   },
+  "0268100000020016": {
+   "bag_eenheden": [
+    [
+     "Graafseweg 93",
+     44
+    ],
+    [
+     "Graafseweg 93",
+     149
+    ],
+    [
+     "Graafseweg 93A",
+     50
+    ],
+    [
+     "Graafseweg 95",
+     48
+    ],
+    [
+     "Graafseweg 95",
+     181
+    ],
+    [
+     "Graafseweg 97",
+     77
+    ],
+    [
+     "Graafseweg 97",
+     160
+    ],
+    [
+     "Graafseweg 97A",
+     52
+    ],
+    [
+     "Graafseweg 97B",
+     50
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Graafseweg 93",
+     44
+    ],
+    [
+     "Graafseweg 93",
+     149
+    ],
+    [
+     "Graafseweg 93A",
+     50
+    ],
+    [
+     "Graafseweg 95",
+     48
+    ],
+    [
+     "Graafseweg 95",
+     181
+    ],
+    [
+     "Graafseweg 97",
+     77
+    ],
+    [
+     "Graafseweg 97",
+     160
+    ],
+    [
+     "Graafseweg 97A",
+     52
+    ],
+    [
+     "Graafseweg 97B",
+     50
+    ]
+   ],
+   "labels": {
+    "Graafseweg 93": "E",
+    "Graafseweg 95": "A",
+    "Graafseweg 97": "A",
+    "Graafseweg 97A": "A",
+    "Graafseweg 97B": "A"
+   }
+  },
   "0268100000020044": {
    "bag_eenheden": [
     [
@@ -37744,6 +39012,381 @@
     "van Spaenstraat 24": "F"
    }
   },
+  "0268100000023389": {
+   "bag_eenheden": [
+    [
+     "van Slichtenhorststraat 85",
+     91
+    ],
+    [
+     "van Slichtenhorststraat 85A",
+     80
+    ],
+    [
+     "van Slichtenhorststraat 85B",
+     114
+    ],
+    [
+     "van Slichtenhorststraat 87",
+     78
+    ],
+    [
+     "van Slichtenhorststraat 87A",
+     75
+    ],
+    [
+     "van Slichtenhorststraat 87B",
+     60
+    ],
+    [
+     "van Slichtenhorststraat 87C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87F",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87G",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87H",
+     65
+    ],
+    [
+     "van Slichtenhorststraat 87J",
+     87
+    ],
+    [
+     "van Slichtenhorststraat 87K",
+     122
+    ],
+    [
+     "van Slichtenhorststraat 87L",
+     93
+    ],
+    [
+     "van Slichtenhorststraat 87M",
+     106
+    ],
+    [
+     "van Slichtenhorststraat 89",
+     73
+    ],
+    [
+     "van Slichtenhorststraat 89A",
+     72
+    ],
+    [
+     "van Slichtenhorststraat 89B",
+     55
+    ],
+    [
+     "van Slichtenhorststraat 89C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89F",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89G",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89H",
+     101
+    ],
+    [
+     "van Slichtenhorststraat 89J",
+     131
+    ],
+    [
+     "van Slichtenhorststraat 89K",
+     139
+    ],
+    [
+     "van Slichtenhorststraat 89L",
+     101
+    ],
+    [
+     "van Slichtenhorststraat 89M",
+     80
+    ],
+    [
+     "van Slichtenhorststraat 89N",
+     63
+    ],
+    [
+     "van Slichtenhorststraat 91",
+     73
+    ],
+    [
+     "van Slichtenhorststraat 91",
+     2621
+    ],
+    [
+     "van Slichtenhorststraat 91A",
+     72
+    ],
+    [
+     "van Slichtenhorststraat 91B",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91F",
+     100
+    ],
+    [
+     "van Slichtenhorststraat 91G",
+     135
+    ],
+    [
+     "van Slichtenhorststraat 91H",
+     102
+    ],
+    [
+     "van Slichtenhorststraat 91J",
+     98
+    ],
+    [
+     "van Slichtenhorststraat 93",
+     58
+    ],
+    [
+     "van Slichtenhorststraat 93",
+     875
+    ],
+    [
+     "van Slichtenhorststraat 93A",
+     134
+    ],
+    [
+     "van Slichtenhorststraat 93B",
+     111
+    ],
+    [
+     "van Slichtenhorststraat 93C",
+     118
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "van Slichtenhorststraat 85",
+     91
+    ],
+    [
+     "van Slichtenhorststraat 85A",
+     80
+    ],
+    [
+     "van Slichtenhorststraat 85B",
+     114
+    ],
+    [
+     "van Slichtenhorststraat 87",
+     78
+    ],
+    [
+     "van Slichtenhorststraat 87A",
+     75
+    ],
+    [
+     "van Slichtenhorststraat 87B",
+     60
+    ],
+    [
+     "van Slichtenhorststraat 87C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87F",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87G",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 87H",
+     65
+    ],
+    [
+     "van Slichtenhorststraat 87J",
+     87
+    ],
+    [
+     "van Slichtenhorststraat 87K",
+     122
+    ],
+    [
+     "van Slichtenhorststraat 87L",
+     93
+    ],
+    [
+     "van Slichtenhorststraat 87M",
+     106
+    ],
+    [
+     "van Slichtenhorststraat 89",
+     73
+    ],
+    [
+     "van Slichtenhorststraat 89A",
+     72
+    ],
+    [
+     "van Slichtenhorststraat 89B",
+     55
+    ],
+    [
+     "van Slichtenhorststraat 89C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89F",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89G",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 89H",
+     101
+    ],
+    [
+     "van Slichtenhorststraat 89J",
+     131
+    ],
+    [
+     "van Slichtenhorststraat 89K",
+     139
+    ],
+    [
+     "van Slichtenhorststraat 89L",
+     101
+    ],
+    [
+     "van Slichtenhorststraat 89M",
+     80
+    ],
+    [
+     "van Slichtenhorststraat 89N",
+     63
+    ],
+    [
+     "van Slichtenhorststraat 91",
+     73
+    ],
+    [
+     "van Slichtenhorststraat 91",
+     2621
+    ],
+    [
+     "van Slichtenhorststraat 91A",
+     72
+    ],
+    [
+     "van Slichtenhorststraat 91B",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91C",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91D",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91E",
+     48
+    ],
+    [
+     "van Slichtenhorststraat 91F",
+     100
+    ],
+    [
+     "van Slichtenhorststraat 91G",
+     135
+    ],
+    [
+     "van Slichtenhorststraat 91H",
+     102
+    ],
+    [
+     "van Slichtenhorststraat 91J",
+     98
+    ],
+    [
+     "van Slichtenhorststraat 93",
+     58
+    ],
+    [
+     "van Slichtenhorststraat 93",
+     875
+    ],
+    [
+     "van Slichtenhorststraat 93A",
+     134
+    ],
+    [
+     "van Slichtenhorststraat 93B",
+     111
+    ],
+    [
+     "van Slichtenhorststraat 93C",
+     118
+    ]
+   ]
+  },
   "0268100000023403": {
    "bag_eenheden": [
     [
@@ -39503,6 +41146,24 @@
    "labels": {
     "Smetiusstraat 7": "C",
     "Smetiusstraat 7A": "A"
+   }
+  },
+  "0268100000024675": {
+   "bag_eenheden": [
+    [
+     "Korte Bredestraat 12",
+     211
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Korte Bredestraat 12",
+     211
+    ]
+   ],
+   "labels": {
+    "Korte Bredestraat 12": "A"
    }
   },
   "0268100000024695": {
@@ -45590,6 +47251,271 @@
     "da Costastraat 22": "C"
    }
   },
+  "0268100000029115": {
+   "bag_eenheden": [
+    [
+     "Broerstraat 70",
+     751
+    ],
+    [
+     "Plein 1944 151",
+     1228
+    ],
+    [
+     "Plein 1944 151A",
+     72
+    ],
+    [
+     "Plein 1944 151A-1",
+     43
+    ],
+    [
+     "Plein 1944 151A-16",
+     30
+    ],
+    [
+     "Plein 1944 151A-17",
+     25
+    ],
+    [
+     "Plein 1944 151A-18",
+     58
+    ],
+    [
+     "Plein 1944 151A-19",
+     49
+    ],
+    [
+     "Plein 1944 151A-2",
+     63
+    ],
+    [
+     "Plein 1944 151A-20",
+     50
+    ],
+    [
+     "Plein 1944 151A-21",
+     49
+    ],
+    [
+     "Plein 1944 151A-22",
+     46
+    ],
+    [
+     "Plein 1944 151A-23",
+     53
+    ],
+    [
+     "Plein 1944 151A-24",
+     47
+    ],
+    [
+     "Plein 1944 151A-25",
+     43
+    ],
+    [
+     "Plein 1944 151A-26",
+     50
+    ],
+    [
+     "Plein 1944 151A-27",
+     49
+    ],
+    [
+     "Plein 1944 151A-28",
+     49
+    ],
+    [
+     "Plein 1944 151A-29",
+     49
+    ],
+    [
+     "Plein 1944 151A-3",
+     55
+    ],
+    [
+     "Plein 1944 151A-30",
+     49
+    ],
+    [
+     "Plein 1944 151A-31",
+     53
+    ],
+    [
+     "Plein 1944 151A-32",
+     42
+    ],
+    [
+     "Plein 1944 151A-33",
+     39
+    ],
+    [
+     "Plein 1944 151A-34",
+     46
+    ],
+    [
+     "Plein 1944 151A-35",
+     31
+    ],
+    [
+     "Plein 1944 151A-36",
+     34
+    ],
+    [
+     "Plein 1944 151A-4",
+     56
+    ],
+    [
+     "Plein 1944 151A-5",
+     50
+    ],
+    [
+     "Plein 1944 151A-6",
+     49
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Plein 1944 151A-1",
+     43
+    ],
+    [
+     "Plein 1944 151A-16",
+     30
+    ],
+    [
+     "Plein 1944 151A-17",
+     25
+    ],
+    [
+     "Plein 1944 151A-18",
+     58
+    ],
+    [
+     "Plein 1944 151A-19",
+     49
+    ],
+    [
+     "Plein 1944 151A-2",
+     63
+    ],
+    [
+     "Plein 1944 151A-20",
+     50
+    ],
+    [
+     "Plein 1944 151A-21",
+     49
+    ],
+    [
+     "Plein 1944 151A-22",
+     46
+    ],
+    [
+     "Plein 1944 151A-23",
+     53
+    ],
+    [
+     "Plein 1944 151A-24",
+     47
+    ],
+    [
+     "Plein 1944 151A-25",
+     43
+    ],
+    [
+     "Plein 1944 151A-26",
+     50
+    ],
+    [
+     "Plein 1944 151A-27",
+     49
+    ],
+    [
+     "Plein 1944 151A-28",
+     49
+    ],
+    [
+     "Plein 1944 151A-29",
+     49
+    ],
+    [
+     "Plein 1944 151A-3",
+     55
+    ],
+    [
+     "Plein 1944 151A-30",
+     49
+    ],
+    [
+     "Plein 1944 151A-31",
+     53
+    ],
+    [
+     "Plein 1944 151A-32",
+     42
+    ],
+    [
+     "Plein 1944 151A-33",
+     39
+    ],
+    [
+     "Plein 1944 151A-34",
+     46
+    ],
+    [
+     "Plein 1944 151A-35",
+     31
+    ],
+    [
+     "Plein 1944 151A-36",
+     34
+    ],
+    [
+     "Plein 1944 151A-4",
+     56
+    ],
+    [
+     "Plein 1944 151A-5",
+     50
+    ],
+    [
+     "Plein 1944 151A-6",
+     49
+    ]
+   ],
+   "labels": {
+    "Broerstraat 70": "A",
+    "Plein 1944 151A-1": "A++",
+    "Plein 1944 151A-16": "A",
+    "Plein 1944 151A-17": "A+",
+    "Plein 1944 151A-18": "A+++",
+    "Plein 1944 151A-19": "A+++",
+    "Plein 1944 151A-2": "A+++",
+    "Plein 1944 151A-20": "A+++",
+    "Plein 1944 151A-21": "A+++",
+    "Plein 1944 151A-22": "A++",
+    "Plein 1944 151A-23": "A++",
+    "Plein 1944 151A-24": "A+",
+    "Plein 1944 151A-25": "A",
+    "Plein 1944 151A-26": "A+++",
+    "Plein 1944 151A-27": "A+++",
+    "Plein 1944 151A-28": "A+++",
+    "Plein 1944 151A-29": "A+++",
+    "Plein 1944 151A-3": "A+++",
+    "Plein 1944 151A-30": "A+++",
+    "Plein 1944 151A-31": "A++",
+    "Plein 1944 151A-32": "A+",
+    "Plein 1944 151A-33": "A++",
+    "Plein 1944 151A-34": "A++",
+    "Plein 1944 151A-35": "A+",
+    "Plein 1944 151A-36": "A+",
+    "Plein 1944 151A-4": "A+++",
+    "Plein 1944 151A-5": "A+++",
+    "Plein 1944 151A-6": "A+++"
+   }
+  },
   "0268100000029229": {
    "bag_eenheden": [
     [
@@ -47479,6 +49405,9 @@
     "Fransestraat 38": "C"
    }
   },
+  "0268100000030484": {
+   "bag_gezien": "2026-10-03"
+  },
   "0268100000030610": {
    "bag_eenheden": [
     [
@@ -48808,6 +50737,301 @@
     "van Berchenstraat 10": "C",
     "van Berchenstraat 10C": "C"
    }
+  },
+  "0268100000036678": {
+   "bag_eenheden": [
+    [
+     "Smetiusstraat 1",
+     1041
+    ],
+    [
+     "Smetiusstraat 1",
+     2484
+    ],
+    [
+     "Smetiusstraat 1B-1",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-10",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-11",
+     45
+    ],
+    [
+     "Smetiusstraat 1B-2",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-3",
+     45
+    ],
+    [
+     "Smetiusstraat 1B-4",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-5",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-6",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-7",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-8",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-9",
+     45
+    ],
+    [
+     "van Berchenstraat 2",
+     40
+    ],
+    [
+     "van Berchenstraat 2A",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-1",
+     50
+    ],
+    [
+     "van Berchenstraat 2B-10",
+     44
+    ],
+    [
+     "van Berchenstraat 2B-11",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-12",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-13",
+     57
+    ],
+    [
+     "van Berchenstraat 2B-14",
+     38
+    ],
+    [
+     "van Berchenstraat 2B-15",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-16",
+     39
+    ],
+    [
+     "van Berchenstraat 2B-17",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-18",
+     39
+    ],
+    [
+     "van Berchenstraat 2B-19",
+     58
+    ],
+    [
+     "van Berchenstraat 2B-2",
+     50
+    ],
+    [
+     "van Berchenstraat 2B-20",
+     43
+    ],
+    [
+     "van Berchenstraat 2B-21",
+     64
+    ],
+    [
+     "van Berchenstraat 2B-22",
+     74
+    ],
+    [
+     "van Berchenstraat 2B-3",
+     46
+    ],
+    [
+     "van Berchenstraat 2B-4",
+     48
+    ],
+    [
+     "van Berchenstraat 2B-5",
+     67
+    ],
+    [
+     "van Berchenstraat 2B-6",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-7",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-8",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-9",
+     47
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Smetiusstraat 1B-1",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-10",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-11",
+     45
+    ],
+    [
+     "Smetiusstraat 1B-2",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-3",
+     45
+    ],
+    [
+     "Smetiusstraat 1B-4",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-5",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-6",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-7",
+     48
+    ],
+    [
+     "Smetiusstraat 1B-8",
+     49
+    ],
+    [
+     "Smetiusstraat 1B-9",
+     45
+    ],
+    [
+     "van Berchenstraat 2",
+     40
+    ],
+    [
+     "van Berchenstraat 2A",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-1",
+     50
+    ],
+    [
+     "van Berchenstraat 2B-10",
+     44
+    ],
+    [
+     "van Berchenstraat 2B-11",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-12",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-13",
+     57
+    ],
+    [
+     "van Berchenstraat 2B-14",
+     38
+    ],
+    [
+     "van Berchenstraat 2B-15",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-16",
+     39
+    ],
+    [
+     "van Berchenstraat 2B-17",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-18",
+     39
+    ],
+    [
+     "van Berchenstraat 2B-19",
+     58
+    ],
+    [
+     "van Berchenstraat 2B-2",
+     50
+    ],
+    [
+     "van Berchenstraat 2B-20",
+     43
+    ],
+    [
+     "van Berchenstraat 2B-21",
+     64
+    ],
+    [
+     "van Berchenstraat 2B-22",
+     74
+    ],
+    [
+     "van Berchenstraat 2B-3",
+     46
+    ],
+    [
+     "van Berchenstraat 2B-4",
+     48
+    ],
+    [
+     "van Berchenstraat 2B-5",
+     67
+    ],
+    [
+     "van Berchenstraat 2B-6",
+     40
+    ],
+    [
+     "van Berchenstraat 2B-7",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-8",
+     49
+    ],
+    [
+     "van Berchenstraat 2B-9",
+     47
+    ]
+   ]
   },
   "0268100000036688": {
    "bag_eenheden": [
@@ -52261,6 +54485,24 @@
     "Meijhorst 5248": "A"
    }
   },
+  "0268100000043218": {
+   "bag_eenheden": [
+    [
+     "Egelstraat 11",
+     184
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "Egelstraat 11",
+     184
+    ]
+   ],
+   "labels": {
+    "Egelstraat 11": "C"
+   }
+  },
   "0268100000043300": {
    "bag_eenheden": [
     [
@@ -55328,6 +57570,192 @@
    ],
    "labels": {
     "Korhoenstraat 4": "A"
+   }
+  },
+  "0268100000048814": {
+   "bag_eenheden": [
+    [
+     "van Welderenstraat 123",
+     54
+    ],
+    [
+     "van Welderenstraat 123",
+     69
+    ],
+    [
+     "van Welderenstraat 123C",
+     26
+    ],
+    [
+     "van Welderenstraat 123D",
+     34
+    ],
+    [
+     "van Welderenstraat 123E",
+     24
+    ],
+    [
+     "van Welderenstraat 123E",
+     31
+    ],
+    [
+     "van Welderenstraat 123F",
+     25
+    ],
+    [
+     "van Welderenstraat 123F",
+     34
+    ],
+    [
+     "van Welderenstraat 123G",
+     28
+    ],
+    [
+     "van Welderenstraat 123G",
+     36
+    ],
+    [
+     "van Welderenstraat 123H",
+     31
+    ],
+    [
+     "van Welderenstraat 123J",
+     56
+    ],
+    [
+     "van Welderenstraat 123K",
+     54
+    ],
+    [
+     "van Welderenstraat 123L",
+     30
+    ],
+    [
+     "van Welderenstraat 123L",
+     40
+    ],
+    [
+     "van Welderenstraat 123M",
+     33
+    ],
+    [
+     "van Welderenstraat 123M",
+     43
+    ],
+    [
+     "van Welderenstraat 123N",
+     21
+    ],
+    [
+     "van Welderenstraat 123N",
+     37
+    ],
+    [
+     "van Welderenstraat 123P",
+     36
+    ],
+    [
+     "van Welderenstraat 123R",
+     39
+    ]
+   ],
+   "bag_gezien": "2026-10-12",
+   "bag_woningen": [
+    [
+     "van Welderenstraat 123",
+     54
+    ],
+    [
+     "van Welderenstraat 123",
+     69
+    ],
+    [
+     "van Welderenstraat 123C",
+     26
+    ],
+    [
+     "van Welderenstraat 123D",
+     34
+    ],
+    [
+     "van Welderenstraat 123E",
+     24
+    ],
+    [
+     "van Welderenstraat 123E",
+     31
+    ],
+    [
+     "van Welderenstraat 123F",
+     25
+    ],
+    [
+     "van Welderenstraat 123F",
+     34
+    ],
+    [
+     "van Welderenstraat 123G",
+     28
+    ],
+    [
+     "van Welderenstraat 123G",
+     36
+    ],
+    [
+     "van Welderenstraat 123H",
+     31
+    ],
+    [
+     "van Welderenstraat 123J",
+     56
+    ],
+    [
+     "van Welderenstraat 123K",
+     54
+    ],
+    [
+     "van Welderenstraat 123L",
+     30
+    ],
+    [
+     "van Welderenstraat 123L",
+     40
+    ],
+    [
+     "van Welderenstraat 123M",
+     33
+    ],
+    [
+     "van Welderenstraat 123M",
+     43
+    ],
+    [
+     "van Welderenstraat 123N",
+     21
+    ],
+    [
+     "van Welderenstraat 123N",
+     37
+    ],
+    [
+     "van Welderenstraat 123P",
+     36
+    ],
+    [
+     "van Welderenstraat 123R",
+     39
+    ]
+   ],
+   "labels": {
+    "van Welderenstraat 123": "B",
+    "van Welderenstraat 123D": "B",
+    "van Welderenstraat 123E": "B",
+    "van Welderenstraat 123F": "B",
+    "van Welderenstraat 123G": "B",
+    "van Welderenstraat 123L": "B",
+    "van Welderenstraat 123M": "B",
+    "van Welderenstraat 123P": "B",
+    "van Welderenstraat 123R": "B"
    }
   },
   "0268100000048819": {
@@ -67975,6 +70403,20 @@
   ],
   "pand_id": "0268100000021093"
  },
+ "burghardtvandenberghstraat": {
+  "adres": "Burghardt van den Berghstraat",
+  "bag_gezien": "2026-10-12",
+  "bag_zonder_id": "2026-10-12",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-12",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €556 per maand, 101 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "burghardtvandenberghstraat116": {
   "adres": "Burghardt van den Berghstraat 116",
   "gebeurtenissen": [
@@ -76930,6 +79372,48 @@
   ],
   "pand_id": "0268100000003787"
  },
+ "eerstewalstraat2a1": {
+  "adres": "Eerste Walstraat 2A-1",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2019-09-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 2 is D, geregistreerd 2019-09-24"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 14A is A, geregistreerd 2020-11-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 14B is A, geregistreerd 2020-11-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 2A is E, geregistreerd 2020-11-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 2B is G, geregistreerd 2020-11-17"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 21 woningen als gevormd in dit pand uit 1880, dat zelf al in gebruik is, mediaan 41 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000004270"
+ },
  "eerstewalstraat51": {
   "adres": "Eerste Walstraat 51",
   "gebeurtenissen": [
@@ -76995,6 +79479,24 @@
    }
   ],
   "pand_id": "0268100000026486"
+ },
+ "egelstraat11": {
+  "adres": "Egelstraat 11",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2017-11-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Egelstraat 11 is C, geregistreerd 2017-11-17"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-12",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel, aan Egelstraat 11, 6531PH Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000043218"
  },
  "eilbrachtstraat1": {
   "adres": "Eilbrachtstraat 1",
@@ -78495,7 +80997,6 @@
  },
  "fransestraat36": {
   "adres": "de Fransestraat 36",
-  "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
   "gebeurtenissen": [
@@ -78512,7 +81013,7 @@
     "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
    }
   ],
-  "pand_id": null
+  "pand_id": "0268100000030484"
  },
  "fransestraat38": {
   "adres": "Fransestraat 38",
@@ -80131,6 +82632,18 @@
   ],
   "pand_id": "0268100000009956"
  },
+ "glashuis2": {
+  "adres": "Glashuis 2",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 16 woningen als gevormd in dit pand uit 1900, dat zelf al in gebruik is, mediaan 20 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000009776"
+ },
  "glimwormstraat8": {
   "adres": "Glimwormstraat 8",
   "gebeurtenissen": [
@@ -81065,6 +83578,12 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Graafseweg 33Z is nu A"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 18 woningen als gevormd in dit pand uit 1888, dat zelf al in gebruik is, mediaan 30 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000011142"
@@ -82759,6 +85278,12 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Graafseweg 64 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 42 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000019101"
@@ -82912,6 +85437,48 @@
    }
   ],
   "pand_id": "0268100000020716"
+ },
+ "graafseweg93": {
+  "adres": "Graafseweg 93",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2021-09-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 93 is E, geregistreerd 2021-09-23"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 95 is A, geregistreerd 2026-10-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 97 is A, geregistreerd 2026-10-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 97A is A, geregistreerd 2026-10-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Graafseweg 97B is A, geregistreerd 2026-10-05"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 50 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000020016"
  },
  "graafseweg98": {
   "adres": "Graafseweg 98",
@@ -83683,6 +86250,12 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Groesbeekseweg 118 is nu D"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-12",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen"
    }
   ],
   "pand_id": "0268100000029582"
@@ -84515,6 +87088,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Grote Markt 4 is nu A"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 191 woningen als gevormd in dit pand uit 1955, dat zelf al in gebruik is, mediaan 57 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000028697"
@@ -84637,6 +87216,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Gruitberg 37A is nu E"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1951, dat zelf al in gebruik is, mediaan 30 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000029927"
@@ -86800,6 +89385,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Hertogstraat 33B is nu F"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1880, dat zelf al in gebruik is, mediaan 41 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000002856"
@@ -90936,6 +93527,54 @@
   ],
   "pand_id": "0268100000042448"
  },
+ "karrengas20a1": {
+  "adres": "Karrengas 20A-1",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 10 woningen als gevormd in dit pand uit 1880, dat zelf al in gebruik is, mediaan 43 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003001"
+ },
+ "karrengas20a11": {
+  "adres": "Karrengas 20A-11",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Molenstraat 132 is B, geregistreerd 2020-07-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Karrengas 10 is G, geregistreerd 2020-12-17"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1899, dat zelf al in gebruik is, mediaan 42 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003877"
+ },
+ "karrengas20a16": {
+  "adres": "Karrengas 20A-16",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 4 woningen als gevormd in dit pand uit 1880, dat zelf al in gebruik is, mediaan 44 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003000"
+ },
  "karrengas44c": {
   "adres": "Karrengas 44-C",
   "gebeurtenissen": [
@@ -92557,6 +95196,24 @@
    }
   ],
   "pand_id": "0268100000048803"
+ },
+ "kortebredestraat12": {
+  "adres": "Korte Bredestraat 12",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Korte Bredestraat 12 is A, geregistreerd 2020-11-14"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-12",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het realiseren van een dakkapel in het voordakvlak, aan Korte Bredestraat 12, 6543ZR Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000024675"
  },
  "krayenhofflaan": {
   "adres": "Krayenhofflaan",
@@ -108947,6 +111604,186 @@
   "gebeurtenissen": [],
   "pand_id": "0268100000027425"
  },
+ "plein1944151a1": {
+  "adres": "Plein 1944 151A-1",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Broerstraat 70 is A, geregistreerd 2025-06-27"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-1 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-16 is A, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-17 is A+, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-18 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-19 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-2 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-20 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-21 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-22 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-23 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-24 is A+, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-25 is A, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-26 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-27 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-28 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-29 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-3 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-30 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-31 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-32 is A+, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-33 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-34 is A++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-35 is A+, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-36 is A+, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-4 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-5 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-08-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 151A-6 is A+++, geregistreerd 2026-08-21"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 25 woningen als gevormd in dit pand uit 1951, dat zelf al in gebruik is, mediaan 49 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000029115"
+ },
  "plein194428": {
   "adres": "Plein 1944 28",
   "gebeurtenissen": [
@@ -114702,6 +117539,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Schoolstraat 105 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1908, dat zelf al in gebruik is, mediaan 26 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000010202"
@@ -115362,6 +118205,18 @@
    }
   ],
   "pand_id": "0268100000035498"
+ },
+ "smetiusstraat1b1": {
+  "adres": "Smetiusstraat 1B-1",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 35 woningen als gevormd in dit pand uit 1881, dat zelf al in gebruik is, mediaan 48 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000036678"
  },
  "smetiusstraat4b": {
   "adres": "Smetiusstraat 4-B",
@@ -117180,6 +120035,20 @@
   ],
   "pand_id": "0268100000047302"
  },
+ "staringstraat": {
+  "adres": "Staringstraat",
+  "bag_gezien": "2026-10-12",
+  "bag_zonder_id": "2026-10-12",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-12",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.299 per maand, 94 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "staringstraat10": {
   "adres": "Staringstraat 10",
   "gebeurtenissen": [
@@ -117470,6 +120339,12 @@
     "datum": "2025-10-08",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het verbouwen van een kantoorpand naar 12 zelfstandige wooneenheden aan St. Canisiussingel 32, 6511TJ Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 12 woningen als gevormd in dit pand uit 1893, dat zelf al in gebruik is, mediaan 44 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000002885"
@@ -122426,6 +125301,24 @@
   ],
   "pand_id": "0268100000026875"
  },
+ "tweedewalstraat100": {
+  "adres": "Tweede Walstraat 100",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2018-04-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 104 is D, geregistreerd 2018-04-29"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1899, dat zelf al in gebruik is, mediaan 38 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002968"
+ },
  "tweedewalstraat101": {
   "adres": "Tweede Walstraat 101",
   "gebeurtenissen": [
@@ -122605,6 +125498,48 @@
    }
   ],
   "pand_id": "0268100000003930"
+ },
+ "tweedewalstraat18a10": {
+  "adres": "Tweede Walstraat 18A-10",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 18A-1 is A, geregistreerd 2025-04-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 18A-2 is A, geregistreerd 2025-04-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 18A-3 is A, geregistreerd 2025-04-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 18A-7 is A+, geregistreerd 2025-04-25"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tweede Walstraat 18A-8 is A+, geregistreerd 2025-04-25"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1882, dat zelf al in gebruik is, mediaan 58 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002912"
  },
  "tweedewalstraat27": {
   "adres": "Tweede Walstraat 27",
@@ -123271,6 +126206,18 @@
    }
   ],
   "pand_id": "0268100000002704"
+ },
+ "tweedewalstraat94d": {
+  "adres": "Tweede Walstraat 94D",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1886, dat zelf al in gebruik is, mediaan 44 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002975"
  },
  "ubbergseweg172": {
   "adres": "Ubbergseweg 172",
@@ -125205,6 +128152,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Oldenbarneveltstraat 63 is nu B"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1896, dat zelf al in gebruik is, mediaan 64 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000020707"
@@ -126213,6 +129166,18 @@
   ],
   "pand_id": "0268100000029553"
  },
+ "vanslichtenhorststraat85": {
+  "adres": "van Slichtenhorststraat 85",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 44 woningen als gevormd in dit pand uit 1897, dat zelf al in gebruik is, mediaan 73 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000023389"
+ },
  "vansomerenstraat12": {
   "adres": "Van Somerenstraat 12",
   "gebeurtenissen": [
@@ -126709,6 +129674,72 @@
   ],
   "pand_id": "0268100000048822"
  },
+ "vanwelderenstraat123": {
+  "adres": "van Welderenstraat 123",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123D is B, geregistreerd 2020-07-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123E is B, geregistreerd 2020-07-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123F is B, geregistreerd 2020-07-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123L is B, geregistreerd 2020-07-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123R is B, geregistreerd 2020-07-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123 is B, geregistreerd 2020-09-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123G is B, geregistreerd 2020-09-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123M is B, geregistreerd 2020-09-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Welderenstraat 123P is B, geregistreerd 2020-09-16"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 10 woningen als gevormd in dit pand uit 1919, dat zelf al in gebruik is, mediaan 38 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000048814"
+ },
  "vanwelderenstraat124": {
   "adres": "van Welderenstraat 124",
   "gebeurtenissen": [
@@ -126723,6 +129754,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Welderenstraat 124 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1886, dat zelf al in gebruik is, mediaan 24 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000003932"
@@ -127233,6 +130270,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Welderenstraat 79 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 5 woningen als gevormd in dit pand uit 1886, dat zelf al in gebruik is, mediaan 52 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
    }
   ],
   "pand_id": "0268100000004409"
@@ -136297,6 +139340,168 @@
   ],
   "pand_id": "0268100000011901"
  },
+ "weurtseweg3": {
+  "adres": "Weurtseweg 3",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3 is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3A is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3B is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3C is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3D is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 3E is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5 is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5A is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5B is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5C is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5D is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5E is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5F is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 5G is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7 is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7A is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7B is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7C is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7D is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 7E is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 9 is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 9A is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 9B is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 9C is A+, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weurtseweg 9D is A++, geregistreerd 2026-05-08"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 25 woningen als gevormd in dit pand uit 1881, dat zelf al in gebruik is, mediaan 61 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000009597"
+ },
  "weurtseweg65": {
   "adres": "Weurtseweg 65",
   "gebeurtenissen": [
@@ -138303,6 +141508,18 @@
    }
   ],
   "pand_id": "0268100000029894"
+ },
+ "ziekerstraat74a1": {
+  "adres": "Ziekerstraat 74A-1",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-12",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1955, dat zelf al in gebruik is, mediaan 52 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-12 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003002"
  },
  "ziekerstraat83": {
   "adres": "Ziekerstraat 83",

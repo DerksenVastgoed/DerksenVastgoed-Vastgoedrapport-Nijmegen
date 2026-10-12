@@ -1020,3 +1020,7 @@ Heidebloemstraat | Nijmegen | 890 | te huur | 2026-10-10 | huislijn | 83 | 6533S
 Aubadestraat | Nijmegen | 825 | te huur | 2026-10-10 | huislijn | 61 | 6544ZA
 Biezendwarsstraat | Nijmegen | 1750 | te huur | 2026-10-10 | pararius | 77 | 6541ZH
 van Trieststraat | Nijmegen | 1275 | te huur gemeubileerd | 2026-10-10 | pararius | 30 | 6512CW
+
+# Automatisch toegevoegd uit Funda-attendering op 12-10-2026
+Staringstraat | Nijmegen | 2299 | te huur | 2026-10-12 | huislijn | 94 | 6511PC
+Burghardt van den Berghstraat | Nijmegen | 556 | te huur kamer | 2026-10-12 | kamernet | 101 | 
