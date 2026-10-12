@@ -2,38 +2,38 @@
  "onderwerpen": {
   "stannastraat165": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "St. Annastraat 165"
   },
   "oldenbarneveltstraat61": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "Oldenbarneveltstraat 61"
   },
   "dominicanenstraat103": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "Dominicanenstraat 103"
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "Groesbeekseweg 162"
   },
   "wilhelminasingel7": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-09",
-   "keer": 1,
+   "laatst": "2026-10-12",
+   "keer": 2,
    "omschrijving": "Wilhelminasingel 7"
   },
   "buurmansweg46": {
@@ -59,6 +59,24 @@
    "laatst": "2026-10-11",
    "keer": 1,
    "omschrijving": "Hatertseweg 338"
+  },
+  "stieltjesstraat10": {
+   "eerst": "2026-10-12",
+   "laatst": "2026-10-12",
+   "keer": 1,
+   "omschrijving": "Stieltjesstraat 10"
+  },
+  "stannastraat7": {
+   "eerst": "2026-10-12",
+   "laatst": "2026-10-12",
+   "keer": 1,
+   "omschrijving": "St. Annastraat 7"
+  },
+  "graafseweg47": {
+   "eerst": "2026-10-12",
+   "laatst": "2026-10-12",
+   "keer": 1,
+   "omschrijving": "Graafseweg 47"
   }
  }
 }
