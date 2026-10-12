@@ -162,6 +162,14 @@ jobs:
         # erna komt.
         run: python pandsleutel.py --proef
 
+      - name: Het delen en uitvouwen van de pandgegevens nameten
+        # HET SMALSTE PUNT VAN HET HELE BESTAND. Elk pandgegeven gaat door
+        # compact() naar schijf en door laad() terug, dus een fout hier is
+        # een fout in alles wat de pandgeschiedenis leest, en hij zou nergens
+        # anders rood worden. Deze module had tot 12 oktober geen proef.
+        # Kost geen seconde en geen aanroep.
+        run: python pandlezer.py --proef
+
       - name: Bekendmakingen ophalen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
