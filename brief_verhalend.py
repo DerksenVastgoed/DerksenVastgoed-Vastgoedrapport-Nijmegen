@@ -244,6 +244,18 @@ Die garageverklaring was tot 11 oktober juist en is dat sindsdien niet meer: er 
 
 HOE ZWAAR ZO'N VERSCHIL WEEGT. Niet automatisch het belangrijkste nieuws van de dag; dat stond hier eerder en dat was te absoluut. Weeg het op twee dingen: hoe groot het verschil is, en of het nieuw is. Een verschil van één eenheid dat er vorige week ook al stond is een alinea verderop en geen opening. Een pand dat volgens de gegevens al eerder aan pa is verteld, hoort niet opnieuw als het opvallendste nieuws van de week te beginnen; wat eerder is verteld staat in de gegevens onder het kopje over wat al verteld is.
 
+WONINGEN DIE IN EEN BESTAAND PAND WORDEN GEMAAKT. Staat er een blok "Woningen die in bestaande panden worden gemaakt", dan gaat dat over iets anders dan de pijplijn: niet over nieuwbouw die naar de ring komt, maar over woningen die in panden worden toegevoegd die er al staan. Dat is de markt waarin wij zelf werken, en de concentratie is extreem: op 12 oktober zaten 191 van de 697 in één gebouw aan de Grote Markt, een pand uit 1955.
+
+WANNEER DIT DE OPENING VERDIENT, EN WANNEER NIET. Een pand met tien of meer toegevoegde woningen is nieuws en mag de brief openen. Daaronder is het een alinea of een regel in de tabel, want de tabel staat al in de bijlage en een pand met twee extra woningen is geen opening. Dat onderscheid staat er omdat er 113 van die panden zijn en 65 ervan nieuw voor ons waren: zonder drempel gaat de brief vijf ochtenden achter elkaar over hetzelfde soort nieuws. En een pand dat volgens de gegevens al eerder aan pa is verteld, begint de brief niet opnieuw; dat staat onder het kopje over wat al verteld is.
+
+WAT ER OVER DEZE PANDEN NIET MAG WORDEN BEWEERD. Drie dingen, en ze komen allemaal uit wat de BAG niet weet.
+
+De BAG kent geen opleverdatum. De gebeurtenis draagt de datum waarop wij het in de registratie zagen, en dat staat er ook letterlijk bij. Schrijf dus nooit dat er vandaag is verbouwd of opgeleverd; schrijf dat deze woningen in de registratie staan als gevormd, en dat ze nog niet als in gebruik zijn gemeld.
+
+De BAG kent geen vergunning bij deze objecten. Is er een bekendmaking op hetzelfde pand, dan staat die in het dossier van dat pand en mag je het verband leggen met de bron erbij. Staat die er niet, dan is "zonder vergunning" een bewering die je niet kunt doen: wij kennen die 65 panden juist niet uit de bekendmakingen, en dat ze bij ons niet staan betekent niet dat er niets is aangevraagd.
+
+De BAG zegt niet of het splitsing, verkameren of een hele transformatie is. Wat er wel staat is de oppervlakte, als mediaan PER PAND. Ligt die rond de 50 m2, dan zijn het zelfstandige appartementen; ligt die onder de 30, dan gaat het vermoedelijk om kamers. Vermoedelijk, want wat het juridisch is volgt uit de vergunning en niet uit de maat. Noem die mediaan als je over zo'n pand schrijft, en noem hem als een mediaan en niet als de maat van een woning.
+
 GEMEENTELIJK BELEID. Staat er een blok "Gemeentelijk beleid dat ons raakt", dan hoort dat in de brief onder een eigen tussenkopje en niet als losse mededeling achteraan. Twee regels, en ze zijn er met reden:
 
 Ten eerste: schrijf wat het stuk REGELT, en haal dat uit de samenvatting en nooit uit de titel. De titel "Woonruimte op de eerste bouwlaag toevoegen binnenstad" klinkt alsof er iets bij mag komen, terwijl het stuk een vergunningplicht invoert om winkelvloer te beschermen en hoogstens 30% van de plint toestaat met een maximum van 50 m2. Op 8 en 10 oktober stond er daarom dat de regel omzetting "vergemakkelijkt", het omgekeerde van wat er staat. Zegt de samenvatting dat er een verbod of een vergunningplicht bij komt, schrijf dan nooit dat iets eenvoudiger wordt.

@@ -446,6 +446,33 @@ def proef():
           "geen opleverdatum" in blok, True)
     check("zonder projecten geen blok", tekst({"pijplijn": {}}, {}, nu), "")
 
+    # HET VOORBEHOUD UIT HET BLOK MOET OOK IN DE SCHRIJFINSTRUCTIE STAAN.
+    # Dit is de eis "de brief spreekt zichzelf niet tegen", en op 11 oktober
+    # ging het daar mis: een voorbehoud stond in het blok en het omgekeerde
+    # in de openingsalinea. Hier is het voorbehoud dat de BAG geen
+    # opleverdatum kent. Staat dat niet in brief_verhalend.py, dan kan het
+    # verhaal schrijven dat er vandaag is opgeleverd, en dat is onjuist.
+    blok_voorbehoud = "geen opleverdatum"
+    if blok_voorbehoud not in blok:
+        fouten.append(f"het blok noemt {blok_voorbehoud!r} niet; dan is er "
+                      f"niets om de schrijfinstructie aan te binden")
+    try:
+        with open("brief_verhalend.py", encoding="utf-8") as f:
+            instructie = f.read()
+    except Exception as e:
+        fouten.append(f"brief_verhalend.py niet te lezen: {str(e)[:40]}")
+        instructie = ""
+    if instructie and blok_voorbehoud not in instructie:
+        fouten.append(f"brief_verhalend.py noemt {blok_voorbehoud!r} niet, "
+                      f"terwijl het blok dat wel doet; dan kan het verhaal "
+                      f"schrijven dat er vandaag is opgeleverd")
+    # En de drempel waarboven zo'n pand de brief mag openen. Zonder drempel
+    # gaat de brief vijf ochtenden over hetzelfde soort nieuws.
+    if instructie and "tien of meer toegevoegde woningen" not in instructie:
+        fouten.append("brief_verhalend.py noemt geen drempel waarboven een "
+                      "pand de brief mag openen; met 113 panden opent de "
+                      "brief dan dagen achter elkaar hierover")
+
     # EN DAN OP DE ECHTE VOORRAAD, zonder iets te schrijven. Hier wordt niet
     # getoetst hoeveel het zijn maar dat het draait en dat de afbakening
     # dezelfde uitkomst geeft als de meting van 12 oktober: alle projecten
@@ -477,7 +504,8 @@ def proef():
           f"een pand zonder identificatie vallen erbuiten), een pand dat wij "
           f"al kennen krijgt geen tweede record, een bezette sleutel wordt "
           f"niet overschreven, twee keer draaien geeft een melding en een "
-          f"groter aantal wel, het maximum per ronde, en het blok. Plus de "
+          f"groter aantal wel, het maximum per ronde, het blok, en dat het "
+          f"voorbehoud uit het blok ook in de schrijfinstructie staat. Plus de "
           f"echte voorraad, zonder te schrijven.", file=sys.stderr)
     return 1 if fouten else 0
 
