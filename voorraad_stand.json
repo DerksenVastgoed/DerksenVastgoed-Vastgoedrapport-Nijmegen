@@ -57,15 +57,18 @@
   "labels": {
    "datum": "2026-10-12",
    "fouten": 0,
-   "geen_label_bekend": 348,
-   "gevraagd": 929,
+   "geen_label_bekend": 241,
+   "gevraagd": 1501,
    "laatste_fout": "",
-   "label_gevonden": 581,
+   "label_gevonden": 562,
    "label_prive": 0,
-   "labels_methode_2014": 253,
-   "labels_nta8800": 328,
-   "labels_zonder_methode": 698,
-   "nog_nooit_gevraagd": 17321,
+   "labels_methode_2014": 701,
+   "labels_nta8800": 1140,
+   "labels_zonder_methode": 0,
+   "methode_blijft_onbekend": 0,
+   "methode_ingehaald": 698,
+   "methode_nog_in_te_halen": 0,
+   "nog_nooit_gevraagd": 16518,
    "opnieuw_aan_de_beurt": 0
   },
   "panden": {
@@ -107,7 +110,7 @@
    ]
   },
   "stand": {
-   "met_label": 1279,
+   "met_label": 1841,
    "met_oppervlakte": 20045,
    "postcodes_gedaan": 1241,
    "woningen": 20045
