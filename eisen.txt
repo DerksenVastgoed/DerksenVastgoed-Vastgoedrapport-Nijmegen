@@ -127,6 +127,20 @@ proef: pandsleutel:bezette sleutel wordt niet overschreven
 soort: gegevens
 
 ---
+eis: Een gedeeld veld dat een woordenboek is, wordt bij het opslaan
+  samengevoegd en niet overschreven door de eerste die iets heeft.
+waarom: 12 oktober. compact() nam per gedeeld veld de eerste waarde die niet
+  leeg was. Voor bag_gezien is dat opgelost met max() en voor een lijst is het
+  verdedigbaar, maar labels is een woordenboek van adres naar letter: met twee
+  records van hetzelfde pand, een met {A 1: D} en een met {A 3: B, A 5: C},
+  overleefde een van de drie labels, en welke hing af van de volgorde in het
+  bestand. Vandaag staat geen enkel pand in die toestand, maar het pad gaat
+  open zodra een ronde een label vindt op het ene adres van een pand en niet
+  op het andere.
+proef: pandlezer:alle drie de labels overleven
+soort: gegevens
+
+---
 eis: Een veld dat bij het gebouw hoort, staat bij het gebouw en verhuist niet
   naar een adresrecord.
 waarom: 11 oktober. Het samenvoegen van dubbele records vulde lege velden aan

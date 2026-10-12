@@ -110,7 +110,19 @@ def bewaar(geschiedenis):
     """
     try:
         from pandlezer import compact
-        uit = compact(geschiedenis)
+        # HET VERSLAG VAN HET SAMENVOEGEN ERBIJ. Twee adresrecords van
+        # hetzelfde pand kunnen elk een deel van de labels hebben; die
+        # worden samengevoegd in plaats van overschreven. Een botsing op
+        # dezelfde sleutel is iets om te zien, dus hij komt in de log en
+        # niet alleen in de teller.
+        verslag = {}
+        uit = compact(geschiedenis, verslag)
+        if verslag.get("sleutels_samengevoegd") or verslag.get(
+                "botsende_sleutels"):
+            print(f"Compact: {verslag['sleutels_samengevoegd']} sleutels "
+                  f"samengevoegd uit tweede adresrecords, "
+                  f"{verslag['botsende_sleutels']} botsingen op dezelfde "
+                  f"sleutel met een andere waarde", file=sys.stderr)
     except Exception as e:
         print(f"Compact opslaan lukt niet, oude vorm gebruikt: {str(e)[:80]}",
               file=sys.stderr)
