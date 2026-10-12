@@ -890,10 +890,24 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 continue
             tel["woningen"] += 1
             gezien_woning.add(vbo)
-            # Een eerder opgehaald label blijft staan; dat komt uit fase 2.
-            for veld in ("label", "label_datum", "label_gezien"):
-                if bestaand.get(veld) is not None:
-                    rec[veld] = bestaand[veld]
+            # EEN EERDER OPGEHAALD LABEL BLIJFT STAAN; dat komt uit fase 2.
+            #
+            # OP DE VOORVOEGSEL EN NIET OP EEN LIJSTJE. Hier stonden de drie
+            # velden label, label_datum en label_gezien met de naam erin, en
+            # op 12 oktober heb ik label_nta8800 toegevoegd zonder ze aan dit
+            # lijstje toe te voegen. Gevolg: de objectronde van vannacht
+            # gooide de rekenmethode van alle 698 bestaande labels weg, en
+            # ook label_prive en label_fout, die er al langer stonden. Te
+            # zien in de stand: 698 labels zonder methode, allemaal met
+            # label_gezien 2026-10-11, tegen 581 met methode van vandaag.
+            #
+            # Een lijstje dat moet worden bijgewerkt als er een veld bij komt,
+            # wordt niet bijgewerkt. Dit voorvoegsel hoeft dat niet: elk veld
+            # dat fase 2 schrijft heet label-iets, en daarmee kan de volgende
+            # toevoeging deze fout niet nog een keer maken.
+            for veld, waarde in bestaand.items():
+                if str(veld).startswith("label") and waarde is not None:
+                    rec[veld] = waarde
             if not bestaand:
                 tel["nieuw"] += 1
             elif zelfde:
@@ -1706,6 +1720,22 @@ def proef():
         kaart = dict(pandkaart)
         uit = fase_bag(voorraad, pcs, 1, kaart, pandstatussen,
                        pandbouwjaren)
+        # WAT FASE 2 HEEFT OPGESCHREVEN, MOET EEN OBJECTRONDE OVERLEVEN.
+        # Dit is de fout van vannacht: de objectronde bouwt elk record
+        # opnieuw op en nam uit het oude record alleen label, label_datum en
+        # label_gezien over. label_nta8800 was op 12 oktober toegevoegd en
+        # niet aan dat lijstje, dus de ronde gooide de rekenmethode van alle
+        # 698 bestaande labels weg, en ook label_prive en label_fout. Het
+        # bestand zag er daarna normaal uit: 698 labels zonder grondslag.
+        for _s, _r in (voorraad.get("adressen") or {}).items():
+            _r["label"] = "C"
+            _r["label_datum"] = "2025-03-04"
+            _r["label_gezien"] = "2026-10-11"
+            _r["label_nta8800"] = True
+            _r["label_prive"] = False
+            _r["label_fout"] = ""
+            break
+
         # TWEEDE RONDE OP DEZELFDE GEGEVENS. Hieraan hangt of het bestand van
         # ruim vijf megabyte elke dag ongewijzigd blijft of elke dag helemaal
         # verandert. Dat verschil is in de uitkomst niet te zien en alleen
@@ -1779,6 +1809,25 @@ def proef():
     for veld, moet in verwacht.items():
         if uit.get(veld) != moet:
             afwijkingen.append(f"{veld}: {uit.get(veld)} in plaats van {moet}")
+
+    # EN DE LABELVELDEN NA DE TWEEDE RONDE. Alles wat fase 2 schrijft heet
+    # label-iets en moet er na een objectronde nog staan, met dezelfde
+    # waarde. Het gaat niet om deze vier namen maar om de regel: een nieuw
+    # labelveld hoort deze controle automatisch te halen.
+    na = (voorraad_na.get("adressen") or {})
+    bewaard = [r for r in na.values() if r.get("label")]
+    if not bewaard:
+        afwijkingen.append("na een tweede objectronde staat er geen enkel "
+                           "label meer; fase 2 schrijft dan voor niets")
+    else:
+        was = {"label": "C", "label_datum": "2025-03-04",
+               "label_gezien": "2026-10-11", "label_nta8800": True,
+               "label_prive": False, "label_fout": ""}
+        for veld, moet in was.items():
+            if bewaard[0].get(veld) != moet:
+                afwijkingen.append(
+                    f"een objectronde gooit {veld} weg: "
+                    f"{bewaard[0].get(veld)!r} in plaats van {moet!r}")
 
     # EEN OBJECT IN TWEE PANDEN HOUDT ZE BEIDE. Hier stond een break op de
     # eerste sleutel die oploste; welk pand je te pakken had, hing af van de
@@ -2103,7 +2152,8 @@ def proef():
           f"het delen van een tegel die PDOK niet aankan, het bouwjaar van "
           f"het pand en het oudste daarvan bij twee panden, de "
           f"pijplijntekst die de groep in een pand dat al in gebruik is op "
-          f"bouwjaar splitst, en de wachtrij van de labelfase: wat opnieuw aan de beurt komt na een gevonden "
+          f"bouwjaar splitst, dat een objectronde de labelvelden van fase 2 "
+          f"niet weggooit, en de wachtrij van de labelfase: wat opnieuw aan de beurt komt na een gevonden "
           f"label, een privelabel, een definitieve weigering en een "
           f"tijdelijke storing.", file=sys.stderr)
     return 1 if afwijkingen else 0
