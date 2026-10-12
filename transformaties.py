@@ -51,6 +51,15 @@ import pandsleutel as _psl
 VOORRAAD = "voorraad.json"
 GESCHIEDENIS = "pandgeschiedenis.json"
 
+# WAAR HET VERSLAG VAN DE RONDE BLIJFT. De stap in de workflow staat achter
+# een "|| echo", zoals alle blokstappen, en het verslag gaat naar stderr.
+# Maar de log van een run is van buiten niet te lezen, dus een mislukte
+# schrijfronde zou nergens opvallen: geen gebeurtenissen, geen melding, en
+# een brief die er normaal uitziet. Dat is precies de fout van 10 oktober.
+# Daarom komt de stand in een bestand dat de workflow terugcommit, en leest
+# het gezondheidsrapport hem. Zelfde vorm als voorraad_stand.json.
+STAND = "transformaties_stand.json"
+
 # HOE OUD EEN PAND MOET ZIJN OM BESTAANDE VOORRAAD TE HETEN. Vijf jaar is een
 # keuze en geen definitie van het CBS, en hij staat hier als getal zodat hij
 # te veranderen is zonder de tekst te herschrijven. De reden voor een marge:
@@ -512,6 +521,19 @@ def main():
         return 1
     print("Transformaties: " + json.dumps(verslag, ensure_ascii=False),
           file=sys.stderr)
+    # DE STAND NAAR SCHIJF, OOK ALS ER NIETS VERANDERDE. Een stand die alleen
+    # wordt geschreven als er iets gebeurde, is niet te onderscheiden van een
+    # stap die niet heeft gedraaid.
+    try:
+        # DROOG STAAT ERIN. Een droge run telt wat er ZOU gebeuren, en een
+        # stand die 25 gebeurtenissen meldt terwijl er niets is geschreven,
+        # is dezelfde valse mededeling als een stille mislukking.
+        with open(STAND, "w", encoding="utf-8") as f:
+            json.dump({"datum": dt.date.today().isoformat(),
+                       "droog": bool(a.droog), "ronde": verslag}, f,
+                      ensure_ascii=False, indent=1, sort_keys=True)
+    except Exception as e:
+        print(f"Stand niet weg te schrijven: {str(e)[:60]}", file=sys.stderr)
     if a.droog:
         print("Droog: niets weggeschreven", file=sys.stderr)
         return 0

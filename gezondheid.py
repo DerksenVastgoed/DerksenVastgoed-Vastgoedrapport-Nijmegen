@@ -2878,6 +2878,51 @@ def controle_verkoopdatums():
     return (OK, bewijs, "")
 
 
+def controle_transformaties():
+    """
+    Of de stap die woningen in bestaande panden meldt, werkelijk heeft
+    gedraaid.
+
+    WAAROM DIT HIER STAAT. Die stap zet gebeurtenissen in de
+    pandgeschiedenis en staat in de workflow achter een "|| echo", zoals alle
+    blokstappen. Draait hij niet, dan is er geen gebeurtenis, geen melding,
+    en een brief die er normaal uitziet. Van de 113 panden waarin de BAG
+    woningen heeft gevormd kenden wij er 65 niet uit de bekendmakingen, dus
+    stil wegvallen kost precies het nieuws waarvoor die stap is gemaakt.
+    """
+    stand = _json("transformaties_stand.json") or {}
+    ronde = stand.get("ronde") or {}
+    if not ronde:
+        return (LET_OP, "transformaties_stand.json ontbreekt of is leeg",
+                "De stap die woningen in bestaande panden meldt, heeft nog "
+                "niet gedraaid of is stil mislukt. Hij staat in de "
+                "briefworkflow voor de pandgeschiedenisronde.")
+    if ronde.get("fout"):
+        return (LET_OP, f"de transformatiestap meldde: {ronde['fout']}", "")
+    if stand.get("droog"):
+        return (LET_OP, f"de laatste transformatieronde was een droge run "
+                f"({stand.get('datum', 'onbekend')}); er is niets naar de "
+                f"pandgeschiedenis geschreven",
+                "Een droge run telt wat er zou gebeuren. Zolang dit er staat, "
+                "zijn die panden niet gemeld.")
+    bewijs = (f"{ronde.get('projecten', 0)} panden met "
+              f"{ronde.get('woningen', 0)} gevormde woningen erin; laatste "
+              f"ronde {ronde.get('panden_nieuw', 0)} nieuwe records, "
+              f"{ronde.get('gebeurtenissen', 0)} gebeurtenissen, "
+              f"{ronde.get('overgeslagen', 0)} wachten op een volgende ronde "
+              f"(stand van {stand.get('datum', 'onbekend')})")
+    if ronde.get("sleutel_bezet"):
+        return (LET_OP, bewijs + f"; {ronde['sleutel_bezet']} panden met een "
+                f"sleutel die al van een ander pand is",
+                "Die panden krijgen geen record, want een opzoeking mag nooit "
+                "bij de buren uitkomen. Ze worden dus niet gemeld.")
+    if not ronde.get("projecten"):
+        return (LET_OP, "geen enkel pand met gevormde woningen gevonden",
+                "Dat kan kloppen, maar het was er op 12 oktober 113. Staat "
+                "de pandstatus en het bouwjaar nog in voorraad.json?")
+    return (OK, bewijs, "")
+
+
 def controle_eisen():
     """
     Wat we van de brief eisen, en hoeveel daarvan werkelijk vastligt.
@@ -3218,6 +3263,7 @@ CONTROLES = [
     ("Aanbodreeks", controle_aanbodreeks),
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
+    ("Woningen in bestaande panden", controle_transformaties),
     ("Eisen aan de brief", controle_eisen),
     ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
