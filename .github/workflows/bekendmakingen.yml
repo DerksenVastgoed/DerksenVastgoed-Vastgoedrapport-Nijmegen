@@ -100,10 +100,6 @@ jobs:
     permissions:
       contents: write
       actions: write
-      # EN ISSUES. Zie de meldstap aan het eind: als het terugcommitten
-      # faalt, is git juist het kanaal dat stuk is, en dan is een issue het
-      # enige wat van buiten de run te lezen is.
-      issues: write
     steps:
       - name: Repo ophalen
         uses: actions/checkout@v4
@@ -1051,18 +1047,6 @@ jobs:
 
       - name: Digests + gegevensbestanden terugcommitten
         run: |
-          # DE UITVOER VAN DEZE STAP WORDT BEWAARD. Op 12 oktober mislukte de
-          # commitstap van de VOORRAADworkflow na negentig minuten werk, en de reden
-          # stond alleen in de log van de run. Die log zit achter een server die van
-          # buiten wordt geweigerd, dus van buiten was alleen te zien DAT het faalde.
-          # Hier is de schade groter dan daar: faalt deze stap, dan slaat GitHub de
-          # mailstappen hieronder over (een "if" zonder statusfunctie krijgt
-          # automatisch success() mee), en dan is de brief wel geschreven maar gaat hij
-          # niet de deur uit. De meldstap aan het eind van deze job vuurt in dat geval
-          # ook niet, want die kijkt of er GEEN brief is gemaakt. Volledig stil dus.
-          set -o pipefail
-          terugcommitten() {
-          set -x
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
 
@@ -1165,7 +1149,7 @@ jobs:
 
           if git diff --cached --quiet; then
             echo "Niets gewijzigd, niets te committen"
-            return 0
+            exit 0
           fi
 
           git commit -m "Brief ${{ env.DATUM }}"
@@ -1180,7 +1164,7 @@ jobs:
           for poging in 1 2 3; do
             if git push; then
               echo "Teruggecommit gelukt"
-              return 0
+              exit 0
             fi
             echo "Push mislukt, poging $poging; repo ophalen en opnieuw"
             if ! git pull --rebase --autostash origin "${GITHUB_REF_NAME}"; then
@@ -1210,12 +1194,10 @@ jobs:
           done
           echo "LET OP: terugcommitten is niet gelukt. De gegevensbestanden van"
           echo "vandaag zijn daardoor verloren en morgen begint alles opnieuw."
-          return 1
+          exit 1
 
           convert_markdown: false
-          }
-          terugcommitten 2>&1 | tee /tmp/terugcommit-brief.log
-          exit "${PIPESTATUS[0]}"
+
       - name: Mail versturen
         if: ${{ hashFiles(format('digests/{0}-mail.html', env.DATUM)) != '' }}
         uses: dawidd6/action-send-mail@v3
@@ -1274,44 +1256,3 @@ jobs:
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
             Er is dus geen brief verstuurd, ook niet naar pa.
-
-      - name: Melden in een issue als het terugcommitten mislukte
-        # WAAROM DIT NODIG IS NAAST DE MELDMAIL HIERONDER. Die mail vuurt
-        # alleen bij de tweede geplande poging en alleen als er GEEN brief is
-        # gemaakt. Mislukt alleen het terugcommitten, dan is de brief er wel,
-        # vuurt die mail dus niet, en slaat GitHub de mailstappen over omdat
-        # een "if" zonder statusfunctie automatisch success() meekrijgt. Dan
-        # is er een brief die niemand krijgt en staat de reden in een log die
-        # van buiten niet te lezen is. Dat is op 12 oktober bij de
-        # voorraadworkflow gebeurd en kostte daar negentig minuten werk; hier
-        # zou het een hele brief kosten.
-        if: failure()
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          KOP="Briefronde mislukt op ${{ env.DATUM }}"
-          {
-            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            echo "Aanleiding: ${{ github.event_name }} ${{ github.event.schedule }}"
-            echo ""
-            echo "## De laatste regels van het terugcommitten"
-            echo '```'
-            tail -c 3000 /tmp/terugcommit-brief.log 2>/dev/null \
-              || echo "(geen log; dan is het terugcommitten niet eens begonnen en zit de fout eerder)"
-            echo '```'
-            echo ""
-            echo "## Is de brief van vandaag gemaakt?"
-            for f in "digests/${{ env.DATUM }}-brief.md" "digests/${{ env.DATUM }}-mail.html"; do
-              if [ -s "$f" ]; then echo "- $f: $(wc -c < "$f") bytes"; else echo "- $f: ONTBREEKT"; fi
-            done
-            echo ""
-            echo "_Automatisch gemeld omdat de log van een run van buiten niet te lezen is._"
-          } > /tmp/melding-brief.md
-          BESTAAND=$(gh issue list --state open --search "$KOP in:title" \
-            --json number --jq '.[0].number' 2>/dev/null || true)
-          if [ -n "$BESTAAND" ] && [ "$BESTAAND" != "null" ]; then
-            gh issue comment "$BESTAAND" --body-file /tmp/melding-brief.md
-            echo "Reactie geplaatst onder issue #$BESTAAND"
-          else
-            gh issue create --title "$KOP" --body-file /tmp/melding-brief.md
-          fi
