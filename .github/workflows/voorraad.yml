@@ -36,7 +36,7 @@ on:
         default: "10"
       labels_minuten:
         description: "Tijdbudget voor de labelfase in minuten. 0 slaat hem over."
-        default: "25"
+        default: "90"
       ruwe_vbos:
         description: "Verblijfsobject-id's (komma's) ruw bij EP-Online opvragen en vastleggen. Leeg slaat over."
         default: ""
@@ -49,7 +49,12 @@ concurrency:
 jobs:
   voorraad:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    # RUIMTE VOOR HET GROTERE LABELBUDGET. De objectronde deed er 176
+    # seconden over en de pandronde 460, dus die twee kosten samen een
+    # kwartier van hun twintig minuten budget. Met 90 minuten labels komt de
+    # job op ongeveer 105 minuten, en dan is 120 te krap zodra er iets
+    # langzamer gaat dan gemeten.
+    timeout-minutes: 150
     permissions:
       contents: write
     steps:
@@ -129,7 +134,7 @@ jobs:
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
         run: |
-          MIN="${{ github.event.inputs.labels_minuten || '25' }}"
+          MIN="${{ github.event.inputs.labels_minuten || '90' }}"
           if [ "$MIN" = "0" ]; then
             echo "Overgeslagen op verzoek"
             exit 0

@@ -1096,7 +1096,8 @@ def fase_labels(voorraad, minuten):
            + sorted(nooit, key=lambda s: adressen[s].get("adres", ""))
            + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", "")))
 
-    einde = time.time() + minuten * 60
+    begin = time.time()
+    einde = begin + minuten * 60
     gevraagd = met_label = zonder = fouten = prive = 0
     inhaal, methode_erbij, methode_blijft_weg = set(zonder_methode), 0, 0
     laatste_fout = ""
@@ -1175,7 +1176,15 @@ def fase_labels(voorraad, minuten):
     # ze zijn opgehaald voordat dat veld werd bewaard. Die verhouding hoort
     # in de stand, want zij bepaalt of twee labels naast elkaar mogen staan.
     alle = [r for r in adressen.values() if r.get("label")]
+    # HET GEMETEN TEMPO, zodat niemand het hoeft te schatten. Hoeveel rondes
+    # er nog nodig zijn voor de 16.518 adressen die nooit zijn gevraagd, is
+    # dit getal gedeeld op dat aantal. Een geschat tempo zou hier een vals
+    # getal zijn: de ene ronde loopt tegen een trage API aan en de andere
+    # niet, en het budget is een bovengrens en geen duur.
+    duur = max(time.time() - begin, 0.001)
     return {"gevraagd": gevraagd, "label_gevonden": met_label,
+            "seconden": round(duur, 1),
+            "aanroepen_per_minuut": round(gevraagd / (duur / 60), 1),
             "geen_label_bekend": zonder, "label_prive": prive,
             "nog_nooit_gevraagd": resterend,
             "opnieuw_aan_de_beurt": len(verlopen),
@@ -1698,6 +1707,13 @@ def proef_labels():
         if ad["v6"].get("label_nta8800") is not False:
             afw.append(f"de methode is niet ingehaald: "
                        f"{ad['v6'].get('label_nta8800')!r}")
+        # HET GEMETEN TEMPO HOORT IN DE STAND, want daarmee is uit te rekenen
+        # hoeveel rondes de rest nog kost zonder iets te schatten.
+        if not uit.get("aanroepen_per_minuut"):
+            afw.append("de stand meldt geen gemeten tempo; dan is het aantal "
+                       "rondes dat nog nodig is alleen te schatten")
+        elif uit["aanroepen_per_minuut"] <= 0:
+            afw.append(f"het gemeten tempo is {uit['aanroepen_per_minuut']}")
         if uit.get("methode_ingehaald") != 1:
             afw.append(f"de stand meldt {uit.get('methode_ingehaald')} "
                        f"ingehaalde methodes in plaats van 1")
