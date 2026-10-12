@@ -1080,9 +1080,21 @@ def fase_labels(voorraad, minuten):
             nooit.append(s)
         elif gezien < opnieuw:
             verlopen.append(s)
-    nog = (sorted(nooit, key=lambda s: adressen[s].get("adres", ""))
-           + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", ""))
-           + sorted(zonder_methode, key=lambda s: adressen[s].get("adres", "")))
+    # DE INHAALSLAG GAAT VOOROP, EN DAT IS GEEN SMAAKKWESTIE. Hij stond
+    # achteraan, achter de 17.321 adressen die nog nooit zijn gevraagd. Bij
+    # ongeveer 900 aanroepen per ronde komt hij dan pas over negentien rondes
+    # aan de beurt, en tot die tijd staat er bij 698 labels geen grondslag.
+    # Een wachtrij met een lange staart vooraan betekent dat alles wat
+    # erachter staat nooit draait.
+    #
+    # Dat kan omdat de inhaalslag begrensd is en zichzelf opheft: 698 stuks,
+    # een kwartier, en na die ene ronde is de rij leeg omdat elk gevraagd
+    # adres de datum van vandaag krijgt. Het kost dus een kwartier van een
+    # ronde, een keer, en daarna niets meer. Een inhaalslag die niet eindigt
+    # zou hier niet vooraan mogen staan.
+    nog = (sorted(zonder_methode, key=lambda s: adressen[s].get("adres", ""))
+           + sorted(nooit, key=lambda s: adressen[s].get("adres", ""))
+           + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", "")))
 
     einde = time.time() + minuten * 60
     gevraagd = met_label = zonder = fouten = prive = 0
@@ -1616,7 +1628,10 @@ def proef_labels():
     EP_API_KEY = "proef"
     antwoorden = {}
 
+    gevraagde = []
+
     def nep(rec):
+        gevraagde.append(rec.get("adres"))
         return antwoorden.get(rec.get("adres"), ({}, "", True))
 
     def voorraadje():
@@ -1663,6 +1678,20 @@ def proef_labels():
         if uit.get("gevraagd") != 7:
             afw.append(f"labelfase vroeg {uit.get('gevraagd')} adressen op in "
                        f"plaats van 7")
+        # EN DE INHAALSLAG GAAT VOOROP. Stond hij achteraan, dan kwam hij
+        # pas aan de beurt als de 17.321 nooit gevraagde adressen klaar
+        # waren: negentien rondes. Een begrensde inhaalslag achter een lange
+        # staart draait nooit.
+        plek = {a: i for i, a in enumerate(gevraagde)}
+        laatste_inhaal = max(plek.get("Inhalen 6", -1),
+                             plek.get("Blijft onbekend 7", -1))
+        eerste_nieuw = min(plek.get("Gevonden 1", 99),
+                           plek.get("Definitief 3", 99))
+        if laatste_inhaal > eerste_nieuw:
+            afw.append(f"de inhaalslag staat achter de nieuwe adressen in de "
+                       f"wachtrij ({gevraagde}); dan draait hij pas als de "
+                       f"staart leeg is")
+
         # DE INHAALSLAG OP DE REKENMETHODE. Een label zonder methode komt
         # anders pas aan de beurt als het verloopt, en dat is een jaar met
         # een letter waarvan de grondslag niet te zien is.
@@ -1741,9 +1770,14 @@ def proef_labels():
         # Een geweigerde sleutel of een 429 hoort de ronde af te breken, want
         # doorgaan kost alleen quotum.
         for fout in ("HTTP 429", "HTTP 401"):
-            antwoorden = {a: (None, fout, False)
-                          for a in ("Gevonden 1", "Prive 2", "Definitief 3",
-                                    "Tijdelijk 4")}
+            # ALLE ADRESSEN, OOK DE NIEUWE. Deze rij stond met vier namen
+            # erin, en toen er twee records bij kwamen gaven die het
+            # standaardantwoord in plaats van de fout. Dan werden er drie
+            # adressen gevraagd en leek het of de fase niet stopte. Een
+            # proefrij met namen erin veroudert net zo stil als een lijstje
+            # velden in de code, en dat is dezelfde fout als vannacht.
+            antwoorden = {r["adres"]: (None, fout, False)
+                          for r in voorraadje()["adressen"].values()}
             v2 = voorraadje()
             u2 = fase_labels(v2, 5)
             if u2.get("gevraagd") != 1:
