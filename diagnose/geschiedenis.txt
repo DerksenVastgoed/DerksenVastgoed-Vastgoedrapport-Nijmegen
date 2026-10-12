@@ -1,0 +1,1 @@
+Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
