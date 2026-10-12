@@ -186,6 +186,15 @@ TEMPO_PDOK = 0.25
 # bekend" is een momentopname en geen eigenschap van het pand.
 LABEL_OPNIEUW_DAGEN = 365
 
+# VANAF WANNEER DE REKENMETHODE BIJ EEN LABEL WORDT BEWAARD. Labels die
+# daarvoor zijn opgehaald hebben geen methode, en een gevonden label komt pas
+# aan de beurt als het verloopt. Deze datum haalt die groep een keer in: wie
+# voor deze dag is gezien en geen methode heeft, wordt opnieuw gevraagd. Dat
+# de grens een DATUM is en niet "zolang de methode ontbreekt", is wat hem
+# laat eindigen: een adres waarvan EP-Online geen Berekeningstype geeft,
+# krijgt na die ene vraag de datum van vandaag en komt niet terug.
+METHODE_VANAF = "2026-10-12"
+
 
 def _lees(pad, standaard):
     try:
@@ -1047,9 +1056,24 @@ def fase_labels(voorraad, minuten):
     # bekend" een blinde vlek worden die nooit meer dichtgaat.
     opnieuw = (dt.date.today() - dt.timedelta(days=LABEL_OPNIEUW_DAGEN)
                ).isoformat()
-    nooit, verlopen = [], []
+    nooit, verlopen, zonder_methode = [], [], []
     for s, r in adressen.items():
         if r.get("label"):
+            # EEN LABEL ZONDER REKENMETHODE WORDT EEN KEER INGEHAALD. De
+            # methode wordt sinds 12 oktober bewaard; de 67 labels die er
+            # toen al stonden hebben hem niet, en een gevonden label komt
+            # anders pas aan de beurt als het verloopt. Dat is een jaar of
+            # langer met een letter waarvan de grondslag niet te zien is.
+            #
+            # DE GRENS IS DE DATUM EN NIET HET VELD. Zou hier staan "vraag
+            # opnieuw zolang de methode ontbreekt", dan blijft een adres
+            # waarvan EP-Online geen Berekeningstype geeft elke ronde terug
+            # komen, voor altijd. Met label_gezien voor de grens vraagt hij
+            # het precies een keer: daarna staat de datum van vandaag erin.
+            # Dezelfde vorm als GRONDSLAG_VANAF in splitsing_voltooid.py.
+            if (r.get("label_nta8800") is None
+                    and (r.get("label_gezien") or "") < METHODE_VANAF):
+                zonder_methode.append(s)
             continue
         gezien = r.get("label_gezien")
         if not gezien:
@@ -1057,10 +1081,12 @@ def fase_labels(voorraad, minuten):
         elif gezien < opnieuw:
             verlopen.append(s)
     nog = (sorted(nooit, key=lambda s: adressen[s].get("adres", ""))
-           + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", "")))
+           + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", ""))
+           + sorted(zonder_methode, key=lambda s: adressen[s].get("adres", "")))
 
     einde = time.time() + minuten * 60
     gevraagd = met_label = zonder = fouten = prive = 0
+    inhaal, methode_erbij, methode_blijft_weg = set(zonder_methode), 0, 0
     laatste_fout = ""
     for sleutel in nog:
         if time.time() > einde:
@@ -1104,13 +1130,27 @@ def fase_labels(voorraad, minuten):
             # vijf zijn. De volle tekst staat in eponline_antwoordvorm.json.
             if uit.get("nta8800") is not None:
                 rec["label_nta8800"] = uit["nta8800"]
-            met_label += 1
+            # EEN INGEHAALD LABEL IS GEEN NIEUW LABEL. Zou dit bij
+            # label_gevonden worden geteld, dan loopt die teller op zonder
+            # dat er een woning bij is gekomen, en dat is dezelfde soort
+            # misleiding als de 46 "fouten" die antwoorden waren.
+            if sleutel not in inhaal:
+                met_label += 1
+            elif rec.get("label_nta8800") is None:
+                methode_blijft_weg += 1
+            else:
+                methode_erbij += 1
         elif uit.get("prive"):
             # Er IS een label, het is alleen niet openbaar. Dat als "niet
             # bekend" opschrijven betekent dat we het volgend jaar opnieuw
             # vragen en hetzelfde krijgen.
             rec["label_prive"] = True
             prive += 1
+        elif sleutel in inhaal:
+            # Dit adres HEEFT een label; de inhaalvraag leverde alleen niets
+            # op. Als "geen label bekend" tellen zou de teller laten oplopen
+            # bij een record dat gewoon een label heeft.
+            methode_blijft_weg += 1
         else:
             zonder += 1
 
@@ -1127,6 +1167,15 @@ def fase_labels(voorraad, minuten):
             "geen_label_bekend": zonder, "label_prive": prive,
             "nog_nooit_gevraagd": resterend,
             "opnieuw_aan_de_beurt": len(verlopen),
+            "methode_ingehaald": methode_erbij,
+            "methode_blijft_onbekend": methode_blijft_weg,
+            # Op dezelfde manier geteld als de wachtrij zelf, en niet uit
+            # een aftreksom: zo kan dit getal niet uit elkaar lopen met wat
+            # de volgende ronde werkelijk gaat vragen.
+            "methode_nog_in_te_halen": sum(
+                1 for r in adressen.values()
+                if r.get("label") and r.get("label_nta8800") is None
+                and (r.get("label_gezien") or "") < METHODE_VANAF),
             "labels_nta8800": sum(1 for r in alle
                                   if r.get("label_nta8800") is True),
             "labels_methode_2014": sum(1 for r in alle
@@ -1578,6 +1627,14 @@ def proef_labels():
             "v4": {"adres": "Tijdelijk 4", "postcode": "6500AA", "vbo": "v4"},
             "v5": {"adres": "Oude methode 5", "postcode": "6500AA",
                    "vbo": "v5"},
+            # AL EEN LABEL, GEEN METHODE, GEZIEN VOOR DE GRENS. Die komt een
+            # keer opnieuw aan de beurt. v7 is hetzelfde geval maar EP-Online
+            # geeft daar geen Berekeningstype: die moet NA die ene vraag
+            # ophouden met terugkomen, anders vraagt hij hem voor altijd.
+            "v6": {"adres": "Inhalen 6", "postcode": "6500AA", "vbo": "v6",
+                   "label": "E", "label_gezien": "2026-10-01"},
+            "v7": {"adres": "Blijft onbekend 7", "postcode": "6500AA",
+                   "vbo": "v7", "label": "F", "label_gezien": "2026-10-01"},
         }}
 
     try:
@@ -1587,6 +1644,13 @@ def proef_labels():
                             "registratiedatum": "2025-03-04",
                             "nta8800": True}, "", True),
             "Prive 2": ({"label": None, "prive": True}, "", True),
+            "Inhalen 6": ({"label": "E", "prive": False,
+                           "registratiedatum": "2019-06-01",
+                           "nta8800": False}, "", True),
+            # Een antwoord zonder rekenmethode: nta8800 is None en niet False.
+            "Blijft onbekend 7": ({"label": "F", "prive": False,
+                                   "registratiedatum": "2019-06-01",
+                                   "nta8800": None}, "", True),
             "Oude methode 5": ({"label": "D", "prive": False,
                                 "registratiedatum": "2017-03-15",
                                 "nta8800": False}, "", True),
@@ -1596,9 +1660,30 @@ def proef_labels():
         v = voorraadje()
         uit = fase_labels(v, 5)
         ad = v["adressen"]
-        if uit.get("gevraagd") != 5:
+        if uit.get("gevraagd") != 7:
             afw.append(f"labelfase vroeg {uit.get('gevraagd')} adressen op in "
-                       f"plaats van 5")
+                       f"plaats van 7")
+        # DE INHAALSLAG OP DE REKENMETHODE. Een label zonder methode komt
+        # anders pas aan de beurt als het verloopt, en dat is een jaar met
+        # een letter waarvan de grondslag niet te zien is.
+        if ad["v6"].get("label_nta8800") is not False:
+            afw.append(f"de methode is niet ingehaald: "
+                       f"{ad['v6'].get('label_nta8800')!r}")
+        if uit.get("methode_ingehaald") != 1:
+            afw.append(f"de stand meldt {uit.get('methode_ingehaald')} "
+                       f"ingehaalde methodes in plaats van 1")
+        if uit.get("methode_blijft_onbekend") != 1:
+            afw.append(f"de stand meldt {uit.get('methode_blijft_onbekend')} "
+                       f"keer dat de methode wegblijft in plaats van 1")
+        # EEN INGEHAALD LABEL IS GEEN NIEUW LABEL. Anders loopt die teller op
+        # zonder dat er een woning bij komt.
+        if uit.get("label_gevonden") != 2:
+            afw.append(f"label_gevonden is {uit.get('label_gevonden')} in "
+                       f"plaats van 2; een ingehaald label telt mee als nieuw")
+        if uit.get("geen_label_bekend") != 0:
+            afw.append(f"geen_label_bekend is {uit.get('geen_label_bekend')} "
+                       f"in plaats van 0; een inhaalvraag die niets oplevert "
+                       f"telt mee als een adres zonder label")
         if ad["v1"].get("label") != "C":
             afw.append(f"gevonden label niet bewaard: {ad['v1'].get('label')!r}")
         if ad["v1"].get("label_datum") != "2025-03-04":
@@ -1641,6 +1726,17 @@ def proef_labels():
         if tweede.get("gevraagd") != 1:
             afw.append(f"tweede ronde vraagt {tweede.get('gevraagd')} adressen "
                        f"in plaats van alleen het adres met de tijdelijke fout")
+        # EN DE INHAALSLAG EINDIGT. Dit is de controle die het verschil maakt
+        # tussen een eenmalige inhaalslag en een adres dat elke ronde opnieuw
+        # een aanroep kost. v7 heeft nog steeds geen methode, maar is vandaag
+        # gezien, en de grens is de datum en niet het veld.
+        if tweede.get("methode_ingehaald") or tweede.get(
+                "methode_blijft_onbekend"):
+            afw.append("de inhaalslag op de rekenmethode komt in de tweede "
+                       "ronde terug; dan vraagt hij dat adres voor altijd")
+        if tweede.get("methode_nog_in_te_halen") != 0:
+            afw.append(f"na de inhaalslag staan er nog "
+                       f"{tweede.get('methode_nog_in_te_halen')} in de rij")
 
         # Een geweigerde sleutel of een 429 hoort de ronde af te breken, want
         # doorgaan kost alleen quotum.
@@ -2153,7 +2249,9 @@ def proef():
           f"het pand en het oudste daarvan bij twee panden, de "
           f"pijplijntekst die de groep in een pand dat al in gebruik is op "
           f"bouwjaar splitst, dat een objectronde de labelvelden van fase 2 "
-          f"niet weggooit, en de wachtrij van de labelfase: wat opnieuw aan de beurt komt na een gevonden "
+          f"niet weggooit, de eenmalige inhaalslag op de rekenmethode die na "
+          f"een ronde ophoudt, en de wachtrij van de labelfase: wat opnieuw "
+          f"aan de beurt komt na een gevonden "
           f"label, een privelabel, een definitieve weigering en een "
           f"tijdelijke storing.", file=sys.stderr)
     return 1 if afwijkingen else 0

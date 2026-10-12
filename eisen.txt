@@ -266,6 +266,18 @@ let op: Dit is een eigenschap van de buitenwereld en niet van onze code, dus
   meerdere panden en meerdere objecten gaan.
 
 ---
+eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
+waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
+  bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
+  vraagt een gevonden label pas opnieuw als het verloopt, dus zonder
+  inhaalslag blijft die grondslag een jaar onzichtbaar. Maar een inhaalslag
+  op de voorwaarde "zolang het veld ontbreekt" vraagt een adres waarvan de
+  bron dat veld nooit geeft voor altijd opnieuw, elke ronde een aanroep.
+  Dezelfde vorm als GRONDSLAG_VANAF in splitsing_voltooid.py.
+proef: voorraad_bag:de inhaalslag op de rekenmethode
+soort: werking
+
+---
 eis: Een fout van ons wordt opnieuw geprobeerd, een weigering over een adres
   niet.
 waarom: 10 oktober. De labelfase schreef bij een fout niet op dat het adres
