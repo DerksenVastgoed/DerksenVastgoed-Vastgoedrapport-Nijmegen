@@ -170,6 +170,27 @@ proef: voorraad_bag
 soort: werking
 
 ---
+eis: Een stap die zijn werk door git terugstuurt, meldt een mislukking door
+  een kanaal dat niet door git loopt.
+waarom: 12 oktober. De voorraadronde deed negentig minuten labelwerk en
+  faalde daarna bij het terugcommitten, in twee seconden. De reden stond
+  alleen in de log van de run, en die zit achter een server die van buiten
+  wordt geweigerd. Van buiten was dus alleen te zien DAT het faalde. Onze
+  diagnose en onze levering liepen beide door git, dus toen git faalde
+  verloren we allebei. De oorzaak is later in een sandbox nagemaakt: een
+  mislukte rebase die werd ingeslikt door een "|| true", waarna de repo
+  halverwege een rebase bleef staan en de volgende pushes direct faalden.
+proef: -
+let op: Niet machinaal te handhaven: of het melden werkt blijkt pas als er
+  iets mislukt, en dat opzettelijk uitlokken kost een ronde. Wat er wel is:
+  de commitstap bewaart zijn eigen uitvoer met set -x in /tmp/terugcommit.log,
+  en een stap met "if: failure()" zet die log plus het rondeverslag in een
+  issue. De vier paden van die stap zijn wel nagemeten, in een sandbox met
+  een eigen remote: gewone push, niets gewijzigd, ontbrekend bestand, en een
+  verschoven basis met een botsing op hetzelfde bestand.
+soort: werking
+
+---
 eis: Een proef die rood staat, geeft een exitcode die niet 0 is.
 waarom: 11 oktober. pandgeschiedenis.py eindigde op main() in plaats van
   sys.exit(main()), dus het proces gaf exitcode 0 ook als de proef rood stond.
