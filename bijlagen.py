@@ -587,6 +587,15 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(_x)
             r.append("```")
             r.append("")
+        if b.get("metadata"):
+            r.append("")
+            r.append("<details><summary>de metadata van de publicatie</summary>")
+            r.append("")
+            r.append("```")
+            r.append(b["metadata"])
+            r.append("```")
+            r.append("</details>")
+            r.append("")
         if b.get("tekst"):
             r.append("")
             r.append("<details><summary>de tekst van de publicatie</summary>")
@@ -1034,7 +1043,14 @@ def main():
                 _kaal = re.sub(r"\s+", " ", _kaal).strip()
                 # De kop en de staart van de pagina zijn vaste navigatie; het
                 # middenstuk is de bekendmaking.
-                v["tekst"] = _kaal[:4000] if not _f else f"niet gelezen: {_f}"
+                v["tekst"] = _kaal[:3000] if not _f else f"niet gelezen: {_f}"
+                # Ook de metadata, want daar zou de gemeente een
+                # inzage-adres in kwijt kunnen. Drieduizend tekens, dus het
+                # kost niets om het te zien in plaats van het te vermoeden.
+                _mn, _mu = kandidaten(gmb)[1]
+                _mh, _mf = haal(_mu)
+                v["metadata"] = ((_mh or "")[:2500] if not _mf
+                                 else f"niet gelezen: {_mf}")
             for vorm in v["vormen"]:
                 print(f"  {vorm['vorm']}: {vorm['uitkomst']}, "
                       f"{vorm.get('aantal', 0)} bijlagen", file=sys.stderr)
