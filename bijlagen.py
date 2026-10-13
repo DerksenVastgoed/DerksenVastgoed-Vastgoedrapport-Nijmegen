@@ -33,6 +33,19 @@ Deze module blijft staan omdat hij dat antwoord geeft en blijft geven: komt
 er ooit wel een tekening bij een bekendmaking, dan ziet hij dat. Maar een
 corpus bouwen langs deze weg gaat niet.
 
+EN DE ZIN DIE ANDERS SUGGEREERT. In de bekendmaking van een aanvraag staat
+letterlijk: "U kunt nu alvast de aanvraag bekijken en hierover vragen
+stellen. Bekijken doet u via de link op deze pagina." Die link staat niet in
+de broncode van de pagina. Nagekeken of hij wordt ingeladen: de pagina roept
+inderdaad scripts aan die links nabezorgen, maar dat zijn
+/Referendum/GetReferendumLinks, /BWB/GetBWBLinks en /CVDR/GetCVDRLinks, en
+die gaan over wetgeving en niet over de stukken bij deze aanvraag.
+
+Wat de bekendmaking wel geeft en wat wij niet gebruikten: het kenmerk van de
+zaak bij de gemeente, zoals Z2026-00005538 voor Staringstraat 2 en
+Z2025-00011390 voor Biezenstraat 110. Dat is het nummer waaronder de
+gemeente het dossier kent, en het staat in elke aanvraagpublicatie.
+
 WAT NOG NIET VASTSTAAT. Hoe die bijlagen in de SRU staan en welke url ze
 hebben, weet ik niet, en van buiten een run is het niet te bevragen: de
 proxy van de werkomgeving weigert repository.overheid.nl. Daarom probeert
@@ -565,6 +578,24 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
                          f"{h['pdf']} pdf{tekst_bij}, "
                          f"vorm {', '.join(h['vormen'])}")
+        if b.get("js"):
+            r.append("")
+            r.append("**Waar komt de ingeladen link vandaan:**")
+            r.append("")
+            r.append("```")
+            for _x in b["js"][:25]:
+                r.append(_x)
+            r.append("```")
+            r.append("")
+        if b.get("tekst"):
+            r.append("")
+            r.append("<details><summary>de tekst van de publicatie</summary>")
+            r.append("")
+            r.append("```")
+            r.append(b["tekst"])
+            r.append("```")
+            r.append("</details>")
+            r.append("")
         bij = b.get("bijlagen") or []
         r.append(f"- samen {len(bij)} unieke bijlage(n)")
         if b.get("tegenspraak"):
@@ -924,6 +955,13 @@ def main():
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--js", action="store_true",
+                    help="de scripts van de pagina volgen om te vinden welk "
+                         "adres de links inlaadt die niet in de HTML staan")
+    ap.add_argument("--tekst", action="store_true",
+                    help="de lopende tekst van de publicatie meenemen in de "
+                         "samenvatting; een bekendmaking is een openbaar stuk "
+                         "en de enige manier om te zien waar zij naar verwijst")
     ap.add_argument("--samenvatting", default="",
                     help="pad waar de bevinding als markdown komt; zonder dit "
                          "staat de uitkomst alleen in het joblogboek, en dat "
@@ -951,6 +989,52 @@ def main():
         for gmb in nummers:
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
+            if args.js:
+                # DE LINK STAAT NIET IN DE HTML, HIJ WORDT INGELADEN.
+                # De pagina roept GetReferendumLinks(<gmb>) aan. Daarom vond
+                # deze module nooit een verwijzing naar de stukken: zij staat
+                # er pas ná het laden in. Welk adres die functie bevraagt,
+                # staat in een van de scripts van de pagina.
+                _n, _u = kandidaten(gmb)[2]      # de zoekpagina
+                _h, _f = haal(_u)
+                _sporen = []
+                if _f:
+                    _sporen.append(f"pagina niet gelezen: {_f}")
+                else:
+                    _srcs = re.findall(r'<script[^>]+src="([^"]+)"', _h or "",
+                                       re.I)
+                    _sporen.append(f"{len(_srcs)} scripts op de pagina")
+                    for _src in _srcs[:12]:
+                        _vol = urllib.parse.urljoin(_u, _src)
+                        if not toegestaan(_vol):
+                            _sporen.append(f"  {_src[:60]}: host niet "
+                                           f"toegestaan")
+                            continue
+                        _js, _jf = haal(_vol)
+                        if _jf:
+                            _sporen.append(f"  {_src[:50]}: {_jf}")
+                            continue
+                        if "Referendum" not in (_js or ""):
+                            continue
+                        _sporen.append(f"  GEVONDEN in {_src[:60]}")
+                        for _m in re.finditer(
+                                r'.{0,160}Referendum.{0,240}', _js, re.S):
+                            _sporen.append("    "
+                                           + re.sub(r"\s+", " ",
+                                                    _m.group(0))[:400])
+                v["js"] = _sporen
+            if args.tekst:
+                # DE PUBLICATIE ZELF LATEN SPREKEN.
+                # Twee keer heb ik beredeneerd waar de stukken zouden moeten
+                # hangen en twee keer zat ik ernaast. De bekendmaking is een
+                # openbaar stuk van de overheid; wat er staat is te lezen.
+                _n, _u = kandidaten(gmb)[0]
+                _h, _f = haal(_u)
+                _kaal = re.sub(r"<[^>]+>", " ", _h or "")
+                _kaal = re.sub(r"\s+", " ", _kaal).strip()
+                # De kop en de staart van de pagina zijn vaste navigatie; het
+                # middenstuk is de bekendmaking.
+                v["tekst"] = _kaal[:4000] if not _f else f"niet gelezen: {_f}"
             for vorm in v["vormen"]:
                 print(f"  {vorm['vorm']}: {vorm['uitkomst']}, "
                       f"{vorm.get('aantal', 0)} bijlagen", file=sys.stderr)
