@@ -9,12 +9,43 @@
       "plan": "verbouwen pand naar 3 appartementen",
       "woonfunctie_totaal_m2": 254.12,
       "vluchtroute_m2": 15.72,
-      "brandcompartimenten_m2": [58.31, 58.3, 44.59, 69.89],
+      "brandcompartimenten_m2": [
+        58.31,
+        58.3,
+        44.59,
+        69.89
+      ],
       "lagen": [
-        {"laag": "kelder", "woonfunctie_m2": 56.4, "zelfstandige_woningen": 0, "opmerking": "volledig gemeenschappelijk: bergingen 7.9 + 17.0 + 9.8 en fietsenkelder 19.2"},
-        {"laag": "begane grond", "woonfunctie_m2": 69.4, "zelfstandige_woningen": 1, "woning_m2": 58.3, "gemeenschappelijk_m2": 10.5, "opmerking": "entree 2.8 + hal 5.1 + meterkast 0.5 + toilet 1.1"},
-        {"laag": "1e verdieping", "woonfunctie_m2": 55.9, "zelfstandige_woningen": 1, "woning_m2": 49.6, "gemeenschappelijk_m2": 6.2, "opmerking": "overloop 5.6 + kast 0.6"},
-        {"laag": "2e verdieping", "woonfunctie_m2": 45.3, "zelfstandige_woningen": 1, "woning_m2": 42.8, "gemeenschappelijk_m2": 2.1, "opmerking": "overloop 2.1; studio zonder aparte slaapkamer"}
+        {
+          "laag": "kelder",
+          "woonfunctie_m2": 56.4,
+          "zelfstandige_woningen": 0,
+          "opmerking": "volledig gemeenschappelijk: bergingen 7.9 + 17.0 + 9.8 en fietsenkelder 19.2"
+        },
+        {
+          "laag": "begane grond",
+          "woonfunctie_m2": 69.4,
+          "zelfstandige_woningen": 1,
+          "woning_m2": 58.3,
+          "gemeenschappelijk_m2": 10.5,
+          "opmerking": "entree 2.8 + hal 5.1 + meterkast 0.5 + toilet 1.1"
+        },
+        {
+          "laag": "1e verdieping",
+          "woonfunctie_m2": 55.9,
+          "zelfstandige_woningen": 1,
+          "woning_m2": 49.6,
+          "gemeenschappelijk_m2": 6.2,
+          "opmerking": "overloop 5.6 + kast 0.6"
+        },
+        {
+          "laag": "2e verdieping",
+          "woonfunctie_m2": 45.3,
+          "zelfstandige_woningen": 1,
+          "woning_m2": 42.8,
+          "gemeenschappelijk_m2": 2.1,
+          "opmerking": "overloop 2.1; studio zonder aparte slaapkamer"
+        }
       ]
     },
     {
@@ -30,21 +61,57 @@
       "gebruiksoppervlak_totaal_m2": 149.69,
       "bvo_bestaand_m2": 146.73,
       "bvo_nieuw_m2": 270.85,
-      "woonruimten_m2": [20, 46, 24, 19, 23, 19],
+      "woonruimten_m2": [
+        20,
+        46,
+        24,
+        19,
+        23,
+        19
+      ],
       "lagen": [
-        {"laag": "kelder", "bvo_m2": 29.17},
-        {"laag": "begane grond", "bvo_bestaand_m2": 58.14, "bvo_nieuw_m2": 61.52, "zelfstandige_woningen": 2},
-        {"laag": "1e verdieping", "bvo_m2": 59.42, "zelfstandige_woningen": 2},
-        {"laag": "2e verdieping", "bvo_nieuw_m2": 62.6, "zelfstandige_woningen": 2}
+        {
+          "laag": "kelder",
+          "bvo_m2": 29.17
+        },
+        {
+          "laag": "begane grond",
+          "bvo_bestaand_m2": 58.14,
+          "bvo_nieuw_m2": 61.52,
+          "zelfstandige_woningen": 2
+        },
+        {
+          "laag": "1e verdieping",
+          "bvo_m2": 59.42,
+          "zelfstandige_woningen": 2
+        },
+        {
+          "laag": "2e verdieping",
+          "bvo_nieuw_m2": 62.6,
+          "zelfstandige_woningen": 2
+        }
       ]
     }
   ],
   "regels": [
     {
       "regel": "parkeernorm",
-      "waarde": "0,8 parkeerplaats per wooneenheid, naar boven afgerond; 0,5 per bestaande kamerverhuurkamer",
-      "bron": "besluit Hatertseweg 338: van 3 (0,5*5=2,5=3) naar (0,8*6=4,8=5) 5 parkeerplaatsen",
-      "let_op": "De aanvrager rekende zelf met 0,5 per studio, als klein eenkamerwoning. De gemeente volgde dat niet en hield 0,8 aan. Reken dus niet met 0,5."
+      "waarde": "De norm hangt af van de zone en het woningtype, niet van een enkel getal. Gemeten: 0,8 per wooneenheid in Hatert, 0,70 per woning in de Binnenstad. Een bestaande kamerverhuurkamer telt voor 0,5.",
+      "bron": "besluit Hatertseweg 338 (0,8 x 6) en parkeerberekening Staringstraat 2 (0,70 x 3, Koop appartement betaalbaar Binnenstad)",
+      "let_op": "Eerder schreef ik hier dat je met 0,8 moet rekenen. Dat was te snel: dat getal komt uit een pand in Hatert. In de Binnenstad is het 0,70, en in gereguleerd gebied kan de eis bij splitsing helemaal wegvallen. Zie de regel hieronder."
+    },
+    {
+      "regel": "geen parkeereis bij splitsing in gereguleerd gebied",
+      "waarde": "Voor een woning in het gereguleerd gebied worden bij woningsplitsing geen parkeervergunningen of parkeerabonnementen uitgegeven aan de nieuwe huisnummers. Daarom geldt voor woningsplitsing in gereguleerd gebied geen parkeereis.",
+      "bron": "Beleidsregels Parkeren 2025, bijzonder geval VII, Splitsing en verkamering bestaande woningen; aangehaald in de parkeerberekening bij Staringstraat 2",
+      "let_op": "Dit is het verschil tussen de twee dossiers. Staringstraat 2 ligt in de Binnenstad en rekent 3,00 - 1,00 = 2 plaatsen, waarna de eis vervalt via deze vrijstelling. Hatertseweg 338 ligt in Hatert, buiten het gereguleerd gebied, en moest wel 2 plaatsen opvangen met een parkeerdrukonderzoek. Of een pand in het gereguleerd gebied ligt, scheelt dus een onderzoek en een kostenpost.",
+      "nog_na_te_gaan": "welke postcodes precies in het gereguleerd gebied vallen; dat staat in beleidsregel 1 van de Beleidsregels Parkeren 2025 en die hebben wij nog niet"
+    },
+    {
+      "regel": "wat telt als zelfstandige woonruimte",
+      "waarde": "een woonruimte met een eigen toegang en adres, die door een huishouden kan worden bewoond zonder afhankelijk te zijn van wezenlijke voorzieningen daarbuiten: toiletruimte, badruimte en keuken. Is dat er niet, dan is het kamerverhuur.",
+      "bron": "Beleidsregels Parkeren 2025, aangehaald bij Staringstraat 2",
+      "let_op": "Dit is de grens waar onze hele splitsvraag om draait, en hij gaat over voorzieningen en een eigen toegang, niet over oppervlakte."
     },
     {
       "regel": "parkeerafwijking",
@@ -74,5 +141,5 @@
       "bron": "besluit Hatertseweg 338: zo is het niet ingetekend en ook niet beoordeeld en vergund"
     }
   ],
-  "wat_de_twee_dossiers_samen_zeggen": "Het oppervlak van een laag bepaalt het aantal woningen niet. Staringstraat 2 maakt van lagen van 45 tot 69 m2 telkens een woning van 43 tot 58 m2. Hatertseweg 338 maakt van lagen van ongeveer 60 m2 telkens twee woonruimten van 19 tot 24 m2, en dat is vergund. Beide in Nijmegen, beide langs dezelfde regels. Wat verschilt is het product, niet de ruimte. Een model dat uit het vloeroppervlak een aantal woningen afleidt, mist dus de helft van het verhaal."
+  "wat_de_twee_dossiers_samen_zeggen": "Het oppervlak van een laag bepaalt het aantal woningen niet. Staringstraat 2 maakt van lagen van 45 tot 69 m2 telkens een woning van 43 tot 58 m2. Hatertseweg 338 maakt van lagen van ongeveer 60 m2 telkens twee woonruimten van 19 tot 24 m2, en dat is vergund. Beide in Nijmegen, beide langs dezelfde regels. Wat verschilt is het product, niet de ruimte. Een model dat uit het vloeroppervlak een aantal woningen afleidt, mist dus de helft van het verhaal. En het tweede verschil is nog groter dan het eerste: Staringstraat 2 ligt in het gereguleerd gebied en heeft daar helemaal geen parkeereis, Hatertseweg 338 ligt erbuiten en moest twee plaatsen opvangen met een parkeerdrukonderzoek. Dezelfde handeling, dezelfde stad, een heel andere kostenpost. Of een pand binnen of buiten dat gebied ligt, is dus een van de eerste dingen die wij van een pand willen weten."
 }
