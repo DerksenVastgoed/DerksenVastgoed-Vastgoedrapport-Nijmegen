@@ -522,3 +522,22 @@ waarom: 13 oktober. Het schrijven van de brief mislukte in de run van 08:46.
   bijlage, die elke ochtend meegaat.
 proef: briefstand:niet-gekeken, niet-gevonden en leeg
 soort: werking
+
+---
+eis: Een toets op een bekende onwaarheid gaat niet af op een voorbehoud, en de
+  gevallen waarop hij is gebouwd zijn zinnen die echt in een brief hebben
+  gestaan.
+waarom: 13 oktober. De toets op "dit pand is te groot voor het puntenstelsel"
+  bevatte ook de losse patronen "telt ... niet mee" en "niet meegeteld". Die
+  hebben nooit een echte onwaarheid gevangen, want de drie bekende
+  formuleringen komen binnen via "te groot" of via "niet als een huishouden
+  doorgerekend. Hun enige uitwerking was dat de regel "label onbekend, niet
+  meegeteld" als onwaar werd gemarkeerd, en dat is juist een voorbehoud over
+  een ontbrekend gegeven. Zulke voorbehouden staan in bijna elke WOZ-regel. Ik
+  heb eerst geprobeerd die patronen te houden met een eis dat het de woning of
+  de telling moet zijn die niet meetelt; dat loste de valse melding op maar
+  ving twee formuleringen niet die ik zelf had bedacht. Een patroon bouwen
+  tegen een zin die niemand heeft geschreven, ten koste van zinnen die er wel
+  staan, is de verkeerde ruil.
+proef: gezondheid:ware zin wordt als onwaar gemarkeerd
+soort: werking
