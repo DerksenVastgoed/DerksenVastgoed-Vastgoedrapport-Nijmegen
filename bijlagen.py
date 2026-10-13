@@ -210,6 +210,42 @@ def haal(url, binair=False):
         return None, f"{type(e).__name__}" + (f" {code}" if code else "")
 
 
+def alle_links(tekst, basis):
+    """
+    Elke link op de pagina, samengevat per host. Geen oordeel, een telling.
+
+    WAAROM DIT ER IS. De bekendmaking zelf zegt dat de aanvraag "via de link
+    op deze pagina" is in te zien, maar de pdf-versie laat niet zien waarheen
+    die wijst. Zoeken op "exb-" zou een link naar een portaal van de gemeente
+    missen, en dan zou de verkenning "geen bijlagen" melden terwijl ze er wel
+    zijn. Dat is de stille leugen die wij juist niet willen.
+
+    Van elke link blijven alleen de host en de vorm van het pad over, nooit
+    de queryreeks: daar kan een sleutel in staan en deze samenvatting komt in
+    een issue in een publieke repo.
+    """
+    per_host = {}
+    for m in re.finditer(r'href="([^"]+)"', tekst or "", re.I):
+        vol = urllib.parse.urljoin(basis, m.group(1))
+        d = urllib.parse.urlparse(vol)
+        if d.scheme not in ("http", "https"):
+            continue
+        h = (d.hostname or "").lower()
+        stukken = [s for s in (d.path or "").split("/") if s]
+        vorm = "/" + "/".join(stukken[:2]) + ("/..." if len(stukken) > 2 else "")
+        p = per_host.setdefault(h, {"host": h, "aantal": 0, "vormen": set(),
+                                    "pdf": 0})
+        p["aantal"] += 1
+        p["vormen"].add(vorm[:60])
+        if (d.path or "").lower().endswith(".pdf"):
+            p["pdf"] += 1
+    uit = []
+    for p in per_host.values():
+        p["vormen"] = sorted(p["vormen"])[:4]
+        uit.append(p)
+    return sorted(uit, key=lambda p: -p["aantal"])
+
+
 def bijlagen_uit_html(tekst, basis):
     """
     De links naar externe bijlagen uit een publicatiepagina.
@@ -287,7 +323,12 @@ def verken(gmb, haal_bestanden=False):
         gevonden = (bijlagen_uit_metadata(tekst, url) if "metadata" in naam
                     else bijlagen_uit_html(tekst, url))
         vind["vormen"].append({"vorm": naam, "uitkomst": "gelezen",
-                               "tekens": len(tekst), "aantal": len(gevonden)})
+                               "tekens": len(tekst), "aantal": len(gevonden),
+                               # Alle links erbij, niet alleen de herkende.
+                               # Anders leest "0 bijlagen" als "die zijn er
+                               # niet", terwijl wij misschien de verkeerde
+                               # vorm zoeken.
+                               "hosts": alle_links(tekst, url)})
         alle.extend(gevonden)
     gezien = set()
     for b in alle:
@@ -353,6 +394,11 @@ def samenvatting(bevindingen, vandaag=None):
                      else "")
             r.append(f"- {v['vorm']}: {v['uitkomst']}{extra}, "
                      f"{v.get('aantal', 0)} bijlage(n)")
+            # Elke host waarheen de pagina linkt, ook de hosts die wij niet
+            # herkennen. Zonder dit leest "0 bijlagen" als "die zijn er niet".
+            for h in (v.get("hosts") or [])[:8]:
+                r.append(f"    - {h['host']}: {h['aantal']} link(s), "
+                         f"{h['pdf']} pdf, vorm {', '.join(h['vormen'])}")
         bij = b.get("bijlagen") or []
         r.append(f"- samen {len(bij)} unieke bijlage(n)")
         if b.get("tegenspraak"):
@@ -482,6 +528,29 @@ def proef():
             ("", "leeg")):
         if is_plattegrond(tekst):
             fouten.append(f"ten onrechte een plattegrond ({waarom})")
+
+    # 4b. ELKE LINK WORDT GETELD, OOK NAAR EEN HOST DIE WIJ NIET KENNEN, EN
+    # DE QUERYREEKS KOMT ER NOOIT IN. De bekendmaking zegt dat de stukken
+    # "via de link op deze pagina" zijn in te zien; zoeken wij alleen op
+    # "exb-", dan meldt de verkenning "geen bijlagen" terwijl ze er zijn.
+    links = alle_links(
+        '<a href="https://ander-portaal.nl/zaak/toon?sleutel=GEHEIM123">kijk</a>'
+        '<a href="/frbr/x/exb-2026-1/bijlage/tek.pdf">tekening</a>'
+        '<a href="/frbr/x/exb-2026-2/bijlage/tek2.pdf">tekening</a>',
+        "https://repository.overheid.nl/frbr/a/b.html")
+    check("aantal hosts", len(links), 2)
+    bron = str(links)
+    for verboden in ("GEHEIM123", "sleutel="):
+        if verboden in bron:
+            fouten.append(f"de hostsamenvatting bevat {verboden!r}")
+    vreemd = [h for h in links if h["host"] == "ander-portaal.nl"]
+    if not vreemd:
+        fouten.append("een link naar een host die wij niet kennen wordt niet "
+                      "geteld, en dan leest 'geen bijlagen' als 'die zijn er "
+                      "niet'")
+    eigen = [h for h in links if h["host"] == "repository.overheid.nl"]
+    if eigen:
+        check("pdf's geteld", eigen[0]["pdf"], 2)
 
     # 5. GEEN GELDIGE XML IS EEN ANTWOORD EN GEEN VAL.
     check("rommel in plaats van xml", bijlagen_uit_metadata("<nietafgesloten",
