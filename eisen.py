@@ -149,6 +149,91 @@ def _eindigt_op_sys_exit(bron):
     return staart.strip().splitlines()[-1][:60]
 
 
+BRIEFWORKFLOW = os.path.join(".github", "workflows", "bekendmakingen.yml")
+DAGNAMEN = ("zondag", "maandag", "dinsdag", "woensdag", "donderdag",
+            "vrijdag", "zaterdag")
+
+
+def _crondagen(veld):
+    """
+    De weekdagen uit het laatste veld van een cron, als verzameling 0 t/m 6.
+
+    Cron kent zondag als 0 en als 7. Een expander die dat niet weet, noemt
+    "17 0 * * 7" een zondag die er niet is en laat de zondag ongedekt lijken.
+    """
+    dagen = set()
+    for deel in str(veld).split(","):
+        deel, stap = deel.strip(), 1
+        if "/" in deel:
+            deel, _, s = deel.partition("/")
+            try:
+                stap = max(1, int(s))
+            except ValueError:
+                stap = 1
+        if deel == "*":
+            begin, eind = 0, 6
+        elif "-" in deel:
+            a, _, b = deel.partition("-")
+            try:
+                begin, eind = int(a), int(b)
+            except ValueError:
+                continue
+        else:
+            try:
+                begin = eind = int(deel)
+            except ValueError:
+                continue
+        for d in range(begin, eind + 1, stap):
+            dagen.add(0 if d == 7 else d)
+    return {d for d in dagen if 0 <= d <= 6}
+
+
+def startdagen(pad=BRIEFWORKFLOW):
+    """
+    Voor welke weekdagen de briefworkflow een geplande start heeft.
+
+    Levert (per_dag, crons, fout): per_dag is een dict 0 t/m 6 met het aantal
+    crons dat op die dag vuurt, crons het aantal gelezen cronregels, en fout
+    een reden als het bestand niet te lezen was.
+
+    WAAROM DIT HIER STAAT EN NIET IN HET GEZONDHEIDSRAPPORT. Een ontbrekende
+    dag hoort de poort tegen te houden en niet alleen in de bijlage te staan.
+    Zaterdag stond niet in de cron en niet in de geplande taak die de run van
+    buitenaf start; de brief van 3 en 10 oktober bestond dus alleen omdat er
+    iemand keek. Dat was aan niets te zien, want de digests-map had voor elke
+    dag een brief.
+
+    WAT DIT NIET MEET. Niet of de brief op tijd komt. De cron van GitHub vuurt
+    op deze repo uren te laat, en de start die hem wel op tijd brengt komt van
+    een geplande taak buiten de repo, die dit programma niet kan zien. Dit
+    meet de terugval die in de repo zelf vastligt.
+    """
+    per_dag = {d: 0 for d in range(7)}
+    try:
+        with open(pad, encoding="utf-8") as f:
+            regels = f.read().splitlines()
+    except Exception as e:
+        return (per_dag, 0, f"{pad} niet te lezen: {str(e)[:60]}")
+    crons = 0
+    for regel in regels:
+        kaal = regel.strip()
+        if not kaal.startswith("- cron:"):
+            continue
+        # EERST HET COMMENTAAR, DAN DE AANHALINGSTEKENS. Andersom haalt strip
+        # alleen het aanhalingsteken aan de voorkant weg, want achteraan staat
+        # het commentaar; dan blijft het laatste veld '1-6"' en leest geen
+        # enkele dag. De controle meldde zo zeven ongedekte dagen terwijl er
+        # drie crons stonden.
+        waarde = kaal.split(":", 1)[1].split("#", 1)[0].strip()
+        velden = waarde.strip('"').strip("'").strip().split()
+        if len(velden) != 5:
+            continue
+        crons += 1
+        for d in _crondagen(velden[4]):
+            per_dag[d] += 1
+    return (per_dag, crons, "")
+
+
 def proef(snel=False):
     """
     Nameten of de eisen werkelijk gehandhaafd worden.
@@ -220,6 +305,22 @@ def proef(snel=False):
         if reden:
             fouten.append(f"{module}.py heeft een --proef maar eindigt niet op "
                           f"sys.exit: {reden}. De exitcode is dan altijd 0.")
+
+    # Elke dag van de week moet een geplande start van de brief hebben. Een
+    # dag zonder cron heeft geen terugval, en dat valt pas op als niemand
+    # kijkt. Zie startdagen() voor wat dit wel en niet meet.
+    per_dag, crons, fout = startdagen()
+    if fout:
+        fouten.append(f"de startdagen niet na te meten: {fout}")
+    elif not crons:
+        fouten.append(f"geen enkele cron in {BRIEFWORKFLOW}; dan hangt de "
+                      f"brief volledig aan de geplande taak buiten de repo")
+    else:
+        kaal = [DAGNAMEN[d] for d in range(7) if not per_dag[d]]
+        if kaal:
+            fouten.append(f"zonder geplande start: {', '.join(kaal)}. Op die "
+                          f"dag komt de brief alleen als iemand hem met de "
+                          f"hand start.")
 
     print(f"Eisen: {len(eisen)} gelezen, {len(met_proef)} afgedwongen, "
           f"{len(deels)} deels, {len(zonder)} bewust zonder, "

@@ -394,3 +394,21 @@ waarom: 11 oktober. De omzetting van PDOK's pandsleutel nam de eerste sleutel
   Hoe vaak het voorkomt konden we niet eens meten, want we bewaarden er een.
 proef: voorraad_bag
 soort: gegevens
+
+---
+eis: Elke dag van de week heeft een geplande start van de brief, en de dag
+  waarop niemand kijkt is geen uitzondering.
+waarom: 13 oktober. Zaterdag stond niet in de cron van de briefworkflow en
+  ook niet in de geplande taak die de run van buitenaf start. De brief van
+  zaterdag 3 en 10 oktober bestond dus alleen omdat er iemand keek en hem met
+  de hand startte. Dat was aan niets te zien: de digests-map had voor elke dag
+  een brief, en een lege zaterdag zou pas opvallen op de eerste zaterdag dat
+  niemand keek. Een regeling die een oplettende mens nodig heeft, is geen
+  regeling.
+proef: eisen:zonder geplande start
+deels: ja
+let op: Dit meet de terugval in de repo en niet of de brief op tijd komt. De
+  cron van GitHub vuurde op 12 oktober 7 uur en 45 minuten te laat; de start
+  die hem wel op tijd brengt komt van een geplande taak buiten de repo, en
+  die kan geen proef in deze repo zien.
+soort: werking

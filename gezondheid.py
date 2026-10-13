@@ -2923,6 +2923,41 @@ def controle_transformaties():
     return (OK, bewijs, "")
 
 
+def controle_startdagen():
+    """
+    Of er voor elke dag van de week een geplande start van de brief vastligt.
+
+    De meting zelf staat in eisen.py, want daar houdt hij ook de poort tegen;
+    dit zet hem in het rapport. Zie startdagen() daar voor wat hij wel en niet
+    meet: wel de terugval die in de repo vastligt, niet of de brief op tijd
+    komt.
+    """
+    try:
+        from eisen import startdagen, DAGNAMEN
+        per_dag, crons, fout = startdagen()
+    except Exception as e:
+        return (LET_OP, f"de startdagen niet na te meten: {str(e)[:60]}",
+                "Zonder die meting is niet te zien voor welke dagen een start "
+                "vastligt.")
+    if fout:
+        return (LET_OP, fout,
+                "Zonder dat bestand is niet na te meten voor welke dagen een "
+                "start vastligt.")
+    if not crons:
+        return (LET_OP, "geen enkele cron in de briefworkflow",
+                "Dan is er voor geen enkele dag een terugval en hangt de "
+                "brief volledig aan de geplande taak buiten de repo.")
+    bewijs = (f"{crons} crons, samen "
+              + ", ".join(f"{DAGNAMEN[d]} {per_dag[d]}" for d in range(7)))
+    leeg = [DAGNAMEN[d] for d in range(7) if not per_dag[d]]
+    if leeg:
+        return (LET_OP, bewijs + f"; zonder geplande start: {', '.join(leeg)}",
+                "Op die dag komt de brief alleen als iemand hem met de hand "
+                "start. Zet die dag in de cron van bekendmakingen.yml en in "
+                "de geplande taak die de run van buitenaf start.")
+    return (OK, bewijs, "")
+
+
 def controle_eisen():
     """
     Wat we van de brief eisen, en hoeveel daarvan werkelijk vastligt.
@@ -3264,6 +3299,7 @@ CONTROLES = [
     ("Profiel nieuw aanbod", controle_aanbodprofiel),
     ("Groottepremie", controle_grootte_premie),
     ("Woningen in bestaande panden", controle_transformaties),
+    ("Geplande startdagen", controle_startdagen),
     ("Eisen aan de brief", controle_eisen),
     ("Voltooide splitsingen", controle_splitsingen),
     ("Verkoopdatums", controle_verkoopdatums),
