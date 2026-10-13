@@ -311,6 +311,70 @@ def leesbaar_kanaal(paden=None):
     return fouten
 
 
+def _modules_die_importeren(naam, map_pad="."):
+    """Welke modules in de map een bepaalde module importeren. Uit de map."""
+    uit = []
+    try:
+        namen = sorted(n for n in os.listdir(map_pad) if n.endswith(".py"))
+    except Exception:
+        return uit
+    for n in namen:
+        if n == naam + ".py":
+            continue
+        try:
+            with open(os.path.join(map_pad, n), encoding="utf-8") as f:
+                bron = f.read()
+        except Exception:
+            continue
+        if re.search(rf"^\s*(import {naam}\b|from {naam} import)", bron,
+                     re.M):
+            uit.append(n)
+    return uit
+
+
+def kaartschakelaar():
+    """
+    Of de workflow die een kaartmodule aanroept ook REPO_PRIVE meegeeft.
+
+    WAT HIER SPEELT. De drie kaarten in de brief staan op GitHub Pages, en
+    Pages werkt alleen bij een publieke repo. kaartlink.py laat de link weg
+    zodra REPO_PRIVE "true" is, en ook als hij niet is gezet, want een dode
+    link in een brief naar pa is erger dan geen link.
+
+    DAAROM DEZE TOETS. Die voorzichtige kant heeft een keerzijde: zet niemand
+    de variabele, dan vallen de kaarten stil uit de brief en lijkt dat op een
+    bewuste keuze. "Niet gezet" en "op prive gezet" mogen niet hetzelfde
+    lezen. Dus toetst dit dat elke workflow die zo'n module aanroept de
+    variabele werkelijk meegeeft.
+
+    De lijst modules komt uit de map en niet uit een opsomming hier: wie
+    kaartlink gaat importeren, valt er vanzelf onder.
+    """
+    fouten = []
+    modules = _modules_die_importeren("kaartlink")
+    if not modules:
+        # Geen enkele module gebruikt de schakelaar. Dat kan kloppen, maar dan
+        # toetst dit niets en hoort dat te blijken.
+        return ["geen enkele module importeert kaartlink; dan staat de "
+                "Pages-url weer los in de scripts of is de schakelaar weg"]
+    for pad in _alle_workflows():
+        try:
+            with open(pad, encoding="utf-8") as f:
+                bron = f.read()
+        except Exception as e:
+            fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
+            continue
+        roept = [m for m in modules if f"python {m}" in bron or
+                 f"python3 {m}" in bron]
+        if not roept:
+            continue
+        if "REPO_PRIVE" not in bron:
+            fouten.append(f"{pad} roept {', '.join(roept)} aan en geeft "
+                          f"REPO_PRIVE niet mee. Dan vallen de kaartlinks "
+                          f"stil uit de brief, ook als de repo publiek is.")
+    return fouten
+
+
 def startdagen(pad=BRIEFWORKFLOW):
     """
     Voor welke weekdagen de briefworkflow een geplande start heeft.
@@ -451,6 +515,10 @@ def proef(snel=False):
     # Zie leesbaar_kanaal() voor de verkenning die groen en onleesbaar
     # tegelijk was.
     fouten.extend(leesbaar_kanaal())
+
+    # Een kaartlink die stil wegvalt leest als een keuze. Zie
+    # kaartschakelaar().
+    fouten.extend(kaartschakelaar())
 
     # Elke dag van de week moet een geplande start van de brief hebben. Een
     # dag zonder cron heeft geen terugval, en dat valt pas op als niemand

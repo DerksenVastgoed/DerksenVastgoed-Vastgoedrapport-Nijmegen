@@ -17,6 +17,8 @@ import sys
 import urllib.parse
 import requests
 
+import kaartlink
+
 try:
     from diagnose import leg_vast, wis
 except Exception:  # noqa
@@ -47,7 +49,6 @@ PDOK_TMPL = ("https://api.pdok.nl/cbs/wijken-en-buurten-{jaar}"
              "/ogc/v1/collections/buurten/items?f=json&limit=2000"
              "&bbox=5.780,51.800,5.920,51.880")
 
-KAART_URL = "https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html"
 # --------------
 
 
@@ -350,9 +351,12 @@ def render(rijen: list) -> str:
             f"| {str(r.get('voor2000'))+'%' if r.get('voor2000') is not None else '—'} "
             f"| {r.get('studenten') or '—'} |"
         )
+    # De kaart staat op GitHub Pages en dat werkt alleen bij een publieke
+    # repo. kaartlink geeft een lege string zodra de repo prive staat, en dan
+    # valt de hele regel weg in plaats van dat er een dode link blijft staan.
+    _kaart = kaartlink.link("Bekijk op de kaart", "kaart-eigendom-ring.html")
     kop += ["",
-            f"[Bekijk op de kaart]({KAART_URL})",
-            "",
+            *([_kaart, ""] if _kaart else []),
             "_Meergezins is het aandeel appartementen in de voorraad, een indicatie of "
             "splitsen hier gebruikelijk is. Voor 2000 is het aandeel oudere voorraad, "
             "wat samenhangt met de renovatie- en labelopgave. Studenten is het aantal "

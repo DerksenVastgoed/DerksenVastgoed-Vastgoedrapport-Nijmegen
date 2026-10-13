@@ -68,6 +68,19 @@ on:
 permissions:
   contents: write
 
+# DE ZICHTBAARHEID VAN DE REPO, DOORGEGEVEN AAN DE SCRIPTS.
+#
+# De drie kaarten in de brief staan op GitHub Pages, en Pages werkt alleen bij
+# een publieke repo. Zet Mark de repo op prive, dan geven die drie links een
+# 404 in een brief die naar pa gaat. GitHub geeft de zichtbaarheid bij elke
+# run mee in het event, dus die hoeft niemand met de hand om te zetten:
+# kaartlink.py leest deze variabele en laat de regel weg zodra hij "true" is.
+# Niet gezet geldt als prive, want een dode link is erger dan geen link, en
+# eisen.py toetst dat deze regel hier staat zodat die keuze niet stil gemaakt
+# kan worden.
+env:
+  REPO_PRIVE: ${{ github.event.repository.private }}
+
 jobs:
   # Ligt er voor vandaag al een brief in de repo, dan is dit de tweede poging
   # en hoeft hij niet te draaien. Zo kost een tweede cron niets zolang de
