@@ -1045,3 +1045,8 @@ Graafseweg 33-A21 | Nijmegen | 210000 | verkocht | 2026-10-13 | funda-verkocht-p
 Burg. Hustinxstraat 172 | Nijmegen | 300000 | te koop | 2026-10-13 |  | 51 | 6512AC
 Berg En Dalseweg | Nijmegen | 1761 | te huur | 2026-10-13 | huislijn | 51 | 6522BC
 Kelfkensbos | Nijmegen | 733 | te huur gemeubileerd | 2026-10-13 | pararius | 45 | 6511TB
+
+# Automatisch toegevoegd uit Funda-attendering op 13-10-2026
+Berg en Dalseweg | Nijmegen | 1761 | te huur gemeubileerd | 2026-10-13 | pararius | 51 | 6522BC
+Berg en Dalseweg | Nijmegen | 1761 | te huur kamer | 2026-10-13 | kamernet | 51 | 
+St. Stevenskerkhof | Nijmegen | 470 | te huur kamer | 2026-10-13 | kamernet-incl | 110 | 

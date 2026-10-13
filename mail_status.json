@@ -27,8 +27,8 @@
    ]
   },
   "kamernet": {
-   "mails": 6,
-   "objecten": 3,
+   "mails": 8,
+   "objecten": 5,
    "overgeslagen": 3,
    "redenen": [
     "Dahliastraat, Malden: buiten Nijmegen",
@@ -39,12 +39,20 @@
  },
  "opmerking": "",
  "kandidaten": {},
+ "ontdubbeld": {
+  "zelfde_status": 19,
+  "andere_status": 2,
+  "voorbeelden": [
+   "Berg en Dalseweg -> te huur gemeubileerd",
+   "Berg en Dalseweg -> te huur kamer"
+  ]
+ },
  "berichten_per_afzender": {
   "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 6,
+  "kamernet.nl": 8,
   "vendr.nl": 0,
   "huislijn.nl": 4,
   "huisly.nl": 0,

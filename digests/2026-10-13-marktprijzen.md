@@ -22,14 +22,14 @@ _13 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-476232.html" style="color:#12242c;text-decoration:none">Besluit voor het plaatsen van een entreekozijn in de voorgevel aan Molenstraat 43, 6511HA Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">173 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging in de voorgevel is een esthetische ingreep zonder directe betekenis voor een beleggingsstrategie.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Plaatsen van een nieuw entreekozijn in de voorgevel is een esthetische ingreep zonder invloed op verhuur- of splitsingsmogelijkheden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-12 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-476232.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">105 m² . label A (2018)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanpassing van de pui betreft een gevelwijziging zonder directe link naar een waardecreatiestrategie voor dit pand van 105 m2.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor het aanpassen van de pui bij een pand met label A uit 2018 wijst op een gevelingreep die bij uitvoering verdere labelverbetering kan opleveren.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -46,16 +46,16 @@ _Bekende WOZ-waarden: Prof. Molkenboerstraat 30 €432.000 (2026), puntenstelsel
 _8 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#12242c;text-decoration:none">Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#12242c;text-decoration:none">Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">299 m² . label D (2025)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel bij dit pand van 299 m2 betreft een structurele ingreep zonder duidelijke link naar waardecreatie.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel bij een pand van 299 m² met label D wijst op een gevelrenovatie die bij mutatie kan bijdragen aan labelverbetering.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">250 m² . label E (2017)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging en interne doorbraak in een pand van 250 m2 wijzen op interne renovatie zonder vastgestelde functiewijziging of splitsing.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Nieuwe kozijnen in de voorgevel samen met een interne doorbraak duiden op een gevelrenovatie die het energielabel E uit 2017 kan verbeteren.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -103,7 +103,7 @@ _4 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-475246.html" style="color:#12242c;text-decoration:none">Melding slopen van gedeelte van woning t.b.v. wijzigen constructie/verduurzaming binnen/achtergevel, aan Fagelstraat 54, 6524CG Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">93 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloop van een deel van de woning ten behoeve van verduurzaming verbetert de energieprestatie van dit pand van 93 m2.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Sloop van een deel van de woning expliciet ten behoeve van verduurzaming laat zien dat labelverbetering hier vergunningtechnisch haalbaar is.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-12 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-475246.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -130,6 +130,6 @@ _Dagen in aanbod telt vanaf de eerste keer dat dit pand in de attendering versch
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 883 panden, waarvan er 102 nu in aanbod zijn. Bijgewerkt 13 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 886 panden, waarvan er 102 nu in aanbod zijn. Bijgewerkt 13 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

@@ -74318,7 +74318,8 @@
     ],
     "postcode": "6522BC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Kelfkensbos|Nijmegen": {
     "oppervlakte": 45,
@@ -74327,12 +74328,19 @@
     ],
     "postcode": "6511TB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:Molenstraat 94|Nijmegen": {
     "postcode": "6511HJ",
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-d98cbd9e02a6446d165dc6e6786253f6"
+  },
+  "St. Stevenskerkhof|Nijmegen": {
+    "oppervlakte": 110,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

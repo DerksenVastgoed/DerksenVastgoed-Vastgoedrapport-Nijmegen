@@ -2,13 +2,13 @@
  "datum": "2026-10-13",
  "droog": false,
  "ronde": {
-  "al_gemeld": 25,
+  "al_gemeld": 50,
   "gebeurtenissen": 25,
   "gegroeid": 0,
-  "opgeruimd": 25,
-  "overgeslagen": 63,
-  "panden_bekend": 38,
-  "panden_nieuw": 15,
+  "opgeruimd": 0,
+  "overgeslagen": 38,
+  "panden_bekend": 28,
+  "panden_nieuw": 14,
   "projecten": 113,
   "sleutel_bezet": 0,
   "woningen": 697

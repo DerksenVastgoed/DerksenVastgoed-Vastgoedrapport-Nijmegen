@@ -1463,6 +1463,14 @@
   "omweg": 2.06,
   "soort": "bus"
  },
+ "51.84762,5.86321": {
+  "geschat": false,
+  "hemelsbreed": 261,
+  "meters": 430,
+  "naam": "Waalkade",
+  "omweg": 1.65,
+  "soort": "bus"
+ },
  "51.84773,5.84874": {
   "geschat": false,
   "hemelsbreed": 253,
