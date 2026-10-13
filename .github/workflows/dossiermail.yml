@@ -1,0 +1,75 @@
+name: Dossiermail verkennen
+
+# WAAROM DIT EEN EIGEN WORKFLOW IS EN GEEN STAP IN DE BRIEF.
+#
+# Dit is een verkenning: kijken of de mail van het Digitaal Gebouwen Archief
+# bruikbaar is. Zo'n stap hoort niet in de briefworkflow, want die draait elke
+# ochtend en mag niet omvallen door een experiment. Deze workflow heeft alleen
+# workflow_dispatch, dus hij draait nooit vanzelf.
+#
+# Hij committeert niets. De bestandenlijst van deze workflow is leeg, en
+# dossiermail.py zet het pakket in een tijdelijke map buiten de werkmap en
+# ruimt die op. Op tekeningen in een bouwdossier rust auteursrecht en de
+# voorwaarde bij het aanvragen zegt dat de kopie uitsluitend voor persoonlijk
+# gebruik is. Deze repo is publiek; een tekening erin zetten zou publiceren
+# zijn. Wat wij er later uit meten mag wel, want dat is onze eigen waarneming.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dagen:
+        description: "Hoe ver terug in de mailbox kijken, in dagen"
+        required: false
+        default: "7"
+      haal:
+        description: "Ook het pakket openen en de inhoud beschrijven"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  verkennen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: De eigen logica nameten voordat de mailbox opengaat
+        # Geen secrets bij deze stap: deze proef raakt geen mailbox en geen
+        # netwerk. Hij meet onder meer of een host als
+        # studiezaal.nijmegen.nl.kwaad.nl wordt geweigerd.
+        run: python dossiermail.py --proef
+
+      - name: Kijken wat er in de mailbox staat
+        env:
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: |
+          VLAG=""
+          if [ "${{ github.event.inputs.haal }}" = "true" ]; then
+            VLAG="--haal"
+          fi
+          python dossiermail.py --dagen "${{ github.event.inputs.dagen || '7' }}" $VLAG
+
+      - name: Nameten dat er niets is achtergebleven
+        # De belofte van deze workflow is dat er niets uit een dossier in de
+        # repo terechtkomt. Dat is te toetsen in plaats van te beloven: na de
+        # stap hierboven moet de werkmap schoon zijn.
+        run: |
+          VREEMD=$(git status --porcelain)
+          if [ -n "$VREEMD" ]; then
+            echo "GESTOPT: er staan gewijzigde of nieuwe bestanden in de werkmap:"
+            echo "$VREEMD"
+            echo "Deze workflow hoort niets achter te laten."
+            exit 1
+          fi
+          echo "De werkmap is schoon; er is niets uit het dossier achtergebleven."

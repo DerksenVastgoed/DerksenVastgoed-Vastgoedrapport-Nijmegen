@@ -190,7 +190,24 @@ def _crondagen(veld):
     return {d for d in dagen if 0 <= d <= 6}
 
 
-def commitstap(paden=WORKFLOWS):
+def _alle_workflows(map_pad=os.path.join(".github", "workflows")):
+    """
+    Elk workflowbestand, en niet een vaste lijst van twee.
+
+    WAAROM NIET EEN LIJST. commitstap() stond op WORKFLOWS, een tuple met
+    bekendmakingen.yml en voorraad.yml. Zo'n lijst moet worden bijgewerkt bij
+    elke nieuwe workflow, en dat gebeurt niet: deze controle bestaat juist
+    omdat dezelfde fout in controle_sleutels_in_stappen al een keer een nieuwe
+    workflow niet dekte. Nu komt de lijst uit de map.
+    """
+    try:
+        return tuple(os.path.join(map_pad, n) for n in sorted(os.listdir(map_pad))
+                     if n.endswith((".yml", ".yaml")))
+    except Exception:
+        return ()
+
+
+def commitstap(paden=None):
     """
     Of een run die gegevens terugschrijft geen broncode kan veranderen.
 
@@ -210,6 +227,10 @@ def commitstap(paden=WORKFLOWS):
     commit tegenhoudt die .py of .yml aanraakt.
     """
     fouten = []
+    paden = paden if paden is not None else _alle_workflows()
+    if not paden:
+        return ["geen workflowbestand gevonden om de commitstap te toetsen"]
+    gekeken = 0
     for pad in paden:
         try:
             with open(pad, encoding="utf-8") as f:
@@ -217,6 +238,13 @@ def commitstap(paden=WORKFLOWS):
         except Exception as e:
             fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
             continue
+        # ALLEEN WORKFLOWS DIE WERKELIJK COMMITTEN. Een verkenning die niets
+        # terugschrijft heeft geen commitstap en dus ook geen vangnet nodig.
+        # De uitzondering volgt uit de inhoud van het bestand en niet uit een
+        # lijst met namen, want zo'n lijst veroudert.
+        if "git commit" not in bron:
+            continue
+        gekeken += 1
         # Alleen echte shellregels, niet het commentaar dat de fout uitlegt.
         regels = [r.strip() for r in bron.splitlines()
                   if not r.strip().startswith("#")]
@@ -228,8 +256,11 @@ def commitstap(paden=WORKFLOWS):
                               f"gemerged")
                 break
         if "geen_broncode" not in bron:
-            fouten.append(f"{pad} heeft geen toets die een commit tegenhoudt "
-                          f"die broncode aanraakt")
+            fouten.append(f"{pad} committeert en heeft geen toets die een "
+                          f"commit tegenhoudt die broncode aanraakt")
+    if not gekeken:
+        fouten.append("geen enkele workflow committeert; dat kan kloppen, "
+                      "maar dan toetst deze controle niets")
     return fouten
 
 
