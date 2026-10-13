@@ -149,7 +149,9 @@ def _eindigt_op_sys_exit(bron):
     return staart.strip().splitlines()[-1][:60]
 
 
-BRIEFWORKFLOW = os.path.join(".github", "workflows", "bekendmakingen.yml")
+WORKFLOWS = (os.path.join(".github", "workflows", "bekendmakingen.yml"),
+             os.path.join(".github", "workflows", "voorraad.yml"))
+BRIEFWORKFLOW = WORKFLOWS[0]
 DAGNAMEN = ("zondag", "maandag", "dinsdag", "woensdag", "donderdag",
             "vrijdag", "zaterdag")
 
@@ -186,6 +188,49 @@ def _crondagen(veld):
         for d in range(begin, eind + 1, stap):
             dagen.add(0 if d == 7 else d)
     return {d for d in dagen if 0 <= d <= 6}
+
+
+def commitstap(paden=WORKFLOWS):
+    """
+    Of een run die gegevens terugschrijft geen broncode kan veranderen.
+
+    WAT HIER GEBEURDE. voorraad.yml zette bij een geweigerde push HEAD naar de
+    remote met "git reset --soft" en committeerde opnieuw. Soft laat de hele
+    index van de oude checkout staan, dus die commit schreef de boom van het
+    moment waarop de ronde BEGON. De ronde van 13 oktober 07:04 duurde 102
+    minuten; in dat uur werden PR 56 en PR 57 gemerged, en zijn commit van
+    08:46 draaide beide volledig terug: zes bestanden broncode en drie eisen.
+
+    Het ergste eraan was niet de terugdraai maar de stilte. Alle proeven bleven
+    groen, want de eisen die naar die controles verwezen waren met dezelfde
+    commit verdwenen. Daarom staat deze toets hier en niet in een proef van een
+    van beide workflows: hij moet blijven staan ook als alles eromheen wegvalt.
+
+    Twee dingen per workflow: geen "git reset --soft", en een toets die een
+    commit tegenhoudt die .py of .yml aanraakt.
+    """
+    fouten = []
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                bron = f.read()
+        except Exception as e:
+            fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
+            continue
+        # Alleen echte shellregels, niet het commentaar dat de fout uitlegt.
+        regels = [r.strip() for r in bron.splitlines()
+                  if not r.strip().startswith("#")]
+        for r in regels:
+            if "git reset --soft" in r:
+                fouten.append(f"{pad} gebruikt 'git reset --soft'; die schrijft "
+                              f"de hele index van de oude checkout terug en "
+                              f"draait werk terug dat tijdens de run is "
+                              f"gemerged")
+                break
+        if "geen_broncode" not in bron:
+            fouten.append(f"{pad} heeft geen toets die een commit tegenhoudt "
+                          f"die broncode aanraakt")
+    return fouten
 
 
 def startdagen(pad=BRIEFWORKFLOW):
@@ -305,6 +350,10 @@ def proef(snel=False):
         if reden:
             fouten.append(f"{module}.py heeft een --proef maar eindigt niet op "
                           f"sys.exit: {reden}. De exitcode is dan altijd 0.")
+
+    # Een run die gegevens terugschrijft mag geen broncode veranderen. Zie
+    # commitstap() voor wat dat op 13 oktober kostte.
+    fouten.extend(commitstap())
 
     # Elke dag van de week moet een geplande start van de brief hebben. Een
     # dag zonder cron heeft geen terugval, en dat valt pas op als niemand
