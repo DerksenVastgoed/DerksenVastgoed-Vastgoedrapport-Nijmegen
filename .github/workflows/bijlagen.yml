@@ -29,6 +29,11 @@ on:
         description: "Niet meer dan dit aantal publicaties (0 is alles)"
         required: false
         default: "0"
+      tekst:
+        description: "De lopende tekst van de publicatie meenemen, om te zien waar zij naar verwijst"
+        type: boolean
+        required: false
+        default: false
       haal:
         description: "De bijlagen ook binnenhalen en beschrijven"
         type: boolean
@@ -75,6 +80,9 @@ jobs:
           VLAG=""
           if [ "${{ github.event.inputs.haal }}" = "true" ]; then
             VLAG="--haal"
+          fi
+          if [ "${{ github.event.inputs.tekst }}" = "true" ]; then
+            VLAG="$VLAG --tekst"
           fi
           # Of uit het archief, of uit het veld, nooit allebei: anders is niet
           # te zien welke lijst er is onderzocht.
