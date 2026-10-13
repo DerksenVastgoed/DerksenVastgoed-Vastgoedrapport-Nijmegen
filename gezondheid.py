@@ -1564,11 +1564,23 @@ def controle_briefherhaling():
     """
     stand = _json("briefstand.json") or {}
     if stand.get("datum") == str(VANDAAG) and not stand.get("opnieuw_geschreven"):
-        return (FOUT, f"de brief van {stand['datum']} is niet opnieuw "
-                f"geschreven: {stand.get('reden') or 'onbekende reden'}",
-                "Er is een oude brief verstuurd of klaargezet. Zoek in het "
-                "logboek van de stap 'Verhalende brief maken' waarom het "
-                "schrijven mislukte.")
+        # DE REDEN ERBIJ, EN NIET EEN VERWIJZING NAAR EEN LOGBOEK DAT NIEMAND
+        # KAN LEZEN. Hier stond "zoek in het logboek van de stap". Dat logboek
+        # zit achter results-receiver.actions.githubusercontent.com, die van
+        # buiten de runner wordt geweigerd, dus op 13 oktober was er niets te
+        # onderzoeken. briefstand.py zet nu de staart van dat logboek in de
+        # stand, en die staat hiermee in de bijlage die elke ochtend meegaat.
+        staart = stand.get("logstaart")
+        bewijs = (f"de brief van {stand['datum']} is niet opnieuw geschreven: "
+                  f"{stand.get('reden') or 'onbekende reden'}")
+        if staart:
+            return (FOUT, bewijs + f"; laatste regels van die stap: {staart}",
+                    "Er is een oude brief verstuurd of klaargezet. De reden "
+                    "staat hierboven.")
+        return (FOUT, bewijs,
+                "Er is een oude brief verstuurd of klaargezet, en de stand "
+                "bewaart geen logstaart. Dat betekent dat deze run nog met de "
+                "oude stap liep; vanaf nu staat de reden erbij.")
     try:
         namen = sorted(n for n in os.listdir("digests")
                        if n.endswith("-verhaal.md"))
@@ -2400,6 +2412,42 @@ def controle_sleutels_in_stappen():
                     continue
                 stappen += 1
                 gegeven = set(stap.get("env") or {})
+
+                # EEN UITZONDERING MET EEN REDEN, EN GEEN LIJST VLAGGEN.
+                #
+                # Hierboven staat de uitzondering voor --proef en --zelftest.
+                # Er zijn meer aanroepen die geen enkele vraag doen: de stap
+                # "Voltooide splitsingen uit de BAG" draait voorraad_bag.py met
+                # --pijplijn-uit en leest alleen voorraad.json. Nagemeten op 13
+                # oktober: die aanroep draait met EP_API_KEY, BAG_API_KEY en
+                # ANTHROPIC_API_KEY alle drie leeg, geeft exitcode 0 en levert
+                # het blok van 18 regels. De controle meldde er toch FOUT op.
+                #
+                # Dit oplossen door --pijplijn-uit aan de reeks vlaggen toe te
+                # voegen zou de volgende offline vlag opnieuw laten afgaan: een
+                # lijst die bij elke nieuwe vlag moet worden bijgewerkt, wordt
+                # niet bijgewerkt. En de sleutel er dan toch bij zetten zou een
+                # afhankelijkheid suggereren die er niet is.
+                #
+                # Daarom zegt de stap het zelf, met een reden erbij:
+                #   # geen-sleutel-nodig: EP_API_KEY omdat deze aanroep alleen
+                #   # voorraad.json leest en geen enkele vraag doet
+                # Zonder "omdat" geldt de uitzondering niet. Dat is dezelfde
+                # regel als bij een eis zonder proef: een uitzondering die geen
+                # reden noemt, leest als vergeten in plaats van als keuze.
+                vrijgesteld, zonder_reden = set(), []
+                for s, staart in re.findall(
+                        r"#\s*geen-sleutel-nodig:\s*([A-Z0-9_]*_API_KEY)([^\n]*)",
+                        script):
+                    if "omdat" in staart.lower():
+                        vrijgesteld.add(s)
+                    else:
+                        zonder_reden.append(
+                            f"{bestand}: {(stap.get('name') or '?')[:36]} stelt "
+                            f"{s} vrij zonder reden; zet 'omdat ...' erachter")
+                mist.extend(zonder_reden)
+                gegeven |= vrijgesteld
+
                 for module, sleutels in nodig_per_module.items():
                     if re.search(r"\bpython3?\s+" + re.escape(module)
                                  + r"\s+--(?:proef|zelftest)\b", script):

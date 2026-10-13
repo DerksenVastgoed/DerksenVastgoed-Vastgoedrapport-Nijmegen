@@ -1365,7 +1365,7 @@ def schrijf_brief(bronnen):
         else:
             print("  herstel lukte niet; de eerste versie blijft staan",
                   file=sys.stderr)
-    if tekst and not tekst.rstrip().endswith((".", "!", "?", '"', ")")):
+    if tekst and lijkt_afgekapt(tekst):
         staart = tekst.rstrip()[-60:]
         print(f"LET OP: de brief eindigt midden in een zin: '...{staart}'. "
               f"Waarschijnlijk is het antwoord afgebroken.", file=sys.stderr)
@@ -1427,11 +1427,110 @@ def _vraag(berichten, woorden):
         return ""
 
 
+EINDTEKENS = (".", "!", "?", '"', ")", ":", "…")
+# Een afsluiting is kort: "Groet, Mark", "Mark", "Groet,". Meer dan vier
+# woorden is geen afsluiting meer maar een zin.
+AFSLUITING_WOORDEN = 4
+
+
+def lijkt_afgekapt(tekst):
+    """
+    Of de brief midden in een zin eindigt.
+
+    WAAROM DIT EEN FUNCTIE IS. Hier stond: eindigt de tekst niet op een punt,
+    uitroepteken, vraagteken, aanhalingsteken of sluithaakje, dan is hij
+    afgekapt. Een brief die afsluit met
+
+        Groet,
+        Mark
+
+    eindigt op een "k" en ging dus elke keer af. Het logboek diagnose/brief.txt
+    staat vol met regels als "De brief eindigt midden in een zin: '...Groet,
+    Mark'", en in bijna al die gevallen was de brief gewoon af. Een melding die
+    afgaat bij correct gedrag is erger dan geen melding: hij leert de lezer het
+    logboek over te slaan, en dan valt de echte afkapping ook niet meer op.
+
+    Daarom kijken we niet naar het laatste teken van de brief maar naar het
+    laatste INHOUDELIJKE: de laatste regel van meer dan vier woorden. Een
+    afsluiting en een naam vallen daarmee weg, en de echte afkapping
+    ("...kan volgens datzelfde bericht de verk") blijft staan, want die regel
+    is lang en eindigt zonder eindteken.
+    """
+    regels = [r.strip() for r in (tekst or "").strip().split("\n")]
+    inhoudelijk = [r for r in regels if len(r.split()) > AFSLUITING_WOORDEN]
+    if not inhoudelijk:
+        # Geen enkele regel met inhoud. Dan is er niets om over afkapping te
+        # zeggen; of de brief is zo kort dat een andere toets hem al afkeurt.
+        return False
+    return not inhoudelijk[-1].endswith(EINDTEKENS)
+
+
+def proef():
+    """
+    Nameten of de afkapdetectie een afsluiting van een afkapping onderscheidt.
+
+    De gevallen komen uit diagnose/brief.txt: dat zijn echte staarten van
+    echte brieven, met de uitkomst die ze hadden moeten geven.
+    """
+    fouten = []
+    gevallen = [
+        # (tekst, is afgekapt, waarom dit geval erin staat)
+        ("Hier staat een hele zin die netjes eindigt.\n\nGroet,\nMark",
+         False, "afsluiting op een eigen regel"),
+        ("landelijk +3,3% op jaarbasis, Gelderland +5,6%.\n\nGroet, Mark",
+         False, "afsluiting op een regel met de groet"),
+        ("Dat wil ik nog scherp krijgen bij Hatertseweg 338.\n\nGroet,\n Mark",
+         False, "afsluiting met een spatie ervoor"),
+        ("Ik hou de boel in de gaten.\n\nMark",
+         False, "alleen een naam als afsluiting"),
+        ("Een zin met een citaat erin: \"zo staat het er\"",
+         False, "eindigt op een aanhalingsteken"),
+        ("Dit loopt nog en dan: bod in de vrije sector kan volgens datzelfde "
+         "bericht de verk",
+         True, "echte afkapping midden in een woord"),
+        ("De eerste zin is af. En dan begint er een tweede die niet af",
+         True, "echte afkapping na een afgeronde zin"),
+        ("Alles is goed gegaan vandaag.", False, "een enkele afgeronde zin"),
+        ("Mark", False, "alleen een naam, geen inhoud om over te oordelen"),
+        ("", False, "leeg"),
+    ]
+    for tekst, verwacht, waarom in gevallen:
+        echt = lijkt_afgekapt(tekst)
+        if echt != verwacht:
+            fouten.append(f"{waarom}: geeft {echt}, verwacht {verwacht} "
+                          f"({tekst[-45:]!r})")
+
+    # EN DE INSTRUCTIEBLOKKEN DIE WE NIET WILLEN KWIJTRAKEN. Die staan in dit
+    # bestand en worden door andere proeven aangehaald; hier toetsen we dat ze
+    # bestaan, zodat een opschoning ze niet stil weghaalt.
+    try:
+        with open(__file__, encoding="utf-8") as f:
+            eigen = f.read()
+    except Exception as e:
+        fouten.append(f"eigen bron niet te lezen: {type(e).__name__}")
+        eigen = ""
+    for nodig in ("ONZE BOEKHOUDING IS GEEN NIEUWS",
+                  "GEPLAKTE VERKOPEN HEBBEN GEEN DATUM",
+                  "EEN VERKOOPPRIJS HEBBEN WE NIET"):
+        if eigen and nodig not in eigen:
+            fouten.append(f"het blok {nodig!r} staat niet meer in de "
+                          f"schrijfinstructie")
+
+    print(f"Proef brief_verhalend: {len(fouten)} fouten", file=sys.stderr)
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    return 1 if fouten else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--proef", action="store_true",
+                    help="meet de eigen logica na; raakt geen enkele bron")
     ap.add_argument("--datum", default=dt.date.today().isoformat())
     ap.add_argument("--uit", default="")
     args = ap.parse_args()
+    if getattr(args, "proef", False):
+        return proef()
     d = args.datum
 
     # Wat pa al heeft gelezen, en een gerichte waarschuwing bij de bronnen waar

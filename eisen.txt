@@ -494,3 +494,31 @@ waarom: 13 oktober. voorraad.yml zette bij een geweigerde push HEAD naar de
   opening, maar met de teruggedraaide code: dat was geluk en geen bewijs.
 proef: eisen:git reset --soft
 soort: werking
+
+---
+eis: Een melding gaat niet af bij correct gedrag, en een afsluiting is geen
+  afkapping.
+waarom: 13 oktober. De afkapdetectie van de brief keek of de tekst eindigde op
+  een punt, uitroepteken, vraagteken, aanhalingsteken of sluithaakje. Een brief
+  die afsluit met "Groet, Mark" eindigt op een k, dus ging hij elke keer af:
+  van de 68 meldingen in diagnose/brief.txt waren er na de reparatie 65 vals en
+  3 echt. Een melding die afgaat bij correct gedrag is erger dan geen melding,
+  want hij leert de lezer het logboek over te slaan, en dan valt de echte
+  afkapping ook niet meer op. De toets kijkt nu naar de laatste regel met meer
+  dan vier woorden, dus een groet en een naam vallen weg.
+proef: brief_verhalend:echte afkapping midden in een woord
+soort: werking
+
+---
+eis: De reden van een mislukking staat waar hij te lezen is, en niet alleen in
+  een logboek dat van buiten wordt geweigerd.
+waarom: 13 oktober. Het schrijven van de brief mislukte in de run van 08:46.
+  Dat werd gemeld, want dat mechanisme is na 8 oktober gebouwd, maar de stand
+  zei alleen "het schrijven mislukte". Waarom stond uitsluitend in het
+  joblogboek van GitHub, en dat zit achter
+  results-receiver.actions.githubusercontent.com, die van buiten de runner
+  wordt geweigerd. Er was dus niets te onderzoeken. De staart van dat logboek
+  gaat nu mee in briefstand.json en komt zo in het gezondheidsrapport in de
+  bijlage, die elke ochtend meegaat.
+proef: briefstand:niet-gekeken, niet-gevonden en leeg
+soort: werking
