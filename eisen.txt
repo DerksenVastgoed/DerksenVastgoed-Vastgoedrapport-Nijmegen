@@ -461,3 +461,20 @@ waarom: 13 oktober, gevonden voordat het misging. Mark stelde voor de mails
   hand gezet en telt als de oudste.
 proef: funda_verkocht_plak:oud achteraan
 soort: gegevens
+
+---
+eis: De dag dat wij iets vastleggen is geen gebeurtenis, en het aantal
+  vastleggingen op een dag is nooit een signaal.
+waarom: 13 oktober. De brief aan pa opende zo: "Vandaag staan er vijf panden
+  als verkocht gemarkeerd ... Maar het aantal op een dag zegt wel iets: er
+  wordt flink verkocht." Die vijf stonden al drie tot zes weken op Funda als
+  verkocht; wat er die dag gebeurde was dat Mark een lijst plakte. De
+  gebeurtenis droeg de plakdatum met de markering "nieuw", en de tekst zei
+  alleen dat de verkoopdatum onbekend was. De instructie verbood al een
+  tijdsaanduiding, en het verhaal hield zich aan de letter door het aantal op
+  een dag als bewijs te gebruiken. Nu draagt de gebeurtenis het venster waarin
+  de verkoop moet hebben gelegen, met de vorige keer dat wij het pand zagen
+  als harde ondergrens, heet de markering "nieuw in ons dossier", en verbiedt
+  de instructie het aantal van een dag als signaal.
+proef: pandgeschiedenis:ONZE BOEKHOUDING IS GEEN NIEUWS
+soort: werking
