@@ -20,6 +20,15 @@ on:
         description: "Publicatienummers, door komma's gescheiden"
         required: false
         default: "gmb-2026-463651,gmb-2026-460303"
+      uit_archief:
+        description: "De publicaties uit ons eigen archief halen in plaats van uit het veld hierboven"
+        type: boolean
+        required: false
+        default: false
+      max:
+        description: "Niet meer dan dit aantal publicaties (0 is alles)"
+        required: false
+        default: "0"
       haal:
         description: "De bijlagen ook binnenhalen en beschrijven"
         type: boolean
@@ -67,8 +76,15 @@ jobs:
           if [ "${{ github.event.inputs.haal }}" = "true" ]; then
             VLAG="--haal"
           fi
-          python bijlagen.py \
-            --gmb "${{ github.event.inputs.gmb || 'gmb-2026-463651,gmb-2026-460303' }}" \
+          # Of uit het archief, of uit het veld, nooit allebei: anders is niet
+          # te zien welke lijst er is onderzocht.
+          if [ "${{ github.event.inputs.uit_archief }}" = "true" ]; then
+            BRON="--uit-archief"
+          else
+            BRON="--gmb ${{ github.event.inputs.gmb || 'gmb-2026-463651,gmb-2026-460303' }}"
+          fi
+          python bijlagen.py $BRON \
+            --max "${{ github.event.inputs.max || '0' }}" \
             $VLAG --samenvatting "$RUNNER_TEMP/bevinding.md"
 
       - name: De bevinding in een issue zetten

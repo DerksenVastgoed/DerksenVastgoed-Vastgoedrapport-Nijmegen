@@ -38,6 +38,7 @@ waarneming en mag wel.
 """
 
 import argparse
+import json
 import os
 import re
 import shutil
@@ -482,6 +483,36 @@ def samenvatting(bevindingen, vandaag=None):
         r.append("Geen enkele publicatie onderzocht. Dat is iets anders dan "
                  "een publicatie zonder bijlagen: er is niet gekeken.")
         return "\n".join(r) + "\n"
+
+    # DE OPTELLING EERST. Bij een brede ronde is dit het getal dat telt:
+    # hoeveel van de publicaties die wij volgen brengen werkelijk een stuk
+    # mee. Staat dat onderaan achter 138 kopjes, dan leest niemand het.
+    met = [b for b in bevindingen if b.get("bijlagen")]
+    zonder = [b for b in bevindingen if not b.get("bijlagen")]
+    stuk = sum(len(b.get("bijlagen") or []) for b in bevindingen)
+    gelezen = [d for b in bevindingen for d in (b.get("bestanden") or [])
+               if not d.get("fout")]
+    plat = [d for d in gelezen if d.get("plattegrond")]
+    r.append(f"**{len(bevindingen)} publicaties onderzocht.** "
+             f"{len(met)} daarvan dragen samen {stuk} stuk(ken) mee, "
+             f"{len(zonder)} dragen niets mee.")
+    if gelezen:
+        r.append("")
+        r.append(f"Van de {len(gelezen)} stukken die wij hebben kunnen "
+                 f"openen zijn er {len(plat)} een plattegrond: een blad met "
+                 f"zowel een laagnaam als een ruimtenaam erop. Daar zijn de "
+                 f"maten per laag uit te lezen.")
+    r.append("")
+    # Bij een brede ronde alleen de publicaties die iets opleverden. Een
+    # publicatie zonder bijlagen staat in de optelling hierboven; haar
+    # hostlijst erbij zetten maakt het issue onleesbaar en voegt niets toe.
+    breed = len(bevindingen) > 5
+    if breed and zonder:
+        r.append(f"_De {len(zonder)} publicaties zonder bijlage staan "
+                 f"hieronder niet uitgeschreven; zij zijn wel onderzocht._")
+        r.append("")
+        bevindingen = met
+
     for b in bevindingen:
         r.append(f"### {b['gmb']}")
         r.append("")
@@ -492,7 +523,9 @@ def samenvatting(bevindingen, vandaag=None):
                      f"{v.get('aantal', 0)} bijlage(n)")
             # Elke host waarheen de pagina linkt, ook de hosts die wij niet
             # herkennen. Zonder dit leest "0 bijlagen" als "die zijn er niet".
-            for h in (v.get("hosts") or [])[:8]:
+            # Bij een brede ronde valt deze lijst weg: 138 keer dezelfde
+            # standaardhosts zegt niets en verdringt wat wel telt.
+            for h in ([] if breed else (v.get("hosts") or [])[:8]):
                 tekst_bij = (f", {h['in_tekst']} in de lopende tekst"
                              if h.get("in_tekst") else "")
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
@@ -713,6 +746,39 @@ def proef():
         fouten.append("een url uit de lopende tekst wordt niet als zodanig "
                       "gemeld, en dan lijkt het een gewone link")
 
+    # 4f. DE LIJST PUBLICATIES KOMT UIT HET ARCHIEF, NIET UIT EEN OPSOMMING.
+    # Een lijst nummers die met de hand wordt bijgehouden, wordt niet
+    # bijgehouden. Hier staat een klein archief in dezelfde vorm als het
+    # echte, zodat de keuze meetbaar is zonder het bestand te hoeven lezen.
+    nep = {
+        "staringstraat2": [
+            {"datum": "2026-10-05", "soorten": ["splitsing"],
+             "titel": "Aanvraag voor het verbouwen naar 3 appartementen",
+             "url": "https://repository.overheid.nl/a/gmb-2026-463651.html"}],
+        "ergensstraat1": [
+            {"datum": "2026-09-01", "soorten": ["brandveilig gebruik"],
+             "titel": "Melding brandveilig gebruik",
+             "url": "https://repository.overheid.nl/a/gmb-2026-1.html"},
+            {"datum": "2026-10-10", "soorten": ["verbouwing", "kamerverhuur"],
+             "titel": "Besluit verbouwing",
+             "url": "https://repository.overheid.nl/a/gmb-2026-2.html"}],
+        "dubbelstraat3": [
+            {"datum": "2026-10-05", "soorten": ["splitsing"],
+             "titel": "Dezelfde publicatie onder een tweede pand",
+             "url": "https://repository.overheid.nl/a/gmb-2026-463651.html"}],
+    }
+    gevonden = uit_archief(archief=nep)
+    check("aantal uit het archief", len(gevonden), 2)
+    check("nieuwste eerst", gevonden[0]["gmb"], "gmb-2026-2")
+    if any(g["gmb"] == "gmb-2026-1" for g in gevonden):
+        fouten.append("een melding brandveilig gebruik komt mee, terwijl die "
+                      "over gebruik gaat en niet over de indeling")
+    # Dezelfde publicatie onder twee panden mag maar een keer worden
+    # opgehaald; anders betalen wij hem twee keer en telt hij dubbel.
+    if len([g for g in gevonden if g["gmb"] == "gmb-2026-463651"]) != 1:
+        fouten.append("dezelfde publicatie onder twee panden komt dubbel mee")
+    check("archief ontbreekt", uit_archief(pad="bestaat-niet.json"), [])
+
     # 5. GEEN GELDIGE XML IS EEN ANTWOORD EN GEEN VAL.
     check("rommel in plaats van xml", bijlagen_uit_metadata("<nietafgesloten",
                                                             REPO), [])
@@ -750,10 +816,65 @@ def proef():
     return 1 if fouten else 0
 
 
+ARCHIEF = "bekendmakingen_archief.json"
+
+# De soorten publicatie waarbij een plattegrond iets zegt. De namen komen uit
+# het veld "soorten" dat het archief al bijhoudt; ze worden hier niet opnieuw
+# bedacht. "brandveilig gebruik" en "kamerverhuur" zitten er niet bij: daar
+# gaat het om gebruik en niet om de indeling, en ze zijn samen groter dan al
+# het andere bij elkaar.
+SOORTEN = ("splitsing", "verbouwing", "transformatie", "samenvoeging")
+
+
+def uit_archief(soorten=SOORTEN, pad=ARCHIEF, archief=None):
+    """
+    De publicaties uit ons eigen archief waarbij een plattegrond iets zegt.
+
+    WAAROM UIT HET ARCHIEF EN NIET UIT EEN LIJST. Een lijst nummers die met de
+    hand wordt bijgehouden, wordt niet bijgehouden. Het archief groeit elke
+    ochtend vanzelf, dus elke nieuwe splitsingsaanvraag valt hier vanzelf
+    onder. Dat is het hele punt van deze route.
+
+    Nieuwste eerst, want een recente aanvraag heeft de meeste kans dat de
+    stukken nog online staan.
+    """
+    if archief is None:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                archief = json.load(f)
+        except Exception:
+            return []
+    uit = []
+    for sleutel, lijst in (archief or {}).items():
+        for r in lijst or []:
+            if not isinstance(r, dict):
+                continue
+            if not (set(r.get("soorten") or []) & set(soorten)):
+                continue
+            m = GMB.search(r.get("url") or "")
+            if not m:
+                continue
+            uit.append({"gmb": m.group(1).lower(), "datum": r.get("datum") or "",
+                        "pand": sleutel, "titel": (r.get("titel") or "")[:70]})
+    # Dezelfde publicatie kan onder twee panden staan. Eenmaal is genoeg.
+    gezien, net = set(), []
+    for r in sorted(uit, key=lambda x: x["datum"], reverse=True):
+        if r["gmb"] in gezien:
+            continue
+        gezien.add(r["gmb"])
+        net.append(r)
+    return net
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--gmb", default="gmb-2026-463651,gmb-2026-460303",
+    ap.add_argument("--gmb", default="",
                     help="publicatienummers, door komma's gescheiden")
+    ap.add_argument("--uit-archief", action="store_true",
+                    help="de publicaties uit bekendmakingen_archief.json "
+                         "halen in plaats van uit --gmb")
+    ap.add_argument("--max", type=int, default=0,
+                    help="niet meer dan dit aantal publicaties, 0 is alles")
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
@@ -765,9 +886,23 @@ def main():
     if args.proef:
         return proef()
 
+    if args.uit_archief:
+        rijen = uit_archief()
+        nummers = [r["gmb"] for r in rijen]
+        print(f"Uit het archief: {len(nummers)} publicaties van soort "
+              f"{', '.join(SOORTEN)}", file=sys.stderr)
+    else:
+        nummers = [g.strip() for g in args.gmb.split(",") if g.strip()]
+    if args.max:
+        nummers = nummers[:args.max]
+    if not nummers:
+        # Geen publicaties is iets anders dan geen bijlagen. Dat verschil
+        # hoort in de samenvatting te staan en niet in een lege tabel.
+        print("Geen publicaties om te onderzoeken.", file=sys.stderr)
+
     bevindingen = []
     try:
-        for gmb in [g.strip() for g in args.gmb.split(",") if g.strip()]:
+        for gmb in nummers:
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
             for vorm in v["vormen"]:
