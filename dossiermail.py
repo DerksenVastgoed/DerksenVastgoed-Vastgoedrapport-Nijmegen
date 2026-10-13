@@ -197,6 +197,21 @@ def samenvatting(bevindingen, vandaag=None):
                  "er stond niets.")
         return "\n".join(r) + "\n"
     for b in bevindingen:
+        if b.get("overzicht") is not None:
+            r.append(f"Alle post sinds de gekozen datum: {b['gevonden']} "
+                     f"berichten gevonden, {b['gelezen']} gelezen. Geen "
+                     f"enkele link is gevolgd.")
+            r.append("")
+            r.append("| afzender | post | met een link | hosts in die links |")
+            r.append("|---|---:|---:|---|")
+            for p in b["overzicht"][:30]:
+                hosts = ", ".join(f"{h} ({n})" for h, n in
+                                  sorted(p["hosts"].items(),
+                                         key=lambda x: -x[1])[:4])
+                r.append(f"| {p['domein'][:38]} | {p['mails']} | "
+                         f"{p['met_link']} | {hosts[:90]} |")
+            r.append("")
+            continue
         if b.get("mislukt"):
             # Een mislukking is een uitkomst en moet er net zo duidelijk in
             # staan als een vondst. Anders leest een lege tabel als "niets
@@ -250,6 +265,58 @@ def samenvatting(bevindingen, vandaag=None):
     r.append("_Geen enkel bestand uit dit dossier staat in de repo: het "
              "pakket is in een tijdelijke map geopend en opgeruimd._")
     return "\n".join(r) + "\n"
+
+
+def domein_van(afzender):
+    """Het domein uit een From-kop, zonder het adres zelf."""
+    m = re.search(r"@([\w.-]+)", afzender or "")
+    return m.group(1).lower().strip(">").strip() if m else ""
+
+
+def tel_post(berichten):
+    """
+    Per afzenderdomein: hoeveel post, hoeveel met een link, en waarheen.
+
+    berichten is een lijst (from_kop, platte_tekst). Geen onderwerpen en geen
+    adressen in de uitkomst: dit gaat over Marks eigen mailbox en de
+    samenvatting komt in een publiek issue.
+    """
+    per = {}
+    for kop, tekst in berichten:
+        d = domein_van(kop) or "onbekend"
+        p = per.setdefault(d, {"domein": d, "mails": 0, "met_link": 0,
+                               "hosts": {}})
+        p["mails"] += 1
+        hosts = set()
+        for m in RE_URL.finditer(tekst or ""):
+            h = host_van(m.group(0))
+            if h:
+                hosts.add(h)
+        if hosts:
+            p["met_link"] += 1
+        for h in hosts:
+            p["hosts"][h] = p["hosts"].get(h, 0) + 1
+    return sorted(per.values(), key=lambda p: -p["mails"])
+
+
+def overzicht_mailbox(verbinding, sinds):
+    """Alle post sinds een datum, geteld per afzender. Volgt geen link."""
+    try:
+        status, data = verbinding.search(None, f"(SINCE {sinds})")
+        ids = (data[0] or b"").split() if status == "OK" else []
+    except Exception as e:
+        return {"mislukt": f"zoeken in de mailbox lukte niet "
+                           f"({type(e).__name__})"}
+    berichten = []
+    for mid in sorted(set(ids))[-400:]:
+        try:
+            status, data = verbinding.fetch(mid, "(BODY.PEEK[])")
+            bericht = email.message_from_bytes(data[0][1])
+        except Exception:
+            continue
+        berichten.append((_kop(bericht.get("From")), platte_tekst(bericht)))
+    return {"overzicht": tel_post(berichten), "gelezen": len(berichten),
+            "gevonden": len(set(ids))}
 
 
 def proef():
@@ -358,6 +425,38 @@ def proef():
         "https://studiezaal.nijmegen.nl/download")}])
     if "eerder een pagina dan een bestand" not in paginavorm:
         fouten.append("een link zonder extensie wordt niet als pagina gemeld")
+
+    # 6c. HET OVERZICHT TELT PER AFZENDER EN VERRAADT GEEN ADRES.
+    # AFZENDERS stond op nijmegen.nl, dus post van een andere afzender viel
+    # buiten de zoekopdracht en bestond daarmee niet voor ons. Niet gemeld
+    # dat hij werd overgeslagen: dat is hoe een filter een blinde vlek wordt.
+    # Dit overzicht telt wat er werkelijk binnenkomt, en volgt geen link.
+    post = [
+        ("Berichten over uw buurt <noreply@overheid.nl>",
+         "Bekijk de publicatie op https://zoek.officielebekendmakingen.nl/"
+         "gmb-2026-1.html en op https://omgevingswet.overheid.nl/x"),
+        ("noreply@overheid.nl",
+         "Nog een melding, https://zoek.officielebekendmakingen.nl/gmb-2.html"),
+        ("Het Archief <hetarchief@nijmegen.nl>",
+         "Uw downloadlink: https://studiezaal.nijmegen.nl/HttpHandler/?x=1"),
+        ("nieuwsbrief@funda.nl", "Geen enkele link hier."),
+    ]
+    t = tel_post(post)
+    check("aantal afzenders", len(t), 3)
+    check("grootste afzender eerst", t[0]["domein"], "overheid.nl")
+    check("post van overheid.nl", t[0]["mails"], 2)
+    check("met een link", t[0]["met_link"], 2)
+    check("funda zonder link", [p["met_link"] for p in t
+                                if p["domein"] == "funda.nl"], [0])
+    if t[0]["hosts"].get("zoek.officielebekendmakingen.nl") != 2:
+        fouten.append(f"de hosts worden niet per afzender geteld: "
+                      f"{t[0]['hosts']}")
+    # Geen adres in de uitkomst, alleen het domein: dit is Marks eigen
+    # mailbox en de samenvatting komt in een publiek issue.
+    for verboden in ("noreply@", "hetarchief@", "nieuwsbrief@", "Uw download"):
+        if verboden in str(t):
+            fouten.append(f"het overzicht bevat {verboden!r}")
+    check("lege mailbox", tel_post([]), [])
 
     # 7. EEN MISLUKKING STAAT ER NET ZO DUIDELIJK IN ALS EEN VONDST.
     # Zonder dit leest een samenvatting zonder tabel als "gekeken en niets
@@ -507,6 +606,9 @@ def main():
                     help="ook het pakket binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true",
                     help="eigen logica nameten; raakt geen mailbox")
+    ap.add_argument("--overzicht", action="store_true",
+                    help="alleen tellen wie er post stuurt en waar de links "
+                         "heen wijzen; volgt geen enkele link")
     ap.add_argument("--samenvatting", default="",
                     help="pad waar de bevinding als markdown wordt neergezet; "
                          "zonder dit staat de uitkomst alleen in het "
@@ -549,6 +651,25 @@ def main():
 
     import datetime as dt
     sinds = (dt.date.today() - dt.timedelta(days=args.dagen)).strftime("%d-%b-%Y")
+
+    if args.overzicht:
+        # WAT KOMT ER EIGENLIJK BINNEN, EN VAN WIE.
+        #
+        # AFZENDERS stond op nijmegen.nl, dus een melding van een andere
+        # afzender is nooit gezien. Niet gemeld dat hij werd overgeslagen: hij
+        # viel buiten de zoekopdracht en bestond daarmee niet voor ons. Dat
+        # is hoe een filter een blinde vlek wordt.
+        #
+        # Deze stand volgt geen enkele link. Hij telt alleen per afzender hoe
+        # veel post er is en naar welke hosts de links wijzen, zodat wij
+        # kunnen besluiten welke afzender erbij hoort. Geen onderwerpen en
+        # geen adressen: dit is Marks eigen mailbox en de samenvatting komt
+        # in een issue te staan.
+        bevindingen.append(overzicht_mailbox(verbinding, sinds))
+        verbinding.logout()
+        wegschrijven()
+        return 0
+
     ids = []
     for afzender in AFZENDERS:
         try:
