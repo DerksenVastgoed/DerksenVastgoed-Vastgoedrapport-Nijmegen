@@ -29,6 +29,11 @@ on:
         description: "Niet meer dan dit aantal publicaties (0 is alles)"
         required: false
         default: "0"
+      zoek:
+        description: "De broncode van de zoekpagina rond het woord documenten laten zien"
+        type: boolean
+        required: false
+        default: false
       js:
         description: "De scripts volgen om te vinden welk adres de ingeladen link ophaalt"
         type: boolean
@@ -91,6 +96,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.js }}" = "true" ]; then
             VLAG="$VLAG --js"
+          fi
+          if [ "${{ github.event.inputs.zoek }}" = "true" ]; then
+            VLAG="$VLAG --zoek"
           fi
           # Of uit het archief, of uit het veld, nooit allebei: anders is niet
           # te zien welke lijst er is onderzocht.

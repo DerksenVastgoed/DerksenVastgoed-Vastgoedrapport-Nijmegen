@@ -578,6 +578,15 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
                          f"{h['pdf']} pdf{tekst_bij}, "
                          f"vorm {', '.join(h['vormen'])}")
+        if b.get("zoek"):
+            r.append("")
+            r.append("**De broncode van de zoekpagina rond 'documenten':**")
+            r.append("")
+            r.append("```")
+            for _x in b["zoek"][:20]:
+                r.append(_x)
+            r.append("```")
+            r.append("")
         if b.get("js"):
             r.append("")
             r.append("**Waar komt de ingeladen link vandaan:**")
@@ -964,6 +973,10 @@ def main():
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--zoek", action="store_true",
+                    help="de zoekpagina ophalen en de broncode rond het woord "
+                         "documenten laten zien, om de knop te vinden die "
+                         "daar staat")
     ap.add_argument("--js", action="store_true",
                     help="de scripts van de pagina volgen om te vinden welk "
                          "adres de links inlaadt die niet in de HTML staan")
@@ -998,6 +1011,25 @@ def main():
         for gmb in nummers:
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
+            if args.zoek:
+                # DE KNOP "BEKIJK DOCUMENTEN" STAAT OP DE ZOEKPAGINA.
+                # Mark heeft de pagina laten zien zoals zijn browser hem
+                # toont; daar staat een actie "Bekijk documenten" en een veld
+                # Reactietermijn. In de broncode die wij ophalen vonden wij
+                # die niet, en daarom kijken wij nu gericht naar elk stuk
+                # broncode waar dat woord in staat.
+                _n, _u = kandidaten(gmb)[2]
+                _h, _f = haal(_u)
+                _sporen = [f"zoekpagina: {_f or str(len(_h or '')) + ' tekens'}"]
+                for _woord in ("ocument", "eactietermijn", "Acties"):
+                    _treffers = [m.start() for m in
+                                 re.finditer(_woord, _h or "")]
+                    _sporen.append(f"  {_woord!r}: {len(_treffers)} keer")
+                    for _i in _treffers[:4]:
+                        _stuk = (_h or "")[max(0, _i - 300):_i + 300]
+                        _sporen.append("    "
+                                       + re.sub(r"\s+", " ", _stuk)[:420])
+                v["zoek"] = _sporen
             if args.js:
                 # DE LINK STAAT NIET IN DE HTML, HIJ WORDT INGELADEN.
                 # De pagina roept GetReferendumLinks(<gmb>) aan. Daarom vond
