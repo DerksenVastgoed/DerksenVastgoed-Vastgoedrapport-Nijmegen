@@ -53,6 +53,16 @@ RE_BEZWAAR_TOT = re.compile(
     r"laten weten dat u het niet eens bent[^.]*?tot (\d{1,2} \w+ \d{4})", re.I)
 RE_BEZWAAR_TOT2 = re.compile(r"tot (\d{1,2} \w+ \d{4}) laten weten dat u het "
                              r"niet eens bent", re.I)
+# HET HARDE SIGNAAL, UIT DE METADATA VAN DE PAGINA ZELF.
+# In de broncode van een publicatie met stukken staat:
+#   <meta name="OVERHEIDop.datumEindeReactietermijn" content="2026-11-13" />
+# Dat is machineleesbaar en het staat er alleen als er werkelijk iets ter
+# inzage ligt. Daarmee is "heeft deze publicatie stukken" geen gok meer maar
+# een veld, en hoeven wij niet op zinnen in de lopende tekst te vertrouwen.
+RE_META_EINDE = re.compile(
+    r'name="OVERHEIDop\.datumEindeReactietermijn"\s+content="(\d{4}-\d{2}-\d{2})"',
+    re.I)
+
 RE_ONTVANGEN = re.compile(r"ontving de aanvraag op (\d{1,2} \w+ \d{4})", re.I)
 RE_VERWACHT = re.compile(
     r"neemt daarover waarschijnlijk (\d{1,2} \w+ \d{4})", re.I)
@@ -80,6 +90,19 @@ def datum(tekst):
     if not maand:
         return ""
     return f"{int(m.group(3)):04d}-{maand:02d}-{int(m.group(1)):02d}"
+
+
+def einde_reactietermijn(broncode):
+    """
+    De einddatum uit de metadata van de pagina, of leeg.
+
+    Dit is een ander soort bewijs dan de lopende tekst: het staat er alleen
+    als er werkelijk stukken ter inzage liggen. Een publicatie zonder dit
+    veld heeft niets liggen, en dat is iets anders dan een publicatie waarvan
+    wij de zin niet herkenden.
+    """
+    m = RE_META_EINDE.search(broncode or "")
+    return m.group(1) if m else ""
 
 
 def velden_uit(tekst):
@@ -243,6 +266,23 @@ def proef():
     check("datum met een cijfer", datum("1 maart 2026"), "2026-03-01")
     check("onbekende maand", datum("13 smurf 2026"), "")
     check("geen datum", datum("binnenkort"), "")
+
+    # 5b. DE EINDDATUM UIT DE METADATA IS HET HARDE SIGNAAL.
+    # Zo staat het in de broncode van de publicatie over Hatertseweg 338.
+    bron = ('<meta name="DC.type" content="publicatie" />'
+            '<meta name="OVERHEIDop.datumEindeReactietermijn" '
+            'content="2026-11-13" />'
+            '<meta name="OVERHEID.authority" content="Nijmegen" />')
+    check("einde uit de metadata", einde_reactietermijn(bron), "2026-11-13")
+    # Geen veld betekent geen stukken, en dat is iets anders dan een zin die
+    # wij niet herkenden.
+    check("zonder het veld", einde_reactietermijn(
+        '<meta name="DC.type" content="publicatie" />'), "")
+    check("lege broncode", einde_reactietermijn(""), "")
+    # Een ander veld met een datum mag niet meetellen.
+    check("ander datumveld", einde_reactietermijn(
+        '<meta name="OVERHEIDop.datumOndertekening" content="2026-09-14" />'),
+        "")
 
     # 6. ALLEEN WAT NU NOG OPEN STAAT.
     rijen = [{"gmb": "a", "bezwaar_tot": "2026-11-13"},
