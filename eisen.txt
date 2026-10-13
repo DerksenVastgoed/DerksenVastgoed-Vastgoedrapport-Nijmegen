@@ -427,3 +427,70 @@ waarom: 13 oktober. De omrekening van "Sinds N weken" naar een plaatsingsdatum
   vergunning van juni 2025, ruim een jaar voor de lijst.
 proef: funda_verkocht_plak:zonder venster werd er toch een spoor gemeld
 soort: gegevens
+
+---
+eis: Een melding die we hebben ontvangen en niet hebben vastgelegd, wordt
+  geteld, en de herkomst van een regel staat erin in plaats van dat we hem
+  afleiden.
+waarom: 13 oktober. De ontdubbeling van de mailstap sloot op adres en prijs
+  zonder status. Funda toont bij een verkocht pand de laatste vraagprijs, dus
+  een verkoopmelding van een woning die bij ons als te koop stond was per
+  definitie een dubbele en werd weggegooid. Er was geen teller voor wat de
+  ontdubbeling liet vallen, dus dat zag eruit als een mail zonder nieuws: van
+  de 77 regels die de mailstap ooit schreef stonden er 74 op te koop en 3 op
+  project, en geen een op verkocht. Tegelijk liet het bronveld leeg zodra er
+  geen link in de mail stond, en leeg is ook wat een met de hand gezette regel
+  heeft. Daardoor dacht het gezondheidsrapport dat die 143 verkopen uit de
+  mail kwamen, telde het ze door een velden-eis helemaal niet mee, en
+  adviseerde het een filter in Funda na te kijken dat al aanstond.
+proef: funda_mail:een statuswijziging wordt niet geteld
+soort: gegevens
+
+---
+eis: Welke waarneming van een adres geldt, bepaalt de datum en niet de plaats
+  in het bestand.
+waarom: 13 oktober, gevonden voordat het misging. Mark stelde voor de mails
+  niet drie dagen maar vanaf 22 augustus terug te lezen, de dag dat de
+  attendering begon. Zo'n inhaalslag zet waarnemingen van weken terug
+  ACHTERAAN in verkopen.txt, en twee lezers lieten de laatste regel winnen:
+  nog_te_koop in funda_verkocht_plak.py en wat_wij_weten in
+  verkoopdatum_model.py. Nagemeten met twee regels voor hetzelfde adres,
+  verkocht op 1 oktober en te koop op 25 augustus: beide noemden het adres te
+  koop. Elke verkoop die we al kenden zou dus stil terugdraaien en de woning
+  zou weer in het aanbod van de brief staan. Een regel zonder datum is met de
+  hand gezet en telt als de oudste.
+proef: funda_verkocht_plak:oud achteraan
+soort: gegevens
+
+---
+eis: De dag dat wij iets vastleggen is geen gebeurtenis, en het aantal
+  vastleggingen op een dag is nooit een signaal.
+waarom: 13 oktober. De brief aan pa opende zo: "Vandaag staan er vijf panden
+  als verkocht gemarkeerd ... Maar het aantal op een dag zegt wel iets: er
+  wordt flink verkocht." Die vijf stonden al drie tot zes weken op Funda als
+  verkocht; wat er die dag gebeurde was dat Mark een lijst plakte. De
+  gebeurtenis droeg de plakdatum met de markering "nieuw", en de tekst zei
+  alleen dat de verkoopdatum onbekend was. De instructie verbood al een
+  tijdsaanduiding, en het verhaal hield zich aan de letter door het aantal op
+  een dag als bewijs te gebruiken. Nu draagt de gebeurtenis het venster waarin
+  de verkoop moet hebben gelegen, met de vorige keer dat wij het pand zagen
+  als harde ondergrens, heet de markering "nieuw in ons dossier", en verbiedt
+  de instructie het aantal van een dag als signaal.
+proef: pandgeschiedenis:ONZE BOEKHOUDING IS GEEN NIEUWS
+soort: werking
+
+---
+eis: Een run die gegevens terugschrijft verandert geen broncode, en draait
+  niets terug dat tijdens zijn looptijd is gemerged.
+waarom: 13 oktober. voorraad.yml zette bij een geweigerde push HEAD naar de
+  remote met "git reset --soft" en committeerde opnieuw. Het commentaar erboven
+  zei dat alleen onze eigen bestanden in de index zouden zitten; soft laat juist
+  de hele index van de oude checkout staan, dus die commit schreef de boom van
+  het moment waarop de ronde begon. De ronde van 07:04 duurde 102 minuten, en
+  in dat uur werden PR 56 en PR 57 gemerged. Zijn commit van 08:46 draaide
+  beide volledig terug: zes bestanden broncode en drie eisen. Alle proeven
+  bleven groen, want de eisen die naar die controles verwezen waren met
+  dezelfde commit verdwenen. De brief die ik daarna liet draaien gaf een goede
+  opening, maar met de teruggedraaide code: dat was geluk en geen bewijs.
+proef: eisen:git reset --soft
+soort: werking

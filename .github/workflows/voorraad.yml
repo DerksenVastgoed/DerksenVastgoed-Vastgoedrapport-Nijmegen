@@ -260,7 +260,22 @@ jobs:
           # conflict bestaan. Alleen de bestanden die wij hebben toegevoegd
           # zitten in die index, dus de rest van de repo blijft zoals de
           # remote hem heeft.
+          # EEN GEGEVENSCOMMIT RAAKT NOOIT BRONCODE. Deze toets staat los van
+          # de lijst hierboven en van de resetmodus eronder: wat er ook gebeurt,
+          # een ronde die data terugschrijft mag geen .py of .yml veranderen.
+          # Op 13 oktober deed hij dat wel, en dat was aan niets te zien.
+          geen_broncode() {
+            local raakt
+            raakt=$(git diff --name-only HEAD~1 HEAD -- '*.py' '*.yml' 2>/dev/null || true)
+            if [ -n "$raakt" ]; then
+              echo "GESTOPT: deze commit raakt broncode: $raakt"
+              echo "Een ronde die gegevens terugschrijft hoort geen code te veranderen."
+              return 1
+            fi
+            return 0
+          }
           for poging in 1 2 3; do
+            geen_broncode || return 1
             if git push; then
               echo "Teruggecommit gelukt"
               return 0
@@ -276,10 +291,47 @@ jobs:
               echo "Kan ${GITHUB_REF_NAME} niet ophalen van de remote; staat die branch daar wel?"
               return 1
             fi
-            git reset --soft "origin/${GITHUB_REF_NAME}"
+            # MIXED EN NIET SOFT, EN DAARNA NAMETEN.
+            #
+            # Hier stond "git reset --soft", met het commentaar hierboven dat
+            # alleen onze eigen bestanden in de index zouden zitten. Dat is
+            # precies wat --soft NIET doet: die zet alleen HEAD en laat de
+            # hele index van de oude checkout staan. De commit schrijft die
+            # index als nieuwe boom, dus elk bestand dat tijdens de ronde op
+            # de remote veranderde, wordt teruggedraaid naar de versie van het
+            # moment waarop de ronde begon.
+            #
+            # Op 13 oktober gebeurde dat. De ronde van 07:04 duurde 102
+            # minuten; in dat uur werden PR 56 en PR 57 gemerged. Zijn commit
+            # van 08:46 draaide beide volledig terug: zes broncodebestanden en
+            # drie eisen. Alle proeven bleven groen, want de eisen die ernaar
+            # verwezen waren met dezelfde commit verdwenen.
+            #
+            # Nagemaakt in een sandbox, in een seconde:
+            #   --soft:  code.py na de commit = "versie 1"  (fix verdwenen)
+            #   mixed :  code.py na de commit = "versie 2 MET MIJN FIX"
+            #
+            # En dan nog nameten dat de commit werkelijk niets buiten de lijst
+            # aanraakt. Een reset-modus is te makkelijk terug te draaien; deze
+            # toets houdt het tegen, wat voor reset er ook boven staat.
+            git reset "origin/${GITHUB_REF_NAME}"
             for f in $BESTANDEN; do
               [ -f "$f" ] && git add "$f"
             done
+            LIJST=" $(echo $BESTANDEN) "
+            VREEMD=""
+            for f in $(git diff --cached --name-only); do
+              case "$LIJST" in
+                *" $f "*) ;;
+                *) VREEMD="$VREEMD $f" ;;
+              esac
+            done
+            if [ -n "$VREEMD" ]; then
+              echo "GESTOPT: deze commit zou bestanden buiten de lijst veranderen:$VREEMD"
+              echo "Dat is de fout van 13 oktober: een ronde draait werk terug"
+              echo "dat tijdens zijn looptijd is gemerged."
+              return 1
+            fi
             if git diff --cached --quiet; then
               echo "Na het bijtrekken is er niets meer te committen"
               return 0
