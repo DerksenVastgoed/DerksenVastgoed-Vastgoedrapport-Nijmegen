@@ -996,8 +996,31 @@ def _groot_dus_geen_punten(brief):
         r"|zegt[^.]{0,30}(?:weinig|niets)"
         r"|niet van toepassing"
         r"|gaat (?:hier )?niet op"
-        r"|telt[^.]{0,30}niet mee"
-        r"|niet mee(?:geteld|gerekend)"
+        # HIER STONDEN "telt ... niet mee" EN "niet meegeteld", EN DIE ZIJN WEG.
+        #
+        # Ze hebben nog nooit een echte onwaarheid gevangen: de drie bekende
+        # formuleringen komen alle drie binnen via "te groot" of via "niet als
+        # een huishouden doorgerekend". Hun enige uitwerking was een valse
+        # melding. Op 13 oktober markeerden ze deze zin als onwaar:
+        #
+        #   "Marialaan 56 ..., puntenstelsel ondergrens 140 punten (76 m2,
+        #    WOZ ..., label onbekend, niet meegeteld): onder de 187 op basis
+        #    van wat bekend is"
+        #
+        # Daar telt het LABEL niet mee, en dat is een eerlijk voorbehoud over
+        # een ontbrekend gegeven. Zo'n voorbehoud staat in bijna elke
+        # WOZ-regel: "verwarming niet meegeteld", "label onbekend, niet
+        # meegeteld". Een melding die afgaat op de zorgvuldigste zinnen in de
+        # brief leert de lezer het rapport te negeren.
+        #
+        # Er is geprobeerd ze te houden met een eis dat het de woning of de
+        # telling moet zijn die niet meetelt. Dat loste de valse melding op,
+        # maar ving twee bedachte formuleringen niet, en die waren bedacht:
+        # niemand heeft ze ooit geschreven. Een patroon bouwen tegen een zin
+        # die niet bestaat, ten koste van zinnen die wel bestaan, is de
+        # verkeerde ruil. Komt die formulering ooit echt voorbij, dan gaat hij
+        # met zijn eigen zin in de proef hieronder en keert het patroon
+        # terug.
         r"|niet (?:als|per)[^.]{0,25}(?:huishouden|woning)[^.]{0,25}"
         r"(?:doorgerekend|gerekend|geteld)"
         r"|niet doorgerekend"
@@ -3619,10 +3642,92 @@ def rapport(kort=False, bewaren=False):
     return "\n".join(r)
 
 
+# ZINNEN DIE ECHT IN EEN BRIEF HEBBEN GESTAAN, met de uitkomst die ze hadden
+# moeten geven. Niets hier is bedacht: de onware zinnen komen uit de brieven
+# van 8 en 9 oktober, de ware uit de brief van 13 oktober. Een patroon tegen
+# een verzonnen zin bouwen kost altijd een ware zin, en dat is deze week twee
+# keer gebeurd. Komt er een nieuwe formulering voorbij, dan gaat die hier bij.
+ONWARE_ZINNEN = (
+    ("Met 158 vierkante meter wordt het pand niet als een huishouden "
+     "doorgerekend in het puntenstelsel; die telling zegt hier dus weinig.",
+     "9 oktober"),
+    ("Met 158 m2 is het te groot om als een huishouden door te rekenen in het "
+     "puntenstelsel; dat wijst vanzelf richting opdelen.", "8 oktober"),
+    ("Dit pand van 182 m2 is te groot voor het puntenstelsel.", "8 oktober"),
+)
+WARE_ZINNEN = (
+    ("Marialaan 56 \u20ac444.000 (2026), puntenstelsel ondergrens 140 punten "
+     "(76 m2, WOZ \u20ac444.000, label onbekend, niet meegeteld): onder de 187 "
+     "op basis van wat bekend is; keuken, sanitair en verwarming bepalen of "
+     "het middenhuur blijft of vrije sector wordt .",
+     "13 oktober, het label telt niet mee en dat is een voorbehoud"),
+    ("De punten zijn een ondergrens: keuken, sanitair en buitenruimte als "
+     "gewone woning aangenomen bij 89 m2, verwarming niet meegeteld.",
+     "13 oktober, de verwarming telt niet mee"),
+    ("Burg. Hustinxstraat 56, puntenstelsel ondergrens 186 punten (102 m2): 1 "
+     "punten onder de grens van 187, maar het regime is hiermee NIET bepaald: "
+     "buitenruimte, berging, sanitair en verwarming zitten niet in deze "
+     "telling en leveren samen makkelijk twintig punten op.",
+     "13 oktober, de telling is onvolledig en dat staat er"),
+    ("Wij rekenen dit pand niet door als een zelfstandige woning: boven 150 m2 "
+     "betaalt de markt de huur voor een huishouden niet, dus is kamers het "
+     "scenario. Het puntenstelsel kent geen bovengrens aan oppervlakte: 182 m2 "
+     "levert juist veel punten op.",
+     "13 oktober, onze aanname met de grens van het stelsel erbij"),
+)
+
+
+def proef():
+    """
+    De toetsen op bekende onwaarheden nameten op zinnen die echt zijn geweest.
+
+    WAAROM JUIST DEZE. Een patroon dat afgaat op een correcte zin is erger dan
+    een gemiste fout: het leert de lezer het rapport over te slaan. Dat is deze
+    week twee keer gebeurd, bij de sleutelcontrole en bij deze. Beide keren was
+    de oorzaak een patroon dat ruimer was dan de fout die het moest vangen.
+    """
+    fouten = []
+    for zin, herkomst in ONWARE_ZINNEN:
+        if not _groot_dus_geen_punten(zin):
+            fouten.append(f"onware zin van {herkomst} wordt niet gevonden: "
+                          f"{zin[:70]!r}")
+    for zin, waarom in WARE_ZINNEN:
+        uit = _groot_dus_geen_punten(zin)
+        if uit:
+            fouten.append(f"ware zin wordt als onwaar gemarkeerd ({waarom}): "
+                          f"{uit[:70]!r}")
+
+    # En de andere patronen uit VERZONNEN, op hun eigen bekende geval.
+    overig = (
+        ("drie eenheden die al zijn verkocht, voor \u20ac385.000",
+         "een koopsom die wij niet kennen"),
+        ("dat zo'n aanvraag wordt ingediend laat zien dat de splitsing in de "
+         "praktijk al werkt", "een aanvraag als bewijs"),
+    )
+    for zin, waarom in overig:
+        raak = False
+        for patroon, _ in VERZONNEN:
+            if callable(patroon):
+                raak = raak or bool(patroon(zin))
+            else:
+                raak = raak or bool(re.search(patroon, zin, re.IGNORECASE))
+        if not raak:
+            fouten.append(f"geen enkel patroon vangt {waarom}: {zin[:60]!r}")
+
+    print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    return 1 if fouten else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default="")
+    ap.add_argument("--proef", action="store_true",
+                    help="meet de eigen logica na; raakt geen enkele bron")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
 
     # In de log de korte versie, om te kopieren en te delen. In het bestand de
     # volledige versie, voor als je alle details wilt nalezen.
@@ -3641,4 +3746,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # sys.exit en niet main(): zonder dit geeft het proces altijd 0 terug, ook
+    # als de proef rood staat, en is de poort in de workflow een formaliteit.
+    sys.exit(main() or 0)

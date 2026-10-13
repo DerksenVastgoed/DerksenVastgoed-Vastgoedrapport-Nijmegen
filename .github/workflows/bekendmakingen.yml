@@ -159,6 +159,13 @@ jobs:
           # draait een inhaalslag van oude mails elke bekende verkoop terug.
           # Deze proef raakt geen bron en kost geen seconde.
           python verkoopdatum_model.py --proef
+          # En de toetsen op bekende onwaarheden in de brief. Die worden ruimer
+          # gemaakt bij elke nieuwe fout, en een patroon dat te ruim is gaat af
+          # op de zorgvuldigste zinnen. Op 13 oktober markeerde het de regel
+          # "label onbekend, niet meegeteld" als onwaar, terwijl dat juist een
+          # voorbehoud over een ontbrekend gegeven is. De proef draait op
+          # zinnen die echt in een brief hebben gestaan.
+          python gezondheid.py --proef
           # Ook hier de aanroep van EP-Online, want deze workflow haalt
           # energielabels op via marktprijzen_bag en bekendmakingen_nijmegen.
           # De eisenproef hierboven draait met --snel en komt er dus niet
