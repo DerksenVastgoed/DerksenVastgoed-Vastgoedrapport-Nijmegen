@@ -1,10 +1,10 @@
 {
- "vastgelegd": 438,
- "met_zaaknummer": 371,
+ "vastgelegd": 479,
+ "met_zaaknummer": 407,
  "uitkomsten": {
-  "geen uitspraak": 352,
-  "verleend": 75,
-  "onbekend": 11
+  "geen uitspraak": 389,
+  "verleend": 78,
+  "onbekend": 12
  },
  "nu_ter_inzage": 32,
  "datum": "2026-10-13",
@@ -98,6 +98,12 @@
    "dagen": 122,
    "uitkomst": "verleend",
    "dagen_tov_verwacht": 36
+  },
+  {
+   "zaaknummer": "Z2025-00010294",
+   "dagen": 124,
+   "uitkomst": "verleend",
+   "dagen_tov_verwacht": 66
   },
   {
    "zaaknummer": "Z2026-00000401",
