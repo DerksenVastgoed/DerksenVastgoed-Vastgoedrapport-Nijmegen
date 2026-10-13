@@ -97,15 +97,23 @@
     {
       "regel": "parkeernorm",
       "waarde": "De norm hangt af van de zone en het woningtype, niet van een enkel getal. Gemeten: 0,8 per wooneenheid in Hatert, 0,70 per woning in de Binnenstad. Een bestaande kamerverhuurkamer telt voor 0,5.",
-      "bron": "besluit Hatertseweg 338 (0,8 x 6) en parkeerberekening Staringstraat 2 (0,70 x 3, Koop appartement betaalbaar Binnenstad)",
-      "let_op": "Eerder schreef ik hier dat je met 0,8 moet rekenen. Dat was te snel: dat getal komt uit een pand in Hatert. In de Binnenstad is het 0,70, en in gereguleerd gebied kan de eis bij splitsing helemaal wegvallen. Zie de regel hieronder."
+      "bron": "besluit Hatertseweg 338 (0,8 x 6) en parkeerberekening Staringstraat 2 (0,70 x 3, Koop appartement betaalbaar Binnenstad); de zonewaarden uit de Beleidsregels Parkeren 2025 zelf",
+      "let_op": "Eerder schreef ik hier dat je met 0,8 moet rekenen. Dat was te snel: dat getal komt uit een pand in Hatert. In de Binnenstad is het 0,70, en in gereguleerd gebied kan de eis bij splitsing helemaal wegvallen. Zie de regel hieronder.",
+      "zones": {
+        "binnenstad": "0,70 per woning voor de meeste woningen, waarvan 0,50 voor bewoners; bezoek 0,00",
+        "schil 1e ring": "1,25 per woning voor bepaalde koopcategorieen",
+        "overig": "bezoek 0,20 per woning",
+        "gemeten in Hatert": "0,8 per wooneenheid"
+      }
     },
     {
       "regel": "geen parkeereis bij splitsing in gereguleerd gebied",
       "waarde": "Voor een woning in het gereguleerd gebied worden bij woningsplitsing geen parkeervergunningen of parkeerabonnementen uitgegeven aan de nieuwe huisnummers. Daarom geldt voor woningsplitsing in gereguleerd gebied geen parkeereis.",
-      "bron": "Beleidsregels Parkeren 2025, bijzonder geval VII, Splitsing en verkamering bestaande woningen; aangehaald in de parkeerberekening bij Staringstraat 2",
+      "bron": "Beleidsregels Parkeren 2025, gemeente Nijmegen, bijzonder geval VII; gepubliceerd als gmb-2025-239801 en als CVDR739955",
       "let_op": "Dit is het verschil tussen de twee dossiers. Staringstraat 2 ligt in de Binnenstad en rekent 3,00 - 1,00 = 2 plaatsen, waarna de eis vervalt via deze vrijstelling. Hatertseweg 338 ligt in Hatert, buiten het gereguleerd gebied, en moest wel 2 plaatsen opvangen met een parkeerdrukonderzoek. Of een pand in het gereguleerd gebied ligt, scheelt dus een onderzoek en een kostenpost.",
-      "nog_na_te_gaan": "welke postcodes precies in het gereguleerd gebied vallen; dat staat in beleidsregel 1 van de Beleidsregels Parkeren 2025 en die hebben wij nog niet"
+      "nog_na_te_gaan": "De beleidsregel noemt geen postcodes maar verwijst naar een kaart: de zone-indeling onder Thema, Beleid, stedelijke zones tbv parkeernormering op kaart.nijmegen.nl. Die zones staan als open data op opendata.nijmegen.nl/dataset/zones-parkeernormering. Daarmee is per pand te bepalen in welke zone het ligt, en dus of de parkeereis vervalt.",
+      "buiten_gereguleerd_gebied": "Daar moet de extra parkeerbehoefte op eigen terrein worden opgelost. Kan dat niet, dan mag het in de openbare ruimte, maar alleen als daar aantoonbaar capaciteit is: de bezetting moet onder de 85 procent blijven. Is die capaciteit niet aan te tonen, dan kan de splitsing niet doorgaan.",
+      "let_op_uitbreiding": "De vrijstelling geldt niet voor een toename van bruto vloeroppervlak. Splitsen zonder uitbreiden is in gereguleerd gebied dus vrij van parkeereis, splitsen met een aanbouw niet."
     },
     {
       "regel": "wat telt als zelfstandige woonruimte",
@@ -139,6 +147,12 @@
       "regel": "wat niet is ingetekend is niet vergund",
       "waarde": "de gemeente beoordeelt en vergunt alleen wat op tekening staat",
       "bron": "besluit Hatertseweg 338: zo is het niet ingetekend en ook niet beoordeeld en vergund"
+    },
+    {
+      "regel": "bezettingsgrens bij een parkeerdrukonderzoek",
+      "waarde": "de parkeerbezetting in de openbare ruimte moet onder de 85 procent blijven",
+      "bron": "Beleidsregels Parkeren 2025, bijzonder geval VII",
+      "let_op": "Dit is het getal waar een parkeerdrukonderzoek tegenaan wordt gelegd. Haalt de buurt die grens niet, dan kan een splitsing buiten gereguleerd gebied niet doorgaan."
     }
   ],
   "wat_de_twee_dossiers_samen_zeggen": "Het oppervlak van een laag bepaalt het aantal woningen niet. Staringstraat 2 maakt van lagen van 45 tot 69 m2 telkens een woning van 43 tot 58 m2. Hatertseweg 338 maakt van lagen van ongeveer 60 m2 telkens twee woonruimten van 19 tot 24 m2, en dat is vergund. Beide in Nijmegen, beide langs dezelfde regels. Wat verschilt is het product, niet de ruimte. Een model dat uit het vloeroppervlak een aantal woningen afleidt, mist dus de helft van het verhaal. En het tweede verschil is nog groter dan het eerste: Staringstraat 2 ligt in het gereguleerd gebied en heeft daar helemaal geen parkeereis, Hatertseweg 338 ligt erbuiten en moest twee plaatsen opvangen met een parkeerdrukonderzoek. Dezelfde handeling, dezelfde stad, een heel andere kostenpost. Of een pand binnen of buiten dat gebied ligt, is dus een van de eerste dingen die wij van een pand willen weten."
