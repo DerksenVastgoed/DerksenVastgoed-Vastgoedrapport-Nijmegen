@@ -152,6 +152,13 @@ jobs:
         # rood te zijn op de plek waar hij ontstaat.
         run: |
           python eisen.py --proef --snel
+          # De stap die verkoopdatum_model.py draait staat op "if: false", dus
+          # daar kan geen poort naast staan. Toch beslist wat_wij_weten() daar
+          # welke waarneming uit verkopen.txt geldt, en dat moest op de datum
+          # gaan rusten in plaats van op de plaats in het bestand, anders
+          # draait een inhaalslag van oude mails elke bekende verkoop terug.
+          # Deze proef raakt geen bron en kost geen seconde.
+          python verkoopdatum_model.py --proef
           # Ook hier de aanroep van EP-Online, want deze workflow haalt
           # energielabels op via marktprijzen_bag en bekendmakingen_nijmegen.
           # De eisenproef hierboven draait met --snel en komt er dus niet
