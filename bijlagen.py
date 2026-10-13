@@ -33,6 +33,19 @@ Deze module blijft staan omdat hij dat antwoord geeft en blijft geven: komt
 er ooit wel een tekening bij een bekendmaking, dan ziet hij dat. Maar een
 corpus bouwen langs deze weg gaat niet.
 
+EN DE ZIN DIE ANDERS SUGGEREERT. In de bekendmaking van een aanvraag staat
+letterlijk: "U kunt nu alvast de aanvraag bekijken en hierover vragen
+stellen. Bekijken doet u via de link op deze pagina." Die link staat niet in
+de broncode van de pagina. Nagekeken of hij wordt ingeladen: de pagina roept
+inderdaad scripts aan die links nabezorgen, maar dat zijn
+/Referendum/GetReferendumLinks, /BWB/GetBWBLinks en /CVDR/GetCVDRLinks, en
+die gaan over wetgeving en niet over de stukken bij deze aanvraag.
+
+Wat de bekendmaking wel geeft en wat wij niet gebruikten: het kenmerk van de
+zaak bij de gemeente, zoals Z2026-00005538 voor Staringstraat 2 en
+Z2025-00011390 voor Biezenstraat 110. Dat is het nummer waaronder de
+gemeente het dossier kent, en het staat in elke aanvraagpublicatie.
+
 WAT NOG NIET VASTSTAAT. Hoe die bijlagen in de SRU staan en welke url ze
 hebben, weet ik niet, en van buiten een run is het niet te bevragen: de
 proxy van de werkomgeving weigert repository.overheid.nl. Daarom probeert
