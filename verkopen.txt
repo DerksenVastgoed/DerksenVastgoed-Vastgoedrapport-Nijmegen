@@ -1040,3 +1040,8 @@ Professor Cornelissenstraat 3 | Nijmegen | 370000 | verkocht | 2026-10-13 | fund
 van Slichtenhorststraat 42 | Nijmegen | 645000 | verkocht | 2026-10-13 | funda-verkocht-plak | 144 | 6524JR
 Kaapstander 264 | Nijmegen | 1215000 | verkocht | 2026-10-13 | funda-verkocht-plak | 151 | 6541EX
 Graafseweg 33-A21 | Nijmegen | 210000 | verkocht | 2026-10-13 | funda-verkocht-plak | 24 | 6512BP
+
+# Automatisch toegevoegd uit Funda-attendering op 13-10-2026
+Burg. Hustinxstraat 172 | Nijmegen | 300000 | te koop | 2026-10-13 |  | 51 | 6512AC
+Berg En Dalseweg | Nijmegen | 1761 | te huur | 2026-10-13 | huislijn | 51 | 6522BC
+Kelfkensbos | Nijmegen | 733 | te huur gemeubileerd | 2026-10-13 | pararius | 45 | 6511TB

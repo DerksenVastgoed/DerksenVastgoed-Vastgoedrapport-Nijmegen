@@ -1,7 +1,7 @@
 {
  "controles": {
   "3D BAG eigen snapshot": "OK",
-  "Aanbod": "LET OP",
+  "Aanbod": "OK",
   "Aanbodreeks": "OK",
   "Achtergronddekking": "OK",
   "Adressen met meerdere maten": "LET OP",
@@ -10,7 +10,7 @@
   "Bekendmakingen-archief": "OK",
   "Beleid haalt de mail": "OK",
   "Bouwkostenindex": "OK",
-  "Brief opnieuw geschreven": "OK",
+  "Brief opnieuw geschreven": "FOUT",
   "Brieven verstuurd": "OK",
   "Bronnen die niets opleveren": "LET OP",
   "Buurtcijfers CBS": "OK",
@@ -22,6 +22,7 @@
   "Geheugen en trend": "OK",
   "Geheugen verstuurde brieven": "OK",
   "Gemeubileerd": "OK",
+  "Geplande startdagen": "OK",
   "Gepubliceerde regels bij de panden": "OK",
   "Geschiedenis per pand": "OK",
   "Groottepremie": "OK",

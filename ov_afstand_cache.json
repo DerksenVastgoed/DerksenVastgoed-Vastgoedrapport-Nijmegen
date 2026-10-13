@@ -1351,6 +1351,14 @@
   "omweg": 2.42,
   "soort": "bus"
  },
+ "51.84619,5.87030": {
+  "geschat": false,
+  "hemelsbreed": 49,
+  "meters": 309,
+  "naam": "Valkhof",
+  "omweg": 6.31,
+  "soort": "bus"
+ },
  "51.84621,5.86148": {
   "geschat": false,
   "hemelsbreed": 13,

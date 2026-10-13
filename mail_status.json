@@ -2,46 +2,51 @@
  "datum": "2026-10-13",
  "bronnen": {
   "regulier": {
-   "mails": 2,
-   "objecten": 3,
-   "overgeslagen": 1,
+   "mails": 3,
+   "objecten": 4,
+   "overgeslagen": 2,
    "redenen": [
-    "van Spaenstraat 20 (geen prijs gevonden)"
+    "van Spaenstraat 20 (geen prijs gevonden)",
+    "Dokstraat 117 (geen prijs gevonden)"
    ]
   },
   "huislijn": {
-   "mails": 3,
-   "objecten": 8,
+   "mails": 4,
+   "objecten": 9,
    "overgeslagen": 0,
    "redenen": []
   },
   "pararius": {
-   "mails": 1,
-   "objecten": 2,
-   "overgeslagen": 1,
+   "mails": 2,
+   "objecten": 4,
+   "overgeslagen": 3,
    "redenen": [
-    "van Trieststraat (gemeubileerd, apart bewaard)"
+    "van Trieststraat (gemeubileerd, apart bewaard)",
+    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
+    "Kelfkensbos (gemeubileerd, apart bewaard)"
    ]
   },
   "kamernet": {
-   "mails": 4,
+   "mails": 6,
    "objecten": 3,
-   "overgeslagen": 1,
+   "overgeslagen": 3,
    "redenen": [
-    "Dahliastraat, Malden: buiten Nijmegen"
+    "Dahliastraat, Malden: buiten Nijmegen",
+    "Homberg: €53 per maand is niet aannemelijk",
+    "Homberg, Wijchen: buiten Nijmegen"
    ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "berichten_per_afzender": {
-  "funda.nl": 2,
+  "funda.nl": 3,
   "funda.com": 0,
-  "pararius.nl": 1,
+  "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 4,
+  "kamernet.nl": 6,
   "vendr.nl": 0,
-  "huislijn.nl": 3,
+  "huislijn.nl": 4,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0

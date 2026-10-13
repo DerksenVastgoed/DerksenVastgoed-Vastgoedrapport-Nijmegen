@@ -1,10 +1,10 @@
 {
- "verkooptijd_aantal": 118,
+ "verkooptijd_aantal": 127,
  "bezitsduur_aantal": 15,
  "bezitsduur_bij_benadering": 3,
  "prijsgroei_aantal": 5,
  "minimum_paren": 10,
- "verkooptijd_mediaan_dagen": 93,
+ "verkooptijd_mediaan_dagen": 89,
  "bezitsduur_mediaan_jaar": 3.3,
  "voorbeelden": [
   {

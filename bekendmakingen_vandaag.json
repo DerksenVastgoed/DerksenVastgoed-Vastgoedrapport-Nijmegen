@@ -4,7 +4,7 @@
   "titel": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474199.html",
   "strategie": "splitsen",
-  "duiding": "Verbouw van een verdieping tot zelfstandig appartement van 92 m² duidt op opsplitsing van het pand in meerdere eenheden.",
+  "duiding": "Interne verbouwing tot appartement creëert een zelfstandige wooneenheid van 92 m2, wat de verhuurbare voorraad in dit segment vergroot.",
   "feiten": {
    "energielabel": "A+ (2026)",
    "oppervlakte_m2": 92
@@ -18,7 +18,7 @@
   "titel": "Intrekking verzoek voor het aanvragen van twee huisnummers, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474726.html",
   "strategie": "splitsen",
-  "duiding": "Intrekking van de aanvraag voor twee huisnummers betekent dat de beoogde splitsing van dit pand van 116 m² niet doorgaat.",
+  "duiding": "Intrekking van het verzoek voor aparte huisnummers houdt de woning van 116 m2 samengevoegd, waardoor de beoogde splitsing niet doorgaat.",
   "feiten": {
    "energielabel": "F (2017)",
    "label_alleen_dit_adres": true,
@@ -33,7 +33,7 @@
   "titel": "Besluit voor het plaatsen van een entreekozijn in de voorgevel aan Molenstraat 43, 6511HA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-476232.html",
   "strategie": "geen",
-  "duiding": "Een nieuw entreekozijn in de voorgevel is een cosmetische aanpassing zonder gevolgen voor de woningvoorraad.",
+  "duiding": "Kozijnwijziging in de voorgevel is een esthetische ingreep zonder directe betekenis voor een beleggingsstrategie.",
   "feiten": {
    "oppervlakte_m2": 173
   },
@@ -42,16 +42,58 @@
   "kern": false
  },
  {
+  "datum": "2026-10-13",
+  "titel": "Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html",
+  "strategie": "geen",
+  "duiding": "Constructieve wijziging van de achtergevel bij dit pand van 299 m2 betreft een structurele ingreep zonder duidelijke link naar waardecreatie.",
+  "feiten": {
+   "energielabel": "D (2025)",
+   "oppervlakte_m2": 299
+  },
+  "straat": "Sumatrastraat",
+  "huisnummer": "22",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-13",
+  "titel": "Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html",
+  "strategie": "geen",
+  "duiding": "Kozijnwijziging en interne doorbraak in een pand van 250 m2 wijzen op interne renovatie zonder vastgestelde functiewijziging of splitsing.",
+  "feiten": {
+   "energielabel": "E (2017)",
+   "oppervlakte_m2": 250
+  },
+  "straat": "van Spaenstraat",
+  "huisnummer": "7",
+  "kern": false
+ },
+ {
   "datum": "2026-10-12",
   "titel": "Melding slopen van gedeelte van woning t.b.v. wijzigen constructie/verduurzaming binnen/achtergevel, aan Fagelstraat 54, 6524CG Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-475246.html",
   "strategie": "verduurzaming",
-  "duiding": "Sloop van een gedeelte van de woning ten behoeve van verduurzaming wijst op ingrepen die het energielabel van dit pand van 93 m² kunnen verbeteren.",
+  "duiding": "Sloop van een deel van de woning ten behoeve van verduurzaming verbetert de energieprestatie van dit pand van 93 m2.",
   "feiten": {
    "oppervlakte_m2": 93
   },
   "straat": "Fagelstraat",
   "huisnummer": "54",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-13",
+  "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html",
+  "strategie": "geen",
+  "duiding": "Aanpassing van de pui betreft een gevelwijziging zonder directe link naar een waardecreatiestrategie voor dit pand van 105 m2.",
+  "feiten": {
+   "energielabel": "A (2018)",
+   "oppervlakte_m2": 105
+  },
+  "straat": "Molenstraat",
+  "huisnummer": "94",
   "kern": false
  }
 ]
