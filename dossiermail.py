@@ -16,6 +16,30 @@ klopt:
   3. Met --haal erbij: wat zit er in het pakket. Bestandsnamen, soorten,
      omvang, en bij een PDF het aantal bladzijden en of er tekst in staat.
 
+WAT WE OP 13 OKTOBER HEBBEN GEMETEN, EN WAAROM STAP 3 NIET LUKT.
+
+De mail en de link worden gevonden. Het binnenhalen van het pakket niet. De
+link is geen bestand maar studiezaal.nijmegen.nl/HttpHandler/ met een
+tempUuid, en die gaf drie keer 403:
+
+  - met onze eigen User-Agent
+  - met een gewone browser-User-Agent
+  - met een browser-User-Agent, een Referer en koekjes van de voorpagina
+
+Drie keer dezelfde code ongeacht de kop, dus het zit niet in de aanvraag. De
+link is ook niet opgebruikt door onze eerste poging: de mail zegt dat hij
+drie dagen geldig is. Ook van twee andere netwerken komt hij niet binnen: de
+proxy van de werkomgeving weigert de host, en de fetcher van Anthropic
+krijgt niets terug. Wat overblijft is dat het archief verkeer van buiten
+weigert, en de runner van GitHub staat in Azure.
+
+WAT DAT BETEKENT VOOR DE ROUTE. Het ophalen van een dossier is handwerk en
+blijft dat: Mark vraagt het aan en downloadt het zelf, en wij lezen de maten
+uit het bestand dat hij aanlevert. Deze module blijft wel nuttig als de
+voorkant daarvan, want hij meet of de mail er is en of de PDF's een
+tekstlaag hebben. Een volgende ronde hoeft het 403-spoor niet opnieuw uit te
+zoeken: het is het netwerk en niet de code.
+
 WAT HET NOOIT DOET, en dat is met opzet in de code en niet in een afspraak:
 
   - Niets uit dat pakket komt in de repo. Alles gaat naar een tijdelijke map
