@@ -29,6 +29,11 @@ on:
         description: "Niet meer dan dit aantal publicaties (0 is alles)"
         required: false
         default: "0"
+      werklijst:
+        description: "Per besluit nakijken of er stukken ter inzage liggen en tot wanneer"
+        type: boolean
+        required: false
+        default: false
       zoek:
         description: "De broncode van de zoekpagina rond het woord documenten laten zien"
         type: boolean
@@ -99,6 +104,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.zoek }}" = "true" ]; then
             VLAG="$VLAG --zoek"
+          fi
+          if [ "${{ github.event.inputs.werklijst }}" = "true" ]; then
+            VLAG="--werklijst"
           fi
           # Of uit het archief, of uit het veld, nooit allebei: anders is niet
           # te zien welke lijst er is onderzocht.

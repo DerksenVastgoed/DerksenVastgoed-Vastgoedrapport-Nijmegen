@@ -973,6 +973,9 @@ def main():
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--werklijst", action="store_true",
+                    help="per besluit uit het archief nakijken of er stukken "
+                         "ter inzage liggen en tot wanneer")
     ap.add_argument("--zoek", action="store_true",
                     help="de zoekpagina ophalen en de broncode rond het woord "
                          "documenten laten zien, om de knop te vinden die "
