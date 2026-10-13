@@ -367,6 +367,14 @@ jobs:
           VANAF=$(date -d "-7 days" +%F)
           python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
 
+      - name: De mailstap nameten voordat hij de mailbox opent
+        # GEEN continue-on-error en GEEN secrets. Deze proef raakt de mailbox
+        # niet; hij meet de ontdubbeling en de herkomst na. Tot 13 oktober
+        # sloot die ontdubbeling op adres en prijs, zonder status, waardoor
+        # een verkoopmelding van een woning die wij al kenden per definitie
+        # een dubbele was en werd weggegooid. Dat was aan niets te zien.
+        run: python funda_mail.py --proef
+
       - name: Funda-attenderingen uitlezen
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}

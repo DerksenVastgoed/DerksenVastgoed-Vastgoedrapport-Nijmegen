@@ -427,3 +427,21 @@ waarom: 13 oktober. De omrekening van "Sinds N weken" naar een plaatsingsdatum
   vergunning van juni 2025, ruim een jaar voor de lijst.
 proef: funda_verkocht_plak:zonder venster werd er toch een spoor gemeld
 soort: gegevens
+
+---
+eis: Een melding die we hebben ontvangen en niet hebben vastgelegd, wordt
+  geteld, en de herkomst van een regel staat erin in plaats van dat we hem
+  afleiden.
+waarom: 13 oktober. De ontdubbeling van de mailstap sloot op adres en prijs
+  zonder status. Funda toont bij een verkocht pand de laatste vraagprijs, dus
+  een verkoopmelding van een woning die bij ons als te koop stond was per
+  definitie een dubbele en werd weggegooid. Er was geen teller voor wat de
+  ontdubbeling liet vallen, dus dat zag eruit als een mail zonder nieuws: van
+  de 77 regels die de mailstap ooit schreef stonden er 74 op te koop en 3 op
+  project, en geen een op verkocht. Tegelijk liet het bronveld leeg zodra er
+  geen link in de mail stond, en leeg is ook wat een met de hand gezette regel
+  heeft. Daardoor dacht het gezondheidsrapport dat die 143 verkopen uit de
+  mail kwamen, telde het ze door een velden-eis helemaal niet mee, en
+  adviseerde het een filter in Funda na te kijken dat al aanstond.
+proef: funda_mail:een statuswijziging wordt niet geteld
+soort: gegevens
