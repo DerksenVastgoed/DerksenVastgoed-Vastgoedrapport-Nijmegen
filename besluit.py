@@ -45,8 +45,22 @@ import sys
 # aanvragen van gemeente Nijmegen, niet bedacht. Een patroon bouwen tegen een
 # zin die niemand schrijft, vangt niets.
 RE_ZAAK = re.compile(r"\b(Z\d{4}-\d{6,})\b")
-RE_VERLEEND = re.compile(r"verleende een omgevingsvergunning", re.I)
-RE_TOESTEMMING = re.compile(r"geeft hiermee toestemming", re.I)
+# TWEE BRONNEN DIE ANDERS SCHRIJVEN OVER HETZELFDE BESLUIT.
+#
+# De bekendmaking op overheid.nl zegt: "Gemeente Nijmegen verleende een
+# omgevingsvergunning. De gemeente geeft hiermee toestemming voor ..."
+# De brief aan de aanvrager zegt het anders: "Wij besloten over uw aanvraag.
+# U krijgt een omgevingsvergunning. U ontvangt een omgevingsvergunning."
+#
+# Ik had alleen de eerste gelezen en de patronen daarop gebouwd. Op het
+# besluit van Hatertseweg 338 gaf dat geen enkele treffer, en daar is het
+# misgegaan. Beide vormen staan er nu in, allebei afgelezen van een echt
+# stuk.
+RE_VERLEEND = re.compile(
+    r"(verleende een omgevingsvergunning"
+    r"|geeft hiermee toestemming"
+    r"|U krijgt een omgevingsvergunning"
+    r"|U ontvangt een omgevingsvergunning)", re.I)
 RE_BESLUITDATUM = re.compile(
     r"Dit besluit namen wij op (\d{1,2} \w+ \d{4})", re.I)
 RE_BEZWAAR_TOT = re.compile(
@@ -57,12 +71,21 @@ RE_ONTVANGEN = re.compile(r"ontving de aanvraag op (\d{1,2} \w+ \d{4})", re.I)
 RE_VERWACHT = re.compile(
     r"neemt daarover waarschijnlijk (\d{1,2} \w+ \d{4})", re.I)
 
-# Woorden die een andere afloop aankondigen. Deze heb ik NIET in een echte
-# publicatie gezien; ze staan hier omdat een besluit ook negatief kan zijn en
-# wij anders elke uitkomst "verleend" zouden noemen. Daarom geven zij geen
-# uitkomst maar de uitkomst "anders", met de zin erbij, zodat de eerste echte
-# weigering in het rapport opduikt en wij het patroon dan uit dat geval
-# halen in plaats van uit mijn fantasie.
+# WOORDEN DIE OP EEN ANDERE AFLOOP KUNNEN WIJZEN, EN WAAROM ZIJ NIET
+# BESLISSEN.
+#
+# Ik heb geen enkele weigering gezien, dus ik ken de woorden niet waarmee een
+# weigering wordt opgeschreven. Eerst lieten deze woorden de uitkomst op
+# "anders" springen. Dat ging meteen mis op het besluit van Hatertseweg 338:
+# daar staat in de standaardtekst "Maakt u binnen een jaar geen gebruik van
+# de vergunning, dan kan deze worden ingetrokken". Een voorwaarde over de
+# toekomst, geen afloop. Een verleende vergunning werd zo als "anders"
+# geteld, en dat is precies de fout die een lerend model niet zelf kan
+# herstellen.
+#
+# Dus beslissen zij niets meer. Zij worden gemeld als signaal naast de
+# uitkomst, zodat de eerste echte weigering opvalt en wij het patroon uit dat
+# geval kunnen halen in plaats van uit mijn fantasie.
 ANDERS = ("weigerde", "geweigerd", "wijzen wij af", "afgewezen",
           "buiten behandeling", "ingetrokken", "van rechtswege")
 
@@ -97,22 +120,23 @@ def velden_uit(tekst):
         "zaaknummer": zaak.group(1) if zaak else "",
         "uitkomst": "",
         "uitkomst_reden": "",
+        "signalen": "",
         "besluitdatum": "",
         "bezwaar_tot": "",
         "ontvangen": "",
         "verwacht_besluit": "",
     }
     anders = [w for w in ANDERS if w in t.lower()]
-    if RE_VERLEEND.search(t) or RE_TOESTEMMING.search(t):
+    if RE_VERLEEND.search(t):
         uit["uitkomst"] = "verleend"
-        if anders:
-            # Allebei: dan zegt deze tekst twee dingen en kies ik niet.
-            uit["uitkomst"] = "onduidelijk"
-            uit["uitkomst_reden"] = (f"zowel verleend als {', '.join(anders)} "
-                                     f"komt voor")
     elif anders:
-        uit["uitkomst"] = "anders"
-        uit["uitkomst_reden"] = ", ".join(anders)
+        # GEEN OORDEEL ZONDER BEWIJS. Wij kennen de woorden van een
+        # weigering niet, dus zeggen wij "onbekend" en melden wat er stond.
+        # Een gok die toevallig goed uitpakt leert ons niets; een gok die
+        # fout uitpakt bederft de hele reeks.
+        uit["uitkomst"] = "onbekend"
+    if anders:
+        uit["signalen"] = ", ".join(anders)
     for sleutel, patroon in (("besluitdatum", RE_BESLUITDATUM),
                              ("ontvangen", RE_ONTVANGEN),
                              ("verwacht_besluit", RE_VERWACHT)):
@@ -224,19 +248,36 @@ def proef():
     check("lege uitkomst", leeg["uitkomst"], "")
     check("niets", velden_uit(""), velden_uit(None))
 
-    # 4. EEN ANDERE AFLOOP WORDT NIET ALS VERLEEND GETELD.
+    # 4. DE BRIEF AAN DE AANVRAGER SCHRIJFT HET ANDERS DAN DE BEKENDMAKING.
+    # Dit is de zin zoals pdftotext hem uit het besluit van Hatertseweg 338
+    # haalt, met de standaardtekst over intrekken erachteraan die er ook
+    # echt in staat. Eerst stond hier mijn eigen getypte zin, en die kwam uit
+    # de bekendmaking; de brief zegt het anders en gaf daarom geen treffer.
+    brief = ("Wij besloten over uw aanvraag. In deze brief en de bijlagen "
+             "leest u ons besluit en wat u nog moet doen. U krijgt een "
+             "omgevingsvergunning U ontvangt een omgevingsvergunning. U "
+             "vindt deze in de bijlage. Maakt u binnen een jaar geen gebruik "
+             "van de vergunning, dan kan deze worden ingetrokken.")
+    b = velden_uit(brief)
+    check("de brief telt ook als verleend", b["uitkomst"], "verleend")
+    # De standaardtekst over intrekken mag de uitkomst niet omgooien. Dat is
+    # een voorwaarde over de toekomst en geen afloop, en op het echte besluit
+    # van Hatertseweg 338 maakte dit van een verleende vergunning een
+    # "anders".
+    check("intrekken is een voorwaarde, geen afloop", b["uitkomst"],
+          "verleend")
+    check("het signaal wordt wel gemeld", b["signalen"], "ingetrokken")
+
+    # 4b. ZONDER BEWIJS GEEN OORDEEL.
+    # Wij hebben nog nooit een weigering gezien en kennen de woorden niet.
+    # Dus geen gok: onbekend, met het aangetroffen woord erbij, zodat de
+    # eerste echte weigering opvalt.
     w = velden_uit("De gemeente heeft de aanvraag geweigerd. Dit besluit "
                    "namen wij op 1 maart 2026 voor de aanvraag met "
                    "zaaknummer Z2026-00000001.")
-    check("weigering", w["uitkomst"], "anders")
-    check("reden erbij", w["uitkomst_reden"], "geweigerd")
-    check("zaaknummer bij een weigering", w["zaaknummer"], "Z2026-00000001")
-    # Zegt een tekst allebei, dan kies ik niet. Liever onduidelijk dan een
-    # verkeerd label, want een verkeerd label kan een lerend model niet zelf
-    # herstellen.
-    twee = velden_uit("verleende een omgevingsvergunning ... buiten "
-                      "behandeling gelaten")
-    check("twee uitkomsten", twee["uitkomst"], "onduidelijk")
+    check("geen gok bij een onbekende afloop", w["uitkomst"], "onbekend")
+    check("signaal erbij", w["signalen"], "geweigerd")
+    check("zaaknummer blijft", w["zaaknummer"], "Z2026-00000001")
 
     # 5. EEN DATUM IN WOORDEN WORDT EEN DATUM OM MEE TE REKENEN.
     check("datum", datum("13 november 2026"), "2026-11-13")
