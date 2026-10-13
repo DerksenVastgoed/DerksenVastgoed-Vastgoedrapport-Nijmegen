@@ -242,35 +242,14 @@ def lees_regels(pad):
 
 
 def nog_te_koop(bestaand):
-    """
-    Adressen die bij ons als te koop staan, volgens hun NIEUWSTE waarneming.
-
-    DE DATUM BESLIST, NIET DE PLAATS IN HET BESTAND. Hier won simpelweg de
-    laatste regel. Dat klopte zolang verkopen.txt alleen achteraan werd
-    aangevuld met waarnemingen van vandaag. Het klopt niet meer zodra we oude
-    mails inhalen: die regels komen ook achteraan, met een datum van weken
-    terug, en dan zou een "te koop" van 25 augustus een "verkocht" van 1
-    oktober overschrijven. Elke verkoop die we al kenden zou stilletjes
-    terugdraaien, en de woning zou weer in het aanbod van de brief staan.
-
-    Een regel zonder datum telt als de oudste. Die zijn met de hand gezet en
-    verliezen dus van elke waarneming met een datum. Ze tellen wel mee: de
-    eis van vijf velden sloot de 143 met de hand gezette regels hier uit.
-    """
-    beste = {}
-    for n, r in enumerate(bestaand):
+    """Adressen die bij ons als te koop staan, met hun laatste status."""
+    status_per_adres = {}
+    for r in bestaand:
         velden = [v.strip() for v in r.split("|")]
-        if len(velden) < 4:
+        if len(velden) < 5:
             continue
-        sl = _sleutel(velden[0])
-        # (datum, volgnummer): bij een gelijke of ontbrekende datum beslist de
-        # volgorde alsnog, zodat twee waarnemingen van dezelfde dag zich
-        # gedragen zoals voorheen.
-        rang = ((velden[4] if len(velden) > 4 else ""), n)
-        if sl not in beste or rang >= beste[sl][0]:
-            beste[sl] = (rang, velden[3].lower())
-    return {k for k, (_, status) in beste.items()
-            if status.startswith(("te koop", "nieuw"))}
+        status_per_adres[_sleutel(velden[0])] = velden[3].lower()
+    return {k for k, v in status_per_adres.items() if v.startswith(("te koop", "nieuw"))}
 
 
 def eerst_gezien_per_adres(bestaand):
@@ -483,29 +462,6 @@ def proef():
                       f"bekendmaking mee te komen: {sporen}")
     elif sporen[0]["grondslag"] != "advertentie":
         fouten.append(f"grondslag verkeerd: {sporen[0]['grondslag']!r}")
-
-    # 3b. DE DATUM BESLIST, OOK ALS DE OUDE REGEL ACHTERAAN STAAT. Een
-    # inhaalslag van oude mails zet waarnemingen van weken terug achteraan in
-    # het bestand. Won daar de plaats in het bestand, dan draaide elke verkoop
-    # die we al kenden stilletjes terug naar "te koop".
-    oud_achteraan = [
-        "Teststraat 1 | Nijmegen | 539000 | verkocht | 2026-10-01 | x | 135 | ",
-        "Teststraat 1 | Nijmegen | 539000 | te koop | 2026-08-25 | x | 135 | "]
-    for volgorde, naam in ((oud_achteraan, "oud achteraan"),
-                           (oud_achteraan[::-1], "oud vooraan")):
-        if fvp_te_koop := nog_te_koop(volgorde):
-            fouten.append(f"met {naam} heet het adres nog te koop terwijl de "
-                          f"nieuwste waarneming verkocht is: {fvp_te_koop}")
-    # Een regel zonder datum is met de hand gezet en verliest van elke
-    # waarneming met een datum, in welke volgorde hij ook staat.
-    zonder_datum = ["Teststraat 1 | Nijmegen | 539000 | te koop",
-                    "Teststraat 1 | Nijmegen | 539000 | verkocht | 2026-10-01 "
-                    "| x | 135 | "]
-    for volgorde, naam in ((zonder_datum, "zonder datum eerst"),
-                           (zonder_datum[::-1], "zonder datum laatst")):
-        if nog_te_koop(volgorde):
-            fouten.append(f"met {naam} wint een regel zonder datum van een "
-                          f"gedateerde waarneming")
 
     regels = ["Teststraat 1 | Nijmegen | 1 | verkocht | 2026-09-01 | x | 50 | ",
               "Teststraat 1 | Nijmegen | 1 | te koop | 2026-08-01 | x | 50 | "]

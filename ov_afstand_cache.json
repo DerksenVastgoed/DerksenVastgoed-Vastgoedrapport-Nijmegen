@@ -1167,14 +1167,6 @@
   "omweg": 3.62,
   "soort": "bus"
  },
- "51.84449,5.85807": {
-  "geschat": false,
-  "hemelsbreed": 65,
-  "meters": 195,
-  "naam": "Smetiusstraat",
-  "omweg": 3.0,
-  "soort": "bus"
- },
  "51.84462,5.85589": {
   "geschat": false,
   "hemelsbreed": 101,
@@ -1349,14 +1341,6 @@
   "meters": 56,
   "naam": "Plein 1944",
   "omweg": 1.22,
-  "soort": "bus"
- },
- "51.84615,5.86921": {
-  "geschat": false,
-  "hemelsbreed": 80,
-  "meters": 119,
-  "naam": "Voerweg",
-  "omweg": 1.49,
   "soort": "bus"
  },
  "51.84616,5.86104": {

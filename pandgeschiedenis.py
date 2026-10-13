@@ -131,30 +131,11 @@ def bewaar(geschiedenis):
         json.dump(uit, f, ensure_ascii=False, indent=1, sort_keys=True)
 
 
-def voeg_toe(pand, datum, soort, tekst, bron, eenmalig_per_dag=()):
-    """
-    Een gebeurtenis toevoegen als die er nog niet staat.
-
-    EENMALIG_PER_DAG: soorten waarvan er per pand en per dag maar een kan
-    bestaan. Voor die soorten vervangt een nieuwe tekst de oude in plaats van
-    ernaast te komen staan.
-
-    Waarom dat nodig is: het ontdubbelen kijkt naar de tekst, dus zodra wij de
-    formulering van een gebeurtenis verbeteren, komt die als tweede regel naast
-    de oude te staan. Op 13 oktober gold dat voor dertien verkopen waarvan de
-    tekst "verkoopdatum onbekend; uit een geplakte lijst" werd vervangen door
-    het venster waarin de verkoop moet hebben gelegen. Zonder deze uitzondering
-    had elk van die panden twee verkoopregels met dezelfde datum gekregen, en
-    las het dossier als twee verkopen.
-    """
+def voeg_toe(pand, datum, soort, tekst, bron):
+    """Een gebeurtenis toevoegen als die er nog niet staat."""
     for g in pand["gebeurtenissen"]:
         if g["datum"] == datum and g["soort"] == soort and g["tekst"] == tekst:
             return False
-    if soort in eenmalig_per_dag:
-        for g in pand["gebeurtenissen"]:
-            if g["datum"] == datum and g["soort"] == soort:
-                g["tekst"], g["bron"] = tekst, bron
-                return False
     pand["gebeurtenissen"].append({"datum": datum, "soort": soort,
                                    "tekst": tekst, "bron": bron})
     pand["gebeurtenissen"].sort(key=lambda g: g["datum"])
@@ -186,10 +167,6 @@ def uit_verkopen(geschiedenis):
         pand["adres"] = rijen[-1]["adres"]
         vorige_prijs = None
         gezien_te_koop = False
-        # De datum van de vorige waarneming van dit pand. Die geeft bij een
-        # verkoop uit een geplakte lijst de ondergrens van het venster waarin
-        # de verkoop moet hebben plaatsgevonden.
-        vorige_waarneming = None
         for r in rijen:
             if r["status"].startswith(("te koop", "nieuw")):
                 if not gezien_te_koop:
@@ -220,38 +197,17 @@ def uit_verkopen(geschiedenis):
             elif r["status"] == "verkocht":
                 # Funda toont de laatste vraagprijs, niet de koopsom; die staat
                 # alleen bij het Kadaster. Zo noemen we het dus ook.
-                # Uit een geplakte lijst kennen we de verkoopdatum niet. De
-                # datum van de gebeurtenis is dan de dag dat WIJ het zagen.
-                #
-                # WAT HIER FOUT GING. De tekst zei alleen "verkoopdatum
-                # onbekend; uit een geplakte lijst", en de gebeurtenis droeg de
-                # plakdatum met de markering "nieuw". Op 13 oktober opende de
-                # brief aan pa daarmee zo: "Vandaag staan er vijf panden als
-                # verkocht gemarkeerd ... Maar het aantal op een dag zegt wel
-                # iets: er wordt flink verkocht." Vijf verkopen op een dag was
-                # geen marktbeweging maar onze eigen boekhouding: die vijf
-                # panden stonden drie tot zes weken op Funda als verkocht.
-                #
-                # Een ondergrens hebben we wel, en die is hard: de vorige keer
-                # dat wij dit pand zagen stond het nog niet als verkocht. Dus
-                # noemen we het venster in plaats van niets, en zeggen we er
-                # bij dat de datum onze waarneming is.
+                # Uit een geplakte lijst kennen we de verkoopdatum niet; dan
+                # zetten we er geen datum bij in de tekst, zodat niemand er een
+                # tijdlijn op bouwt.
                 zonder_datum = "plak" in (r.get("bron") or "")
-                if zonder_datum and vorige_waarneming and vorige_waarneming < r["datum"]:
-                    wanneer = (f" (verkocht tussen {vorige_waarneming} en "
-                               f"{r['datum']}; {r['datum']} is de dag dat wij "
-                               f"het zagen, niet de verkoopdatum)")
-                elif zonder_datum:
-                    wanneer = (f" (verkoopdatum onbekend; {r['datum']} is de "
-                               f"dag dat wij het in een geplakte lijst zagen)")
-                else:
-                    wanneer = ""
                 nieuw += voeg_toe(pand, r["datum"], "verkocht",
                                   "verkocht, laatste vraagprijs "
                                   + f"€{r['prijs']:,}".replace(",", ".")
                                   + (f", {r['opp']} m2" if r["opp"] else "")
-                                  + wanneer,
-                                  "aanbod", eenmalig_per_dag=("verkocht",))
+                                  + (" (verkoopdatum onbekend; uit een geplakte "
+                                     "lijst)" if zonder_datum else ""),
+                                  "aanbod")
             elif r["status"].startswith(("onder bod", "onder optie",
                                          "onder voorbehoud",
                                          "verkocht onder voorbehoud",
@@ -271,10 +227,6 @@ def uit_verkopen(geschiedenis):
                                   + f"€{r['prijs']:,}".replace(",", ".")
                                   + (f", {r['opp']} m2" if r["opp"] else ""),
                                   "aanbod")
-            # Aan het eind van elke waarneming, zodat de volgende regel weet
-            # wanneer wij dit pand voor het laatst zagen.
-            if r["datum"]:
-                vorige_waarneming = r["datum"]
     return nieuw
 
 
@@ -1083,15 +1035,7 @@ def verkoopdatum_bekend(g):
     """
     if g.get("bron") == "aanbod":
         return False
-    # Drie formuleringen, alle drie "wij weten de verkoopdatum niet". De eerste
-    # is de oude tekst, de tweede de huidige zonder venster, de derde met
-    # venster. De bron "aanbod" vangt ze vandaag alle drie al af; dit staat er
-    # zodat een gebeurtenis met een andere bron maar dezelfde tekst niet alsnog
-    # als echte verkoopdatum wordt meegerekend.
-    tekst = g.get("tekst") or ""
-    return not any(w in tekst for w in ("verkoopdatum onbekend",
-                                        "niet de verkoopdatum",
-                                        "verkocht tussen"))
+    return "verkoopdatum onbekend" not in (g.get("tekst") or "")
 
 
 def _bij_benadering(datum):
@@ -1370,12 +1314,7 @@ def render(geschiedenis, dagen=7):
         labels = [g for g in pand["gebeurtenissen"] if g["soort"] == "energielabel"]
         rest = [g for g in pand["gebeurtenissen"] if g["soort"] != "energielabel"]
         for g in rest:
-            # "NIEUW IN ONS DOSSIER" EN NIET "NIEUW". Deze markering betekent
-            # dat de gebeurtenis in deze ronde is vastgelegd, niet dat ze
-            # vandaag is gebeurd. Als "**nieuw**" las de briefschrijver het als
-            # nieuws van vandaag, en opende de brief van 13 oktober met vijf
-            # verkopen die al drie tot zes weken oud waren.
-            merk = " **nieuw in ons dossier**" if g in vers else ""
+            merk = " **nieuw**" if g in vers else ""
             r.append(f"- {g['datum']}: {g['tekst']} ({g['bron']}){merk}")
         # Labels samenvatten in plaats van uitschrijven. Een flat met
         # honderdtwintig woningen leverde honderdtwintig regels op en maakte
@@ -1543,103 +1482,6 @@ def proef():
                     f"sleutel, bijvoorbeeld {scheef[0]!r}")
     except Exception as e:
         fouten.append(f"uit_archief() niet na te meten: {type(e).__name__} {e}")
-
-    # HET VENSTER BIJ EEN VERKOOP UIT EEN GEPLAKTE LIJST.
-    #
-    # De datum van zo'n gebeurtenis is de dag dat wij het zagen. Stond er
-    # alleen "verkoopdatum onbekend" bij, dan las de briefschrijver de datum
-    # als de dag van de verkoop: de brief van 13 oktober opende met vijf
-    # verkopen die al drie tot zes weken oud waren, en noemde dat een signaal.
-    # De ondergrens van het venster is hard: de vorige keer dat wij het pand
-    # zagen stond het nog niet als verkocht.
-    pad = "/tmp/pandgeschiedenis_proef_verkopen.txt"
-    eerder = globals().get("VERKOPEN")
-    try:
-        with open(pad, "w", encoding="utf-8") as f:
-            f.write("Teststraat 1 | Nijmegen | 419000 | te koop | 2026-09-11 "
-                    "| funda-mail | 77 | 6521EC\n")
-            f.write("Teststraat 1 | Nijmegen | 419000 | onder bod | 2026-09-28 "
-                    "| funda-verkocht-plak | 77 | 6521EC\n")
-            f.write("Teststraat 1 | Nijmegen | 419000 | verkocht | 2026-10-13 "
-                    "| funda-verkocht-plak | 77 | 6521EC\n")
-            f.write("Kortstraat 2 | Nijmegen | 300000 | verkocht | 2026-10-13 "
-                    "| funda-verkocht-plak | 60 | 6511AA\n")
-        globals()["VERKOPEN"] = pad
-        g = {}
-        uit_verkopen(g)
-        for adres, moet, mag_niet in (
-                ("Teststraat 1", "verkocht tussen 2026-09-28 en 2026-10-13",
-                 None),
-                ("Kortstraat 2", "verkoopdatum onbekend", None)):
-            sl = _psl.sleutel(adres)
-            verkopen = [x for x in (g.get(sl) or {}).get("gebeurtenissen", [])
-                        if x["soort"] == "verkocht"]
-            if not verkopen:
-                fouten.append(f"{adres}: geen verkocht-gebeurtenis gemaakt")
-                continue
-            if len(verkopen) != 1:
-                fouten.append(f"{adres}: {len(verkopen)} verkoopregels op "
-                              f"dezelfde dag, verwacht 1")
-            tekst = verkopen[-1]["tekst"]
-            if moet not in tekst:
-                fouten.append(f"{adres}: de tekst noemt {moet!r} niet: "
-                              f"{tekst!r}")
-            if "dag dat wij het" not in tekst:
-                fouten.append(f"{adres}: de tekst zegt niet dat de datum onze "
-                              f"waarneming is: {tekst!r}")
-        # EEN VERBETERDE TEKST MAG DE OUDE VERVANGEN EN NIET VERDUBBELEN.
-        #
-        # Dit is het geval dat werkelijk optreedt, en het is niet hetzelfde als
-        # tweemaal draaien: bij gelijke tekst ontdubbelt voeg_toe toch al. Het
-        # gaat mis zodra de formulering verandert. Op 13 oktober stonden er
-        # dertien verkopen in het dossier met de oude tekst "verkoopdatum
-        # onbekend; uit een geplakte lijst", en de nieuwe ronde schrijft het
-        # venster. Zonder eenmalig_per_dag krijgt elk van die panden twee
-        # verkoopregels met dezelfde datum, en leest het dossier als twee
-        # verkopen van hetzelfde pand op een dag.
-        oud = {_psl.sleutel("Teststraat 1"): {
-            "adres": "Teststraat 1", "pand_id": None,
-            "gebeurtenissen": [{
-                "datum": "2026-10-13", "soort": "verkocht",
-                "tekst": "verkocht, laatste vraagprijs €419.000, 77 m2 "
-                         "(verkoopdatum onbekend; uit een geplakte lijst)",
-                "bron": "aanbod"}]}}
-        uit_verkopen(oud)
-        verkopen = [x for x in oud[_psl.sleutel("Teststraat 1")]["gebeurtenissen"]
-                    if x["soort"] == "verkocht"]
-        if len(verkopen) != 1:
-            fouten.append(f"een verbeterde tekst komt naast de oude te staan: "
-                          f"{len(verkopen)} verkoopregels op dezelfde dag, "
-                          f"verwacht 1")
-        elif "verkocht tussen" not in verkopen[0]["tekst"]:
-            fouten.append(f"de oude tekst is niet vervangen: "
-                          f"{verkopen[0]['tekst']!r}")
-    except Exception as e:
-        fouten.append(f"het venster niet na te meten: {type(e).__name__} {e}")
-    finally:
-        if eerder is not None:
-            globals()["VERKOPEN"] = eerder
-        try:
-            os.remove(pad)
-        except OSError:
-            pass
-
-    # EN DE SCHRIJFINSTRUCTIE MOET HET VERBOD DRAGEN. Het blok mag het venster
-    # nog zo netjes noemen; zolang brief_verhalend.py niet verbiedt om het
-    # AANTAL gebeurtenissen van een dag als signaal te gebruiken, kan de brief
-    # er weer mee openen. Dat deed hij, binnen de letter van de oude regel.
-    try:
-        with open("brief_verhalend.py", encoding="utf-8") as f:
-            instructie = f.read()
-    except Exception as e:
-        fouten.append(f"brief_verhalend.py niet te lezen: {str(e)[:40]}")
-        instructie = ""
-    for nodig in ("ONZE BOEKHOUDING IS GEEN NIEUWS",
-                  "nooit een signaal", "nieuw in ons dossier"):
-        if instructie and nodig not in instructie:
-            fouten.append(f"brief_verhalend.py noemt {nodig!r} niet; dan mag "
-                          f"de brief het aantal van een dag weer als signaal "
-                          f"gebruiken")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)

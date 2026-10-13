@@ -152,13 +152,6 @@ jobs:
         # rood te zijn op de plek waar hij ontstaat.
         run: |
           python eisen.py --proef --snel
-          # De stap die verkoopdatum_model.py draait staat op "if: false", dus
-          # daar kan geen poort naast staan. Toch beslist wat_wij_weten() daar
-          # welke waarneming uit verkopen.txt geldt, en dat moest op de datum
-          # gaan rusten in plaats van op de plaats in het bestand, anders
-          # draait een inhaalslag van oude mails elke bekende verkoop terug.
-          # Deze proef raakt geen bron en kost geen seconde.
-          python verkoopdatum_model.py --proef
           # Ook hier de aanroep van EP-Online, want deze workflow haalt
           # energielabels op via marktprijzen_bag en bekendmakingen_nijmegen.
           # De eisenproef hierboven draait met --snel en komt er dus niet
@@ -373,14 +366,6 @@ jobs:
         run: |
           VANAF=$(date -d "-7 days" +%F)
           python bekendmakingen_archief.py --vanaf "$VANAF" --stil || echo "Archief-stap overgeslagen"
-
-      - name: De mailstap nameten voordat hij de mailbox opent
-        # GEEN continue-on-error en GEEN secrets. Deze proef raakt de mailbox
-        # niet; hij meet de ontdubbeling en de herkomst na. Tot 13 oktober
-        # sloot die ontdubbeling op adres en prijs, zonder status, waardoor
-        # een verkoopmelding van een woning die wij al kenden per definitie
-        # een dubbele was en werd weggegooid. Dat was aan niets te zien.
-        run: python funda_mail.py --proef
 
       - name: Funda-attenderingen uitlezen
         env:

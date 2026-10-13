@@ -1,110 +1,49 @@
 {
  "datum": "2026-10-13",
  "bronnen": {
-  "pararius": {
-   "mails": 27,
-   "objecten": 37,
-   "overgeslagen": 13,
-   "redenen": [
-    "St. Stephanusstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
-    "van Spaenstraat (gemeubileerd, apart bewaard)",
-    "IJsvogelpassage (gemeubileerd, apart bewaard)",
-    "van Spaenstraat (gemeubileerd, apart bewaard)"
-   ]
-  },
   "regulier": {
-   "mails": 37,
-   "objecten": 86,
-   "overgeslagen": 4,
-   "redenen": [
-    "niets herkend in: 1 nieuw huis aangeboden voor jouw zoekopdracht ",
-    "Weurtseweg 17 (geen prijs gevonden)",
-    "van Spaenstraat 20 (geen prijs gevonden)",
-    "Dokstraat 117 (geen prijs gevonden)",
-    "niets herkend in: 3 nieuwe woningen aangeboden voor jouw zoekopdrach"
-   ]
-  },
-  "kamernet": {
-   "mails": 93,
-   "objecten": 51,
-   "overgeslagen": 18,
-   "redenen": [
-    "Grotestraat, Cuijk: buiten Nijmegen",
-    "Keurvorststraat, Molenhoek: buiten Nijmegen",
-    "Rijksstraatweg, Beek-Berg en Dal: buiten Nijmegen",
-    "Hegdambroek: €5 per maand is niet aannemelijk",
-    "Huissensestraat, Arnhem: buiten Nijmegen"
-   ]
-  },
-  "rentola": {
-   "mails": 4,
-   "objecten": 2,
+   "mails": 2,
+   "objecten": 3,
    "overgeslagen": 1,
    "redenen": [
-    "niets herkend in: Je inloggegevens zijn hier",
-    "niets herkend in: Welkom bij Rentola, Mark! Laten we uw nieuwe huis ",
-    "rentola: Heyendaalseweg 219 stond op de pagina als \"De Bruin & De Bruin, Heyenda"
+    "van Spaenstraat 20 (geen prijs gevonden)"
    ]
   },
   "huislijn": {
-   "mails": 13,
-   "objecten": 47,
+   "mails": 3,
+   "objecten": 8,
    "overgeslagen": 0,
    "redenen": []
   },
-  "123wonen": {
-   "mails": 2,
-   "objecten": 0,
-   "overgeslagen": 2,
-   "redenen": [
-    "123wonen €1995 (geen link)",
-    "123wonen €2425 (geen link)"
-   ]
-  },
-  "vendr": {
-   "mails": 4,
-   "objecten": 0,
+  "pararius": {
+   "mails": 1,
+   "objecten": 2,
    "overgeslagen": 1,
    "redenen": [
-    "niets herkend in: E-mailadres verificatie",
-    "niets herkend in: Welkom bij Vendr!",
-    "niets herkend in: Nieuwe projecten op Vendr",
-    "Stationsstraat 43 (Ermelo)"
+    "van Trieststraat (gemeubileerd, apart bewaard)"
    ]
   },
-  "business": {
-   "mails": 1,
-   "objecten": 0,
-   "overgeslagen": 0,
+  "kamernet": {
+   "mails": 4,
+   "objecten": 3,
+   "overgeslagen": 1,
    "redenen": [
-    "niets herkend in: Maak een nieuw wachtwoord aan"
+    "Dahliastraat, Malden: buiten Nijmegen"
    ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
- "ontdubbeld": {
-  "zelfde_status": 206,
-  "andere_status": 11,
-  "voorbeelden": [
-   "St. Stephanusstraat -> te huur",
-   "Ijsvogelpassage -> te huur",
-   "Van Spaenstraat -> te huur",
-   "Groesbeekseweg 85 -> te koop",
-   "Gerard Noodtstraat 71 -> te koop"
-  ]
- },
  "berichten_per_afzender": {
-  "funda.nl": 38,
+  "funda.nl": 2,
   "funda.com": 0,
-  "pararius.nl": 27,
+  "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 93,
-  "vendr.nl": 4,
-  "huislijn.nl": 13,
+  "kamernet.nl": 4,
+  "vendr.nl": 0,
+  "huislijn.nl": 3,
   "huisly.nl": 0,
-  "123wonen.nl": 2,
-  "rentola.nl": 4
+  "123wonen.nl": 0,
+  "rentola.nl": 0
  }
 }

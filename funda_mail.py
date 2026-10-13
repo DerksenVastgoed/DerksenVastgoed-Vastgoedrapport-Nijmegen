@@ -12,8 +12,7 @@ Vereist:
 
 Gebruik:
   python funda_mail.py                    # verwerkt ongelezen Funda-mails
-  python funda_mail.py --droog            # toont wat het zou toevoegen, schrijft niets
-  python funda_mail.py --proef            # meet de eigen logica na, zonder mailbox
+  python funda_mail.py --proef            # toont wat het zou toevoegen, schrijft niets
   python funda_mail.py --dagen 30         # kijkt verder terug dan alleen ongelezen
 """
 
@@ -304,22 +303,12 @@ def parse_objecten(regels, basis_status, mail_stadium=None):
             continue
         gezien.add(sleutel)
 
-        # Bron-URL zoeken vlak boven of onder het adres.
-        #
-        # ALTIJD EEN HERKOMST, OOK ZONDER LINK. Hier bleef dit veld leeg als er
-        # geen link stond, en dat is precies het veld dat ook leeg is bij een
-        # regel die Mark met de hand heeft gezet. "Uit de mail" en "met de
-        # hand" waren dus niet te onderscheiden, en het gezondheidsrapport
-        # leidde eruit af dat er geen verkopen uit de attendering kwamen.
-        # Gemeten op 13 oktober: geen enkele regel in verkopen.txt had een
-        # bron die met http begint, dus dit pad heeft nog nooit een link
-        # opgeleverd en het veld was altijd leeg.
-        link = ""
+        # Bron-URL zoeken vlak boven of onder het adres
+        bron = ""
         for j in range(max(0, adres_idx - 4), min(len(regels), i + 4)):
             if regels[j].startswith("__LINK__"):
-                link = regels[j][len("__LINK__"):].split("?")[0].strip()
+                bron = regels[j][len("__LINK__"):].split("?")[0].strip()
                 break
-        bron = f"funda-mail {link}".strip() if link else "funda-mail"
 
         # Oppervlakte staat vaak in de advertentieregel zelf. Bij een adres zonder
         # huisnummer is dat de enige bron, want de BAG kan er dan niets mee.
@@ -1623,18 +1612,10 @@ def parse_vendr(regels):
 
 
 def bestaande_adressen(pad):
-    """
-    Wat er al in verkopen.txt staat, om dubbelingen te vermijden.
-
-    Levert twee verzamelingen: op (adres, prijs, status) en op (adres, prijs).
-    De eerste bepaalt of een melding nieuw is, de tweede of een nieuwe melding
-    dezelfde woning voor dezelfde prijs met een ANDERE status betreft. Dat
-    tweede getal was er niet, en daardoor was het verlies onzichtbaar: een
-    weggegooide verkoopmelding zag eruit als een mail zonder nieuws.
-    """
-    bestaand, adres_prijs = set(), set()
+    """Adressen die al in verkopen.txt staan, om dubbelingen te vermijden."""
+    bestaand = set()
     if not os.path.exists(pad):
-        return (bestaand, adres_prijs)
+        return bestaand
     with open(pad, encoding="utf-8") as f:
         for regel in f:
             regel = regel.strip()
@@ -1642,68 +1623,8 @@ def bestaande_adressen(pad):
                 continue
             delen = [d.strip() for d in regel.split("|")]
             if len(delen) >= 3:
-                prijs = re.sub(r"[^\d]", "", delen[2])
-                status = (delen[3] if len(delen) > 3 else "").strip().lower()
-                bestaand.add((delen[0].lower(), prijs, status))
-                adres_prijs.add((delen[0].lower(), prijs))
-    return (bestaand, adres_prijs)
-
-
-def nieuwe_meldingen(objecten, bestaand, adres_prijs, dubbel=None):
-    """
-    Welke van deze meldingen nieuw zijn, en wat de ontdubbeling laat vallen.
-
-    ADRES PLUS PRIJS PLUS STATUS, EN NIET ALLEEN ADRES PLUS PRIJS.
-
-    De sleutel was (adres, prijs), met als argument dat een andere prijs een
-    prijswijziging is en dus de moeite waard. Dat is waar, maar het laat de
-    status buiten de sleutel, en juist de status is wat een attendering komt
-    melden. Een woning die bij ons als "te koop" staat en op Funda verkocht
-    raakt, houdt dezelfde vraagprijs: Funda toont bij een verkocht pand de
-    laatste vraagprijs en niet de koopsom. Een verkoopmelding van een woning
-    die we al kenden was dus per definitie een dubbele en werd weggegooid.
-
-    Gemeten op 13 oktober 2026: van de 77 regels die deze stap ooit heeft
-    geschreven staan er 74 op "te koop" en 3 op "project", en geen enkele op
-    "verkocht". De 143 verkoopregels zonder bron hebben geen datum en zijn met
-    de hand gezet. Diezelfde dag kwamen er twee mails van funda.nl binnen,
-    werden daar drie objecten uit gelezen, en leverde geen daarvan een regel
-    op. Het rapport zei daar niets over, want er was geen teller voor wat de
-    ontdubbeling weggooit.
-
-    Levert (nieuwe_regels, dubbel). De verzamelingen worden bijgewerkt, zodat
-    twee mails in dezelfde ronde elkaar niet overdoen.
-    """
-    dubbel = dubbel if dubbel is not None else {"zelfde_status": 0,
-                                                "andere_status": 0,
-                                                "voorbeelden": []}
-    dubbel.setdefault("zelfde_status", 0)
-    dubbel.setdefault("andere_status", 0)
-    dubbel.setdefault("voorbeelden", [])
-    nieuw = []
-    for regel in objecten:
-        delen = [d.strip() for d in regel.split("|")]
-        if len(delen) < 4:
-            continue
-        prijs = re.sub(r"[^\d]", "", delen[2])
-        sleutel = (delen[0].lower(), prijs, (delen[3] or "").lower())
-        zonder_status = (delen[0].lower(), prijs)
-        if sleutel in bestaand:
-            # Dezelfde melding die we al hadden. Dat hoort bij --dagen 3:
-            # dezelfde mail wordt drie dagen achter elkaar gelezen.
-            dubbel["zelfde_status"] += 1
-            continue
-        if zonder_status in adres_prijs:
-            # DIT IS DE GROEP DIE WE VERLOREN. Zelfde woning, zelfde prijs,
-            # andere status. Wordt nu toegevoegd, en geteld zodat het aantal
-            # zichtbaar is in plaats van nul.
-            dubbel["andere_status"] += 1
-            if len(dubbel["voorbeelden"]) < 5:
-                dubbel["voorbeelden"].append(f"{delen[0]} -> {delen[3]}")
-        bestaand.add(sleutel)
-        adres_prijs.add(zonder_status)
-        nieuw.append(regel)
-    return (nieuw, dubbel)
+                bestaand.add((delen[0].lower(), re.sub(r"[^\d]", "", delen[2])))
+    return bestaand
 
 
 def tel_kandidaten(verbinding, sinds):
@@ -1736,161 +1657,28 @@ def tel_kandidaten(verbinding, sinds):
 _PER_AFZENDER = {}
 
 
-def bewaar_stand(tellers, opmerking="", kandidaten=None, dubbel=None):
+def bewaar_stand(tellers, opmerking="", kandidaten=None):
     """
     De mailstand wegschrijven, ook als er niets te doen viel.
 
     Zonder dit zag het gezondheidsrapport geen verschil tussen "de stap draaide
-    niet" en "er waren geen mails". Met dezelfde reden staat hier nu ook wat de
-    ontdubbeling heeft laten vallen, gesplitst naar dezelfde en een andere
-    status: een weggegooide statuswijziging zag er tot nu toe uit als een mail
-    zonder nieuws.
+    niet" en "er waren geen mails".
     """
     try:
         with open("mail_status.json", "w", encoding="utf-8") as f:
             json.dump({"datum": dt.date.today().isoformat(),
                        "bronnen": tellers, "opmerking": opmerking,
                        "kandidaten": kandidaten or {},
-                       "ontdubbeld": dubbel or {},
                        "berichten_per_afzender": _PER_AFZENDER},
                       f, ensure_ascii=False, indent=1)
     except Exception:
         pass
 
 
-def proef():
-    """
-    Nameten wat deze module over de ontdubbeling en de herkomst beweert.
-
-    Raakt de mailbox niet: alles hier werkt op regels in het geheugen. Dat is
-    met opzet, want de poort in de workflow moet dit kunnen draaien zonder
-    inloggegevens.
-    """
-    fouten = []
-
-    # 1. WAT ER AL IS, OP TWEE MANIEREN. De sleutel met status bepaalt of een
-    # melding nieuw is, de sleutel zonder status of het om dezelfde woning
-    # voor dezelfde prijs gaat.
-    pad = "/tmp/funda_mail_proef_verkopen.txt"
-    with open(pad, "w", encoding="utf-8") as f:
-        f.write("# kop die overgeslagen moet worden\n")
-        f.write("Teststraat 1 | Nijmegen | 539000 | te koop | 2026-09-16 | "
-                "funda-mail | 135 | 6524HB\n")
-        f.write("Kortstraat 2 | Nijmegen | 325000 | verkocht\n")
-    bestaand, adres_prijs = bestaande_adressen(pad)
-    if ("teststraat 1", "539000", "te koop") not in bestaand:
-        fouten.append("de sleutel met status wordt niet gelezen")
-    if ("teststraat 1", "539000") not in adres_prijs:
-        fouten.append("de sleutel zonder status wordt niet gelezen")
-    # Een regel met vier velden moet ook meetellen. Het gezondheidsrapport
-    # sloeg zulke regels over en telde daardoor 143 verkopen niet mee.
-    if ("kortstraat 2", "325000", "verkocht") not in bestaand:
-        fouten.append("een regel met vier velden wordt niet meegeteld")
-    try:
-        os.remove(pad)
-    except OSError:
-        pass
-
-    # 2. EEN STATUSWIJZIGING MAG NIET WEGVALLEN, EN MOET GETELD WORDEN.
-    bestaand = {("teststraat 1", "539000", "te koop")}
-    adres_prijs = {("teststraat 1", "539000")}
-    verkoop = ("Teststraat 1 | Nijmegen | 539000 | verkocht | 2026-10-13 "
-               "| funda-mail | 135 | 6524HB")
-    nieuw, dubbel = nieuwe_meldingen([verkoop], set(bestaand),
-                                     set(adres_prijs))
-    if len(nieuw) != 1:
-        fouten.append(f"een verkoopmelding van een woning die wij als te koop "
-                      f"kennen valt weg: {len(nieuw)} regels over")
-    if dubbel["andere_status"] != 1:
-        fouten.append(f"een statuswijziging wordt niet geteld: {dubbel}")
-    if not dubbel["voorbeelden"]:
-        fouten.append("een statuswijziging levert geen voorbeeld op, dus het "
-                      "rapport kan niet zeggen welke woning het was")
-
-    # 3. EEN LETTERLIJKE HERHALING MOET WEL WEGVALLEN, EN APART GETELD.
-    # Dat hoort bij --dagen 3: dezelfde mail wordt drie dagen gelezen.
-    herhaling = ("Teststraat 1 | Nijmegen | 539000 | te koop | 2026-10-13 "
-                 "| funda-mail | 135 | 6524HB")
-    nieuw, dubbel = nieuwe_meldingen([herhaling], set(bestaand),
-                                     set(adres_prijs))
-    if nieuw:
-        fouten.append("dezelfde melding met dezelfde status komt er een "
-                      "tweede keer door")
-    if dubbel["zelfde_status"] != 1 or dubbel["andere_status"] != 0:
-        fouten.append(f"een herhaling wordt als statuswijziging geteld: "
-                      f"{dubbel}")
-
-    # 4. TWEE MAILS IN DEZELFDE RONDE MOGEN ELKAAR NIET OVERDOEN.
-    b, a = set(bestaand), set(adres_prijs)
-    eerst, _ = nieuwe_meldingen([verkoop], b, a)
-    nogmaals, d2 = nieuwe_meldingen([verkoop], b, a)
-    if len(eerst) != 1 or nogmaals:
-        fouten.append(f"dezelfde melding uit twee mails levert "
-                      f"{len(eerst) + len(nogmaals)} regels op, verwacht 1")
-
-    # 5. EEN PRIJSWIJZIGING BLIJFT EEN PRIJSWIJZIGING EN GEEN STATUSWIJZIGING.
-    andere_prijs = ("Teststraat 1 | Nijmegen | 525000 | te koop | 2026-10-13 "
-                    "| funda-mail | 135 | 6524HB")
-    nieuw, dubbel = nieuwe_meldingen([andere_prijs], set(bestaand),
-                                     set(adres_prijs))
-    if len(nieuw) != 1 or dubbel["andere_status"] != 0:
-        fouten.append(f"een prijswijziging wordt verkeerd geteld: {dubbel}")
-
-    # 6. ELKE REGEL UIT DE REGULIERE TAK HEEFT EEN HERKOMST. Zonder dat is
-    # "uit de mail" niet te onderscheiden van "met de hand gezet".
-    met_link = ["__LINK__https://www.funda.nl/detail/koop/nijmegen/x/1/?a=b",
-                "Teststraat 1, Nijmegen", "€ 539.000 k.k.", "135 m²"]
-    uit, _ = parse_objecten(met_link, "te koop")
-    if not uit:
-        fouten.append("de reguliere tak leest de vorm met een komma niet")
-    else:
-        velden = [v.strip() for v in uit[0].split("|")]
-        if len(velden) < 6 or not velden[5].startswith("funda-mail"):
-            fouten.append(f"de bron van een regel uit de mail begint niet met "
-                          f"funda-mail: "
-                          f"{(velden[5] if len(velden) > 5 else '-')!r}")
-        elif "funda.nl" not in velden[5]:
-            fouten.append(f"de link uit de mail is niet bewaard: {velden[5]!r}")
-    zonder_link = ["Teststraat 1", "6524 HB Nijmegen", "€ 539.000 k.k.",
-                   "135 m²"]
-    uit, _ = parse_objecten(zonder_link, "te koop")
-    if not uit:
-        fouten.append("de reguliere tak leest de vorm met een postcode niet")
-    else:
-        velden = [v.strip() for v in uit[0].split("|")]
-        if len(velden) < 6 or velden[5] != "funda-mail":
-            fouten.append(f"zonder link hoort de bron funda-mail te zijn en "
-                          f"niet leeg: "
-                          f"{(velden[5] if len(velden) > 5 else '-')!r}")
-
-    # 7. DE STADIA. Een attendering meldt het stadium in woorden.
-    for tekst, verwacht in [("deze woning is verkocht", "verkocht"),
-                            ("verkocht onder voorbehoud",
-                             "verkocht onder voorbehoud"),
-                            ("er is een bod gedaan, onder bod", "onder bod"),
-                            ("niets over het stadium", None)]:
-        uit = _stadium_uit(tekst)
-        if uit != verwacht:
-            fouten.append(f"{tekst!r} geeft stadium {uit!r}, verwacht "
-                          f"{verwacht!r}")
-
-    print(f"Proef funda_mail: {len(fouten)} fouten", file=sys.stderr)
-    for f in fouten:
-        print(f"FOUT {f}", file=sys.stderr)
-    return 1 if fouten else 0
-
-
 def main():
     ap = argparse.ArgumentParser()
-    # DROOG EN NIET PROEF. Deze vlag heette --proef, maar in dit project
-    # betekent --proef overal "meet je eigen logica na" en wordt hij door
-    # eisen.py automatisch gedraaid. Op deze module zou dat een IMAP-sessie
-    # openen in de poort van de workflow. De droge run heet nu --droog, en
-    # --proef is wat het elders ook is.
-    ap.add_argument("--droog", action="store_true",
-                    help="toon wat er toegevoegd zou worden, schrijf niets weg")
     ap.add_argument("--proef", action="store_true",
-                    help="meet de eigen logica na; raakt de mailbox niet")
+                    help="toon wat er toegevoegd zou worden, schrijf niets weg")
     # Standaard ook gelezen mails van de laatste dagen: Mark leest de
     # attenderingen zelf, en dan zag het script ze nooit meer. Ontdubbelen
     # gebeurt toch op het object, dus dubbel kijken kost niets.
@@ -1898,8 +1686,6 @@ def main():
                     help="kijk ook naar gelezen mails van de laatste N dagen")
     ap.add_argument("--uit", default=VERKOPEN_PAD)
     args = ap.parse_args()
-    if args.proef:
-        return proef()
     # Per bron bijhouden hoeveel mails er waren en hoeveel objecten eruit
     # kwamen. Stond deze regel er niet, dan liep de stap stuk op de eerste mail.
     tellers = {}
@@ -1981,9 +1767,8 @@ def main():
         verbinding.logout()
         return
 
-    bestaand, adres_prijs = bestaande_adressen(args.uit)
+    bestaand = bestaande_adressen(args.uit)
     nieuwe_regels, alle_overgeslagen = [], []
-    dubbel = {"zelfde_status": 0, "andere_status": 0, "voorbeelden": []}
 
     for mid in sorted(ids):
         try:
@@ -2069,10 +1854,17 @@ def main():
                                                     mail_stadium)
         alle_overgeslagen.extend(overgeslagen)
 
-        nieuw_hier, _ = nieuwe_meldingen(objecten, bestaand, adres_prijs,
-                                         dubbel)
-        nieuwe_regels.extend(nieuw_hier)
-        toegevoegd = len(nieuw_hier)
+        toegevoegd = 0
+        for regel in objecten:
+            delen = [d.strip() for d in regel.split("|")]
+            # Adres plus prijs: staat het adres er al met een ANDERE prijs, dan is
+            # dat een prijswijziging en dus juist wel de moeite van vastleggen waard.
+            sleutel = (delen[0].lower(), delen[2])
+            if sleutel in bestaand:
+                continue
+            bestaand.add(sleutel)
+            nieuwe_regels.append(regel)
+            toegevoegd += 1
 
         tellers.setdefault(soort_bron, {"mails": 0, "objecten": 0,
                                         "overgeslagen": 0, "redenen": []})
@@ -2100,7 +1892,7 @@ def main():
             for regel in [x for x in regels if x.strip()][:35]:
                 print(f"    | {regel[:110]}", file=sys.stderr)
 
-        if not args.droog:
+        if not args.proef:
             try:
                 verbinding.store(mid, "+FLAGS", "\\Seen")
             except Exception:
@@ -2113,38 +1905,12 @@ def main():
         for o in alle_overgeslagen[:10]:
             print(f"  {o}", file=sys.stderr)
 
-    # EERST DE STAND, DAN PAS AFHAKEN.
-    #
-    # Hier stond de terugkeer bij "geen nieuwe objecten" VOOR het wegschrijven
-    # van mail_status.json. Juist op een dag dat de ontdubbeling alles laat
-    # vallen is er dus niets opgeschreven, en bleef de stand van gisteren
-    # staan. Dat is precies de dag waarop de nieuwe teller iets te zeggen
-    # heeft. Op 13 oktober gebeurde dat: drie objecten uit twee Funda-mails,
-    # nul regels, en een rapport dat er niets over zei.
-    try:
-        kandidaten = tel_kandidaten(verbinding, sinds)
-    except Exception:
-        kandidaten = {}
-    if kandidaten:
-        print("Post van bronnen zonder parser: "
-              + ", ".join(f"{d}: {n}" for d, n in sorted(kandidaten.items())),
-              file=sys.stderr)
-    bewaar_stand(tellers, kandidaten=kandidaten, dubbel=dubbel)
-    for bron, t in sorted(tellers.items()):
-        print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
-              file=sys.stderr)
-    print(f"Ontdubbeld: {dubbel['zelfde_status']} met dezelfde status, "
-          f"{dubbel['andere_status']} met een andere status"
-          + (": " + "; ".join(dubbel["voorbeelden"])
-             if dubbel["voorbeelden"] else ""), file=sys.stderr)
-
     if not nieuwe_regels:
         print("Geen nieuwe objecten om toe te voegen", file=sys.stderr)
         return
 
-    if args.droog:
-        print("DROGE RUN, niets weggeschreven. Dit zou erbij komen:",
-              file=sys.stderr)
+    if args.proef:
+        print("PROEF, niets weggeschreven. Dit zou erbij komen:", file=sys.stderr)
         for r in nieuwe_regels:
             print(f"  {r}", file=sys.stderr)
         return
@@ -2157,8 +1923,23 @@ def main():
 
     print(f"Toegevoegd aan {args.uit}: {len(nieuwe_regels)} objecten", file=sys.stderr)
 
+    # Per bron vastleggen hoeveel mails er waren en hoeveel objecten eruit
+    # kwamen. Zonder dit zie je niet of een bron zwijgt of dat de parser hem
+    # niet begrijpt, en dat zijn twee heel verschillende problemen.
+    # Wat er nog meer binnenkomt, van bronnen die we nog niet uitlezen.
+    try:
+        kandidaten = tel_kandidaten(verbinding, sinds)
+    except Exception:
+        kandidaten = {}
+    if kandidaten:
+        print("Post van bronnen zonder parser: "
+              + ", ".join(f"{d}: {n}" for d, n in sorted(kandidaten.items())),
+              file=sys.stderr)
+    bewaar_stand(tellers, kandidaten=kandidaten)
+    for bron, t in sorted(tellers.items()):
+        print(f"  {bron}: {t['mails']} mails, {t['objecten']} objecten",
+              file=sys.stderr)
+
 
 if __name__ == "__main__":
-    # sys.exit en niet main(): zonder dit geeft het proces altijd 0 terug, ook
-    # als de proef rood staat, en is de poort in de workflow een formaliteit.
-    sys.exit(main())
+    main()
