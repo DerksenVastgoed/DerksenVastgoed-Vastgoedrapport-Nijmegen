@@ -210,6 +210,60 @@ def haal(url, binair=False):
         return None, f"{type(e).__name__}" + (f" {code}" if code else "")
 
 
+GMB = re.compile(r"(gmb-\d{4}-\d+)", re.I)
+EXB = re.compile(r"(exb-\d{4}-\d+)", re.I)
+
+
+def andere_publicatie(url, basis):
+    """
+    Of een link naar een ANDERE bekendmaking wijst, en dus geen bijlage is.
+
+    WAT HIER GEBEURDE. De eerste ronde meldde bij beide publicaties een
+    bijlage die in werkelijkheid gmb-2015-16426.pdf was: een link die op elke
+    publicatiepagina staat, naar het besluit over de bekendmakingen zelf uit
+    2015. Die telde mee, en dus leek een publicatie zonder bijlagen er een
+    met een te hebben. Een valse vondst is erger dan geen vondst, want hij
+    kost een download en zet de telling in het issue scheef.
+
+    Het is geen uitzondering op nummer: elke link naar een gmb die niet DEZE
+    gmb is, is een verwijzing en geen bijlage. Zo valt de volgende
+    standaardlink er ook onder, ook als het nummer verandert.
+    """
+    hier = GMB.search(basis or "")
+    daar = GMB.search(url or "")
+    if not daar:
+        return False
+    return not hier or daar.group(1).lower() != hier.group(1).lower()
+
+
+def exb_urls(iets):
+    """
+    De vormen waarin een externe bijlage kan staan, als lijst.
+
+    WAAROM NIET GEWOON DE HREF. De eerste ronde haalde drie bijlagen op en
+    kreeg 404, 404 en 400. De metadata geeft een waarde als
+    "Afwijkvergunning|exb-2026-34477": een label en een nummer met een
+    streep ertussen. Daar een url van maken door hem aan de basis te plakken
+    levert onzin op.
+
+    WAAROM EEN LIJST EN GEEN VORM. Ik weet niet welke vorm de goede is, en
+    van buiten een run is het niet te bevragen. Een vorm kiezen op gevoel en
+    hem dan als waarheid opschrijven is hoe je een module krijgt die het bij
+    het eerste afwijkende geval begeeft. Dus probeert de verkenning ze alle
+    vier in een ronde en meldt welke het werd. Zodra dat bekend is, kan deze
+    lijst krimpen tot de vorm die werkt.
+    """
+    m = EXB.search(iets or "")
+    if not m:
+        return []
+    nr = m.group(1).lower()
+    b = "https://repository.officiele-overheidspublicaties.nl/externebijlagen"
+    return [f"{b}/{nr}/1/bijlage/{nr}.pdf",
+            f"{b}/{nr}/1/{nr}.pdf",
+            f"{b}/{nr}/{nr}.pdf",
+            f"{b}/{nr}.pdf"]
+
+
 def alle_links(tekst, basis):
     """
     Elke link op de pagina, samengevat per host. Geen oordeel, een telling.
@@ -239,9 +293,33 @@ def alle_links(tekst, basis):
         p["vormen"].add(vorm[:60])
         if (d.path or "").lower().endswith(".pdf"):
             p["pdf"] += 1
+    # URL'S DIE IN DE LOPENDE TEKST STAAN EN GEEN HREF ZIJN.
+    # De bekendmaking zegt dat de aanvraag "via de link op deze pagina" is in
+    # te zien. Staat die als gewone tekst, dan vindt een zoektocht naar href
+    # hem niet, en meldt de verkenning "geen bijlagen" terwijl er een portaal
+    # is. Die kaal geschreven url's horen er dus bij.
+    kaal = re.sub(r"<[^>]+>", " ", tekst or "")
+    for m in re.finditer(r"(?:https?://|www\.)[\w.-]+(?:/[\w./%-]*)?", kaal):
+        vol = m.group(0)
+        if not vol.lower().startswith("http"):
+            vol = "https://" + vol
+        d = urllib.parse.urlparse(vol)
+        h = (d.hostname or "").lower()
+        if not h:
+            continue
+        stukken = [s for s in (d.path or "").split("/") if s]
+        vorm = "/" + "/".join(stukken[:2]) + ("/..." if len(stukken) > 2 else "")
+        p = per_host.setdefault(h, {"host": h, "aantal": 0, "vormen": set(),
+                                    "pdf": 0, "in_tekst": 0})
+        p["aantal"] += 1
+        p.setdefault("in_tekst", 0)
+        p["in_tekst"] += 1
+        p["vormen"].add(vorm[:60])
+
     uit = []
     for p in per_host.values():
         p["vormen"] = sorted(p["vormen"])[:4]
+        p.setdefault("in_tekst", 0)
         uit.append(p)
     return sorted(uit, key=lambda p: -p["aantal"])
 
@@ -264,7 +342,7 @@ def bijlagen_uit_html(tekst, basis):
         if not re.search(r"(exb-|externebijlagen|\.pdf)", href, re.I):
             continue
         vol = urllib.parse.urljoin(basis, href)
-        if not toegestaan(vol):
+        if not toegestaan(vol) or andere_publicatie(vol, basis):
             continue
         uit.append({"url": vol, "tekst": woorden,
                     "naam": urllib.parse.unquote(
@@ -347,16 +425,34 @@ def verken(gmb, haal_bestanden=False):
         volgorde = sorted(vind["bijlagen"],
                           key=lambda b: voorrang(b["naam"] + " " + b["tekst"]))
         for b in volgorde[:25]:
-            ruw, fout = haal(b["url"], binair=True)
+            # Eerst de link zelf, dan de opgebouwde vormen. De eerste ronde
+            # gaf 404 op de link uit de metadata, want daar staat een label
+            # met een nummer en geen url.
+            pogingen = [("de link zelf", b["url"])]
+            for i, u in enumerate(exb_urls(b["url"] + " " + b["naam"]
+                                           + " " + b["tekst"]), 1):
+                if u != b["url"]:
+                    pogingen.append((f"vorm {i}", u))
+            ruw, fout, welke = None, "", ""
+            mislukt = []
+            for naam_vorm, u in pogingen:
+                ruw, fout = haal(u, binair=True)
+                if not fout:
+                    welke = naam_vorm
+                    break
+                mislukt.append(f"{naam_vorm}: {fout}")
             if fout:
-                vind["bestanden"].append({"naam": b["naam"], "fout": fout})
+                vind["bestanden"].append({"naam": b["naam"],
+                                          "fout": "; ".join(mislukt[:4])})
                 continue
+            b["vorm_die_werkte"] = welke
             pad = os.path.join(map_, re.sub(r"[^\w.-]", "_", b["naam"])[:80]
                                or "bijlage.bin")
             with open(pad, "wb") as f:
                 f.write(ruw)
             d = beschrijf_bestand(pad)
             d["tekst"] = b["tekst"][:70]
+            d["vorm"] = welke
             d["voorrang"] = voorrang(b["naam"] + " " + b["tekst"])
             # De naam belooft, de inhoud beslist. Beide gaan mee, zodat wij
             # kunnen zien waar de naam miswijst in plaats van het te geloven.
@@ -397,8 +493,11 @@ def samenvatting(bevindingen, vandaag=None):
             # Elke host waarheen de pagina linkt, ook de hosts die wij niet
             # herkennen. Zonder dit leest "0 bijlagen" als "die zijn er niet".
             for h in (v.get("hosts") or [])[:8]:
+                tekst_bij = (f", {h['in_tekst']} in de lopende tekst"
+                             if h.get("in_tekst") else "")
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
-                         f"{h['pdf']} pdf, vorm {', '.join(h['vormen'])}")
+                         f"{h['pdf']} pdf{tekst_bij}, "
+                         f"vorm {', '.join(h['vormen'])}")
         bij = b.get("bijlagen") or []
         r.append(f"- samen {len(bij)} unieke bijlage(n)")
         if b.get("tegenspraak"):
@@ -424,7 +523,8 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(f"| {d['naam'][:46]} | {d['bytes']} | {d['soort']} | "
                          f"{d.get('bladzijden', '')} | "
                          f"{'ja' if d.get('heeft_tekstlaag') else 'nee' if d.get('soort') == 'pdf' else ''} | "
-                         f"{'ja' if d.get('plattegrond') else ''} |")
+                         f"{'ja' if d.get('plattegrond') else ''} |"
+                         + (f" via {d['vorm']}" if d.get("vorm") else ""))
             pdfs = [d for d in b["bestanden"] if d.get("soort") == "pdf"]
             met = [d for d in pdfs if d.get("heeft_tekstlaag")]
             plat = [d for d in b["bestanden"] if d.get("plattegrond")]
@@ -551,6 +651,67 @@ def proef():
     eigen = [h for h in links if h["host"] == "repository.overheid.nl"]
     if eigen:
         check("pdf's geteld", eigen[0]["pdf"], 2)
+
+    # 4c. EEN LINK NAAR EEN ANDERE BEKENDMAKING IS GEEN BIJLAGE.
+    # De eerste echte ronde meldde bij beide publicaties een bijlage die
+    # gmb-2015-16426.pdf bleek: een standaardlink die op elke publicatiepagina
+    # staat. Daardoor leek een publicatie zonder bijlagen er een met een te
+    # hebben, en dat kostte een download en een scheve telling.
+    deze = ("https://repository.overheid.nl/frbr/officielepublicaties/gmb/"
+            "2026/gmb-2026-463651/1/html/gmb-2026-463651.html")
+    if not andere_publicatie(
+            "https://zoek.officielebekendmakingen.nl/gmb-2015-16426.pdf", deze):
+        fouten.append("de standaardlink naar gmb-2015-16426 telt nog mee als "
+                      "bijlage")
+    if andere_publicatie(
+            "https://repository.overheid.nl/frbr/officielepublicaties/gmb/"
+            "2026/gmb-2026-463651/1/pdf/gmb-2026-463651.pdf", deze):
+        fouten.append("de publicatie zelf wordt aangezien voor een andere")
+    if andere_publicatie(
+            "https://repository.officiele-overheidspublicaties.nl/"
+            "externebijlagen/exb-2026-34477/1/bijlage/x.pdf", deze):
+        fouten.append("een echte externe bijlage wordt weggegooid")
+    html2 = ('<a href="https://zoek.officielebekendmakingen.nl/'
+             'gmb-2015-16426.pdf">Bekendmakingenbesluit</a>')
+    check("standaardlink levert geen bijlage", bijlagen_uit_html(html2, deze),
+          [])
+
+    # 4d. UIT EEN ROMMELIGE WAARDE KOMT EEN BRUIKBARE URL.
+    # De metadata geeft "Afwijkvergunning|exb-2026-34477": een label en een
+    # nummer. Daar de basis voor plakken gaf 400 en 404.
+    u = exb_urls("Afwijkvergunning|exb-2026-34477")
+    if not u:
+        fouten.append("uit 'Afwijkvergunning|exb-2026-34477' komt geen url")
+    else:
+        for x in u:
+            # Hoofdletterongevoelig vergelijken. Eerst stond hier
+            # "Afwijkvergunning" in x, en die controle ging niet af toen ik
+            # het label er met opzet in liet lekken: de opgebouwde url wordt
+            # lowercase gemaakt, dus het label stond er wel in maar anders
+            # gespeld. Een controle die zijn eigen geval niet ziet.
+            if "exb-2026-34477" not in x.lower() or "afwijk" in x.lower():
+                fouten.append(f"de opgebouwde url klopt niet: {x}")
+            if not x.startswith("https://repository.officiele-"):
+                fouten.append(f"de opgebouwde url staat op een vreemde host: "
+                              f"{x[:60]}")
+        if len(set(u)) != len(u):
+            fouten.append("dezelfde vorm staat er twee keer in")
+    check("zonder nummer geen url", exb_urls("gewoon wat tekst"), [])
+
+    # 4e. EEN URL IN DE LOPENDE TEKST TELT MEE.
+    # De bekendmaking verwijst naar een link op de pagina; staat die als
+    # gewone tekst, dan vindt een zoektocht naar href hem niet en meldt de
+    # verkenning ten onrechte dat er niets is.
+    in_tekst = alle_links("<p>De aanvraag is in te zien via "
+                          "https://portaal.nijmegen.nl/zaak/toon</p>",
+                          "https://repository.overheid.nl/a.html")
+    poort = [h for h in in_tekst if h["host"] == "portaal.nijmegen.nl"]
+    if not poort:
+        fouten.append("een url die als gewone tekst in de bekendmaking staat "
+                      "wordt niet gezien")
+    elif not poort[0].get("in_tekst"):
+        fouten.append("een url uit de lopende tekst wordt niet als zodanig "
+                      "gemeld, en dan lijkt het een gewone link")
 
     # 5. GEEN GELDIGE XML IS EEN ANTWOORD EN GEEN VAL.
     check("rommel in plaats van xml", bijlagen_uit_metadata("<nietafgesloten",
