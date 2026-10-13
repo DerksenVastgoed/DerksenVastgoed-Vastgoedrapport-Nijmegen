@@ -565,6 +565,15 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
                          f"{h['pdf']} pdf{tekst_bij}, "
                          f"vorm {', '.join(h['vormen'])}")
+        if b.get("tekst"):
+            r.append("")
+            r.append("<details><summary>de tekst van de publicatie</summary>")
+            r.append("")
+            r.append("```")
+            r.append(b["tekst"])
+            r.append("```")
+            r.append("</details>")
+            r.append("")
         bij = b.get("bijlagen") or []
         r.append(f"- samen {len(bij)} unieke bijlage(n)")
         if b.get("tegenspraak"):
@@ -924,6 +933,10 @@ def main():
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--tekst", action="store_true",
+                    help="de lopende tekst van de publicatie meenemen in de "
+                         "samenvatting; een bekendmaking is een openbaar stuk "
+                         "en de enige manier om te zien waar zij naar verwijst")
     ap.add_argument("--samenvatting", default="",
                     help="pad waar de bevinding als markdown komt; zonder dit "
                          "staat de uitkomst alleen in het joblogboek, en dat "
@@ -951,6 +964,18 @@ def main():
         for gmb in nummers:
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
+            if args.tekst:
+                # DE PUBLICATIE ZELF LATEN SPREKEN.
+                # Twee keer heb ik beredeneerd waar de stukken zouden moeten
+                # hangen en twee keer zat ik ernaast. De bekendmaking is een
+                # openbaar stuk van de overheid; wat er staat is te lezen.
+                _n, _u = kandidaten(gmb)[0]
+                _h, _f = haal(_u)
+                _kaal = re.sub(r"<[^>]+>", " ", _h or "")
+                _kaal = re.sub(r"\s+", " ", _kaal).strip()
+                # De kop en de staart van de pagina zijn vaste navigatie; het
+                # middenstuk is de bekendmaking.
+                v["tekst"] = _kaal[:4000] if not _f else f"niet gelezen: {_f}"
             for vorm in v["vormen"]:
                 print(f"  {vorm['vorm']}: {vorm['uitkomst']}, "
                       f"{vorm.get('aantal', 0)} bijlagen", file=sys.stderr)
