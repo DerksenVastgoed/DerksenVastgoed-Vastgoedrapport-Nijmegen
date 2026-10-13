@@ -411,21 +411,53 @@ def vorm_van(url):
 # met een gewone kop te vragen. Het blijft dezelfde aanvraag, naar hetzelfde
 # dossier dat Mark zelf heeft aangevraagd, voor hetzelfde persoonlijke
 # gebruik; alleen de kop verschilt.
-KOPPEN = (
-    ("monitor", "derksenvastgoed-monitor"),
-    ("browser", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 "
-                "Safari/537.36"),
+BROWSERKOP = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 "
+              "Safari/537.36")
+
+# Drie pogingen, elk met een eigen vraag. Zo levert een run drie antwoorden
+# in plaats van een, en dat scheelt runs.
+POGINGEN = (
+    ("monitor", "derksenvastgoed-monitor", False),
+    ("browser", BROWSERKOP, False),
+    ("browser met sessie", BROWSERKOP, True),
 )
 
 
-def haal_pakket(url, map_, kop="derksenvastgoed-monitor"):
-    """Het pakket binnenhalen in een tijdelijke map, met een maximum."""
+def haal_pakket(url, map_, kop="derksenvastgoed-monitor", sessie=False):
+    """
+    Het pakket binnenhalen in een tijdelijke map, met een maximum.
+
+    sessie=True haalt eerst de voorpagina van dezelfde host op en bewaart de
+    koekjes. Dat is er omdat de link van het archief geen bestand is maar
+    /HttpHandler met een queryreeks, en zo'n endpoint weigert vaak een
+    aanvraag zonder sessie. Een browser doet precies dit: eerst de site, dan
+    de download. Het is dezelfde aanvraag naar hetzelfde dossier.
+    """
     ctx = ssl.create_default_context()
     naam = os.path.basename(urllib.parse.urlparse(url).path) or "pakket.bin"
+    if "." not in naam:
+        naam = "pakket.bin"
     doel = os.path.join(map_, naam)
-    verzoek = urllib.request.Request(url, headers={"User-Agent": kop})
-    with urllib.request.urlopen(verzoek, timeout=120, context=ctx) as antwoord:
+    opener = urllib.request.build_opener()
+    if sessie:
+        import http.cookiejar
+        pot = http.cookiejar.CookieJar()
+        opener = urllib.request.build_opener(
+            urllib.request.HTTPCookieProcessor(pot))
+        d = urllib.parse.urlparse(url)
+        try:
+            opener.open(urllib.request.Request(
+                f"{d.scheme}://{d.hostname}/",
+                headers={"User-Agent": kop}), timeout=60)
+        except Exception:
+            pass    # De voorpagina mag mislukken; de koekjes zijn het doel.
+    verzoek = urllib.request.Request(url, headers={
+        "User-Agent": kop,
+        "Accept": "*/*",
+        "Referer": f"https://{urllib.parse.urlparse(url).hostname}/",
+    })
+    with opener.open(verzoek, timeout=120) as antwoord:
         lengte = int(antwoord.headers.get("Content-Length") or 0)
         if lengte and lengte > MAX_PAKKET:
             raise RuntimeError(f"pakket is {lengte} bytes, meer dan "
@@ -560,9 +592,9 @@ def main():
         try:
             doel, bytes_, welke = None, 0, ""
             laatste_fout = None
-            for naam_kop, kop in KOPPEN:
+            for naam_kop, kop, sessie in POGINGEN:
                 try:
-                    doel, bytes_ = haal_pakket(goed[0], map_, kop)
+                    doel, bytes_ = haal_pakket(goed[0], map_, kop, sessie)
                     welke = naam_kop
                     break
                 except Exception as e:
