@@ -277,6 +277,18 @@ def main():
         print(f"Doorlooptijd over {len(d)} zaken: mediaan "
               f"{dagen[len(dagen) // 2]} dagen, kortste {dagen[0]}, langste "
               f"{dagen[-1]}", file=sys.stderr)
+    # NUL OPGEHAALD TERWIJL ER WERK WAS, IS GEEN SUCCES.
+    #
+    # De eerste echte ronde meldde "gelukt" en committeerde niets, en toen
+    # had ik geen enkel aanknopingspunt: de stap stond groen, het joblogboek
+    # is van buiten niet te lezen, en de meldstap gaat alleen af bij een
+    # mislukking. Een ronde die niets ophaalt terwijl er 479 publicaties
+    # wachten, hoort rood te staan, zodat de reden in het issue komt.
+    if totaal and not gedaan:
+        print(f"GESTOPT: geen enkele van de {totaal} publicaties is "
+              f"opgehaald, {mislukt} mislukt. Dat is geen lege uitkomst maar "
+              f"een storing.", file=sys.stderr)
+        return 1
     return 0
 
 

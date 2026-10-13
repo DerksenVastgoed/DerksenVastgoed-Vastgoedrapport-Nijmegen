@@ -61,10 +61,42 @@ jobs:
 
       - name: De velden ophalen
         run: |
+          # PIPEFAIL, ANDERS IS DE EXITCODE DIE VAN tee.
+          #
+          # Zonder deze regel meldde deze stap "gelukt" terwijl python met
+          # een traceback stierf: de uitvoer ging door de pijp naar tee, en
+          # die slaagt altijd. De ronde deed dus niets, de stap stond groen,
+          # en de meldstap ging niet af omdat er formeel geen mislukking
+          # was. Dat kostte vanavond drie rondes om te vinden.
+          set -o pipefail
           python publicatievelden.py \
             --minuten "${{ github.event.inputs.minuten || '10' }}" \
             --max "${{ github.event.inputs.max || '0' }}" \
             2>&1 | tee "$RUNNER_TEMP/ronde.log"
+
+      - name: Nameten of er werkelijk iets is bijgekomen
+        # EEN STAP DIE GROEN STAAT EN NIETS DEED, IS HET PROBLEEM ZELF.
+        # De eerste echte ronde meldde gelukt en committeerde niets, en toen
+        # was er geen aanknopingspunt: het joblogboek is van buiten niet te
+        # lezen en de meldstap gaat alleen af bij een mislukking. Deze stap
+        # kijkt of de twee bestanden er werkelijk staan en of er iets in zit.
+        run: |
+          for f in publicatie_velden.json publicatie_velden_stand.json; do
+            if [ ! -s "$f" ]; then
+              echo "GESTOPT: $f ontbreekt of is leeg na de ronde."
+              ls -la
+              exit 1
+            fi
+            echo "$f: $(wc -c < "$f") bytes"
+          done
+          python - <<'EOF'
+          import json, sys
+          d = json.load(open("publicatie_velden.json", encoding="utf-8"))
+          if not d:
+              print("GESTOPT: er staan nul publicaties in het bestand.")
+              sys.exit(1)
+          print(f"{len(d)} publicaties vastgelegd")
+          EOF
 
       - name: De velden terugcommitten
         env:

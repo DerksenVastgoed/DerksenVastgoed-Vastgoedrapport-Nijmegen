@@ -570,3 +570,22 @@ waarom: 13 oktober. Mark wil de repo op prive kunnen zetten vanwege het
   nog zelf in zich heeft.
 proef: kaartlink:ONBEKEND GELDT ALS PRIVE; eisen:DAAROM DEZE TOETS
 soort: werking
+
+---
+eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
+  pipefail aan, zodat een fout ervoor niet verdwijnt.
+waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
+  committeerde niets. Alle stappen groen, geen issue, geen aanknopingspunt.
+  De regel was "python publicatievelden.py ... 2>&1 | tee ronde.log", en in
+  een pijplijn is de exitcode die van het laatste commando. tee slaagt
+  altijd, dus de traceback van python verdween. De stap stond groen, de
+  meldstap ging niet af omdat er formeel geen mislukking was, en het
+  joblogboek is van buiten de runner niet te lezen. Drie rondes kwijt
+  voordat ik doorhad dat de fout al in de eerste stap zat. De toets geldt
+  alleen voor tee en niet voor head, tail of grep: nagemeten op de echte
+  workflows gaf dat twee treffers in de briefworkflow die geen van beide een
+  fout zijn, want daar staat een grep om iets te tonen en een grep zonder
+  treffer is daar geen mislukking. tee is anders, want dat is het patroon
+  "voer dit uit en bewaar de uitvoer", en dan is de uitkomst het hele punt.
+proef: eisen:ALLEEN tee, EN NIET head, tail OF grep
+soort: werking
