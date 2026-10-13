@@ -1021,7 +1021,7 @@ def main():
                 _n, _u = kandidaten(gmb)[2]
                 _h, _f = haal(_u)
                 _sporen = [f"zoekpagina: {_f or str(len(_h or '')) + ' tekens'}"]
-                for _woord in ("ocument", "eactietermijn", "Acties"):
+                for _woord in ("erinzage", "nzien", "datumEindeReactietermijn"):
                     _treffers = [m.start() for m in
                                  re.finditer(_woord, _h or "")]
                     _sporen.append(f"  {_woord!r}: {len(_treffers)} keer")
