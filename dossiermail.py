@@ -187,6 +187,19 @@ def samenvatting(bevindingen, vandaag=None):
             r.append(f"- geweigerde hosts: {', '.join(b['hosts_geweigerd'])}")
         if b.get("bijlagen"):
             r.append(f"- bijlagen in de mail zelf: {b['bijlagen']}")
+        if b.get("vorm"):
+            v = b["vorm"]
+            r.append(f"- de link wijst naar {v['host']}, {v['padstukken']} "
+                     f"padstuk(ken), eerste `{v['eerste']}`, "
+                     + (f"extensie `{v['extensie']}`" if v["extensie"]
+                        else "geen extensie, dus eerder een pagina dan een "
+                             "bestand")
+                     + (f", queryreeks van {v['query']} tekens"
+                        if v["query"] else ", geen queryreeks"))
+        if b.get("pogingen"):
+            r.append(f"- geweigerd: {'; '.join(b['pogingen'])}")
+        if b.get("kop"):
+            r.append(f"- gelukt met de kop `{b['kop']}`")
         if b.get("pakket_bytes"):
             r.append(f"- pakket: {b['pakket_bytes']:,} bytes".replace(",", "."))
         if b.get("pakket_fout"):
@@ -303,6 +316,25 @@ def proef():
             fouten.append(f"de samenvatting bevat {verboden!r}, en afzender, "
                           f"onderwerp en link horen er niet in")
 
+    # 6b. DE VORM VAN EEN LINK VERRAADT DE LINK NIET. Dit is de regel die
+    # bepaalt of de samenvatting in een publieke repo mag staan: de sleutel
+    # van het archief zit in de link.
+    v = vorm_van("https://studiezaal.nijmegen.nl/pakketten/"
+                 "GEHEIMETOKEN123/dossier.zip?sleutel=OOKGEHEIM")
+    check("host uit de vorm", v["host"], "studiezaal.nijmegen.nl")
+    check("eerste padstuk", v["eerste"], "pakketten")
+    check("extensie", v["extensie"], "zip")
+    check("lengte van de queryreeks", v["query"], len("sleutel=OOKGEHEIM"))
+    for verboden in ("GEHEIMETOKEN123", "OOKGEHEIM", "dossier.zip"):
+        if verboden in str(v) or verboden in samenvatting([{"vorm": v}]):
+            fouten.append(f"de vorm van een link bevat {verboden!r}")
+    # Een pagina heeft geen extensie, en dat moet in woorden staan, want dat
+    # is het verschil tussen "de route is stuk" en "dit was nooit een bestand".
+    paginavorm = samenvatting([{"vorm": vorm_van(
+        "https://studiezaal.nijmegen.nl/download")}])
+    if "eerder een pagina dan een bestand" not in paginavorm:
+        fouten.append("een link zonder extensie wordt niet als pagina gemeld")
+
     # 7. EEN MISLUKKING STAAT ER NET ZO DUIDELIJK IN ALS EEN VONDST.
     # Zonder dit leest een samenvatting zonder tabel als "gekeken en niets
     # gevonden", terwijl de mailbox misschien niet eens openging.
@@ -348,13 +380,51 @@ def proef():
     return 1 if fouten else 0
 
 
-def haal_pakket(url, map_):
+def vorm_van(url):
+    """
+    De vorm van een link, zonder de link zelf.
+
+    WAAROM NIET DE LINK. De samenvatting komt in een issue in een publieke
+    repo, en in de link van het archief zit de sleutel waarmee het dossier
+    open gaat. De vorm is wel nodig: op een 403 moet ik weten of ik een
+    bestand opvraag of een pagina. Daarom de host, het eerste padstuk en de
+    staart van het pad als die een extensie is, en verder alleen of er een
+    queryreeks bij zit en hoe lang die is.
+    """
+    d = urllib.parse.urlparse(url or "")
+    stukken = [s for s in (d.path or "").split("/") if s]
+    eerste = stukken[0] if stukken else ""
+    staart = ""
+    if stukken and "." in stukken[-1]:
+        staart = stukken[-1].rsplit(".", 1)[1].lower()[:8]
+    return {"host": d.hostname or "", "padstukken": len(stukken),
+            "eerste": eerste[:24], "extensie": staart,
+            "query": len(d.query or "")}
+
+
+# TWEE KOPPEN, EN WAAROM.
+#
+# Het archief gaf 403 op "derksenvastgoed-monitor". Een 403 op een bestaande
+# link kan twee dingen betekenen: de server weigert een onbekende
+# User-Agent, of de link is geen bestand maar een pagina die eerst een
+# sessie wil. Die twee zijn alleen te onderscheiden door het ook een keer
+# met een gewone kop te vragen. Het blijft dezelfde aanvraag, naar hetzelfde
+# dossier dat Mark zelf heeft aangevraagd, voor hetzelfde persoonlijke
+# gebruik; alleen de kop verschilt.
+KOPPEN = (
+    ("monitor", "derksenvastgoed-monitor"),
+    ("browser", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 "
+                "Safari/537.36"),
+)
+
+
+def haal_pakket(url, map_, kop="derksenvastgoed-monitor"):
     """Het pakket binnenhalen in een tijdelijke map, met een maximum."""
     ctx = ssl.create_default_context()
     naam = os.path.basename(urllib.parse.urlparse(url).path) or "pakket.bin"
     doel = os.path.join(map_, naam)
-    verzoek = urllib.request.Request(url, headers={"User-Agent":
-                                                   "derksenvastgoed-monitor"})
+    verzoek = urllib.request.Request(url, headers={"User-Agent": kop})
     with urllib.request.urlopen(verzoek, timeout=120, context=ctx) as antwoord:
         lengte = int(antwoord.headers.get("Content-Length") or 0)
         if lengte and lengte > MAX_PAKKET:
@@ -485,9 +555,25 @@ def main():
                                    "--haal")
             continue
 
+        vind["vorm"] = vorm_van(goed[0])
         map_ = tempfile.mkdtemp(prefix="dossier-")
         try:
-            doel, bytes_ = haal_pakket(goed[0], map_)
+            doel, bytes_, welke = None, 0, ""
+            laatste_fout = None
+            for naam_kop, kop in KOPPEN:
+                try:
+                    doel, bytes_ = haal_pakket(goed[0], map_, kop)
+                    welke = naam_kop
+                    break
+                except Exception as e:
+                    code = getattr(e, "code", None)
+                    vind.setdefault("pogingen", []).append(
+                        f"{naam_kop}: {type(e).__name__}"
+                        + (f" {code}" if code else ""))
+                    laatste_fout = e
+            if doel is None:
+                raise laatste_fout or RuntimeError("geen poging gelukt")
+            vind["kop"] = welke
             print(f"  pakket: {os.path.basename(doel)}, {bytes_} bytes",
                   file=sys.stderr)
             vind["pakket_bytes"] = bytes_
