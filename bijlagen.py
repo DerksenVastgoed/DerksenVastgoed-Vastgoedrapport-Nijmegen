@@ -565,6 +565,15 @@ def samenvatting(bevindingen, vandaag=None):
                 r.append(f"    - {h['host']}: {h['aantal']} link(s), "
                          f"{h['pdf']} pdf{tekst_bij}, "
                          f"vorm {', '.join(h['vormen'])}")
+        if b.get("js"):
+            r.append("")
+            r.append("**Waar komt de ingeladen link vandaan:**")
+            r.append("")
+            r.append("```")
+            for _x in b["js"][:25]:
+                r.append(_x)
+            r.append("```")
+            r.append("")
         if b.get("tekst"):
             r.append("")
             r.append("<details><summary>de tekst van de publicatie</summary>")
@@ -933,6 +942,9 @@ def main():
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--js", action="store_true",
+                    help="de scripts van de pagina volgen om te vinden welk "
+                         "adres de links inlaadt die niet in de HTML staan")
     ap.add_argument("--tekst", action="store_true",
                     help="de lopende tekst van de publicatie meenemen in de "
                          "samenvatting; een bekendmaking is een openbaar stuk "
@@ -964,6 +976,40 @@ def main():
         for gmb in nummers:
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
+            if args.js:
+                # DE LINK STAAT NIET IN DE HTML, HIJ WORDT INGELADEN.
+                # De pagina roept GetReferendumLinks(<gmb>) aan. Daarom vond
+                # deze module nooit een verwijzing naar de stukken: zij staat
+                # er pas ná het laden in. Welk adres die functie bevraagt,
+                # staat in een van de scripts van de pagina.
+                _n, _u = kandidaten(gmb)[2]      # de zoekpagina
+                _h, _f = haal(_u)
+                _sporen = []
+                if _f:
+                    _sporen.append(f"pagina niet gelezen: {_f}")
+                else:
+                    _srcs = re.findall(r'<script[^>]+src="([^"]+)"', _h or "",
+                                       re.I)
+                    _sporen.append(f"{len(_srcs)} scripts op de pagina")
+                    for _src in _srcs[:12]:
+                        _vol = urllib.parse.urljoin(_u, _src)
+                        if not toegestaan(_vol):
+                            _sporen.append(f"  {_src[:60]}: host niet "
+                                           f"toegestaan")
+                            continue
+                        _js, _jf = haal(_vol)
+                        if _jf:
+                            _sporen.append(f"  {_src[:50]}: {_jf}")
+                            continue
+                        if "Referendum" not in (_js or ""):
+                            continue
+                        _sporen.append(f"  GEVONDEN in {_src[:60]}")
+                        for _m in re.finditer(
+                                r'.{0,160}Referendum.{0,240}', _js, re.S):
+                            _sporen.append("    "
+                                           + re.sub(r"\s+", " ",
+                                                    _m.group(0))[:400])
+                v["js"] = _sporen
             if args.tekst:
                 # DE PUBLICATIE ZELF LATEN SPREKEN.
                 # Twee keer heb ik beredeneerd waar de stukken zouden moeten

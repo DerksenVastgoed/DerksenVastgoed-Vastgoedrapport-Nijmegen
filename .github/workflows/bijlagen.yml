@@ -29,6 +29,11 @@ on:
         description: "Niet meer dan dit aantal publicaties (0 is alles)"
         required: false
         default: "0"
+      js:
+        description: "De scripts volgen om te vinden welk adres de ingeladen link ophaalt"
+        type: boolean
+        required: false
+        default: false
       tekst:
         description: "De lopende tekst van de publicatie meenemen, om te zien waar zij naar verwijst"
         type: boolean
@@ -83,6 +88,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.tekst }}" = "true" ]; then
             VLAG="$VLAG --tekst"
+          fi
+          if [ "${{ github.event.inputs.js }}" = "true" ]; then
+            VLAG="$VLAG --js"
           fi
           # Of uit het archief, of uit het veld, nooit allebei: anders is niet
           # te zien welke lijst er is onderzocht.
