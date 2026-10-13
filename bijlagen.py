@@ -230,11 +230,25 @@ def andere_publicatie(url, basis):
     gmb is, is een verwijzing en geen bijlage. Zo valt de volgende
     standaardlink er ook onder, ook als het nummer verandert.
     """
+    # DE LAATSTE IN DE URL, NIET DE EERSTE.
+    #
+    # De link op de pagina is relatief: href="gmb-2015-16426.pdf". Die wordt
+    # geplakt achter het pad van deze publicatie, en dan staat er
+    #   /frbr/officielepublicaties/gmb/2026/gmb-2026-474906/1/html/gmb-2015-16426.pdf
+    # Daar staan dus twee nummers in. Met de eerste vergelijken betekent deze
+    # publicatie met zichzelf vergelijken, en dan glipt elke standaardlink
+    # erdoor: in de ronde over 148 publicaties deed hij dat 133 keer.
+    #
+    # Mijn proef zag dat niet, want die gebruikte een absolute url met maar
+    # een nummer erin. Een geval dat niet voorkomt op het web waar het over
+    # gaat, toetst niets. Het geval hieronder is het pad zoals het er echt
+    # uitkwam.
     hier = GMB.search(basis or "")
-    daar = GMB.search(url or "")
-    if not daar:
+    allemaal = GMB.findall(url or "")
+    if not allemaal:
         return False
-    return not hier or daar.group(1).lower() != hier.group(1).lower()
+    daar = allemaal[-1]
+    return not hier or daar.lower() != hier.group(1).lower()
 
 
 def exb_urls(iets):
@@ -696,6 +710,18 @@ def proef():
             "https://zoek.officielebekendmakingen.nl/gmb-2015-16426.pdf", deze):
         fouten.append("de standaardlink naar gmb-2015-16426 telt nog mee als "
                       "bijlage")
+    # HET PAD ZOALS HET ER ECHT UITKWAM. De link is relatief, dus na het
+    # samenvoegen staan er twee nummers in de url. Het eerste is deze
+    # publicatie zelf. Dit geval liet de ronde over 148 publicaties 133 keer
+    # door, terwijl het geval hierboven keurig groen stond.
+    if not andere_publicatie(
+            "https://repository.overheid.nl/frbr/officielepublicaties/gmb/"
+            "2026/gmb-2026-474906/1/html/gmb-2015-16426.pdf",
+            "https://repository.overheid.nl/frbr/officielepublicaties/gmb/"
+            "2026/gmb-2026-474906/1/html/gmb-2026-474906.html"):
+        fouten.append("een relatieve standaardlink glipt erdoor: de url "
+                      "bevat dan twee nummers en het eerste is deze "
+                      "publicatie zelf")
     if andere_publicatie(
             "https://repository.overheid.nl/frbr/officielepublicaties/gmb/"
             "2026/gmb-2026-463651/1/pdf/gmb-2026-463651.pdf", deze):
