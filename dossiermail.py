@@ -515,9 +515,15 @@ def main():
         except Exception as e:
             print(f"  pakket niet binnen te halen: {type(e).__name__}: "
                   f"{str(e)[:120]}", file=sys.stderr)
-            # Alleen het soort fout: de tekst van een urllib-fout bevat de
-            # link, en die hoort niet in een openbaar issue.
-            vind["pakket_fout"] = type(e).__name__
+            # Alleen het soort fout en de statuscode: de tekst van een
+            # urllib-fout bevat de link, en die hoort niet in een openbaar
+            # issue. De code wel, want die is het verschil tussen een
+            # verlopen link (404, 410), een geweigerde (403) en een storing
+            # (5xx), en zonder dat verschil weet ik niet of de route stuk is
+            # of de link eenmalig.
+            code = getattr(e, "code", None)
+            vind["pakket_fout"] = (f"{type(e).__name__} {code}" if code
+                                   else type(e).__name__)
         finally:
             shutil.rmtree(map_, ignore_errors=True)
             print("  tijdelijke map opgeruimd; niets hiervan staat in de repo",
