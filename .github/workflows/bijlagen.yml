@@ -1,0 +1,110 @@
+name: Bijlagen bij bekendmakingen verkennen
+
+# WAAROM DIT EEN EIGEN WORKFLOW IS.
+#
+# Dit is een verkenning: kijken of de tekeningen bij een vergunningsaanvraag
+# langs de officiele bekendmaking op te halen zijn. Zo'n stap hoort niet in de
+# briefworkflow, want die draait elke ochtend en mag niet omvallen door een
+# experiment. Deze workflow heeft alleen workflow_dispatch.
+#
+# Hij committeert niets. De bijlagen gaan naar een tijdelijke map en die wordt
+# opgeruimd. Op tekeningen bij een bouwaanvraag rust auteursrecht; de gemeente
+# publiceert ze geanonimiseerd voor inzage, niet om te verspreiden. Deze repo
+# is publiek, dus een tekening erin zetten zou publiceren zijn. Wat wij eruit
+# meten mag wel, want dat is onze eigen waarneming.
+
+on:
+  workflow_dispatch:
+    inputs:
+      gmb:
+        description: "Publicatienummers, door komma's gescheiden"
+        required: false
+        default: "gmb-2026-463651,gmb-2026-460303"
+      haal:
+        description: "De bijlagen ook binnenhalen en beschrijven"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: read
+  # De bevinding moet in een kanaal dat van buiten de runner te lezen is. Het
+  # joblogboek is dat niet: dat zit achter een host die van buiten wordt
+  # geweigerd. eisen.py toetst deze regel voor elke workflow in de map.
+  issues: write
+
+jobs:
+  verkennen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Gereedschap om tekst uit een PDF te halen
+        # pdftotext beslist of een bijlage een plattegrond is. Zonder dit zou
+        # elke bijlage "geen plattegrond" heten, en dat is dezelfde stille
+        # leugen als een lege uitkomst die op "niets gevonden" lijkt.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pdftotext -v
+
+      - name: De eigen logica nameten voordat er iets wordt opgehaald
+        # Geen secrets bij deze stap: deze proef raakt geen netwerk. Hij meet
+        # onder meer of een host als repository.overheid.nl.kwaad.nl wordt
+        # geweigerd, en of een gevelaanzicht niet als plattegrond geldt.
+        run: python bijlagen.py --proef
+
+      - name: Kijken welke bijlagen er bij de publicaties staan
+        run: |
+          VLAG=""
+          if [ "${{ github.event.inputs.haal }}" = "true" ]; then
+            VLAG="--haal"
+          fi
+          python bijlagen.py \
+            --gmb "${{ github.event.inputs.gmb || 'gmb-2026-463651,gmb-2026-460303' }}" \
+            $VLAG --samenvatting "$RUNNER_TEMP/bevinding.md"
+
+      - name: De bevinding in een issue zetten
+        # always(), want een mislukte verkenning is net zo goed een uitkomst
+        # als een gelukte. Zonder dit blijft juist de interessante uitkomst
+        # ongelezen.
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PAD="$RUNNER_TEMP/bevinding.md"
+          if [ ! -s "$PAD" ]; then
+            # "niet gekeken" en "gekeken en niets gevonden" mogen nooit
+            # hetzelfde lezen.
+            {
+              echo "## Bijlagen bij bekendmakingen verkend"
+              echo
+              echo "**Niet gelukt**: de stap die de publicaties ophaalt is"
+              echo "afgebroken voordat er een bevinding was opgeschreven."
+              echo "Dit is dus niet 'er zijn geen bijlagen', maar 'er is niet"
+              echo "gekeken'. Het joblogboek van deze run zegt waarom."
+            } > "$PAD"
+          fi
+          gh issue create \
+            --title "Bijlagen verkend op $(date -u '+%Y-%m-%d %H:%M UTC')" \
+            --body-file "$PAD"
+
+      - name: Nameten dat er niets is achtergebleven
+        # De belofte van deze workflow is dat er geen tekening in de repo
+        # terechtkomt. Dat is te toetsen in plaats van te beloven.
+        run: |
+          VREEMD=$(git status --porcelain)
+          if [ -n "$VREEMD" ]; then
+            echo "GESTOPT: er staan gewijzigde of nieuwe bestanden in de werkmap:"
+            echo "$VREEMD"
+            echo "Deze workflow hoort niets achter te laten."
+            exit 1
+          fi
+          echo "De werkmap is schoon; er is geen bijlage achtergebleven."
