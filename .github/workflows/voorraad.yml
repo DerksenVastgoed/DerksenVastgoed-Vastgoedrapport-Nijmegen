@@ -23,9 +23,21 @@ name: Voorraad van de ring
 
 on:
   schedule:
-    # Op werkdagen om 04:40 UTC, ruim na de brief van 02:48 en ruim voor de
-    # tweede poging van de brief. Zo botsen de twee niet om dezelfde repo.
-    - cron: "40 4 * * 1-5"
+    # Maandag tot en met zaterdag om 04:40 UTC, ruim na de brief van 02:48 en
+    # ruim voor de tweede poging van de brief. Zo botsen de twee niet om
+    # dezelfde repo. Zondag niet: dan werkt de weekeditie van de brief de BAG
+    # en alle labels zelf bij en bezet die de repo urenlang.
+    #
+    # Deze cron is terugval, geen regeling. Gemeten op 12 oktober 2026 vuurde
+    # hij om 12:25 UTC, 7 uur en 45 minuten te laat. De geplande taak
+    # "Voorraadronde op tijd starten" start de run om 03:18 UTC van buitenaf en
+    # die begint binnen een halve minuut.
+    #
+    # Hier staat met opzet geen toets "is er vandaag al een ronde geweest",
+    # anders dan bij de brief. Een tweede ronde op dezelfde dag stuurt niemand
+    # een tweede mail; die vraagt alleen de volgende adressen op en brengt de
+    # labeldekking verder. Dat is winst, niet dubbel werk.
+    - cron: "40 4 * * 1-6"
   workflow_dispatch:
     inputs:
       bag_minuten:

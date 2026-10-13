@@ -19,11 +19,16 @@ on:
     # uit de UTC-datum van de runner. Een cron van 23:17 zou de brief van
     # gisteren opleveren.
     #
-    # Werkdagen: eerste poging, en een tweede als de eerste niets opleverde.
-    # De wachter "Is er al een brief van vandaag" hieronder slaat de tweede
-    # over als de eerste wel is gelukt.
-    - cron: "17 1 * * 1-5"   # 3:17 in Nijmegen (zomertijd), 2:17 in wintertijd
-    - cron: "17 3 * * 1-5"   # tweede poging, 5:17 zomertijd, 4:17 wintertijd
+    # Maandag tot en met zaterdag: eerste poging, en een tweede als de eerste
+    # niets opleverde. De wachter "Is er al een brief van vandaag" hieronder
+    # slaat de tweede over als de eerste wel is gelukt.
+    #
+    # Zaterdag stond hier eerst niet in, en ook niet in de geplande taak die de
+    # run van buitenaf start. Daardoor was de zaterdagbrief de enige die alleen
+    # bestond als iemand hem met de hand startte. Op 3 en 10 oktober ging dat
+    # goed omdat er iemand keek; dat is geen regeling.
+    - cron: "17 1 * * 1-6"   # 3:17 in Nijmegen (zomertijd), 2:17 in wintertijd
+    - cron: "17 3 * * 1-6"   # tweede poging, 5:17 zomertijd, 4:17 wintertijd
     # Zondag de weekeditie. Die werkt de hele pandgeschiedenis bij en kan uren
     # duren, dus hij begint zo vroeg als kan zonder de datumgrens te raken.
     - cron: "17 0 * * 0"     # 2:17 in Nijmegen (zomertijd), 1:17 in wintertijd
@@ -84,7 +89,15 @@ jobs:
             exit 0
           fi
           DATUM=$(date +%F)
-          if [ -f "digests/$DATUM-brief.md" ]; then
+          # Niet in de uitgecheckte boom kijken maar in de verse main. Een
+          # geplande run checkt de commit uit die main was toen GitHub de run
+          # AANMAAKTE. Tot nu toe maakt GitHub die run ook pas laat aan, dus
+          # viel dat samen; maar zodra de vertraging in de wachtrij zit en niet
+          # in het aanmaken, kijkt deze toets naar een boom van voor de commit
+          # van de geplande taak en krijgt pa een tweede brief. Een toets op
+          # origin kan dat niet gebeuren.
+          git fetch --quiet --depth=1 origin "${GITHUB_REF_NAME}"
+          if git cat-file -e "FETCH_HEAD:digests/$DATUM-brief.md" 2>/dev/null; then
             echo "De brief van $DATUM staat er al; deze poging is niet nodig."
             echo "door=nee" >> "$GITHUB_OUTPUT"
           else
