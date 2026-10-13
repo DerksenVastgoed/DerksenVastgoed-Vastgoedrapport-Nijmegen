@@ -541,8 +541,13 @@ def samenvatting(bevindingen, vandaag=None):
         if bij and not b.get("bestanden"):
             r.append("")
             for x in bij[:25]:
+                # Tijdelijk ook het pad, om te zien waarom de standaardlink
+                # door de filter glipt. Een pad van een openbare publicatie
+                # is geen geheim; de queryreeks blijft eraf.
+                _p = urllib.parse.urlparse(x["url"]).path
                 r.append(f"  - `{x['naam'][:70]}`"
-                         + (f" . {x['tekst'][:60]}" if x["tekst"] else ""))
+                         + (f" . {x['tekst'][:60]}" if x["tekst"] else "")
+                         + f" . pad `{_p[:110]}`")
         if b.get("bestanden"):
             r.append("")
             r.append("| bestand | bytes | soort | bladzijden | tekstlaag | "
