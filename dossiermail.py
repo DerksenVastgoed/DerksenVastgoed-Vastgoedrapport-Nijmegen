@@ -148,6 +148,73 @@ def beschrijf_bestand(pad):
     return uit
 
 
+def samenvatting(bevindingen, vandaag=None):
+    """
+    Wat we hebben gevonden, als markdown, zonder iets uit het dossier zelf.
+
+    WAAROM DIT BESTAAT. De eerste versie schreef alles naar stderr, en dat
+    komt alleen in het joblogboek van GitHub. Dat logboek zit achter
+    productionresultssa8.blob.core.windows.net en wordt van buiten de runner
+    geweigerd, dus de verkenning was groen en onleesbaar tegelijk. Precies de
+    fout die vanmorgen bij de brief ook is opgetreden.
+
+    WAT ER NIET IN KOMT. Geen afzender, geen onderwerp, geen link en geen
+    inhoud. Alleen bestandsnamen zoals het archief die geeft, omvang, soort,
+    aantal bladzijden en of er een tekstlaag in zit. Dat is metadata en niet
+    het werk waarop auteursrecht rust, en het is ook het enige dat wij nodig
+    hebben om te weten of deze route bruikbaar is.
+    """
+    import datetime as _dt
+    nu = (vandaag or _dt.datetime.now(_dt.timezone.utc)).strftime("%Y-%m-%d %H:%M UTC")
+    r = [f"## Dossiermail verkend op {nu}", ""]
+    if not bevindingen:
+        r.append("Geen mail van de gevolgde afzender in de gekozen periode. "
+                 "Dat is iets anders dan een mail die wij niet konden lezen: "
+                 "er stond niets.")
+        return "\n".join(r) + "\n"
+    for b in bevindingen:
+        if b.get("mislukt"):
+            # Een mislukking is een uitkomst en moet er net zo duidelijk in
+            # staan als een vondst. Anders leest een lege tabel als "niets
+            # gevonden" terwijl er niet gekeken is.
+            r.append(f"- **niet gelukt**: {b['mislukt']}")
+            r.append("")
+            continue
+        r.append(f"- mails gevonden: {b.get('mails', 0)}")
+        r.append(f"- links in de mail: {b.get('links_totaal', 0)}, "
+                 f"waarvan naar een toegestane host: {b.get('links_goed', 0)}")
+        if b.get("hosts_geweigerd"):
+            r.append(f"- geweigerde hosts: {', '.join(b['hosts_geweigerd'])}")
+        if b.get("bijlagen"):
+            r.append(f"- bijlagen in de mail zelf: {b['bijlagen']}")
+        if b.get("pakket_bytes"):
+            r.append(f"- pakket: {b['pakket_bytes']:,} bytes".replace(",", "."))
+        if b.get("pakket_fout"):
+            r.append(f"- pakket niet binnen te halen: {b['pakket_fout']}")
+        bestanden = b.get("bestanden") or []
+        if bestanden:
+            r.append("")
+            r.append(f"{len(bestanden)} bestand(en) in het pakket:")
+            r.append("")
+            r.append("| bestand | bytes | soort | bladzijden | tekstlaag |")
+            r.append("|---|---:|---|---:|---|")
+            for d in bestanden[:40]:
+                r.append(f"| {d['naam'][:48]} | {d['bytes']} | {d['soort']} | "
+                         f"{d.get('bladzijden', '')} | "
+                         f"{'ja' if d.get('heeft_tekstlaag') else 'nee' if d.get('soort') == 'pdf' else ''} |")
+            pdfs = [d for d in bestanden if d.get("soort") == "pdf"]
+            met = [d for d in pdfs if d.get("heeft_tekstlaag")]
+            if pdfs:
+                r.append("")
+                r.append(f"Van {len(pdfs)} PDF's hebben {len(met)} een "
+                         f"tekstlaag. Met een tekstlaag zijn maten uit te "
+                         f"lezen; zonder moet de tekening bekeken worden.")
+        r.append("")
+    r.append("_Geen enkel bestand uit dit dossier staat in de repo: het "
+             "pakket is in een tijdelijke map geopend en opgeruimd._")
+    return "\n".join(r) + "\n"
+
+
 def proef():
     """Nameten wat deze module belooft, zonder mailbox en zonder netwerk."""
     fouten = []
@@ -213,7 +280,64 @@ def proef():
         if "GEHEIME" in str(d):
             fouten.append("de beschrijving bevat de inhoud van het bestand")
 
-    # 6. DE WERKMAP BLIJFT ONAANGEROERD. Dit is de belangrijkste belofte van
+    # 6. DE SAMENVATTING IS LEESBAAR EN BEVAT NIETS UIT HET DOSSIER.
+    leeg = samenvatting([])
+    if "er stond niets" not in leeg:
+        fouten.append(f"een lege verkenning zegt niet dat er niets stond: "
+                      f"{leeg[:80]!r}")
+    vol = samenvatting([{
+        "mails": 1, "links_totaal": 3, "links_goed": 1,
+        "hosts_geweigerd": ["nieuwsbrief.example.com"],
+        "pakket_bytes": 12345678,
+        "bestanden": [
+            {"naam": "D12.411123.pdf", "bytes": 900, "soort": "pdf",
+             "bladzijden": 2, "heeft_tekstlaag": True},
+            {"naam": "D12.411124.pdf", "bytes": 800, "soort": "pdf",
+             "bladzijden": 1, "heeft_tekstlaag": False}]}])
+    for nodig in ("12.345.678", "D12.411123.pdf", "tekstlaag",
+                  "hebben 1 een"):
+        if nodig not in vol:
+            fouten.append(f"de samenvatting noemt {nodig!r} niet")
+    for verboden in ("@", "http", "Subject", "subject"):
+        if verboden in vol:
+            fouten.append(f"de samenvatting bevat {verboden!r}, en afzender, "
+                          f"onderwerp en link horen er niet in")
+
+    # 7. EEN MISLUKKING STAAT ER NET ZO DUIDELIJK IN ALS EEN VONDST.
+    # Zonder dit leest een samenvatting zonder tabel als "gekeken en niets
+    # gevonden", terwijl de mailbox misschien niet eens openging.
+    mis = samenvatting([{"mislukt": "inloggen lukte niet (TimeoutError)"}])
+    if "niet gelukt" not in mis or "TimeoutError" not in mis:
+        fouten.append(f"een mislukte verkenning meldt zichzelf niet: "
+                      f"{mis[:120]!r}")
+    if "er stond niets" in mis:
+        fouten.append("een mislukte verkenning zegt dat er niets stond")
+
+    # 8. --samenvatting SCHRIJFT ECHT EEN BESTAND. De vlag is de hele reden
+    # dat deze verkenning leesbaar is; als hij stil niets doet, is de
+    # workflow weer groen en onleesbaar tegelijk. Daarom wordt hij hier
+    # aangeroepen zoals de workflow hem aanroept, in een los proces en
+    # zonder mailbox: dan hoort er een regel over de ontbrekende sleutels
+    # te staan.
+    import subprocess
+    with tempfile.TemporaryDirectory() as map_:
+        pad = os.path.join(map_, "bevinding.md")
+        omgeving = dict(os.environ)
+        omgeving.pop("MAIL_USERNAME", None)
+        omgeving.pop("MAIL_PASSWORD", None)
+        subprocess.run([sys.executable, os.path.abspath(__file__),
+                        "--samenvatting", pad, "--dagen", "1"],
+                       env=omgeving, capture_output=True, timeout=60)
+        if not os.path.exists(pad):
+            fouten.append("--samenvatting schrijft geen bestand")
+        else:
+            with open(pad, encoding="utf-8") as f:
+                inhoud = f.read()
+            if "niet gelukt" not in inhoud:
+                fouten.append(f"het samenvattingsbestand meldt de ontbrekende "
+                              f"sleutels niet: {inhoud[:120]!r}")
+
+    # 9. DE WERKMAP BLIJFT ONAANGEROERD. Dit is de belangrijkste belofte van
     # deze module: niets uit een dossier komt in de repo terecht.
     if "repo" in str(tempfile.gettempdir()):
         fouten.append("de tijdelijke map ligt in de repo")
@@ -257,13 +381,32 @@ def main():
                     help="ook het pakket binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true",
                     help="eigen logica nameten; raakt geen mailbox")
+    ap.add_argument("--samenvatting", default="",
+                    help="pad waar de bevinding als markdown wordt neergezet; "
+                         "zonder dit staat de uitkomst alleen in het "
+                         "joblogboek, en dat is van buiten de runner niet te "
+                         "lezen")
     args = ap.parse_args()
     if args.proef:
         return proef()
 
+    bevindingen = []
+
+    def wegschrijven():
+        # Ook bij een vroege terugkeer moet er iets staan. Een leeg bestand
+        # zou "niet gekeken" en "gekeken en niets gevonden" op een hoop
+        # gooien, en dat zijn verschillende uitkomsten.
+        if args.samenvatting:
+            with open(args.samenvatting, "w", encoding="utf-8") as f:
+                f.write(samenvatting(bevindingen))
+
     if not (GEBRUIKER and WACHTWOORD):
         print("Geen MAIL_USERNAME of MAIL_PASSWORD; niets te doen.",
               file=sys.stderr)
+        bevindingen.append({"mislukt": "geen MAIL_USERNAME of MAIL_PASSWORD "
+                                       "meegegeven, dus de mailbox is niet "
+                                       "opengegaan"})
+        wegschrijven()
         return 1
     try:
         verbinding = imaplib.IMAP4_SSL(IMAP_HOST)
@@ -271,6 +414,11 @@ def main():
         verbinding.select("INBOX", readonly=True)   # lezen, niets markeren
     except Exception as e:
         print(f"Kan niet inloggen op de mailbox: {e}", file=sys.stderr)
+        # Alleen het soort fout, niet de tekst: daarin kan de gebruikersnaam
+        # staan en deze samenvatting komt in een issue te staan.
+        bevindingen.append({"mislukt": f"inloggen op de mailbox lukte niet "
+                                       f"({type(e).__name__})"})
+        wegschrijven()
         return 1
 
     import datetime as dt
@@ -290,14 +438,18 @@ def main():
         print("Geen mail van die afzender gevonden. Is hij al bezorgd, en "
               "staat hij in INBOX en niet in spam?", file=sys.stderr)
         verbinding.logout()
+        wegschrijven()
         return 0
 
     for mid in sorted(set(ids)):
+        vind = {"mails": len(set(ids))}
+        bevindingen.append(vind)
         try:
             status, data = verbinding.fetch(mid, "(BODY.PEEK[])")
             bericht = email.message_from_bytes(data[0][1])
         except Exception as e:
             print(f"  bericht {mid!r} niet te lezen: {e}", file=sys.stderr)
+            vind["mislukt"] = f"een bericht was niet te lezen ({type(e).__name__})"
             continue
         print(f"\n  van:     {_kop(bericht.get('From'))}", file=sys.stderr)
         print(f"  datum:   {_kop(bericht.get('Date'))}", file=sys.stderr)
@@ -310,10 +462,13 @@ def main():
             print(f"  bijlagen in de mail zelf: {len(bijlagen)}: "
                   f"{', '.join(_kop(b) for b in bijlagen[:6])}",
                   file=sys.stderr)
+            vind["bijlagen"] = len(bijlagen)
         alle = RE_URL.findall(tekst or "")
         goed = links_uit(tekst)
         print(f"  links: {len(alle)} in de mail, {len(goed)} naar een "
               f"toegestane host", file=sys.stderr)
+        vind["links_totaal"] = len(alle)
+        vind["links_goed"] = len(goed)
         for url in goed:
             print(f"    {url[:110]}", file=sys.stderr)
         if not goed:
@@ -321,10 +476,13 @@ def main():
             if andere:
                 print(f"  hosts die niet zijn toegestaan: "
                       f"{', '.join(andere[:6])}", file=sys.stderr)
+                vind["hosts_geweigerd"] = andere[:6]
             continue
         if not args.haal:
             print("  (met --haal erbij wordt het pakket geopend en beschreven)",
                   file=sys.stderr)
+            vind["pakket_fout"] = ("niet geprobeerd; deze run liep zonder "
+                                   "--haal")
             continue
 
         map_ = tempfile.mkdtemp(prefix="dossier-")
@@ -332,6 +490,7 @@ def main():
             doel, bytes_ = haal_pakket(goed[0], map_)
             print(f"  pakket: {os.path.basename(doel)}, {bytes_} bytes",
                   file=sys.stderr)
+            vind["pakket_bytes"] = bytes_
             uitpak = os.path.join(map_, "uit")
             os.makedirs(uitpak, exist_ok=True)
             try:
@@ -343,8 +502,10 @@ def main():
             except Exception:
                 bestanden = [doel]
             print(f"  inhoud: {len(bestanden)} bestand(en)", file=sys.stderr)
+            vind["bestanden"] = []
             for pad in sorted(bestanden)[:40]:
                 d = beschrijf_bestand(pad)
+                vind["bestanden"].append(d)
                 extra = ""
                 if d.get("soort") == "pdf":
                     extra = (f", {d.get('bladzijden')} bladzijden, "
@@ -354,11 +515,15 @@ def main():
         except Exception as e:
             print(f"  pakket niet binnen te halen: {type(e).__name__}: "
                   f"{str(e)[:120]}", file=sys.stderr)
+            # Alleen het soort fout: de tekst van een urllib-fout bevat de
+            # link, en die hoort niet in een openbaar issue.
+            vind["pakket_fout"] = type(e).__name__
         finally:
             shutil.rmtree(map_, ignore_errors=True)
             print("  tijdelijke map opgeruimd; niets hiervan staat in de repo",
                   file=sys.stderr)
     verbinding.logout()
+    wegschrijven()
     return 0
 
 

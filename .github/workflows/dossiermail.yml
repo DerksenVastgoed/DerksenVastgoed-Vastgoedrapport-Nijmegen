@@ -29,6 +29,14 @@ on:
 
 permissions:
   contents: read
+  # WAAROM DEZE WORKFLOW EEN ISSUE MAG SCHRIJVEN.
+  #
+  # De eerste versie schreef alles naar stderr. Dat komt in het joblogboek,
+  # en dat logboek staat achter productionresultssa8.blob.core.windows.net,
+  # dat van buiten de runner wordt geweigerd. De verkenning was dus groen en
+  # onleesbaar tegelijk: dezelfde fout die bij de brief is opgetreden. Een
+  # issue is wel te lezen, dus daar komt de bevinding te staan.
+  issues: write
 
 jobs:
   verkennen:
@@ -58,7 +66,38 @@ jobs:
           if [ "${{ github.event.inputs.haal }}" = "true" ]; then
             VLAG="--haal"
           fi
-          python dossiermail.py --dagen "${{ github.event.inputs.dagen || '7' }}" $VLAG
+          python dossiermail.py --dagen "${{ github.event.inputs.dagen || '7' }}" $VLAG \
+            --samenvatting "$RUNNER_TEMP/bevinding.md"
+
+      - name: De bevinding in een issue zetten
+        # always(), want een mislukte verkenning is net zo goed een uitkomst
+        # als een gelukte. Zonder dit zou juist de interessante uitkomst
+        # ongelezen blijven.
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PAD="$RUNNER_TEMP/bevinding.md"
+          if [ ! -s "$PAD" ]; then
+            # "niet gekeken" en "gekeken en niets gevonden" mogen nooit
+            # hetzelfde lezen. Een ontbrekend bestand betekent dat de stap
+            # hierboven is omgevallen voordat hij iets kon opschrijven.
+            {
+              echo "## Dossiermail verkend"
+              echo
+              echo "**Niet gelukt**: de stap die de mailbox opent is"
+              echo "afgebroken voordat er een bevinding was opgeschreven."
+              echo "Dit is dus niet 'er stond niets', maar 'er is niet"
+              echo "gekeken'. Het joblogboek van deze run zegt waarom."
+            } > "$PAD"
+          fi
+          gh issue create \
+            --title "Dossiermail verkend op $(date -u '+%Y-%m-%d %H:%M UTC')" \
+            --body-file "$PAD" \
+            --label verkenning 2>/dev/null \
+          || gh issue create \
+            --title "Dossiermail verkend op $(date -u '+%Y-%m-%d %H:%M UTC')" \
+            --body-file "$PAD"
 
       - name: Nameten dat er niets is achtergebleven
         # De belofte van deze workflow is dat er niets uit een dossier in de

@@ -520,7 +520,15 @@ waarom: 13 oktober. Het schrijven van de brief mislukte in de run van 08:46.
   wordt geweigerd. Er was dus niets te onderzoeken. De staart van dat logboek
   gaat nu mee in briefstand.json en komt zo in het gezondheidsrapport in de
   bijlage, die elke ochtend meegaat.
-proef: briefstand:niet-gekeken, niet-gevonden en leeg
+  Later diezelfde dag dezelfde fout, nu bij dossiermail.yml: die draaide
+  groen, zes stappen gelukt, en wat er in het dossier zat stond alleen in het
+  joblogboek. Een verkenning waarvan de uitkomst niet te lezen is. Dat is per
+  geval oplossen niet genoeg, want de volgende workflow begint weer met
+  stderr. De bevinding gaat nu als markdown naar een issue, en eisen.py
+  toetst van elke workflow in de map of hij een kanaal heeft dat van buiten
+  op te vragen is: een commit, een issue, een mail of een artefact.
+proef: briefstand:niet-gekeken, niet-gevonden en leeg; eisen:WAT GELDT ALS EEN
+  LEESBAAR KANAAL
 soort: werking
 
 ---

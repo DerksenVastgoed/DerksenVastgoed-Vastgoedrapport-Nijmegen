@@ -264,6 +264,53 @@ def commitstap(paden=None):
     return fouten
 
 
+def leesbaar_kanaal(paden=None):
+    """
+    Of elke workflow zijn uitkomst ergens neerzet waar wij hem kunnen lezen.
+
+    WAT HIER GEBEURDE. dossiermail.yml draaide op 13 oktober groen: zes
+    stappen gelukt, werkmap schoon. Wat er in het dossier zat was alleen naar
+    stderr geschreven, en dat komt in het joblogboek van GitHub. Dat logboek
+    zit achter productionresultssa8.blob.core.windows.net, dat van buiten de
+    runner wordt geweigerd. Ik had dus een verkenning gebouwd waarvan ik de
+    uitkomst niet kon lezen: groen en onleesbaar tegelijk.
+
+    Dezelfde fout trof die ochtend de brief. Daar is hij opgelost door de
+    staart van het logboek in briefstand.json te zetten. Zo'n oplossing per
+    geval houdt niet: de volgende workflow begint weer met stderr. Daarom
+    toetst dit de regel in plaats van de twee gevallen.
+
+    WAT GELDT ALS EEN LEESBAAR KANAAL. Iets dat van buiten de runner op te
+    vragen is: een commit, een issue, een mail, of een artefact. Het
+    joblogboek niet. De lijst komt uit de inhoud van het bestand en niet uit
+    een lijst met workflownamen, want zo'n lijst wordt niet bijgewerkt.
+    """
+    KANALEN = ("git commit", "gh issue", "gh api", "upload-artifact",
+               "MAIL_USERNAME", "GITHUB_STEP_SUMMARY")
+    fouten = []
+    paden = paden if paden is not None else _alle_workflows()
+    if not paden:
+        return ["geen workflowbestand gevonden om het kanaal te toetsen"]
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                bron = f.read()
+        except Exception as e:
+            fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
+            continue
+        # Alleen echte regels, niet het commentaar waarin deze fout wordt
+        # uitgelegd; anders maakt de uitleg zelf de toets groen.
+        echt = "\n".join(r for r in bron.splitlines()
+                         if not r.strip().startswith("#"))
+        if not any(k in echt for k in KANALEN):
+            fouten.append(f"{pad} zet zijn uitkomst nergens neer waar wij hem "
+                          f"kunnen lezen. Alles wat de stappen printen komt "
+                          f"in het joblogboek, en dat wordt van buiten de "
+                          f"runner geweigerd. Een commit, een issue, een mail "
+                          f"of een artefact is wel te lezen.")
+    return fouten
+
+
 def startdagen(pad=BRIEFWORKFLOW):
     """
     Voor welke weekdagen de briefworkflow een geplande start heeft.
@@ -344,32 +391,46 @@ def proef(snel=False):
     beschikbaar = set(_modules_met_proef())
     gedraaid = {}
     for e in heeft:
-        verwijzing = e["proef"]
-        module, _, label = verwijzing.partition(":")
-        module, label = module.strip(), label.strip()
-        if module == "eisen":
-            # Naar onszelf verwijzen mag: de controles hieronder in dit
-            # bestand horen er net zo goed bij.
-            continue
-        if module not in beschikbaar:
-            fouten.append(f"eis verwijst naar {module!r}, maar dat heeft geen "
-                          f"--proef: {e['eis'][:50]}")
-            continue
-        bron = _bron(module)
-        if label and label not in (bron or ""):
-            fouten.append(f"de controle {label!r} staat niet in {module}.py; "
-                          f"omgedoopt of weggehaald? Eis: {e['eis'][:50]}")
-        if snel or module in gedraaid:
-            continue
-        r = subprocess.run([sys.executable, f"{module}.py"] + _vlag(module),
-                           capture_output=True, text=True, timeout=600)
-        gedraaid[module] = r.returncode
-        if r.returncode != 0:
-            laatste = (r.stderr or "").strip().splitlines()
-            fouten.append(f"{module} --proef staat rood ({r.returncode}): "
-                          f"{laatste[-1][:80] if laatste else 'geen uitvoer'}")
+        # EEN EIS MAG OP MEER DAN EEN PLEK WORDEN AFGEDWONGEN, gescheiden
+        # door een puntkomma. Dat is er omdat de eis over het leesbare kanaal
+        # op twee plaatsen bleek te gelden: in de brief en in een verkenning.
+        # Een tweede veld ernaast zou hetzelfde ding twee namen geven, en dan
+        # kijkt de controle maar naar een van de twee.
+        for verwijzing in e["proef"].split(";"):
+            module, _, label = verwijzing.partition(":")
+            module, label = module.strip(), label.strip()
+            if not module:
+                continue
+            if module == "eisen":
+                # Naar onszelf verwijzen mag, maar het label moet dan wel in
+                # dit bestand staan: anders verdwijnt een controle hier
+                # zonder dat de eis het merkt.
+                if label and label not in (_bron("eisen") or ""):
+                    fouten.append(f"de controle {label!r} staat niet in "
+                                  f"eisen.py: {e['eis'][:50]}")
+                continue
+            if module not in beschikbaar:
+                fouten.append(f"eis verwijst naar {module!r}, maar dat heeft "
+                              f"geen --proef: {e['eis'][:50]}")
+                continue
+            bron = _bron(module)
+            if label and label not in (bron or ""):
+                fouten.append(f"de controle {label!r} staat niet in "
+                              f"{module}.py; omgedoopt of weggehaald? Eis: "
+                              f"{e['eis'][:50]}")
+            if snel or module in gedraaid:
+                continue
+            r = subprocess.run([sys.executable, f"{module}.py"] + _vlag(module),
+                               capture_output=True, text=True, timeout=600)
+            gedraaid[module] = r.returncode
+            if r.returncode != 0:
+                laatste = (r.stderr or "").strip().splitlines()
+                fouten.append(f"{module} --proef staat rood ({r.returncode}): "
+                              f"{laatste[-1][:80] if laatste else 'geen uitvoer'}")
 
     # EISEN DIE DIT BESTAND ZELF HANDHAAFT.
+    #
+    # elke proef eindigt op sys.exit.
     #
     # Elke module met een --proef moet op sys.exit eindigen. Zonder dat geeft
     # het proces exitcode 0, ook als de proef rood staat, en dan is de poort
@@ -385,6 +446,11 @@ def proef(snel=False):
     # Een run die gegevens terugschrijft mag geen broncode veranderen. Zie
     # commitstap() voor wat dat op 13 oktober kostte.
     fouten.extend(commitstap())
+
+    # Elke workflow moet zijn uitkomst neerzetten waar wij hem kunnen lezen.
+    # Zie leesbaar_kanaal() voor de verkenning die groen en onleesbaar
+    # tegelijk was.
+    fouten.extend(leesbaar_kanaal())
 
     # Elke dag van de week moet een geplande start van de brief hebben. Een
     # dag zonder cron heeft geen terugval, en dat valt pas op als niemand
