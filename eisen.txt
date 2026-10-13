@@ -549,3 +549,24 @@ waarom: 13 oktober. De toets op "dit pand is te groot voor het puntenstelsel"
   staan, is de verkeerde ruil.
 proef: gezondheid:ware zin wordt als onwaar gemarkeerd
 soort: werking
+
+---
+eis: Een link in de brief gaat open, en een link die niet meer opengaat
+  verdwijnt vanzelf in plaats van dat iemand hem moet weghalen.
+waarom: 13 oktober. Mark wil de repo op prive kunnen zetten vanwege het
+  auteursrecht op de tekeningen in de bouwdossiers. Daarmee valt GitHub Pages
+  weg, en in de brief stonden drie links naar github.io: de eigendomskaart,
+  de buurtkaart en de kaart met de uitgelichte panden. Die zouden alle drie
+  een 404 geven in een brief die naar pa gaat, en een dode link leert de lezer
+  de links over te slaan. Een constante die met de hand op False moet, is het
+  soort schakelaar dat op het verkeerde moment wordt vergeten. GitHub geeft de
+  zichtbaarheid bij elke run mee in het event; de workflow zet die door als
+  REPO_PRIVE en kaartlink.py laat de hele regel weg zodra hij true is. Niet
+  gezet geldt ook als prive, want een dode link is erger dan geen link. Die
+  voorzichtige kant heeft een keerzijde: een vergeten variabele zou de kaarten
+  stil uit de brief laten vallen. Daarom toetst eisen.py of elke workflow die
+  een module aanroept die kaartlink importeert, de variabele werkelijk
+  meegeeft, en toetst kaartlink.py of geen enkele andere module de Pages-url
+  nog zelf in zich heeft.
+proef: kaartlink:ONBEKEND GELDT ALS PRIVE; eisen:DAAROM DEZE TOETS
+soort: werking

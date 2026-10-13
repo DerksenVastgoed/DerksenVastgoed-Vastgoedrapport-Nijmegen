@@ -30,6 +30,8 @@ import requests
 import pandsleutel as _psl
 
 import eponline as _epo
+
+import kaartlink
 # --- CONFIG ---
 INPUT_PAD = "verkopen.txt"
 CACHE_PAD = "marktprijzen_bag_cache.json"
@@ -4527,8 +4529,9 @@ def schrijf_memos(feitenblokken):
         return {}
 
 
-TOP3_KAART_URL = ("https://derksenvastgoed.github.io/"
-                  "DerksenVastgoed-Vastgoedrapport-Nijmegen/top3-kaart.html")
+# De url van de kaart staat in kaartlink.py, niet hier: Pages werkt alleen
+# bij een publieke repo en die ene plek beslist of de link in de brief komt.
+TOP3_KAART = "top3-kaart.html"
 
 
 
@@ -5056,8 +5059,10 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
     if schrijf_top3_kaart([k[-1] for k in top]):
         woord = ("het pand" if len(top) == 1 else
                  "de twee panden" if len(top) == 2 else f"de {len(top)} panden")
-        r.append(f"[Bekijk {woord} op de kaart]({TOP3_KAART_URL})")
-        r.append("")
+        _k = kaartlink.link(f"Bekijk {woord} op de kaart", TOP3_KAART)
+        if _k:
+            r.append(_k)
+            r.append("")
 
     if beleggingen and len(beleggingen) >= 3:
         bel = sorted(p for p, _ in beleggingen)
@@ -7115,8 +7120,8 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
     return r, kandidaten
 
 
-KAART_URL = ("https://derksenvastgoed.github.io/"
-             "DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html")
+# De url staat in kaartlink.py; hier alleen de naam van de pagina.
+EIGENDOMSKAART = "kaart-eigendom-ring.html"
 
 
 
@@ -7309,8 +7314,10 @@ def render_intro(cbs, woningen, kort=False):
             f"(CBS telt studenten op hun woonadres).")
 
     slot = (f"De brief volgt {n(len(woningen))} panden, waarvan er {in_aanbod} nu "
-            f"in aanbod zijn. Bijgewerkt {vandaag}. "
-            f"[Bekijk de eigendomskaart]({KAART_URL}).")
+            f"in aanbod zijn. Bijgewerkt {vandaag}.")
+    _k = kaartlink.link("Bekijk de eigendomskaart", EIGENDOMSKAART)
+    if _k:
+        slot += f" {_k}."
     zinnen.append(slot)
 
     return ["", "### Achtergrond", "", " ".join(zinnen), ""]
