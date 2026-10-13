@@ -1027,3 +1027,16 @@ Burghardt van den Berghstraat | Nijmegen | 556 | te huur kamer | 2026-10-12 | ka
 
 # Automatisch toegevoegd uit Funda-attendering op 13-10-2026
 Regulierstraat | Nijmegen | 1799 | te huur | 2026-10-12 | kamernet | 86 | 
+Vondelstraat 63 | Nijmegen | 495000 | verkocht | 2026-10-13 | funda-verkocht-plak | 124 | 6512BC
+Beijensstraat 18 | Nijmegen | 419000 | verkocht | 2026-10-13 | funda-verkocht-plak | 77 | 6521EC
+Groesbeekseweg 85 | Nijmegen | 1150000 | verkocht | 2026-10-13 | funda-verkocht-plak | 228 | 6524CS
+Pontanusstraat 19 | Nijmegen | 539000 | verkocht | 2026-10-13 | funda-verkocht-plak | 135 | 6524HB
+Mariënburg 88-D | Nijmegen | 535000 | verkocht | 2026-10-13 | funda-verkocht-plak | 95 | 6511PS
+Schoolstraat 135 | Nijmegen | 405000 | verkocht | 2026-10-13 | funda-verkocht-plak | 80 | 6512JE
+Zwaluwstraat 175 | Nijmegen | 349500 | verkocht | 2026-10-13 | funda-verkocht-plak | 82 | 6541NV
+Karrengas 48-F | Nijmegen | 275000 | verkocht | 2026-10-13 | funda-verkocht-plak | 40 | 6511GS
+Hofdijkstraat 17 | Nijmegen | 635000 | verkocht | 2026-10-13 | funda-verkocht-plak | 124 | 6531BR
+Professor Cornelissenstraat 3 | Nijmegen | 370000 | verkocht | 2026-10-13 | funda-verkocht-plak | 73 | 6524PD
+van Slichtenhorststraat 42 | Nijmegen | 645000 | verkocht | 2026-10-13 | funda-verkocht-plak | 144 | 6524JR
+Kaapstander 264 | Nijmegen | 1215000 | verkocht | 2026-10-13 | funda-verkocht-plak | 151 | 6541EX
+Graafseweg 33-A21 | Nijmegen | 210000 | verkocht | 2026-10-13 | funda-verkocht-plak | 24 | 6512BP
