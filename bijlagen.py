@@ -534,15 +534,22 @@ def samenvatting(bevindingen, vandaag=None):
     # DE OPTELLING EERST. Bij een brede ronde is dit het getal dat telt:
     # hoeveel van de publicaties die wij volgen brengen werkelijk een stuk
     # mee. Staat dat onderaan achter 138 kopjes, dan leest niemand het.
-    met = [b for b in bevindingen if b.get("bijlagen")]
-    zonder = [b for b in bevindingen if not b.get("bijlagen")]
-    stuk = sum(len(b.get("bijlagen") or []) for b in bevindingen)
-    gelezen = [d for b in bevindingen for d in (b.get("bestanden") or [])
+    # Een werklijst telt niet als een onderzochte publicatie: hij IS de
+    # uitkomst over een hele reeks. Zonder dit onderscheid meldde de
+    # werklijst over 148 publicaties bovenaan "1 publicatie onderzocht, 0
+    # dragen een stuk mee", en dat is precies het tegenovergestelde van wat
+    # eronder staat.
+    los = [b for b in bevindingen if b.get("werklijst") is None]
+    met = [b for b in los if b.get("bijlagen")]
+    zonder = [b for b in los if not b.get("bijlagen")]
+    stuk = sum(len(b.get("bijlagen") or []) for b in los)
+    gelezen = [d for b in los for d in (b.get("bestanden") or [])
                if not d.get("fout")]
     plat = [d for d in gelezen if d.get("plattegrond")]
-    r.append(f"**{len(bevindingen)} publicaties onderzocht.** "
-             f"{len(met)} daarvan dragen samen {stuk} stuk(ken) mee, "
-             f"{len(zonder)} dragen niets mee.")
+    if los:
+        r.append(f"**{len(los)} publicaties onderzocht.** "
+                 f"{len(met)} daarvan dragen samen {stuk} stuk(ken) mee, "
+                 f"{len(zonder)} dragen niets mee.")
     if gelezen:
         r.append("")
         r.append(f"Van de {len(gelezen)} stukken die wij hebben kunnen "
@@ -553,7 +560,7 @@ def samenvatting(bevindingen, vandaag=None):
     # Bij een brede ronde alleen de publicaties die iets opleverden. Een
     # publicatie zonder bijlagen staat in de optelling hierboven; haar
     # hostlijst erbij zetten maakt het issue onleesbaar en voegt niets toe.
-    breed = len(bevindingen) > 5
+    breed = len(los) > 5
     if breed and zonder:
         r.append(f"_De {len(zonder)} publicaties zonder bijlage staan "
                  f"hieronder niet uitgeschreven; zij zijn wel onderzocht._")
@@ -561,6 +568,41 @@ def samenvatting(bevindingen, vandaag=None):
         bevindingen = met
 
     for b in bevindingen:
+        if b.get("werklijst") is not None:
+            import datetime as _d2
+            nu_dag = _d2.datetime.now(_d2.timezone.utc).strftime("%Y-%m-%d")
+            lijst = b["werklijst"]
+            open_nu = sorted([x for x in lijst
+                              if x.get("einde") and x["einde"] >= nu_dag],
+                             key=lambda x: x["einde"])
+            dicht = [x for x in lijst
+                     if x.get("einde") and x["einde"] < nu_dag]
+            geen = [x for x in lijst if not x.get("einde")]
+            r.append(f"**{b['onderzocht']} publicaties nagekeken**, "
+                     f"{b['mislukt']} niet gelezen.")
+            r.append("")
+            r.append(f"- **{len(open_nu)} liggen nu ter inzage** en kunnen "
+                     f"vandaag worden opgehaald")
+            r.append(f"- {len(dicht)} hebben ter inzage gelegen, maar die "
+                     f"termijn is voorbij")
+            r.append(f"- {len(geen)} hebben geen reactietermijn in hun "
+                     f"metadata, en dus niets liggen")
+            if open_nu:
+                r.append("")
+                r.append("| tot | pand | uitkomst | zaaknummer | publicatie |")
+                r.append("|---|---|---|---|---|")
+                for x in open_nu:
+                    r.append(
+                        f"| **{x['einde']}** | {x['pand'][:26]} | "
+                        f"{x['uitkomst'] or '-'} | {x['zaaknummer'] or '-'} | "
+                        f"[{x['gmb']}](https://zoek.officielebekendmakingen.nl"
+                        f"/{x['gmb']}.html) |")
+                r.append("")
+                r.append("_Klik de publicatie, dan Bekijk documenten. Het "
+                         "ophalen zelf blijft handwerk: de viewer laat "
+                         "geautomatiseerd ophalen niet toe._")
+            r.append("")
+            continue
         r.append(f"### {b['gmb']}")
         r.append("")
         for v in b.get("vormen", []):
@@ -1008,6 +1050,41 @@ def main():
         # Geen publicaties is iets anders dan geen bijlagen. Dat verschil
         # hoort in de samenvatting te staan en niet in een lege tabel.
         print("Geen publicaties om te onderzoeken.", file=sys.stderr)
+
+    if args.werklijst:
+        # DE WERKLIJST.
+        #
+        # Niet de stukken ophalen: jeleefomgeving.nl laat geautomatiseerd
+        # ophalen niet toe en daar werk ik niet omheen. Wel alles ervoor:
+        # welke dossiers hebben stukken liggen en tot welke dag. Dat staat in
+        # de metadata van de publicatie, in het veld
+        # OVERHEIDop.datumEindeReactietermijn, en dat veld staat er alleen
+        # als er werkelijk iets ter inzage ligt.
+        import time as _t
+        import besluit as _bes
+        rijen = uit_archief()
+        if args.max:
+            rijen = rijen[:args.max]
+        lijst, mislukt = [], 0
+        for r in rijen:
+            _n, _u = kandidaten(r["gmb"])[0]
+            _h, _f = haal(_u)
+            if _f:
+                mislukt += 1
+                continue
+            _kaal = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", _h))
+            _v = _bes.velden_uit(_kaal)
+            _v["einde"] = _bes.einde_reactietermijn(_h)
+            _v.update({"gmb": r["gmb"], "pand": r["pand"],
+                       "datum": r["datum"], "titel": r["titel"]})
+            lijst.append(_v)
+            _t.sleep(0.4)      # de site gaf 504 toen ik te snel ging
+        bevindingen = [{"werklijst": lijst, "mislukt": mislukt,
+                        "onderzocht": len(rijen)}]
+        if args.samenvatting:
+            with open(args.samenvatting, "w", encoding="utf-8") as f:
+                f.write(samenvatting(bevindingen))
+        return 0
 
     bevindingen = []
     try:
