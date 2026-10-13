@@ -611,6 +611,13 @@ jobs:
           # gebeurtenistekst dat elk adresseerbaar object als woning telde.
           # Beide gaven geen foutmelding, en de eerste fout verborg de tweede.
           python splitsing_voltooid.py --proef
+          # geen-sleutel-nodig: EP_API_KEY omdat de aanroepen in deze stap
+          # alleen voorraad.json lezen en geen enkele vraag naar EP-Online
+          # doen. Nagemeten op 13 oktober: met EP_API_KEY, BAG_API_KEY en
+          # ANTHROPIC_API_KEY alle drie leeg geeft deze stap exitcode 0 en
+          # levert hij het pijplijnblok van 18 regels. De sleutel er toch bij
+          # zetten zou een afhankelijkheid suggereren die er niet is.
+          #
           # DE PIJPLIJN ERBIJ. Woningen met status gevormd zijn
           # geregistreerd maar nog niet gereedgemeld, dus geen voorraad; het
           # CBS rekent ze ook niet mee. Sinds 11 oktober staan ze apart in
@@ -753,6 +760,20 @@ jobs:
           } > "$BRIEF"
           echo "BRIEF_PAD=$BRIEF" >> "$GITHUB_ENV"
 
+      - name: De briefschrijver nameten voordat hij schrijft
+        # GEEN SECRETS EN GEEN continue-on-error. Deze proef raakt geen bron:
+        # hij meet de afkapdetectie na en of de schrijfinstructies er nog
+        # staan. De afkapdetectie keek naar het laatste teken van de brief, en
+        # een brief die afsluit met "Groet, Mark" eindigt op een k: 65 van de
+        # 68 meldingen in diagnose/brief.txt waren daardoor vals, en de drie
+        # echte afkappingen vielen daartussen niet op.
+        run: |
+          python brief_verhalend.py --proef
+          # En de stand die vastlegt of de brief opnieuw is geschreven, met de
+          # staart van het logboek erbij zodat de reden niet alleen in het
+          # joblogboek van GitHub staat.
+          python briefstand.py --proef
+
       - name: Verhalende brief maken
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -767,21 +788,33 @@ jobs:
           VERHAAL="digests/${DATUM}-verhaal.md"
           VOOR=0
           [ -f "$VERHAAL" ] && VOOR=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
-          python brief_verhalend.py --datum "$DATUM" \
-            --uit "$VERHAAL" || echo "Verhalende brief overgeslagen"
+          # DE UITVOER OOK NAAR EEN BESTAND. Op 13 oktober mislukte het
+          # schrijven in de run van 08:46. Dat werd netjes gemeld, maar de
+          # REDEN stond alleen in het joblogboek van GitHub, en dat zit achter
+          # results-receiver.actions.githubusercontent.com, die van buiten de
+          # runner wordt geweigerd. Er was dus niets te onderzoeken. De staart
+          # van dit bestand gaat nu mee in briefstand.json en komt zo in het
+          # gezondheidsrapport in de bijlage, die elke ochtend meegaat.
+          if ! python brief_verhalend.py --datum "$DATUM" \
+               --uit "$VERHAAL" > /tmp/verhaal.log 2>&1; then
+            echo "Verhalende brief: exitcode niet nul" >> /tmp/verhaal.log
+          fi
+          cat /tmp/verhaal.log
           NA=0
           [ -f "$VERHAAL" ] && NA=$(stat -c %Y "$VERHAAL" 2>/dev/null || echo 0)
           if [ "$NA" = "0" ]; then
             echo "LET OP: er is geen verhalende brief gemaakt"
-            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'er is geen brief gemaakt'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+            python briefstand.py --log /tmp/verhaal.log \
+              --reden "er is geen brief gemaakt"
           elif [ "$NA" = "$VOOR" ]; then
             echo "LET OP: de brief is NIET opnieuw geschreven. Dit is de brief van"
             echo "een eerdere run van vandaag. Zoek hierboven waarom het schrijven"
             echo "is mislukt; verstuur dit niet als nieuwe brief."
-            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': False, 'reden': 'het schrijven mislukte; de brief van een eerdere run van vandaag stond er nog'}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+            python briefstand.py --log /tmp/verhaal.log \
+              --reden "het schrijven mislukte; de brief van een eerdere run van vandaag stond er nog"
           else
             echo "Brief gemaakt: $(wc -w < "$VERHAAL") woorden"
-            python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'opnieuw_geschreven': True, 'reden': ''}, open('briefstand.json','w'), ensure_ascii=False, indent=1)"
+            python briefstand.py --geschreven
           fi
 
       - name: Verwijzing naar het beleid onder de bijlage
