@@ -42,6 +42,7 @@ de oppervlakte, en dat laat deze module aan de lezer.
 import argparse
 import datetime as dt
 import json
+import re
 import statistics as stat
 import sys
 
@@ -79,6 +80,9 @@ IN_GEBRUIK = ("Pand in gebruik", "Pand in gebruik (niet ingemeten)")
 # is dit getal nooit meer bindend. Zelfde vorm als MAX_BAG_PER_RONDE in
 # pandgeschiedenis.py.
 MAX_PER_RONDE = 25
+
+# Het veld waarin staat met welk aantal dit pand al is gemeld. Zie verwerk().
+GEMELD = "transformatie_gemeld"
 
 
 def _jaar_grens(vandaag=None):
@@ -167,7 +171,7 @@ def _record_van(geschiedenis, project):
     return (None, None)
 
 
-def tekst_gebeurtenis(project, vandaag):
+def tekst_gebeurtenis(project, vandaag, eerder=None):
     """
     De gebeurtenis in woorden, met de grondslag erin.
 
@@ -180,21 +184,91 @@ def tekst_gebeurtenis(project, vandaag):
     woning = "woning" if n == 1 else "woningen"
     m2 = (f", mediaan {project['mediaan_m2']} m2"
           if project["mediaan_m2"] else "")
+    was = f", waren er {eerder}" if eerder is not None else ""
     return (f"in de BAG staan {n} {woning} als gevormd in dit pand uit "
-            f"{project['bouwjaar']}, dat zelf al in gebruik is{m2}. "
+            f"{project['bouwjaar']}, dat zelf al in gebruik is{m2}{was}. "
             f"Dat is bestaande voorraad waarin woningen worden toegevoegd. "
             f"De BAG kent geen opleverdatum, dus dit is wat er op "
             f"{vandaag} in de registratie staat")
+
+
+RE_AANTAL = re.compile(r"staan (\d+) woning")
+
+
+def opruimen(geschiedenis):
+    """
+    De dubbele transformatiegebeurtenissen weghalen, oudste eerst behouden.
+
+    WAAROM DIT ER IS. Tot 13 oktober leunde verwerk() op de datum in de
+    tekst, en daardoor kreeg hetzelfde pand elke dag opnieuw dezelfde
+    melding. In pandgeschiedenis.json stonden daardoor 25 gebeurtenissen van
+    12 oktober en dezelfde 25 van 13 oktober. Alleen de code repareren laat
+    die dubbelen staan, en dan leest het dossier van zo'n pand alsof er twee
+    keer iets is gebeurd.
+
+    De OUDSTE blijft staan, want die datum is wanneer wij het voor het eerst
+    zagen, en dat is wat de gebeurtenis beweert. Het gemelde aantal wordt op
+    het record gezet, zodat de volgende ronde dit pand overslaat in plaats
+    van het opnieuw te melden.
+
+    Geeft een verslag dat optelt. Klopt de telling niet, dan staat dat erin:
+    een opruiming die meer weghaalt dan hij zegt, is erger dan geen opruiming.
+    """
+    verslag = {"records": 0, "voor": 0, "weg": 0, "na": 0, "gemeld_gezet": 0}
+    for pand in geschiedenis.values():
+        if not isinstance(pand, dict):
+            continue
+        geb = pand.get("gebeurtenissen") or []
+        tr = [g for g in geb if g.get("soort") == "transformatie"]
+        if not tr:
+            continue
+        verslag["records"] += 1
+        verslag["voor"] += len(tr)
+        gezien, houden, weg = {}, [], []
+        for g in sorted(tr, key=lambda x: x.get("datum") or ""):
+            m = RE_AANTAL.search(g.get("tekst") or "")
+            aantal = m.group(1) if m else g.get("tekst")
+            if aantal in gezien:
+                weg.append(g)
+            else:
+                gezien[aantal] = g
+                houden.append(g)
+        if weg:
+            pand["gebeurtenissen"] = [g for g in geb if g not in weg]
+            verslag["weg"] += len(weg)
+        verslag["na"] += len(houden)
+        # Het laatst gemelde aantal vastleggen.
+        laatste = sorted(houden, key=lambda x: x.get("datum") or "")[-1]
+        m = RE_AANTAL.search(laatste.get("tekst") or "")
+        if m and pand.get(GEMELD) != int(m.group(1)):
+            pand[GEMELD] = int(m.group(1))
+            verslag["gemeld_gezet"] += 1
+    verslag["telt_op"] = (verslag["voor"] - verslag["weg"] == verslag["na"])
+    return verslag
 
 
 def verwerk(geschiedenis, voorraad, vandaag=None, maximaal=MAX_PER_RONDE):
     """
     De projecten als records en gebeurtenissen in de pandgeschiedenis zetten.
 
-    Geeft een verslag met harde aantallen. Verandert niets aan een pand dat
-    al dezelfde gebeurtenis heeft: voeg_toe() van pandgeschiedenis vergelijkt
-    op datum, soort en tekst, en de tekst bevat het aantal. Dus zolang het
-    aantal gelijk blijft komt er geen tweede melding, en groeit het, dan wel.
+    Geeft een verslag met harde aantallen.
+
+    WAT AL GEMELD IS, STAAT IN HET RECORD EN NIET IN DE GEBEURTENIS. Dit is
+    de fout van 13 oktober. Eerst leunde deze functie op voeg_toe(), dat
+    vergelijkt op datum, soort en tekst. De tekst bevat de datum van vandaag,
+    dus op een nieuwe dag was elke melding "nieuw": dezelfde 25 panden kregen
+    elke dag opnieuw een gebeurtenis met hetzelfde aantal, en omdat die 25 het
+    budget opmaakten kwamen de andere 88 nooit aan de beurt. Precies het
+    omgekeerde van waar deze stap voor is. Gemeten: 25 gebeurtenissen op
+    12 oktober en dezelfde 25 op 13 oktober, overgeslagen bleef 88 staan.
+
+    En de proef zag het niet, omdat die twee rondes op dezelfde dag deed. Een
+    controle die de variatie niet uitvoert die de fout veroorzaakt, meet niets.
+
+    Nu staat het gemelde aantal als veld op het record. Is dat gelijk aan wat
+    we nu zien, dan is dit pand klaar en kost het geen budget, zodat de rij
+    opschuift. Is het gegroeid, dan is dat nieuws en komt er een gebeurtenis
+    met het oude aantal erin.
     """
     vandaag = (vandaag or dt.date.today()).isoformat()
     try:
@@ -204,7 +278,7 @@ def verwerk(geschiedenis, voorraad, vandaag=None, maximaal=MAX_PER_RONDE):
 
     verslag = {"projecten": 0, "woningen": 0, "panden_nieuw": 0,
                "panden_bekend": 0, "gebeurtenissen": 0, "overgeslagen": 0,
-               "al_gemeld": 0, "sleutel_bezet": 0}
+               "al_gemeld": 0, "sleutel_bezet": 0, "gegroeid": 0}
     lijst = projecten(voorraad, dt.date.fromisoformat(vandaag))
     verslag["projecten"] = len(lijst)
     verslag["woningen"] = sum(p["aantal"] for p in lijst)
@@ -212,7 +286,14 @@ def verwerk(geschiedenis, voorraad, vandaag=None, maximaal=MAX_PER_RONDE):
     gedaan = 0
     for project in lijst:
         sleutel, pand = _record_van(geschiedenis, project)
-        tekst = tekst_gebeurtenis(project, vandaag)
+        # AL GEMELD MET DIT AANTAL? Dan is dit pand klaar, en het kost geen
+        # budget: daardoor schuift de rij op naar de panden die nog niet
+        # gemeld zijn.
+        if pand is not None and pand.get(GEMELD) == project["aantal"]:
+            verslag["al_gemeld"] += 1
+            continue
+        eerder = (pand or {}).get(GEMELD)
+        tekst = tekst_gebeurtenis(project, vandaag, eerder)
         if pand is None:
             if gedaan >= maximaal:
                 verslag["overgeslagen"] += 1
@@ -243,7 +324,12 @@ def verwerk(geschiedenis, voorraad, vandaag=None, maximaal=MAX_PER_RONDE):
                 verslag["overgeslagen"] += 1
                 continue
         if voeg_toe(pand, vandaag, "transformatie", tekst, "BAG"):
+            # Het gemelde aantal vastleggen, anders komt dit pand morgen
+            # opnieuw aan de beurt met hetzelfde nieuws.
+            pand[GEMELD] = project["aantal"]
             verslag["gebeurtenissen"] += 1
+            if eerder is not None:
+                verslag["gegroeid"] += 1
             gedaan += 1
         else:
             verslag["al_gemeld"] += 1
@@ -399,6 +485,42 @@ def proef():
     check("tweede ronde ziet ze als al gemeld", tweede["al_gemeld"], 2)
     check("en maakt geen records", tweede["panden_nieuw"], 0)
 
+    # EN OP EEN NIEUWE DAG OOK NIET. DIT IS DE CONTROLE DIE ONTBRAK. De
+    # proef deed twee rondes op dezelfde dag, en voeg_toe() vergelijkt op
+    # datum, soort en tekst, dus op dezelfde dag was het dubbel en op een
+    # nieuwe dag niet. Daardoor kregen dezelfde 25 panden elke dag opnieuw
+    # een gebeurtenis en kwamen de andere 88 nooit aan de beurt.
+    morgen = nu + dt.timedelta(days=1)
+    derde = verwerk(geschiedenis, voorraad, morgen)
+    check("op een nieuwe dag komt er geen tweede melding",
+          derde["gebeurtenissen"], 0)
+    check("en ze staan als al gemeld", derde["al_gemeld"], 2)
+
+    # EN HET BUDGET SCHUIFT OP. Dit is het gevolg dat het ergste was: de
+    # grootste panden stonden vooraan, maakten elke dag het budget op, en de
+    # rest kwam nooit. Acht panden, drie per ronde: de tweede ronde hoort de
+    # VOLGENDE drie te doen en niet dezelfde.
+    veel2 = {"pijplijn": {}}
+    for i in range(8):
+        veel2["pijplijn"][f"q{i}"] = {
+            "adres": f"Rijstraat {i + 1}", "pand": f"Q{i}",
+            "pand_status": "Pand in gebruik", "pand_bouwjaar": 1900,
+            # Aflopend, zodat de volgorde vastligt en de rij meetbaar is.
+            "oppervlakte": 40, "buurten": ["Biezen"]}
+    gesch2 = {}
+    r1 = verwerk(gesch2, veel2, nu, maximaal=3)
+    gemeld1 = sorted(p["adres"] for p in gesch2.values()
+                     if p.get("transformatie_gemeld"))
+    r2 = verwerk(gesch2, veel2, nu + dt.timedelta(days=1), maximaal=3)
+    gemeld2 = sorted(p["adres"] for p in gesch2.values()
+                     if p.get("transformatie_gemeld"))
+    check("eerste ronde meldt drie", r1["gebeurtenissen"], 3)
+    check("tweede ronde meldt de volgende drie", r2["gebeurtenissen"], 3)
+    check("en samen zijn het zes verschillende panden", len(gemeld2), 6)
+    check("de eerste drie zitten er nog bij",
+          all(a in gemeld2 for a in gemeld1), True)
+    check("en er wachten nog twee", r2["overgeslagen"], 2)
+
     # GROEIT HET AANTAL, DAN IS HET WEL NIEUWS.
     voorraad["pijplijn"]["v8"] = {
         "adres": "Oudestraat 1C", "pand": "P1", "pand_status":
@@ -409,6 +531,44 @@ def proef():
     check("en de tekst noemt vier",
           "4 woningen" in geschiedenis["oudestraat1"]["gebeurtenissen"][-1]["tekst"],
           True)
+
+    # DE OPRUIMING VAN DE DUBBELEN DIE ER AL STAAN.
+    dubbel = {"a": {"adres": "Dubbelstraat 1", "pand_id": "D1",
+                    "gebeurtenissen": [
+                        {"datum": "2026-10-12", "soort": "transformatie",
+                         "tekst": "in de BAG staan 21 woningen als gevormd",
+                         "bron": "BAG"},
+                        {"datum": "2026-10-13", "soort": "transformatie",
+                         "tekst": "in de BAG staan 21 woningen als gevormd",
+                         "bron": "BAG"},
+                        {"datum": "2026-10-13", "soort": "bekendmaking",
+                         "tekst": "iets anders", "bron": "gemeente"},
+                    ]}}
+    v_op = opruimen(dubbel)
+    check("de opruiming telt op", v_op["telt_op"], True)
+    check("een van de twee gaat weg", v_op["weg"], 1)
+    over = [g["datum"] for g in dubbel["a"]["gebeurtenissen"]
+            if g["soort"] == "transformatie"]
+    check("de oudste blijft staan", over, ["2026-10-12"])
+    check("de andere soort blijft onaangeroerd",
+          sum(1 for g in dubbel["a"]["gebeurtenissen"]
+              if g["soort"] == "bekendmaking"), 1)
+    check("en het gemelde aantal is vastgelegd",
+          dubbel["a"].get("transformatie_gemeld"), 21)
+    # EEN GEGROEID AANTAL IS GEEN DUBBELE: die twee blijven beide staan.
+    gegroeid = {"a": {"adres": "Groeistraat 1", "pand_id": "G1",
+                      "gebeurtenissen": [
+                          {"datum": "2026-10-12", "soort": "transformatie",
+                           "tekst": "in de BAG staan 21 woningen als gevormd",
+                           "bron": "BAG"},
+                          {"datum": "2026-10-20", "soort": "transformatie",
+                           "tekst": "in de BAG staan 24 woningen als gevormd",
+                           "bron": "BAG"},
+                      ]}}
+    v_g = opruimen(gegroeid)
+    check("een groei blijft staan", v_g["weg"], 0)
+    check("en het laatste aantal wordt vastgelegd",
+          gegroeid["a"].get("transformatie_gemeld"), 24)
 
     # DE BEZETTE SLEUTEL. Een nieuw pand waarvan de sleutel al van een ander
     # pand is, wordt niet overschreven maar gemeld.
@@ -505,7 +665,10 @@ def proef():
           f"al kennen krijgt geen tweede record, een bezette sleutel wordt "
           f"niet overschreven, twee keer draaien geeft een melding en een "
           f"groter aantal wel, het maximum per ronde, het blok, en dat het "
-          f"voorbehoud uit het blok ook in de schrijfinstructie staat. Plus de "
+          f"voorbehoud uit het blok ook in de schrijfinstructie staat, dat "
+          f"een tweede ronde OP EEN NIEUWE DAG niets meldt en de rij "
+          f"opschuift, en de opruiming van de dubbelen die er al staan. "
+          f"Plus de "
           f"echte voorraad, zonder te schrijven.", file=sys.stderr)
     return 1 if fouten else 0
 
@@ -543,7 +706,21 @@ def main():
             f.write(blok)
         print(f"Blok van {len(blok)} tekens naar {a.uit}", file=sys.stderr)
 
+    # EERST OPRUIMEN. Zie opruimen(): tot 13 oktober kreeg hetzelfde pand
+    # elke dag opnieuw dezelfde melding. Klopt de telling van die opruiming
+    # niet, dan wordt er niets geschreven: een opruiming die meer weghaalt
+    # dan hij zegt, is erger dan geen opruiming.
+    schoon = opruimen(geschiedenis)
+    if not schoon["telt_op"]:
+        print(f"FOUT de opruiming telt niet op: {json.dumps(schoon)}; "
+              f"niets geschreven", file=sys.stderr)
+        return 1
+    if schoon["weg"] or schoon["gemeld_gezet"]:
+        print("Opruiming: " + json.dumps(schoon, ensure_ascii=False),
+              file=sys.stderr)
+
     verslag = verwerk(geschiedenis, voorraad, maximaal=a.maximaal)
+    verslag["opgeruimd"] = schoon["weg"]
     if verslag.get("fout"):
         print(f"FOUT {verslag['fout']}", file=sys.stderr)
         return 1
@@ -565,7 +742,8 @@ def main():
     if a.droog:
         print("Droog: niets weggeschreven", file=sys.stderr)
         return 0
-    if verslag["gebeurtenissen"] or verslag["panden_nieuw"]:
+    if (verslag["gebeurtenissen"] or verslag["panden_nieuw"]
+            or schoon["weg"] or schoon["gemeld_gezet"]):
         from pandgeschiedenis import bewaar
         bewaar(geschiedenis)
         print(f"Pandgeschiedenis bijgewerkt: {verslag['panden_nieuw']} "
