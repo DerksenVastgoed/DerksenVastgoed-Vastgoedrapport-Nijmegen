@@ -3129,21 +3129,45 @@ def controle_veroudering():
 
 def controle_verkopen():
     """
-    Hoe de verkopen binnenkomen: via de mail of met de hand geplakt.
+    Hoe de verkopen binnenkomen: via de mail, geplakt, of met de hand gezet.
 
-    Belangrijk om te weten of de attendering de verkopen meeneemt sinds Mark
-    dat filter aanzette. Zo ja, dan hoeft er niets meer geplakt te worden.
+    TWEE FOUTEN DIE HIER ZATEN, EN WAT ZE KOSTTEN.
+
+    Deze controle sloeg elke regel met minder dan zes velden over. De 143
+    verkopen die met de hand in verkopen.txt staan hebben vier velden, dus die
+    werden niet geteld: het rapport noemde 518 verkopen waar er 661 stonden.
+
+    En de herkomst werd afgeleid uit "plak staat in het bronveld, anders komt
+    het uit de mail". Het bronveld van de mailstap was leeg zolang er geen
+    link in de mail stond, en leeg is ook wat een met de hand gezette regel
+    heeft. "Uit de mail" en "met de hand" waren dus niet te onderscheiden. Op
+    13 oktober concludeerde dit rapport daaruit dat er geen verkopen uit de
+    attendering kwamen en adviseerde het het filter in Funda na te kijken,
+    terwijl dat filter aanstond en er die dag twee mails van funda.nl binnen
+    waren. De mailstap schrijft zijn bron nu altijd als "funda-mail".
     """
     per_bron, laatste = {}, ""
     try:
         with open("verkopen.txt", encoding="utf-8") as f:
             for regel in f:
-                v = [x.strip() for x in regel.split("|")]
-                if len(v) < 6 or not v[3].lower().startswith("verkocht"):
+                regel = regel.strip()
+                if not regel or regel.startswith("#"):
                     continue
-                bron = "geplakt" if "plak" in v[5] else "uit de mail"
-                per_bron[bron] = per_bron.get(bron, 0) + 1
-                laatste = max(laatste, v[4])
+                v = [x.strip() for x in regel.split("|")]
+                if len(v) < 4 or not v[3].lower().startswith("verkocht"):
+                    continue
+                bron = v[5] if len(v) > 5 else ""
+                if "plak" in bron:
+                    waar = "geplakt"
+                elif bron.startswith("funda-mail"):
+                    waar = "uit de mail"
+                elif bron:
+                    waar = f"uit {bron.split()[0]}"
+                else:
+                    waar = "met de hand"
+                per_bron[waar] = per_bron.get(waar, 0) + 1
+                if len(v) > 4:
+                    laatste = max(laatste, v[4])
     except Exception:
         return (LET_OP, "verkopen niet te lezen", "Staat verkopen.txt er wel?")
     if not per_bron:
@@ -3152,12 +3176,34 @@ def controle_verkopen():
                 "bod; dan komen ze vanzelf binnen. Werkt dat niet, dan blijft "
                 "plakken over.")
     delen = ", ".join(f"{n} {b}" for b, n in sorted(per_bron.items()))
-    uit_mail = per_bron.get("uit de mail", 0)
     bewijs = f"{sum(per_bron.values())} verkopen: {delen}; laatste {laatste}"
+
+    # Wat de ontdubbeling van de mailstap heeft laten vallen. Zonder dit getal
+    # ziet een weggegooide verkoopmelding eruit als een mail zonder nieuws.
+    stand = _json("mail_status.json") or {}
+    dubbel = stand.get("ontdubbeld") or {}
+    if dubbel:
+        bewijs += (f"; de mailstap liet {dubbel.get('zelfde_status', 0)} "
+                   f"meldingen vallen met dezelfde status en "
+                   f"{dubbel.get('andere_status', 0)} met een andere")
+        for v in (dubbel.get("voorbeelden") or [])[:2]:
+            bewijs += f" ({v})"
+    elif stand:
+        bewijs += "; de mailstap meldt nog niet wat zijn ontdubbeling laat vallen"
+
+    uit_mail = per_bron.get("uit de mail", 0)
     if not uit_mail:
+        funda = ((stand.get("berichten_per_afzender") or {}).get("funda.nl"))
+        if funda:
+            return (LET_OP, bewijs,
+                    f"Er komt nog geen verkoop uit de attendering, terwijl er "
+                    f"wel {funda} mails van funda.nl zijn gelezen. Het filter "
+                    f"is dus niet de vraag; kijk naar wat de mailstap met die "
+                    f"mails doet.")
         return (LET_OP, bewijs,
-                "Er komt nog geen enkele verkoop uit de attendering. Controleer "
-                "of het filter op verkocht daar echt aan staat.")
+                "Er komt nog geen verkoop uit de attendering, en er zijn ook "
+                "geen mails van funda.nl gelezen. Controleer eerst of de "
+                "attendering nog naar deze mailbox gaat.")
     return (OK, bewijs, "")
 
 
