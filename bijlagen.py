@@ -935,7 +935,11 @@ def uit_archief(soorten=SOORTEN, pad=ARCHIEF, archief=None):
         for r in lijst or []:
             if not isinstance(r, dict):
                 continue
-            if not (set(r.get("soorten") or []) & set(soorten)):
+            # soorten=None betekent alles. Dat is er voor publicatievelden.py,
+            # die van elke publicatie de uitkomst wil en niet alleen van de
+            # soorten waarbij een plattegrond iets zegt.
+            if soorten is not None and not (set(r.get("soorten") or [])
+                                            & set(soorten)):
                 continue
             m = GMB.search(r.get("url") or "")
             if not m:
