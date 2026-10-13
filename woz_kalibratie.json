@@ -1,17 +1,17 @@
 {
- "aantal": 104,
- "correctie": 0.9883573612931411,
- "spreiding": 0.1973753961394411,
+ "aantal": 94,
+ "correctie": 0.9844985763998735,
+ "spreiding": 0.21060881042732216,
  "band": [
-  0.7621722846441947,
-  1.156923076923077
+  0.7511961722488039,
+  1.1724137931034482
  ],
  "niet_meegeteld": 0,
  "uitschieters": [
   {
    "adres": "Derde Walstraat 108",
    "verhouding": 2.086,
-   "afwijking_pct": 111
+   "afwijking_pct": 112
   },
   {
    "adres": "Havenweg 34",
@@ -36,9 +36,9 @@
    "negentig": 0.5741127348643006
   },
   "prijs": {
-   "aantal": 104,
-   "mediane_fout": 0.11296365680029974,
-   "negentig": 0.3617021276595745
+   "aantal": 94,
+   "mediane_fout": 0.11928027934125496,
+   "negentig": 0.3723958333333333
   }
  },
  "kenmerken_beschikbaar": {

@@ -1,6 +1,76 @@
 {
- "aantal": 73,
+ "aantal": 80,
  "panden": [
+  {
+   "adres": "Beijensstraat 18",
+   "eerst_gezien": "2026-09-08",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 35
+  },
+  {
+   "adres": "Groesbeekseweg 85",
+   "eerst_gezien": "2026-01-01",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 285
+  },
+  {
+   "adres": "Hofdijkstraat 17",
+   "eerst_gezien": "2026-09-11",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 32
+  },
+  {
+   "adres": "Kaapstander 264",
+   "eerst_gezien": "2026-09-02",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 41
+  },
+  {
+   "adres": "Pontanusstraat 19",
+   "eerst_gezien": "2026-09-15",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 28
+  },
+  {
+   "adres": "Professor Cornelissenstraat 3",
+   "eerst_gezien": "2026-09-11",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 32
+  },
+  {
+   "adres": "Schoolstraat 135",
+   "eerst_gezien": "2026-09-02",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 41
+  },
+  {
+   "adres": "van Slichtenhorststraat 42",
+   "eerst_gezien": "2026-09-03",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 40
+  },
+  {
+   "adres": "Vondelstraat 63",
+   "eerst_gezien": "2026-07-02",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 103
+  },
+  {
+   "adres": "Zwaluwstraat 175",
+   "eerst_gezien": "2026-08-01",
+   "verkocht_gezien": "2026-10-13",
+   "soort": "verkocht",
+   "hoogstens_dagen": 73
+  },
   {
    "adres": "Dokstraat 425",
    "eerst_gezien": "2026-05-30",
@@ -14,13 +84,6 @@
    "verkocht_gezien": "2026-09-28",
    "soort": "verkocht",
    "hoogstens_dagen": 982
-  },
-  {
-   "adres": "Beijensstraat 18",
-   "eerst_gezien": "2026-09-08",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "in onderhandeling",
-   "hoogstens_dagen": 20
   },
   {
    "adres": "Beijensstraat 4-A",
@@ -77,72 +140,9 @@
    "verkocht_gezien": "2026-09-28",
    "soort": "verkocht",
    "hoogstens_dagen": 398
-  },
-  {
-   "adres": "Eerste Oude Heselaan 172",
-   "eerst_gezien": "2026-07-28",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "in onderhandeling",
-   "hoogstens_dagen": 62
-  },
-  {
-   "adres": "Evertsenstraat 42",
-   "eerst_gezien": "2026-02-02",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 238
-  },
-  {
-   "adres": "Fransestraat 38",
-   "eerst_gezien": "2026-08-05",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "in onderhandeling",
-   "hoogstens_dagen": 54
-  },
-  {
-   "adres": "Gerard Noodtstraat 129-A7",
-   "eerst_gezien": "2025-04-01",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 545
-  },
-  {
-   "adres": "Graafsedwarsstraat 65",
-   "eerst_gezien": "2022-09-21",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 1468
-  },
-  {
-   "adres": "Graafseweg 76",
-   "eerst_gezien": "2026-05-01",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 150
-  },
-  {
-   "adres": "Groesbeeksedwarsweg 153",
-   "eerst_gezien": "2025-10-18",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 345
-  },
-  {
-   "adres": "Groesbeeksedwarsweg 99",
-   "eerst_gezien": "2026-09-02",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "in onderhandeling",
-   "hoogstens_dagen": 26
-  },
-  {
-   "adres": "Groesbeekseweg 118",
-   "eerst_gezien": "2026-06-22",
-   "verkocht_gezien": "2026-09-28",
-   "soort": "verkocht",
-   "hoogstens_dagen": 98
   }
  ],
- "mediaan_hoogstens_dagen": 129,
- "aantal_in_onderhandeling": 37,
- "mediaan_tot_onderhandeling": 88
+ "mediaan_hoogstens_dagen": 123,
+ "aantal_in_onderhandeling": 33,
+ "mediaan_tot_onderhandeling": 89
 }

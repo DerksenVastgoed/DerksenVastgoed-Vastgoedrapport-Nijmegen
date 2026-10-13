@@ -1040,3 +1040,22 @@ Professor Cornelissenstraat 3 | Nijmegen | 370000 | verkocht | 2026-10-13 | fund
 van Slichtenhorststraat 42 | Nijmegen | 645000 | verkocht | 2026-10-13 | funda-verkocht-plak | 144 | 6524JR
 Kaapstander 264 | Nijmegen | 1215000 | verkocht | 2026-10-13 | funda-verkocht-plak | 151 | 6541EX
 Graafseweg 33-A21 | Nijmegen | 210000 | verkocht | 2026-10-13 | funda-verkocht-plak | 24 | 6512BP
+
+# Automatisch toegevoegd uit Funda-attendering op 13-10-2026
+St. Stephanusstraat | Nijmegen | 1188 | te huur | 2026-10-01 | huislijn |  | 6522BC
+Ijsvogelpassage | Nijmegen | 1995 | te huur | 2026-10-04 | huislijn | 115 | 6541RK
+Van Spaenstraat | Nijmegen | 2425 | te huur | 2026-10-05 | huislijn | 103 | 6524HM
+Burg. Hustinxstraat 172 | Nijmegen | 300000 | te koop | 2026-10-13 | funda-mail | 51 | 6512AC
+Berg En Dalseweg | Nijmegen | 1761 | te huur | 2026-10-13 | huislijn | 51 | 6522BC
+Groesbeekseweg 85 | Nijmegen | 1150000 | te koop | 2026-09-01 | funda-mail | 228 | 6524CS
+Gerard Noodtstraat 71 | Nijmegen | 450000 | te koop | 2026-09-01 | funda-mail | 104 | 6511SV
+Groesbeeksedwarsweg 99 | Nijmegen | 495000 | te koop | 2026-09-02 | funda-mail | 93 | 6521DC
+Schoolstraat 135 | Nijmegen | 405000 | te koop | 2026-09-02 | funda-mail | 80 | 6512JE
+Vondelstraat 63 | Nijmegen | 495000 | te koop | 2026-09-02 | funda-mail | 124 | 6512BC
+Kronenburgersingel | Nijmegen | 1075 | te huur gemeubileerd | 2026-09-02 | pararius | 33 | 6511AR
+Molukkenstraat 14 | Nijmegen | 469000 | te koop | 2026-09-05 | funda-mail | 103 | 6524NB
+Fransestraat 38 | Nijmegen | 1025000 | te koop | 2026-09-05 | funda-mail | 204 | 6524JD
+Krayenhofflaan 47 | Nijmegen | 439000 | te koop | 2026-09-05 | funda-mail | 116 | 6541PP
+Berg en Dalseweg | Nijmegen | 1544 | te huur gemeubileerd | 2026-09-16 | pararius | 40 | 6522BC
+Irene Vorrinkstraat | Nijmegen | 2650 | te huur gemeubileerd | 2026-09-16 | pararius | 98 | 6535NA
+Hertogstraat | Nijmegen | 1250 | te huur gemeubileerd | 2026-09-18 | pararius | 29 | 6511RX

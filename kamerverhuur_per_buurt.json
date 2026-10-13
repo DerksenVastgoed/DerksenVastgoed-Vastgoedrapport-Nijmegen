@@ -1,7 +1,7 @@
 {
  "meldingen_per_jaar": {
   "2025": 102,
-  "2026": 85
+  "2026": 86
  },
  "per_buurt": {
   "'t Acker": {
@@ -180,8 +180,8 @@
   },
   "Neerbosch-Oost": {
    "alleen_melding_of_besluit": 4,
-   "alleen_vergunning": 18,
-   "beide": 0,
+   "alleen_vergunning": 17,
+   "beide": 1,
    "totaal": 22
   },
   "Nije Veld": {

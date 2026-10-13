@@ -139,5 +139,85 @@
   "opp": 94,
   "kamers": 4,
   "postcode": "6511PC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4429944/voorstadslaan-nijmegen": {
+  "opp": 40,
+  "kamers": 1,
+  "postcode": "6541AB"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4430063/broerdijk-nijmegen": {
+  "opp": 104,
+  "kamers": 3,
+  "postcode": "6523GR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4430099/hertogplein-nijmegen": {
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4430046/goeman-borgesiusstraat-nijmegen": {
+  "opp": 70,
+  "kamers": 3,
+  "postcode": "6535WH"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4430087/malderburchtstraat-nijmegen": {
+  "opp": 150,
+  "kamers": 4,
+  "postcode": "6535NJ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4429965/st-stephanusstraat-nijmegen": {
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4430440/waaijenstein-nijmegen": {
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431241/vossendijk-nijmegen": {
+  "opp": 14,
+  "kamers": 2,
+  "postcode": "6534TL"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431649/simone-de-beauvoirstraat-nijmegen": {
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431850/jozef-israelsstraat-nijmegen": {
+  "opp": 148,
+  "kamers": 5,
+  "postcode": "6521MX"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431690/in-de-betouwstraat-nijmegen": {
+  "opp": 85,
+  "kamers": 2,
+  "postcode": "6511GB"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431632/m-vasalisstraat-nijmegen": {
+  "opp": 80,
+  "kamers": 3,
+  "postcode": "6531AK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431884/jacob-van-campenstraat-nijmegen": {
+  "opp": 70,
+  "kamers": 3,
+  "postcode": "6543LA"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4431910/hackfortstraat-nijmegen": {
+  "opp": 31,
+  "kamers": 2,
+  "postcode": "6535PN"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4432794/graafseweg-nijmegen": {
+  "opp": 80,
+  "kamers": 3,
+  "postcode": "6512BR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4432544/ijsvogelpassage-nijmegen": {
+  "opp": 115,
+  "kamers": 4,
+  "postcode": "6541RK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4432772/graadt-van-roggenstraat-nijmegen": {
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4436557/berg-en-dalseweg-nijmegen": {
+  "opp": 51,
+  "kamers": 2,
+  "postcode": "6522BC"
  }
 }
