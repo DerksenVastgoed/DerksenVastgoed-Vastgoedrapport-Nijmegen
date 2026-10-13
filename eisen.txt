@@ -412,3 +412,18 @@ let op: Dit meet de terugval in de repo en niet of de brief op tijd komt. De
   die hem wel op tijd brengt komt van een geplande taak buiten de repo, en
   die kan geen proef in deze repo zien.
 soort: werking
+
+---
+eis: Een bekendmaking heet alleen een spoor van de koper als we weten vanaf
+  welke dag we hebben gekeken, en de brief zegt waar dat venster op rust.
+waarom: 13 oktober. De omrekening van "Sinds N weken" naar een plaatsingsdatum
+  toetste op startswith("week"), en het meervoud "weken" begint daar niet mee.
+  Elke lijstregel met een meervoud werd dus 30 dagen per week in plaats van 7:
+  "Sinds 3 weken" gaf 90 dagen. In het geplakte bestand stond bovendien geen
+  enkele Sinds-regel, dus hadden alle 575 verkochte adressen geen venster, en
+  dan liet het filter elke bekendmaking door die ooit op dat adres is gedaan.
+  Veertien adressen stonden zo in de brief onder de kop "na het begin van de
+  advertentie" terwijl er geen begin bekend was; bij twee ervan ging het om een
+  vergunning van juni 2025, ruim een jaar voor de lijst.
+proef: funda_verkocht_plak:zonder venster werd er toch een spoor gemeld
+soort: gegevens

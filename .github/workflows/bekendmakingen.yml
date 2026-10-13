@@ -449,6 +449,14 @@ jobs:
           # Draait na het archief, zodat de meldingen van vandaag meetellen.
           python kamerverhuur_register.py || echo "Kamerverhuurregister overgeslagen"
 
+      - name: De verkooplijst nameten voordat hij wordt gelezen
+        # GEEN continue-on-error. Deze module rekent "Sinds 3 weken" om naar
+        # een plaatsingsdatum en bepaalt daarmee welke bekendmaking een spoor
+        # van de koper mag heten. Tot 13 oktober las hij dat als 90 dagen in
+        # plaats van 21, en meldde hij sporen ook als er geen venster was.
+        # Zo'n fout hoort rood te zijn op de plek waar hij ontstaat.
+        run: python funda_verkocht_plak.py --proef
+
       - name: Geplakte Funda-verkooplijst verwerken
         continue-on-error: true
         run: |
