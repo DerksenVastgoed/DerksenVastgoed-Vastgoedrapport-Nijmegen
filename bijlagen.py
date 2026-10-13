@@ -513,7 +513,7 @@ def verken(gmb, haal_bestanden=False):
     return vind
 
 
-def samenvatting(bevindingen, vandaag=None):
+def samenvatting(bevindingen, vandaag=None, niet_gehaald=0):
     """
     Wat de verkenning opleverde, als markdown, zonder iets uit de stukken.
 
@@ -543,6 +543,12 @@ def samenvatting(bevindingen, vandaag=None):
     r.append(f"**{len(bevindingen)} publicaties onderzocht.** "
              f"{len(met)} daarvan dragen samen {stuk} stuk(ken) mee, "
              f"{len(zonder)} dragen niets mee.")
+    if niet_gehaald:
+        # Half gekeken en helemaal gekeken mogen niet hetzelfde lezen.
+        r.append("")
+        r.append(f"**{niet_gehaald} publicaties zijn niet meer gehaald**: het "
+                 f"tijdbudget was op. Die staan dus niet in de tellingen "
+                 f"hierboven, en over hun bijlagen zegt deze ronde niets.")
     if gelezen:
         r.append("")
         r.append(f"Van de {len(gelezen)} stukken die wij hebben kunnen "
@@ -865,6 +871,22 @@ def proef():
         fouten.append("dezelfde publicatie onder twee panden komt dubbel mee")
     check("archief ontbreekt", uit_archief(pad="bestaat-niet.json"), [])
 
+    # 4g. HALF GEKEKEN LEEST NIET ALS HELEMAAL GEKEKEN.
+    # De job wordt na twintig minuten afgebroken, en bij zo'n afbreking
+    # draait de stap die het issue schrijft niet meer, ook niet met always().
+    # Dus stopt de module zelf eerder; dan moet er wel bij staan hoeveel hij
+    # niet heeft gehaald, anders leest een ronde van 40 publicaties als een
+    # volledige ronde over 148.
+    half = samenvatting([{"gmb": "gmb-2026-1", "vormen": [], "bijlagen": []}],
+                        niet_gehaald=108)
+    if "108 publicaties zijn niet meer gehaald" not in half:
+        fouten.append("een afgebroken ronde meldt niet hoeveel er niet is "
+                      "gehaald, en leest dan als een volledige ronde")
+    heel = samenvatting([{"gmb": "gmb-2026-1", "vormen": [], "bijlagen": []}])
+    if "niet meer gehaald" in heel:
+        fouten.append("een volledige ronde meldt ten onrechte dat er iets "
+                      "niet is gehaald")
+
     # 5. GEEN GELDIGE XML IS EEN ANTWOORD EN GEEN VAL.
     check("rommel in plaats van xml", bijlagen_uit_metadata("<nietafgesloten",
                                                             REPO), [])
@@ -965,6 +987,9 @@ def main():
                          "halen in plaats van uit --gmb")
     ap.add_argument("--max", type=int, default=0,
                     help="niet meer dan dit aantal publicaties, 0 is alles")
+    ap.add_argument("--minuten", type=float, default=14,
+                    help="eigen tijdbudget; hij stopt zelf en schrijft op wat "
+                         "hij heeft")
     ap.add_argument("--haal", action="store_true",
                     help="de bijlagen ook binnenhalen en beschrijven")
     ap.add_argument("--proef", action="store_true")
@@ -997,9 +1022,28 @@ def main():
         # hoort in de samenvatting te staan en niet in een lege tabel.
         print("Geen publicaties om te onderzoeken.", file=sys.stderr)
 
+    # EEN EIGEN TIJDBUDGET, RUIM ONDER DE JOBLIMIET.
+    #
+    # De workflow stopt de job na twintig minuten. Zo'n stop is geen nette
+    # afsluiting: GitHub breekt de hele job af, en dan draait de stap die de
+    # bevinding in een issue zet ook niet meer, ook niet met always(). Dan is
+    # er niets te lezen, en dat is precies de fout die deze hele verkenning
+    # moest oplossen. Dus stopt hij zelf eerder en schrijft op wat hij heeft,
+    # met erbij hoeveel publicaties hij niet meer heeft gehaald. Half
+    # gekeken en niet gekeken mogen niet hetzelfde lezen.
+    import time
+    einde = time.time() + args.minuten * 60
+    niet_gehaald = 0
+
     bevindingen = []
     try:
-        for gmb in nummers:
+        for n, gmb in enumerate(nummers):
+            if time.time() > einde:
+                niet_gehaald = len(nummers) - n
+                print(f"Tijdbudget van {args.minuten} minuten op na {n} "
+                      f"publicaties; {niet_gehaald} niet gehaald.",
+                      file=sys.stderr)
+                break
             print(f"\n== {gmb} ==", file=sys.stderr)
             v = verken(gmb, haal_bestanden=args.haal)
             if args.js:
@@ -1067,7 +1111,7 @@ def main():
         # Ook bij een fout halverwege hoort er te staan wat wel is gevonden.
         if args.samenvatting:
             with open(args.samenvatting, "w", encoding="utf-8") as f:
-                f.write(samenvatting(bevindingen))
+                f.write(samenvatting(bevindingen, niet_gehaald=niet_gehaald))
     return 0
 
 
