@@ -13,6 +13,26 @@ Dat is de route die zichzelf bijhoudt: geen aanvraag per pand, geen mail,
 geen link van drie dagen. Elke aanvraag die langskomt brengt zijn eigen
 tekeningen mee.
 
+WAT DEZE ROUTE OPLEVERDE, EN WAAROM HIJ NIET DEUGT.
+
+Op 13 oktober over alle 148 publicaties uit ons archief gedraaid. De uitkomst
+is geen tekort maar een structureel antwoord:
+
+  93 aanvragen   0 stukken
+  48 besluiten   3 stukken, alle drie een "Afwijkvergunning"
+   7 overig      0 stukken
+
+Geen enkele tekening. En de drie stukken die er wel zijn, zijn geen
+tekeningen maar het BOPA-besluit: dat bestaat alleen als een plan van het
+omgevingsplan afwijkt, en dat verklaart waarom het er drie zijn en niet
+achtenveertig. De bekendmaking draagt de tekeningen dus niet bij ongeluk
+niet; zij draagt ze principieel niet. De stukken zijn alleen via inzage te
+zien, en dat is de route die Mark met de hand heeft gelopen.
+
+Deze module blijft staan omdat hij dat antwoord geeft en blijft geven: komt
+er ooit wel een tekening bij een bekendmaking, dan ziet hij dat. Maar een
+corpus bouwen langs deze weg gaat niet.
+
 WAT NOG NIET VASTSTAAT. Hoe die bijlagen in de SRU staan en welke url ze
 hebben, weet ik niet, en van buiten een run is het niet te bevragen: de
 proxy van de werkomgeving weigert repository.overheid.nl. Daarom probeert
