@@ -26,6 +26,11 @@ on:
         type: boolean
         required: false
         default: false
+      overzicht:
+        description: "Alleen tellen wie er post stuurt en waar de links heen wijzen; volgt geen enkele link"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -65,6 +70,12 @@ jobs:
           VLAG=""
           if [ "${{ github.event.inputs.haal }}" = "true" ]; then
             VLAG="--haal"
+          fi
+          # Het overzicht volgt geen enkele link en sluit het ophalen uit:
+          # de ene stand kijkt wie er post stuurt, de andere opent een
+          # pakket. Allebei tegelijk maakt niet duidelijk wat er gebeurd is.
+          if [ "${{ github.event.inputs.overzicht }}" = "true" ]; then
+            VLAG="--overzicht"
           fi
           python dossiermail.py --dagen "${{ github.event.inputs.dagen || '7' }}" $VLAG \
             --samenvatting "$RUNNER_TEMP/bevinding.md"
