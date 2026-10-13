@@ -61,6 +61,14 @@ jobs:
 
       - name: De velden ophalen
         run: |
+          # PIPEFAIL, ANDERS IS DE EXITCODE DIE VAN tee.
+          #
+          # Zonder deze regel meldde deze stap "gelukt" terwijl python met
+          # een traceback stierf: de uitvoer ging door de pijp naar tee, en
+          # die slaagt altijd. De ronde deed dus niets, de stap stond groen,
+          # en de meldstap ging niet af omdat er formeel geen mislukking
+          # was. Dat kostte vanavond drie rondes om te vinden.
+          set -o pipefail
           python publicatievelden.py \
             --minuten "${{ github.event.inputs.minuten || '10' }}" \
             --max "${{ github.event.inputs.max || '0' }}" \

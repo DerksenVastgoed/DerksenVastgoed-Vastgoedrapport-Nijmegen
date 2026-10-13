@@ -375,6 +375,68 @@ def kaartschakelaar():
     return fouten
 
 
+def pijp_zonder_vangnet(paden=None):
+    """
+    Of een stap die iets door een pijp stuurt ook pipefail aanzet.
+
+    WAT HIER GEBEURDE. De veldenronde van 13 oktober meldde "gelukt" terwijl
+    python met een traceback stierf. De regel was
+
+        python publicatievelden.py ... 2>&1 | tee "$RUNNER_TEMP/ronde.log"
+
+    en in een pijplijn is de exitcode die van het LAATSTE commando. tee
+    slaagt altijd. De stap stond dus groen, er werd niets gecommit, en de
+    meldstap ging niet af omdat er formeel geen mislukking was. Drie rondes
+    kwijt voordat ik doorhad dat de fout al in de eerste stap zat.
+
+    Dit is geen eigenaardigheid van die ene regel. Elke stap die uitvoer
+    door tee, head, tail of grep haalt om hem te bewaren of te filteren,
+    verliest de exitcode van wat ervoor stond. Daarom toetst dit alle
+    workflows in de map en niet die ene.
+
+    Commentaar telt niet mee: de uitleg van deze fout zou de toets anders
+    zelf groen maken.
+    """
+    # ALLEEN tee, EN NIET head, tail OF grep.
+    #
+    # Eerst stond hier ook head, tail en grep. Nagemeten op de echte
+    # workflows gaf dat twee treffers in de briefworkflow die geen van
+    # beide een fout zijn: daar staat "grep -E Versies ... | head -3" om
+    # iets te TONEN, en een grep die niets vindt is daar geen mislukking.
+    # Met pipefail zou die stap gaan melden bij correct gedrag, en dat is
+    # precies het soort valse melding dat de lezer leert het logboek over te
+    # slaan.
+    #
+    # tee is anders: dat is het patroon "voer dit uit en bewaar de uitvoer".
+    # Daar is de uitkomst van wat ervoor staat het hele punt, en die mag niet
+    # verdwijnen.
+    PIJPEN = re.compile(r"\|\s*tee\b")
+    fouten = []
+    paden = paden if paden is not None else _alle_workflows()
+    if not paden:
+        return ["geen workflowbestand gevonden om de pijpen te toetsen"]
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                bron = f.read()
+        except Exception as e:
+            fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
+            continue
+        for blok in bron.split("\n      - name: ")[1:]:
+            naam = blok.split("\n")[0].strip()
+            if "run: |" not in blok:
+                continue
+            run = blok.split("run: |", 1)[1]
+            echt = "\n".join(r for r in run.splitlines()
+                              if not r.strip().startswith("#"))
+            if PIJPEN.search(echt) and "pipefail" not in echt:
+                fouten.append(f"{pad}, stap {naam[:48]!r}: stuurt uitvoer "
+                              f"door een pijp zonder 'set -o pipefail'. De "
+                              f"exitcode is dan die van het laatste commando "
+                              f"en een fout ervoor verdwijnt.")
+    return fouten
+
+
 def startdagen(pad=BRIEFWORKFLOW):
     """
     Voor welke weekdagen de briefworkflow een geplande start heeft.
@@ -519,6 +581,47 @@ def proef(snel=False):
     # Een kaartlink die stil wegvalt leest als een keuze. Zie
     # kaartschakelaar().
     fouten.extend(kaartschakelaar())
+
+    # COMMENTAAR MAG DE TOETS NIET GROEN MAKEN. Het blok hieronder noemt
+    # pipefail wel in de uitleg en zet het niet aan. Zonder dit geval zou
+    # een stap die de fout keurig uitlegt en hem laat staan, erdoorheen
+    # glippen, en dat is precies hoe de uitleg van een fout die fout
+    # verbergt.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as _m:
+        _p = os.path.join(_m, "nep.yml")
+        with open(_p, "w", encoding="utf-8") as _f:
+            _f.write("jobs:\n  x:\n    steps:\n"
+                     "      - name: Zonder vangnet\n"
+                     "        run: |\n"
+                     "          # hier hoort set -o pipefail te staan\n"
+                     "          python iets.py 2>&1 | tee /tmp/log\n")
+        _r = pijp_zonder_vangnet([_p])
+        if len(_r) != 1:
+            fouten.append(f"een stap die pipefail alleen in commentaar noemt "
+                          f"wordt niet gemeld: {_r}")
+        _p2 = os.path.join(_m, "goed.yml")
+        with open(_p2, "w", encoding="utf-8") as _f:
+            _f.write("jobs:\n  x:\n    steps:\n"
+                     "      - name: Met vangnet\n"
+                     "        run: |\n"
+                     "          set -o pipefail\n"
+                     "          python iets.py 2>&1 | tee /tmp/log\n")
+        if pijp_zonder_vangnet([_p2]):
+            fouten.append("een stap met pipefail wordt ten onrechte gemeld")
+        _p3 = os.path.join(_m, "tonen.yml")
+        with open(_p3, "w", encoding="utf-8") as _f:
+            _f.write("jobs:\n  x:\n    steps:\n"
+                     "      - name: Iets tonen\n"
+                     "        run: |\n"
+                     "          grep -E Versies rapport.md | head -3\n")
+        if pijp_zonder_vangnet([_p3]):
+            fouten.append("een grep die iets toont wordt ten onrechte "
+                          "gemeld; een grep zonder treffer is daar geen fout")
+
+    # Een stap die zijn uitvoer door een pijp stuurt, verliest de exitcode
+    # van wat ervoor stond. Zie pijp_zonder_vangnet() voor wat dat kostte.
+    fouten.extend(pijp_zonder_vangnet())
 
     # Elke dag van de week moet een geplande start van de brief hebben. Een
     # dag zonder cron heeft geen terugval, en dat valt pas op als niemand
