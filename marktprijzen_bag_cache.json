@@ -73370,13 +73370,15 @@
     ],
     "postcode": "6511PC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Burghardt van den Berghstraat|Nijmegen": {
     "oppervlakte": 101,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Groesbeekseweg 118|Nijmegen": {
     "postcode": "6523PB",
@@ -73395,5 +73397,11 @@
     "buurtnaam": "Altrade",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-ddbd248642bc310ab39a1bbe40c122ff"
+  },
+  "Regulierstraat|Nijmegen": {
+    "oppervlakte": 86,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }

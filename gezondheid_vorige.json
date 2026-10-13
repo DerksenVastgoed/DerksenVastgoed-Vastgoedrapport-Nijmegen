@@ -1,7 +1,7 @@
 {
  "controles": {
   "3D BAG eigen snapshot": "OK",
-  "Aanbod": "OK",
+  "Aanbod": "LET OP",
   "Aanbodreeks": "OK",
   "Achtergronddekking": "OK",
   "Adressen met meerdere maten": "LET OP",
@@ -65,5 +65,5 @@
   "Woningen in bestaande panden": "OK",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-12"
+ "datum": "2026-10-13"
 }

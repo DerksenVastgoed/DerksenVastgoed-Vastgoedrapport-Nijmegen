@@ -1024,3 +1024,6 @@ van Trieststraat | Nijmegen | 1275 | te huur gemeubileerd | 2026-10-10 | parariu
 # Automatisch toegevoegd uit Funda-attendering op 12-10-2026
 Staringstraat | Nijmegen | 2299 | te huur | 2026-10-12 | huislijn | 94 | 6511PC
 Burghardt van den Berghstraat | Nijmegen | 556 | te huur kamer | 2026-10-12 | kamernet | 101 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 13-10-2026
+Regulierstraat | Nijmegen | 1799 | te huur | 2026-10-12 | kamernet | 86 | 
