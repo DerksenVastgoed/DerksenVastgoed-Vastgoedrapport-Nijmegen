@@ -8104,12 +8104,6 @@ nagezocht, en dat is de enige route naar meer.
 - **Gemeentelijke monumentenlijst** is nog niet ingelezen; nijmegen.nl zit
   achter een botcontrole.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
-- **Het veld "sleutel" in voorraad.json komt uit een eigen functie.**
-  adressleutel() in voorraad_bag.py, en niet pandsleutel.sleutel(). Op 14
-  oktober week hij bij 2.009 van de 20.321 records af: "deruyterstraat8" tegen
-  "ruyterstraat8", "st.stevenskerkhof35" tegen "ststevenskerkhof35".
-  gezondheid.py vangt dat af door beide te proberen; huur_dekking.py en andere
-  joins op dat veld zijn nog niet nagemeten.
 - **Twee labelverzamelingen.** De voorraad haalt labels per verblijfsobject
   (13.463 op 14 oktober), de pandgeschiedenis haalt ze zelf nog eens per adres
   voor de gevolgde panden. Eén implementatie per afspraak: de pandgeschiedenis

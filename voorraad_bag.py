@@ -72,6 +72,7 @@ import requests
 
 
 import eponline as _epo
+import pandsleutel as _psl
 INVENTARIS = "buurtinventaris.json"
 UIT = "voorraad.json"
 
@@ -240,9 +241,22 @@ def _schrijf(pad, data):
 
 
 def adressleutel(straat, nr, letter, toev):
-    """Eén sleutel per adres, zonder hoofdletters en zonder spaties."""
-    deel = f"{straat}{nr}{letter or ''}{toev or ''}"
-    return "".join(deel.lower().split())
+    """
+    De adressleutel van een record, uit pandsleutel.sleutel().
+
+    HIER STOND EEN EIGEN FUNCTIE: kleine letters, spaties eruit, verder niets.
+    Die liet punten, accenten en titels staan, en week daardoor op 14 oktober
+    bij 2.692 van de 24.703 records af van de sleutel die de rest van de repo
+    gebruikt: "st.annastraat1d" tegen "stannastraat1d",
+    "professorschrijnenstraat11" tegen "profschrijnenstraat11",
+    "mariënburgsestraat10" tegen "marienburgsestraat10", "deruyterstraat105"
+    tegen "ruyterstraat105". Een join op dit veld miste die adressen stil.
+    gezondheid.py ving het af door ook een eigen kale vorm te proberen, en
+    aanbodprofiel.py rekende de sleutel uit het adres opnieuw uit. De naam
+    blijft staan omdat de proef op de botsing hem gebruikt; het rekenwerk is
+    van pandsleutel.
+    """
+    return _psl.sleutel(straat, f"{nr}{letter or ''}{toev or ''}")
 
 
 def postcodes_uit_inventaris(buurten=None):
@@ -2374,6 +2388,18 @@ def proef():
             "openbare_ruimte_naam": "Bottelstraat", "huisnummer": 12,
             "identificatie": "0268010000000102", "pand.href": []}},
     ]
+    # HET VELD SLEUTEL IS DE SLEUTEL VAN DE REST VAN DE REPO. Echte adressen
+    # uit de voorraad van 14 oktober, een per soort afwijking die de eigen
+    # functie toen gaf: een punt, een titel, een accent en een lidwoord.
+    for straat, nr, letter in (("St. Annastraat", 1, "D"),
+                               ("Professor Schrijnenstraat", 11, ""),
+                               ("Mariënburgsestraat", 10, ""),
+                               ("de Ruyterstraat", 105, "")):
+        eigen = adressleutel(straat, nr, letter, "")
+        repo = _psl.sleutel(f"{straat} {nr}{letter}")
+        if eigen != repo:
+            afwijkingen.append(f"het veld sleutel wijkt af van pandsleutel: "
+                               f"{eigen!r} tegen {repo!r}")
     if adressleutel("Bottelstraat", 1, "", "2") != adressleutel(
             "Bottelstraat", 12, "", ""):
         afwijkingen.append("de proef op de botsing meet niets, want deze twee "
