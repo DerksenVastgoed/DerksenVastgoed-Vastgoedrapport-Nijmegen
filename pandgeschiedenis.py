@@ -601,9 +601,9 @@ def koppel_objecten(geschiedenis, voorraad_pad=VOORRAAD_PAD):
     502 niet in de voorraad.
 
     Een pand-id dat er al stond en niet bij het object hoort, wordt niet
-    overschreven maar geteld. Op 14 oktober een keer: Tweede Walstraat 100,
-    een transformatie, waar het bestaande object in een ander pand ligt dan
-    het pand-id dat de oude opzoeking (eerste pand van het antwoord) koos.
+    overschreven maar geteld. Het pand van een gevormd object op hetzelfde
+    adres telt daarbij mee: zie Tweede Walstraat 100 hieronder. Daarmee was
+    het op 14 oktober 0 keer.
     """
     try:
         from voorraad_bag import GEMEENTECODE
@@ -650,7 +650,16 @@ def koppel_objecten(geschiedenis, voorraad_pad=VOORRAAD_PAD):
         if not pand.get("pand_id") and panden:
             pand["pand_id"] = panden[0]
             tel["pand_id_aangevuld"] += 1
-        elif pand.get("pand_id") and panden and pand["pand_id"] not in panden:
+        elif pand.get("pand_id") and panden and pand["pand_id"] not in (
+                set(panden) | {q for _v, x in gevormd
+                               for q in (x.get("panden") or [x.get("pand")])}):
+            # HET PAND VAN HET GEVORMDE OBJECT TELT OOK. Tweede Walstraat 100
+            # was het enige "andere pand-id" op 14 oktober, en het was geen
+            # fout: de bestaande woning van 129 m2 ligt in pand ...2979, en
+            # de transformatie vormt op hetzelfde adres een woning van 40 m2
+            # in pand ...2968, het pand dat wij volgen en waar de
+            # transformatie over gaat. Een adres kan dus in twee panden
+            # liggen, het ene nu en het andere straks.
             tel["pand_id_anders"] += 1
     print("Objecten: " + ", ".join(f"{k} {n}" for k, n in tel.items()),
           file=sys.stderr)
@@ -2083,6 +2092,27 @@ def proef():
     check("de telling klopt met wat er gebeurde",
           (_t.get("bestaand"), _t.get("bestaand_en_gevormd"),
            _t.get("niet_in_voorraad")), (1, 1, 1))
+    # TWEEDE WALSTRAAT 100: bestaand object in het ene pand, gevormd object
+    # op hetzelfde adres in het pand dat wij volgen. Dat is geen afwijking.
+    with tempfile.TemporaryDirectory() as _d:
+        _vp = os.path.join(_d, "v.json")
+        with open(_vp, "w", encoding="utf-8") as _f:
+            json.dump({"adressen": {"0268010000030856": {
+                "adres": "Tweede Walstraat 100",
+                "status": "Verblijfsobject in gebruik",
+                "panden": ["0268100000002979"]}},
+                "pijplijn": {"0268010000107375": {
+                    "adres": "Tweede Walstraat 100",
+                    "status": "Verblijfsobject gevormd",
+                    "panden": ["0268100000002968"]}}}, _f)
+        _w = {"tweedewalstraat100": {"adres": "Tweede Walstraat 100",
+                                     "pand_id": "0268100000002968",
+                                     "gebeurtenissen": []}}
+        _tw = koppel_objecten(_w, _vp)
+    check("een pand-id van het gevormde object op dit adres is geen afwijking",
+          _tw.get("pand_id_anders"), 0)
+    check("en het pand-id blijft het pand dat we volgen",
+          _w["tweedewalstraat100"].get("pand_id"), "0268100000002968")
 
     # HET LABEL KOMT UIT DE VOORRAAD, EN ALLEEN WAT DIE NIET WEET GAAT NAAR
     # EP-ONLINE, OP OBJECT-ID. Een pand met drie objecten: A 1 kent de

@@ -8104,6 +8104,12 @@ nagezocht, en dat is de enige route naar meer.
 - **Gemeentelijke monumentenlijst** is nog niet ingelezen; nijmegen.nl zit
   achter een botcontrole.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
+- **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
+  labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
+  Tweede Walstraat 104 staan een bestaande woning van 157 m2 (label D) en een
+  gevormde van 47 m2 op hetzelfde adres. Het label hoort bij het object, dus
+  dit veld zou {object-id: letter} moeten zijn. Raakt pandlezer.compact(),
+  het dossier en de brieftekst over "labels per adres".
 - **Koppelen op object-id: wat er nog openstaat.** Sinds 14 oktober draagt
   elk adres zijn object-id (uit de voorraad, of uit de BAG-opzoeking in
   bij_bag) en leest de labelstap eerst de voorraad. Open: andere lezers die
