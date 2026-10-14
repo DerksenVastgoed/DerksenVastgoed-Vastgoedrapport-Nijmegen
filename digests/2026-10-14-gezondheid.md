@@ -1,11 +1,15 @@
 # Gezondheidsrapport 2026-10-14
 
-59 in orde, 8 aandachtspunten, 0 fouten.
+57 in orde, 9 aandachtspunten, 1 fouten.
+
+## FOUT
+- **Bekende onwaarheden in de brief**: 1 bekende onwaarheid: in de brief: "verkocht voor €"
+  Wij kennen geen koopsommen; die staan alleen bij het Kadaster. Funda toont de laatste vraagprijs. Schrijf 'laatste vraagprijs €X'.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69308 bytes, 1328 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (8098 bytes, 218 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
+- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69998 bytes, 1340 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (8098 bytes, 218 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
   Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
-- **Verkopen**: 661 verkopen: 518 geplakt, 143 met de hand; laatste 2026-10-13; de mailstap liet 23 meldingen vallen met dezelfde status en 0 met een andere
+- **Verkopen**: 661 verkopen: 518 geplakt, 143 met de hand; laatste 2026-10-13; de mailstap liet 24 meldingen vallen met dezelfde status en 0 met een andere
   Er komt nog geen verkoop uit de attendering, terwijl er wel 3 mails van funda.nl zijn gelezen. Het filter is dus niet de vraag; kijk naar wat de mailstap met die mails doet.
 - **Plintobjecten geteld**: 1288 plintobjecten in heel Stadscentrum, 770 groot genoeg voor de volle 50 m2, 950 onder woningen; dit is heel Stadscentrum en niet alleen het kernwinkelgebied
   Zet de straatnamen van het kaartje in plintgebied.txt en dit wordt de werkelijke telling.
@@ -19,13 +23,14 @@
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-14: huislijn: 4 mails, 5 objecten; kamernet: 15 mails, 11 objecten, 4 bewust overgeslagen; pararius: 2 mails, 4 objecten, 3 bewust overgeslagen; regulier: 3 mails, 4 objecten, 2 bewust overgeslagen; de mailboxtelling mislukte ((SINCE 11-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 11-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED)
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
+- **Regelgevingsmonitor**: 86 verordeningen, 5 wetten; zonder enige treffer: leegstand
+  Op leegstand levert geen enkele zoekvorm een regeling op. Dat is iets anders dan een verordening die niet is gewijzigd: wij kijken ernaar en vinden niets. De query zoekt op hele woorden, dus 'parkeer' matcht niet op 'Parkeerverordening'. Zie haal_gemeentelijk() in regelgeving_monitor.py voor de meting hierachter.
 
 ## OK
 - **Geheugen verstuurde brieven**: 20 onderwerpen bekend, 20 in het venster van drie weken, laatste brief 2026-10-14; 9 onderwerpen kwamen in meer dan een brief terug
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-13-verhaal.md
 - **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
-- **Bekende onwaarheden in de brief**: 6 bekende onwaarheden getoetst op 5 teksten, geen ervan komt voor
-- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief zegt het in eigen woorden: 5 van de 6 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van -2,9% tot +9,9%, mediaan 6,0%.
+- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief laat het erbuiten: 5 van de 6 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van -2,9% tot +9,9%, mediaan 6,0%.
 - **Verkocht pand nog in het aanbod**: 7 panden hebben een verkoopregel die nieuwer is dan hun te-koopregel; geen van die panden staat nog in de aanbodtabel
 - **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4628, kamervergunningen.json: 7246, pandgeschiedenis.json: 147237, verkopen.txt: 928, verteld.json: 124, woz.txt: 126
 - **Huurdata**: 132 huurwaarnemingen, waarvan 33 Pararius en 57 Kamernet en 40 Huislijn en 2 Rentola, zonder adres maar met oppervlakte; 52 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2; 2 waarschijnlijke dubbelingen tussen platforms samengevoegd
@@ -46,7 +51,7 @@
 - **Aanbodreeks**: 13 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 6 koop, 34 huur, 1 uitpond; 2026-W42: 4 koop, 14 huur. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
 - **Profiel nieuw aanbod**: 54 panden in dertig dagen; mediaan 82 m2; 0 zonder label
 - **Groottepremie**: 593 waarnemingen, 9 buurten met eigen ijkpunt; 0-40 m2: 1.43 (57), 40-60 m2: 1.234 (113), 60-80 m2: 1.062 (171), 80-100 m2: 1.0 (90), 100-130 m2: 0.968 (85), 130 m2 en groter: 0.927 (77)
-- **Woningen in bestaande panden**: 128 panden met 733 gevormde woningen erin; laatste ronde 0 nieuwe records, 3 gebeurtenissen, 0 wachten op een volgende ronde (stand van 2026-10-14)
+- **Woningen in bestaande panden**: 128 panden met 733 gevormde woningen erin; laatste ronde 0 nieuwe records, 0 gebeurtenissen, 0 wachten op een volgende ronde (stand van 2026-10-14)
 - **Geplande startdagen**: 3 crons, samen zondag 1, maandag 2, dinsdag 2, woensdag 2, donderdag 2, vrijdag 2, zaterdag 2
 - **Eisen aan de brief**: 56 eisen aan de brief, 51 afgedwongen door een proef, 5 bewust niet: Een pand dat al aan pa is verteld, opent de brief niet opnie; Een stap die zijn werk door git terugstuurt, meldt een mislu; Een proef die niets kan vinden, valt niet om met een KeyErro
 - **Voltooide splitsingen**: 2 gerealiseerd; mediaan 3 dagen van besluit tot registratie (2); 14 vergund maar na een jaar nog niets in de BAG; 2 met een ander aantal dan de vergunning noemt; en het tekstblok van vandaag staat er
@@ -79,7 +84,6 @@
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 221 panden gerouteerd
 - **Bekendmakingen-archief**: 347 adressen, 483 publicaties
-- **Regelgevingsmonitor**: 80 verordeningen, 5 wetten
 - **Geheugen en trend**: 123 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard
 

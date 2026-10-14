@@ -239,6 +239,16 @@
   "url": "",
   "waarom": "Afvalstoffenheffing: een vaste last per woning"
  },
+ "CVDR43324_1": {
+  "bron": "gemeente",
+  "geldig_tot": "",
+  "geldig_vanaf": "2007-10-01",
+  "gewijzigd": "2017-11-21",
+  "term": "parkeer",
+  "titel": "Parkeerverordening 2007",
+  "url": "",
+  "waarom": "Parkeerverordening: parkeereis en vergunningen bij splitsing"
+ },
  "CVDR435468_1": {
   "bron": "gemeente",
   "geldig_tot": "2018-01-01",
@@ -458,6 +468,46 @@
   "titel": "VERORDENING OP DE HEFFING EN DE INVORDERING VAN LEGES GEMEENTE NIJMEGEN 2021",
   "url": "",
   "waarom": "Legesverordening: wat een omgevingsvergunning of een omzettingsvergunning kost bij splitsen of verkameren"
+ },
+ "CVDR658058_1": {
+  "bron": "gemeente",
+  "geldig_tot": "2022-03-15",
+  "geldig_vanaf": "2021-05-28",
+  "gewijzigd": "2021-05-28",
+  "term": "erfgoed",
+  "titel": "Erfgoedverordening Nijmegen 2021",
+  "url": "",
+  "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
+ },
+ "CVDR658058_2": {
+  "bron": "gemeente",
+  "geldig_tot": "2022-06-29",
+  "geldig_vanaf": "2022-03-15",
+  "gewijzigd": "2022-03-15",
+  "term": "erfgoed",
+  "titel": "Erfgoedverordening Nijmegen 2021",
+  "url": "",
+  "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
+ },
+ "CVDR658058_3": {
+  "bron": "gemeente",
+  "geldig_tot": "2024-01-01",
+  "geldig_vanaf": "2022-06-29",
+  "gewijzigd": "2022-06-29",
+  "term": "erfgoed",
+  "titel": "Erfgoedverordening Nijmegen 2021",
+  "url": "",
+  "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
+ },
+ "CVDR658058_4": {
+  "bron": "gemeente",
+  "geldig_tot": "2024-12-24",
+  "geldig_vanaf": "2024-01-01",
+  "gewijzigd": "2024-01-01",
+  "term": "erfgoed",
+  "titel": "Erfgoedverordening Nijmegen 2021",
+  "url": "",
+  "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
  },
  "CVDR669433_1": {
   "bron": "gemeente",
@@ -739,6 +789,16 @@
   "url": "",
   "waarom": "Verordening onroerendezaakbelastingen: het OZB-tarief voor woningen en niet-woningen, dat per WOZ-waarde doorwerkt in de exploitatiekosten"
  },
+ "CVDR731607_1": {
+  "bron": "gemeente",
+  "geldig_tot": "",
+  "geldig_vanaf": "2024-12-24",
+  "gewijzigd": "2024-12-24",
+  "term": "erfgoed",
+  "titel": "Erfgoedverordening Nijmegen",
+  "url": "",
+  "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
+ },
  "CVDR741257_1": {
   "bron": "gemeente",
   "geldig_tot": "2026-01-01",
@@ -852,10 +912,29 @@
  "_termen": [
   "afvalstoffenheffing",
   "bouw",
+  "erfgoed",
   "huisvesting",
   "leges",
   "omgevingsplan",
   "onroerende",
+  "parkeer",
   "rioolheffing"
- ]
+ ],
+ "_zoektermen": {
+  "bron": "meta",
+  "vorm_per_term": {
+   "afvalstoffenheffing": "(creator==\"Nijmegen\") and (title any \"afvalstoffenheffing\")",
+   "bouw": "(creator==\"Nijmegen\") and (title any \"bouw\")",
+   "erfgoed": "(creator==\"Nijmegen\") and (title any \"erfgoedverordening\")",
+   "huisvesting": "(creator==\"Nijmegen\") and (title any \"huisvesting\")",
+   "leges": "(creator==\"Nijmegen\") and (title any \"leges\")",
+   "omgevingsplan": "(creator==\"Nijmegen\") and (title any \"omgevingsplan\")",
+   "onroerende": "(creator==\"Nijmegen\") and (title any \"onroerende\")",
+   "parkeer": "(creator==\"Nijmegen\") and (title any \"parkeerverordening\")",
+   "rioolheffing": "(creator==\"Nijmegen\") and (title any \"rioolheffing\")"
+  },
+  "zonder_treffer": [
+   "leegstand"
+  ]
+ }
 }
