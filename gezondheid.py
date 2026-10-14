@@ -3475,8 +3475,8 @@ def controle_archief():
     return (OK, bewijs, "")
 
 
-def controle_regelgeving():
-    d = _json("regelgeving_status.json")
+def controle_regelgeving(pad="regelgeving_status.json"):
+    d = _json(pad)
     if d is None:
         return (LET_OP, "nog geen regelgevingsstatus",
                 "De monitor draait op zondag. Na de eerste zondag hoort hier een "
@@ -3488,6 +3488,20 @@ def controle_regelgeving():
     gemeente = sum(1 for g in d.values() if g.get("bron") == "gemeente")
     landelijk = sum(1 for g in d.values() if g.get("bron") == "landelijk")
     bewijs = f"{gemeente} verordeningen, {landelijk} wetten"
+    # EEN ZOEKTERM ZONDER TREFFER IS GEEN VERORDENING DIE NIET VERANDERT.
+    # Op 14 oktober stonden er 80 gemeentelijke regelingen in de stand,
+    # allemaal belastingverordeningen uit 2012 tot 2014, en geen enkele over
+    # parkeren, erfgoed of leegstand. Dat was aan dit getal niet te zien.
+    meta = (_json(pad) or {}).get("_zoektermen") or {}
+    stil = meta.get("zonder_treffer") or []
+    if stil:
+        return (LET_OP, bewijs + f"; zonder enige treffer: {', '.join(stil)}",
+                f"Op {', '.join(stil)} levert geen enkele zoekvorm een "
+                f"regeling op. Dat is iets anders dan een verordening die "
+                f"niet is gewijzigd: wij kijken ernaar en vinden niets. De "
+                f"query zoekt op hele woorden, dus 'parkeer' matcht niet op "
+                f"'Parkeerverordening'. Zie haal_gemeentelijk() in "
+                f"regelgeving_monitor.py voor de meting hierachter.")
     if not gemeente:
         return (LET_OP, bewijs,
                 "Geen gemeentelijke verordeningen gevonden via CVDR. Zie stap 9 op "
@@ -3953,6 +3967,35 @@ def proef():
         if "mislukte" not in _tekst:
             fouten.append(f"een mislukte mailboxtelling leest als 'geen "
                           f"onbekende afzenders': {_tekst[-60:]!r}")
+
+    # EEN ZOEKTERM ZONDER TREFFER WORDT GEMELD. Zonder deze regel leest "80
+    # verordeningen" als dekking, terwijl er geen enkele over parkeren,
+    # erfgoed of leegstand tussen zat.
+    with _tf.TemporaryDirectory() as _m:
+        _p = _os.path.join(_m, "regelgeving_status.json")
+        _basis = {"CVDR1": {"titel": "Legesverordening", "bron": "gemeente"},
+                  "BWBR1": {"titel": "Woningwet", "bron": "landelijk"}}
+        with open(_p, "w", encoding="utf-8") as _f:
+            json.dump(_basis, _f)
+        _st, _tekst, _ = controle_regelgeving(_p)
+        if _st != OK:
+            fouten.append(f"zonder stille zoektermen staat de controle toch "
+                          f"niet op OK: {_st} {_tekst!r}")
+        with open(_p, "w", encoding="utf-8") as _f:
+            json.dump(dict(_basis, _zoektermen={
+                "zonder_treffer": ["parkeer", "erfgoed"], "bron": "meta"}), _f)
+        _st, _tekst, _rep = controle_regelgeving(_p)
+        if _st != LET_OP or "parkeer" not in _tekst:
+            fouten.append(f"een zoekterm zonder treffer wordt niet gemeld: "
+                          f"{_st} {_tekst!r}")
+        if "niet is gewijzigd" not in _rep:
+            fouten.append("de reparatie legt het verschil tussen niet "
+                          "gevonden en niet gewijzigd niet uit")
+        # De zeef op sleutels die met een liggend streepje beginnen is hier
+        # een vangnet zonder meetbaar effect: de metasleutel draagt bron
+        # "meta" en wordt dus toch niet als verordening of wet geteld. Hem
+        # weghalen verandert niets dat deze proef kan zien, en dat staat hier
+        # in plaats van dat ik er een proefgeval bij verzin.
 
     print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:

@@ -144,11 +144,61 @@ def records(root):
 
 
 def haal_gemeentelijk():
-    """De Nijmeegse verordeningen die we volgen."""
+    """
+    De Nijmeegse verordeningen die we volgen.
+
+    EEN ZOEKTERM ZONDER TREFFER LEEST ALS EEN VERORDENING DIE NIET VERANDERT.
+    Nagemeten op 14 oktober 2026, op de stand die deze module zelf had
+    opgebouwd: 80 gemeentelijke regelingen, en daarvan is er GEEN ENKELE over
+    parkeren, erfgoed of leegstand. Alle 80 zijn belastingverordeningen uit
+    2012 tot 2014: leges, onroerendezaakbelasting, rioolheffing en
+    afvalstoffenheffing. Van de tien zoektermen leverden drie er nooit iets
+    op, en dat was aan de uitkomst niet te zien: het gezondheidsrapport kon
+    alleen melden dat er niets was veranderd.
+
+    WAT ER WAARSCHIJNLIJK AAN DE HAND IS, en dit is een vermoeden met een
+    meting eronder, geen vaststelling. De query is `title any "parkeer"`, en
+    `any` matcht hele woorden. "Parkeerverordening" is een woord, dus
+    "parkeer" matcht daar niet op. De termen die het wel doen zijn precies de
+    termen die als los woord in de titel staan: leges, rioolheffing,
+    afvalstoffenheffing, onroerende. En "bouw" gaf exact een treffer, in
+    "Verordening Ik Bouw Betaalbaar", waar Bouw een eigen woord is. Dat is
+    een sterke aanwijzing. Het commentaar bij GEMEENTELIJK zegt dat de
+    zoekterm breed genoeg moet zijn om een hernoemde verordening te blijven
+    vinden, en dat was dus een aanname over hoe de dienst zoekt.
+
+    DAAROM MEER DAN EEN VORM PER TERM, en de dienst mag zeggen welke werkt.
+    Welke vorm een treffer gaf staat in de stand, zodat de volgende ronde het
+    antwoord geeft in plaats van mijn vermoeden.
+
+    En een term die in GEEN enkele vorm iets oplevert, komt als zodanig in de
+    uitkomst te staan. Niet gevonden en niet veranderd mogen niet hetzelfde
+    woord krijgen.
+    """
     gevonden = {}
+    zonder_treffer = []
+    gebruikte_vorm = {}
     for term, waarom in GEMEENTELIJK:
-        query = (f'(creator=="{GEMEENTE}") and (title any "{term}")')
-        root = bevraag("cvdr", query)
+        # DRIE VORMEN. De eerste is wat er stond; de tweede voegt het woord
+        # verordening toe, want zo heten ze; de derde probeert een jokerteken.
+        # Werkt er geen, dan staat de term in zonder_treffer.
+        vormen = [f'(creator=="{GEMEENTE}") and (title any "{term}")',
+                  f'(creator=="{GEMEENTE}") and (title any "{term}verordening")',
+                  f'(creator=="{GEMEENTE}") and (title any "{term}*")']
+        hier = 0
+        for vorm in vormen:
+            root = bevraag("cvdr", vorm)
+            hier = len(list(records(root)))
+            if hier:
+                gebruikte_vorm[term] = vorm
+                break
+            time.sleep(1)
+        if not hier:
+            zonder_treffer.append(term)
+            print(f"  {term}: geen enkele vorm gaf een treffer", file=sys.stderr)
+            time.sleep(1)
+            continue
+        root = bevraag("cvdr", gebruikte_vorm[term])
         for rec in records(root):
             titel = _tekst(rec, "title")
             if not titel or term.lower() not in titel.lower():
@@ -167,6 +217,11 @@ def haal_gemeentelijk():
                 "url": _tekst(rec, "preferredUrl") or _tekst(rec, "publicatieurl"),
             }
         time.sleep(1)
+    # De bevindingen over de zoektermen zelf gaan mee in de uitkomst, onder
+    # een sleutel die geen regeling kan zijn.
+    gevonden["_zoektermen"] = {"zonder_treffer": zonder_treffer,
+                               "vorm_per_term": gebruikte_vorm,
+                               "bron": "meta"}
     return gevonden
 
 
