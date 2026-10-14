@@ -681,6 +681,26 @@ proef: voorraad_bag:EEN PAND WAAR EEN BEKENDMAKING OVER GING; gezondheid:DE DEKK
 soort: gegevens
 
 ---
+eis: Een proef noemt zijn bevindingen op na de laatste die erbij komt.
+waarom: 14 oktober, twee keer op een dag en in twee bestanden. De vorm is
+  altijd dezelfde: de lus `for f in fouten: print(...)` staat halverwege
+  proef(), en wat eronder wordt toegevoegd telt wel mee in het aantal maar
+  wordt nooit getoond. De proef meldt dan "1 afwijking" zonder te zeggen
+  welke. Dat is bijna erger dan groen staan: de exitcode is rood, dus de poort
+  werkt, maar er is geen aanknopingspunt. In pandgeschiedenis.py kostte dat
+  's middags een ronde zoeken, in voorraad_bag.py 's avonds nog een. Twee keer
+  dezelfde vorm in twee bestanden is geen vergissing meer. De toets zoekt per
+  functie de lus die over een lijst loopt en daarin print, en kijkt of er
+  daarna nog op die lijst wordt toegevoegd. Dat de lus moet printen is
+  nagemeten: zonder die eis is de eerste treffer ontdubbel_huur() in
+  marktprijzen_bag.py, waar niets mis is omdat die lus niets meldt. Op
+  voorraad_bag.py zoals het voor PR 101 op main stond: precies een treffer,
+  de meldlus op regel 2240 met een append op 2287. Over alle modules van nu:
+  nul.
+proef: eisen:EN DIE TOETS MOET DE ECHTE VORM ZIEN
+soort: werking
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
