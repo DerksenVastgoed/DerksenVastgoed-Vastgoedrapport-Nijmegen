@@ -705,6 +705,30 @@ proef: parkeerzone:EEN VERGUNNINGENZONE UIT ARTIKEL 2, EEN ONBEKENDE EN EEN TERR
 soort: gegevens
 
 ---
+eis: Een zoekterm die nooit een treffer geeft, meldt zichzelf.
+waarom: 14 oktober, 's avonds, gevonden door onze eigen stand na te meten.
+  regelgeving_monitor.py volgt tien gemeentelijke zoektermen en had er 80
+  regelingen mee opgehaald. Alle 80 zijn belastingverordeningen uit 2012 tot
+  2014: leges, onroerendezaakbelasting, rioolheffing, afvalstoffenheffing. Geen
+  enkele over parkeren, erfgoed of leegstand, precies de drie verordeningen
+  die deze portefeuille raken, en dat was aan het getal 80 niet te zien. Het
+  gezondheidsrapport kon alleen melden dat er niets was veranderd. De
+  vermoedelijke oorzaak heeft een meting onder zich: de query is
+  `title any "parkeer"` en `any` matcht hele woorden, dus "Parkeerverordening"
+  wordt niet gevonden. De termen die het wel doen staan als los woord in de
+  titel, en "bouw" gaf exact een treffer, in "Verordening Ik Bouw Betaalbaar",
+  waar Bouw een eigen woord is. Het commentaar bij de termenlijst zei dat de
+  zoekterm breed genoeg moest zijn om een hernoemde verordening te blijven
+  vinden, en dat was dus een aanname over hoe de dienst zoekt. Nu worden er
+  drie vormen per term geprobeerd en legt de stand vast welke een treffer gaf,
+  zodat de dienst het antwoord geeft in plaats van mijn vermoeden. En een term
+  die in geen enkele vorm iets oplevert komt bij naam in het
+  gezondheidsrapport: niet gevonden en niet gewijzigd mogen niet hetzelfde
+  woord krijgen.
+proef: gezondheid:EEN ZOEKTERM ZONDER TREFFER WORDT GEMELD
+soort: gegevens
+
+---
 eis: Een proef noemt zijn bevindingen op na de laatste die erbij komt.
 waarom: 14 oktober, twee keer op een dag en in twee bestanden. De vorm is
   altijd dezelfde: de lus `for f in fouten: print(...)` staat halverwege
