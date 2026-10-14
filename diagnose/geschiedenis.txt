@@ -1,1 +1,3 @@
 Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
+Geen BAG_API_KEY of EP_API_KEY: labels alleen uit de voorraad; objecten buiten de voorraad blijven zonder label.
+Geen BAG_API_KEY of EP_API_KEY: labels alleen uit de voorraad; objecten buiten de voorraad blijven zonder label.

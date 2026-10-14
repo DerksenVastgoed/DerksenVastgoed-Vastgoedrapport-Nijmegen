@@ -8104,27 +8104,11 @@ nagezocht, en dat is de enige route naar meer.
 - **Gemeentelijke monumentenlijst** is nog niet ingelezen; nijmegen.nl zit
   achter een botcontrole.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
-- **Koppelen op object-id, de volgende stappen.** Sinds 14 oktober draagt
-  elk adres in de pandgeschiedenis zijn object-id als de voorraad het kent
-  (1.305 van 1.807). Nog te doen: (1) de 502 adressen buiten de voorraad een
-  object-id geven in bij_bag(), die het van de BAG al terugkrijgt als
-  adresseerbaarObjectIdentificatie maar weggooit; (2) bij_labels() vraagt
-  info.get("vbo"), een veld dat bag_adres_uitgebreid() niet teruggeeft, dus
-  de route op object-id is daar nooit gebruikt; (3) bag_adres_uitgebreid()
-  geeft alleen het eerste pand terug, tegen de eis dat een object in meer
-  panden kan liggen (Tweede Walstraat 100 laat zien waar dat gebeurt).
-- **Twee labelverzamelingen.** De voorraad haalt labels per verblijfsobject
-  (13.463 op 14 oktober), de pandgeschiedenis haalt ze zelf nog eens per adres
-  voor de gevolgde panden. Eén implementatie per afspraak: de pandgeschiedenis
-  zou haar labels uit de voorraad moeten lezen in plaats van EP-Online zelf
-  te bevragen.
-
----
-
-## 9. Wat werkt en niet vervangen moet worden
-
-Ter herinnering, zodat we niet iets weggooien dat zijn werk doet:
-
+- **Koppelen op object-id: wat er nog openstaat.** Sinds 14 oktober draagt
+  elk adres zijn object-id (uit de voorraad, of uit de BAG-opzoeking in
+  bij_bag) en leest de labelstap eerst de voorraad. Open: andere lezers die
+  nog op adrestekst joinen, zoals marktprijzen_bag.py bij de dossiers en het
+  aanbodprofiel, kunnen op vbo overstappen.
 - Het bekendmakingen-archief loopt terug tot 2012 met 315 adressen.
 - De vergunningenlijst telt 816 vergunningen op 279 straten.
 - Het geheugen tegen herhaling: panden die niets doen krijgen één regel.

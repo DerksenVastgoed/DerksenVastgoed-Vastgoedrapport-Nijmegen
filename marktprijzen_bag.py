@@ -524,6 +524,10 @@ def bag_adres_uitgebreid(straat, huisnr, letter, toev, plaats):
         "postcode": a.get("postcode", ""),
         "adresseerbaarObjectIdentificatie": a.get("adresseerbaarObjectIdentificatie", ""),
         "pand": (a.get("pandIdentificaties") or [""])[0],
+        # ALLE PANDEN, NIET ALLEEN HET EERSTE. Een verblijfsobject kan in
+        # meer dan een pand liggen (zie eisen.txt); "pand" blijft het eerste
+        # zodat bestaande lezers werken, wie het precies wil leest dit.
+        "panden": [x for x in (a.get("pandIdentificaties") or []) if x],
         # Een geregistreerde maar nog niet gerealiseerde splitsing is een signaal:
         # de eigenaar is er al mee bezig.
         "splitsing_geregistreerd": [
