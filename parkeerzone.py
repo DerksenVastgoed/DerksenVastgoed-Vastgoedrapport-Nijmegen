@@ -87,6 +87,35 @@ LAGEN = {
     # verkenningsstand bestaat.
     "betaald": "extern_Mobiliteit:MOB_BETAALD_PARKEREN",
 }
+# DE VERGUNNINGENZONES UIT HET BESLUIT, EN NIET UIT DE KAART.
+#
+# Op 14 oktober schreef ik dat het gereguleerde gebied uit de gepubliceerde
+# lagen niet te bepalen is. Mark vroeg of dat dan nergens in de beleidsstukken
+# staat. Het staat er wel, en in het kanaal dat wij al dagelijks lezen: het
+# Besluit tot aanwijzing en uitwerking betaald parkeren, dat jaarlijks als
+# gemeenteblad wordt gepubliceerd. Artikel 1 definieert het gereguleerd
+# vergunningengebied als de gebieden van artikel 2, en artikel 2 wijst die
+# negentien zones met naam aan. Daar hangt de vrijstelling bij splitsen aan:
+# in dat gebied krijgen nieuwe huisnummers geen parkeervergunning.
+#
+# HET BESLUIT EN DE KAART ZIJN NIET GELIJK, en dat is nagemeten op de laag van
+# 14 oktober:
+#   uit artikel 2, niet in de kaart: B, I, T, U
+#   in de kaart, niet in artikel 2:  D, V
+# De overige veertien namen in de kaart zijn parkeerterreinen uit artikel 15
+# lid d, zoals P8 Vierdaagseplein en De Oude Haven, en die zijn geen
+# vergunningenzone. Een punt in zo'n terrein zegt niets over het adres.
+#
+# Daarom drie uitkomsten en geen twee: ja (de naam staat in artikel 2), nee
+# (het is een parkeerterrein) en onbekend (D en V staan in de kaart maar niet
+# in dit besluit; welk besluit ze aanwijst weet ik niet).
+VERGUNNINGENZONES = [
+    "Centrum", "B", "1e ring", "2e ring west", "2e ring oost",
+    "I", "J", "K", "L", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z",
+]
+# In de kaart, niet in artikel 2 van het besluit van 2025.
+ONBEKENDE_ZONES = ["D", "V"]
+
 VOORRAAD = "voorraad.json"
 ZONES = "parkeerzones.json"
 
@@ -138,6 +167,22 @@ def haal(laag, pauze=30):
                           + " ".join((reden.group(1) if reden else "").split())
                           [:160])
         return None, f"geen json: {str(e)[:120]} ({r.text[:120]})"
+
+
+def soort_zone(naam):
+    """
+    Is dit een vergunningenzone uit artikel 2, of een parkeerterrein?
+
+    Geeft "vergunningenzone", "onbekend" of "parkeerterrein". Het verschil
+    bepaalt of de vrijstelling bij splitsen in beeld komt, dus het mag geen
+    waar/onwaar zijn met onbekend erin verstopt.
+    """
+    kaal = (naam or "").strip()
+    if kaal in VERGUNNINGENZONES:
+        return "vergunningenzone"
+    if kaal in ONBEKENDE_ZONES:
+        return "onbekend"
+    return "parkeerterrein"
 
 
 def _ringen(geometrie):
@@ -383,10 +428,17 @@ def koppel(voorraad_pad=VOORRAAD, zones_pad=ZONES):
                     rec.pop("betaald_parkeervlak", None)
                     rec.pop("betaald_parkeren", None)
                 else:
-                    rec["betaald_parkeervlak"] = str(
-                        vlak.get("ZONE_NAAM") or vlak.get("TARIEF_ZONE") or "ja")
+                    naam = str(vlak.get("ZONE_NAAM")
+                               or vlak.get("TARIEF_ZONE") or "ja")
+                    rec["betaald_parkeervlak"] = naam
                     rec.pop("betaald_parkeren", None)
                     tel["in_een_betaaldvlak"] += 1
+                    # DE AARD VAN HET VLAK ERBIJ. Zie soort_zone(): alleen een
+                    # vergunningenzone uit artikel 2 van het besluit zegt iets
+                    # over het adres; een parkeerterrein is een plek.
+                    soort = soort_zone(naam)
+                    rec["vlak_soort"] = soort
+                    tel[soort] = tel.get(soort, 0) + 1
             else:
                 rec.pop("betaald_parkeervlak", None)
                 rec.pop("betaald_parkeren", None)
@@ -539,10 +591,27 @@ def proef():
         # HET VELD NOEMT HET VLAK EN NIET EEN JA OF NEE. Een waar/onwaar veld
         # met de naam betaald_parkeren leest als "hier valt de parkeereis
         # weg", en dat is iets anders dan wat de laag meet.
+        # EEN VERGUNNINGENZONE UIT ARTIKEL 2, EEN ONBEKENDE EN EEN TERREIN.
+        # Dit is het verschil waar de vrijstelling aan hangt, dus het hoort
+        # per vlak uit elkaar gehouden te worden.
+        for naam, hoort in (("Centrum", "vergunningenzone"),
+                            ("Z", "vergunningenzone"),
+                            ("1e ring", "vergunningenzone"),
+                            ("D", "onbekend"), ("V", "onbekend"),
+                            ("P8 Vierdaagseplein", "parkeerterrein"),
+                            ("De Oude Haven", "parkeerterrein"),
+                            ("", "parkeerterrein")):
+            if soort_zone(naam) != hoort:
+                fouten.append(f"{naam or '(leeg)'} heet {soort_zone(naam)!r} "
+                              f"in plaats van {hoort!r}")
         if na["a"].get("betaald_parkeervlak") != "Gereguleerd":
             fouten.append(f"het vlak uit de laag betaald parkeren wordt niet "
                           f"bij naam bewaard: "
                           f"{na['a'].get('betaald_parkeervlak')!r}")
+        if na["a"].get("vlak_soort") != "parkeerterrein":
+            fouten.append(f"een vlak met een naam die niet in artikel 2 staat "
+                          f"heet toch vergunningenzone: "
+                          f"{na['a'].get('vlak_soort')!r}")
         if "betaald_parkeervlak" in na["b"]:
             fouten.append(f"een pand buiten elk betaaldvlak krijgt er toch "
                           f"een: {na['b'].get('betaald_parkeervlak')!r}")

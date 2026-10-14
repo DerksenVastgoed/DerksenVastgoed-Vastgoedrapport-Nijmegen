@@ -372,10 +372,7 @@ ACHTERGROND_BRONNEN = {
         "stukken bij de vergunde dossiers Staringstraat 2 en Hatertseweg "
         "338, gemeente Nijmegen, en de Beleidsregels Parkeren 2025",
     "Parkeren bij splitsen":
-        "Beleidsregels Parkeren 2025 gemeente Nijmegen, bijzonder geval VII; "
-        "gepubliceerd als gmb-2025-239801 en als CVDR739955. Gemeten aan de "
-        "parkeerberekening bij Staringstraat 2 en het besluit over "
-        "Hatertseweg 338.",
+        "Beleidsregels parkeren 2025 gemeente Nijmegen, bijzonder geval VII en tabel 4; gepubliceerd als gmb-2025-239801 en als CVDR739955. Het gereguleerde gebied wordt aangewezen in het Besluit tot aanwijzing en uitwerking betaald parkeren, artikel 1 en 2, jaarlijks als gemeenteblad gepubliceerd; de versie van 2026 is gmb-2025-555465. Gemeten aan de parkeerberekening bij Staringstraat 2 en het besluit over Hatertseweg 338, en de zonelijst van artikel 2 is op 14 oktober 2026 naast de kaartlaag gelegd.",
     "De schone route: inpandig splitsen zonder bopa":
         "Omgevingswet artikel 5.1 en Besluit bouwwerken leefomgeving; gemeten "
         "aan vergunde dossiers in Nijmegen",
@@ -908,7 +905,22 @@ ACHTERGROND = [
      "rekende de gemeente met 0,8 per wooneenheid. Een enkel getal bestaat "
      "dus niet. Welke zone een pand heeft staat op de kaart van de gemeente "
      "onder stedelijke zones tbv parkeernormering, en die zones staan als "
-     "open data op opendata.nijmegen.nl."),
+     "open data op opendata.nijmegen.nl. De normtabel zelf staat in "
+     "parkeernormen.txt, afgelezen uit tabel 4: zes zones en veertien "
+     "woningtypen, van 0,20 voor een studentenwoning tot 2,00 voor een "
+     "vrijstaande koopwoning in het buitengebied. "
+     "WAAR HET GEREGULEERDE GEBIED WORDT AANGEWEZEN, want daar hangt de "
+     "vrijstelling aan en dat stond hier niet: in het Besluit tot aanwijzing "
+     "en uitwerking betaald parkeren, dat jaarlijks als gemeenteblad wordt "
+     "gepubliceerd. Artikel 1 noemt het gereguleerd vergunningengebied de "
+     "gebieden van artikel 2, en artikel 2 wijst negentien vergunningenzones "
+     "met naam aan: Centrum, B, 1e ring, 2e ring west, 2e ring oost, en de "
+     "letters I, J, K, L, P, Q, R, S, T, U, W, X, Y en Z. Dat is iets anders "
+     "dan de kaartlaag betaald parkeren, want die mengt die zones met losse "
+     "parkeerterreinen uit artikel 15 lid d zoals P8 Vierdaagseplein en De "
+     "Oude Haven. Kaart en besluit lopen bovendien uiteen: B, I, T en U staan "
+     "in het besluit en niet op de kaart, D en V staan op de kaart en niet in "
+     "artikel 2."),
     ("Legaliseren achteraf",
      "Een aanvraag om een al uitgevoerde splitsing of verkamering alsnog "
      "vergund te krijgen heet legaliseren, en zo'n aanvraag doet meer dan "
