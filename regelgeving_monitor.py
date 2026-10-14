@@ -44,7 +44,8 @@ GEMEENTELIJK = [
                     "onttrekking en de WOZ-grenzen voor kamerverhuur"),
     ("erfgoed", "Erfgoedverordening: monumenten en beschermde stadsbeelden"),
     ("parkeer", "Parkeerverordening: parkeereis en vergunningen bij splitsing"),
-    ("leegstand", "Leegstandverordening"),
+    ("leegstand", "Leegstandverordening: Nijmegen heeft er bewust geen, zie "
+                  "BEWUST_AFWEZIG; een treffer hier is dus nieuws"),
     ("bouw", "Bouwverordening"),
     # De gemeentelijke lasten en heffingen: die zitten nu als percentage in de
     # exploitatiekosten, terwijl de tarieven jaarlijks worden vastgesteld.
@@ -61,6 +62,22 @@ GEMEENTELIJK = [
     ("omgevingsplan", "Omgevingsplan: wat op een adres is toegestaan, waaronder "
                       "een logiesfunctie en regels over short stay"),
 ]
+
+# TERMEN WAARVAN WE WETEN DAT NIJMEGEN GEEN REGELING HEEFT. Een zoekterm
+# zonder treffer wordt gemeld, want meestal zoeken we verkeerd. Maar bij
+# leegstand zoeken we goed: de Notitie leegstand van december 2023 zegt dat
+# Nijmegen de Leegstandwet niet inzet. De leegstand was flink gedaald, en een
+# verordening zou ongeveer twee fte per jaar kosten. Wat wel bestaat, is de
+# vergunning voor tijdelijke verhuur onder de Leegstandwet, en die staat in
+# de landelijke wet en niet in een verordening.
+# Een melding die afgaat bij goed gedrag leert de lezer het verslag over te
+# slaan. Daarom keert de vlag hier om: geen treffer is wat we verwachten, en
+# een treffer betekent dat de gemeente van koers is veranderd.
+BEWUST_AFWEZIG = {
+    "leegstand": ("Notitie leegstand, december 2023: geen leegstandverordening "
+                  "(https://nijmegen.bestuurlijkeinformatie.nl/Document/View/"
+                  "bb899590-f561-4cc7-a95b-88e1cc989f28)"),
+}
 
 # Landelijke wetten. De nummers zijn de vaste BWB-identificatie.
 LANDELIJK = [
@@ -219,10 +236,25 @@ def haal_gemeentelijk():
         time.sleep(1)
     # De bevindingen over de zoektermen zelf gaan mee in de uitkomst, onder
     # een sleutel die geen regeling kan zijn.
-    gevonden["_zoektermen"] = {"zonder_treffer": zonder_treffer,
-                               "vorm_per_term": gebruikte_vorm,
-                               "bron": "meta"}
+    gevonden["_zoektermen"] = zoektermen_meta(zonder_treffer, gebruikte_vorm)
     return gevonden
+
+
+def zoektermen_meta(zonder_treffer, gebruikte_vorm):
+    """
+    Wat de zoektermen opleverden, gesplitst naar wat we verwachtten.
+
+    zonder_treffer   termen zonder treffer waar we wel een regeling verwachten
+    bewust_afwezig   termen zonder treffer die zo horen (zie BEWUST_AFWEZIG)
+    onverwacht       termen uit BEWUST_AFWEZIG die toch een treffer gaven
+    """
+    return {
+        "zonder_treffer": [t for t in zonder_treffer if t not in BEWUST_AFWEZIG],
+        "bewust_afwezig": [t for t in zonder_treffer if t in BEWUST_AFWEZIG],
+        "onverwacht": sorted(t for t in gebruikte_vorm if t in BEWUST_AFWEZIG),
+        "vorm_per_term": gebruikte_vorm,
+        "bron": "meta",
+    }
 
 
 def haal_landelijk():

@@ -1025,3 +1025,15 @@ waarom: 14 oktober, nagemeten over de 937 cacheregels van de dossiers. De
   van de buren (Plein 1944 7 6, Jan de Wittstraat 6-8 studio 9).
 proef: marktprijzen_bag:label van het buurobject
 soort: gegevens
+
+---
+eis: Een zoekterm waarvan we weten dat er geen regeling is, meldt zich niet
+  bij afwezigheid maar bij een treffer.
+waarom: 14 oktober. Na de reparatie van de zoekvormen bleef alleen
+  "leegstand" zonder treffer, en die melding zou elke week terugkomen. Dat
+  was terecht: Nijmegen heeft volgens de Notitie leegstand van december 2023
+  bewust geen leegstandverordening. Een melding die afgaat bij goed gedrag
+  leert de lezer het verslag over te slaan. Nu staat zo'n term in
+  BEWUST_AFWEZIG met de bron erbij, en is een treffer het signaal.
+proef: gezondheid:een onverwachte treffer op een bewust afwezige
+soort: brief
