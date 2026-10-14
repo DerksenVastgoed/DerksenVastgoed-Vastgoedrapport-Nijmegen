@@ -37,6 +37,7 @@ import pandsleutel as _psl
 UIT_PAD = "aanbodprofiel.json"
 AANBOD_PAD = "verkopen.txt"
 GESCHIEDENIS_PAD = "pandgeschiedenis.json"
+VOORRAAD_PAD = "voorraad.json"
 
 LABELGROEPEN = (("A en B", ("A", "B")),
                 ("C en D", ("C", "D")),
@@ -55,7 +56,41 @@ def _sleutel(adres):
     return _psl.sleutel(adres)
 
 
-def lees_kenmerken(pad=GESCHIEDENIS_PAD):
+def label_van_adres(adres, labels):
+    """Het label dat voor precies dit adres is geregistreerd, of None."""
+    eigen = _sleutel(adres)
+    for adr, waarde in labels.items():
+        if _sleutel(adr) == eigen:
+            return waarde
+    return None
+
+
+def labels_uit_voorraad(pad=VOORRAAD_PAD):
+    """
+    Per adressleutel het label uit de voorraad, die per verblijfsobject is
+    opgebouwd en de meeste labels kent: 13.463 op 14 oktober, tegen de
+    pandgeschiedenis die alleen de gevolgde panden heeft.
+
+    De sleutel wordt hier opnieuw berekend uit het adres, en niet gelezen uit
+    het veld "sleutel" van de voorraad: dat veld komt uit een andere functie
+    en wijkt bij 2.009 records af (de Ruyterstraat wordt daar deruyterstraat).
+    Geeft een sleutel twee verblijfsobjecten met verschillende labels, dan is
+    het label voor dat adres niet eenduidig en blijft het weg.
+    """
+    try:
+        with open(pad, encoding="utf-8") as f:
+            adressen = json.load(f).get("adressen") or {}
+    except Exception:
+        return {}
+    per = {}
+    for r in adressen.values():
+        if r.get("label") and r.get("adres"):
+            per.setdefault(_sleutel(r["adres"]), set()).add(
+                r["label"].upper()[:1])
+    return {s: ls.pop() for s, ls in per.items() if len(ls) == 1}
+
+
+def lees_kenmerken(pad=GESCHIEDENIS_PAD, voorraad_pad=VOORRAAD_PAD):
     """Per adres het label en of het pand meerdere eenheden heeft."""
     try:
         # Via pandlezer: die vouwt gedeelde pandgegevens weer uit per adres,
@@ -70,19 +105,26 @@ def lees_kenmerken(pad=GESCHIEDENIS_PAD):
             return {}
     if not g:
         return {}
+    voorraad = labels_uit_voorraad(voorraad_pad)
     uit = {}
     for pand in g.values():
         adres = pand.get("adres")
         if not adres:
             continue
-        labels = pand.get("labels") or {}
-        label = None
-        for adr, waarde in labels.items():
-            if _sleutel(adr) == _sleutel(adres):
-                label = waarde
-                break
-        if label is None and labels:
-            label = sorted(labels.values())[0]
+        # ALLEEN HET LABEL VAN DIT ADRES. Hier stond een terugval: vond de
+        # lus het adres niet, dan nam hij sorted(labels.values())[0], het
+        # beste label van een ander adres in hetzelfde pand. Gemeten op 14
+        # oktober: 197 van de 1.433 gevolgde adressen met labels kregen zo een
+        # label dat niet van hen was, en 4 van de 77 regels in het aanbod. Burg.
+        # Hustinxstraat 208 telde als A, terwijl EP-Online voor dat adres D
+        # geeft. Een energielabel hoort bij een verblijfsobject (zie eisen.txt),
+        # dus geen eigen label is "onbekend", en dat aandeel staat in het
+        # profiel er altijd bij.
+        #
+        # De voorraad gaat voor, de pandgeschiedenis vult aan; allebei alleen
+        # voor dit adres.
+        label = (voorraad.get(_sleutel(adres))
+                 or label_van_adres(adres, pand.get("labels") or {}))
         uit[_sleutel(adres)] = {
             "label": (label or "").upper()[:1] or None,
             "eenheden": len(pand.get("bag_eenheden") or []),
@@ -199,10 +241,62 @@ def tekst(p):
     return r
 
 
+def proef():
+    """
+    Het label van een buuradres mag niet meetellen. De vorm is die van een
+    echt pand uit de pandgeschiedenis op 14 oktober: het gevolgde adres heeft
+    zelf geen label in het pand, de buren wel, en het beste daarvan is A.
+    """
+    import os
+    import tempfile
+    afw = []
+    g = {
+        "burghustinxstraat208": {
+            "adres": "Burg. Hustinxstraat 208",
+            "labels": {"Burg. Hustinxstraat 202": "A",
+                       "Burg. Hustinxstraat 204": "C"}},
+        "beijensstraat51": {
+            "adres": "Beijensstraat 51",
+            "labels": {"Beijensstraat 51": "D", "Beijensstraat 49": "A"}},
+    }
+    with tempfile.TemporaryDirectory() as d:
+        pad = os.path.join(d, "g.json")
+        with open(pad, "w", encoding="utf-8") as f:
+            json.dump(g, f)
+        vpad = os.path.join(d, "v.json")
+        with open(vpad, "w", encoding="utf-8") as f:
+            json.dump({"adressen": {
+                "0268010000099991": {"adres": "Burg. Hustinxstraat 208",
+                                     "label": "D"},
+                "0268010000099992": {"adres": "Kaapstander 264"}}}, f)
+        k = lees_kenmerken(pad, vpad)
+        zonder_voorraad = lees_kenmerken(pad, os.path.join(d, "geen.json"))
+    zonder = zonder_voorraad.get(_sleutel("Burg. Hustinxstraat 208"),
+                                 {}).get("label")
+    if zonder is not None:
+        afw.append(f"een adres zonder eigen label krijgt {zonder!r} van een "
+                   f"buuradres in hetzelfde pand")
+    uit_voorraad = k.get(_sleutel("Burg. Hustinxstraat 208"), {}).get("label")
+    if uit_voorraad != "D":
+        afw.append(f"het label uit de voorraad wordt niet gebruikt: "
+                   f"{uit_voorraad!r} in plaats van 'D'")
+    eigen = k.get(_sleutel("Beijensstraat 51"), {}).get("label")
+    if eigen != "D":
+        afw.append(f"het eigen label wordt niet gevonden: {eigen!r} in plaats "
+                   f"van 'D'")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef aanbodprofiel: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default=UIT_PAD)
+    ap.add_argument("--proef", action="store_true")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
     p = maak()
     if not p:
         print("Geen aanbod gevonden om een profiel van te maken", file=sys.stderr)
