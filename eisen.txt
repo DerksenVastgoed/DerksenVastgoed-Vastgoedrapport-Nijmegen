@@ -764,6 +764,36 @@ proef: funda_mail:WAT ER IN DE MAILBOX STAAT DAT WIJ NIET KENNEN; gezondheid:ONB
 soort: gegevens
 
 ---
+eis: Een publicatie zonder zaaknummer verdwijnt niet, en een besluit mag op
+  adres aan een aanvraag worden verbonden als er precies een kandidaat is.
+waarom: 14 oktober. Ik ging op zoek naar de zeven besluiten waarvan de
+  aanvraag nergens in het archief stond, en vond iets groters. Bij
+  Pontanusstraat 42 staan beide publicaties er gewoon: de aanvraag van 20
+  januari 2026 om de woning in twee appartementen te splitsen en het besluit
+  van 18 mei om de woning in 2 zelfstandige appartementen te splitsen.
+  Dezelfde zaak, 118 dagen ertussen, en twee verschillende zaaknummers:
+  Z2026-00000134 en Z2025-00009314. Het zaaknummer van de gemeente is dus niet
+  stabiel over de procedure heen. En erger: van de 93 besluiten in het archief
+  dragen 53 helemaal geen zaaknummer, en koppel() sloeg die over zonder else
+  en zonder teller, dus kwamen ze in geen van de drie uitkomsten terug.
+  Nagemeten na de reparatie: 32 paren op zaaknummer, 61 losse besluiten, 44
+  daarvan met precies een kandidaat op adres, 2 met meer dan een kandidaat en
+  15 zonder. Het aantal paren gaat van 32 naar 76. De regel is streng met
+  opzet, want koppel() koos met goede reden niet op adres: zelfde adres,
+  aanvraag voor het besluit, overlappend signaalsoort, en precies een
+  kandidaat. Van die 44 is de mediane tekstgelijkenis 1,00 en de laagste 0,63,
+  en dat zijn formuleringsvarianten van hetzelfde. Elk paar draagt hoe het is
+  verbonden, want een afgeleid verband mag er niet uitzien als een hard
+  verband. En de dagen ertussen zijn de tijd tussen ONZE TWEE WAARNEMINGEN en
+  niet de doorlooptijd van de gemeente; die twee getallen mogen niet in een
+  mediaan terechtkomen. Mijn eerste meting met een eigen script gaf 64 en 47
+  en was fout: dat script telde de besluiten zonder zaaknummer mee die de
+  module weggooide. Een getal uit een script naast de module is geen meting
+  van de module.
+proef: besluit:KOPPELEN OP ADRES, OP HET ECHTE GEVAL VAN PONTANUSSTRAAT 42
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
