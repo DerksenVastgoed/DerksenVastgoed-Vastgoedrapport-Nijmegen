@@ -744,6 +744,26 @@ proef: parkeerzone:HET ZONEFELD UIT DE INHOUD; parkeerzone:DE ASVOLGORDE GEMETEN
 soort: gegevens
 
 ---
+eis: Welke post er binnenkomt wordt geteld en niet per naam opgezocht.
+waarom: 14 oktober, en dit is de vierde keer. De mailstap zocht per NAAM: voor
+  elk domein in AFZENDERS en KANDIDATEN een eigen zoekopdracht. Een portaal
+  dat in geen van beide lijsten staat, bestaat daarmee niet. Dat ging mis bij
+  huislijn, dat van huisly.nl bleek te sturen; bij 123wonen, dat nergens
+  stond; bij rentola, dat alleen bij de kandidaten stond en dus werd geteld
+  maar niet gelezen; en bij getrentumo.nl, dat met elf berichten in zestig
+  dagen in geen van beide lijsten voorkwam. Alle drie de eerdere gevallen
+  staan als commentaar bij die lijst, en toch gebeurde het weer: een lijst met
+  namen die moet worden bijgewerkt, wordt niet bijgewerkt. Daarom telt de
+  mailstap nu wat er WERKELIJK in de mailbox staat, per afzenderdomein, met
+  alleen de From-kop en niet de hele mail. Een domein dat in geen van beide
+  lijsten staat komt met zijn aantal in het gezondheidsrapport, vanaf drie
+  berichten: zonder die drempel meldt een mailbox elke dag losse post en zegt
+  de melding niets meer. Een mislukte telling krijgt een eigen melding, want
+  niet gemeten en niets gevonden mogen niet hetzelfde woord krijgen.
+proef: funda_mail:WAT ER IN DE MAILBOX STAAT DAT WIJ NIET KENNEN; gezondheid:ONBEKENDE AFZENDERS WORDEN GEMELD
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
