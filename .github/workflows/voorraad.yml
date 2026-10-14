@@ -144,6 +144,39 @@ jobs:
           python voorraad_bag.py --alleen bag --bag-minuten "$MIN" \
             --panden-minuten "$PANDEN"
 
+      - name: Parkeerzones ophalen en zeggen wat erin zit
+        continue-on-error: true
+        run: |
+          # DE VERKENNING EERST, want ik ken de veldnamen van deze laag niet:
+          # services.nijmegen.nl is vanuit de werkomgeving niet te bereiken,
+          # dus kan ik ze daar niet opzoeken. Een module die een veldnaam
+          # raadt levert een parkeerzone op die klopt zolang niemand hem
+          # nameet, en dat is deze week drie keer gebeurd.
+          #
+          # Het verslag gaat naar een bestand en niet alleen naar de log: het
+          # joblogboek van GitHub zit achter een host die van buiten de runner
+          # wordt geweigerd, dus zou de uitkomst onleesbaar zijn.
+          set -o pipefail
+          python parkeerzone.py --verken --uit parkeerzones_verslag.md \
+            2>&1 | tee parkeerzone.log \
+            || { echo "Parkeerzones overgeslagen"; \
+                 echo "parkeerzones" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }
+
+      - name: De zone bij elk pand zetten
+        continue-on-error: true
+        run: |
+          # Alleen als de lagen er zijn. Zonder lagen gebeurt er niets, en dat
+          # is beter dan een zone uit een half bestand.
+          if [ ! -f parkeerzones.json ]; then
+            echo "Geen parkeerzones.json; de zonekoppeling wordt overgeslagen"
+            echo "zonekoppeling" >> "$GITHUB_WORKSPACE/overgeslagen.txt"
+            exit 0
+          fi
+          set -o pipefail
+          python parkeerzone.py --koppel 2>&1 | tee -a parkeerzone.log \
+            || { echo "Zonekoppeling overgeslagen"; \
+                 echo "zonekoppeling" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }
+
       - name: Energielabels uit EP-Online
         continue-on-error: true
         env:
@@ -211,7 +244,7 @@ jobs:
           set -x
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          BESTANDEN="voorraad.json voorraad_stand.json eponline_antwoordvorm.json"
+          BESTANDEN="voorraad.json voorraad_stand.json eponline_antwoordvorm.json parkeerzones.json parkeerzones_verslag.md"
           if [ "${GITHUB_REF_NAME}" != "${DEFAULT_BRANCH}" ]; then
             # Op een branch gaat de voorraad van ruim vijf megabyte niet terug
             # (die zou uit een tussenversie van de code komen), maar de stand
@@ -219,7 +252,7 @@ jobs:
             # zijn juist de twee bestanden waarvoor een branchrun wordt
             # gestart. Zonder het antwoord erbij is die run niet te lezen,
             # want de log is van buiten niet bereikbaar.
-            BESTANDEN="voorraad_stand.json eponline_antwoordvorm.json"
+            BESTANDEN="voorraad_stand.json eponline_antwoordvorm.json parkeerzones_verslag.md"
             echo "Niet op ${DEFAULT_BRANCH}: alleen de stand en de antwoordvorm gaan terug"
           fi
           for f in $BESTANDEN; do
