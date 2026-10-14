@@ -611,6 +611,32 @@ waarom: Drie keer in twee dagen, alle drie dezelfde vorm: stil verlies. Op 13
 proef: tak:DE VORM VAN 13 OKTOBER 17:38
 soort: werking
 ---
+eis: Wat er niet is, komt niet onder een kop die iets anders belooft, en een
+  stap die zijn fout opvangt laat daar een spoor van.
+waarom: 14 oktober. De marktprijzenstap mislukte. Daarmee verdwenen de
+  marktprijzen, de dossiers en de bijlage uit de brief. De stap eindigde op
+  `|| echo "Marktprijzen-stap overgeslagen"`, dus was de exitcode nul: geen
+  stap rood, de run groen, en de brief ging gewoon naar pa. In de mailstap
+  stond `werk = lees(bijlage) or lees(brief)`, en die or zette toen de
+  bekendmakingenbrief onder de kop "Bijlage: de cijfers", met eronder de
+  belofte "het volledige overzicht per buurt". Pa las de bekendmakingen en de
+  publicaties dus twee keer, de tweede keer onder een kop die iets anders
+  aankondigde. Mark zag het in zijn eigen kopie en vroeg of dat de bedoeling
+  was. Drie dingen zijn daarop veranderd. Er komt geen vervanger meer: wat er
+  niet is ontbreekt, de brief noemt het, en de kopie naar pa gaat eraf zoals
+  bij elke halve update. Elke stap die zijn fout opvangt zet de naam in
+  overgeslagen.txt, en gezondheid.py leest die lijst, want het joblogboek van
+  GitHub is van buiten de runner niet te lezen. En het python-blok dat de mail
+  samenstelt is een module geworden, want aan een heredoc in YAML kan geen
+  proef komen. Welke onderdelen de brief mist, wordt niet uit de lijst
+  overgeslagen stappen gelezen maar gemeten tegen de vorige brief in dezelfde
+  modus: monumenten en haltes staan nooit in de brief, en die opnoemen zou een
+  melding zijn die afgaat zonder dat de lezer iets mist. De modus hoort erbij,
+  anders meldt de meting elke maandag dat de beleggingslijst is weggevallen.
+proef: briefmail:DE FOUT VAN 14 OKTOBER; gezondheid:DE OVERGESLAGEN STAPPEN WORDEN GELEZEN; eisen:EEN OPGEVANGEN FOUT MAG, EEN STILLE NIET
+soort: werking
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en

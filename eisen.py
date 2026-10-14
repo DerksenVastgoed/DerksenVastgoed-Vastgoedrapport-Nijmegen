@@ -437,6 +437,66 @@ def pijp_zonder_vangnet(paden=None):
     return fouten
 
 
+def fout_zonder_spoor(paden=None):
+    """
+    Of een stap die zijn eigen mislukking opvangt, daar een spoor van laat.
+
+    WAT HIER GEBEURDE. Op 14 oktober mislukte de marktprijzenstap. De regel
+    eindigde op
+
+        || echo "Marktprijzen-stap overgeslagen"
+
+    en daarmee is de exitcode nul: de stap stond groen, de run was groen, en
+    de marktprijzen, de dossiers en de bijlage ontbraken in de brief. Mark
+    ontdekte het doordat de bekendmakingen in zijn brief twee keer voorkwamen,
+    een keer onder de kop "Bijlage: de cijfers".
+
+    EEN OPGEVANGEN FOUT MAG, EEN STILLE NIET. De brief hoeft niet te stoppen
+    omdat de bouwkostenindex niet ververst is. Maar wat niet is gelukt, moet
+    ergens staan waar wij het kunnen lezen, en dat is niet het joblogboek van
+    GitHub: dat zit achter results-receiver.actions.githubusercontent.com,
+    die van buiten de runner wordt geweigerd. Daarom schrijft elke stap die
+    zijn fout opvangt de naam in overgeslagen.txt, en leest gezondheid.py die
+    lijst.
+
+    De toets kijkt naar een venster van zeven regels, want de vorm met
+    "if ! python ... ; then" zet het echo-blok een paar regels lager.
+    """
+    # Alleen een opvang die een MISLUKKING benoemt. "|| echo 0" is een
+    # standaardwaarde en geen opgevangen fout; die meerekenen zou de toets
+    # laten afgaan op correct gedrag.
+    OPVANG = re.compile(r'\|\|\s*(\{\s*)?echo\s+"[^"]*'
+                        r'(overgeslagen|mislukt|niet gelukt|kon niet)')
+    VENSTER = 7
+    fouten = []
+    paden = paden if paden is not None else _alle_workflows()
+    if not paden:
+        return ["geen workflowbestand gevonden om de opgevangen fouten "
+                "te toetsen"]
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                regels = f.read().splitlines()
+        except Exception as e:
+            fouten.append(f"{pad} niet te lezen: {str(e)[:50]}")
+            continue
+        for i, regel in enumerate(regels):
+            if regel.strip().startswith("#"):
+                continue
+            if not OPVANG.search(regel):
+                continue
+            venster = "\n".join(regels[i:i + VENSTER])
+            if "overgeslagen.txt" in venster:
+                continue
+            fouten.append(f"{pad}, regel {i + 1}: vangt de fout op zonder "
+                           "hem ergens neer te zetten. Voeg "
+                           '\'echo "<naam>" >> "$GITHUB_WORKSPACE/'
+                           "overgeslagen.txt\"' toe, anders is de mislukking "
+                           "alleen in het joblogboek te zien en dat is van "
+                           "buiten de runner niet te lezen.")
+    return fouten
+
+
 def _achtergrond():
     """De kennisblokken uit bronnen.py, met hun trefwoorden en hun bron."""
     import importlib.util
@@ -691,6 +751,11 @@ def proef(snel=False):
     # Een run die gegevens terugschrijft mag geen broncode veranderen. Zie
     # commitstap() voor wat dat op 13 oktober kostte.
     fouten.extend(commitstap())
+
+    # Een stap die zijn eigen fout opvangt, laat daar een spoor van. Zie
+    # fout_zonder_spoor() voor de brief die op 14 oktober een heel onderdeel
+    # miste zonder dat iets rood stond.
+    fouten.extend(fout_zonder_spoor())
 
     # Elke workflow moet zijn uitkomst neerzetten waar wij hem kunnen lezen.
     # Zie leesbaar_kanaal() voor de verkenning die groen en onleesbaar
