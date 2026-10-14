@@ -819,6 +819,30 @@ proef: parkeerzone:HET VELD NOEMT HET VLAK EN NIET EEN JA OF NEE
 soort: gegevens
 
 ---
+eis: Waar een gebied wordt aangewezen staat in het besluit dat het aanwijst,
+  en niet in een kaartlaag.
+waarom: 14 oktober, 's avonds. Ik schreef dat het gereguleerde gebied uit de
+  gepubliceerde lagen niet te bepalen is en dat dat een telefoontje naar de
+  gemeente zou kosten. Mark vroeg of het dan nergens in de beleidsstukken
+  staat. Het staat er wel, en in het kanaal dat wij al dagelijks lezen: het
+  Besluit tot aanwijzing en uitwerking betaald parkeren, jaarlijks als
+  gemeenteblad gepubliceerd, dat van 2026 als gmb-2025-555465. Artikel 1 noemt
+  het gereguleerd vergunningengebied de gebieden van artikel 2, en artikel 2
+  wijst negentien vergunningenzones met naam aan: Centrum, B, 1e ring, 2e ring
+  west, 2e ring oost en de letters I tot Z. Daarmee is wat de kaartlaag niet
+  kon zeggen alsnog te bepalen: van de 33 vlakken in de laag zijn er 17 een
+  vergunningenzone uit artikel 2, 14 een parkeerterrein uit artikel 15 lid d
+  zoals P8 Vierdaagseplein en De Oude Haven, en 2 onbekend. Die laatste zijn
+  D en V: die staan op de kaart en niet in artikel 2. En omgekeerd staan B, I,
+  T en U in het besluit en niet op de kaart, wat een deel verklaart van de
+  4098 adressen in de Binnenstad die buiten elk vlak vielen. Daarom drie
+  uitkomsten en geen twee: vergunningenzone, parkeerterrein en onbekend. Wat
+  ik hieruit meeneem: voordat ik een gat in de gegevens een gat in de
+  werkelijkheid noem, hoort de vraag te zijn welk besluit het aanwijst.
+proef: parkeerzone:EEN VERGUNNINGENZONE UIT ARTIKEL 2, EEN ONBEKENDE EN EEN TERREIN
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
