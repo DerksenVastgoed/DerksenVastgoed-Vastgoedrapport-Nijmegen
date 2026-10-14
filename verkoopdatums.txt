@@ -1,0 +1,20 @@
+# Verkoopdatums die wij WETEN, tegenover de datums die wij AFLEIDEN.
+#
+# WAAROM DIT BESTAAT. In verkopen.txt is de datum de dag waarop wij een pand
+# als verkocht zagen staan, niet de dag waarop het verkocht is. Dat verschil
+# is echt: Groesbeekseweg 118 stond bij ons op 28 september omdat wij hem toen
+# in een geplakte lijst zagen, terwijl Funda 21 september als verkoopdatum
+# geeft. Zeven dagen.
+#
+# pandgeschiedenis.py noemt daarom normaal een venster: "verkocht tussen de
+# vorige waarneming en vandaag". Dat is eerlijk maar vaag. Staat een pand
+# hieronder, dan is de datum bekend en wordt het venster vervangen door de
+# echte dag.
+#
+# ZET HIER ALLEEN EEN DATUM NEER DIE ERGENS STAAT. Niet een schatting en niet
+# "ongeveer". Wie de datum heeft gezien en waar, hoort in het bronveld, zodat
+# over een jaar nog na te gaan is waarop hij rust.
+#
+# Format per regel: adres | verkoopdatum | bron
+
+Groesbeekseweg 118 | 2026-09-21 | Funda, verkoopdatum op de advertentie, gezien door Mark op 14-10-2026

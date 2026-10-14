@@ -480,6 +480,26 @@ proef: pandgeschiedenis:ONZE BOEKHOUDING IS GEEN NIEUWS
 soort: werking
 
 ---
+eis: Een datum die wij weten draagt de gebeurtenis zelf, en onze kijkdag
+  vervalt dan helemaal.
+waarom: 14 oktober. Mark zag op Funda dat Groesbeekseweg 118 op 21 september
+  verkocht is; bij ons stond hij op 28 september, de dag dat wij hem in een
+  geplakte lijst zagen. Ik zette de echte datum eerst alleen in de TEKST en
+  liet de gebeurtenis op 28 september staan met bron "aanbod". Mark: "Wanneer
+  de exacte datum bekend is kan de 28 sept toch gewoon komen te vervallen?"
+  Dat is precies het punt: verkoopdatum_bekend() kijkt naar het bronveld, dus
+  het pand bleef buiten de bezitsduur- en prijsgroeiparen terwijl de zin al
+  zei dat wij de datum kenden. Een datum die in de tekst staat maar niet in
+  het veld is geen datum die wij gebruiken. Nu draagt de gebeurtenis de echte
+  datum en de echte bron, en wordt de regel van onze kijkdag weggehaald, want
+  anders leest het dossier als twee verkopen. Het aantal verkopen met een
+  echte datum ging van 79 naar 80. De proef betrapte onderweg ook een tweede
+  fout: bekende_verkoopdatums() werd zonder pad aangeroepen, en een
+  default-waarde ligt na het inlezen van de module vast.
+proef: pandgeschiedenis:EN DE KIJKDAG VERVALT OOK ECHT
+soort: werking
+
+---
 eis: Een run die gegevens terugschrijft verandert geen broncode, en draait
   niets terug dat tijdens zijn looptijd is gemerged.
 waarom: 13 oktober. voorraad.yml zette bij een geweigerde push HEAD naar de
