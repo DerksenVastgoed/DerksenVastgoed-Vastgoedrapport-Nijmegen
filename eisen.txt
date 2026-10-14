@@ -972,3 +972,27 @@ waarom: 14 oktober. adressleutel() in voorraad_bag.py haalde alleen
   lezer die erop joinde moest het zelf opvangen, en twee deden dat ook.
 proef: voorraad_bag:het veld sleutel wijkt af van pandsleutel
 soort: gegevens
+
+---
+eis: Een bekendmaking haalt alleen Nijmeegse objecten binnen; een adres is
+  geen id.
+waarom: 14 oktober. De zeef op bekendmakingen vergeleek straat en huisnummer
+  zonder woonplaats. Daardoor stonden er 29 objecten uit andere gemeenten in
+  de voorraad, Bachstraat 3 drie keer en Schoolstraat 15 vier keer, elk met
+  herkomst "bekendmaking". De gemeentecode staat in het BAG-id zelf (0268
+  voor Nijmegen), dus het id weet wat het adres niet weet.
+proef: voorraad_bag:een object met hetzelfde adres in een andere
+soort: gegevens
+
+---
+eis: Elk adres in de pandgeschiedenis krijgt zijn verblijfsobject-id, en
+  daarna koppelt alles op id en niet op tekst.
+waarom: 14 oktober, Mark: "De BAG werkt met pand-id en object-id. Is dat
+  geen logischere keuze dan het aan elkaar plakken van straatnaam en
+  huisnummer?" Gemeten: van 1.807 adressen had er geen enkel een object-id,
+  terwijl de voorraad 1.305 ervan eenduidig kent. De adressleutel is de
+  voordeur en wordt hier een keer omgezet; bij een bestaand en een gevormd
+  object op hetzelfde adres wint het bestaande en blijft het gevormde
+  zichtbaar, en een naamgenoot in een andere gemeente telt niet mee.
+proef: pandgeschiedenis:een naamgenoot in een andere gemeente telt niet mee
+soort: gegevens

@@ -208,6 +208,15 @@ METHODE_VANAF = "2026-10-12"
 # ophoudt: na de vraag staat de datum van vandaag erin.
 GEEN_LABEL_BETROUWBAAR_VANAF = "2026-10-12"
 
+# DE GEMEENTECODE VAN NIJMEGEN, de eerste vier cijfers van elk BAG-id dat de
+# gemeente heeft uitgegeven. Een adres zonder woonplaats is niet uniek: op 14
+# oktober stonden er 29 objecten uit andere gemeenten in de voorraad, alle 29
+# binnengekomen als "bekendmaking", omdat hun straat en huisnummer gelijk
+# waren aan een Nijmeegs adres met een bekendmaking (Bachstraat 3 drie keer,
+# Schoolstraat 15 vier keer). Het id weet in welke gemeente het object ligt;
+# het adres weet dat niet.
+GEMEENTECODE = "0268"
+
 
 def _stuk_gevraagd(r):
     """
@@ -500,7 +509,7 @@ def punt_uit(kenmerk):
     return [round(lon, 6), round(lat, 6)]
 
 
-def waarom_houden(a, pc, pcs, signalen=()):
+def waarom_houden(a, pc, pcs, signalen=(), ident=""):
     """
     Bewaren we dit verblijfsobject, en waarom.
 
@@ -521,6 +530,11 @@ def waarom_houden(a, pc, pcs, signalen=()):
     if buurten:
         return list(buurten), "focusbuurt"
     if not signalen:
+        return None, ""
+    # EEN SIGNAAL GAAT OVER NIJMEGEN. De bekendmaking komt van de gemeente
+    # Nijmegen, dus een object met hetzelfde adres in een andere gemeente is
+    # een naamgenoot en geen signaal. Zie GEMEENTECODE.
+    if ident and not str(ident).startswith(GEMEENTECODE):
         return None, ""
     straat = str(a.get("openbareRuimteNaam") or "")
     nr = str(a.get("huisnummer") or "")
@@ -892,7 +906,7 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             # verandert niets aan de tellers die hieronder staan.
             a = _normaliseer(p)
             pc = (p.get("postcode") or "").replace(" ", "").upper()
-            buurten, herkomst = waarom_houden(a, pc, pcs, signalen)
+            buurten, herkomst = waarom_houden(a, pc, pcs, signalen, ident)
             if not herkomst:
                 tel["buiten_de_ring"] += 1
                 continue
@@ -2610,6 +2624,9 @@ def proef():
              opp=92),
         # De buurman, zonder signaal.
         _vbo(15, None, "0268010000009915"),
+        # EEN NAAMGENOOT IN EEN ANDERE GEMEENTE, met hetzelfde adres. Het id
+        # begint met een andere gemeentecode, zoals de 29 van 14 oktober.
+        _vbo(11, None, "0241010000009911"),
     ]
 
     def nep_signaal(collectie, budget, per_pagina):
@@ -2638,6 +2655,10 @@ def proef():
         afwijkingen.append(
             f"de niet-woonfunctie op hetzelfde adres wordt niet apart "
             f"bewaard: {sorted(anders_sig)}")
+    if "0241010000009911" in adressen_sig or "0241010000009911" in anders_sig:
+        afwijkingen.append("een object met hetzelfde adres in een andere "
+                           "gemeente komt mee als signaal; het adres is niet "
+                           "uniek, het id wel")
     if "0268010000009915" in adressen_sig or "0268010000009915" in anders_sig:
         afwijkingen.append("de buurman zonder signaal komt mee; dan laat de "
                            "zeef de hele postcode binnen")
