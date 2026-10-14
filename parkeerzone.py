@@ -40,6 +40,7 @@ past het na omwisselen wel, dan wisselt zij om en meldt dat.
 import argparse
 import json
 import os
+import re
 import sys
 import urllib.parse
 
@@ -51,7 +52,12 @@ except Exception:                                    # pragma: no cover
 BASIS = "https://services.nijmegen.nl/geoservices/extern_Mobiliteit/ows"
 LAGEN = {
     "normering": "extern_Mobiliteit:MOB_PARKEERNORMERING",
-    "betaald": "extern_Mobiliteit:MOB_BETAALDPARKEREN",
+    # MET EEN LIGGEND STREEPJE. Ik schreef hier MOB_BETAALDPARKEREN, en de
+    # dienst antwoordde met een ServiceExceptionReport in XML. De
+    # verkenning meldde dat in het verslag in plaats van stil niets te
+    # doen, en zo was de naam in een ronde gevonden. Precies waarvoor die
+    # verkenningsstand bestaat.
+    "betaald": "extern_Mobiliteit:MOB_BETAALD_PARKEREN",
 }
 VOORRAAD = "voorraad.json"
 ZONES = "parkeerzones.json"
@@ -88,6 +94,21 @@ def haal(laag, pauze=30):
     try:
         return r.json(), ""
     except Exception as e:
+        # EEN BESTAANDE DIENST MET EEN ONBEKENDE LAAG ANTWOORDT MET XML, niet
+        # met een foutcode: http 200 en een ServiceExceptionReport in de body.
+        # Zonder deze regel staat er "geen json" met een stuk XML erachter, en
+        # dan is de oorzaak nog zoekwerk. Zo stond het op 14 oktober in het
+        # verslag en kostte het een minuut om te zien dat de laagnaam fout was.
+        if "ServiceExceptionReport" in (r.text or ""):
+            # (?!Report) EN [^<]: zonder het eerste pakt dit de buitenste
+            # tag <ServiceExceptionReport ...> en begint de melding met de
+            # binnenste tag erin; zonder het tweede loopt hij door de
+            # volgende tag heen. De proef hier betrapte beide.
+            reden = re.search(r"<ServiceException(?!Report)[^>]*>\s*"
+                              r"([^<]{0,200})", r.text, re.S)
+            return None, ("de dienst kent deze laag niet onder deze naam: "
+                          + " ".join((reden.group(1) if reden else "").split())
+                          [:160])
         return None, f"geen json: {str(e)[:120]} ({r.text[:120]})"
 
 
@@ -501,6 +522,34 @@ def proef():
     if "NIET OPGEHAALD" not in tekst or "http 500" not in tekst:
         fouten.append(f"het verslag verzwijgt waarom een laag mislukte: "
                       f"{tekst[:120]!r}")
+
+    # EEN ONBEKENDE LAAGNAAM HEET EEN ONBEKENDE LAAGNAAM. Dit is het echte
+    # antwoord van 14 oktober op MOB_BETAALDPARKEREN: http 200 met XML in de
+    # body in plaats van een foutcode. De tekst is ingekort maar niet
+    # aangepast.
+    class _Antwoord:
+        status_code = 200
+        text = ('<?xml version="1.0" ?>\n<ServiceExceptionReport\n'
+                '   version="1.2.0"\n   xmlns="http://www.opengis.net/ogc">\n'
+                '  <ServiceException>Could not locate '
+                '{http://extern_Mobiliteit}MOB_BETAALDPARKEREN in catalog.'
+                '</ServiceException>\n</ServiceExceptionReport>')
+
+        def json(self):
+            raise ValueError("Expecting value: line 1 column 1 (char 0)")
+
+    _oud, globals()["requests"] = requests, type(
+        "_Nep", (), {"get": staticmethod(lambda *a, **k: _Antwoord())})()
+    try:
+        _data, _fout = haal("extern_Mobiliteit:BESTAAT_NIET")
+    finally:
+        globals()["requests"] = _oud
+    if _data is not None or "kent deze laag niet" not in _fout:
+        fouten.append(f"een onbekende laagnaam wordt niet als zodanig "
+                      f"gemeld: {_fout!r}")
+    if "ServiceExceptionReport" in _fout or "<?xml" in _fout:
+        fouten.append(f"de melding is ruwe XML in plaats van een reden: "
+                      f"{_fout[:80]!r}")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
