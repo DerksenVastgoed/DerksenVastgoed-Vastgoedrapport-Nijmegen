@@ -64,8 +64,17 @@ SPUI_PER_M2 = 0.06
 SPUI_RUIMTE_PER_M2 = 0.03
 # Minstens 55% van de gebruiksoppervlakte moet verblijfsgebied zijn
 VERBLIJFSGEBIED_AANDEEL = 0.55
-# Beleidsregels Parkeren 2025, norm voor koopappartement in de binnenstad
-PARKEERNORM = 0.70
+# DE NORM HOORT BIJ DE ZONE EN HET WONINGTYPE, EN STOND HIER ALS EEN GETAL.
+#
+# Hier stond PARKEERNORM = 0.70 met als uitleg "norm voor koopappartement in
+# de binnenstad", en die werd op elk pand toegepast. Van de 20.321 adressen in
+# onze voorraad liggen er 14.200 buiten de Binnenstad. Voor een betaalbaar
+# huurappartement was 0,70 daar in beide richtingen fout: te hoog in de
+# Binnenstad en het Centrumgebied (0,50) en de 1e Schil (0,60), te laag in de
+# 2e Schil en Rest bebouwde kom (0,80) en het Buitengebied (1,00).
+#
+# De tabel staat nu in parkeernormen.txt en de opzoeking in parkeernorm.py.
+import parkeernorm as _norm
 
 
 def lees(pad):
@@ -149,14 +158,46 @@ def parkeren(kop, aantal_nieuw):
                                if c.isdigit()) or 1)
     except ValueError:
         bestaand = 1
-    eis_oud = -(-round(PARKEERNORM * bestaand, 2) // 1)      # naar boven
-    eis_nieuw = -(-round(PARKEERNORM * aantal_nieuw, 2) // 1)
-    tekort = eis_nieuw - eis_oud
+    zone = (kop.get("parkeerzone") or "").strip()
+    soort = (kop.get("woningtype") or "").strip()
     gereguleerd = kop.get("gereguleerd parkeergebied", "").lower().startswith("j")
-    return {"bestaand": bestaand, "nieuw": aantal_nieuw,
-            "eis_oud": int(eis_oud), "eis_nieuw": int(eis_nieuw),
-            "tekort": int(tekort), "gereguleerd": gereguleerd,
-            "vrijstelling": gereguleerd and tekort > 0}
+    kaal = {"bestaand": bestaand, "nieuw": aantal_nieuw, "zone": zone,
+            "woningtype": soort, "gereguleerd": gereguleerd,
+            "norm": None, "onzeker": False, "reden": "", "band": None,
+            "eis_oud": None, "eis_nieuw": None, "tekort": None,
+            "vrijstelling": False}
+    if not zone:
+        kaal["reden"] = ("geen parkeerzone opgegeven; die staat per pand in "
+                         "voorraad.json onder parkeerzone")
+        return kaal
+    if not soort:
+        # ZONDER WONINGTYPE GEEN GETAL MAAR EEN BANDBREEDTE. In het
+        # Centrumgebied loopt de norm van 0,20 voor een studentenwoning tot
+        # 1,20 voor een duur koopappartement. Zelf een type kiezen zou de
+        # uitkomst bepalen zonder dat iemand die keuze heeft gemaakt.
+        kaal["band"] = _norm.bandbreedte(zone)
+        kaal["reden"] = ("geen woningtype opgegeven, dus geen enkele norm; "
+                         "zie de bandbreedte")
+        return kaal
+    uit = _norm.norm(zone, soort)
+    if uit["norm"] is None:
+        kaal["reden"] = uit["reden"]
+        kaal["band"] = _norm.bandbreedte(zone)
+        return kaal
+    if uit["onzeker"]:
+        # EEN BESCHADIGDE CEL LEVERT GEEN EIS. Zie parkeernormen.txt.
+        kaal["norm"] = uit["norm"]
+        kaal["onzeker"] = True
+        kaal["reden"] = uit["reden"]
+        return kaal
+    n = uit["norm"]
+    eis_oud = -(-round(n * bestaand, 2) // 1)      # naar boven
+    eis_nieuw = -(-round(n * aantal_nieuw, 2) // 1)
+    tekort = int(eis_nieuw - eis_oud)
+    kaal.update({"norm": n, "eis_oud": int(eis_oud),
+                 "eis_nieuw": int(eis_nieuw), "tekort": tekort,
+                 "vrijstelling": gereguleerd and tekort > 0})
+    return kaal
 
 
 # De bijlagen die bij beide bekeken aanvragen zijn meegestuurd. Wie het
@@ -239,12 +280,14 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
          f"al klaar kan liggen en wat pas kan als de kamermaten bekend zijn._",
          ""]
     if park["vrijstelling"]:
-        r.append(f"**Parkeren: geen eis.** Norm {PARKEERNORM} per woning geeft "
+        r.append(f"**Parkeren: geen eis.** Norm {park['norm']} per woning ({park['zone']}, {park['woningtype']}) geeft "
                  f"{park['eis_nieuw']} tegen {park['eis_oud']} nu, dus een "
                  f"tekort van {park['tekort']}. In het gereguleerde "
                  f"parkeergebied geldt bij splitsing geen parkeereis "
                  f"(Beleidsregels Parkeren 2025, bijzonder geval VII): de "
                  f"nieuwe huisnummers krijgen geen parkeervergunning.")
+    elif park["tekort"] is None:
+        r.append(f"**Parkeren: niet te berekenen.** {park['reden'] or 'geen norm bekend'}.")
     elif park["tekort"] > 0:
         r.append(f"**Parkeren: tekort van {park['tekort']} plaats(en)** en geen "
                  f"vrijstelling, want dit pand ligt buiten het gereguleerde "
@@ -339,10 +382,32 @@ def rapport(kop, resultaat, park):
         r.append("")
     r.append("## Parkeerberekening")
     r.append("")
-    r.append(f"Norm {PARKEERNORM} per woning. Bestaand: {park['bestaand']} "
-             f"woning(en), eis {park['eis_oud']}. Nieuw: {park['nieuw']} "
-             f"woningen, eis {park['eis_nieuw']}. Verschil "
-             f"{park['tekort']:+d} parkeerplaatsen.")
+    # GEEN GETAL ALS ER GEEN NORM IS. Dit blok rekende altijd door, ook als
+    # de zone of het type ontbrak, want de norm was een constante. Nu zegt het
+    # wat er mist en noemt het de bandbreedte in plaats van een eis.
+    if park["norm"] is None or park["onzeker"]:
+        r.append(f"**Geen parkeereis berekend**: {park['reden']}.")
+        band = park.get("band") or {}
+        if band.get("laag") is not None:
+            r.append("")
+            r.append(f"In zone {park['zone']} loopt de norm van "
+                     f"{band['laag']} ({band['laag_type']}) tot "
+                     f"{band['hoog']} ({band['hoog_type']}) per woning, over "
+                     f"{band['aantal']} woningtypen. Welke geldt, hangt af "
+                     f"van het type; zet dat in het invoerbestand onder "
+                     f"woningtype.")
+        if park["onzeker"]:
+            r.append("")
+            r.append(f"De tabel geeft hier {park['norm']} per woning, maar "
+                     f"die cel is in het brondocument beschadigd. Nakijken in "
+                     f"de Beleidsregels parkeren 2025 voordat hiermee wordt "
+                     f"gerekend.")
+    else:
+        r.append(f"Norm {park['norm']} per woning, zone {park['zone']}, type "
+                 f"{park['woningtype']}. Bestaand: {park['bestaand']} "
+                 f"woning(en), eis {park['eis_oud']}. Nieuw: {park['nieuw']} "
+                 f"woningen, eis {park['eis_nieuw']}. Verschil "
+                 f"{park['tekort']:+d} parkeerplaatsen.")
     r.append("")
     if park["vrijstelling"]:
         r.append("Het pand ligt in het gereguleerde parkeergebied. Volgens de "
@@ -354,6 +419,13 @@ def rapport(kop, resultaat, park):
         r.append("")
         r.append("_Keerzijde om te weten: een bewoner op een nieuw huisnummer "
                  "kan geen parkeervergunning krijgen._")
+    elif park["tekort"] is None:
+        # GEEN TEKORT IS NIET NUL. Hier stond elif park["tekort"] > 0, en dat
+        # viel om op een tekort dat None is omdat er geen norm bekend is. Dat
+        # viel pas op toen deze module zijn eerste proef kreeg. Beter een
+        # foutmelding dan een conclusie, maar beter nog deze regel.
+        r.append("Of er een tekort is, is hier niet vast te stellen: "
+                 + (park["reden"] or "geen norm bekend") + ".")
     elif park["tekort"] > 0:
         r.append(f"Het pand ligt NIET in het gereguleerde parkeergebied, dus "
                  f"de parkeereis geldt wel. Er is een tekort van "
@@ -365,11 +437,103 @@ def rapport(kop, resultaat, park):
     return "\n".join(r)
 
 
+def proef():
+    """
+    De parkeerberekening nameten, per zone en per woningtype.
+
+    WAAROM DEZE MODULE ER EEN KRIJGT. Hij rekende de parkeereis uit voor een
+    aankoopbeslissing en had geen enkele proef. Zolang de norm een constante
+    was viel dat nog te overzien; nu hij uit een tabel komt, met zes zones,
+    veertien woningtypen en twee beschadigde cellen, niet meer.
+    """
+    fouten = []
+
+    def check(naam, echt, verwacht):
+        if echt != verwacht:
+            fouten.append(f"{naam}: {echt!r}, verwacht {verwacht!r}")
+
+    # EEN BETAALBAAR HUURAPPARTEMENT IN DE BINNENSTAD: norm 0,50. Van een naar
+    # drie woningen geeft 1 tegen 2, dus een tekort van 1.
+    kop = {"bestaand": "1", "parkeerzone": "Binnenstad",
+           "woningtype": "huur appartement betaalbaar",
+           "gereguleerd parkeergebied": "ja"}
+    p1 = parkeren(kop, 3)
+    check("norm in de Binnenstad", p1["norm"], 0.50)
+    check("eis oud en nieuw", (p1["eis_oud"], p1["eis_nieuw"]), (1, 2))
+    check("tekort", p1["tekort"], 1)
+    check("vrijstelling in gereguleerd gebied", p1["vrijstelling"], True)
+
+    # DEZELFDE SPLITSING IN DE 2e SCHIL IS EEN ANDER ANTWOORD: norm 0,80.
+    # Met de oude constante van 0,70 was dit te laag, en niets liet dat zien.
+    p2 = parkeren(dict(kop, **{"parkeerzone": "2e Schil",
+                               "gereguleerd parkeergebied": "nee"}), 3)
+    check("norm in de 2e Schil", p2["norm"], 0.80)
+    check("eis nieuw in de 2e Schil", p2["eis_nieuw"], 3)
+    check("geen vrijstelling buiten gereguleerd gebied",
+          p2["vrijstelling"], False)
+    if p2["tekort"] <= p1["tekort"]:
+        fouten.append(f"het tekort in de 2e Schil ({p2['tekort']}) is niet "
+                      f"hoger dan in de Binnenstad ({p1['tekort']}), terwijl "
+                      f"de norm daar hoger is")
+
+    # ZONDER ZONE GEEN EIS, en de reden wijst naar waar de zone staat.
+    p3 = parkeren({"bestaand": "1"}, 3)
+    check("zonder zone geen norm", p3["norm"], None)
+    check("zonder zone geen tekort", p3["tekort"], None)
+    if "voorraad.json" not in p3["reden"]:
+        fouten.append(f"zonder zone wijst de reden niet naar de bron: "
+                      f"{p3['reden']!r}")
+
+    # ZONDER WONINGTYPE GEEN GETAL MAAR EEN BANDBREEDTE.
+    p4 = parkeren({"bestaand": "1", "parkeerzone": "Centrumgebied"}, 3)
+    check("zonder type geen norm", p4["norm"], None)
+    band = p4.get("band") or {}
+    check("de bandbreedte in het Centrumgebied",
+          (band.get("laag"), band.get("hoog")), (0.20, 1.20))
+    # EN DE REDEN MOET ZEGGEN WAT ER MIST. Zonder deze regel is de aparte tak
+    # voor een ontbrekend woningtype niet na te meten: de doorval naar de
+    # tabel geeft ook geen norm, maar wel de reden "woningtype '' staat niet
+    # in de tabel", en dat is voor de lezer van het rapport een raadsel in
+    # plaats van een aanwijzing.
+    if "geen woningtype opgegeven" not in p4["reden"]:
+        fouten.append(f"zonder woningtype zegt de reden niet dat het type "
+                      f"mist: {p4['reden']!r}")
+
+    # EEN BESCHADIGDE CEL LEVERT GEEN EIS, ook al staat er een waarde.
+    p5 = parkeren({"bestaand": "1", "parkeerzone": "1e Schil",
+                   "woningtype": "koop appartement betaalbaar"}, 3)
+    check("een onzekere cel geeft geen tekort", p5["tekort"], None)
+    check("de waarde blijft wel zichtbaar", p5["norm"], 1.00)
+    check("en heet onzeker", p5["onzeker"], True)
+
+    # DE TEKST MAG GEEN EIS NOEMEN ALS ER GEEN NORM IS. Een rapport dat een
+    # getal noemt waar er geen is, is erger dan een rapport dat het weglaat.
+    tekst = rapport({"pand": "Proefstraat 1", "parkeerzone": "Centrumgebied"},
+                    {"A": {"voldoet": True, "go": 50, "verblijfsgebied": 30,
+                           "eis_55pct": 27.5, "verschil": 2.5, "ruimten": []}},
+                    p4)
+    if "Geen parkeereis berekend" not in tekst:
+        fouten.append("het rapport zegt niet dat er geen eis is berekend")
+    if "loopt de norm van 0.2" not in tekst:
+        fouten.append(f"het rapport noemt de bandbreedte niet")
+
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    print(f"Proef splitsingstoets: {len(fouten)} fouten", file=sys.stderr)
+    return 1 if fouten else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--in", dest="bron", required=True)
+    ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--in", dest="bron", default="")
     ap.add_argument("--uit", default="")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
+    if not args.bron:
+        print("Geef --in of --proef mee.", file=sys.stderr)
+        return 1
     kop, ruimten = lees(args.bron)
     if not ruimten:
         return 1
