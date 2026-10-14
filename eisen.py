@@ -437,6 +437,102 @@ def pijp_zonder_vangnet(paden=None):
     return fouten
 
 
+def stille_proef(paden=None):
+    """
+    Of een proef zijn bevindingen opnoemt NA de laatste die erbij komt.
+
+    WAT HIER GEBEURDE, twee keer op 14 oktober, in twee bestanden. De vorm is
+    altijd dezelfde:
+
+        for f in fouten:
+            print(f"FOUT {f}")
+        ...
+        fouten.append("...")          # staat eronder
+        print(f"Proef: {len(fouten)} fouten")
+
+    Een bevinding die onder de lus wordt toegevoegd, telt wel mee in het
+    AANTAL en wordt nooit GETOOND. De proef meldt dan "1 afwijking" zonder te
+    zeggen welke. Dat is bijna erger dan groen staan: de exitcode is rood, dus
+    de poort werkt, maar er is geen aanknopingspunt.
+
+    In pandgeschiedenis.py kostte dat vanmiddag een ronde zoeken, en in
+    voorraad_bag.py vanavond nog een. Twee keer dezelfde vorm in twee
+    bestanden is geen vergissing meer.
+
+    HOE DIT WORDT GEMETEN. Per functie: welke lus loopt over een lijst en
+    print daarin iets. Dat is de meldlus. Daarna: waar wordt op diezelfde
+    lijst voor het laatst append of extend aangeroepen. Staat dat lager dan de
+    lus, dan kan die bevinding niet getoond worden.
+
+    DE PRINT IN DIE LUS IS HET KENMERK, en dat is nagemeten. Laat je die eis
+    vallen en kijk je naar elke lus over een lijst, dan is de eerste treffer
+    ontdubbel_huur() in marktprijzen_bag.py: een lus over behouden op regel
+    4135 en een append op 4152. Daar is niets mis, want die lus meldt niets.
+    Een toets die daarop afgaat, leert de lezer het verslag over te slaan.
+
+    NAGEMETEN OP DE ECHTE FOUT: voorraad_bag.py zoals het vóór PR 101 op main
+    stond geeft precies een treffer, de meldlus op regel 2240 met een append
+    op 2287. Over alle modules van nu: nul.
+    """
+    import ast
+
+    fouten = []
+    paden = paden if paden is not None else sorted(
+        n for n in os.listdir(".") if n.endswith(".py"))
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                boom = ast.parse(f.read(), filename=pad)
+        except Exception as e:
+            fouten.append(f"{pad} niet te ontleden: {str(e)[:60]}")
+            continue
+        for functie in ast.walk(boom):
+            if not isinstance(functie, (ast.FunctionDef,
+                                        ast.AsyncFunctionDef)):
+                continue
+            # De meldlussen: for <x> in <lijst>: ... print(...)
+            meldlus = {}
+            for knoop in ast.walk(functie):
+                if not isinstance(knoop, ast.For):
+                    continue
+                if not isinstance(knoop.iter, ast.Name):
+                    continue
+                print_erin = any(
+                    isinstance(k, ast.Call) and isinstance(k.func, ast.Name)
+                    and k.func.id == "print" for k in ast.walk(knoop))
+                if print_erin:
+                    naam = knoop.iter.id
+                    meldlus[naam] = min(meldlus.get(naam, knoop.lineno),
+                                        knoop.lineno)
+            if not meldlus:
+                continue
+            # De laatste keer dat er iets bij die lijst komt.
+            laatste = {}
+            for knoop in ast.walk(functie):
+                if not isinstance(knoop, ast.Call):
+                    continue
+                f = knoop.func
+                if not isinstance(f, ast.Attribute):
+                    continue
+                if f.attr not in ("append", "extend"):
+                    continue
+                if not isinstance(f.value, ast.Name):
+                    continue
+                naam = f.value.id
+                if naam in meldlus:
+                    laatste[naam] = max(laatste.get(naam, 0), knoop.lineno)
+            for naam, regel in sorted(meldlus.items()):
+                na = laatste.get(naam, 0)
+                if na > regel:
+                    fouten.append(
+                        f"{pad}, {functie.name}(): de lus die {naam} opnoemt "
+                        f"staat op regel {regel}, maar op regel {na} komt er "
+                        f"nog iets bij. Die bevinding telt mee in het aantal "
+                        f"en wordt nooit getoond: de proef meldt dan een "
+                        f"aantal zonder te zeggen wat er mis is.")
+    return fouten
+
+
 def schaduw_over_import(paden=None):
     """
     Of een module die wordt geïmporteerd verderop door een eigen naam wordt
@@ -823,6 +919,67 @@ def proef(snel=False):
     # overschreven. Zie schaduw_over_import(): dat was de oorzaak onder die
     # brief.
     fouten.extend(schaduw_over_import())
+
+    # Een proef noemt zijn bevindingen op NA de laatste die erbij komt. Zie
+    # stille_proef(): twee keer op 14 oktober meldde een proef een aantal
+    # zonder te zeggen wat er mis was.
+    fouten.extend(stille_proef())
+
+    # EN DIE TOETS MOET DE ECHTE VORM ZIEN. Nagemeten op voorraad_bag.py zoals
+    # het op main stond vóór PR 101: precies een treffer, de meldlus op regel
+    # 2240 met een append op 2287. Hier staat dezelfde vorm na, plus de goede
+    # vorm, want een toets die alleen de fout kent meldt straks ook elke
+    # correcte proef.
+    import tempfile as _tf3
+    with _tf3.TemporaryDirectory() as _m3:
+        _slecht = os.path.join(_m3, "slecht.py")
+        with open(_slecht, "w", encoding="utf-8") as _f3:
+            _f3.write("def proef():\n"
+                      "    fouten = []\n"
+                      "    if 1:\n"
+                      "        fouten.append('eerste')\n"
+                      "    for f in fouten:\n"
+                      "        print(f)\n"
+                      "    if 2:\n"
+                      "        fouten.append('deze wordt nooit getoond')\n"
+                      "    print(len(fouten))\n"
+                      "    return 1 if fouten else 0\n")
+        if not stille_proef([_slecht]):
+            fouten.append("een proef die bevindingen toevoegt na de lus die "
+                          "ze opnoemt, wordt niet gemeld; dan meldt een proef "
+                          "een aantal zonder te zeggen wat er mis is")
+        _goed = os.path.join(_m3, "goed.py")
+        with open(_goed, "w", encoding="utf-8") as _f3:
+            _f3.write("def proef():\n"
+                      "    fouten = []\n"
+                      "    if 1:\n"
+                      "        fouten.append('eerste')\n"
+                      "    if 2:\n"
+                      "        fouten.append('tweede')\n"
+                      "    for f in fouten:\n"
+                      "        print(f)\n"
+                      "    print(len(fouten))\n"
+                      "    return 1 if fouten else 0\n")
+        _uit3 = stille_proef([_goed])
+        if _uit3:
+            fouten.append(f"een proef die alles vóór de lus toevoegt wordt "
+                          f"toch gemeld: {_uit3[0][:90]}")
+        # En een lus die over iets anders print mag niet voor meldlus
+        # doorgaan: anders gaat deze toets af op elke functie die een lijst
+        # afdrukt en daarna een andere lijst vult.
+        _ander = os.path.join(_m3, "ander.py")
+        with open(_ander, "w", encoding="utf-8") as _f3:
+            _f3.write("def doe():\n"
+                      "    regels = ['a']\n"
+                      "    fouten = []\n"
+                      "    for r in regels:\n"
+                      "        print(r)\n"
+                      "    fouten.append('hoort niet bij die lus')\n"
+                      "    return fouten\n")
+        _uit3 = stille_proef([_ander])
+        if _uit3:
+            fouten.append(f"een lus over een andere lijst wordt als meldlus "
+                          f"gelezen: {_uit3[0][:90]}")
 
     # EN DE TOETS MOET DE ECHTE FOUT KUNNEN ZIEN. Dit is de vorm zoals hij in
     # marktprijzen_bag.py stond: een import bovenaan, duizend regels lager een
