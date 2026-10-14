@@ -959,3 +959,16 @@ waarom: 14 oktober. Het aanbodprofiel nam bij een adres zonder eigen label
   pandgeschiedenis. Wat geen van beide kent, is onbekend.
 proef: aanbodprofiel:buuradres in hetzelfde pand
 soort: gegevens
+
+---
+eis: Het veld sleutel in de voorraad is de sleutel van pandsleutel, en geen
+  eigen vorm.
+waarom: 14 oktober. adressleutel() in voorraad_bag.py haalde alleen
+  hoofdletters en spaties weg. Punten, accenten en titels bleven staan, en
+  bij 2.692 van de 24.703 records week het veld af van pandsleutel.sleutel():
+  "st.annastraat1d", "professorschrijnenstraat11", "mariënburgsestraat10",
+  "deruyterstraat105". Dat is de vijftiende sleutelfunctie, terwijl
+  pandsleutel.py juist bestaat omdat veertien functies uiteenliepen. Elke
+  lezer die erop joinde moest het zelf opvangen, en twee deden dat ook.
+proef: voorraad_bag:het veld sleutel wijkt af van pandsleutel
+soort: gegevens

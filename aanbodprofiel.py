@@ -71,9 +71,11 @@ def labels_uit_voorraad(pad=VOORRAAD_PAD):
     opgebouwd en de meeste labels kent: 13.463 op 14 oktober, tegen de
     pandgeschiedenis die alleen de gevolgde panden heeft.
 
-    De sleutel wordt hier opnieuw berekend uit het adres, en niet gelezen uit
-    het veld "sleutel" van de voorraad: dat veld komt uit een andere functie
-    en wijkt bij 2.009 records af (de Ruyterstraat wordt daar deruyterstraat).
+    De sleutel wordt hier berekend uit het adres en niet gelezen uit het veld
+    "sleutel" van de voorraad. Dat veld kwam tot 14 oktober uit een eigen
+    functie en week af (de Ruyterstraat werd daar deruyterstraat); sindsdien
+    is het pandsleutel, maar een voorraad van voor die dag heeft nog de oude
+    vorm tot de volgende objectronde.
     Geeft een sleutel twee verblijfsobjecten met verschillende labels, dan is
     het label voor dat adres niet eenduidig en blijft het weg.
     """
