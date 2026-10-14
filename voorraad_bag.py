@@ -373,6 +373,88 @@ def _normaliseer(p):
     }
 
 
+SIGNAALBRON = "pandgeschiedenis.json"
+
+
+def signaaladressen(pad=SIGNAALBRON):
+    """
+    De adressen waarover een bekendmaking is gepubliceerd.
+
+    WAAROM DIT ER IS. Op 14 oktober stond Mark voor Berg en Dalseweg 11, een
+    kernsignaal uit de brief van die ochtend: een aanvraag om splitsingen van
+    2 naar 4 woningen te legaliseren. Hij vroeg of de vergunning ook over
+    nummer 13 gaat. Wij konden niets zeggen: geen oppervlakte, geen bouwjaar,
+    geen gebruiksdoel, geen idee hoeveel eenheden erin zitten. Dat pand ligt
+    in Hunnerberg, en de voorraad dekt zes ringbuurten.
+
+    NAGEMETEN OVER ALLE SIGNALEN. 327 panden in pandgeschiedenis.json hebben
+    een bekendmaking. 150 daarvan staan in de voorraad, 177 niet. Van die 177
+    is er bij 131 nooit gekeken, en alle 131 hebben een huisnummer, dus ze
+    zijn op te halen. Over meer dan de helft van onze eigen signalen kunnen we
+    dus niets zeggen.
+
+    EN HET KOST GEEN ENKELE EXTRA VRAAG. Fase 2 haalt elke ronde alle
+    verblijfsobjecten van Nijmegen op, 164.634 stuks, en zeeft die daarna op
+    onze postcodes. De gegevens van nummer 11 zijn dus al binnen en worden
+    weggegooid. Dit maakt de zeef één regel ruimer.
+    """
+    try:
+        with open(pad, encoding="utf-8") as f:
+            d = json.load(f)
+    except Exception:
+        return set()
+    uit = set()
+    for sleutel, pand in (d or {}).items():
+        if not isinstance(pand, dict):
+            continue
+        if not any((e or {}).get("soort") == "bekendmaking"
+                   for e in (pand.get("gebeurtenissen") or [])):
+            continue
+        uit.add(str(sleutel))
+        adres = pand.get("adres") or ""
+        kaal = "".join(c for c in adres.lower() if c.isalnum())
+        if kaal:
+            uit.add(kaal)
+    return uit
+
+
+def waarom_houden(a, pc, pcs, signalen=()):
+    """
+    Bewaren we dit verblijfsobject, en waarom.
+
+    Geeft (buurten, herkomst) terug. Is herkomst leeg, dan valt het object
+    buiten alles wat wij volgen.
+
+    Twee redenen om iets te bewaren, en ze blijven apart:
+      focusbuurt    het ligt in een postcode van de zes ringbuurten
+      bekendmaking  er is een bekendmaking over dit adres gepubliceerd
+
+    DIE HERKOMST STAAT IN HET RECORD, en dat is geen administratie. Alles wat
+    per buurt rekent, moet alleen de focusbuurten tellen: een pand dat hier
+    staat omdat er een vergunning over werd gepubliceerd, hoort niet in een
+    buurtgemiddelde. Zonder dat veld is dat onderscheid na het opslaan niet
+    meer te maken.
+    """
+    buurten = pcs.get(pc)
+    if buurten:
+        return list(buurten), "focusbuurt"
+    if not signalen:
+        return None, ""
+    straat = str(a.get("openbareRuimteNaam") or "")
+    nr = str(a.get("huisnummer") or "")
+    letter = str(a.get("huisletter") or "")
+    if not straat or not nr:
+        return None, ""
+    # Twee vormen proberen: met en zonder huisletter. De bekendmaking noemt
+    # "Berg en Dalseweg 11-11A", waaruit ons pand de sleutel bergendalseweg11
+    # kreeg; het verblijfsobject 11A moet daar ook aan hangen.
+    for kandidaat in (straat + nr + letter, straat + nr):
+        kaal = "".join(c for c in kandidaat.lower() if c.isalnum())
+        if kaal in signalen:
+            return [], "bekendmaking"
+    return None, ""
+
+
 def _deel(doos):
     """Een doos in vier gelijke dozen."""
     x1, y1, x2, y2 = [float(v) for v in doos.split(",")]
@@ -631,7 +713,8 @@ def fase_panden(budget):
 
 
 def fase_bag(voorraad, pcs, minuten, panden=None,
-             pandstatus=None, pandbouwjaar=None):
+             pandstatus=None, pandbouwjaar=None,
+             signalen=None):
     """
     Fase 1: alle verblijfsobjecten in de doos, daarna zeven op onze postcodes.
 
@@ -684,7 +767,12 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
            "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
            "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0,
            "in_de_pijplijn": 0, "opgeleverd": 0, "terug_in_de_pijplijn": 0,
-           "meerdere_panden": 0}
+           "meerdere_panden": 0, "om_een_signaal": 0}
+    # De adressen waarover een bekendmaking is gepubliceerd.
+    # None betekent: zelf inlezen; een lege verzameling
+    # betekent uitdrukkelijk geen signalen, en dat verschil
+    # moet blijven bestaan voor de proef.
+    signalen = signaaladressen() if signalen is None else signalen
     per_postcode = {}
     statussen = {}
     gezien_woning, gezien_anders = set(), set()
@@ -715,11 +803,18 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             if ident:
                 gezien_alle.add(ident)
 
+            # DE ADRESVELDEN HIER AL, want de zeef heeft ze nodig: een object
+            # buiten onze postcodes mag toch blijven als er een bekendmaking
+            # over dat adres is. De omzetting is zuiver, dus eerder uitvoeren
+            # verandert niets aan de tellers die hieronder staan.
+            a = _normaliseer(p)
             pc = (p.get("postcode") or "").replace(" ", "").upper()
-            buurten = pcs.get(pc)
-            if not buurten:
+            buurten, herkomst = waarom_houden(a, pc, pcs, signalen)
+            if not herkomst:
                 tel["buiten_de_ring"] += 1
                 continue
+            if herkomst == "bekendmaking":
+                tel["om_een_signaal"] += 1
             status = p.get("status") or ""
             statussen[status] = statussen.get(status, 0) + 1
             # DE HISTORIE ERUIT. De collectie bevat ook ingetrokken en nooit
@@ -731,7 +826,6 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 continue
             if "gevormd" in status.lower():
                 tel["gevormd"] += 1
-            a = _normaliseer(p)
             straat = a.get("openbareRuimteNaam", "")
             nr = a.get("huisnummer", "")
             if not straat or not nr:
@@ -746,8 +840,14 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             letter = a.get("huisletter") or ""
             toev = a.get("huisnummertoevoeging") or ""
             doelen = a.get("gebruiksdoelen") or []
-            per_postcode[pc] = per_postcode.get(pc, 0) + 1
-            gedaan[pc] = vandaag
+            if herkomst == "focusbuurt":
+                # ALLEEN DE FOCUSBUURTEN IN DEZE TWEE TELLINGEN. per_postcode
+                # en gedaan beschrijven de ring. Een postcode die hier alleen
+                # staat omdat er een bekendmaking over een adres was, zou
+                # anders als afgewerkte ringpostcode gaan meetellen, en dan
+                # klopt postcodes_leeg_nijmegen niet meer.
+                per_postcode[pc] = per_postcode.get(pc, 0) + 1
+                gedaan[pc] = vandaag
 
             # PDOK's pandsleutel omzetten naar de BAG-identificatie. Lukt dat
             # niet, dan blijft pand leeg: liever geen sleutel dan een sleutel
@@ -798,6 +898,9 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 # dus dat was een vaste afwijking in één richting: 24 van de
                 # 471 postcodes van Stadscentrum, zonder dat er iets faalde.
                 "buurten": list(buurten),
+                # WAAROM DIT RECORD ER IS. Zie waarom_houden(): alles wat per
+                # buurt rekent, telt alleen focusbuurt mee.
+                "herkomst": herkomst,
                 "oppervlakte": a.get("oppervlakte"),
                 "doelen": doelen,
                 "pand": pand,
@@ -978,6 +1081,11 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
         "niet_woonfunctie": tel["overig"],
         "niet_woningen_bewaard": len(anders),
         "buiten_de_ring": tel["buiten_de_ring"],
+        # Objecten die buiten de focusbuurten liggen en toch bewaard zijn,
+        # omdat er een bekendmaking over dat adres is gepubliceerd. Zie
+        # waarom_houden(). Dit getal hoort in de stand, want anders is niet te
+        # zien of de ruimere zeef werkelijk iets oplevert.
+        "om_een_signaal": tel["om_een_signaal"],
         "historie_overgeslagen": tel["weg"],
         # NOG GEVORMD, NIET IN GEBRUIK. In de eerste ronde 2.238 objecten,
         # ruim een tiende van de voorraad. Die status betekent dat het object
@@ -1569,7 +1677,8 @@ def proef_tegels():
     try:
         _pagina = nep_laat
         voorraad_laat = {}
-        uit_laat = fase_bag(voorraad_laat, {"6521AB": ("Bottendaal",)}, 30, {})
+        uit_laat = fase_bag(voorraad_laat, {"6521AB": ("Bottendaal",)}, 30, {},
+                            signalen=set())
     finally:
         _pagina = echt_pagina
     if not uit_laat.get("ronde_ronde_af"):
@@ -1864,8 +1973,12 @@ def proef():
         pandbouwjaren = pandstand.pop("_bouwjaar_per_pand", {})
         doorloop = nep
         kaart = dict(pandkaart)
+        # signalen=set() EN NIET WEGLATEN. Laat je dit leeg, dan leest
+        # fase_bag de echte pandgeschiedenis.json en hangen de tellingen in
+        # deze proef aan gegevens van vandaag. Het signaalgeval heeft zijn
+        # eigen blok hieronder, met zijn eigen verzameling.
         uit = fase_bag(voorraad, pcs, 1, kaart, pandstatussen,
-                       pandbouwjaren)
+                       pandbouwjaren, signalen=set())
         # WAT FASE 2 HEEFT OPGESCHREVEN, MOET EEN OBJECTRONDE OVERLEVEN.
         # Dit is de fout van vannacht: de objectronde bouwt elk record
         # opnieuw op en nam uit het oude record alleen label, label_datum en
@@ -1888,7 +2001,7 @@ def proef():
         # hier te meten.
         voorraad_na = json.loads(json.dumps(voorraad))
         tweede = fase_bag(voorraad_na, pcs, 1, kaart,
-                          pandstatussen, pandbouwjaren)
+                          pandstatussen, pandbouwjaren, signalen=set())
 
         # DERDE RONDE WAARIN DINGEN VERDWIJNEN EN VAN SOORT WISSELEN. Hier
         # hangt aan of het aantal in de brief langzaam te hoog oploopt.
@@ -1906,7 +2019,7 @@ def proef():
                     "ronde_af": True, "fout": ""}
 
         doorloop = nep_korter
-        derde = fase_bag(voorraad_weg, pcs, 1, kaart)
+        derde = fase_bag(voorraad_weg, pcs, 1, kaart, signalen=set())
 
         # VIERDE RONDE DIE HALVERWEGE AFBREEKT: dan mag er niets verdwijnen.
         voorraad_half = json.loads(json.dumps(voorraad))
@@ -1917,7 +2030,7 @@ def proef():
                     "ronde_af": False, "fout": "tijdbudget om"}
 
         doorloop = nep_half
-        vierde = fase_bag(voorraad_half, pcs, 1, kaart)
+        vierde = fase_bag(voorraad_half, pcs, 1, kaart, signalen=set())
 
     finally:
         doorloop = echt
@@ -2065,7 +2178,7 @@ def proef():
     echt2, globals()["doorloop"] = doorloop, nep_klaar
     try:
         na = fase_bag(voorraad_klaar, pcs, 1, kaart,
-                      pandstatussen)
+                      pandstatussen, signalen=set())
     finally:
         globals()["doorloop"] = echt2
     pijplijn_na = voorraad_klaar.get("pijplijn") or {}
@@ -2127,7 +2240,8 @@ def proef():
     doorloop = nep_bots
     try:
         vb = {}
-        botsuit = fase_bag(vb, {"6521AB": ("Bottendaal",)}, 1, {})
+        botsuit = fase_bag(vb, {"6521AB": ("Bottendaal",)}, 1, {},
+                           signalen=set())
     finally:
         doorloop = bewaar
     if len(vb.get("adressen") or {}) != 2:
@@ -2237,8 +2351,10 @@ def proef():
     afwijkingen.extend(proef_tegels())
     afwijkingen.extend(proef_labels())
 
-    for a in afwijkingen:
-        print(f"AFWIJKING: {a}", file=sys.stderr)
+    # DE LUS STAAT ONDERAAN, BIJ HET SLOT. Hij stond hier, halverwege, en
+    # alles wat eronder werd toegevoegd telde wel mee in het aantal maar werd
+    # nooit getoond. Dat kostte vandaag twee keer tijd: een proef die "1
+    # afwijking" meldt zonder te zeggen welke, is net zo stil als geen proef.
     # GEEN AANTAL CONTROLES MEER. Dat getal stond er eerst bij en was fout,
     # en een fout getal in een proefverslag is erger dan geen getal: het wekt
     # vertrouwen dat het niet verdient. Wat de proef dekt staat er wel.
@@ -2287,6 +2403,96 @@ def proef():
         afwijkingen.append("zonder bouwjaar zegt de pijplijntekst niet dat "
                            "het nog niet gekeken is, en dan leest het als "
                            "gekeken en niets gevonden")
+
+    # EEN PAND WAAR EEN BEKENDMAKING OVER GING, BLIJFT STAAN. Het echte geval
+    # van 14 oktober: Berg en Dalseweg 11 en 11A, postcode 6521JB, buurt
+    # Hunnerberg. Die postcode staat niet in de zeef, dus viel het object weg,
+    # terwijl de brief er diezelfde ochtend een kernsignaal over had. De
+    # buurman op 15 staat erbij om te toetsen dat de zeef niet alsnog de hele
+    # postcode binnenlaat.
+    def _vbo(nr, letter, ident, doel="woonfunctie", opp=116):
+        return {"id": f"s{ident}", "properties": {
+            "postcode": "6521JB", "status": "Verblijfsobject in gebruik",
+            "gebruiksdoel": doel, "oppervlakte": opp,
+            "openbare_ruimte_naam": "Berg en Dalseweg", "huisnummer": nr,
+            "huisletter": letter, "toevoeging": None,
+            "identificatie": ident}}
+
+    signaalkenmerken = [
+        _vbo(11, None, "0268010000009911"),
+        _vbo(11, "A", "0268010000009912", opp=74),
+        # De tandartspraktijk op de begane grond: geen woonfunctie, dus die
+        # hoort bij niet_woningen en niet bij de woningvoorraad.
+        _vbo(11, None, "0268010000009913", doel="gezondheidszorgfunctie",
+             opp=92),
+        # De buurman, zonder signaal.
+        _vbo(15, None, "0268010000009915"),
+    ]
+
+    def nep_signaal(collectie, budget, per_pagina):
+        per_pagina(signaalkenmerken)
+        return {"paginas": 1, "objecten": len(signaalkenmerken),
+                "seconden": 0.0, "ronde_af": True, "fout": ""}
+
+    echt3, globals()["doorloop"] = doorloop, nep_signaal
+    try:
+        vs = {}
+        sig_uit = fase_bag(vs, {"6521AB": ("Bottendaal",)}, 1, {},
+                           signalen={"bergendalseweg11"})
+        vs_leeg = {}
+        leeg_uit = fase_bag(vs_leeg, {"6521AB": ("Bottendaal",)}, 1, {},
+                            signalen=set())
+    finally:
+        globals()["doorloop"] = echt3
+
+    adressen_sig = vs.get("adressen") or {}
+    anders_sig = vs.get("niet_woningen") or {}
+    if set(adressen_sig) != {"0268010000009911", "0268010000009912"}:
+        afwijkingen.append(
+            f"een pand met een bekendmaking buiten de focusbuurten wordt niet "
+            f"bewaard: woningen {sorted(adressen_sig)}")
+    if set(anders_sig) != {"0268010000009913"}:
+        afwijkingen.append(
+            f"de niet-woonfunctie op hetzelfde adres wordt niet apart "
+            f"bewaard: {sorted(anders_sig)}")
+    if "0268010000009915" in adressen_sig or "0268010000009915" in anders_sig:
+        afwijkingen.append("de buurman zonder signaal komt mee; dan laat de "
+                           "zeef de hele postcode binnen")
+    for sleutel, rec in adressen_sig.items():
+        if rec.get("herkomst") != "bekendmaking":
+            afwijkingen.append(f"{sleutel} krijgt herkomst "
+                               f"{rec.get('herkomst')!r} in plaats van "
+                               f"'bekendmaking'; dan is na het opslaan niet "
+                               f"meer te zien dat dit geen buurtpand is")
+        if rec.get("buurten"):
+            afwijkingen.append(f"{sleutel} krijgt buurten {rec['buurten']}, "
+                               f"terwijl het buiten de focusbuurten ligt")
+    if "6521JB" in (vs.get("postcodes") or {}):
+        afwijkingen.append("een postcode buiten de ring wordt als afgewerkte "
+                           "ringpostcode opgeschreven; dan klopt de telling "
+                           "van lege Nijmeegse postcodes niet meer")
+    # EN HET AANTAL NAGEKEKEN POSTCODES OOK NIET. Dit is de meting die de
+    # opruiming aan het eind van fase_bag niet maskeert: die haalt
+    # niet-ringpostcodes na een afgemaakte ronde alsnog uit de kaart, dus
+    # bleef de regel hierboven stil toen ik de bewaking bij het schrijven
+    # wegnam. postcodes_gedaan komt uit per_postcode en wordt niet opgeruimd.
+    if sig_uit.get("postcodes_gedaan") != 0:
+        afwijkingen.append(
+            f"{sig_uit.get('postcodes_gedaan')} postcodes gelden als "
+            f"nagekeken terwijl er alleen om een signaal is bewaard; dan "
+            f"telt een postcode buiten de ring mee als afgewerkt ringwerk")
+    if sig_uit.get("om_een_signaal") != 3:
+        afwijkingen.append(f"er worden {sig_uit.get('om_een_signaal')} "
+                           f"objecten om een signaal bewaard in plaats van 3")
+    # ZONDER SIGNALEN HET OUDE GEDRAG. Anders zou deze zeef alles binnenlaten
+    # en is de melding over 54% blinde signalen geen meting meer.
+    if (leeg_uit.get("om_een_signaal") or 0) != 0 or (vs_leeg.get("adressen")
+                                                      or {}):
+        afwijkingen.append("zonder signalen blijft er toch iets buiten de "
+                           "ring staan")
+
+    for a in afwijkingen:
+        print(f"AFWIJKING: {a}", file=sys.stderr)
 
     print(f"Proef: {len(afwijkingen)} afwijkingen. Gedekt: de vorm van het "
           f"antwoord, de komma in gebruiksdoel, de historiezeef, de "

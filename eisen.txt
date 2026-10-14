@@ -657,6 +657,30 @@ proef: eisen:EN DE TOETS MOET DE ECHTE FOUT KUNNEN ZIEN
 soort: werking
 
 ---
+eis: Een adres waarover wij een bekendmaking melden, halen we ook op uit de
+  BAG, ook als het buiten de zes focusbuurten ligt.
+waarom: 14 oktober. Mark stond voor Berg en Dalseweg 11, een kernsignaal uit
+  de brief van die ochtend: een aanvraag om splitsingen van 2 naar 4 woningen
+  te legaliseren. Hij vroeg of de vergunning ook over nummer 13 gaat. Wij
+  konden niets zeggen: geen oppervlakte, geen bouwjaar, geen gebruiksdoel,
+  geen aantal eenheden. Dat pand ligt in Hunnerberg en de voorraad dekt zes
+  ringbuurten. Nagemeten over alle signalen: 327 panden in
+  pandgeschiedenis.json hebben een bekendmaking, 150 staan in de voorraad en
+  177 niet; bij 131 van die 177 is nooit gekeken en alle 131 hebben een
+  huisnummer. Over 54 procent van onze eigen signalen stond er dus een
+  vergunningstitel in de brief en verder niets. En het kost geen enkele extra
+  vraag: fase 2 haalt elke ronde alle 164.634 verblijfsobjecten van Nijmegen
+  op en zeeft die daarna op onze postcodes, dus de gegevens van nummer 11
+  waren al binnen en werden weggegooid. De zeef is een regel ruimer gemaakt.
+  Elk record draagt nu herkomst, focusbuurt of bekendmaking, want alles wat
+  per buurt rekent mag alleen de focusbuurten tellen; zonder dat veld is dat
+  onderscheid na het opslaan niet meer te maken. De dekking staat als getal in
+  het gezondheidsrapport, zodat zichtbaar is of de ruimere zeef werkelijk iets
+  oplevert.
+proef: voorraad_bag:EEN PAND WAAR EEN BEKENDMAKING OVER GING; gezondheid:DE DEKKING VAN ONZE SIGNALEN
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en

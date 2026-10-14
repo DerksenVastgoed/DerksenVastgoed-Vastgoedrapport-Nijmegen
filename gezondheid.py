@@ -967,6 +967,70 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+def _sleutel_kaal(adres):
+    return "".join(c for c in (adres or "").lower() if c.isalnum())
+
+
+def signaaldekking(geschiedenis="pandgeschiedenis.json",
+                   voorraad="voorraad.json"):
+    """
+    Over hoeveel van onze eigen signalen kunnen we iets zeggen?
+
+    Een bekendmaking noemt een adres. Zonder oppervlakte, bouwjaar,
+    gebruiksdoel en het aantal eenheden in dat pand is er niets te beoordelen:
+    dan staat er een vergunningstitel in de brief en verder niets.
+
+    OP 14 OKTOBER WAS DAT 150 VAN DE 327. Mark stond voor Berg en Dalseweg 11,
+    een kernsignaal uit de brief van die ochtend, en vroeg of de vergunning
+    ook over nummer 13 ging. Wij hadden over dat pand geen enkel BAG-gegeven,
+    want het ligt in Hunnerberg en de voorraad dekt zes ringbuurten. Over 177
+    van de 327 gesignaleerde panden gold dat, en bij 131 daarvan was nooit
+    gekeken.
+    """
+    g = _json(geschiedenis) or {}
+    v = _json(voorraad) or {}
+    bekend = set()
+    for r in list((v.get("adressen") or {}).values()) + \
+             list((v.get("niet_woningen") or {}).values()):
+        if r.get("sleutel"):
+            bekend.add(r["sleutel"])
+        bekend.add(_sleutel_kaal(r.get("adres")))
+    bekend.discard("")
+    met_signaal, gedekt = 0, 0
+    for sleutel, pand in g.items():
+        if not isinstance(pand, dict):
+            continue
+        if not any((e or {}).get("soort") == "bekendmaking"
+                   for e in (pand.get("gebeurtenissen") or [])):
+            continue
+        met_signaal += 1
+        if sleutel in bekend or _sleutel_kaal(pand.get("adres")) in bekend:
+            gedekt += 1
+    return met_signaal, gedekt
+
+
+def controle_signaaldekking():
+    """Hoeveel gesignaleerde panden hebben BAG-gegevens."""
+    totaal, gedekt = signaaldekking()
+    if not totaal:
+        return (LET_OP, "nog geen panden met een bekendmaking",
+                "Dan is er ook niets te dekken. Komt dit terug terwijl de "
+                "brief wel bekendmakingen noemt, dan koppelt "
+                "pandgeschiedenis.py ze niet aan een pand.")
+    deel = 100 * gedekt // totaal
+    tekst = (f"{gedekt} van de {totaal} panden met een bekendmaking hebben "
+             f"BAG-gegevens ({deel}%)")
+    if deel >= 80:
+        return (OK, tekst, "")
+    return (LET_OP, tekst,
+            "Over de rest staat er een vergunningstitel in de brief en "
+            "verder niets: geen oppervlakte, geen bouwjaar, geen "
+            "gebruiksdoel. De voorraadronde bewaart sinds 14 oktober ook "
+            "adressen buiten de focusbuurten als er een bekendmaking over "
+            "ging; dit getal hoort dus per ronde te stijgen. Blijft het "
+            "staan, kijk dan naar om_een_signaal in voorraad_stand.json.")
+
+
 OVERGESLAGEN_PAD = "overgeslagen.txt"
 
 
@@ -2697,15 +2761,29 @@ def controle_voorraad():
                 "draait op werkdagen en bij een handmatige start. Levert hij "
                 "niets op, kijk dan in voorraad_stand.json wat de laatste "
                 "ronde heeft gedaan.")
-    met_opp = sum(1 for r in adressen.values() if r.get("oppervlakte"))
-    met_label = sum(1 for r in adressen.values() if r.get("label"))
-    nog = sum(1 for r in adressen.values()
+    # ALLEEN DE RING IN DEZE GETALLEN. Sinds 14 oktober staan er ook adressen
+    # in voorraad.json die buiten de zes focusbuurten liggen en bewaard zijn
+    # omdat er een bekendmaking over ging; die dragen herkomst
+    # "bekendmaking". Zonder deze zeef zou "woningen in de ring" stilletjes
+    # oplopen met panden die niet in de ring staan. Records van voor die datum
+    # hebben geen herkomst en horen bij de ring.
+    def _in_de_ring(r):
+        return (r.get("herkomst") or "focusbuurt") != "bekendmaking"
+
+    ring = {k: r for k, r in adressen.items() if _in_de_ring(r)}
+    om_signaal = {k: r for k, r in adressen.items() if not _in_de_ring(r)}
+    met_opp = sum(1 for r in ring.values() if r.get("oppervlakte"))
+    met_label = sum(1 for r in ring.values() if r.get("label"))
+    nog = sum(1 for r in ring.values()
               if not r.get("label") and not r.get("label_gezien"))
     ronde = d.get("laatste_ronde") or {}
     labels = ronde.get("labels") or {}
-    bewijs = (f"{len(adressen)} woningen in de ring, {met_opp} met "
+    bewijs = (f"{len(ring)} woningen in de ring, {met_opp} met "
               f"oppervlakte, {met_label} met label; nog {nog} adressen te "
               f"vragen")
+    if om_signaal:
+        bewijs += (f"; {len(om_signaal)} adressen buiten de ring bewaard "
+                   f"omdat er een bekendmaking over ging")
     if pijplijn:
         opg = (ronde.get("bag") or {}).get("opgeleverd") or 0
         bewijs += (f"; {len(pijplijn)} woningen onderweg, geregistreerd maar "
@@ -3482,6 +3560,7 @@ CONTROLES = [
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
     ("Logboek van de brief", controle_logboek),
     ("Overgeslagen stappen", controle_overgeslagen),
+    ("Dekking van onze signalen", controle_signaaldekking),
     ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
@@ -3779,6 +3858,52 @@ def proef():
         if controle_overgeslagen(_p)[0] != OK:
             fouten.append("een leeg bestand met overgeslagen stappen wordt "
                           "toch als mislukking gelezen")
+
+    # DE DEKKING VAN ONZE SIGNALEN, OP DRIE PANDEN. Een pand met een
+    # bekendmaking dat in de voorraad staat, een dat er niet staat, en een
+    # pand zonder bekendmaking dat niet mag meetellen in de noemer.
+    with _tf.TemporaryDirectory() as _m:
+        _g = _os.path.join(_m, "g.json")
+        _v = _os.path.join(_m, "v.json")
+        with open(_g, "w", encoding="utf-8") as _f:
+            json.dump({
+                "bergendalseweg11": {"adres": "Berg en Dalseweg 11",
+                                     "gebeurtenissen": [
+                                         {"soort": "bekendmaking",
+                                          "datum": "2026-10-06",
+                                          "tekst": "aanvraag"}]},
+                "bottelstraat12": {"adres": "Bottelstraat 12",
+                                   "gebeurtenissen": [
+                                       {"soort": "bekendmaking",
+                                        "datum": "2026-10-01",
+                                        "tekst": "aanvraag"}]},
+                "zonderzaak1": {"adres": "Zonder Zaak 1",
+                                "gebeurtenissen": [
+                                    {"soort": "te koop",
+                                     "datum": "2026-09-01",
+                                     "tekst": "te koop"}]},
+            }, _f)
+        with open(_v, "w", encoding="utf-8") as _f:
+            json.dump({"adressen": {
+                "v1": {"adres": "Bottelstraat 12", "sleutel": "bottelstraat12",
+                       "herkomst": "focusbuurt"}}}, _f)
+        _totaal, _gedekt = signaaldekking(_g, _v)
+        if (_totaal, _gedekt) != (2, 1):
+            fouten.append(f"de dekking van onze signalen wordt verkeerd "
+                          f"geteld: {_gedekt} van {_totaal} in plaats van "
+                          f"1 van 2")
+        # En een pand dat er alleen om een signaal staat, telt wel als gedekt:
+        # we weten er dan immers iets van.
+        with open(_v, "w", encoding="utf-8") as _f:
+            json.dump({"adressen": {
+                "v1": {"adres": "Bottelstraat 12", "sleutel": "bottelstraat12",
+                       "herkomst": "focusbuurt"},
+                "v2": {"adres": "Berg en Dalseweg 11",
+                       "sleutel": "bergendalseweg11",
+                       "herkomst": "bekendmaking"}}}, _f)
+        if signaaldekking(_g, _v) != (2, 2):
+            fouten.append(f"een pand dat om een signaal is bewaard telt niet "
+                          f"als gedekt: {signaaldekking(_g, _v)}")
 
     print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
