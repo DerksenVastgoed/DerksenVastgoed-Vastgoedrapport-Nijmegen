@@ -1,0 +1,52 @@
+# PARKEERNORMEN AUTO BIJ WONINGEN, Beleidsregels parkeren 2025, gemeente
+# Nijmegen, tabel 4. Norm per woning, bij kamerverhuur per kamer, inclusief
+# het bezoekersaandeel.
+#
+# BRON: Beleidsregels parkeren 2025, bestuurlijke informatie Nijmegen,
+# document d789f176-150a-4dd3-bcbf-b036016096a5. Afgelezen op 14-10-2026.
+#
+# WAAROM DIT BESTAND BESTAAT. splitsingstoets.py rekende met een enkele
+# constante PARKEERNORM = 0.70, met in de uitleg "de norm is 0,70 per woning
+# in de binnenstad" en die werd op elk pand toegepast. Van de 20.321 adressen
+# in onze voorraad liggen er 14.171 buiten de Binnenstad, dus daar was de
+# uitkomst te laag zonder dat iets dat liet zien. Nu kennen alle panden hun
+# zone (veld parkeerzone, uit MOB_PARKEERNORMERING), en hoort de norm daarbij.
+#
+# TWEE CELLEN ZIJN ONZEKER en staan met een vraagteken achter de waarde. In
+# het brondocument is die cel beschadigd of onleesbaar. Een onzekere waarde
+# wordt NIET gebruikt om een eis te berekenen: dan meldt de toets dat de norm
+# in de beleidsregels moet worden nagekeken. Een getal dat er goed uitziet en
+# uit een onleesbare cel komt, is het soort fout dat pas opvalt als iemand het
+# natelt.
+#
+# EN EEN TEGENSPRAAK DIE IK NIET OPLOS. De tabel noemt een bezoekersaandeel
+# van 0,20 per woning, maar de tekst van hoofdstuk 2 zegt dat het bezoek in de
+# binnenstad 0,00 is bij een norm van 0,70 waarvan 0,50 voor bewoners. Beide
+# staan in hetzelfde document. Het bezoekersaandeel staat daarom hieronder met
+# een vraagteken en wordt niet in een berekening gebruikt.
+#
+# DE GEBIEDSNAMEN HIERONDER ZIJN DIE VAN DE ZONEKAART en niet die van de
+# tabel, want de kaart bepaalt welke zone een pand heeft. De tabel schrijft
+# Centrum, Schil 1e ring, Schil 2e ring en Rest BBK; de kaart schrijft
+# Centrumgebied, 1e Schil, 2e Schil en Rest bebouwde kom. Dat die bij elkaar
+# horen is mijn gelijkstelling, niet die van de gemeente.
+#
+# woningtype | Binnenstad | Centrumgebied | 1e Schil | 2e Schil | Rest bebouwde kom | Buitengebied
+koop vrijstaand | 0,70 | 1,20 | 1,30 | 1,50 | 1,60 | 2,00
+koop twee onder een kap | 0,70 | 1,20 | 1,20 | 1,40 | 1,50 | 1,70
+koop rij | 0,70 | 1,20 | 1,20 | 1,30 | 1,30 | 1,50
+koop appartement duur | 0,70 | 1,20 | 1,20 | 1,30 | 1,40 | 1,60
+koop appartement betaalbaar | 0,70 | 0,80 | 1,00? | 1,00 | 1,20 | 1,20
+koop appartement goedkoop | 0,70 | 0,70 | 0,80 | 1,00 | 1,00 | 1,10
+huur eengezins vrije sector | 0,70 | 0,90 | 1,10 | 1,30 | 1,30 | 1,50
+huur eengezins sociaal | 0,70? | 0,70 | 0,80 | 1,00 | 1,00 | 1,10
+huur appartement betaalbaar | 0,50 | 0,50 | 0,60 | 0,80 | 0,80 | 1,00
+huur appartement duur | 0,70 | 0,80 | 1,00 | 1,20 | 1,20 | 1,50
+kamerverhuur per kamer | 0,50 | 0,50 | 0,50 | 0,50 | 0,50 | 0,50
+studentenwoning huur | 0,20 | 0,20 | 0,20 | 0,20 | 0,20 | 0,20
+kleine eenkamerwoning huur | 0,50 | 0,50 | 0,50 | 0,50 | 0,60 | 0,60
+zorgwonen per wooneenheid | 0,70 | 0,70 | 0,70 | 0,70 | 0,70 | -
+# Bezoekersaandeel binnen de norm, volgens de tabel. Met een vraagteken om de
+# tegenspraak hierboven.
+bezoek | 0,20? | 0,20? | 0,20? | 0,20? | 0,20? | 0,20?
+bezoek kamerverhuur | 0,05? | 0,05? | 0,05? | 0,05? | 0,05? | 0,05?

@@ -819,6 +819,31 @@ proef: parkeerzone:HET VELD NOEMT HET VLAK EN NIET EEN JA OF NEE
 soort: gegevens
 
 ---
+eis: De parkeernorm komt uit de zone en het woningtype, en zonder die twee
+  wordt er geen eis berekend.
+waarom: 14 oktober, 's avonds, en dit is waar de hele zoneketen voor was.
+  splitsingstoets.py rekende met PARKEERNORM = 0.70, een constante, met in de
+  uitleg erbij "norm voor koopappartement in de binnenstad". Die werd op elk
+  pand toegepast. Van de 20.321 adressen in onze voorraad liggen er 14.200
+  buiten de Binnenstad, en voor een betaalbaar huurappartement was 0,70 daar
+  in BEIDE richtingen fout: te hoog in de Binnenstad en het Centrumgebied
+  (0,50) en de 1e Schil (0,60), te laag in de 2e Schil en Rest bebouwde kom
+  (0,80) en het Buitengebied (1,00). De echte tabel staat nu in
+  parkeernormen.txt, afgelezen uit de Beleidsregels parkeren 2025, tabel 4:
+  zes zones en veertien woningtypen. Drie dingen weigert de code: rekenen met
+  een van de twee cellen die in het brondocument beschadigd zijn, zelf een
+  woningtype kiezen (in het Centrumgebied loopt de norm van 0,20 voor een
+  studentenwoning tot 1,20 voor een duur koopappartement, dus die keuze
+  bepaalt de uitkomst), en zeggen of de vrijstelling geldt, want het
+  gereguleerde gebied is uit de gepubliceerde lagen niet te bepalen. Zonder
+  norm noemt het rapport de bandbreedte in plaats van een getal. De module
+  had tot vandaag geen enkele proef, terwijl hij de parkeereis voor een
+  aankoopbeslissing uitrekent; die proef vond meteen een fout waarbij
+  rapport() omviel op een tekort dat None is.
+proef: parkeernorm:DE TWEE ONZEKERE CELLEN HETEN ONZEKER; splitsingstoets:EEN BESCHADIGDE CEL LEVERT GEEN EIS
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
