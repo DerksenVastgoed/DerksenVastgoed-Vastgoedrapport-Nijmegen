@@ -144,8 +144,10 @@ def bekende_verkoopdatums(pad=BEKENDE_VERKOOPDATUMS):
     geplakte lijst zagen, terwijl Funda 21 september geeft. Zeven dagen.
 
     Staat een adres in dit bestand, dan is de datum bekend en vervangt hij het
-    venster. Staat het er niet in, dan blijft het venster, want een vaag maar
-    eerlijk antwoord is beter dan een scherp antwoord dat niet klopt.
+    venster EN de datum van de gebeurtenis: de verkoopregel komt op 21
+    september te staan en de regel op onze kijkdag gaat eruit. Staat het er
+    niet in, dan blijft het venster, want een vaag maar eerlijk antwoord is
+    beter dan een scherp antwoord dat niet klopt.
     """
     uit = {}
     try:
@@ -218,8 +220,11 @@ def uit_verkopen(geschiedenis):
             {"adres": adres, "plaats": plaats, "prijs": prijs, "status": status,
              "datum": datum, "opp": v[6] or None, "bron": v[5] if len(v) > 5 else ""})
 
-    # De datums die wij weten, eenmaal ingelezen voor alle panden.
-    bekend_per_adres = bekende_verkoopdatums()
+    # De datums die wij weten, eenmaal ingelezen voor alle panden. Het pad gaat
+    # expliciet mee: een default-waarde wordt bij het inlezen van de module
+    # eenmaal vastgelegd, en dan wijst hij naar het oude bestand ook als de
+    # constante daarna verandert. De proef trapte daar als eerste in.
+    bekend_per_adres = bekende_verkoopdatums(BEKENDE_VERKOOPDATUMS)
 
     for sl, rijen in per_adres.items():
         rijen.sort(key=lambda r: r["datum"])
@@ -283,11 +288,29 @@ def uit_verkopen(geschiedenis):
                 # EEN DATUM DIE WIJ WETEN GAAT VOOR EEN VENSTER DAT WIJ
                 # AFLEIDEN. Zie bekende_verkoopdatums().
                 _bekend = bekend_per_adres.get((r.get("adres") or "").lower())
+                # EN DAN VERVALT ONZE EIGEN KIJKDAG HELEMAAL. Mark, 14 oktober:
+                # "Wanneer de exacte datum bekend is kan de 28 sept toch gewoon
+                # komen te vervallen?" Ja. Eerst zette ik de echte datum alleen
+                # in de TEKST en bleef de gebeurtenis op 2026-09-28 staan met
+                # bron "aanbod". Dan klopt de zin, maar blijft het pand buiten
+                # de bezitsduur- en prijsgroeiparen, want verkoopdatum_bekend()
+                # kijkt naar die bron. Een datum die in de tekst staat maar
+                # niet in het veld is geen datum die wij gebruiken.
+                datum_gebeurtenis = r["datum"]
+                bron_gebeurtenis = "aanbod"
                 if _bekend:
+                    # In de zin alleen WAAR hij vandaan komt, in het bronveld
+                    # de hele herkomst. Anders luidt de regel in de brief
+                    # "volgens Funda, verkoopdatum op de advertentie, gezien
+                    # door Mark op 14-10-2026", en dat is boekhouding midden in
+                    # een verhaal over een pand.
+                    _kort = (_bekend.get("bron") or "").split(",")[0].strip()
                     wanneer = (f" (verkocht op {_bekend['datum']}"
-                               + (f", volgens {_bekend['bron']}"
-                                  if _bekend.get("bron") else "")
+                               + (f", volgens {_kort}" if _kort else "")
                                + ")")
+                    datum_gebeurtenis = _bekend["datum"]
+                    bron_gebeurtenis = (_bekend.get("bron")
+                                        or BEKENDE_VERKOOPDATUMS)
                 elif zonder_datum and vorige_waarneming and vorige_waarneming < r["datum"]:
                     wanneer = (f" (verkocht tussen {vorige_waarneming} en "
                                f"{r['datum']}; {r['datum']} is de dag dat wij "
@@ -297,12 +320,26 @@ def uit_verkopen(geschiedenis):
                                f"dag dat wij het in een geplakte lijst zagen)")
                 else:
                     wanneer = ""
-                nieuw += voeg_toe(pand, r["datum"], "verkocht",
+                if datum_gebeurtenis != r["datum"]:
+                    # De verkoopregel die DEZE waarneming eerder opleverde
+                    # stond op onze kijkdag. Die vervalt nu, anders leest het
+                    # dossier als twee verkopen: een op 21 en een op 28
+                    # september. Alleen de gebeurtenis van deze waarneming
+                    # (zelfde dag, soort verkocht, bron "aanbod") gaat eruit.
+                    # Een echte eerdere verkoop van hetzelfde pand staat op een
+                    # andere dag en blijft dus staan.
+                    for _oud in [g for g in pand["gebeurtenissen"]
+                                 if g["datum"] == r["datum"]
+                                 and g["soort"] == "verkocht"
+                                 and g.get("bron") == "aanbod"]:
+                        pand["gebeurtenissen"].remove(_oud)
+                nieuw += voeg_toe(pand, datum_gebeurtenis, "verkocht",
                                   "verkocht, laatste vraagprijs "
                                   + f"€{r['prijs']:,}".replace(",", ".")
                                   + (f", {r['opp']} m2" if r["opp"] else "")
                                   + wanneer,
-                                  "aanbod", eenmalig_per_dag=("verkocht",))
+                                  bron_gebeurtenis,
+                                  eenmalig_per_dag=("verkocht",))
             elif r["status"].startswith(("onder bod", "onder optie",
                                          "onder voorbehoud",
                                          "verkocht onder voorbehoud",
@@ -1132,6 +1169,9 @@ def verkoopdatum_bekend(g):
     dragen alle dezelfde datum 2026-09-28. Met alleen echte verkoopdatums komen
     er 15 paren uit met een mediaan van 3,3 jaar.
     """
+    # De bron "aanbod" betekent: deze datum is onze kijkdag. Staat het adres in
+    # verkoopdatums.txt, dan draagt de gebeurtenis de echte datum en de echte
+    # bron, en komt hij hier dus wel door. Zie bekende_verkoopdatums().
     if g.get("bron") == "aanbod":
         return False
     # Drie formuleringen, alle drie "wij weten de verkoopdatum niet". De eerste
@@ -1722,6 +1762,72 @@ def proef():
     if bekende_verkoopdatums("bestaat-echt-niet.txt") != {}:
         fouten.append("een ontbrekend bestand met verkoopdatums geeft geen "
                       "lege uitkomst")
+
+    # EN DE KIJKDAG VERVALT OOK ECHT. Een datum die alleen in de tekst staat is
+    # geen datum die wij gebruiken: de gebeurtenis moet hem dragen, de oude
+    # regel op onze kijkdag moet weg, en verkoopdatum_bekend() moet hem
+    # meerekenen. Twee panden in deze proef: een met een bekende datum en een
+    # zonder, zodat het venster niet stilletjes verdwijnt voor de rest.
+    with _tf.TemporaryDirectory() as _m:
+        _vk = _os.path.join(_m, "verkopen.txt")
+        with open(_vk, "w", encoding="utf-8") as _f:
+            _f.write("Proefstraat 1 | Nijmegen | 400000 | te koop | "
+                     "2026-06-01 | model | 100\n"
+                     "Proefstraat 1 | Nijmegen | 400000 | verkocht | "
+                     "2026-09-28 | geplakte lijst | 100\n"
+                     "Proefstraat 2 | Nijmegen | 300000 | te koop | "
+                     "2026-06-01 | model | 80\n"
+                     "Proefstraat 2 | Nijmegen | 300000 | verkocht | "
+                     "2026-09-28 | geplakte lijst | 80\n")
+        _vd = _os.path.join(_m, "vd.txt")
+        with open(_vd, "w", encoding="utf-8") as _f:
+            _f.write("Proefstraat 1 | 2026-09-21 | Funda\n")
+        _oud_vk, _oud_vd = VERKOPEN, BEKENDE_VERKOOPDATUMS
+        # De geschiedenis begint NIET leeg. In pandgeschiedenis.json staat de
+        # verkoopregel op onze kijkdag er al, want die schreven wij voordat de
+        # echte datum bekend was. Een proef die vanaf niets begint ziet dat
+        # nooit: dan komt de nieuwe regel op 21 september en is er niets om op
+        # te ruimen. Daarom zetten we de oude regel er eerst in, precies zoals
+        # hij er vandaag staat.
+        _g = {"proefstraat1": {
+            "adres": "Proefstraat 1", "pand_id": None,
+            "gebeurtenissen": [
+                {"datum": "2026-09-28", "soort": "verkocht",
+                 "tekst": "verkocht, laatste vraagprijs €400.000, 100 m2 "
+                          "(verkoopdatum onbekend; 2026-09-28 is de dag dat "
+                          "wij het in een geplakte lijst zagen)",
+                 "bron": "aanbod"}]}}
+        try:
+            globals()["VERKOPEN"] = _vk
+            globals()["BEKENDE_VERKOOPDATUMS"] = _vd
+            # Twee rondes: de tweede mag niets verdubbelen.
+            uit_verkopen(_g)
+            uit_verkopen(_g)
+        finally:
+            globals()["VERKOPEN"] = _oud_vk
+            globals()["BEKENDE_VERKOOPDATUMS"] = _oud_vd
+        _met = [g for g in _g.get("proefstraat1", {}).get("gebeurtenissen", [])
+                if g["soort"] == "verkocht"]
+        _zonder = [g for g in _g.get("proefstraat2", {}).get("gebeurtenissen", [])
+                   if g["soort"] == "verkocht"]
+        if len(_met) != 1:
+            fouten.append(f"een bekende verkoopdatum levert {len(_met)} "
+                          f"verkoopregels op in plaats van 1; dan leest het "
+                          f"dossier als twee verkopen")
+        elif _met[0]["datum"] != "2026-09-21":
+            fouten.append(f"de verkoopgebeurtenis staat op "
+                          f"{_met[0]['datum']} en niet op de bekende datum "
+                          f"2026-09-21; onze kijkdag vervalt dus niet")
+        elif not verkoopdatum_bekend(_met[0]):
+            fouten.append("een verkoop met een bekende datum wordt niet als "
+                          "echte verkoopdatum meegerekend; dan blijft het "
+                          "pand buiten de bezitsduur- en prijsgroeiparen")
+        if len(_zonder) != 1 or _zonder[0]["datum"] != "2026-09-28":
+            fouten.append(f"zonder bekende datum hoort de kijkdag te blijven "
+                          f"staan, maar er staat {_zonder}")
+        elif verkoopdatum_bekend(_zonder[0]):
+            fouten.append("een verkoop zonder bekende datum wordt toch als "
+                          "echte verkoopdatum meegerekend")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
