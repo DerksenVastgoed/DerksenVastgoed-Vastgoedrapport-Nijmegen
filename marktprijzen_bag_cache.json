@@ -74341,6 +74341,19 @@
     "oppervlakte": 110,
     "gebruiksdoelen": [
       "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "Malvert|Nijmegen": {
+    "oppervlakte": 9,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Hatertseweg|Nijmegen": {
+    "oppervlakte": 50,
+    "gebruiksdoelen": [
+      "woonfunctie"
     ]
   }
 }

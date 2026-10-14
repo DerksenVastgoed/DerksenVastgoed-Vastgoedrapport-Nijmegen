@@ -80,15 +80,45 @@
   },
   "groesbeekseweg118": {
    "eerst": "2026-10-13",
-   "laatst": "2026-10-13",
-   "keer": 1,
+   "laatst": "2026-10-14",
+   "keer": 2,
    "omschrijving": "Groesbeekseweg 118"
   },
   "bergendalseweg1111a": {
    "eerst": "2026-10-13",
-   "laatst": "2026-10-13",
-   "keer": 1,
+   "laatst": "2026-10-14",
+   "keer": 2,
    "omschrijving": "Berg en Dalseweg 11-11A"
+  },
+  "beijensstraat18": {
+   "eerst": "2026-10-14",
+   "laatst": "2026-10-14",
+   "keer": 1,
+   "omschrijving": "Beijensstraat 18"
+  },
+  "zwaluwstraat175": {
+   "eerst": "2026-10-14",
+   "laatst": "2026-10-14",
+   "keer": 1,
+   "omschrijving": "Zwaluwstraat 175"
+  },
+  "groesbeekseweg85": {
+   "eerst": "2026-10-14",
+   "laatst": "2026-10-14",
+   "keer": 1,
+   "omschrijving": "Groesbeekseweg 85"
+  },
+  "pontanusstraat19": {
+   "eerst": "2026-10-14",
+   "laatst": "2026-10-14",
+   "keer": 1,
+   "omschrijving": "Pontanusstraat 19"
+  },
+  "vondelstraat63": {
+   "eerst": "2026-10-14",
+   "laatst": "2026-10-14",
+   "keer": 1,
+   "omschrijving": "Vondelstraat 63"
   }
  }
 }

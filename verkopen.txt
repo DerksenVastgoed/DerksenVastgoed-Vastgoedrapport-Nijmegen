@@ -1050,3 +1050,7 @@ Kelfkensbos | Nijmegen | 733 | te huur gemeubileerd | 2026-10-13 | pararius | 45
 Berg en Dalseweg | Nijmegen | 1761 | te huur gemeubileerd | 2026-10-13 | pararius | 51 | 6522BC
 Berg en Dalseweg | Nijmegen | 1761 | te huur kamer | 2026-10-13 | kamernet | 51 | 
 St. Stevenskerkhof | Nijmegen | 470 | te huur kamer | 2026-10-13 | kamernet-incl | 110 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 14-10-2026
+Malvert | Nijmegen | 250 | te huur kamer | 2026-10-13 | kamernet | 9 | 
+Hatertseweg | Nijmegen | 1400 | te huur kamer | 2026-10-13 | kamernet | 50 | 

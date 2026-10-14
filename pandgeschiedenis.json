@@ -786,6 +786,50 @@
     ]
    ]
   },
+  "0268100000001467": {
+   "bag_eenheden": [
+    [
+     "van Nispenstraat 122",
+     150
+    ],
+    [
+     "van Nispenstraat 124",
+     58
+    ],
+    [
+     "van Nispenstraat 124",
+     157
+    ],
+    [
+     "van Nispenstraat 124A",
+     66
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "van Nispenstraat 122",
+     150
+    ],
+    [
+     "van Nispenstraat 124",
+     58
+    ],
+    [
+     "van Nispenstraat 124",
+     157
+    ],
+    [
+     "van Nispenstraat 124A",
+     66
+    ]
+   ],
+   "labels": {
+    "van Nispenstraat 122": "D",
+    "van Nispenstraat 124": "A",
+    "van Nispenstraat 124A": "A"
+   }
+  },
   "0268100000001503": {
    "bag_eenheden": [
     [
@@ -1278,6 +1322,57 @@
    ],
    "labels": {
     "van Somerenstraat 6": "C"
+   }
+  },
+  "0268100000001661": {
+   "bag_eenheden": [
+    [
+     "Prins Bernhardstraat 49",
+     88
+    ],
+    [
+     "Prins Bernhardstraat 51",
+     109
+    ],
+    [
+     "van Somerenstraat 2",
+     29
+    ],
+    [
+     "van Somerenstraat 2",
+     121
+    ],
+    [
+     "van Somerenstraat 2A",
+     30
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Prins Bernhardstraat 49",
+     88
+    ],
+    [
+     "Prins Bernhardstraat 51",
+     109
+    ],
+    [
+     "van Somerenstraat 2",
+     29
+    ],
+    [
+     "van Somerenstraat 2",
+     121
+    ],
+    [
+     "van Somerenstraat 2A",
+     30
+    ]
+   ],
+   "labels": {
+    "van Somerenstraat 2": "C",
+    "van Somerenstraat 2A": "C"
    }
   },
   "0268100000001666": {
@@ -3520,6 +3615,48 @@
     "Groesbeekseweg 103D": "G"
    }
   },
+  "0268100000002380": {
+   "bag_eenheden": [
+    [
+     "Fagelstraat 46",
+     79
+    ],
+    [
+     "Fagelstraat 48",
+     67
+    ],
+    [
+     "Fagelstraat 48",
+     250
+    ],
+    [
+     "Fagelstraat 48A",
+     62
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Fagelstraat 46",
+     79
+    ],
+    [
+     "Fagelstraat 48",
+     67
+    ],
+    [
+     "Fagelstraat 48",
+     250
+    ],
+    [
+     "Fagelstraat 48A",
+     62
+    ]
+   ],
+   "labels": {
+    "Fagelstraat 46": "D"
+   }
+  },
   "0268100000002386": {
    "bag_eenheden": [
     [
@@ -3747,6 +3884,33 @@
     "Daalsehof 7": "C",
     "Daalseweg 105": "B"
    }
+  },
+  "0268100000002496": {
+   "bag_eenheden": [
+    [
+     "Dominicanenstraat 92",
+     54
+    ],
+    [
+     "Dominicanenstraat 92",
+     113
+    ],
+    [
+     "Dominicanenstraat 92A",
+     33
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Dominicanenstraat 92",
+     54
+    ],
+    [
+     "Dominicanenstraat 92A",
+     33
+    ]
+   ]
   },
   "0268100000002498": {
    "bag_eenheden": [
@@ -7052,6 +7216,45 @@
     ]
    ]
   },
+  "0268100000002979": {
+   "bag_eenheden": [
+    [
+     "Tweede Walstraat 100",
+     129
+    ],
+    [
+     "Tweede Walstraat 102",
+     137
+    ],
+    [
+     "Tweede Walstraat 102",
+     423
+    ],
+    [
+     "Tweede Walstraat 94A",
+     45
+    ],
+    [
+     "Tweede Walstraat 96A",
+     48
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Tweede Walstraat 100",
+     129
+    ],
+    [
+     "Tweede Walstraat 94A",
+     45
+    ],
+    [
+     "Tweede Walstraat 96A",
+     48
+    ]
+   ]
+  },
   "0268100000002983": {
    "bag_eenheden": [
     [
@@ -8637,6 +8840,36 @@
     "In de Betouwstraat 9G": "A"
    }
   },
+  "0268100000003782": {
+   "bag_eenheden": [
+    [
+     "Eerste Walstraat 17A",
+     60
+    ],
+    [
+     "In de Betouwstraat 20",
+     117
+    ],
+    [
+     "In de Betouwstraat 22",
+     124
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Eerste Walstraat 17A",
+     60
+    ],
+    [
+     "In de Betouwstraat 22",
+     124
+    ]
+   ],
+   "labels": {
+    "Eerste Walstraat 17A": "B"
+   }
+  },
   "0268100000003787": {
    "bag_eenheden": [
     [
@@ -10155,6 +10388,40 @@
     "Eerste Walstraat 2": "D",
     "Eerste Walstraat 2A": "E",
     "Eerste Walstraat 2B": "G"
+   }
+  },
+  "0268100000004271": {
+   "bag_eenheden": [
+    [
+     "Eerste Walstraat 28",
+     33
+    ],
+    [
+     "Eerste Walstraat 28",
+     69
+    ],
+    [
+     "Eerste Walstraat 28A",
+     32
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Eerste Walstraat 28",
+     33
+    ],
+    [
+     "Eerste Walstraat 28",
+     69
+    ],
+    [
+     "Eerste Walstraat 28A",
+     32
+    ]
+   ],
+   "labels": {
+    "Eerste Walstraat 28": "F"
    }
   },
   "0268100000004278": {
@@ -22032,6 +22299,29 @@
     "Bronsgeeststraat 58": "E"
    }
   },
+  "0268100000011016": {
+   "bag_eenheden": [
+    [
+     "Biezenstraat 168",
+     80
+    ],
+    [
+     "Biezenstraat 168",
+     136
+    ],
+    [
+     "Biezenstraat 168A",
+     126
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Biezenstraat 168",
+     80
+    ]
+   ]
+  },
   "0268100000011020": {
    "bag_eenheden": [
     [
@@ -30699,6 +30989,45 @@
     "Marialaan 50": "C"
    }
   },
+  "0268100000018842": {
+   "bag_eenheden": [
+    [
+     "Marialaan 40",
+     52
+    ],
+    [
+     "Marialaan 40",
+     117
+    ],
+    [
+     "Marialaan 40A",
+     52
+    ],
+    [
+     "Marialaan 42",
+     91
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Marialaan 40",
+     52
+    ],
+    [
+     "Marialaan 40",
+     117
+    ],
+    [
+     "Marialaan 40A",
+     52
+    ],
+    [
+     "Marialaan 42",
+     91
+    ]
+   ]
+  },
   "0268100000018898": {
    "bag_eenheden": [
     [
@@ -35682,6 +36011,58 @@
      68
     ]
    ]
+  },
+  "0268100000020903": {
+   "bag_eenheden": [
+    [
+     "Jan de Wittstraat 37",
+     38
+    ],
+    [
+     "Jan de Wittstraat 37",
+     44
+    ],
+    [
+     "Jan de Wittstraat 39",
+     52
+    ],
+    [
+     "Jan de Wittstraat 39A",
+     49
+    ],
+    [
+     "Jan de Wittstraat 39B",
+     40
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Jan de Wittstraat 37",
+     38
+    ],
+    [
+     "Jan de Wittstraat 37",
+     44
+    ],
+    [
+     "Jan de Wittstraat 39",
+     52
+    ],
+    [
+     "Jan de Wittstraat 39A",
+     49
+    ],
+    [
+     "Jan de Wittstraat 39B",
+     40
+    ]
+   ],
+   "labels": {
+    "Jan de Wittstraat 37": "D",
+    "Jan de Wittstraat 39": "D",
+    "Jan de Wittstraat 39A": "G"
+   }
   },
   "0268100000020906": {
    "bag_eenheden": [
@@ -40671,6 +41052,49 @@
    ],
    "labels": {
     "Oude Haven 52": "G"
+   }
+  },
+  "0268100000023879": {
+   "bag_eenheden": [
+    [
+     "Tooropstraat 36",
+     80
+    ],
+    [
+     "Tooropstraat 38",
+     63
+    ],
+    [
+     "Tooropstraat 38",
+     201
+    ],
+    [
+     "Tooropstraat 38A",
+     54
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Tooropstraat 36",
+     80
+    ],
+    [
+     "Tooropstraat 38",
+     63
+    ],
+    [
+     "Tooropstraat 38",
+     201
+    ],
+    [
+     "Tooropstraat 38A",
+     54
+    ]
+   ],
+   "labels": {
+    "Tooropstraat 36": "A",
+    "Tooropstraat 38": "A"
    }
   },
   "0268100000023934": {
@@ -56517,6 +56941,50 @@
     "Ridderstraat 88": "C"
    }
   },
+  "0268100000045414": {
+   "bag_eenheden": [
+    [
+     "Burchtstraat 59",
+     119
+    ],
+    [
+     "Burchtstraat 59",
+     226
+    ],
+    [
+     "Stockumstraat 10A",
+     65
+    ],
+    [
+     "Stockumstraat 12",
+     132
+    ],
+    [
+     "Stockumstraat 14",
+     186
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Stockumstraat 10A",
+     65
+    ],
+    [
+     "Stockumstraat 12",
+     132
+    ],
+    [
+     "Stockumstraat 14",
+     186
+    ]
+   ],
+   "labels": {
+    "Burchtstraat 59": "G",
+    "Stockumstraat 12": "G",
+    "Stockumstraat 14": "E"
+   }
+  },
   "0268100000045417": {
    "bag_eenheden": [
     [
@@ -59357,6 +59825,68 @@
    ],
    "labels": {
     "Hertogstraat 120": "G"
+   }
+  },
+  "0268100000048938": {
+   "bag_eenheden": [
+    [
+     "Mariënburgsestraat 49",
+     202
+    ],
+    [
+     "Mariënburgsestraat 51",
+     92
+    ],
+    [
+     "Mariënburgsestraat 53",
+     85
+    ],
+    [
+     "Mariënburgsestraat 53",
+     130
+    ],
+    [
+     "Mariënburgsestraat 53A",
+     62
+    ],
+    [
+     "Wintersoord 2",
+     202
+    ],
+    [
+     "Wintersoord 4",
+     127
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Mariënburgsestraat 51",
+     92
+    ],
+    [
+     "Mariënburgsestraat 53",
+     85
+    ],
+    [
+     "Mariënburgsestraat 53",
+     130
+    ],
+    [
+     "Mariënburgsestraat 53A",
+     62
+    ],
+    [
+     "Wintersoord 4",
+     127
+    ]
+   ],
+   "labels": {
+    "Mariënburgsestraat 49": "D",
+    "Mariënburgsestraat 51": "D",
+    "Mariënburgsestraat 53": "G",
+    "Wintersoord 2": "D",
+    "Wintersoord 4": "D"
    }
   },
   "0268100000048942": {
@@ -66323,9 +66853,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Arend Noorduijnstraat 34 is nu E"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1923, dat zelf al in gebruik is, mediaan 35 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000018391"
+  "pand_id": "0268100000018391",
+  "transformatie_gemeld": 2
  },
  "arksteestraat10": {
   "adres": "Arksteestraat 10",
@@ -67994,9 +68531,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Beijensstraat 55 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1905, dat zelf al in gebruik is, mediaan 49 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000002239"
+  "pand_id": "0268100000002239",
+  "transformatie_gemeld": 2
  },
  "beijensstraat66": {
   "adres": "Beijensstraat 66",
@@ -68999,9 +69543,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Biezenstraat 110 is nu G"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1902, dat zelf al in gebruik is, mediaan 106 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000009594"
+  "pand_id": "0268100000009594",
+  "transformatie_gemeld": 2
  },
  "biezenstraat138": {
   "adres": "Biezenstraat 138",
@@ -69026,6 +69577,19 @@
    }
   ],
   "pand_id": "0268100000010935"
+ },
+ "biezenstraat168": {
+  "adres": "Biezenstraat 168",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1885, dat zelf al in gebruik is, mediaan 80 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000011016",
+  "transformatie_gemeld": 1
  },
  "biezenstraat20": {
   "adres": "Biezenstraat 20",
@@ -79252,6 +79816,19 @@
   ],
   "pand_id": "0268100000001016"
  },
+ "dominicanenstraat92": {
+  "adres": "Dominicanenstraat 92",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1900, dat zelf al in gebruik is, mediaan 44 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002496",
+  "transformatie_gemeld": 2
+ },
  "dommervanpoldersveldtweg112": {
   "adres": "Dommer van Poldersveldtweg 112",
   "bag_pogingen": 3,
@@ -80991,6 +81568,25 @@
   ],
   "pand_id": null
  },
+ "eerstewalstraat17a": {
+  "adres": "Eerste Walstraat 17A",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-07-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 17A is B, geregistreerd 2026-07-09"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1883, dat zelf al in gebruik is, mediaan 60 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003782",
+  "transformatie_gemeld": 1
+ },
  "eerstewalstraat18": {
   "adres": "Eerste Walstraat 18",
   "gebeurtenissen": [
@@ -81062,6 +81658,25 @@
    }
   ],
   "pand_id": "0268100000003787"
+ },
+ "eerstewalstraat28": {
+  "adres": "Eerste Walstraat 28",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2021-11-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Eerste Walstraat 28 is F, geregistreerd 2021-11-19"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1936, dat zelf al in gebruik is, mediaan 32 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000004271",
+  "transformatie_gemeld": 2
  },
  "eerstewalstraat2a1": {
   "adres": "Eerste Walstraat 2A-1",
@@ -82340,6 +82955,25 @@
   ],
   "pand_id": "0268100000002369"
  },
+ "fagelstraat48": {
+  "adres": "Fagelstraat 48",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-01-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 46 is D, geregistreerd 2025-01-27"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1910, dat zelf al in gebruik is, mediaan 64 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002380",
+  "transformatie_gemeld": 2
+ },
  "fagelstraat6": {
   "adres": "Fagelstraat 6",
   "gebeurtenissen": [
@@ -82402,9 +83036,16 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Fagelstraat 88A is nu A+"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1911, dat zelf al in gebruik is, mediaan 48 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000002067"
+  "pand_id": "0268100000002067",
+  "transformatie_gemeld": 2
  },
  "fagelstraat88": {
   "adres": "Fagelstraat 88",
@@ -82729,9 +83370,16 @@
     "datum": "2025-06-26",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 128 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000030484"
+  "pand_id": "0268100000030484",
+  "transformatie_gemeld": 2
  },
  "fransestraat38": {
   "adres": "Fransestraat 38",
@@ -87885,9 +88533,16 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Groesbeeksedwarsweg 133 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 65 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000001854"
+  "pand_id": "0268100000001854",
+  "transformatie_gemeld": 2
  },
  "groesbeeksedwarsweg143": {
   "adres": "Groesbeeksedwarsweg 143",
@@ -89559,6 +90214,20 @@
    }
   ],
   "pand_id": "0268100000016560"
+ },
+ "hatertseweg": {
+  "adres": "Hatertseweg",
+  "bag_gezien": "2026-10-14",
+  "bag_zonder_id": "2026-10-14",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-13",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.400 per maand, 50 m2"
+   }
+  ],
+  "pand_id": null
  },
  "hatertseweg134": {
   "adres": "Hatertseweg 134",
@@ -91792,9 +92461,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Heydenrijckstraat 38 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1953, dat zelf al in gebruik is, mediaan 46 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000001158"
+  "pand_id": "0268100000001158",
+  "transformatie_gemeld": 2
  },
  "heyendaalseweg": {
   "adres": "Heyendaalseweg",
@@ -93308,6 +93984,37 @@
    }
   ],
   "pand_id": "0268100000021801"
+ },
+ "jandewittstraat37": {
+  "adres": "Jan de Wittstraat 37",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 37 is D, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 39 is D, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 39A is G, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1905, dat zelf al in gebruik is, mediaan 42 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000020903",
+  "transformatie_gemeld": 2
  },
  "jandewittstraat4": {
   "adres": "Jan de Wittstraat 4",
@@ -102003,6 +102710,20 @@
   ],
   "pand_id": "0268100000015656"
  },
+ "malvert": {
+  "adres": "Malvert",
+  "bag_gezien": "2026-10-14",
+  "bag_zonder_id": "2026-10-14",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-13",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €250 per maand, 9 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "malvert5004": {
   "adres": "Malvert 5004",
   "gebeurtenissen": [
@@ -102796,6 +103517,19 @@
    }
   ],
   "pand_id": "0268100000022283"
+ },
+ "marialaan40": {
+  "adres": "Marialaan 40",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1910, dat zelf al in gebruik is, mediaan 52 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000018842",
+  "transformatie_gemeld": 2
  },
  "marialaan50": {
   "adres": "Marialaan 50",
@@ -104398,6 +105132,49 @@
    }
   ],
   "pand_id": "0268100000008084"
+ },
+ "marienburgsestraat53": {
+  "adres": "Mariënburgsestraat 53",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburgsestraat 49 is D, geregistreerd 2022-12-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburgsestraat 51 is D, geregistreerd 2022-12-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburgsestraat 53 is G, geregistreerd 2022-12-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Wintersoord 2 is D, geregistreerd 2022-12-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Wintersoord 4 is D, geregistreerd 2022-12-29"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1955, dat zelf al in gebruik is, mediaan 74 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000048938",
+  "transformatie_gemeld": 2
  },
  "marterstraat6": {
   "adres": "Marterstraat 6",
@@ -114740,9 +115517,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Pontanusstraat 44 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1908, dat zelf al in gebruik is, mediaan 76 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000029587"
+  "pand_id": "0268100000029587",
+  "transformatie_gemeld": 2
  },
  "pontanusstraat50": {
   "adres": "Pontanusstraat 50",
@@ -114812,9 +115596,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Pontanusstraat 9 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1897, dat zelf al in gebruik is, mediaan 62 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000029372"
+  "pand_id": "0268100000029372",
+  "transformatie_gemeld": 2
  },
  "postweg181": {
   "adres": "Postweg 181",
@@ -124489,6 +125280,37 @@
   ],
   "pand_id": null
  },
+ "stockumstraat10a": {
+  "adres": "Stockumstraat 10A",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-10-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 59 is G, geregistreerd 2022-10-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-07-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Stockumstraat 12 is G, geregistreerd 2025-07-30"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-04-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Stockumstraat 14 is E, geregistreerd 2026-04-01"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1873, dat zelf al in gebruik is, mediaan 65 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000045414",
+  "transformatie_gemeld": 1
+ },
  "stockumstraat17": {
   "adres": "Stockumstraat 17",
   "gebeurtenissen": [
@@ -126698,6 +127520,31 @@
   ],
   "pand_id": "0268100000003808"
  },
+ "tooropstraat38": {
+  "adres": "Tooropstraat 38",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2021-10-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tooropstraat 36 is A, geregistreerd 2021-10-11"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2021-10-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tooropstraat 38 is A, geregistreerd 2021-10-11"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1928, dat zelf al in gebruik is, mediaan 58 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000023879",
+  "transformatie_gemeld": 2
+ },
  "tooropstraat40": {
   "adres": "Tooropstraat 40",
   "gebeurtenissen": [
@@ -128630,6 +129477,19 @@
   ],
   "pand_id": "0268100000002704"
  },
+ "tweedewalstraat94a": {
+  "adres": "Tweede Walstraat 94A",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1899, dat zelf al in gebruik is, mediaan 46 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002979",
+  "transformatie_gemeld": 2
+ },
  "tweedewalstraat94c": {
   "adres": "Tweede Walstraat 94C",
   "gebeurtenissen": [
@@ -129643,9 +130503,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Goorstraat 87 is nu E"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1909, dat zelf al in gebruik is, mediaan 108 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000021163"
+  "pand_id": "0268100000021163",
+  "transformatie_gemeld": 2
  },
  "vangoorstraat91": {
   "adres": "van Goorstraat 91",
@@ -130304,6 +131171,37 @@
    }
   ],
   "pand_id": "0268100000001246"
+ },
+ "vannispenstraat124": {
+  "adres": "van Nispenstraat 124",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-08-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Nispenstraat 122 is D, geregistreerd 2024-08-24"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Nispenstraat 124 is A, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Nispenstraat 124A is A, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1905, dat zelf al in gebruik is, mediaan 62 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000001467",
+  "transformatie_gemeld": 2
  },
  "vannispenstraat186": {
   "adres": "Van Nispenstraat 186",
@@ -131693,6 +132591,31 @@
    }
   ],
   "pand_id": "0268100000001815"
+ },
+ "vansomerenstraat2": {
+  "adres": "van Somerenstraat 2",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Somerenstraat 2 is C, geregistreerd 2026-10-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-10-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van van Somerenstraat 2A is C, geregistreerd 2026-10-01"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 30 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000001661",
+  "transformatie_gemeld": 2
  },
  "vansomerenstraat40": {
   "adres": "van Somerenstraat 40",
@@ -139151,9 +140074,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Voorstadslaan 72 is nu A"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1925, dat zelf al in gebruik is, mediaan 56 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000022055"
+  "pand_id": "0268100000022055",
+  "transformatie_gemeld": 2
  },
  "voorstadslaan70": {
   "adres": "Voorstadslaan 70",
@@ -141677,9 +142607,16 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Waalkade 59 is nu A+"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1989, dat zelf al in gebruik is, mediaan 68 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000006553"
+  "pand_id": "0268100000006553",
+  "transformatie_gemeld": 2
  },
  "waalkade68": {
   "adres": "de Waalkade 68",

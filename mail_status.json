@@ -1,9 +1,9 @@
 {
- "datum": "2026-10-13",
+ "datum": "2026-10-14",
  "bronnen": {
   "regulier": {
-   "mails": 3,
-   "objecten": 4,
+   "mails": 2,
+   "objecten": 1,
    "overgeslagen": 2,
    "redenen": [
     "van Spaenstraat 20 (geen prijs gevonden)",
@@ -11,50 +11,46 @@
    ]
   },
   "huislijn": {
-   "mails": 4,
-   "objecten": 9,
+   "mails": 3,
+   "objecten": 3,
    "overgeslagen": 0,
    "redenen": []
   },
-  "pararius": {
-   "mails": 2,
-   "objecten": 4,
-   "overgeslagen": 3,
-   "redenen": [
-    "van Trieststraat (gemeubileerd, apart bewaard)",
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
-    "Kelfkensbos (gemeubileerd, apart bewaard)"
-   ]
-  },
   "kamernet": {
-   "mails": 8,
-   "objecten": 5,
+   "mails": 9,
+   "objecten": 6,
    "overgeslagen": 3,
    "redenen": [
     "Dahliastraat, Malden: buiten Nijmegen",
     "Homberg: €53 per maand is niet aannemelijk",
     "Homberg, Wijchen: buiten Nijmegen"
    ]
+  },
+  "pararius": {
+   "mails": 1,
+   "objecten": 2,
+   "overgeslagen": 2,
+   "redenen": [
+    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
+    "Kelfkensbos (gemeubileerd, apart bewaard)"
+   ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 19,
-  "andere_status": 2,
-  "voorbeelden": [
-   "Berg en Dalseweg -> te huur gemeubileerd",
-   "Berg en Dalseweg -> te huur kamer"
-  ]
+  "zelfde_status": 10,
+  "andere_status": 0,
+  "voorbeelden": []
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 2,
   "funda.com": 0,
-  "pararius.nl": 2,
+  "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 8,
+  "kamernet.nl": 9,
   "vendr.nl": 0,
-  "huislijn.nl": 4,
+  "huislijn.nl": 3,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0

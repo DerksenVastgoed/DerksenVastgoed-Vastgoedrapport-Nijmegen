@@ -6,7 +6,7 @@
   "Achtergronddekking": "OK",
   "Adressen met meerdere maten": "LET OP",
   "Attenderingen": "LET OP",
-  "Bekende onwaarheden in de brief": "FOUT",
+  "Bekende onwaarheden in de brief": "OK",
   "Bekendmakingen-archief": "OK",
   "Beleid haalt de mail": "OK",
   "Bouwkostenindex": "OK",
@@ -58,7 +58,7 @@
   "Versies": "LET OP",
   "Voet onder de brief": "OK",
   "Voltooide splitsingen": "OK",
-  "Voorraad van de ring": "LET OP",
+  "Voorraad van de ring": "OK",
   "VvE-bijdragen": "OK",
   "WOZ zonder pand": "OK",
   "WOZ-bestand": "OK",
@@ -66,5 +66,5 @@
   "Woningen in bestaande panden": "OK",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-13"
+ "datum": "2026-10-14"
 }

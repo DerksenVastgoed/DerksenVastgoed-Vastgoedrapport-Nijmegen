@@ -39,6 +39,14 @@
   "omweg": 1.85,
   "soort": "bus"
  },
+ "51.80687,5.80637": {
+  "geschat": false,
+  "hemelsbreed": 238,
+  "meters": 628,
+  "naam": "Winkelcentrum Malvert",
+  "omweg": 2.64,
+  "soort": "bus"
+ },
  "51.80730,5.83699": {
   "geschat": false,
   "hemelsbreed": 41,
@@ -157,6 +165,14 @@
   "meters": 551,
   "naam": "HAN",
   "omweg": 1.96,
+  "soort": "bus"
+ },
+ "51.82704,5.85602": {
+  "geschat": false,
+  "hemelsbreed": 138,
+  "meters": 241,
+  "naam": "Sint Annamolen",
+  "omweg": 1.75,
   "soort": "bus"
  },
  "51.82724,5.85673": {

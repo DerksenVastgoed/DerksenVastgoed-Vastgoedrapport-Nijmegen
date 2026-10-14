@@ -4,7 +4,7 @@
   "titel": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474199.html",
   "strategie": "splitsen",
-  "duiding": "Verbouwing van de eerste verdieping tot zelfstandig appartement van 92 m² onttrekt een unit aan de bestaande woning en vergroot de voorraad kleine eenheden.",
+  "duiding": "Verbouwen van de eerste verdieping tot zelfstandig appartement voegt een losse verhuureenheid toe aan de kleinschalige voorraad.",
   "feiten": {
    "energielabel": "A+ (2026)",
    "oppervlakte_m2": 92
@@ -18,7 +18,7 @@
   "titel": "Intrekking verzoek voor het aanvragen van twee huisnummers, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474726.html",
   "strategie": "splitsen",
-  "duiding": "Intrekking van het verzoek om twee huisnummers betekent dat de beoogde splitsing van het pand van 116 m² voorlopig niet doorgaat.",
+  "duiding": "Intrekking van het verzoek om twee huisnummers betekent dat de beoogde splitsing in twee eenheden niet doorgaat.",
   "feiten": {
    "energielabel": "F (2017)",
    "label_alleen_dit_adres": true,
@@ -33,7 +33,7 @@
   "titel": "Besluit voor het plaatsen van een entreekozijn in de voorgevel aan Molenstraat 43, 6511HA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-476232.html",
   "strategie": "geen",
-  "duiding": "Plaatsen van een nieuw entreekozijn in de voorgevel is een esthetische ingreep zonder invloed op verhuur- of splitsingsmogelijkheden.",
+  "duiding": "Plaatsen van een entreekozijn in de voorgevel is een gevelwijziging zonder effect op verhuur- of splitsingsmogelijkheden.",
   "feiten": {
    "oppervlakte_m2": 173
   },
@@ -45,8 +45,8 @@
   "datum": "2026-10-13",
   "titel": "Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html",
-  "strategie": "verduurzaming",
-  "duiding": "Constructieve wijziging van de achtergevel bij een pand van 299 m² met label D wijst op een gevelrenovatie die bij mutatie kan bijdragen aan labelverbetering.",
+  "strategie": "geen",
+  "duiding": "Constructief wijzigen van de achtergevel betreft een bouwkundige ingreep zonder aantoonbaar effect op verhuur- of splitsingsstrategie.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 299
@@ -60,7 +60,7 @@
   "titel": "Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html",
   "strategie": "verduurzaming",
-  "duiding": "Nieuwe kozijnen in de voorgevel samen met een interne doorbraak duiden op een gevelrenovatie die het energielabel E uit 2017 kan verbeteren.",
+  "duiding": "Wijzigen van kozijnen in de voorgevel kan het energielabel verbeteren, relevant voor WWS-punten bij toekomstige verhuur.",
   "feiten": {
    "energielabel": "E (2017)",
    "oppervlakte_m2": 250
@@ -74,7 +74,7 @@
   "titel": "Melding slopen van gedeelte van woning t.b.v. wijzigen constructie/verduurzaming binnen/achtergevel, aan Fagelstraat 54, 6524CG Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-475246.html",
   "strategie": "verduurzaming",
-  "duiding": "Sloop van een deel van de woning expliciet ten behoeve van verduurzaming laat zien dat labelverbetering hier vergunningtechnisch haalbaar is.",
+  "duiding": "Sloop ten behoeve van constructieve wijziging en verduurzaming van de achtergevel wijst op ingrepen die het energielabel kunnen verbeteren.",
   "feiten": {
    "oppervlakte_m2": 93
   },
@@ -86,8 +86,8 @@
   "datum": "2026-10-13",
   "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html",
-  "strategie": "verduurzaming",
-  "duiding": "Aanvraag voor het aanpassen van de pui bij een pand met label A uit 2018 wijst op een gevelingreep die bij uitvoering verdere labelverbetering kan opleveren.",
+  "strategie": "geen",
+  "duiding": "Aanpassen van de pui is een gevelwijziging zonder duidelijk effect op de verhuur- of splitsingswaarde.",
   "feiten": {
    "energielabel": "A (2018)",
    "oppervlakte_m2": 105
