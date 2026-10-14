@@ -437,6 +437,68 @@ def pijp_zonder_vangnet(paden=None):
     return fouten
 
 
+def schaduw_over_import(paden=None):
+    """
+    Of een module die wordt geïmporteerd verderop door een eigen naam wordt
+    overschreven.
+
+    WAT HIER GEBEURDE. Op 13 oktober kwam kaartlink.py erbij, met de url van
+    de kaartpagina. marktprijzen_bag.py kreeg bovenaan `import kaartlink`. Op
+    regel 1126 van datzelfde bestand stond al duizend regels lang
+
+        def kaartlink(adres, plaats="Nijmegen", bron=""):
+
+    en vanaf daar is de naam kaartlink de functie. `kaartlink.link(...)` gaf
+    dus AttributeError: 'function' object has no attribute 'link'. Dat sloeg
+    render() af voordat er iets geschreven was, en de marktprijzen, de
+    dossiers en de bijlage verdwenen in een keer uit de brief van 14 oktober.
+
+    Python zegt hier niets over: een naam opnieuw binden is geen fout. De
+    toets kijkt per bestand naar de namen die worden geïmporteerd en naar de
+    namen die op modulehoogte worden gedefinieerd of toegekend, en meldt de
+    doorsnede.
+
+    ALLEEN OP MODULEHOOGTE. Een lokale variabele in een functie die net zo
+    heet als een import is lelijk maar niet stuk: die schaduw eindigt bij de
+    functie. Deze fout gaat erom dat de module zelf de naam kwijt is.
+    """
+    import ast
+
+    fouten = []
+    paden = paden if paden is not None else sorted(
+        n for n in os.listdir(".") if n.endswith(".py"))
+    for pad in paden:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                boom = ast.parse(f.read(), filename=pad)
+        except Exception as e:
+            fouten.append(f"{pad} niet te ontleden: {str(e)[:60]}")
+            continue
+        ingevoerd, eigen = {}, {}
+        for knoop in ast.walk(boom):
+            # Een import kan ook binnen een functie staan; die telt mee, want
+            # hij bindt de naam daar en de botsing is dezelfde.
+            if isinstance(knoop, ast.Import):
+                for alias in knoop.names:
+                    naam = alias.asname or alias.name.split(".")[0]
+                    ingevoerd.setdefault(naam, knoop.lineno)
+        for knoop in boom.body:
+            if isinstance(knoop, (ast.FunctionDef, ast.AsyncFunctionDef,
+                                  ast.ClassDef)):
+                eigen.setdefault(knoop.name, knoop.lineno)
+            elif isinstance(knoop, ast.Assign):
+                for doel in knoop.targets:
+                    if isinstance(doel, ast.Name):
+                        eigen.setdefault(doel.id, knoop.lineno)
+        for naam in sorted(set(ingevoerd) & set(eigen)):
+            fouten.append(
+                f"{pad}: 'import {naam}' op regel {ingevoerd[naam]} wordt op "
+                f"regel {eigen[naam]} overschreven door een eigen {naam}. "
+                f"Vanaf daar geeft {naam}.<iets> AttributeError, en python "
+                f"waarschuwt daar niet voor.")
+    return fouten
+
+
 def fout_zonder_spoor(paden=None):
     """
     Of een stap die zijn eigen mislukking opvangt, daar een spoor van laat.
@@ -756,6 +818,39 @@ def proef(snel=False):
     # fout_zonder_spoor() voor de brief die op 14 oktober een heel onderdeel
     # miste zonder dat iets rood stond.
     fouten.extend(fout_zonder_spoor())
+
+    # Een geïmporteerde module mag niet door een eigen naam worden
+    # overschreven. Zie schaduw_over_import(): dat was de oorzaak onder die
+    # brief.
+    fouten.extend(schaduw_over_import())
+
+    # EN DE TOETS MOET DE ECHTE FOUT KUNNEN ZIEN. Dit is de vorm zoals hij in
+    # marktprijzen_bag.py stond: een import bovenaan, duizend regels lager een
+    # functie met dezelfde naam. Nagemeten op het echte bestand van main gaf
+    # dit precies een treffer.
+    import tempfile as _tf2
+    with _tf2.TemporaryDirectory() as _m2:
+        _p2 = os.path.join(_m2, "nagemaakt.py")
+        with open(_p2, "w", encoding="utf-8") as _f2:
+            _f2.write("import kaartlink\n\n\n"
+                      "def kaartlink(adres):\n    return adres\n\n\n"
+                      "def gebruik():\n"
+                      "    return kaartlink.link('tekst', 'pagina')\n")
+        if not schaduw_over_import([_p2]):
+            fouten.append("een import die door een eigen functie wordt "
+                          "overschreven wordt niet gemeld; dat was de oorzaak "
+                          "van de brief zonder marktprijzen op 14 oktober")
+        # En een import die NIET wordt overschreven mag niet melden.
+        with open(_p2, "w", encoding="utf-8") as _f2:
+            _f2.write("import kaartlink\n\n\n"
+                      "def adreslink(adres):\n    return adres\n\n\n"
+                      "def gebruik():\n"
+                      "    kaartlink = 'lokaal, eindigt hier'\n"
+                      "    return kaartlink\n")
+        _uit = schaduw_over_import([_p2])
+        if _uit:
+            fouten.append(f"een lokale naam in een functie wordt als schaduw "
+                          f"over de import gemeld: {_uit[0][:80]}")
 
     # Elke workflow moet zijn uitkomst neerzetten waar wij hem kunnen lezen.
     # Zie leesbaar_kanaal() voor de verkenning die groen en onleesbaar
