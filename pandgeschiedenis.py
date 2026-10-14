@@ -131,6 +131,46 @@ def bewaar(geschiedenis):
         json.dump(uit, f, ensure_ascii=False, indent=1, sort_keys=True)
 
 
+BEKENDE_VERKOOPDATUMS = "verkoopdatums.txt"
+
+
+def bekende_verkoopdatums(pad=BEKENDE_VERKOOPDATUMS):
+    """
+    Verkoopdatums die wij WETEN, tegenover de datums die wij AFLEIDEN.
+
+    In verkopen.txt is de datum de dag waarop wij een pand als verkocht zagen
+    staan. Dat is iets anders dan de dag waarop het verkocht is:
+    Groesbeekseweg 118 stond bij ons op 28 september omdat wij hem toen in een
+    geplakte lijst zagen, terwijl Funda 21 september geeft. Zeven dagen.
+
+    Staat een adres in dit bestand, dan is de datum bekend en vervangt hij het
+    venster. Staat het er niet in, dan blijft het venster, want een vaag maar
+    eerlijk antwoord is beter dan een scherp antwoord dat niet klopt.
+    """
+    uit = {}
+    try:
+        with open(pad, encoding="utf-8") as f:
+            regels = f.read().splitlines()
+    except Exception:
+        return uit
+    for regel in regels:
+        kaal = regel.strip()
+        if not kaal or kaal.startswith("#"):
+            continue
+        velden = [v.strip() for v in kaal.split("|")]
+        if len(velden) < 2:
+            continue
+        adres, datum = velden[0], velden[1]
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", datum or ""):
+            # Een regel zonder bruikbare datum wordt overgeslagen en niet
+            # half ingelezen: een adres met een lege datum zou het venster
+            # vervangen door niets.
+            continue
+        uit[adres.lower()] = {"datum": datum,
+                              "bron": velden[2] if len(velden) > 2 else ""}
+    return uit
+
+
 def voeg_toe(pand, datum, soort, tekst, bron, eenmalig_per_dag=()):
     """
     Een gebeurtenis toevoegen als die er nog niet staat.
@@ -177,6 +217,9 @@ def uit_verkopen(geschiedenis):
         per_adres.setdefault(sleutel(adres), []).append(
             {"adres": adres, "plaats": plaats, "prijs": prijs, "status": status,
              "datum": datum, "opp": v[6] or None, "bron": v[5] if len(v) > 5 else ""})
+
+    # De datums die wij weten, eenmaal ingelezen voor alle panden.
+    bekend_per_adres = bekende_verkoopdatums()
 
     for sl, rijen in per_adres.items():
         rijen.sort(key=lambda r: r["datum"])
@@ -237,7 +280,15 @@ def uit_verkopen(geschiedenis):
                 # noemen we het venster in plaats van niets, en zeggen we er
                 # bij dat de datum onze waarneming is.
                 zonder_datum = "plak" in (r.get("bron") or "")
-                if zonder_datum and vorige_waarneming and vorige_waarneming < r["datum"]:
+                # EEN DATUM DIE WIJ WETEN GAAT VOOR EEN VENSTER DAT WIJ
+                # AFLEIDEN. Zie bekende_verkoopdatums().
+                _bekend = bekend_per_adres.get((r.get("adres") or "").lower())
+                if _bekend:
+                    wanneer = (f" (verkocht op {_bekend['datum']}"
+                               + (f", volgens {_bekend['bron']}"
+                                  if _bekend.get("bron") else "")
+                               + ")")
+                elif zonder_datum and vorige_waarneming and vorige_waarneming < r["datum"]:
                     wanneer = (f" (verkocht tussen {vorige_waarneming} en "
                                f"{r['datum']}; {r['datum']} is de dag dat wij "
                                f"het zagen, niet de verkoopdatum)")
@@ -1640,6 +1691,37 @@ def proef():
             fouten.append(f"brief_verhalend.py noemt {nodig!r} niet; dan mag "
                           f"de brief het aantal van een dag weer als signaal "
                           f"gebruiken")
+
+    # EEN DATUM DIE WIJ WETEN GAAT VOOR EEN VENSTER DAT WIJ AFLEIDEN.
+    #
+    # Groesbeekseweg 118 stond bij ons op 28 september, want toen zagen wij
+    # hem in een geplakte lijst. Funda geeft 21 september. Zeven dagen, en het
+    # venster zou dat verschil verbergen achter "verkocht tussen ... en ...".
+    import tempfile as _tf
+    import os as _os
+    with _tf.TemporaryDirectory() as _m:
+        _p = _os.path.join(_m, "vd.txt")
+        with open(_p, "w", encoding="utf-8") as _f:
+            _f.write("# commentaar wordt overgeslagen\n"
+                     "\n"
+                     "Groesbeekseweg 118 | 2026-09-21 | Funda\n"
+                     "Zonder Datum 1 | | Funda\n"
+                     "Rommel 2 | binnenkort | Funda\n"
+                     "Kale Regel 3 | 2026-01-02\n")
+        _d = bekende_verkoopdatums(_p)
+        if sorted(_d) != ["groesbeekseweg 118", "kale regel 3"]:
+            fouten.append(f"de bekende verkoopdatums zijn verkeerd gelezen: "
+                          f"{sorted(_d)}")
+        if "zonder datum 1" in _d or "rommel 2" in _d:
+            fouten.append("een regel zonder bruikbare datum wordt toch "
+                          "ingelezen, en vervangt dan het venster door niets")
+        if _d.get("groesbeekseweg 118", {}).get("bron") != "Funda":
+            fouten.append("de bron bij een bekende verkoopdatum gaat "
+                          "verloren; dan is over een jaar niet na te gaan "
+                          "waarop hij rust")
+    if bekende_verkoopdatums("bestaat-echt-niet.txt") != {}:
+        fouten.append("een ontbrekend bestand met verkoopdatums geeft geen "
+                      "lege uitkomst")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
