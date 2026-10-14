@@ -1123,10 +1123,26 @@ def gemiddelde_oppervlakte_per_buurt(woningen):
     return {b: round(st.mean(v)) for b, v in per_buurt.items() if len(v) >= 5}
 
 
-def kaartlink(adres, plaats="Nijmegen", bron=""):
+def adreslink(adres, plaats="Nijmegen", bron=""):
     """
     Adres als verwijzing naar Google Maps. Kennen we ook de oorspronkelijke
     advertentie, dan komt daar een tweede verwijzing achter.
+
+    HEETTE EERST kaartlink, EN DAT KOSTTE EEN HELE BRIEF. Op 13 oktober kwam
+    er een module kaartlink.py bij, met de url van de kaartpagina erin, en
+    bovenaan dit bestand `import kaartlink`. Deze functie staat duizend regels
+    lager en overschreef die naam. Vanaf hier was `kaartlink` dus de functie,
+    en `kaartlink.link(...)` gaf AttributeError: 'function' object has no
+    attribute 'link'.
+
+    Dat sloeg render() af, vóór het eerste schrijven, dus verdwenen de
+    marktprijzen, de dossiers EN de bijlage uit de brief van 14 oktober in
+    een keer. De stap eindigde op `|| echo overgeslagen`, dus stond niets
+    rood. Mark zag het doordat de bekendmakingen daardoor twee keer in zijn
+    brief stonden.
+
+    Deze functie maakt een link voor een ADRES; kaartlink.py gaat over de
+    kaartPAGINA. Twee dingen, nu twee namen.
     """
     zoek = urllib.parse.quote_plus(f"{adres}, {plaats}")
     tekst = f"[{adres}](https://www.google.com/maps/search/?api=1&query={zoek})"
@@ -3916,7 +3932,7 @@ def render_prijswijzigingen(woningen):
             else:
                 _op_s = "datum onbekend"
             uit.append(
-                f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                f"| {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                 f"| {buurt} | €{eerst_s} | €{nu_s} | "
                 f"{teken} €{versch_s} ({pct:+.1f}%) | {_op_s} | "
                 f"{dagen if dagen is not None else '?'} |")
@@ -3981,7 +3997,7 @@ def render_looptijd(woningen):
     for dagen, w in sorted(lang, reverse=True)[:8]:
         buurt = normaliseer_buurt(w.get("buurtnaam", "")) or "?"
         prijs_s = f"{w['prijs']:,}".replace(",", ".")
-        r.append(f"- **{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
+        r.append(f"- **{adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
                  f"({buurt}) . €{prijs_s} . {dagen} dagen")
     r.append("")
     r.append("_Lang stilstaan zonder aanpassing wijst op een vraagprijs die de markt "
@@ -5030,7 +5046,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
     memos = schrijf_memos(feitenblokken)
 
     for i, (rang, w, buurt, f) in enumerate(panden):
-        r.append(f"### {rang}. {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}"
+        r.append(f"### {rang}. {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}"
                  f", {buurt}")
         r.append("")
         if memos.get(i):
@@ -6124,7 +6140,7 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             verschil_s = (f"{(plafond - w['prijs']) / w['prijs'] * 100:+.0f}%"
                           if plafond else "—")
             r.append(
-                f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                f"| {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                 f"| €{eu(w['prijs'])} | {w.get('oppervlakte') or '—'} | €{eu(ppm2)} "
                 f"| {f'{afw:+.0f}%' if afw is not None else '—'} "
                 + (f"| {_dagen_sinds(eerste_datum(w))} "
@@ -6185,7 +6201,7 @@ def render_bieden(woningen, huur_bk, huur_k, per_buurt):
         kosten = (OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT) / 100
         max_bod = (plafond - reno) / (1 + kosten)
 
-        regel = (f"**{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}**"
+        regel = (f"**{adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}**"
                  f" in {buurt}, {w['oppervlakte']} m²")
         lab = _labeltekst(w.get("energielabel"))
         if lab != "onbekend":
@@ -6668,7 +6684,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                     scenario += f" ({sc['punten']} pt, {sc['segment']})"
                 elif sc and sc.get("beschermd"):
                     scenario += " ⚠"
-                regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
+                regel = (f"| {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | "
                          f"€{prijs_s} | {w['oppervlakte']} | €{ppm2_s} | "
                          f"{merk} {afwijking:+.0f}%{staart} | "
                          f"{w.get('_reden', '')} | {scenario} | {plafond_s} |")
@@ -6684,7 +6700,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         onbeoordeeld = [k for k in onbeoordeeld if not k[-1].get("opp_onbetrouwbaar")]
 
         for _a, ppm2, _k, _b, _c, w in onbetrouwbaar_hier:
-            r.append(f"_**{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
+            r.append(f"_**{adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))}** "
                      f"€{eu(w['prijs'])}: geen oordeel, want de oppervlakte klopt niet. "
                      f"De BAG rekent {w.get('oppervlakte')} m² voor "
                      f"{len(w['object_adressen'])} adressen samen "
@@ -6717,7 +6733,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                 w["_fin"] = fin
                 w["_reno"] = reno_uit
                 r.append(
-                    f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                    f"| {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                     f"| €{eu(fin['investering'])} | €{eu(fin['lening'])} "
                     f"| €{eu(fin['eigen'])} | €{eu(fin['operationeel'])} | "
                     + f"{fin['nar']:.1f}".replace(".", ",") + "% |")
@@ -6862,7 +6878,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             for _a, ppm2, _k, afw, _b, w in sorted(oud, key=lambda x: x[0]):
                 dagen = _dagen_sinds(w.get("datum_eerst") or w.get("datum"))
                 stukken.append(
-                    kaartlink(w["adres"], w.get("plaats", "Nijmegen"), w.get("bron", ""))
+                    adreslink(w["adres"], w.get("plaats", "Nijmegen"), w.get("bron", ""))
                     + f" €{eu(w['prijs'])} ({afw:+.0f}% t.o.v. de buurtmediaan"
                     + (f", {dagen} dagen in aanbod" if dagen is not None else "") + ")")
             r.append("_Stond er al, vraagprijs ongewijzigd: " + " . ".join(stukken)
@@ -6875,7 +6891,7 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
             for _, ppm2, klasse, _a, _b, w in sorted(onbeoordeeld, key=lambda x: x[1]):
                 prijs_s = f"{w['prijs']:,}".replace(",", ".")
                 ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-                stukken.append(f"{kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
+                stukken.append(f"{adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} "
                                f"€{prijs_s} ({w['oppervlakte']} m², €{ppm2_s}/m²)")
             r.append(f"_Zonder vergelijking, te weinig {onbeoordeeld[0][2]} objecten in de "
                      f"dataset: " + " . ".join(stukken) + "._")
@@ -7773,7 +7789,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             sigtekst = ", ".join(soorten) if soorten else "geen treffer"
             prijs_s = f"{w['prijs']:,}".replace(",", ".")
             ppm2_s = f"{int(ppm2):,}".replace(",", ".")
-            regel = (f"| {kaartlink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | "
+            regel = (f"| {adreslink(w['adres'], w.get('plaats', 'Nijmegen'), w.get('bron', ''))} | {buurt} | "
                      f"€{prijs_s} | {w.get('oppervlakte','?')} | €{ppm2_s} |")
             if toon_bouwjaar:
                 regel += f" {w.get('bouwjaar') or '?'} |"

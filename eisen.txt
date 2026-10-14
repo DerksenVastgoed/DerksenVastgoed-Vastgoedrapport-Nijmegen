@@ -637,6 +637,26 @@ proef: briefmail:DE FOUT VAN 14 OKTOBER; gezondheid:DE OVERGESLAGEN STAPPEN WORD
 soort: werking
 
 ---
+eis: Een module die wordt geïmporteerd, wordt verderop in dat bestand niet
+  door een eigen naam overschreven.
+waarom: 14 oktober, de oorzaak onder de brief die een hele bijlage miste. Op
+  13 oktober kwam kaartlink.py erbij, met de url van de kaartpagina, en
+  marktprijzen_bag.py kreeg bovenaan `import kaartlink`. Op regel 1126 van
+  datzelfde bestand stond al duizend regels lang `def kaartlink(adres, ...)`,
+  die een adres naar Google Maps wijst. Vanaf die regel is de naam de functie,
+  dus gaf `kaartlink.link(...)` AttributeError: 'function' object has no
+  attribute 'link'. Dat sloeg render() af vóór het eerste schrijven, waardoor
+  de marktprijzen, de dossiers EN de bijlage in een keer uit de brief
+  verdwenen. Python waarschuwt hier niet voor: een naam opnieuw binden is geen
+  fout. De functie heet nu adreslink, want het zijn twee dingen: een link voor
+  een ADRES en de url van de kaartPAGINA. De toets kijkt alleen op
+  modulehoogte; een lokale naam in een functie is lelijk maar niet stuk.
+  Nagemeten op het echte bestand zoals het op main stond: precies een treffer,
+  op regel 1126.
+proef: eisen:EN DE TOETS MOET DE ECHTE FOUT KUNNEN ZIEN
+soort: werking
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
