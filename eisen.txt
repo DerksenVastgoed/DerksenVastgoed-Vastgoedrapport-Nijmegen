@@ -592,6 +592,25 @@ proef: kaartlink:ONBEKEND GELDT ALS PRIVE; eisen:DAAROM DEZE TOETS
 soort: werking
 
 ---
+eis: Werk gaat niet naar een tak waarvan de PR al gemerged is, en een tak die
+  een bestand aanraakt dat main ook veranderde, haalt main er eerst in.
+waarom: Drie keer in twee dagen, alle drie dezelfde vorm: stil verlies. Op 13
+  oktober om 17:28 mergede de PR met bijlagen.py; om 17:38 duwde ik
+  einde_reactietermijn in diezelfde tak. Die commit kwam nooit op main en de
+  veldenronde liep een dag met een functie die er niet was. Niets stond rood:
+  geen botsing, geen foutmelding, het werk was er alleen niet. Om 16:21 ging
+  het tijdbudget van bijlagen.py op precies dezelfde manier verloren. Op 14
+  oktober raakten PR 95 en PR 96 beide vergunningsmaten.json aan; dat zag ik
+  met de hand. De controle meet twee dingen in plaats van er een te
+  vermoeden: of de PR van de tak al gemerged is terwijl er nog commits op
+  staan, en of een merge met main werkelijk botst. Dat laatste is nodig omdat
+  overlap meestal GEEN botsing is: PR 96 en PR 97 raakten beide eisen.txt aan
+  en mergeden schoon. In een checkout met --depth=1 bestaat origin/main niet
+  en zegt de module dat hij niet kan kijken, met exitcode 2, want niet
+  gekeken en niets gevonden mogen niet hetzelfde woord krijgen.
+proef: tak:DE VORM VAN 13 OKTOBER 17:38
+soort: werking
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
