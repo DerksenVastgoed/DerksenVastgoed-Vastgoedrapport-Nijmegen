@@ -1351,10 +1351,10 @@
  },
  "totaal": {
   "adressen": 24865,
-  "adressen_al_nagekeken": 6841,
+  "adressen_al_nagekeken": 6883,
   "buurten_gevraagd": 6,
   "buurten_volledig": 6,
-  "panden_al_nagekeken": 1324,
+  "panden_al_nagekeken": 1336,
   "postcodes": 1243,
   "postcodes_per_viercijferig": {
    "6511": 361,

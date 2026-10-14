@@ -1,6 +1,6 @@
 ## Woningen die in bestaande panden worden gemaakt
 
-_733 woningen staan in de BAG als gevormd in een pand dat zelf al in gebruik is en van voor 2021. Dat is bestaande voorraad waarin woningen worden toegevoegd, en het staat los van de nieuwbouw in het pijplijnblok. Ze liggen in 128 panden. Van die panden kenden wij 10 nog niet uit de bekendmakingen. De BAG kent geen opleverdatum, dus hier staat niet wanneer ze klaar zijn._
+_733 woningen staan in de BAG als gevormd in een pand dat zelf al in gebruik is en van voor 2021. Dat is bestaande voorraad waarin woningen worden toegevoegd, en het staat los van de nieuwbouw in het pijplijnblok. Ze liggen in 128 panden. De BAG kent geen opleverdatum, dus hier staat niet wanneer ze klaar zijn._
 
 | pand | woningen | bouwjaar | mediaan m2 | buurt |
 |---|---:|---:|---:|---|

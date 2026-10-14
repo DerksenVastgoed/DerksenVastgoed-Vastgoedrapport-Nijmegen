@@ -1065,3 +1065,6 @@ Kronenburgersingel | Nijmegen | 1270 | te huur gemeubileerd | 2026-10-14 | parar
 Kronenburgersingel | Nijmegen | 1270 | te huur kamer | 2026-10-14 | kamernet | 27 | 
 Smetiusstraat | Nijmegen | 745 | te huur kamer | 2026-10-14 | kamernet-incl | 33 | 
 Groesbeeksedwarsweg | Nijmegen | 695 | te huur kamer | 2026-10-14 | kamernet-incl | 14 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 14-10-2026
+de Voorstenkamp | Nijmegen | 1080 | te huur | 2026-10-14 | kamernet-incl | 30 | 

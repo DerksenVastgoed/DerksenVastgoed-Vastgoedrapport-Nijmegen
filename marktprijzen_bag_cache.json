@@ -72594,7 +72594,8 @@
     ],
     "postcode": "6515XH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Jozef Israelsstraat|Nijmegen": {
     "oppervlakte": 148,
@@ -75217,7 +75218,8 @@
     "oppervlakte": 27,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Kronenburgersingel|Nijmegen": {
     "oppervlakte": 27,
@@ -75233,7 +75235,8 @@
     "oppervlakte": 33,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Professor Molkenboerstraat 20|Nijmegen": {
     "postcode": "6524RP",

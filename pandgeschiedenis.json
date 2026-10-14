@@ -80422,9 +80422,16 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Dominicanenstraat 21 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1950, dat zelf al in gebruik is, mediaan 294 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000001582"
+  "pand_id": "0268100000001582",
+  "transformatie_gemeld": 1
  },
  "dominicanenstraat30": {
   "adres": "Dominicanenstraat 30",
@@ -104758,9 +104765,16 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Marialaan 97 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1957, dat zelf al in gebruik is, mediaan 61 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000006297"
+  "pand_id": "0268100000006297",
+  "transformatie_gemeld": 1
  },
  "marialaan85": {
   "adres": "Marialaan 85",
@@ -126908,9 +126922,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van St. Thomashof 4 is nu B"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1955, dat zelf al in gebruik is, mediaan 59 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000026234"
+  "pand_id": "0268100000026234",
+  "transformatie_gemeld": 1
  },
  "stthomashof5g": {
   "adres": "St. Thomashof 5-G",
@@ -141293,7 +141314,7 @@
   "pand_id": "0268100000022055"
  },
  "voorstenkamp": {
-  "adres": "De Voorstenkamp",
+  "adres": "de Voorstenkamp",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -141309,6 +141330,12 @@
     "datum": "2026-10-09",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.140 per maand, 83 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.080 per maand, 30 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
