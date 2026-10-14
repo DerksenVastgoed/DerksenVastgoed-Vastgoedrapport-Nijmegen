@@ -418,6 +418,49 @@ def signaaladressen(pad=SIGNAALBRON):
     return uit
 
 
+def punt_uit(kenmerk):
+    """
+    Het punt van een verblijfsobject, als lengte- en breedtegraad.
+
+    WAAROM DIT ER IS. De parkeernorm verschilt per zone: 0,70 per woning in de
+    binnenstad, 0,8 bij Hatertseweg 338, 1,25 in de schil, en in gereguleerd
+    gebied kan de eis helemaal wegvallen. Zonder te weten in welke zone een
+    pand ligt, is elke parkeerberekening in de brief een gok. De gemeente
+    publiceert die zones als open data, maar een zone bepalen vraagt een punt,
+    en in voorraad.json stonden 20.045 records zonder een enkele coordinaat.
+
+    EN HET KOST GEEN ENKELE EXTRA VRAAG. PDOK stuurt bij elk verblijfsobject
+    de geometrie mee in hetzelfde antwoord; die werd weggegooid. Precies
+    hetzelfde als bij de postcodezeef eerder vandaag.
+
+    DE TOETS OP "point" IS EEN VANGNET EN GEEN WERKENDE REGEL. Hem weghalen
+    verandert niets dat te meten is: bij een vlak of een lijn is co[0] zelf
+    een lijst, en float() daarvan mislukt al. Hij staat er omdat de bedoeling
+    dan in de code staat en niet alleen in een uitzondering.
+
+    WAT ALS DE GEOMETRIE ER NIET IS. Dan geeft deze functie None terug en
+    telt de ronde dat. Niet gokken en niet terugvallen op het midden van de
+    postcode: een punt dat net in de verkeerde zone ligt, levert een
+    parkeernorm op die klopt zolang niemand hem nameet.
+    """
+    g = (kenmerk or {}).get("geometry") or {}
+    co = g.get("coordinates")
+    soort = (g.get("type") or "").lower()
+    if soort == "point" and isinstance(co, (list, tuple)) and len(co) >= 2:
+        try:
+            lon, lat = float(co[0]), float(co[1])
+        except (TypeError, ValueError):
+            return None
+    else:
+        return None
+    # PDOK's OGC API Features levert standaard CRS84, dus lengtegraad eerst.
+    # Nijmegen ligt rond 5,8 oost en 51,8 noord. Staat het omgekeerd, dan valt
+    # dat hier op in plaats van in een zone die er net naast zit.
+    if not (3.0 <= lon <= 8.0 and 50.0 <= lat <= 54.0):
+        return None
+    return [round(lon, 6), round(lat, 6)]
+
+
 def waarom_houden(a, pc, pcs, signalen=()):
     """
     Bewaren we dit verblijfsobject, en waarom.
@@ -767,7 +810,8 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
            "zonder_pandsleutel": 0, "met_pand": 0, "gevormd": 0,
            "zonder_vbo": 0, "van_soort_gewisseld": 0, "opnieuw_gezien": 0,
            "in_de_pijplijn": 0, "opgeleverd": 0, "terug_in_de_pijplijn": 0,
-           "meerdere_panden": 0, "om_een_signaal": 0}
+           "meerdere_panden": 0, "om_een_signaal": 0,
+           "met_punt": 0, "zonder_punt": 0, "punt_behouden": 0}
     # De adressen waarover een bekendmaking is gepubliceerd.
     # None betekent: zelf inlezen; een lege verzameling
     # betekent uitdrukkelijk geen signalen, en dat verschil
@@ -901,6 +945,10 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                 # WAAROM DIT RECORD ER IS. Zie waarom_houden(): alles wat per
                 # buurt rekent, telt alleen focusbuurt mee.
                 "herkomst": herkomst,
+                # HET PUNT, VOOR DE PARKEERZONE. Zie punt_uit(). Ontbreekt de
+                # geometrie, dan staat er niets en telt de ronde dat; een
+                # geraden punt levert een parkeernorm op die klopt zolang
+                # niemand hem nameet.
                 "oppervlakte": a.get("oppervlakte"),
                 "doelen": doelen,
                 "pand": pand,
@@ -910,6 +958,12 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
             # Alleen opschrijven als er werkelijk meer dan een is: anders
             # staat er bij 22.000 records een lijst van een, en dat is een
             # megabyte aan niets.
+            punt = punt_uit(k)
+            if punt:
+                rec["punt"] = punt
+                tel["met_punt"] += 1
+            else:
+                tel["zonder_punt"] += 1
             if len(alle_panden) > 1:
                 rec["panden"] = alle_panden
             # DE STATUS VAN HET PAND, ALS DE PANDFASE HEM MEEGAF. Dit is het
@@ -963,6 +1017,15 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
                     vorige = sectie
                     break
             bestaand = (vorige.get(vbo) if vorige else None) or {}
+            # EEN PUNT DAT WE AL HADDEN, BLIJFT STAAN. De ronde bouwt elk
+            # record opnieuw op, dus een antwoord zonder geometrie zou het
+            # punt weggooien. Dat is precies hoe op 12 oktober de
+            # rekenmethode van 698 labels verdween. Dit staat vóór de
+            # vergelijking met het oude record, zodat een behouden punt geen
+            # wijziging heet.
+            if not rec.get("punt") and bestaand.get("punt"):
+                rec["punt"] = bestaand["punt"]
+                tel["punt_behouden"] += 1
             zelfde = bool(bestaand) and all(bestaand.get(v) == rec[v]
                                             for v in rec)
             rec["bag_gezien"] = (bestaand.get("bag_gezien") or vandaag
@@ -1086,6 +1149,9 @@ def fase_bag(voorraad, pcs, minuten, panden=None,
         # waarom_houden(). Dit getal hoort in de stand, want anders is niet te
         # zien of de ruimere zeef werkelijk iets oplevert.
         "om_een_signaal": tel["om_een_signaal"],
+        "met_punt": tel["met_punt"],
+        "zonder_punt": tel["zonder_punt"],
+        "punt_behouden": tel["punt_behouden"],
         "historie_overgeslagen": tel["weg"],
         # NOG GEVORMD, NIET IN GEBRUIK. In de eerste ronde 2.238 objecten,
         # ruim een tiende van de voorraad. Die status betekent dat het object
@@ -2410,17 +2476,26 @@ def proef():
     # terwijl de brief er diezelfde ochtend een kernsignaal over had. De
     # buurman op 15 staat erbij om te toetsen dat de zeef niet alsnog de hele
     # postcode binnenlaat.
-    def _vbo(nr, letter, ident, doel="woonfunctie", opp=116):
-        return {"id": f"s{ident}", "properties": {
+    def _vbo(nr, letter, ident, doel="woonfunctie", opp=116, punt=True):
+        kenmerk = {"id": f"s{ident}", "properties": {
             "postcode": "6521JB", "status": "Verblijfsobject in gebruik",
             "gebruiksdoel": doel, "oppervlakte": opp,
             "openbare_ruimte_naam": "Berg en Dalseweg", "huisnummer": nr,
             "huisletter": letter, "toevoeging": None,
             "identificatie": ident}}
+        if punt is True:
+            # Berg en Dalseweg, ruwweg. Lengtegraad eerst, zoals CRS84.
+            kenmerk["geometry"] = {"type": "Point",
+                                   "coordinates": [5.8742, 51.8452]}
+        elif punt == "omgekeerd":
+            kenmerk["geometry"] = {"type": "Point",
+                                   "coordinates": [51.8452, 5.8742]}
+        return kenmerk
 
     signaalkenmerken = [
         _vbo(11, None, "0268010000009911"),
-        _vbo(11, "A", "0268010000009912", opp=74),
+        # 11A zonder geometrie: dat mag geen geraden punt opleveren.
+        _vbo(11, "A", "0268010000009912", opp=74, punt=False),
         # De tandartspraktijk op de begane grond: geen woonfunctie, dus die
         # hoort bij niet_woningen en niet bij de woningvoorraad.
         _vbo(11, None, "0268010000009913", doel="gezondheidszorgfunctie",
@@ -2481,6 +2556,64 @@ def proef():
             f"{sig_uit.get('postcodes_gedaan')} postcodes gelden als "
             f"nagekeken terwijl er alleen om een signaal is bewaard; dan "
             f"telt een postcode buiten de ring mee als afgewerkt ringwerk")
+    # HET PUNT BIJ HET PAND, EN GEEN GERADEN PUNT.
+    _p11 = adressen_sig.get("0268010000009911") or {}
+    _p11a = adressen_sig.get("0268010000009912") or {}
+    if _p11.get("punt") != [5.8742, 51.8452]:
+        afwijkingen.append(f"het punt van het verblijfsobject wordt niet "
+                           f"bewaard: {_p11.get('punt')!r}")
+    if "punt" in _p11a:
+        afwijkingen.append(f"een object zonder geometrie krijgt toch een "
+                           f"punt: {_p11a.get('punt')!r}")
+    # TWEE MET EN EEN ZONDER, EN NIET DRIE EN EEN. Er gaan vier objecten in,
+    # maar nummer 15 valt al weg op de zeef, vóór de puntteller. Dat is goed:
+    # een teller die ook objecten buiten onze ring meerekent, zegt niets over
+    # de dekking van ons eigen bestand. Ik rekende eerst op drie en de proef
+    # wees me terecht.
+    if sig_uit.get("met_punt") != 2 or sig_uit.get("zonder_punt") != 1:
+        afwijkingen.append(
+            f"de punten worden verkeerd geteld: {sig_uit.get('met_punt')} met "
+            f"en {sig_uit.get('zonder_punt')} zonder, verwacht 2 en 1")
+    # EEN OMGEKEERD COORDINAAT IS GEEN PUNT. Lengte- en breedtegraad omwisselen
+    # legt Nijmegen in de Indische Oceaan, en een zone die daar gevonden wordt
+    # bestaat niet. Maar een punt dat net in de verkeerde zone ligt, levert een
+    # parkeernorm die klopt zolang niemand hem nameet. Dus liever niets.
+    if punt_uit({"geometry": {"type": "Point",
+                              "coordinates": [51.8452, 5.8742]}}) is not None:
+        afwijkingen.append("een omgekeerd coordinaat wordt als punt "
+                           "geaccepteerd")
+    _vlak = {"geometry": {"type": "Polygon", "coordinates": [
+        [[5.8740, 51.8450], [5.8745, 51.8450], [5.8745, 51.8455],
+         [5.8740, 51.8455], [5.8740, 51.8450]]]}}
+    if punt_uit(_vlak) is not None:
+        afwijkingen.append(f"een vlak wordt als punt gelezen: "
+                           f"{punt_uit(_vlak)!r}")
+    if punt_uit({}) is not None:
+        afwijkingen.append("een kenmerk zonder geometrie levert toch een punt")
+
+    # EN EEN PUNT DAT WE AL HADDEN, OVERLEEFT EEN RONDE ZONDER GEOMETRIE. Dit
+    # is de fout die op 12 oktober de rekenmethode van 698 labels wiste.
+    _zonder_geo = [_vbo(11, None, "0268010000009911", punt=False)]
+
+    def nep_zonder_geo(collectie, budget, per_pagina):
+        per_pagina(_zonder_geo)
+        return {"paginas": 1, "objecten": 1, "seconden": 0.0,
+                "ronde_af": True, "fout": ""}
+
+    echt4, globals()["doorloop"] = doorloop, nep_zonder_geo
+    try:
+        tweede_uit = fase_bag(vs, {"6521AB": ("Bottendaal",)}, 1, {},
+                              signalen={"bergendalseweg11"})
+    finally:
+        globals()["doorloop"] = echt4
+    _na = (vs.get("adressen") or {}).get("0268010000009911") or {}
+    if _na.get("punt") != [5.8742, 51.8452]:
+        afwijkingen.append(f"een ronde zonder geometrie gooit het punt weg "
+                           f"dat we al hadden: {_na.get('punt')!r}")
+    if tweede_uit.get("punt_behouden") != 1:
+        afwijkingen.append(f"het behouden punt wordt niet geteld: "
+                           f"{tweede_uit.get('punt_behouden')}")
+
     if sig_uit.get("om_een_signaal") != 3:
         afwijkingen.append(f"er worden {sig_uit.get('om_een_signaal')} "
                            f"objecten om een signaal bewaard in plaats van 3")

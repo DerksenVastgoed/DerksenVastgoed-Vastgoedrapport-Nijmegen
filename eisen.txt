@@ -701,6 +701,27 @@ proef: eisen:EN DIE TOETS MOET DE ECHTE VORM ZIEN
 soort: werking
 
 ---
+eis: Bij elk verblijfsobject bewaren we het punt, en een punt dat we al hadden
+  overleeft een ronde waarin de geometrie ontbreekt.
+waarom: 14 oktober. De parkeernorm verschilt per zone: 0,70 per woning in de
+  binnenstad, 0,8 bij Hatertseweg 338, 1,25 in de schil, en in gereguleerd
+  gebied kan de eis helemaal wegvallen. Zonder de zone van een pand is elke
+  parkeerberekening in de brief een gok. De gemeente publiceert die zones als
+  open data, laag extern_Mobiliteit:MOB_PARKEERNORMERING op
+  services.nijmegen.nl, maar een zone bepalen vraagt een punt, en in
+  voorraad.json stonden 20.045 records zonder een enkele coordinaat. PDOK
+  stuurt de geometrie bij elk verblijfsobject mee in hetzelfde antwoord; die
+  werd weggegooid, net als bij de postcodezeef eerder die dag. Ontbreekt de
+  geometrie, dan blijft het veld leeg en telt de ronde dat: een geraden punt
+  levert een parkeernorm op die klopt zolang niemand hem nameet. Een
+  omgekeerd coordinaat wordt geweigerd, want Nijmegen ligt rond 5,8 oost en
+  51,8 noord. En het punt wordt overgenomen uit het oude record als de ronde
+  er geen vindt, want de ronde bouwt elk record opnieuw op; zonder die regel
+  verdwijnt het zoals op 12 oktober de rekenmethode van 698 labels verdween.
+proef: voorraad_bag:HET PUNT BIJ HET PAND, EN GEEN GERADEN PUNT
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
