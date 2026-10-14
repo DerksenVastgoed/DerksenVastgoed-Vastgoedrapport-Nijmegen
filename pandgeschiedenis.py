@@ -573,6 +573,90 @@ def tel_en_meld(eenheden, eerder, eerder_woon):
                          f"{len(nu_woon)}")
 
 
+VOORRAAD_PAD = "voorraad.json"
+
+
+def koppel_objecten(geschiedenis, voorraad_pad=VOORRAAD_PAD):
+    """
+    Elk adres krijgt zijn verblijfsobject-id en de pand-id's, uit de voorraad.
+
+    WAAROM. De BAG kent een woning als verblijfsobject en een gebouw als pand;
+    een adres is alleen een naam. Toch koppelde deze keten op een tekst van
+    straat plus huisnummer, en op 14 oktober had geen enkel record hier een
+    object-id. Dat ging stil mis: een adres is niet uniek over gemeenten
+    (Bachstraat 3 bestaat drie keer), en een energielabel of oppervlakte hoort
+    bij het object en niet bij een tekst. De adressleutel is nu alleen de
+    voordeur: hier wordt hij een keer omgezet, daarna koppelt alles op id.
+
+    KOST GEEN AANROEP. De voorraad heeft de objecten al, met hun panden.
+
+    DE REGEL BIJ MEER DAN EEN OBJECT OP HETZELFDE ADRES. Alleen Nijmeegse
+    objecten tellen (gemeentecode in het id). Daarna wint het object dat
+    bestaat boven een gevormd object: dat laatste is een geregistreerde maar
+    nog niet gerealiseerde splitsing of transformatie, en wordt apart bewaard
+    als vbo_gevormd, want dat is zelf een signaal. Blijven er twee bestaande
+    objecten over, dan wordt er niets gekozen en geteld als niet eenduidig.
+    Gemeten op 14 oktober over 1.807 adressen: 1.175 een bestaand object,
+    83 een bestaand plus een gevormd, 47 alleen een gevormd, 0 niet eenduidig,
+    502 niet in de voorraad.
+
+    Een pand-id dat er al stond en niet bij het object hoort, wordt niet
+    overschreven maar geteld. Op 14 oktober een keer: Tweede Walstraat 100,
+    een transformatie, waar het bestaande object in een ander pand ligt dan
+    het pand-id dat de oude opzoeking (eerste pand van het antwoord) koos.
+    """
+    try:
+        from voorraad_bag import GEMEENTECODE
+    except Exception:
+        GEMEENTECODE = "0268"
+    try:
+        with open(voorraad_pad, encoding="utf-8") as f:
+            v = json.load(f) or {}
+    except Exception:
+        return {"overgeslagen": "voorraad niet te lezen"}
+    per = {}
+    for soort in ("adressen", "niet_woningen", "pijplijn"):
+        for vid, r in (v.get(soort) or {}).items():
+            if not str(vid).startswith(GEMEENTECODE) or not r.get("adres"):
+                continue
+            per.setdefault(sleutel(r["adres"]), []).append((vid, r))
+    tel = {"bestaand": 0, "bestaand_en_gevormd": 0, "alleen_gevormd": 0,
+           "niet_eenduidig": 0, "niet_in_voorraad": 0,
+           "pand_id_aangevuld": 0, "pand_id_anders": 0}
+    for pand in geschiedenis.values():
+        if not isinstance(pand, dict) or not pand.get("adres"):
+            continue
+        kandidaten = per.get(sleutel(pand["adres"])) or []
+        gevormd = [x for x in kandidaten
+                   if "gevormd" in str(x[1].get("status") or "").lower()]
+        bestaand = [x for x in kandidaten if x not in gevormd]
+        if len(bestaand) == 1:
+            gekozen = bestaand[0]
+            tel["bestaand_en_gevormd" if gevormd else "bestaand"] += 1
+        elif not bestaand and len(gevormd) == 1:
+            gekozen, gevormd = gevormd[0], []
+            tel["alleen_gevormd"] += 1
+        else:
+            tel["niet_eenduidig" if kandidaten else "niet_in_voorraad"] += 1
+            continue
+        vid, r = gekozen
+        panden = [x for x in (r.get("panden") or [r.get("pand")]) if x]
+        pand["vbo"] = vid
+        pand["vbo_panden"] = panden
+        if gevormd:
+            pand["vbo_gevormd"] = sorted(x[0] for x in gevormd)
+        else:
+            pand.pop("vbo_gevormd", None)
+        if not pand.get("pand_id") and panden:
+            pand["pand_id"] = panden[0]
+            tel["pand_id_aangevuld"] += 1
+        elif pand.get("pand_id") and panden and pand["pand_id"] not in panden:
+            tel["pand_id_anders"] += 1
+    print("Objecten: " + ", ".join(f"{k} {n}" for k, n in tel.items()),
+          file=sys.stderr)
+    return tel
+
+
 def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
     """
     De BAG opnieuw bevragen: is het aantal woningen in het pand veranderd?
@@ -1829,6 +1913,52 @@ def proef():
             fouten.append("een verkoop zonder bekende datum wordt toch als "
                           "echte verkoopdatum meegerekend")
 
+    # HET ADRES WORDT EEN OBJECT-ID. Echte records uit de voorraad van 14
+    # oktober: Albardastraat 34 heeft een bestaand en een gevormd object,
+    # Bachstraat 3 staat er drie keer in drie gemeenten.
+    import tempfile
+    with tempfile.TemporaryDirectory() as _d:
+        _vp = os.path.join(_d, "v.json")
+        with open(_vp, "w", encoding="utf-8") as _f:
+            json.dump({"adressen": {
+                "0268010000000735": {"adres": "Albardastraat 34",
+                                     "status": "Verblijfsobject in gebruik",
+                                     "pand": "0268100000018066"},
+                "0241010000000134": {"adres": "Bachstraat 3",
+                                     "status": "Verblijfsobject in gebruik",
+                                     "pand": "0241100000012822"},
+                "0268010000055748": {"adres": "Bachstraat 3",
+                                     "status": "Verblijfsobject in gebruik",
+                                     "pand": "0268100000001964"},
+                "0944010000206628": {"adres": "Bachstraat 3",
+                                     "status": "Verblijfsobject in gebruik",
+                                     "pand": "0944100000202931"}},
+                "pijplijn": {
+                "0268010000112652": {"adres": "Albardastraat 34",
+                                     "status": "Verblijfsobject gevormd",
+                                     "pand": "0268100000018066"}}}, _f)
+        _g = {"albardastraat34": {"adres": "Albardastraat 34", "pand_id": None,
+                                  "gebeurtenissen": []},
+              "bachstraat3": {"adres": "Bachstraat 3",
+                              "pand_id": "0268100000001964",
+                              "gebeurtenissen": []},
+              "nergens1": {"adres": "Nergensstraat 1", "pand_id": None,
+                           "gebeurtenissen": []}}
+        _t = koppel_objecten(_g, _vp)
+    check("het bestaande object wint van het gevormde",
+          _g["albardastraat34"].get("vbo"), "0268010000000735")
+    check("het gevormde object blijft zichtbaar",
+          _g["albardastraat34"].get("vbo_gevormd"), ["0268010000112652"])
+    check("een ontbrekend pand-id wordt aangevuld uit het object",
+          _g["albardastraat34"].get("pand_id"), "0268100000018066")
+    check("een naamgenoot in een andere gemeente telt niet mee",
+          _g["bachstraat3"].get("vbo"), "0268010000055748")
+    check("een adres buiten de voorraad krijgt geen geraden id",
+          _g["nergens1"].get("vbo"), None)
+    check("de telling klopt met wat er gebeurde",
+          (_t.get("bestaand"), _t.get("bestaand_en_gevormd"),
+           _t.get("niet_in_voorraad")), (1, 1, 1))
+
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
     print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
@@ -1856,6 +1986,8 @@ def main():
     n_m = uit_model(geschiedenis)
     n_a = uit_archief(geschiedenis)
     n_k = uit_kamerverhuur(geschiedenis)
+    # Voor de BAG-ronde: wat de voorraad al weet, hoeft niet gevraagd.
+    koppel_objecten(geschiedenis)
     n_b = n_l = 0
     if not args.volledig:
         # Nieuwe panden meteen ophalen, ook bij een korte run. Dat zijn de
