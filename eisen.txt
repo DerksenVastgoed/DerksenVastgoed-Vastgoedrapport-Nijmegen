@@ -722,6 +722,28 @@ proef: voorraad_bag:HET PUNT BIJ HET PAND, EN GEEN GERADEN PUNT
 soort: gegevens
 
 ---
+eis: Een zone die wij aan een pand hangen komt uit een veld dat is vastgesteld
+  en niet geraden, en bij twijfel komt er geen zone.
+waarom: 14 oktober, de tweede helft van de parkeerzone. De norm verschilt per
+  zone en in gereguleerd gebied kan de eis wegvallen, dus de zone bepaalt de
+  uitkomst. De lagen staan klaar als open data: MOB_PARKEERNORMERING voor de
+  norm en MOB_BETAALDPARKEREN voor het gereguleerde gebied. Maar
+  services.nijmegen.nl is vanuit de werkomgeving niet te bereiken, dus ken ik
+  de veldnamen niet, en een geraden veldnaam levert een zone op die klopt
+  zolang niemand hem nameet. Daarom kiest de module het zonefeld op de inhoud:
+  tekst, meer dan een waarde, niet te veel waarden en geen lege. Blijven er
+  meer kandidaten over, dan kiest hij niet en koppelt hij niets. Een pand dat
+  buiten elke zone valt verliest zijn oude zone, want een zone die blijft
+  staan terwijl hij niet meer geldt is een stille onwaarheid. De asvolgorde
+  wordt gemeten en niet aangenomen: WFS 1.0.0 geeft EPSG:4326 als
+  lengte-breedte en 1.1.0 omgekeerd, en omgewisseld ligt Nijmegen in de
+  Indische Oceaan, waardoor elk pand buiten elke zone zou vallen en de
+  parkeerregel stil uit de brief zou verdwijnen. Vier breuken nagemeten, alle
+  vier gemeld.
+proef: parkeerzone:HET ZONEFELD UIT DE INHOUD; parkeerzone:DE ASVOLGORDE GEMETEN
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
