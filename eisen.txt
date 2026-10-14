@@ -589,3 +589,25 @@ waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en
   "voer dit uit en bewaar de uitvoer", en dan is de uitkomst het hele punt.
 proef: eisen:ALLEEN tee, EN NIET head, tail OF grep
 soort: werking
+
+---
+eis: Elk kennisblok heeft trefwoorden en een bron, en dezelfde regel staat
+  niet op twee plaatsen.
+waarom: 13 oktober, 's avonds. Ik zocht een parkeerregel op het web, schreef
+  hem op als nieuwe vondst, en pas toen Mark vroeg of de bron in de repo
+  stond bleek het blok "Parkeren bij splitsen" er al te staan, beter
+  opgeschreven dan mijn versie, met een gevolg erin dat ik niet had genoemd:
+  de nieuwe huisnummers krijgen geen parkeervergunning, wat de
+  verhuurbaarheid raakt. Ik had niet gezocht. Bij het nazoeken bleek iets
+  scherpers: alle 36 blokken hadden trefwoorden, maar zeven hadden geen
+  bron, en dat waren precies de zeven nieuwste, over splitsen en
+  vergunningen. Kennis die erin is gezet zonder het dossier af te maken, en
+  niets mat dat na. Zonder bron is niet te zien waarop een regel rust en dus
+  ook niet wanneer hij veroudert. De dubbelingstoets vergelijkt geen losse
+  woorden maar herkenbare brokjes: de naam van een regeling met een jaartal,
+  of een maat met een onderwerp eraan vast zoals "0,70 per woning". De kale
+  vorm "55 procent" stond er eerst ook in en gaf meteen een valse treffer,
+  want dat getal gaat in het blok over gemeubileerd verhuren ergens anders
+  over.
+proef: eisen:WAT HIER GEBEURDE. Op 13 oktober zocht ik een parkeerregel
+soort: werking

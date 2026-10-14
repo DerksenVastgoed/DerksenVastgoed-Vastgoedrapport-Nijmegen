@@ -323,6 +323,10 @@ ACHTERGROND_TREFWOORDEN = {
     "Een verleende splitsingsvergunning van begin tot eind": [
         "bopa", "buitenplans", "vergunning verleend", "besluit", "leges",
         "natuurinclusief", "welstand", "omgevingskwaliteit", "doorlooptijd"],
+    "Wat een vergunningsdossier moet aantonen": [
+        "verblijfsgebied", "gebruiksoppervlakte", "bouwbesluit",
+        "welstand", "omgevingskwaliteit", "archeologie", "tekening",
+        "zelfstandige woonruimte", "kamerverhuur", "indieningsvereisten"],
     "Parkeren bij splitsen": [
         "parkeren", "parkeereis", "parkeernorm", "parkeerdruk",
         "parkeervergunning", "parkeerberekening", "beleidsregels parkeren"],
@@ -359,6 +363,34 @@ ACHTERGROND_BRONNEN = {
     "Netto aanvangsrendement": "rekenmethode van deze brief",
     "Opkoopbescherming": "Huisvestingsverordening gemeente Nijmegen 2024, artikel 19",
     "Het puntenstelsel voor kamers": "Volkshuisvesting Nederland, Wet betaalbare huur",
+    # DE ZEVEN BLOKKEN OVER SPLITSEN EN VERGUNNINGEN.
+    # Deze stonden zonder bron. Dat viel niemand op omdat niets het nameet,
+    # en het zijn juist de nieuwste blokken: kennis die erin is gezet zonder
+    # het dossier af te maken. Zonder bron is niet te zien waarop een regel
+    # rust en dus ook niet wanneer hij veroudert.
+    "Wat een vergunningsdossier moet aantonen":
+        "stukken bij de vergunde dossiers Staringstraat 2 en Hatertseweg "
+        "338, gemeente Nijmegen, en de Beleidsregels Parkeren 2025",
+    "Parkeren bij splitsen":
+        "Beleidsregels Parkeren 2025 gemeente Nijmegen, bijzonder geval VII; "
+        "gepubliceerd als gmb-2025-239801 en als CVDR739955. Gemeten aan de "
+        "parkeerberekening bij Staringstraat 2 en het besluit over "
+        "Hatertseweg 338.",
+    "De schone route: inpandig splitsen zonder bopa":
+        "Omgevingswet artikel 5.1 en Besluit bouwwerken leefomgeving; gemeten "
+        "aan vergunde dossiers in Nijmegen",
+    "De welstandscommissie is de echte poortwachter":
+        "Uitwerkingsnota beeldkwaliteit gemeente Nijmegen; adviezen van de "
+        "Adviescommissie Omgevingskwaliteit bij vergunde dossiers",
+    "Een aanvraag die buiten behandeling wordt gesteld":
+        "besluit over Willemsweg 98, gemeente Nijmegen",
+    "Een verleende splitsingsvergunning van begin tot eind":
+        "besluiten en bijbehorende stukken van vergunde dossiers in Nijmegen",
+    "Legaliseren achteraf":
+        "Omgevingswet artikel 18.1, beginselplicht tot handhaving, en vaste "
+        "rechtspraak daarvoor",
+    "Waarom splitsen loont ondanks het puntenstelsel":
+        "rekenmethode van deze brief, op basis van de Wet betaalbare huur",
     "Het puntenstelsel voor woningen": "Volkshuisvesting Nederland, Wet betaalbare huur",
     "Servicekosten": "Burgerlijk Wetboek boek 7, artikel 259 en 261; Wet goed verhuurderschap",
     "Leefbaarheidstoets": ("Huisvestingsverordening Nijmegen 2024, artikel 15; "
@@ -818,6 +850,28 @@ ACHTERGROND = [
      "bezwaar maken en beginnen binnen die termijn is op eigen risico, en de "
      "vergunning moet binnen een jaar worden gebruikt, anders kan hij worden "
      "ingetrokken."),
+    ("Wat een vergunningsdossier moet aantonen",
+     "Uit de stukken bij twee vergunde dossiers in Nijmegen is af te lezen "
+     "welke toetsen een aanvraag moet doorstaan, en met welke getallen. "
+     "Per woonruimte geldt een verhouding: het verblijfsgebied gedeeld door "
+     "de gebruiksoppervlakte moet ten minste 55 procent zijn. Bij "
+     "Hatertseweg 338 zitten de zes vergunde woonruimten op 76 tot 95 "
+     "procent, dus dat is in de praktijk geen knellende eis, maar hij moet "
+     "wel op de tekening worden uitgerekend. "
+     "Voor archeologie geldt dat er geen nadere eisen zijn zolang de "
+     "uitbreiding van bebouwing onder de 500 m2 blijft; daaronder valt vrijwel "
+     "elke splitsing. "
+     "De welstandstoets loopt via de Adviescommissie Omgevingskwaliteit, die "
+     "toetst aan de Uitwerkingsnota beeldkwaliteit. "
+     "En de zin die het hele dossier samenvat, letterlijk uit een besluit: "
+     "zo is het niet ingetekend en ook niet beoordeeld en vergund. Wat niet "
+     "op tekening staat, is niet vergund, ook al is het besproken. "
+     "Wat een zelfstandige woonruimte is, staat in de Beleidsregels Parkeren "
+     "2025 en die definitie telt breder: een woonruimte met een eigen "
+     "toegang en adres, die door een huishouden kan worden bewoond zonder "
+     "afhankelijk te zijn van toiletruimte, badruimte of keuken daarbuiten. "
+     "Is dat er niet, dan is het kamerverhuur. Die grens gaat dus over "
+     "voorzieningen en een eigen toegang, niet over oppervlakte."),
     ("Parkeren bij splitsen",
      "De parkeernorm lijkt een drempel bij woningsplitsing, maar in de ring is "
      "dat hij vaak niet. De Beleidsregels Parkeren 2025 van Nijmegen kennen "
@@ -838,7 +892,23 @@ ACHTERGROND = [
      "verhuurbaarheid: de nieuwe huisnummers krijgen geen parkeervergunning, "
      "dus een huurder met een auto kan daar niet parkeren. Bij een pand buiten "
      "het gereguleerde gebied geldt de parkeereis juist wel, en daar is een "
-     "tekort van twee plaatsen een reëel probleem."),
+     "tekort van twee plaatsen een reëel probleem. "
+     "Wat daar dan moet gebeuren staat ook in de beleidsregel: de extra "
+     "behoefte op eigen terrein, en kan dat niet, dan in de openbare ruimte "
+     "maar alleen als de bezetting onder de 85 procent blijft. Is die "
+     "capaciteit niet aan te tonen, dan kan de splitsing niet doorgaan. Bij "
+     "Hatertseweg 338 is dat met een parkeerdrukonderzoek opgelost. "
+     "En de vrijstelling kent een grens die makkelijk wordt gemist: zij geldt "
+     "niet voor een toename van bruto vloeroppervlak. Splitsen zonder "
+     "uitbreiden is in gereguleerd gebied vrij van parkeereis, splitsen met "
+     "een aanbouw of dakopbouw niet. "
+     "De norm zelf verschilt per zone en per woningtype: in de binnenstad "
+     "0,70 per woning waarvan 0,50 voor bewoners en 0,00 bezoek, in de schil "
+     "1e ring 1,25 voor bepaalde koopcategorieen, en bij Hatertseweg 338 "
+     "rekende de gemeente met 0,8 per wooneenheid. Een enkel getal bestaat "
+     "dus niet. Welke zone een pand heeft staat op de kaart van de gemeente "
+     "onder stedelijke zones tbv parkeernormering, en die zones staan als "
+     "open data op opendata.nijmegen.nl."),
     ("Legaliseren achteraf",
      "Een aanvraag om een al uitgevoerde splitsing of verkamering alsnog "
      "vergund te krijgen heet legaliseren, en zo'n aanvraag doet meer dan "

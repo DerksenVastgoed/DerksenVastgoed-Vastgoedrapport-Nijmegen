@@ -437,6 +437,125 @@ def pijp_zonder_vangnet(paden=None):
     return fouten
 
 
+def _achtergrond():
+    """De kennisblokken uit bronnen.py, met hun trefwoorden en hun bron."""
+    import importlib.util
+    try:
+        spec = importlib.util.spec_from_file_location("_br", "bronnen.py")
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        return (list(m.ACHTERGROND), dict(m.ACHTERGROND_TREFWOORDEN),
+                dict(m.ACHTERGROND_BRONNEN))
+    except Exception:
+        return ([], {}, {})
+
+
+def kennis_compleet():
+    """
+    Of elk kennisblok trefwoorden en een bron heeft.
+
+    WAT HIER GEBEURDE. Op 13 oktober zocht ik een parkeerregel op het web,
+    schreef hem op als nieuwe vondst, en pas toen Mark vroeg of de bron in de
+    repo stond bleek het blok "Parkeren bij splitsen" er al jaren te staan,
+    beter opgeschreven dan mijn versie. Ik had niet gezocht.
+
+    Bij het nazoeken bleek iets scherpers: alle 36 blokken hadden
+    trefwoorden, maar zeven hadden geen bron, en dat waren precies de zeven
+    nieuwste, over splitsen en vergunningen. Kennis die erin is gezet zonder
+    het dossier af te maken. Niets mat dat na, dus het viel niet op.
+
+    Zonder bron is niet te zien waarop een regel rust en dus ook niet wanneer
+    hij veroudert: worden de Beleidsregels Parkeren herzien, dan moet te
+    vinden zijn welke blokken daarop leunen.
+    """
+    fouten = []
+    blokken, trefwoorden, bronnen = _achtergrond()
+    if not blokken:
+        return ["de kennisblokken uit bronnen.py zijn niet te lezen"]
+    for titel, *_rest in blokken:
+        if not trefwoorden.get(titel):
+            fouten.append(f"kennisblok {titel[:50]!r} heeft geen trefwoorden; "
+                          f"dan is hij alleen te vinden door wie al weet dat "
+                          f"hij bestaat")
+        if not (bronnen.get(titel) or "").strip():
+            fouten.append(f"kennisblok {titel[:50]!r} heeft geen bron; dan is "
+                          f"niet te zien waarop hij rust en wanneer hij "
+                          f"veroudert")
+    return fouten
+
+
+# Wat een regel herkenbaar maakt: de naam van een regeling met een jaartal,
+# of een getal met een eenheid erachter. Losse woorden niet: "parkeren" komt
+# overal voor en zegt niets over dubbeling.
+RE_REGELING = re.compile(
+    r"\b((?:Beleidsregels?|Huisvestingsverordening|Uitwerkingsnota|"
+    r"Omgevingswet|Besluit bouwwerken leefomgeving|Wet [a-z ]{3,30})"
+    r"[A-Za-z ]{0,30}?\s?20\d\d)")
+# ALLEEN EEN MAAT MET EEN ONDERWERP ERAAN VAST.
+#
+# Eerst stond hier ook de kale vorm "55 procent" en "500 m2". Nagemeten gaf
+# dat een valse treffer: de 55 procent in het blok over gemeubileerd verhuren
+# gaat over iets heel anders dan de 55 procent verblijfsgebied bij een
+# woonruimte. Een kaal getal komt overal voor en zou elke dag melden bij
+# correct gedrag, en dat leert de lezer de melding over te slaan.
+#
+# "0,70 per woning" is wel onderscheidend, want daar zit het onderwerp in.
+RE_MAATREGEL = re.compile(r"\b(\d,\d{1,2} per (?:woning|wooneenheid|kamer))")
+
+
+def _kenmerken(tekst):
+    """De herkenbare brokjes uit een tekst: regelingen en maten."""
+    t = tekst or ""
+    uit = set()
+    for m in RE_REGELING.finditer(t):
+        uit.add(re.sub(r"\s+", " ", m.group(1)).strip().lower())
+    for m in RE_MAATREGEL.finditer(t):
+        uit.add(re.sub(r"\s+", " ", m.group(1)).strip().lower())
+    return uit
+
+
+def dubbele_kennis(extra=None):
+    """
+    Of dezelfde regel op twee plaatsen staat.
+
+    WAAROM DIT BESTAAT. Op 13 oktober schreef ik de parkeerregel in
+    vergunningsmaten.json terwijl hij al in bronnen.py stond. Twee plaatsen
+    met dezelfde regel lopen uit elkaar zodra er een wordt bijgewerkt, en dan
+    weet niemand welke geldt. Niets merkte het; Mark vroeg ernaar.
+
+    Dit is het enige voorstel uit dat gesprek dat niet afhangt van mijn
+    geheugen, en daarom staat het hier en niet in een voornemen.
+
+    Het vergelijkt geen losse woorden maar herkenbare brokjes: de naam van
+    een regeling met een jaartal, of een maat met een eenheid. "Parkeren"
+    komt overal voor en zou alles melden.
+    """
+    import json as _json
+    fouten = []
+    blokken, _tw, _br = _achtergrond()
+    kennis = {}
+    for titel, *rest in blokken:
+        for k in _kenmerken(" ".join(str(r) for r in rest)):
+            kennis.setdefault(k, []).append(f"bronnen.py: {titel[:40]}")
+    anders = extra
+    if anders is None:
+        try:
+            with open("vergunningsmaten.json", encoding="utf-8") as f:
+                d = _json.load(f)
+            anders = {"vergunningsmaten.json": _json.dumps(
+                d.get("regels") or [], ensure_ascii=False)}
+        except Exception:
+            anders = {}
+    for naam, tekst in (anders or {}).items():
+        for k in _kenmerken(tekst):
+            if k in kennis:
+                fouten.append(f"{k!r} staat zowel in {kennis[k][0]} als in "
+                              f"{naam}. Twee plaatsen met dezelfde regel "
+                              f"lopen uit elkaar zodra er een wordt "
+                              f"bijgewerkt.")
+    return fouten
+
+
 def startdagen(pad=BRIEFWORKFLOW):
     """
     Voor welke weekdagen de briefworkflow een geplande start heeft.
@@ -622,6 +741,12 @@ def proef(snel=False):
     # Een stap die zijn uitvoer door een pijp stuurt, verliest de exitcode
     # van wat ervoor stond. Zie pijp_zonder_vangnet() voor wat dat kostte.
     fouten.extend(pijp_zonder_vangnet())
+
+    # Elk kennisblok hoort trefwoorden en een bron te hebben, en dezelfde
+    # regel hoort niet op twee plaatsen te staan. Zie kennis_compleet() en
+    # dubbele_kennis() voor wat dat op 13 oktober kostte.
+    fouten.extend(kennis_compleet())
+    fouten.extend(dubbele_kennis())
 
     # Elke dag van de week moet een geplande start van de brief hebben. Een
     # dag zonder cron heeft geen terugval, en dat valt pas op als niemand
