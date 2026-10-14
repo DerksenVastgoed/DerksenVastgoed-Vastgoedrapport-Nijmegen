@@ -967,6 +967,41 @@ def controle_logboek():
             f"{blijven_liggen} onderwerpen bleven liggen", "")
 
 
+OVERGESLAGEN_PAD = "overgeslagen.txt"
+
+
+def controle_overgeslagen(pad=OVERGESLAGEN_PAD):
+    """
+    Welke stappen zijn vandaag mislukt?
+
+    WAAROM DIT BESTAAT. De workflow heeft drieëndertig stappen die hun fout
+    opslokken met `|| echo "X overgeslagen"`. Een mislukking is daarmee een
+    groene stap, en de reden staat alleen in het joblogboek van GitHub, dat
+    van buiten de runner wordt geweigerd. Op 14 oktober mislukte zo de
+    marktprijzenstap: de marktprijzen, de dossiers en de bijlage verdwenen uit
+    de brief, geen enkele stap stond rood, en Mark ontdekte het doordat de
+    bekendmakingen in zijn brief twee keer voorkwamen.
+
+    Die stappen laten nu hun naam achter in overgeslagen.txt. Hier wordt die
+    lijst gelezen, want een bestand dat niemand leest is net zo stil als geen
+    bestand.
+
+    Het ontbreken van het bestand is GOED NIEUWS: dan is er niets overgeslagen.
+    Dat is hier geen aanname maar het afgesproken signaal: elke stap die
+    mislukt schrijft erin, dus geen bestand betekent geen mislukking.
+    """
+    regels = [r.strip() for r in _regels(pad) if r.strip()]
+    if not regels:
+        return (OK, "geen stap overgeslagen", "")
+    # Dubbele namen samenvoegen: een stap kan in een vervolgronde nog eens
+    # langskomen.
+    namen = sorted(set(regels))
+    return (FOUT, f"{len(namen)} stap(pen) overgeslagen: {', '.join(namen)}",
+            "Deze stappen zijn vandaag mislukt. Wat zij opleveren staat niet "
+            "in de brief van vandaag. De reden staat in het joblogboek van de "
+            "run, dat alleen in de browser te openen is.")
+
+
 def _groot_dus_geen_punten(brief):
     """
     De bewering dat het puntenstelsel niet opgaat omdat het pand groot is.
@@ -3446,6 +3481,7 @@ CONTROLES = [
     ("Achtergronddekking", controle_achtergronddekking),
     ("Nieuwe onderwerpen", controle_nieuwe_onderwerpen),
     ("Logboek van de brief", controle_logboek),
+    ("Overgeslagen stappen", controle_overgeslagen),
     ("Jaarlijkse grenzen", controle_peildata),
     ("Attenderingen", controle_mailbronnen),
     ("Misdrijfcijfers", controle_misdrijven),
@@ -3713,6 +3749,36 @@ def proef():
                 raak = raak or bool(re.search(patroon, zin, re.IGNORECASE))
         if not raak:
             fouten.append(f"geen enkel patroon vangt {waarom}: {zin[:60]!r}")
+
+    # DE OVERGESLAGEN STAPPEN WORDEN GELEZEN. Een bestand dat niemand leest is
+    # net zo stil als geen bestand, en dat is precies waarom 14 oktober
+    # onopgemerkt bleef.
+    import tempfile as _tf
+    import os as _os
+    with _tf.TemporaryDirectory() as _m:
+        _p = _os.path.join(_m, "overgeslagen.txt")
+        if controle_overgeslagen(_p)[0] != OK:
+            fouten.append("zonder bestand met overgeslagen stappen staat de "
+                          "controle toch rood; dan gaat de melding elke dag af")
+        with open(_p, "w", encoding="utf-8") as _f:
+            _f.write("Marktprijzen\nDossiers\nMarktprijzen\n")
+        _stand, _tekst, _ = controle_overgeslagen(_p)
+        if _stand != FOUT:
+            fouten.append(f"een overgeslagen stap wordt niet als fout gemeld: "
+                          f"{_stand} {_tekst!r}")
+        elif "Marktprijzen" not in _tekst or "Dossiers" not in _tekst:
+            fouten.append(f"de overgeslagen stappen worden niet bij naam "
+                          f"genoemd: {_tekst!r}")
+        elif "2 stap" not in _tekst:
+            fouten.append(f"dezelfde stap twee keer wordt dubbel geteld: "
+                          f"{_tekst!r}")
+        # Een leeg bestand is geen mislukking: een stap die niets schrijft moet
+        # niet als overgeslagen gelden.
+        with open(_p, "w", encoding="utf-8") as _f:
+            _f.write("\n  \n")
+        if controle_overgeslagen(_p)[0] != OK:
+            fouten.append("een leeg bestand met overgeslagen stappen wordt "
+                          "toch als mislukking gelezen")
 
     print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:

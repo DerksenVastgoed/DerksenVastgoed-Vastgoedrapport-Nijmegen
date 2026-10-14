@@ -1,2 +1,11 @@
 __pycache__/
 *.pyc
+
+# Werkbestanden van een run, geen gegevens: welke stappen zijn mislukt en
+# de uitvoer van de mailstap. Die horen in het gezondheidsrapport terecht te
+# komen en niet in de repo.
+overgeslagen.txt
+mailstap.log
+nieuws_vandaag.md
+achtergrond_vandaag.md
+bronnen_vandaag.md
