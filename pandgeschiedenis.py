@@ -657,6 +657,28 @@ def koppel_objecten(geschiedenis, voorraad_pad=VOORRAAD_PAD):
     return tel
 
 
+def neem_object_over(pand, bag, vandaag):
+    """
+    Het object-id uit een BAG-antwoord bij het adres zetten.
+
+    Alleen een Nijmeegs object (gemeentecode in het id), en alleen als er nog
+    geen object-id staat: wat koppel_objecten() uit de voorraad haalde, heeft
+    dezelfde bron en gaat voor. Het pand-id wordt hier niet aangeraakt.
+    """
+    try:
+        from voorraad_bag import GEMEENTECODE
+    except Exception:
+        GEMEENTECODE = "0268"
+    pand["vbo_gevraagd"] = vandaag
+    vid = str((bag or {}).get("adresseerbaarObjectIdentificatie") or "")
+    if pand.get("vbo") or not vid.startswith(GEMEENTECODE):
+        return False
+    pand["vbo"] = vid
+    pand["vbo_panden"] = list((bag or {}).get("panden")
+                              or [x for x in [(bag or {}).get("pand")] if x])
+    return True
+
+
 def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
     """
     De BAG opnieuw bevragen: is het aantal woningen in het pand veranderd?
@@ -745,7 +767,14 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
             pand.pop("bag_gezien", None)
         bekeken += 1
         pand_id = pand.get("pand_id")
-        if not pand_id:
+        # HET OBJECT-ID OOK, EN NIET ALLEEN HET PAND. Deze opzoeking kreeg
+        # het object-id altijd al terug en gooide het weg. Een adres dat
+        # koppel_objecten() niet uit de voorraad kon halen (502 op 14
+        # oktober, vooral buiten de ring), krijgt het hier, een keer: daarna
+        # staat vbo_gevraagd erin, zodat een adres zonder antwoord niet elke
+        # ronde een extra aanroep kost.
+        if not pand_id or (not pand.get("vbo")
+                           and not pand.get("vbo_gevraagd")):
             # bag_dump is een hulpfunctie die de respons print en niets
             # teruggeeft; die stond hier eerst, waardoor geen enkel pand een
             # pand-id kreeg. Dit is de opzoeking die de verrijking ook gebruikt.
@@ -756,8 +785,10 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
                                            "Nijmegen") or {}
                 if bag.get("pand"):
                     break
-            pand_id = bag.get("pand")
-            pand["pand_id"] = pand_id
+            if not pand_id:
+                pand_id = bag.get("pand")
+                pand["pand_id"] = pand_id
+            neem_object_over(pand, bag, vandaag)
         if not pand_id:
             # Geen pand-id: dan kunnen we de eenheden niet opvragen. Wel
             # vastleggen dat we het geprobeerd hebben, anders blijven deze
@@ -813,36 +844,97 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
     return nieuw, deze_ronde
 
 
-def bij_labels(geschiedenis, alleen=None):
+def voorraad_per_pand(pad=VOORRAAD_PAD):
+    """
+    De objecten uit de voorraad, per pand-id en dan per adressleutel.
+
+    Een object dat in twee panden ligt, staat onder beide. Alleen Nijmeegse
+    objecten (gemeentecode in het id).
+    """
+    try:
+        from voorraad_bag import GEMEENTECODE
+    except Exception:
+        GEMEENTECODE = "0268"
+    try:
+        with open(pad, encoding="utf-8") as f:
+            v = json.load(f) or {}
+    except Exception:
+        return {}
+    uit = {}
+    for soort in ("adressen", "niet_woningen", "pijplijn"):
+        for vid, r in (v.get(soort) or {}).items():
+            if not str(vid).startswith(GEMEENTECODE) or not r.get("adres"):
+                continue
+            for pid in (r.get("panden") or [r.get("pand")]):
+                if pid:
+                    uit.setdefault(pid, {})[sleutel(r["adres"])] = r
+    return uit
+
+
+def label_uit_voorraad(per_pand, pid, adres):
+    """
+    Het label van dit object volgens de voorraad, als de voorraad het weet.
+
+    Geeft None als de voorraad dit object niet kent of het nog niet aan
+    EP-Online heeft gevraagd; dan moet het label elders vandaan komen. Anders
+    een dict zoals ep_energielabel() hem geeft, met "label" leeg als EP-Online
+    voor dit object geen label kent. Een "geen label" van de kapotte aanroep
+    van voor 12 oktober telt niet als antwoord (zie voorraad_bag).
+    """
+    r = (per_pand.get(pid) or {}).get(sleutel(adres)) if pid else None
+    if not r or not r.get("label_gezien"):
+        return None
+    try:
+        from voorraad_bag import _stuk_gevraagd
+        if _stuk_gevraagd(r):
+            return None
+    except Exception:
+        pass
+    return {"label": r.get("label"), "registratiedatum": r.get("label_datum")}
+
+
+def bij_labels(geschiedenis, alleen=None, voorraad_pad=VOORRAAD_PAD):
     """
     Het energielabel per adres in het pand; na een splitsing volgt dat later.
 
     Alleen voor de panden die deze ronde ook tegen de BAG zijn gehouden. Zonder
     die grens liep deze stap langs alle gevolgde panden, wat bij duizend panden
     al duizenden opvragingen betekent en na de archiefbackfill onhoudbaar wordt.
+
+    EERST DE VOORRAAD, PAS DAARNA EP-ONLINE. Deze stap vroeg elk label zelf
+    op, naast de labelfase van de voorraad die dat per verblijfsobject al
+    doet. Twee verzamelingen van hetzelfde gegeven, en op 14 oktober kwamen
+    ze per object 2.445 keer overeen en 1 keer niet (Scheidemakershof 43: D
+    hier, C in de voorraad, die het een dag later vroeg). Nu leest deze stap
+    het label van het object in de voorraad, gekoppeld op pand-id en adres
+    binnen dat pand. Alleen een object dat de voorraad niet kent of nog niet
+    vroeg, gaat naar EP-Online: op 14 oktober 1.756 objecten buiten de
+    voorraad en 1.523 die hij wel kent maar niet vroeg (pijplijn en
+    niet-woningen vraagt de labelfase niet).
+
+    EN DIE ROUTE GEBRUIKT NU HET OBJECT-ID. Hier stond info.get("vbo"), maar
+    bag_adres_uitgebreid() geeft dat veld niet terug; het heet daar
+    adresseerbaarObjectIdentificatie. De exacte route op object-id is dus
+    nooit gebruikt en elke vraag ging op postcode en huisnummer.
     """
     try:
         from marktprijzen_bag import (bag_adres_uitgebreid, ep_energielabel,
                                       BAG_API_KEY, EP_API_KEY)
     except Exception as e:
         leg_vast("geschiedenis", f"Labelfuncties niet te laden: {str(e)[:120]}")
-        return 0
-    if not BAG_API_KEY:
-        # Twee waarden terug, want de aanroeper pakt er twee uit. Met een enkele
-        # nul liep de hele stap vast zodra de sleutel ontbrak, en dat is precies
-        # het moment waarop je een nette melding wilt in plaats van een crash.
-        print("Geen BAG_API_KEY; de BAG-ronde wordt overgeslagen", file=sys.stderr)
-        return 0, []
-    # Hier hardop over zijn: zonder deze sleutel komt er geen enkel label
-    # binnen, en dat bleef eerder onzichtbaar omdat elke fout werd ingeslikt.
-    if not EP_API_KEY:
-        leg_vast("geschiedenis", "Geen EP_API_KEY: energielabels worden "
-                                 "overgeslagen. Staat het secret in de repo en "
-                                 "geeft de workflow hem als EP_API_KEY door?")
-        print("Geen EP_API_KEY; energielabels overgeslagen", file=sys.stderr)
-        return 0
+        bag_adres_uitgebreid = ep_energielabel = None
+        BAG_API_KEY = EP_API_KEY = ""
+    # Zonder sleutels werkt alleen de voorraad. Dat is geen reden om te
+    # stoppen, wel om het te zeggen: de objecten buiten de voorraad blijven
+    # dan zonder label.
+    kan_vragen = bool(BAG_API_KEY and EP_API_KEY and ep_energielabel)
+    if not kan_vragen:
+        leg_vast("geschiedenis", "Geen BAG_API_KEY of EP_API_KEY: labels "
+                                 "alleen uit de voorraad; objecten buiten de "
+                                 "voorraad blijven zonder label.")
+    per_pand = voorraad_per_pand(voorraad_pad)
     nieuw, vandaag = 0, dt.date.today().isoformat()
-    eerste = gewijzigd = 0
+    eerste = gewijzigd = gecorrigeerd = uit_voorraad = gevraagd = 0
     doel = set(alleen) if alleen is not None else set(geschiedenis)
     # Een BAG-pand kan meerdere adressen hebben die wij apart volgen:
     # Aubadestraat 12 en 16 zijn hetzelfde pand met 24 eenheden. Zonder deze
@@ -864,17 +956,32 @@ def bij_labels(geschiedenis, alleen=None):
             continue
         adressen = [a for a, _o in (pand.get("bag_eenheden") or [])] or [pand["adres"]]
         labels = dict(pand.get("labels") or {})
+        vroeg_iets = False
         for adres in adressen:
-            m = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z]?)[-\s]*(\w*)$", adres or "")
-            if not m:
-                continue
-            try:
-                info = bag_adres_uitgebreid(m.group(1), m.group(2), m.group(3),
-                                            m.group(4), "Nijmegen") or {}
-                ep = ep_energielabel(info.get("vbo"), info.get("postcode"),
-                                     m.group(2), m.group(3), m.group(4)) or {}
-            except Exception:
-                continue
+            ep = label_uit_voorraad(per_pand, pid, adres)
+            bron = "EP-Online, via de voorraad"
+            if ep is not None:
+                uit_voorraad += 1
+            else:
+                if not kan_vragen:
+                    continue
+                m = re.match(r"^(.+?)\s+(\d+)\s*([A-Za-z]?)[-\s]*(\w*)$",
+                             adres or "")
+                if not m:
+                    continue
+                try:
+                    info = bag_adres_uitgebreid(m.group(1), m.group(2),
+                                                m.group(3), m.group(4),
+                                                "Nijmegen") or {}
+                    ep = ep_energielabel(
+                        info.get("adresseerbaarObjectIdentificatie") or None,
+                        info.get("postcode"), m.group(2), m.group(3),
+                        m.group(4)) or {}
+                except Exception:
+                    continue
+                gevraagd += 1
+                vroeg_iets = True
+                bron = "EP-Online"
             label = ep.get("label")
             if not label:
                 continue
@@ -889,7 +996,23 @@ def bij_labels(geschiedenis, alleen=None):
                     dt.date.fromisoformat(datum)
                 except ValueError:
                     datum = vandaag
-                if was:
+                vorige = max((g.get("datum") or "" for g in
+                              pand.get("gebeurtenissen") or []
+                              if g.get("soort") == "energielabel"
+                              and f"van {adres} is" in (g.get("tekst") or "")),
+                             default="")
+                if was and datum < vorige:
+                    # EEN CORRECTIE IS GEEN WIJZIGING. Het label is
+                    # geregistreerd voor de dag waarop wij het andere
+                    # opschreven, dus het pand is niet veranderd: wij hadden
+                    # het verkeerd. Scheidemakershof 43 op 14 oktober: D
+                    # opgeschreven op 3 oktober via postcode en huisnummer, C
+                    # geregistreerd op 14 juli 2025 volgens het object-id.
+                    tekst = (f"energielabel van {adres} is {label}, "
+                             f"geregistreerd {datum}; hier stond eerder {was}, "
+                             f"dat was onze fout en geen wijziging aan het pand")
+                    gecorrigeerd += 1
+                elif was:
                     tekst = f"energielabel van {adres} is nu {label}, was {was}"
                     gewijzigd += 1
                 else:
@@ -898,17 +1021,19 @@ def bij_labels(geschiedenis, alleen=None):
                     tekst = (f"energielabel van {adres} is {label}, "
                              f"geregistreerd {datum}")
                     eerste += 1
-                nieuw += voeg_toe(pand, datum, "energielabel", tekst,
-                                  "EP-Online")
+                nieuw += voeg_toe(pand, datum, "energielabel", tekst, bron)
                 labels[adres] = label
         if labels:
             pand["labels"] = labels
         # Onthouden voor de andere adressen in hetzelfde BAG-pand.
         if pid:
             per_pand_id[pid] = labels
-        time.sleep(PAUZE_TUSSEN)
-    print(f"Labels: {len(doel)} panden nagekeken; {eerste} woningen voor het "
-          f"eerst een label, {gewijzigd} werkelijk gewijzigd"
+        if vroeg_iets:
+            time.sleep(PAUZE_TUSSEN)
+    print(f"Labels: {len(doel)} panden nagekeken; {uit_voorraad} objecten uit "
+          f"de voorraad, {gevraagd} bij EP-Online gevraagd; {eerste} woningen "
+          f"voor het eerst een label, {gewijzigd} werkelijk gewijzigd, "
+          f"{gecorrigeerd} gecorrigeerd"
           + (f"; {bespaard} opvragingen bespaard doordat adressen hetzelfde "
              f"BAG-pand delen" if bespaard else ""), file=sys.stderr)
     return nieuw
@@ -1958,6 +2083,86 @@ def proef():
     check("de telling klopt met wat er gebeurde",
           (_t.get("bestaand"), _t.get("bestaand_en_gevormd"),
            _t.get("niet_in_voorraad")), (1, 1, 1))
+
+    # HET LABEL KOMT UIT DE VOORRAAD, EN ALLEEN WAT DIE NIET WEET GAAT NAAR
+    # EP-ONLINE, OP OBJECT-ID. Een pand met drie objecten: A 1 kent de
+    # voorraad met label, A 3 kent hij niet, en A 5 kreeg "geen label" van
+    # de kapotte aanroep van 10 oktober. Alleen A 3 en A 5 horen gevraagd te
+    # worden, en dan met het object-id uit de BAG.
+    import marktprijzen_bag as _mb
+    _bewaar = (_mb.bag_adres_uitgebreid, _mb.ep_energielabel,
+               _mb.BAG_API_KEY, _mb.EP_API_KEY, globals()["PAUZE_TUSSEN"])
+    _gevraagd = []
+
+    def _nep_bag(straat, nr, letter, toev, plaats):
+        return {"adresseerbaarObjectIdentificatie": f"02680100000{nr:0>5}",
+                "postcode": "6500AA", "pand": "0268100000077777"}
+
+    def _nep_ep(vbo, postcode, nr, letter, toev):
+        _gevraagd.append(vbo)
+        return {"label": "B", "registratiedatum": "2024-01-01"}
+
+    with tempfile.TemporaryDirectory() as _d:
+        _vp = os.path.join(_d, "v.json")
+        with open(_vp, "w", encoding="utf-8") as _f:
+            json.dump({"adressen": {
+                "0268010000000001": {"adres": "Proefhof 1", "label": "C",
+                                     "label_datum": "2023-05-05",
+                                     "label_gezien": "2026-10-13",
+                                     "pand": "0268100000077777"},
+                "0268010000000005": {"adres": "Proefhof 5",
+                                     "label_gezien": "2026-10-10",
+                                     "pand": "0268100000077777"}}}, _f)
+        _g = {"proefhof1": {"adres": "Proefhof 1",
+                            "pand_id": "0268100000077777",
+                            "bag_eenheden": [["Proefhof 1", 60],
+                                             ["Proefhof 3", 60],
+                                             ["Proefhof 5", 60]],
+                            # Eerder verkeerd opgeschreven als D, op een dag
+                            # na de registratie van het echte label C.
+                            "labels": {"Proefhof 1": "D"},
+                            "gebeurtenissen": [{
+                                "datum": "2026-10-03", "soort": "energielabel",
+                                "tekst": "energielabel van Proefhof 1 is nu D",
+                                "bron": "EP-Online"}]}}
+        try:
+            _mb.bag_adres_uitgebreid, _mb.ep_energielabel = _nep_bag, _nep_ep
+            _mb.BAG_API_KEY = _mb.EP_API_KEY = "proef"
+            globals()["PAUZE_TUSSEN"] = 0
+            bij_labels(_g, voorraad_pad=_vp)
+        finally:
+            (_mb.bag_adres_uitgebreid, _mb.ep_energielabel, _mb.BAG_API_KEY,
+             _mb.EP_API_KEY, globals()["PAUZE_TUSSEN"]) = _bewaar
+    _lab = _g["proefhof1"].get("labels") or {}
+    check("het label uit de voorraad wordt gebruikt", _lab.get("Proefhof 1"),
+          "C")
+    _corr = [x for x in _g["proefhof1"]["gebeurtenissen"]
+             if "Proefhof 1 is C" in (x.get("tekst") or "")
+             or "Proefhof 1 is nu C" in (x.get("tekst") or "")]
+    check("een correctie van onze fout heet geen wijziging aan het pand",
+          bool(_corr) and "onze fout" in _corr[0]["tekst"], True)
+    check("alleen wat de voorraad niet weet gaat naar EP-Online",
+          len(_gevraagd), 2)
+    check("EP-Online wordt op object-id gevraagd en niet op postcode",
+          all(_gevraagd), True)
+
+    # HET OBJECT-ID UIT HET BAG-ANTWOORD WORDT BEWAARD, alleen een Nijmeegs,
+    # en wat de voorraad al gaf blijft staan.
+    _a = {"adres": "Proefhof 9"}
+    neem_object_over(_a, {"adresseerbaarObjectIdentificatie": "0268010000000009",
+                          "panden": ["0268100000000009"]}, "2026-10-14")
+    check("het object-id uit de BAG wordt bewaard", _a.get("vbo"),
+          "0268010000000009")
+    _b = {"adres": "Bachstraat 3"}
+    neem_object_over(_b, {"adresseerbaarObjectIdentificatie":
+                          "0241010000000134"}, "2026-10-14")
+    check("een object uit een andere gemeente wordt niet bewaard",
+          (_b.get("vbo"), _b.get("vbo_gevraagd")), (None, "2026-10-14"))
+    _c = {"adres": "Proefhof 9", "vbo": "0268010000000001"}
+    neem_object_over(_c, {"adresseerbaarObjectIdentificatie":
+                          "0268010000000009"}, "2026-10-14")
+    check("een object-id uit de voorraad wordt niet overschreven",
+          _c.get("vbo"), "0268010000000001")
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)

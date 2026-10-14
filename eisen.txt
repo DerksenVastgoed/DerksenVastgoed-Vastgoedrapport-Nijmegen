@@ -996,3 +996,17 @@ waarom: 14 oktober, Mark: "De BAG werkt met pand-id en object-id. Is dat
   zichtbaar, en een naamgenoot in een andere gemeente telt niet mee.
 proef: pandgeschiedenis:een naamgenoot in een andere gemeente telt niet mee
 soort: gegevens
+
+---
+eis: Een label wordt een keer opgehaald, door de voorraad, en de
+  pandgeschiedenis leest het daar op pand-id en adres.
+waarom: 14 oktober. De pandgeschiedenis vroeg elk label zelf aan EP-Online,
+  naast de labelfase van de voorraad die dat per verblijfsobject al deed.
+  Gemeten per object: 2.445 keer gelijk, 1 keer niet (Scheidemakershof 43).
+  Daarbij vroeg die eigen route info.get("vbo"), een veld dat
+  bag_adres_uitgebreid() niet teruggeeft, zodat de exacte route op object-id
+  nooit werd gebruikt. Nu eerst de voorraad; alleen een object dat de
+  voorraad niet kent of nog niet vroeg, gaat naar EP-Online, en dan op het
+  object-id.
+proef: pandgeschiedenis:alleen wat de voorraad niet weet gaat naar EP-Online
+soort: werking
