@@ -197,18 +197,34 @@ def koppel(aanvragen, besluiten):
     """
     Aanvraag en besluit aan elkaar via het zaaknummer.
 
-    WAAROM NIET OP PAND. Nu koppelen wij op de pandsleutel en op datum: het
-    eerste besluit na een aanvraag. Bij twee aanvragen voor hetzelfde pand
+    WAAROM NIET OP PAND. Eerder koppelden wij op de pandsleutel en op datum:
+    het eerste besluit na een aanvraag. Bij twee aanvragen voor hetzelfde pand
     hoort de tweede dan bij het besluit van de eerste. Het zaaknummer staat
     in beide publicaties en laat geen ruimte.
+
+    MAAR HET ZAAKNUMMER IS NIET ALTIJD HETZELFDE. Zie koppel_op_adres() voor
+    de 64 besluiten waarbij het zaaknummer van de aanvraag een ander is, en
+    voor de strikte regel die 47 daarvan alsnog verbindt zonder de fout te
+    maken die hierboven staat.
     """
+    # EEN PUBLICATIE ZONDER ZAAKNUMMER VERDWEEN HIER. Beide lussen sloegen
+    # een record zonder zaaknummer over, zonder else en zonder teller. Van de
+    # 93 besluiten in het archief dragen 53 geen zaaknummer, en die kwamen dus
+    # in geen van de drie uitkomsten terug: niet als paar, niet als los
+    # besluit, nergens. Daarmee kon koppel_op_adres() ze ook nooit zien, en
+    # was de uitkomst van deze functie stil te laag.
     per = {}
+    zonder_nummer_a, zonder_nummer_b = [], []
     for a in aanvragen:
         if a.get("zaaknummer"):
             per.setdefault(a["zaaknummer"], {})["aanvraag"] = a
+        else:
+            zonder_nummer_a.append(a)
     for b in besluiten:
         if b.get("zaaknummer"):
             per.setdefault(b["zaaknummer"], {})["besluit"] = b
+        else:
+            zonder_nummer_b.append(b)
     paren, alleen_a, alleen_b = [], [], []
     for nummer, d in per.items():
         if "aanvraag" in d and "besluit" in d:
@@ -217,7 +233,129 @@ def koppel(aanvragen, besluiten):
             alleen_a.append((nummer, d["aanvraag"]))
         else:
             alleen_b.append((nummer, d["besluit"]))
+    # De publicaties zonder zaaknummer horen bij de losse: er is niets om op
+    # te koppelen, maar ze bestaan wel en koppel_op_adres() kan ze proberen.
+    alleen_a.extend(("", a) for a in zonder_nummer_a)
+    alleen_b.extend(("", b) for b in zonder_nummer_b)
     return paren, alleen_a, alleen_b
+
+
+def kern_van(titel):
+    """
+    De omschrijving zonder de vaste kop en zonder het adres.
+
+    "Aanvraag omgevingsvergunning voor het splitsen van een woning, aan
+    Pontanusstraat 42, 6524EP Nijmegen" wordt "splitsen van een woning". Zo
+    zijn een aanvraag en een besluit over dezelfde zaak te vergelijken.
+    """
+    t = (titel or "").lower().strip()
+    for kop in ("aanvraag omgevingsvergunning voor het ",
+                "aanvraag omgevingsvergunning voor de ",
+                "aanvraag omgevingsvergunning voor ",
+                "besluit (met bopa) voor het ", "besluit (met bopa) voor ",
+                "besluit voor het ", "besluit voor de ", "besluit voor ",
+                "aanvraag ", "besluit "):
+        if t.startswith(kop):
+            t = t[len(kop):]
+            break
+    return re.sub(r",?\s*aan (?:de )?[a-z].*$", "", t).strip()
+
+
+def gelijkenis(a, b):
+    """Hoeveel twee omschrijvingen op elkaar lijken, tussen 0 en 1."""
+    import difflib
+    return round(difflib.SequenceMatcher(None, a or "", b or "").ratio(), 2)
+
+
+def koppel_op_adres(alleen_a, alleen_b, sleutel_van=None):
+    """
+    Een besluit aan een aanvraag verbinden als het zaaknummer verschilt.
+
+    WAT HIER AAN DE HAND IS. Op 14 oktober bleken 64 besluiten geen aanvraag
+    te hebben op zaaknummer. Bij Pontanusstraat 42 staan beide publicaties
+    gewoon in ons archief: de aanvraag op 20 januari 2026 om de woning in twee
+    appartementen te splitsen, het besluit op 18 mei 2026 om de woning in 2
+    zelfstandige appartementen te splitsen. Dezelfde zaak, 118 dagen ertussen,
+    en twee verschillende zaaknummers: Z2026-00000134 en Z2025-00009314. Het
+    zaaknummer van de gemeente is dus niet stabiel over de procedure heen.
+
+    DE REGEL, EN WAAROM HIJ ZO STRENG IS. koppel() koos met opzet niet op
+    adres, want bij twee aanvragen op een adres hoort de tweede dan bij het
+    besluit van de eerste. Die fout wordt hier vermeden door alleen te
+    verbinden als er PRECIES EEN kandidaat is: zelfde adres, aanvraag vóór
+    het besluit, en een overlappend signaalsoort. Zijn er meer, dan gebeurt
+    er niets.
+
+    NAGEMETEN OP HET ECHTE ARCHIEF van 479 publicaties, 182 aanvragen en 93
+    besluiten:
+      53 van de 93 besluiten dragen GEEN zaaknummer, en 6 van de 182
+         aanvragen. Die verdwenen tot vandaag in koppel(); zie daar.
+      32 paren op zaaknummer
+      61 losse besluiten blijven over
+      44 daarvan hebben precies een kandidaat op adres  -> verbonden
+       2 hebben meer dan een kandidaat                  -> niets
+      15 hebben geen kandidaat                          -> niets
+    Het aantal paren gaat daarmee van 32 naar 76. Van die 44 is de mediane
+    tekstgelijkenis van de omschrijvingen 1,00 en de laagste 0,63, en dat
+    laatste zijn formuleringsvarianten van hetzelfde
+    ("omzettingsvergunning voor kamerverhuurvergunning" tegen
+    "kamerverhuurvergunning"). Tussen de twee publicaties zit mediaan 92
+    dagen, van 7 tot 247.
+
+    MIJN EERSTE GETALLEN WAREN FOUT. Ik telde met een eigen script 64 losse
+    besluiten en 47 koppelingen. Toen ik het door deze module zelf liet
+    rekenen kwamen er 8 en 1 uit, en dat verschil was de 53 besluiten zonder
+    zaaknummer die koppel() weggooide. Een getal uit een script naast de
+    module is geen meting van de module.
+
+    DIT IS GEEN DOORLOOPTIJD VAN DE GEMEENTE. De dagen hiertussen zijn de
+    tijd tussen ONZE TWEE WAARNEMINGEN. De doorlooptijd van de gemeente loopt
+    van ontvangst tot besluit en staat in de tekst van het besluit; die twee
+    getallen mogen niet in een mediaan terechtkomen.
+
+    Elk paar draagt hoe het is verbonden, want een afgeleid verband mag er
+    niet uitzien als een hard verband.
+    """
+    sleutel_van = sleutel_van or (lambda r: r.get("adres") or "")
+    aanvragen = [a for _, a in alleen_a] if alleen_a and isinstance(
+        alleen_a[0], tuple) else list(alleen_a or [])
+    besluiten = [b for _, b in alleen_b] if alleen_b and isinstance(
+        alleen_b[0], tuple) else list(alleen_b or [])
+    paren, meerdere, zonder = [], [], []
+    for b in besluiten:
+        adres = sleutel_van(b)
+        if not adres:
+            zonder.append(b)
+            continue
+        kandidaten = [
+            a for a in aanvragen
+            if sleutel_van(a) == adres
+            and (a.get("datum") or "") < (b.get("datum") or "")
+            and (set(a.get("soorten") or []) & set(b.get("soorten") or [])
+                 or not (a.get("soorten") or b.get("soorten")))]
+        if len(kandidaten) == 1:
+            a = kandidaten[0]
+            paren.append({
+                "adres": adres, "aanvraag": a, "besluit": b,
+                "gekoppeld_via": "adres",
+                "gelijkenis": gelijkenis(kern_van(a.get("titel")),
+                                         kern_van(b.get("titel"))),
+                "dagen_tussen_waarnemingen": _dagen(a.get("datum"),
+                                                    b.get("datum")),
+            })
+        elif len(kandidaten) > 1:
+            meerdere.append(b)
+        else:
+            zonder.append(b)
+    return paren, meerdere, zonder
+
+
+def _dagen(van, tot):
+    import datetime as _dt
+    try:
+        return (_dt.date.fromisoformat(tot) - _dt.date.fromisoformat(van)).days
+    except Exception:
+        return None
 
 
 def proef():
@@ -344,10 +482,61 @@ def proef():
     check("het juiste paar", paren[0][0], "Z2")
     check("aanvraag zonder besluit", [n for n, _ in alleen_a], ["Z1"])
     check("besluit zonder aanvraag", alleen_b, [])
-    # Zonder zaaknummer doet een rij niet mee: raden is erger dan overslaan.
+    # ZONDER ZAAKNUMMER GEEN PAAR, MAAR WEL IN DE UITKOMST. Hier stond
+    # (0, 0, 0) met als uitleg "raden is erger dan overslaan". Dat haalde twee
+    # dingen door elkaar: niet raden, en niet kwijtraken. Van de 93 besluiten
+    # in het archief dragen 53 geen zaaknummer, en die verdwenen zo volledig,
+    # waardoor koppel_op_adres() ze nooit zag. Niet raden blijft: er komt geen
+    # paar uit. Maar ze staan nu wel bij de losse.
     paren2, a2, b2 = koppel([{"zaaknummer": ""}], [{"zaaknummer": ""}])
-    check("zonder nummer geen koppeling", (len(paren2), len(a2), len(b2)),
-          (0, 0, 0))
+    check("zonder nummer geen paar", len(paren2), 0)
+    check("zonder nummer wel bij de losse", (len(a2), len(b2)), (1, 1))
+
+    # KOPPELEN OP ADRES, OP HET ECHTE GEVAL VAN PONTANUSSTRAAT 42. Twee
+    # publicaties over dezelfde splitsing, 118 dagen ertussen, en twee
+    # verschillende zaaknummers van de gemeente.
+    _a = {"adres": "Pontanusstraat 42", "datum": "2026-01-20",
+          "zaaknummer": "Z2026-00000134", "soorten": ["splitsing"],
+          "titel": "Aanvraag omgevingsvergunning voor het splitsen van een "
+                   "woning naar twee zelfstandige appartementen, aan "
+                   "Pontanusstraat 42, 6524EP Nijmegen"}
+    _b = {"adres": "Pontanusstraat 42", "datum": "2026-05-18",
+          "zaaknummer": "Z2025-00009314", "soorten": ["splitsing"],
+          "titel": "Besluit voor het splitsen van de woning in 2 "
+                   "zelfstandige appartementen, aan Pontanusstraat 42, "
+                   "6524EP Nijmegen"}
+    _p, _meer, _zonder = koppel_op_adres([_a], [_b])
+    check("op adres verbonden", len(_p), 1)
+    if _p:
+        check("de koppeling draagt haar herkomst", _p[0]["gekoppeld_via"],
+              "adres")
+        check("de dagen tussen onze waarnemingen",
+              _p[0]["dagen_tussen_waarnemingen"], 118)
+        if _p[0]["gelijkenis"] < 0.8:
+            fouten.append(f"de omschrijvingen van hetzelfde dossier lijken "
+                          f"te weinig op elkaar: {_p[0]['gelijkenis']}")
+    # TWEE AANVRAGEN OP EEN ADRES: NIETS VERBINDEN. Dit is precies de fout
+    # waarom koppel() met opzet niet op adres koos.
+    _p2, _meer2, _ = koppel_op_adres([_a, dict(_a, datum="2026-02-20")], [_b])
+    check("bij twee kandidaten geen koppeling", (len(_p2), len(_meer2)),
+          (0, 1))
+    # Een aanvraag NA het besluit hoort er niet bij.
+    _p3, _, _z3 = koppel_op_adres([dict(_a, datum="2026-06-01")], [_b])
+    check("een latere aanvraag wordt niet gekoppeld", (len(_p3), len(_z3)),
+          (0, 1))
+    # Een ander signaalsoort op hetzelfde adres hoort er ook niet bij: een
+    # dakkapel is geen splitsing.
+    _p4, _, _z4 = koppel_op_adres(
+        [dict(_a, soorten=["verbouwing"],
+              titel="Aanvraag omgevingsvergunning voor een dakkapel, aan "
+                    "Pontanusstraat 42, 6524EP Nijmegen")], [_b])
+    check("een ander soort wordt niet gekoppeld", (len(_p4), len(_z4)),
+          (0, 1))
+    # En de kern zonder kop en zonder adres.
+    check("de kern van een aanvraagtitel", kern_van(_a["titel"]),
+          "splitsen van een woning naar twee zelfstandige appartementen")
+    check("de kern van een besluittitel", kern_van(_b["titel"]),
+          "splitsen van de woning in 2 zelfstandige appartementen")
 
     print(f"Proef besluit: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
