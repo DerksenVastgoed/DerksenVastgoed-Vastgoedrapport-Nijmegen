@@ -195,6 +195,31 @@ LABEL_OPNIEUW_DAGEN = 365
 # krijgt na die ene vraag de datum van vandaag en komt niet terug.
 METHODE_VANAF = "2026-10-12"
 
+# VANAF WANNEER "GEEN LABEL" EEN ANTWOORD IS. Tot de merge van PR 41, in de
+# nacht van 11 op 12 oktober, las haal_label() een veldnaam die EP-Online niet
+# geeft. Elk adres dat toen werd gevraagd kreeg "geen label" en de datum van
+# die dag, en kwam daarmee pas na LABEL_OPNIEUW_DAGEN terug. Gemeten op 14
+# oktober: 1.097 adressen zonder label met een vraagdatum voor deze grens, en
+# daarvan kent de pandgeschiedenis er 57 wel een label (5,2 procent). Voor de
+# 5.485 adressen zonder label die na de grens zijn gevraagd is dat 5 (0,09
+# procent). Wie voor deze dag "geen label" kreeg, wordt dus een keer opnieuw
+# gevraagd. Ook hier is de grens een datum en geen veld, zodat de inhaalslag
+# ophoudt: na de vraag staat de datum van vandaag erin.
+GEEN_LABEL_BETROUWBAAR_VANAF = "2026-10-12"
+
+
+def _stuk_gevraagd(r):
+    """
+    Of dit record "geen label" kreeg van de kapotte aanroep van voor
+    GEEN_LABEL_BETROUWBAAR_VANAF. Een plek voor de wachtrij en de telling in
+    de stand, zodat die twee niet uiteen kunnen lopen. Een privelabel en een
+    definitieve weigering waren wel echte antwoorden en tellen niet mee.
+    """
+    gezien = r.get("label_gezien") or ""
+    return (bool(gezien) and gezien < GEEN_LABEL_BETROUWBAAR_VANAF
+            and not r.get("label") and not r.get("label_prive")
+            and not r.get("label_fout"))
+
 
 def _lees(pad, standaard):
     try:
@@ -1230,7 +1255,7 @@ def fase_labels(voorraad, minuten):
     # bekend" een blinde vlek worden die nooit meer dichtgaat.
     opnieuw = (dt.date.today() - dt.timedelta(days=LABEL_OPNIEUW_DAGEN)
                ).isoformat()
-    nooit, verlopen, zonder_methode = [], [], []
+    nooit, verlopen, zonder_methode, stuk_gevraagd = [], [], [], []
     for s, r in adressen.items():
         if r.get("label"):
             # EEN LABEL ZONDER REKENMETHODE WORDT EEN KEER INGEHAALD. De
@@ -1252,6 +1277,8 @@ def fase_labels(voorraad, minuten):
         gezien = r.get("label_gezien")
         if not gezien:
             nooit.append(s)
+        elif _stuk_gevraagd(r):
+            stuk_gevraagd.append(s)
         elif gezien < opnieuw:
             verlopen.append(s)
     # DE INHAALSLAG GAAT VOOROP, EN DAT IS GEEN SMAAKKWESTIE. Hij stond
@@ -1266,7 +1293,11 @@ def fase_labels(voorraad, minuten):
     # adres de datum van vandaag krijgt. Het kost dus een kwartier van een
     # ronde, een keer, en daarna niets meer. Een inhaalslag die niet eindigt
     # zou hier niet vooraan mogen staan.
+    #
+    # De stuk gevraagde adressen staan om dezelfde reden vooraan: 1.097
+    # stuks, begrensd door een datum, en daarna leeg.
     nog = (sorted(zonder_methode, key=lambda s: adressen[s].get("adres", ""))
+           + sorted(stuk_gevraagd, key=lambda s: adressen[s].get("adres", ""))
            + sorted(nooit, key=lambda s: adressen[s].get("adres", ""))
            + sorted(verlopen, key=lambda s: adressen[s].get("label_gezien", "")))
 
@@ -1274,6 +1305,7 @@ def fase_labels(voorraad, minuten):
     einde = begin + minuten * 60
     gevraagd = met_label = zonder = fouten = prive = 0
     inhaal, methode_erbij, methode_blijft_weg = set(zonder_methode), 0, 0
+    herhaal, herhaald_met_label, herhaald_zonder = set(stuk_gevraagd), 0, 0
     laatste_fout = ""
     for sleutel in nog:
         if time.time() > einde:
@@ -1321,7 +1353,12 @@ def fase_labels(voorraad, minuten):
             # label_gevonden worden geteld, dan loopt die teller op zonder
             # dat er een woning bij is gekomen, en dat is dezelfde soort
             # misleiding als de 46 "fouten" die antwoorden waren.
-            if sleutel not in inhaal:
+            if sleutel in herhaal:
+                # Apart geteld: dit label bestond al, wij hadden het verkeerd
+                # gelezen. Bij label_gevonden zou het lijken alsof er die
+                # ronde woningen een label hebben gekregen.
+                herhaald_met_label += 1
+            elif sleutel not in inhaal:
                 met_label += 1
             elif rec.get("label_nta8800") is None:
                 methode_blijft_weg += 1
@@ -1338,6 +1375,8 @@ def fase_labels(voorraad, minuten):
             # op. Als "geen label bekend" tellen zou de teller laten oplopen
             # bij een record dat gewoon een label heeft.
             methode_blijft_weg += 1
+        elif sleutel in herhaal:
+            herhaald_zonder += 1
         else:
             zonder += 1
 
@@ -1363,6 +1402,13 @@ def fase_labels(voorraad, minuten):
             "nog_nooit_gevraagd": resterend,
             "opnieuw_aan_de_beurt": len(verlopen),
             "methode_ingehaald": methode_erbij,
+            # Hoeveel van de stuk gevraagde adressen bij de tweede vraag wel
+            # een label bleken te hebben, en hoeveel er nog in de rij staan;
+            # die laatste geteld zoals de wachtrij telt.
+            "herhaald_label_gevonden": herhaald_met_label,
+            "herhaald_geen_label": herhaald_zonder,
+            "herhaald_nog_te_vragen": sum(
+                1 for r in adressen.values() if _stuk_gevraagd(r)),
             "methode_blijft_onbekend": methode_blijft_weg,
             # Op dezelfde manier geteld als de wachtrij zelf, en niet uit
             # een aftreksom: zo kan dit getal niet uit elkaar lopen met wat
@@ -1808,6 +1854,9 @@ def proef_labels():
     # alleen omgezet voor de duur van de proef.
     global haal_label, EP_API_KEY
     afw = []
+
+    def plek_van(rij, naam):
+        return rij.index(naam) if naam in rij else 99
     echte_haler, echte_sleutel = haal_label, EP_API_KEY
     EP_API_KEY = "proef"
     antwoorden = {}
@@ -1834,6 +1883,12 @@ def proef_labels():
                    "label": "E", "label_gezien": "2026-10-01"},
             "v7": {"adres": "Blijft onbekend 7", "postcode": "6500AA",
                    "vbo": "v7", "label": "F", "label_gezien": "2026-10-01"},
+            # GEEN LABEL, GEVRAAGD MET DE KAPOTTE AANROEP. v8 komt een keer
+            # terug; v9 kreeg "geen label" na de reparatie en blijft liggen.
+            "v8": {"adres": "Stuk gevraagd 8", "postcode": "6500AA",
+                   "vbo": "v8", "label_gezien": "2026-10-10"},
+            "v9": {"adres": "Goed gevraagd 9", "postcode": "6500AA",
+                   "vbo": "v9", "label_gezien": "2026-10-13"},
         }}
 
     try:
@@ -1855,13 +1910,36 @@ def proef_labels():
                                 "nta8800": False}, "", True),
             "Definitief 3": (None, "HTTP 400", True),
             "Tijdelijk 4": (None, "netwerk: verbinding weg", False),
+            "Stuk gevraagd 8": ({"label": "B", "prive": False,
+                                 "registratiedatum": "2021-05-01",
+                                 "nta8800": True}, "", True),
         }
         v = voorraadje()
         uit = fase_labels(v, 5)
         ad = v["adressen"]
-        if uit.get("gevraagd") != 7:
+        if uit.get("gevraagd") != 8:
             afw.append(f"labelfase vroeg {uit.get('gevraagd')} adressen op in "
-                       f"plaats van 7")
+                       f"plaats van 8")
+        # "GEEN LABEL" VAN DE KAPOTTE AANROEP WORDT EEN KEER OVERGEVRAAGD, en
+        # "geen label" van na de reparatie niet. Op 14 oktober stonden er
+        # 1.097 van de eerste soort een jaar lang vast.
+        if "Stuk gevraagd 8" not in gevraagde:
+            afw.append("een adres dat 'geen label' kreeg van de kapotte "
+                       "aanroep wordt niet opnieuw gevraagd")
+        if "Goed gevraagd 9" in gevraagde:
+            afw.append("een adres dat na de reparatie 'geen label' kreeg wordt "
+                       "toch opnieuw gevraagd; dan is de grens geen grens")
+        if ad["v8"].get("label") != "B":
+            afw.append(f"het overgevraagde label is niet bewaard: "
+                       f"{ad['v8'].get('label')!r}")
+        if uit.get("herhaald_label_gevonden") != 1:
+            afw.append(f"de stand meldt {uit.get('herhaald_label_gevonden')} "
+                       f"overgevraagde labels in plaats van 1")
+        if "Stuk gevraagd 8" in gevraagde and plek_van(gevraagde, "Stuk gevraagd 8") \
+                > plek_van(gevraagde, "Gevonden 1"):
+            afw.append("de stuk gevraagde adressen staan achter de nieuwe in "
+                       "de wachtrij; dan draait de inhaalslag pas als de staart "
+                       "leeg is")
         # EN DE INHAALSLAG GAAT VOOROP. Stond hij achteraan, dan kwam hij
         # pas aan de beurt als de 17.321 nooit gevraagde adressen klaar
         # waren: negentien rondes. Een begrensde inhaalslag achter een lange
@@ -1954,6 +2032,10 @@ def proef_labels():
                 "methode_blijft_onbekend"):
             afw.append("de inhaalslag op de rekenmethode komt in de tweede "
                        "ronde terug; dan vraagt hij dat adres voor altijd")
+        if tweede.get("herhaald_nog_te_vragen") != 0:
+            afw.append(f"na de inhaalslag staan er nog "
+                       f"{tweede.get('herhaald_nog_te_vragen')} stuk gevraagde "
+                       f"adressen in de rij")
         if tweede.get("methode_nog_in_te_halen") != 0:
             afw.append(f"na de inhaalslag staan er nog "
                        f"{tweede.get('methode_nog_in_te_halen')} in de rij")

@@ -931,3 +931,31 @@ waarom: 13 oktober, 's avonds. Ik zocht een parkeerregel op het web, schreef
   over.
 proef: eisen:WAT HIER GEBEURDE. Op 13 oktober zocht ik een parkeerregel
 soort: werking
+
+---
+eis: "Geen label" van een kapotte aanroep is geen antwoord, en wordt een keer
+  opnieuw gevraagd.
+waarom: 14 oktober. Tot de reparatie in de nacht van 11 op 12 oktober las de
+  labelfase een veldnaam die EP-Online niet geeft. De adressen die toen
+  werden gevraagd kregen "geen label" en de datum van die dag, en kwamen
+  daardoor pas na 365 dagen terug. Dat waren er 1.097. De pandgeschiedenis
+  kent voor 57 daarvan wel een label (5,2 procent); bij de 5.485 adressen die
+  na de reparatie "geen label" kregen is dat 5 (0,09 procent). De
+  reparatie hield de fout tegen voor nieuwe vragen, maar ruimde de oude
+  antwoorden niet op. Nu worden ze een keer opnieuw gevraagd, vooraan in de
+  rij, begrensd door een datum zodat de inhaalslag ophoudt.
+proef: voorraad_bag:wordt niet opnieuw gevraagd
+soort: werking
+
+---
+eis: Het label van een adres komt van dat adres, nooit van een buur in
+  hetzelfde pand.
+waarom: 14 oktober. Het aanbodprofiel nam bij een adres zonder eigen label
+  het beste label van een ander adres in het pand. Dat gold voor 197 van de
+  1.433 gevolgde adressen met labels, en voor 4 van de 77 regels in het
+  aanbod. Burg. Hustinxstraat 208 telde als A, terwijl EP-Online voor dat
+  adres D geeft. Het profiel leest nu eerst de voorraad, die per
+  verblijfsobject is opgebouwd, en dan het eigen adres in de
+  pandgeschiedenis. Wat geen van beide kent, is onbekend.
+proef: aanbodprofiel:buuradres in hetzelfde pand
+soort: gegevens
