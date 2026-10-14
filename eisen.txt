@@ -794,6 +794,31 @@ proef: besluit:KOPPELEN OP ADRES, OP HET ECHTE GEVAL VAN PONTANUSSTRAAT 42
 soort: gegevens
 
 ---
+eis: Een veld heet naar wat het meet en niet naar wat wij willen weten.
+waarom: 14 oktober, 's avonds, en dit is het geval waar ik het bijna in liet
+  staan. De parkeereis bij splitsen valt weg in gereguleerd gebied, dus wilde
+  ik per pand weten of daar betaald parkeren geldt. De gemeente publiceert
+  MOB_BETAALD_PARKEREN, dus zette ik per punt een veld betaald_parkeren op
+  waar of onwaar. Dat leverde 15.645 gereguleerde adressen op, een plausibel
+  getal. Maar er stond ook: 4098 van de 6121 adressen in de Binnenstad liggen
+  buiten elk betaaldvlak. Dat kan niet, want in de Nijmeegse binnenstad geldt
+  overal betaald parkeren. De laag legt het zelf uit: van de 33 vlakken zijn
+  sommige gebieden (Centrum met 160 punten, 1e ring met 177, de lettergebieden
+  D tot Z) en andere losse parkeergarages (P8 Vierdaagseplein met 5 punten,
+  Lage Markt met 5, Doddendaal met 7, Radboud UMC). Een punt in zo'n vlak
+  betekent dus dat daar een parkeerplek ligt, niet dat het adres in
+  gereguleerd gebied valt; in een voetgangersgebied zonder parkeervakken valt
+  een woning erbuiten terwijl er wel betaald parkeren geldt. Het veld heet nu
+  betaald_parkeervlak en draagt de naam van het vlak in plaats van waar of
+  onwaar, en het oude veld wordt bij elke ronde weggehaald. Een waar/onwaar
+  veld met de naam betaald_parkeren leest als "hier valt de parkeereis weg",
+  en dat is precies de bewering die de laag niet waarmaakt. De normlaag doet
+  het wel: 20.292 van de 20.321 adressen vallen in precies een vlak, met veld
+  GEBIED en zes waarden.
+proef: parkeerzone:HET VELD NOEMT HET VLAK EN NIET EEN JA OF NEE
+soort: gegevens
+
+---
 eis: Een stap die zijn uitvoer door een pijp stuurt om hem te bewaren, zet
   pipefail aan, zodat een fout ervoor niet verdwijnt.
 waarom: 13 oktober, 's avonds. De veldenronde meldde "gelukt" en

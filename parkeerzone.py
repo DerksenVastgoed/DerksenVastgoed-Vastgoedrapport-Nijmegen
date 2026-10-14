@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-De parkeerzone en het gereguleerde gebied onder elk pand.
+De parkeerzone onder elk pand, en wat er NIET uit de lagen te halen is.
 
 WAAROM. De parkeernorm bestaat niet als enkel getal. In de binnenstad is hij
 0,70 per woning waarvan 0,50 voor bewoners, in de schil 1e ring 1,25 voor
@@ -13,9 +13,37 @@ bruto vloeroppervlak. Zie het blok "Parkeren bij splitsen" in bronnen.py.
 Zonder de zone van een pand is elke parkeerberekening in de brief dus een gok,
 en een gok die plausibel leest.
 
-TWEE LAGEN, WANT HET ZIJN TWEE VRAGEN:
-  MOB_PARKEERNORMERING   welke norm geldt hier
-  MOB_BETAALDPARKEREN    geldt hier betaald parkeren, en valt de eis dus weg
+TWEE LAGEN, EN MAAR EEN ERVAN GEEFT ANTWOORD.
+
+  MOB_PARKEERNORMERING   welke norm geldt hier. Dit werkt: 27 vlakken, veld
+                         GEBIED met zes waarden, en 20.292 van de 20.321
+                         adressen vallen in precies een vlak.
+
+  MOB_BETAALD_PARKEREN   hier wilde ik weten of de parkeereis wegvalt, en dat
+                         ZEGT DEZE LAAG NIET.
+
+WAAROM NIET, EN HOE IK DAT ZAG. De eerste echte ronde gaf dat 4098 van de
+6121 adressen in de Binnenstad buiten elk betaaldvlak liggen. Dat kan niet:
+in de Nijmeegse binnenstad geldt overal betaald parkeren. De laag zelf legt
+het uit: van de 33 vlakken zijn sommige gebieden (Centrum met 160 punten, 1e
+ring met 177, de lettergebieden D tot Z) en andere LOSSE PARKEERGARAGES (P8
+Vierdaagseplein met 5 punten, Lage Markt met 5, Doddendaal met 7, Radboud
+UMC). Een punt in zo'n vlak betekent dus "hier ligt een parkeerplek", niet
+"dit adres ligt in gereguleerd gebied". In een voetgangersgebied zonder
+parkeervakken valt een woning er buiten terwijl er wel degelijk betaald
+parkeren geldt.
+
+DAAROM HEET HET VELD NIET MEER betaald_parkeren MAAR betaald_parkeervlak, en
+draagt het de naam van het vlak in plaats van waar of onwaar. Een waar/onwaar
+veld met die naam leest als "hier valt de parkeereis weg", en dat is precies
+de bewering die de laag niet waarmaakt. Het was een getal dat klopt zolang
+niemand het nameet.
+
+WAT DE JUISTE BRON WAARSCHIJNLIJK IS: de gebieden waar parkeervergunningen
+worden uitgegeven, de belanghebbendengebieden. Die staan hier als
+lettergebieden in ZONE_NAAM maar door elkaar met de garages, dus ze zijn er
+wel uit te halen zodra is vastgesteld welke namen gebieden zijn. Dat is niet
+uit deze laag alleen te bepalen en wacht op een bron die het zegt.
 
 WAT DEZE MODULE NIET DOET: aannemen hoe die lagen eruitzien. Ik kan
 services.nijmegen.nl vanuit de werkomgeving niet bereiken, dus ken ik de
@@ -298,7 +326,7 @@ def verslag(standen):
 
 def koppel(voorraad_pad=VOORRAAD, zones_pad=ZONES):
     """
-    De zone en het gereguleerde gebied bij elk pand met een punt zetten.
+    De zone bij elk pand met een punt zetten, plus het betaaldparkeervlak.
 
     Wat hier NIET gebeurt: een pand zonder punt een zone geven. Zie
     punt_uit() in voorraad_bag.py voor waarom een geraden punt erger is dan
@@ -323,7 +351,7 @@ def koppel(voorraad_pad=VOORRAAD, zones_pad=ZONES):
                 "kandidaten": kandidaten}
 
     tel = {"met_punt": 0, "zonder_punt": 0, "in_een_zone": 0,
-           "buiten_elke_zone": 0, "gereguleerd": 0}
+           "buiten_elke_zone": 0, "in_een_betaaldvlak": 0}
     per_zone = {}
     for groep in ("adressen", "niet_woningen", "pijplijn"):
         for rec in (voorraad.get(groep) or {}).values():
@@ -343,12 +371,24 @@ def koppel(voorraad_pad=VOORRAAD, zones_pad=ZONES):
                 rec["parkeerzone"] = zone
                 tel["in_een_zone"] += 1
                 per_zone[zone] = per_zone.get(zone, 0) + 1
+            # HET VELD HEET NAAR WAT HET MEET EN NIET NAAR WAT WIJ WILLEN
+            # WETEN. Dit heette betaald_parkeren, en dat beweerde te veel.
+            # Zie de uitleg bij koppel() hieronder: de laag mengt gebieden met
+            # losse parkeergarages, en 4098 van de 6121 adressen in de
+            # Binnenstad vallen er buiten. Wat dit veld zegt is: op dit punt
+            # ligt een vlak uit de laag betaald parkeren, en welk.
             if betaaldvlakken:
-                gereguleerd = vlak_van(punt, betaaldvlakken) is not None
-                rec["betaald_parkeren"] = gereguleerd
-                if gereguleerd:
-                    tel["gereguleerd"] += 1
+                vlak = vlak_van(punt, betaaldvlakken)
+                if vlak is None:
+                    rec.pop("betaald_parkeervlak", None)
+                    rec.pop("betaald_parkeren", None)
+                else:
+                    rec["betaald_parkeervlak"] = str(
+                        vlak.get("ZONE_NAAM") or vlak.get("TARIEF_ZONE") or "ja")
+                    rec.pop("betaald_parkeren", None)
+                    tel["in_een_betaaldvlak"] += 1
             else:
+                rec.pop("betaald_parkeervlak", None)
                 rec.pop("betaald_parkeren", None)
 
     with open(voorraad_pad, "w", encoding="utf-8") as f:
@@ -453,7 +493,14 @@ def proef():
     with tempfile.TemporaryDirectory() as m:
         vp = os.path.join(m, "voorraad.json")
         zp = os.path.join(m, "zones.json")
-        betaald = {"features": [_vlak(binnenstad, "Gereguleerd")]}
+        # DE ECHTE VELDNAMEN VAN DE LAAG, uit de verkenning van 14 oktober:
+        # ZONE_NAAM en TARIEF_ZONE. Eerst stond hier ZONE, een naam die ik zelf
+        # had bedacht, en dan toetst de proef mijn eigen verzinsel.
+        betaald = {"features": [
+            {"type": "Feature",
+             "properties": {"ZONE_NAAM": "Gereguleerd",
+                            "TARIEF_ZONE": "Centrum"},
+             "geometry": {"type": "Polygon", "coordinates": [binnenstad]}}]}
         with open(zp, "w", encoding="utf-8") as f:
             json.dump({"normering": goed, "betaald": betaald}, f)
         with open(vp, "w", encoding="utf-8") as f:
@@ -465,6 +512,9 @@ def proef():
                 # Een pand dat eerder een zone kreeg en er nu buiten valt.
                 "e": {"adres": "Was een zone 5", "punt": [5.70, 51.80],
                       "parkeerzone": "Binnenstad"},
+                # Een record uit een eerdere ronde, met het oude veld erin.
+                "f": {"adres": "Oud veld 6", "punt": [5.87, 51.845],
+                      "betaald_parkeren": True},
             }}, f)
         uit = koppel(vp, zp)
         with open(vp, encoding="utf-8") as f:
@@ -486,19 +536,37 @@ def proef():
             fouten.append(f"een oude zone blijft staan bij een pand dat nu "
                           f"buiten elke zone valt: "
                           f"{na['e'].get('parkeerzone')!r}")
-        if na["a"].get("betaald_parkeren") is not True:
-            fouten.append(f"het gereguleerde gebied wordt niet gezien: "
-                          f"{na['a'].get('betaald_parkeren')!r}")
-        if na["b"].get("betaald_parkeren") is not False:
-            fouten.append(f"een pand buiten het gereguleerde gebied heet toch "
-                          f"gereguleerd: {na['b'].get('betaald_parkeren')!r}")
+        # HET VELD NOEMT HET VLAK EN NIET EEN JA OF NEE. Een waar/onwaar veld
+        # met de naam betaald_parkeren leest als "hier valt de parkeereis
+        # weg", en dat is iets anders dan wat de laag meet.
+        if na["a"].get("betaald_parkeervlak") != "Gereguleerd":
+            fouten.append(f"het vlak uit de laag betaald parkeren wordt niet "
+                          f"bij naam bewaard: "
+                          f"{na['a'].get('betaald_parkeervlak')!r}")
+        if "betaald_parkeervlak" in na["b"]:
+            fouten.append(f"een pand buiten elk betaaldvlak krijgt er toch "
+                          f"een: {na['b'].get('betaald_parkeervlak')!r}")
+        # OP RECORD f, want dat is het enige dat het oude veld HAD. Eerst
+        # keek deze regel naar a en b, die het nooit hadden, dus was het
+        # weghalen daar een lege handeling en bleef de breuk stil.
+        for _sl in ("a", "b", "e", "f"):
+            if "betaald_parkeren" in na[_sl]:
+                fouten.append(f"het oude veld betaald_parkeren blijft staan "
+                              f"bij {_sl}; dan leest een record uit een "
+                              f"eerdere ronde als een uitspraak over de "
+                              f"parkeereis")
+        if na["f"].get("betaald_parkeervlak") != "Gereguleerd":
+            fouten.append(f"het record met het oude veld krijgt geen nieuw "
+                          f"veld: {na['f'].get('betaald_parkeervlak')!r}")
         if (uit.get("in_een_zone"), uit.get("buiten_elke_zone"),
-                uit.get("zonder_punt"), uit.get("gereguleerd")) != (2, 2, 1, 1):
+                uit.get("zonder_punt"),
+                uit.get("in_een_betaaldvlak")) != (3, 2, 1, 2):
             fouten.append(
                 f"de tellingen kloppen niet: {uit.get('in_een_zone')} in een "
                 f"zone, {uit.get('buiten_elke_zone')} buiten, "
                 f"{uit.get('zonder_punt')} zonder punt, "
-                f"{uit.get('gereguleerd')} gereguleerd; verwacht 2, 2, 1, 1")
+                f"{uit.get('in_een_betaaldvlak')} in een betaaldvlak; "
+                f"verwacht 3, 2, 1, 2")
 
         # EN ZONDER VAST ZONEFELD GEBEURT ER NIETS. Liever geen zone dan een
         # zone uit het verkeerde veld.
