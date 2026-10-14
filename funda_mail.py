@@ -1749,13 +1749,33 @@ def afzenders_in_mailbox(verbinding, sinds, maximaal=1500):
     duizenden berichten. Onderwerpen en adressen komen er niet in; dit is
     Marks eigen mailbox en de samenvatting kan in een publiek issue komen.
     """
-    try:
-        status, data = verbinding.search(None, f"(SINCE {sinds})")
-    except Exception as e:
-        return {"mislukt": f"{type(e).__name__}"}
-    if status != "OK":
-        return {"mislukt": f"zoeken gaf {status}"}
-    ids = sorted(set((data[0] or b"").split()))[-maximaal:]
+    # TWEE VORMEN PROBEREN, EN DE REDEN BEWAREN.
+    #
+    # WAT HIER GEBEURDE. De eerste echte ronde meldde "de mailboxtelling
+    # mislukte (error)" en daar stond ik mee: error is de klassenaam van
+    # imaplib.IMAP4.error en zegt niets. Ik logde type(e).__name__ en gooide
+    # str(e) weg, precies de informatie die nodig was. Dat is dezelfde fout
+    # als de melding "geen json" bij de parkeerzones, op dezelfde dag.
+    #
+    # En omdat ik niet weet welke vorm Gmail hier wil, probeert deze functie
+    # ze beide in plaats van er een aan te nemen: met en zonder haakjes om
+    # het zoekcriterium. Welke vorm werkte staat in de uitkomst, zodat de
+    # volgende ronde het antwoord geeft in plaats van een vermoeden.
+    fouten, ids, gebruikt = [], None, ""
+    for vorm in (f"(SINCE {sinds})", f"SINCE {sinds}"):
+        try:
+            status, data = verbinding.search(None, vorm)
+        except Exception as e:
+            fouten.append(f"{vorm}: {type(e).__name__}: {str(e)[:120]}")
+            continue
+        if status != "OK":
+            fouten.append(f"{vorm}: zoeken gaf {status}")
+            continue
+        ids = sorted(set((data[0] or b"").split()))[-maximaal:]
+        gebruikt = vorm
+        break
+    if ids is None:
+        return {"mislukt": "; ".join(fouten)[:300]}
     per = {}
     gelezen = 0
     for mid in ids:
@@ -1774,6 +1794,7 @@ def afzenders_in_mailbox(verbinding, sinds, maximaal=1500):
             domein = "(geen afzender)"
         per[domein] = per.get(domein, 0) + 1
     return {"per_domein": per, "gelezen": gelezen, "gevonden": len(ids),
+            "zoekvorm": gebruikt,
             "onbekend": {d: n for d, n in sorted(per.items())
                          if indeling(d) == "onbekend"}}
 
@@ -2018,6 +2039,38 @@ def proef():
     if not kaput.get("mislukt") or "onbekend" in kaput:
         fouten.append(f"een mislukte mailboxtelling leest als 'niets "
                       f"gevonden': {kaput!r}")
+    # DE REDEN MOET IN DE MELDING STAAN. De eerste echte ronde meldde
+    # "mislukte (error)", en error is de klassenaam van imaplib.IMAP4.error.
+    # Daarmee was er niets te onderzoeken.
+    if "verbinding weg" not in (kaput.get("mislukt") or ""):
+        fouten.append(f"de melding noemt de klasse maar niet de reden: "
+                      f"{kaput.get('mislukt')!r}")
+    # EN BEIDE ZOEKVORMEN WORDEN GEPROBEERD. Een server die de ene vorm
+    # weigert en de andere aanneemt, mag niet als storing lezen.
+    class _AlleenZonderHaakjes:
+        def __init__(self):
+            self.gevraagd = []
+
+        def search(self, _een, vorm):
+            self.gevraagd.append(vorm)
+            if vorm.startswith("("):
+                raise OSError("SEARCH command error: BAD")
+            return "OK", [b"1"]
+
+        def fetch(self, _mid, _deel):
+            return "OK", [(b"1", b"From: <noreply@getrentumo.nl>\\r\\n")]
+
+    kieskeurig = _AlleenZonderHaakjes()
+    uit = afzenders_in_mailbox(kieskeurig, "01-Sep-2026")
+    if uit.get("mislukt"):
+        fouten.append(f"een server die alleen de vorm zonder haakjes "
+                      f"aanneemt, leest als storing: {uit['mislukt']!r}")
+    elif uit.get("zoekvorm") != "SINCE 01-Sep-2026":
+        fouten.append(f"de gebruikte zoekvorm wordt niet vastgelegd: "
+                      f"{uit.get('zoekvorm')!r}")
+    elif len(kieskeurig.gevraagd) != 2:
+        fouten.append(f"de tweede vorm wordt niet geprobeerd: "
+                      f"{kieskeurig.gevraagd}")
 
     print(f"Proef funda_mail: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
