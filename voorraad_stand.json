@@ -1,5 +1,5 @@
 {
- "datum": "2026-10-13",
+ "datum": "2026-10-14",
  "ronde": {
   "bag": {
    "adressen_bijgewerkt": 0,
@@ -7,7 +7,7 @@
    "adressen_onveranderd": 20045,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 137955,
-   "datum": "2026-10-13",
+   "datum": "2026-10-14",
    "fouten": 0,
    "historie_overgeslagen": 2383,
    "laatste_fout": "",
@@ -34,7 +34,7 @@
    "ronde_objecten": 164638,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 318.4,
+   "ronde_seconden": 236.8,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -53,28 +53,28 @@
    "zonder_pandsleutel": 0,
    "zonder_vbo": 0
   },
-  "bijgewerkt": "2026-10-13",
+  "bijgewerkt": "2026-10-14",
   "labels": {
-   "aanroepen_per_minuut": 36.5,
-   "datum": "2026-10-13",
+   "aanroepen_per_minuut": 35.4,
+   "datum": "2026-10-14",
    "fouten": 0,
-   "geen_label_bekend": 810,
-   "gevraagd": 3284,
+   "geen_label_bekend": 28,
+   "gevraagd": 72,
    "laatste_fout": "",
-   "label_gevonden": 2474,
+   "label_gevonden": 44,
    "label_prive": 0,
-   "labels_methode_2014": 4459,
-   "labels_nta8800": 8960,
+   "labels_methode_2014": 4472,
+   "labels_nta8800": 8991,
    "labels_zonder_methode": 0,
    "methode_blijft_onbekend": 0,
    "methode_ingehaald": 0,
    "methode_nog_in_te_halen": 0,
-   "nog_nooit_gevraagd": 72,
+   "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 5401.1
+   "seconden": 122.1
   },
   "panden": {
-   "datum": "2026-10-13",
+   "datum": "2026-10-14",
    "fout": "",
    "met_bouwjaar": 187212,
    "met_status": 187212,
@@ -94,7 +94,7 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 437.9,
+   "seconden": 343.9,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
@@ -112,7 +112,7 @@
    ]
   },
   "stand": {
-   "met_label": 13419,
+   "met_label": 13463,
    "met_oppervlakte": 20045,
    "postcodes_gedaan": 1241,
    "woningen": 20045
