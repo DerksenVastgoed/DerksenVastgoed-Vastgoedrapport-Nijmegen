@@ -64,6 +64,11 @@ on:
         description: "Seconden tussen bevragingen. Bij 503-fouten hoger zetten, bijvoorbeeld 3."
         required: false
         default: "1"
+      regelgeving:
+        description: "Ook de regelgeving controleren, die anders alleen op zondag draait. Aanvinken na een wijziging aan regelgeving_monitor.py."
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -345,7 +350,14 @@ jobs:
         run: |
           # De verordeningen en wetten waarop de brief rekent. Wekelijks is
           # genoeg: een verordening verandert niet dagelijks.
-          if [ "$MODUS" != "dagelijks" ] || [ ! -s regelgeving_status.json ]; then
+          #
+          # WAAROM HET VINKJE. Op 14 oktober werd een wijziging aan de monitor
+          # (meerdere zoekvormen per term, PR 112) getoetst met een handrun.
+          # Die run was groen en toetste niets: doordeweeks slaat deze stap
+          # over, en de wijziging werd pas op zondag zichtbaar. Een handrun
+          # met "regelgeving" aangevinkt draait de monitor wel.
+          if [ "$MODUS" != "dagelijks" ] || [ ! -s regelgeving_status.json ] \
+             || [ "${{ github.event.inputs.regelgeving }}" = "true" ]; then
             python regelgeving_monitor.py --uit regelgeving_wijzigingen.md \
               || { echo "Regelgeving-stap overgeslagen"; echo "Regelgeving" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }
           else
