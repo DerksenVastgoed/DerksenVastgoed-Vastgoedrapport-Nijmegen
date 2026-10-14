@@ -31,6 +31,11 @@ import urllib.parse
 import urllib.request
 from email.header import decode_header
 
+# domein_van staat in dossiermail.py en wordt hier geimporteerd en niet
+# nagemaakt: een tweede regex voor hetzelfde zou gaan afwijken zodra een
+# van de twee wordt bijgeschaafd. bijlagen.py doet het net zo.
+from dossiermail import domein_van
+
 IMAP_HOST = "imap.gmail.com"
 VERKOPEN_PAD = "verkopen.txt"
 AFZENDERS = ["funda.nl", "funda.com", "pararius.nl", "pararius.com",
@@ -1706,6 +1711,73 @@ def nieuwe_meldingen(objecten, bestaand, adres_prijs, dubbel=None):
     return (nieuw, dubbel)
 
 
+def indeling(domein):
+    """
+    Kennen wij dit afzenderdomein: als bron, als kandidaat, of niet.
+
+    Op de naam en niet op gelijkheid, want een portaal verstuurt vanaf
+    server@huislijn.nl, mail.kamernet.nl en nog een paar varianten.
+    """
+    d = (domein or "").lower()
+    if any(a in d for a in AFZENDERS):
+        return "bron"
+    if any(k in d for k in KANDIDATEN):
+        return "kandidaat"
+    return "onbekend"
+
+
+def afzenders_in_mailbox(verbinding, sinds, maximaal=1500):
+    """
+    Alle post sinds een datum, geteld per afzenderdomein.
+
+    WAAROM DIT ER IS. Deze module zoekt per NAAM: voor elk domein in AFZENDERS
+    en KANDIDATEN een aparte zoekopdracht. Een portaal dat in geen van beide
+    lijsten staat, bestaat daarmee niet. Dat is vier keer misgegaan en het
+    staat alle vier keer in de commentaren hierboven: huislijn stuurde van
+    huisly.nl, 123wonen stond nergens, rentola stond alleen bij de
+    kandidaten, en op 14 oktober bleek getrentumo.nl met elf berichten in
+    zestig dagen in geen van beide lijsten te staan.
+
+    Vier keer dezelfde vorm. Een lijst met namen die moet worden bijgewerkt,
+    wordt niet bijgewerkt. Daarom wordt hier niet per naam gezocht maar
+    GETELD wat er werkelijk staat, en daarna ingedeeld. Een nieuw portaal
+    verschijnt dan met een aantal in het gezondheidsrapport, zonder dat
+    iemand eraan hoeft te denken.
+
+    Alleen de From-kop wordt opgehaald, niet de hele mail: dat is een
+    koptekst per bericht in plaats van een hele body, en het gaat hier om
+    duizenden berichten. Onderwerpen en adressen komen er niet in; dit is
+    Marks eigen mailbox en de samenvatting kan in een publiek issue komen.
+    """
+    try:
+        status, data = verbinding.search(None, f"(SINCE {sinds})")
+    except Exception as e:
+        return {"mislukt": f"{type(e).__name__}"}
+    if status != "OK":
+        return {"mislukt": f"zoeken gaf {status}"}
+    ids = sorted(set((data[0] or b"").split()))[-maximaal:]
+    per = {}
+    gelezen = 0
+    for mid in ids:
+        try:
+            status, data = verbinding.fetch(
+                mid, "(BODY.PEEK[HEADER.FIELDS (FROM)])")
+            if status != "OK" or not data or not data[0]:
+                continue
+            ruw = data[0][1]
+        except Exception:
+            continue
+        gelezen += 1
+        domein = domein_van(
+            ruw.decode("utf-8", "replace") if isinstance(ruw, bytes) else str(ruw))
+        if not domein:
+            domein = "(geen afzender)"
+        per[domein] = per.get(domein, 0) + 1
+    return {"per_domein": per, "gelezen": gelezen, "gevonden": len(ids),
+            "onbekend": {d: n for d, n in sorted(per.items())
+                         if indeling(d) == "onbekend"}}
+
+
 def tel_kandidaten(verbinding, sinds):
     """
     Hoeveel post er komt van platforms waar we nog geen parser voor hebben.
@@ -1735,6 +1807,10 @@ def tel_kandidaten(verbinding, sinds):
 # die wij niet konden lezen". None betekent dat de zoekopdracht zelf faalde.
 _PER_AFZENDER = {}
 
+# De telling per afzenderdomein over het hele venster, uit
+# afzenders_in_mailbox(). Leeg betekent: niet gemeten.
+_MAILBOX = {}
+
 
 def bewaar_stand(tellers, opmerking="", kandidaten=None, dubbel=None):
     """
@@ -1752,7 +1828,12 @@ def bewaar_stand(tellers, opmerking="", kandidaten=None, dubbel=None):
                        "bronnen": tellers, "opmerking": opmerking,
                        "kandidaten": kandidaten or {},
                        "ontdubbeld": dubbel or {},
-                       "berichten_per_afzender": _PER_AFZENDER},
+                       "berichten_per_afzender": _PER_AFZENDER,
+                       # WAT ER NOG IN DE MAILBOX STAAT DAT WIJ NIET KENNEN.
+                       # Zie afzenders_in_mailbox(): niet per naam zoeken maar
+                       # tellen wat er is. Vier keer bleek een portaal
+                       # onzichtbaar omdat het in geen lijst stond.
+                       "mailbox": _MAILBOX},
                       f, ensure_ascii=False, indent=1)
     except Exception:
         pass
@@ -1873,6 +1954,70 @@ def proef():
         if uit != verwacht:
             fouten.append(f"{tekst!r} geeft stadium {uit!r}, verwacht "
                           f"{verwacht!r}")
+
+    # WAT ER IN DE MAILBOX STAAT DAT WIJ NIET KENNEN. Een nagemaakte
+    # verbinding, want de echte vraagt inloggegevens en de poort in de
+    # workflow moet dit zonder kunnen draaien. De vorm van het antwoord is
+    # die van imaplib: (status, [(nummer, ruwe_bytes)]).
+    class _NepVerbinding:
+        def __init__(self, afzenders):
+            self._afzenders = afzenders
+
+        def search(self, _een, _vraag):
+            return "OK", [b" ".join(str(i).encode()
+                                    for i in range(len(self._afzenders)))]
+
+        def fetch(self, mid, _deel):
+            i = int(mid)
+            kop = f"From: Attendering <noreply@{self._afzenders[i]}>\r\n"
+            return "OK", [(b"1", kop.encode())]
+
+    # Negen berichten: drie van een bron, twee van een kandidaat, en vier van
+    # getrentumo.nl, het portaal dat op 14 oktober in geen van beide lijsten
+    # bleek te staan.
+    nep = _NepVerbinding(["mail.funda.nl", "mail.funda.nl", "server@kamernet.nl",
+                          "huurwoningen.nl", "huurwoningen.nl",
+                          "getrentumo.nl", "getrentumo.nl", "getrentumo.nl",
+                          "getrentumo.nl"])
+    # EERST DE INDELING ZELF, EN NIET ALLEEN DE ONBEKENDEN. De twee lijsten
+    # overlappen: funda.nl, huislijn.nl en rentola.nl staan in beide. Wie
+    # alleen toetst wat ONBEKEND is, merkt niet dat een bron als kandidaat
+    # wordt ingedeeld, want hij valt dan door naar de andere tak en blijft
+    # buiten de onbekenden. Dat verschil is wel iets: een bron lezen wij uit,
+    # een kandidaat tellen wij alleen.
+    for domein, hoort in (("mail.funda.nl", "bron"),
+                          ("server.huislijn.nl", "bron"),
+                          ("huurwoningen.nl", "kandidaat"),
+                          ("getrentumo.nl", "onbekend"),
+                          ("", "onbekend")):
+        if indeling(domein) != hoort:
+            fouten.append(f"{domein or '(leeg)'} wordt ingedeeld als "
+                          f"{indeling(domein)!r} in plaats van {hoort!r}")
+
+    stand = afzenders_in_mailbox(nep, "01-Sep-2026")
+    if stand.get("gelezen") != 9:
+        fouten.append(f"niet elk bericht wordt gelezen: {stand.get('gelezen')} "
+                      f"van 9")
+    onbekend = stand.get("onbekend") or {}
+    if onbekend.get("getrentumo.nl") != 4:
+        fouten.append(f"een afzender die in geen van beide lijsten staat "
+                      f"wordt niet geteld: {onbekend!r}")
+    if any(d.endswith("funda.nl") or "kamernet" in d for d in onbekend):
+        fouten.append(f"een afzender die wij al volgen heet onbekend: "
+                      f"{sorted(onbekend)}")
+    if "huurwoningen.nl" in onbekend:
+        fouten.append("een kandidaat die wij al tellen heet onbekend; dan "
+                      "staat de melding bij elke ronde aan")
+    # Een mislukte zoekopdracht is geen lege mailbox. Zonder dit onderscheid
+    # zou een storing lezen als "geen onbekende afzenders".
+    class _Stuk:
+        def search(self, *_):
+            raise OSError("verbinding weg")
+
+    kaput = afzenders_in_mailbox(_Stuk(), "01-Sep-2026")
+    if not kaput.get("mislukt") or "onbekend" in kaput:
+        fouten.append(f"een mislukte mailboxtelling leest als 'niets "
+                      f"gevonden': {kaput!r}")
 
     print(f"Proef funda_mail: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
@@ -2123,6 +2268,17 @@ def main():
     # nul regels, en een rapport dat er niets over zei.
     try:
         kandidaten = tel_kandidaten(verbinding, sinds)
+        # ALLES TELLEN, NIET ALLEEN WAT WIJ KENNEN. Dit is de meting die
+        # getrentumo.nl zou hebben gevonden: elf berichten in zestig dagen,
+        # in geen van beide lijsten.
+        global _MAILBOX
+        _MAILBOX = afzenders_in_mailbox(verbinding, sinds)
+        _onb = _MAILBOX.get("onbekend") or {}
+        if _onb:
+            print("Afzenders die wij niet kennen: " + ", ".join(
+                f"{d}={n}" for d, n in sorted(_onb.items(),
+                                              key=lambda x: -x[1])),
+                file=sys.stderr)
     except Exception:
         kandidaten = {}
     if kandidaten:

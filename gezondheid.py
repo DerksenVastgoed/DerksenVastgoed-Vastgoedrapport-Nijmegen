@@ -639,9 +639,9 @@ def controle_geschiedenis():
             diagnose("geschiedenis") or "")
 
 
-def controle_mailbronnen():
+def controle_mailbronnen(pad="mail_status.json"):
     """Welke attenderingen er binnenkomen, en of er iets uit te halen valt."""
-    d = _json("mail_status.json") or {}
+    d = _json(pad) or {}
     bronnen = d.get("bronnen") or {}
     if d.get("opmerking"):
         return (LET_OP, f"mailstap van {d.get('datum', '?')}: {d['opmerking']}",
@@ -676,6 +676,27 @@ def controle_mailbronnen():
     if kandidaten:
         bewijs += ("; zonder parser: "
                    + ", ".join(f"{b} ({n})" for b, n in sorted(kandidaten.items())))
+    # EN WAT ER IN DE MAILBOX STAAT DAT IN GEEN VAN BEIDE LIJSTEN VOORKOMT.
+    # Vier keer bleek een portaal onzichtbaar omdat de naam nergens stond:
+    # huislijn stuurde van huisly.nl, 123wonen stond nergens, rentola stond
+    # alleen bij de kandidaten, en getrentumo.nl had elf berichten in zestig
+    # dagen. Daarom telt de mailstap sinds 14 oktober wat er WERKELIJK staat
+    # in plaats van per naam te zoeken. Die telling komt hier terecht, want
+    # een telling die niemand leest is net zo stil als geen telling.
+    mailbox = d.get("mailbox") or {}
+    onbekend = {dd: n for dd, n in (mailbox.get("onbekend") or {}).items()
+                if n >= 3}
+    if mailbox.get("mislukt"):
+        bewijs += f"; de mailboxtelling mislukte ({mailbox['mislukt']})"
+    elif onbekend:
+        lijst = ", ".join(f"{dd} ({n})" for dd, n in
+                          sorted(onbekend.items(), key=lambda x: -x[1]))
+        return (LET_OP, bewijs + f"; onbekende afzenders: {lijst}",
+                f"Van {lijst} komt post die wij niet lezen en die in geen "
+                f"van onze lijsten staat. Is dat een woningportaal, dan "
+                f"loopt er aanbod langs dat de brief niet ziet. Zet het "
+                f"domein in AFZENDERS met een parser, of in KANDIDATEN als "
+                f"het alleen geteld hoeft te worden.")
     if stom:
         voorbeelden = []
         for bron in stom:
@@ -3904,6 +3925,34 @@ def proef():
         if signaaldekking(_g, _v) != (2, 2):
             fouten.append(f"een pand dat om een signaal is bewaard telt niet "
                           f"als gedekt: {signaaldekking(_g, _v)}")
+
+    # ONBEKENDE AFZENDERS WORDEN GEMELD, EENMALIGE POST NIET. De drempel van
+    # drie zit erin omdat een mailbox altijd losse post bevat; zonder drempel
+    # zou deze melding elke dag afgaan en daarmee niets meer zeggen.
+    with _tf.TemporaryDirectory() as _m:
+        _p = _os.path.join(_m, "mail_status.json")
+
+        def _stand(mailbox):
+            with open(_p, "w", encoding="utf-8") as _f:
+                json.dump({"datum": "2026-10-14",
+                           "bronnen": {"kamernet": {"mails": 9, "objecten": 6},
+                                       "pararius": {"mails": 1, "objecten": 2},
+                                       "funda": {"mails": 3, "objecten": 3}},
+                           "mailbox": mailbox}, _f)
+            return controle_mailbronnen(_p)
+
+        _st, _tekst, _rep = _stand({"onbekend": {"getrentumo.nl": 11}})
+        if _st != LET_OP or "getrentumo.nl" not in _tekst:
+            fouten.append(f"een onbekende afzender met elf berichten wordt "
+                          f"niet gemeld: {_st} {_tekst[-60:]!r}")
+        _st, _tekst, _ = _stand({"onbekend": {"eenmalig.nl": 1}})
+        if "eenmalig.nl" in _tekst:
+            fouten.append("losse post van een onbekend domein wordt gemeld; "
+                          "dan gaat die melding elke dag af")
+        _st, _tekst, _ = _stand({"mislukt": "OSError"})
+        if "mislukte" not in _tekst:
+            fouten.append(f"een mislukte mailboxtelling leest als 'geen "
+                          f"onbekende afzenders': {_tekst[-60:]!r}")
 
     print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
