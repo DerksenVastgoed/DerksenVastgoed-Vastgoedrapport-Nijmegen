@@ -921,7 +921,11 @@
   "rioolheffing"
  ],
  "_zoektermen": {
+  "bewust_afwezig": [
+   "leegstand"
+  ],
   "bron": "meta",
+  "onverwacht": [],
   "vorm_per_term": {
    "afvalstoffenheffing": "(creator==\"Nijmegen\") and (title any \"afvalstoffenheffing\")",
    "bouw": "(creator==\"Nijmegen\") and (title any \"bouw\")",
@@ -933,8 +937,6 @@
    "parkeer": "(creator==\"Nijmegen\") and (title any \"parkeerverordening\")",
    "rioolheffing": "(creator==\"Nijmegen\") and (title any \"rioolheffing\")"
   },
-  "zonder_treffer": [
-   "leegstand"
-  ]
+  "zonder_treffer": []
  }
 }

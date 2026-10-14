@@ -1,13 +1,9 @@
 # Gezondheidsrapport 2026-10-14
 
-57 in orde, 9 aandachtspunten, 1 fouten.
-
-## FOUT
-- **Bekende onwaarheden in de brief**: 1 bekende onwaarheid: in de brief: "verkocht voor €"
-  Wij kennen geen koopsommen; die staan alleen bij het Kadaster. Funda toont de laatste vraagprijs. Schrijf 'laatste vraagprijs €X'.
+59 in orde, 8 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69998 bytes, 1340 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (8098 bytes, 218 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
+- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69998 bytes, 1340 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (12449 bytes, 314 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
   Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
 - **Verkopen**: 661 verkopen: 518 geplakt, 143 met de hand; laatste 2026-10-13; de mailstap liet 24 meldingen vallen met dezelfde status en 0 met een andere
   Er komt nog geen verkoop uit de attendering, terwijl er wel 3 mails van funda.nl zijn gelezen. Het filter is dus niet de vraag; kijk naar wat de mailstap met die mails doet.
@@ -23,16 +19,15 @@
   De spreiding is nog te groot om op de schatting te varen; blijf de WOZ opzoeken bij panden die ertoe doen.
 - **Attenderingen**: laatste ronde 2026-10-14: huislijn: 4 mails, 5 objecten; kamernet: 15 mails, 11 objecten, 4 bewust overgeslagen; pararius: 2 mails, 4 objecten, 3 bewust overgeslagen; regulier: 3 mails, 4 objecten, 2 bewust overgeslagen; de mailboxtelling mislukte ((SINCE 11-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 11-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED)
   Van funda kwam geen enkele mail. Staat de attendering aan en komt hij in deze mailbox binnen?
-- **Regelgevingsmonitor**: 86 verordeningen, 5 wetten; zonder enige treffer: leegstand
-  Op leegstand levert geen enkele zoekvorm een regeling op. Dat is iets anders dan een verordening die niet is gewijzigd: wij kijken ernaar en vinden niets. De query zoekt op hele woorden, dus 'parkeer' matcht niet op 'Parkeerverordening'. Zie haal_gemeentelijk() in regelgeving_monitor.py voor de meting hierachter.
 
 ## OK
 - **Geheugen verstuurde brieven**: 20 onderwerpen bekend, 20 in het venster van drie weken, laatste brief 2026-10-14; 9 onderwerpen kwamen in meer dan een brief terug
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-13-verhaal.md
 - **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
-- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief laat het erbuiten: 5 van de 6 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van -2,9% tot +9,9%, mediaan 6,0%.
+- **Bekende onwaarheden in de brief**: 6 bekende onwaarheden getoetst op 5 teksten, geen ervan komt voor
+- **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief zegt het in eigen woorden: 5 van de 6 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van -2,9% tot +9,9%, mediaan 6,0%.
 - **Verkocht pand nog in het aanbod**: 7 panden hebben een verkoopregel die nieuwer is dan hun te-koopregel; geen van die panden staat nog in de aanbodtabel
-- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4628, kamervergunningen.json: 7246, pandgeschiedenis.json: 147237, verkopen.txt: 928, verteld.json: 124, woz.txt: 126
+- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4628, kamervergunningen.json: 7246, pandgeschiedenis.json: 152752, verkopen.txt: 928, verteld.json: 124, woz.txt: 126
 - **Huurdata**: 132 huurwaarnemingen, waarvan 33 Pararius en 57 Kamernet en 40 Huislijn en 2 Rentola, zonder adres maar met oppervlakte; 52 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2; 2 waarschijnlijke dubbelingen tussen platforms samengevoegd
 - **Aanbod**: 106 koopobjecten, 4 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -44,7 +39,7 @@
 - **Kamerverhuurregister**: 947 panden in de ring, waarvan 188 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 86
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-08
-- **Geschiedenis per pand**: 1807 panden gevolgd, 1499 met meer dan een gebeurtenis; 1656 met BAG-gegevens (6883 woningen, 7640 dubbel geteld zonder deze correctie), 1433 met een energielabel, 0 nog nooit nagekeken waarvan 188 na drie pogingen opgegeven; 19211 regels bespaard door gedeelde pandgegevens; 55 wachten nog op de telling van woningen apart van bergingen en garages; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
+- **Geschiedenis per pand**: 1807 panden gevolgd, 1499 met meer dan een gebeurtenis; 1659 met BAG-gegevens (6883 woningen, 7682 dubbel geteld zonder deze correctie), 1436 met een energielabel, 0 nog nooit nagekeken waarvan 188 na drie pogingen opgegeven; 19316 regels bespaard door gedeelde pandgegevens; 55 wachten nog op de telling van woningen apart van bergingen en garages; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
   Geen enkel pand kwam in aanmerking voor de BAG-controle. Draait de stap wel met --volledig, en hebben de panden een gebeurtenis van het juiste soort?
 - **Handmatige lijsten**: verkooplijst van Funda: aanwezig; kamerlijst van Kamernet: niet nodig, komt uit de mail; 581 verkochte woningen verwerkt
 - **Veroudering aanbod**: 78 panden te koop, mediaan 22 dagen geleden voor het laatst bevestigd, oudste 42 dagen
@@ -53,11 +48,11 @@
 - **Groottepremie**: 593 waarnemingen, 9 buurten met eigen ijkpunt; 0-40 m2: 1.43 (57), 40-60 m2: 1.234 (113), 60-80 m2: 1.062 (171), 80-100 m2: 1.0 (90), 100-130 m2: 0.968 (85), 130 m2 en groter: 0.927 (77)
 - **Woningen in bestaande panden**: 128 panden met 733 gevormde woningen erin; laatste ronde 0 nieuwe records, 0 gebeurtenissen, 0 wachten op een volgende ronde (stand van 2026-10-14)
 - **Geplande startdagen**: 3 crons, samen zondag 1, maandag 2, dinsdag 2, woensdag 2, donderdag 2, vrijdag 2, zaterdag 2
-- **Eisen aan de brief**: 56 eisen aan de brief, 51 afgedwongen door een proef, 5 bewust niet: Een pand dat al aan pa is verteld, opent de brief niet opnie; Een stap die zijn werk door git terugstuurt, meldt een mislu; Een proef die niets kan vinden, valt niet om met een KeyErro
+- **Eisen aan de brief**: 64 eisen aan de brief, 59 afgedwongen door een proef, 5 bewust niet: Een pand dat al aan pa is verteld, opent de brief niet opnie; Een stap die zijn werk door git terugstuurt, meldt een mislu; Een proef die niets kan vinden, valt niet om met een KeyErro
 - **Voltooide splitsingen**: 2 gerealiseerd; mediaan 3 dagen van besluit tot registratie (2); 14 vergund maar na een jaar nog niets in de BAG; 2 met een ander aantal dan de vergunning noemt; en het tekstblok van vandaag staat er
 - **Verkoopdatums**: 96 panden met een indicatie: 6 met een verkoopdatum, 17 met een plaatsingsdatum, 4 met hoge zekerheid, 0 met een waarschuwing dat het om een andere advertentie gaat; indicaties met bronvermelding, geen Kadastercijfers
 - **Doorlooptijden**: mediane verkooptijd 89 dagen (127 panden, bovengrens); mediane bezitsduur 3.3 jaar (15 paren met een echte verkoopdatum, waarvan 3 op een jaar bij benadering); prijsgroei per pand nog niet te meten: 5 paren, minimaal 10 nodig
-- **Voorraad van de ring**: 20045 woningen in de ring, 20045 met oppervlakte, 13463 met label; nog 0 adressen te vragen; 276 adressen buiten de ring bewaard omdat er een bekendmaking over ging; 2211 woningen onderweg, geregistreerd maar nog niet gereedgemeld
+- **Voorraad van de ring**: 20045 woningen in de ring, 20045 met oppervlakte, 14072 met label; nog 0 adressen te vragen; 277 adressen buiten de ring bewaard omdat er een bekendmaking over ging; 2211 woningen onderweg, geregistreerd maar nog niet gereedgemeld; laatste ronde 1374 gevraagd, 232 labels gevonden
 - **Voet onder de brief**: de voet staat boven de mail en de brief zonder verhaal
 - **Duiding bij beleidsstukken**: geen beleid dat ons raakt vandaag
 - **Beleid haalt de mail**: geen beleidsstuk vandaag gepubliceerd
@@ -74,16 +69,17 @@
 - **Opnieuw aangeboden**: 23 adressen vaker aangeboden: 8 voor minder, 14 voor meer; lager bij: van welderenstraat van €705 naar €670; hertogplein van €1995 naar €1520; krayenhofflaan van €864 naar €713
 - **VvE-bijdragen**: 2 panden met een VvE-bijdrage, mediaan €275.15 per maand
 - **COROP Arnhem/Nijmegen**: Arnhem/Nijmegen (CR) 2026KW02: index 164.1, 4.5% op jaarbasis, 0 transacties
-- **3D BAG eigen snapshot**: 1332 panden in de eigen snapshot, 1332 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-14
+- **3D BAG eigen snapshot**: 1347 panden in de eigen snapshot, 1347 met een buitenmuuroppervlak, 0 zonder gegevens bij de bron; bijgewerkt 2026-10-14
 - **Achtergronddekking**: 37 achtergrondstukken voor 13 soorten bekendmakingen; elk soort heeft een stuk
 - **Nieuwe onderwerpen**: geen nieuwe onderwerpen voorgesteld
 - **Logboek van de brief**: 12 brieven vastgelegd, laatste 2026-10-14; 201 onderwerpen bleven liggen
 - **Overgeslagen stappen**: geen stap overgeslagen
-- **Dekking van onze signalen**: 316 van de 331 panden met een bekendmaking hebben BAG-gegevens (95%)
+- **Dekking van onze signalen**: 317 van de 331 panden met een bekendmaking hebben BAG-gegevens (95%)
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 221 panden gerouteerd
 - **Bekendmakingen-archief**: 347 adressen, 483 publicaties
+- **Regelgevingsmonitor**: 86 verordeningen, 5 wetten
 - **Geheugen en trend**: 123 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard
 
