@@ -3494,6 +3494,18 @@ def controle_regelgeving(pad="regelgeving_status.json"):
     # parkeren, erfgoed of leegstand. Dat was aan dit getal niet te zien.
     meta = (_json(pad) or {}).get("_zoektermen") or {}
     stil = meta.get("zonder_treffer") or []
+    # EEN TREFFER WAAR WE GEEN REGELING VERWACHTEN IS NIEUWS. Nijmegen heeft
+    # bewust geen leegstandverordening (zie BEWUST_AFWEZIG in
+    # regelgeving_monitor.py). Vindt de monitor er toch een, dan is de
+    # gemeente van koers veranderd, en dat gaat voor op een stille term.
+    onverwacht = meta.get("onverwacht") or []
+    if onverwacht:
+        return (LET_OP, bewijs + f"; onverwacht gevonden: "
+                                 f"{', '.join(onverwacht)}",
+                f"Voor {', '.join(onverwacht)} had Nijmegen bewust geen "
+                f"regeling, en nu geeft de zoekterm een treffer. Kijk of de "
+                f"gemeente een nieuwe verordening heeft vastgesteld, en haal "
+                f"de term dan uit BEWUST_AFWEZIG.")
     if stil:
         return (LET_OP, bewijs + f"; zonder enige treffer: {', '.join(stil)}",
                 f"Op {', '.join(stil)} levert geen enkele zoekvorm een "
@@ -3991,6 +4003,23 @@ def proef():
         if "niet is gewijzigd" not in _rep:
             fouten.append("de reparatie legt het verschil tussen niet "
                           "gevonden en niet gewijzigd niet uit")
+        # BEWUST AFWEZIG IS GEEN MELDING, EN EEN TREFFER DAAR WEL.
+        with open(_p, "w", encoding="utf-8") as _f:
+            json.dump(dict(_basis, _zoektermen={
+                "zonder_treffer": [], "bewust_afwezig": ["leegstand"],
+                "bron": "meta"}), _f)
+        _st, _tekst, _ = controle_regelgeving(_p)
+        if _st != OK:
+            fouten.append(f"een term die bewust geen regeling heeft geeft "
+                          f"toch een melding: {_st} {_tekst!r}")
+        with open(_p, "w", encoding="utf-8") as _f:
+            json.dump(dict(_basis, _zoektermen={
+                "zonder_treffer": [], "onverwacht": ["leegstand"],
+                "bron": "meta"}), _f)
+        _st, _tekst, _ = controle_regelgeving(_p)
+        if _st != LET_OP or "leegstand" not in _tekst:
+            fouten.append(f"een onverwachte treffer op een bewust afwezige "
+                          f"term wordt niet gemeld: {_st} {_tekst!r}")
         # De zeef op sleutels die met een liggend streepje beginnen is hier
         # een vangnet zonder meetbaar effect: de metasleutel draagt bron
         # "meta" en wordt dus toch niet als verordening of wet geteld. Hem
