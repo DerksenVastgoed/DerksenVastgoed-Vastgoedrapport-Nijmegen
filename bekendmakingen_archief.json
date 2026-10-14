@@ -360,6 +360,14 @@
  ],
  "bronsgeeststraat11": [
   {
+   "datum": "2026-10-14",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-480046/1/html/gmb-2026-480046.html"
+  },
+  {
    "datum": "2026-08-27",
    "soorten": [
     "splitsing"
@@ -2749,6 +2757,16 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-340275/1/html/gmb-2026-340275.html"
   }
  ],
+ "marialaan360": [
+  {
+   "datum": "2026-10-14",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-479120/1/html/gmb-2026-479120.html"
+  }
+ ],
  "marinburg39": [
   {
    "datum": "2025-04-09",
@@ -3290,6 +3308,14 @@
  ],
  "profmolkenboerstraat20": [
   {
+   "datum": "2026-10-14",
+   "soorten": [
+    "kamerverhuur"
+   ],
+   "titel": "Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-479892/1/html/gmb-2026-479892.html"
+  },
+  {
    "datum": "2026-06-25",
    "soorten": [
     "kamerverhuur"
@@ -3689,6 +3715,16 @@
    ],
    "titel": "Aanvraag omgevingsvergunning voor het splitsen van 4 woningen, aan St. Jacobslaan 196, 6533VN Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-383229/1/html/gmb-2026-383229.html"
+  }
+ ],
+ "stjacobslaan548": [
+  {
+   "datum": "2026-10-14",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel op het zijdakvlak van een woning aan St. Jacobslaan 548, 6533TZ Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-479449/1/html/gmb-2026-479449.html"
   }
  ],
  "stjansvlinderstraat17": [

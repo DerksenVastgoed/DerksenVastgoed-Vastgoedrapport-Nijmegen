@@ -80,7 +80,7 @@
     "verleend": 0
    }
   },
-  "na_verkoop": 0
+  "na_verkoop": 1
  },
  "Bottendaal": {
   "doorlooptijden": [],
@@ -248,7 +248,7 @@
   "doorlooptijden": [],
   "jaren": {
    "2025": {
-    "aanvragen": 4,
+    "aanvragen": 6,
     "gestopt": 0,
     "geweigerd": 0,
     "verleend": 0
@@ -421,7 +421,7 @@
   "doorlooptijden": [],
   "jaren": {
    "2025": {
-    "aanvragen": 2,
+    "aanvragen": 4,
     "gestopt": 0,
     "geweigerd": 0,
     "verleend": 0

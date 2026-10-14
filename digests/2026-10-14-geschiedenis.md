@@ -39,21 +39,21 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-10-13: verkocht, laatste vraagprijs €495.000, 124 m2 (verkocht tussen 2026-09-28 en 2026-10-13; 2026-10-13 is de dag dat wij het zagen, niet de verkoopdatum) (aanbod) **nieuw in ons dossier**
 - 2026-10-01: energielabels van 2 woningen in dit pand (A: 1, B: 1) (EP-Online)
 
+## Bronsgeeststraat 11
+- 2026-08-27: Aanvraag omgevingsvergunning voor het splitsen van een woning, aan Bronsgeeststraat 11, 6541ZJ Nijmegen (officiele bekendmakingen)
+- 2026-09-28: verkocht, laatste vraagprijs €325.000, 52 m2 (verkoopdatum onbekend; 2026-09-28 is de dag dat wij het in een geplakte lijst zagen) (aanbod)
+- 2026-10-14: Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen (officiele bekendmakingen) **nieuw in ons dossier**
+- 2026-09-29: energielabels van 2 woningen in dit pand (B: 1, E: 1) (EP-Online)
+
+## Couwenbergstraat 123
+- 2025-03-26: Aanvraag omgevingsvergunning voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen (officiele bekendmakingen)
+- 2025-08-20: Besluit voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen (officiele bekendmakingen)
+- 2026-10-14: in de BAG staan 3 woningen als gevormd in dit pand uit 1965, dat zelf al in gebruik is, mediaan 39 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat (BAG)
+- 2026-10-07: energielabels van 4 woningen in dit pand (C: 3, B: 1) (EP-Online)
+
 ## Groesbeekseweg 118
 - 2026-06-22: te koop aangeboden. vraagprijs €950.000 (zekerheid hoog) (model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-118/44400843/)
-- 2026-09-28: verkocht, laatste vraagprijs €950.000, 227 m2 (verkoopdatum onbekend; 2026-09-28 is de dag dat wij het in een geplakte lijst zagen) (aanbod)
+- 2026-09-21: verkocht, laatste vraagprijs €950.000, 227 m2 (verkocht op 2026-09-21, volgens Funda) (Funda, verkoopdatum op de advertentie, gezien door Mark op 14-10-2026)
 - 2026-10-12: Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen (officiele bekendmakingen) **nieuw in ons dossier**
 - 2026-09-29: energielabels van 1 woningen in dit pand (D: 1) (EP-Online)
-
-## Hatertseweg 338
-- 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
-- 2026-10-06: Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen (officiele bekendmakingen)
-- 2026-10-09: de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46, 24, 19, 23, 19 m2 (Basisregistratie Adressen en Gebouwen) **nieuw in ons dossier**
-- 2026-10-01: energielabels van 1 woningen in dit pand (E: 1) (EP-Online)
-
-## Lange Hezelstraat 75
-- 2015-01-01: omgevingsvergunning bekend (jaar bij benadering) (vergunning)
-- 2025-01-01: melding brandveilig gebruik bekend (jaar bij benadering) (melding)
-- 2025-08-21: Melding brandveilig gebruik aan de Lange Hezelstraat 75A, 6511CD Nijmegen (officiele bekendmakingen)
-- 2026-10-09: energielabels van 2 woningen in dit pand (D: 1, A++: 1) (EP-Online)
 

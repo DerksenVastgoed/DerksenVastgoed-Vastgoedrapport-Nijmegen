@@ -4,7 +4,7 @@
   "titel": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474199.html",
   "strategie": "splitsen",
-  "duiding": "Verbouwen van de eerste verdieping tot zelfstandig appartement voegt een losse verhuureenheid toe aan de kleinschalige voorraad.",
+  "duiding": "Omzetten van een verdieping naar een zelfstandig appartement voegt een extra wooneenheid toe aan de voorraad.",
   "feiten": {
    "energielabel": "A+ (2026)",
    "oppervlakte_m2": 92
@@ -14,11 +14,26 @@
   "kern": true
  },
  {
+  "datum": "2026-10-14",
+  "titel": "Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html",
+  "strategie": "kamerverhuur",
+  "duiding": "Herroeping van de kamerverhuurvergunning betekent dat verkamering op dit adres niet langer is toegestaan, relevant als waarschuwing voor vergelijkbare plannen.",
+  "feiten": {
+   "energielabel": "A+ (2026)",
+   "label_alleen_dit_adres": true,
+   "oppervlakte_m2": 109
+  },
+  "straat": "Professor Molkenboerstraat",
+  "huisnummer": "20",
+  "kern": true
+ },
+ {
   "datum": "2026-10-12",
   "titel": "Intrekking verzoek voor het aanvragen van twee huisnummers, aan Berg en Dalseweg 11-11A, 6521JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-474726.html",
   "strategie": "splitsen",
-  "duiding": "Intrekking van het verzoek om twee huisnummers betekent dat de beoogde splitsing in twee eenheden niet doorgaat.",
+  "duiding": "Intrekking van de aanvraag voor twee huisnummers duidt erop dat de beoogde splitsing niet doorgaat.",
   "feiten": {
    "energielabel": "F (2017)",
    "label_alleen_dit_adres": true,
@@ -29,11 +44,39 @@
   "kern": true
  },
  {
+  "datum": "2026-10-14",
+  "titel": "Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html",
+  "strategie": "geen",
+  "duiding": "Legalisatie van gewijzigde kozijnen met interne verbouwing is een administratieve correctie zonder marktimpact.",
+  "feiten": {
+   "energielabel": "B (2021)",
+   "oppervlakte_m2": 172
+  },
+  "straat": "Marialaan",
+  "huisnummer": "360",
+  "kern": true
+ },
+ {
+  "datum": "2026-10-14",
+  "titel": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html",
+  "strategie": "splitsen",
+  "duiding": "Splitsing in twee adressen haalt een zelfstandige eenheid uit de bestaande voorraad en levert twee apart verkoopbare units op.",
+  "feiten": {
+   "energielabel": "B (2026)",
+   "oppervlakte_m2": 52
+  },
+  "straat": "Bronsgeeststraat",
+  "huisnummer": "11",
+  "kern": true
+ },
+ {
   "datum": "2026-10-12",
   "titel": "Besluit voor het plaatsen van een entreekozijn in de voorgevel aan Molenstraat 43, 6511HA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-476232.html",
   "strategie": "geen",
-  "duiding": "Plaatsen van een entreekozijn in de voorgevel is een gevelwijziging zonder effect op verhuur- of splitsingsmogelijkheden.",
+  "duiding": "Plaatsing van een nieuw entreekozijn is een esthetische gevelwijziging zonder gevolgen voor de woningmarkt.",
   "feiten": {
    "oppervlakte_m2": 173
   },
@@ -46,7 +89,7 @@
   "titel": "Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html",
   "strategie": "geen",
-  "duiding": "Constructief wijzigen van de achtergevel betreft een bouwkundige ingreep zonder aantoonbaar effect op verhuur- of splitsingsstrategie.",
+  "duiding": "Constructieve wijziging van de achtergevel betreft bouwtechniek zonder aantoonbare marktconsequentie.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 299
@@ -59,8 +102,8 @@
   "datum": "2026-10-13",
   "titel": "Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html",
-  "strategie": "verduurzaming",
-  "duiding": "Wijzigen van kozijnen in de voorgevel kan het energielabel verbeteren, relevant voor WWS-punten bij toekomstige verhuur.",
+  "strategie": "geen",
+  "duiding": "Wijziging van voorgevelkozijnen met interne doorbraak is een interne verbouwing zonder duidelijk marktsignaal.",
   "feiten": {
    "energielabel": "E (2017)",
    "oppervlakte_m2": 250
@@ -74,7 +117,7 @@
   "titel": "Melding slopen van gedeelte van woning t.b.v. wijzigen constructie/verduurzaming binnen/achtergevel, aan Fagelstraat 54, 6524CG Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-475246.html",
   "strategie": "verduurzaming",
-  "duiding": "Sloop ten behoeve van constructieve wijziging en verduurzaming van de achtergevel wijst op ingrepen die het energielabel kunnen verbeteren.",
+  "duiding": "Melding van sloop ten behoeve van verduurzaming wijst op ingrepen aan de bouwkundige schil die het energielabel kunnen verbeteren.",
   "feiten": {
    "oppervlakte_m2": 93
   },
@@ -87,7 +130,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html",
   "strategie": "geen",
-  "duiding": "Aanpassen van de pui is een gevelwijziging zonder duidelijk effect op de verhuur- of splitsingswaarde.",
+  "duiding": "Aanvraag voor het aanpassen van de pui betreft enkel de gevel en heeft geen aantoonbaar effect op de woningmarkt.",
   "feiten": {
    "energielabel": "A (2018)",
    "oppervlakte_m2": 105

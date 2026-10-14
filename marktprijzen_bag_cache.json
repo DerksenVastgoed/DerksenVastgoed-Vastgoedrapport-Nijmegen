@@ -72588,8 +72588,13 @@
     "energielabel": null
   },
   "Simone de Beauvoirstraat|Nijmegen": {
-    "gefaald": true,
-    "reden": "parse"
+    "oppervlakte": 118,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6515XH",
+    "buurtnaam": "",
+    "wijknaam": ""
   },
   "Jozef Israelsstraat|Nijmegen": {
     "oppervlakte": 148,
@@ -74348,12 +74353,898 @@
     "oppervlakte": 9,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Hatertseweg|Nijmegen": {
     "oppervlakte": 50,
     "gebruiksdoelen": [
       "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "Burchtstraat 68|Nijmegen": {
+    "oppervlakte": 91,
+    "bouwjaar": "2001",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511RH",
+    "adresseerbaarObjectIdentificatie": "0268010000082770",
+    "pand": "0268100000021096",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-fb9586fce5e927323545af5db5cac29d",
+    "eenheden_in_pand": [
+      {
+        "adres": "Burchtstraat 50",
+        "oppervlakte": 95,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 52",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 54",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 56",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 58",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 60",
+        "oppervlakte": 91,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 62",
+        "oppervlakte": 92,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 64",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 66",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 68",
+        "oppervlakte": 92,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 70",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 72",
+        "oppervlakte": 172,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burchtstraat 74",
+        "oppervlakte": 133,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 3",
+        "oppervlakte": 102,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 4",
+        "oppervlakte": 150,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 5",
+        "oppervlakte": 119,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 6",
+        "oppervlakte": 97,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 7",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 8",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 9",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 10",
+        "oppervlakte": 140,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 11",
+        "oppervlakte": 136,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 12",
+        "oppervlakte": 136,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 13",
+        "oppervlakte": 136,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 14",
+        "oppervlakte": 136,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 15",
+        "oppervlakte": 136,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 16",
+        "oppervlakte": 123,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 17",
+        "oppervlakte": 150,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 18",
+        "oppervlakte": 115,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 19",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 20",
+        "oppervlakte": 123,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 21",
+        "oppervlakte": 150,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 22",
+        "oppervlakte": 119,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 23",
+        "oppervlakte": 187,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Mariënburg 24",
+        "oppervlakte": 133,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 92,
+    "energielabel": {
+      "label": "A",
+      "prive": false,
+      "registratiedatum": "2026-03-12",
+      "opnamedatum": "2026-03-09",
+      "geldig_tot": "2036-03-09",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Hoekmidden",
+      "methode": "NTA 8800:2024 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000082770",
+      "panden": [
+        "0268100000021096"
+      ],
+      "verbruik": 119.29,
+      "bouwjaar": 2001
+    }
+  },
+  "Professor Hoogveldstraat 9|Nijmegen": {
+    "oppervlakte": 74,
+    "bouwjaar": "1957",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524PK",
+    "adresseerbaarObjectIdentificatie": "0268010000029643",
+    "pand": "0268100000024718",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-2549b254566cc8ef2ffcf17cc2ef2108",
+    "eenheden_in_pand": [
+      {
+        "adres": "Professor Hoogveldstraat 3",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 5",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 7",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 9",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 11",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 13",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 15",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Professor Hoogveldstraat 17",
+        "oppervlakte": 85,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 76,
+    "energielabel": {
+      "label": "E",
+      "prive": false,
+      "registratiedatum": "2020-12-17",
+      "opnamedatum": "2020-12-17",
+      "geldig_tot": "2030-12-17",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Hoekdak",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000029643",
+      "panden": [],
+      "verbruik": 99856.97,
+      "bouwjaar": 1955
+    }
+  },
+  "Waalbandijk 219|Nijmegen": {
+    "oppervlakte": 50,
+    "bouwjaar": "2022",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "adresseerbaarObjectIdentificatie": "0268010000103261",
+    "pand": "0268100000104562",
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-616654efedf613178323c2656e8b6250",
+    "eenheden_in_pand": [
+      {
+        "adres": "Waalbandijk 211",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 213",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 215",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 217",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 219",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 221",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 223",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 225",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 227",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 229",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 231",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 233",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 235",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 237",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 239",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 241",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 243",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 245",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 247",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 249",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 251",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 253",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 255",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 257",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 259",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 261",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 263",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 265",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 267",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 269",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 271",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 273",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 275",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 277",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 279",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 281",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 283",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 285",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 287",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 289",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 291",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 293",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 295",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 297",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 299",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 301",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 303",
+        "oppervlakte": 67,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 305",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 307",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 309",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 50,
+    "energielabel": {
+      "label": "A+",
+      "prive": false,
+      "registratiedatum": "2023-04-08",
+      "opnamedatum": "2022-11-11",
+      "geldig_tot": "2032-11-11",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenvloer",
+      "methode": "NTA 8800:2022 (detailopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000103261",
+      "panden": [
+        "0268100000104562"
+      ],
+      "verbruik": 97.51,
+      "bouwjaar": 2020
+    }
+  },
+  "Sophiaweg|Nijmegen": {
+    "oppervlakte": 27,
+    "gebruiksdoelen": [
+      "woonfunctie"
     ]
+  },
+  "Kronenburgersingel|Nijmegen": {
+    "oppervlakte": 27,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511AR",
+    "buurtnaam": "",
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Smetiusstraat|Nijmegen": {
+    "oppervlakte": 33,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Professor Molkenboerstraat 20|Nijmegen": {
+    "postcode": "6524RP",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-b61530f9584c7a05161ef5063091faea"
+  },
+  "bm:Marialaan 360|Nijmegen": {
+    "postcode": "6541RR",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-8e3077825c7418b237146a6231d6be67"
   }
 }

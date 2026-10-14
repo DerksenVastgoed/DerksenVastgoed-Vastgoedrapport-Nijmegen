@@ -745,6 +745,41 @@
     "van Nispenstraat 186B": "A"
    }
   },
+  "0268100000001430": {
+   "bag_eenheden": [
+    [
+     "St. Geertruidestraat 29",
+     139
+    ],
+    [
+     "St. Geertruidestraat 29",
+     314
+    ],
+    [
+     "St. Geertruidestraat 31",
+     175
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "St. Geertruidestraat 29",
+     139
+    ],
+    [
+     "St. Geertruidestraat 29",
+     314
+    ],
+    [
+     "St. Geertruidestraat 31",
+     175
+    ]
+   ],
+   "labels": {
+    "St. Geertruidestraat 29": "C",
+    "St. Geertruidestraat 31": "E"
+   }
+  },
   "0268100000001441": {
    "bag_eenheden": [
     [
@@ -2056,6 +2091,41 @@
    "labels": {
     "Gorisstraat 35": "F",
     "Gorisstraat 37": "D"
+   }
+  },
+  "0268100000001915": {
+   "bag_eenheden": [
+    [
+     "Gorisstraat 59",
+     109
+    ],
+    [
+     "Gorisstraat 59",
+     201
+    ],
+    [
+     "Gorisstraat 61",
+     92
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Gorisstraat 59",
+     109
+    ],
+    [
+     "Gorisstraat 59",
+     201
+    ],
+    [
+     "Gorisstraat 61",
+     92
+    ]
+   ],
+   "labels": {
+    "Gorisstraat 59": "F",
+    "Gorisstraat 61": "C"
    }
   },
   "0268100000001937": {
@@ -3936,6 +4006,36 @@
    ],
    "labels": {
     "Dominicanenstraat 86": "C"
+   }
+  },
+  "0268100000002506": {
+   "bag_eenheden": [
+    [
+     "Daalseweg 177",
+     94
+    ],
+    [
+     "Daalseweg 177A",
+     60
+    ],
+    [
+     "Daalseweg 179",
+     174
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Daalseweg 177A",
+     60
+    ],
+    [
+     "Daalseweg 179",
+     174
+    ]
+   ],
+   "labels": {
+    "Daalseweg 179": "D"
    }
   },
   "0268100000002511": {
@@ -8987,6 +9087,36 @@
    ],
    "labels": {
     "Molenstraat 128": "C"
+   }
+  },
+  "0268100000003794": {
+   "bag_eenheden": [
+    [
+     "Karrengas 20C",
+     355
+    ],
+    [
+     "Karrengas 4",
+     546
+    ],
+    [
+     "Molenstraat 132",
+     546
+    ],
+    [
+     "Molenstraat 134",
+     195
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Karrengas 20C",
+     355
+    ]
+   ],
+   "labels": {
+    "Molenstraat 132": "B"
    }
   },
   "0268100000003802": {
@@ -18388,6 +18518,41 @@
     "Krekelstraat 6": "A"
    }
   },
+  "0268100000008837": {
+   "bag_eenheden": [
+    [
+     "Ligusterstraat 18A",
+     50
+    ],
+    [
+     "Ligusterstraat 18A",
+     100
+    ],
+    [
+     "Ligusterstraat 18B",
+     50
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Ligusterstraat 18A",
+     50
+    ],
+    [
+     "Ligusterstraat 18A",
+     100
+    ],
+    [
+     "Ligusterstraat 18B",
+     50
+    ]
+   ],
+   "labels": {
+    "Ligusterstraat 18A": "B",
+    "Ligusterstraat 18B": "C"
+   }
+  },
   "0268100000008909": {
    "bag_eenheden": [
     [
@@ -27669,6 +27834,45 @@
     ]
    ]
   },
+  "0268100000015951": {
+   "bag_eenheden": [
+    [
+     "Nieuwe Nonnendaalseweg 57A",
+     141
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-1",
+     43
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-2",
+     33
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-3",
+     50
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Nieuwe Nonnendaalseweg 57A",
+     141
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-1",
+     43
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-2",
+     33
+    ],
+    [
+     "Nieuwe Nonnendaalseweg 57A-3",
+     50
+    ]
+   ]
+  },
   "0268100000015965": {
    "bag_eenheden": [
     [
@@ -30179,6 +30383,50 @@
     "Graafseweg 96": "B",
     "Graafseweg 98": "B",
     "Graafseweg 98A": "C"
+   }
+  },
+  "0268100000018477": {
+   "bag_eenheden": [
+    [
+     "Holtermanstraat 29",
+     61
+    ],
+    [
+     "Holtermanstraat 29A",
+     57
+    ],
+    [
+     "Holtermanstraat 29B",
+     35
+    ],
+    [
+     "Jan de Wittstraat 35",
+     37
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Holtermanstraat 29",
+     61
+    ],
+    [
+     "Holtermanstraat 29A",
+     57
+    ],
+    [
+     "Holtermanstraat 29B",
+     35
+    ],
+    [
+     "Jan de Wittstraat 35",
+     37
+    ]
+   ],
+   "labels": {
+    "Holtermanstraat 29": "E",
+    "Holtermanstraat 29A": "G",
+    "Jan de Wittstraat 35": "E"
    }
   },
   "0268100000018480": {
@@ -36999,7 +37247,7 @@
      140
     ]
    ],
-   "bag_gezien": "2026-10-11",
+   "bag_gezien": "2026-10-14",
    "bag_woningen": [
     [
      "Burchtstraat 50",
@@ -38928,6 +39176,24 @@
    ],
    "labels": {
     "Vondelstraat 73": "E"
+   }
+  },
+  "0268100000021982": {
+   "bag_eenheden": [
+    [
+     "St. Jacobslaan 548",
+     83
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "St. Jacobslaan 548",
+     83
+    ]
+   ],
+   "labels": {
+    "St. Jacobslaan 548": "C"
    }
   },
   "0268100000022055": {
@@ -42343,6 +42609,84 @@
    "labels": {
     "Dommer van Poldersveldtweg 42": "D",
     "Dommer van Poldersveldtweg 44": "C"
+   }
+  },
+  "0268100000024718": {
+   "bag_eenheden": [
+    [
+     "Professor Hoogveldstraat 11",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 13",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 15",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 17",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 3",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 5",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 7",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 9",
+     76
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Professor Hoogveldstraat 11",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 13",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 15",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 17",
+     85
+    ],
+    [
+     "Professor Hoogveldstraat 3",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 5",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 7",
+     76
+    ],
+    [
+     "Professor Hoogveldstraat 9",
+     76
+    ]
+   ],
+   "labels": {
+    "Professor Hoogveldstraat 13": "C",
+    "Professor Hoogveldstraat 15": "E",
+    "Professor Hoogveldstraat 17": "C",
+    "Professor Hoogveldstraat 7": "D",
+    "Professor Hoogveldstraat 9": "E"
    }
   },
   "0268100000024719": {
@@ -50700,6 +51044,37 @@
     "Bloemerstraat 107A": "E"
    }
   },
+  "0268100000030005": {
+   "bag_eenheden": [
+    [
+     "Fransestraat 25",
+     171
+    ],
+    [
+     "Fransestraat 25",
+     360
+    ],
+    [
+     "Fransestraat 25A",
+     189
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Fransestraat 25",
+     171
+    ],
+    [
+     "Fransestraat 25",
+     360
+    ],
+    [
+     "Fransestraat 25A",
+     189
+    ]
+   ]
+  },
   "0268100000030049": {
    "bag_eenheden": [
     [
@@ -51064,6 +51439,40 @@
    ],
    "labels": {
     "Bloemerstraat 121": "D"
+   }
+  },
+  "0268100000031013": {
+   "bag_eenheden": [
+    [
+     "Groesbeekseweg 118A",
+     92
+    ],
+    [
+     "Groesbeekseweg 118B",
+     124
+    ],
+    [
+     "Groesbeekseweg 118B",
+     219
+    ],
+    [
+     "Groesbeekseweg 118C",
+     95
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Groesbeekseweg 118A",
+     92
+    ],
+    [
+     "Groesbeekseweg 118C",
+     95
+    ]
+   ],
+   "labels": {
+    "Groesbeekseweg 118A": "A+"
    }
   },
   "0268100000031091": {
@@ -53435,6 +53844,29 @@
    "labels": {
     "Kronenburgersingel 231": "G"
    }
+  },
+  "0268100000040129": {
+   "bag_eenheden": [
+    [
+     "Kronenburgersingel 229",
+     445
+    ],
+    [
+     "Kronenburgersingel 229A",
+     47
+    ]
+   ],
+   "bag_gezien": "2026-10-14",
+   "bag_woningen": [
+    [
+     "Kronenburgersingel 229",
+     445
+    ],
+    [
+     "Kronenburgersingel 229A",
+     47
+    ]
+   ]
   },
   "0268100000040130": {
    "bag_eenheden": [
@@ -65897,7 +66329,7 @@
      68
     ]
    ],
-   "bag_gezien": "2026-10-11",
+   "bag_gezien": "2026-10-14",
    "bag_woningen": [
     [
      "Waalbandijk 211",
@@ -66718,9 +67150,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Albardastraat 34 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1965, dat zelf al in gebruik is, mediaan 37 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000018066"
+  "pand_id": "0268100000018066",
+  "transformatie_gemeld": 3
  },
  "aldenhof": {
   "adres": "Aldenhof",
@@ -71339,6 +71778,12 @@
     "datum": "2026-09-29",
     "soort": "energielabel",
     "tekst": "energielabel van Bronsgeeststraat 11A is nu E"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-14",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen"
    }
   ],
   "pand_id": "0268100000009722"
@@ -71399,9 +71844,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Bronsgeeststraat 53 is nu D"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1902, dat zelf al in gebruik is, mediaan 190 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000010084"
+  "pand_id": "0268100000010084",
+  "transformatie_gemeld": 1
  },
  "bronsgeeststraat53": {
   "adres": "Bronsgeeststraat 53",
@@ -71891,6 +72343,252 @@
    }
   ],
   "pand_id": "0268100000045387"
+ },
+ "burchtstraat68": {
+  "adres": "Burchtstraat 68",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2016-10-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 70 is A, geregistreerd 2016-10-27"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2016-10-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 74 is A, geregistreerd 2016-10-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2017-07-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 14 is A, geregistreerd 2017-07-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-05-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 22 is B, geregistreerd 2019-05-15"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-08-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 52 is A, geregistreerd 2019-08-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-04-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 54 is A, geregistreerd 2020-04-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-06-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 58 is A, geregistreerd 2020-06-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-08-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 15 is A, geregistreerd 2020-08-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-08-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 64 is B, geregistreerd 2020-08-14"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-08-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 10 is A, geregistreerd 2020-08-14"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-08-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 20 is B, geregistreerd 2020-08-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-08-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 50 is A, geregistreerd 2020-08-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 9 is A, geregistreerd 2020-09-16"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 13 is A, geregistreerd 2020-09-23"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-09-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 11 is A, geregistreerd 2020-09-30"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 56 is A, geregistreerd 2020-10-03"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-10-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 4 is A, geregistreerd 2020-10-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-10-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 19 is A, geregistreerd 2020-10-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 60 is B, geregistreerd 2020-11-10"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 12 is A, geregistreerd 2020-11-10"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 3 is B, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-01-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 17 is A+, geregistreerd 2023-01-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-05-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 7 is A+, geregistreerd 2023-05-15"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-02-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 21 is A+, geregistreerd 2024-02-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 48 is A+, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 48A is A+, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 48B is A+, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 48C is A+, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 48D is A+, geregistreerd 2024-12-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 15 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 17 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 19 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 21 is A++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 23 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 27 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 5 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marikenstraat 9 is A+++, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-07-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mariënburg 27 is A++, geregistreerd 2025-07-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-03-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burchtstraat 68 is A, geregistreerd 2026-03-12"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-14",
+    "soort": "te koop",
+    "tekst": "te koop voor €497.500, 91 m2"
+   }
+  ],
+  "pand_id": "0268100000021096"
  },
  "burchtstraat70": {
   "adres": "Burchtstraat 70",
@@ -76532,9 +77230,16 @@
     "datum": "2026-10-07",
     "soort": "energielabel",
     "tekst": "energielabel van Couwenbergstraat 123B is C, geregistreerd 2026-10-07"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1965, dat zelf al in gebruik is, mediaan 39 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000045871"
+  "pand_id": "0268100000045871",
+  "transformatie_gemeld": 3
  },
  "couwenbergstraat20": {
   "adres": "Couwenbergstraat 20",
@@ -76779,6 +77484,25 @@
   ],
   "pand_id": "0268100000002770",
   "transformatie_gemeld": 2
+ },
+ "daalseweg177a": {
+  "adres": "Daalseweg 177A",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2021-06-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Daalseweg 179 is D, geregistreerd 2021-06-21"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1919, dat zelf al in gebruik is, mediaan 60 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000002506",
+  "transformatie_gemeld": 1
  },
  "daalseweg200": {
   "adres": "Daalseweg 200",
@@ -83000,9 +83724,16 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Fagelstraat 8 is nu G"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1905, dat zelf al in gebruik is, mediaan 183 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000002354"
+  "pand_id": "0268100000002354",
+  "transformatie_gemeld": 1
  },
  "fagelstraat86": {
   "adres": "Fagelstraat 86",
@@ -83235,9 +83966,16 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Fortstraat 10 is nu F"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1934, dat zelf al in gebruik is, mediaan 74 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000003875"
+  "pand_id": "0268100000003875",
+  "transformatie_gemeld": 2
  },
  "fransestraat11": {
   "adres": "Fransestraat 11",
@@ -83329,6 +84067,19 @@
    }
   ],
   "pand_id": "0268100000031097"
+ },
+ "fransestraat25": {
+  "adres": "Fransestraat 25",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1908, dat zelf al in gebruik is, mediaan 360 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000030005",
+  "transformatie_gemeld": 1
  },
  "fransestraat34a": {
   "adres": "Fransestraat 34-A",
@@ -85128,6 +85879,31 @@
   ],
   "pand_id": "0268100000001910"
  },
+ "gorisstraat59": {
+  "adres": "Gorisstraat 59",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorisstraat 59 is F, geregistreerd 2020-07-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorisstraat 61 is C, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 201 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000001915",
+  "transformatie_gemeld": 1
+ },
  "gorterplaats2stannastraat198": {
   "adres": "Gorterplaats 2/St. Annastraat 198",
   "bag_gezien": "2026-10-03",
@@ -85664,9 +86440,16 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Graafseweg 244D is nu A"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 5 woningen als gevormd in dit pand uit 1936, dat zelf al in gebruik is, mediaan 32 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000019404"
+  "pand_id": "0268100000019404",
+  "transformatie_gemeld": 5
  },
  "graafseweg257": {
   "adres": "Graafseweg 257",
@@ -88479,6 +89262,12 @@
     "datum": "2026-09-10",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €520 per maand, 14 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €695 per maand, 14 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -88885,10 +89674,10 @@
     "tekst": "te koop aangeboden. vraagprijs €950.000 (zekerheid hoog)"
    },
    {
-    "bron": "aanbod",
-    "datum": "2026-09-28",
+    "bron": "Funda, verkoopdatum op de advertentie, gezien door Mark op 14-10-2026",
+    "datum": "2026-09-21",
     "soort": "verkocht",
-    "tekst": "verkocht, laatste vraagprijs €950.000, 227 m2 (verkoopdatum onbekend; 2026-09-28 is de dag dat wij het in een geplakte lijst zagen)"
+    "tekst": "verkocht, laatste vraagprijs €950.000, 227 m2 (verkocht op 2026-09-21, volgens Funda)"
    },
    {
     "bron": "EP-Online",
@@ -88904,6 +89693,31 @@
    }
   ],
   "pand_id": "0268100000029582"
+ },
+ "groesbeekseweg118c": {
+  "adres": "Groesbeekseweg 118C",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-06-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeekseweg 118A is A+, geregistreerd 2026-06-18"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-12",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1920, dat zelf al in gebruik is, mediaan 95 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000031013",
+  "transformatie_gemeld": 1
  },
  "groesbeekseweg127": {
   "adres": "Groesbeekseweg 127",
@@ -92774,6 +93588,37 @@
   ],
   "pand_id": "0268100000020568"
  },
+ "holtermanstraat29b": {
+  "adres": "Holtermanstraat 29B",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Holtermanstraat 29 is E, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Holtermanstraat 29A is G, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-05-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jan de Wittstraat 35 is E, geregistreerd 2024-05-29"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1905, dat zelf al in gebruik is, mediaan 35 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000018477",
+  "transformatie_gemeld": 1
+ },
  "horstacker1433": {
   "adres": "Horstacker 1433",
   "bag_pogingen": 1,
@@ -96285,9 +97130,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Karbouwstraat 4 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1964, dat zelf al in gebruik is, mediaan 44 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000042274"
+  "pand_id": "0268100000042274",
+  "transformatie_gemeld": 3
  },
  "karbouwstraat67": {
   "adres": "Karbouwstraat 67",
@@ -96423,6 +97275,25 @@
   ],
   "pand_id": "0268100000003000",
   "transformatie_gemeld": 4
+ },
+ "karrengas20c": {
+  "adres": "Karrengas 20C",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-07-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Molenstraat 132 is B, geregistreerd 2020-07-17"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1899, dat zelf al in gebruik is, mediaan 355 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000003794",
+  "transformatie_gemeld": 1
  },
  "karrengas44c": {
   "adres": "Karrengas 44-C",
@@ -97564,9 +98435,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Kerkstraat 63A is nu A"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 4 woningen als gevormd in dit pand uit 1919, dat zelf al in gebruik is, mediaan 34 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000025044"
+  "pand_id": "0268100000025044",
+  "transformatie_gemeld": 4
  },
  "kievitstraat": {
   "adres": "Kievitstraat",
@@ -98003,9 +98881,16 @@
     "datum": "2026-04-13",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het legaliseren van de opsplitsing van de bovenwoning in twee appartementen, aan Koolemans Beynenstraat 74, 6521EW Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1924, dat zelf al in gebruik is, mediaan 49 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000001875"
+  "pand_id": "0268100000001875",
+  "transformatie_gemeld": 2
  },
  "koolwitjeshof12": {
   "adres": "Koolwitjeshof 12",
@@ -99030,6 +99915,26 @@
   ],
   "pand_id": "0268100000041355"
  },
+ "kronenburgersingel": {
+  "adres": "Kronenburgersingel",
+  "bag_gezien": "2026-10-14",
+  "bag_zonder_id": "2026-10-14",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.270 per maand, 27 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.270 per maand, 27 m2"
+   }
+  ],
+  "pand_id": null
+ },
  "kronenburgersingel115": {
   "adres": "Kronenburgersingel 115",
   "gebeurtenissen": [
@@ -99947,6 +100852,19 @@
    }
   ],
   "pand_id": "0268100000040969"
+ },
+ "kronenburgersingel229a": {
+  "adres": "Kronenburgersingel 229A",
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1899, dat zelf al in gebruik is, mediaan 47 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000040129",
+  "transformatie_gemeld": 1
  },
  "kronenburgersingel231": {
   "adres": "Kronenburgersingel 231",
@@ -102557,6 +103475,55 @@
   ],
   "pand_id": "0268100000065798"
  },
+ "ligusterstraat18a": {
+  "adres": "Ligusterstraat 18A",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-05-07",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het omzetten van een kantoorpand naar een woning, aan Ligusterstraat 18A, 6543SZ Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-06-19",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het omzetten van een kantoorpand naar een woning, aan Ligusterstraat 18A, 6543SZ Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-10-30",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van een woning in twee woningen, aan Ligusterstraat 18A, 6543SZ Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-03-09",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het splitsen van een woning en het maken van gevelwijzigingen, aan Ligusterstraat 18A, 6543SZ Nijmegen"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-03-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ligusterstraat 18A is B, geregistreerd 2026-03-26"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-03-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ligusterstraat 18B is C, geregistreerd 2026-03-26"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1956, dat zelf al in gebruik is, mediaan 50 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000008837",
+  "transformatie_gemeld": 2
+ },
  "ligusterstraat25": {
   "adres": "ligusterstraat 25",
   "gebeurtenissen": [
@@ -103490,6 +104457,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Marialaan 298 is nu A"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-14",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen"
    }
   ],
   "pand_id": "0268100000017946"
@@ -111751,6 +112724,37 @@
   ],
   "pand_id": "0268100000015313"
  },
+ "nieuwenonnendaalseweg57a1": {
+  "adres": "Nieuwe Nonnendaalseweg 57A-1",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-03-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van een woonhuis in drie appartementen aan Nieuwe Nonnendaalseweg 57A, 6542PB Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-09-25",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van een woonhuis in drie appartementen aan Nieuwe Nonnendaalseweg 57A, 6542PB Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2025-11-24",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het splitsen van een woonhuis in drie appartementen aan Nieuwe Nonnendaalseweg 57A, 6542PB Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1938, dat zelf al in gebruik is, mediaan 43 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000015951",
+  "transformatie_gemeld": 3
+ },
  "nieuwenonnendaalseweg63": {
   "adres": "Nieuwe Nonnendaalseweg 63",
   "gebeurtenissen": [
@@ -113708,9 +114712,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Ubbergseweg 86 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1922, dat zelf al in gebruik is, mediaan 78 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000006635"
+  "pand_id": "0268100000006635",
+  "transformatie_gemeld": 1
  },
  "paddepoelseweg4": {
   "adres": "Paddepoelseweg 4",
@@ -116191,6 +117202,48 @@
    }
   ],
   "pand_id": "0268100000024721"
+ },
+ "profhoogveldstraat9": {
+  "adres": "Professor Hoogveldstraat 9",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 7 is D, geregistreerd 2020-11-26"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 15 is E, geregistreerd 2020-12-11"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 9 is E, geregistreerd 2020-12-17"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 17 is C, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Professor Hoogveldstraat 13 is C, geregistreerd 2025-06-25"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-14",
+    "soort": "te koop",
+    "tekst": "te koop voor €359.000, 74 m2"
+   }
+  ],
+  "pand_id": "0268100000024718"
  },
  "profmolkenboerstraat18": {
   "adres": "Professor Molkenboerstraat 18",
@@ -118959,9 +120012,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Sandenburgstraat 22A is nu B"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1964, dat zelf al in gebruik is, mediaan 64 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000005857"
+  "pand_id": "0268100000005857",
+  "transformatie_gemeld": 2
  },
  "saturnusstraat": {
   "adres": "Saturnusstraat",
@@ -118986,9 +120046,16 @@
     "datum": "2026-06-03",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het realiseren van een derde bouwlaag en het splitsen van een woning, aan de Savornin Lohmanstraat 20, 6535SX Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1965, dat zelf al in gebruik is, mediaan 36 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000014819"
+  "pand_id": "0268100000014819",
+  "transformatie_gemeld": 3
  },
  "scheidemakershof39b": {
   "adres": "Scheidemakershof 39-B",
@@ -121297,6 +122364,12 @@
     "datum": "2026-10-03",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.580 per maand"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.775 per maand, 118 m2"
    }
   ],
   "pand_id": null
@@ -121312,6 +122385,20 @@
     "datum": "2014-01-01",
     "soort": "kamerverhuur",
     "tekst": "omgevingsvergunning bekend (jaar bij benadering)"
+   }
+  ],
+  "pand_id": null
+ },
+ "smetiusstraat": {
+  "adres": "Smetiusstraat",
+  "bag_gezien": "2026-10-14",
+  "bag_zonder_id": "2026-10-14",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €745 per maand, 33 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -121516,6 +122603,20 @@
    }
   ],
   "pand_id": "0268100000024642"
+ },
+ "sophiaweg": {
+  "adres": "Sophiaweg",
+  "bag_gezien": "2026-10-14",
+  "bag_zonder_id": "2026-10-14",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-14",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €750 per maand, 27 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null
  },
  "sperwerstraat17": {
   "adres": "Sperwerstraat 17",
@@ -123732,6 +124833,31 @@
   ],
   "pand_id": "0268100000001443"
  },
+ "stgeertruidestraat29": {
+  "adres": "St. Geertruidestraat 29",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Geertruidestraat 29 is C, geregistreerd 2020-12-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2021-06-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Geertruidestraat 31 is E, geregistreerd 2021-06-14"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1903, dat zelf al in gebruik is, mediaan 314 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000001430",
+  "transformatie_gemeld": 1
+ },
  "stgeertruidestraat31": {
   "adres": "St.Geertruidestraat 31",
   "bag_gezien": "2026-10-03",
@@ -124829,6 +125955,24 @@
    }
   ],
   "pand_id": "0268100000023692"
+ },
+ "stjacobslaan548": {
+  "adres": "St. Jacobslaan 548",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-02-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Jacobslaan 548 is C, geregistreerd 2026-02-17"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-14",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel op het zijdakvlak van een woning aan St. Jacobslaan 548, 6533TZ Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000021982"
  },
  "stjacobslaan6": {
   "adres": "St. Jacobslaan 6",
@@ -127504,9 +128648,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Tooropstraat 224 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1932, dat zelf al in gebruik is, mediaan 138 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000004206"
+  "pand_id": "0268100000004206",
+  "transformatie_gemeld": 1
  },
  "tooropstraat229": {
   "adres": "Tooropstraat 229",
@@ -128498,9 +129649,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Tweede Oude Heselaan 219 is nu C"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1934, dat zelf al in gebruik is, mediaan 95 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000049655"
+  "pand_id": "0268100000049655",
+  "transformatie_gemeld": 1
  },
  "tweedeoudeheselaan368": {
   "adres": "Tweede Oude Heselaan 368",
@@ -131709,9 +132867,16 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van van Peltlaan 197 is nu F"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-14",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1931, dat zelf al in gebruik is, mediaan 55 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
    }
   ],
-  "pand_id": "0268100000049528"
+  "pand_id": "0268100000049528",
+  "transformatie_gemeld": 1
  },
  "vanpeltlaan34": {
   "adres": "van Peltlaan 34",
@@ -140931,6 +142096,318 @@
    }
   ],
   "pand_id": "0268100000010925"
+ },
+ "waalbandijk219": {
+  "adres": "Waalbandijk 219",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 301 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 303 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 305 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 307 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 309 is A+++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 211 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 215 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 217 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 219 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 221 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 223 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 225 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 227 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 229 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 231 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 233 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 235 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 237 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 239 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 241 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 243 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 245 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 247 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 249 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 251 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 253 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 255 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 257 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 259 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 261 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 263 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 265 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 267 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 269 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 271 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 273 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 275 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 277 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 279 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 281 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 283 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 285 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 287 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 289 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 291 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 293 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 295 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 297 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 299 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-11-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 213 is A+, geregistreerd 2024-11-29"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-14",
+    "soort": "te koop",
+    "tekst": "te koop voor €365.000, 50 m2"
+   }
+  ],
+  "pand_id": "0268100000104562"
  },
  "waalbandijk247": {
   "adres": "Waalbandijk 247",

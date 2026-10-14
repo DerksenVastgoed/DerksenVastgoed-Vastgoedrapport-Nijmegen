@@ -1054,3 +1054,14 @@ St. Stevenskerkhof | Nijmegen | 470 | te huur kamer | 2026-10-13 | kamernet-incl
 # Automatisch toegevoegd uit Funda-attendering op 14-10-2026
 Malvert | Nijmegen | 250 | te huur kamer | 2026-10-13 | kamernet | 9 | 
 Hatertseweg | Nijmegen | 1400 | te huur kamer | 2026-10-13 | kamernet | 50 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 14-10-2026
+Burchtstraat 68 | Nijmegen | 497500 | te koop | 2026-10-14 | funda-mail | 91 | 6511RH
+Professor Hoogveldstraat 9 | Nijmegen | 359000 | te koop | 2026-10-14 | funda-mail | 74 | 6524PK
+Waalbandijk 219 | Nijmegen | 365000 | te koop | 2026-10-14 | funda-mail | 50 | 6541AA
+Simone de Beauvoirstraat | Nijmegen | 1775 | te huur | 2026-10-14 | huislijn | 118 | 6515XH
+Sophiaweg | Nijmegen | 750 | te huur | 2026-10-14 | kamernet-incl | 27 | 
+Kronenburgersingel | Nijmegen | 1270 | te huur gemeubileerd | 2026-10-14 | pararius | 27 | 6511AR
+Kronenburgersingel | Nijmegen | 1270 | te huur kamer | 2026-10-14 | kamernet | 27 | 
+Smetiusstraat | Nijmegen | 745 | te huur kamer | 2026-10-14 | kamernet-incl | 33 | 
+Groesbeeksedwarsweg | Nijmegen | 695 | te huur kamer | 2026-10-14 | kamernet-incl | 14 | 

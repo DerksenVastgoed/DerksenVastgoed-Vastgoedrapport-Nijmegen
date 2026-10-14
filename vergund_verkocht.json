@@ -2,10 +2,18 @@
  "datum": "2026-10-14",
  "panden": [
   {
+   "adres": "Bronsgeeststraat 11",
+   "besluit": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen",
+   "besluit_datum": "2026-10-14",
+   "verkoop": "verkocht, laatste vraagprijs €325.000, 52 m2 (verkoopdatum onbekend; 2026-09-28 ",
+   "makelaar": "Kolmeijer makelaars Nijmegen",
+   "makelaar_aantal": 2
+  },
+  {
    "adres": "Groesbeekseweg 118",
    "besluit": "Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen",
    "besluit_datum": "2026-10-12",
-   "verkoop": "verkocht, laatste vraagprijs €950.000, 227 m2 (verkoopdatum onbekend; 2026-09-28",
+   "verkoop": "verkocht, laatste vraagprijs €950.000, 227 m2 (verkocht op 2026-09-21, volgens F",
    "makelaar": "ST Makelaars",
    "makelaar_aantal": 1
   },
@@ -39,7 +47,7 @@
    "besluit_datum": "2025-09-24",
    "verkoop": "verkocht, laatste vraagprijs €415.000, 55 m2 (verkoopdatum onbekend; 2026-09-28 ",
    "makelaar": "Kolmeijer makelaars Nijmegen",
-   "makelaar_aantal": 1
+   "makelaar_aantal": 2
   }
  ]
 }

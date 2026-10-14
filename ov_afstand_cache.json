@@ -199,6 +199,14 @@
   "omweg": 0.03,
   "soort": "bus"
  },
+ "51.82960,5.89275": {
+  "geschat": false,
+  "hemelsbreed": 92,
+  "meters": 180,
+  "naam": "Kwakkenbergweg/Sophiaweg",
+  "omweg": 1.96,
+  "soort": "bus"
+ },
  "51.82979,5.82056": {
   "geschat": false,
   "hemelsbreed": 240,
@@ -293,6 +301,14 @@
   "meters": 598,
   "naam": "Archipelstraat",
   "omweg": 1.75,
+  "soort": "bus"
+ },
+ "51.83348,5.86736": {
+  "geschat": false,
+  "hemelsbreed": 299,
+  "meters": 435,
+  "naam": "Archipelstraat",
+  "omweg": 1.45,
   "soort": "bus"
  },
  "51.83355,5.83919": {
@@ -1127,6 +1143,14 @@
   "omweg": 1.33,
   "soort": "station"
  },
+ "51.84426,5.85906": {
+  "geschat": false,
+  "hemelsbreed": 46,
+  "meters": 46,
+  "naam": "Smetiusstraat",
+  "omweg": 1.0,
+  "soort": "bus"
+ },
  "51.84426,5.86881": {
   "geschat": false,
   "hemelsbreed": 38,
@@ -1181,6 +1205,14 @@
   "meters": 134,
   "naam": "Meester Franckenstraat",
   "omweg": 3.62,
+  "soort": "bus"
+ },
+ "51.84449,5.85807": {
+  "geschat": false,
+  "hemelsbreed": 65,
+  "meters": 195,
+  "naam": "Smetiusstraat",
+  "omweg": 3.0,
   "soort": "bus"
  },
  "51.84462,5.85589": {
@@ -1397,6 +1429,14 @@
   "meters": 599,
   "naam": "Centraal Station",
   "omweg": 1.51,
+  "soort": "bus"
+ },
+ "51.84658,5.86702": {
+  "geschat": false,
+  "hemelsbreed": 171,
+  "meters": 294,
+  "naam": "Voerweg",
+  "omweg": 1.72,
   "soort": "bus"
  },
  "51.84660,5.85913": {
@@ -1621,6 +1661,14 @@
   "meters": 252,
   "naam": "Joris Ivensplein",
   "omweg": 1.25,
+  "soort": "bus"
+ },
+ "51.85024,5.85003": {
+  "geschat": false,
+  "hemelsbreed": 93,
+  "meters": 162,
+  "naam": "Havenweg",
+  "omweg": 1.74,
   "soort": "bus"
  },
  "51.85063,5.85527": {
