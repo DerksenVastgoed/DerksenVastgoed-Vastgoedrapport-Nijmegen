@@ -1010,3 +1010,18 @@ waarom: 14 oktober. De pandgeschiedenis vroeg elk label zelf aan EP-Online,
   object-id.
 proef: pandgeschiedenis:alleen wat de voorraad niet weet gaat naar EP-Online
 soort: werking
+
+---
+eis: Het label in een dossier is het label van dat object, zoals de voorraad
+  het nu kent; een verlopen label heet verlopen, en een benaderd object
+  krijgt geen label.
+waarom: 14 oktober, nagemeten over de 937 cacheregels van de dossiers. De
+  cache haalde een label een keer op en bewaarde het voor altijd: bij 4
+  dossiers kent de voorraad een later geregistreerd label (Vondelstraat 63:
+  D uit 2016 in de cache, B van 28 september 2026). Bij 3 is het label in
+  september of oktober verlopen en stond het er nog als geldig (Fagelstraat
+  44, St. Annastraat 30, Sumatraplein 46). En bij 2 viel de opzoeking terug
+  op het kale huisnummer, een ander object, en droeg het dossier het label
+  van de buren (Plein 1944 7 6, Jan de Wittstraat 6-8 studio 9).
+proef: marktprijzen_bag:label van het buurobject
+soort: gegevens

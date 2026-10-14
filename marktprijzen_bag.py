@@ -572,6 +572,87 @@ def _bouwjaar_uit(a):
     return None
 
 
+_VOORRAAD_PER_VBO = None
+
+
+def _voorraad_per_vbo(pad="voorraad.json"):
+    """De voorraad per object-id, een keer per run ingelezen."""
+    global _VOORRAAD_PER_VBO
+    if _VOORRAAD_PER_VBO is None:
+        _VOORRAAD_PER_VBO = {}
+        try:
+            with open(pad, encoding="utf-8") as f:
+                v = json.load(f) or {}
+            for soort in ("adressen", "niet_woningen", "pijplijn"):
+                _VOORRAAD_PER_VBO.update(v.get(soort) or {})
+        except Exception:
+            pass
+    return _VOORRAAD_PER_VBO
+
+
+def object_van_adres(woning, per_vbo=None):
+    """
+    Het label van een dossier komt van zijn verblijfsobject, uit de voorraad.
+
+    WAAROM. De dossiers haalden hun label een keer op en bewaarden het in de
+    cache, voor altijd. De voorraad vraagt elk object opnieuw. Gemeten op 14
+    oktober over de cache: bij 4 dossiers kent de voorraad een later
+    geregistreerd label dan de cache. Vondelstraat 63: D uit 2016 in de
+    cache, B geregistreerd op 28 september 2026. Delistraat 20: D van 25
+    september, B van 9 oktober. Een nieuw label is precies het soort feit dat
+    in een dossier hoort, en het ontbrak.
+
+    EN EEN BENADERD OBJECT KRIJGT GEEN LABEL. Kon de BAG het adres met letter
+    of toevoeging niet vinden, dan nam verrijk() het kale huisnummer, en dat
+    is een ander object: Plein 1944 7 6 werd Plein 1944 7, Jan de Wittstraat
+    6-8 studio 9 werd Jan de Wittstraat 6. Het label van de buren is geen
+    label van deze woning. Dat staat nu als object_benaderd in het dossier,
+    ook voor een cacheregel van voor deze regel: dan blijkt het uit het adres
+    dat de voorraad bij dat object-id kent.
+    """
+    import pandsleutel as _psl
+    per_vbo = _voorraad_per_vbo() if per_vbo is None else per_vbo
+    vid = str(woning.get("adresseerbaarObjectIdentificatie") or "")
+    r = per_vbo.get(vid) if vid else None
+    if r and r.get("adres") and _psl.sleutel(r["adres"]) != _psl.sleutel(
+            woning.get("adres") or ""):
+        woning["object_benaderd"] = True
+    if woning.get("object_benaderd"):
+        woning.pop("energielabel", None)
+        return woning
+    if not r or not r.get("label_gezien"):
+        return woning
+    try:
+        from voorraad_bag import _stuk_gevraagd
+        if _stuk_gevraagd(r):
+            return woning
+    except Exception:
+        pass
+    if r.get("label_prive"):
+        woning["energielabel"] = {"label": None, "prive": True}
+    elif r.get("label"):
+        woning["energielabel"] = {"label": r["label"],
+                                  "registratiedatum": r.get("label_datum") or "",
+                                  "bron": "voorraad"}
+    else:
+        # GEEN LABEL MEER, EN VAAK OM EEN REDEN: VERLOPEN. Een label is tien
+        # jaar geldig en EP-Online geeft een verlopen label niet meer. Op 14
+        # oktober drie dossiers: Fagelstraat 44 (D, geldig tot 19 september
+        # 2026), St. Annastraat 30 (F, tot 3 oktober) en Sumatraplein 46 (C,
+        # tot 4 oktober). Dat het label verlopen is, is zelf een feit voor het
+        # dossier en geen gat; stil weghalen zou het als "onbekend" laten
+        # lezen. Het veld label blijft leeg, zodat elke rekensom het als geen
+        # geldig label behandelt.
+        oud = woning.get("energielabel") or {}
+        tot = str(oud.get("geldig_tot") or "")[:10]
+        if oud.get("label") and tot and tot <= r["label_gezien"]:
+            woning["energielabel"] = {"label": None, "verlopen": oud["label"],
+                                      "geldig_tot": tot}
+        else:
+            woning.pop("energielabel", None)
+    return woning
+
+
 def verrijk(woning, cache):
     sleutel = f"{woning['adres']}|{woning['plaats']}"
     if sleutel in cache and not cache[sleutel].get("gefaald"):
@@ -592,6 +673,7 @@ def verrijk(woning, cache):
         woning.update(gegevens)
         if woning.get("oppervlakte_bron"):
             woning["oppervlakte"] = woning["oppervlakte_bron"]
+        object_van_adres(woning)
         return woning
 
     varianten = split_huisnummer(woning["adres"])
@@ -623,10 +705,15 @@ def verrijk(woning, cache):
             break
 
     # Laatste redmiddel: kaal huisnummer zonder achtervoegsel
+    benaderd = False
     if not bag:
         straat, huisnr = varianten[0][0], varianten[0][1]
         bag = bag_adres_uitgebreid(straat, huisnr, None, None, woning["plaats"])
         time.sleep(RATE_LIMIT_SEC)
+        # Dit is een ANDER object als het adres een letter of toevoeging had:
+        # Plein 1944 7 6 werd zo Plein 1944 7. Pand, bouwjaar en buurt zijn
+        # daar bruikbaar, label en oppervlakte niet; zie object_van_adres().
+        benaderd = bool(varianten[0][2] or varianten[0][3])
 
     if not bag or not bag.get("oppervlakte"):
         print(f"  FAIL BAG: {woning['adres']}", file=sys.stderr)
@@ -637,6 +724,8 @@ def verrijk(woning, cache):
     time.sleep(0.2)
 
     verrijking = {**bag, **pdok}
+    if benaderd:
+        verrijking["object_benaderd"] = True
 
     # Hoeveel zelfstandige woningen kent de BAG in dit pand? Meer dan een
     # betekent dat de splitsing al geregistreerd is; precies een betekent dat
@@ -682,6 +771,7 @@ def verrijk(woning, cache):
 
     cache[sleutel] = verrijking
     woning.update(verrijking)
+    object_van_adres(woning)
     return woning
 
 
@@ -3774,6 +3864,8 @@ def _labeltekst(ep):
         return "onbekend"
     if ep.get("prive"):
         return "afgeschermd"
+    if ep.get("verlopen") and not ep.get("label"):
+        return f"verlopen ({ep['verlopen']}, geldig tot {ep.get('geldig_tot')})"
     label = ep.get("label") or "?"
     datum = ep.get("registratiedatum") or ""
     jaar = datum[:4]
@@ -7885,7 +7977,11 @@ def main():
                     help="toon de volledige BAG-respons voor een adres")
     ap.add_argument("--debug", action="store_true",
                     help="toon de velden die de BAG teruggeeft, voor het eerste adres")
+    ap.add_argument("--proef", action="store_true",
+                    help="het label per object nameten, zonder iets op te halen")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
 
     global DEBUG
     DEBUG = args.debug
@@ -8036,5 +8132,51 @@ def main():
         f.write(md)
 
 
+def proef():
+    """
+    Het label van een dossier volgt het object, op echte gevallen van 14
+    oktober en zonder een enkele aanroep.
+    """
+    afw = []
+    per_vbo = {
+        "0268010000099920": {"adres": "Delistraat 20", "label": "B",
+                             "label_datum": "2026-10-09",
+                             "label_gezien": "2026-10-12"},
+        "0268010000099944": {"adres": "Fagelstraat 44", "label": None,
+                             "label_gezien": "2026-10-12"},
+        "0268010000099907": {"adres": "Plein 1944 7", "label": "C",
+                             "label_gezien": "2026-10-12"},
+    }
+    nieuw = object_van_adres({"adres": "Delistraat 20",
+                              "adresseerbaarObjectIdentificatie":
+                                  "0268010000099920",
+                              "energielabel": {"label": "D",
+                                               "registratiedatum":
+                                                   "2026-09-25"}}, per_vbo)
+    if (nieuw.get("energielabel") or {}).get("label") != "B":
+        afw.append(f"een later geregistreerd label uit de voorraad wordt niet "
+                   f"gebruikt: {nieuw.get('energielabel')}")
+    verlopen = object_van_adres({"adres": "Fagelstraat 44",
+                                 "adresseerbaarObjectIdentificatie":
+                                     "0268010000099944",
+                                 "energielabel": {"label": "D",
+                                                  "geldig_tot":
+                                                      "2026-09-19"}}, per_vbo)
+    ep = verlopen.get("energielabel") or {}
+    if ep.get("label") or ep.get("verlopen") != "D":
+        afw.append(f"een verlopen label staat er niet als verlopen: {ep}")
+    buur = object_van_adres({"adres": "Plein 1944 7 6",
+                             "adresseerbaarObjectIdentificatie":
+                                 "0268010000099907",
+                             "energielabel": {"label": "C"}}, per_vbo)
+    if buur.get("energielabel") or not buur.get("object_benaderd"):
+        afw.append("een dossier draagt het label van het buurobject waarop "
+                   "de opzoeking terugviel")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef marktprijzen_bag: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
+
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
