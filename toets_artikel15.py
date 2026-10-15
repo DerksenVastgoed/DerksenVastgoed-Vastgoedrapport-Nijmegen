@@ -519,21 +519,32 @@ def toets_splitsing(w, aantal_units=None):
                 "in gereguleerd gebied geldt geen parkeereis, maar de nieuwe "
                 "huisnummers krijgen ook geen parkeervergunning"))
 
-    # DE GEMEENTE LEEST DE OPKOOPBESCHERMING ANDERS. Op nijmegen.nl (woning
-    # splitsen, gelezen 15 oktober 2026) staat dat nieuwe woningen met een WOZ
-    # tot €396.000 alleen verhuurd mogen worden volgens de regels van de
-    # opkoopbescherming. Onze lezing van artikel 19 is dat die toets aan de
-    # levering van het gekochte pand hangt, en dat zelf gemaakte eenheden geen
-    # nieuwe levering kennen. Twee lezingen, en de gemeente beslist: dat hoort
-    # in de toets en niet alleen in een chat.
+    # DE OPKOOPBESCHERMING EN ZELF GEMAAKTE WONINGEN, UITGEZOCHT 15 OKTOBER.
+    # Artikel 19 lid 2 van de Huisvestingsverordening 2024 wijst woonruimte
+    # aan op de "datum van inschrijving", en artikel 18 definieert die als de
+    # inschrijving van de akte van LEVERING aan de nieuwe eigenaar. Een
+    # splitsing door de eigenaar zelf is geen levering, dus de woningen die je
+    # maakt en houdt krijgen geen eigen datum van inschrijving. Wat wel geldt:
+    # het pand dat je kocht. Was dat beschermd, dan mag het vier jaar niet
+    # verhuurd worden, gesplitst of niet (zie de regel hierboven). Wie een van
+    # jouw woningen later koopt, krijgt wel een eigen inschrijving, en valt
+    # eronder bij een WOZ tot de grens. Dat is vermoedelijk wat nijmegen.nl
+    # bedoelt met "verkopen mag, verhuren volgens de opkoopbescherming". De
+    # nieuwbouwuitzondering (lid 2 onder e: verkocht binnen drie maanden na
+    # oplevering) zou zo'n koper kunnen vrijstellen, maar of woningvorming als
+    # "opgeleverd als nieuwe woning" telt, staat nergens; de toelichting en de
+    # VNG-handreiking zwijgen over splitsen.
     if aantal_units and aantal_units > 1:
         uit.append(("opkoopbescherming nieuwe woningen", ONBEKEND,
-                    f"de gemeente schrijft op haar site dat nieuwe woningen "
-                    f"met een WOZ tot {grens} alleen volgens de regels van de "
-                    f"opkoopbescherming verhuurd mogen worden. Artikel 19 "
-                    f"toetst de WOZ bij de levering van wat je koopt, dus "
-                    f"juridisch is dat niet vanzelfsprekend. Vraag het "
-                    f"schriftelijk na voordat je erop rekent"))
+                    f"de woningen die je zelf maakt en houdt vallen er niet "
+                    f"onder: de bescherming hangt aan de inschrijving van een "
+                    f"akte van levering (artikel 18 en 19), en splitsen is geen "
+                    f"levering. Verkoop je er later een, dan valt de koper er "
+                    f"wel onder bij een WOZ tot {grens}; dat raakt de "
+                    f"verkoopbaarheid aan beleggers. Of de "
+                    f"nieuwbouwuitzondering (verkoop binnen drie maanden na "
+                    f"oplevering) ook voor gesplitste woningen geldt, is niet "
+                    f"vastgelegd"))
 
     # TWEE BEWONERS PER WONING. Wie splitst om er studenten in te zetten, zit
     # per woning onder de kamergrens zolang er hooguit twee wonen. Bij drie
