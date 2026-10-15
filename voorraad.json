@@ -300858,7 +300858,7 @@
   },
   "0268010000056713": {
    "adres": "Vondelstraat 26",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-15",
    "betaald_parkeervlak": "1e ring",
    "buurten": [
     "Bottendaal"
@@ -300871,7 +300871,7 @@
    "label_datum": "2026-07-02",
    "label_gezien": "2026-10-13",
    "label_nta8800": true,
-   "oppervlakte": 149,
+   "oppervlakte": 173,
    "pand": "0268100000006869",
    "pand_bouwjaar": 1901,
    "pand_status": "Pand in gebruik",
@@ -581735,6 +581735,35 @@
    "vbo": "0268010000111729",
    "vlak_soort": "vergunningenzone"
   },
+  "0268010000112142": {
+   "adres": "Planetenstraat 30",
+   "bag_gezien": "2026-10-15",
+   "buurten": [],
+   "doelen": [
+    "bijeenkomstfunctie",
+    "gezondheidszorgfunctie",
+    "kantoorfunctie",
+    "woonfunctie"
+   ],
+   "herkomst": "bekendmaking",
+   "label": "A+++",
+   "label_datum": "2026-09-14",
+   "label_gezien": "2026-10-15",
+   "label_nta8800": true,
+   "oppervlakte": 4168,
+   "pand": "0268100000110655",
+   "pand_bouwjaar": 2026,
+   "pand_status": "Pand in gebruik (niet ingemeten)",
+   "parkeerzone": "Rest bebouwde kom",
+   "postcode": "6543VZ",
+   "punt": [
+    5.828811,
+    51.838858
+   ],
+   "sleutel": "planetenstraat30",
+   "status": "Verblijfsobject in gebruik (niet ingemeten)",
+   "vbo": "0268010000112142"
+  },
   "0268010000112145": {
    "adres": "Guyotstraat 9",
    "bag_gezien": "2026-10-14",
@@ -582720,27 +582749,29 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
+   "adressen_bijgewerkt": 2,
    "adressen_nieuw": 0,
-   "adressen_onveranderd": 20293,
+   "adressen_onveranderd": 20292,
    "adressen_verwijderd": 0,
-   "buiten_de_ring": 137528,
+   "buiten_de_ring": 137535,
    "datum": "2026-10-15",
    "fouten": 0,
    "historie_overgeslagen": 2439,
    "laatste_fout": "",
-   "met_punt": 24672,
+   "met_punt": 24678,
    "niet_woningen_bewaard": 2171,
    "niet_woonfunctie": 2168,
-   "nog_gevormd": 2284,
+   "nog_gevormd": 2289,
    "objecten_in_meer_panden": 87,
-   "objecten_met_pand": 24672,
+   "objecten_met_pand": 24678,
    "om_een_signaal": 428,
-   "opgeleverd": 0,
-   "opgeleverde_adressen": [],
+   "opgeleverd": 1,
+   "opgeleverde_adressen": [
+    "Planetenstraat 30"
+   ],
    "opnieuw_gezien": 0,
-   "pijplijn_bewaard": 2211,
-   "pijplijn_gezien": 2211,
+   "pijplijn_bewaard": 2216,
+   "pijplijn_gezien": 2216,
    "postcodes_buiten_nijmegen": 0,
    "postcodes_gedaan": 1241,
    "postcodes_leeg": 2,
@@ -582752,24 +582783,24 @@
    "postcodes_nijmegen": 1243,
    "postcodes_totaal": 1243,
    "punt_behouden": 0,
-   "ronde_objecten": 164639,
+   "ronde_objecten": 164652,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 285.9,
+   "ronde_seconden": 191.7,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
    "statussen": {
     "Niet gerealiseerd verblijfsobject": 442,
-    "Verblijfsobject gevormd": 2284,
+    "Verblijfsobject gevormd": 2289,
     "Verblijfsobject in gebruik": 22205,
-    "Verblijfsobject in gebruik (niet ingemeten)": 5,
+    "Verblijfsobject in gebruik (niet ingemeten)": 6,
     "Verblijfsobject ingetrokken": 1997,
     "Verbouwing verblijfsobject": 178
    },
    "terug_in_de_pijplijn": 0,
    "van_soort_gewisseld": 0,
-   "woningen_gezien": 20293,
+   "woningen_gezien": 20294,
    "zonder_adres": 0,
    "zonder_pandsleutel": 0,
    "zonder_punt": 0,
@@ -582777,51 +582808,51 @@
   },
   "bijgewerkt": "2026-10-15",
   "labels": {
-   "aanroepen_per_minuut": 0.0,
+   "aanroepen_per_minuut": 32.8,
    "datum": "2026-10-15",
    "fouten": 0,
    "geen_label_bekend": 0,
-   "gevraagd": 0,
+   "gevraagd": 1,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
    "laatste_fout": "",
-   "label_gevonden": 0,
+   "label_gevonden": 1,
    "label_prive": 0,
    "labels_methode_2014": 4753,
-   "labels_nta8800": 9551,
+   "labels_nta8800": 9552,
    "labels_zonder_methode": 0,
    "methode_blijft_onbekend": 0,
    "methode_ingehaald": 0,
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 0.0
+   "seconden": 1.8
   },
   "panden": {
    "datum": "2026-10-15",
    "fout": "",
-   "met_bouwjaar": 187214,
-   "met_status": 187214,
-   "objecten": 203179,
-   "omzettingen": 187214,
-   "paginas": 214,
+   "met_bouwjaar": 187229,
+   "met_status": 187229,
+   "objecten": 188101,
+   "omzettingen": 187229,
+   "paginas": 195,
    "pandstatussen": {
-    "Bouw gestart": 711,
-    "Bouwvergunning verleend": 1288,
+    "Bouw gestart": 717,
+    "Bouwvergunning verleend": 1292,
     "Niet gerealiseerd pand": 1076,
     "Pand buiten gebruik": 5,
-    "Pand gesloopt": 16133,
-    "Pand in gebruik": 166647,
-    "Pand in gebruik (niet ingemeten)": 139,
+    "Pand gesloopt": 16138,
+    "Pand in gebruik": 166644,
+    "Pand in gebruik (niet ingemeten)": 140,
     "Pand ten onrechte opgevoerd": 672,
-    "Sloopvergunning verleend": 99,
-    "Verbouwing pand": 444
+    "Sloopvergunning verleend": 100,
+    "Verbouwing pand": 445
    },
    "ronde_af": true,
-   "seconden": 578.8,
-   "tegels": 22,
-   "tegels_gedeeld": 2,
+   "seconden": 365.0,
+   "tegels": 16,
+   "tegels_gedeeld": 0,
    "tegels_over": 0,
    "velden_in_antwoord": [
     "aantal_verblijfsobjecten",
@@ -582837,10 +582868,10 @@
    ]
   },
   "stand": {
-   "met_label": 14304,
-   "met_oppervlakte": 20322,
+   "met_label": 14305,
+   "met_oppervlakte": 20323,
    "postcodes_gedaan": 1241,
-   "woningen": 20322
+   "woningen": 20323
   }
  },
  "niet_woningen": {
@@ -661579,31 +661610,6 @@
    "vbo": "0268010000112141",
    "vlak_soort": "vergunningenzone"
   },
-  "0268010000112142": {
-   "adres": "Planetenstraat 30",
-   "bag_gezien": "2026-10-14",
-   "buurten": [],
-   "doelen": [
-    "gezondheidszorgfunctie",
-    "bijeenkomstfunctie",
-    "woonfunctie",
-    "kantoorfunctie"
-   ],
-   "herkomst": "bekendmaking",
-   "oppervlakte": 4168,
-   "pand": "0268100000110655",
-   "pand_bouwjaar": 2025,
-   "pand_status": "Bouw gestart",
-   "parkeerzone": "Rest bebouwde kom",
-   "postcode": "6543VZ",
-   "punt": [
-    5.828811,
-    51.838858
-   ],
-   "sleutel": "planetenstraat30",
-   "status": "Verblijfsobject gevormd",
-   "vbo": "0268010000112142"
-  },
   "0268010000112143": {
    "adres": "Burghardt van den Berghstraat 60",
    "bag_gezien": "2026-10-14",
@@ -693954,6 +693960,162 @@
    "sleutel": "groesbeekseweg118c",
    "status": "Verblijfsobject gevormd",
    "vbo": "0268010000115278",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115279": {
+   "adres": "Graafseweg 18",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 55,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.857043,
+    51.841192
+   ],
+   "sleutel": "graafseweg18",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115279",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115280": {
+   "adres": "Graafseweg 18A",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 55,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.856984,
+    51.841242
+   ],
+   "sleutel": "graafseweg18a",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115280",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115281": {
+   "adres": "Graafseweg 18B",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 35,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.856892,
+    51.841274
+   ],
+   "sleutel": "graafseweg18b",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115281",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115282": {
+   "adres": "Graafseweg 18C",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 29,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.856878,
+    51.841285
+   ],
+   "sleutel": "graafseweg18c",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115282",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115283": {
+   "adres": "Graafseweg 18D",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 60,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.85703,
+    51.841202
+   ],
+   "sleutel": "graafseweg18d",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115283",
+   "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115284": {
+   "adres": "Graafseweg 18E",
+   "bag_gezien": "2026-10-15",
+   "betaald_parkeervlak": "1e ring",
+   "buurten": [
+    "Bottendaal"
+   ],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "focusbuurt",
+   "oppervlakte": 50,
+   "pand": "0268100000021138",
+   "pand_bouwjaar": 1888,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Centrumgebied",
+   "postcode": "6512CB",
+   "punt": [
+    5.857012,
+    51.84122
+   ],
+   "sleutel": "graafseweg18e",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115284",
    "vlak_soort": "vergunningenzone"
   }
  },
