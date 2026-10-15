@@ -11,8 +11,9 @@ elk script het kan lezen zonder marktprijzen_bag mee te laden.
 
 WAT ER AAN HANGT als je een buurt toevoegt. buurtinventaris haalt bij de
 eerstvolgende run de postcodes op (de workflow ziet zelf dat de inventaris de
-ring niet meer dekt), de voorraad haalt daarna de woningen en labels op, en de
-3D BAG volgt de voorraad. De huuraanname per buurt (HUUR_M2_MND) en de
+ring niet meer dekt), de voorraad haalt daarna de woningen en labels op, en
+start de inhaalslag van de 3D BAG als er meer dan 300 panden bij zijn
+gekomen. Er hoeft dus niets met de hand. De huuraanname per buurt (HUUR_M2_MND) en de
 beschermde gezichten (BESCHERMD_GEZICHT) in marktprijzen_bag staan per buurt
 en moeten met de hand worden nagelopen.
 

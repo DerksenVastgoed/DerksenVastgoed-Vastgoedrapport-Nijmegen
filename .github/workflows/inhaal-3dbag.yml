@@ -15,8 +15,11 @@
 # terugcommitten met de brief, dan voegt de samenvoeger in bag3d.py beide
 # kanten samen (zie .gitattributes).
 #
-# Is de wachtrij leeg, dan kan dit bestand weg. De dagelijkse 300 in de brief
-# houdt nieuwe panden daarna bij.
+# HIJ BLIJFT STAAN. Op 15 oktober deed hij de hele ring in 59 minuten, en
+# dezelfde avond de 1.944 panden van Hunnerberg en St. Anna in 28 minuten. Er
+# kan nog een buurt bij komen; dan start de voorraadworkflow hem vanzelf
+# zodra de wachtrij groter is dan de 300 die de brief per dag doet. Een
+# workflow die niet draait kost niets.
 
 name: Inhaalslag 3D BAG
 
