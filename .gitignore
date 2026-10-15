@@ -10,3 +10,13 @@ nieuws_vandaag.md
 achtergrond_vandaag.md
 bronnen_vandaag.md
 parkeerzone.log
+
+# DE STRATEGISCHE LAAG STAAT NIET IN DE OPENBARE REPO. Mark, 15 oktober 2026:
+# de potentiekaart, de shortlist en het bestand eronder laten zien welke panden
+# Derksen Vastgoed wil kopen en tot welke prijs. De repo is openbaar, dus een
+# verkoper of makelaar kon dat lezen. Ze worden tijdens de run gemaakt en
+# gebruikt, maar niet teruggecommit, tot de repo privé is.
+shortlist.json
+potentie_ring.json
+potentie_ring.md
+kaart-potentie-ring.html

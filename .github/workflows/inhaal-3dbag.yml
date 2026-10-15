@@ -1,0 +1,111 @@
+# De 3D BAG van de hele ring in een keer binnenhalen, los van de brief.
+#
+# WAAROM DIT EEN EIGEN WORKFLOW IS. Op 15 oktober 2026 kende bag3d.json 1.347
+# van de 8.876 panden in de ring; er stonden er 7.529 in de wachtrij. De brief
+# haalt er 300 per dag op, dus dat duurde nog 26 dagen. Zonder bouwlagen telt
+# het splitsen niet per etage, en die regel raakte op de 201 woningen met
+# bekende lagen 139 keer de uitkomst.
+#
+# Mark, 15 oktober: nu inladen, zolang de repo openbaar is. Actions-minuten
+# zijn op een openbare repo gratis; privé is het 2.000 per maand, en de
+# gewone runs gebruikten er al 2.898 in zeven dagen.
+#
+# Hij keten zichzelf door tot de wachtrij leeg is, met een teller tegen
+# rondzingen. Hij raakt de brief niet: eigen concurrency-groep, en botst het
+# terugcommitten met de brief, dan voegt de samenvoeger in bag3d.py beide
+# kanten samen (zie .gitattributes).
+#
+# Is de wachtrij leeg, dan kan dit bestand weg. De dagelijkse 300 in de brief
+# houdt nieuwe panden daarna bij.
+
+name: Inhaalslag 3D BAG
+
+on:
+  workflow_dispatch:
+    inputs:
+      minuten:
+        description: "Tijdbudget voor het ophalen, in minuten."
+        default: "150"
+      keten:
+        description: "Volgnummer in de keten; niet met de hand invullen."
+        default: "0"
+
+concurrency:
+  group: inhaal-3dbag
+  cancel-in-progress: false
+
+jobs:
+  inhalen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Proef
+        run: python3 bag3d.py --proef
+
+      - name: Ophalen
+        run: |
+          python3 bag3d.py --per-ronde 100000 \
+            --minuten "${{ github.event.inputs.minuten }}" --rest /tmp/rest.json
+          cat /tmp/rest.json; echo
+
+      - name: Terugcommitten
+        run: |
+          git config user.name "vastgoedmonitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git config merge.bag3d.driver "python3 bag3d.py --samenvoegen %O %A %B"
+          git add bag3d.json
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd"
+            exit 0
+          fi
+          git commit -m "3D BAG inhaalslag $(date +%F)"
+          # EEN GEGEVENSCOMMIT RAAKT NOOIT BRONCODE; dezelfde toets als in de
+          # brief en de voorraad, om de fout van 13 oktober.
+          geen_broncode() {
+            local raakt
+            raakt=$(git diff --name-only HEAD~1 HEAD -- '*.py' '*.yml' 2>/dev/null || true)
+            if [ -n "$raakt" ]; then
+              echo "GESTOPT: deze commit raakt broncode: $raakt"
+              return 1
+            fi
+            return 0
+          }
+          for poging in 1 2 3; do
+            geen_broncode || exit 1
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            echo "Push mislukt, poging $poging; opnieuw bovenop de remote"
+            git rebase --abort 2>/dev/null || true
+            if ! git pull --rebase origin "${GITHUB_REF_NAME}"; then
+              echo "Rebase lukt niet, ook niet met de samenvoeger:"
+              git status --short | head -20
+              git rebase --abort || true
+              exit 1
+            fi
+            sleep 5
+          done
+          echo "Terugcommitten mislukt na drie pogingen"
+          exit 1
+
+      - name: Vervolgronde
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REST=$(python3 -c "import json;print(json.load(open('/tmp/rest.json')).get('rest',0))")
+          OPGEHAALD=$(python3 -c "import json;print(json.load(open('/tmp/rest.json')).get('opgehaald',0))")
+          KETEN="${{ github.event.inputs.keten }}"
+          echo "Nog $REST te gaan, deze ronde $OPGEHAALD opgehaald, schakel $KETEN"
+          # Alleen door als deze ronde iets opleverde: een bron die niets
+          # meer geeft, moet de keten stoppen en niet twintig keer proberen.
+          if [ "$REST" -gt 0 ] && [ "$OPGEHAALD" -gt 0 ] && [ "$KETEN" -lt 15 ]; then
+            gh workflow run inhaal-3dbag.yml -f keten="$((KETEN + 1))" \
+              -f minuten="${{ github.event.inputs.minuten }}"
+            echo "Vervolgronde gestart"
+          fi

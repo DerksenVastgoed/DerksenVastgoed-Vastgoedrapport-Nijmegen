@@ -6379,18 +6379,10 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                     "opkoop") else ("boven de " + str(MAX_FACTOR_JAARHUUR) + " maal"
                                     if "maal de jaarhuur" in o_[1] else o_[1])
                 redenen[sleutel_r] = redenen.get(sleutel_r, 0) + 1
-        if not shortlist_bestand and buurt == sorted(
-                per_buurt, key=lambda b: -len(per_buurt[b]))[0]:
-            try:
-                import kaartlink as _kl
-                _pk = _kl.link("Bekijk alle woningen op de potentiekaart",
-                               "kaart-potentie-ring.html")
-                if _pk:
-                    r.append(f"_{_pk}: per woning welke routes openstaan, ook "
-                             f"als ze niet te koop staan._")
-                    r.append("")
-            except Exception:
-                pass
+        # Hier stond een link naar de potentiekaart. Die kaart staat sinds
+        # 15 oktober 2026 niet meer in de openbare repo (zie .gitignore), dus
+        # de link zou op een lege pagina uitkomen. Terugzetten als de repo
+        # privé is.
         r.append(f"_{len(panden)} te koop, {len(op_lijst)} op de shortlist"
                  + (": " + ", ".join(f"{n} {k}" for k, n in
                                      sorted(redenen.items(), key=lambda x: -x[1]))
