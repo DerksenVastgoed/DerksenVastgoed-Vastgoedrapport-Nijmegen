@@ -1,30 +1,28 @@
 {
- "datum": "2026-10-14",
+ "datum": "2026-10-15",
  "bronnen": {
-  "regulier": {
+  "huislijn": {
    "mails": 3,
    "objecten": 4,
-   "overgeslagen": 2,
-   "redenen": [
-    "van Spaenstraat 20 (geen prijs gevonden)",
-    "Dokstraat 117 (geen prijs gevonden)"
-   ]
-  },
-  "huislijn": {
-   "mails": 4,
-   "objecten": 5,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 15,
+   "mails": 14,
    "objecten": 11,
-   "overgeslagen": 4,
+   "overgeslagen": 3,
    "redenen": [
-    "Dahliastraat, Malden: buiten Nijmegen",
     "Homberg: €53 per maand is niet aannemelijk",
     "Homberg, Wijchen: buiten Nijmegen",
     "Ranonkelstraat, Arnhem: buiten Nijmegen"
+   ]
+  },
+  "regulier": {
+   "mails": 2,
+   "objecten": 4,
+   "overgeslagen": 1,
+   "redenen": [
+    "Dokstraat 117 (geen prijs gevonden)"
    ]
   },
   "pararius": {
@@ -41,23 +39,23 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 24,
+  "zelfde_status": 23,
   "andere_status": 0,
   "voorbeelden": []
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 2,
   "funda.com": 0,
   "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 15,
+  "kamernet.nl": 14,
   "vendr.nl": 0,
-  "huislijn.nl": 4,
+  "huislijn.nl": 3,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 11-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 11-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 12-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 12-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

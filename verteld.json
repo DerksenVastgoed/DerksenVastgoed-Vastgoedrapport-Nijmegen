@@ -20,8 +20,8 @@
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-12",
-   "keer": 2,
+   "laatst": "2026-10-15",
+   "keer": 3,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
@@ -119,6 +119,12 @@
    "laatst": "2026-10-14",
    "keer": 1,
    "omschrijving": "Vondelstraat 63"
+  },
+  "profmolkenboerstraat20a": {
+   "eerst": "2026-10-15",
+   "laatst": "2026-10-15",
+   "keer": 1,
+   "omschrijving": "Professor Molkenboerstraat 20A"
   }
  }
 }
