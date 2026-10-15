@@ -1087,6 +1087,14 @@
   "omweg": 2.75,
   "soort": "bus"
  },
+ "51.84371,5.86521": {
+  "geschat": false,
+  "hemelsbreed": 211,
+  "meters": 304,
+  "naam": "Hertogplein",
+  "omweg": 1.44,
+  "soort": "bus"
+ },
  "51.84389,5.85869": {
   "geschat": false,
   "hemelsbreed": 22,

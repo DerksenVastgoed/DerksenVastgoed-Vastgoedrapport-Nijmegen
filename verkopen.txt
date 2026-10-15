@@ -1068,3 +1068,7 @@ Groesbeeksedwarsweg | Nijmegen | 695 | te huur kamer | 2026-10-14 | kamernet-inc
 
 # Automatisch toegevoegd uit Funda-attendering op 14-10-2026
 de Voorstenkamp | Nijmegen | 1080 | te huur | 2026-10-14 | kamernet-incl | 30 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 15-10-2026
+Ziekerstraat 144 | Nijmegen | 215000 | te koop | 2026-10-15 | funda-mail | 31 | 6511LL
+Ziekerstraat 36 | Nijmegen | 299000 | te koop | 2026-10-15 | funda-mail | 50 | 6511LH

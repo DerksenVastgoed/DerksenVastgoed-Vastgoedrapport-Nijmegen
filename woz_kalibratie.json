@@ -1,6 +1,6 @@
 {
  "aantal": 94,
- "correctie": 0.9844985763998735,
+ "correctie": 0.9883573612931411,
  "spreiding": 0.21060881042732216,
  "band": [
   0.7511961722488039,
@@ -11,7 +11,7 @@
   {
    "adres": "Derde Walstraat 108",
    "verhouding": 2.086,
-   "afwijking_pct": 112
+   "afwijking_pct": 111
   },
   {
    "adres": "Havenweg 34",

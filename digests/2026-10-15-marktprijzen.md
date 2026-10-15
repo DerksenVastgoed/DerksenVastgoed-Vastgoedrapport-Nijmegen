@@ -4,12 +4,12 @@
 
 ## Vandaag
 
-105 panden in beeld, 3 nieuw of gewijzigd, waarvan 4 met een prijswijziging sinds we ze voor het eerst zagen, geen daarvan van vandaag of gisteren. Geen enkele vraagprijs is vandaag of gisteren veranderd; de 4 prijswijzigingen in de tabel zijn ouder en zijn geen nieuws. 6 gemeentelijke berichten, waarvan 3 over splitsen, verkameren of transformatie.
+106 panden in beeld, 2 nieuw of gewijzigd, waarvan 5 met een prijswijziging sinds we ze voor het eerst zagen en 1 van vandaag of gisteren. Grootste verlaging van vandaag of gisteren: **Ziekerstraat 36** ging €40.000 omlaag naar €299.000. 6 gemeentelijke berichten, waarvan 3 over splitsen, verkameren of transformatie.
 
 ### Per gebied: aanbod en gemeentelijke berichten
 
 **Stadscentrum**
-_mediaan €5.416/m² op 223 waarnemingen . +1,4% in vier weken (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
+_mediaan €5.435/m² op 224 waarnemingen . +1,8% in vier weken (verandering van de mediaan van onze waarnemingen, ook door panden die erbij komen of afgaan; geen prijsverandering van dezelfde panden)._
 
 _3 panden buiten beeld, mediaan €6.617/m². Die tellen mee in de vergelijking maar vragen geen actie: kamers is hier geen vrije route: dit is een appartement in een complex van 11 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. splitsen is hier geen vrije route: dit is een appartement in een complex van 11 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet. kamers is hier geen vrije route: dit is een appartement in een complex van 35 woningen. Splitsen vraagt een wijziging van de splitsingsakte en toestemming van de VvE; kamerverhuur is in veel splitsingsreglementen aan toestemming gebonden. Wat de VvE toestaat, staat in de akte en het reglement, en dat weten wij niet.._
 
@@ -17,12 +17,12 @@ _Stond er al, vraagprijs ongewijzigd: [van Welderenstraat 5](https://www.google.
 
 _Bekende WOZ-waarden: van Welderenstraat 89 €589.000 (2026) (182 m2): Wij rekenen dit pand niet door als één zelfstandige woning: boven 150 m2 betaalt de markt de huur voor één huishouden niet, dus is kamers het scenario. Dat is onze aanname en geen grens van het puntenstelsel. Het puntenstelsel kent geen bovengrens aan oppervlakte: 182 m2 levert juist veel punten op en komt daarmee ruim in de vrije sector, wat voor een verhuurder gunstig is. Reken dit pand door als kamerverhuur, met het puntenstelsel voor onzelfstandige woonruimte per kamer . Arsenaalplaats 6 €505.000 (2026), puntenstelsel ondergrens 193 punten (96 m2, WOZ €505.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . In de Betouwstraat 35 €408.000 (2026), puntenstelsel ondergrens 148 punten (73 m2, WOZ €408.000, label D): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Scholenhof 8 €513.000 (2026), puntenstelsel ondergrens 189 punten (89 m2, WOZ €513.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . Derde Walstraat 108 €436.000 (2026), puntenstelsel ondergrens 152 punten (34 m2, WOZ €436.000, label B): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . Stieltjesstraat 10 €594.000 (2026) (158 m2): Wij rekenen dit pand niet door als één zelfstandige woning: boven 150 m2 betaalt de markt de huur voor één huishouden niet, dus is kamers het scenario. Dat is onze aanname en geen grens van het puntenstelsel. Het puntenstelsel kent geen bovengrens aan oppervlakte: 158 m2 levert juist veel punten op en komt daarmee ruim in de vrije sector, wat voor een verhuurder gunstig is. Reken dit pand door als kamerverhuur, met het puntenstelsel voor onzelfstandige woonruimte per kamer . Burg. Hustinxstraat 56 €419.000 (2026), puntenstelsel ondergrens 186 punten (102 m2, WOZ €419.000, label B): 1 punten onder de grens van 187, maar het regime is hiermee NIET bepaald: buitenruimte, berging, sanitair en verwarming zitten niet in deze telling en leveren samen makkelijk twintig punten op. Een balkon van 14 m2 en een berging van 7 m2 zijn al elf punten. Reken dit pand niet door op een wettelijk maximum zonder de werkelijke telling. Draai het liever om: zie de regel 'programma van eisen' voor wat de verbouwing moet opleveren om de grens wel te halen . Achter de Bank 4 €429.000 (2026), puntenstelsel ondergrens 176 punten (96 m2, WOZ €429.000, label C): 11 punten onder de grens van 187, maar het regime is hiermee NIET bepaald: buitenruimte, berging, sanitair en verwarming zitten niet in deze telling en leveren samen makkelijk twintig punten op. Een balkon van 14 m2 en een berging van 7 m2 zijn al elf punten. Reken dit pand niet door op een wettelijk maximum zonder de werkelijke telling. Draai het liever om: zie de regel 'programma van eisen' voor wat de verbouwing moet opleveren om de grens wel te halen . Oranjesingel 59 €509.000 (2026) (163 m2): Wij rekenen dit pand niet door als één zelfstandige woning: boven 150 m2 betaalt de markt de huur voor één huishouden niet, dus is kamers het scenario. Dat is onze aanname en geen grens van het puntenstelsel. Het puntenstelsel kent geen bovengrens aan oppervlakte: 163 m2 levert juist veel punten op en komt daarmee ruim in de vrije sector, wat voor een verhuurder gunstig is. Reken dit pand door als kamerverhuur, met het puntenstelsel voor onzelfstandige woonruimte per kamer . Doddendaal 101 €577.000 (2026) (159 m2): Wij rekenen dit pand niet door als één zelfstandige woning: boven 150 m2 betaalt de markt de huur voor één huishouden niet, dus is kamers het scenario. Dat is onze aanname en geen grens van het puntenstelsel. Het puntenstelsel kent geen bovengrens aan oppervlakte: 159 m2 levert juist veel punten op en komt daarmee ruim in de vrije sector, wat voor een verhuurder gunstig is. Reken dit pand door als kamerverhuur, met het puntenstelsel voor onzelfstandige woonruimte per kamer . Burg. Hustinxstraat 46 €410.000 (2026), puntenstelsel ondergrens 192 punten (105 m2, WOZ €410.000, label A): vrije sector: de ondergrens ligt al op of boven 187 punten, en verwarming telt nog mee . St. Canisiussingel 6 €408.000 (2026), puntenstelsel ondergrens 169 punten (90 m2, WOZ €408.000, label C): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt . St. Canisiussingel 8 €408.000 (2026), puntenstelsel ondergrens 168 punten (89 m2, WOZ €408.000, label C): onder de 187 op basis van wat bekend is; keuken, sanitair en verwarming bepalen of het middenhuur blijft of vrije sector wordt. Daar toetsen we op in plaats van op de vraagprijs. De punten zijn een ondergrens: keuken, sanitair en buitenruimte als gewone woning aangenomen, verwarming niet meegeteld._
 
-_13 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
+_14 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze tellen wel mee in de vergelijkingscijfers. In de zondagsbrief staan ze er wel bij._
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">105 m² . label A (2018)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Dit betreft een aanvraag voor puiwijziging, nog geen besluit, dus zonder directe marktimpact.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor puiaanpassing is nog geen besluit en zegt niets over een functiewijziging.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -41,21 +41,21 @@ _9 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#C46A2F;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">kamerverhuur</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html" style="color:#12242c;text-decoration:none">Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">109 m² op dit adres, niet van het hele pand . label A+ (2026) (alleen van dit adres bekend)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Herroeping na bezwaar betekent dat kamerverhuur op dit adres niet langer is toegestaan, risico voor vergelijkbare exploitaties in de buurt.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Herroeping van de kamerverhuurvergunning na bezwaar betekent dat dit pand niet langer legaal verkamerd mag worden.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#12242c;text-decoration:none">Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">299 m² . label D (2025)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel bevestigt dat ingrepen aan de buitenschil hier vergunbaar zijn, relevant voor labelverbetering.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel maakt gevelingrepen bij dit type pand vergunbaar, relevant voor toekomstige labelverbetering.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">250 m² . label E (2017)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Nieuwe kozijnen gecombineerd met interne doorbraak wijzen op renovatie bij mutatie die het bestaande label kan verbeteren.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging met interne doorbraak betreft een indelingsaanpassing zonder direct marktsignaal.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -83,14 +83,14 @@ _7 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">172 m² . label B (2021)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van gewijzigde kozijnen is administratief van aard en raakt het woningaanbod niet direct.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van gewijzigde kozijnen is een administratieve correctie zonder marktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html" style="color:#12242c;text-decoration:none">Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">52 m² . label B (2026)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Splitsing voegt een zelfstandige eenheid toe aan de voorraad kleine woningen in dit segment.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Splitsing voegt een zelfstandige wooneenheid toe aan de kleine voorraad en verkleint het aanbod grotere woningen.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -120,7 +120,11 @@ _De uitleg bij de kolommen, de aannames achter de scenario's en de regels rond v
 
 ### Prijswijzigingen van vandaag en gisteren
 
-**Vandaag en gisteren is er geen enkele vraagprijs veranderd.** Schrijf dus niet over een prijsverlaging als nieuws van vandaag; er is er geen.
+| Adres | Buurt | Eerst | Nu | Verschil | Gewijzigd op | Dagen in aanbod |
+|---|---|---:|---:|---:|---|---:|
+| [Ziekerstraat 36](https://www.google.com/maps/search/?api=1&query=Ziekerstraat+36%2C+Nijmegen) | Stadscentrum | €339.000 | €299.000 | ▼ €40.000 (-11.8%) | 2026-10-15 (vandaag) | 34 |
+
+_Dit is het enige blok waaruit een prijswijziging als nieuws van vandaag mag worden gebracht._
 
 ### Eerdere prijswijzigingen, als achtergrond
 
@@ -137,6 +141,6 @@ _Dagen in aanbod telt vanaf de eerste keer dat dit pand in de attendering versch
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 898 panden, waarvan er 105 nu in aanbod zijn. Bijgewerkt 15 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 22%: 19.061 woningen, 2.688 winkels en kantoren en 41.095 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 39% van de 21.530 Nijmeegse studenten woont in de ring, waar 20% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 899 panden, waarvan er 106 nu in aanbod zijn. Bijgewerkt 15 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

@@ -18,8 +18,8 @@
    ]
   },
   "regulier": {
-   "mails": 2,
-   "objecten": 4,
+   "mails": 3,
+   "objecten": 6,
    "overgeslagen": 1,
    "redenen": [
     "Dokstraat 117 (geen prijs gevonden)"
@@ -44,7 +44,7 @@
   "voorbeelden": []
  },
  "berichten_per_afzender": {
-  "funda.nl": 2,
+  "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 2,
   "pararius.com": 0,

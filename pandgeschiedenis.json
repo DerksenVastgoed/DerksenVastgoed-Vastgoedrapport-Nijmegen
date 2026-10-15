@@ -151553,6 +151553,12 @@
     "datum": "2026-10-13",
     "soort": "transformatie",
     "tekst": "in de BAG staan 4 woningen als gevormd in dit pand uit 1882, dat zelf al in gebruik is, mediaan 30 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-13 in de registratie staat"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-15",
+    "soort": "te koop",
+    "tekst": "te koop voor €215.000, 31 m2"
    }
   ],
   "pand_id": "0268100000020311",
@@ -151909,6 +151915,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Ziekerstraat 42 is nu B"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-15",
+    "soort": "prijswijziging",
+    "tekst": "prijs verlaagd van €339.000 naar €299.000"
    }
   ],
   "pand_id": "0268100000003468",

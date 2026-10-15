@@ -75249,5 +75249,90 @@
     "buurtnaam": "Biezen",
     "wijknaam": "Nijmegen-Oud-West",
     "nummeraanduiding": "adr-8e3077825c7418b237146a6231d6be67"
+  },
+  "Ziekerstraat 144|Nijmegen": {
+    "oppervlakte": 31,
+    "bouwjaar": "1882",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511LL",
+    "adresseerbaarObjectIdentificatie": "0268010000039969",
+    "pand": "0268100000020311",
+    "panden": [
+      "0268100000020311"
+    ],
+    "splitsing_geregistreerd": [
+      {
+        "adres": "Ziekerstraat 144",
+        "oppervlakte": 31
+      }
+    ],
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-119cd9e434460083fedca40245d700d0",
+    "eenheden_in_pand": [
+      {
+        "adres": "Ziekerstraat 144",
+        "oppervlakte": 131,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ziekerstraat 144",
+        "oppervlakte": 31,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Ziekerstraat 144A",
+        "oppervlakte": 31,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Ziekerstraat 144B",
+        "oppervlakte": 22,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Ziekerstraat 144C",
+        "oppervlakte": 29,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      }
+    ],
+    "oppervlakte_bag": 131,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2026-10-14",
+      "opnamedatum": "2026-09-29",
+      "geldig_tot": "2036-09-29",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000039969",
+      "panden": [
+        "0268100000020311"
+      ],
+      "verbruik": 187.61,
+      "bouwjaar": 1882
+    }
   }
 }

@@ -34,11 +34,11 @@
    "volledig": true
   },
   "Bottendaal": {
-   "adressen": 2568,
+   "adressen": 2574,
    "adressen_buiten_de_gemeente": 0,
-   "adressen_doorgebladerd": 2568,
-   "adressen_gemeld": 2568,
-   "adressen_zonder_gemeentefilter": 2568,
+   "adressen_doorgebladerd": 2574,
+   "adressen_gemeld": 2574,
+   "adressen_zonder_gemeentefilter": 2574,
    "postcodes": 133,
    "tweede_ronde_per_straat": 0,
    "volledig": true
@@ -1350,7 +1350,7 @@
   ]
  },
  "totaal": {
-  "adressen": 24865,
+  "adressen": 24871,
   "adressen_al_nagekeken": 6883,
   "buurten_gevraagd": 6,
   "buurten_volledig": 6,
