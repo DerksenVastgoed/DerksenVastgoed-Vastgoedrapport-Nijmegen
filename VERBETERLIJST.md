@@ -8148,3 +8148,18 @@ de hoogte wordt afgeleid; een afgeleid aantal lagen moet er dan bij zeggen dat
 het afgeleid is.
 
 De workflow inhaal-3dbag.yml kan weg zodra de wachtrij leeg is.
+
+## Na het uitbreiden van de ring met Hunnerberg en St. Anna (15 oktober 2026)
+
+Met de hand na te lopen, want hier is niets gemeten:
+- HUUR_M2_MND in marktprijzen_bag heeft geen waarde voor de twee nieuwe
+  buurten. De yieldtabel toont ze daarom met streepjes, en één route valt
+  terug op 18 euro per m2 met het label "aanname". Die 18 is geen meting van
+  deze buurten; vervangen zodra er huuraanbod uit die buurten is.
+- BESCHERMD_GEZICHT zegt voor beide "niet nagekeken". Uitzoeken of delen van
+  Hunnerberg in de negentiende-eeuwse schil vallen.
+- bekendmakingen_nijmegen.RING_POSTCODES en RING_STRATEN zijn een grove,
+  eigen definitie van de ring en volgen ring.py niet. Zodra de inventaris de
+  postcodes van de nieuwe buurten kent, meten welke viercijferige postcodes
+  ontbreken en de lijst dan afleiden uit buurtinventaris.json in plaats van
+  hem met de hand bij te houden.

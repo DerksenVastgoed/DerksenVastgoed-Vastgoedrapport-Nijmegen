@@ -166,7 +166,7 @@ def pand_ids_uit_geschiedenis(pad="pandgeschiedenis.json"):
 
 
 def pand_ids_uit_voorraad(pad="voorraad.json"):
-    """De pand-ids van de woningen in de zes ringbuurten."""
+    """De pand-ids van de woningen in de ringbuurten (ring.py)."""
     try:
         with open(pad, encoding="utf-8") as f:
             v = json.load(f)

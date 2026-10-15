@@ -5,7 +5,7 @@ De potentie van elke woning in de ring: welke routes staan open, los van de prij
 WAAROM DIT BESTAAT. Mark, 15 oktober 2026: "alle panden inzichtelijk maken, en
 op het moment dat een pand voldoet en ook te koop wordt aangeboden, komt het
 op de lijst." De shortlist in de bijlage beoordeelt wat te koop staat. Dit is
-de laag eronder: voor elke woning in de zes ringbuurten wat er juridisch en
+de laag eronder: voor elke woning in de ringbuurten wat er juridisch en
 fysiek kan, zodat een pand al bekend is voordat het in de verkoop komt.
 
 WAT PER WONING WORDT BEPAALD, en waar het vandaan komt:
@@ -130,7 +130,7 @@ def samenvatting(rijen):
         if r["shortlist"]:
             per_buurt[b]["shortlist"] += 1
     regels = ["# Potentie van de ring", "",
-              f"Bijgewerkt {dt.date.today().isoformat()}. Per woning in de zes "
+              f"Bijgewerkt {dt.date.today().isoformat()}. Per woning in de "
               f"ringbuurten welke routes openstaan, los van de prijs. De WOZ "
               f"en de indeling per etage zitten hier niet in; de shortlist "
               f"toetst die bij verkoop.", "",

@@ -450,6 +450,30 @@ proef: bag3d:bij het samenvoegen valt een pand weg
 soort: werking
 
 ---
+eis: De ring staat op één plek, ring.py, en geen ander script schrijft de
+  lijst van ringbuurten zelf uit.
+waarom: 15 oktober, Mark wilde Hunnerberg en St. Anna erbij. De lijst stond
+  op vijf plekken: marktprijzen_bag, buurten_tabel, drie keer in
+  brief_verhalend, en als terugval in buurtinventaris. Een buurt erbij in
+  marktprijzen_bag had de CBS-tabel, de buurtportretten en de weetjes niet
+  geraakt, en de brief had dan over twee verschillende ringen geschreven.
+  De proef zoekt in elk .py-bestand naar vier of meer ringnamen als losse
+  strings binnen vijf regels; tegen de code van voor deze wijziging vond hij
+  brief_verhalend en marktprijzen_bag.
+proef: ring:schrijft de ring zelf uit
+soort: werking
+
+---
+eis: Een nieuwe ringbuurt wordt dezelfde dag opgehaald, niet pas op zondag.
+waarom: 15 oktober. De postcodes per buurt worden alleen op zondag ververst,
+  en de voorraad zeeft op die postcodes. Een buurt erbij had tot zondag een
+  lege voorraad gegeven, en de labels en de 3D BAG daarna nog later. Beide
+  workflows vragen nu buurtinventaris.py --dekt-ring, en halen de inventaris
+  opnieuw op als er een buurt ontbreekt.
+proef: buurtinventaris:zonder de laatste ringbuurt telt als
+soort: werking
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

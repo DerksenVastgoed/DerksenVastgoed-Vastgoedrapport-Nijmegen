@@ -20,6 +20,8 @@ import time
 
 import requests
 
+import ring as _ring
+
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 MODEL = "claude-sonnet-5"
 # Let op: een secret dat bestaat maar leeg is, geeft een lege tekst terug en
@@ -173,7 +175,7 @@ Je krijgt een buurtnaam aangeleverd; alleen die ene buurt komt aan bod, de ander
 8. Sluit af met een korte conclusie: wat je van het geheel vindt en waar je volgende keer op let. Bij een brief met een duidelijk hoofdstuk hoort daar een oordeel bij, niet alleen een vooruitblik.
 
 WAT JE NIET DOET:
-- Elke buurt langslopen omdat het nu eenmaal zes buurten zijn.
+- Elke buurt langslopen omdat ze er nu eenmaal allemaal zijn.
 - Melden dat er ergens niets gebeurde. Wat er niet is, laat je weg.
 - Een lange brief schrijven als er weinig te melden valt. Kort is beter dan gevuld.
 - Dezelfde buurtbeschrijving herhalen die gisteren ook al stond.
@@ -302,7 +304,7 @@ ALLE BUURTEN DEZELFDE KANT OP IS DE STEEKPROEF, NIET DE MARKT. Staat er boven de
 
 HET VOORBEHOUD PER BUURT IS NIET HETZELFDE ALS HET PATROON OVER DE BUURTEN. Bij elke buurtregel staat al dat de mediaan ook verschuift doordat er panden bij- of afvallen. Dat voorbehoud overnemen is goed, maar het is niet genoeg: als je de buurten los leest, zie je niet dat ze allemaal dezelfde kant op gaan, en juist dat is het bewijs dat het de steekproef is. Kijk dus altijd of er meer buurten dezelfde beweging laten zien voordat je er iets over de markt van maakt.
 
-DE RING IS NIET DE STAD. Je hebt cijfers van zes buurten, niet van heel Nijmegen. Schrijf dus "van de zes buurten", nooit "dan in de rest van de stad".
+DE RING IS NIET DE STAD. Je hebt cijfers van de ringbuurten, niet van heel Nijmegen. Schrijf dus "van de ringbuurten", nooit "dan in de rest van de stad".
 
 BRONNEN. Het achtergrondstuk heeft een bron tussen haakjes. Noem die bron als je de inhoud gebruikt, in een korte bijzin. Voeg zelf geen regels, bedragen of vuistregels toe die niet in de gegevens of het achtergrondstuk staan.
 
@@ -446,7 +448,7 @@ def wist_je_dat(cbs, verg, misdrijven=None):
         b, st_, _ = max(met_stud, key=lambda x: x[1])
         weetjes.append(f"{round(st_ / totaal_stud * 100)} procent van alle studenten "
                        f"in de ring in {b} woont")
-        weetjes.append(f"er in de zes buurten samen {n(totaal_stud)} studenten wonen")
+        weetjes.append(f"er in de {len(RING_BUURTEN)} ringbuurten samen {n(totaal_stud)} studenten wonen")
 
     # --- Woningvoorraad en eigendom ---
     for b in buurten:
@@ -679,7 +681,7 @@ def _mediaan_rang():
     if not weken:
         return {}
     laatste = {b: v for b, v in trend[weken[-1]].items()
-               if b in ZES_BUURTEN and isinstance(v, (int, float))}
+               if b in RING_BUURTEN and isinstance(v, (int, float))}
     if len(laatste) < 2:
         return {}
     volgorde = sorted(laatste, key=lambda b: laatste[b])
@@ -696,12 +698,13 @@ def _mediaan_rang():
     return uit
 
 
-ZES_BUURTEN = ("Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-               "Altrade", "Biezen")
+# De ring staat in ring.py. Hier heette dit RING_BUURTEN; een veld heet naar
+# wat het meet, en het zijn er niet altijd zes.
+RING_BUURTEN = tuple(_ring.BUURTEN)
 
 
 def _veld_rang(veld):
-    """De hoeveelste van de zes buurten op een CBS-veld, vooraf berekend."""
+    """De hoeveelste van de ringbuurten op een CBS-veld, vooraf berekend."""
     try:
         with open("buurten_cbs.json", encoding="utf-8") as f:
             cbs = json.load(f)
@@ -710,7 +713,7 @@ def _veld_rang(veld):
     # Alleen de zes buurten van de ring: het bestand kan meer bevatten, en dan
     # zou "het hoogste van de zes" stilletjes "het hoogste van de 44" worden
     waarden = {b: g.get(veld) for b, g in cbs.items()
-               if b in ZES_BUURTEN and isinstance(g, dict)
+               if b in RING_BUURTEN and isinstance(g, dict)
                and g.get(veld) is not None}
     if len(waarden) < 2:
         return {}
@@ -729,7 +732,7 @@ def _veld_rang(veld):
 
 def _misdrijf_rang():
     """
-    Per buurt en per misdrijfsoort: de hoeveelste van de zes, per 1000 inwoners.
+    Per buurt en per misdrijfsoort: de hoeveelste van de ring, per 1000 inwoners.
 
     Vooraf berekend om dezelfde reden als de prijsrangorde: het model schreef
     dat Bottendaal ruim onder Galgenveld zat qua vernieling, terwijl het er
@@ -746,7 +749,7 @@ def _misdrijf_rang():
     for soort in ("woninginbraak", "vernieling", "fietsendiefstal"):
         per_buurt = {}
         for buurt, jaren in mis.items():
-            if buurt not in ZES_BUURTEN:
+            if buurt not in RING_BUURTEN:
                 continue
             inw = (cbs.get(buurt) or {}).get("inwoners")
             if not jaren or not inw:
@@ -820,7 +823,7 @@ def _kamerverhuur_rang():
     aandeel = {}
     for b, v in kv.items():
         won = (cbs.get(b) or {}).get("won")
-        if b in ZES_BUURTEN and won and v.get("totaal"):
+        if b in RING_BUURTEN and won and v.get("totaal"):
             aandeel[b] = v["totaal"] / won * 100
     if len(aandeel) < 2:
         return {}
@@ -870,8 +873,7 @@ def buurtcijfers_tekst():
         misdrijven = {}
 
     regels = []
-    for buurt in ("Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-                  "Altrade", "Biezen"):
+    for buurt in RING_BUURTEN:
         g = cbs.get(buurt)
         if not g:
             continue
@@ -1332,8 +1334,7 @@ def schrijf_brief(bronnen):
         return ""
     # Elke dag krijgt een andere buurt het achtergrondportret, zodat de brief
     # niet elke ochtend dezelfde zes beschrijvingen herhaalt.
-    ronde = ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-             "Altrade", "Biezen"]
+    ronde = list(RING_BUURTEN)
     buurt_vandaag = ronde[dt.date.today().toordinal() % len(ronde)]
     # Staat het uitgelichte pand in een andere buurt, dan wint die: een portret
     # van Altrade naast een pand in het Stadscentrum leest als twee losse
@@ -1823,8 +1824,7 @@ def main():
         onderwerpen = ("vernieling", "fietsendiefstal", "woninginbraak",
                        "inkomen", "vermogen", "studenten", "koop", "corporatie",
                        "kinderen", "alleen", "vergunning")
-        buurten_w = [b for b in ("Stadscentrum", "Benedenstad", "Bottendaal",
-                                 "Galgenveld", "Altrade", "Biezen") if b in weetje]
+        buurten_w = [b for b in RING_BUURTEN if b in weetje]
         onderw_w = [o for o in onderwerpen if o in weetje.lower()]
         zelfde_zin = any(
             all(b in z for b in buurten_w) and all(o in z.lower() for o in onderw_w)
