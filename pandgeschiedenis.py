@@ -1831,17 +1831,31 @@ def proef():
         from pandlezer import laad as _laad
         g = _laad("pandgeschiedenis.json")
         if g:
-            voor = len(g)
+            voor = set(g)
             uit_archief(g)
-            erbij = len(g) - voor
-            if erbij > 10:
+            nieuw = [k for k in g if k not in voor]
+            # NIET HET AANTAL, MAAR DE DUBBELEN. Hier stond "meer dan tien
+            # nieuwe records is een fout". Op 15 oktober 2026 bracht de backfill
+            # over oktober 2021 tot januari 2025 349 nieuwe adressen in het
+            # archief, en de proef werd rood op 321 nieuwe records die allemaal
+            # echt nieuw waren. Omdat deze proef de geschiedenisstap bewaakt,
+            # bleef de pandgeschiedenis daarna elke run staan. Wat de proef
+            # moet vangen is een tweede record voor een pand dat er al is,
+            # onder een sleutel die uiteenloopt: dat is een nieuw record
+            # waarvan de canonieke sleutel van het adres al in de geschiedenis
+            # stond.
+            dubbel = [k for k in nieuw
+                      if isinstance(g[k], dict) and g[k].get("adres")
+                      and _psl.sleutel(g[k]["adres"]) in voor
+                      and _psl.sleutel(g[k]["adres"]) != k]
+            if dubbel:
                 fouten.append(
-                    f"uit_archief() maakt {erbij} nieuwe records aan op de "
-                    f"bestaande geschiedenis; dat zijn er te veel om nieuwe "
-                    f"adressen te zijn en wijst op sleutels die uiteenlopen")
+                    f"uit_archief() maakt {len(dubbel)} tweede records aan voor "
+                    f"panden die er al zijn, bijvoorbeeld {dubbel[0]!r}; de "
+                    f"sleutels lopen uiteen")
             else:
-                print(f"  uit_archief() op de echte data: {erbij} nieuwe "
-                      f"records", file=sys.stderr)
+                print(f"  uit_archief() op de echte data: {len(nieuw)} nieuwe "
+                      f"records, geen dubbele", file=sys.stderr)
             # En wat hij aanmaakt, moet onder de canonieke sleutel staan.
             scheef = [k for k, p in g.items()
                       if isinstance(p, dict) and p.get("adres")
