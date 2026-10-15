@@ -379,6 +379,20 @@ proef: terugtoets_kamers:een vergunning van na de besluitdatum telt mee
 soort: gegevens
 
 ---
+eis: De lijst in de bijlage toont alleen panden die op de shortlist horen;
+  alle aanbod blijft gemeten.
+waarom: 15 oktober, Mark: de lijst per buurt toonde elk pand dat te koop
+  staat, ook de vele die niet in aanmerking komen, terwijl hij de panden wil
+  zien die voor Derksen Vastgoed interessant zijn. De bovengrens is zijn eigen
+  maatstaf: 17 maal de bruto jaarhuur van de beste open route. Daarnaast valt
+  af wat niet verhuurd mag worden (opkoopbescherming) en wat een geblokkeerde
+  kamerroute heeft. De verbouwing zit niet in de drempel, omdat de kentallen
+  aannames zijn. Op de gegevens van 15 oktober: 89 te koop, 5 op de lijst.
+  Het aanbod blijft verzameld, want het bepaalt de mediaan en de vraagprijzen.
+proef: marktprijzen_bag:een pand boven 17 maal de jaarhuur staat op de shortlist
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

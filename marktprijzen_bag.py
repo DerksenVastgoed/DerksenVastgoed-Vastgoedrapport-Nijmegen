@@ -6221,6 +6221,47 @@ def render_dossiers(woningen, per_buurt):
     return r
 
 
+# DE BOVENGRENS VAN MARK. Derksen Vastgoed waardeert acquisities op 17 maal
+# de jaarhuur, en op 15 oktober 2026 werd dat de bovengrens van de shortlist:
+# een pand komt erop als de vraagprijs niet hoger is dan 17 maal de bruto
+# jaarhuur van de beste route die openstaat. Een rendementseis op het eigen
+# vermogen is een latere stap. De verbouwing zit er bewust niet in: de
+# kentallen daarvoor zijn aannames, en een harde filter op een aanname is
+# een schatting die zich als drempel voordoet. Hij staat er wel naast.
+MAX_FACTOR_JAARHUUR = 17
+
+
+def shortlist_oordeel(w, sc):
+    """
+    Of een pand dat te koop staat op de shortlist hoort, en waarom (niet).
+
+    Geeft (op_lijst, reden, factor) terug. factor is vraagprijs gedeeld door
+    de bruto jaarhuur van het scenario, of None als die niet te berekenen is.
+
+    Drie poorten, in deze volgorde:
+      1. Er is een route die openstaat. Een scenario met "geblokkeerd" in de
+         naam is er een waarvan de kamerroute is afgevallen.
+      2. Geen opkoopbescherming. Een pand met een WOZ tot de grens (zonder
+         WOZ de vraagprijs als benadering) dat leeg wordt gekocht, mag vier
+         jaar niet worden verhuurd. Funda-aanbod is vrijwel altijd leeg.
+      3. De vraagprijs is hoogstens MAX_FACTOR_JAARHUUR maal de jaarhuur.
+    """
+    if not sc or not sc.get("maand") or not w.get("prijs"):
+        return False, "geen huur of prijs om mee te rekenen", None
+    factor = w["prijs"] / (sc["maand"] * 12)
+    if "geblokkeerd" in (sc.get("naam") or ""):
+        return False, "de kamerroute is geblokkeerd", factor
+    waarde = w.get("woz") or w["prijs"]
+    if waarde <= WOZ_BOVENGRENS:
+        return False, ("opkoopbescherming: leeg gekocht mag het vier jaar "
+                       "niet verhuurd worden"), factor
+    if factor > MAX_FACTOR_JAARHUUR:
+        return False, (f"{factor:.1f}".replace(".", ",")
+                       + f" maal de jaarhuur, boven de {MAX_FACTOR_JAARHUUR}"), factor
+    return True, (f"{factor:.1f}".replace(".", ",")
+                  + f" maal de jaarhuur ({sc.get('naam')})"), factor
+
+
 def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
     """
     De bijlage: cijfers in tabellen, zonder verhaal.
@@ -6309,12 +6350,44 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
             r.append("_" + " . ".join(stukken) + "._")
         r.append("")
 
+        # ALLEEN DE SHORTLIST IN DE TABEL. Mark, 15 oktober 2026: de lijst
+        # per buurt toonde elk pand dat te koop staat, ook de vele die niet in
+        # aanmerking komen. Die blijven gemeten, want zij bepalen de mediaan
+        # en de vraagprijzen van de markt, maar de tabel toont alleen wat door
+        # de drie poorten van shortlist_oordeel() komt.
+        oordelen = {}
+        for _p, w_o in per_buurt.get(buurt, []):
+            if w_o not in panden:
+                continue
+            sc_o = w_o.get("_scenario") or kies_scenario(
+                w_o, huur_bk, huur_k, buurt, None, per_buurt.get(buurt, []))
+            if sc_o:
+                w_o["_scenario"] = sc_o
+            oordelen[id(w_o)] = shortlist_oordeel(w_o, sc_o)
+        op_lijst = [w_o for w_o in panden if oordelen.get(id(w_o), (False,))[0]]
+        redenen = {}
+        for w_o in panden:
+            o_ = oordelen.get(id(w_o))
+            if o_ and not o_[0]:
+                sleutel_r = o_[1].split(":")[0] if o_[1].startswith(
+                    "opkoop") else ("boven de " + str(MAX_FACTOR_JAARHUUR) + " maal"
+                                    if "maal de jaarhuur" in o_[1] else o_[1])
+                redenen[sleutel_r] = redenen.get(sleutel_r, 0) + 1
+        r.append(f"_{len(panden)} te koop, {len(op_lijst)} op de shortlist"
+                 + (": " + ", ".join(f"{n} {k}" for k, n in
+                                     sorted(redenen.items(), key=lambda x: -x[1]))
+                    + " vallen af" if redenen else "")
+                 + ". Alle panden blijven meetellen in de mediaan._")
+        r.append("")
+        if not op_lijst:
+            continue
+
         r.append("| Adres | Vraagprijs | m² | €/m² | Afwijking van de buurtmediaan "
-                 "| Dagen te koop | OV | Scenario | Huur per maand | Richtprijs "
-                 "| Richtprijs t.o.v. vraagprijs |")
-        r.append("|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|")
+                 "| Dagen te koop | OV | Scenario | Huur per maand | Maal de jaarhuur "
+                 "| Richtprijs | Richtprijs t.o.v. vraagprijs |")
+        r.append("|---|---:|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|")
         rijen_b = [(p, w) for p, w in per_buurt.get(buurt, [])
-                   if w in panden]
+                   if w in op_lijst]
         med_b = st.median([p for p, _ in per_buurt.get(buurt, [])]) if per_buurt.get(buurt) else None
         # Sorteren op wat je als koper wilt weten: hoe dicht de richtprijs bij
         # de vraagprijs ligt. De afwijking van de buurtmediaan blijft als kolom
@@ -6359,6 +6432,7 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 + (f"| {w['ov_halte']['meters']} m " if w.get("ov_halte") else "| — ")
                 + f"| {sc['naam'] if sc else '—'} "
                 f"| {'€' + eu(sc['maand']) if sc else '—'} "
+                f"| {(f'{oordelen[id(w)][2]:.1f}'.replace('.', ',')) if oordelen.get(id(w)) and oordelen[id(w)][2] else '—'} "
                 f"| {'€' + eu(plafond) if plafond else '—'} "
                 f"| {verschil_s} |")
         r.append("")
@@ -8316,6 +8390,21 @@ def proef():
                    f"geblokkeerd: {reden} {ing}")
     if _kamervergunning(straat, 20, verg, arch):
         afw.append("een herroepen kamerverhuurvergunning telt nog als kamerpand")
+
+    # DE SHORTLIST. Stieltjesstraat 10 zoals in de bijlage van 15 oktober:
+    # €539.000, kamers voor €3.952 per maand, dus 11,4 maal de jaarhuur.
+    w_s = {"adres": "Stieltjesstraat 10", "prijs": 539000, "woz": 520000}
+    sc_s = {"naam": "kamers, mits vergunning", "maand": 3952}
+    if not shortlist_oordeel(w_s, sc_s)[0]:
+        afw.append(f"Stieltjesstraat 10 valt van de shortlist: "
+                   f"{shortlist_oordeel(w_s, sc_s)}")
+    if shortlist_oordeel(dict(w_s, prijs=900000, woz=900000), sc_s)[0]:
+        afw.append("een pand boven 17 maal de jaarhuur staat op de shortlist")
+    if shortlist_oordeel(dict(w_s, woz=380000), sc_s)[0]:
+        afw.append("een pand onder de opkoopgrens staat op de shortlist")
+    if shortlist_oordeel(w_s, dict(sc_s, naam="kamers, route vermoedelijk "
+                                              "geblokkeerd"))[0]:
+        afw.append("een pand met een geblokkeerde route staat op de shortlist")
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
