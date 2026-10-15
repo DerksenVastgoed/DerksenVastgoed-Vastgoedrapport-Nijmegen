@@ -670,10 +670,11 @@ def proef():
             # Twee woningen op één nummer in twee verschillende panden; dat
             # werd eerder als één woning geteld en de insluiting gemist.
             "St. Annastraat 51": ("insluiting", 49),
-            # Hier stonden een nog in gebruik zijnd object en zijn eigen nieuwe
-            # eenheden samen in de BAG, wat "7 woningen van 382, 122, ..."
-            # opleverde: 727 m2 in een pand van 382. Nu blokkeert de reeks.
-            "Graafseweg 62": ("reeks", None),
+            # Was "reeks", met 64 als kamerpand. Maar 64 is op 30 juni 2025
+            # vergund van tien kamers naar zes zelfstandige woningen, en telt
+            # sinds 15 oktober 2026 niet meer als kamerpand. Dan ligt 64 tussen
+            # dit pand en kamerpand 66, en is het insluiting.
+            "Graafseweg 62": ("insluiting", 64),
             # Hier is binnen één pand doorgenummerd, dus nummer 24 is wél de
             # directe buur van 25 en niet de overzijde.
             "Keizer Karelplein 25": ("reeks", None),
