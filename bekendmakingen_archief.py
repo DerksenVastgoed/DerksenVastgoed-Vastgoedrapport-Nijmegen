@@ -165,9 +165,23 @@ def haal_periode(vanaf, tot, stil=False):
     return records
 
 
+# DE TITELVORM VAN VOOR 2024. Tot de Omgevingswet publiceerde Nijmegen
+# "de Kluijskamp 1159 Nijmegen: aanvraag kamerverhuurvergunning -
+# onttrekkingsvergunning - Aanvraag ontvangen" (gmb-2023-3231): het adres
+# vooraan, zonder postcode en zonder "aan". De backfill van 15 oktober 2026
+# over oktober 2021 tot januari 2025 haalde de records wel op, maar deze
+# functie vond in geen enkele titel een adres, en dus kwam er niets in het
+# archief terwijl de stap groen was.
+_OUDE_VORM = re.compile(r"^\s*(.+?)\s+(\d+)\s*([A-Za-z])?\s*(?:[-/]\s*\S+\s*)?"
+                        r"Nijmegen\s*:")
+
+
 def adres_uit_titel(titel):
     """Haalt (straat, huisnummer) uit een bekendmakingstitel. Neemt de laatste 'aan'."""
+    oud = _OUDE_VORM.match(titel or "")
     pc = re.search(r",?\s+\d{4}\s?[A-Z]{2}\s+Nijmegen", titel)
+    if oud and not pc:
+        return oud.group(1).strip(), oud.group(2)
     if not pc:
         return None
     kop = titel[:pc.start()]

@@ -357,6 +357,28 @@ proef: toets_artikel15:bij insluiting blijft het omgevingsplan
 soort: gegevens
 
 ---
+eis: De kamertoets wordt getoetst aan echte besluiten, op de kennis van de
+  besluitdatum, en een vergunning die kamerverhuur beeindigt maakt een adres
+  geen kamerpand.
+waarom: 15 oktober, Mark: "we gaan gewoon onze module testen aan de
+  werkelijke situatie." De eerste terugtoets vond een verleende vergunning
+  op van Welderenstraat 115 (2022) die wij als geblokkeerd voorspelden, op
+  grond van een kamerpand dat er niet meer was: negen van de 88
+  omgevingsvergunningen in de kamervergunningenlijst gaan de andere kant op,
+  van kamers naar zelfstandige woningen, logies of een intrekking, en telden
+  als kamerpand. Na die reparatie: onder de huidige regels 0 zaken waarin wij
+  en de gemeente het oneens zijn, op 33 verleende, 1 herroepen en 2 later
+  herroepen zaken. De toets vergelijkt alleen met kennis van voor de
+  besluitdatum; anders is elke overeenkomst gratis. De backfill over oktober
+  2021 tot januari 2025 bracht daarbij niets binnen, omdat Nijmegen tot 2024
+  titels schreef als "de Kluijskamp 1159 Nijmegen: aanvraag ... - Aanvraag
+  ontvangen", zonder postcode en met de fase achteraan; de adresparser en de
+  fase-indeling kennen die vorm nu, en een aanvraag telt niet meer als
+  kamerpand.
+proef: terugtoets_kamers:een vergunning van na de besluitdatum telt mee
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

@@ -2000,8 +2000,7 @@ def eigen_kamervergunning(w, vergunningen=None):
                 if ma and archief_sleutel(ma.group(1), ma.group(2)) == doel:
                     lijst.append(v)
 
-    return [v for v in lijst
-            if "samenvoeg" not in (v.get("soort") or "").lower()]
+    return nog_kamerpand(lijst)
 
 
 def gemeentelijke_lasten(w):
@@ -2080,7 +2079,7 @@ def kamerverhuur_bekend(w, vergunningen=None, archief=None):
                 uit.append({"bron": "melding brandveilig gebruik",
                             "soort": "melding brandveilig gebruik", "jaar": jaar})
             elif (any(k in soorten for k in ("kamerverhuur", "omzetting"))
-                    and not titel.startswith("aanvraag") and not vervallen):
+                    and fase_van(titel) == "verleend" and not vervallen):
                 # Een aanvraag is nog geen toestemming; alleen een besluit telt
                 uit.append({"bron": "officiele bekendmaking",
                             "soort": "besluit kamerverhuur", "jaar": jaar})
@@ -2347,6 +2346,43 @@ IN_GEBRUIK = ("in gebruik",)
 # meegeteld als kamersignaal en konden dus een route onterecht blokkeren.
 GEEN_KAMERSOORT = ("samenvoeging", "samenvoegen")
 
+# EEN VERGUNNING DIE KAMERVERHUUR BEEINDIGT. De vergunningenlijst heet
+# "kamervergunningen", maar negen van de 88 omgevingsvergunningen erin gaan de
+# andere kant op: "transformeren van een bestaand kamerverhuurpand tot vier
+# zelfstandige wooneenheden" (van Welderenstraat 115, 2022), "het omzetten van
+# het pand van tien kamers voor kamerverhuur naar zes zelfstandige woningen"
+# (Graafseweg 64N, 2025), een functie naar logies, en een intrekking. Die
+# telden als kamerpand, voor het pand zelf en voor de buren: de terugtoets van
+# 15 oktober vond zo een verleende vergunning op van Welderenstraat 115 die
+# wij als "geblokkeerd" voorspelden, op grond van een kamerpand dat er niet
+# meer was. Is de laatste vergunning op een adres zo een, dan is het adres
+# sindsdien geen kamerpand. "onzelfstandige" telt niet als zelfstandig: \b
+# ervoor.
+_UIT_KAMERVERHUUR = re.compile(
+    r"kamerverhuur\w*\b.*\b(naar|tot)\b.*\b(zelfstandige|appartement\w*|"
+    r"woning(en)?)\b|logiesfunctie|^intrekken", re.IGNORECASE)
+
+
+def beeindigt_kamerverhuur(v):
+    """Of deze vergunning kamerverhuur beeindigt in plaats van toestaat."""
+    return bool(_UIT_KAMERVERHUUR.search((v or {}).get("omschrijving") or ""))
+
+
+def nog_kamerpand(items):
+    """
+    De vergunningen die nog voor kamerverhuur gelden: niets als de laatste
+    vergunning op het adres de kamerverhuur beeindigde.
+    """
+    items = [v for v in (items or [])
+             if not any(g in (v.get("soort") or "").lower()
+                        for g in GEEN_KAMERSOORT)]
+    if not items:
+        return []
+    laatste = max(items, key=lambda v: v.get("datum") or "")
+    if beeindigt_kamerverhuur(laatste):
+        return []
+    return [v for v in items if not beeindigt_kamerverhuur(v)]
+
 # EEN BESLUIT DAT NIET MEER GELDT. Op 14 oktober 2026 werd de vergunning voor
 # kamerverhuur aan Professor Molkenboerstraat 20A herroepen. Het archief kende
 # daarna drie kamerverhuurregels voor dat adres, en elke regel telde als
@@ -2356,6 +2392,34 @@ GEEN_KAMERSOORT = ("samenvoeging", "samenvoegen")
 # gebruik gaat over feitelijk gebruik en valt hier buiten.
 VERVALLEN_WOORDEN = ("herroep", "geweigerd", "weiger", "intrekking",
                      "ingetrokken", "buiten behandeling")
+
+
+def fase_van(titel):
+    """
+    In welke fase een bekendmaking is: aanvraag, ontwerp, verleend, negatief,
+    teruggetrokken, of None als de titel het niet zegt.
+
+    TWEE TITELVORMEN. Sinds 2024 "Aanvraag ...", "Besluit ...", "Beslissing op
+    bezwaar ... herroepen". Daarvoor "adres Nijmegen: omschrijving - product -
+    Aanvraag ontvangen" of "- Besluit verleend": de fase staat achteraan. Een
+    toets op titel.startswith("aanvraag") zag die oude aanvragen als besluit,
+    en elke oude aanvraag werd zo een kamerpand.
+    """
+    t = (titel or "").lower()
+    if any(w in t for w in ("herroep", "geweigerd", "weiger")):
+        return "negatief"
+    if any(w in t for w in ("intrekking", "ingetrokken", "buiten behandeling")):
+        return "teruggetrokken"
+    staart = t.rsplit(" - ", 1)[-1].strip() if " - " in t else ""
+    if (t.startswith("aanvraag") or staart.startswith("aanvraag")
+            or "aanvraag ontvangen" in t):
+        return "aanvraag"
+    if "ontwerp" in staart:
+        return "ontwerp"
+    if (t.startswith("besluit") or staart.startswith("besluit")
+            or "verleend" in t or "beschikking" in staart):
+        return "verleend"
+    return None
 
 
 def kamerbesluit_vervallen(items):
@@ -2471,14 +2535,16 @@ def _zelfde_bouwblok(a, b, straatbeeld):
 def _kamervergunning(straat, nummer, vergunningen, archief):
     """Heeft dit huisnummer een kamersignaal? Samenvoegingen tellen niet."""
     sleutel = archief_sleutel(straat, str(nummer))
-    for v in (vergunningen or {}).get(sleutel, []):
-        soort = (v.get("soort") or "").lower()
-        if any(g in soort for g in GEEN_KAMERSOORT):
-            continue
+    lijst = (vergunningen or {}).get(sleutel, [])
+    for v in nog_kamerpand(lijst):
         return {"adres": v.get("adres", f"{straat} {nummer}"),
                 "datum": v.get("datum", ""), "soort": v.get("soort", "vergunning"),
                 "hard": True}
-    items = (archief or {}).get(sleutel, [])
+    # Wat van voor een beeindiging dateert, zegt niets meer over nu.
+    einde = max((v.get("datum") or "" for v in lijst
+                 if beeindigt_kamerverhuur(v)), default="")
+    items = [t for t in (archief or {}).get(sleutel, [])
+             if (t.get("datum") or "") > einde]
     vervallen = kamerbesluit_vervallen(items)
     for t in items:
         soorten = [x.lower() for x in (t.get("soorten") or [])]
@@ -2486,6 +2552,12 @@ def _kamervergunning(straat, nummer, vergunningen, archief):
         if any(g in samen for g in GEEN_KAMERSOORT):
             continue
         if vervallen and "brandveilig" not in samen + (t.get("titel") or "").lower():
+            continue
+        # EEN AANVRAAG IS GEEN KAMERPAND. Alleen een melding brandveilig
+        # gebruik (feitelijk gebruik) of een verleend besluit telt; een
+        # aanvraag, een ontwerp of een ingetrokken zaak niet.
+        if ("brandveilig" not in samen
+                and fase_van(t.get("titel")) != "verleend"):
             continue
         if any(k in samen for k in KAMERSIGNALEN):
             return {"adres": f"{straat} {nummer}", "datum": t.get("datum", ""),
