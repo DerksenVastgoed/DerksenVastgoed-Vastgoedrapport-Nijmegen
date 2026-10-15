@@ -485,6 +485,18 @@ proef: bekendmakingen_nijmegen:telt mee op de eerste vier
 soort: brief
 
 ---
+eis: Een huuradvertentie zonder huisnummer krijgt een buurt uit haar postcode,
+  of uit haar straat als die in één ringbuurt ligt; anders geen buurt.
+waarom: 15 oktober. Van de 132 huuradvertenties hadden er 130 geen buurt: de
+  locatieserver geeft bij een postcode geen buurtnaam terug, en dat viel niet
+  op. Daardoor was de huur per buurt nooit gemeten en rekende elke buurt met de
+  stadsmediaan of een aanname. Met de inventaris en de voorraad krijgen er nu
+  28 een buurt uit de postcode en 1 uit de straat. Een postcode of straat in
+  twee buurten krijgt er geen, want dan is het een gok.
+proef: marktprijzen_bag:huur zonder huisnummer
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
