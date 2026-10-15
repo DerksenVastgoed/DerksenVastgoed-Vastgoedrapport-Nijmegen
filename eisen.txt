@@ -1037,3 +1037,20 @@ waarom: 14 oktober. Na de reparatie van de zoekvormen bleef alleen
   BEWUST_AFWEZIG met de bron erbij, en is een treffer het signaal.
 proef: gezondheid:een onverwachte treffer op een bewust afwezige
 soort: brief
+
+---
+eis: Een woning tussen een pand en een kamerpand blokkeert de kamerroute,
+  wat die woning ook is; en een herroepen of geweigerd kamerverhuurbesluit
+  maakt een adres geen kamerpand.
+waarom: 15 oktober, uit de beslissing op bezwaar over Professor
+  Molkenboerstraat 20A (8 oktober 2026). De gemeente herriep de vergunning
+  omdat 22A tussen 20A en kamerpand 24A ligt: zelfstandig bewoond is dat
+  insluiting, als kamerpand zijn het drie op rij, en ook bij twee kamers
+  vond zij het onaanvaardbaar. Onze toets blokkeerde alleen als het
+  tussenpand aantoonbaar uit meer zelfstandige woningen bestond, en gaf voor
+  20A "gekeken en niets gevonden", terwijl 18 en 24 allebei als kamerpand in
+  ons register stonden. Gemeten over de 20.045 woonadressen in de ring: 479
+  wisselen van vrij naar insluiting. Daarnaast telde de herroepen vergunning
+  zelf als kamerpand voor 20 en zijn buren.
+proef: marktprijzen_bag:telt nog als kamerpand
+soort: gegevens

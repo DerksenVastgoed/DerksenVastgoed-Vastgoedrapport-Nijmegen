@@ -2071,6 +2071,7 @@ def kamerverhuur_bekend(w, vergunningen=None, archief=None):
         sleutels = {archief_sleutel(m.group(1), m.group(2)),
                     archief_sleutel("de " + m.group(1), m.group(2))}
         items_a = [t for sl in sleutels for t in archief.get(sl, [])]
+        vervallen = kamerbesluit_vervallen(items_a)
         for t in items_a:
             soorten = " ".join(x.lower() for x in (t.get("soorten") or []))
             titel = (t.get("titel") or "").lower()
@@ -2079,7 +2080,7 @@ def kamerverhuur_bekend(w, vergunningen=None, archief=None):
                 uit.append({"bron": "melding brandveilig gebruik",
                             "soort": "melding brandveilig gebruik", "jaar": jaar})
             elif (any(k in soorten for k in ("kamerverhuur", "omzetting"))
-                    and not titel.startswith("aanvraag")):
+                    and not titel.startswith("aanvraag") and not vervallen):
                 # Een aanvraag is nog geen toestemming; alleen een besluit telt
                 uit.append({"bron": "officiele bekendmaking",
                             "soort": "besluit kamerverhuur", "jaar": jaar})
@@ -2346,6 +2347,32 @@ IN_GEBRUIK = ("in gebruik",)
 # meegeteld als kamersignaal en konden dus een route onterecht blokkeren.
 GEEN_KAMERSOORT = ("samenvoeging", "samenvoegen")
 
+# EEN BESLUIT DAT NIET MEER GELDT. Op 14 oktober 2026 werd de vergunning voor
+# kamerverhuur aan Professor Molkenboerstraat 20A herroepen. Het archief kende
+# daarna drie kamerverhuurregels voor dat adres, en elke regel telde als
+# kamerpand: voor het pand zelf en voor de buren. Wat het laatst over een
+# adres is besloten, geldt; is dat een weigering, herroeping of intrekking,
+# dan tellen de eerdere besluiten niet meer mee. Een melding brandveilig
+# gebruik gaat over feitelijk gebruik en valt hier buiten.
+VERVALLEN_WOORDEN = ("herroep", "geweigerd", "weiger", "intrekking",
+                     "ingetrokken", "buiten behandeling")
+
+
+def kamerbesluit_vervallen(items):
+    """
+    Of het laatste kamerverhuurbesluit over dit adres een weigering,
+    herroeping of intrekking is. items zijn archiefregels van een adres.
+    """
+    besluiten = [t for t in (items or [])
+                 if any(k in " ".join(x.lower() for x in (t.get("soorten") or []))
+                        for k in ("kamerverhuur", "omzetting"))
+                 and "brandveilig" not in (t.get("titel") or "").lower()]
+    if not besluiten:
+        return False
+    laatste = max(besluiten, key=lambda t: t.get("datum") or "")
+    titel = (laatste.get("titel") or "").lower()
+    return any(w in titel for w in VERVALLEN_WOORDEN)
+
 
 def _straatsleutel_voorraad(straat):
     """Zelfde afkortingen als archief_sleutel(), anders lopen de twee uiteen.
@@ -2451,10 +2478,14 @@ def _kamervergunning(straat, nummer, vergunningen, archief):
         return {"adres": v.get("adres", f"{straat} {nummer}"),
                 "datum": v.get("datum", ""), "soort": v.get("soort", "vergunning"),
                 "hard": True}
-    for t in (archief or {}).get(sleutel, []):
+    items = (archief or {}).get(sleutel, [])
+    vervallen = kamerbesluit_vervallen(items)
+    for t in items:
         soorten = [x.lower() for x in (t.get("soorten") or [])]
         samen = " ".join(soorten)
         if any(g in samen for g in GEEN_KAMERSOORT):
+            continue
+        if vervallen and "brandveilig" not in samen + (t.get("titel") or "").lower():
             continue
         if any(k in samen for k in KAMERSIGNALEN):
             return {"adres": f"{straat} {nummer}", "datum": t.get("datum", ""),
@@ -2550,13 +2581,25 @@ def kamerbeeld(adres, archief=None, vergunningen=None, bereik=4):
             # 9 op grond van nummer 11, met 7 én 9 ertussen. Dat is geen
             # insluiting, en het leverde ook drie keer dezelfde melding op
             # omdat 11, 13 en 15 alle drie kamerpanden zijn.
+            #
+            # EEN WONING IS GENOEG, LINKSOM OF RECHTSOM. Hier stond "aantoonbaar
+            # meer zelfstandige woningen", omdat een enkel BAG-object ook een
+            # kamerpand kan zijn. De gemeente redeneert anders, in de
+            # beslissing op bezwaar over Professor Molkenboerstraat 20A van 8
+            # oktober 2026: 22A ligt tussen 20A en kamerpand 24A. Is 22A
+            # zelfstandig bewoond, dan is het insluiting (beleidsregel 1); is
+            # het een kamerpand, dan zijn het drie op rij (beleidsregel 2); en
+            # ook bij twee kamers vindt de gemeente het onaanvaardbaar. Wat het
+            # tussenpand ook is, zolang het een woning is, blokkeert het. Deze
+            # toets gaf voor 20A "gekeken en niets gevonden".
             if vg and stap == 2 and not ingesloten_deze_kant:
                 tussen = tussenliggend
                 tz, ta, tm, _tp = _woningen_op_nummer(tussen, straatbeeld)
-                if tz:
+                if ta >= 1:
                     ingesloten.append({"nummer": tussen, "woningen": ta,
                                        "maten": tm, "kamerbuur": vg["adres"],
-                                       "kamerbuur_datum": vg.get("datum", "")})
+                                       "kamerbuur_datum": vg.get("datum", ""),
+                                       "meer_woningen": bool(tz)})
                     ingesloten_deze_kant = True
                 elif tz is None:
                     onbekend.append({"nummer": tussen,
@@ -8172,6 +8215,36 @@ def proef():
     if buur.get("energielabel") or not buur.get("object_benaderd"):
         afw.append("een dossier draagt het label van het buurobject waarop "
                    "de opzoeking terugviel")
+    # LINKSOM OF RECHTSOM. De straat van Professor Molkenboerstraat 20A zoals
+    # hij in onze gegevens staat: 18 onttrokken voor kamers (2018), 24 een
+    # kamerpand (2015), 22 een enkel object van 101 m2 ertussen, en op 20 zelf
+    # een herroepen vergunning. Zo besliste de gemeente op 8 oktober 2026.
+    straat = "Proefstraat"
+    def _rec(nr, opp, pand):
+        return [{"adres": f"{straat} {nr}", "status": "Verblijfsobject in gebruik",
+                 "oppervlakte": opp, "pand": pand}]
+    _VOORRAAD[_straatsleutel_voorraad(straat)] = {
+        18: _rec(18, 138, "p18"), 20: _rec(20, 109, "p20"),
+        22: _rec(22, 101, "p22"), 24: _rec(24, 96, "p24")}
+    verg = {archief_sleutel(straat, "18"): [{"adres": f"{straat} 18A",
+                                            "soort": "onttrekking",
+                                            "datum": "2018-07-03"}],
+            archief_sleutel(straat, "24"): [{"adres": f"{straat} 24",
+                                            "soort": "omgevingsvergunning",
+                                            "datum": "2015-02-12"}]}
+    arch = {archief_sleutel(straat, "20"): [
+        {"datum": "2026-06-25", "soorten": ["kamerverhuur"],
+         "titel": f"Besluit voor afwijken omgevingsplan kamerverhuur, aan {straat} 20A"},
+        {"datum": "2026-10-14", "soorten": ["kamerverhuur"],
+         "titel": f"Beslissing op bezwaar voor bezwaar tegen Z1 Vergunning "
+                  f"kamerverhuur herroepen, aan {straat} 20A"}]}
+    ing, reden = kamerroute_geblokkeerd(f"{straat} 20A", arch, verg)
+    if reden != "insluiting" or not ing or ing[0].get("nummer") != 22:
+        afw.append(f"20A tussen kamerpand 24 en woning 22 wordt niet "
+                   f"geblokkeerd: {reden} {ing}")
+    if _kamervergunning(straat, 20, verg, arch):
+        afw.append("een herroepen kamerverhuurvergunning telt nog als kamerpand")
+
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef marktprijzen_bag: {len(afw)} afwijkingen", file=sys.stderr)
