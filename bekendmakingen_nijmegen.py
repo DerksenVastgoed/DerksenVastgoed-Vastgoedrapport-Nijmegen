@@ -232,23 +232,62 @@ LANGE_STRATEN_MAXNUMMER = {
 }
 
 
-def in_ring(item: dict) -> bool:
+_RING_PC6 = None
+
+
+def ring_postcodes(pad="buurtinventaris.json"):
+    """
+    De volledige postcodes van de ringbuurten, uit de inventaris.
+
+    WAAROM. Tot 15 oktober 2026 keek in_ring alleen naar de eerste vier
+    cijfers, tegen een lijst met de hand (RING_POSTCODES). Een viercijferige
+    postcode is veel groter dan een buurt. Gemeten op het archief van die dag:
+    van de 322 titels met een postcode die de oude filter in de ring zette,
+    lagen er 61 buiten de acht ringbuurten (Ambachtsweg 2, Cargadoorweg 11,
+    Berg en Dalseweg 255), en 4 in St. Anna werden gemist omdat 6533 niet op
+    de lijst stond, waaronder Hatertseweg 338. De inventaris kent per
+    ringbuurt elke zescijferige postcode en volgt ring.py vanzelf.
+
+    Leeg als de inventaris ontbreekt; dan valt in_ring terug op de oude lijst.
+    """
+    global _RING_PC6
+    if _RING_PC6 is None:
+        try:
+            import ring
+            with open(pad, encoding="utf-8") as f:
+                per = json.load(f).get("postcodes_per_buurt") or {}
+            _RING_PC6 = {p.replace(" ", "").upper()
+                         for b in ring.BUURTEN for p in (per.get(b) or [])}
+        except Exception as e:
+            print(f"Ringpostcodes niet te lezen ({e}); terugval op de "
+                  f"viercijferige lijst", file=sys.stderr)
+            _RING_PC6 = set()
+    return _RING_PC6
+
+
+def in_ring(item: dict, pc6=None) -> bool:
     """
     Bepaalt of een bekendmaking binnen de ring valt.
 
-    De postcode is doorslaggevend. Staat er een Nijmeegse postcode in de titel
-    en valt die buiten de ring, dan telt de bekendmaking niet mee, ook niet als
-    de straatnaam op de lijst staat. Dat is nodig omdat straten als de Graafseweg
-    en de Groenestraat kilometers buiten de ring doorlopen.
+    De postcode is doorslaggevend. Staat er een Nijmeegse postcode in de titel,
+    dan beslist die, ook als de straatnaam op de lijst staat. Dat is nodig
+    omdat straten als de Graafseweg en de Groenestraat kilometers buiten de
+    ring doorlopen. Vergeleken wordt de volledige postcode met die van de
+    ringbuurten (ring_postcodes); alleen als die niet te lezen zijn, de eerste
+    vier cijfers tegen RING_POSTCODES.
 
     Alleen als er helemaal geen postcode in de titel staat, valt de filter terug
-    op de straatnaam.
+    op de straatnaam. Op het archief van 15 oktober had geen van die titels een
+    adres dat te herleiden was; het zijn besluiten zonder pand.
     """
     hooi = (item["titel"] + " " + item["type"]).lower()
 
-    postcodes = re.findall(r"\b(\d{4})\s?[a-z]{2}\b", hooi)
-    if postcodes:
-        return any(pc in RING_POSTCODES for pc in postcodes)
+    gevonden = re.findall(r"\b(\d{4})\s?([a-z]{2})\b", hooi)
+    if gevonden:
+        pc6 = ring_postcodes() if pc6 is None else pc6
+        if pc6:
+            return any((d + l).upper() in pc6 for d, l in gevonden)
+        return any(d in RING_POSTCODES for d, _l in gevonden)
 
     # Geen postcode in de titel: terugvallen op straatnaam
     if not any(s.lower() in hooi for s in RING_STRATEN):
@@ -1032,15 +1071,45 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
     return "\n".join(r)
 
 
+def proef():
+    """De ringfilter op vaste titels, zonder netwerk."""
+    afw = []
+    binnen = {"titel": "Splitsen naar zes woonruimtes, aan Hatertseweg 338, "
+                       "6533GP Nijmegen", "type": ""}
+    buiten = {"titel": "Melding brandveilig gebruik, aan Ambachtsweg 2, "
+                       "6541DB Nijmegen", "type": ""}
+    if not in_ring(binnen, pc6={"6533GP"}):
+        afw.append("een postcode die in de ring ligt wordt niet herkend")
+    if in_ring(buiten, pc6={"6533GP"}):
+        afw.append("een postcode buiten de ring telt mee op de eerste vier "
+                   "cijfers")
+    # En op de echte inventaris: dit zijn de gevallen van 15 oktober.
+    echt = ring_postcodes()
+    if echt:
+        if not in_ring(binnen, pc6=echt):
+            afw.append("Hatertseweg 338 (St. Anna) valt buiten de ring")
+        if in_ring(buiten, pc6=echt):
+            afw.append("Ambachtsweg 2 (bedrijventerrein) valt binnen de ring")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef bekendmakingen: {len(afw)} afwijkingen"
+          + ("" if echt else " (inventaris niet gelezen; alleen vaste gevallen)"),
+          file=sys.stderr)
+    return 1 if afw else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dagen", type=int, default=2)
+    ap.add_argument("--proef", action="store_true")
     ap.add_argument("--alles", action="store_true")
     ap.add_argument("--uit", default="bekendmakingen_digest.md")
     # De kwartaaltrend hoort niet dagelijks herhaald te worden
     ap.add_argument("--modus", default="dagelijks",
                     choices=["dagelijks", "weekelijks"])
     args = ap.parse_args()
+    if args.proef:
+        return proef()
 
     vanaf = (dt.date.today() - dt.timedelta(days=args.dagen)).isoformat()
     cql = bouw_cql(vanaf)
@@ -1253,4 +1322,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)

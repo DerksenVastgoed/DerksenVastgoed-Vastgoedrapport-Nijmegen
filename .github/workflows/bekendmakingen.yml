@@ -262,6 +262,9 @@ jobs:
             echo "HEEFT_VERHAAL=0" >> "$GITHUB_ENV"
           fi
           echo "Modus: $MODUS"
+          # Eerst de ringfilter op vaste titels: kost geen seconde en geen
+          # aanroep, en is rood als de filter weer op vier cijfers terugvalt.
+          python bekendmakingen_nijmegen.py --proef
           python bekendmakingen_nijmegen.py --dagen 2 --modus "$MODUS" \
             --uit "digests/$DATUM-bekendmakingen.md" \
             || { echo "Bekendmakingen-stap overgeslagen"; echo "Bekendmakingen" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }

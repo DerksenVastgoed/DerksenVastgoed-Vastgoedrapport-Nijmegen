@@ -474,6 +474,17 @@ proef: buurtinventaris:zonder de laatste ringbuurt telt als
 soort: werking
 
 ---
+eis: Een bekendmaking telt als ring als haar volledige postcode in een
+  ringbuurt ligt, niet als de eerste vier cijfers op een lijst staan.
+waarom: 15 oktober, na het uitbreiden van de ring. De filter vergeleek vier
+  cijfers met een eigen lijst die ring.py niet volgde. Op het archief van die
+  dag zette hij 61 titels buiten de acht buurten in de ring (Ambachtsweg 2,
+  Cargadoorweg 11, Berg en Dalseweg 255) en miste hij er 4 in St. Anna,
+  waaronder Hatertseweg 338. Nu: 261 in de ring, 222 erbuiten.
+proef: bekendmakingen_nijmegen:telt mee op de eerste vier
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
