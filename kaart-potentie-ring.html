@@ -77,7 +77,7 @@ function popup(w){
   return `<div class="pop"><b>${esc(w.a)}</b>${w.f ? ` <span class="ster">shortlist ${String(w.f).replace(".",",")}× jaarhuur</span>` : ""}
     <table>${rij("Buurt", w.b)}${rij("Oppervlakte", w.m ? w.m+" m²" : "")}${rij("Bouwjaar", w.j)}
     ${rij("Label", w.l)}${rij("Kamers", (w.k||"") + (w.r ? " ("+w.r+")" : ""))}
-    ${rij("Splitsen", w.s)}${rij("Te koop", w.t ? "ja" : "")}</table></div>`;
+    ${rij("Splitsen", (w.s||"") + (w.n ? ", hoogstens "+w.n+" woningen" + (w.g ? " ("+w.g+" lagen)" : "") : ""))}${rij("Te koop", w.t ? "ja" : "")}</table></div>`;
 }
 function teken(){
   const soort = document.getElementById("kleur").value;

@@ -406,6 +406,21 @@ proef: potentie:te koop, shortlist of labelsprong niet gezet
 soort: gegevens
 
 ---
+eis: Het aantal woningen na splitsen wordt per etage geteld als de bouwlagen
+  bekend zijn: een laag wordt niet gedeeld tenzij hij twee woningen draagt.
+waarom: 15 oktober, Mark: een etage van 40 m2 splitsen zij niet in twee
+  woningen, dat wordt een appartement of twee kamers. Over de hele
+  oppervlakte gerekend werden twee lagen van 40 m2 drie woningen. Per etage
+  is het er een per laag; lagen kleiner dan een woning tellen samen, zoals een
+  maisonnette. Gemeten op de 201 woningen waarvan de 3D BAG nu de lagen kent:
+  139 krijgen een lager hoogste aantal, 1 valt van open naar te klein. De
+  bouwlagen komen uit de 3D BAG, die nu de hele ring ophaalt in plaats van
+  alleen de panden uit de geschiedenis. Een implementatie, max_eenheden(), voor
+  de dossiers en de potentiekaart.
+proef: marktprijzen_bag:twee lagen van 40 m2 geven
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

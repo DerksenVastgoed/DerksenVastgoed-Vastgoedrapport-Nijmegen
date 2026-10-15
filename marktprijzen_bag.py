@@ -1751,7 +1751,9 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     if in_complex(w):
         return None
     bruikbaar = opp * VERHUURBAAR_SPLITSING
-    aantal = int(bruikbaar // MIN_UNIT_M2)
+    lagen = (bouwlagen_van(w.get("pand"))
+             if len(w.get("eenheden_in_pand") or []) <= 1 else None)
+    aantal = max_eenheden(opp, lagen)
     if aantal < 2:
         return None
     aantal = min(aantal, MAX_UNITS)
@@ -6562,6 +6564,61 @@ DREMPEL_SCHERP = -15      # procent onder de mediaan van de eigen klasse
 APPARTEMENT_VANAF = 4
 
 
+_BAG3D = None
+
+
+def bouwlagen_van(pand_id, pad="bag3d.json"):
+    """Het aantal bouwlagen volgens de 3D BAG, of None als het niet bekend is."""
+    global _BAG3D
+    if not pand_id:
+        return None
+    if _BAG3D is None:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                _BAG3D = json.load(f).get("panden") or {}
+        except Exception:
+            _BAG3D = {}
+    n = (_BAG3D.get(str(pand_id)) or {}).get("b3_bouwlagen")
+    try:
+        n = int(n)
+    except (TypeError, ValueError):
+        return None
+    return n if n >= 1 else None
+
+
+def max_eenheden(opp, bouwlagen=None):
+    """
+    Hoeveel zelfstandige woningen er hoogstens in passen.
+
+    PER ETAGE ALS DE BOUWLAGEN BEKEND ZIJN. Mark, 15 oktober 2026: een etage
+    van 40 m2 splitsen zij niet in twee woningen, dat wordt een appartement of
+    twee kamers. Over het hele pand gerekend werden twee lagen van 40 m2 drie
+    woningen (72 m2 bruikbaar gedeeld door 22). Per etage gerekend is het er
+    een per laag, en een laag die geen woning van MIN_UNIT_M2 oplevert telt
+    niet. Alleen bruikbaar bij een pand met een woning: bij meer woningen in
+    een pand weten we niet welke lagen bij welke woning horen.
+
+    Zonder bouwlagen de oude regel, over de hele oppervlakte.
+    """
+    if not opp:
+        return 0
+    if bouwlagen:
+        # Gemiddeld per laag: de BAG geeft de oppervlakte van de woning en de
+        # 3D BAG het aantal lagen, niet de verdeling over de lagen.
+        per_laag = opp * VERHUURBAAR_SPLITSING / bouwlagen
+        if per_laag >= 2 * MIN_UNIT_M2:
+            # Een laag die er twee kan dragen, mag er twee krijgen.
+            return int(per_laag // MIN_UNIT_M2) * bouwlagen
+        if per_laag >= MIN_UNIT_M2:
+            # Een woning per laag, en een laag wordt niet gedeeld.
+            return bouwlagen
+        # Lagen kleiner dan een woning: een woning beslaat dan meer lagen,
+        # zoals een maisonnette. Eerste Walstraat 28 is 69 m2 over vijf lagen.
+        per_woning = -(-MIN_UNIT_M2 // per_laag)
+        return int(bouwlagen // per_woning)
+    return int(opp * VERHUURBAAR_SPLITSING // MIN_UNIT_M2)
+
+
 def in_complex(w):
     """
     Is dit een appartement in een complex? Dan gelden andere regels.
@@ -8424,6 +8481,22 @@ def proef():
                    f"geblokkeerd: {reden} {ing}")
     if _kamervergunning(straat, 20, verg, arch):
         afw.append("een herroepen kamerverhuurvergunning telt nog als kamerpand")
+
+    # PER ETAGE. Twee lagen van 40 m2 zijn twee woningen en niet drie; drie
+    # lagen van 20 m2 zijn er geen; zonder bouwlagen de oude regel.
+    if max_eenheden(80, 2) != 2:
+        afw.append(f"twee lagen van 40 m2 geven {max_eenheden(80, 2)} woningen")
+    if max_eenheden(60, 3) != 1:
+        afw.append(f"drie lagen van 20 m2 geven {max_eenheden(60, 3)} woningen "
+                   f"in plaats van 1 (twee lagen per woning)")
+    if max_eenheden(69, 5) != 2:
+        afw.append(f"Eerste Walstraat 28, 69 m2 over vijf lagen, geeft "
+                   f"{max_eenheden(69, 5)} woningen in plaats van 2")
+    if max_eenheden(180, 3) != 6:
+        afw.append(f"drie lagen van 60 m2 geven {max_eenheden(180, 3)} in "
+                   f"plaats van 6 (een laag van 54 m2 bruikbaar draagt er twee)")
+    if max_eenheden(80) != 3:
+        afw.append("zonder bouwlagen is de oude regel veranderd")
 
     # DE SHORTLIST. Stieltjesstraat 10 zoals in de bijlage van 15 oktober:
     # €539.000, kamers voor €3.952 per maand, dus 11,4 maal de jaarhuur.
