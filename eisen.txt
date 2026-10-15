@@ -393,6 +393,19 @@ proef: marktprijzen_bag:een pand boven 17 maal de jaarhuur staat op de shortlist
 soort: brief
 
 ---
+eis: Elke woning in de ring heeft een potentie: welke routes openstaan, los van
+  de prijs; en wat te koop komt en door de poorten komt, staat op de shortlist.
+waarom: 15 oktober, Mark: "alle panden inzichtelijk maken, en op het moment
+  dat een pand voldoet en ook te koop wordt aangeboden, komt het op de lijst."
+  potentie.py geeft per woning in de zes ringbuurten de kamerroute (open,
+  geblokkeerd, al kamerpand, niet te toetsen, te klein), splitsen (open, via
+  VvE, te klein) en een labelsprong E tot en met G, en markeert wat te koop
+  staat en op de shortlist. De shortlist wordt op object-id gekoppeld. De WOZ
+  en de indeling per etage zitten er niet in; dat staat op de kaart zelf.
+proef: potentie:te koop, shortlist of labelsprong niet gezet
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

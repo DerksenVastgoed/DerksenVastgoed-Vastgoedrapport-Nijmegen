@@ -6229,6 +6229,7 @@ def render_dossiers(woningen, per_buurt):
 # kentallen daarvoor zijn aannames, en een harde filter op een aanname is
 # een schatting die zich als drempel voordoet. Hij staat er wel naast.
 MAX_FACTOR_JAARHUUR = 17
+SHORTLIST_PAD = "shortlist.json"
 
 
 def shortlist_oordeel(w, sc):
@@ -6281,6 +6282,9 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
     trend = lees_trend()
 
     r = ["", "## De cijfers per buurt", ""]
+    # De shortlist ook als bestand, zodat de potentiekaart en latere stappen
+    # hem kunnen lezen zonder de bijlage te ontleden.
+    shortlist_bestand = []
 
     # Eerst een overzicht van alle buurten naast elkaar
     # Bekende kamerverhuurpanden: vergunningen en meldingen samen. Valt terug op
@@ -6373,12 +6377,33 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                     "opkoop") else ("boven de " + str(MAX_FACTOR_JAARHUUR) + " maal"
                                     if "maal de jaarhuur" in o_[1] else o_[1])
                 redenen[sleutel_r] = redenen.get(sleutel_r, 0) + 1
+        if not shortlist_bestand and buurt == sorted(
+                per_buurt, key=lambda b: -len(per_buurt[b]))[0]:
+            try:
+                import kaartlink as _kl
+                _pk = _kl.link("Bekijk alle woningen op de potentiekaart",
+                               "kaart-potentie-ring.html")
+                if _pk:
+                    r.append(f"_{_pk}: per woning welke routes openstaan, ook "
+                             f"als ze niet te koop staan._")
+                    r.append("")
+            except Exception:
+                pass
         r.append(f"_{len(panden)} te koop, {len(op_lijst)} op de shortlist"
                  + (": " + ", ".join(f"{n} {k}" for k, n in
                                      sorted(redenen.items(), key=lambda x: -x[1]))
                     + " vallen af" if redenen else "")
                  + ". Alle panden blijven meetellen in de mediaan._")
         r.append("")
+        for w_o in op_lijst:
+            o_ = oordelen.get(id(w_o)) or (False, "", None)
+            sc_o = w_o.get("_scenario") or {}
+            shortlist_bestand.append({
+                "adres": w_o.get("adres"), "buurt": buurt,
+                "prijs": w_o.get("prijs"), "route": sc_o.get("naam"),
+                "maand": sc_o.get("maand"),
+                "factor": round(o_[2], 2) if o_[2] else None,
+                "vbo": w_o.get("adresseerbaarObjectIdentificatie")})
         if not op_lijst:
             continue
 
@@ -6436,6 +6461,15 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
                 f"| {'€' + eu(plafond) if plafond else '—'} "
                 f"| {verschil_s} |")
         r.append("")
+
+    try:
+        with open(SHORTLIST_PAD, "w", encoding="utf-8") as f_s:
+            json.dump({"datum": dt.date.today().isoformat(),
+                       "max_factor": MAX_FACTOR_JAARHUUR,
+                       "panden": shortlist_bestand}, f_s, ensure_ascii=False,
+                      indent=1)
+    except Exception as e:
+        print(f"shortlist.json niet geschreven: {str(e)[:80]}", file=sys.stderr)
 
     r.append(f"_Bronnen: buurtcijfers uit de Kerncijfers wijken en buurten, "
              f"vergunningen uit het gemeentelijk overzicht, misdrijven uit de "

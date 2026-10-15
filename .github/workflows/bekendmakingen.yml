@@ -629,6 +629,15 @@ jobs:
             rm -f "digests/${DATUM}-marktprijzen.log"
           fi
 
+      - name: Potentie van de ring
+        # Na de marktprijzen, want die schrijven shortlist.json. Mag mislukken
+        # zonder dat de brief stilvalt; dan staat het in overgeslagen.txt.
+        continue-on-error: true
+        run: |
+          python potentie.py --proef
+          python potentie.py > /dev/null \
+            || { echo "Potentie overgeslagen"; echo "Potentie" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }
+
       - name: Achtergrond en bronnen klaarzetten
         continue-on-error: true
         run: |
@@ -1179,6 +1188,9 @@ jobs:
             rentola_kenmerken.json
             rijksmonumenten_nijmegen.json
             top3-kaart.html
+            shortlist.json
+            potentie_ring.json
+            potentie_ring.md
             digests/
             diagnose/
           "
