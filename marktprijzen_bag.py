@@ -22,7 +22,7 @@ import statistics as st
 import sys
 import time
 import urllib.parse
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import requests
 
@@ -257,6 +257,80 @@ def pdok_buurt_postcode(postcode):
                 "wijknaam": d.get("wijknaam", "")}
     except Exception:
         return {}
+
+
+_BUURT_OPZOEK = None
+
+
+def _buurt_opzoek():
+    """Postcode en straat naar ringbuurt, uit de inventaris en de voorraad."""
+    global _BUURT_OPZOEK
+    if _BUURT_OPZOEK is not None:
+        return _BUURT_OPZOEK
+    per_pc, per_straat = defaultdict(set), defaultdict(set)
+    try:
+        with open("buurtinventaris.json", encoding="utf-8") as f:
+            ppb = json.load(f).get("postcodes_per_buurt") or {}
+        for b in FOCUS_BUURTEN:
+            for pc in ppb.get(b) or []:
+                per_pc[pc.replace(" ", "").upper()].add(b)
+    except Exception:
+        pass
+    try:
+        with open("voorraad.json", encoding="utf-8") as f:
+            adressen = json.load(f).get("adressen") or {}
+        for r in adressen.values():
+            if r.get("herkomst") != "focusbuurt":
+                continue
+            m = re.match(r"^(.+?)\s+\d", r.get("adres") or "")
+            if m:
+                for b in r.get("buurten") or []:
+                    per_straat[m.group(1).strip().lower()].add(b)
+    except Exception:
+        pass
+    _BUURT_OPZOEK = (per_pc, per_straat)
+    return _BUURT_OPZOEK
+
+
+def buurt_zonder_huisnummer(w):
+    """
+    De ringbuurt van een advertentie zonder buurt, of ("", reden).
+
+    WAAROM. Pararius toont huuraanbod zonder huisnummer. verrijk() vroeg de
+    buurt dan op bij de locatieserver met type:postcode, maar een postcode-
+    document daar heeft geen buurtnaam. Gemeten op 15 oktober 2026: van de 132
+    huuradvertenties in verkopen.txt hadden er 130 geen buurt, en 63 daarvan
+    ook geen postcode. Daardoor was de huur per buurt voor geen enkele buurt
+    gemeten en viel elke buurt terug op de stadsmediaan of op de aanname in
+    HUUR_M2_MND, ook de buurten die al maanden in de ring zaten.
+
+    Hoe, in deze volgorde:
+      postcode  de volledige postcode staat in de inventaris van precies één
+                ringbuurt. Dat is een harde koppeling.
+      straat    zonder postcode: alle adressen van die straat in de voorraad
+                liggen in één ringbuurt, en de straat loopt niet buiten de ring
+                door (de lange straten uit bekendmakingen_nijmegen). Dat is
+                afgeleid en heet ook zo in de bron.
+    Een postcode of straat die in twee buurten valt, krijgt geen buurt.
+    """
+    per_pc, per_straat = _buurt_opzoek()
+    pc = (w.get("postcode_bron") or w.get("postcode") or "").replace(" ", "").upper()
+    if pc:
+        b = per_pc.get(pc) or set()
+        if len(b) == 1:
+            return next(iter(b)), "postcode"
+        return "", ("postcode in twee buurten" if b else "postcode buiten de ring")
+    straat = re.sub(r"\s+\d.*$", "", (w.get("adres") or "")).strip().lower()
+    b = per_straat.get(straat) or set()
+    if len(b) != 1:
+        return "", ("straat in meer buurten" if b else "straat niet in de ring")
+    try:
+        from bekendmakingen_nijmegen import LANGE_STRATEN_MAXNUMMER as _lang
+    except Exception:
+        _lang = {}
+    if straat in _lang:
+        return "", "lange straat, loopt buiten de ring door"
+    return next(iter(b)), "straat (afgeleid)"
 
 
 def pdok_buurt(straat, huisnr, plaats):
@@ -3118,6 +3192,22 @@ def eigen_inleg(koopsom):
 # groot pand omhoog: bij de Burg. Hustinxstraat 56 gaf dat €30/m2 waar de
 # referentie €20 is, en een richtprijs ruim boven de vraagprijs.
 HUUR_HALFWEG = 10
+# Vanaf hoeveel advertenties een buurt zijn eigen huurniveau krijgt.
+#
+# Hier stond 2. Dat viel nooit op, want tot 15 oktober 2026 had vrijwel geen
+# huuradvertentie een buurt (zie buurt_zonder_huisnummer) en deed deze factor
+# dus niets. Met de buurten gekoppeld werd het wel zichtbaar. Gemeten die dag,
+# woningen, euro per m2 per maand, stadsmediaan 16,70 over 55 advertenties:
+#   Benedenstad  3 advertenties: 30,6 37,9 41,2      -> factor 2,27, gedempt 1,40
+#   Altrade      3 advertenties: 17,9 17,9 39,7      -> 1,07
+#   Bottendaal   5 advertenties: 9,3 tot 33,7        -> 1,02
+#   Stadscentrum 6 advertenties: 12,7 tot 40,7       -> 1,23
+#   Biezen       8 advertenties: 7,2 tot 29,1        -> 0,90
+# De spreiding binnen een buurt is groter dan het verschil tussen buurten. Drie
+# kleine appartementen in de Benedenstad zouden de huur van elk pand daar met
+# veertig procent verhogen. Bij vijf of meer telt een uitschieter minder zwaar
+# in de mediaan.
+MIN_HUUR_PER_BUURT = 5
 HUUR_BAND = (0.7, 1.4)   # buitenste grens, ook bij veel waarnemingen
 
 
@@ -3499,7 +3589,7 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning",
 
     # Buurtniveau ten opzichte van de stad, alleen bij genoeg waarnemingen
     factor, factor_bron = 1.0, ""
-    if len(buurt_reeks) >= 2 and len(stad_reeks) >= 5:
+    if len(buurt_reeks) >= MIN_HUUR_PER_BUURT and len(stad_reeks) >= 5:
         factor = st.median(buurt_reeks) / st.median(stad_reeks)
         factor = max(0.7, min(1.4, factor))  # extreme uitslagen dempen
         factor_bron = f", geschaald naar {buurt} ({factor:.2f}x)"
@@ -4438,6 +4528,7 @@ def gemeten_huren(huur_aanbod):
     per_buurt_klasse = defaultdict(list)
     per_klasse = defaultdict(list)
     inclusief_weg = 0
+    buurt_herkomst = Counter()
     # Gemeubileerd hoort niet in de mediaan: de inrichting zit in de prijs.
     # Hij wordt wel bewaard, zodat de opslag apart te meten is.
     huur_aanbod = [w for w in huur_aanbod if not _te_oud(w)
@@ -4484,6 +4575,9 @@ def gemeten_huren(huur_aanbod):
             if hm2 < 4 or hm2 > 80:
                 continue
         buurt = normaliseer_buurt(w.get("buurtnaam", ""))
+        if not buurt:
+            buurt, hoe = buurt_zonder_huisnummer(w)
+            buurt_herkomst[hoe] += 1
         per_klasse[klasse].append(hm2)
         # Ook per segment bewaren: een gereguleerde huur is een uitkomst van het
         # puntenstelsel, een vrije-sectorhuur van de markt. Voor een pand dat in
@@ -4502,6 +4596,10 @@ def gemeten_huren(huur_aanbod):
         print(f"Huur: {inclusief_weg} advertenties inclusief vaste lasten niet in "
               f"de richtprijs; {n_i} kamers apart bewaard", file=sys.stderr)
         per_klasse["_inclusief_weggelaten"] = inclusief_weg
+    if buurt_herkomst:
+        print("Huur zonder buurt uit de BAG, zelf gekoppeld: "
+              + ", ".join(f"{n} {k}" for k, n in buurt_herkomst.most_common()),
+              file=sys.stderr)
     return per_buurt_klasse, per_klasse
 
 
@@ -8507,6 +8605,34 @@ def proef():
     if shortlist_oordeel(w_s, dict(sc_s, naam="kamers, route vermoedelijk "
                                               "geblokkeerd"))[0]:
         afw.append("een pand met een geblokkeerde route staat op de shortlist")
+
+    # Huur zonder huisnummer krijgt een buurt uit de postcode, en uit de
+    # straat alleen als die in één buurt ligt; op vaste gegevens.
+    global _BUURT_OPZOEK
+    _oud = _BUURT_OPZOEK
+    # Verzonnen buurtnamen: echte namen in een rij zou ring.py terecht als
+    # een tweede, uitgeschreven ring zien.
+    _BUURT_OPZOEK = ({"6511MP": {"Buurt A"}, "6512AA": {"Buurt B", "Buurt C"}},
+                     {"pontanusstraat": {"Buurt D"},
+                      "graafseweg": {"Buurt E"},
+                      "dubbelstraat": {"Buurt E", "Buurt F"}})
+    try:
+        gevallen = [
+            ({"adres": "van Welderenstraat", "postcode_bron": "6511MP"},
+             "Buurt A"),
+            ({"adres": "Ergens", "postcode_bron": "6512AA"}, ""),
+            ({"adres": "Waalbandijk", "postcode_bron": "6541AA"}, ""),
+            ({"adres": "Pontanusstraat"}, "Buurt D"),
+            ({"adres": "Graafseweg"}, ""),
+            ({"adres": "Dubbelstraat"}, ""),
+        ]
+        for w_h, verwacht in gevallen:
+            kreeg = buurt_zonder_huisnummer(w_h)[0]
+            if kreeg != verwacht:
+                afw.append(f"huur zonder huisnummer {w_h}: buurt {kreeg!r} "
+                           f"in plaats van {verwacht!r}")
+    finally:
+        _BUURT_OPZOEK = _oud
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)

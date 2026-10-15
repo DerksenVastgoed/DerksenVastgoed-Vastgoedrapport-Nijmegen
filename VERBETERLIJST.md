@@ -8156,6 +8156,9 @@ Met de hand na te lopen, want hier is niets gemeten:
   buurten. De yieldtabel toont ze daarom met streepjes, en één route valt
   terug op 18 euro per m2 met het label "aanname". Die 18 is geen meting van
   deze buurten; vervangen zodra er huuraanbod uit die buurten is.
+  Stand 15 oktober, na het koppelen van huur aan buurten: Hunnerberg 1 en
+  St. Anna 0 huuradvertenties voor woningen. Te weinig; de buurt krijgt een
+  eigen niveau vanaf MIN_HUUR_PER_BUURT advertenties.
 - BESCHERMD_GEZICHT zegt voor beide "niet nagekeken". Uitzoeken of delen van
   Hunnerberg in de negentiende-eeuwse schil vallen.
 - GEDAAN 15 oktober: in_ring vergelijkt de volledige postcode met de
