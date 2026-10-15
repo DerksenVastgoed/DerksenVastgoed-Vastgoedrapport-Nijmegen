@@ -281,6 +281,9 @@ def main():
     ap.add_argument("--minuten", type=float, default=0,
                     help="stop na zoveel minuten; 0 is geen tijdgrens")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--wachtrij", action="store_true",
+                    help="alleen tellen hoeveel panden nog op te halen zijn, "
+                         "zonder iets op te halen")
     ap.add_argument("--samenvoegen", nargs=3, metavar=("BASIS", "ONS", "HUN"),
                     help="samenvoeger voor git; zie .gitattributes")
     ap.add_argument("--rest", default="",
@@ -310,6 +313,9 @@ def main():
         opgeslagen.setdefault("panden", {}).setdefault(
             pand_id, {"pogingen": pogingen}) if pogingen >= MAX_POGINGEN else None
     wachtrij, opnieuw = te_doen(opgeslagen, ids, args.versie)
+    if args.wachtrij:
+        print(len(wachtrij))
+        return 0
     if opnieuw:
         print(f"Nieuwe versie van de bron ({args.versie}); alles opnieuw",
               file=sys.stderr)
