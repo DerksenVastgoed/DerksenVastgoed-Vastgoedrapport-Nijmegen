@@ -245,7 +245,22 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
     # None betekent niet gekeken, een lege lijst betekent gekeken en niets
     # gevonden. Dat onderscheid staat hier, want anders leest "niets gevonden"
     # als een goedkeuring die niemand heeft gegeven.
-    if ingesloten:
+    if ingesloten and ingesloten[0].get("meer_woningen") is False:
+        # EEN WONING ERTUSSEN: linksom of rechtsom, zoals de gemeente bij
+        # Professor Molkenboerstraat 20A op 8 oktober 2026 besliste.
+        x = ingesloten[0]
+        maten = ", ".join(str(m) for m in (x.get("maten") or []))
+        uit.append(("insluiting", VOLDOET_NIET,
+                    f"nummer {x.get('nummer')} is een woning"
+                    + (f" van {maten} m²" if maten else "")
+                    + f" en ligt tussen dit pand en {x.get('kamerbuur')}, dat "
+                      f"al kamerpand is. Is die woning zelfstandig bewoond, "
+                      f"dan sluit verkameren haar in; wordt ze al per kamer "
+                      f"bewoond, dan worden het drie kamerpanden op rij. De "
+                      f"Beleidsregels Kamerverhuur 2021 (artikel 2.1, regels 1 "
+                      f"en 2) verbieden allebei, en zo besliste de gemeente op "
+                      f"8 oktober 2026 bij Professor Molkenboerstraat 20A"))
+    elif ingesloten:
         x = ingesloten[0]
         maten = ", ".join(str(m) for m in (x.get("maten") or []))
         uit.append(("insluiting", VOLDOET_NIET,
@@ -528,8 +543,13 @@ def proef():
 
         # 5c. EN DE ECHTE GEVALLEN DIE DAARBIJ HOREN.
         for adres, reden_moet in (("Groesbeekseweg 53", "weerszijden"),
-                                  ("Keizer Karelplein 31",
-                                   "gekeken en niets gevonden"),
+                                  # Was "gekeken en niets gevonden", omdat 30
+                                  # maar één object is. Sinds de beslissing
+                                  # over Professor Molkenboerstraat 20A (8
+                                  # oktober 2026) blokkeert een woning tussen
+                                  # dit pand en een kamerpand linksom of
+                                  # rechtsom: 30 ligt tussen 31 en kamerpand 29.
+                                  ("Keizer Karelplein 31", "insluiting"),
                                   # Buiten de voorraad, maar de reeks komt uit
                                   # de vergunningenlijst en moet wel blokkeren.
                                   ("Jan van Goyenstraat 52", "reeks")):
