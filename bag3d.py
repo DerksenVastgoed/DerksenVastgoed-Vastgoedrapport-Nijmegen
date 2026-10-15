@@ -164,6 +164,23 @@ def pand_ids_uit_geschiedenis(pad="pandgeschiedenis.json"):
     return ids
 
 
+def pand_ids_uit_voorraad(pad="voorraad.json"):
+    """De pand-ids van de woningen in de zes ringbuurten."""
+    try:
+        with open(pad, encoding="utf-8") as f:
+            v = json.load(f)
+    except Exception:
+        return []
+    uit = []
+    for r in (v.get("adressen") or {}).values():
+        if r.get("herkomst") != "focusbuurt":
+            continue
+        for pid in (r.get("panden") or [r.get("pand")]):
+            if pid and pid not in uit:
+                uit.append(pid)
+    return uit
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default=UIT_PAD)
@@ -174,7 +191,13 @@ def main():
     args = ap.parse_args()
 
     opgeslagen = lees(args.uit)
+    # Eerst de panden die we volgen, dan de hele ring: de potentiekaart en de
+    # telling per etage hebben de bouwlagen van elke woning nodig, en de
+    # geschiedenis kent maar een fractie van de 8.329 panden in de ring.
     ids = pand_ids_uit_geschiedenis()
+    for pid in pand_ids_uit_voorraad():
+        if pid not in ids:
+            ids.append(pid)
     if not ids:
         print("Geen pand-ids bekend; draai eerst de geschiedenisstap",
               file=sys.stderr)

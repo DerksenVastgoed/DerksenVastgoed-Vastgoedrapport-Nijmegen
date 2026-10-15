@@ -64,12 +64,17 @@ def kamerstatus(adres, opp, kamerpand):
     return "niet te toetsen", reden
 
 
-def splitsstatus(opp, in_complex):
+def splitsstatus(opp, in_complex, bouwlagen=None):
+    """
+    open, via VvE of te klein, en hoeveel woningen er hoogstens in passen.
+
+    Dezelfde telling als het splitsscenario van de dossiers
+    (mb.max_eenheden), per etage als de bouwlagen bekend zijn.
+    """
     if in_complex:
-        return "via VvE"
-    if opp and opp * mb.VERHUURBAAR_SPLITSING >= 2 * mb.MIN_UNIT_M2:
-        return "open"
-    return "te klein"
+        return "via VvE", None
+    n = mb.max_eenheden(opp, bouwlagen)
+    return ("open", n) if n >= 2 else ("te klein", n)
 
 
 def bepaal(voorraad, te_koop=(), shortlist=()):
@@ -88,6 +93,9 @@ def bepaal(voorraad, te_koop=(), shortlist=()):
         adres = r.get("adres") or ""
         opp = r.get("oppervlakte")
         complex_ = per_pand.get(r.get("pand"), 0) >= COMPLEX_VANAF
+        lagen = (mb.bouwlagen_van(r.get("pand"))
+                 if per_pand.get(r.get("pand"), 0) <= 1 else None)
+        s_status, s_aantal = splitsstatus(opp, complex_, lagen)
         kamerpand = bool(mb.kamerverhuur_bekend({"adres": adres}))
         k, k_reden = kamerstatus(adres, opp, kamerpand)
         sl = _psl.sleutel(adres)
@@ -97,7 +105,9 @@ def bepaal(voorraad, te_koop=(), shortlist=()):
             "buurt": (r.get("buurten") or [None])[0],
             "m2": opp, "bouwjaar": r.get("pand_bouwjaar"), "label": label,
             "kamers": k, "kamers_reden": k_reden,
-            "splitsen": splitsstatus(opp, complex_),
+            "splitsen": s_status,
+            "woningen_na_splitsen": s_aantal if s_status == "open" else None,
+            "bouwlagen": lagen,
             "labelsprong": label in LABELSPRONG,
             "te_koop": sl in koop,
             "shortlist": ((lijst_vbo.get(vbo) or lijst.get(sl) or {})
@@ -142,11 +152,15 @@ def proef():
         afw.append("een woning van 80 m2 krijgt een kamerroute")
     if kamerstatus("Proefstraat 1", 200, True)[0] != "al kamerpand":
         afw.append("een bekend kamerpand wordt opnieuw getoetst")
-    if splitsstatus(120, True) != "via VvE":
+    if splitsstatus(120, True)[0] != "via VvE":
         afw.append("een appartement in een complex kan zomaar worden gesplitst")
-    if splitsstatus(40, False) != "te klein":
+    if splitsstatus(40, False)[0] != "te klein":
         afw.append("40 m2 wordt gesplitst")
-    if splitsstatus(120, False) != "open":
+    if splitsstatus(120, False)[0] != "open":
+        afw.append("120 m2 kan niet worden gesplitst")
+    if splitsstatus(80, False, 2) != ("open", 2):
+        afw.append(f"twee lagen van 40 m2: {splitsstatus(80, False, 2)}")
+    if False:
         afw.append("120 m2 kan niet worden gesplitst")
     # Een te koop staand pand op de shortlist komt erin met zijn factor.
     v = {"adressen": {"v1": {"adres": "Proefstraat 1", "herkomst": "focusbuurt",
@@ -191,7 +205,8 @@ def main():
     # van de sleutels staat erin.
     kort = {"a": "adres", "p": "punt", "b": "buurt", "m": "m2", "j": "bouwjaar",
             "l": "label", "k": "kamers", "r": "kamers_reden", "s": "splitsen",
-            "e": "labelsprong", "t": "te_koop", "f": "shortlist"}
+            "e": "labelsprong", "t": "te_koop", "f": "shortlist",
+            "n": "woningen_na_splitsen", "g": "bouwlagen"}
     terug = {v: k for k, v in kort.items()}
     compact = {vbo: {terug[k]: v for k, v in r.items() if v not in (None, "", False)}
                for vbo, r in rijen.items()}
