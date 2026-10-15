@@ -145,9 +145,49 @@ def samenvatting(rijen):
     return regels
 
 
+# Wat niet in de openbare repo mag, en de workflows die terugcommitten.
+NIET_OPENBAAR = (SHORTLIST, UIT_JSON, UIT_MD, "kaart-potentie-ring.html")
+WORKFLOWS = (".github/workflows/bekendmakingen.yml",
+             ".github/workflows/voorraad.yml",
+             ".github/workflows/inhaal-3dbag.yml")
+
+
+def openbaar_gelekt(gitignore=".gitignore", workflows=WORKFLOWS):
+    """
+    Welke strategische bestanden toch in de openbare repo kunnen belanden.
+
+    WAAROM. 15 oktober 2026, Mark: de potentiekaart stond in de openbare repo.
+    Met de shortlist erbij liet die zien welke panden Derksen Vastgoed wil
+    kopen en tot welke factor. Het bestand uit de repo halen is niet genoeg:
+    staat het nog in de lijst van een workflow die terugcommit, dan zet de
+    eerstvolgende run het er weer in. Daarom beide: genegeerd door git EN in
+    geen enkele commitlijst.
+    """
+    lek = []
+    try:
+        with open(gitignore, encoding="utf-8") as f:
+            genegeerd = {r.strip() for r in f if r.strip() and not r.startswith("#")}
+    except OSError:
+        genegeerd = set()
+    for naam in NIET_OPENBAAR:
+        if naam not in genegeerd:
+            lek.append(f"{naam} staat niet in .gitignore")
+    for pad in workflows:
+        try:
+            with open(pad, encoding="utf-8") as f:
+                regels = [r.strip() for r in f]
+        except OSError:
+            continue
+        for naam in NIET_OPENBAAR:
+            if naam in regels:
+                lek.append(f"{naam} staat in de commitlijst van {pad}")
+    return lek
+
+
 def proef():
-    """De indeling op vaste gevallen, zonder bestanden of netwerk."""
+    """De indeling op vaste gevallen, zonder netwerk."""
     afw = []
+    afw += ["strategisch bestand openbaar: " + x for x in openbaar_gelekt()]
     if kamerstatus("Proefstraat 1", 80, False)[0] != "te klein":
         afw.append("een woning van 80 m2 krijgt een kamerroute")
     if kamerstatus("Proefstraat 1", 200, True)[0] != "al kamerpand":
@@ -160,8 +200,6 @@ def proef():
         afw.append("120 m2 kan niet worden gesplitst")
     if splitsstatus(80, False, 2) != ("open", 2):
         afw.append(f"twee lagen van 40 m2: {splitsstatus(80, False, 2)}")
-    if False:
-        afw.append("120 m2 kan niet worden gesplitst")
     # Een te koop staand pand op de shortlist komt erin met zijn factor.
     v = {"adressen": {"v1": {"adres": "Proefstraat 1", "herkomst": "focusbuurt",
                              "status": "Verblijfsobject in gebruik",

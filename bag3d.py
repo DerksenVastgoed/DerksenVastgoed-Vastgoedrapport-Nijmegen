@@ -27,6 +27,7 @@ import datetime as dt
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -181,6 +182,95 @@ def pand_ids_uit_voorraad(pad="voorraad.json"):
     return uit
 
 
+def _rang(p):
+    """
+    Hoe ver een pand is: gegevens boven opgegeven boven een mislukte poging.
+
+    Gebruikt bij het samenvoegen. Een pand met gegevens wint altijd, want een
+    meting gaat niet verloren door een latere fout; daarna telt wie het vaakst
+    geprobeerd heeft, zodat de teller van drie pogingen doorloopt.
+    """
+    p = p or {}
+    if p.get("b3_opp_buitenmuur"):
+        return (2, p.get("opgehaald") or "")
+    if p.get("leeg"):
+        return (1, str(p.get("pogingen") or 0))
+    return (0, str(p.get("pogingen") or 0))
+
+
+def samenvoegen(a, b):
+    """
+    Twee versies van bag3d.json samen, zonder dat er een pand wegvalt.
+
+    WAAROM. Twee workflows schrijven dit bestand: de brief haalt elke dag 300
+    panden op, de inhaalslag duizenden. Botsen ze bij het terugcommitten, dan
+    zette de brief tot 15 oktober "de versie van deze run" neer. Begon de
+    brief om 3:17 en de inhaalslag later, dan wiste de brief zo alles wat de
+    inhaalslag intussen had opgehaald. Er komen alleen panden bij en er gaan
+    er nooit af, dus de vereniging is altijd juist.
+
+    Git roept dit aan als samenvoeger (zie .gitattributes), dus bij elke
+    rebase of merge van dit bestand, in welke workflow ook.
+    """
+    uit = dict(a)
+    panden = dict(a.get("panden") or {})
+    for pid, pb in (b.get("panden") or {}).items():
+        if pid not in panden or _rang(pb) > _rang(panden[pid]):
+            panden[pid] = pb
+    uit["panden"] = panden
+    mislukt = dict(a.get("mislukt") or {})
+    for pid, n in (b.get("mislukt") or {}).items():
+        mislukt[pid] = max(int(n or 0), int(mislukt.get(pid) or 0))
+    uit["mislukt"] = {pid: n for pid, n in mislukt.items()
+                      if not (panden.get(pid) or {}).get("b3_opp_buitenmuur")}
+    uit["bijgewerkt"] = max(a.get("bijgewerkt") or "", b.get("bijgewerkt") or "")
+    uit["bron"] = a.get("bron") or b.get("bron") or ""
+    uit["versie"] = a.get("versie") or b.get("versie") or ""
+    return uit
+
+
+def proef():
+    """Het samenvoegen op vaste gevallen, zonder netwerk."""
+    afw = []
+    a = {"panden": {"p1": {"b3_opp_buitenmuur": 10, "opgehaald": "2026-10-01"},
+                    "p2": {"pogingen": 1}},
+         "mislukt": {"p2": 1}, "bijgewerkt": "2026-10-14"}
+    b = {"panden": {"p2": {"b3_opp_buitenmuur": 20, "opgehaald": "2026-10-15"},
+                    "p3": {"leeg": True}, "p1": {"leeg": True}},
+         "mislukt": {"p4": 2}, "bijgewerkt": "2026-10-15"}
+    s = samenvoegen(a, b)
+    if set(s["panden"]) != {"p1", "p2", "p3"}:
+        afw.append(f"bij het samenvoegen valt een pand weg: {sorted(s['panden'])}")
+    if not s["panden"]["p1"].get("b3_opp_buitenmuur"):
+        afw.append("een gemeten pand wordt overschreven door een lege poging")
+    if not s["panden"]["p2"].get("b3_opp_buitenmuur"):
+        afw.append("een gemeten pand van de andere kant gaat verloren")
+    if "p2" in s["mislukt"] or s["mislukt"].get("p4") != 2:
+        afw.append(f"de pogingenteller klopt niet na samenvoegen: {s['mislukt']}")
+    if s["bijgewerkt"] != "2026-10-15":
+        afw.append("de datum van de nieuwste kant gaat verloren")
+    if samenvoegen(b, a)["panden"] != s["panden"]:
+        afw.append("samenvoegen hangt af van de volgorde")
+    for r in afw:
+        print("AFWIJKING: " + r, file=sys.stderr)
+    print(f"Proef 3D BAG: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
+
+
+def _als_samenvoeger(basis, ons, hun):
+    """Aangeroepen door git: schrijft de vereniging naar ons, de %A."""
+    try:
+        a, b = lees(ons), lees(hun)
+        if not a.get("panden") and not b.get("panden"):
+            return 1
+        with open(ons, "w", encoding="utf-8") as f:
+            json.dump(samenvoegen(a, b), f, ensure_ascii=False, indent=1)
+        return 0
+    except Exception as e:
+        print(f"3D BAG samenvoegen mislukt: {e}", file=sys.stderr)
+        return 1
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--uit", default=UIT_PAD)
@@ -188,7 +278,19 @@ def main():
     ap.add_argument("--versie", default="",
                     help="versie van de bron; bij een andere waarde wordt alles "
                          "opnieuw opgehaald")
+    ap.add_argument("--minuten", type=float, default=0,
+                    help="stop na zoveel minuten; 0 is geen tijdgrens")
+    ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--samenvoegen", nargs=3, metavar=("BASIS", "ONS", "HUN"),
+                    help="samenvoeger voor git; zie .gitattributes")
+    ap.add_argument("--rest", default="",
+                    help="schrijf het aantal panden dat nog te gaan is naar "
+                         "dit bestand, voor de vervolgronde")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
+    if args.samenvoegen:
+        return _als_samenvoeger(*args.samenvoegen)
 
     opgeslagen = lees(args.uit)
     # Eerst de panden die we volgen, dan de hele ring: de potentiekaart en de
@@ -214,10 +316,20 @@ def main():
     if not wachtrij:
         print(f"3D BAG bij: {len(opgeslagen.get('panden', {}))} panden",
               file=sys.stderr)
+        if args.rest:
+            with open(args.rest, "w", encoding="utf-8") as f:
+                json.dump({"rest": 0}, f)
         return 0
 
     gedaan, leeg, fout = 0, 0, 0
+    begin = time.monotonic()
+    bekeken = 0
     for pand_id in wachtrij[:args.per_ronde]:
+        if args.minuten and time.monotonic() - begin > args.minuten * 60:
+            print(f"Tijdgrens van {args.minuten:g} minuten bereikt",
+                  file=sys.stderr)
+            break
+        bekeken += 1
         try:
             antwoord = _haal(pand_id)
         except Exception as e:
@@ -256,11 +368,16 @@ def main():
     with open(args.uit, "w", encoding="utf-8") as f:
         json.dump(opgeslagen, f, ensure_ascii=False, indent=1)
 
-    rest = max(0, len(wachtrij) - args.per_ronde)
+    rest = max(0, len(wachtrij) - bekeken)
+    duur = time.monotonic() - begin
+    if args.rest:
+        with open(args.rest, "w", encoding="utf-8") as f:
+            json.dump({"rest": rest, "bekeken": bekeken, "opgehaald": gedaan,
+                       "fouten": fout, "seconden": round(duur, 1)}, f)
     opgegeven = sum(1 for p in (opgeslagen.get("panden") or {}).values()
                     if int(p.get("pogingen") or 0) >= MAX_POGINGEN)
     print(f"3D BAG: {gedaan} panden opgehaald, {leeg} zonder gegevens, "
-          f"{fout} fouten, nog {rest} te gaan "
+          f"{fout} fouten in {duur:.0f} seconden, nog {rest} te gaan "
           f"(totaal {len(opgeslagen.get('panden', {}))}"
           + (f", {opgegeven} na drie pogingen opgegeven" if opgegeven else "")
           + ")", file=sys.stderr)

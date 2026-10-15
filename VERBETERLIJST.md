@@ -8123,3 +8123,28 @@ nagezocht, en dat is de enige route naar meer.
 - De toets aan artikel 15, met onderscheid tussen wat hard te toetsen is en
   wat onderzoek vraagt.
 - De regelgevingsmonitor op CVDR, Basiswettenbestand en Staatsblad.
+
+---
+
+## Bij de overstap naar een privé repo (15 oktober 2026)
+
+De strategische laag is uit de openbare repo gehaald (zie .gitignore en de eis
+daarover). Wanneer de repo privé is, gaat terug:
+- de vier regels uit .gitignore onder "DE STRATEGISCHE LAAG";
+- de stap "Potentie van de ring" in bekendmakingen.yml, en shortlist.json,
+  potentie_ring.json en potentie_ring.md in de commitlijst;
+- de link naar de potentiekaart in render_bijlage (marktprijzen_bag.py);
+- de lijst NIET_OPENBAAR in potentie.py en die eis vervallen dan.
+
+Nog openbaar tot dan: de shortlisttabel in digests/*-bijlage.md, de factor 17
+in marktprijzen_bag.py, en alles in de geschiedenis van git.
+
+## 3D BAG: panden met metingen maar zonder bouwlagen
+
+Op 15 oktober hadden 610 van de 1.347 opgehaalde panden wel een buitenmuur en
+volume maar geen b3_bouwlagen. Die tellen dus niet per etage. Uitzoeken of de
+bron ze bewust leeg laat (bijvoorbeeld bij gemengde daken) voordat er iets uit
+de hoogte wordt afgeleid; een afgeleid aantal lagen moet er dan bij zeggen dat
+het afgeleid is.
+
+De workflow inhaal-3dbag.yml kan weg zodra de wachtrij leeg is.

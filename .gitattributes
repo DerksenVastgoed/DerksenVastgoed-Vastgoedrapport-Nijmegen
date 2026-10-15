@@ -12,3 +12,11 @@ bouwkosten_eigen.txt merge=union
 kamernet_plak.txt merge=union
 funda_verkocht_plak.txt merge=union
 onderwerpen_volgen.txt merge=union
+
+# Bestanden die twee workflows tegelijk aanvullen, met een eigen samenvoeger.
+# De samenvoeger staat in het script zelf en wordt in elke workflow die het
+# bestand terugcommit aangezet met:
+#   git config merge.bag3d.driver "python3 bag3d.py --samenvoegen %O %A %B"
+# Zonder die regel valt git terug op gewoon samenvoegen en zet de brief bij een
+# botsing zijn eigen versie neer; dan verdwijnt het werk van de inhaalslag.
+bag3d.json merge=bag3d
