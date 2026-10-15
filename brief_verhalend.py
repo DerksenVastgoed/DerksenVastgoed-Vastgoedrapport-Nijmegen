@@ -350,6 +350,8 @@ EEN SPLITSING IS NIET AUTOMATISCH EEN BOPA. Bij de Biezenstraat 110 was de buite
 
 DE WOZ-GRENS VAN €396.000 HOORT BIJ KAMERS, NIET BIJ SPLITSEN. Die grens bepaalt of een omzettingsvergunning nodig is om een woning naar kamers te brengen, en of de opkoopbescherming geldt. Voor woningvorming, dus een pand opdelen in zelfstandige woningen, is die grens niet de toets: dat loopt via het omgevingsplan en zo nodig een buitenplanse omgevingsplanactiviteit (BOPA). Gaat een bekendmaking over splitsen, haal er dan niet de WOZ-grens bij alsof die erover gaat, ook niet als achtergrond bij de buurt. Dat schuift de lezer ongemerkt van het ene regime naar het andere.
 
+EEN VERGUNNING KAMERVERHUUR IN EEN BEKENDMAKING IS MEESTAL EEN OMGEVINGSVERGUNNING, GEEN OMZETTINGSVERGUNNING. Nijmegen kent er twee, uit twee regelingen: de omgevingsvergunning voor afwijken van het omgevingsplan (kamerverhuur), en de omzettingsvergunning uit de huisvestingsverordening, die alleen nodig is bij een WOZ tussen de twee grenzen. Op 15 oktober stond in de brief dat bij Professor Molkenboerstraat 20A "een omzettingsvergunning" was herroepen, terwijl de bekendmaking het heeft over de omgevingsvergunning voor afwijken van het omgevingsplan. Noem de vergunning zoals de titel van de bekendmaking hem noemt. En een beslissing op bezwaar is nog niet het einde: daarna staat beroep bij de rechtbank open. Schrijf dus niet dat iets "moet stoppen" of definitief is zolang de beroepstermijn loopt; noem de termijn als die bekend is. Waarom een bezwaar gegrond werd, staat niet in de bekendmaking maar in de stukken; verzin die reden niet.
+
 DE VIER INGREPEN UIT ARTIKEL 21 HEBBEN ELK HUN EIGEN NAAM, HAAL ZE NOOIT DOOR ELKAAR. Omzetten is een zelfstandige woning naar ONZELFSTANDIGE woonruimte brengen, dus kamerverhuur; daar hoort de omzettingsvergunning bij. Woningvorming, in de praktijk splitsen genoemd, is een pand verbouwen tot twee of meer ZELFSTANDIGE woningen. Onttrekken is woonruimte aan de bewoning onttrekken, bijvoorbeeld voor logies of kantoor. Samenvoegen is twee woningen tot een maken. Schrijf dus nooit dat een omzettingsvergunning de toestemming is om een pand in meerdere losse woningen te verdelen; dat is woningvorming. Staat in een bekendmaking "omzetting", dan gaat het over kamers, en dat is iets anders dan zes appartementen.
 
 VAN BUURT NAAR STRAAT NAAR PAND. Behandel een uitgelicht pand in die volgorde, als één blok en niet verspreid over de brief. Eerst de buurt, met alleen die cijfers die iets verklaren over dit pand: niet alle zes de kengetallen, maar de twee of drie die ertoe doen. Dan de straat, en daar zit de waarde: welke aanvragen zijn er gedaan en hoe liepen ze af, welke panden staan als kamerverhuur bekend, wat is er verkocht en wat staat er nu te koop. Noem adressen, want die kan pa natrekken. Dan het pand zelf: WOZ, punten, routes, doorrekening. Hoe dichter bij het pand, hoe harder de gegevens, en dat mag je zeggen.
@@ -1123,6 +1125,97 @@ def week_terug(soort, datum, dagen=7, maxlen=6000):
     return "\n\n".join(stukken)[:maxlen]
 
 
+# Afkortingen die in titels van bekendmakingen voluit staan en in de brief
+# vaak niet, of andersom. Beide kanten op, zodat de koppeling niet afhangt van
+# hoe het model de straat schreef.
+_STRAATVORMEN = (("Professor ", "Prof. "), ("Sint ", "St. "),
+                 ("Burgemeester ", "Burg. "), ("Doctor ", "Dr. "),
+                 ("Mr. ", "Meester "))
+
+_REGEL_BEKENDMAKING = re.compile(
+    r"^- \*\*(\d{4}-\d{2}-\d{2})\*\* \. (.+?) \(\[bron\]\((https?://[^)\s]+)\)\)\s*$")
+_ADRES_IN_TITEL = re.compile(
+    r"\baan (?:de )?([A-Z][^,\d]*?) (\d+[A-Za-z]?"
+    r"(?:\s*(?:-|en|t/m)\s*\d*[A-Za-z]?)?)(?:,|\s+\d{4}\s?[A-Z]{2})")
+
+
+def publicaties_met_adres(datum, dagen=1, map="digests"):
+    """
+    De bekendmakingen van de dag (of de week), als (adres-varianten, url).
+
+    Uit de digest die de brief zelf als bron krijgt, dus de koppeling gaat
+    nooit over een publicatie die het model niet heeft gezien.
+    """
+    eind = dt.date.fromisoformat(datum)
+    uit, gezien = [], set()
+    for i in range(dagen - 1, -1, -1):
+        d = (eind - dt.timedelta(days=i)).isoformat()
+        for regel in lees(os.path.join(map, f"{d}-bekendmakingen.md")).split("\n"):
+            m = _REGEL_BEKENDMAKING.match(regel.strip())
+            if not m or m.group(3) in gezien:
+                continue
+            a = _ADRES_IN_TITEL.search(m.group(2))
+            if not a:
+                continue
+            gezien.add(m.group(3))
+            straat, nummer = a.group(1).strip(), a.group(2)
+            straten = {straat}
+            for lang, kort in _STRAATVORMEN:
+                if straat.startswith(lang):
+                    straten.add(kort + straat[len(lang):])
+                if straat.startswith(kort):
+                    straten.add(lang + straat[len(kort):])
+            # Een reeks als "11-11A" of "11 en 11A" is ook als "11" te vinden,
+            # want zo noemt de brief het pand meestal de eerste keer. Een
+            # enkel nummer met letter blijft precies: 20A is niet 20.
+            nummers = [nummer]
+            eerste = re.match(r"\d+[A-Za-z]?", nummer).group(0)
+            if eerste != nummer:
+                nummers.append(eerste)
+            uit.append(([(s, n) for s in straten for n in nummers], m.group(3)))
+    return uit
+
+
+def koppel_publicaties(brief, publicaties):
+    """
+    Het eerste adres in de brief dat een bekendmaking van vandaag noemt, wordt
+    een link naar die bekendmaking.
+
+    WAAROM IN CODE EN NIET IN DE OPDRACHT. Op 15 oktober opende de brief met
+    de herroepen kamerverhuurvergunning aan Professor Molkenboerstraat 20A,
+    en Mark kon niet doorklikken naar het besluit. De link stond wel in de
+    gegevens die het model kreeg, als "([bron](...))" achter de titel, maar
+    het model schrijft lopende tekst en liet hem weg. De opdracht "behoud de
+    links" gold alleen voor de panden uit het aanbod. Een instructie aan het
+    model is geen garantie (zie 7i in de verbeterlijst); dit wel.
+
+    Alleen een adres dat nog geen link is, en alleen de eerste vermelding. Een
+    kop wordt niet aangeraakt.
+    """
+    for varianten, url in publicaties:
+        if url in brief:
+            continue
+        bezet = [(m.start(), m.end())
+                 for m in re.finditer(r"\[[^\]]*\]\([^)]*\)", brief)]
+        beste = None
+        for straat, nummer in varianten:
+            patroon = (re.escape(straat) + r"\s+" + re.escape(nummer)
+                       + r"(?![\w-])")
+            for m in re.finditer(patroon, brief, flags=re.IGNORECASE):
+                if any(a <= m.start() < b for a, b in bezet):
+                    continue
+                regelbegin = brief.rfind("\n", 0, m.start()) + 1
+                if brief[regelbegin:regelbegin + 1] == "#":
+                    continue
+                if beste is None or m.start() < beste.start():
+                    beste = m
+                break
+        if beste:
+            brief = (brief[:beste.start()] + f"[{beste.group(0)}]({url})"
+                     + brief[beste.end():])
+    return brief
+
+
 def strip_opmaak(tekst, maxlen=14000):
     """Haalt tabellen en HTML eruit; het model krijgt de inhoud, niet de vorm."""
     tekst = re.sub(r"<[^>]+>", " ", tekst)
@@ -1516,6 +1609,61 @@ def proef():
             fouten.append(f"het blok {nodig!r} staat niet meer in de "
                           f"schrijfinstructie")
 
+    # HET BESLUIT IS KLIKBAAR. De zin en de regel uit de brief en de digest
+    # van 15 oktober, zoals ze werkelijk stonden.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as _m:
+        with open(os.path.join(_m, "2026-10-15-bekendmakingen.md"), "w",
+                  encoding="utf-8") as _f:
+            _f.write("- **2026-10-14** . Beslissing op bezwaar voor bezwaar "
+                     "tegen Z2026-00001271 Vergunning kamerverhuur herroepen, "
+                     "aan Professor Molkenboerstraat 20A, 6524RP Nijmegen "
+                     "([bron](https://zoek.officielebekendmakingen.nl/"
+                     "gmb-2026-479892.html))\n"
+                     "- **2026-10-14** . Besluit voor het plaatsen van een "
+                     "entreekozijn in de voorgevel aan Molenstraat 43, 6511HA "
+                     "Nijmegen ([bron](https://zoek.officielebekendmakingen.nl/"
+                     "gmb-2026-476232.html))\n")
+        _pub = publicaties_met_adres("2026-10-15", 1, map=_m)
+    _zin = ("De gemeente heeft de kamerverhuurvergunning voor Professor "
+            "Molkenboerstraat 20A in Galgenveld herroepen. Dat raakt ook "
+            "[Prof. Molkenboerstraat 30](https://maps) niet. Later nog eens "
+            "Prof. Molkenboerstraat 20A.")
+    _uit = koppel_publicaties(_zin, _pub)
+    if ("[Professor Molkenboerstraat 20A](https://zoek.officielebekendmakingen"
+            ".nl/gmb-2026-479892.html)") not in _uit:
+        fouten.append(f"de herroepen vergunning is niet klikbaar: {_uit[:160]!r}")
+    if _uit.count("gmb-2026-479892") != 1:
+        fouten.append("de link staat er vaker dan een keer")
+    if "[Prof. Molkenboerstraat 30](https://maps)" not in _uit:
+        fouten.append("een bestaande link is aangetast")
+    if "gmb-2026-476232" in _uit:
+        fouten.append("een publicatie die de brief niet noemt, kreeg toch een link")
+    if koppel_publicaties("# Professor Molkenboerstraat 20A", _pub) != \
+            "# Professor Molkenboerstraat 20A":
+        fouten.append("een kop is aangetast")
+    if "gmb-2026-479892" not in koppel_publicaties(
+            "Bij Prof. Molkenboerstraat 20A gebeurde iets.", _pub):
+        fouten.append("de afgekorte straatnaam wordt niet herkend")
+    if "gmb-2026-479892" in koppel_publicaties(
+            "Professor Molkenboerstraat 20 is een ander object.", _pub):
+        fouten.append("20A werd gekoppeld aan nummer 20")
+    # EEN REEKS, en de eerste vermelding: zo stond het op 15 oktober.
+    with _tf.TemporaryDirectory() as _m:
+        with open(os.path.join(_m, "2026-10-15-bekendmakingen.md"), "w",
+                  encoding="utf-8") as _f:
+            _f.write("- **2026-10-14** . Besluit voor het splitsen van een "
+                     "woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen "
+                     "([bron](https://zoek.officielebekendmakingen.nl/"
+                     "gmb-2026-480046.html))\n")
+        _reeks = publicaties_met_adres("2026-10-15", 1, map=_m)
+    _r = koppel_publicaties("Eerder schreef ik over Bronsgeeststraat 11. Nu is "
+                            "de splitsing naar Bronsgeeststraat 11 en 11A "
+                            "vergund.", _reeks)
+    if not _r.startswith("Eerder schreef ik over [Bronsgeeststraat 11]("):
+        fouten.append(f"bij een reeks wordt niet de eerste vermelding "
+                      f"gekoppeld: {_r[:90]!r}")
+
     print(f"Proef brief_verhalend: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
@@ -1649,6 +1797,13 @@ def main():
                    "December": "december"}.items():
         datum_nl = datum_nl.replace(en, nl)
 
+    # De bekendmakingen die de brief noemt, klikbaar naar het besluit zelf.
+    try:
+        brief = koppel_publicaties(
+            brief, publicaties_met_adres(d, 7 if _weekelijks() else 1))
+    except Exception as e:
+        print(f"Links naar bekendmakingen niet gezet: {str(e)[:80]}",
+              file=sys.stderr)
     tekst = f"# Vastgoed in Nijmegen, {datum_nl}\n\n{brief}\n"
     # Het weetje is een toegift. Faalt het, dan komt de brief er toch.
     try:
