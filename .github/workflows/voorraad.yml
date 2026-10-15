@@ -125,6 +125,20 @@ jobs:
         run: |
           python eponline.py --ruw --vbo "${{ github.event.inputs.ruwe_vbos }}"
 
+      - name: Postcodes ophalen als er een ringbuurt bij is gekomen
+        # De voorraad zeeft op de postcodes uit buurtinventaris.json. Komt er
+        # een buurt bij in ring.py, dan kent die inventaris hem nog niet en
+        # blijft de nieuwe buurt leeg tot de brief op zondag de inventaris
+        # ververst. Zo begint de voorraad dezelfde dag. Kent de inventaris de
+        # hele ring, dan kost deze stap een seconde en geen aanroep.
+        continue-on-error: true
+        run: |
+          if python buurtinventaris.py --dekt-ring; then
+            exit 0
+          fi
+          python buurtinventaris.py --proef
+          python buurtinventaris.py
+
       - name: Oppervlakte en gebruiksdoel uit de BAG
         continue-on-error: true
         env:
@@ -244,7 +258,7 @@ jobs:
           set -x
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          BESTANDEN="voorraad.json voorraad_stand.json eponline_antwoordvorm.json parkeerzones.json parkeerzones_verslag.md"
+          BESTANDEN="voorraad.json voorraad_stand.json eponline_antwoordvorm.json parkeerzones.json parkeerzones_verslag.md buurtinventaris.json"
           if [ "${GITHUB_REF_NAME}" != "${DEFAULT_BRANCH}" ]; then
             # Op een branch gaat de voorraad van ruim vijf megabyte niet terug
             # (die zou uit een tussenversie van de code komen), maar de stand

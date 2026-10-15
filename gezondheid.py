@@ -2664,20 +2664,20 @@ def controle_regelset():
     if zonder_gebied:
         return (LET_OP, f"{len(regels)} regels, waarvan {len(zonder_gebied)} "
                 f"zonder buurt of straat: {', '.join(zonder_gebied[:3])}",
-                "Zo'n regel komt bij elk pand in alle zes buurten te staan. "
+                "Zo'n regel komt bij elk pand in alle ringbuurten te staan. "
                 "Dat kan bedoeld zijn bij een landelijke regel, maar bij een "
                 "gemeentelijke bijna nooit.")
     try:
-        from brief_verhalend import ZES_BUURTEN
+        from ring import BUURTEN as RING_BUURTEN
     except Exception:
-        ZES_BUURTEN = ()
+        RING_BUURTEN = ()
     buiten = sorted({b for r in regels for b in regelset._lijst(r.get("buurt"))}
-                    - {b.lower() for b in ZES_BUURTEN})
+                    - {b.lower() for b in RING_BUURTEN})
     if buiten:
         return (LET_OP, f"{len(regels)} regels, met buurten die wij niet "
                 f"meten: {', '.join(buiten)}",
                 "Die regel gaat dus nooit af, want de brief kijkt alleen naar "
-                "de zes ringbuurten. Controleer de spelling van de buurtnaam.")
+                "de ringbuurten uit ring.py. Controleer de spelling van de buurtnaam.")
     woord = "regel" if len(regels) == 1 else "regels"
     return (OK, f"{len(regels)} {woord} in {regelset.PAD}: "
             + ", ".join(r["naam"] for r in regels[:4]), "")

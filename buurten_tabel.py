@@ -31,14 +31,9 @@ except Exception:  # noqa
 # --- CONFIG ---
 CBS_PAD = "buurten_cbs.json"
 
-BUURTEN = [
-    ("Stadscentrum",     "oost"),
-    ("Benedenstad",      "oost"),
-    ("Bottendaal",       "oost"),
-    ("Galgenveld",       "oost"),
-    ("Altrade",          "oost"),
-    ("Biezen",           "west"),
-]
+# De ring staat in ring.py; hier alleen met de zijde erbij voor de tabel.
+import ring as _ring
+BUURTEN = [(b, _ring.zijde(b)) for b in _ring.BUURTEN]
 GEMEENTE = "Nijmegen"
 JAAR_NU = "2024"
 # PDOK haalt oude jaargangen na verloop van tijd weg. Daarom proberen we

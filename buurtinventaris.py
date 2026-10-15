@@ -70,7 +70,7 @@ hele ring, in plaats van een vraag per adres, en het levert meteen het
 onderscheid tussen een woning en een garagebox.
 
 Gebruik:
-  python buurtinventaris.py                 # alle zes buurten
+  python buurtinventaris.py                 # alle ringbuurten uit ring.py
   python buurtinventaris.py --buurt Biezen  # een enkele buurt, om te proeven
   python buurtinventaris.py --uit elders.json
 """
@@ -110,19 +110,34 @@ MAX_PER_BUURT = 9500
 
 def buurten_lijst():
     """
-    De zes ringbuurten, uit marktprijzen_bag.py.
+    De ringbuurten, uit ring.py.
 
     Eén plek waar die namen staan. Twee lijsten gaan uit elkaar lopen, en dan
-    meet dit script een andere ring dan de brief beschrijft.
+    meet dit script een andere ring dan de brief beschrijft. Hier stond een
+    eigen terugvallijst voor als de import mislukte; die is weg, want een
+    terugval die stil de oude ring meet is erger dan een fout. ring.py
+    importeert niets en kan dus niet mislukken.
     """
+    import ring
+    return list(ring.BUURTEN)
+
+
+def dekt_ring(pad=None):
+    """
+    Dekt de bewaarde inventaris alle buurten van de ring?
+
+    WAAROM. De workflow ververst de inventaris alleen op zondag of als het
+    bestand ontbreekt. Op 15 oktober kwamen Hunnerberg en St. Anna erbij; zonder
+    deze toets had de voorraad tot zondag de nieuwe buurten niet gekend, en
+    daarna pas de labels en de 3D BAG. Nu ziet de workflow het zelf.
+    """
+    pad = pad or UIT
     try:
-        from marktprijzen_bag import FOCUS_BUURTEN
-        return list(FOCUS_BUURTEN)
-    except Exception as e:
-        print(f"Kon FOCUS_BUURTEN niet importeren ({e}); eigen lijst gebruikt",
-              file=sys.stderr)
-        return ["Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-                "Altrade", "Biezen"]
+        with open(pad, encoding="utf-8") as f:
+            per = json.load(f).get("postcodes_per_buurt") or {}
+    except Exception:
+        return False
+    return all(per.get(b) for b in buurten_lijst())
 
 
 def _vraag(params):
@@ -329,6 +344,27 @@ def proef():
         afw.append("de twee tellingen zijn gelijk terwijl het filter werkt; "
                    "dan meet deze proef niets")
 
+    # Een inventaris van de oude ring dekt de nieuwe niet, en dat moet de
+    # workflow zien; anders wacht een nieuwe buurt tot zondag.
+    import os
+    import tempfile
+    ring_nu = buurten_lijst()
+    with tempfile.TemporaryDirectory() as d:
+        oud = os.path.join(d, "oud.json")
+        vol = os.path.join(d, "vol.json")
+        with open(oud, "w", encoding="utf-8") as f:
+            json.dump({"postcodes_per_buurt": {b: ["6511AA"]
+                                               for b in ring_nu[:-1]}}, f)
+        with open(vol, "w", encoding="utf-8") as f:
+            json.dump({"postcodes_per_buurt": {b: ["6511AA"]
+                                               for b in ring_nu}}, f)
+        if dekt_ring(oud):
+            afw.append("een inventaris zonder de laatste ringbuurt telt als "
+                       "dekkend; dan wordt een nieuwe buurt niet opgehaald")
+        if not dekt_ring(vol):
+            afw.append("een volledige inventaris telt als onvolledig; dan "
+                       "wordt hij elke dag opnieuw opgehaald")
+
     for a in afw:
         print(f"AFWIJKING: {a}", file=sys.stderr)
     print(f"Proef: {len(afw)} afwijkingen. Gedekt: de filter zelf, dat "
@@ -347,10 +383,18 @@ def main():
                    help="Seconden tussen twee pagina's")
     p.add_argument("--proef", action="store_true",
                    help="de filter nameten zonder netwerk")
+    p.add_argument("--dekt-ring", action="store_true",
+                   help="exitcode 0 als de bewaarde inventaris elke "
+                        "ringbuurt kent, anders 1")
     args = p.parse_args()
 
     if args.proef:
         return proef()
+    if args.dekt_ring:
+        ok = dekt_ring(args.uit)
+        print("Inventaris dekt de ring" if ok else
+              "Inventaris mist een ringbuurt; opnieuw ophalen", file=sys.stderr)
+        return 0 if ok else 1
 
     buurten = args.buurt or buurten_lijst()
     panden_bekend, adressen_bekend = bekend_uit_geschiedenis()

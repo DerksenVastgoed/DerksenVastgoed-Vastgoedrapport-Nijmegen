@@ -36,10 +36,9 @@ import kaartlink
 INPUT_PAD = "verkopen.txt"
 CACHE_PAD = "marktprijzen_bag_cache.json"
 
-FOCUS_BUURTEN = [
-    "Stadscentrum", "Benedenstad", "Bottendaal", "Galgenveld",
-    "Altrade", "Biezen",
-]
+# De ring staat in ring.py en nergens anders.
+import ring as _ring
+FOCUS_BUURTEN = list(_ring.BUURTEN)
 
 BUURT_ALIAS = {
     "Waterkwartier": "Biezen",
@@ -5461,6 +5460,10 @@ BESCHERMD_GEZICHT = {
     "Bottendaal": "deels de negentiende-eeuwse schil",
     "Galgenveld": "deels de negentiende-eeuwse schil",
     "Altrade": "deels de negentiende-eeuwse schil",
+    # Niet nagekeken, en dat staat er dan ook. Een lege waarde zou lezen als
+    # "geen beschermd gezicht", en dat weten we voor deze twee niet.
+    "Hunnerberg": "niet nagekeken of dit in een beschermd stadsgezicht ligt",
+    "St. Anna": "niet nagekeken of dit in een beschermd stadsgezicht ligt",
 }
 
 
@@ -5727,7 +5730,7 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           f"tussen dit pand en {x['kamerbuur']} ligt nummer {x['nummer']}, en "
           f"dat staat niet in de BAG-voorraad. Of daar zelfstandige woningen "
           f"zitten is hier dus niet te zeggen",
-          "BAG-voorraad, dekking beperkt tot de zes ringbuurten")
+          f"BAG-voorraad, dekking beperkt tot de {len(FOCUS_BUURTEN)} ringbuurten")
     if _beeld["gesplitst"]:
         f("buren die al gesplitst zijn", "; ".join(
             f"{x['adres']} is {x['woningen']} zelfstandige woningen van "

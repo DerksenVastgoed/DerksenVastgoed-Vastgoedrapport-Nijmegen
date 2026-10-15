@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Haalt de oppervlakte en het energielabel op van de hele woningvoorraad in de
-zes ringbuurten, niet alleen van wat te koop staat.
+ringbuurten uit ring.py, niet alleen van wat te koop staat.
 
 Drie fasen, elk met een tijdbudget:
 
@@ -517,7 +517,7 @@ def waarom_houden(a, pc, pcs, signalen=(), ident=""):
     buiten alles wat wij volgen.
 
     Twee redenen om iets te bewaren, en ze blijven apart:
-      focusbuurt    het ligt in een postcode van de zes ringbuurten
+      focusbuurt    het ligt in een postcode van de ringbuurten (ring.py)
       bekendmaking  er is een bekendmaking over dit adres gepubliceerd
 
     DIE HERKOMST STAAT IN HET RECORD, en dat is geen administratie. Alles wat
@@ -1504,7 +1504,7 @@ def tekst_pijplijn(pad=UIT):
     # precies de fout die deze brief steeds inhaalt. De pandfase schrijft die
     # status nu wel op, dus zodra er een ronde over is geweest kan dit scherper.
     met_pandstatus = sum(1 for rec in pl.values() if rec.get("pand_status"))
-    r.append(f"_{len(pl)} woningen in de zes buurten hebben in de BAG de "
+    r.append(f"_{len(pl)} woningen in de ringbuurten hebben in de BAG de "
              f"status 'gevormd': het verblijfsobject is geregistreerd maar "
              f"nog niet als in gebruik gemeld. Het CBS rekent zulke objecten "
              f"tot de pijplijn en niet tot de woonvoorraad, en wij nu ook. Ze "

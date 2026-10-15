@@ -317,8 +317,11 @@ jobs:
           # Wekelijks is ruim genoeg: de woningvoorraad van een buurt verandert
           # niet per dag. Bij een handmatige start draait hij ook, zodat de stap
           # te testen is zonder op zondag te wachten.
+          # En ook als de inventaris een buurt uit ring.py mist: dan is de ring
+          # uitgebreid en hoeft dat niet tot zondag te wachten.
           if [ "$MODUS" != "dagelijks" ] || [ ! -s buurtinventaris.json ] \
-             || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+             || [ "${{ github.event_name }}" = "workflow_dispatch" ] \
+             || ! python buurtinventaris.py --dekt-ring; then
             # Geen "|| echo" meer. Dat maakte van een mislukking een groene
             # stap: op 10 oktober leverde dit script nul postcodes en meldde
             # de stap toch succes. continue-on-error houdt de run heel en
