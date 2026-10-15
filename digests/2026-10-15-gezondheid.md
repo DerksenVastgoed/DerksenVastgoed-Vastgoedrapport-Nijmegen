@@ -3,9 +3,9 @@
 59 in orde, 8 aandachtspunten, 0 fouten.
 
 ## LET OP
-- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69998 bytes, 1340 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (12449 bytes, 314 regels), bekendmakingen_archief.py (12003 bytes, 294 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
+- **Versies**: paklijst van 2026-10-10: 23 gelijk, 25 met andere inhoud, 0 niet aanwezig; andere inhoud dan de paklijst: .github/workflows/bekendmakingen.yml (69998 bytes, 1340 regels), .github/workflows/voorraad.yml (21279 bytes, 427 regels), aanbod_reeks.py (5847 bytes, 152 regels), aanbodprofiel.py (12449 bytes, 314 regels), bekendmakingen_archief.py (12711 bytes, 308 regels), bekendmakingen_nijmegen.py (56021 bytes, 1256 regels)
   Upload de ontbrekende bestanden. Blijft een bestand afwijken nadat het is geuploud, dan is de paklijst achter en moet die ververst worden.
-- **Verkopen**: 661 verkopen: 518 geplakt, 143 met de hand; laatste 2026-10-13; de mailstap liet 23 meldingen vallen met dezelfde status en 0 met een andere
+- **Verkopen**: 661 verkopen: 518 geplakt, 143 met de hand; laatste 2026-10-13; de mailstap liet 25 meldingen vallen met dezelfde status en 0 met een andere
   Er komt nog geen verkoop uit de attendering, terwijl er wel 3 mails van funda.nl zijn gelezen. Het filter is dus niet de vraag; kijk naar wat de mailstap met die mails doet.
 - **Plintobjecten geteld**: 1288 plintobjecten in heel Stadscentrum, 770 groot genoeg voor de volle 50 m2, 950 onder woningen; dit is heel Stadscentrum en niet alleen het kernwinkelgebied
   Zet de straatnamen van het kaartje in plintgebied.txt en dit wordt de werkelijke telling.
@@ -23,11 +23,11 @@
 ## OK
 - **Geheugen verstuurde brieven**: 21 onderwerpen bekend, 21 in het venster van drie weken, laatste brief 2026-10-15; 9 onderwerpen kwamen in meer dan een brief terug
 - **Brief opnieuw geschreven**: de brief van vandaag is opnieuw geschreven en wijkt af van 2026-10-14-verhaal.md
-- **Oude verlaging in de brief**: elke genoemde prijsverlaging is van vandaag of gisteren
+- **Oude verlaging in de brief**: de brief noemt geen prijsverlaging
 - **Bekende onwaarheden in de brief**: 6 bekende onwaarheden getoetst op 5 teksten, geen ervan komt voor
 - **Samenstelling in plaats van markt**: alle buurten bewegen dezelfde kant op, de waarschuwing staat in de bijlage en de brief zegt het in eigen woorden: 5 van de 6 buurten gaan in deze 4 weken dezelfde kant op, omhoog, van -2,9% tot +9,9%, mediaan 6,0%.
 - **Verkocht pand nog in het aanbod**: 7 panden hebben een verkoopregel die nieuwer is dan hun te-koopregel; geen van die panden staat nog in de aanbodtabel
-- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 4628, kamervergunningen.json: 7246, pandgeschiedenis.json: 152764, verkopen.txt: 930, verteld.json: 130, woz.txt: 127
+- **Omvang van de gegevensbestanden**: bekendmakingen_archief.json: 11697, kamervergunningen.json: 7246, pandgeschiedenis.json: 152764, verkopen.txt: 930, verteld.json: 130, woz.txt: 127
 - **Huurdata**: 132 huurwaarnemingen, waarvan 33 Pararius en 57 Kamernet en 40 Huislijn en 2 Rentola, zonder adres maar met oppervlakte; 42 in de laatste week; 6 zonder oppervlakte, die tellen niet mee in de huur per m2; 2 waarschijnlijke dubbelingen tussen platforms samengevoegd
 - **Aanbod**: 108 koopobjecten, 6 in de laatste drie dagen
 - **Marktrente**: rente 5.5% bij 70% financiering
@@ -36,7 +36,7 @@
 - **Eigen bouwkosten**: 5 eigen tarieven ingevuld
 - **Buurtcijfers CBS**: 6 buurten, alle velden gevuld
 - **Kamervergunningen**: 766 adressen in 34 buurten
-- **Kamerverhuurregister**: 947 panden in de ring, waarvan 188 alleen via een melding of besluit; meldingen per jaar: 2025: 102, 2026: 86
+- **Kamerverhuurregister**: 969 panden in de ring, waarvan 210 alleen via een melding of besluit; meldingen per jaar: 2023: 13, 2024: 1, 2025: 102, 2026: 86
 - **Woningprijsindex CBS**: landelijk 2026-08, Gelderland (PV) 2026-K2, via opendata.cbs.nl
 - **Stadsbegroting**: Stadsbegroting 2027, 5 pagina's, opgehaald 2026-10-15
 - **Geschiedenis per pand**: 1807 panden gevolgd, 1500 met meer dan een gebeurtenis; 1659 met BAG-gegevens (6883 woningen, 7682 dubbel geteld zonder deze correctie), 1436 met een energielabel, 0 nog nooit nagekeken waarvan 188 na drie pogingen opgegeven; 19316 regels bespaard door gedeelde pandgegevens; 55 wachten nog op de telling van woningen apart van bergingen en garages; nieuwe panden worden elke run opgehaald, het nakijken van de hele voorraad op veranderingen gebeurt in de weekronde; iedereen is minstens een keer nagekeken
@@ -45,10 +45,10 @@
 - **Veroudering aanbod**: 79 panden te koop, mediaan 22 dagen geleden voor het laatst bevestigd, oudste 43 dagen
 - **Aanbodreeks**: 14 dagen gemeten; 2026-W40: 8 koop, 9 huur, 2 uitpond; 2026-W41: 6 koop, 34 huur, 1 uitpond; 2026-W42: 6 koop, 14 huur. In beeld: 3 nieuw aangeboden panden die bij ons als kamerverhuur bekend staan
 - **Profiel nieuw aanbod**: 56 panden in dertig dagen; mediaan 80 m2; 1 zonder label
-- **Groottepremie**: 595 waarnemingen, 9 buurten met eigen ijkpunt; 0-40 m2: 1.429 (58), 40-60 m2: 1.231 (114), 60-80 m2: 1.063 (171), 80-100 m2: 1.0 (90), 100-130 m2: 0.968 (85), 130 m2 en groter: 0.928 (77)
+- **Groottepremie**: 595 waarnemingen, 11 buurten met eigen ijkpunt; 0-40 m2: 1.425 (58), 40-60 m2: 1.227 (114), 60-80 m2: 1.06 (171), 80-100 m2: 1.0 (90), 100-130 m2: 0.965 (85), 130 m2 en groter: 0.925 (77)
 - **Woningen in bestaande panden**: 128 panden met 733 gevormde woningen erin; laatste ronde 0 nieuwe records, 0 gebeurtenissen, 0 wachten op een volgende ronde (stand van 2026-10-15)
 - **Geplande startdagen**: 3 crons, samen zondag 1, maandag 2, dinsdag 2, woensdag 2, donderdag 2, vrijdag 2, zaterdag 2
-- **Eisen aan de brief**: 67 eisen aan de brief, 62 afgedwongen door een proef, 5 bewust niet: Een pand dat al aan pa is verteld, opent de brief niet opnie; Een stap die zijn werk door git terugstuurt, meldt een mislu; Een proef die niets kan vinden, valt niet om met een KeyErro
+- **Eisen aan de brief**: 68 eisen aan de brief, 63 afgedwongen door een proef, 5 bewust niet: Een pand dat al aan pa is verteld, opent de brief niet opnie; Een stap die zijn werk door git terugstuurt, meldt een mislu; Een proef die niets kan vinden, valt niet om met een KeyErro
 - **Voltooide splitsingen**: 2 gerealiseerd; mediaan 3 dagen van besluit tot registratie (2); 14 vergund maar na een jaar nog niets in de BAG; 2 met een ander aantal dan de vergunning noemt; en het tekstblok van vandaag staat er
 - **Verkoopdatums**: 96 panden met een indicatie: 6 met een verkoopdatum, 17 met een plaatsingsdatum, 4 met hoge zekerheid, 0 met een waarschuwing dat het om een andere advertentie gaat; indicaties met bronvermelding, geen Kadastercijfers
 - **Doorlooptijden**: mediane verkooptijd 89 dagen (127 panden, bovengrens); mediane bezitsduur 3.3 jaar (15 paren met een echte verkoopdatum, waarvan 3 op een jaar bij benadering); prijsgroei per pand nog niet te meten: 5 paren, minimaal 10 nodig
@@ -78,7 +78,7 @@
 - **Jaarlijkse grenzen**: huurprijstabel 2026-01-01 (grens vrije sector €1228.07); overdrachtsbelasting 8.0% plus 2.0% bijkomende kosten; SVOH-bedragen 2026-01-01 (gevelisolatie €40.50 per m2)
 - **Misdrijfcijfers**: 44 buurten
 - **OV-haltes**: 333 haltes, 222 panden gerouteerd
-- **Bekendmakingen-archief**: 347 adressen, 483 publicaties
+- **Bekendmakingen-archief**: 696 adressen, 1270 publicaties
 - **Regelgevingsmonitor**: 86 verordeningen, 5 wetten
 - **Geheugen en trend**: 126 panden onthouden, prijstrend over 9 metingen
 - **Terugschrijven**: gegevens van de laatste run bewaard

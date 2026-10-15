@@ -1347,6 +1347,11 @@
     "bron": "vergunning",
     "jaar": "2023",
     "soort": "omgevingsvergunning"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Altrade",
@@ -1392,6 +1397,23 @@
   ],
   "buurt": "Hatert",
   "straat": "Couwenbergstraat"
+ },
+ "csardasstraat30": {
+  "adres": "Csardasstraat 30",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Neerbosch-Oost",
+  "straat": "Csardasstraat"
  },
  "csardasstraat43": {
   "adres": "Csardasstraat 43",
@@ -1941,6 +1963,21 @@
     "bron": "melding",
     "jaar": "2025",
     "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Altrade",
@@ -2311,6 +2348,18 @@
   "buurt": "Grootstal",
   "straat": "Einsteinstraat"
  },
+ "elzenstraat2": {
+  "adres": "Elzenstraat 2",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Hengstdal",
+  "straat": "Elzenstraat"
+ },
  "emaushof3": {
   "adres": "Emaushof 3",
   "bronnen": [
@@ -2554,6 +2603,16 @@
     "bron": "vergunning",
     "jaar": "2023",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Neerbosch-Oost",
@@ -2655,6 +2714,23 @@
   "buurt": "Grootstal",
   "straat": "Galvanistraat"
  },
+ "ganzenheuvel13": {
+  "adres": "Ganzenheuvel 13",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Benedenstad",
+  "straat": "Ganzenheuvel"
+ },
  "gapershof2": {
   "adres": "Gapershof 2",
   "bronnen": [
@@ -2703,6 +2779,18 @@
     "bron": "vergunning",
     "jaar": "2014",
     "soort": "omgevingsvergunning"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "Gerard Noodtstraat"
+ },
+ "gerardnoodtstraat143": {
+  "adres": "Gerard Noodtstraat 143",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Stadscentrum",
@@ -3035,6 +3123,18 @@
   "buurt": "Heseveld",
   "straat": "Graafseweg"
  },
+ "graafseweg255": {
+  "adres": "Graafseweg 255",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Heseveld",
+  "straat": "Graafseweg"
+ },
  "graafseweg257": {
   "adres": "Graafseweg 257",
   "bronnen": [
@@ -3203,6 +3303,16 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Heseveld",
@@ -3703,6 +3813,23 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   }
+  ],
+  "buurt": "Galgenveld",
+  "straat": "Groesbeekseweg"
+ },
+ "groesbeekseweg62": {
+  "adres": "Groesbeekseweg 62",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Galgenveld",
@@ -4938,6 +5065,16 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Hunnerberg",
@@ -5460,6 +5597,18 @@
   "buurt": "Heseveld",
   "straat": "Klimopstraat"
  },
+ "kluijskamp1159": {
+  "adres": "de Kluijskamp 1159",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "de Kluijskamp"
+ },
  "kluijskamp1281": {
   "adres": "De Kluijskamp 1281",
   "bronnen": [
@@ -5890,6 +6039,16 @@
     "bron": "vergunning",
     "jaar": "2024",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Lankforst",
@@ -5955,6 +6114,16 @@
     "bron": "vergunning",
     "jaar": "2023",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "'t Broek",
@@ -5971,6 +6140,23 @@
   ],
   "buurt": "Neerbosch-Oost",
   "straat": "Lierstraat"
+ },
+ "ligusterstraat115": {
+  "adres": "Ligusterstraat 115",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Heseveld",
+  "straat": "Ligusterstraat"
  },
  "ligusterstraat18": {
   "adres": "Ligusterstraat 18",
@@ -6772,6 +6958,18 @@
   "buurt": "Galgenveld",
   "straat": "Molukkenstraat"
  },
+ "molukkenstraat72": {
+  "adres": "Molukkenstraat 72",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Galgenveld",
+  "straat": "Molukkenstraat"
+ },
  "molukkenstraat86": {
   "adres": "Molukkenstraat 86",
   "bronnen": [
@@ -6976,6 +7174,33 @@
   "buurt": "Nije Veld",
   "straat": "Muntweg"
  },
+ "muntweg428": {
+  "adres": "Muntweg 428",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Nije Veld",
+  "straat": "Muntweg"
+ },
  "muntweg456": {
   "adres": "Muntweg 456",
   "bronnen": [
@@ -7084,6 +7309,28 @@
   "buurt": "De Kamp",
   "straat": "Nieuwstadweg"
  },
+ "nieuwstadweg4": {
+  "adres": "Nieuwstadweg 4",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "De Kamp",
+  "straat": "Nieuwstadweg"
+ },
  "nijmeegsebaan143": {
   "adres": "de Nijmeegsebaan 143",
   "bronnen": [
@@ -7131,6 +7378,18 @@
   ],
   "buurt": "Biezen",
   "straat": "Nina Simonestraat"
+ },
+ "oranjesingel10": {
+  "adres": "Oranjesingel 10",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "Oranjesingel"
  },
  "oranjesingel21": {
   "adres": "Oranjesingel 21",
@@ -7223,6 +7482,18 @@
     "bron": "vergunning",
     "jaar": "2015",
     "soort": "omgevingsvergunning"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "Oranjesingel"
+ },
+ "oranjesingel8": {
+  "adres": "Oranjesingel 8",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Stadscentrum",
@@ -7389,6 +7660,18 @@
   "buurt": "Stadscentrum",
   "straat": "Parkweg"
  },
+ "pastoorzegersstraat77": {
+  "adres": "Pastoor Zegersstraat 77",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Wolfskuil",
+  "straat": "Pastoor Zegersstraat"
+ },
  "paterbrugmanstraat41": {
   "adres": "Pater Brugmanstraat 41",
   "bronnen": [
@@ -7449,6 +7732,16 @@
     "bron": "melding",
     "jaar": "2026",
     "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Neerbosch-Oost",
@@ -7501,6 +7794,23 @@
   ],
   "buurt": "Stadscentrum",
   "straat": "Piersonstraat"
+ },
+ "pijlstaarthof20": {
+  "adres": "Pijlstaarthof 20",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2022",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Hatertse Hei",
+  "straat": "Pijlstaarthof"
  },
  "pijnboomstraat17": {
   "adres": "de Pijnboomstraat 17",
@@ -8588,6 +8898,28 @@
   "buurt": "St. Anna",
   "straat": "St. Annastraat"
  },
+ "stannastraat238": {
+  "adres": "St. Annastraat 238",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "St. Anna",
+  "straat": "St. Annastraat"
+ },
  "stannastraat240": {
   "adres": "St. Annastraat 240",
   "bronnen": [
@@ -8611,6 +8943,18 @@
   ],
   "buurt": "St. Anna",
   "straat": "St. Annastraat"
+ },
+ "stannastraat267269": {
+  "adres": "St. Annastraat 267 269",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Heijendaal",
+  "straat": "St. Annastraat 267"
  },
  "stannastraat273": {
   "adres": "St. Annastraat 273",
@@ -9357,6 +9701,55 @@
   "buurt": "Neerbosch-Oost",
   "straat": "Symfoniestraat"
  },
+ "tarweweg6": {
+  "adres": "Tarweweg 6",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Goffert",
+  "straat": "Tarweweg"
+ },
+ "thijmstraat1": {
+  "adres": "Thijmstraat 1",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2024",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Nije Veld",
+  "straat": "Thijmstraat"
+ },
  "thomashof6": {
   "adres": "Thomashof 6",
   "bronnen": [
@@ -9400,6 +9793,23 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   }
+  ],
+  "buurt": "Tolhuis",
+  "straat": "Tolhuis"
+ },
+ "tolhuis2403": {
+  "adres": "Tolhuis 2403",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Tolhuis",
@@ -11151,6 +11561,21 @@
     "bron": "vergunning",
     "jaar": "2024",
     "soort": "omgevingsvergunning"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2024",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Hazenkamp",
@@ -11610,6 +12035,28 @@
   "buurt": "Wolfskuil",
   "straat": "Wolfskuilseweg"
  },
+ "wolfskuilseweg48": {
+  "adres": "Wolfskuilseweg 48",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Wolfskuil",
+  "straat": "Wolfskuilseweg"
+ },
  "wolfskuilseweg99": {
   "adres": "Wolfskuilseweg 99",
   "bronnen": [
@@ -11761,6 +12208,11 @@
     "bron": "vergunning",
     "jaar": "2020",
     "soort": "omgevingsvergunning"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2023",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Hatert",
@@ -11826,6 +12278,23 @@
     "bron": "vergunning",
     "jaar": "2025",
     "soort": "onttrekking"
+   }
+  ],
+  "buurt": "Zwanenveld",
+  "straat": "Zwanenveld"
+ },
+ "zwanenveld6649": {
+  "adres": "Zwanenveld 6649",
+  "bronnen": [
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
+   },
+   {
+    "bron": "besluit",
+    "jaar": "2023",
+    "soort": "besluit kamerverhuur"
    }
   ],
   "buurt": "Zwanenveld",

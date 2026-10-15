@@ -22,7 +22,7 @@ _14 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">105 m² . label A (2018)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor puiaanpassing is nog geen besluit en zegt niets over een functiewijziging.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanpassing van de pui is een gevelingreep zonder signaal van functie- of eenheidswijziging.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -41,21 +41,21 @@ _9 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#C46A2F;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">kamerverhuur</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html" style="color:#12242c;text-decoration:none">Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">109 m² op dit adres, niet van het hele pand . label A+ (2026) (alleen van dit adres bekend)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Herroeping van de kamerverhuurvergunning na bezwaar betekent dat dit pand niet langer legaal verkamerd mag worden.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Herroeping van de kamerverhuurvergunning betekent dat dit pand niet langer legaal als kamerverhuur mag worden geëxploiteerd.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="display:inline-block;background:#4E8C3A;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">verduurzaming</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#12242c;text-decoration:none">Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#12242c;text-decoration:none">Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">299 m² . label D (2025)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve wijziging van de achtergevel maakt gevelingrepen bij dit type pand vergunbaar, relevant voor toekomstige labelverbetering.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Constructieve gevelwijziging betreft een bouwkundige ingreep zonder aanwijzing voor functie- of eenheidswijziging.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
-<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#12242c;text-decoration:none">Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">250 m² . label E (2017)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Kozijnwijziging met interne doorbraak betreft een indelingsaanpassing zonder direct marktsignaal.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne doorbraak wijst op samenvoegen van ruimtes, wat het aantal zelfstandige units kan verminderen.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-13 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -83,14 +83,14 @@ _7 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html" style="color:#12242c;text-decoration:none">Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">172 m² . label B (2021)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van gewijzigde kozijnen is een administratieve correctie zonder marktimpact.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Legalisatie van gewijzigde kozijnen is een administratieve correctie zonder directe marktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html" style="color:#12242c;text-decoration:none">Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">52 m² . label B (2026)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Splitsing voegt een zelfstandige wooneenheid toe aan de kleine voorraad en verkleint het aanbod grotere woningen.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Splitsing in twee adressen voegt een zelfstandige kleine unit toe aan het aanbod in dat segment.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-14 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
