@@ -342,6 +342,21 @@ proef: marktprijzen_bag:telt nog als kamerpand
 soort: gegevens
 
 ---
+eis: De kamertoets toetst alle regels die de gemeente toetst, en zegt wanneer
+  die regels vervallen.
+waarom: 15 oktober, na de herroeping van Professor Molkenboerstraat 20A en een
+  vergelijking van onze toets met de Huisvestingsverordening 2024 en de
+  Beleidsregels Kamerverhuur 2021. Vier dingen ontbraken of stonden fout: het
+  omgevingsplan stond op "niet te toetsen" terwijl de beleidsregels die toets
+  zijn, de afvalvoorziening (regel 3) ontbrak, de drempel van drie bewoners en
+  de uitzonderingen (bestaand gebruik op 7 oktober 2021, hospes) ontbraken, en
+  dat de beleidsregels op 16 november 2026 vervallen stond nergens. Bij
+  splitsen ontbraken de grens van twee bewoners per woning en de afwijkende
+  lezing van de opkoopbescherming op de site van de gemeente.
+proef: toets_artikel15:bij insluiting blijft het omgevingsplan
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

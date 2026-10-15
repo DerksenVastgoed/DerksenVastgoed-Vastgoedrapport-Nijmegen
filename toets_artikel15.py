@@ -32,6 +32,26 @@ GELUID_LUCHT_DB = 52         # NEN 5077, minimaal
 GELUID_CONTACT_DB = 54       # NEN 5077, maximaal
 MAX_NAAST_ELKAAR = 2
 
+# VANAF HOEVEEL BEWONERS HET KAMERVERHUUR IS. Drie of meer onzelfstandige
+# woonruimten, of drie of meer bewoners die geen huishouden vormen: zo
+# definieren het facetbestemmingsplan Kamerverhuur (nu omgevingsplan) en de
+# Beleidsregels Kamerverhuur 2021 (artikel 1) kamergewijze bewoning, en zo
+# begint de vergunningplicht van artikel 13 lid 1 onder b van de
+# Huisvestingsverordening 2024. Twee bewoners is dus geen kamerverhuur.
+KAMERVERHUUR_VANAF = 3
+
+# DE PEILDATUM VAN HET OVERGANGSRECHT. Legaal kamergewijs gebruik dat op 7
+# oktober 2021 al bestond (het voorbereidingsbesluit van het
+# facetbestemmingsplan) mag blijven zonder omgevingsvergunning.
+BESTAAND_OP = "2021-10-07"
+
+# DE BELEIDSREGELS KAMERVERHUUR 2021 VERVALLEN. Versie 3 (CVDR659678/3) geldt
+# van 24 april 2025 tot en met 15 november 2026, en een opvolger is op 15
+# oktober 2026 niet gepubliceerd. De evaluatie van november 2024 noemt een
+# quotum per buurt of straat als mogelijkheid. Na deze datum zegt de toets dat
+# hij op vervallen regels rekent, in plaats van stil door te gaan.
+BELEIDSREGELS_GELDIG_TOT = "2026-11-15"
+
 VOLDOET = "voldoet"
 VOLDOET_NIET = "voldoet niet"
 ONBEKEND = "niet te toetsen"
@@ -106,6 +126,30 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
     bouwjaar = _getal(w.get("bouwjaar"))
     aantal_kamers = _getal(aantal_kamers)
 
+    # 0. Is het wel kamerverhuur? Onder de drempel geldt geen van de regels
+    #    hieronder, en die dan toch toetsen geeft weigeringsgronden voor iets
+    #    wat geen vergunning nodig heeft.
+    if aantal_kamers is not None and aantal_kamers < KAMERVERHUUR_VANAF:
+        return [("kamerverhuur", VOLDOET,
+                 f"{aantal_kamers} bewoner(s) die geen huishouden vormen is geen "
+                 f"kamergewijze bewoning; dat begint bij "
+                 f"{KAMERVERHUUR_VANAF}. Er is geen omgevingsvergunning en geen "
+                 f"omzettingsvergunning nodig")]
+    vandaag = _vandaag()
+    if vandaag > BELEIDSREGELS_GELDIG_TOT:
+        uit.append(("beleidsregels", ONBEKEND,
+                    f"de Beleidsregels Kamerverhuur 2021 golden tot en met "
+                    f"{BELEIDSREGELS_GELDIG_TOT}. De toetspunten hieronder komen "
+                    f"daaruit; kijk welke regels nu gelden"))
+
+    # De uitzonderingen. Geen weigeringsgrond, maar zonder deze regel lijkt
+    # elk bestaand kamerpand vergunningplichtig.
+    uit.append(("uitzonderingen", ONBEKEND,
+                f"geen vergunning nodig voor legaal kamergewijs gebruik dat op "
+                f"{_datum_nl(BESTAAND_OP)} al bestond, of bij verhuur door een "
+                f"hospes of hospita die zelf in de woning woont. Uit openbare "
+                f"gegevens is geen van beide vast te stellen"))
+
     # 1. WOZ-ondergrens: absolute weigeringsgrond
     basis = woz or prijs
     herkomst = "WOZ" if woz else "vraagprijs als benadering"
@@ -128,10 +172,19 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
                     + " is geen omzettingsvergunning nodig, wel een "
                       "omgevingsvergunning vanaf drie kamers"))
 
-    # 2. Strijd met het omgevingsplan
-    uit.append(("omgevingsplan", ONBEKEND,
-                "vraagt een raadpleging van het omgevingsplan op dit perceel; "
-                "dat kunnen wij niet automatisch doen"))
+    # 2. Het omgevingsplan
+    #
+    # HIER STOND "NIET TE TOETSEN", en dat was een misverstand. Het
+    # facetbestemmingsplan Kamerverhuur, nu onderdeel van het omgevingsplan,
+    # verbiedt verkameren in elke woning, ongeacht de WOZ, en de
+    # omgevingsvergunning om daarvan af te wijken wordt getoetst aan de
+    # Beleidsregels Kamerverhuur 2021: insluiting, aaneenschakeling, afval,
+    # fietsen en geluid. Dat zijn de toetspunten hieronder. Is een daarvan
+    # "voldoet niet", dan wordt deze vergunning geweigerd, en zonder deze
+    # vergunning moet ook de omzettingsvergunning worden geweigerd (artikel 15
+    # lid 2 van de Huisvestingsverordening). De uitkomst wordt na de punten
+    # hieronder ingevuld; zie _omgevingsplan_oordeel().
+    uit.append(("omgevingsplan", ONBEKEND, "_wordt hieronder ingevuld_"))
 
     # 3. Geluidhinder
     if bouwjaar and bouwjaar < 1945:
@@ -157,6 +210,19 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
     else:
         uit.append(("fietsenstalling", ONBEKEND,
                     f"{FIETS_PER_BEWONER} m² per bewoner nodig op eigen terrein"))
+
+    # 4b. Afval. Een zelfstandige weigeringsgrond in de beleidsregels (artikel
+    #     2.1, regel 3) die hier ontbrak.
+    uit.append(("afvalvoorziening", ONBEKEND,
+                "een degelijke, afsluitbare voorziening voor huishoudelijk afval "
+                "op eigen terrein is vereist. Uit openbare gegevens niet te zien; "
+                "controleer of het perceel daar ruimte voor heeft"))
+
+    # 4c. Parkeren. De norm komt uit parkeernormen.txt en is voor kamerverhuur
+    #     in elke zone dezelfde; staat er een andere waarde, dan rekent dit niet.
+    eis = _parkeereis_kamers(aantal_kamers)
+    if eis:
+        uit.append(("parkeren", ONBEKEND, eis))
 
     # 5. Maximaal twee naast elkaar
     #
@@ -306,7 +372,68 @@ def toets_kamerverhuur(w, aantal_kamers=None, vergunningen=None, woz=None,
                     f"verplicht, met eisen aan rookmelders, vluchtwegen en "
                     f"brandwerende scheidingen"))
 
-    return uit
+    return _omgevingsplan_oordeel(uit)
+
+
+# De toetspunten die uit de Beleidsregels Kamerverhuur komen, en dus over de
+# omgevingsvergunning beslissen.
+BELEIDSREGELPUNTEN = ("insluiting", "maximaal twee naast elkaar",
+                      "afvalvoorziening", "fietsenstalling", "geluidhinder")
+
+
+def _omgevingsplan_oordeel(uit):
+    """Vult de regel omgevingsplan in op grond van de beleidsregelpunten."""
+    fout = [g for g, o, _t in uit if g in BELEIDSREGELPUNTEN and o == VOLDOET_NIET]
+    if fout:
+        tekst = ("de omgevingsvergunning voor kamerverhuur wordt geweigerd op "
+                 + ", ".join(fout) + ". Zonder die vergunning moet ook de "
+                 "omzettingsvergunning worden geweigerd (Huisvestingsverordening "
+                 "artikel 15 lid 2). Zo ging het bij Professor Molkenboerstraat "
+                 "20A op 8 oktober 2026")
+        oordeel = VOLDOET_NIET
+    else:
+        tekst = ("een omgevingsvergunning voor kamerverhuur is altijd nodig, "
+                 "ook boven de WOZ-grens. Ze wordt getoetst op insluiting, "
+                 "aaneenschakeling, afval, fietsen en geluid; geen van die "
+                 "punten valt hier aantoonbaar af, maar afval, fietsen en geluid "
+                 "vragen een plan van de aanvrager")
+        oordeel = ONBEKEND
+    return [(g, oordeel, tekst) if g == "omgevingsplan" else (g, o, t)
+            for g, o, t in uit]
+
+
+def _parkeereis_kamers(aantal_kamers):
+    """De parkeereis voor kamerverhuur, als de norm in elke zone gelijk is."""
+    try:
+        import parkeernorm as _pn
+        rij = _pn.lees().get("kamerverhuur per kamer") or {}
+    except Exception:
+        return ""
+    waarden = {w for w, _onzeker in rij.values()}
+    if len(waarden) != 1:
+        return ""
+    per = waarden.pop()
+    if not aantal_kamers:
+        return (f"{str(per).replace('.', ',')} parkeerplaats per kamer volgens "
+                f"de Beleidsregels Parkeren, in elke zone; in gereguleerd gebied "
+                f"kan de eis vervallen, zie de parkeerzone")
+    return (f"{aantal_kamers} kamers maal {str(per).replace('.', ',')} is "
+            f"{str(round(aantal_kamers * per, 1)).replace('.', ',')} "
+            f"parkeerplaatsen volgens de Beleidsregels Parkeren, in elke zone "
+            f"dezelfde norm; in gereguleerd gebied kan de eis vervallen, zie de "
+            f"parkeerzone")
+
+
+def _vandaag():
+    import datetime as _dt
+    return _dt.date.today().isoformat()
+
+
+def _datum_nl(iso):
+    maanden = ("januari", "februari", "maart", "april", "mei", "juni", "juli",
+               "augustus", "september", "oktober", "november", "december")
+    j, m, d = iso.split("-")
+    return f"{int(d)} {maanden[int(m) - 1]} {j}"
 
 
 def toets_splitsing(w, aantal_units=None):
@@ -391,6 +518,44 @@ def toets_splitsing(w, aantal_units=None):
     uit.append(("parkeren", ONBEKEND,
                 "in gereguleerd gebied geldt geen parkeereis, maar de nieuwe "
                 "huisnummers krijgen ook geen parkeervergunning"))
+
+    # DE GEMEENTE LEEST DE OPKOOPBESCHERMING ANDERS. Op nijmegen.nl (woning
+    # splitsen, gelezen 15 oktober 2026) staat dat nieuwe woningen met een WOZ
+    # tot €396.000 alleen verhuurd mogen worden volgens de regels van de
+    # opkoopbescherming. Onze lezing van artikel 19 is dat die toets aan de
+    # levering van het gekochte pand hangt, en dat zelf gemaakte eenheden geen
+    # nieuwe levering kennen. Twee lezingen, en de gemeente beslist: dat hoort
+    # in de toets en niet alleen in een chat.
+    if aantal_units and aantal_units > 1:
+        uit.append(("opkoopbescherming nieuwe woningen", ONBEKEND,
+                    f"de gemeente schrijft op haar site dat nieuwe woningen "
+                    f"met een WOZ tot {grens} alleen volgens de regels van de "
+                    f"opkoopbescherming verhuurd mogen worden. Artikel 19 "
+                    f"toetst de WOZ bij de levering van wat je koopt, dus "
+                    f"juridisch is dat niet vanzelfsprekend. Vraag het "
+                    f"schriftelijk na voordat je erop rekent"))
+
+    # TWEE BEWONERS PER WONING. Wie splitst om er studenten in te zetten, zit
+    # per woning onder de kamergrens zolang er hooguit twee wonen. Bij drie
+    # wordt elk appartement kamerverhuur, en dan tellen gestapelde
+    # appartementen voor de aaneenschakeling, en geldt de WOZ-ondergrens per
+    # appartement.
+    if aantal_units and aantal_units > 1:
+        uit.append(("bewoning per woning", ONBEKEND,
+                    f"zonder kamervergunning hooguit "
+                    f"{KAMERVERHUUR_VANAF - 1} bewoners die geen huishouden "
+                    f"vormen per woning. Vanaf {KAMERVERHUUR_VANAF} is elke "
+                    f"woning kamerverhuur: dan mogen er niet meer dan "
+                    f"{MAX_NAAST_ELKAAR} naast, boven of onder elkaar liggen, "
+                    f"en wordt omzetting altijd geweigerd bij een WOZ per woning "
+                    f"van €{WOZ_ONDERGRENS:,}".replace(",", ".")
+                    + " of minder"))
+
+    uit.append(("omgevingsplan", ONBEKEND,
+                "of het omgevingsplan op dit perceel het aantal woningen of de "
+                "woninggrootte beperkt, toetsen wij niet. Nijmegen heeft geen "
+                "eigen regels voor splitsen; de evaluatie van november 2024 "
+                "noemt ze als mogelijkheid"))
     return uit
 
 
@@ -599,6 +764,36 @@ def proef():
             afw.append(f"kamerbeeld kost {_per * 1000:.0f} ms per aanroep; "
                        f"dan is de cache per straat stuk en kost een briefrun "
                        f"er minuten aan")
+
+    # DE REGELS DIE OP 15 OKTOBER ONTBRAKEN.
+    def _o(regels, naam):
+        return next((o for n, o, _t in regels if n == naam), None)
+    # Twee bewoners is geen kamerverhuur, dus ook geen weigeringsgrond.
+    twee = toets_kamerverhuur({"adres": "Proefstraat 1", "woz": 250000},
+                              aantal_kamers=2)
+    if [n for n, _o2, _t in twee] != ["kamerverhuur"] or twee[0][1] != VOLDOET:
+        afw.append(f"twee bewoners worden als kamerverhuur getoetst: {twee}")
+    # Een insluiting laat de omgevingsvergunning vallen, zoals bij 20A.
+    ing = [{"nummer": 22, "woningen": 1, "maten": [101],
+            "kamerbuur": "Proefstraat 24", "meer_woningen": False}]
+    r = toets_kamerverhuur({"adres": "Proefstraat 20", "woz": 450000},
+                           aantal_kamers=7, ingesloten=ing, reeks={-1: 1, 1: 0})
+    if _o(r, "omgevingsplan") != VOLDOET_NIET:
+        afw.append(f"bij insluiting blijft het omgevingsplan "
+                   f"{_o(r, 'omgevingsplan')!r} in plaats van 'voldoet niet'")
+    for nodig in ("afvalvoorziening", "uitzonderingen", "parkeren"):
+        if _o(r, nodig) is None:
+            afw.append(f"het toetspunt {nodig!r} ontbreekt")
+    schoon = toets_kamerverhuur({"adres": "Proefstraat 20", "woz": 450000},
+                                aantal_kamers=7, ingesloten=[], reeks={-1: 0, 1: 0})
+    if _o(schoon, "omgevingsplan") != ONBEKEND:
+        afw.append("zonder blokkade staat het omgevingsplan niet op 'niet te "
+                   "toetsen'")
+    sp = toets_splitsing({"adres": "Proefstraat 3", "oppervlakte": 180,
+                          "woz": 450000}, aantal_units=3)
+    for nodig in ("bewoning per woning", "opkoopbescherming nieuwe woningen"):
+        if _o(sp, nodig) is None:
+            afw.append(f"het splitstoetspunt {nodig!r} ontbreekt")
 
     for a in afw:
         print(f"AFWIJKING: {a}", file=sys.stderr)
