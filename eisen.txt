@@ -1037,3 +1037,17 @@ waarom: 14 oktober. Na de reparatie van de zoekvormen bleef alleen
   BEWUST_AFWEZIG met de bron erbij, en is een treffer het signaal.
 proef: gezondheid:een onverwachte treffer op een bewust afwezige
 soort: brief
+
+---
+eis: Een bekendmaking die de brief noemt, is in de brief klikbaar naar het
+  besluit zelf.
+waarom: 15 oktober. De brief opende met de herroepen kamerverhuurvergunning
+  aan Professor Molkenboerstraat 20A, en Mark kon niet doorklikken naar het
+  besluit om de stukken in te zien. De link stond in de gegevens die het
+  model kreeg, maar het model schrijft lopende tekst en liet hem weg. In de
+  verhalen van 12 tot en met 15 oktober noemde de brief acht keer een adres
+  uit een bekendmaking van die dag, en stond er geen enkele link naar het
+  besluit. Nu zet de code na het schrijven de link op de eerste vermelding
+  van het adres; nagemeten op die vier verhalen geeft dat alle acht.
+proef: brief_verhalend:de herroepen vergunning is niet klikbaar
+soort: brief
