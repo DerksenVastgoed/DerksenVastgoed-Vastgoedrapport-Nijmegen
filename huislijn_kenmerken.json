@@ -154,5 +154,41 @@
   "opp": 51,
   "kamers": 2,
   "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437075/dokstraat-nijmegen": {
+  "opp": 60,
+  "kamers": 3,
+  "postcode": "6541EZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437589/kronenburgersingel-nijmegen": {
+  "postcode": "6826MR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437348/archipelhof-nijmegen": {
+  "opp": 40,
+  "kamers": 1,
+  "postcode": "6524LE"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437496/wedesteinbroek-nijmegen": {
+  "postcode": "6826MR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437362/hengstdalseweg-nijmegen": {
+  "opp": 63,
+  "kamers": 4,
+  "postcode": "6523EK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437269/moerbeistraat-nijmegen": {
+  "opp": 38,
+  "kamers": 3,
+  "postcode": "6523KN"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437130/wijchenseweg-nijmegen": {
+  "opp": 43,
+  "kamers": 2,
+  "postcode": "6546BB"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4437208/lange-brouwerstraat-nijmegen": {
+  "opp": 150,
+  "kamers": 4,
+  "postcode": "6511WH"
  }
 }

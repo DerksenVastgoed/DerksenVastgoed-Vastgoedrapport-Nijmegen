@@ -2,14 +2,14 @@
  "datum": "2026-10-15",
  "bronnen": {
   "huislijn": {
-   "mails": 3,
-   "objecten": 4,
+   "mails": 4,
+   "objecten": 12,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 14,
-   "objecten": 11,
+   "mails": 17,
+   "objecten": 14,
    "overgeslagen": 3,
    "redenen": [
     "Homberg: €53 per maand is niet aannemelijk",
@@ -26,31 +26,36 @@
    ]
   },
   "pararius": {
-   "mails": 2,
-   "objecten": 4,
-   "overgeslagen": 3,
+   "mails": 3,
+   "objecten": 9,
+   "overgeslagen": 6,
    "redenen": [
     "Berg en Dalseweg (gemeubileerd, apart bewaard)",
     "Kelfkensbos (gemeubileerd, apart bewaard)",
-    "Kronenburgersingel (gemeubileerd, apart bewaard)"
+    "Kronenburgersingel (gemeubileerd, apart bewaard)",
+    "Kronenburgersingel (gemeubileerd, apart bewaard)",
+    "Broekstraat (gemeubileerd, apart bewaard)"
    ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 25,
-  "andere_status": 0,
-  "voorbeelden": []
+  "zelfde_status": 27,
+  "andere_status": 2,
+  "voorbeelden": [
+   "Kronenburgersingel -> te huur",
+   "Kronenburgersingel -> te huur kamer"
+  ]
  },
  "berichten_per_afzender": {
   "funda.nl": 3,
   "funda.com": 0,
-  "pararius.nl": 2,
+  "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 14,
+  "kamernet.nl": 17,
   "vendr.nl": 0,
-  "huislijn.nl": 3,
+  "huislijn.nl": 4,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0

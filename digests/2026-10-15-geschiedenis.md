@@ -25,6 +25,13 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-10-13: verkocht, laatste vraagprijs €1.150.000, 228 m2 (verkocht tussen 2026-09-28 en 2026-10-13; 2026-10-13 is de dag dat wij het zagen, niet de verkoopdatum) (aanbod) **nieuw in ons dossier**
 - 2026-10-01: energielabels van 1 woningen in dit pand (C: 1) (EP-Online)
 
+## Paukenstraat 105
+- 2023-10-18: Paukenstraat 105 Nijmegen: aanvraag kamerverhuurvergunning - onttrekkingsvergunning - Aanvraag ontvangen (officiele bekendmakingen)
+- 2024-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
+- 2024-03-15: Paukenstraat 105 Nijmegen: aanvraag kamerverhuurvergunning 4 kamers en 4 personen - onttrekkingsvergunning - Vergunning verleend (officiele bekendmakingen)
+- 2026-10-13: Melding brandveilig gebruik voor kamergewijze verhuur (5 kamers), aan Paukenstraat 105, 6544TW Nijmegen (officiele bekendmakingen) **nieuw in ons dossier**
+- 2026-10-03: energielabels van 1 woningen in dit pand (C: 1) (EP-Online)
+
 ## Pontanusstraat 19
 - 2026-09-15: te koop aangeboden. vraagprijs €539.000 (zekerheid midden) (model: https://www.funda.nl/detail/koop/nijmegen/appartement-pontanusstraat-19/44507093/)
 - 2026-09-16: te koop voor €539.000, 135 m2 (aanbod)
@@ -50,10 +57,4 @@ _Per pand de gebeurtenissen op volgorde. Vastgelegd op het BAG-pand, dus een spl
 - 2026-09-21: verkocht, laatste vraagprijs €950.000, 227 m2 (verkocht op 2026-09-21, volgens Funda) (Funda, verkoopdatum op de advertentie, gezien door Mark op 14-10-2026)
 - 2026-10-12: Besluit voor het intern verbouwen van de eerste verdieping tot appartement aan Groesbeekseweg 118A, 6524DL Nijmegen (officiele bekendmakingen) **nieuw in ons dossier**
 - 2026-09-29: energielabels van 1 woningen in dit pand (D: 1) (EP-Online)
-
-## Hatertseweg 338
-- 2018-01-01: onttrekking bekend (jaar bij benadering) (vergunning)
-- 2026-10-06: Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen (officiele bekendmakingen)
-- 2026-10-09: de BAG telt nu 7 woningen in dit pand, was 1: 20, 147, 46, 24, 19, 23, 19 m2 (Basisregistratie Adressen en Gebouwen) **nieuw in ons dossier**
-- 2026-10-01: energielabels van 1 woningen in dit pand (E: 1) (EP-Online)
 

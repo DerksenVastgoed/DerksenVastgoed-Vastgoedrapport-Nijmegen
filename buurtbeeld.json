@@ -13,7 +13,14 @@
  },
  "'t Broek": {
   "doorlooptijden": [],
-  "jaren": {},
+  "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   }
+  },
   "na_verkoop": 0
  },
  "Aldenhof": {
@@ -37,6 +44,18 @@
  "Altrade": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 3,
     "gestopt": 0,
@@ -55,6 +74,12 @@
  "Benedenstad": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2026": {
     "aanvragen": 2,
     "gestopt": 0,
@@ -67,6 +92,18 @@
  "Biezen": {
   "doorlooptijden": [],
   "jaren": {
+   "2022": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 2,
     "gestopt": 0,
@@ -85,6 +122,12 @@
  "Bottendaal": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 3,
     "gestopt": 0,
@@ -103,6 +146,12 @@
  "Brakkenstein": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2026": {
     "aanvragen": 3,
     "gestopt": 0,
@@ -115,6 +164,18 @@
  "De Kamp": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2026": {
     "aanvragen": 2,
     "gestopt": 0,
@@ -127,6 +188,24 @@
  "Galgenveld": {
   "doorlooptijden": [],
   "jaren": {
+   "2022": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 2
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 4,
     "gestopt": 0,
@@ -144,7 +223,14 @@
  },
  "Goffert": {
   "doorlooptijden": [],
-  "jaren": {},
+  "jaren": {
+   "2026": {
+    "aanvragen": 1,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   }
+  },
   "na_verkoop": 0
  },
  "Groenewoud": {
@@ -178,6 +264,18 @@
  "Hatertse Hei": {
   "doorlooptijden": [],
   "jaren": {
+   "2022": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 1,
     "gestopt": 0,
@@ -201,6 +299,18 @@
  "Hazenkamp": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2025": {
     "aanvragen": 2,
     "gestopt": 0,
@@ -247,6 +357,18 @@
  "Heseveld": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 2,
+    "geweigerd": 1,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2025": {
     "aanvragen": 6,
     "gestopt": 0,
@@ -265,6 +387,18 @@
  "Hunnerberg": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 1,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 2
+   },
    "2025": {
     "aanvragen": 1,
     "gestopt": 0,
@@ -293,6 +427,18 @@
  "Lankforst": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2026": {
     "aanvragen": 2,
     "gestopt": 0,
@@ -309,7 +455,14 @@
  },
  "Malvert": {
   "doorlooptijden": [],
-  "jaren": {},
+  "jaren": {
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   }
+  },
   "na_verkoop": 0
  },
  "Meijhorst": {
@@ -325,6 +478,18 @@
  "Neerbosch-Oost": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 1,
+    "geweigerd": 0,
+    "verleend": 2
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2025": {
     "aanvragen": 1,
     "gestopt": 0,
@@ -343,6 +508,18 @@
  "Nije Veld": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 0,
     "gestopt": 0,
@@ -366,6 +543,12 @@
  "St. Anna": {
   "doorlooptijden": [],
   "jaren": {
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 1,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 6,
     "gestopt": 0,
@@ -384,6 +567,18 @@
  "Stadscentrum": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 2
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2025": {
     "aanvragen": 9,
     "gestopt": 0,
@@ -402,6 +597,18 @@
  "Tolhuis": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
    "2025": {
     "aanvragen": 3,
     "gestopt": 1,
@@ -420,6 +627,12 @@
  "Wolfskuil": {
   "doorlooptijden": [],
   "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 0
+   },
    "2025": {
     "aanvragen": 4,
     "gestopt": 0,
@@ -437,7 +650,20 @@
  },
  "Zwanenveld": {
   "doorlooptijden": [],
-  "jaren": {},
+  "jaren": {
+   "2023": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 1
+   },
+   "2024": {
+    "aanvragen": 0,
+    "gestopt": 0,
+    "geweigerd": 0,
+    "verleend": 2
+   }
+  },
   "na_verkoop": 0
  }
 }

@@ -1072,3 +1072,19 @@ de Voorstenkamp | Nijmegen | 1080 | te huur | 2026-10-14 | kamernet-incl | 30 |
 # Automatisch toegevoegd uit Funda-attendering op 15-10-2026
 Ziekerstraat 144 | Nijmegen | 215000 | te koop | 2026-10-15 | funda-mail | 31 | 6511LL
 Ziekerstraat 36 | Nijmegen | 299000 | te koop | 2026-10-15 | funda-mail | 50 | 6511LH
+
+# Automatisch toegevoegd uit Funda-attendering op 15-10-2026
+Dokstraat | Nijmegen | 1750 | te huur | 2026-10-15 | huislijn | 60 | 6541EZ
+Kronenburgersingel | Nijmegen | 1270 | te huur | 2026-10-15 | huislijn |  | 6826MR
+Archipelhof | Nijmegen | 720 | te huur | 2026-10-15 | huislijn | 40 | 6524LE
+Wedesteinbroek | Nijmegen | 1275 | te huur | 2026-10-15 | huislijn |  | 6826MR
+Hengstdalseweg | Nijmegen | 714 | te huur | 2026-10-15 | huislijn | 63 | 6523EK
+Moerbeistraat | Nijmegen | 513 | te huur | 2026-10-15 | huislijn | 38 | 6523KN
+Wijchenseweg | Nijmegen | 585 | te huur | 2026-10-15 | huislijn | 43 | 6546BB
+Lange Brouwerstraat | Nijmegen | 3150 | te huur | 2026-10-15 | huislijn | 150 | 6511WH
+Groenestraat | Nijmegen | 785 | te huur kamer | 2026-10-15 | kamernet | 19 | 
+Dobbelmannweg | Nijmegen | 845 | te huur kamer | 2026-10-15 | kamernet-incl | 20 | 
+Kronenburgersingel | Nijmegen | 1800 | te huur gemeubileerd | 2026-10-15 | pararius | 91 | 6511AR
+Sergio Leonestraat | Nijmegen | 1850 | te huur | 2026-10-15 | pararius | 118 | 6515LC
+Broekstraat | Nijmegen | 1095 | te huur gemeubileerd | 2026-10-15 | pararius | 39 | 6546AA
+Kronenburgersingel | Nijmegen | 1800 | te huur kamer | 2026-10-15 | kamernet | 91 | 

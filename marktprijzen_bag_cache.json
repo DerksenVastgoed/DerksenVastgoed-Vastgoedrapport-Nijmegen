@@ -75334,5 +75334,102 @@
       "verbruik": 187.61,
       "bouwjaar": 1882
     }
+  },
+  "Dokstraat|Nijmegen": {
+    "oppervlakte": 60,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541EZ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Archipelhof|Nijmegen": {
+    "oppervlakte": 40,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524LE",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Wedesteinbroek|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Moerbeistraat|Nijmegen": {
+    "oppervlakte": 38,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6523KN",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Wijchenseweg|Nijmegen": {
+    "oppervlakte": 43,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6546BB",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Lange Brouwerstraat|Nijmegen": {
+    "oppervlakte": 150,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WH",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Groenestraat|Nijmegen": {
+    "oppervlakte": 19,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Dobbelmannweg|Nijmegen": {
+    "oppervlakte": 20,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Sergio Leonestraat|Nijmegen": {
+    "oppervlakte": 118,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6515LC",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Broekstraat|Nijmegen": {
+    "oppervlakte": 39,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6546AA",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "bm:Hatertseweg 219|Nijmegen": {
+    "postcode": "6533AG",
+    "buurtnaam": "St. Anna",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-6b0e95b643b62daa710472c9d32c2c3d"
+  },
+  "bm:Fransestraat 31|Nijmegen": {
+    "postcode": "6524HS",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-f4b946e8f3605bfd1a5cbb51a3a25ef8"
+  },
+  "bm:Regentessestraat 4|Nijmegen": {
+    "postcode": "6522AR",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-f50ef6d56d1ccfb3f00f2206daf9725d"
   }
 }

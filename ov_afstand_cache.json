@@ -143,6 +143,14 @@
   "omweg": 4.08,
   "soort": "station"
  },
+ "51.82318,5.77570": {
+  "geschat": false,
+  "hemelsbreed": 482,
+  "meters": 482,
+  "naam": "Kerkenbos",
+  "omweg": 1.0,
+  "soort": "bus"
+ },
  "51.82359,5.82483": {
   "geschat": false,
   "hemelsbreed": 326,
@@ -207,6 +215,14 @@
   "omweg": 1.96,
   "soort": "bus"
  },
+ "51.82972,5.78246": {
+  "geschat": false,
+  "hemelsbreed": 247,
+  "meters": 416,
+  "naam": "Wedesteinbroek 12e str.",
+  "omweg": 1.68,
+  "soort": "bus"
+ },
  "51.82979,5.82056": {
   "geschat": false,
   "hemelsbreed": 240,
@@ -229,6 +245,14 @@
   "meters": 276,
   "naam": "Hegdambroek",
   "omweg": 1.27,
+  "soort": "bus"
+ },
+ "51.83028,5.84744": {
+  "geschat": false,
+  "hemelsbreed": 62,
+  "meters": 90,
+  "naam": "Dobbelmannweg",
+  "omweg": 1.45,
   "soort": "bus"
  },
  "51.83031,5.86803": {
@@ -263,6 +287,14 @@
   "omweg": 1.02,
   "soort": "bus"
  },
+ "51.83158,5.85213": {
+  "geschat": false,
+  "hemelsbreed": 317,
+  "meters": 449,
+  "naam": "Thijmstraat",
+  "omweg": 1.42,
+  "soort": "bus"
+ },
  "51.83201,5.86255": {
   "geschat": false,
   "hemelsbreed": 304,
@@ -277,6 +309,14 @@
   "meters": 757,
   "naam": "Groenestraat",
   "omweg": 2.43,
+  "soort": "bus"
+ },
+ "51.83241,5.89279": {
+  "geschat": false,
+  "hemelsbreed": 135,
+  "meters": 155,
+  "naam": "Beukstraat",
+  "omweg": 1.15,
   "soort": "bus"
  },
  "51.83280,5.86255": {
@@ -373,6 +413,22 @@
   "meters": 506,
   "naam": "Spoorkuil",
   "omweg": 1.16,
+  "soort": "bus"
+ },
+ "51.83462,5.78882": {
+  "geschat": false,
+  "hemelsbreed": 211,
+  "meters": 226,
+  "naam": "Zellersacker",
+  "omweg": 1.07,
+  "soort": "bus"
+ },
+ "51.83467,5.86463": {
+  "geschat": false,
+  "hemelsbreed": 476,
+  "meters": 511,
+  "naam": "Archipelstraat",
+  "omweg": 1.07,
   "soort": "bus"
  },
  "51.83478,5.86273": {
@@ -1591,6 +1647,14 @@
   "omweg": 1.45,
   "soort": "bus"
  },
+ "51.84895,5.86115": {
+  "geschat": false,
+  "hemelsbreed": 259,
+  "meters": 363,
+  "naam": "Waalkade",
+  "omweg": 1.4,
+  "soort": "bus"
+ },
  "51.84903,5.84542": {
   "geschat": false,
   "hemelsbreed": 183,
@@ -1677,6 +1741,14 @@
   "meters": 162,
   "naam": "Havenweg",
   "omweg": 1.74,
+  "soort": "bus"
+ },
+ "51.85027,5.85499": {
+  "geschat": false,
+  "hemelsbreed": 246,
+  "meters": 354,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.44,
   "soort": "bus"
  },
  "51.85063,5.85527": {
@@ -1773,6 +1845,14 @@
   "meters": 286,
   "naam": "Jonagoldstraat",
   "omweg": 1.51,
+  "soort": "bus"
+ },
+ "51.88384,5.84878": {
+  "geschat": false,
+  "hemelsbreed": 546,
+  "meters": 1435,
+  "naam": "Terracottastraat",
+  "omweg": 2.63,
   "soort": "bus"
  }
 }
