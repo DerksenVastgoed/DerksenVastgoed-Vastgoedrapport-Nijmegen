@@ -8158,8 +8158,6 @@ Met de hand na te lopen, want hier is niets gemeten:
   deze buurten; vervangen zodra er huuraanbod uit die buurten is.
 - BESCHERMD_GEZICHT zegt voor beide "niet nagekeken". Uitzoeken of delen van
   Hunnerberg in de negentiende-eeuwse schil vallen.
-- bekendmakingen_nijmegen.RING_POSTCODES en RING_STRATEN zijn een grove,
-  eigen definitie van de ring en volgen ring.py niet. Zodra de inventaris de
-  postcodes van de nieuwe buurten kent, meten welke viercijferige postcodes
-  ontbreken en de lijst dan afleiden uit buurtinventaris.json in plaats van
-  hem met de hand bij te houden.
+- GEDAAN 15 oktober: in_ring vergelijkt de volledige postcode met de
+  inventaris. RING_POSTCODES is alleen nog terugval als de inventaris
+  ontbreekt; RING_STRATEN geldt alleen voor titels zonder postcode.
