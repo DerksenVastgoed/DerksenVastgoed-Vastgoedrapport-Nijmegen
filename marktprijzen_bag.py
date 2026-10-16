@@ -1907,7 +1907,23 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
             pass
 
     opbrengst = verkoop_per_m2 * bruikbaar if verkoop_per_m2 else None
-    return {"naam": f"splitsen in {aantal}", "huur_m2": huur_m2, "maand": maand,
+    # ZEG HOE ER IS GETELD. De telling per etage kan alleen als de 3D BAG de
+    # bouwlagen kent. Gemeten op 16 oktober 2026: van de panden met precies
+    # één woning mist hij die bij 5 procent (378 panden), bij panden met een
+    # winkel of kantoor erin bij 72 procent. Afleiden uit hoogte of volume
+    # gaat niet: inhoud gedeeld door grondvlak geeft op 7.167 panden met
+    # bekende lagen maar 65,6 procent het juiste aantal, en een laag ernaast
+    # verandert de telling. Dus geen schatting, maar zeggen dat de lagen
+    # onbekend zijn. Prof. Molkenboerstraat 30 stond op 15 oktober zo in de
+    # brief: "splitsen in 4" over 110 m2, zonder dat te zien was dat dit de
+    # oude telling over de hele oppervlakte was.
+    naam = f"splitsen in {aantal}"
+    if lagen:
+        naam += f" ({lagen} lagen, per etage geteld)"
+    elif len(w.get("eenheden_in_pand") or []) <= 1:
+        naam += " (lagen onbekend, geteld over de hele oppervlakte)"
+    return {"naam": naam, "huur_m2": huur_m2, "maand": maand,
+            "lagen": lagen,
             "verkoopwaarde": opbrengst,
             "verkoopmarge": (opbrengst - w["prijs"]) if opbrengst else None,
             "opp": round(bruikbaar), "bron": bron, "aantal": aantal,
@@ -8640,6 +8656,27 @@ def proef():
                            f"in plaats van {verwacht!r}")
     finally:
         _BUURT_OPZOEK = _oud
+
+    # Een splitsing zonder bekende lagen zegt dat ze over de hele oppervlakte
+    # is geteld; met lagen zegt ze dat het per etage is.
+    _oud_lagen = bouwlagen_van
+    try:
+        globals()["bouwlagen_van"] = lambda _p: None
+        _sp = splitsscenario({"oppervlakte": 110, "prijs": 450000, "pand": "x",
+                              "eenheden_in_pand": []}, {}, {}, "Buurt A")
+        if _sp and "lagen onbekend" not in _sp["naam"]:
+            afw.append(f"splitsing zonder lagen zegt niet hoe er is geteld: "
+                       f"{_sp['naam']}")
+        globals()["bouwlagen_van"] = lambda _p: 3
+        _sp = splitsscenario({"oppervlakte": 150, "prijs": 450000, "pand": "x",
+                              "eenheden_in_pand": []}, {}, {}, "Buurt A")
+        if _sp and "per etage" not in _sp["naam"]:
+            afw.append(f"splitsing met lagen zegt niet dat het per etage is: "
+                       f"{_sp['naam']}")
+        if _sp is None:
+            afw.append("150 m2 over 3 lagen levert geen splitsing op")
+    finally:
+        globals()["bouwlagen_van"] = _oud_lagen
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)

@@ -522,6 +522,18 @@ proef: gezondheid:de opdracht aan de schrijver staat letterlijk in
 soort: brief
 
 ---
+eis: Een splitsing zegt hoe ze is geteld: per etage als de bouwlagen bekend
+  zijn, en anders dat de lagen onbekend zijn en over de hele oppervlakte is
+  geteld. Het aantal lagen wordt niet geschat.
+waarom: 16 oktober. Prof. Molkenboerstraat 30 stond in de testrun van 15
+  oktober als "splitsen in 4" over 110 m2, zonder lagen in de 3D BAG en dus
+  met de oude telling, en dat was nergens aan te zien. Lagen afleiden uit
+  inhoud en grondvlak gaf op 7.167 panden met bekende lagen maar 65,6 procent
+  het juiste aantal.
+proef: marktprijzen_bag:splitsing zonder lagen zegt niet hoe er is geteld
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
