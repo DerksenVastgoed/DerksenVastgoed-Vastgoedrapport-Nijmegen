@@ -1103,23 +1103,16 @@ jobs:
             echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
             exit 0
           fi
-          RAPPORT="digests/${DATUM}-gezondheid.md"
-          if [ ! -f "$RAPPORT" ]; then
-            echo "Geen gezondheidsrapport om te toetsen; brief gaat gewoon uit."
-            exit 0
-          fi
-          if grep -qE "[1-9][0-9]* met andere inhoud|[1-9][0-9]* niet aanwezig" "$RAPPORT"; then
-            echo "LET OP: de code in de repo wijkt af van de paklijst."
-            echo "Deze brief kan uit een halve update komen. De kopie naar pa"
-            echo "gaat er daarom af; de brief gaat alleen naar Mark, met een"
-            echo "onderwerp dat de reden noemt."
-            grep -E "Versies" "$RAPPORT" | head -3
-            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
-            echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
-          else
-            echo "De bestanden passen bij elkaar; de brief gaat naar beiden."
-            echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
-          fi
+          # DE PAKLIJST BESLIST NIET MEER OVER DE KOPIE. Hier stond een grep op
+          # "met andere inhoud" in het gezondheidsrapport. De paklijst wordt
+          # sinds de overstap op pull requests door niemand ververst, dus van
+          # 11 tot en met 16 oktober gaf die grep elke dag een treffer en ging
+          # er zes dagen geen brief naar pa. De run checkt precies één commit
+          # uit; een halve upload bestaat in deze opzet niet. Wat wel een halve
+          # brief oplevert, een ontbrekende voet of een weggevallen onderdeel,
+          # staat hierboven en haalt de kopie er nog steeds af.
+          echo "De brief is compleet; hij gaat naar beiden."
+          echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
 
       - name: Digests + gegevensbestanden terugcommitten
         run: |
