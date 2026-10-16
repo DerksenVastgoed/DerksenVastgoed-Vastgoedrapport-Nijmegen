@@ -1547,9 +1547,9 @@ def controle_samenstelling():
     controle toetst daarom de opgeleverde tekst, en gebruikt dezelfde functie
     die de waarschuwing maakt om te bepalen of hij er had moeten staan.
 
-    TWEE SOORTEN TEKST, TWEE SOORTEN TOETS. De bijlage en de marktanalyse
-    worden door ons gegenereerd; daar hoort de waarschuwing woordelijk in te
-    staan. De brief wordt geschreven en hoort de dingen in eigen woorden te
+    TWEE SOORTEN TEKST, TWEE SOORTEN TOETS. In de bijlage en de samengestelde
+    brief hoort de waarschuwing sinds 16 oktober NIET woordelijk te staan; zie
+    het commentaar in de functie. De brief wordt geschreven en hoort de dingen in eigen woorden te
     zeggen. Op 9 oktober stond er: "alle vijf de gemeten buurten dezelfde kant
     op, van +4,1% tot +7,8%. Dat is onze steekproef die verandert, niet de
     markt, dus die zet ik er niet tegenover." Dat is precies goed, en toch
@@ -1581,13 +1581,21 @@ def controle_samenstelling():
         except Exception:
             return None
 
-    # De gegenereerde teksten: woordelijk, want die schrijven wij.
+    # SINDS 16 OKTOBER OMGEKEERD. Mark wilde de melding niet meer bovenaan de
+    # brief: hij was een opdracht aan de schrijver en pa las hem als eerste
+    # zin. Hij gaat nu alleen als bronblok naar brief_verhalend. In wat pa
+    # leest hoort hij dus juist NIET te staan; de brief zelf moet het in eigen
+    # woorden zeggen als hij de beweging noemt.
     mist = []
     for achtervoegsel, wat in (("-bijlage.md", "de bijlage"),
-                               ("-marktprijzen.md", "de marktanalyse")):
+                               ("-brief.md", "de brief")):
         tekst = laatste(achtervoegsel)
-        if tekst is not None and "GEEN MARKTBEWEGING" not in tekst:
-            mist.append(wat)
+        if tekst is not None and "GEEN MARKTBEWEGING" in tekst:
+            return (FOUT, f"de opdracht aan de schrijver staat letterlijk in "
+                    f"{wat}: {beweging}",
+                    "Die melding is voor brief_verhalend en niet voor pa. Kijk "
+                    "of samenstellingseffect() weer ergens in een blok wordt "
+                    "gezet dat in de mail komt.")
 
     # De brief: alleen streng als hij de beweging zelf noemt.
     brief = laatste("-verhaal.md") or ""
@@ -1603,16 +1611,16 @@ def controle_samenstelling():
     if not mist:
         hoe = ("de brief zegt het in eigen woorden" if voorbehoud
                else "de brief laat het erbuiten")
-        return (OK, f"alle buurten bewegen dezelfde kant op, de waarschuwing "
-                f"staat in de bijlage en {hoe}: {beweging}", "")
+        return (OK, f"alle buurten bewegen dezelfde kant op, de schrijver kreeg "
+                f"de waarschuwing en {hoe}: {beweging}", "")
     return (FOUT,
             "alle buurten bewegen dezelfde kant op, maar de waarschuwing staat "
             f"niet in {' en '.join(mist)}: {beweging}",
             "Zonder dat voorbehoud leest pa de buurtcijfers als een "
             "marktbeweging, en dat zijn ze niet: er komen andere panden in de "
-            "meting. De waarschuwing wordt gemaakt in samenstellingseffect() "
-            "en moet vlak voor de return worden ingevoegd, anders gooit de "
-            "opbouw van de dagelijkse editie hem weg.")
+            "meting. De waarschuwing gaat als bronblok naar brief_verhalend "
+            "(samenstelling_voor_schrijver); kijk of de schrijfregel erover er "
+            "nog staat.")
 
 
 def controle_oude_verlaging():
