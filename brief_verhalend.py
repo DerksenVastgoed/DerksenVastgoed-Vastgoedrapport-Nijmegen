@@ -300,7 +300,7 @@ CBS-INDEX EN RINGCIJFERS. De prijsindex van CBS en Kadaster meet werkelijke verk
 
 EEN MEDIAAN IS GEEN PRIJS. De buurtmediaan per m2 verschuift ook als er andere panden bijkomen of afgaan. Een lagere mediaan betekent dus niet dat prijzen zijn gedaald. Schrijf "de mediaan van onze waarnemingen" en niet "de prijs daalde"; noem een nieuw pand onder de mediaan als het die verschuiving verklaart.
 
-ALLE BUURTEN DEZELFDE KANT OP IS DE STEEKPROEF, NIET DE MARKT. Staat er boven de buurtcijfers een melding die begint met "LET OP, DIT IS GEEN MARKTBEWEGING", dan bewegen vier of meer buurten in vier weken dezelfde kant op met ongeveer hetzelfde percentage, en dat kan geen markt zijn. Op 9 oktober stonden alle vijf de buurten met een cijfer op +4,1% tot +7,8% in vier weken, en dat is op jaarbasis ruim een verdubbeling. De brief concludeerde die dag dat de ring niet afkoelt en zette dat tegenover de landelijke cijfers van het CBS en de NVM. Dat is de ene fout die je met deze cijfers kunt maken, want het CBS meet verkoopprijzen van vergelijkbare woningen en wij meten de mediaan van wat er op dat moment te koop staat. Schrijf in dat geval niet dat de markt stijgt of daalt. Als je er iets over zegt, zeg dan dat de samenstelling van ons aanbod is veranderd, en gebruik het niet als tegenargument tegen een landelijk bericht.
+ALLE BUURTEN DEZELFDE KANT OP IS DE STEEKPROEF, NIET DE MARKT. Staat er bij de bronnen een blok "WAARSCHUWING BIJ DE BUURTCIJFERS, ALLEEN VOOR JOU", dan bewegen vier of meer buurten in vier weken dezelfde kant op met ongeveer hetzelfde percentage, en dat kan geen markt zijn. Op 9 oktober stonden alle vijf de buurten met een cijfer op +4,1% tot +7,8% in vier weken, en dat is op jaarbasis ruim een verdubbeling. De brief concludeerde die dag dat de ring niet afkoelt en zette dat tegenover de landelijke cijfers van het CBS en de NVM. Dat is de ene fout die je met deze cijfers kunt maken, want het CBS meet verkoopprijzen van vergelijkbare woningen en wij meten de mediaan van wat er op dat moment te koop staat. Schrijf in dat geval niet dat de markt stijgt of daalt. Als je er iets over zegt, zeg dan dat de samenstelling van ons aanbod is veranderd, en gebruik het niet als tegenargument tegen een landelijk bericht.
 
 HET VOORBEHOUD PER BUURT IS NIET HETZELFDE ALS HET PATROON OVER DE BUURTEN. Bij elke buurtregel staat al dat de mediaan ook verschuift doordat er panden bij- of afvallen. Dat voorbehoud overnemen is goed, maar het is niet genoeg: als je de buurten los leest, zie je niet dat ze allemaal dezelfde kant op gaan, en juist dat is het bewijs dat het de steekproef is. Kijk dus altijd of er meer buurten dezelfde beweging laten zien voordat je er iets over de markt van maakt.
 
@@ -1218,6 +1218,25 @@ def koppel_publicaties(brief, publicaties):
     return brief
 
 
+def samenstelling_voor_schrijver():
+    """
+    De waarschuwing over het samenstellingseffect, als bron voor het model.
+
+    WAAROM HIER. Tot 16 oktober 2026 stond deze melding als vette regel boven
+    de brief en de bijlage: "LET OP, DIT IS GEEN MARKTBEWEGING ... Gebruik deze
+    cijfers dus niet als bewijs". Dat is een opdracht aan de schrijver, en pa
+    las hem als eerste zin van zijn brief. Mark wilde hem weg. Hij komt nu
+    alleen hier binnen; de schrijfregel zegt wat ermee moet, en gezondheid.py
+    toetst dat de brief de beweging niet zonder voorbehoud noemt.
+    """
+    try:
+        from marktprijzen_bag import lees_trend, samenstellingseffect
+        return strip_opmaak(samenstellingseffect(lees_trend()), 2000)
+    except Exception as e:
+        print(f"Samenstellingseffect niet te bepalen: {e}", file=sys.stderr)
+        return ""
+
+
 def strip_opmaak(tekst, maxlen=14000):
     """Haalt tabellen en HTML eruit; het model krijgt de inhoud, niet de vorm."""
     tekst = re.sub(r"<[^>]+>", " ", tekst)
@@ -1719,6 +1738,7 @@ def main():
               else "")
 
     _aanbod = strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))
+    _samenstelling = samenstelling_voor_schrijver()
     _dossiers = strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)
     _besluiten = (week_terug("bekendmakingen", d) if _weekelijks()
                   else strip_opmaak(lees(f"digests/{d}-bekendmakingen.md")))
@@ -1727,6 +1747,7 @@ def main():
         ("WAT PA AL HEEFT GELEZEN", _al),
         ("Cijfers per buurt", buurtcijfers_tekst()),
         ("Achtergrond bij het nieuws van vandaag", achtergrondtekst()),
+        ("WAARSCHUWING BIJ DE BUURTCIJFERS, ALLEEN VOOR JOU", _samenstelling),
         ("Aanbod en buurten", _waarschuw(_aanbod) + _aanbod),
         ("Dossiers per pand", _waarschuw(_dossiers) + _dossiers),
         ("Gemeentelijke besluiten", _waarschuw(_besluiten) + _besluiten),

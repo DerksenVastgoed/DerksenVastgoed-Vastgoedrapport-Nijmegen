@@ -78,6 +78,14 @@ def lees(pad=PAD):
         if naam not in TOEGESTAAN:
             fouten.append(f"regel {n}: onbekend veld {naam!r}")
             continue
+        # TWEE KEER HETZELFDE VELD IN EEN BLOK IS EEN VERLOREN EIS. Op 16
+        # oktober botsten twee pull requests in dit bestand; bij het oplossen
+        # verdween de --- ertussen, en twee eisen werden één blok. De tweede
+        # overschreef de eerste stil, en de proef bleef groen met 78 in plaats
+        # van 79 eisen.
+        if naam in blok:
+            fouten.append(f"regel {n}: veld {naam!r} staat twee keer in één "
+                          f"blok; ontbreekt hier een regel met ---?")
         blok[naam] = waarde
         veld = naam
     if blok:

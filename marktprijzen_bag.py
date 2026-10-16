@@ -1150,20 +1150,6 @@ def samenstellingseffect(historie, buurten=None, terug=4):
     )
 
 
-def _voorop(melding, regels):
-    """
-    Zet een melding bovenaan een blok, of laat het blok zoals het is.
-
-    Dit bestaat omdat een waarschuwing die vroeg in de lijst wordt gezet,
-    verdwijnt zodra de lijst later opnieuw wordt opgebouwd. Door het invoegen
-    pas bij de return te doen, kan er geen stap meer tussen komen die het
-    weggooit.
-    """
-    if not melding:
-        return regels
-    return ["", melding, ""] + list(regels)
-
-
 def buurtregel(naam, cbs, opp_uit_bag=None, studenten_ring=None,
                _trend_historie=None):
     """
@@ -6429,14 +6415,12 @@ def render_bijlage(woningen, per_buurt, stad_breed, huur_bk=None, huur_k=None):
              "kort gepubliceerd._")
     r.append("")
 
-    # Bewegen alle buurten dezelfde kant op, dan is dat onze steekproef en niet
-    # de markt. Die waarschuwing hoort pal boven de prijspeilregels per buurt,
-    # want hij bepaalt wat je over die cijfers mag zeggen. Hij staat ook boven
-    # de brief zelf: op twee plekken, omdat de bijlage los wordt gelezen.
-    _samenstelling_b = samenstellingseffect(trend)
-    if _samenstelling_b:
-        r.append(_samenstelling_b)
-        r.append("")
+    # DE MELDING STAAT NIET MEER IN WAT PA LEEST. 16 oktober, Mark: de melding
+    # bovenaan de brief moet weg. Hij was geschreven als opdracht ("Gebruik deze
+    # cijfers dus niet als bewijs...") en stond letterlijk boven de brief en de
+    # bijlage. Hij gaat nu alleen naar de schrijver, als eigen bronblok in
+    # brief_verhalend; die bepaalt of en hoe pa het hoort, en gezondheid.py
+    # toetst dat de brief de beweging niet zonder voorbehoud noemt.
 
     # Dan per buurt de panden
     for buurt in sorted(per_buurt, key=lambda b: -len(per_buurt[b])):
@@ -7986,7 +7970,12 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     # oktober gebeurde: de waarschuwing werd gemaakt en weggegooid, en de brief
     # gebruikte de stijgende buurtcijfers als bewijs dat de ring niet afkoelt.
     # Het invoegen gebeurt daarom pas vlak voor de return, in beide edities.
-    _samenstelling = samenstellingseffect(historie)
+    # DE MELDING STAAT NIET MEER IN WAT PA LEEST. 16 oktober, Mark: de melding
+    # bovenaan de brief moet weg. Hij was geschreven als opdracht ("Gebruik deze
+    # cijfers dus niet als bewijs...") en stond letterlijk boven de brief en de
+    # bijlage. Hij gaat nu alleen naar de schrijver, als eigen bronblok in
+    # brief_verhalend; die bepaalt of en hoe pa het hoort, en gezondheid.py
+    # toetst dat de brief de beweging niet zonder voorbehoud noemt.
 
     if onbetrouwbaar:
         print(f"Buiten de statistiek gehouden: {len(onbetrouwbaar)} panden waarvan "
@@ -8049,7 +8038,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         r.append("_Referentietabellen, rendement en de beleggingslijst staan in de "
                  "uitgebreide brief van zondag._")
         r.append("")
-        return "\n".join(_voorop(_samenstelling, r))
+        return "\n".join(r)
 
     # Zondag: uitgewerkte investeringscases, en verder niets. De referentie-
     # tabellen zaten hier eerder onder, maar die informatie zit nu in de cases.
@@ -8059,7 +8048,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     r.extend(render_investeringscases(kandidaten, lees_cbs(), per_buurt,
                                       huur_bk, huur_k, bm_per_buurt,
                                       beleggingen=beleggingen))
-    return "\n".join(_voorop(_samenstelling, r))
+    return "\n".join(r)
 
     r.append("### Referentie: prijspeil per buurt")
     r.append("")

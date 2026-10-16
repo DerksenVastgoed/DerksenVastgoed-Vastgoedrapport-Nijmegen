@@ -510,6 +510,18 @@ proef: gezondheid:DE KOPIE NAAR PA HANGT NIET AAN DE PAKLIJST
 soort: brief
 
 ---
+eis: Een opdracht aan de schrijver staat nooit letterlijk in wat pa leest; de
+  waarschuwing over het samenstellingseffect gaat alleen naar brief_verhalend.
+waarom: 16 oktober, Mark: de melding bovenaan de brief moet weg. "LET OP, DIT
+  IS GEEN MARKTBEWEGING ... Gebruik deze cijfers dus niet als bewijs" stond
+  sinds 9 oktober boven de brief en de bijlage. Het is een instructie aan het
+  model, en pa las hem als eerste zin. De brief zegt het nu in eigen woorden
+  als hij de beweging noemt; noemt hij haar zonder voorbehoud, dan is
+  gezondheid.py rood.
+proef: gezondheid:de opdracht aan de schrijver staat letterlijk in
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
