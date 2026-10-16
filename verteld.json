@@ -20,8 +20,8 @@
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-15",
-   "keer": 3,
+   "laatst": "2026-10-16",
+   "keer": 4,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
@@ -80,8 +80,8 @@
   },
   "groesbeekseweg118": {
    "eerst": "2026-10-13",
-   "laatst": "2026-10-14",
-   "keer": 2,
+   "laatst": "2026-10-16",
+   "keer": 3,
    "omschrijving": "Groesbeekseweg 118"
   },
   "bergendalseweg1111a": {
@@ -92,32 +92,32 @@
   },
   "beijensstraat18": {
    "eerst": "2026-10-14",
-   "laatst": "2026-10-14",
-   "keer": 1,
+   "laatst": "2026-10-16",
+   "keer": 2,
    "omschrijving": "Beijensstraat 18"
   },
   "zwaluwstraat175": {
    "eerst": "2026-10-14",
-   "laatst": "2026-10-14",
-   "keer": 1,
+   "laatst": "2026-10-16",
+   "keer": 2,
    "omschrijving": "Zwaluwstraat 175"
   },
   "groesbeekseweg85": {
    "eerst": "2026-10-14",
-   "laatst": "2026-10-14",
-   "keer": 1,
+   "laatst": "2026-10-16",
+   "keer": 2,
    "omschrijving": "Groesbeekseweg 85"
   },
   "pontanusstraat19": {
    "eerst": "2026-10-14",
-   "laatst": "2026-10-14",
-   "keer": 1,
+   "laatst": "2026-10-16",
+   "keer": 2,
    "omschrijving": "Pontanusstraat 19"
   },
   "vondelstraat63": {
    "eerst": "2026-10-14",
-   "laatst": "2026-10-14",
-   "keer": 1,
+   "laatst": "2026-10-16",
+   "keer": 2,
    "omschrijving": "Vondelstraat 63"
   },
   "profmolkenboerstraat20a": {
@@ -125,6 +125,12 @@
    "laatst": "2026-10-15",
    "keer": 1,
    "omschrijving": "Professor Molkenboerstraat 20A"
+  },
+  "ziekerstraat36": {
+   "eerst": "2026-10-16",
+   "laatst": "2026-10-16",
+   "keer": 1,
+   "omschrijving": "Ziekerstraat 36"
   }
  }
 }

@@ -94699,9 +94699,16 @@
     "datum": "2025-04-09",
     "soort": "energielabel",
     "tekst": "energielabel van Lange Hezelstraat 8 is C, geregistreerd 2025-04-09"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-16",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1879, dat zelf al in gebruik is, mediaan 38 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-16 in de registratie staat"
    }
   ],
   "pand_id": "0268100000010767",
+  "transformatie_gemeld": 3,
   "vbo": "0268010000069941",
   "vbo_panden": [
    "0268100000010767"
@@ -132947,8 +132954,16 @@
  },
  "plein1944128": {
   "adres": "Plein 1944 128",
-  "gebeurtenissen": [],
+  "gebeurtenissen": [
+   {
+    "bron": "BAG",
+    "datum": "2026-10-16",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1954, dat zelf al in gebruik is, mediaan 37 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-16 in de registratie staat"
+   }
+  ],
   "pand_id": "0268100000029919",
+  "transformatie_gemeld": 3,
   "vbo": "0268010000024988",
   "vbo_panden": [
    "0268100000029919"
@@ -155922,9 +155937,16 @@
     "datum": "2024-03-21",
     "soort": "bekendmaking",
     "tekst": "van Welderenstraat 126 Nijmegen: verbouwen van de huidige bovenwoning naar twee appartementen - omgevingsvergunning - Vergunning verleend"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-16",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1886, dat zelf al in gebruik is, mediaan 60 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-16 in de registratie staat"
    }
   ],
   "pand_id": "0268100000005331",
+  "transformatie_gemeld": 2,
   "vbo": "0268010000035348",
   "vbo_gevormd": [
    "0268010000110529"
@@ -170026,9 +170048,16 @@
     "datum": "2024-07-10",
     "soort": "bekendmaking",
     "tekst": "Ziekerstraat 60-66 Nijmegen: aanpassen uitbreiden van de winkel en uitbreiden en splitsen van 2 bovenwoningen in 6 appartementen - omgevingsvergunning - Vergunn"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-16",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 6 woningen als gevormd in dit pand uit 1955, dat zelf al in gebruik is, mediaan 52 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-16 in de registratie staat"
    }
   ],
   "pand_id": "0268100000003002",
+  "transformatie_gemeld": 6,
   "vbo": "0268010000055853",
   "vbo_panden": [
    "0268100000003002"

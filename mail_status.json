@@ -1,28 +1,28 @@
 {
- "datum": "2026-10-15",
+ "datum": "2026-10-16",
  "bronnen": {
-  "huislijn": {
-   "mails": 4,
-   "objecten": 12,
-   "overgeslagen": 0,
-   "redenen": []
-  },
-  "kamernet": {
-   "mails": 17,
-   "objecten": 14,
-   "overgeslagen": 3,
-   "redenen": [
-    "Homberg: €53 per maand is niet aannemelijk",
-    "Homberg, Wijchen: buiten Nijmegen",
-    "Ranonkelstraat, Arnhem: buiten Nijmegen"
-   ]
-  },
   "regulier": {
    "mails": 3,
    "objecten": 6,
    "overgeslagen": 1,
    "redenen": [
     "Dokstraat 117 (geen prijs gevonden)"
+   ]
+  },
+  "huislijn": {
+   "mails": 3,
+   "objecten": 11,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "kamernet": {
+   "mails": 15,
+   "objecten": 12,
+   "overgeslagen": 3,
+   "redenen": [
+    "Homberg: €53 per maand is niet aannemelijk",
+    "Homberg, Wijchen: buiten Nijmegen",
+    "Ranonkelstraat, Arnhem: buiten Nijmegen"
    ]
   },
   "pararius": {
@@ -41,26 +41,23 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 27,
-  "andere_status": 2,
-  "voorbeelden": [
-   "Kronenburgersingel -> te huur",
-   "Kronenburgersingel -> te huur kamer"
-  ]
+  "zelfde_status": 38,
+  "andere_status": 0,
+  "voorbeelden": []
  },
  "berichten_per_afzender": {
   "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 17,
+  "kamernet.nl": 15,
   "vendr.nl": 0,
-  "huislijn.nl": 4,
+  "huislijn.nl": 3,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 12-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 12-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 13-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 13-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

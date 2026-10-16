@@ -4,7 +4,7 @@
   "titel": "Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html",
   "strategie": "kamerverhuur",
-  "duiding": "Herroeping van de kamerverhuurvergunning betekent dat dit adres niet langer legaal verkamerd mag worden, wat kamerverhuurexploitatie hier stopt.",
+  "duiding": "Herroeping van de kamerverhuurvergunning na bezwaar beëindigt de legale verkameringsstatus op dit adres, relevant voor wie op kamerverhuur rekent.",
   "feiten": {
    "energielabel": "A+ (2026)",
    "label_alleen_dit_adres": true,
@@ -19,7 +19,7 @@
   "titel": "Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html",
   "strategie": "geen",
-  "duiding": "Legalisatie van gewijzigde kozijnen en interne verbouwing is een administratieve correctie zonder marktbreed effect.",
+  "duiding": "Legalisatie van gewijzigde kozijnen is een administratieve correctie zonder herkenbaar waardecreatie-signaal.",
   "feiten": {
    "energielabel": "B (2021)",
    "oppervlakte_m2": 172
@@ -33,7 +33,7 @@
   "titel": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html",
   "strategie": "splitsen",
-  "duiding": "Splitsing van de woning in twee adressen voegt een zelfstandige wooneenheid toe aan het kleinere segment.",
+  "duiding": "Splitsing in twee adressen vergroot het aanbod kleine zelfstandige wooneenheden in dit segment.",
   "feiten": {
    "energielabel": "B (2026)",
    "oppervlakte_m2": 52
@@ -43,24 +43,11 @@
   "kern": true
  },
  {
-  "datum": "2026-10-13",
-  "titel": "Besluit (met BOPA) voor Het verdiepen en vergroten van de kelder  van de woning aan Hatertseweg 219, 6533AG Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477964.html",
-  "strategie": "geen",
-  "duiding": "Verdiepen en vergroten van de kelder via BOPA betreft fysieke uitbreiding zonder functiewijziging.",
-  "feiten": {
-   "oppervlakte_m2": 105
-  },
-  "straat": "Hatertseweg",
-  "huisnummer": "219",
-  "kern": true
- },
- {
   "datum": "2026-10-15",
   "titel": "Aanvraag omgevingsvergunning voor het verwijderen van de penant in de achtergevel en opdikken van de vloerbalken , aan Fransestraat 31, 6524HS Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-483195.html",
   "strategie": "geen",
-  "duiding": "Verwijderen van een penant en opdikken van vloerbalken is constructieve aanpassing zonder effect op woningaanbod of functie.",
+  "duiding": "Verwijderen van de penant en opdikken van vloerbalken betreft constructief herstel zonder duidelijk waardecreatiesignaal.",
   "feiten": {
    "energielabel": "B (2026)",
    "oppervlakte_m2": 365
@@ -74,55 +61,13 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de woning, aan Regentessestraat 4, 6522AR Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-483189.html",
   "strategie": "geen",
-  "duiding": "Aanvraag voor verbouwing van de woning bevat geen details over functiewijziging of labelverbetering.",
+  "duiding": "Aanvraag voor verbouwing bij een pand met label F wijst op mogelijke renovatie, maar concrete maatregelen ontbreken in de feiten.",
   "feiten": {
    "energielabel": "F (2025)",
    "oppervlakte_m2": 116
   },
   "straat": "Regentessestraat",
   "huisnummer": "4",
-  "kern": false
- },
- {
-  "datum": "2026-10-13",
-  "titel": "Besluit voor het constructief wijzigen van de huidige en oorspronkelijke achtergevel aan Sumatrastraat 22, 6524KK Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477659.html",
-  "strategie": "geen",
-  "duiding": "Constructieve wijziging van de achtergevel is een technische ingreep zonder duidelijke marktstrategie.",
-  "feiten": {
-   "energielabel": "D (2025)",
-   "oppervlakte_m2": 299
-  },
-  "straat": "Sumatrastraat",
-  "huisnummer": "22",
-  "kern": false
- },
- {
-  "datum": "2026-10-13",
-  "titel": "Besluit voor het wijzigen kozijnen met ramen/deuren in de voorgevel en het maken van een interne doorbraak aan van Spaenstraat 7, 6524HH Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-477038.html",
-  "strategie": "geen",
-  "duiding": "Wijziging van kozijnen en interne doorbraak betreft interne verbouwing zonder functiewijziging.",
-  "feiten": {
-   "energielabel": "E (2017)",
-   "oppervlakte_m2": 250
-  },
-  "straat": "van Spaenstraat",
-  "huisnummer": "7",
-  "kern": false
- },
- {
-  "datum": "2026-10-13",
-  "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de pui, aan Molenstraat 94, 6511HJ Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-478113.html",
-  "strategie": "geen",
-  "duiding": "Aanpassen van de pui is een gevelwijziging zonder aangegeven functiewijziging of ontwikkelingsstrategie.",
-  "feiten": {
-   "energielabel": "A (2018)",
-   "oppervlakte_m2": 105
-  },
-  "straat": "Molenstraat",
-  "huisnummer": "94",
   "kern": false
  }
 ]

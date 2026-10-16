@@ -75342,7 +75342,8 @@
     ],
     "postcode": "6541EZ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Archipelhof|Nijmegen": {
     "oppervlakte": 40,
@@ -75351,7 +75352,8 @@
     ],
     "postcode": "6524LE",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Wedesteinbroek|Nijmegen": {
     "gefaald": true,
@@ -75364,7 +75366,8 @@
     ],
     "postcode": "6523KN",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Wijchenseweg|Nijmegen": {
     "oppervlakte": 43,
@@ -75373,7 +75376,8 @@
     ],
     "postcode": "6546BB",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Lange Brouwerstraat|Nijmegen": {
     "oppervlakte": 150,
@@ -75382,19 +75386,22 @@
     ],
     "postcode": "6511WH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Groenestraat|Nijmegen": {
     "oppervlakte": 19,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Dobbelmannweg|Nijmegen": {
     "oppervlakte": 20,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Sergio Leonestraat|Nijmegen": {
     "oppervlakte": 118,
@@ -75403,7 +75410,8 @@
     ],
     "postcode": "6515LC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Broekstraat|Nijmegen": {
     "oppervlakte": 39,
@@ -75412,7 +75420,8 @@
     ],
     "postcode": "6546AA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:Hatertseweg 219|Nijmegen": {
     "postcode": "6533AG",
