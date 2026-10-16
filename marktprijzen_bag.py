@@ -1127,9 +1127,17 @@ def samenstellingseffect(historie, buurten=None, terug=4):
     hoog = max(pcts.values())
     # Komma als decimaalteken, zoals overal elders in de brief
     kom = lambda x, teken="+": f"{x:{teken}.1f}".replace(".", ",")
+    # DE BUURTEN ZONDER REEKS BIJ NAAM. Op 15 oktober kwamen Hunnerberg en St.
+    # Anna in de ring, zonder vier weken prijsgeschiedenis. Er stond "5 van de
+    # 6 buurten", en de brief maakte daar "vijf van de zes buurten" van: alsof
+    # de ring nog zes buurten telde. Een telling hoort te zeggen waarover ze
+    # telt, en "niet gemeten" is iets anders dan "niet bewogen".
+    zonder = [b for b in buurten if b not in pcts]
+    waarover = (f"{len(pcts)} buurten met een reeks over {terug} weken"
+                + (f" ({' en '.join(zonder)} nog zonder)" if zonder else ""))
     return (
         f"**LET OP, DIT IS GEEN MARKTBEWEGING.** {eenzelfde} van de "
-        f"{len(pcts)} buurten gaan in deze {terug} weken dezelfde kant op, "
+        f"{waarover} gaan dezelfde kant op, "
         f"{richting}, van {kom(laag)}% tot {kom(hoog)}%, mediaan "
         f"{kom(mediaan, '')}%. Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
         f"geen woningmarkt. Als alle buurten tegelijk evenveel bewegen, "
@@ -8605,6 +8613,15 @@ def proef():
     if shortlist_oordeel(w_s, dict(sc_s, naam="kamers, route vermoedelijk "
                                               "geblokkeerd"))[0]:
         afw.append("een pand met een geblokkeerde route staat op de shortlist")
+
+    # Een buurt zonder reeks wordt genoemd, niet stil weggelaten uit de
+    # telling.
+    _h = {"2026-09-01": {"A": 100, "B": 100, "C": 100, "D": 100},
+          "2026-09-08": {}, "2026-09-15": {}, "2026-09-22": {},
+          "2026-09-29": {"A": 107, "B": 106, "C": 108, "D": 105, "E": 100}}
+    _t = samenstellingseffect(_h, buurten=["A", "B", "C", "D", "E"])
+    if "E nog zonder" not in _t:
+        afw.append(f"een ringbuurt zonder reeks valt stil uit de telling: {_t[:120]}")
 
     # Huur zonder huisnummer krijgt een buurt uit de postcode, en uit de
     # straat alleen als die in één buurt ligt; op vaste gegevens.
