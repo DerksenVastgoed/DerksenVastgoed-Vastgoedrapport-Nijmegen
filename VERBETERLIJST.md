@@ -8164,3 +8164,14 @@ Met de hand na te lopen, want hier is niets gemeten:
 - GEDAAN 15 oktober: in_ring vergelijkt de volledige postcode met de
   inventaris. RING_POSTCODES is alleen nog terugval als de inventaris
   ontbreekt; RING_STRATEN geldt alleen voor titels zonder postcode.
+
+## Dubbelbestemming cultuurhistorie per pand (16 oktober 2026)
+
+Groesbeekseweg 118A/B kostte 213 dagen, deels omdat er een dubbelbestemming
+'Cultuurhistorie - 2' op ligt met een bouwverbod; elke verbouwing gaat dan
+via een binnenplanse afwijking langs de Adviescommissie Omgevingskwaliteit,
+ook als er van buiten niets verandert. Onze dossiers kennen alleen het
+beschermd stadsgezicht per buurt. Uitzoeken of de dubbelbestemmingen per
+perceel op te halen zijn uit een bron die geautomatiseerd ophalen toestaat
+(niet jeleefomgeving.nl), en hoeveel ringpanden eronder vallen, voordat er
+een regel in de dossiers komt.
