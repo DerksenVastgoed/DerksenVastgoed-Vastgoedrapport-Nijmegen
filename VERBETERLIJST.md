@@ -8139,15 +8139,21 @@ daarover). Wanneer de repo privé is, gaat terug:
 Nog openbaar tot dan: de shortlisttabel in digests/*-bijlage.md, de factor 17
 in marktprijzen_bag.py, en alles in de geschiedenis van git.
 
-## 3D BAG: panden met metingen maar zonder bouwlagen
+## 3D BAG: panden met metingen maar zonder bouwlagen — UITGEZOCHT 16 oktober 2026
 
-Op 15 oktober hadden 610 van de 1.347 opgehaalde panden wel een buitenmuur en
-volume maar geen b3_bouwlagen. Die tellen dus niet per etage. Uitzoeken of de
-bron ze bewust leeg laat (bijvoorbeeld bij gemengde daken) voordat er iets uit
-de hoogte wordt afgeleid; een afgeleid aantal lagen moet er dan bij zeggen dat
-het afgeleid is.
+Na de volledige inhaalslag: 2.091 van de 11.005 panden met metingen hebben
+geen b3_bouwlagen. Het zit vooral bij panden met meer adressen: 5 procent bij
+panden met één woning (378), 48 procent bij 2 of 3 woningen, 72 procent bij 4
+of meer, en 72 procent bij panden met een winkel of kantoor erin. De telling
+per etage gebruikt alleen panden met één woning, dus daar is de dekking 95
+procent.
 
-De workflow inhaal-3dbag.yml kan weg zodra de wachtrij leeg is.
+Afleiden is getoetst en afgewezen: inhoud gedeeld door grondvlak, gedeeld door
+een verdiepingshoogte, geeft op 7.167 panden met bekende lagen in het beste
+geval 65,6 procent het juiste aantal. Een laag ernaast verandert de telling,
+dus dat is geen meting. De splitsing zegt nu in haar naam of ze per etage of
+over de hele oppervlakte is geteld.
+
 
 ## Na het uitbreiden van de ring met Hunnerberg en St. Anna (15 oktober 2026)
 
