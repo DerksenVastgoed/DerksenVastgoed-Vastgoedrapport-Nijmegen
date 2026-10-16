@@ -722,6 +722,19 @@ def controle_versies():
     welke code er draaide. Anders moet dat uit een andere stap in het logboek
     komen en is het bij het overnemen zo verdwenen.
     """
+    # IN EEN GIT-CHECKOUT KAN GEEN HALVE UPDATE BESTAAN. De paklijst is
+    # gemaakt voor de tijd dat Mark bestanden met de hand uploadde: dan kon een
+    # run beginnen terwijl de helft er al stond (9 oktober). Sinds alles via
+    # pull requests gaat, draait de run op precies één commit, en wordt
+    # versies.json door niemand meer ververst. Van 11 tot en met 16 oktober
+    # meldde deze controle daardoor elke dag "20 tot 26 met andere inhoud", en
+    # de workflow haalde op die melding de kopie naar pa eraf. Zes dagen lang
+    # kreeg hij geen brief, bij volkomen goed gedrag. Een melding die afgaat
+    # bij goed gedrag is erger dan geen melding.
+    sha = os.environ.get("GITHUB_SHA", "")
+    if sha and os.path.isdir(".git"):
+        return (OK, f"code uit commit {sha[:7]}, in één keer uitgecheckt; een "
+                f"halve upload kan hier niet bestaan", "")
     try:
         import paklijst as _v
         controleer = getattr(_v, "controleer", None)
@@ -4025,6 +4038,31 @@ def proef():
         # "meta" en wordt dus toch niet als verordening of wet geteld. Hem
         # weghalen verandert niets dat deze proef kan zien, en dat staat hier
         # in plaats van dat ik er een proefgeval bij verzin.
+
+    # DE KOPIE NAAR PA HANGT NIET AAN DE PAKLIJST. Van 11 tot en met 16
+    # oktober haalde een grep op "met andere inhoud" de kopie eraf, elke dag,
+    # omdat de paklijst niet meer werd ververst. Twee dingen moeten dus waar
+    # zijn: in een git-checkout meldt de versiecontrole geen afwijking, en
+    # geen regel van de workflow (buiten commentaar) leest die woorden.
+    _oud_sha = os.environ.get("GITHUB_SHA")
+    os.environ["GITHUB_SHA"] = "0" * 40
+    try:
+        if os.path.isdir(".git") and controle_versies()[0] != OK:
+            fouten.append("in een git-checkout meldt de versiecontrole een "
+                          "afwijking van de paklijst")
+    finally:
+        if _oud_sha is None:
+            os.environ.pop("GITHUB_SHA", None)
+        else:
+            os.environ["GITHUB_SHA"] = _oud_sha
+    try:
+        with open(".github/workflows/bekendmakingen.yml", encoding="utf-8") as f:
+            _wf = [r for r in f if not r.lstrip().startswith("#")]
+        if any("met andere inhoud" in r for r in _wf):
+            fouten.append("de workflow beslist over de kopie naar pa op de "
+                          "paklijst ('met andere inhoud')")
+    except OSError:
+        pass
 
     print(f"Proef gezondheid: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:

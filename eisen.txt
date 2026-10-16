@@ -497,6 +497,19 @@ proef: marktprijzen_bag:huur zonder huisnummer
 soort: gegevens
 
 ---
+eis: De kopie naar pa gaat er alleen af om iets in de brief zelf (geen voet,
+  een weggevallen onderdeel), nooit om een paklijst die niemand ververst.
+waarom: 16 oktober, Mark: "zie ik pa niet in de cc staan". Van 11 tot en met
+  16 oktober meldde de versiecontrole elke dag 20 tot 26 bestanden "met andere
+  inhoud" dan de paklijst van 10 oktober, en de workflow haalde op die woorden
+  de kopie naar pa eraf. Zes dagen geen brief voor pa, bij volkomen goed
+  gedrag. De paklijst hoorde bij het uploaden met de hand; sinds alles via
+  pull requests gaat draait de run op één commit en kan een halve upload niet
+  bestaan.
+proef: gezondheid:DE KOPIE NAAR PA HANGT NIET AAN DE PAKLIJST
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
