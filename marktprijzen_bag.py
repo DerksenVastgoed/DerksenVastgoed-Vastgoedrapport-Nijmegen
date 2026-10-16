@@ -5843,8 +5843,9 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
             f"{', '.join(str(m) for m in x['maten'])} m2"
             for x in _beeld["gesplitst"][:3])
           + ". Dat staat in de registratie, dus een harder gegeven dan een "
-            "straatbeeld. Weeg de splitsingsroute hier zwaarder dan de omvang "
-            "alleen zou ingeven",
+            "straatbeeld: in deze straat wordt gesplitst. Of het vergund is, "
+            "zegt de registratie niet; Bronsgeeststraat 11 en 11A stonden "
+            "dertig jaar als twee woningen in de BAG zonder vergunning",
           "voorraad uit de BAG")
 
 
