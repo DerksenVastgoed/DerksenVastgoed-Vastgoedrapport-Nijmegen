@@ -311,6 +311,10 @@ ACHTERGROND_TREFWOORDEN = {
     "Waarom splitsen loont ondanks het puntenstelsel": [
         "splitsen", "puntenstelsel", "wws", "gereguleerd", "maximumhuur",
         "groottepremie", "rendement", "appartementen"],
+    "Een winkelverdieping wordt woning: Groesbeekseweg 118A/B": [
+        "transformatie", "winkel", "apotheek", "verdieping", "daglicht",
+        "ventilatie", "akoestiek", "aanvulling", "doorlooptijd", "nen 2057",
+        "nen 1087"],
     "Geregistreerd is niet vergund: Bronsgeeststraat 11": [
         "legalisering", "legaliseren", "bestaande situatie", "bestaande splitsing",
         "registratie", "woz", "makelaar", "brandcompartiment", "11a"],
@@ -376,6 +380,11 @@ ACHTERGROND_BRONNEN = {
         "338, gemeente Nijmegen, en de Beleidsregels Parkeren 2025",
     "Parkeren bij splitsen":
         "Beleidsregels parkeren 2025 gemeente Nijmegen, bijzonder geval VII en tabel 4; gepubliceerd als gmb-2025-239801 en als CVDR739955. Het gereguleerde gebied wordt aangewezen in het Besluit tot aanwijzing en uitwerking betaald parkeren, artikel 1 en 2, jaarlijks als gemeenteblad gepubliceerd; de versie van 2026 is gmb-2025-555465. Gemeten aan de parkeerberekening bij Staringstraat 2 en het besluit over Hatertseweg 338, en de zonelijst van artikel 2 is op 14 oktober 2026 naast de kaartlaag gelegd.",
+    "Een winkelverdieping wordt woning: Groesbeekseweg 118A/B":
+        "Aanvraag DSO 2026030901030 (versie 006 van 23 september 2026) en de "
+        "ventilatie-, spui- en daglichtberekening V4, door Mark aangeleverd; "
+        "besluit gmb-2026-474199 van 12 oktober 2026. De besluittekst zelf "
+        "hebben we niet. De tekeningen staan niet in de repo",
     "Geregistreerd is niet vergund: Bronsgeeststraat 11":
         "Besluit Z2026-00004841 van 12 oktober 2026 met aanvraag DSO "
         "2026081701368 en de vergunning van 20 november 1991, door Mark "
@@ -729,6 +738,37 @@ ACHTERGROND = [
      "€590 per maand extra op, omdat de bestaande woningen daar al klein waren. "
      "De winst zit dus in het verschil tussen een grote woning en kleine "
      "eenheden, niet in het splitsen zelf."),
+    ("Een winkelverdieping wordt woning: Groesbeekseweg 118A/B",
+     "In het pand Groesbeekseweg 118A/B in Galgenveld zat een apotheek (118B) "
+     "op de begane grond en de eerste verdieping, met daarboven een "
+     "appartement (118A). De eerste verdieping is afgesplitst en verbouwd tot "
+     "een appartement van 94 m2 netto, intern, zonder dat de bruto oppervlakte "
+     "of inhoud verandert. Vergund op 12 oktober 2026. "
+     "De doorlooptijd is het leerzame deel: aanvraag 9 maart 2026, daarna zes "
+     "aanvullingen (19 maart, 12, 13 en 21 juli, 9 en 23 september), besluit "
+     "12 oktober. Dat is 217 dagen, tegen 56 dagen bij Bronsgeeststraat 11, "
+     "waar alleen een bestaande toestand werd gelegaliseerd. Wie een "
+     "niet-woonfunctie tot woning maakt, levert de woning in feite opnieuw "
+     "aan: aangevraagd waren de bouwactiviteit onder het omgevingsplan en de "
+     "technische bouwactiviteit, met bestaande en nieuwe tekeningen, een "
+     "brandveiligheidstekening met details, een akoestische onderbouwing, een "
+     "Rc-berekening van een voorzetwand en een ventilatie-, spui- en "
+     "daglichtberekening, plus constructieve stukken. "
+     "De berekening laat zien waarop getoetst wordt. Afvoer volgens het Bbl: "
+     "keuken 21, badkamer 14 en toilet 7 dm3 per seconde. Spuien 3 dm3 per "
+     "seconde per m2 vloer, hier gehaald met te openen ramen. Daglicht volgens "
+     "NEN 2057: een equivalent daglichtoppervlak van minstens 10 procent van "
+     "de vloer per verblijfsgebied, en een grote boom op 7 meter voor de "
+     "woonkamer werd met een lagere belemmeringsfactor (0,64 in plaats van "
+     "0,80) meegerekend. Binnendeuren 20 mm vrij onder de deur, de "
+     "mechanische ventilatie hoogstens 30 dB(A). "
+     "De BAG liep mee: naast het bestaande object 118B van 219 m2 winkelfunctie "
+     "stond op 16 oktober een gevormd object 118B van 124 m2. Het verschil, 95 "
+     "m2, is de nieuwe woning; een gevormd object met een kleinere oppervlakte "
+     "op hetzelfde adres is dus een spoor van een transformatie die eraan komt. "
+     "Voor een aankoop: een verdieping boven een winkel is een woning in "
+     "wording, maar reken op een half jaar en een volledig technisch dossier, "
+     "niet op de twee maanden van een legalisering."),
     ("Geregistreerd is niet vergund: Bronsgeeststraat 11",
      "Bronsgeeststraat 11 en 11A in Biezen staan al tientallen jaren als twee "
      "verblijfsobjecten in de BAG, elk met een eigen WOZ, en zijn meerdere "
