@@ -311,6 +311,9 @@ ACHTERGROND_TREFWOORDEN = {
     "Waarom splitsen loont ondanks het puntenstelsel": [
         "splitsen", "puntenstelsel", "wws", "gereguleerd", "maximumhuur",
         "groottepremie", "rendement", "appartementen"],
+    "Geregistreerd is niet vergund: Bronsgeeststraat 11": [
+        "legalisering", "legaliseren", "bestaande situatie", "bestaande splitsing",
+        "registratie", "woz", "makelaar", "brandcompartiment", "11a"],
     "De schone route: inpandig splitsen zonder bopa": [
         "inpandig", "vergunningsvrij", "brandcompartiment", "souterrain",
         "splitsen", "woningvorming", "doorlooptijd", "voorgevel"],
@@ -373,6 +376,10 @@ ACHTERGROND_BRONNEN = {
         "338, gemeente Nijmegen, en de Beleidsregels Parkeren 2025",
     "Parkeren bij splitsen":
         "Beleidsregels parkeren 2025 gemeente Nijmegen, bijzonder geval VII en tabel 4; gepubliceerd als gmb-2025-239801 en als CVDR739955. Het gereguleerde gebied wordt aangewezen in het Besluit tot aanwijzing en uitwerking betaald parkeren, artikel 1 en 2, jaarlijks als gemeenteblad gepubliceerd; de versie van 2026 is gmb-2025-555465. Gemeten aan de parkeerberekening bij Staringstraat 2 en het besluit over Hatertseweg 338, en de zonelijst van artikel 2 is op 14 oktober 2026 naast de kaartlaag gelegd.",
+    "Geregistreerd is niet vergund: Bronsgeeststraat 11":
+        "Besluit Z2026-00004841 van 12 oktober 2026 met aanvraag DSO "
+        "2026081701368 en de vergunning van 20 november 1991, door Mark "
+        "aangeleverd; de tekeningen zelf staan niet in de repo",
     "De schone route: inpandig splitsen zonder bopa":
         "Omgevingswet artikel 5.1 en Besluit bouwwerken leefomgeving; gemeten "
         "aan vergunde dossiers in Nijmegen",
@@ -722,6 +729,35 @@ ACHTERGROND = [
      "€590 per maand extra op, omdat de bestaande woningen daar al klein waren. "
      "De winst zit dus in het verschil tussen een grote woning en kleine "
      "eenheden, niet in het splitsen zelf."),
+    ("Geregistreerd is niet vergund: Bronsgeeststraat 11",
+     "Bronsgeeststraat 11 en 11A in Biezen staan al tientallen jaren als twee "
+     "verblijfsobjecten in de BAG, elk met een eigen WOZ, en zijn meerdere "
+     "keren los van elkaar verkocht. Toch was de splitsing nooit vergund. Het "
+     "pand is van 1904, een beneden- en een bovenwoning; rond de renovatie van "
+     "de straat in 1991 is de bovenwoning verbouwd tot twee woningen, 11 op de "
+     "eerste verdieping (51,3 m2) en 11A op de tweede (60,7 m2). Bij de "
+     "verkoop van nummer 11 in 2026 ontdekte de aankoopmakelaar dat er geen "
+     "vergunning was; de verkoop werd voorwaardelijk gemaakt op legalisering. "
+     "Aanvraag 17 augustus 2026, aangevuld op 2 oktober, vergunning 12 "
+     "oktober: 56 dagen, leges 548,85 euro. "
+     "Dezelfde lijn als bij de Heydenrijckstraat 40. Bouwen onder het "
+     "omgevingsplan was vergunningsvrij (artikel 22.27 onder i, bestemmingsplan "
+     "Nijmegen Oud West staat de woningen toe). Vergunningplichtig was alleen "
+     "de technische bouwactiviteit, omdat de brandcompartimentering wijzigt. "
+     "Wat er technisch voor nodig was, staat op de tekeningen: elke woning een "
+     "eigen brandcompartiment en beschermd subbrandcompartiment, 30 minuten "
+     "WBDBO, rookwerendheid R200, zelfsluitende deuren van 30 minuten, een "
+     "brandwerend plafond onder de verdiepingsvloer en een beklede onderzijde "
+     "van de trap. De vrijdragende plafonds uit 1991 telden mee. Het "
+     "trappenhuis en de cv-ketel bleven gedeeld, via de VvE. "
+     "Parkeren: gereguleerd gebied, dus geen extra eis, en de fietsparkeervraag "
+     "viel onder de vrijstellingsgrens van vijf plekken. "
+     "De les voor een aankoop: dat de BAG twee woningen telt en de gemeente "
+     "twee keer WOZ heft, bewijst niet dat de splitsing vergund is. Vraag bij "
+     "elk gesplitst pand de vergunning op, of de stukken waaruit blijkt dat er "
+     "een is. Ontbreekt die, dan is legaliseren hier licht gebleken, zolang het "
+     "inpandig is en de bestemming het toelaat; maar tot die vergunning er is, "
+     "koop je een pand met een herstelplicht en geen vergund pand."),
     ("De schone route: inpandig splitsen zonder bopa",
      "De Heydenrijckstraat 40 laat zien hoe licht een splitsing kan zijn als er "
      "van buiten niets verandert. De woning op de begane grond is gescheiden van "
