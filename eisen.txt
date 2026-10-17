@@ -47,6 +47,19 @@ proef: splitsing_voltooid:het blok noemt de grondslag
 soort: brief
 
 ---
+eis: Elk pand in de brief is bij zijn eerste vermelding klikbaar naar het
+  straatbeeld op het punt van dat pand; een bestaande link blijft staan.
+waarom: 17 oktober, Mark: als er een adres in de brief staat, wil hij met één
+  klik zien waar het pand staat en hoe het eruitziet, niet bij elke
+  herhaling maar waar een pand wordt geïntroduceerd. Is het adres al een link
+  naar een bekendmaking of advertentie, dan komt "(straatbeeld)" erachter,
+  want een klik op het adres moet blijven doen wat hij al deed. Het punt komt
+  uit de voorraad, zodat Google het straatbeeld vóór het pand opent en niet
+  ergens in de straat; een adres zonder punt krijgt niets.
+proef: brief_verhalend:straatbeeld: een tweede vermelding kreeg ook een link
+soort: brief
+
+---
 eis: Een getal wordt nooit vergeleken met een getal op een andere grondslag.
 waarom: 11 oktober. De vergunning noemde 6 zelfstandige woonruimtes, de BAG
   telde 7 adresseerbare objecten, en dat verschil van 1 werd het hoofdthema

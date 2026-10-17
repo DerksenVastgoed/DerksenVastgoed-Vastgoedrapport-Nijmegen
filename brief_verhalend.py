@@ -1218,6 +1218,93 @@ def koppel_publicaties(brief, publicaties):
     return brief
 
 
+STRAATBEELD = ("https://www.google.com/maps/@?api=1&map_action=pano"
+               "&viewpoint={lat:.6f},{lon:.6f}")
+_AFKORTINGEN = (("Prof. ", "Professor "), ("St. ", "Sint "),
+                ("Burg. ", "Burgemeester "), ("Mr. ", "Meester "),
+                ("Dr. ", "Doctor "))
+
+
+def straatbeeld_punten(pad="voorraad.json"):
+    """
+    Per adressleutel het punt van het pand, uit de voorraad.
+
+    Uit de voorraad en niet uit een adres-zoekopdracht: het punt ligt op het
+    verblijfsobject zelf, dus Google opent het straatbeeld vóór dat pand en
+    niet bij het midden van de straat.
+    """
+    import pandsleutel as _psl
+    try:
+        with open(pad, encoding="utf-8") as f:
+            v = json.load(f)
+    except Exception as e:
+        print(f"Voorraad niet te lezen voor straatbeeld: {e}", file=sys.stderr)
+        return {}, set()
+    punten, straten = {}, set()
+    for deel in ("adressen", "niet_woningen", "pijplijn"):
+        for rec in (v.get(deel) or {}).values():
+            adres, punt = rec.get("adres") or "", rec.get("punt")
+            m = re.match(r"^(.+?)\s+\d", adres)
+            if not m or not punt or len(punt) != 2:
+                continue
+            straat = m.group(1).strip()
+            straten.add(straat)
+            for kort, lang in _AFKORTINGEN:
+                if straat.startswith(kort):
+                    straten.add(lang + straat[len(kort):])
+            punten.setdefault(_psl.sleutel(adres), (punt[1], punt[0]))
+    return punten, straten
+
+
+def koppel_straatbeeld(brief, punten, straten):
+    """
+    Bij de eerste vermelding van elk pand een link naar het straatbeeld.
+
+    WAAROM. 17 oktober 2026, Mark: als er een adres in de brief staat, wil hij
+    met één klik zien waar het pand staat en hoe het eruitziet, en dat alleen
+    waar een pand wordt geïntroduceerd en niet bij elke herhaling.
+
+    Hoe: is het adres nog geen link, dan wordt het adres zelf de link. Is het
+    al een link, naar een bekendmaking of een advertentie, dan blijft die
+    staan en komt er "(straatbeeld)" achter; een klik op het adres moet blijven
+    doen wat het al deed. Koppen worden niet aangeraakt, en een adres dat niet
+    in de voorraad staat krijgt niets, want zonder het punt van het pand opent
+    Google ergens in de straat.
+    """
+    import pandsleutel as _psl
+    if not punten or not straten:
+        return brief
+    alternatief = "|".join(re.escape(x) for x in sorted(straten, key=len,
+                                                         reverse=True))
+    patroon = re.compile(r"(?<![\w])(" + alternatief
+                         + r")\s+(\d+(?:\s?[A-Za-z]\b|-\d+)?)(?![\w-])")
+    gezien = set()
+    uit, pos = [], 0
+    links = [(m.start(), m.end()) for m in re.finditer(
+        r"\[[^\]]*\]\([^)]*\)", brief)]
+    for m in patroon.finditer(brief):
+        if m.start() < pos:
+            continue
+        regelbegin = brief.rfind("\n", 0, m.start()) + 1
+        if brief[regelbegin:regelbegin + 1] == "#":
+            continue
+        sleutel = _psl.sleutel(f"{m.group(1)} {m.group(2)}")
+        if sleutel in gezien or sleutel not in punten:
+            continue
+        lat, lon = punten[sleutel]
+        url = STRAATBEELD.format(lat=lat, lon=lon)
+        gezien.add(sleutel)
+        in_link = next(((a, b) for a, b in links if a <= m.start() < b), None)
+        if in_link:
+            uit.append(brief[pos:in_link[1]] + f" ([straatbeeld]({url}))")
+            pos = in_link[1]
+        else:
+            uit.append(brief[pos:m.start()] + f"[{m.group(0)}]({url})")
+            pos = m.end()
+    uit.append(brief[pos:])
+    return "".join(uit)
+
+
 def samenstelling_voor_schrijver():
     """
     De waarschuwing over het samenstellingseffect, als bron voor het model.
@@ -1684,6 +1771,31 @@ def proef():
         fouten.append(f"bij een reeks wordt niet de eerste vermelding "
                       f"gekoppeld: {_r[:90]!r}")
 
+    # Straatbeeld: eerste vermelding, bestaande link blijft, kop blijft.
+    _pt = {"bronsgeeststraat11": (51.84, 5.84), "profmolkenboerstraat20a":
+           (51.83, 5.86), "stannastraat275": (51.82, 5.86)}
+    _st = {"Bronsgeeststraat", "Prof. Molkenboerstraat",
+           "Professor Molkenboerstraat", "St. Annastraat"}
+    _z = ("# Bronsgeeststraat 11\n"
+          "Bronsgeeststraat 11 is vergund. Later weer Bronsgeeststraat 11. "
+          "Bij [Professor Molkenboerstraat 20A](https://zoek.x/gmb-1) is het "
+          "besluit herroepen. St. Annastraat 275 is opgedeeld, en "
+          "Onbekendestraat 4 niet.")
+    _u = koppel_straatbeeld(_z, _pt, _st)
+    if not _u.startswith("# Bronsgeeststraat 11\n"):
+        fouten.append("straatbeeld: een kop is aangetast")
+    if _u.count("map_action=pano") != 3:
+        fouten.append(f"straatbeeld: verwacht 3 links, kreeg "
+                      f"{_u.count('map_action=pano')}: {_u[:200]!r}")
+    if "[Professor Molkenboerstraat 20A](https://zoek.x/gmb-1) ([straatbeeld](" \
+            not in _u:
+        fouten.append("straatbeeld: een bestaande link is aangetast of kreeg "
+                      "geen straatbeeld erachter")
+    if "Later weer Bronsgeeststraat 11." not in _u:
+        fouten.append("straatbeeld: een tweede vermelding kreeg ook een link")
+    if "Onbekendestraat 4 niet" not in _u:
+        fouten.append("straatbeeld: een onbekend adres is aangetast")
+
     print(f"Proef brief_verhalend: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
@@ -1825,6 +1937,12 @@ def main():
             brief, publicaties_met_adres(d, 7 if _weekelijks() else 1))
     except Exception as e:
         print(f"Links naar bekendmakingen niet gezet: {str(e)[:80]}",
+              file=sys.stderr)
+    # En elk pand bij zijn eerste vermelding klikbaar naar het straatbeeld.
+    try:
+        brief = koppel_straatbeeld(brief, *straatbeeld_punten())
+    except Exception as e:
+        print(f"Links naar het straatbeeld niet gezet: {str(e)[:80]}",
               file=sys.stderr)
     tekst = f"# Vastgoed in Nijmegen, {datum_nl}\n\n{brief}\n"
     # Het weetje is een toegift. Faalt het, dan komt de brief er toch.
