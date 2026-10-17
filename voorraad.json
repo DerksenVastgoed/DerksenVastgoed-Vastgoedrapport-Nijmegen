@@ -2243,7 +2243,7 @@
   },
   "0268010000000288": {
    "adres": "Aldenhof 7014",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -2254,9 +2254,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 146,
-   "pand": "0268100000036205",
-   "pand_bouwjaar": 1968,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537DW",
    "punt": [
@@ -28534,7 +28532,7 @@
   },
   "0268010000004350": {
    "adres": "de Voorstenkamp 1181",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -28545,9 +28543,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 130,
-   "pand": "0268100000033153",
-   "pand_bouwjaar": 1977,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545EG",
    "punt": [
@@ -35446,7 +35442,7 @@
   },
   "0268010000005528": {
    "adres": "de Kluijskamp 1159",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -35457,9 +35453,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 189,
-   "pand": "0268100000033408",
-   "pand_bouwjaar": 1978,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545JG",
    "punt": [
@@ -190661,7 +190655,7 @@
   },
   "0268010000028871": {
    "adres": "Tolhuis 2403",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -190672,9 +190666,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 170,
-   "pand": "0268100000030691",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537MG",
    "punt": [
@@ -209890,7 +209882,7 @@
   },
   "0268010000031189": {
    "adres": "Tolhuis 3512",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -209901,9 +209893,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 164,
-   "pand": "0268100000032880",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537NR",
    "punt": [
@@ -227661,7 +227651,7 @@
   },
   "0268010000033092": {
    "adres": "Scherpenkampweg 61",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -227672,9 +227662,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 181,
-   "pand": "0268100000029246",
-   "pand_bouwjaar": 1875,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545AL",
    "punt": [
@@ -230201,7 +230189,7 @@
   },
   "0268010000033568": {
    "adres": "Tolhuis 7630",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -230212,9 +230200,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 121,
-   "pand": "0268100000033806",
-   "pand_bouwjaar": 1974,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "2e Schil",
    "postcode": "6537RV",
    "punt": [
@@ -251135,7 +251121,7 @@
   },
   "0268010000036078": {
    "adres": "Weezenhof 3250",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -251146,9 +251132,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 139,
-   "pand": "0268100000041020",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6536GL",
    "punt": [
@@ -265986,7 +265970,7 @@
   },
   "0268010000039896": {
    "adres": "Hegdambroek 1727",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -265994,9 +265978,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 108,
-   "pand": "0268100000032698",
-   "pand_bouwjaar": 1983,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546VV",
    "punt": [
@@ -267042,7 +267024,7 @@
   },
   "0268010000040332": {
    "adres": "Ackerbroekweg 31",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -267053,9 +267035,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 177,
-   "pand": "0268100000035050",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546HX",
    "punt": [
@@ -275451,7 +275431,7 @@
   },
   "0268010000042211": {
    "adres": "de Wellenkamp 1221",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -275459,9 +275439,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 117,
-   "pand": "0268100000037629",
-   "pand_bouwjaar": 1984,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545ND",
    "punt": [
@@ -276622,7 +276600,7 @@
   },
   "0268010000042527": {
    "adres": "Zwanenveld 6649",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "betaald_parkeervlak": "L",
    "buurten": [],
    "doelen": [
@@ -276634,9 +276612,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 119,
-   "pand": "0268100000039890",
-   "pand_bouwjaar": 1977,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Centrumgebied",
    "postcode": "6538RX",
    "punt": [
@@ -278267,7 +278243,7 @@
   },
   "0268010000042905": {
    "adres": "Heeskesacker 1435",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -278275,9 +278251,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 110,
-   "pand": "0268100000035242",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546JK",
    "punt": [
@@ -278316,7 +278290,7 @@
   },
   "0268010000042931": {
    "adres": "Tolhuis 2604",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -278327,9 +278301,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 93,
-   "pand": "0268100000034350",
-   "pand_bouwjaar": 1986,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537ML",
    "punt": [
@@ -280182,7 +280154,7 @@
   },
   "0268010000043320": {
    "adres": "Hegdambroek 2438",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -280193,9 +280165,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 111,
-   "pand": "0268100000030366",
-   "pand_bouwjaar": 1988,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546WL",
    "punt": [
@@ -281151,7 +281121,7 @@
   },
   "0268010000043607": {
    "adres": "Heeskesacker 2034",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -281159,9 +281129,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 99,
-   "pand": "0268100000031516",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546JR",
    "punt": [
@@ -281174,7 +281142,7 @@
   },
   "0268010000043611": {
    "adres": "Heeskesacker 2042",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -281182,9 +281150,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 112,
-   "pand": "0268100000008529",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546JR",
    "punt": [
@@ -282427,7 +282393,7 @@
   },
   "0268010000043991": {
    "adres": "Hegdambroek 1607",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -282435,9 +282401,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 111,
-   "pand": "0268100000033363",
-   "pand_bouwjaar": 1983,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546VS",
    "punt": [
@@ -282774,7 +282738,7 @@
   },
   "0268010000044119": {
    "adres": "Hegdambroek 2511",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -282782,9 +282746,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 124,
-   "pand": "0268100000033845",
-   "pand_bouwjaar": 1989,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546WN",
    "punt": [
@@ -283783,7 +283745,7 @@
   },
   "0268010000044314": {
    "adres": "Leuvensbroek 3404",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -283791,9 +283753,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 130,
-   "pand": "0268100000034341",
-   "pand_bouwjaar": 1990,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546TP",
    "punt": [
@@ -286555,7 +286515,7 @@
   },
   "0268010000045350": {
    "adres": "Heeskesacker 2004",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -286563,9 +286523,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 122,
-   "pand": "0268100000030929",
-   "pand_bouwjaar": 1986,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546JR",
    "punt": [
@@ -295208,7 +295166,7 @@
   },
   "0268010000046828": {
    "adres": "Meijhorst 5248",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -295219,9 +295177,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 120,
-   "pand": "0268100000043107",
-   "pand_bouwjaar": 1970,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537HN",
    "punt": [
@@ -353822,7 +353778,7 @@
   },
   "0268010000055225": {
    "adres": "Zellersacker 2035",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -353833,9 +353789,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 140,
-   "pand": "0268100000033603",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546HT",
    "punt": [
@@ -360133,7 +360087,7 @@
   },
   "0268010000055933": {
    "adres": "Horstacker 1433",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -360144,9 +360098,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 333,
-   "pand": "0268100000005177",
-   "pand_bouwjaar": 2003,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546EK",
    "punt": [
@@ -371657,7 +371609,7 @@
   },
   "0268010000057476": {
    "adres": "Malvert 1130",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -371668,9 +371620,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 116,
-   "pand": "0268100000036281",
-   "pand_bouwjaar": 1968,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6538AG",
    "punt": [
@@ -373059,7 +373009,7 @@
   },
   "0268010000057806": {
    "adres": "Horstacker 2044",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -373067,9 +373017,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 115,
-   "pand": "0268100000009636",
-   "pand_bouwjaar": 1981,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546GD",
    "punt": [
@@ -377479,7 +377427,7 @@
   },
   "0268010000058974": {
    "adres": "de Voorstenkamp 1142",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -377490,9 +377438,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": false,
    "oppervlakte": 120,
-   "pand": "0268100000030668",
-   "pand_bouwjaar": 1977,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545EH",
    "punt": [
@@ -377788,7 +377734,7 @@
   },
   "0268010000059069": {
    "adres": "Weezenhof 2031",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -377796,9 +377742,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 162,
-   "pand": "0268100000009079",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Verbouwing pand",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6536JK",
    "punt": [
@@ -379009,7 +378953,7 @@
   },
   "0268010000059400": {
    "adres": "Hillekensacker 3041",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -379017,9 +378961,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 118,
-   "pand": "0268100000005649",
-   "pand_bouwjaar": 1982,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546LJ",
    "punt": [
@@ -380964,6 +380906,29 @@
    "vbo": "0268010000060077",
    "vlak_soort": "vergunningenzone"
   },
+  "0268010000060082": {
+   "adres": "Muntweg 512",
+   "bag_gezien": "2026-10-17",
+   "buurten": [],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "bekendmaking",
+   "label_gezien": "2026-10-17",
+   "oppervlakte": 136,
+   "pand": "0268100000040344",
+   "pand_bouwjaar": 1955,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Rest bebouwde kom",
+   "postcode": "6532TS",
+   "punt": [
+    5.829522,
+    51.827329
+   ],
+   "sleutel": "muntweg512",
+   "status": "Verblijfsobject in gebruik",
+   "vbo": "0268010000060082"
+  },
   "0268010000060084": {
    "adres": "Rivierstraat 135",
    "bag_gezien": "2026-10-14",
@@ -381026,7 +380991,7 @@
   },
   "0268010000060088": {
    "adres": "Meijhorst 5214",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -381037,9 +381002,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 127,
-   "pand": "0268100000041904",
-   "pand_bouwjaar": 1970,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537HM",
    "punt": [
@@ -403188,7 +403151,7 @@
   },
   "0268010000064037": {
    "adres": "Aldenhof 5001",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -403199,9 +403162,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": false,
    "oppervlakte": 156,
-   "pand": "0268100000035340",
-   "pand_bouwjaar": 1966,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537EA",
    "punt": [
@@ -419779,7 +419740,7 @@
   },
   "0268010000067667": {
    "adres": "de Gildekamp 1105",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -419787,9 +419748,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 130,
-   "pand": "0268100000035469",
-   "pand_bouwjaar": 1980,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545LE",
    "punt": [
@@ -452109,7 +452068,7 @@
   },
   "0268010000073639": {
    "adres": "Wedesteinbroek 1069",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -452117,9 +452076,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 91,
-   "pand": "0268100000031545",
-   "pand_bouwjaar": 1984,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546RB",
    "punt": [
@@ -463254,7 +463211,7 @@
   },
   "0268010000075534": {
    "adres": "Nieuwstadweg 4",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -463265,9 +463222,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 96,
-   "pand": "0268100000017589",
-   "pand_bouwjaar": 1984,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545AP",
    "punt": [
@@ -493258,7 +493213,7 @@
   },
   "0268010000080203": {
    "adres": "Horstacker 2325",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -493269,9 +493224,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 129,
-   "pand": "0268100000033185",
-   "pand_bouwjaar": 1986,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546GK",
    "punt": [
@@ -532711,7 +532664,7 @@
   },
   "0268010000086002": {
    "adres": "Drieskensacker 1509",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -532722,9 +532675,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 131,
-   "pand": "0268100000083579",
-   "pand_bouwjaar": 2010,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546ML",
    "punt": [
@@ -596191,7 +596142,7 @@
   },
   "0268010000095678": {
    "adres": "Zwanenveld 7318",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "betaald_parkeervlak": "L",
    "buurten": [],
    "doelen": [
@@ -596204,9 +596155,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 70,
-   "pand": "0268100000089557",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538TN",
    "punt": [
@@ -597900,7 +597849,7 @@
   },
   "0268010000095915": {
    "adres": "St. Agnetenweg 45",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -597911,9 +597860,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 294,
-   "pand": "0268100000036266",
-   "pand_bouwjaar": 1948,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6545AT",
    "punt": [
@@ -604661,7 +604608,7 @@
   },
   "0268010000096456": {
    "adres": "Meijhorst 2001A-1",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604672,9 +604619,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 36,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604687,7 +604632,7 @@
   },
   "0268010000096457": {
    "adres": "Meijhorst 2001A-2",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604698,9 +604643,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604713,7 +604656,7 @@
   },
   "0268010000096458": {
    "adres": "Meijhorst 2001A-3",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604724,9 +604667,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604739,7 +604680,7 @@
   },
   "0268010000096459": {
    "adres": "Meijhorst 2001A-4",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604750,9 +604691,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604765,7 +604704,7 @@
   },
   "0268010000096460": {
    "adres": "Meijhorst 2001A-5",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604776,9 +604715,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604791,7 +604728,7 @@
   },
   "0268010000096461": {
    "adres": "Meijhorst 2001A-6",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604802,9 +604739,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604817,7 +604752,7 @@
   },
   "0268010000096462": {
    "adres": "Meijhorst 2001A-7",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604828,9 +604763,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604843,7 +604776,7 @@
   },
   "0268010000096463": {
    "adres": "Meijhorst 2001A-8",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604854,9 +604787,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 36,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604869,7 +604800,7 @@
   },
   "0268010000096464": {
    "adres": "Meijhorst 2001A-9",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604880,9 +604811,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 36,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604895,7 +604824,7 @@
   },
   "0268010000096465": {
    "adres": "Meijhorst 2001A-10",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604906,9 +604835,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 36,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604921,7 +604848,7 @@
   },
   "0268010000096466": {
    "adres": "Meijhorst 2001A-11",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604932,9 +604859,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604947,7 +604872,7 @@
   },
   "0268010000096467": {
    "adres": "Meijhorst 2001A-12",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604958,9 +604883,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604973,7 +604896,7 @@
   },
   "0268010000096468": {
    "adres": "Meijhorst 2001A-13",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -604984,9 +604907,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -604999,7 +604920,7 @@
   },
   "0268010000096469": {
    "adres": "Meijhorst 2001A-14",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605010,9 +604931,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605025,7 +604944,7 @@
   },
   "0268010000096470": {
    "adres": "Meijhorst 2001A-15",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605036,9 +604955,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605051,7 +604968,7 @@
   },
   "0268010000096471": {
    "adres": "Meijhorst 2001A-16",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605062,9 +604979,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 35,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605077,7 +604992,7 @@
   },
   "0268010000096472": {
    "adres": "Meijhorst 2001A-17",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605088,9 +605003,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605103,7 +605016,7 @@
   },
   "0268010000096473": {
    "adres": "Meijhorst 2001A-18",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605114,9 +605027,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605129,7 +605040,7 @@
   },
   "0268010000096474": {
    "adres": "Meijhorst 2001A-19",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605140,9 +605051,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605155,7 +605064,7 @@
   },
   "0268010000096475": {
    "adres": "Meijhorst 2001A-20",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605166,9 +605075,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605181,7 +605088,7 @@
   },
   "0268010000096476": {
    "adres": "Meijhorst 2001A-21",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605192,9 +605099,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605207,7 +605112,7 @@
   },
   "0268010000096477": {
    "adres": "Meijhorst 2001A-22",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605218,9 +605123,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605233,7 +605136,7 @@
   },
   "0268010000096478": {
    "adres": "Meijhorst 2001A-23",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605244,9 +605147,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605259,7 +605160,7 @@
   },
   "0268010000096479": {
    "adres": "Meijhorst 2001A-24",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605270,9 +605171,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605285,7 +605184,7 @@
   },
   "0268010000096480": {
    "adres": "Meijhorst 2001A-25",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605296,9 +605195,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605311,7 +605208,7 @@
   },
   "0268010000096481": {
    "adres": "Meijhorst 2001A-26",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605322,9 +605219,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605337,7 +605232,7 @@
   },
   "0268010000096482": {
    "adres": "Meijhorst 2001A-27",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605348,9 +605243,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605363,7 +605256,7 @@
   },
   "0268010000096483": {
    "adres": "Meijhorst 2001A-28",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605374,9 +605267,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605389,7 +605280,7 @@
   },
   "0268010000096484": {
    "adres": "Meijhorst 2001A-29",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605400,9 +605291,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605415,7 +605304,7 @@
   },
   "0268010000096485": {
    "adres": "Meijhorst 2001A-30",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605426,9 +605315,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605441,7 +605328,7 @@
   },
   "0268010000096486": {
    "adres": "Meijhorst 2001A-31",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605452,9 +605339,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605467,7 +605352,7 @@
   },
   "0268010000096487": {
    "adres": "Meijhorst 2001A-32",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605478,9 +605363,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605493,7 +605376,7 @@
   },
   "0268010000096488": {
    "adres": "Meijhorst 2001A-33",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605504,9 +605387,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605519,7 +605400,7 @@
   },
   "0268010000096489": {
    "adres": "Meijhorst 2001A-34",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605530,9 +605411,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605545,7 +605424,7 @@
   },
   "0268010000096490": {
    "adres": "Meijhorst 2001A-35",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605556,9 +605435,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605571,7 +605448,7 @@
   },
   "0268010000096491": {
    "adres": "Meijhorst 2001A-36",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605582,9 +605459,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605597,7 +605472,7 @@
   },
   "0268010000096492": {
    "adres": "Meijhorst 2001A-37",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605608,9 +605483,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605623,7 +605496,7 @@
   },
   "0268010000096493": {
    "adres": "Meijhorst 2001A-38",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605634,9 +605507,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605649,7 +605520,7 @@
   },
   "0268010000096494": {
    "adres": "Meijhorst 2001A-39",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605660,9 +605531,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605675,7 +605544,7 @@
   },
   "0268010000096495": {
    "adres": "Meijhorst 2001A-40",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605686,9 +605555,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605701,7 +605568,7 @@
   },
   "0268010000096496": {
    "adres": "Meijhorst 2001A-41",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605712,9 +605579,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605727,7 +605592,7 @@
   },
   "0268010000096497": {
    "adres": "Meijhorst 2001A-42",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605738,9 +605603,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605753,7 +605616,7 @@
   },
   "0268010000096498": {
    "adres": "Meijhorst 2001A-43",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605764,9 +605627,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605779,7 +605640,7 @@
   },
   "0268010000096499": {
    "adres": "Meijhorst 2001A-44",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605790,9 +605651,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 33,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605805,7 +605664,7 @@
   },
   "0268010000096500": {
    "adres": "Meijhorst 2001A-45",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605816,9 +605675,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605831,7 +605688,7 @@
   },
   "0268010000096501": {
    "adres": "Meijhorst 2001A-46",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605842,9 +605699,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605857,7 +605712,7 @@
   },
   "0268010000096502": {
    "adres": "Meijhorst 2001A-47",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605868,9 +605723,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -605883,7 +605736,7 @@
   },
   "0268010000096503": {
    "adres": "Meijhorst 2001A-48",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -605894,9 +605747,7 @@
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
    "oppervlakte": 32,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -677941,7 +677792,7 @@
   },
   "0268010000106375": {
    "adres": "Meijhorst 9204",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -677952,9 +677803,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 19,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -677967,7 +677816,7 @@
   },
   "0268010000106376": {
    "adres": "Meijhorst 9204A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -677975,9 +677824,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 19,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -677990,7 +677837,7 @@
   },
   "0268010000106377": {
    "adres": "Meijhorst 9204B",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -677998,9 +677845,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 14,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -678013,7 +677858,7 @@
   },
   "0268010000106378": {
    "adres": "Meijhorst 9204C",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -678021,9 +677866,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 21,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -678036,7 +677879,7 @@
   },
   "0268010000106379": {
    "adres": "Meijhorst 9204D",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -678044,9 +677887,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 21,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -678059,7 +677900,7 @@
   },
   "0268010000106380": {
    "adres": "Meijhorst 9204E",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -678067,9 +677908,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 19,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -687202,7 +687041,7 @@
   },
   "0268010000108252": {
    "adres": "Zwanenveld 2301",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -687213,9 +687052,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 45,
-   "pand": "0268100000041266",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "2e Schil",
    "postcode": "6538NT",
    "punt": [
@@ -687228,7 +687065,7 @@
   },
   "0268010000108253": {
    "adres": "Zwanenveld 2301A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -687239,9 +687076,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 76,
-   "pand": "0268100000041266",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "2e Schil",
    "postcode": "6538NT",
    "punt": [
@@ -691477,7 +691312,7 @@
   },
   "0268010000109835": {
    "adres": "Zwanenveld 3021",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -691485,9 +691320,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 41,
-   "pand": "0268100000032389",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -691500,7 +691333,7 @@
   },
   "0268010000109836": {
    "adres": "Zwanenveld 3021A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -691508,9 +691341,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 69,
-   "pand": "0268100000032389",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -691523,7 +691354,7 @@
   },
   "0268010000109837": {
    "adres": "Zwanenveld 3021B",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -691531,9 +691362,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 28,
-   "pand": "0268100000032389",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -692293,7 +692122,7 @@
   },
   "0268010000110120": {
    "adres": "Zwanenveld 3019",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692301,9 +692130,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 42,
-   "pand": "0268100000043340",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -692316,7 +692143,7 @@
   },
   "0268010000110121": {
    "adres": "Zwanenveld 3019A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692324,9 +692151,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 43,
-   "pand": "0268100000043340",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -692339,7 +692164,7 @@
   },
   "0268010000110122": {
    "adres": "Zwanenveld 3019B",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692347,9 +692172,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 32,
-   "pand": "0268100000043340",
-   "pand_bouwjaar": 1975,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "1e Schil",
    "postcode": "6538ZV",
    "punt": [
@@ -692882,7 +692705,7 @@
   },
   "0268010000110445": {
    "adres": "Tolhuis 2401",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692893,9 +692716,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
    "oppervlakte": 48,
-   "pand": "0268100000030220",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537MG",
    "punt": [
@@ -692908,7 +692729,7 @@
   },
   "0268010000110446": {
    "adres": "Tolhuis 2401A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692916,9 +692737,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 38,
-   "pand": "0268100000030220",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537MG",
    "punt": [
@@ -692931,7 +692750,7 @@
   },
   "0268010000110447": {
    "adres": "Tolhuis 2401B",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692939,9 +692758,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 55,
-   "pand": "0268100000030220",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537MG",
    "punt": [
@@ -692954,7 +692771,7 @@
   },
   "0268010000110448": {
    "adres": "Tolhuis 2401C",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -692962,9 +692779,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 28,
-   "pand": "0268100000030220",
-   "pand_bouwjaar": 1972,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537MG",
    "punt": [
@@ -694622,7 +694437,7 @@
   },
   "0268010000110590": {
    "adres": "Malvert 2321",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -694633,9 +694448,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 85,
-   "pand": "0268100000035924",
-   "pand_bouwjaar": 1968,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6538AR",
    "punt": [
@@ -694648,7 +694461,7 @@
   },
   "0268010000110591": {
    "adres": "Malvert 2321A",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -694659,9 +694472,7 @@
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
    "oppervlakte": 73,
-   "pand": "0268100000035924",
-   "pand_bouwjaar": 1968,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6538AR",
    "punt": [
@@ -694858,7 +694669,7 @@
   },
   "0268010000111310": {
    "adres": "Meijhorst 9204F",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -694866,9 +694677,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 17,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -694881,7 +694690,7 @@
   },
   "0268010000111311": {
    "adres": "Meijhorst 9204G",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -694889,9 +694698,7 @@
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
    "oppervlakte": 17,
-   "pand": "0268100000037287",
-   "pand_bouwjaar": 1971,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537KR",
    "punt": [
@@ -697405,25 +697212,25 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
-   "adressen_nieuw": 0,
-   "adressen_onveranderd": 24388,
+   "adressen_bijgewerkt": 108,
+   "adressen_nieuw": 1,
+   "adressen_onveranderd": 24280,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 132987,
    "datum": "2026-10-17",
    "fouten": 0,
    "historie_overgeslagen": 2573,
    "laatste_fout": "",
-   "met_punt": 29095,
+   "met_punt": 29096,
    "niet_woningen_bewaard": 2369,
    "niet_woonfunctie": 2366,
    "nog_gevormd": 2421,
    "objecten_in_meer_panden": 118,
-   "objecten_met_pand": 29095,
-   "om_een_signaal": 756,
+   "objecten_met_pand": 28982,
+   "om_een_signaal": 757,
    "opgeleverd": 0,
    "opgeleverde_adressen": [],
-   "opnieuw_gezien": 0,
+   "opnieuw_gezien": 14000,
    "pijplijn_bewaard": 2341,
    "pijplijn_gezien": 2341,
    "postcodes_buiten_nijmegen": 0,
@@ -697437,36 +697244,36 @@
    "postcodes_nijmegen": 1517,
    "postcodes_totaal": 1517,
    "punt_behouden": 0,
-   "ronde_objecten": 164655,
-   "ronde_paginas": 171,
+   "ronde_objecten": 178656,
+   "ronde_paginas": 188,
    "ronde_ronde_af": true,
-   "ronde_seconden": 344.8,
-   "ronde_tegels": 16,
-   "ronde_tegels_gedeeld": 0,
+   "ronde_seconden": 366.3,
+   "ronde_tegels": 22,
+   "ronde_tegels_gedeeld": 2,
    "ronde_tegels_over": 0,
    "statussen": {
     "Niet gerealiseerd verblijfsobject": 448,
     "Verblijfsobject gevormd": 2421,
-    "Verblijfsobject in gebruik": 26350,
+    "Verblijfsobject in gebruik": 26351,
     "Verblijfsobject in gebruik (niet ingemeten)": 6,
     "Verblijfsobject ingetrokken": 2125,
     "Verbouwing verblijfsobject": 318
    },
    "terug_in_de_pijplijn": 0,
    "van_soort_gewisseld": 0,
-   "woningen_gezien": 24388,
+   "woningen_gezien": 24389,
    "zonder_adres": 0,
-   "zonder_pandsleutel": 0,
+   "zonder_pandsleutel": 114,
    "zonder_punt": 0,
    "zonder_vbo": 0
   },
   "bijgewerkt": "2026-10-17",
   "labels": {
-   "aanroepen_per_minuut": 0.0,
+   "aanroepen_per_minuut": 25.3,
    "datum": "2026-10-17",
    "fouten": 0,
-   "geen_label_bekend": 0,
-   "gevraagd": 0,
+   "geen_label_bekend": 1,
+   "gevraagd": 1,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
@@ -697481,33 +697288,33 @@
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 0.0
+   "seconden": 2.4
   },
   "panden": {
    "datum": "2026-10-17",
-   "fout": "",
-   "met_bouwjaar": 187230,
-   "met_status": 187230,
-   "objecten": 188102,
-   "omzettingen": 187230,
-   "paginas": 195,
+   "fout": "tijdbudget van 600s om in tegel 5.807500,51.760000,5.865000,51.795000 na 14 van de 19 tegels",
+   "met_bouwjaar": 147635,
+   "met_status": 147635,
+   "objecten": 161304,
+   "omzettingen": 147635,
+   "paginas": 167,
    "pandstatussen": {
-    "Bouw gestart": 717,
-    "Bouwvergunning verleend": 1293,
-    "Niet gerealiseerd pand": 1076,
-    "Pand buiten gebruik": 5,
-    "Pand gesloopt": 16153,
-    "Pand in gebruik": 166628,
-    "Pand in gebruik (niet ingemeten)": 140,
-    "Pand ten onrechte opgevoerd": 672,
-    "Sloopvergunning verleend": 100,
-    "Verbouwing pand": 446
+    "Bouw gestart": 618,
+    "Bouwvergunning verleend": 1190,
+    "Niet gerealiseerd pand": 968,
+    "Pand buiten gebruik": 4,
+    "Pand gesloopt": 13795,
+    "Pand in gebruik": 129917,
+    "Pand in gebruik (niet ingemeten)": 123,
+    "Pand ten onrechte opgevoerd": 577,
+    "Sloopvergunning verleend": 84,
+    "Verbouwing pand": 359
    },
-   "ronde_af": true,
-   "seconden": 404.1,
-   "tegels": 16,
-   "tegels_gedeeld": 0,
-   "tegels_over": 0,
+   "ronde_af": false,
+   "seconden": 616.2,
+   "tegels": 14,
+   "tegels_gedeeld": 1,
+   "tegels_over": 4,
    "velden_in_antwoord": [
     "aantal_verblijfsobjecten",
     "bouwjaar",
@@ -697523,9 +697330,9 @@
   },
   "stand": {
    "met_label": 16923,
-   "met_oppervlakte": 24417,
+   "met_oppervlakte": 24418,
    "postcodes_gedaan": 1515,
-   "woningen": 24417
+   "woningen": 24418
   }
  },
  "niet_woningen": {
@@ -720220,16 +720027,14 @@
   },
   "0268010000039756": {
    "adres": "Weteringweg 50",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "bijeenkomstfunctie"
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 320,
-   "pand": "0268100000034095",
-   "pand_bouwjaar": 1989,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546JZ",
    "punt": [
@@ -720719,7 +720524,7 @@
   },
   "0268010000042291": {
    "adres": "Wijchenseweg 188",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "betaald_parkeervlak": "J",
    "buurten": [],
    "doelen": [
@@ -720727,9 +720532,7 @@
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 1202,
-   "pand": "0268100000033160",
-   "pand_bouwjaar": 1997,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Centrumgebied",
    "postcode": "6538SX",
    "punt": [
@@ -736014,7 +735817,7 @@
   },
   "0268010000068143": {
    "adres": "Kerkenbos 1010",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "industriefunctie",
@@ -736022,9 +735825,7 @@
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 1508,
-   "pand": "0268100000022413",
-   "pand_bouwjaar": 1989,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546BA",
    "punt": [
@@ -747689,7 +747490,7 @@
   },
   "0268010000084926": {
    "adres": "Kerkenbos 1024",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "industriefunctie",
@@ -747697,9 +747498,7 @@
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 454,
-   "pand": "0268100000041536",
-   "pand_bouwjaar": 1999,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6546BA",
    "punt": [
@@ -751150,16 +750949,14 @@
   },
   "0268010000096455": {
    "adres": "Meijhorst 2001",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "gezondheidszorgfunctie"
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 18,
-   "pand": "0268100000089357",
-   "pand_bouwjaar": 2016,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537GA",
    "punt": [
@@ -753044,16 +752841,14 @@
   },
   "0268010000102677": {
    "adres": "Meijhorst 7001",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-17",
    "buurten": [],
    "doelen": [
     "winkelfunctie"
    ],
    "herkomst": "bekendmaking",
    "oppervlakte": 1503,
-   "pand": "0268100000102611",
-   "pand_bouwjaar": 2021,
-   "pand_status": "Pand in gebruik",
+   "pand": "",
    "parkeerzone": "Rest bebouwde kom",
    "postcode": "6537EN",
    "punt": [
