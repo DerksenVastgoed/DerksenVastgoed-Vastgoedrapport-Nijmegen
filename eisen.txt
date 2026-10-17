@@ -559,6 +559,19 @@ proef: transformaties:een gevormd kantoor telt nog niet
 soort: gegevens
 
 ---
+eis: Een pand staat één keer in het splitsingenblok van de bijlage, en wat
+  langer dan een week geleden is gezien en niet veranderde, staat er nog in
+  één korte regel.
+waarom: 17 oktober, Mark: "er zitten dubbel in, lijkt wel". Hatertseweg 338
+  en Biezenstraat 110 stonden van 10 tot en met 17 oktober elke dag twee keer
+  in de bijlage: onder "Splitsingen die de BAG inmiddels telt" en direct
+  daaronder onder "De BAG telt een ander aantal dan de vergunning noemt",
+  telkens met de volledige tekst. Het verschil met de vergunning staat nu op
+  de regel van het pand zelf.
+proef: splitsing_voltooid:een pand met een verschil staat één keer in het blok
+soort: brief
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij
