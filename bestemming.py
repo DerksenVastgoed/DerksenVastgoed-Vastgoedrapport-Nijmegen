@@ -240,10 +240,24 @@ def dossierregels(pand_id, pad=UIT_PAD):
                     f"Omgevingskwaliteit; bij Groesbeekseweg 118A was dat "
                     f"nodig en duurde de procedure 213 dagen. Dit is een "
                     f"aanwijzing: {VOORBEHOUD}", BRONNAAM))
+    elif rec.get("enkelbestemming"):
+        # HET PLAN IS GELEZEN, DUS DIT IS MEER DAN "NIETS GEVONDEN". Gemeten
+        # op 17 oktober: alle 10.296 panden in de ring hebben een
+        # enkelbestemming in deze bron, ook de 1.070 in St. Anna, waar geen
+        # enkel pand een cultuurhistorische dubbelbestemming heeft (wel
+        # overal Archeologie 4). Dat is dus geen gat in de bron maar het plan
+        # zelf. Wat de bron wel mist, is het omgevingsplan in de nieuwe
+        # standaard; dat voorbehoud blijft.
+        uit.append(("cultuurhistorische dubbelbestemming",
+                    f"geen, volgens het bestemmingsplan op dit punt "
+                    f"(enkelbestemming {', '.join(rec['enkelbestemming'])}). "
+                    f"Wijzigingen in het omgevingsplan in de nieuwe standaard "
+                    f"staan niet in deze bron; {VOORBEHOUD}", BRONNAAM))
     else:
         uit.append(("cultuurhistorische dubbelbestemming",
-                    f"niet gevonden. Dat is geen uitsluitsel: {VOORBEHOUD}",
-                    BRONNAAM))
+                    f"niet gevonden, en op dit punt ook geen enkelbestemming, "
+                    f"dus het plan zelf is niet gelezen. Dat is geen "
+                    f"uitsluitsel: {VOORBEHOUD}", BRONNAAM))
     if arch:
         uit.append(("bij uitbreiden of graven",
                     f"{', '.join(arch)}; dan kan archeologisch onderzoek "
@@ -272,6 +286,8 @@ def proef():
             "P1": {"dubbelbestemming": ["Waarde - Cultuurhistorie 2",
                                         "Waarde - Archeologie 4"]},
             "P2": {"dubbelbestemming": []},
+            "P4": {"dubbelbestemming": ["Waarde - Archeologie 4"],
+                   "enkelbestemming": ["Wonen"]},
             "P3": {"dubbelbestemming": None}}}, f)
     try:
         r1 = dossierregels("P1", pad)
@@ -283,6 +299,11 @@ def proef():
         r2 = dossierregels("P2", pad)
         if len(r2) != 1 or not r2[0][1].startswith("niet gevonden"):
             afw.append(f"gekeken en niets gevonden: {r2}")
+        r5 = dossierregels("P4", pad)
+        if not r5[0][1].startswith("geen, volgens het bestemmingsplan") \
+                or r5[0][1] == r2[0][1]:
+            afw.append(f"plan gelezen zonder cultuurhistorie leest als niets "
+                       f"gevonden: {r5}")
         r3 = dossierregels("P3", pad)
         r4 = dossierregels("P9", pad)
         if r3[0][1] == r4[0][1] or r2[0][1] == r4[0][1]:
