@@ -5353,6 +5353,13 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
             f.append(f"{buurt} is {gezicht_c}: wijzigingen aan het uiterlijk zijn "
                      f"vergunningplichtig, wat gevelisolatie, kozijnen en "
                      f"zonnepanelen aan de voorzijde raakt")
+        try:
+            import bestemming as _bst
+            for _o, _t, _b in _bst.dossierregels(w.get("pand_id")
+                                                 or w.get("pand")):
+                f.append(f"{_o}: {_t} (bron: {_b})")
+        except Exception:
+            pass
 
         eigen_bm = [b for b in bm.get(buurt, [])
                     if b.get("straat", "").lower() in w["adres"].lower()
@@ -5998,6 +6005,16 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                 _deel += (f", dus ongeveer {round(opp / int(_lagen))} m2 per "
                           f"laag bij {round(opp)} m2 gebruiksoppervlak")
             f("bouwlagen", _deel, "3D BAG, TU Delft en 3DGI")
+    except Exception:
+        pass
+
+    # De dubbelbestemming uit het bestemmingsplan, per pand. Zie bestemming.py
+    # voor de bron, de voorbehouden en waarom archeologie alleen bij
+    # uitbreiden staat.
+    try:
+        import bestemming as _bst
+        for _o, _t, _b in _bst.dossierregels(w.get("pand_id") or w.get("pand")):
+            f(_o, _t, _b)
     except Exception:
         pass
 

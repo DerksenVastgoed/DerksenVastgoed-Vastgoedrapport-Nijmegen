@@ -198,6 +198,59 @@ def ophalen(minuten):
     return 0
 
 
+BRONNAAM = "ruimtelijkeplannen.nl via PDOK"
+VOORBEHOUD = ("de bron is niet volledig, niet juridisch bindend en mist het "
+              "omgevingsplan in de nieuwe standaard; nakijken in Regels op de "
+              "kaart in het Omgevingsloket")
+
+_cache = {}
+
+
+def dossierregels(pand_id, pad=UIT_PAD):
+    """
+    Wat het dossier van een pand over de dubbelbestemming zegt, als
+    [(onderwerp, tekst, bron)].
+
+    DRIE TOESTANDEN, DRIE TEKSTEN. Niet gevraagd is niet hetzelfde als
+    gevraagd en niets gevonden, en niets gevonden is niet hetzelfde als geen
+    dubbelbestemming, want de bron is niet volledig.
+
+    ARCHEOLOGIE ALLEEN BIJ UITBREIDEN. Gemeten op 17 oktober over 10.239
+    panden in de ring: archeologie 2 bij 3.775 en archeologie 3 bij 3.627.
+    Als hoofdpunt zou het in bijna elk dossier staan en daarmee niets
+    onderscheiden. Het raakt alleen wie graaft of uitbouwt, dus daar staat
+    het.
+    """
+    if pad not in _cache:
+        _cache[pad] = lees(pad).get("panden") or {}
+    rec = _cache[pad].get(str(pand_id or ""))
+    if not rec:
+        return [("dubbelbestemming", "niet nagekeken voor dit pand", BRONNAAM)]
+    dubbel = rec.get("dubbelbestemming")
+    if dubbel is None:
+        return [("dubbelbestemming", "het antwoord van de bron was niet te "
+                 "lezen", BRONNAAM)]
+    uit = []
+    cult = [n for n in dubbel if "cultuurhistorie" in n.lower()]
+    arch = [n for n in dubbel if "archeologie" in n.lower()]
+    if cult:
+        uit.append(("cultuurhistorische dubbelbestemming",
+                    f"{', '.join(cult)}. Bouwen kan dan een afwijking van "
+                    f"het plan vergen, met advies van de Adviescommissie "
+                    f"Omgevingskwaliteit; bij Groesbeekseweg 118A was dat "
+                    f"nodig en duurde de procedure 213 dagen. Dit is een "
+                    f"aanwijzing: {VOORBEHOUD}", BRONNAAM))
+    else:
+        uit.append(("cultuurhistorische dubbelbestemming",
+                    f"niet gevonden. Dat is geen uitsluitsel: {VOORBEHOUD}",
+                    BRONNAAM))
+    if arch:
+        uit.append(("bij uitbreiden of graven",
+                    f"{', '.join(arch)}; dan kan archeologisch onderzoek "
+                    f"nodig zijn", BRONNAAM))
+    return uit
+
+
 def proef():
     afw = []
     voorbeeld = json.dumps({"type": "FeatureCollection", "features": [
@@ -210,6 +263,36 @@ def proef():
         afw.append("een leeg antwoord is niet 'gekeken en niets gevonden'")
     if namen_uit("<html>fout</html>") is not None:
         afw.append("een onleesbaar antwoord telt als niets gevonden")
+    # De drie toestanden van het dossier, op een eigen bestand.
+    import tempfile, os
+    fd, pad = tempfile.mkstemp(suffix=".json")
+    os.close(fd)
+    with open(pad, "w", encoding="utf-8") as f:
+        json.dump({"panden": {
+            "P1": {"dubbelbestemming": ["Waarde - Cultuurhistorie 2",
+                                        "Waarde - Archeologie 4"]},
+            "P2": {"dubbelbestemming": []},
+            "P3": {"dubbelbestemming": None}}}, f)
+    try:
+        r1 = dossierregels("P1", pad)
+        if [o for o, _t, _b in r1] != ["cultuurhistorische dubbelbestemming",
+                                       "bij uitbreiden of graven"]:
+            afw.append(f"cultuurhistorie met archeologie: {r1}")
+        if "Regels op de kaart" not in r1[0][1]:
+            afw.append("het voorbehoud van de bron staat er niet bij")
+        r2 = dossierregels("P2", pad)
+        if len(r2) != 1 or not r2[0][1].startswith("niet gevonden"):
+            afw.append(f"gekeken en niets gevonden: {r2}")
+        r3 = dossierregels("P3", pad)
+        r4 = dossierregels("P9", pad)
+        if r3[0][1] == r4[0][1] or r2[0][1] == r4[0][1]:
+            afw.append("niet gevraagd, onleesbaar en niets gevonden krijgen "
+                       "dezelfde tekst")
+        if "nagekeken" not in r4[0][1]:
+            afw.append(f"niet gevraagd zegt niet dat het niet is nagekeken: {r4}")
+    finally:
+        os.unlink(pad)
+        _cache.pop(pad, None)
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef bestemming: {len(afw)} afwijkingen", file=sys.stderr)
