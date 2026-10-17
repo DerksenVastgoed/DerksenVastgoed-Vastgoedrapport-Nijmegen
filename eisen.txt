@@ -1357,3 +1357,18 @@ waarom: 17 oktober, de tweede plek van dezelfde fout als in
   het oordeel complex of niet.
 proef: marktprijzen_bag:Doddendaal 117 telt gevormde objecten als woning
 soort: gegevens
+
+---
+eis: De eenheden per pand in de verrijkingscache hebben een datum en worden
+  na VERVERS_DAGEN opnieuw gevraagd; een BAG zonder antwoord krijgt geen
+  datum.
+waarom: 17 oktober. De cache bewaarde eenheden_in_pand voor altijd, zonder
+  datum: 588 gecachte adressen met een pand-id, geen enkele met een datum.
+  Een pand dat na de eerste opvraging werd gesplitst, of waar gevormde
+  objecten in gebruik gingen, bleef in het dossier staan zoals het eerst
+  was. bag_eenheden_in_pand() geeft bij een fout een lege lijst, en een pand
+  heeft altijd minstens een adres, dus leeg is "niet gekeken"; met een datum
+  erop zou het lezen als "gekeken". Plafond van 200 per ronde, zodat de
+  eerste ronde niet alle 588 tegelijk doet.
+proef: marktprijzen_bag:een cache-regel zonder datum wordt niet ververst
+soort: gegevens
