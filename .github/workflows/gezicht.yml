@@ -1,0 +1,64 @@
+# De rijksbeschermde gezichten ophalen bij PDOK, los van de brief.
+#
+# Eén keer de vlakken rond de ring, daarna lokaal per pand getoetst; zie
+# gezicht.py voor de bron en de voorbehouden. Eerst als verkenning: het
+# verslag laat per buurt zien hoeveel panden binnen een gezicht vallen, en
+# pas als de Benedenstad daar inderdaad in ligt, gaat het dossier hierop
+# leunen.
+
+name: Beschermde gezichten
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: gezicht
+  cancel-in-progress: false
+
+jobs:
+  ophalen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Proef
+        run: python3 gezicht.py --proef
+
+      - name: Ophalen
+        run: python3 gezicht.py --ophalen
+
+      - name: Terugcommitten
+        run: |
+          git config user.name "vastgoedmonitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          for f in gezichten.json gezicht_verslag.md; do
+            [ -f "$f" ] && git add "$f"
+          done
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd"
+            exit 0
+          fi
+          git commit -m "Beschermde gezichten $(date +%F)"
+          # EEN GEGEVENSCOMMIT RAAKT NOOIT BRONCODE; zie de brief en de voorraad.
+          geen_broncode() {
+            local raakt
+            raakt=$(git diff --name-only HEAD~1 HEAD -- '*.py' '*.yml' 2>/dev/null || true)
+            if [ -n "$raakt" ]; then
+              echo "GESTOPT: deze commit raakt broncode: $raakt"
+              return 1
+            fi
+            return 0
+          }
+          for poging in 1 2 3; do
+            geen_broncode || exit 1
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            git pull --rebase origin "${GITHUB_REF_NAME}" || { git rebase --abort; exit 1; }
+            sleep 5
+          done
+          exit 1
