@@ -726,6 +726,44 @@ def object_van_adres(woning, per_vbo=None):
     return woning
 
 
+def deel_gevormd_af(woning):
+    """
+    Haal de gevormde objecten uit eenheden_in_pand en zet ze apart.
+
+    WAAROM. 17 oktober 2026: dezelfde fout als in pandgeschiedenis.py, op een
+    tweede plek. Deze lijst nam elk object met een woonfunctie in het pand,
+    ook met status "Verblijfsobject gevormd": geregistreerd, nog niet in
+    gebruik. Een pand met 1 woning in gebruik en 6 gevormde objecten heette
+    in het dossier "opgedeeld in 7 woningen". De splitsing in drieen staat in
+    pandgeschiedenis.verdeel(), en die wordt hier gebruikt in plaats van een
+    tweede regel, want twee regels voor dezelfde afspraak lopen uiteen.
+
+    OOK OP DE CACHE. marktprijzen_bag_cache.json bewaart eenheden_in_pand met
+    status, voor altijd. Gemeten op 17 oktober: 24 van de 485 gecachte
+    lijsten bevatten een gevormd object. Daarom draait dit bij elk gebruik en
+    niet alleen bij een nieuwe opvraging.
+    """
+    lijst = woning.get("eenheden_in_pand")
+    if not lijst:
+        woning.pop("gevormd_in_pand", None)
+        return woning
+    from pandgeschiedenis import verdeel
+    woon, gevormd, _anders = verdeel(lijst)
+    # Het aantal apart, want de lijst verdwijnt bij een enkele woning (die
+    # regel was er al: een lijst van een zegt "niet opgedeeld"), en
+    # complexgrootte() heeft die ene woning wel nodig.
+    woning["woningen_in_gebruik_in_pand"] = len(woon)
+    if len(woon) > 1:
+        woning["eenheden_in_pand"] = woon
+    else:
+        woning.pop("eenheden_in_pand", None)
+    if gevormd:
+        woning["gevormd_in_pand"] = gevormd
+    else:
+        woning.pop("gevormd_in_pand", None)
+    return woning
+
+
 def verrijk(woning, cache):
     sleutel = f"{woning['adres']}|{woning['plaats']}"
     if sleutel in cache and not cache[sleutel].get("gefaald"):
@@ -744,6 +782,7 @@ def verrijk(woning, cache):
             gegevens["energielabel"] = ep  # ook None bewaren, anders elke run opnieuw
             cache[sleutel] = gegevens
         woning.update(gegevens)
+        deel_gevormd_af(woning)
         if woning.get("oppervlakte_bron"):
             woning["oppervlakte"] = woning["oppervlakte_bron"]
         object_van_adres(woning)
@@ -844,6 +883,7 @@ def verrijk(woning, cache):
 
     cache[sleutel] = verrijking
     woning.update(verrijking)
+    deel_gevormd_af(woning)
     object_van_adres(woning)
     return woning
 
@@ -1830,6 +1870,10 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
     # verdieping. Kent de BAG al meer eenheden in dit pand, dan is dat aantal
     # het uitgangspunt: die opdeling is al geregistreerd.
     al_bekend = len(w.get("eenheden_in_pand") or [])
+    # Een aangekondigde opdeling telt ook als bekend: de gevormde objecten
+    # zijn de eenheden waarvoor de gemeente de registratie al heeft gemaakt.
+    if al_bekend <= 1 and w.get("gevormd_in_pand"):
+        al_bekend = len(w["gevormd_in_pand"])
     if 1 < al_bekend <= MAX_UNITS:
         aantal = al_bekend
     elif aantal > 2:
@@ -5871,6 +5915,19 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
               "officiele bekendmakingen")
 
     # BAG, label, monument, OV
+    gev = w.get("gevormd_in_pand") or []
+    if gev:
+        f("aangekondigd in de BAG",
+          f"{len(gev)} {'object' if len(gev) == 1 else 'objecten'} met status "
+          f"gevormd in dit pand, geregistreerd en nog niet in gebruik: "
+          + ", ".join(f"{e.get('adres')}"
+                      + (f" {e['oppervlakte']} m2" if e.get("oppervlakte")
+                         else "") for e in gev[:6])
+          + ". De gemeente legt zo'n object zelf vast, meestal na een "
+            "vergunning. Het is een aangekondigde splitsing of transformatie, "
+            "geen gerealiseerde, en zonder bekend besluit hebben wij dat "
+            "waarschijnlijk gemist",
+          "Basisregistratie Adressen en Gebouwen")
     eenh = w.get("eenheden_in_pand") or []
     if len(eenh) > 1:
         wat = ("dit is een appartement in een complex, wat op zichzelf niets "
@@ -6747,8 +6804,28 @@ def in_complex(w):
     toestemming van de VvE, en kamerverhuur is in veel splitsingsreglementen aan
     toestemming gebonden. De gemeentelijke vergunning is dan maar een van de
     horden.
+
+    GEVORMDE OBJECTEN TELLEN HIER WEL MEE. Een pand dat wordt opgedeeld in
+    appartementen krijgt die akte en die VvE ook, en de gevormde objecten zijn
+    precies die appartementen. Gemeten op 17 oktober in de cache: St.
+    Annastraat 165-B is zelf een gevormd appartement, naast 1 woning in
+    gebruik en 5 andere gevormde. Zonder deze regel zou dat aanbod na het
+    afsplitsen van de gevormde objecten als los pand met open routes
+    doorgerekend worden.
     """
-    return len(w.get("eenheden_in_pand") or []) >= APPARTEMENT_VANAF
+    return complexgrootte(w) >= APPARTEMENT_VANAF
+
+
+def complexgrootte(w):
+    """Woningen in gebruik plus gevormde objecten in hetzelfde pand.
+
+    Dominicanenstraat 103 (1 in gebruik, 3 gevormd) telde eerst 4, en zonder
+    het aparte aantal woningen in gebruik werd dat 3 en viel het pand onder de
+    grens van APPARTEMENT_VANAF."""
+    n = w.get("woningen_in_gebruik_in_pand")
+    if n is None:
+        n = len(w.get("eenheden_in_pand") or [])
+    return n + len(w.get("gevormd_in_pand") or [])
 
 
 def haalbare_routes(w, sc, vergunningen=None):
@@ -6771,7 +6848,9 @@ def haalbare_routes(w, sc, vergunningen=None):
         # appartement gaat de VvE erover, niet alleen de gemeente.
         # Zelfde vorm als elders: route -> reden
         n = len(w.get("eenheden_in_pand") or [])
-        reden = f"appartement in een complex van {n} woningen"
+        g = len(w.get("gevormd_in_pand") or [])
+        reden = (f"appartement in een complex van {n} woningen"
+                 + (f" en {g} gevormde objecten" if g else ""))
         return {"vrij": [], "geblokkeerd": {"splitsen": reden, "kamers": reden}}
     opp = w.get("oppervlakte") or 0
 
@@ -8694,6 +8773,59 @@ def proef():
             afw.append("150 m2 over 3 lagen levert geen splitsing op")
     finally:
         globals()["bouwlagen_van"] = _oud_lagen
+
+    # GEVORMD IS GEEN WONING, OOK NIET IN DE CACHE (17 oktober). Echte
+    # gecachte lijsten: Doddendaal 117 met 1 woning in gebruik en 2 gevormde
+    # objecten, Jacob Canisstraat 32-A met 3 in gebruik en 2 gevormd. Via
+    # verrijk() en de cache, zodat ook de aansluiting wordt beproefd en niet
+    # alleen de functie.
+    def _obj(adres, opp, st):
+        return {"adres": adres, "oppervlakte": opp,
+                "gebruiksdoelen": ["woonfunctie"],
+                "status": f"Verblijfsobject {st}"}
+    _cache = {
+        "Doddendaal 117|Nijmegen": {"eenheden_in_pand": [
+            _obj("Doddendaal 117", 63, "in gebruik"),
+            _obj("Doddendaal 117", 26, "gevormd"),
+            _obj("Doddendaal 119", 46, "gevormd")]},
+        "Jacob Canisstraat 32-A|Nijmegen": {"eenheden_in_pand": [
+            _obj("Jacob Canisstraat 30", 66, "in gebruik"),
+            _obj("Jacob Canisstraat 30A", 60, "in gebruik"),
+            _obj("Jacob Canisstraat 32", 145, "in gebruik"),
+            _obj("Jacob Canisstraat 32", 54, "gevormd"),
+            _obj("Jacob Canisstraat 32A", 56, "gevormd")]}}
+    _w1 = verrijk({"adres": "Doddendaal 117", "plaats": "Nijmegen"}, _cache)
+    if _w1.get("eenheden_in_pand") or len(_w1.get("gevormd_in_pand") or []) != 2:
+        afw.append(f"Doddendaal 117 telt gevormde objecten als woning: "
+                   f"{len(_w1.get('eenheden_in_pand') or [])} woningen, "
+                   f"{len(_w1.get('gevormd_in_pand') or [])} gevormd")
+    _w2 = verrijk({"adres": "Jacob Canisstraat 32-A", "plaats": "Nijmegen"},
+                  _cache)
+    if (len(_w2.get("eenheden_in_pand") or []),
+            len(_w2.get("gevormd_in_pand") or [])) != (3, 2):
+        afw.append("Jacob Canisstraat 32-A: woningen en gevormd niet gescheiden")
+    if len(_cache["Doddendaal 117|Nijmegen"]["eenheden_in_pand"]) != 3:
+        afw.append("deel_gevormd_af verandert de cache zelf")
+    _w3 = deel_gevormd_af({"eenheden_in_pand": [
+        _obj("St. Annastraat 165", 377, "in gebruik")]
+        + [_obj(f"St. Annastraat 165{x}", 50, "gevormd")
+           for x in ("", "A", "B", "C", "D", "E")]})
+    _w4 = deel_gevormd_af({"eenheden_in_pand": [
+        _obj("Dominicanenstraat 103", 248, "in gebruik"),
+        _obj("Dominicanenstraat 103", 92, "gevormd"),
+        _obj("Dominicanenstraat 105", 58, "gevormd"),
+        _obj("Dominicanenstraat 105A", 57, "gevormd")]})
+    if complexgrootte(_w4) != 4:
+        afw.append(f"Dominicanenstraat 103 verliest de woning in gebruik uit "
+                   f"de complexgrootte: {complexgrootte(_w4)}")
+    if not in_complex(_w3):
+        afw.append("een pand dat in zes appartementen wordt opgedeeld telt na "
+                   "het afsplitsen niet meer als complex")
+    _feiten = pand_dossier(dict(_w1, prijs=300000), "Benedenstad", None, {},
+                           {}, {})
+    _tekst = " ".join(_feiten) if isinstance(_feiten, list) else str(_feiten)
+    if "aangekondigd in de BAG" not in _tekst:
+        afw.append("het dossier noemt de gevormde objecten niet")
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
