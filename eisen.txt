@@ -1342,3 +1342,18 @@ waarom: 16 en 17 oktober. Bij Groesbeekseweg 118A bepaalde 'Waarde -
   komt daarom alleen als opmerking bij uitbreiden of graven.
 proef: bestemming:niet gevraagd, onleesbaar en niets gevonden krijgen
 soort: gegevens
+
+---
+eis: Ook in de advertentieverrijking telt een gevormd object niet als woning
+  in het pand, maar wel mee in de grootte van het complex.
+waarom: 17 oktober, de tweede plek van dezelfde fout als in
+  pandgeschiedenis.py. eenheden_in_pand nam elk object met een woonfunctie,
+  ook gevormde, en de cache bewaart die lijst voor altijd: 24 van de 485
+  gecachte lijsten bevatten een gevormd object. Doddendaal 117 (1 in gebruik,
+  2 gevormd) heette daardoor "opgedeeld in meerdere woningen". Voor de vraag
+  of het aanbod een appartement in een complex is, tellen de gevormde
+  objecten juist wel: dat zijn de appartementen die er komen, met akte en
+  VvE. Nagemeten op de cache: na de wijziging verandert bij geen enkel item
+  het oordeel complex of niet.
+proef: marktprijzen_bag:Doddendaal 117 telt gevormde objecten als woning
+soort: gegevens
