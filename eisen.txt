@@ -1328,3 +1328,17 @@ waarom: 17 oktober, zelfde zaak. Een gevormd object legt de gemeente zelf
   ronde.
 proef: splitsing_voltooid:gevormd is aangekondigd
 soort: brief
+
+---
+eis: Het dossier van een pand noemt de cultuurhistorische dubbelbestemming
+  met de voorbehouden van de bron, en zegt het verschil tussen niet
+  nagekeken, onleesbaar en niets gevonden.
+waarom: 16 en 17 oktober. Bij Groesbeekseweg 118A bepaalde 'Waarde -
+  Cultuurhistorie 2' de doorlooptijd (213 dagen, afwijken met advies van de
+  Adviescommissie Omgevingskwaliteit), en onze dossiers kenden alleen het
+  beschermd gezicht per buurt. Gemeten over 10.239 panden in de ring: 2.734
+  met een cultuurhistorische dubbelbestemming. De bron is niet volledig, dus
+  niets gevonden is geen uitsluitsel. Archeologie staat bij bijna elk pand en
+  komt daarom alleen als opmerking bij uitbreiden of graven.
+proef: bestemming:niet gevraagd, onleesbaar en niets gevonden krijgen
+soort: gegevens
