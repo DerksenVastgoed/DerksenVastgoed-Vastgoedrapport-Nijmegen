@@ -270,18 +270,57 @@ def zoek(geschiedenis):
     return uit
 
 
-def tekst(uit):
-    """Een blok voor de bijlage. Alleen wat er werkelijk is, geen kopjes leeg."""
+# Hoe lang een gebeurtenis als nieuw in de bijlage staat. Daarna één regel.
+VERS_DAGEN = 7
+
+
+def _vers(datum, vandaag):
+    """Is dit binnen VERS_DAGEN gezien? Zonder vandaag telt alles als vers."""
+    if vandaag is None or not datum:
+        return True
+    try:
+        return (vandaag - dt.date.fromisoformat(str(datum)[:10])).days <= VERS_DAGEN
+    except ValueError:
+        return True
+
+
+def tekst(uit, vandaag=None):
+    """
+    Een blok voor de bijlage. Alleen wat er werkelijk is, geen kopjes leeg.
+
+    ÉÉN REGEL PER PAND, EN OUD NIEUWS KORT. 17 oktober 2026, Mark: "er zitten
+    dubbel in, lijkt wel". Twee dingen. Hatertseweg 338 en Biezenstraat 110
+    stonden elke dag twee keer in de bijlage, onder "Splitsingen die de BAG
+    inmiddels telt" en direct daaronder nog eens onder "De BAG telt een ander
+    aantal dan de vergunning noemt". En ze stonden er zo van 10 tot en met 17
+    oktober, elke dag met de volledige tekst, terwijl er niets aan veranderde.
+    Nu staat het verschil met de vergunning op de regel van het pand zelf, en
+    wat langer dan VERS_DAGEN geleden is gezien, krijgt één regel onderaan.
+    """
     r = []
     ger = uit.get("gerealiseerd") or []
-    if ger:
+    afw = {rij["adres"]: rij for rij in (uit.get("wijkt_af_van_vergunning") or [])}
+    wacht = uit.get("wacht_op_woningtelling") or []
+    vers = [rij for rij in ger if _vers(rij.get("datum"), vandaag)]
+    oud = [rij for rij in ger if not _vers(rij.get("datum"), vandaag)]
+
+    def verschil(rij):
+        a = afw.get(rij["adres"])
+        if not a:
+            return ""
+        meer = a["wijkt_af"]
+        return (f". De vergunning noemt {a['vergund_aantal']}, de BAG telt "
+                f"{a['bag_nu']} woningen: {abs(meer)} "
+                f"{'meer' if meer > 0 else 'minder'}, om na te kijken")
+
+    if vers:
         r.append("## Splitsingen die de BAG inmiddels telt")
         r.append("")
         r.append("_Een vergunning zegt dat het mag; de BAG zegt dat het is "
                  "gebeurd. Zodra het aantal woningen met een eigen adres omhoog "
                  "gaat, staan de nieuwe eenheden geregistreerd._")
         r.append("")
-        for rij in ger[:8]:
+        for rij in vers[:8]:
             # De eenheid komt uit de datum van de gebeurtenis en niet uit de
             # tekst van dit hoofdstuk. Tot 12 oktober heette elk adresseerbaar
             # object hier een woning, en bij Hatertseweg 338 werd dat verschil
@@ -299,7 +338,16 @@ def tekst(uit):
                 deel += (f". De route zelf duurde langer: "
                          f"{_dag(rij['dagen_aanvraag_tot_besluit'])} van "
                          f"aanvraag ({rij['aanvraag']}) tot besluit")
+            deel += verschil(rij)
             r.append(deel + ".")
+        if any(afw.get(rij["adres"]) for rij in vers):
+            r.append("")
+            r.append("_Een verschil met de vergunning is een aanwijzing om na "
+                     "te kijken en geen conclusie. Het kan betekenen dat er "
+                     "meer is gerealiseerd dan mocht, maar ook dat de "
+                     "vergunningtekst iets anders telt dan de BAG. Vergeleken "
+                     "wordt het aantal objecten met een woonfunctie, dus een "
+                     "garage met een eigen adres telt hier niet mee._")
         if uit.get("mediaan_dagen_besluit_tot_bag"):
             r.append("")
             r.append(f"_Mediane tijd tussen besluit en registratie: "
@@ -309,53 +357,42 @@ def tekst(uit):
                      f"begint bij de aanvraag, en die staat per pand hierboven "
                      f"waar we hem kennen._")
         r.append("")
-    afw = uit.get("wijkt_af_van_vergunning") or []
-    wacht = uit.get("wacht_op_woningtelling") or []
-    if afw or wacht:
-        r.append("## De BAG telt een ander aantal dan de vergunning noemt")
-        r.append("")
-        r.append("_Dit is een aanwijzing om na te kijken en geen conclusie. "
-                 "Een verschil kan betekenen dat er meer is gerealiseerd dan "
-                 "mocht, maar ook dat de vergunningtekst iets anders telt dan "
-                 "de BAG. Vergeleken wordt het aantal objecten met een "
-                 "woonfunctie, dus een garage met een eigen adres telt hier "
-                 "niet mee._")
-        r.append("")
-        for rij in afw[:8]:
-            meer = rij["wijkt_af"]
-            r.append(f"- **{rij['adres']}**: de vergunning noemt "
-                     f"{rij['vergund_aantal']}, de BAG telt {rij['bag_nu']} "
-                     f"woningen, dus {abs(meer)} "
-                     f"{'meer' if meer > 0 else 'minder'}. Besluit "
-                     f"{rij['besluit']}, geregistreerd {rij['datum']}. "
-                     f"Vergunningtekst: \"{(rij.get('tekst') or '')[:110]}\".")
-        if not afw:
-            r.append("- Geen verschil gevonden in wat we nu kunnen "
-                     "vergelijken.")
-        if wacht:
-            r.append("")
-            r.append(f"_Van {len(wacht)} "
-                     f"{'pand' if len(wacht) == 1 else 'panden'} met een "
-                     f"vergunning en een opdeling is hier niets over te "
-                     f"zeggen: de woningen zijn daar nog niet apart van de "
-                     f"bergingen en garages geteld. Dat gebeurt zodra het pand "
-                     f"weer langskomt in de BAG-ronde. "
-                     f"{'Dat is' if len(wacht) == 1 else 'Dat zijn'}: "
-                     f"{', '.join(wacht[:6])}"
-                     + (" en meer" if len(wacht) > 6 else "") + "._")
+    if wacht:
+        r.append(f"_Van {len(wacht)} "
+                 f"{'pand' if len(wacht) == 1 else 'panden'} met een "
+                 f"vergunning en een opdeling is nog niet met de vergunning te "
+                 f"vergelijken: de woningen zijn daar nog niet apart van de "
+                 f"bergingen en garages geteld. Dat gebeurt zodra het pand "
+                 f"weer langskomt in de BAG-ronde. "
+                 f"{'Dat is' if len(wacht) == 1 else 'Dat zijn'}: "
+                 f"{', '.join(wacht[:6])}"
+                 + (" en meer" if len(wacht) > 6 else "") + "._")
         r.append("")
     zon = uit.get("zonder_bekende_vergunning") or []
-    if zon:
+    zon_vers = [rij for rij in zon if _vers(rij.get("datum"), vandaag)]
+    zon_oud = [rij for rij in zon if not _vers(rij.get("datum"), vandaag)]
+    if zon_vers:
         r.append("## Opgedeeld zonder dat wij een vergunning kennen")
         r.append("")
         r.append("_Dat bewijst niets: we zien alleen wat is gepubliceerd, en "
                  "pas sinds 2012. Het is wel een aanwijzing dat er een route is "
                  "die wij missen._")
         r.append("")
-        for rij in zon[:5]:
+        for rij in zon_vers[:5]:
             r.append(f"- **{rij['adres']}**: van {rij['van']} naar "
                      f"{rij['naar']} {_eenheid(rij['datum'])}, gezien op "
                      f"{rij['datum']}.")
+        r.append("")
+    eerder = ([f"{rij['adres']} ({rij['datum']}"
+               + (f", vergunning {afw[rij['adres']]['vergund_aantal']}, BAG "
+                  f"{afw[rij['adres']]['bag_nu']}" if rij["adres"] in afw else "")
+               + ")" for rij in oud]
+              + [f"{rij['adres']} ({rij['datum']}, zonder bekende vergunning)"
+                 for rij in zon_oud])
+    if eerder:
+        r.append(f"_Eerder gemeld en sindsdien ongewijzigd: "
+                 f"{'; '.join(eerder[:10])}"
+                 + (" en meer" if len(eerder) > 10 else "") + "._")
         r.append("")
     return "\n".join(r)
 
@@ -532,6 +569,19 @@ def proef():
         fouten.append("brief_verhalend.py niet te lezen, dus het voorbehoud "
                       "in de briefinstructie is niet nagemeten")
 
+    # 3c. ÉÉN REGEL PER PAND, OUD NIEUWS KORT (17 oktober). Met een verschil
+    #     staat het pand één keer in het blok, en een week later alleen nog in
+    #     de regel "eerder gemeld".
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, 7)})
+    blok = tekst(uit, dt.date(2026, 10, 10))
+    check("een pand met een verschil staat één keer in het blok",
+          blok.count("Hatertseweg 338"), 1)
+    check("het verschil staat op de regel van het pand",
+          "de BAG telt 7 woningen" in blok, True)
+    blok = tekst(uit, dt.date(2026, 10, 30))
+    check("oud nieuws krijgt één korte regel",
+          ("Eerder gemeld" in blok, "## Splitsingen" in blok), (True, False))
+
     # 4. Een besluit zonder leesbaar aantal hoort niet te wachten: er valt
     #    niets te vergelijken, dus er is ook niets in te halen.
     zonder = [dict(gebeurtenissen[0], tekst="Besluit voor het splitsen van "
@@ -591,7 +641,7 @@ def main():
     with open(args.uit, "w", encoding="utf-8") as f:
         json.dump(uit, f, ensure_ascii=False, indent=1)
     if args.tekst:
-        blok = tekst(uit)
+        blok = tekst(uit, dt.date.today())
         if blok:
             with open(args.tekst, "w", encoding="utf-8") as f:
                 f.write(blok)
