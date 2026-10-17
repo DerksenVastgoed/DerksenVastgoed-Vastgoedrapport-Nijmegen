@@ -1298,3 +1298,33 @@ waarom: 15 oktober. De brief opende met de herroepen kamerverhuurvergunning
   van het adres; nagemeten op die vier verhalen geeft dat alle acht.
 proef: brief_verhalend:de herroepen vergunning is niet klikbaar
 soort: brief
+
+---
+eis: Een object met status "Verblijfsobject gevormd" telt niet als woning;
+  het wordt apart geteld en apart gemeld.
+waarom: 17 oktober. De brief meldde dat er bij Graafseweg 18 en St.
+  Annastraat 275 huisnummers in de BAG waren bijgekomen zonder verleende
+  vergunning, en Mark vroeg of er dan een route buiten de gemeente om
+  bestaat. Die was er niet: de telling was fout. Graafseweg 18 had 1 woning
+  in gebruik en 6 gevormde objecten, precies de 6 appartementen uit de
+  aanvragen, en die zeven heetten samen woningen. Dezelfde fout gaf "6
+  vergund, 7 in de BAG" bij Hatertseweg 338 en "2 tegen 3" bij Biezenstraat
+  110. Nagemeten op de 1.361 panden waarvan de voorraad dezelfde objecten
+  kent: 157 hebben gevormde objecten, en daar telde de oude regel 1.273
+  woningen waar er 541 in gebruik zijn. De overgang meldt op die 1.361
+  panden niets.
+proef: pandgeschiedenis:gevormd telt niet als woning
+soort: gegevens
+
+---
+eis: Een pand met gevormde objecten staat in de bijlage als aangekondigd,
+  nooit als gerealiseerde splitsing of als opdeling zonder vergunning.
+waarom: 17 oktober, zelfde zaak. Een gevormd object legt de gemeente zelf
+  vast, meestal na een vergunning, dus "opgedeeld zonder dat wij een
+  vergunning kennen" is daar de verkeerde kop: het besluit is dan
+  waarschijnlijk gemist of nog niet gepubliceerd. Een groei uit een
+  gebeurtenistekst van voor 18 oktober wordt alleen geloofd als het pand nu
+  geen gevormde objecten heeft; weten we dat nog niet, dan wacht het pand een
+  ronde.
+proef: splitsing_voltooid:gevormd is aangekondigd
+soort: brief

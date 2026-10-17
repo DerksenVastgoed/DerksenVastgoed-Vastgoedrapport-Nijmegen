@@ -27,7 +27,8 @@ GEDEELD = "_panden"
 # moet dezelfde rij kennen: die mag deze velden juist niet tussen twee
 # adresrecords verplaatsen. Twee kopieen van deze rij is precies het soort
 # duplicatie dat deze module bestaat om te voorkomen.
-GEDEELDE_VELDEN = ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
+GEDEELDE_VELDEN = ("bag_eenheden", "bag_woningen", "bag_gevormd", "labels",
+                   "bag_gezien")
 
 
 def laad(pad="pandgeschiedenis.json"):
