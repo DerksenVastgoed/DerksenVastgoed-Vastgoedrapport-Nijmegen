@@ -8173,6 +8173,12 @@ Met de hand na te lopen, want hier is niets gemeten:
 
 ## Dubbelbestemming cultuurhistorie per pand (16 oktober 2026)
 
+Stand 17 oktober: bron gevonden. PDOK publiceert de dataset Ruimtelijke
+plannen (Wro) van ruimtelijkeplannen.nl als WMS met een laag
+'dubbelbestemming', CC-0. bestemming.py vraagt die per pand; eerst met
+--verken op Groesbeekseweg 118A (waar het besluit 'Cultuurhistorie - 2'
+noemt), en pas als de bron dat herkent op de hele ring.
+
 Groesbeekseweg 118A/B kostte 213 dagen, deels omdat er een dubbelbestemming
 'Cultuurhistorie - 2' op ligt met een bouwverbod; elke verbouwing gaat dan
 via een binnenplanse afwijking langs de Adviescommissie Omgevingskwaliteit,
