@@ -503,7 +503,44 @@ def _doelen(e):
     return list(d or [])
 
 
-def tel_en_meld(eenheden, eerder, eerder_woon):
+# DE STATUS DIE "GEREGISTREERD, NOG NIET IN GEBRUIK" BETEKENT. Gemeten in
+# voorraad.json op 17 oktober: 26.383 objecten "in gebruik", 318 "Verbouwing
+# verblijfsobject", 6 "in gebruik (niet ingemeten)" en 80 "gevormd". Alleen
+# die laatste is een object dat er nog niet staat. Andere statuses van de BAG
+# (niet gerealiseerd, ingetrokken) kwamen in de meting niet voor; voor die
+# staat hier dus geen regel, want een regel zonder geval is een aanname.
+GEVORMD = "Verblijfsobject gevormd"
+
+
+def verdeel(eenheden):
+    """
+    De objecten van een pand in drieen: woningen, gevormd, en de rest.
+
+    Een gevormd object telt niet als woning, welk gebruiksdoel het ook heeft:
+    het is geregistreerd en nog niet in gebruik. Een object zonder status
+    (oudere aanroepen, de proeven van voor 17 oktober) telt zoals het telde.
+    """
+    gevormd = [e for e in eenheden if e.get("status") == GEVORMD]
+    rest = [e for e in eenheden if e.get("status") != GEVORMD]
+    woon = [e for e in rest if "woonfunctie" in _doelen(e)]
+    anders = [e for e in rest if "woonfunctie" not in _doelen(e)]
+    return woon, gevormd, anders
+
+
+def _zonder(rij, weg):
+    """rij min weg, als multiset op (adres, oppervlakte)."""
+    over = [tuple(x) for x in rij]
+    for x in weg:
+        if tuple(x) in over:
+            over.remove(tuple(x))
+    return over
+
+
+def _objecten(n):
+    return "1 object" if n == 1 else f"{n} objecten"
+
+
+def tel_en_meld(eenheden, eerder, eerder_woon, eerder_gevormd=None):
     """
     Uit de BAG-objecten van een pand: twee tellingen en de melding, of None.
 
@@ -531,19 +568,65 @@ def tel_en_meld(eenheden, eerder, eerder_woon):
     geen BAG-sleutel aan te pas komt. In de lus zijn ze met de hand nagekeken
     en dat is niet te herhalen.
 
-    Geeft (nu, nu_woon, melding). melding is None als er niets te melden is.
-    """
-    nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
-    woon = [e for e in eenheden if "woonfunctie" in _doelen(e)]
-    anders = [e for e in eenheden if "woonfunctie" not in _doelen(e)]
-    nu_woon = sorted((e.get("adres"), e.get("oppervlakte")) for e in woon)
-    if eerder is None or [tuple(x) for x in eerder] == nu:
-        return nu, nu_woon, None
+    GEVORMD IS GEEN WONING. 17 oktober 2026, Mark las in de brief dat er bij
+    Graafseweg 18 en St. Annastraat 275 huisnummers in de BAG waren bijgekomen
+    zonder verleende vergunning, en vroeg of er een route buiten de gemeente
+    om bestaat. Die was er niet: de telling was fout. Graafseweg 18 had 1
+    woning in gebruik (374 m2) en 6 objecten met status "Verblijfsobject
+    gevormd" (18 tot en met 18E: 55, 55, 35, 29, 60 en 50 m2), precies de 6
+    appartementen uit de aanvragen. Deze functie telde die zeven als
+    woningen. Zo ontstonden ook "vergunning 6, BAG 7" bij Hatertseweg 338 en
+    "vergunning 2, BAG 3" bij Biezenstraat 110: daar staan de oude woning in
+    gebruik en de vergunde nieuwe als gevormd naast elkaar. Een gevormd object
+    is een aangekondigde woning, geen gerealiseerde, en wordt nu apart geteld
+    en apart gemeld.
 
-    maten = ", ".join(str(o) for _a, o in nu_woon if o)
+    DE OVERGANG. bag_woningen van voor 18 oktober bevat de gevormde objecten
+    nog. Bij de eerste ronde met deze code (eerder_gevormd is dan None) gaan
+    de objecten die nu gevormd zijn eerst uit de oude telling, anders meldt
+    elk van deze panden "telt nu 1 woningen, was 7", een krimp die er niet is.
+
+    Geeft (nu, nu_woon, nu_gevormd, melding). melding is None als er niets te
+    melden is.
+    """
+    woon, gevormd, anders = verdeel(eenheden)
+    nu = sorted((e.get("adres"), e.get("oppervlakte")) for e in eenheden)
+    nu_woon = sorted((e.get("adres"), e.get("oppervlakte")) for e in woon)
+    nu_gev = sorted((e.get("adres"), e.get("oppervlakte")) for e in gevormd)
+    if eerder is None:
+        return nu, nu_woon, nu_gev, None
+    if eerder_woon is not None and eerder_gevormd is None:
+        # Alleen de gevormde objecten met een woonfunctie: de oude telling
+        # nam op woonfunctie en niet op status, dus alleen die zitten erin.
+        # Van Welderenstraat 126 heeft een gevormd object van 166 m2 met
+        # alleen een bijeenkomstfunctie naast een woning van 166 m2 in
+        # gebruik; zonder dit onderscheid ging de woning eruit en meldde de
+        # overgang "telt nu 1 woningen, was 0".
+        eerder_woon = _zonder(eerder_woon, sorted(
+            (e.get("adres"), e.get("oppervlakte")) for e in gevormd
+            if "woonfunctie" in _doelen(e)))
+    woon_anders = (eerder_woon is not None
+                   and sorted(tuple(x) for x in eerder_woon) != nu_woon)
+    gev_anders = (eerder_gevormd is not None
+                  and sorted(tuple(x) for x in eerder_gevormd) != nu_gev)
+    # Een object dat van gevormd naar in gebruik gaat, houdt vaak adres en
+    # oppervlakte. Dan verandert bag_eenheden niet en is de woningtelling het
+    # enige dat het ziet. Daarom niet meer alleen op bag_eenheden vergelijken.
+    if (sorted(tuple(x) for x in eerder) == nu and not woon_anders
+            and not gev_anders):
+        return nu, nu_woon, nu_gev, None
+
+    def maten_van(rij):
+        return ", ".join(str(o) for _a, o in rij if o)
+
+    maten = maten_van(nu_woon)
     # Geen maten betekent geen woningen, of geen oppervlakte geregistreerd.
     # Dan hoort er geen ": m2" in de tekst te staan.
     staart = f": {maten} m2" if maten else ""
+    gmaten = maten_van(nu_gev)
+    gev_deel = (f"{_objecten(len(nu_gev))} met status gevormd (geregistreerd, "
+                f"nog niet in gebruik)" + (f": {gmaten} m2" if gmaten else ""))
+    gev_staart = f"; daarnaast {gev_deel}" if nu_gev else ""
     extra = (f"; daarnaast "
              + (f"{len(anders)} andere objecten" if len(anders) != 1
                 else "1 ander object")
@@ -552,25 +635,37 @@ def tel_en_meld(eenheden, eerder, eerder_woon):
     # oktober toegevoegd, dus voor panden die eerder zijn opgehaald bestaat er
     # nog geen woningtelling van vroeger. Dan is "was N" niet te zeggen zonder
     # appels met peren te vergelijken, en zwijgt deze regel over het aantal in
-    # plaats van een getal te noemen dat op een andere grondslag rust. De ronde
-    # erna is het wel te zeggen. De vergelijking zelf blijft op bag_eenheden
-    # staan, zodat deze toevoeging geen enkele valse wijziging meldt op de
-    # 1.777 panden die al gevolgd worden.
+    # plaats van een getal te noemen dat op een andere grondslag rust.
     if eerder_woon is None:
-        return nu, nu_woon, (f"de BAG telt nu {len(nu_woon)} woningen in dit "
-                             f"pand{staart}{extra}")
+        return nu, nu_woon, nu_gev, (
+            f"de BAG telt nu {len(nu_woon)} woningen in dit pand{staart}"
+            f"{gev_staart}{extra}")
     if len(nu_woon) != len(eerder_woon):
-        return nu, nu_woon, (f"de BAG telt nu {len(nu_woon)} woningen in dit "
-                             f"pand, was {len(eerder_woon)}{staart}{extra}")
-    if [tuple(x) for x in eerder_woon] != nu_woon:
-        return nu, nu_woon, (f"de oppervlaktes in de BAG zijn gewijzigd"
-                             f"{staart or ' maar niet geregistreerd'}{extra}")
+        return nu, nu_woon, nu_gev, (
+            f"de BAG telt nu {len(nu_woon)} woningen in dit pand, was "
+            f"{len(eerder_woon)}{staart}{gev_staart}{extra}")
+    if woon_anders:
+        return nu, nu_woon, nu_gev, (
+            f"de oppervlaktes in de BAG zijn gewijzigd"
+            f"{staart or ' maar niet geregistreerd'}{gev_staart}{extra}")
+    # De woningen bleven gelijk en er kwam of ging iets met status gevormd.
+    # Dat is de aankondiging van een splitsing of transformatie, en het mag
+    # niet als woningtelling klinken: splitsing_voltooid.py leest "telt nu N
+    # woningen" als een gerealiseerde splitsing.
+    if gev_anders or (eerder_gevormd is None and nu_gev):
+        was = (f", was {len(eerder_gevormd)}" if eerder_gevormd is not None
+               else "")
+        return nu, nu_woon, nu_gev, (
+            f"de BAG kent nu {gev_deel if nu_gev else '0 objecten met status gevormd'}"
+            f" in dit pand{was}; het aantal woningen in gebruik bleef "
+            f"{len(nu_woon)}{extra}")
     # Alleen de niet-woningen zijn veranderd. Dat is geen splitsing en hoort
     # niet als woningtelling te klinken.
-    return nu, nu_woon, (f"de BAG kent nu {len(anders)} object"
-                         f"{'en' if len(anders) != 1 else ''} zonder "
-                         f"woonfunctie in dit pand; het aantal woningen bleef "
-                         f"{len(nu_woon)}")
+    return nu, nu_woon, nu_gev, (
+        f"de BAG kent nu {len(anders)} object"
+        f"{'en' if len(anders) != 1 else ''} zonder "
+        f"woonfunctie in dit pand; het aantal woningen bleef "
+        f"{len(nu_woon)}")
 
 
 VOORRAAD_PAD = "voorraad.json"
@@ -814,9 +909,9 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
         pand["bag_gezien"] = vandaag
         if not eenheden:
             continue
-        nu, nu_woon, melding = tel_en_meld(eenheden,
-                                           pand.get("bag_eenheden"),
-                                           pand.get("bag_woningen"))
+        nu, nu_woon, nu_gev, melding = tel_en_meld(
+            eenheden, pand.get("bag_eenheden"), pand.get("bag_woningen"),
+            pand.get("bag_gevormd"))
         # DE TELLING EEN KEER BIJSCHRIJVEN, OOK ALS ER NIETS VERANDERDE.
         # Zonder dit wordt bag_woningen alleen gevuld bij een pand dat voor het
         # eerst wordt opgehaald of waarvan de eenheden wijzigen. De 1.263
@@ -836,6 +931,7 @@ def bij_bag(geschiedenis, alleen_gevolgd=True, alleen_nieuwe=False):
                               "Basisregistratie Adressen en Gebouwen")
         pand["bag_eenheden"] = nu
         pand["bag_woningen"] = nu_woon
+        pand["bag_gevormd"] = nu_gev
     over = max(nooit - gedaan, 0)
     print(f"BAG: {bekeken} panden bekeken, {gedaan} afgehandeld waarvan "
           f"{geen_id} zonder pand-id, nog {over} nooit gecontroleerd",
@@ -1734,7 +1830,7 @@ def proef():
 
     # 1. Een pand dat voor het eerst wordt opgehaald meldt niets, maar vult
     #    wel beide tellingen.
-    nu, nu_woon, melding = tel_en_meld(hatert, None, None)
+    nu, nu_woon, _g, melding = tel_en_meld(hatert, None, None)
     check("eerste keer geen melding", melding, None)
     check("eerste keer eenheden", len(nu), 7)
     check("eerste keer woningen", len(nu_woon), 6)
@@ -1742,19 +1838,19 @@ def proef():
     # 2. Niets veranderd: geen melding. Dit is de inhaalslag van de 1.263
     #    panden die al eenheden hebben; de lus schrijft nu_woon dan weg zonder
     #    iets te melden.
-    nu2, nu_woon2, melding = tel_en_meld(hatert, [list(x) for x in nu], None)
+    nu2, nu_woon2, _g, melding = tel_en_meld(hatert, [list(x) for x in nu], None)
     check("ongewijzigd geen melding", melding, None)
     check("ongewijzigd wel een woningtelling", len(nu_woon2), 6)
 
     # 3. Gewijzigd en nog geen woningtelling van vroeger: geen "was".
-    _n, _w, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
+    _n, _w, _g, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
     check("zonder vroeger geen was", "was" in (melding or ""), False)
     check("zonder vroeger telt zes",
           melding, "de BAG telt nu 6 woningen in dit pand: 147, 46, 24, 19, "
                    "23, 19 m2; daarnaast 1 ander object met een eigen adres")
 
     # 4. Gewijzigd met een woningtelling van vroeger: wel "was".
-    _n, _w, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
+    _n, _w, _g, melding = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
                                   [["Hatertseweg 338", 167]])
     check("met vroeger zegt was zes tegen een",
           melding, "de BAG telt nu 6 woningen in dit pand, was 1: 147, 46, "
@@ -1763,7 +1859,7 @@ def proef():
 
     # 5. Even veel woningen, andere oppervlaktes.
     anders = [obj("Hatertseweg 338", 150)]
-    _n, _w, melding = tel_en_meld(anders, [["Hatertseweg 338", 147]],
+    _n, _w, _g, melding = tel_en_meld(anders, [["Hatertseweg 338", 147]],
                                   [["Hatertseweg 338", 147]])
     check("alleen maten", melding,
           "de oppervlaktes in de BAG zijn gewijzigd: 150 m2")
@@ -1772,7 +1868,7 @@ def proef():
     #    woningtelling klinken.
     met_berging = [obj("Hatertseweg 338", 147),
                    obj("Hatertseweg 338F", 8, "overige gebruiksfunctie")]
-    _n, _w, melding = tel_en_meld(met_berging, [["Hatertseweg 338", 147]],
+    _n, _w, _g, melding = tel_en_meld(met_berging, [["Hatertseweg 338", 147]],
                                   [["Hatertseweg 338", 147]])
     check("alleen niet-woning", melding,
           "de BAG kent nu 1 object zonder woonfunctie in dit pand; het aantal "
@@ -1787,12 +1883,12 @@ def proef():
     check("doel leeg", _doelen({}), [])
     als_string = [{"adres": "Hatertseweg 338", "oppervlakte": 147,
                    "gebruiksdoelen": "woonfunctie"}]
-    _n, w, _m = tel_en_meld(als_string, None, None)
+    _n, w, _g, _m = tel_en_meld(als_string, None, None)
     check("string telt als woning", len(w), 1)
 
     # 8. Geen enkele woning: geen kale ": m2" in de tekst.
     geen = [obj("Hatertseweg 338F", 8, "overige gebruiksfunctie")]
-    _n, w, melding = tel_en_meld(geen, [["Hatertseweg 338", 147]], None)
+    _n, w, _g, melding = tel_en_meld(geen, [["Hatertseweg 338", 147]], None)
     check("nul woningen telling", len(w), 0)
     check("nul woningen tekst", melding,
           "de BAG telt nu 0 woningen in dit pand; daarnaast 1 ander object "
@@ -1802,13 +1898,59 @@ def proef():
     #    komen, want die twee bestanden praten hier met elkaar.
     try:
         from splitsing_voltooid import _aantallen
-        _n, _w, m4 = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
+        _n, _w, _g, m4 = tel_en_meld(hatert, [["Hatertseweg 338", 167]],
                                  [["Hatertseweg 338", 167]])
         check("splitsing_voltooid leest de melding", _aantallen(m4), (1, 6))
-        _n, _w, m3 = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
+        _n, _w, _g, m3 = tel_en_meld(hatert, [["Hatertseweg 338", 167]], None)
         check("zonder was leest hij niets", _aantallen(m3), None)
     except ImportError:
         fouten.append("splitsing_voltooid niet te importeren")
+
+    # 9b. GEVORMD IS GEEN WONING, gemeten op Graafseweg 18 op 17 oktober:
+    #     1 woning in gebruik van 374 m2 en 6 objecten met status gevormd,
+    #     precies de 6 appartementen uit de aanvragen. De oude telling maakte
+    #     daar 7 woningen van, en de brief een zevende eenheid die er niet is.
+    def gev(adres, opp):
+        e = obj(adres, opp)
+        e["status"] = "Verblijfsobject gevormd"
+        return e
+    graaf_gev = [gev("Graafseweg 18", 55), gev("Graafseweg 18A", 55),
+                 gev("Graafseweg 18B", 35), gev("Graafseweg 18C", 29),
+                 gev("Graafseweg 18D", 60), gev("Graafseweg 18E", 50)]
+    graaf = [obj("Graafseweg 18", 374)] + graaf_gev
+    oud_zeven = [[e["adres"], e["oppervlakte"]] for e in graaf]
+    # De overgang: bag_woningen van voor 18 oktober telde de zes mee. Dat mag
+    # geen "telt nu 1 woningen, was 7" opleveren.
+    _n, w, g, melding = tel_en_meld(graaf, oud_zeven, oud_zeven, None)
+    check("gevormd telt niet als woning", (len(w), len(g)), (1, 6))
+    check("de overgang meldt niets", melding, None)
+    # De ronde erna, niets veranderd.
+    _n, _w, _g, melding = tel_en_meld(graaf, oud_zeven, w, g)
+    check("daarna ongewijzigd", melding, None)
+    # De aankondiging: zes gevormde objecten verschijnen naast de woning.
+    _n, _w, _g, melding = tel_en_meld(graaf, [["Graafseweg 18", 374]],
+                                      [["Graafseweg 18", 374]], [])
+    check("aankondiging", melding,
+          "de BAG kent nu 6 objecten met status gevormd (geregistreerd, nog "
+          "niet in gebruik): 55, 55, 35, 29, 60, 50 m2 in dit pand, was 0; "
+          "het aantal woningen in gebruik bleef 1")
+    try:
+        from splitsing_voltooid import _aantallen
+        check("een aankondiging is geen splitsing", _aantallen(melding), None)
+    except ImportError:
+        fouten.append("splitsing_voltooid niet te importeren")
+    # De realisatie: de zes gaan in gebruik met hetzelfde adres en dezelfde
+    # maat, de oude woning gaat eruit. bag_eenheden verandert dan alleen door
+    # die ene; staat die er nog, dan verandert bag_eenheden helemaal niet.
+    in_gebruik = [obj(e["adres"], e["oppervlakte"]) for e in graaf_gev]
+    _n, _w, _g, melding = tel_en_meld(
+        [obj("Graafseweg 18", 374)] + in_gebruik, oud_zeven,
+        [["Graafseweg 18", 374]], g)
+    check("realisatie met gelijke eenheden wordt gezien",
+          _aantallen(melding or ""), (1, 7))
+    _n, _w, _g, melding = tel_en_meld(in_gebruik, oud_zeven,
+                                      [["Graafseweg 18", 374]], g)
+    check("realisatie", _aantallen(melding or ""), (1, 6))
 
     # 10. uit_archief() MAG OP DE ECHTE DATA NIETS AANMAKEN.
     #

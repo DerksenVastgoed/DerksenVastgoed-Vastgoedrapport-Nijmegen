@@ -471,7 +471,8 @@ def _gedeelde_velden():
         from pandlezer import GEDEELDE_VELDEN
         return GEDEELDE_VELDEN
     except Exception:
-        return ("bag_eenheden", "bag_woningen", "labels", "bag_gezien")
+        return ("bag_eenheden", "bag_woningen", "bag_gevormd", "labels",
+                "bag_gezien")
 
 
 def json_sleutelbaar(x):

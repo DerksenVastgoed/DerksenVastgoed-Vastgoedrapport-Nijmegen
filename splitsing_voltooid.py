@@ -86,6 +86,16 @@ WOORDGETAL = {"een": 1, "één": 1, "twee": 2, "drie": 3, "vier": 4, "vijf": 5,
 # daarvoor bestaat is de datum waarop de code veranderde.
 GRONDSLAG_VANAF = "2026-10-12"
 
+# EN VANAF WELKE DATUM "WONINGEN" ALLEEN WONINGEN IN GEBRUIK ZIJN. Van 12 tot
+# en met 17 oktober telde pandgeschiedenis.py ook objecten met status
+# "Verblijfsobject gevormd" als woning: geregistreerd, nog niet in gebruik.
+# Graafseweg 18 stond daardoor als "van 1 naar 7" in de brief, terwijl er 1
+# woning in gebruik was en 6 gevormde objecten, precies de 6 appartementen uit
+# de aanvraag. Mark vroeg op 17 oktober of er dan een route buiten de gemeente
+# om bestond. Een groei uit een tekst van voor deze datum wordt daarom alleen
+# geloofd als het pand nu geen gevormde objecten heeft.
+GEVORMD_APART_VANAF = "2026-10-18"
+
 
 def _eenheid(datum, meervoud=True):
     """Hoe een getal uit een gebeurtenistekst van die datum mag heten."""
@@ -131,6 +141,10 @@ def _vergund_aantal(tekst):
     44 m2. Die 44 is vermoedelijk de garage. De brief van 9 oktober noemde
     beide getallen in één alinea zonder het verschil op te merken.
 
+    Op 17 oktober bleek het verschil er niet te zijn: 203 m2 is de oude woning
+    in gebruik, en 168 m2 en Maasstraat 2 van 44 m2 zijn de twee vergunde
+    nieuwe, met status gevormd. Zie GEVORMD_APART_VANAF.
+
     Let op wat dit NIET vaststelt. Een verschil kan betekenen dat er meer is
     gerealiseerd dan mocht, maar ook dat de vergunningtekst iets anders telt
     dan de BAG: een garage die een eigen adres krijgt is in de BAG een woning
@@ -164,7 +178,7 @@ def zoek(geschiedenis):
     hoort niet bij deze splitsing en telt dus niet mee.
     """
     gerealiseerd, zonder_vergunning, vergund_niets = [], [], []
-    wacht = []
+    aangekondigd, wacht = [], []
     for pand in geschiedenis.values():
         if not isinstance(pand, dict):
             continue
@@ -181,6 +195,39 @@ def zoek(geschiedenis):
                      if g.get("soort") == "bekendmaking"
                      and _is_splitsing(g.get("tekst"))
                      and "aanvraag" in (g.get("tekst") or "").lower()]
+
+        # GEVORMD EERST. Een pand met objecten die geregistreerd en nog niet
+        # in gebruik zijn, is aangekondigd en niet gerealiseerd. Een groei uit
+        # een tekst van voor GEVORMD_APART_VANAF telde die objecten mee, dus
+        # die zegt hier niets; weten we nog niet of er gevormde objecten zijn,
+        # dan wacht het pand een ronde in plaats van te raden.
+        gev = pand.get("bag_gevormd")
+        oude_groei = bool(groei) and groei[-1][0] < GEVORMD_APART_VANAF
+        if oude_groei and gev is None:
+            wacht.append(pand.get("adres"))
+            continue
+        if gev and (oude_groei or besluiten or aanvragen):
+            woon_nu = pand.get("bag_woningen")
+            rij = {"adres": pand.get("adres"), "gevormd": len(gev),
+                   "gevormd_maten": [o for _a, o in gev if o],
+                   "in_gebruik": (len(woon_nu) if isinstance(woon_nu, list)
+                                  else None),
+                   # Wanneer wij het zagen. De BAG geeft hier geen datum van
+                   # registratie mee, dus is dit de eerste gebeurtenis die
+                   # het liet zien, en anders de laatste bekendmaking.
+                   "datum": (groei[-1][0] if groei else
+                             max(g["datum"] for g in besluiten + aanvragen))}
+            if aanvragen:
+                rij["aanvraag"] = aanvragen[-1]["datum"]
+            if besluiten:
+                rij["besluit"] = besluiten[-1]["datum"]
+                vergund = _vergund_aantal(besluiten[-1].get("tekst"))
+                if vergund:
+                    rij["vergund_aantal"] = vergund
+                    if vergund != len(gev):
+                        rij["wijkt_af"] = len(gev) - vergund
+            aangekondigd.append(rij)
+            continue
 
         if groei:
             datum, (van, naar) = groei[-1]
@@ -251,12 +298,13 @@ def zoek(geschiedenis):
                     "adres": pand.get("adres"), "besluit": laatste["datum"],
                     "dagen": dagen, "tekst": laatste.get("tekst", "")[:160]})
 
-    for rij in (gerealiseerd, zonder_vergunning, vergund_niets):
+    for rij in (gerealiseerd, zonder_vergunning, vergund_niets, aangekondigd):
         rij.sort(key=lambda r: r.get("datum") or r.get("besluit") or "",
                  reverse=True)
     uit = {"gerealiseerd": gerealiseerd,
            "zonder_bekende_vergunning": zonder_vergunning,
            "vergund_maar_niets_gebeurd": vergund_niets,
+           "aangekondigd_nog_niet_in_gebruik": aangekondigd,
            "wijkt_af_van_vergunning": [r for r in gerealiseerd
                                        if r.get("wijkt_af")],
            "wacht_op_woningtelling": sorted(a for a in wacht if a)}
@@ -346,8 +394,9 @@ def tekst(uit, vandaag=None):
                      "te kijken en geen conclusie. Het kan betekenen dat er "
                      "meer is gerealiseerd dan mocht, maar ook dat de "
                      "vergunningtekst iets anders telt dan de BAG. Vergeleken "
-                     "wordt het aantal objecten met een woonfunctie, dus een "
-                     "garage met een eigen adres telt hier niet mee._")
+                     "wordt het aantal woningen in gebruik, dus een garage met "
+                     "een eigen adres en een object dat alleen nog gevormd is "
+                     "tellen hier niet mee._")
         if uit.get("mediaan_dagen_besluit_tot_bag"):
             r.append("")
             r.append(f"_Mediane tijd tussen besluit en registratie: "
@@ -360,13 +409,53 @@ def tekst(uit, vandaag=None):
     if wacht:
         r.append(f"_Van {len(wacht)} "
                  f"{'pand' if len(wacht) == 1 else 'panden'} met een "
-                 f"vergunning en een opdeling is nog niet met de vergunning te "
-                 f"vergelijken: de woningen zijn daar nog niet apart van de "
-                 f"bergingen en garages geteld. Dat gebeurt zodra het pand "
-                 f"weer langskomt in de BAG-ronde. "
+                 f"opdeling in de BAG is nog niet te zeggen of die gerealiseerd "
+                 f"of alleen aangekondigd is, of hoe die zich tot de vergunning "
+                 f"verhoudt: de woningen in gebruik zijn daar nog niet apart "
+                 f"van de bergingen, de garages en de gevormde objecten "
+                 f"geteld. Dat gebeurt zodra het pand weer langskomt in de "
+                 f"BAG-ronde. "
                  f"{'Dat is' if len(wacht) == 1 else 'Dat zijn'}: "
                  f"{', '.join(wacht[:6])}"
                  + (" en meer" if len(wacht) > 6 else "") + "._")
+        r.append("")
+    aan = uit.get("aangekondigd_nog_niet_in_gebruik") or []
+    aan_vers = [rij for rij in aan if _vers(rij.get("datum"), vandaag)]
+    aan_oud = [rij for rij in aan if not _vers(rij.get("datum"), vandaag)]
+    if aan_vers:
+        r.append("## Aangekondigd in de BAG, nog niet in gebruik")
+        r.append("")
+        r.append("_Een object met status gevormd staat in de registratie maar "
+                 "is nog niet in gebruik. De gemeente legt het zelf vast, "
+                 "meestal na een vergunning; dat dat in Nijmegen altijd zo "
+                 "gaat, is niet nagekeken. Het is de aankondiging van een "
+                 "splitsing en geen bewijs dat hij is gebeurd. Staat er geen "
+                 "besluit bij, dan hebben wij het waarschijnlijk gemist of is "
+                 "het nog niet gepubliceerd._")
+        r.append("")
+        for rij in aan_vers[:8]:
+            maten = ", ".join(str(m) for m in rij.get("gevormd_maten") or [])
+            deel = (f"- **{rij['adres']}**: {rij['gevormd']} "
+                    f"{'object' if rij['gevormd'] == 1 else 'objecten'} "
+                    f"gevormd" + (f" ({maten} m2)" if maten else ""))
+            if rij.get("in_gebruik") is not None:
+                deel += (f", naast {rij['in_gebruik']} "
+                         f"{'woning' if rij['in_gebruik'] == 1 else 'woningen'}"
+                         f" in gebruik")
+            if rij.get("besluit"):
+                deel += f". Besluit van {rij['besluit']}"
+                if rij.get("vergund_aantal"):
+                    deel += f" voor {rij['vergund_aantal']}"
+                    if rij.get("wijkt_af"):
+                        deel += (f", dat is {abs(rij['wijkt_af'])} "
+                                 f"{'meer' if rij['wijkt_af'] > 0 else 'minder'}"
+                                 f" gevormd dan vergund, om na te kijken")
+                    else:
+                        deel += ", evenveel als er gevormd zijn"
+            elif rij.get("aanvraag"):
+                deel += (f". Aanvraag van {rij['aanvraag']} bekend, besluit "
+                         f"niet in ons archief")
+            r.append(deel + ".")
         r.append("")
     zon = uit.get("zonder_bekende_vergunning") or []
     zon_vers = [rij for rij in zon if _vers(rij.get("datum"), vandaag)]
@@ -389,6 +478,18 @@ def tekst(uit, vandaag=None):
                + ")" for rij in oud]
               + [f"{rij['adres']} ({rij['datum']}, zonder bekende vergunning)"
                  for rij in zon_oud])
+    # NIET ONDER "EERDER GEMELD". De datum van een aangekondigd pand is vaak
+    # die van de bekendmaking, omdat de BAG geen registratiedatum meegeeft.
+    # Zo'n pand is dus niet per se eerder gemeld, en dat er toch zetten zou
+    # een bewering zijn die we niet kunnen staven.
+    if aan_oud:
+        r.append(f"_Ook met gevormde objecten, bij een gebeurtenis van langer "
+                 f"dan {VERS_DAGEN} dagen geleden: "
+                 + "; ".join(f"{rij['adres']} ({rij['gevormd']})"
+                             for rij in aan_oud[:12])
+                 + (f" en {len(aan_oud) - 12} meer" if len(aan_oud) > 12
+                    else "") + "._")
+        r.append("")
     if eerder:
         r.append(f"_Eerder gemeld en sindsdien ongewijzigd: "
                  f"{'; '.join(eerder[:10])}"
@@ -397,13 +498,18 @@ def tekst(uit, vandaag=None):
     return "\n".join(r)
 
 
-def _pand(adres, pand_id, gebeurtenissen, woningen=None):
-    """Een pandrecord in de vorm die pandlezer.laad() oplevert."""
+def _pand(adres, pand_id, gebeurtenissen, woningen=None, gevormd=None):
+    """Een pandrecord in de vorm die pandlezer.laad() oplevert.
+
+    Met een woningtelling is het pand op de grondslag van nu geteld, en dan
+    kent het ook bag_gevormd, standaard leeg."""
     p = {"adres": adres, "pand_id": pand_id,
          "gebeurtenissen": list(gebeurtenissen)}
     if woningen is not None:
         p["bag_woningen"] = [[adres, 50] for _ in range(woningen)]
-        p["bag_eenheden"] = [[adres, 50] for _ in range(woningen + 1)]
+        p["bag_gevormd"] = [[adres, m] for m in (gevormd or [])]
+        p["bag_eenheden"] = (p["bag_woningen"] + p["bag_gevormd"]
+                             + [[adres, 50]])
     return p
 
 
@@ -495,7 +601,11 @@ def proef():
     # 3. Nog geen woningtelling: niets melden, maar wel laten weten dat er
     #    gewacht wordt. Zonder deze regel zou het hoofdstuk er stil uit zien
     #    alsof er niets te vinden was.
-    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen)})
+    # bag_gevormd staat er wel: dit meet het wachten op de woningtelling, en
+    # niet het wachten op de gevormd-telling (dat doet 6).
+    p3 = _pand("Hatertseweg 338", "P1", gebeurtenissen)
+    p3["bag_gevormd"] = []
+    uit = zoek({"a": p3})
     check("zonder telling geen verschil", uit["wijkt_af_van_vergunning"], [])
     check("zonder telling wacht", uit["wacht_op_woningtelling"],
           ["Hatertseweg 338"])
@@ -586,7 +696,9 @@ def proef():
     #    niets te vergelijken, dus er is ook niets in te halen.
     zonder = [dict(gebeurtenissen[0], tekst="Besluit voor het splitsen van "
                                             "een woning"), gebeurtenissen[1]]
-    uit = zoek({"a": _pand("Ergens 1", "P2", zonder)})
+    p4 = _pand("Ergens 1", "P2", zonder)
+    p4["bag_gevormd"] = []
+    uit = zoek({"a": p4})
     check("onleesbaar aantal wacht niet", uit["wacht_op_woningtelling"], [])
 
     # 5. De weg waarlangs bag_woningen bij dit bestand aankomt. Het veld werd
@@ -615,6 +727,59 @@ def proef():
               zoek(terug)["wijkt_af_van_vergunning"], [])
     except ImportError:
         fouten.append("pandlezer niet te importeren")
+
+    # 6. GEVORMD IS AANGEKONDIGD, NIET GEREALISEERD (17 oktober). Echte
+    #    teksten van Graafseweg 18: drie aanvragen voor 6 appartementen, geen
+    #    besluit in het archief, en een BAG-tekst die 1 woning in gebruik en 6
+    #    gevormde objecten samen "7 woningen" noemde. De brief maakte daar een
+    #    zevende eenheid zonder vergunning van.
+    graaf = [
+        {"datum": "2026-04-13", "soort": "bekendmaking",
+         "tekst": "Aanvraag omgevingsvergunning voor het splitsen van de "
+                  "woning in zes zelfstandige appartementen, aan Graafseweg "
+                  "18, 6512CB Nijmegen"},
+        {"datum": "2026-10-17", "soort": "bag",
+         "tekst": "de BAG telt nu 7 woningen in dit pand, was 1: 55, 374, 55, "
+                  "35, 29, 60, 50 m2"}]
+    uit = zoek({"g": _pand("Graafseweg 18", "P4", graaf, 1,
+                           [55, 55, 35, 29, 60, 50])})
+    check("gevormd is niet gerealiseerd", uit["gerealiseerd"], [])
+    check("gevormd is niet zonder vergunning",
+          uit["zonder_bekende_vergunning"], [])
+    aan = uit["aangekondigd_nog_niet_in_gebruik"]
+    check("gevormd is aangekondigd",
+          [(r["gevormd"], r["in_gebruik"], r.get("aanvraag")) for r in aan],
+          [(6, 1, "2026-04-13")])
+    blok = tekst(uit, dt.date(2026, 10, 17))
+    check("het blok zegt 6 gevormd naast 1 in gebruik",
+          "6 objecten gevormd (55, 55, 35, 29, 60, 50 m2), naast 1 woning in "
+          "gebruik" in blok, True)
+    check("het blok noemt geen zevende", "naar 7" in blok, False)
+    # Nog niet opnieuw geteld: wachten, niet raden.
+    zonder_gev = _pand("Graafseweg 18", "P4", graaf, 7)
+    zonder_gev.pop("bag_gevormd")
+    uit = zoek({"g": zonder_gev})
+    check("zonder gevormd-telling wacht het", (uit["wacht_op_woningtelling"],
+          uit["gerealiseerd"]), (["Graafseweg 18"], []))
+    # Hatertseweg 338: 6 vergund, 6 gevormd, 1 in gebruik. Geen verschil.
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", gebeurtenissen, 1,
+                           [20, 46, 24, 19, 23, 19])})
+    aan = uit["aangekondigd_nog_niet_in_gebruik"]
+    check("zes vergund zes gevormd",
+          [(r.get("vergund_aantal"), r["gevormd"], r.get("wijkt_af"))
+           for r in aan], [(6, 6, None)])
+    check("zes gevormd geen verschil met de vergunning",
+          uit["wijkt_af_van_vergunning"], [])
+    # Een groei van na de overgang op een pand zonder gevormde objecten is
+    # wel gerealiseerd: de regel mag echte splitsingen niet wegfilteren.
+    nieuw = [dict(gebeurtenissen[0]),
+             {"datum": "2026-10-20", "soort": "bag",
+              "tekst": "de BAG telt nu 6 woningen in dit pand, was 1: 147, "
+                       "46, 24, 19, 23, 19 m2"}]
+    uit = zoek({"a": _pand("Hatertseweg 338", "P1", nieuw, 6)})
+    check("echte splitsing na de overgang blijft gerealiseerd",
+          (len(uit["gerealiseerd"]), uit["aangekondigd_nog_niet_in_gebruik"]),
+          (1, []))
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)

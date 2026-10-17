@@ -3222,7 +3222,8 @@ def controle_splitsingen():
     ger = d.get("gerealiseerd") or []
     zonder = d.get("zonder_bekende_vergunning") or []
     vergund = d.get("vergund_maar_niets_gebeurd") or []
-    if not (ger or zonder or vergund):
+    if not (ger or zonder or vergund
+            or d.get("aangekondigd_nog_niet_in_gebruik")):
         return (OK, "nog geen voltooide splitsing gezien; het aantal woningen "
                 "per pand wordt pas sinds eind september gemeten", "")
     delen = [f"{len(ger)} gerealiseerd"]
@@ -3231,6 +3232,10 @@ def controle_splitsingen():
                      f"besluit tot registratie ({d.get('aantal_looptijden')})")
     if zonder:
         delen.append(f"{len(zonder)} zonder bekende vergunning")
+    aan = d.get("aangekondigd_nog_niet_in_gebruik") or []
+    if aan:
+        delen.append(f"{len(aan)} aangekondigd met gevormde objecten, nog "
+                     f"niet in gebruik")
     if vergund:
         delen.append(f"{len(vergund)} vergund maar na een jaar nog niets in "
                      f"de BAG")
@@ -3246,15 +3251,15 @@ def controle_splitsingen():
                      f"noemt")
     if wacht:
         delen.append(f"{len(wacht)} nog niet te vergelijken omdat de woningen "
-                     f"daar nog niet apart van bergingen en garages zijn "
-                     f"geteld ({', '.join(wacht[:3])}"
+                     f"in gebruik daar nog niet apart van bergingen, garages "
+                     f"en gevormde objecten zijn geteld ({', '.join(wacht[:3])}"
                      + (" en meer" if len(wacht) > 3 else "") + ")")
     # En komt het ook in een brief terecht? Het blok werd elke dag gemaakt en
     # door niets gelezen, omdat de stap die het schreef na de stap liep die het
     # moest opnemen. Dat is tien dagen onzichtbaar geweest: het bestand bestond,
     # het rapport meldde het, en in geen enkele brief stond het. Een bron die
     # niets oplevert moet zichzelf melden, ook als het bestand er is.
-    if ger or zonder:
+    if ger or zonder or aan:
         pad = os.path.join("digests", f"{VANDAAG}-splitsingen.md")
         try:
             leeg = os.path.getsize(pad) < 20
