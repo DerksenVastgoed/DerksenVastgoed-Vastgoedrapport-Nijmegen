@@ -764,10 +764,78 @@ def deel_gevormd_af(woning):
     return woning
 
 
+# DE EENHEDEN IN EEN PAND VERVERSEN, OOK UIT DE CACHE. Tot 17 oktober 2026
+# bewaarde de cache eenheden_in_pand voor altijd, zonder datum. Een pand dat
+# na de eerste opvraging werd gesplitst, of waar gevormde objecten in gebruik
+# gingen, bleef in het dossier staan zoals het was. Gemeten die dag: 588
+# gecachte adressen met een pand-id, geen enkele met een datum. Nu krijgt
+# elke opvraging een datum, en wordt een lijst ouder dan VERVERS_DAGEN
+# opnieuw gevraagd, met een plafond per ronde zodat de eerste ronde niet
+# alles tegelijk doet.
+VERVERS_DAGEN = 7
+MAX_VERVERS_PER_RONDE = 200
+_ververst = {"n": 0, "mislukt": 0}
+
+
+def eenheden_ophalen(pand_id):
+    """
+    De objecten met een woonfunctie in het pand, of None als de BAG geen
+    antwoord gaf.
+
+    None en [] zijn hier verschillend. bag_eenheden_in_pand() geeft [] bij
+    een fout, en een pand heeft altijd minstens een adres, dus een lege lijst
+    is "niet gekeken" en geen "niets gevonden". Dan krijgt de cache geen
+    datum, zodat het de volgende ronde opnieuw wordt gevraagd.
+    """
+    eenheden = bag_eenheden_in_pand(pand_id)
+    if not eenheden:
+        return None
+    return [e for e in eenheden
+            if "woonfunctie" in (e.get("gebruiksdoelen") or [])]
+
+
+def _zet_eenheden(gegevens, woon, vandaag):
+    if len(woon) > 1:
+        gegevens["eenheden_in_pand"] = woon
+    else:
+        gegevens.pop("eenheden_in_pand", None)
+    gegevens["eenheden_gezien"] = vandaag
+
+
+def _verouderd(gegevens, vandaag):
+    gezien = gegevens.get("eenheden_gezien")
+    if not gezien:
+        return True
+    try:
+        return (dt.date.fromisoformat(vandaag)
+                - dt.date.fromisoformat(gezien)).days > VERVERS_DAGEN
+    except ValueError:
+        return True
+
+
+def ververs_eenheden(gegevens, vandaag=None):
+    """Vraag de eenheden opnieuw als de cache-regel te oud is. True als het
+    gebeurde."""
+    vandaag = vandaag or dt.date.today().isoformat()
+    if (not BAG_API_KEY or not gegevens.get("pand")
+            or not _verouderd(gegevens, vandaag)
+            or _ververst["n"] >= MAX_VERVERS_PER_RONDE):
+        return False
+    woon = eenheden_ophalen(gegevens["pand"])
+    time.sleep(0.2)
+    if woon is None:
+        _ververst["mislukt"] += 1
+        return False
+    _zet_eenheden(gegevens, woon, vandaag)
+    _ververst["n"] += 1
+    return True
+
+
 def verrijk(woning, cache):
     sleutel = f"{woning['adres']}|{woning['plaats']}"
     if sleutel in cache and not cache[sleutel].get("gefaald"):
         gegevens = cache[sleutel]
+        ververs_eenheden(gegevens)
         # Energielabel ontbreekt nog in oudere cache-regels: alleen die ophalen,
         # de BAG-gegevens zijn al bekend en hoeven niet opnieuw.
         if EP_API_KEY and "energielabel" not in gegevens:
@@ -844,12 +912,11 @@ def verrijk(woning, cache):
     # een feitelijke opdeling nog juridisch moet worden gemaakt.
     pand_id = bag.get("pand")
     if pand_id:
-        eenheden = bag_eenheden_in_pand(pand_id)
+        woon = eenheden_ophalen(pand_id)
         time.sleep(0.2)
-        woon = [e for e in eenheden
-                if "woonfunctie" in (e.get("gebruiksdoelen") or [])]
-        if len(woon) > 1:
-            verrijking["eenheden_in_pand"] = woon
+        if woon is not None:
+            _zet_eenheden(verrijking, woon, dt.date.today().isoformat())
+        if woon and len(woon) > 1:
             print(f"  {woning['adres']}: het pand bevat {len(woon)} zelfstandige "
                   f"woningen volgens de BAG "
                   f"({', '.join(e['adres'] for e in woon[:4])})", file=sys.stderr)
@@ -8507,6 +8574,11 @@ def main():
 
     schrijf_cache(cache)
     print(f"Verrijkt met oppervlakte: {ok}/{len(woningen)} (nieuw opgehaald: {nieuw})", file=sys.stderr)
+    oud = sum(1 for g in cache.values() if isinstance(g, dict) and g.get("pand")
+              and _verouderd(g, dt.date.today().isoformat()))
+    print(f"Eenheden per pand ververst: {_ververst['n']}, zonder antwoord "
+          f"{_ververst['mislukt']}, nog te oud in de cache {oud} "
+          f"(plafond {MAX_VERVERS_PER_RONDE} per ronde)", file=sys.stderr)
 
     # Waarnemingen groeperen per BAG-object. Hetzelfde pand kan meerdere keren
     # in verkopen.txt staan: nieuwe attendering, prijsverlaging, status gewijzigd.
@@ -8826,6 +8898,39 @@ def proef():
     _tekst = " ".join(_feiten) if isinstance(_feiten, list) else str(_feiten)
     if "aangekondigd in de BAG" not in _tekst:
         afw.append("het dossier noemt de gevormde objecten niet")
+
+    # DE CACHE VERVERST DE EENHEDEN (17 oktober). Zonder aanroep: de
+    # BAG-functie wordt hier vervangen.
+    _g = globals()
+    _oud_api, _oud_key = _g["bag_eenheden_in_pand"], _g["BAG_API_KEY"]
+    _oud_teller = dict(_ververst)
+    _antwoord = {"P1": [_obj("Doddendaal 117", 63, "in gebruik"),
+                        _obj("Doddendaal 117", 26, "in gebruik")],
+                 "P2": []}
+    try:
+        _g["bag_eenheden_in_pand"] = lambda pid: list(_antwoord.get(pid, []))
+        _g["BAG_API_KEY"] = "proef"
+        _ververst.update(n=0, mislukt=0)
+        _c = {"pand": "P1"}
+        if not ververs_eenheden(_c, "2026-10-17") or len(
+                _c.get("eenheden_in_pand") or []) != 2:
+            afw.append(f"een cache-regel zonder datum wordt niet ververst: {_c}")
+        if ververs_eenheden(dict(_c), "2026-10-20"):
+            afw.append("een verse cache-regel wordt toch opnieuw gevraagd")
+        if not ververs_eenheden(dict(_c), "2026-10-30"):
+            afw.append("een cache-regel ouder dan VERVERS_DAGEN blijft staan")
+        _f = {"pand": "P2"}
+        ververs_eenheden(_f, "2026-10-17")
+        if "eenheden_gezien" in _f:
+            afw.append("een BAG zonder antwoord krijgt een datum, dus 'niet "
+                       "gekeken' leest als 'gekeken'")
+        _ververst["n"] = MAX_VERVERS_PER_RONDE
+        if ververs_eenheden({"pand": "P1"}, "2026-10-17"):
+            afw.append("het plafond per ronde houdt niet")
+    finally:
+        _g["bag_eenheden_in_pand"], _g["BAG_API_KEY"] = _oud_api, _oud_key
+        _ververst.clear()
+        _ververst.update(_oud_teller)
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
