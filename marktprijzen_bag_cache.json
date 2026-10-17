@@ -75440,5 +75440,85 @@
     "buurtnaam": "Hunnerberg",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-f50ef6d56d1ccfb3f00f2206daf9725d"
+  },
+  "Klimopstraat|Nijmegen": {
+    "oppervlakte": 87,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6543SJ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Winkelsteegseweg|Nijmegen": {
+    "oppervlakte": 13,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Jacob Canisstraat|Nijmegen": {
+    "oppervlakte": 17,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Pluvierstraat 3|Nijmegen": {
+    "oppervlakte": 69,
+    "bouwjaar": "1949",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542TZ",
+    "adresseerbaarObjectIdentificatie": "0268010000024496",
+    "pand": "0268100000047495",
+    "panden": [
+      "0268100000047495"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-9634477066e0161543178357f542b878",
+    "eenheden_in_pand": [
+      {
+        "adres": "Buizerdstraat 2",
+        "oppervlakte": 96,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Pluvierstraat 3",
+        "oppervlakte": 81,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "oppervlakte_bag": 81,
+    "energielabel": {
+      "label": "C",
+      "prive": false,
+      "registratiedatum": "2020-08-12",
+      "opnamedatum": "2020-08-12",
+      "geldig_tot": "2030-08-12",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Tussenvloer",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000024496",
+      "panden": [],
+      "verbruik": 61724.84,
+      "bouwjaar": 1955
+    }
+  },
+  "bm:van den Havestraat 103|Nijmegen": {
+    "postcode": "6521JR",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-04a41faacd7b9255adadcfc2775cb322"
   }
 }

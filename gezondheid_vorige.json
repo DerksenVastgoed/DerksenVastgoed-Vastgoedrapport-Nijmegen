@@ -15,7 +15,7 @@
   "Bronnen die niets opleveren": "LET OP",
   "Buurtcijfers CBS": "OK",
   "COROP Arnhem/Nijmegen": "OK",
-  "Dekking van onze signalen": "LET OP",
+  "Dekking van onze signalen": "OK",
   "Doorlooptijden": "OK",
   "Duiding bij beleidsstukken": "OK",
   "Eigen bouwkosten": "OK",
@@ -57,10 +57,10 @@
   "Verkooptijd bovengrens": "OK",
   "Verkopen": "LET OP",
   "Veroudering aanbod": "OK",
-  "Versies": "LET OP",
+  "Versies": "OK",
   "Voet onder de brief": "OK",
   "Voltooide splitsingen": "OK",
-  "Voorraad van de ring": "LET OP",
+  "Voorraad van de ring": "OK",
   "VvE-bijdragen": "OK",
   "WOZ zonder pand": "OK",
   "WOZ-bestand": "OK",
@@ -68,5 +68,5 @@
   "Woningen in bestaande panden": "OK",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-16"
+ "datum": "2026-10-17"
 }

@@ -1088,3 +1088,11 @@ Kronenburgersingel | Nijmegen | 1800 | te huur gemeubileerd | 2026-10-15 | parar
 Sergio Leonestraat | Nijmegen | 1850 | te huur | 2026-10-15 | pararius | 118 | 6515LC
 Broekstraat | Nijmegen | 1095 | te huur gemeubileerd | 2026-10-15 | pararius | 39 | 6546AA
 Kronenburgersingel | Nijmegen | 1800 | te huur kamer | 2026-10-15 | kamernet | 91 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 17-10-2026
+Hatertseveldweg | Nijmegen | 1750 | te huur kamer | 2026-10-16 | kamernet-incl | 60 | 
+Klimopstraat | Nijmegen | 713 | te huur | 2026-10-16 | huislijn | 87 | 6543SJ
+Kronenburgersingel | Nijmegen | 1800 | te huur | 2026-10-16 | huislijn |  | 6822AB
+Winkelsteegseweg | Nijmegen | 754 | te huur kamer | 2026-10-16 | kamernet-incl | 13 | 
+Jacob Canisstraat | Nijmegen | 610 | te huur kamer | 2026-10-16 | kamernet | 17 | 
+Pluvierstraat 3 | Nijmegen | 405000 | te koop | 2026-10-17 | funda-mail | 69 | 6542TZ

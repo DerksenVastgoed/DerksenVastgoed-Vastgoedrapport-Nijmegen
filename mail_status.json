@@ -1,63 +1,75 @@
 {
- "datum": "2026-10-16",
+ "datum": "2026-10-17",
  "bronnen": {
   "regulier": {
    "mails": 3,
    "objecten": 6,
-   "overgeslagen": 1,
+   "overgeslagen": 2,
    "redenen": [
-    "Dokstraat 117 (geen prijs gevonden)"
+    "Eerste Oude Heselaan (geen prijs gevonden)",
+    "St. Stevenskerkhof 11 (geen prijs gevonden)"
    ]
   },
   "huislijn": {
    "mails": 3,
-   "objecten": 11,
+   "objecten": 17,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 15,
-   "objecten": 12,
+   "mails": 14,
+   "objecten": 11,
    "overgeslagen": 3,
    "redenen": [
-    "Homberg: €53 per maand is niet aannemelijk",
-    "Homberg, Wijchen: buiten Nijmegen",
-    "Ranonkelstraat, Arnhem: buiten Nijmegen"
+    "Ranonkelstraat, Arnhem: buiten Nijmegen",
+    "Achterstraat, Randwijk: buiten Nijmegen",
+    "Aalburgstraat, Arnhem: buiten Nijmegen"
    ]
   },
   "pararius": {
    "mails": 3,
-   "objecten": 9,
-   "overgeslagen": 6,
+   "objecten": 8,
+   "overgeslagen": 5,
    "redenen": [
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
-    "Kelfkensbos (gemeubileerd, apart bewaard)",
     "Kronenburgersingel (gemeubileerd, apart bewaard)",
     "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "Broekstraat (gemeubileerd, apart bewaard)"
+    "Broekstraat (gemeubileerd, apart bewaard)",
+    "Kronenburgersingel (gemeubileerd, apart bewaard)",
+    "Kronenburgersingel (gemeubileerd, apart bewaard)"
+   ]
+  },
+  "vendr": {
+   "mails": 1,
+   "objecten": 0,
+   "overgeslagen": 1,
+   "redenen": [
+    "Sumatralaan 32 (Apeldoorn)"
    ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 38,
-  "andere_status": 0,
-  "voorbeelden": []
+  "zelfde_status": 36,
+  "andere_status": 2,
+  "voorbeelden": [
+   "Hatertseveldweg -> te huur kamer",
+   "Kronenburgersingel -> te huur"
+  ]
  },
  "berichten_per_afzender": {
   "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 15,
-  "vendr.nl": 0,
+  "kamernet.nl": 14,
+  "vendr.nl": 1,
   "huislijn.nl": 3,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 13-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 13-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 14-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 14-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

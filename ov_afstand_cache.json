@@ -71,6 +71,14 @@
   "omweg": 1.08,
   "soort": "bus"
  },
+ "51.80970,5.82687": {
+  "geschat": false,
+  "hemelsbreed": 107,
+  "meters": 99,
+  "naam": "Treubstraat",
+  "omweg": 0.93,
+  "soort": "bus"
+ },
  "51.80994,5.81884": {
   "geschat": false,
   "hemelsbreed": 403,
@@ -509,6 +517,14 @@
   "meters": 322,
   "naam": "Spoorkuil",
   "omweg": 1.13,
+  "soort": "bus"
+ },
+ "51.83609,5.83781": {
+  "geschat": false,
+  "hemelsbreed": 316,
+  "meters": 466,
+  "naam": "Graafseweg/Wolfskuilseweg",
+  "omweg": 1.47,
   "soort": "bus"
  },
  "51.83614,5.85850": {
@@ -1015,6 +1031,14 @@
   "omweg": 1.45,
   "soort": "bus"
  },
+ "51.84260,5.87174": {
+  "geschat": false,
+  "hemelsbreed": 138,
+  "meters": 204,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.48,
+  "soort": "bus"
+ },
  "51.84271,5.86490": {
   "geschat": false,
   "hemelsbreed": 349,
@@ -1045,6 +1069,14 @@
   "meters": 532,
   "naam": "Smetiusstraat",
   "omweg": 1.64,
+  "soort": "bus"
+ },
+ "51.84309,5.84386": {
+  "geschat": false,
+  "hemelsbreed": 52,
+  "meters": 64,
+  "naam": "2e Oude Heselaan",
+  "omweg": 1.23,
   "soort": "bus"
  },
  "51.84321,5.85447": {

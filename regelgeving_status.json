@@ -509,6 +509,36 @@
   "url": "",
   "waarom": "Erfgoedverordening: monumenten en beschermde stadsbeelden"
  },
+ "CVDR659678_1": {
+  "bron": "gemeente",
+  "geldig_tot": "2022-03-11",
+  "geldig_vanaf": "2021-07-05",
+  "gewijzigd": "2021-07-05",
+  "term": "kamerverhuur",
+  "titel": "Beleidsregels Kamerverhuur 2021",
+  "url": "",
+  "waarom": "Beleidsregels Kamerverhuur: insluiting, aaneenschakeling, afval, fietsen en geluid; vervallen per 16 november 2026"
+ },
+ "CVDR659678_2": {
+  "bron": "gemeente",
+  "geldig_tot": "2025-04-24",
+  "geldig_vanaf": "2022-03-11",
+  "gewijzigd": "2022-03-11",
+  "term": "kamerverhuur",
+  "titel": "Beleidsregels Kamerverhuur 2021",
+  "url": "",
+  "waarom": "Beleidsregels Kamerverhuur: insluiting, aaneenschakeling, afval, fietsen en geluid; vervallen per 16 november 2026"
+ },
+ "CVDR659678_3": {
+  "bron": "gemeente",
+  "geldig_tot": "2026-11-16",
+  "geldig_vanaf": "2025-04-24",
+  "gewijzigd": "2025-04-24",
+  "term": "kamerverhuur",
+  "titel": "Beleidsregels Kamerverhuur 2021",
+  "url": "",
+  "waarom": "Beleidsregels Kamerverhuur: insluiting, aaneenschakeling, afval, fietsen en geluid; vervallen per 16 november 2026"
+ },
  "CVDR669433_1": {
   "bron": "gemeente",
   "geldig_tot": "2022-07-13",
@@ -914,6 +944,7 @@
   "bouw",
   "erfgoed",
   "huisvesting",
+  "kamerverhuur",
   "leges",
   "omgevingsplan",
   "onroerende",
@@ -931,6 +962,7 @@
    "bouw": "(creator==\"Nijmegen\") and (title any \"bouw\")",
    "erfgoed": "(creator==\"Nijmegen\") and (title any \"erfgoedverordening\")",
    "huisvesting": "(creator==\"Nijmegen\") and (title any \"huisvesting\")",
+   "kamerverhuur": "(creator==\"Nijmegen\") and (title any \"kamerverhuur\")",
    "leges": "(creator==\"Nijmegen\") and (title any \"leges\")",
    "omgevingsplan": "(creator==\"Nijmegen\") and (title any \"omgevingsplan\")",
    "onroerende": "(creator==\"Nijmegen\") and (title any \"onroerende\")",

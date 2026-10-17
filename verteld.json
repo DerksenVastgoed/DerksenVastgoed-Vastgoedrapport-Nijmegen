@@ -62,14 +62,14 @@
   },
   "stieltjesstraat10": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-12",
-   "keer": 1,
+   "laatst": "2026-10-17",
+   "keer": 2,
    "omschrijving": "Stieltjesstraat 10"
   },
   "stannastraat7": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-12",
-   "keer": 1,
+   "laatst": "2026-10-17",
+   "keer": 2,
    "omschrijving": "St. Annastraat 7"
   },
   "graafseweg47": {
@@ -131,6 +131,24 @@
    "laatst": "2026-10-16",
    "keer": 1,
    "omschrijving": "Ziekerstraat 36"
+  },
+  "graafseweg18": {
+   "eerst": "2026-10-17",
+   "laatst": "2026-10-17",
+   "keer": 1,
+   "omschrijving": "Graafseweg 18"
+  },
+  "stannastraat275": {
+   "eerst": "2026-10-17",
+   "laatst": "2026-10-17",
+   "keer": 1,
+   "omschrijving": "St. Annastraat 275"
+  },
+  "stannastraat1": {
+   "eerst": "2026-10-17",
+   "laatst": "2026-10-17",
+   "keer": 1,
+   "omschrijving": "St. Annastraat 1"
   }
  }
 }

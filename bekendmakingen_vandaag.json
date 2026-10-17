@@ -1,45 +1,16 @@
 [
  {
-  "datum": "2026-10-14",
-  "titel": "Beslissing op bezwaar voor bezwaar tegen Z2026-00001271 Vergunning kamerverhuur herroepen, aan Professor Molkenboerstraat 20A, 6524RP Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479892.html",
-  "strategie": "kamerverhuur",
-  "duiding": "Herroeping van de kamerverhuurvergunning na bezwaar beëindigt de legale verkameringsstatus op dit adres, relevant voor wie op kamerverhuur rekent.",
-  "feiten": {
-   "energielabel": "A+ (2026)",
-   "label_alleen_dit_adres": true,
-   "oppervlakte_m2": 109
-  },
-  "straat": "Professor Molkenboerstraat",
-  "huisnummer": "20",
-  "kern": true
- },
- {
-  "datum": "2026-10-14",
-  "titel": "Besluit voor het legaliseren van de gewijzigde kozijnen en verbouwen van het appartement, aan Marialaan 360, 6541RR Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-479120.html",
-  "strategie": "geen",
-  "duiding": "Legalisatie van gewijzigde kozijnen is een administratieve correctie zonder herkenbaar waardecreatie-signaal.",
-  "feiten": {
-   "energielabel": "B (2021)",
-   "oppervlakte_m2": 172
-  },
-  "straat": "Marialaan",
-  "huisnummer": "360",
-  "kern": true
- },
- {
-  "datum": "2026-10-14",
-  "titel": "Besluit voor het splitsen van een woning, aan Bronsgeeststraat 11 en 11A, 6541ZJ Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-480046.html",
+  "datum": "2026-10-16",
+  "titel": "Aanvraag omgevingsvergunning voor het verbouwen en splitsen van twee panden, aan van den Havestraat 103 en 105, 6521JR Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-484780.html",
   "strategie": "splitsen",
-  "duiding": "Splitsing in twee adressen vergroot het aanbod kleine zelfstandige wooneenheden in dit segment.",
+  "duiding": "Splitsing van twee panden in losse units verkleint de kavelgrootte en vergroot het aantal verkoopbare eenheden.",
   "feiten": {
-   "energielabel": "B (2026)",
-   "oppervlakte_m2": 52
+   "energielabel": "C (2019)",
+   "oppervlakte_m2": 93
   },
-  "straat": "Bronsgeeststraat",
-  "huisnummer": "11",
+  "straat": "van den Havestraat",
+  "huisnummer": "103",
   "kern": true
  },
  {
@@ -47,7 +18,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verwijderen van de penant in de achtergevel en opdikken van de vloerbalken , aan Fransestraat 31, 6524HS Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-483195.html",
   "strategie": "geen",
-  "duiding": "Verwijderen van de penant en opdikken van vloerbalken betreft constructief herstel zonder duidelijk waardecreatiesignaal.",
+  "duiding": "Verwijderen van een penant en opdikken van vloerbalken is een constructieve ingreep zonder functie- of eigendomswijziging.",
   "feiten": {
    "energielabel": "B (2026)",
    "oppervlakte_m2": 365
@@ -61,7 +32,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van de woning, aan Regentessestraat 4, 6522AR Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-483189.html",
   "strategie": "geen",
-  "duiding": "Aanvraag voor verbouwing bij een pand met label F wijst op mogelijke renovatie, maar concrete maatregelen ontbreken in de feiten.",
+  "duiding": "Een algemene verbouwing zonder nadere specificatie van functie of ingreep geeft geen concreet marktsignaal.",
   "feiten": {
    "energielabel": "F (2025)",
    "oppervlakte_m2": 116

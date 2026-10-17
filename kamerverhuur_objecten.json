@@ -7218,6 +7218,18 @@
   "buurt": "Nije Veld",
   "straat": "Muntweg"
  },
+ "muntweg512": {
+  "adres": "Muntweg 512",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Nije Veld",
+  "straat": "Muntweg"
+ },
  "museumkamstraat23": {
   "adres": "Museum Kamstraat 23",
   "bronnen": [
@@ -9848,6 +9860,11 @@
   "adres": "Tolhuis 3512",
   "bronnen": [
    {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
     "bron": "besluit",
     "jaar": "2026",
     "soort": "besluit kamerverhuur"
@@ -10955,6 +10972,11 @@
     "bron": "vergunning",
     "jaar": "2024",
     "soort": "omgevingsvergunning"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Altrade",

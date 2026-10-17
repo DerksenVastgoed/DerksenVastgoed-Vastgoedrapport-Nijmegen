@@ -6991,6 +6991,16 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2023/gmb-2023-293579/1/html/gmb-2023-293579.html"
   }
  ],
+ "muntweg512": [
+  {
+   "datum": "2026-10-16",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik voor kamergewijze verhuur (6 kamers), aan Muntweg 512, 6532TS Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-484433/1/html/gmb-2026-484433.html"
+  }
+ ],
  "museumkamstraat45": [
   {
    "datum": "2023-11-20",
@@ -9350,6 +9360,14 @@
  ],
  "tolhuis3512": [
   {
+   "datum": "2026-10-16",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik voor kamergewijze verhuur (9 kamers), aan Tolhuis 3512, 6537NR Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-484420/1/html/gmb-2026-484420.html"
+  },
+  {
    "datum": "2026-09-29",
    "soorten": [
     "kamerverhuur"
@@ -9907,6 +9925,17 @@
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2023/gmb-2023-5630/1/html/gmb-2023-5630.html"
   }
  ],
+ "vandenhavestraat103": [
+  {
+   "datum": "2026-10-16",
+   "soorten": [
+    "splitsing",
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het verbouwen en splitsen van twee panden, aan van den Havestraat 103 en 105, 6521JR Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-484780/1/html/gmb-2026-484780.html"
+  }
+ ],
  "vanderbrugghenstraat14": [
   {
    "datum": "2024-03-11",
@@ -10171,6 +10200,16 @@
    ],
    "titel": "van Peltlaan 384 Nijmegen: realiseren van een aanbouw en atelier - omgevingsvergunning - Aanvraag ontvangen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2023/gmb-2023-195485/1/html/gmb-2023-195485.html"
+  }
+ ],
+ "vansomerenstraat50": [
+  {
+   "datum": "2026-10-16",
+   "soorten": [
+    "brandveilig gebruik"
+   ],
+   "titel": "Melding brandveilig gebruik voor kamergewijze verhuur (10 kamers), aan van Somerenstraat 50, 6521BS Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-484210/1/html/gmb-2026-484210.html"
   }
  ],
  "vanspaenstraat20": [

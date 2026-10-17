@@ -1,49 +1,49 @@
 {
- "gemaakt": "2026-10-16",
+ "gemaakt": "2026-10-17",
  "nu": {
-  "aantal": 54,
-  "mediane_opp": 82,
-  "mediane_ppm2": 5119,
+  "aantal": 51,
+  "mediane_opp": 81,
+  "mediane_ppm2": 5151,
   "labels": {
-   "C en D": 24,
-   "A en B": 20,
-   "E tot G": 9
+   "A en B": 19,
+   "E tot G": 9,
+   "C en D": 23
   },
-  "label_bekend": 53,
-  "label_onbekend": 1,
-  "in_complex": 29,
-  "vanaf": "2026-09-16",
-  "tot": "2026-10-17"
+  "label_bekend": 51,
+  "label_onbekend": 0,
+  "in_complex": 27,
+  "vanaf": "2026-09-17",
+  "tot": "2026-10-18"
  },
  "vorige": {
-  "aantal": 25,
+  "aantal": 29,
   "mediane_opp": 96,
   "mediane_ppm2": 5280,
   "labels": {
-   "A en B": 13,
-   "C en D": 10,
+   "A en B": 15,
+   "C en D": 12,
    "E tot G": 2
   },
-  "label_bekend": 25,
+  "label_bekend": 29,
   "label_onbekend": 0,
-  "in_complex": 13,
-  "vanaf": "2026-08-17",
-  "tot": "2026-09-16"
+  "in_complex": 15,
+  "vanaf": "2026-08-18",
+  "tot": "2026-09-17"
  },
  "jaar": {
-  "aantal": 79,
-  "mediane_opp": 89,
-  "mediane_ppm2": 5198,
+  "aantal": 80,
+  "mediane_opp": 86,
+  "mediane_ppm2": 5239,
   "labels": {
-   "A en B": 33,
-   "C en D": 34,
+   "A en B": 34,
+   "C en D": 35,
    "E tot G": 11
   },
-  "label_bekend": 78,
-  "label_onbekend": 1,
+  "label_bekend": 80,
+  "label_onbekend": 0,
   "in_complex": 42,
-  "vanaf": "2025-10-16",
-  "tot": "2026-10-17"
+  "vanaf": "2025-10-17",
+  "tot": "2026-10-18"
  },
  "jaar_te_klein": true
 }

@@ -1,7 +1,7 @@
 {
  "bron": "PDOK locatieserver v3_1, filter op buurtnaam én gemeentenaam:Nijmegen",
  "let_op": "adressen is het aantal adresseerbare objecten en niet het aantal woningen: winkels, kantoren en garageboxen hebben ook een adres. Het onderscheid komt uit het gebruiksdoel in de BAG, en dat zit niet in deze dienst.",
- "opgehaald": "2026-10-16",
+ "opgehaald": "2026-10-17",
  "per_buurt": {
   "Altrade": {
    "adressen": 3452,
@@ -25,10 +25,10 @@
   },
   "Biezen": {
    "adressen": 6083,
-   "adressen_buiten_de_gemeente": 3360,
+   "adressen_buiten_de_gemeente": 3366,
    "adressen_doorgebladerd": 6083,
    "adressen_gemeld": 6083,
-   "adressen_zonder_gemeentefilter": 9443,
+   "adressen_zonder_gemeentefilter": 9449,
    "postcodes": 211,
    "tweede_ronde_per_straat": 0,
    "volledig": true

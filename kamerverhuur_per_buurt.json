@@ -3,7 +3,7 @@
   "2023": 13,
   "2024": 1,
   "2025": 102,
-  "2026": 87
+  "2026": 90
  },
  "per_buurt": {
   "'t Acker": {
@@ -26,8 +26,8 @@
   },
   "Altrade": {
    "alleen_melding_of_besluit": 17,
-   "alleen_vergunning": 82,
-   "beide": 4,
+   "alleen_vergunning": 81,
+   "beide": 5,
    "totaal": 103
   },
   "Benedenstad": {
@@ -187,10 +187,10 @@
    "totaal": 23
   },
   "Nije Veld": {
-   "alleen_melding_of_besluit": 3,
+   "alleen_melding_of_besluit": 4,
    "alleen_vergunning": 14,
    "beide": 0,
-   "totaal": 17
+   "totaal": 18
   },
   "Ressen": {
    "alleen_melding_of_besluit": 0,
