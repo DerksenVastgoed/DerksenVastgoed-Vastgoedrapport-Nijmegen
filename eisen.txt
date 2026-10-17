@@ -1372,3 +1372,15 @@ waarom: 17 oktober. De cache bewaarde eenheden_in_pand voor altijd, zonder
   eerste ronde niet alle 588 tegelijk doet.
 proef: marktprijzen_bag:een cache-regel zonder datum wordt niet ververst
 soort: gegevens
+
+---
+eis: Of een pand in een rijksbeschermd gezicht ligt, wordt per pand gemeten
+  op het vlak van de RCE, niet per buurt aangenomen.
+waarom: 17 oktober. BESCHERMD_GEZICHT stond per buurt als vaste tekst, met
+  "deels de negentiende-eeuwse schil" voor drie buurten en "niet nagekeken"
+  voor Hunnerberg en St. Anna. De grens van een gezicht volgt de buurtgrens
+  niet, dus bij een pand zei "deels" niets. Nu een keer de vlakken ophalen
+  en lokaal toetsen, met gaten als gaten. De bron kent alleen
+  rijksbeschermde gezichten, dus niet erin is nooit niet beschermd.
+proef: gezicht:een punt in het gat telt als binnen
+soort: gegevens
