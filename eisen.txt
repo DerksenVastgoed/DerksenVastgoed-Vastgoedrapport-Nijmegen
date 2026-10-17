@@ -534,6 +534,18 @@ proef: marktprijzen_bag:splitsing zonder lagen zegt niet hoe er is geteld
 soort: brief
 
 ---
+eis: Een transformatie in een bestaand pand zegt welke andere functie er in
+  gebruik is, zodat wonen boven een winkel of horeca herkenbaar is.
+waarom: 16 oktober, na Groesbeekseweg 118A/B. Een verdieping boven een
+  winkel tot woning maken is een eigen soort dossier: geluid, brandscheiding
+  naar de winkel, vaak een cultuurhistorische toets, en daar 213 dagen. Van
+  de 138 transformatieprojecten in de ring hebben er 51 een winkel, horeca,
+  kantoor of bedrijf in gebruik in hetzelfde pand, samen 447 woningen. Dat
+  stond nergens bij. Een gevormde winkel telt niet mee: die is er nog niet.
+proef: transformaties:een gevormd kantoor telt nog niet
+soort: gegevens
+
+---
 eis: Een inhaalslag op oude records heeft een datumgrens, zodat hij ophoudt.
 waarom: 12 oktober. De rekenmethode wordt sinds vandaag bij een label
   bewaard, en de 67 labels die er al stonden hebben hem niet. De wachtrij

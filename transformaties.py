@@ -90,6 +90,45 @@ def _jaar_grens(vandaag=None):
     return (vandaag or dt.date.today()).year - JAREN_MARGE
 
 
+# Hoe een gebruiksfunctie uit de BAG in de brief heet. Bijeenkomstfunctie is
+# in de binnenstad meestal horeca, maar de BAG zegt dat niet, dus staat het er
+# allebei.
+FUNCTIENAAM = {
+    "winkelfunctie": "winkel", "bijeenkomstfunctie": "horeca of bijeenkomst",
+    "kantoorfunctie": "kantoor", "logiesfunctie": "logies",
+    "gezondheidszorgfunctie": "praktijk", "industriefunctie": "bedrijf",
+    "onderwijsfunctie": "onderwijs", "sportfunctie": "sport",
+}
+
+
+def andere_functies(voorraad):
+    """
+    Per pand de functies die er naast wonen in gebruik zijn.
+
+    WAAROM. 16 oktober 2026, na Groesbeekseweg 118A/B: de verdieping boven een
+    apotheek werd een woning, en dat is een eigen soort transformatie, met een
+    eigen dossier (geluid, brandscheiding naar de winkel, vaak een
+    cultuurhistorische toets). Gemeten die dag: in 53 bestaande panden heeft de
+    BAG een woning gevormd terwijl er ook een winkel, kantoor of horeca in
+    gebruik is, en bij 39 daarvan stond er niets in ons bekendmakingenarchief.
+    Deze module meldde ze al, maar zonder te zeggen dat er een winkel onder
+    zit. Alleen objecten die in gebruik zijn tellen: een gevormde winkel is
+    nog geen winkel.
+    """
+    uit = {}
+    for rec in (voorraad.get("niet_woningen") or {}).values():
+        if "in gebruik" not in (rec.get("status") or "").lower():
+            continue
+        for pid in rec.get("panden") or [rec.get("pand")]:
+            if not pid:
+                continue
+            for doel in rec.get("doelen") or []:
+                naam = FUNCTIENAAM.get(doel)
+                if naam:
+                    uit.setdefault(pid, set()).add(naam)
+    return {pid: sorted(n) for pid, n in uit.items()}
+
+
 def projecten(voorraad, vandaag=None):
     """
     De panden met gevormde woningen erin, grootste eerst.
@@ -124,8 +163,10 @@ def projecten(voorraad, vandaag=None):
         # Het oudste bouwjaar houden als een pand meerdere jaren meegeeft.
         p["bouwjaar"] = min(p["bouwjaar"], jaar)
 
+    anders = andere_functies(voorraad)
     uit = []
     for p in per.values():
+        p["ook_in_pand"] = anders.get(p["pand_id"], [])
         p["adressen"] = sorted(set(a for a in p["adressen"] if a))
         p["aantal"] = len(p["adressen"])
         p["adres"] = p["adressen"][0] if p["adressen"] else ""
@@ -185,9 +226,15 @@ def tekst_gebeurtenis(project, vandaag, eerder=None):
     m2 = (f", mediaan {project['mediaan_m2']} m2"
           if project["mediaan_m2"] else "")
     was = f", waren er {eerder}" if eerder is not None else ""
+    ook = project.get("ook_in_pand") or []
+    naast = (f" In hetzelfde pand is ook een {' en een '.join(ook)} in "
+             f"gebruik: wonen boven of naast een niet-woonfunctie, met de "
+             f"brandscheiding en de geluidseisen die daarbij horen."
+             if ook else "")
     return (f"in de BAG staan {n} {woning} als gevormd in dit pand uit "
             f"{project['bouwjaar']}, dat zelf al in gebruik is{m2}{was}. "
-            f"Dat is bestaande voorraad waarin woningen worden toegevoegd. "
+            f"Dat is bestaande voorraad waarin woningen worden toegevoegd."
+            f"{naast} "
             f"De BAG kent geen opleverdatum, dus dit is wat er op "
             f"{vandaag} in de registratie staat")
 
@@ -365,12 +412,13 @@ def tekst(voorraad, geschiedenis=None, vandaag=None, hoeveel=12):
              + " De BAG kent geen opleverdatum, dus hier staat niet wanneer "
                "ze klaar zijn._")
     r.append("")
-    r.append("| pand | woningen | bouwjaar | mediaan m2 | buurt |")
-    r.append("|---|---:|---:|---:|---|")
+    r.append("| pand | woningen | bouwjaar | mediaan m2 | buurt | ook in het pand |")
+    r.append("|---|---:|---:|---:|---|---|")
     for p in lijst[:hoeveel]:
         m2 = p["mediaan_m2"] if p["mediaan_m2"] else "onbekend"
         r.append(f"| {p['adres']} | {p['aantal']} | {p['bouwjaar']} | {m2} | "
-                 f"{', '.join(p['buurten']) or 'onbekend'} |")
+                 f"{', '.join(p['buurten']) or 'onbekend'} | "
+                 f"{', '.join(p.get('ook_in_pand') or []) or '-'} |")
     r.append("")
     if len(lijst) > hoeveel:
         rest = sum(p["aantal"] for p in lijst[hoeveel:])
@@ -439,6 +487,13 @@ def proef():
         "v7": {"adres": "Kleinstraat 2", "pand": "P4", "pand_status":
                "Pand in gebruik", "pand_bouwjaar": 1935, "oppervlakte": 25,
                "buurten": ["Bottendaal"]},
+    }, "niet_woningen": {
+        # Een winkel in gebruik in P1: dat is wonen boven een winkel. Een
+        # gevormde winkel in P4 telt niet, die is er nog niet.
+        "n1": {"adres": "Oudestraat 1", "pand": "P1", "status":
+               "Verblijfsobject in gebruik", "doelen": ["winkelfunctie"]},
+        "n2": {"adres": "Kleinstraat 2", "pand": "P4", "status":
+               "Verblijfsobject gevormd", "doelen": ["kantoorfunctie"]},
     }}
 
     lijst = projecten(voorraad, nu)
@@ -449,6 +504,12 @@ def proef():
           ["Oudestraat 1", "Oudestraat 1A", "Oudestraat 1B"])
     check("de mediane oppervlakte", lijst[0]["mediaan_m2"], 52)
     check("een enkele woning telt mee", lijst[1]["aantal"], 1)
+    check("een winkel in gebruik in het pand", lijst[0]["ook_in_pand"],
+          ["winkel"])
+    check("een gevormd kantoor telt nog niet", lijst[1]["ook_in_pand"], [])
+    check("de tekst noemt de winkel",
+          "ook een winkel in gebruik" in tekst_gebeurtenis(lijst[0], "2026-10-12"),
+          True)
 
     # EEN PAND DAT WIJ AL KENNEN KRIJGT GEEN TWEEDE RECORD, ook niet als het
     # bij ons onder een ander adres staat dan het eerste gevormde object.
