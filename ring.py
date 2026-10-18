@@ -13,9 +13,10 @@ WAT ER AAN HANGT als je een buurt toevoegt. buurtinventaris haalt bij de
 eerstvolgende run de postcodes op (de workflow ziet zelf dat de inventaris de
 ring niet meer dekt), de voorraad haalt daarna de woningen en labels op, en
 start de inhaalslag van de 3D BAG als er meer dan 300 panden bij zijn
-gekomen. Er hoeft dus niets met de hand. De huuraanname per buurt (HUUR_M2_MND) en de
-beschermde gezichten (BESCHERMD_GEZICHT) in marktprijzen_bag staan per buurt
-en moeten met de hand worden nagelopen.
+gekomen. Er hoeft dus niets met de hand. De huuraanname per buurt (HUUR_M2_MND) in
+marktprijzen_bag staat per buurt en moet met de hand worden nagelopen. De
+beschermde gezichten worden sinds 18 oktober 2026 per pand gemeten
+(gezicht.py), en de nieuwe panden krijgen die meting vanzelf.
 
 GESCHIEDENIS.
   tot 15-10-2026  Stadscentrum, Benedenstad, Bottendaal, Galgenveld, Altrade,

@@ -203,6 +203,134 @@ def verslag(uit):
     print("\n".join(r))
 
 
+# WGS84 NAAR RIJKSDRIEHOEK. De benadering van Schreutelkamp en Strang van
+# Hees, nauwkeurig tot ongeveer een meter in Nederland. Nodig omdat de
+# GIO's van het omgevingsplan in RD staan en de punten in de voorraad in
+# WGS84. Proef op het nulpunt van RD, de Onze Lieve Vrouwetoren in
+# Amersfoort.
+_R = [(0, 1, 190094.945), (1, 1, -11832.228), (2, 1, -114.221),
+      (0, 3, -32.391), (1, 0, -0.705), (3, 1, -2.340), (1, 3, -0.608),
+      (0, 2, -0.008), (2, 3, 0.148)]
+_S = [(1, 0, 309056.544), (0, 2, 3638.893), (2, 0, 73.077),
+      (1, 2, -157.984), (3, 0, 59.788), (0, 1, 0.433), (2, 2, -6.439),
+      (1, 1, -0.032), (0, 4, 0.092), (1, 4, -0.054)]
+
+
+def wgs84_naar_rd(lat, lon):
+    dp = 0.36 * (lat - 52.15517440)
+    dl = 0.36 * (lon - 5.38720621)
+    x = 155000 + sum(c * dp ** p * dl ** q for p, q, c in _R)
+    y = 463000 + sum(c * dp ** p * dl ** q for p, q, c in _S)
+    return x, y
+
+
+STADSBEELD_SINDS = "4 september 2026"
+STADSBEELD_BRON = ("Voorbeschermingsregels stadsbeeld Wederopbouwcentrum, "
+                   "CVDR766239, GIO dc-2026-27212 en dc-2026-27213")
+_cache = {}
+
+
+def _laad():
+    if "geladen" in _cache:
+        return _cache
+    import bestemming
+    import stadsbeeld
+    _cache["punten"] = bestemming.punten_per_pand()
+    try:
+        with open(UIT_PAD, encoding="utf-8") as f:
+            _cache["gezichten"] = json.load(f).get("gezichten")
+    except (OSError, ValueError):
+        _cache["gezichten"] = None
+    _cache["gebied"] = stadsbeeld.vlakken(stadsbeeld.WERKINGSGEBIED)
+    _cache["objecten"] = stadsbeeld.vlakken(stadsbeeld.OBJECTEN)
+    _cache["geladen"] = True
+    return _cache
+
+
+def bescherming(pand_id):
+    """
+    Wat er aan erfgoedbescherming op het punt van dit pand ligt.
+
+    Geeft None als het pand niet in de ring ligt (dan is er niets gemeten),
+    anders een dict met:
+      rijks: lijst gezichtsnamen, of None als gezichten.json ontbreekt
+      stadsbeeld: "object", "gebied", "" (gemeten, erbuiten) of None
+                  (niet gemeten)
+    """
+    c = _laad()
+    pt = c["punten"].get(str(pand_id or ""))
+    if not pt:
+        return None
+    rijks = None
+    if c["gezichten"] is not None:
+        rijks = [g.get("naam") or g.get("id") for g in c["gezichten"]
+                 if in_vlak(pt["lon"], pt["lat"], g.get("geometry"))]
+    stadsbeeld = None
+    if c["gebied"] is not None and c["objecten"] is not None:
+        x, y = wgs84_naar_rd(pt["lat"], pt["lon"])
+        if any(in_vlak(x, y, v) for v in c["objecten"]):
+            stadsbeeld = "object"
+        elif any(in_vlak(x, y, v) for v in c["gebied"]):
+            stadsbeeld = "gebied"
+        else:
+            stadsbeeld = ""
+    return {"rijks": rijks, "stadsbeeld": stadsbeeld}
+
+
+# De dubbelbestemming die bij een rijksgezicht hoort. AFGELEID, niet uit de
+# planregels: gemeten op 17 oktober per buurt, en de tellingen vielen op twee
+# panden na samen (Benedenstad 634 tegen 634, Galgenveld 465 tegen 465,
+# Altrade 438 tegen 438, Bottendaal 353 tegen 353, Hunnerberg 159 tegen 159).
+# De planregels zelf waren niet automatisch op te halen.
+BIJ_GEZICHT = {"Nijmegen": "Cultuurhistorie 1",
+               "Nijmegen - De 19de-eeuwse Stadsuitleg": "Cultuurhistorie 2"}
+
+
+def dossierregels(pand_id):
+    """[(onderwerp, tekst, bron)] voor het dossier van een pand."""
+    b = bescherming(pand_id)
+    if b is None:
+        return [("beschermd gezicht", "niet nagekeken: dit pand ligt niet in "
+                 "de ring, of de voorraad kent er geen punt van", "eigen meting")]
+    uit = []
+    if b["rijks"] is None:
+        uit.append(("rijksbeschermd gezicht", "niet nagekeken", BRON))
+    elif b["rijks"]:
+        namen = ", ".join(b["rijks"])
+        dub = [BIJ_GEZICHT[n] for n in b["rijks"] if n in BIJ_GEZICHT]
+        uit.append(("rijksbeschermd gezicht",
+                    f"{namen}: wijzigingen aan het uiterlijk zijn "
+                    f"vergunningplichtig, wat gevelisolatie, kozijnen en "
+                    f"zonnepanelen aan de voorzijde raakt"
+                    + (f". In het bestemmingsplan hoort hier vermoedelijk de "
+                       f"dubbelbestemming {', '.join(dub)} bij (afgeleid uit "
+                       f"de overlap per buurt, niet uit de planregels)"
+                       if dub else ""), BRON))
+    else:
+        uit.append(("rijksbeschermd gezicht", "geen op dit punt. "
+                    "Gemeentelijke monumenten zijn niet nagekeken", BRON))
+    if b["stadsbeeld"] == "object":
+        uit.append(("gemeentelijk voorbeschermd stadsbeeld",
+                    f"dit is een voorbeschermd stadsbeeldobject in het "
+                    f"Wederopbouwcentrum, sinds {STADSBEELD_SINDS}: sloop van "
+                    f"delen aan de openbare ruimte en het wijzigen van gevels "
+                    f"en dakvlakken naar openbaar gebied zijn "
+                    f"vergunningplichtig; normaal onderhoud zonder wijziging "
+                    f"van detaillering, materiaal en kleur niet",
+                    STADSBEELD_BRON))
+    elif b["stadsbeeld"] == "gebied":
+        uit.append(("gemeentelijk voorbeschermd stadsbeeld",
+                    f"ligt in het voorbeschermd stadsbeeld Wederopbouwcentrum, "
+                    f"sinds {STADSBEELD_SINDS}, maar het gebouw is zelf geen "
+                    f"stadsbeeldobject: wijzigingen aan gevels en dakvlakken "
+                    f"naar openbaar gebied kunnen vergunningplichtig zijn, "
+                    f"nakijken in het omgevingsplan", STADSBEELD_BRON))
+    elif b["stadsbeeld"] is None:
+        uit.append(("gemeentelijk voorbeschermd stadsbeeld", "niet nagekeken",
+                    STADSBEELD_BRON))
+    return uit
+
+
 def proef():
     afw = []
     vierkant = {"type": "Polygon", "coordinates": [
@@ -225,6 +353,61 @@ def proef():
     if not _in_bbox({"type": "Polygon", "coordinates": [
             [[5.85, 51.84], [5.86, 51.84], [5.86, 51.85], [5.85, 51.84]]]}):
         afw.append("een vlak in de Benedenstad valt buiten de bbox")
+    x, y = wgs84_naar_rd(52.15517440, 5.38720621)
+    if abs(x - 155000) > 0.01 or abs(y - 463000) > 0.01:
+        afw.append(f"het nulpunt van RD komt uit op {x:.2f}, {y:.2f}")
+    # Een bekend punt verder weg: de omrekening mag niet alleen in het
+    # nulpunt kloppen. Plein 1944 in Nijmegen ligt in het werkingsgebied van
+    # het voorbeschermd stadsbeeld (gemeten 18 oktober), dus de omrekening
+    # moet daar binnen het vlak uitkomen.
+    try:
+        import stadsbeeld
+        gebied = stadsbeeld.vlakken(stadsbeeld.WERKINGSGEBIED)
+    except Exception:
+        gebied = None
+    if gebied:
+        import bestemming
+        plein = [pt for pt in bestemming.punten_per_pand().values()
+                 if (pt.get("adres") or "").startswith("Plein 1944")]
+        binnen = sum(1 for pt in plein if any(
+            in_vlak(*wgs84_naar_rd(pt["lat"], pt["lon"]), v) for v in gebied))
+        if plein and not binnen:
+            afw.append("geen enkel pand aan Plein 1944 valt in het "
+                       "voorbeschermd stadsbeeld; de omrekening naar RD klopt "
+                       "niet")
+        # En via bescherming(), zodat ook de aansluiting wordt beproefd.
+        _cache.clear()
+        b = None
+        for pid, pt in bestemming.punten_per_pand().items():
+            if (pt.get("adres") or "").startswith("Plein 1944"):
+                b = bescherming(pid)
+                break
+        if b is not None and b["stadsbeeld"] not in ("object", "gebied"):
+            afw.append(f"bescherming() ziet Plein 1944 niet in het "
+                       f"stadsbeeld: {b}")
+    # De drie toestanden van het rijksgezicht krijgen elk een eigen tekst.
+    _oud = dict(_cache)
+    try:
+        _cache.clear()
+        _cache.update({"geladen": True, "punten": {"P": {"lat": 5, "lon": 5}},
+                       "gezichten": None, "gebied": None, "objecten": None})
+        t_niet = dossierregels("P")[0][1]
+        _cache["gezichten"] = []
+        t_geen = dossierregels("P")[0][1]
+        _cache["gezichten"] = [{"naam": "Nijmegen", "geometry": {
+            "type": "Polygon", "coordinates": [[[0, 0], [10, 0], [10, 10],
+                                                [0, 10], [0, 0]]]}}]
+        t_wel = dossierregels("P")[0][1]
+        if len({t_niet, t_geen, t_wel}) != 3 or t_niet != "niet nagekeken":
+            afw.append("niet nagekeken, geen en wel krijgen geen eigen tekst")
+        if "Cultuurhistorie 1" not in t_wel or "afgeleid" not in t_wel:
+            afw.append("de afgeleide dubbelbestemming staat er niet, of niet "
+                       "als afgeleid")
+        if dossierregels("ONBEKEND")[0][1].startswith("geen"):
+            afw.append("een pand buiten de ring leest als geen gezicht")
+    finally:
+        _cache.clear()
+        _cache.update(_oud)
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef gezicht: {len(afw)} afwijkingen", file=sys.stderr)

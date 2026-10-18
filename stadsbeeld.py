@@ -120,6 +120,31 @@ def verken():
     return 0
 
 
+WERKINGSGEBIED = "stadsbeeld_werkingsgebied.gml"
+OBJECTEN = "stadsbeeld_stadsbeeldobject.gml"
+_GML = "{http://www.opengis.net/gml/3.2}"
+
+
+def vlakken(pad):
+    """De vlakken uit een GIO als GeoJSON-achtige Polygon-dicts, in RD
+    (EPSG:28992, zoals het GIO zelf zegt). None als het bestand er niet is:
+    dat is niet nagekeken, en geen leeg gebied."""
+    import xml.etree.ElementTree as ET
+    try:
+        boom = ET.parse(pad)
+    except (OSError, ET.ParseError):
+        return None
+    uit = []
+    for poly in boom.iter(_GML + "Polygon"):
+        ringen = []
+        for pl in poly.iter(_GML + "posList"):
+            w = [float(x) for x in (pl.text or "").split()]
+            ringen.append([[w[i], w[i + 1]] for i in range(0, len(w) - 1, 2)])
+        if ringen:
+            uit.append({"type": "Polygon", "coordinates": ringen})
+    return uit
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verken", action="store_true")
