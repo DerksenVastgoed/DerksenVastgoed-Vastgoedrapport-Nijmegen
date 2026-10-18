@@ -2629,5 +2629,1501 @@
     "selected": false
    }
   ]
+ },
+ "presentaties": {
+  "Beschermde objecten": {
+   "Layer": "HIS_MON_MONUMENT",
+   "Type": "WMS",
+   "DisplayName": "Beschermde objecten",
+   "ClickAsWms": 0,
+   "InfoBoxWidth": "40rem",
+   "Interval": 0,
+   "BoundingBoxType": null,
+   "Url": "https://services.nijmegen.nl/geoservices/extern_Monumenten/wms?",
+   "Legend": "https://services.nijmegen.nl/geoservices/extern_Monumenten/ows?service=WMS&version=1.3.0&request=GetLegendGraphic&format=image/png&width=20&height=20&layer=HIS_MON_MONUMENT&style=CSS_HIS_MON_MONUMENT_extern",
+   "ShowLegendAsRadioButton": 0,
+   "ClusterColor": null,
+   "ShowMultipleRecordsInTable": null,
+   "IsBookmarkGroupSupportVisible": 0,
+   "Opacity": 7.5,
+   "MinResolution": 0,
+   "MaxResolution": 100000000,
+   "MaxZoom": 0,
+   "Untiled": 1,
+   "bbox": "181154.137,423303.008,190813.611,433550.522",
+   "extent": [
+    181154.137,
+    423303.008,
+    190813.611,
+    433550.522
+   ],
+   "Snap": null,
+   "HeatMap": 0,
+   "Filter": {
+    "Filter": "",
+    "ExportExtensions": [],
+    "OrderColumns": [],
+    "OrderDirection": null,
+    "ConvertAbsoluteNumbersToPercentage": 0,
+    "MarkResult": 0
+   },
+   "PrimaryKeyName": null,
+   "PrimaryKeyNameDisplay": null,
+   "GeometryName": "GEOMETRIE",
+   "GeometryHeightName": null,
+   "Forms": [
+    {
+     "Name": "Object informatie",
+     "ID": 472,
+     "FormTypeTypeID": 0,
+     "FormAttributes": [
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3964,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3964,
+        "Attribute": "BESCHERMINGS_OMS",
+        "Display": "Bescherming",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3961,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3961,
+        "Attribute": "ADRES_BIJ_AANWIJZING",
+        "Display": "Adres bij aanwijzing",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3968,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3968,
+        "Attribute": "COMPLEXNAAM",
+        "Display": "Complexnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3959,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3959,
+        "Attribute": "OBJECTNAAM",
+        "Display": "Objectnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3965,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3965,
+        "Attribute": "GEZICHTNAAM",
+        "Display": "Gezichtnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3966,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3966,
+        "Attribute": "STATUS_OMS",
+        "Display": "Status",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3963,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3963,
+        "Attribute": "OPMERKINGEN",
+        "Display": "Opmerkingen",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": 1,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3970,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3970,
+        "Attribute": "STATUS_DATUM",
+        "Display": "Status datum",
+        "Type": 402
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": 1,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3973,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3973,
+        "Attribute": "DD_BIJGEWERKT",
+        "Display": "Datum bijgewerkt",
+        "Type": 402
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3962,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3962,
+        "Attribute": "BRONNEN",
+        "Display": "Bronnen",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3974,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3974,
+        "Attribute": "GEOMETRIE",
+        "Display": "Geometrie",
+        "Type": 21
+       }
+      },
+      {
+       "FormID": 472,
+       "AttributeTypeID": null,
+       "Action": "",
+       "ActionAdvancedSecond": 1,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3972,
+       "DefaultValue": null,
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3972,
+        "Attribute": "REDENGEVENDE_OMS",
+        "Display": "Redengevende omschrijving",
+        "Type": 1
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Informatie onderdeel",
+     "ID": 475,
+     "FormTypeTypeID": 0,
+     "PresentationLinkedID": 434,
+     "LinkedLayer": {
+      "keyColumn": "PARENT_ID",
+      "keyColumnAttributeType": 0,
+      "keyColumnValue": "GEOVISIA_ID",
+      "keyColumnLayerID": 368,
+      "keyColumnValueLayerID": 365,
+      "keyColumnType": 1,
+      "keyColumnLinkedType": 2,
+      "linkedTypeChild": {
+       "ID": 2,
+       "AttributeAndFunctionTypeID": 2,
+       "Name": 1,
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": 1,
+       "HasDistance": null
+      },
+      "linkedTypeParent": {
+       "ID": 1,
+       "AttributeAndFunctionTypeID": 1,
+       "Name": "n",
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": "n",
+       "HasDistance": null
+      },
+      "distance": ""
+     },
+     "FormAttributes": [
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4001,
+       "DefaultValue": null,
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4001,
+        "Attribute": "OBJECTNAAM",
+        "Display": "Objectnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4006,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4006,
+        "Attribute": "BESCHERMINGS_OMS",
+        "Display": "Bescherming",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4003,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4003,
+        "Attribute": "ADRES_BIJ_AANWIJZING",
+        "Display": "Adres bij aanwijzing",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4010,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4010,
+        "Attribute": "COMPLEXNAAM",
+        "Display": "Complexnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4007,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4007,
+        "Attribute": "GEZICHTNAAM",
+        "Display": "Gezichtnaam",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4008,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4008,
+        "Attribute": "STATUS_OMS",
+        "Display": "Status",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4012,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4012,
+        "Attribute": "STATUS_DATUM",
+        "Display": "Status datum",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4005,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4005,
+        "Attribute": "OPMERKINGEN",
+        "Display": "Opmerkingen",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4004,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4004,
+        "Attribute": "BRONNEN",
+        "Display": "Bronnen",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 475,
+       "AttributeTypeID": null,
+       "Action": "",
+       "ActionAdvancedSecond": 1,
+       "ActionAdvancedThird": null,
+       "AttributeID": 4016,
+       "DefaultValue": null,
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 4016,
+        "Attribute": "REDENGEVENDE_OMS",
+        "Display": "Redengevende omschrijving",
+        "Type": 1
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Afbeeldingen",
+     "ID": 474,
+     "FormTypeTypeID": 0,
+     "PresentationLinkedID": 433,
+     "LinkedLayer": {
+      "keyColumn": "PARENT_ID",
+      "keyColumnAttributeType": 0,
+      "keyColumnValue": "GEOVISIA_ID",
+      "keyColumnLayerID": 367,
+      "keyColumnValueLayerID": 365,
+      "keyColumnType": 1,
+      "keyColumnLinkedType": 2,
+      "linkedTypeChild": {
+       "ID": 2,
+       "AttributeAndFunctionTypeID": 2,
+       "Name": 1,
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": 1,
+       "HasDistance": null
+      },
+      "linkedTypeParent": {
+       "ID": 1,
+       "AttributeAndFunctionTypeID": 1,
+       "Name": "n",
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": "n",
+       "HasDistance": null
+      },
+      "distance": ""
+     },
+     "FormAttributes": [
+      {
+       "FormID": 474,
+       "AttributeTypeID": null,
+       "Action": "",
+       "ActionAdvancedSecond": 1,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3992,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3992,
+        "Attribute": "DOCNAAM",
+        "Display": "Foto",
+        "Type": 1
+       }
+      },
+      {
+       "FormID": 474,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3993,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3993,
+        "Attribute": "DOC_OMS",
+        "Display": "Omschrijving",
+        "Type": 0
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Adressen",
+     "ID": 473,
+     "FormTypeTypeID": 0,
+     "PresentationLinkedID": 432,
+     "LinkedLayer": {
+      "keyColumn": "PARENT_ID",
+      "keyColumnAttributeType": 0,
+      "keyColumnValue": "GEOVISIA_ID",
+      "keyColumnLayerID": 366,
+      "keyColumnValueLayerID": 365,
+      "keyColumnType": 1,
+      "keyColumnLinkedType": 1,
+      "linkedTypeChild": {
+       "ID": 1,
+       "AttributeAndFunctionTypeID": 1,
+       "Name": "n",
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": "n",
+       "HasDistance": null
+      },
+      "linkedTypeParent": {
+       "ID": 1,
+       "AttributeAndFunctionTypeID": 1,
+       "Name": "n",
+       "Show": 1,
+       "AttributeAndFunctionTypeTypeID": 0,
+       "Value": "n",
+       "HasDistance": null
+      },
+      "distance": ""
+     },
+     "FormAttributes": [
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3978,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3978,
+        "Attribute": "STRAAT",
+        "Display": "Adres",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3979,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3979,
+        "Attribute": "HUISNUMMER",
+        "Display": "Huisnummer",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3980,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3980,
+        "Attribute": "HUISLETTER",
+        "Display": "Huisletter",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3981,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3981,
+        "Attribute": "HUISNUMMERTOEVOEGING",
+        "Display": "Huisnummertoevoeging",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3982,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3982,
+        "Attribute": "POSTK_N",
+        "Display": "Postcode",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3983,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3983,
+        "Attribute": "POSTK_A",
+        "Display": "Postk a",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3984,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3984,
+        "Attribute": "WOONPLAATS",
+        "Display": "Woonplaats",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 473,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3986,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3986,
+        "Attribute": "WIJK_OMS",
+        "Display": "Wijk",
+        "Type": 0
+       }
+      }
+     ]
+    }
+   ],
+   "Styles": [
+    "CSS_HIS_MON_MONUMENT_extern"
+   ],
+   "StyleActive": "CSS_HIS_MON_MONUMENT_extern",
+   "StyleList": [
+    {
+     "Value": "CSS_HIS_MON_MONUMENT_extern",
+     "Name": "CSS_HIS_MON_MONUMENT_extern"
+    }
+   ],
+   "Visible": true,
+   "Service": {
+    "Projection": "EPSG:28992",
+    "Proxy": 0,
+    "PrintDirectly": 0,
+    "Version": "1.3.0",
+    "RunGetMapViaPost": 0,
+    "OutputFormat": "text/plain"
+   },
+   "WfsStyle": {
+    "automatic": null,
+    "attribute": null,
+    "styles": {
+     "pointRadius": 12,
+     "graphicName": "circle",
+     "externalGraphic": "",
+     "fillColor": "#a80a2d",
+     "fillOpacity": 0.5,
+     "strokeColor": "#000000",
+     "strokeOpacity": 1,
+     "strokeWidth": 1,
+     "fontColor": "#000000",
+     "fontSize": 12,
+     "label": "",
+     "labelOutlineColor": "#000000",
+     "labelOutlineWidth": 1,
+     "labelXOffset": 20,
+     "labelYOffset": 20,
+     "labelOverflow": 0,
+     "LegendImage": "",
+     "LegendBackgroundColor": "#ffffff",
+     "SelectPointRadius": 12,
+     "SelectGraphicName": "circle",
+     "SelectExternalGraphic": "",
+     "SelectFillColor": "#000000",
+     "SelectFillOpacity": 0.05,
+     "SelectStrokeColor": "#FF0000",
+     "SelectStrokeOpacity": 1,
+     "SelectStrokeWidth": 3,
+     "SelectFontColor": "#000000",
+     "SelectFontSize": 12,
+     "SelectLabel": "",
+     "SelectLabelOutlineColor": "#000000",
+     "SelectLabelOutlineWidth": 1,
+     "SelectLabelXOffset": 20,
+     "SelectLabelYOffset": 20,
+     "SelectLabelOverflow": 0,
+     "FilterPointRadius": 8,
+     "FilterGraphicName": "circle",
+     "FilterExternalGraphic": "",
+     "FilterFillColor": "#c90233",
+     "FilterFillOpacity": 0.1,
+     "FilterStrokeColor": "#c20209",
+     "FilterStrokeOpacity": 1,
+     "FilterStrokeWidth": 3,
+     "LocationSearchMarkerPointRadius": 16,
+     "LocationSearchMarkerGraphicName": "circle",
+     "LocationSearchMarkerExternalGraphic": "kaartviewer/assets/img/marker.png",
+     "LocationSearchMarkerFillColor": "#ffd939",
+     "LocationSearchMarkerFillOpacity": 0.1,
+     "LocationSearchMarkerStrokeColor": "#ffd939",
+     "LocationSearchMarkerStrokeOpacity": 1,
+     "LocationSearchMarkerStrokeWidth": 2
+    }
+   },
+   "BookmarkPresentationID": 2992,
+   "PresentationID": 431,
+   "MetaData": [
+    {
+     "Name": "Aantallen in deze set",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Aantal rijen"
+       },
+       "Waarde": "-"
+      },
+      {
+       "Waarde": 12,
+       "meta_data_geo_standard": {
+        "Name": "Aantal kolommen"
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Aantal keer bekeken",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Deze maand"
+       },
+       "Waarde": 155
+      }
+     ]
+    },
+    {
+     "Name": "Overig",
+     "meta_data": [
+      {
+       "ID": 619,
+       "Layer": 365,
+       "Metadata": "Omschrijving",
+       "Show": 1,
+       "Waarde": "Monumenten zijn van cultuurhistorische, architectuurhistorische, stedenbouwkundige en/of bouwhistorische betekenis voor Nijmegen. Monumenten zijn beschermd om ze voor toekomstige generaties te behouden. Monumenten zijn onder andere woonhuizen, kerken, kastelen en molens. Ook bruggen, begraafplaatsen, parken, standbeelden kunnen monument zijn.\r\nDeze kaartlaag toont de monumentale objecten binnen de gemeente Nijmegen.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null,
+       "meta_data_geo_standard_group": null
+      },
+      {
+       "ID": 620,
+       "Layer": 365,
+       "Metadata": "Intern / openbaar",
+       "Show": 1,
+       "Waarde": "Openbaar",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 621,
+       "Layer": 365,
+       "Metadata": "Mutatiefrequentie",
+       "Show": 1,
+       "Waarde": "Handmatig",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 622,
+       "Layer": 365,
+       "Metadata": "Beheerapplicatie",
+       "Show": 1,
+       "Waarde": "N.v.t.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 623,
+       "Layer": 365,
+       "Metadata": "Leverancier",
+       "Show": 1,
+       "Waarde": "N.v.t.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 624,
+       "Layer": 365,
+       "Metadata": "Webservice",
+       "Show": 1,
+       "Waarde": "https://services.nijmegen.nl/geoservices/extern_Monumenten/wms?",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      }
+     ]
+    }
+   ],
+   "zIndex": 0,
+   "Checked": null,
+   "CopyRights": {},
+   "ID": 2992,
+   "DomainID": 29,
+   "Sorting": 0,
+   "SortingParent": 0,
+   "HasInfo": true
+  },
+  "Beschermde gebieden": {
+   "Layer": "HIS_MON_BESCHERMDE_GEB",
+   "Type": "WMS",
+   "DisplayName": "Beschermde gebieden",
+   "ClickAsWms": 0,
+   "InfoBoxWidth": null,
+   "Interval": 0,
+   "BoundingBoxType": null,
+   "Url": "https://services.nijmegen.nl/geoservices/extern_Monumenten/wms?",
+   "Legend": "https://services.nijmegen.nl/geoservices/extern_Monumenten/ows?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=HIS_MON_BESCHERMDE_GEB",
+   "ShowLegendAsRadioButton": 0,
+   "ClusterColor": null,
+   "ShowMultipleRecordsInTable": null,
+   "IsBookmarkGroupSupportVisible": 0,
+   "Opacity": 10,
+   "MinResolution": 0,
+   "MaxResolution": 100000000,
+   "MaxZoom": 0,
+   "Untiled": 1,
+   "bbox": "185001.512337804,426996.367,189403.767,429431.949594158",
+   "extent": [
+    185001.512337804,
+    426996.367,
+    189403.767,
+    429431.949594158
+   ],
+   "Snap": null,
+   "HeatMap": 0,
+   "Filter": {
+    "Filter": "",
+    "ExportExtensions": [],
+    "OrderColumns": [],
+    "OrderDirection": null,
+    "ConvertAbsoluteNumbersToPercentage": 0,
+    "MarkResult": 0
+   },
+   "PrimaryKeyName": null,
+   "PrimaryKeyNameDisplay": null,
+   "GeometryName": "GEOMETRIE",
+   "GeometryHeightName": null,
+   "Forms": [
+    {
+     "Name": "Informatie",
+     "ID": 471,
+     "FormTypeTypeID": 0,
+     "FormAttributes": [
+      {
+       "FormID": 471,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3951,
+       "DefaultValue": null,
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3951,
+        "Attribute": "SOORT",
+        "Display": "Soort",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 471,
+       "AttributeTypeID": null,
+       "Action": 1,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3953,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3953,
+        "Attribute": "DD_BIJGEWERKT",
+        "Display": "Datum bijgewerkt",
+        "Type": 402
+       }
+      },
+      {
+       "FormID": 471,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3954,
+       "DefaultValue": null,
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3954,
+        "Attribute": "GEOMETRIE",
+        "Display": "Geometrie",
+        "Type": 21
+       }
+      }
+     ]
+    }
+   ],
+   "Styles": [
+    ""
+   ],
+   "StyleActive": "",
+   "StyleList": [],
+   "Visible": true,
+   "Service": {
+    "Projection": "EPSG:28992",
+    "Proxy": 0,
+    "PrintDirectly": 0,
+    "Version": "1.3.0",
+    "RunGetMapViaPost": 0,
+    "OutputFormat": "text/plain"
+   },
+   "WfsStyle": {
+    "automatic": 0,
+    "attribute": "SOORT",
+    "styles": [
+     {
+      "ID": 2241,
+      "DomainListID": 95,
+      "Name": "Rijksbeschermd_stadsgezicht",
+      "Value": "Rijksbeschermd_stadsgezicht",
+      "Value2": null,
+      "Color": null,
+      "Sorting": 1,
+      "Active": 1,
+      "EmailDomainListID": null,
+      "EmailSubject": null,
+      "EmailMessage": null,
+      "style_settings": {
+       "pointRadius": 12,
+       "graphicName": "circle",
+       "externalGraphic": "",
+       "fillColor": "#a80a2d",
+       "fillOpacity": 0.5,
+       "strokeColor": "#000000",
+       "strokeOpacity": 1,
+       "strokeWidth": 1,
+       "fontColor": "#000000",
+       "fontSize": 12,
+       "label": "",
+       "labelOutlineColor": "#000000",
+       "labelOutlineWidth": 1,
+       "labelXOffset": 20,
+       "labelYOffset": 20,
+       "labelOverflow": 0,
+       "LegendImage": "",
+       "LegendBackgroundColor": "#ffffff",
+       "SelectPointRadius": 12,
+       "SelectGraphicName": "circle",
+       "SelectExternalGraphic": "",
+       "SelectFillColor": "#000000",
+       "SelectFillOpacity": 0.05,
+       "SelectStrokeColor": "#FF0000",
+       "SelectStrokeOpacity": 1,
+       "SelectStrokeWidth": 3,
+       "SelectFontColor": "#000000",
+       "SelectFontSize": 12,
+       "SelectLabel": "",
+       "SelectLabelOutlineColor": "#000000",
+       "SelectLabelOutlineWidth": 1,
+       "SelectLabelXOffset": 20,
+       "SelectLabelYOffset": 20,
+       "SelectLabelOverflow": 0,
+       "FilterPointRadius": 8,
+       "FilterGraphicName": "circle",
+       "FilterExternalGraphic": "",
+       "FilterFillColor": "#c90233",
+       "FilterFillOpacity": 0.1,
+       "FilterStrokeColor": "#c20209",
+       "FilterStrokeOpacity": 1,
+       "FilterStrokeWidth": 3,
+       "LocationSearchMarkerPointRadius": 16,
+       "LocationSearchMarkerGraphicName": "circle",
+       "LocationSearchMarkerExternalGraphic": "kaartviewer/assets/img/marker.png",
+       "LocationSearchMarkerFillColor": "#ffd939",
+       "LocationSearchMarkerFillOpacity": 0.1,
+       "LocationSearchMarkerStrokeColor": "#ffd939",
+       "LocationSearchMarkerStrokeOpacity": 1,
+       "LocationSearchMarkerStrokeWidth": 2
+      },
+      "domain_list_item_style_settings": []
+     },
+     {
+      "ID": 2242,
+      "DomainListID": 95,
+      "Name": "gembeschermd_stadsbeeld",
+      "Value": "gembeschermd_stadsbeeld",
+      "Value2": null,
+      "Color": null,
+      "Sorting": 1,
+      "Active": 1,
+      "EmailDomainListID": null,
+      "EmailSubject": null,
+      "EmailMessage": null,
+      "style_settings": {
+       "pointRadius": 12,
+       "graphicName": "circle",
+       "externalGraphic": "",
+       "fillColor": "#a80a2d",
+       "fillOpacity": 0.5,
+       "strokeColor": "#000000",
+       "strokeOpacity": 1,
+       "strokeWidth": 1,
+       "fontColor": "#000000",
+       "fontSize": 12,
+       "label": "",
+       "labelOutlineColor": "#000000",
+       "labelOutlineWidth": 1,
+       "labelXOffset": 20,
+       "labelYOffset": 20,
+       "labelOverflow": 0,
+       "LegendImage": "",
+       "LegendBackgroundColor": "#ffffff",
+       "SelectPointRadius": 12,
+       "SelectGraphicName": "circle",
+       "SelectExternalGraphic": "",
+       "SelectFillColor": "#000000",
+       "SelectFillOpacity": 0.05,
+       "SelectStrokeColor": "#FF0000",
+       "SelectStrokeOpacity": 1,
+       "SelectStrokeWidth": 3,
+       "SelectFontColor": "#000000",
+       "SelectFontSize": 12,
+       "SelectLabel": "",
+       "SelectLabelOutlineColor": "#000000",
+       "SelectLabelOutlineWidth": 1,
+       "SelectLabelXOffset": 20,
+       "SelectLabelYOffset": 20,
+       "SelectLabelOverflow": 0,
+       "FilterPointRadius": 8,
+       "FilterGraphicName": "circle",
+       "FilterExternalGraphic": "",
+       "FilterFillColor": "#c90233",
+       "FilterFillOpacity": 0.1,
+       "FilterStrokeColor": "#c20209",
+       "FilterStrokeOpacity": 1,
+       "FilterStrokeWidth": 3,
+       "LocationSearchMarkerPointRadius": 16,
+       "LocationSearchMarkerGraphicName": "circle",
+       "LocationSearchMarkerExternalGraphic": "kaartviewer/assets/img/marker.png",
+       "LocationSearchMarkerFillColor": "#ffd939",
+       "LocationSearchMarkerFillOpacity": 0.1,
+       "LocationSearchMarkerStrokeColor": "#ffd939",
+       "LocationSearchMarkerStrokeOpacity": 1,
+       "LocationSearchMarkerStrokeWidth": 2
+      },
+      "domain_list_item_style_settings": []
+     }
+    ]
+   },
+   "BookmarkPresentationID": 2993,
+   "PresentationID": 430,
+   "MetaData": [
+    {
+     "Name": "Aantallen in deze set",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Aantal rijen"
+       },
+       "Waarde": "-"
+      },
+      {
+       "Waarde": 3,
+       "meta_data_geo_standard": {
+        "Name": "Aantal kolommen"
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Aantal keer bekeken",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Deze maand"
+       },
+       "Waarde": 26
+      }
+     ]
+    },
+    {
+     "Name": "Overig",
+     "meta_data": [
+      {
+       "ID": 613,
+       "Layer": 364,
+       "Metadata": "Omschrijving",
+       "Show": 1,
+       "Waarde": "Monumenten zijn van cultuurhistorische, architectuurhistorische, stedenbouwkundige en/of bouwhistorische betekenis voor Nijmegen. Monumenten zijn beschermd om ze voor toekomstige generaties te behouden. 'Gemeentelijk beschermd stadsbeeld' en 'Rijksbeschermd stadsgezicht' zijn monumentale, beschermde gebieden binnen de gemeente Nijmegen.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null,
+       "meta_data_geo_standard_group": null
+      },
+      {
+       "ID": 614,
+       "Layer": 364,
+       "Metadata": "Intern / openbaar",
+       "Show": 1,
+       "Waarde": "Openbaar",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 615,
+       "Layer": 364,
+       "Metadata": "Mutatiefrequentie",
+       "Show": 1,
+       "Waarde": "Handmatig",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 616,
+       "Layer": 364,
+       "Metadata": "Beheerapplicatie",
+       "Show": 1,
+       "Waarde": "N.v.t.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 617,
+       "Layer": 364,
+       "Metadata": "Leverancier",
+       "Show": 1,
+       "Waarde": "N.v.t.",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      },
+      {
+       "ID": 618,
+       "Layer": 364,
+       "Metadata": "Webservice",
+       "Show": 1,
+       "Waarde": "https://services.nijmegen.nl/geoservices/extern_Monumenten/wms?",
+       "Sorting": 2,
+       "AttributeTypeID": 0,
+       "MetaDataGeoStandardID": null,
+       "MetaDataGeoStandardGroupID": null,
+       "meta_data_geo_standard": null
+      }
+     ]
+    }
+   ],
+   "zIndex": 0,
+   "Checked": null,
+   "CopyRights": {},
+   "ID": 2993,
+   "DomainID": 29,
+   "Sorting": 1,
+   "SortingParent": 0,
+   "HasInfo": true
+  },
+  "Oorlogsmonumenten": {
+   "Layer": "WO2_OORLOGSMONUMENTEN_SQL",
+   "Type": "WMS",
+   "DisplayName": "Oorlogsmonumenten",
+   "ClickAsWms": 0,
+   "InfoBoxWidth": null,
+   "Interval": 0,
+   "BoundingBoxType": null,
+   "Url": "https://services.nijmegen.nl/geoservices/extern_wo2/wms?",
+   "Legend": "https://services.nijmegen.nl/geoservices/extern_wo2/ows?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=WO2_OORLOGSMONUMENTEN_SQL",
+   "ShowLegendAsRadioButton": 0,
+   "ClusterColor": null,
+   "ShowMultipleRecordsInTable": null,
+   "IsBookmarkGroupSupportVisible": 0,
+   "Opacity": 10,
+   "MinResolution": 0,
+   "MaxResolution": 100000000,
+   "MaxZoom": 0,
+   "Untiled": 1,
+   "bbox": "170170.523023576,419060.296519707,200456.809786301,435629.238794507",
+   "extent": [
+    170170.523023576,
+    419060.296519707,
+    200456.809786301,
+    435629.238794507
+   ],
+   "Snap": null,
+   "HeatMap": 0,
+   "Filter": {
+    "Filter": "",
+    "ExportExtensions": [],
+    "OrderColumns": [],
+    "OrderDirection": null,
+    "ConvertAbsoluteNumbersToPercentage": 0,
+    "MarkResult": 0
+   },
+   "PrimaryKeyName": null,
+   "PrimaryKeyNameDisplay": null,
+   "GeometryName": "GEOMETRIE",
+   "GeometryHeightName": null,
+   "Forms": [
+    {
+     "Name": "Informatie",
+     "ID": 367,
+     "FormTypeTypeID": 0,
+     "FormAttributes": [
+      {
+       "FormID": 367,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3528,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3528,
+        "Attribute": "TITLE",
+        "Display": "Titel",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 367,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3542,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3542,
+        "Attribute": "ARTIST",
+        "Display": "Kunstenaar",
+        "Type": 0
+       }
+      },
+      {
+       "FormID": 367,
+       "AttributeTypeID": null,
+       "Action": "",
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3520,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3520,
+        "Attribute": "DATASOURCE",
+        "Display": "www.4en5mei.nl",
+        "Type": 3
+       }
+      },
+      {
+       "FormID": 367,
+       "AttributeTypeID": null,
+       "Action": null,
+       "ActionAdvancedSecond": null,
+       "ActionAdvancedThird": null,
+       "AttributeID": 3554,
+       "DefaultValue": "",
+       "ShowInSearchBar": null,
+       "Display": null,
+       "attribute": {
+        "ID": 3554,
+        "Attribute": "GEOMETRIE",
+        "Display": "Geometrie",
+        "Type": 21
+       }
+      }
+     ]
+    }
+   ],
+   "Styles": [
+    ""
+   ],
+   "StyleActive": "",
+   "StyleList": [],
+   "Visible": true,
+   "Service": {
+    "Projection": "EPSG:28992",
+    "Proxy": 0,
+    "PrintDirectly": 0,
+    "Version": "1.3.0",
+    "RunGetMapViaPost": 0,
+    "OutputFormat": "text/plain"
+   },
+   "WfsStyle": {
+    "automatic": null,
+    "attribute": null,
+    "styles": {
+     "pointRadius": 12,
+     "graphicName": "circle",
+     "externalGraphic": "",
+     "fillColor": "#a80a2d",
+     "fillOpacity": 0.5,
+     "strokeColor": "#000000",
+     "strokeOpacity": 1,
+     "strokeWidth": 1,
+     "fontColor": "#000000",
+     "fontSize": 12,
+     "label": "",
+     "labelOutlineColor": "#000000",
+     "labelOutlineWidth": 1,
+     "labelXOffset": 20,
+     "labelYOffset": 20,
+     "labelOverflow": 0,
+     "LegendImage": "",
+     "LegendBackgroundColor": "#ffffff",
+     "SelectPointRadius": 12,
+     "SelectGraphicName": "circle",
+     "SelectExternalGraphic": "",
+     "SelectFillColor": "#000000",
+     "SelectFillOpacity": 0.05,
+     "SelectStrokeColor": "#FF0000",
+     "SelectStrokeOpacity": 1,
+     "SelectStrokeWidth": 3,
+     "SelectFontColor": "#000000",
+     "SelectFontSize": 12,
+     "SelectLabel": "",
+     "SelectLabelOutlineColor": "#000000",
+     "SelectLabelOutlineWidth": 1,
+     "SelectLabelXOffset": 20,
+     "SelectLabelYOffset": 20,
+     "SelectLabelOverflow": 0,
+     "FilterPointRadius": 8,
+     "FilterGraphicName": "circle",
+     "FilterExternalGraphic": "",
+     "FilterFillColor": "#c90233",
+     "FilterFillOpacity": 0.1,
+     "FilterStrokeColor": "#c20209",
+     "FilterStrokeOpacity": 1,
+     "FilterStrokeWidth": 3,
+     "LocationSearchMarkerPointRadius": 16,
+     "LocationSearchMarkerGraphicName": "circle",
+     "LocationSearchMarkerExternalGraphic": "kaartviewer/assets/img/marker.png",
+     "LocationSearchMarkerFillColor": "#ffd939",
+     "LocationSearchMarkerFillOpacity": 0.1,
+     "LocationSearchMarkerStrokeColor": "#ffd939",
+     "LocationSearchMarkerStrokeOpacity": 1,
+     "LocationSearchMarkerStrokeWidth": 2
+    }
+   },
+   "BookmarkPresentationID": 785,
+   "PresentationID": 326,
+   "MetaData": [
+    {
+     "Name": "Aantallen in deze set",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Aantal rijen"
+       },
+       "Waarde": "-"
+      },
+      {
+       "Waarde": 4,
+       "meta_data_geo_standard": {
+        "Name": "Aantal kolommen"
+       }
+      }
+     ]
+    },
+    {
+     "Name": "Aantal keer bekeken",
+     "meta_data": [
+      {
+       "meta_data_geo_standard": {
+        "Name": "Deze maand"
+       },
+       "Waarde": 9
+      }
+     ]
+    }
+   ],
+   "zIndex": 0,
+   "Checked": null,
+   "CopyRights": {},
+   "ID": 785,
+   "DomainID": 29,
+   "Sorting": 5,
+   "SortingParent": 6,
+   "HasInfo": true
+  }
  }
 }
