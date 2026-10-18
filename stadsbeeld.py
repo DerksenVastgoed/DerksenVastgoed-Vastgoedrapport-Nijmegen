@@ -181,6 +181,26 @@ def gio_uit_pagina(html):
     return uit
 
 
+def naam_uit_titel(html):
+    """De naam van een informatieobject uit de titel van zijn pagina bij de
+    officiele bekendmakingen.
+
+    WAAROM UIT DE TITEL. De eerste ronde, 18 oktober, las de namen uit de
+    bijlage van het omgevingsplan, met een regex op een vorm die ik had
+    aangenomen. Die vorm klopte niet: de linktekst is daar het JOIN-pad zelf,
+    en van de 31 objecten kreeg er geen een naam, dus vond de zeef nul
+    erfgoedobjecten. De pagina waar de JOIN-identificatie naar verwijst heeft
+    wel een titel met de naam, dat bleek bij het stadsbeeld:
+    "Waardengebied erfgoed - voorbeschermd stadsbeeld | Overheid.nl > ...".
+    """
+    import html as _html
+    m = re.search(r"<title>(.*?)</title>", html or "", re.S)
+    if not m:
+        return ""
+    t = _html.unescape(m.group(1)).strip()
+    return t.split(" | ")[0].strip()
+
+
 def verken_omgevingsplan():
     r = ["# Geografische informatieobjecten in het omgevingsplan", "",
          f"Regeling: `{OMGEVINGSPLAN}`", ""]
@@ -194,6 +214,17 @@ def verken_omgevingsplan():
     alle = gio_uit_pagina(html)
     r.append(f"- eindadres `{eind}`, {len(inhoud)} bytes, {len(alle)} "
              f"informatieobjecten met een JOIN-identificatie")
+    # Elke JOIN-identificatie volgen voor de naam: het zijn er tientallen,
+    # geen duizenden, en de bijlage zelf noemt de namen niet leesbaar.
+    paginas = {}
+    benoemd = []
+    for n, u in alle:
+        e1, _s1, i1 = haal(u, r)
+        t1 = i1.decode("utf-8", errors="replace") if i1 is not None else ""
+        naam = naam_uit_titel(t1) or n
+        paginas[u] = (e1, t1)
+        benoemd.append((naam, u))
+    alle = benoemd
     erfgoed = [(n, u) for n, u in alle
                if any(w in n.lower() for w in ERFGOEDWOORDEN)]
     r.append(f"- waarvan {len(erfgoed)} met een naam die op erfgoed wijst")
@@ -207,10 +238,9 @@ def verken_omgevingsplan():
     r.append("")
     resultaat = []
     for i, (naam, url) in enumerate(erfgoed[:40]):
-        e1, _s1, i1 = haal(url, r)
-        if i1 is None:
+        e1, t1 = paginas.get(url, (None, ""))
+        if not t1:
             continue
-        t1 = i1.decode("utf-8", errors="replace")
         gml = [l for l in re.findall(r'href="([^"]+\.gml)"', t1)]
         rij = {"naam": naam, "join": url, "pagina": e1, "gml": None}
         if gml:
@@ -247,9 +277,16 @@ def proef():
             '.nl/join/id/regdata/gm0268/2024/def/nld@2024-01-01;1">Molen'
             'biotoop</a>')
     uit = gio_uit_pagina(html)
-    if [n for n, _u in uit] != ["Gemeentelijk monument", "Molenbiotoop"]:
-        afw.append(f"de namen van de informatieobjecten worden niet gelezen: "
-                   f"{uit}")
+    if len(uit) != 2:
+        afw.append(f"de JOIN-identificaties worden niet gevonden: {uit}")
+    # Een echte titel, uit stadsbeeld_verslag.md van 18 oktober.
+    echt = ("<title>Waardengebied erfgoed - voorbeschermd stadsbeeld | "
+            "Overheid.nl &gt; Offici&#xEB;le bekendmakingen</title>")
+    if naam_uit_titel(echt) != "Waardengebied erfgoed - voorbeschermd stadsbeeld":
+        afw.append(f"de naam uit de titel wordt niet gelezen: "
+                   f"{naam_uit_titel(echt)!r}")
+    if not any(w in naam_uit_titel(echt).lower() for w in ERFGOEDWOORDEN):
+        afw.append("het stadsbeeld valt niet onder de erfgoedwoorden")
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef stadsbeeld: {len(afw)} afwijkingen", file=sys.stderr)
