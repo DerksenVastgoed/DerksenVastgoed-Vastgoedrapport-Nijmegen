@@ -1,5 +1,9 @@
 # Verkenning gemeentelijke monumenten
 
+## data.overheid.nl, zoeken op 'monumenten nijmegen'
+- 0 datasets
+
+
 ## https://www.nijmegen.nl/cultuur/monumentenlijst/
 - eindadres `https://www.nijmegen.nl/cultuur/monumentenlijst/`, 61790 bytes
 - iframes: []
