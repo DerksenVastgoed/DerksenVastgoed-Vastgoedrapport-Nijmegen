@@ -5459,11 +5459,8 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
                            "het blijft relevant voor de verhuurbaarheid en voor wat "
                            "een pand bij verkoop opbrengt")
 
-        gezicht_c = gezichtswaarschuwing(buurt)
-        if gezicht_c:
-            f.append(f"{buurt} is {gezicht_c}: wijzigingen aan het uiterlijk zijn "
-                     f"vergunningplichtig, wat gevelisolatie, kozijnen en "
-                     f"zonnepanelen aan de voorzijde raakt")
+        for _o, _t, _b in beschermingsregels(w):
+            f.append(f"{_o}: {_t} (bron: {_b})")
         try:
             import bestemming as _bst
             for _o, _t, _b in _bst.dossierregels(w.get("pand_id")
@@ -5670,32 +5667,24 @@ def huurtoeslag_positie(maandhuur, meerpersoons=False):
 
 
 # ---------------------------------------------------------------------------
-# BESCHERMD STADSGEZICHT
+# BESCHERMD STADSGEZICHT: PER PAND, ZIE gezicht.py
 #
-# Nijmegen kent twee rijksbeschermde stadsgezichten: de Benedenstad en de
-# negentiende-eeuwse schil rond de binnenstad. Daarnaast acht gemeentelijke
-# beschermde stadsbeelden. In zo'n gebied is voor wijzigingen aan het uiterlijk
-# een omgevingsvergunning nodig, ook bij panden die zelf geen monument zijn.
-#
-# De grenzen volgen niet de buurtgrenzen, dus dit is een waarschuwing en geen
-# uitsluitsel. Controleer per pand in de monumentenlijst van de gemeente.
+# Tot 18 oktober 2026 stond hier BESCHERMD_GEZICHT, een vaste tekst per
+# buurt ("grotendeels", "deels de negentiende-eeuwse schil", "niet
+# nagekeken"). Gemeten per pand bleek "grotendeels" in het Stadscentrum 569
+# van 1.037 panden te zijn, en lag Hunnerberg, "niet nagekeken", voor 159 van
+# 897 panden in de 19de-eeuwse Stadsuitleg. Het commentaar hier sprak ook van
+# "acht gemeentelijke beschermde stadsbeelden", zonder bron; gevonden is er
+# tot nu toe een, het voorbeschermd stadsbeeld Wederopbouwcentrum.
 # ---------------------------------------------------------------------------
-BESCHERMD_GEZICHT = {
-    "Benedenstad": "rijksbeschermd stadsgezicht Benedenstad",
-    "Stadscentrum": "grotendeels rijksbeschermd stadsgezicht",
-    "Bottendaal": "deels de negentiende-eeuwse schil",
-    "Galgenveld": "deels de negentiende-eeuwse schil",
-    "Altrade": "deels de negentiende-eeuwse schil",
-    # Niet nagekeken, en dat staat er dan ook. Een lege waarde zou lezen als
-    # "geen beschermd gezicht", en dat weten we voor deze twee niet.
-    "Hunnerberg": "niet nagekeken of dit in een beschermd stadsgezicht ligt",
-    "St. Anna": "niet nagekeken of dit in een beschermd stadsgezicht ligt",
-}
-
-
-def gezichtswaarschuwing(buurt):
-    """Ligt deze buurt in of tegen een beschermd stadsgezicht?"""
-    return BESCHERMD_GEZICHT.get(buurt, "")
+def beschermingsregels(w):
+    """De erfgoedregels voor het pand van deze woning, of [] als die niet te
+    bepalen zijn zonder een fout te maken."""
+    try:
+        import gezicht as _gz
+        return _gz.dossierregels(w.get("pand_id") or w.get("pand"))
+    except Exception:
+        return []
 
 
 def past_bij_buurt(sc, cbs_buurt):
@@ -6131,6 +6120,10 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
             f("bouwlagen", _deel, "3D BAG, TU Delft en 3DGI")
     except Exception:
         pass
+
+    # Beschermd gezicht en stadsbeeld, per pand. Zie gezicht.py.
+    for _o, _t, _b in beschermingsregels(w):
+        f(_o, _t, _b)
 
     # De dubbelbestemming uit het bestemmingsplan, per pand. Zie bestemming.py
     # voor de bron, de voorbehouden en waarom archeologie alleen bij
@@ -7429,14 +7422,33 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                      f"Daar krijgt je huurder geen toeslag._")
             r.append("")
 
-        # Waarschuwingen die voor de hele buurt gelden: eenmaal, niet per pand
-        gezicht = gezichtswaarschuwing(buurt)
-        if gezicht and vers:
-            r.append(f"_{buurt} is {gezicht}. Voor wijzigingen aan het uiterlijk is "
-                     f"een omgevingsvergunning nodig, ook bij panden die zelf geen "
-                     f"monument zijn. Dat raakt gevelisolatie, kozijnen en zonnepanelen "
-                     f"aan de voorzijde._")
-            r.append("")
+        # Beschermd gezicht: gemeten per pand, en hier een keer voor de
+        # panden in deze buurt samen. Tot 18 oktober stond hier een zin per
+        # buurt die niet per pand klopte; zie gezicht.py.
+        try:
+            import gezicht as _gz
+            _rijks, _beeld = [], []
+            for _a, _p, _k, _afw, _b, _w in vers:
+                _bs = _gz.bescherming(_w.get("pand_id") or _w.get("pand"))
+                if _bs and _bs.get("rijks"):
+                    _rijks.append(_w["adres"])
+                if _bs and _bs.get("stadsbeeld") in ("object", "gebied"):
+                    _beeld.append(_w["adres"])
+            if _rijks:
+                r.append(f"_In een rijksbeschermd gezicht: {', '.join(_rijks)}. "
+                         f"Voor wijzigingen aan het uiterlijk is een "
+                         f"omgevingsvergunning nodig, ook als het pand zelf geen "
+                         f"monument is: gevelisolatie, kozijnen en zonnepanelen "
+                         f"aan de voorzijde._")
+                r.append("")
+            if _beeld:
+                r.append(f"_In het gemeentelijk voorbeschermd stadsbeeld "
+                         f"Wederopbouwcentrum, sinds {_gz.STADSBEELD_SINDS}: "
+                         f"{', '.join(_beeld)}. Gevels en dakvlakken naar "
+                         f"openbaar gebied kunnen vergunningplichtig zijn._")
+                r.append("")
+        except Exception:
+            pass
 
         # Doelgroep: alleen benoemen waar het scenario niet bij de buurt past
         mismatch = []

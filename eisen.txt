@@ -1384,3 +1384,18 @@ waarom: 17 oktober. BESCHERMD_GEZICHT stond per buurt als vaste tekst, met
   rijksbeschermde gezichten, dus niet erin is nooit niet beschermd.
 proef: gezicht:een punt in het gat telt als binnen
 soort: gegevens
+
+---
+eis: Het dossier noemt per pand het rijksgezicht en het gemeentelijk
+  voorbeschermd stadsbeeld uit een meting, en zegt bij elk van beide het
+  verschil tussen niet nagekeken, gemeten en geen, en gemeten en wel.
+waarom: 18 oktober. Per buurt bleek de oude tekst niet te kloppen:
+  "grotendeels" in het Stadscentrum was 569 van 1.037 panden, en
+  Hunnerberg, "niet nagekeken", lag voor 159 van 897 panden in de
+  19de-eeuwse Stadsuitleg. Het voorbeschermd stadsbeeld Wederopbouwcentrum
+  geldt sinds 4 september 2026 en stond in geen van onze bronnen: 229
+  panden in het werkingsgebied, 217 daarvan buiten elk rijksgezicht, en 77
+  op een stadsbeeldobject. De GIO's staan in RD en de voorraad in WGS84;
+  de omrekening wordt beproefd op het nulpunt van RD en op Plein 1944.
+proef: gezicht:niet nagekeken, geen en wel krijgen geen eigen tekst
+soort: brief
