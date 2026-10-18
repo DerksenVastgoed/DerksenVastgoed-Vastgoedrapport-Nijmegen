@@ -322,6 +322,105 @@ def verken_rce():
     return 0
 
 
+# RCE-PUNT NAAR PAND. 18 oktober 2026: van de 261 rijksmonumenten (RCE-punten)
+# staan er 66 niet in het erfgoedregister, en voor die 66 wisten we niet in
+# welk pand ze liggen: een RCE-punt is een punt, en wij kennen per pand ook
+# alleen een punt. De BAG kent per pand de omtrek. Per RCE-punt vraagt dit de
+# panden waarvan de omtrek een vierkant van een meter rond het punt raakt, bij
+# de BAG-WFS van PDOK. Voor alle 261, niet alleen de 66, zodat de koppeling
+# te toetsen is tegen het register: waar beide een pand noemen, horen ze
+# hetzelfde pand te noemen.
+BAG_WFS = "https://service.pdok.nl/lv/bag/wfs/v2_0"
+UIT_RCE_PANDEN = "rijksmonumenten_rce_panden.json"
+
+
+def panden_bij_punt(x, y, r, d=0.5):
+    """De pand-identificaties waarvan de omtrek het vierkant rond (x, y) in
+    RD raakt, of None als de BAG geen antwoord gaf."""
+    url = BAG_WFS + "?" + urllib.parse.urlencode({
+        "service": "WFS", "version": "2.0.0", "request": "GetFeature",
+        "typeName": "bag:pand", "outputFormat": "application/json",
+        "bbox": f"{x - d},{y - d},{x + d},{y + d},urn:ogc:def:crs:EPSG::28992"})
+    _e, _s, inhoud = stadsbeeld.haal(url, r)
+    if inhoud is None:
+        return None
+    try:
+        d = json.loads(inhoud.decode("utf-8"))
+    except ValueError:
+        return None
+    return [str((f.get("properties") or {}).get("identificatie"))
+            for f in d.get("features") or []
+            if (f.get("properties") or {}).get("identificatie")]
+
+
+def koppel_rce_panden():
+    import time
+    import gezicht
+    r = ["# RCE-rijksmonumenten gekoppeld aan BAG-panden", ""]
+    try:
+        with open(UIT_RCE, encoding="utf-8") as f:
+            punten = json.load(f).get("punten") or []
+    except (OSError, ValueError):
+        r.append("- geen RCE-punten; eerst --rce")
+        punten = []
+    uit, fout, leeg = {}, 0, 0
+    for x in punten:
+        if x.get("lat") is None or not x.get("nummer"):
+            continue
+        gx, gy = gezicht.wgs84_naar_rd(x["lat"], x["lon"])
+        p = panden_bij_punt(gx, gy, r if fout < 3 else [])
+        time.sleep(0.2)
+        if p is None:
+            fout += 1
+            continue
+        if not p:
+            leeg += 1
+        uit[x["nummer"]] = {"naam": x.get("naam"), "panden": p}
+    r.append(f"- {len(uit)} nummers gevraagd, {fout} zonder antwoord, "
+             f"{leeg} met een punt buiten elk pand")
+    # De toets: het register noemt per object een rijksmonumentnummer en ligt
+    # als vlak; via de pandpunten van de voorraad weten we welk pand in welk
+    # registervlak valt.
+    reg = gezicht._laad().get("register") or []
+    punt_pand = {pid: pt for pid, pt in gezicht._laad()["punten"].items()}
+    nr_pand_reg = {}
+    for pid, pt in punt_pand.items():
+        gx, gy = gezicht.wgs84_naar_rd(pt["lat"], pt["lon"])
+        for props in gezicht._raak(reg, gx, gy):
+            for n in re.findall(r"\d{4,6}",
+                                str(props.get("RIJKSOBJECTCODE") or "")):
+                nr_pand_reg.setdefault(n, set()).add(pid)
+    eens = oneens = te_toetsen = 0
+    voorbeelden = []
+    for n, v in uit.items():
+        if n in nr_pand_reg and v["panden"]:
+            te_toetsen += 1
+            if set(v["panden"]) & nr_pand_reg[n]:
+                eens += 1
+            else:
+                oneens += 1
+                voorbeelden.append((n, v["naam"], v["panden"],
+                                    sorted(nr_pand_reg[n])))
+    r.append(f"- toets tegen het register (pand in de ring, nummer in "
+             f"beide): {te_toetsen}, waarvan {eens} hetzelfde pand en "
+             f"{oneens} een ander")
+    r += [f"  - {v}" for v in voorbeelden[:10]]
+    ring = set(punt_pand)
+    in_ring = {n: [p for p in v["panden"] if p in ring] for n, v in uit.items()}
+    r.append(f"- nummers met een pand in de ring: "
+             f"{sum(1 for v in in_ring.values() if v)}, waarvan niet in het "
+             f"register: {sum(1 for n, v in in_ring.items() if v and n not in nr_pand_reg)}")
+    with open(UIT_RCE_PANDEN, "w", encoding="utf-8") as f:
+        json.dump({"bron": "RCE-punten via PDOK, gekoppeld aan BAG-pandomtrek "
+                           "(PDOK BAG WFS), vierkant van 1 m rond het punt",
+                   "nummers": uit}, f, ensure_ascii=False, indent=1)
+    with open("rijksmonumenten_rce_panden_verslag.md", "w",
+              encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r))
+    return 0
+
+
 def proef():
     afw = []
     sru = ("<sru:searchRetrieveResponse><sru:numberOfRecords>2"
@@ -364,7 +463,10 @@ def main():
     ap.add_argument("--proef", action="store_true")
     ap.add_argument("--wfs", action="store_true")
     ap.add_argument("--rce", action="store_true")
+    ap.add_argument("--rce-panden", action="store_true")
     a = ap.parse_args()
+    if a.rce_panden:
+        return koppel_rce_panden()
     if a.rce:
         return verken_rce()
     if a.wfs:
