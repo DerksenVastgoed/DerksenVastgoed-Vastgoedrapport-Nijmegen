@@ -8101,8 +8101,18 @@ nagezocht, en dat is de enige route naar meer.
   BDB is de gangbare index in het vak maar zit achter een abonnement; deze CBS-
   reeks meet loon en materiaal apart en volgt dezelfde beweging. De kentallen
   zelf blijven aannames en zijn te vervangen door eigen cijfers.
-- **Gemeentelijke monumentenlijst** is nog niet ingelezen; nijmegen.nl zit
-  achter een botcontrole.
+- GEDAAN 18 oktober: **gemeentelijke monumentenlijst** ingelezen, niet via
+  nijmegen.nl maar via de KaartViewer: extern_Monumenten op de GeoServer van
+  de gemeente, 2.781 objecten en 10 beschermde gebieden (8 gemeentelijke
+  stadsbeelden). Zie gezicht.py en monumenten.py.
+- **Rijksmonument per pand komt nu uit twee bronnen.** rijksmonumenten.py
+  (RCE, per adres, 174 adressen) en het erfgoedregister van de gemeente
+  (per geometrie, 206 objecten met "Rijksmonument"). Gemeten 18 oktober: op
+  adressleutel komen er 47 overeen; 127 staan alleen in het RCE-bestand en
+  153 alleen in het register. Een deel is notatie (het register schrijft
+  "Begijnenstraat 21-23", het RCE-bestand per huisnummer), maar het
+  RCE-bestand lijkt ook onvolledig. Een implementatie per afspraak: uitzoeken
+  welke van de twee het dossier moet gebruiken, en de andere als controle.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
@@ -8165,8 +8175,9 @@ Met de hand na te lopen, want hier is niets gemeten:
   Stand 15 oktober, na het koppelen van huur aan buurten: Hunnerberg 1 en
   St. Anna 0 huuradvertenties voor woningen. Te weinig; de buurt krijgt een
   eigen niveau vanaf MIN_HUUR_PER_BUURT advertenties.
-- BESCHERMD_GEZICHT zegt voor beide "niet nagekeken". Uitzoeken of delen van
-  Hunnerberg in de negentiende-eeuwse schil vallen.
+- GEDAAN 18 oktober: BESCHERMD_GEZICHT is weg; de gezichten worden per pand
+  gemeten (gezicht.py). Hunnerberg: 159 panden in de 19de-eeuwse
+  Stadsuitleg. St. Anna: geen.
 - GEDAAN 15 oktober: in_ring vergelijkt de volledige postcode met de
   inventaris. RING_POSTCODES is alleen nog terugval als de inventaris
   ontbreekt; RING_STRATEN geldt alleen voor titels zonder postcode.
