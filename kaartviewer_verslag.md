@@ -19,11 +19,11 @@ Start: `https://kaart.nijmegen.nl/menu/index.html`
 - https://services.nijmegen.nl/geoservices/extern_GEO_Gebiedsindelingen/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=26851&TRANSPARENT=true&LAYERS=GEO_IND_GEMEENTEGRENS&WIDTH=1280&HEIGHT=720&CRS=EPSG%3A28992&BBOX=171372.99999801104%2C420632.4374988812%2C199375.00000198896%2C4
 
 ## Alle andere opgevraagde adressen
-- blob:https://kaart.nijmegen.nl/9b0977b9-4487-4896-bfa0-b2725ce965c3
+- blob:https://kaart.nijmegen.nl/7a910b00-0b4d-4579-86ca-8f10472c2762
 - https://kaart.nijmegen.nl/?@Historie
 - https://kaart.nijmegen.nl/admin/rest/auth/check
-- https://kaart.nijmegen.nl/admin/rest/auth/myself?time=1792303060320
-- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/announcement?time=1792303061036
+- https://kaart.nijmegen.nl/admin/rest/auth/myself?time=1792303211671
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/announcement?time=1792303212306
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/background
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/1/background
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/10/background
@@ -33,7 +33,7 @@ Start: `https://kaart.nijmegen.nl/menu/index.html`
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/5/background
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/6/background
 - https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/logo
-- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu?time=1792303061036
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu?time=1792303212306
 - https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/announcement
 - https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/bookmarkpresentation/2/presentation
 - https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/bookmarkpresentation/2923/presentation
@@ -68,3 +68,8 @@ Start: `https://kaart.nijmegen.nl/menu/index.html`
     
  
 ```
+## Lagen in de lagenboom
+- 100 lagen, waarvan 3 over monumenten of bescherming:
+  - {"pad": "Atlaz / Historische gebouwen en locaties / Monumenten", "naam": "Beschermde objecten", "serviceType": "WMS"}
+  - {"pad": "Atlaz / Historische gebouwen en locaties / Monumenten", "naam": "Beschermde gebieden", "serviceType": "WMS"}
+  - {"pad": "Atlaz / Historische gebouwen en locaties", "naam": "Oorlogsmonumenten", "serviceType": "WMS"}
