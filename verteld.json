@@ -20,8 +20,8 @@
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-16",
-   "keer": 4,
+   "laatst": "2026-10-18",
+   "keer": 5,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
@@ -62,8 +62,8 @@
   },
   "stieltjesstraat10": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-17",
-   "keer": 2,
+   "laatst": "2026-10-18",
+   "keer": 3,
    "omschrijving": "Stieltjesstraat 10"
   },
   "stannastraat7": {
@@ -80,8 +80,8 @@
   },
   "groesbeekseweg118": {
    "eerst": "2026-10-13",
-   "laatst": "2026-10-16",
-   "keer": 3,
+   "laatst": "2026-10-18",
+   "keer": 4,
    "omschrijving": "Groesbeekseweg 118"
   },
   "bergendalseweg1111a": {
@@ -149,6 +149,12 @@
    "laatst": "2026-10-17",
    "keer": 1,
    "omschrijving": "St. Annastraat 1"
+  },
+  "vondelstraat26": {
+   "eerst": "2026-10-18",
+   "laatst": "2026-10-18",
+   "keer": 1,
+   "omschrijving": "Vondelstraat 26"
   }
  }
 }

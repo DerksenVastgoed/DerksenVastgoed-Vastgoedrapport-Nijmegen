@@ -1,9 +1,9 @@
 {
- "datum": "2026-10-17",
+ "datum": "2026-10-18",
  "bronnen": {
   "regulier": {
-   "mails": 3,
-   "objecten": 6,
+   "mails": 2,
+   "objecten": 3,
    "overgeslagen": 2,
    "redenen": [
     "Eerste Oude Heselaan (geen prijs gevonden)",
@@ -12,30 +12,29 @@
   },
   "huislijn": {
    "mails": 3,
-   "objecten": 17,
+   "objecten": 21,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 14,
-   "objecten": 11,
-   "overgeslagen": 3,
+   "mails": 11,
+   "objecten": 9,
+   "overgeslagen": 2,
    "redenen": [
-    "Ranonkelstraat, Arnhem: buiten Nijmegen",
     "Achterstraat, Randwijk: buiten Nijmegen",
     "Aalburgstraat, Arnhem: buiten Nijmegen"
    ]
   },
   "pararius": {
    "mails": 3,
-   "objecten": 8,
+   "objecten": 7,
    "overgeslagen": 5,
    "redenen": [
     "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "Kronenburgersingel (gemeubileerd, apart bewaard)",
     "Broekstraat (gemeubileerd, apart bewaard)",
     "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "Kronenburgersingel (gemeubileerd, apart bewaard)"
+    "Kronenburgersingel (gemeubileerd, apart bewaard)",
+    "St. Stevenskerkhof (gemeubileerd, apart bewaard)"
    ]
   },
   "vendr": {
@@ -50,19 +49,18 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 36,
-  "andere_status": 2,
+  "zelfde_status": 32,
+  "andere_status": 1,
   "voorbeelden": [
-   "Hatertseveldweg -> te huur kamer",
-   "Kronenburgersingel -> te huur"
+   "Grotestraat -> te huur kamer"
   ]
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 2,
   "funda.com": 0,
   "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 14,
+  "kamernet.nl": 11,
   "vendr.nl": 1,
   "huislijn.nl": 3,
   "huisly.nl": 0,
@@ -70,6 +68,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 14-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 14-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 15-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 15-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

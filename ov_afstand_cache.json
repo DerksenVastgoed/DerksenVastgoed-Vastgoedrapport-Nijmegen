@@ -15,6 +15,14 @@
   "omweg": 1.16,
   "soort": "bus"
  },
+ "51.80294,5.82931": {
+  "geschat": false,
+  "hemelsbreed": 198,
+  "meters": 225,
+  "naam": "Thorbeckestraat",
+  "omweg": 1.14,
+  "soort": "bus"
+ },
  "51.80439,5.80259": {
   "geschat": false,
   "hemelsbreed": 80,
@@ -95,6 +103,14 @@
   "omweg": 3.24,
   "soort": "bus"
  },
+ "51.81321,5.84239": {
+  "geschat": false,
+  "hemelsbreed": 339,
+  "meters": 448,
+  "naam": "Edisonstraat",
+  "omweg": 1.32,
+  "soort": "bus"
+ },
  "51.81331,5.86738": {
   "geschat": false,
   "hemelsbreed": 201,
@@ -109,6 +125,14 @@
   "meters": 172,
   "naam": "Heidebloemstraat",
   "omweg": 1.58,
+  "soort": "bus"
+ },
+ "51.81680,5.85183": {
+  "geschat": false,
+  "hemelsbreed": 235,
+  "meters": 308,
+  "naam": "Beemdstraat",
+  "omweg": 1.31,
   "soort": "bus"
  },
  "51.81797,5.79892": {

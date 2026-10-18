@@ -223,5 +223,35 @@
   "opp": 86,
   "kamers": 2,
   "postcode": "6511DN"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4439090/wattstraat-nijmegen": {
+  "opp": 60,
+  "kamers": 2,
+  "postcode": "6533HP"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4439093/kronenburgersingel-nijmegen": {
+  "opp": 68,
+  "kamers": 3,
+  "postcode": "6512AE"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4438646/couwenbergstraat-nijmegen": {
+  "opp": 115,
+  "kamers": 4,
+  "postcode": "6535RZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4438459/kronenburgersingel-nijmegen": {
+  "opp": 91,
+  "kamers": 2,
+  "postcode": "6511AR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4438444/aldenhof-nijmegen": {
+  "opp": 86,
+  "kamers": 3,
+  "postcode": "6537CS"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4439089/meijhorst-nijmegen": {
+  "opp": 91,
+  "kamers": 3,
+  "postcode": "6538GP"
  }
 }

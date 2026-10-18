@@ -1096,3 +1096,13 @@ Kronenburgersingel | Nijmegen | 1800 | te huur | 2026-10-16 | huislijn |  | 6822
 Winkelsteegseweg | Nijmegen | 754 | te huur kamer | 2026-10-16 | kamernet-incl | 13 | 
 Jacob Canisstraat | Nijmegen | 610 | te huur kamer | 2026-10-16 | kamernet | 17 | 
 Pluvierstraat 3 | Nijmegen | 405000 | te koop | 2026-10-17 | funda-mail | 69 | 6542TZ
+
+# Automatisch toegevoegd uit Funda-attendering op 18-10-2026
+Wattstraat | Nijmegen | 855 | te huur | 2026-10-17 | huislijn | 60 | 6533HP
+Kronenburgersingel | Nijmegen | 950 | te huur | 2026-10-17 | huislijn | 68 | 6512AE
+Couwenbergstraat | Nijmegen | 1510 | te huur | 2026-10-17 | huislijn | 115 | 6535RZ
+Aldenhof | Nijmegen | 721 | te huur | 2026-10-17 | huislijn | 86 | 6537CS
+Meijhorst | Nijmegen | 885 | te huur | 2026-10-17 | huislijn | 91 | 6538GP
+Heidevenstraat | Nijmegen | 1300 | te huur kamer | 2026-10-17 | kamernet-incl | 60 | 
+St. Stevenskerkhof | Nijmegen | 1850 | te huur gemeubileerd | 2026-10-17 | pararius | 78 | 6511VZ
+Grotestraat | Nijmegen | 2450 | te huur kamer | 2026-10-17 | kamernet | 80 | 

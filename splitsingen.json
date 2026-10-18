@@ -1,163 +1,810 @@
 {
- "gerealiseerd": [
+ "gerealiseerd": [],
+ "zonder_bekende_vergunning": [],
+ "vergund_maar_niets_gebeurd": [
   {
-   "adres": "Hatertseweg 338",
-   "datum": "2026-10-09",
-   "van": 1,
-   "naar": 7,
-   "besluit": "2026-10-06",
-   "dagen_na_besluit": 3,
-   "tekst": "Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen",
-   "vergund_aantal": 6,
-   "bag_nu": 7,
-   "wijkt_af": 1
-  },
-  {
-   "adres": "Biezenstraat 110",
-   "datum": "2026-10-03",
-   "van": 1,
-   "naar": 3,
-   "besluit": "2026-10-02",
-   "dagen_na_besluit": 1,
-   "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
-   "aanvraag": "2026-02-03",
-   "dagen_aanvraag_tot_besluit": 241,
-   "vergund_aantal": 2,
-   "bag_nu": 3,
-   "wijkt_af": 1
+   "adres": "Voorstadslaan 213",
+   "besluit": "2025-08-15",
+   "dagen": 429,
+   "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
- "zonder_bekende_vergunning": [
+ "aangekondigd_nog_niet_in_gebruik": [
   {
    "adres": "Graafseweg 18",
+   "gevormd": 6,
+   "gevormd_maten": [
+    55,
+    55,
+    35,
+    29,
+    60,
+    50
+   ],
+   "in_gebruik": 1,
    "datum": "2026-10-17",
-   "van": 1,
-   "naar": 7,
    "aanvraag": "2026-04-13"
   },
   {
    "adres": "St. Annastraat 275",
+   "gevormd": 2,
+   "gevormd_maten": [
+    182,
+    204
+   ],
+   "in_gebruik": 1,
    "datum": "2026-10-17",
-   "van": 1,
-   "naar": 3,
    "aanvraag": "2026-01-29"
-  }
- ],
- "vergund_maar_niets_gebeurd": [
-  {
-   "adres": "St. Canisiussingel 32",
-   "besluit": "2025-10-08",
-   "dagen": 374,
-   "tekst": "Besluit voor het verbouwen van een kantoorpand naar 12 zelfstandige wooneenheden aan St. Canisiussingel 32, 6511TJ Nijmegen"
   },
-  {
-   "adres": "Pontanusstraat 9",
-   "besluit": "2025-10-06",
-   "dagen": 376,
-   "tekst": "Besluit (met BOPA) voor het splitsen van een woning naar twee appartementen aan Pontanusstraat 9, 6524HA Nijmegen"
-  },
-  {
-   "adres": "van Oldenbarneveltstraat 61",
-   "besluit": "2025-09-26",
-   "dagen": 386,
-   "tekst": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen"
-  },
-  {
-   "adres": "van Oldenbarneveltstraat 61-B",
-   "besluit": "2025-09-26",
-   "dagen": 386,
-   "tekst": "Besluit voor het omzetten van een beneden- en bovenwoning naar zes zelfstandige woningen aan van Oldenbarneveltstraat 61, 6512AT Nijmegen"
-  },
-  {
-   "adres": "St. Annastraat 165",
-   "besluit": "2025-09-24",
-   "dagen": 388,
-   "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
-  },
-  {
-   "adres": "St. Annastraat 165-B",
-   "besluit": "2025-09-24",
-   "dagen": 388,
-   "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
-  },
-  {
-   "adres": "St. Annastraat 165-C",
-   "besluit": "2025-09-24",
-   "dagen": 388,
-   "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
-  },
-  {
-   "adres": "St. Annastraat 165-E",
-   "besluit": "2025-09-24",
-   "dagen": 388,
-   "tekst": "Besluit voor het splitsen van de woning in 6 appartementen, aan St. Annastraat 165, 6524ES Nijmegen"
-  },
-  {
-   "adres": "Couwenbergstraat 123",
-   "besluit": "2025-08-20",
-   "dagen": 423,
-   "tekst": "Besluit voor het bouwkundig splitsen van de woning in drie appartementen aan Couwenbergstraat 123, 6535RX Nijmegen"
-  },
-  {
-   "adres": "Voorstadslaan 213",
-   "besluit": "2025-08-15",
-   "dagen": 428,
-   "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
-  },
-  {
-   "adres": "Voorstadslaan 70",
-   "besluit": "2025-07-21",
-   "dagen": 453,
-   "tekst": "Besluit voor het splitsen van een gebouw in 2 woningen, aan Voorstadslaan 70, 6541ST Nijmegen"
-  },
-  {
-   "adres": "de Fransestraat 36",
-   "besluit": "2025-06-26",
-   "dagen": 478,
-   "tekst": "Besluit voor het splitsen van het huis in een benedenwoning en bovenwoning aan de Fransestraat 36, 6524JD Nijmegen"
-  },
-  {
-   "adres": "Albardastraat 34",
-   "besluit": "2025-05-19",
-   "dagen": 516,
-   "tekst": "Besluit voor het plaatsen van een dakopbouw en splitsten van de woning, aan Albardastraat 34, 6535VK Nijmegen"
-  },
-  {
-   "adres": "van Peltlaan 197",
-   "besluit": "2025-05-08",
-   "dagen": 527,
-   "tekst": "Besluit voor het verbouwen van een cafetaria met bovenwoning naar 5 zelfstandige wooneenheden, aan van Peltlaan 197, 6533ZE Nijmegen"
-  }
- ],
- "wijkt_af_van_vergunning": [
   {
    "adres": "Hatertseweg 338",
+   "gevormd": 6,
+   "gevormd_maten": [
+    20,
+    46,
+    24,
+    19,
+    23,
+    19
+   ],
+   "in_gebruik": 1,
    "datum": "2026-10-09",
-   "van": 1,
-   "naar": 7,
    "besluit": "2026-10-06",
-   "dagen_na_besluit": 3,
-   "tekst": "Besluit voor Het verbouwen en uitbreiden tot 6 zelfstandige woonruimtes, aan Hatertseweg 338, 6533GP Nijmegen",
-   "vergund_aantal": 6,
-   "bag_nu": 7,
-   "wijkt_af": 1
+   "vergund_aantal": 6
   },
   {
    "adres": "Biezenstraat 110",
+   "gevormd": 2,
+   "gevormd_maten": [
+    168,
+    44
+   ],
+   "in_gebruik": 1,
    "datum": "2026-10-03",
-   "van": 1,
-   "naar": 3,
-   "besluit": "2026-10-02",
-   "dagen_na_besluit": 1,
-   "tekst": "Besluit (met BOPA) voor  het splitsen van een bestaande woning met garage tot 2 zelfstandige woningen , aan Biezenstraat 110, 6541ZW Nijmegen",
    "aanvraag": "2026-02-03",
-   "dagen_aanvraag_tot_besluit": 241,
+   "besluit": "2026-10-02",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "van Goorstraat 87",
+   "gevormd": 2,
+   "gevormd_maten": [
+    95,
+    120
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-07-28",
+   "aanvraag": "2026-01-20",
+   "besluit": "2026-07-28",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "St. Annastraat 102",
+   "gevormd": 3,
+   "gevormd_maten": [
+    83,
+    92,
+    65
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-06-05",
+   "aanvraag": "2026-03-27",
+   "besluit": "2026-06-05",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "de Savornin Lohmanstraat 20",
+   "gevormd": 3,
+   "gevormd_maten": [
+    54,
+    35,
+    36
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-06-03",
+   "besluit": "2026-06-03"
+  },
+  {
+   "adres": "Daalseweg 171",
+   "gevormd": 2,
+   "gevormd_maten": [
+    77,
+    68
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-05-26",
+   "aanvraag": "2026-01-02",
+   "besluit": "2026-05-26",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "Groesbeeksedwarsweg 135",
+   "gevormd": 2,
+   "gevormd_maten": [
+    71,
+    59
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-05-26",
+   "aanvraag": "2025-12-23",
+   "besluit": "2026-05-26",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "Pontanusstraat 42",
+   "gevormd": 2,
+   "gevormd_maten": [
+    72,
+    80
+   ],
+   "in_gebruik": 3,
+   "datum": "2026-05-18",
+   "aanvraag": "2026-01-20",
+   "besluit": "2026-05-18",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "Oude Ubbergseweg 47",
+   "gevormd": 2,
+   "gevormd_maten": [
+    78,
+    92
+   ],
+   "in_gebruik": 4,
+   "datum": "2026-04-29",
+   "aanvraag": "2025-12-08",
+   "besluit": "2026-04-29"
+  },
+  {
+   "adres": "Heydenrijckstraat 40",
+   "gevormd": 2,
+   "gevormd_maten": [
+    50,
+    43
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-04-24",
+   "aanvraag": "2026-04-24"
+  },
+  {
+   "adres": "Beijensstraat 53",
+   "gevormd": 2,
+   "gevormd_maten": [
+    48,
+    50
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-04-14",
+   "aanvraag": "2025-12-23",
+   "besluit": "2026-04-14"
+  },
+  {
+   "adres": "Koolemans Beynenstraat 74",
+   "gevormd": 2,
+   "gevormd_maten": [
+    53,
+    45
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-04-13",
+   "aanvraag": "2025-12-30",
+   "besluit": "2026-04-13",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "Groesbeekseweg 95",
+   "gevormd": 3,
+   "gevormd_maten": [
+    80,
+    50,
+    59
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-04-08",
+   "aanvraag": "2025-07-28",
+   "besluit": "2026-04-08",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "St. Thomashof 4",
+   "gevormd": 1,
+   "gevormd_maten": [
+    59
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-30",
+   "aanvraag": "2025-09-15",
+   "besluit": "2026-03-30",
    "vergund_aantal": 2,
-   "bag_nu": 3,
-   "wijkt_af": 1
+   "wijkt_af": -1
+  },
+  {
+   "adres": "Dominicanenstraat 103",
+   "gevormd": 3,
+   "gevormd_maten": [
+    92,
+    58,
+    57
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-24",
+   "aanvraag": "2026-01-16",
+   "besluit": "2026-03-24",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "Tweede Oude Heselaan 219",
+   "gevormd": 3,
+   "gevormd_maten": [
+    95,
+    66,
+    45
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-19",
+   "besluit": "2026-03-19",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "Kannenmarkt 8",
+   "gevormd": 3,
+   "gevormd_maten": [
+    50,
+    51,
+    45
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-17",
+   "besluit": "2026-03-17",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "Vondelstraat 34",
+   "gevormd": 3,
+   "gevormd_maten": [
+    52,
+    43,
+    49
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-03-17",
+   "aanvraag": "2025-10-06",
+   "besluit": "2026-03-17",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "Ligusterstraat 18A",
+   "gevormd": 2,
+   "gevormd_maten": [
+    50,
+    50
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-09",
+   "aanvraag": "2025-10-30",
+   "besluit": "2026-03-09"
+  },
+  {
+   "adres": "Tooropstraat 222",
+   "gevormd": 2,
+   "gevormd_maten": [
+    138,
+    110
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-03-04",
+   "aanvraag": "2025-11-10",
+   "besluit": "2026-03-04"
+  },
+  {
+   "adres": "Fransestraat 11",
+   "gevormd": 4,
+   "gevormd_maten": [
+    38,
+    29,
+    40,
+    34
+   ],
+   "in_gebruik": 3,
+   "datum": "2026-02-24",
+   "aanvraag": "2025-09-12",
+   "besluit": "2026-02-24"
+  },
+  {
+   "adres": "Graafseweg 49",
+   "gevormd": 2,
+   "gevormd_maten": [
+    52,
+    48
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-01-09",
+   "besluit": "2026-01-09"
+  },
+  {
+   "adres": "Nieuwe Nonnendaalseweg 57A-1",
+   "gevormd": 3,
+   "gevormd_maten": [
+    43,
+    33,
+    50
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-11-24",
+   "aanvraag": "2025-09-25",
+   "besluit": "2025-11-24",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "St. Canisiussingel 32",
+   "gevormd": 12,
+   "gevormd_maten": [
+    50,
+    50,
+    50,
+    50,
+    35,
+    40,
+    33,
+    50,
+    35,
+    40,
+    34,
+    48
+   ],
+   "in_gebruik": null,
+   "datum": "2025-10-08",
+   "aanvraag": "2025-08-05",
+   "besluit": "2025-10-08",
+   "vergund_aantal": 12
+  },
+  {
+   "adres": "Pontanusstraat 9",
+   "gevormd": 2,
+   "gevormd_maten": [
+    60,
+    65
+   ],
+   "in_gebruik": 2,
+   "datum": "2025-10-06",
+   "aanvraag": "2025-03-21",
+   "besluit": "2025-10-06",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "van Oldenbarneveltstraat 61",
+   "gevormd": 6,
+   "gevormd_maten": [
+    57,
+    70,
+    33,
+    25,
+    114,
+    101
+   ],
+   "in_gebruik": 2,
+   "datum": "2025-09-26",
+   "aanvraag": "2025-01-22",
+   "besluit": "2025-09-26",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "van Oldenbarneveltstraat 61-B",
+   "gevormd": 6,
+   "gevormd_maten": [
+    57,
+    70,
+    33,
+    25,
+    114,
+    101
+   ],
+   "in_gebruik": 2,
+   "datum": "2025-09-26",
+   "aanvraag": "2025-01-22",
+   "besluit": "2025-09-26",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "St. Annastraat 165",
+   "gevormd": 6,
+   "gevormd_maten": [
+    67,
+    65,
+    49,
+    44,
+    49,
+    54
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-09-24",
+   "aanvraag": "2025-08-01",
+   "besluit": "2025-09-24",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "St. Annastraat 165-B",
+   "gevormd": 6,
+   "gevormd_maten": [
+    67,
+    65,
+    49,
+    44,
+    49,
+    54
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-09-24",
+   "aanvraag": "2025-08-01",
+   "besluit": "2025-09-24",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "St. Annastraat 165-C",
+   "gevormd": 6,
+   "gevormd_maten": [
+    67,
+    65,
+    49,
+    44,
+    49,
+    54
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-09-24",
+   "aanvraag": "2025-08-01",
+   "besluit": "2025-09-24",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "St. Annastraat 165-E",
+   "gevormd": 6,
+   "gevormd_maten": [
+    67,
+    65,
+    49,
+    44,
+    49,
+    54
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-09-24",
+   "aanvraag": "2025-08-01",
+   "besluit": "2025-09-24",
+   "vergund_aantal": 6
+  },
+  {
+   "adres": "Couwenbergstraat 123",
+   "gevormd": 3,
+   "gevormd_maten": [
+    39,
+    38,
+    62
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-08-20",
+   "aanvraag": "2025-03-26",
+   "besluit": "2025-08-20",
+   "vergund_aantal": 3
+  },
+  {
+   "adres": "Wilhelminasingel 4",
+   "gevormd": 3,
+   "gevormd_maten": [
+    123,
+    63,
+    69
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-08-05",
+   "aanvraag": "2025-08-05"
+  },
+  {
+   "adres": "van Welderenstraat 124",
+   "gevormd": 6,
+   "gevormd_maten": [
+    54,
+    60,
+    23,
+    23,
+    26,
+    22
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-07-29",
+   "aanvraag": "2025-07-29"
+  },
+  {
+   "adres": "Voorstadslaan 70",
+   "gevormd": 2,
+   "gevormd_maten": [
+    60,
+    52
+   ],
+   "in_gebruik": 2,
+   "datum": "2025-07-21",
+   "aanvraag": "2025-03-21",
+   "besluit": "2025-07-21",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "de Fransestraat 36",
+   "gevormd": 2,
+   "gevormd_maten": [
+    130,
+    125
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-06-26",
+   "aanvraag": "2025-06-19",
+   "besluit": "2025-06-26"
+  },
+  {
+   "adres": "Sandenburgstraat 22",
+   "gevormd": 2,
+   "gevormd_maten": [
+    87,
+    41
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-06-10",
+   "aanvraag": "2025-06-10"
+  },
+  {
+   "adres": "Albardastraat 34",
+   "gevormd": 3,
+   "gevormd_maten": [
+    35,
+    40,
+    37
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-05-19",
+   "aanvraag": "2025-02-12",
+   "besluit": "2025-05-19"
+  },
+  {
+   "adres": "van Peltlaan 197",
+   "gevormd": 5,
+   "gevormd_maten": [
+    38,
+    42,
+    39,
+    33,
+    55
+   ],
+   "in_gebruik": 1,
+   "datum": "2025-05-08",
+   "aanvraag": "2025-02-17",
+   "besluit": "2025-05-08",
+   "vergund_aantal": 5
+  },
+  {
+   "adres": "Koninginnelaan 48",
+   "gevormd": 2,
+   "gevormd_maten": [
+    69,
+    44
+   ],
+   "in_gebruik": 1,
+   "datum": "2024-02-28",
+   "aanvraag": "2024-02-28"
+  },
+  {
+   "adres": "Tweede Oude Heselaan 173",
+   "gevormd": 6,
+   "gevormd_maten": [
+    53,
+    86,
+    75,
+    37,
+    40,
+    30
+   ],
+   "in_gebruik": 1,
+   "datum": "2024-02-23",
+   "aanvraag": "2024-02-23"
+  },
+  {
+   "adres": "Lentiusstraat 1",
+   "gevormd": 4,
+   "gevormd_maten": [
+    96,
+    98,
+    90,
+    90
+   ],
+   "in_gebruik": 1,
+   "datum": "2024-01-11",
+   "aanvraag": "2024-01-11"
+  },
+  {
+   "adres": "Groenestraat 14",
+   "gevormd": 3,
+   "gevormd_maten": [
+    50,
+    41,
+    40
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-11-24",
+   "aanvraag": "2023-11-24"
+  },
+  {
+   "adres": "Daalseweg 179",
+   "gevormd": 1,
+   "gevormd_maten": [
+    60
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-10-26",
+   "aanvraag": "2023-10-26"
+  },
+  {
+   "adres": "van Welderenstraat 126",
+   "gevormd": 3,
+   "gevormd_maten": [
+    166,
+    60,
+    59
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-10-03",
+   "aanvraag": "2023-10-03"
+  },
+  {
+   "adres": "van Welderenstraat 126A",
+   "gevormd": 3,
+   "gevormd_maten": [
+    166,
+    60,
+    59
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-10-03",
+   "aanvraag": "2023-10-03"
+  },
+  {
+   "adres": "Marialaan 57",
+   "gevormd": 2,
+   "gevormd_maten": [
+    92,
+    50
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-08-15",
+   "aanvraag": "2023-08-15"
+  },
+  {
+   "adres": "Ziekerstraat 144",
+   "gevormd": 4,
+   "gevormd_maten": [
+    31,
+    31,
+    22,
+    29
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-07-31",
+   "aanvraag": "2023-07-31"
+  },
+  {
+   "adres": "Groenestraat 143",
+   "gevormd": 3,
+   "gevormd_maten": [
+    50,
+    49,
+    41
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-07-05",
+   "aanvraag": "2023-07-05"
+  },
+  {
+   "adres": "Voorstadslaan 55",
+   "gevormd": 9,
+   "gevormd_maten": [
+    53,
+    67,
+    57,
+    48,
+    60,
+    50,
+    45,
+    45,
+    40
+   ],
+   "in_gebruik": 2,
+   "datum": "2023-07-04",
+   "aanvraag": "2023-07-04"
+  },
+  {
+   "adres": "Voorstadslaan 55 55",
+   "gevormd": 9,
+   "gevormd_maten": [
+    53,
+    67,
+    57,
+    48,
+    60,
+    50,
+    45,
+    45,
+    40
+   ],
+   "in_gebruik": 2,
+   "datum": "2023-07-04",
+   "aanvraag": "2023-07-04"
+  },
+  {
+   "adres": "Groesbeekseweg 76",
+   "gevormd": 3,
+   "gevormd_maten": [
+    147,
+    68,
+    74
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-06-21",
+   "aanvraag": "2023-06-21"
+  },
+  {
+   "adres": "Houtlaan 119",
+   "gevormd": 5,
+   "gevormd_maten": [
+    23,
+    28,
+    41,
+    41,
+    36
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-05-30",
+   "aanvraag": "2023-05-30"
+  },
+  {
+   "adres": "Houtstraat 63",
+   "gevormd": 4,
+   "gevormd_maten": [
+    119,
+    38,
+    38,
+    26
+   ],
+   "in_gebruik": 1,
+   "datum": "2023-02-16",
+   "aanvraag": "2023-02-16"
+  },
+  {
+   "adres": "Elzenstraat 4",
+   "gevormd": 20,
+   "gevormd_maten": [
+    891,
+    109,
+    117,
+    94,
+    94,
+    79,
+    79,
+    98,
+    98,
+    79,
+    79,
+    109,
+    136,
+    136,
+    109,
+    109,
+    94,
+    94,
+    116,
+    99
+   ],
+   "in_gebruik": null,
+   "datum": "2023-01-25",
+   "aanvraag": "2023-01-25"
   }
  ],
- "wacht_op_woningtelling": [],
- "mediaan_dagen_besluit_tot_bag": 3,
- "aantal_looptijden": 2
+ "wijkt_af_van_vergunning": [],
+ "wacht_op_woningtelling": []
 }

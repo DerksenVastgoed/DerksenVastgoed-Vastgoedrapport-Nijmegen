@@ -1,0 +1,24 @@
+
+## Publicaties
+_Vastgoedartikelen laatste 24u, met marktduiding. 18-10-2026._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#8A5A44;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">financiering</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/vastgoed-aankopen-zo-ziet-het-financieringslandschap-er-uit-meer-keuze-vraagt-om-meer-dan-rente-vergelijken/" style="color:#12242c;text-decoration:none">Vastgoed aankopen? Zo ziet het financieringslandschap er uit – Meer keuze vraagt om meer dan rente vergelijken</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Het financieringslandschap voor vastgoedaankopen is uitgebreider geworden met meerdere type geldverstrekkers naast banken.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Meer aanbieders betekent meer ruimte om financiering te vergelijken op voorwaarden, niet alleen op rente, wat de kapitaalkosten bij herfinanciering kan beïnvloeden.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/vastgoed-aankopen-zo-ziet-het-financieringslandschap-er-uit-meer-keuze-vraagt-om-meer-dan-rente-vergelijken/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOT09QREI2RjM0RDZ1WHlEdDlVbEhmejZZVmdUR1Z3OUhoWEdvY2xlMlNfRW9JWm55aHR0ZmpMTUlLVGdhZmVPTy1mWGZmLVRIS2VvcHpraFI3d0t3OGpsZ2gyNEpIUm01YWJPWEF2cTI5dmxZSlY3NHNGQkF5dk4tM1R3Z0pRVTV2clA0MlJDakhsWUZnYlp6OEpLTzJFY05jOENmNUZVTTRBR2QtaU90Qk5DNWlOWTYxaEVkamw1bGU5Z1N0?oc=5" style="color:#12242c;text-decoration:none">Berekening vergoedingsrente - Volkshuisvesting Nederland</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Volkshuisvesting Nederland publiceert een berekening van de vergoedingsrente.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Een gewijzigde vergoedingsrente kan het nettoresultaat van belastingteruggaven of -naheffingen voor verhuurders beïnvloeden.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Volkshuisvesting Nederland . <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOT09QREI2RjM0RDZ1WHlEdDlVbEhmejZZVmdUR1Z3OUhoWEdvY2xlMlNfRW9JWm55aHR0ZmpMTUlLVGdhZmVPTy1mWGZmLVRIS2VvcHpraFI3d0t3OGpsZ2gyNEpIUm01YWJPWEF2cTI5dmxZSlY3NHNGQkF5dk4tM1R3Z0pRVTV2clA0MlJDakhsWUZnYlp6OEpLTzJFY05jOENmNUZVTTRBR2QtaU90Qk5DNWlOWTYxaEVkamw1bGU5Z1N0?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPay16allieGxHSGRJSjZKNzdXWHZsQUgtcDVnSFlyazZJMkNuYVBKTWVBUXh0OHdmQk9TMmtOZ1VqT2daNXh2Rm4tc0tub29aTzRiRGx1TVRSdnJUVXduVlQxMm5BckpZM0MwVi1XQmQwS1cyclJCempZVXhHeDVVQlMtb1ZMR2IzeTBXWElEdkRMRi1kby1wRlZiSkxfNUN0SkpGanl4cWRaQlZ3NjVXSHFobzBMLXZaQllWOGIyVm5mc1luU2g0S0tLRWRvWnMyVWc?oc=5" style="color:#12242c;text-decoration:none">Splendorfabriek is niet veilig, sluiting dreigt voor tientallen bedrijven en twee woningen - De Gelderlander</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De Splendorfabriek blijkt onveilig, waardoor sluiting dreigt voor tientallen bedrijven en twee woningen.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Veiligheidsproblemen in bestaande panden kunnen leiden tot gedwongen leegstand en waardedruk bij vergelijkbare oudere binnenstedelijke gebouwen.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Regionale pers Nijmegen . <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPay16allieGxHSGRJSjZKNzdXWHZsQUgtcDVnSFlyazZJMkNuYVBKTWVBUXh0OHdmQk9TMmtOZ1VqT2daNXh2Rm4tc0tub29aTzRiRGx1TVRSdnJUVXduVlQxMm5BckpZM0MwVi1XQmQwS1cyclJCempZVXhHeDVVQlMtb1ZMR2IzeTBXWElEdkRMRi1kby1wRlZiSkxfNUN0SkpGanl4cWRaQlZ3NjVXSHFobzBMLXZaQllWOGIyVm5mc1luU2g0S0tLRWRvWnMyVWc?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
