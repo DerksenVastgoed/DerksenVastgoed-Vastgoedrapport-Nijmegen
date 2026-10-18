@@ -1417,9 +1417,10 @@ proef: gezicht:wordt niet gevonden in het register
 soort: brief
 
 ---
-eis: Een pand is rijksmonument als het RCE of het erfgoedregister van de
-  gemeente het zegt; het dossier noemt de bron, en noemt een tegenspraak
-  in plaats van hem op te lossen.
+eis: Een pand is rijksmonument als de RCE (punt in de BAG-pandomtrek) of
+  het erfgoedregister van de gemeente het zegt; het dossier noemt de bron,
+  en noemt een tegenspraak in plaats van hem op te lossen. Het RCE-bestand
+  per adres telt niet meer mee.
 waarom: 18 oktober. Het RCE-bestand (174 adressen) bleek onvolledig naast
   het register (569 rijksmonument-adressen); alle 42 RCE-adressen die niet
   op adres in het register stonden, stonden er wel onder hetzelfde
@@ -1429,5 +1430,5 @@ waarom: 18 oktober. Het RCE-bestand (174 adressen) bleek onvolledig naast
   Pyrmontsingel 9). De vlag telt mee in de huurpunten (wwso.py:
   energiepunten en de monumentenopslag), dus een gemist rijksmonument is
   een verkeerde huur.
-proef: marktprijzen_bag:de tegenspraak van Hoogstraat 3 wordt niet genoemd
+proef: marktprijzen_bag:de tegenspraak van Waldeck Pyrmontsingel wordt niet
 soort: gegevens

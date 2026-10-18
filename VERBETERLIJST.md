@@ -8112,17 +8112,20 @@ nagezocht, en dat is de enige route naar meer.
 - GEDAAN 18 oktober: **een lezer voor het RCE-bestand** (rijksmonumenten.lees)
   en een regel voor rijksmonument per pand (gezicht.monument_aanvullen), ook
   in de bekendmakingen, die nu het pand-id uit de BAG meenemen.
-- **rijksmonumenten.py is onvolledig: 76 van de 261 rijksmonumenten.** Gemeten
-  18 oktober met de RCE-punten via PDOK (monumenten.py --rce, binnen de
-  gemeentegrens): 261 rijksmonumenten in Nijmegen, en dat getal noemt
-  monumenten.nl ook. Het RCE-bestand per adres kent er 76 (alle 76 ook als
-  punt), het erfgoedregister 195. Van de 261 staan er 66 niet in het
-  register (onder meer reeksen als 520308 tot en met 520314, waar het
-  register 520307 noemt: vermoedelijk een complex met een hoofdnummer), en
-  9 registernummers staan niet bij de RCE-punten. Te doen: de 66 aan een
-  pand koppelen. Daarvoor is de BAG-pandgeometrie nodig, want een RCE-punt
-  is een punt en wij kennen per pand ook alleen een punt. De stap van 45
-  minuten in bekendmakingen.yml kan dan weg.
+- GEDAAN 18 oktober: **de 261 RCE-rijksmonumenten aan een pand gekoppeld**
+  via de BAG-pandomtrek (monumenten.py --rce-panden). Toets tegen het
+  register: 86 van 90 hetzelfde pand. 50 RCE-punten liggen in geen pand
+  (bruggen, beelden, terreinen). Het RCE-bestand per adres
+  (rijksmonumenten.py) telt niet meer mee: het koppelde het Spoorwegmonument
+  aan Hoogstraat 3 en het beeld van Petrus Canisius aan St. Jorisstraat 35.
+- **De stap "Rijksmonumenten ophalen" in bekendmakingen.yml (45 minuten) en
+  rijksmonumenten.py kunnen weg**, zodra niets meer lees_monumenten() nodig
+  heeft voor iets anders dan de melding "geen rijksmonumenten in deze lijst".
+- **Archeologische rijksmonumenten tellen als rijksmonument van het pand.**
+  Flavus 43 ligt op een terrein dat de RCE als rijksmonument kent, en krijgt
+  daardoor de vlag, ook in de huurpunten. Het RCE-punt draagt een
+  siteprotectionclassification ("Cultural; Archaeological"), maar die is nog
+  niet bewaard en niet getoetst.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
