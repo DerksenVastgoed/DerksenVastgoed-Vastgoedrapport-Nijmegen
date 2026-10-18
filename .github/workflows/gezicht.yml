@@ -30,11 +30,18 @@ jobs:
       - name: Ophalen
         run: python3 gezicht.py --ophalen
 
+      # Het gemeentelijk voorbeschermd stadsbeeld (Wederopbouwcentrum), zie
+      # stadsbeeld.py. Een verkenning: mislukt hij, dan blijven de
+      # rijksgezichten staan.
+      - name: Stadsbeeld verkennen
+        continue-on-error: true
+        run: python3 stadsbeeld.py --verken
+
       - name: Terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then
