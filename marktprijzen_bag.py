@@ -7427,13 +7427,24 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
         # buurt die niet per pand klopte; zie gezicht.py.
         try:
             import gezicht as _gz
-            _rijks, _beeld = [], []
+            _rijks, _beeld, _mon = [], [], []
             for _a, _p, _k, _afw, _b, _w in vers:
                 _bs = _gz.bescherming(_w.get("pand_id") or _w.get("pand"))
                 if _bs and _bs.get("rijks"):
                     _rijks.append(_w["adres"])
                 if _bs and _bs.get("stadsbeeld") in ("object", "gebied"):
                     _beeld.append(_w["adres"])
+                _soorten = {p.get("BESCHERMINGS_OMS")
+                            for p in ((_bs or {}).get("register") or [])}
+                if _soorten & {"Gemeentelijk monument", "Rijksmonument"}:
+                    _mon.append(f"{_w['adres']} ("
+                                + ", ".join(sorted(x.lower() for x in _soorten
+                                                   & {"Gemeentelijk monument",
+                                                      "Rijksmonument"})) + ")")
+                elif (_bs or {}).get("gem_stadsbeeld") or \
+                        "Stadsbeeldobject" in _soorten:
+                    if _w["adres"] not in _beeld:
+                        _beeld.append(_w["adres"])
             if _rijks:
                 r.append(f"_In een rijksbeschermd gezicht: {', '.join(_rijks)}. "
                          f"Voor wijzigingen aan het uiterlijk is een "
@@ -7441,11 +7452,17 @@ def render_nieuw_aanbod(woningen, per_buurt, stad_breed, bm_per_buurt=None,
                          f"monument is: gevelisolatie, kozijnen en zonnepanelen "
                          f"aan de voorzijde._")
                 r.append("")
+            if _mon:
+                r.append(f"_Monument volgens het erfgoedregister van de "
+                         f"gemeente: {', '.join(_mon)}. Bij een monument is "
+                         f"bijna elke wijziging vergunningplichtig, ook "
+                         f"verduurzamen._")
+                r.append("")
             if _beeld:
-                r.append(f"_In het gemeentelijk voorbeschermd stadsbeeld "
-                         f"Wederopbouwcentrum, sinds {_gz.STADSBEELD_SINDS}: "
-                         f"{', '.join(_beeld)}. Gevels en dakvlakken naar "
-                         f"openbaar gebied kunnen vergunningplichtig zijn._")
+                r.append(f"_In een gemeentelijk (voor)beschermd stadsbeeld: "
+                         f"{', '.join(_beeld)}. Wijzigingen aan de buitenkant "
+                         f"kunnen vergunningplichtig zijn; zie het dossier per "
+                         f"pand._")
                 r.append("")
         except Exception:
             pass
