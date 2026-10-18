@@ -267,6 +267,63 @@ def verken_omgevingsplan():
     return 0
 
 
+# GEMEENTELIJKE MONUMENTEN. 18 oktober: het omgevingsplan heeft 31
+# informatieobjecten en geen enkel daarvan is een gemeentelijk monument. De
+# Erfgoedverordening (CVDR731607, art. 2) schrijft een register voor dat
+# "door eenieder te raadplegen" is, zonder te zeggen waar. nijmegen.nl heeft
+# een pagina "Monumentenlijst" met een lijst of kaart, en de gemeente heeft
+# een GeoServer op services.nijmegen.nl. Deze stap legt vast wat de pagina
+# insluit (iframes, kaartlinks) en welke lagen de GeoServer kent met
+# monument, erfgoed of stadsbeeld in de naam.
+MONUMENTENPAGINA = "https://www.nijmegen.nl/cultuur/monumentenlijst/"
+GEOSERVER = ("https://services.nijmegen.nl/geoservices/ows?"
+             "service=WMS&request=GetCapabilities")
+MON_VERSLAG = "monumenten_verslag.md"
+
+
+def lagen_uit_capabilities(xml):
+    """(naam, titel) van elke laag in een WMS GetCapabilities."""
+    uit = []
+    for blok in re.findall(r"<Layer[^>]*>(.*?)</Layer>", xml or "", re.S):
+        naam = re.search(r"<Name>([^<]+)</Name>", blok)
+        titel = re.search(r"<Title>([^<]+)</Title>", blok)
+        if naam:
+            uit.append((naam.group(1).strip(),
+                        titel.group(1).strip() if titel else ""))
+    return uit
+
+
+def verken_monumenten():
+    r = ["# Verkenning gemeentelijke monumenten", ""]
+    eind, soort, inhoud = haal(MONUMENTENPAGINA, r)
+    if inhoud is not None:
+        t = inhoud.decode("utf-8", errors="replace")
+        bronnen = sorted(set(re.findall(r'<iframe[^>]+src="([^"]+)"', t)))
+        links = sorted(set(l for l in re.findall(r'href="([^"]+)"', t)
+                           if re.search(r"kaart|atlas|monument|geo|\.pdf|"
+                                        r"\.xlsx?|\.csv", l, re.I)))
+        r.append(f"## {MONUMENTENPAGINA}")
+        r.append(f"- eindadres `{eind}`, {len(inhoud)} bytes")
+        r.append(f"- iframes: {bronnen}")
+        r.append("- links:")
+        r += [f"  - {l}" for l in links[:60]]
+        r.append("")
+    eind, soort, inhoud = haal(GEOSERVER, r)
+    if inhoud is not None:
+        lagen = lagen_uit_capabilities(inhoud.decode("utf-8", "replace"))
+        raak = [(n, t) for n, t in lagen
+                if re.search(r"monument|erfgoed|stadsbeeld|stadsgezicht|"
+                             r"cultuurhist", n + " " + t, re.I)]
+        r.append(f"## GeoServer `{GEOSERVER}`")
+        r.append(f"- {len(lagen)} lagen, waarvan {len(raak)} over erfgoed:")
+        r += [f"  - `{n}`: {t}" for n, t in raak]
+        r.append("")
+    with open(MON_VERSLAG, "w", encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r))
+    return 0
+
+
 def proef():
     afw = []
     html = ('<tr><td>Gemeentelijk monument</td><td><a href="https://'
@@ -287,6 +344,12 @@ def proef():
                    f"{naam_uit_titel(echt)!r}")
     if not any(w in naam_uit_titel(echt).lower() for w in ERFGOEDWOORDEN):
         afw.append("het stadsbeeld valt niet onder de erfgoedwoorden")
+    caps = ("<Layer><Name>extern_Erfgoed:gemeentelijke_monumenten</Name>"
+            "<Title>Gemeentelijke monumenten</Title></Layer>")
+    if lagen_uit_capabilities(caps) != [
+            ("extern_Erfgoed:gemeentelijke_monumenten",
+             "Gemeentelijke monumenten")]:
+        afw.append("de lagen uit GetCapabilities worden niet gelezen")
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef stadsbeeld: {len(afw)} afwijkingen", file=sys.stderr)
@@ -298,9 +361,12 @@ def main():
     ap.add_argument("--verken", action="store_true")
     ap.add_argument("--omgevingsplan", action="store_true")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--monumenten", action="store_true")
     a = ap.parse_args()
     if a.proef:
         return proef()
+    if a.monumenten:
+        return verken_monumenten()
     if a.omgevingsplan:
         return verken_omgevingsplan()
     if a.verken:
