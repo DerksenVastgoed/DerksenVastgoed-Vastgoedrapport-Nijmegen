@@ -293,8 +293,61 @@ def lagen_uit_capabilities(xml):
     return uit
 
 
+# TWEEDE RONDE, 18 OKTOBER. De monumentenlijst-pagina sluit geen kaart of
+# bestand in (geen iframe, geen downloadlink), en de algemene GeoServer-ingang
+# gaf 401. De open lagen van de gemeente zitten per werkruimte
+# (extern_Mobiliteit, extern_Sport_Speel, ...), en de gemeente publiceert ze
+# als "odn-..." op data.overheid.nl. Die catalogus heeft een CKAN-API; daar
+# zoeken naar monumenten levert de echte werkruimte- en laagnamen, in plaats
+# van ze te raden.
+CKAN = ("https://data.overheid.nl/data/api/3/action/package_search?"
+        "q=monumenten%20nijmegen&rows=50")
+
+
+def datasets_uit_ckan(antwoord):
+    """[(titel, [resource-url])] uit een CKAN package_search-antwoord."""
+    try:
+        d = json.loads(antwoord)
+    except ValueError:
+        return None
+    uit = []
+    for pk in (d.get("result") or {}).get("results") or []:
+        urls = [res.get("url") for res in pk.get("resources") or []
+                if res.get("url")]
+        uit.append((pk.get("title") or pk.get("name") or "", urls))
+    return uit
+
+
 def verken_monumenten():
     r = ["# Verkenning gemeentelijke monumenten", ""]
+    _e, _s, inhoud = haal(CKAN, r)
+    sets = datasets_uit_ckan(inhoud.decode("utf-8", "replace")) if inhoud \
+        else None
+    r.append(f"## data.overheid.nl, zoeken op 'monumenten nijmegen'")
+    if sets is None:
+        r.append("- geen leesbaar antwoord")
+    else:
+        r.append(f"- {len(sets)} datasets")
+        for titel, urls in sets:
+            r.append(f"- {titel}")
+            r += [f"  - {u}" for u in urls[:6]]
+    r.append("")
+    for titel, urls in (sets or []):
+        if not re.search(r"monument", titel, re.I):
+            continue
+        for u in urls:
+            if "services.nijmegen.nl" in u:
+                werk = re.search(r"geoservices/([^/]+)/", u)
+                if werk:
+                    caps = (f"https://services.nijmegen.nl/geoservices/"
+                            f"{werk.group(1)}/ows?service=WFS&"
+                            f"request=GetCapabilities")
+                    _e2, _s2, c = haal(caps, r)
+                    if c is not None:
+                        namen = re.findall(r"<(?:wfs:)?Name>([^<]+)</",
+                                           c.decode("utf-8", "replace"))
+                        r.append(f"- WFS {werk.group(1)}: {namen[:30]}")
+    r.append("")
     eind, soort, inhoud = haal(MONUMENTENPAGINA, r)
     if inhoud is not None:
         t = inhoud.decode("utf-8", errors="replace")
@@ -344,6 +397,12 @@ def proef():
                    f"{naam_uit_titel(echt)!r}")
     if not any(w in naam_uit_titel(echt).lower() for w in ERFGOEDWOORDEN):
         afw.append("het stadsbeeld valt niet onder de erfgoedwoorden")
+    if datasets_uit_ckan('{"result":{"results":[{"title":"Monumenten",'
+                         '"resources":[{"url":"https://x/y"}]}]}}') != [
+            ("Monumenten", ["https://x/y"])]:
+        afw.append("de CKAN-zoekresultaten worden niet gelezen")
+    if datasets_uit_ckan("<html>") is not None:
+        afw.append("een onleesbaar CKAN-antwoord telt als nul datasets")
     caps = ("<Layer><Name>extern_Erfgoed:gemeentelijke_monumenten</Name>"
             "<Title>Gemeentelijke monumenten</Title></Layer>")
     if lagen_uit_capabilities(caps) != [
