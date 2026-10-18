@@ -74,6 +74,29 @@ def verken():
                 teksten[h] = pg.inner_text("body")[:6000]
             except Exception as e:
                 r.append(f"- fout bij {h}: {type(e).__name__}")
+        # DE PRESENTATIE VAN DE MONUMENTENLAGEN. De boom noemt per laag geen
+        # dienst, alleen een ID; de app haalt bij het aanzetten van een laag
+        # bookmark/10/bookmarkpresentation/<ID>/presentation op, en dat zag de
+        # tweede ronde voor drie andere lagen. Hier hetzelfde verzoek voor de
+        # lagen met monument of beschermd in de naam, met robots.txt eerst.
+        presentaties = {}
+        for url, boom in bomen.items():
+            basis = url.rsplit("/tree", 1)[0]
+            for knoop in _knopen(boom):
+                if re.search(r"monument|beschermd", str(knoop.get("label")),
+                             re.I) and not knoop.get("folder") \
+                        and knoop.get("ID"):
+                    purl = f"{basis}/bookmarkpresentation/{knoop['ID']}/" \
+                           f"presentation"
+                    ok3, reden3 = stadsbeeld.mag(purl)
+                    if not ok3:
+                        r.append(f"- niet opgehaald {purl}: {reden3}")
+                        continue
+                    try:
+                        antw = pg.request.get(purl)
+                        presentaties[knoop["label"]] = antw.json()
+                    except Exception as e:
+                        r.append(f"- fout bij {purl}: {type(e).__name__}")
         b.close()
     r.append("## Menu")
     r += [f"- {t[:80]} -> {h}" for t, h in links[:80]]
@@ -101,13 +124,27 @@ def verken():
     for url, boom in bomen.items():
         lagen += lagen_uit_boom(boom)
     with open(BOOM, "w", encoding="utf-8") as f:
-        json.dump({"bron": list(bomen), "bomen": bomen}, f,
+        json.dump({"bron": list(bomen), "bomen": bomen,
+                   "presentaties": presentaties}, f,
                   ensure_ascii=False, indent=1)
+    r.append("## Presentaties van de monumentenlagen")
+    for naam, pres in presentaties.items():
+        tekst = json.dumps(pres, ensure_ascii=False)
+        urls = sorted(set(re.findall(r"https?://[^\"\s]+", tekst)))
+        lagen_p = sorted(set(re.findall(r'"(?:layers?|layerName|LAYERS|'
+                                        r'name)"\s*:\s*"([^"]+)"', tekst)))
+        r.append(f"- {naam}: adressen {urls[:10]}, laagnamen {lagen_p[:10]}")
+        r.append(f"  - ruw: `{tekst[:1200]}`")
+    r.append("")
     r.append("## Lagen in de lagenboom")
     raak = [l for l in lagen if re.search(r"monument|stadsbeeld|stadsgezicht"
                                           r"|erfgoed|beschermd",
                                           json.dumps(l, ensure_ascii=False),
                                           re.I)]
+    if not lagen:
+        lagen = [{"pad": "", "naam": k.get("label"), "ID": k.get("ID")}
+                 for b in bomen.values() for k in _knopen(b)
+                 if k.get("label") and not k.get("folder")]
     r.append(f"- {len(lagen)} lagen, waarvan {len(raak)} over monumenten of "
              f"bescherming:")
     r += [f"  - {json.dumps(l, ensure_ascii=False)[:400]}" for l in raak]
@@ -116,6 +153,16 @@ def verken():
 
 
 BOOM = "kaartviewer_boom.json"
+
+
+def _knopen(k):
+    if isinstance(k, dict):
+        yield k
+        for v in k.values():
+            yield from _knopen(v)
+    elif isinstance(k, list):
+        for v in k:
+            yield from _knopen(v)
 
 
 def lagen_uit_boom(knoop, pad=()):
