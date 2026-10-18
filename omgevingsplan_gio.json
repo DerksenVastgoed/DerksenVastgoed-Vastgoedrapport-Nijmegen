@@ -59,7 +59,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2024/c79bb8d0bbab462c84d2408d700bede4/nld@2025-10-08;18215983"
   },
   {
-   "naam": "Bodemkwaliteitsgebied - bestaande stad vanaf 1965",
+   "naam": "/join/id/regdata/gm0268/2024/ebd46ce99b5f45c782cf19847884458d/nld@2025‑10‑08;18215983",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2024/ebd46ce99b5f45c782cf19847884458d/nld@2025-10-08;18215983"
   },
   {
@@ -71,7 +71,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2024/0a41e2797307477bae75521a31371dc5/nld@2025-10-08;18215983"
   },
   {
-   "naam": "/join/id/regdata/gm0268/2025/4539d71add434268bfb28a90b14ff072/nld@2026‑03‑12;15473785",
+   "naam": "Gebied met archeologische (verwachtings)waarden",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/4539d71add434268bfb28a90b14ff072/nld@2026-03-12;15473785"
   },
   {
@@ -87,7 +87,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/58603ffd5ca543e4b6bedccd952942e5/nld@2026-03-12;15473785"
   },
   {
-   "naam": "/join/id/regdata/gm0268/2025/0861d187cbe64da9b2009889a6b9260e/nld@2026‑03‑12;15473785",
+   "naam": "Vrijgestelde verticale bouwdiepte in meters ten opzichte van NAP",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/0861d187cbe64da9b2009889a6b9260e/nld@2026-03-12;15473785"
   },
   {
@@ -99,7 +99,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/af61869fb1854008afaa735af11fa0a0/nld@2026-03-12;15473785"
   },
   {
-   "naam": "/join/id/regdata/gm0268/2025/fac89bafd4ff4591a55fca98055ce236/nld@2026‑03‑12;15473785",
+   "naam": "Waardengebied archeologie - lage verwachtingswaarde",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/fac89bafd4ff4591a55fca98055ce236/nld@2026-03-12;15473785"
   },
   {
@@ -111,7 +111,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/48181376867442029376de7161bbaf1e/nld@2026-03-12;15473785"
   },
   {
-   "naam": "/join/id/regdata/gm0268/2025/0e44f3a1b1764c8fbe73dca7c67cd9d3/nld@2026‑03‑12;15473785",
+   "naam": "Waardengebied archeologie - middeleeuwse kern",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/0e44f3a1b1764c8fbe73dca7c67cd9d3/nld@2026-03-12;15473785"
   },
   {
@@ -123,7 +123,7 @@
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/c050a5bae89f424db2f97fd5d7ea798b/nld@2026-03-12;15473785"
   },
   {
-   "naam": "/join/id/regdata/gm0268/2025/74553638bbc6462996e9f5cd8fea6bd6/nld@2025‑10‑08;18215983",
+   "naam": "Waardengebied cultureel erfgoed - molenbiotoop",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/74553638bbc6462996e9f5cd8fea6bd6/nld@2025-10-08;18215983"
   }
  ],
@@ -135,6 +135,14 @@
    "gml": "https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-8608/1/gml/dc-2026-8608.gml",
    "bestand": "omgevingsplan_gio_00.gml",
    "vlakken": 10
+  },
+  {
+   "naam": "Waardengebied cultureel erfgoed - molenbiotoop",
+   "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/74553638bbc6462996e9f5cd8fea6bd6/nld@2025-10-08;18215983",
+   "pagina": "https://zoek.officielebekendmakingen.nl/dc-2025-15782/1/html",
+   "gml": "https://repository.officiele-overheidspublicaties.nl/Datacollecties/2025/dc-2025-15782/1/gml/dc-2025-15782.gml",
+   "bestand": "omgevingsplan_gio_01.gml",
+   "vlakken": 2
   }
  ]
 }

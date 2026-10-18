@@ -17,23 +17,54 @@ Start: `https://kaart.nijmegen.nl/menu/index.html`
 
 ## Opgevraagde adressen die op kaartlagen wijzen
 - https://services.nijmegen.nl/geoservices/extern_GEO_Gebiedsindelingen/wms?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=26851&TRANSPARENT=true&LAYERS=GEO_IND_GEMEENTEGRENS&WIDTH=1280&HEIGHT=720&CRS=EPSG%3A28992&BBOX=171372.99999801104%2C420632.4374988812%2C199375.00000198896%2C4
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=168762.56000000006%2C414831.04%2C175643.84000000005%2C421712.32
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=168762.56000000006%2C421712.32%2C175643.84000000005%2C428593.60000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=168762.56000000006%2C428593.6%2C175643.84000000005%2C435474.88
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=168762.56000000006%2C435474.88%2C175643.84000000005%2C442356.16000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=175643.84000000008%2C414831.04%2C182525.12000000008%2C421712.32
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=175643.84000000008%2C421712.32%2C182525.12000000008%2C428593.60000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=175643.84000000008%2C428593.6%2C182525.12000000008%2C435474.88
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=175643.84000000008%2C435474.88%2C182525.12000000008%2C442356.16000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=182525.12000000005%2C414831.04%2C189406.40000000005%2C421712.32
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=182525.12000000005%2C421712.32%2C189406.40000000005%2C428593.60000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=182525.12000000005%2C428593.6%2C189406.40000000005%2C435474.88
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=182525.12000000005%2C435474.88%2C189406.40000000005%2C442356.16000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=189406.40000000008%2C414831.04%2C196287.68000000008%2C421712.32
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=189406.40000000008%2C421712.32%2C196287.68000000008%2C428593.60000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=189406.40000000008%2C428593.6%2C196287.68000000008%2C435474.88
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=189406.40000000008%2C435474.88%2C196287.68000000008%2C442356.16000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=196287.68000000005%2C414831.04%2C203168.96000000005%2C421712.32
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=196287.68000000005%2C421712.32%2C203168.96000000005%2C428593.60000000003
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=196287.68000000005%2C428593.6%2C203168.96000000005%2C435474.88
-- https://www.openbasiskaart.nl/mapcache/?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3.0&FORMAT=image%2Fpng&STYLES=&TRANSPARENT=true&LAYERS=osm&WIDTH=256&HEIGHT=256&CRS=EPSG%3A28992&BBOX=196287.68000000005%2C435474.88%2C203168.96000000005%2C442356.16000000003
+
+## Alle andere opgevraagde adressen
+- blob:https://kaart.nijmegen.nl/9b0977b9-4487-4896-bfa0-b2725ce965c3
+- https://kaart.nijmegen.nl/?@Historie
+- https://kaart.nijmegen.nl/admin/rest/auth/check
+- https://kaart.nijmegen.nl/admin/rest/auth/myself?time=1792303060320
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/announcement?time=1792303061036
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/1/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/10/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/2/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/3/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/4/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/5/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/item/6/background
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu/logo
+- https://kaart.nijmegen.nl/admin/rest/kaartviewerapi/menu?time=1792303061036
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/announcement
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/bookmarkpresentation/2/presentation
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/bookmarkpresentation/2923/presentation
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/bookmarkpresentation/3379/presentation
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/filters
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/logo
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/10/tree
+- https://kaart.nijmegen.nl/admin/v2/kaartviewerapi/bookmark/Historie/settings
+- https://kaart.nijmegen.nl/kaartviewer/assets/index-e4wYFKeH.js
+- https://kaart.nijmegen.nl/menu/index.html
+- https://kaart.nijmegen.nl/menu/js/app.37089713.js
+- https://kaart.nijmegen.nl/menu/js/chunk-vendors.5280ab40.js
+
+## Tekst op https://kaart.nijmegen.nl/?@Historie
+```
+ 
+ 
+ Catalogus 100
+ Actieve lagen
+ Historische (lucht)foto's
+ Historische kaarten
+ Archeologie
+ Landschap
+ Gebiedsindelingen
+ Stadsontwikkeling
+ Historische gebouwen en locaties
+ Percelen, eigenaren en bewoners
+ Verdedigingswerken
+ Tweede Wereldoorlog
+2 km
+1:82.683 | Zoom: 7.3
+    
+ 
+```
