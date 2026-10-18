@@ -145,6 +145,57 @@ def verken():
     return 0
 
 
+# DE BRON VAN DE GEMEENTE ZELF. Gevonden op 18 oktober via de KaartViewer
+# (kaartviewer.py): de kaart Historie, map Monumenten, heeft de lagen
+# "Beschermde objecten" (extern_Monumenten:HIS_MON_MONUMENT) en "Beschermde
+# gebieden" (extern_Monumenten:HIS_MON_BESCHERMDE_GEB). Andere werkruimtes
+# van dezelfde server geven WFS met outputFormat, dus hier ook proberen.
+WFS = "https://services.nijmegen.nl/geoservices/extern_Monumenten/ows"
+WFS_LAGEN = ("extern_Monumenten:HIS_MON_MONUMENT",
+             "extern_Monumenten:HIS_MON_BESCHERMDE_GEB")
+
+
+def verken_wfs():
+    import collections
+    r = ["# Monumenten uit de GeoServer van de gemeente", ""]
+    for laag in WFS_LAGEN:
+        url = WFS + "?" + urllib.parse.urlencode({
+            "service": "WFS", "version": "2.0.0", "request": "GetFeature",
+            "typeNames": laag, "outputFormat": "application/json",
+            "srsName": "EPSG:28992"})
+        _e, soort, inhoud = stadsbeeld.haal(url, r)
+        r.append(f"## {laag}")
+        if inhoud is None:
+            r.append("- niet opgehaald")
+            continue
+        try:
+            d = json.loads(inhoud.decode("utf-8"))
+        except ValueError:
+            r.append(f"- geen JSON ({soort}): `{inhoud[:300]!r}`")
+            continue
+        fs = d.get("features") or []
+        r.append(f"- {len(fs)} objecten")
+        if fs:
+            velden = sorted((fs[0].get("properties") or {}).keys())
+            r.append(f"- velden: {velden}")
+            for veld in velden:
+                waarden = collections.Counter(
+                    str((f.get("properties") or {}).get(veld)) for f in fs)
+                if len(waarden) <= 12:
+                    r.append(f"  - {veld}: {dict(waarden.most_common(12))}")
+            for f in fs[:5]:
+                r.append(f"  - voorbeeld: "
+                         f"{json.dumps(f.get('properties'), ensure_ascii=False)[:400]}")
+        naam = laag.split(":")[1].lower()
+        with open(f"monumenten_{naam}.geojson", "w", encoding="utf-8") as f:
+            json.dump(d, f, ensure_ascii=False)
+        r.append("")
+    with open("monumenten_wfs_verslag.md", "w", encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r))
+    return 0
+
+
 def proef():
     afw = []
     sru = ("<sru:searchRetrieveResponse><sru:numberOfRecords>2"
@@ -180,7 +231,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verken", action="store_true")
     ap.add_argument("--proef", action="store_true")
+    ap.add_argument("--wfs", action="store_true")
     a = ap.parse_args()
+    if a.wfs:
+        return verken_wfs()
     if a.proef:
         return proef()
     if a.verken:
