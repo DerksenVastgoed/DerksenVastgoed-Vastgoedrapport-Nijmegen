@@ -8107,12 +8107,16 @@ nagezocht, en dat is de enige route naar meer.
   stadsbeelden). Zie gezicht.py en monumenten.py.
 - **Rijksmonument per pand komt nu uit twee bronnen.** rijksmonumenten.py
   (RCE, per adres, 174 adressen) en het erfgoedregister van de gemeente
-  (per geometrie, 206 objecten met "Rijksmonument"). Gemeten 18 oktober: op
-  adressleutel komen er 47 overeen; 127 staan alleen in het RCE-bestand en
-  153 alleen in het register. Een deel is notatie (het register schrijft
-  "Begijnenstraat 21-23", het RCE-bestand per huisnummer), maar het
-  RCE-bestand lijkt ook onvolledig. Een implementatie per afspraak: uitzoeken
-  welke van de twee het dossier moet gebruiken, en de andere als controle.
+  (per geometrie). Beide alleen op rijksmonumenten vergeleken, dus het
+  verschil is niet rijks tegen gemeentelijk. Gemeten 18 oktober, na het
+  uitsplitsen van reeksen als "Begijnenstraat 21-23" in losse huisnummers:
+  129 van de 174 RCE-adressen staan in het register als rijksmonument, 3 als
+  iets anders (2 gemeentelijk monument, 1 stadsbeeldobject), 42 niet. Het
+  register kent 569 rijksmonument-adressen, waarvan 129 in het RCE-bestand.
+  Het RCE-bestand is dus de onvolledige van de twee. Een eerste vergelijking
+  zonder uitsplitsen gaf 47 overeenkomsten; dat was notatie. Te doen: het
+  register het dossier laten voeden en het RCE-bestand als controle, en de
+  42 en de 3 nakijken.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
