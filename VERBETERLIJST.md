@@ -8109,10 +8109,20 @@ nagezocht, en dat is de enige route naar meer.
   42 RCE-adressen buiten het register stonden er onder hetzelfde nummer in
   (aflopende reeksen). Drie tegenspraken, waar het register achterloopt op
   het RCE, staan in het dossier als tegenspraak. Zie monument_uit_register().
-- **bekendmakingen_nijmegen.py heeft een eigen lees_monumenten()** naast die
-  in marktprijzen_bag.py. Twee implementaties van dezelfde afspraak.
-- **rijksmonumenten.py haalt maar 174 adressen op.** Uitzoeken waarom; het
-  register kent er 569.
+- GEDAAN 18 oktober: **een lezer voor het RCE-bestand** (rijksmonumenten.lees)
+  en een regel voor rijksmonument per pand (gezicht.monument_aanvullen), ook
+  in de bekendmakingen, die nu het pand-id uit de BAG meenemen.
+- **rijksmonumenten.py is onvolledig: 76 van de 261 rijksmonumenten.** Gemeten
+  18 oktober met de RCE-punten via PDOK (monumenten.py --rce, binnen de
+  gemeentegrens): 261 rijksmonumenten in Nijmegen, en dat getal noemt
+  monumenten.nl ook. Het RCE-bestand per adres kent er 76 (alle 76 ook als
+  punt), het erfgoedregister 195. Van de 261 staan er 66 niet in het
+  register (onder meer reeksen als 520308 tot en met 520314, waar het
+  register 520307 noemt: vermoedelijk een complex met een hoofdnummer), en
+  9 registernummers staan niet bij de RCE-punten. Te doen: de 66 aan een
+  pand koppelen. Daarvoor is de BAG-pandgeometrie nodig, want een RCE-punt
+  is een punt en wij kennen per pand ook alleen een punt. De stap van 45
+  minuten in bekendmakingen.yml kan dan weg.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
