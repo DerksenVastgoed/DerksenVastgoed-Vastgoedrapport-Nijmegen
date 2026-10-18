@@ -53,6 +53,7 @@ jobs:
         run: |
           python3 monumenten.py --proef
           python3 monumenten.py --verken
+          python3 monumenten.py --wfs
 
       # De KaartViewer van de gemeente is een JavaScript-app; zie
       # kaartviewer.py.
@@ -67,7 +68,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md monumenten_bronnen_verslag.md monumenten_gemeenteblad.json monumenten_wikidata.json kaartviewer_verslag.md; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md monumenten_bronnen_verslag.md monumenten_gemeenteblad.json monumenten_wikidata.json kaartviewer_verslag.md kaartviewer_boom.json monumenten_wfs_verslag.md monumenten_his_mon_monument.geojson monumenten_his_mon_beschermde_geb.geojson; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then
