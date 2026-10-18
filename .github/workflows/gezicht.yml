@@ -37,11 +37,19 @@ jobs:
         continue-on-error: true
         run: python3 stadsbeeld.py --verken
 
+      # Alle geografische informatieobjecten van het omgevingsplan, met de
+      # geometrie van wat op erfgoed wijst. Zie stadsbeeld.py.
+      - name: Omgevingsplan verkennen
+        continue-on-error: true
+        run: |
+          python3 stadsbeeld.py --proef
+          python3 stadsbeeld.py --omgevingsplan
+
       - name: Terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then

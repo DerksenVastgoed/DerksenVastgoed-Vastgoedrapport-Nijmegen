@@ -145,10 +145,127 @@ def vlakken(pad):
     return uit
 
 
+# HET HELE OMGEVINGSPLAN, NIET ALLEEN HET STADSBEELD. 18 oktober: de vraag
+# was welke gemeentelijke bescherming er nog meer is (gemeentelijke
+# monumenten, andere stadsbeelden; een oud commentaar sprak van acht). Het
+# omgevingsplan noemt in Bijlage I alle geografische informatieobjecten, maar
+# een samenvatting van de pagina gaf die lijst niet terug. Deze stap leest de
+# pagina zelf, bewaart elke JOIN-identificatie met haar naam, en haalt de
+# geometrie op van de objecten waarvan de naam op erfgoed wijst. Gemeentelijke
+# monumenten zijn onder de Omgevingswet mogelijk geen GIO maar een lijst; dan
+# zegt het verslag dat er geen GIO met die naam is, en dat is iets anders dan
+# "geen gemeentelijke monumenten".
+OMGEVINGSPLAN = "https://lokaleregelgeving.overheid.nl/CVDR696550"
+ERFGOEDWOORDEN = ("monument", "stadsgezicht", "stadsbeeld", "dorpsgezicht",
+                  "erfgoed", "cultuurhistor", "karakteristiek", "beeldbepal")
+GIO_LIJST = "omgevingsplan_gio.json"
+GIO_VERSLAG = "omgevingsplan_gio_verslag.md"
+
+
+def gio_uit_pagina(html):
+    """[(naam, join-url)] uit de HTML van een regeling. De naam is de tekst
+    van de link of, als die de URL zelf is, de tekst van de tabelcel ervoor."""
+    uit, gezien = [], set()
+    patroon = re.compile(
+        r'(?:<td[^>]*>\s*(?P<cel>[^<]{2,200}?)\s*</td>\s*<td[^>]*>\s*)?'
+        r'<a[^>]+href="(?P<url>https?://identifier\.officielebekendmakingen'
+        r'\.nl/join/id/regdata/[^"]+)"[^>]*>(?P<tekst>[^<]*)</a>', re.S)
+    for m in patroon.finditer(html):
+        url = m.group("url").replace("&amp;", "&")
+        tekst = (m.group("tekst") or "").strip()
+        naam = (m.group("cel") or "").strip() if (
+            not tekst or tekst.startswith("http")) else tekst
+        if url not in gezien:
+            gezien.add(url)
+            uit.append((naam, url))
+    return uit
+
+
+def verken_omgevingsplan():
+    r = ["# Geografische informatieobjecten in het omgevingsplan", "",
+         f"Regeling: `{OMGEVINGSPLAN}`", ""]
+    eind, soort, inhoud = haal(OMGEVINGSPLAN, r)
+    if inhoud is None:
+        with open(GIO_VERSLAG, "w", encoding="utf-8") as f:
+            f.write("\n".join(r) + "\n")
+        print("\n".join(r))
+        return 0
+    html = inhoud.decode("utf-8", errors="replace")
+    alle = gio_uit_pagina(html)
+    r.append(f"- eindadres `{eind}`, {len(inhoud)} bytes, {len(alle)} "
+             f"informatieobjecten met een JOIN-identificatie")
+    erfgoed = [(n, u) for n, u in alle
+               if any(w in n.lower() for w in ERFGOEDWOORDEN)]
+    r.append(f"- waarvan {len(erfgoed)} met een naam die op erfgoed wijst")
+    r.append("")
+    r.append("## Alle namen")
+    r.append("")
+    for n, u in alle:
+        r.append(f"- {n or '(geen naam)'}")
+    r.append("")
+    r.append("## Erfgoed, met geometrie")
+    r.append("")
+    resultaat = []
+    for i, (naam, url) in enumerate(erfgoed[:40]):
+        e1, _s1, i1 = haal(url, r)
+        if i1 is None:
+            continue
+        t1 = i1.decode("utf-8", errors="replace")
+        gml = [l for l in re.findall(r'href="([^"]+\.gml)"', t1)]
+        rij = {"naam": naam, "join": url, "pagina": e1, "gml": None}
+        if gml:
+            g_url = urllib.parse.urljoin(e1, gml[0])
+            e2, _s2, i2 = haal(g_url, r)
+            if i2 is not None:
+                pad = f"omgevingsplan_gio_{i:02d}.gml"
+                with open(pad, "wb") as f:
+                    f.write(i2)
+                n_vlak = i2.count(b"<gml:Polygon")
+                rij.update(gml=e2, bestand=pad, vlakken=n_vlak)
+        resultaat.append(rij)
+        r.append(f"- {naam}: "
+                 + (f"{rij.get('vlakken')} vlakken, bewaard als "
+                    f"{rij.get('bestand')}" if rij.get("bestand")
+                    else "geen GML gevonden"))
+    with open(GIO_LIJST, "w", encoding="utf-8") as f:
+        json.dump({"regeling": OMGEVINGSPLAN, "pagina": eind,
+                   "alle": [{"naam": n, "join": u} for n, u in alle],
+                   "erfgoed": resultaat}, f, ensure_ascii=False, indent=1)
+    with open(GIO_VERSLAG, "w", encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r[:60]))
+    return 0
+
+
+def proef():
+    afw = []
+    html = ('<tr><td>Gemeentelijk monument</td><td><a href="https://'
+            'identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/'
+            '2024/abc/nld@2024-01-01;1">https://identifier.officielebekend'
+            'makingen.nl/join/id/regdata/gm0268/2024/abc/nld@2024-01-01;1'
+            '</a></td></tr><a href="https://identifier.officielebekendmakingen'
+            '.nl/join/id/regdata/gm0268/2024/def/nld@2024-01-01;1">Molen'
+            'biotoop</a>')
+    uit = gio_uit_pagina(html)
+    if [n for n, _u in uit] != ["Gemeentelijk monument", "Molenbiotoop"]:
+        afw.append(f"de namen van de informatieobjecten worden niet gelezen: "
+                   f"{uit}")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef stadsbeeld: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--verken", action="store_true")
+    ap.add_argument("--omgevingsplan", action="store_true")
+    ap.add_argument("--proef", action="store_true")
     a = ap.parse_args()
+    if a.proef:
+        return proef()
+    if a.omgevingsplan:
+        return verken_omgevingsplan()
     if a.verken:
         return verken()
     ap.print_help()
