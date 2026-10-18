@@ -67,7 +67,7 @@ jobs:
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md monumenten_bronnen_verslag.md monumenten_gemeenteblad.json monumenten_wikidata.json kaartviewer_verslag.md; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md monumenten_bronnen_verslag.md monumenten_gemeenteblad.json monumenten_wikidata.json kaartviewer_verslag.md kaartviewer_boom.json; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then

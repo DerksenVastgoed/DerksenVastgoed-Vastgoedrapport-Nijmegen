@@ -14,6 +14,7 @@ robots.txt, zoals overal; staat die het niet toe, dan gebeurt er niets.
   python3 kaartviewer.py --verken
 """
 import argparse
+import json
 import re
 import sys
 
@@ -38,6 +39,20 @@ def verken():
         b = p.chromium.launch()
         pg = b.new_page(user_agent=stadsbeeld.AGENT)
         pg.on("request", lambda q: verzoeken.append(q.url))
+        # DE LAGENBOOM. De tweede ronde, 18 oktober, liet zien dat de kaart
+        # Historie haar lagen ophaalt via kaartviewerapi/bookmark/10/tree. Dat
+        # antwoord haalt de pagina zelf op; hier wordt het alleen bewaard,
+        # niet opnieuw opgevraagd.
+        bomen = {}
+
+        def bewaar(resp):
+            if "/kaartviewerapi/bookmark/" in resp.url and \
+                    resp.url.rstrip("/").endswith("/tree"):
+                try:
+                    bomen[resp.url] = resp.json()
+                except Exception:
+                    pass
+        pg.on("response", bewaar)
         pg.goto(START, wait_until="networkidle", timeout=60000)
         links = pg.eval_on_selector_all(
             "a", "els => els.map(e => [e.innerText.trim(), e.href])")
@@ -82,8 +97,47 @@ def verken():
         r.append("```")
         r.append(t)
         r.append("```")
+    lagen = []
+    for url, boom in bomen.items():
+        lagen += lagen_uit_boom(boom)
+    with open(BOOM, "w", encoding="utf-8") as f:
+        json.dump({"bron": list(bomen), "bomen": bomen}, f,
+                  ensure_ascii=False, indent=1)
+    r.append("## Lagen in de lagenboom")
+    raak = [l for l in lagen if re.search(r"monument|stadsbeeld|stadsgezicht"
+                                          r"|erfgoed|beschermd",
+                                          json.dumps(l, ensure_ascii=False),
+                                          re.I)]
+    r.append(f"- {len(lagen)} lagen, waarvan {len(raak)} over monumenten of "
+             f"bescherming:")
+    r += [f"  - {json.dumps(l, ensure_ascii=False)[:400]}" for l in raak]
     _schrijf(r)
     return 0
+
+
+BOOM = "kaartviewer_boom.json"
+
+
+def lagen_uit_boom(knoop, pad=()):
+    """Elke knoop met een naam en iets dat op een dienst of laagnaam lijkt,
+    met het pad van mappen erboven. De vorm van de boom is niet
+    gedocumenteerd, dus dit zoekt breed: elk dict met een titel of naam, en
+    alle tekstvelden waarin geoservices, wms, wfs of layer voorkomt."""
+    uit = []
+    if isinstance(knoop, dict):
+        naam = next((knoop[k] for k in ("title", "name", "naam", "label",
+                                        "titel") if isinstance(knoop.get(k),
+                                                               str)), None)
+        dienst = {k: v for k, v in knoop.items() if isinstance(v, str) and
+                  re.search(r"geoservices|wms|wfs|layer", k + v, re.I)}
+        if naam and dienst:
+            uit.append({"pad": " / ".join(pad), "naam": naam, **dienst})
+        for v in knoop.values():
+            uit += lagen_uit_boom(v, pad + ((naam,) if naam else ()))
+    elif isinstance(knoop, list):
+        for v in knoop:
+            uit += lagen_uit_boom(v, pad)
+    return uit
 
 
 def _schrijf(r):
