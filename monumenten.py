@@ -196,6 +196,87 @@ def verken_wfs():
     return 0
 
 
+# RCE-RIJKSMONUMENTEN ALS PUNTEN, VIA PDOK. 18 oktober 2026: het bestand van
+# rijksmonumenten.py (RCE linked data, 45 minuten per run) bevat 76 unieke
+# rijksmonumentnummers op 174 adressen, terwijl het erfgoedregister van de
+# gemeente 206 objecten "Rijksmonument" kent. Dezelfde RCE publiceert de
+# rijksmonumenten ook als punten in de PDOK-collectie die gezicht.py al
+# gebruikt (rce_inspire_points, naamruimte nlps-rijksmonumenten). Dit haalt
+# ze op voor de hele gemeente en vergelijkt de nummers met het register.
+RCE_PUNTEN = ("https://api.pdok.nl/rce/beschermde-gebieden-cultuurhistorie/"
+              "ogc/v1/collections/rce_inspire_points/items")
+# De gemeente Nijmegen ruim, in WGS84 (lon, lat); de omhullende van de
+# gemeentelijke lagen in RD is 170.170-200.457 bij 419.060-435.629.
+GEMEENTE_BBOX = (5.72, 51.78, 5.97, 51.91)
+UIT_RCE = "rijksmonumenten_rce_punten.json"
+
+
+def nummer_uit_citatie(c):
+    """Het rijksmonumentnummer uit ci_citation, zoals 'monumenten/341971'."""
+    m = re.search(r"monumenten/(\d+)", c or "")
+    return m.group(1) if m else None
+
+
+def verken_rce():
+    import time
+    r = ["# Rijksmonumenten van de RCE als punten (PDOK)", ""]
+    url = RCE_PUNTEN + "?" + urllib.parse.urlencode({
+        "f": "json", "limit": "1000",
+        "bbox": ",".join(str(v) for v in GEMEENTE_BBOX)})
+    punten, paginas = [], 0
+    while url and paginas < 30:
+        _e, _s, inhoud = stadsbeeld.haal(url, r)
+        if inhoud is None:
+            break
+        d = json.loads(inhoud.decode("utf-8"))
+        paginas += 1
+        for f in d.get("features") or []:
+            p = f.get("properties") or {}
+            if p.get("namespace") != "nlps-rijksmonumenten":
+                continue
+            c = (f.get("geometry") or {}).get("coordinates") or [None, None]
+            punten.append({"nummer": nummer_uit_citatie(p.get("ci_citation")),
+                           "naam": p.get("text"), "lon": c[0], "lat": c[1]})
+        url = next((l.get("href") for l in d.get("links") or []
+                    if l.get("rel") == "next"), None)
+        time.sleep(0.2)
+    nummers = {x["nummer"] for x in punten if x["nummer"]}
+    r.append(f"- {len(punten)} punten, {len(nummers)} unieke nummers, "
+             f"{paginas} pagina's, {'volledig' if url is None else 'NIET VOLLEDIG'}")
+    try:
+        with open("monumenten_his_mon_monument.geojson", encoding="utf-8") as f:
+            reg = json.load(f).get("features") or []
+        regnr = {str(x["properties"].get("RIJKSOBJECTCODE"))
+                 for x in reg if x["properties"].get("RIJKSOBJECTCODE")}
+        r.append(f"- register: {len(regnr)} objecten met een "
+                 f"rijksmonumentnummer; in beide {len(nummers & regnr)}, "
+                 f"alleen RCE {len(nummers - regnr)}, alleen register "
+                 f"{len(regnr - nummers)}")
+        r.append(f"  - alleen RCE, voorbeelden: {sorted(nummers - regnr)[:15]}")
+        r.append(f"  - alleen register, voorbeelden: "
+                 f"{sorted(regnr - nummers)[:15]}")
+    except (OSError, ValueError):
+        r.append("- register niet te lezen")
+    try:
+        with open("rijksmonumenten_nijmegen.json", encoding="utf-8") as f:
+            oud = json.load(f)
+        oudnr = {nummer_uit_citatie(x.get("nummer")) or
+                 re.sub(r"\D", "", x.get("nummer") or "")
+                 for v in oud.values() for x in v}
+        oudnr.discard("")
+        r.append(f"- rijksmonumenten_nijmegen.json: {len(oudnr)} nummers, "
+                 f"waarvan {len(oudnr & nummers)} ook als RCE-punt")
+    except (OSError, ValueError):
+        pass
+    with open(UIT_RCE, "w", encoding="utf-8") as f:
+        json.dump({"bron": "RCE via PDOK, rce_inspire_points, CC BY 4.0",
+                   "punten": punten}, f, ensure_ascii=False)
+    with open("rijksmonumenten_rce_verslag.md", "w", encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r))
+    return 0
+
+
 def proef():
     afw = []
     sru = ("<sru:searchRetrieveResponse><sru:numberOfRecords>2"
@@ -221,6 +302,11 @@ def proef():
         afw.append(f"de coordinaten uit Wikidata worden niet gelezen: {rij}")
     if rijen_uit_sparql("<html>") is not None:
         afw.append("een onleesbaar Wikidata-antwoord telt als nul monumenten")
+    if nummer_uit_citatie("https://monumentenregister.cultureelerfgoed.nl/"
+                          "monumenten/341971") != "341971" or \
+            nummer_uit_citatie("kennis.cultureelerfgoed.nl/Gezicht/1439"):
+        afw.append("het rijksmonumentnummer uit de citatie wordt verkeerd "
+                   "gelezen")
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef monumenten: {len(afw)} afwijkingen", file=sys.stderr)
@@ -232,7 +318,10 @@ def main():
     ap.add_argument("--verken", action="store_true")
     ap.add_argument("--proef", action="store_true")
     ap.add_argument("--wfs", action="store_true")
+    ap.add_argument("--rce", action="store_true")
     a = ap.parse_args()
+    if a.rce:
+        return verken_rce()
     if a.wfs:
         return verken_wfs()
     if a.proef:
