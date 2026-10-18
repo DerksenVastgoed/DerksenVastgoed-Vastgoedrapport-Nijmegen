@@ -217,11 +217,35 @@ def nummer_uit_citatie(c):
     return m.group(1) if m else None
 
 
+def _gemeentegrens(r):
+    url = ("https://services.nijmegen.nl/geoservices/extern_GEO_Gebiedsindelingen"
+           "/ows?" + urllib.parse.urlencode({
+               "service": "WFS", "version": "2.0.0", "request": "GetFeature",
+               "typeNames": "extern_GEO_Gebiedsindelingen:GEO_IND_GEMEENTEGRENS",
+               "outputFormat": "application/json", "srsName": "EPSG:28992"}))
+    _e, _s, inhoud = stadsbeeld.haal(url, r)
+    if inhoud is None:
+        return None
+    try:
+        d = json.loads(inhoud.decode("utf-8"))
+    except ValueError:
+        return None
+    uit = []
+    for f in d.get("features") or []:
+        g = f.get("geometry") or {}
+        if g.get("type") == "Polygon":
+            uit.append(g)
+        elif g.get("type") == "MultiPolygon":
+            uit += [{"type": "Polygon", "coordinates": c}
+                    for c in g.get("coordinates") or []]
+    return uit or None
+
+
 def verken_rce():
     import time
     r = ["# Rijksmonumenten van de RCE als punten (PDOK)", ""]
     url = RCE_PUNTEN + "?" + urllib.parse.urlencode({
-        "f": "json", "limit": "1000",
+        "f": "json", "limit": "500",
         "bbox": ",".join(str(v) for v in GEMEENTE_BBOX)})
     punten, paginas = [], 0
     while url and paginas < 30:
@@ -240,14 +264,35 @@ def verken_rce():
         url = next((l.get("href") for l in d.get("links") or []
                     if l.get("rel") == "next"), None)
         time.sleep(0.2)
+    # BINNEN DE GEMEENTEGRENS. De eerste ronde gaf precies 500 punten op een
+    # bbox die ook Ubbergen, Groesbeek en Beuningen raakt. De grens komt van
+    # dezelfde GeoServer als het register (extern_GEO_Gebiedsindelingen).
+    grens = _gemeentegrens(r)
+    if grens:
+        import gezicht
+        binnen = []
+        for x in punten:
+            if x["lat"] is None:
+                continue
+            gx, gy = gezicht.wgs84_naar_rd(x["lat"], x["lon"])
+            if any(gezicht.in_vlak(gx, gy, v) for v in grens):
+                binnen.append(x)
+        r.append(f"- binnen de gemeentegrens: {len(binnen)} van "
+                 f"{len(punten)}")
+        punten = binnen
+    else:
+        r.append("- gemeentegrens niet te lezen; punten niet gefilterd")
     nummers = {x["nummer"] for x in punten if x["nummer"]}
     r.append(f"- {len(punten)} punten, {len(nummers)} unieke nummers, "
              f"{paginas} pagina's, {'volledig' if url is None else 'NIET VOLLEDIG'}")
     try:
         with open("monumenten_his_mon_monument.geojson", encoding="utf-8") as f:
             reg = json.load(f).get("features") or []
-        regnr = {str(x["properties"].get("RIJKSOBJECTCODE"))
-                 for x in reg if x["properties"].get("RIJKSOBJECTCODE")}
+        # Het register schrijft soms "31114 " of "31177 en 31178".
+        regnr = {n for x in reg
+                 for n in re.findall(r"\d{4,6}",
+                                     str(x["properties"].get("RIJKSOBJECTCODE")
+                                         or ""))}
         r.append(f"- register: {len(regnr)} objecten met een "
                  f"rijksmonumentnummer; in beide {len(nummers & regnr)}, "
                  f"alleen RCE {len(nummers - regnr)}, alleen register "
