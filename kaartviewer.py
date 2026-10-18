@@ -45,6 +45,7 @@ def verken():
         # ook openen, want pas daar laadt de kaart haar lagen.
         doelen = [h for t, h in links
                   if re.search(r"monument|erfgoed|cultuur|histor", t + h, re.I)]
+        teksten = {}
         for h in doelen[:5]:
             ok2, reden2 = stadsbeeld.mag(h)
             if not ok2:
@@ -52,16 +53,35 @@ def verken():
                 continue
             try:
                 pg.goto(h, wait_until="networkidle", timeout=60000)
-                pg.wait_for_timeout(3000)
+                pg.wait_for_timeout(5000)
+                # De lagenlijst van de kaart: pas aangevinkte lagen worden
+                # opgevraagd, dus de namen staan alleen in de pagina zelf.
+                teksten[h] = pg.inner_text("body")[:6000]
             except Exception as e:
                 r.append(f"- fout bij {h}: {type(e).__name__}")
         b.close()
     r.append("## Menu")
     r += [f"- {t[:80]} -> {h}" for t, h in links[:80]]
     r.append("")
+    # ALLES BEHALVE ACHTERGRONDTEGELS. De eerste ronde, 18 oktober, filterde
+    # op woorden als json en config, en zag alleen de gemeentegrens: de
+    # configuratie van de kaart Historie kwam blijkbaar via een adres zonder
+    # die woorden. Nu staat elk verzoek erin, behalve de tegels van de
+    # achtergrondkaart, met de kaartlagen bovenaan.
+    uniek = sorted(set(u for u in verzoeken if "openbasiskaart" not in u
+                       and not re.search(r"\.(png|jpg|svg|woff2?|ttf|css)"
+                                         r"(\?|$)", u)))
     r.append("## Opgevraagde adressen die op kaartlagen wijzen")
-    r += [f"- {u[:300]}" for u in sorted(set(verzoeken))
-          if INTERESSANT.search(u)][:150]
+    r += [f"- {u[:300]}" for u in uniek if INTERESSANT.search(u)][:150]
+    r.append("")
+    r.append("## Alle andere opgevraagde adressen")
+    r += [f"- {u[:300]}" for u in uniek if not INTERESSANT.search(u)][:150]
+    r.append("")
+    for h, t in teksten.items():
+        r.append(f"## Tekst op {h}")
+        r.append("```")
+        r.append(t)
+        r.append("```")
     _schrijf(r)
     return 0
 
