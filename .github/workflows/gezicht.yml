@@ -46,11 +46,28 @@ jobs:
           python3 stadsbeeld.py --omgevingsplan
           python3 stadsbeeld.py --monumenten
 
+      # Gemeentelijke monumenten uit het Gemeenteblad en Wikidata, zie
+      # monumenten.py.
+      - name: Monumenten verkennen
+        continue-on-error: true
+        run: |
+          python3 monumenten.py --proef
+          python3 monumenten.py --verken
+
+      # De KaartViewer van de gemeente is een JavaScript-app; zie
+      # kaartviewer.py.
+      - name: KaartViewer verkennen
+        continue-on-error: true
+        run: |
+          pip install --quiet playwright
+          python3 -m playwright install --with-deps chromium
+          python3 kaartviewer.py --verken
+
       - name: Terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md monumenten_bronnen_verslag.md monumenten_gemeenteblad.json monumenten_wikidata.json kaartviewer_verslag.md; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then
