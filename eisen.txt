@@ -1415,3 +1415,19 @@ waarom: 18 oktober. Tot dan zei het dossier bij elk pand "gemeentelijke
   stadsbeeldobject is niet per stadsbeeld nagelezen en staat er zo.
 proef: gezicht:wordt niet gevonden in het register
 soort: brief
+
+---
+eis: Een pand is rijksmonument als het RCE of het erfgoedregister van de
+  gemeente het zegt; het dossier noemt de bron, en noemt een tegenspraak
+  in plaats van hem op te lossen.
+waarom: 18 oktober. Het RCE-bestand (174 adressen) bleek onvolledig naast
+  het register (569 rijksmonument-adressen); alle 42 RCE-adressen die niet
+  op adres in het register stonden, stonden er wel onder hetzelfde
+  rijksmonumentnummer. Andersom noemt het RCE drie panden een
+  rijksmonument die het register nog als gemeentelijk monument of
+  stadsbeeldobject kent (Hoogstraat 3, St. Jorisstraat 35, Waldeck
+  Pyrmontsingel 9). De vlag telt mee in de huurpunten (wwso.py:
+  energiepunten en de monumentenopslag), dus een gemist rijksmonument is
+  een verkeerde huur.
+proef: marktprijzen_bag:de tegenspraak van Hoogstraat 3 wordt niet genoemd
+soort: gegevens

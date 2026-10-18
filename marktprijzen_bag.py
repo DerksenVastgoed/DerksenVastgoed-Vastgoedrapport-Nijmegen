@@ -6297,7 +6297,10 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         else:
             f("energielabel", lab, "EP-Online")
     if w.get("monument"):
-        f("monument", "rijksmonument", "Rijksdienst voor het Cultureel Erfgoed")
+        _m = w["monument"]
+        f("monument", "rijksmonument"
+          + (f"; let op: {_m['tegenspraak']}" if _m.get("tegenspraak") else ""),
+          _m.get("bron") or "Rijksdienst voor het Cultureel Erfgoed")
     if w.get("ov_halte"):
         h = w["ov_halte"]
         f("OV", f"{h['naam']} op {h['meters']} m lopen", "OpenStreetMap en OSRM")
@@ -8051,6 +8054,39 @@ def lees_haltes_bestand():
         return []
 
 
+def monument_uit_register(w):
+    """Vul w["monument"] aan met het erfgoedregister van de gemeente; zie de
+    toelichting in render() bij RIJKSMONUMENT UIT TWEE BRONNEN."""
+    try:
+        import gezicht as _gz
+        _bs = _gz.bescherming(w.get("pand_id") or w.get("pand"))
+    except Exception:
+        _bs = None
+    if not _bs or _bs.get("register") is None:
+        return w
+    rijks = [p for p in _bs["register"]
+             if p.get("BESCHERMINGS_OMS") == "Rijksmonument"]
+    if rijks and not w.get("monument"):
+        p = rijks[0]
+        code = p.get("RIJKSOBJECTCODE")
+        w["monument"] = {
+            "adres": p.get("TITEL"), "functie": p.get("OBJECTNAAM") or "",
+            "nummer": (f"https://monumentenregister.cultureelerfgoed.nl/"
+                       f"monumenten/{code}" if code else ""),
+            "bron": "erfgoedregister gemeente"}
+    elif w.get("monument") and rijks:
+        w["monument"]["bron"] = "RCE en erfgoedregister gemeente"
+    elif w.get("monument") and not rijks:
+        ander = sorted({p.get("BESCHERMINGS_OMS") for p in _bs["register"]
+                        if p.get("BESCHERMINGS_OMS")})
+        w["monument"]["tegenspraak"] = (
+            "het erfgoedregister van de gemeente noemt dit "
+            + (", ".join(a.lower() for a in ander) if ander
+               else "geen monument")
+            + "; het RCE een rijksmonument")
+    return w
+
+
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     # De WOZ-schatting ijken op de panden waarvan we de echte waarde kennen.
     # Hoe meer WOZ-waarden Mark invoert, hoe beter de schatting voor de rest.
@@ -8095,7 +8131,20 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             if monumenten:
                 mon = monumenten.get(k, [])
                 if mon:
-                    w["monument"] = mon[0]
+                    w["monument"] = dict(mon[0], bron="RCE")
+    # RIJKSMONUMENT UIT TWEE BRONNEN, EEN UITKOMST. 18 oktober 2026: het
+    # RCE-bestand (rijksmonumenten.py, 174 adressen) bleek onvolledig naast
+    # het erfgoedregister van de gemeente (569 rijksmonument-adressen). Alle
+    # 42 RCE-adressen die niet op adres in het register stonden, stonden er
+    # wel onder hetzelfde rijksmonumentnummer (aflopende reeksen als
+    # "Arnold van Akenplein 10-8"). Andersom noemt het RCE drie panden een
+    # rijksmonument die het register nog als gemeentelijk monument of
+    # stadsbeeldobject kent (Hoogstraat 3, St. Jorisstraat 35, Waldeck
+    # Pyrmontsingel 9, RCE-nummers uit de 52xxxx-reeks): daar loopt het
+    # register achter. Dus: rijksmonument als een van de twee het zegt, met
+    # de bron erbij, en een tegenspraak wordt genoemd in plaats van opgelost.
+    for w in woningen:
+        monument_uit_register(w)
 
     r = ["", ""]   # samenvatting wordt hierna ingevoegd, zodra we de kandidaten hebben
 
@@ -8522,6 +8571,10 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                 extra.append(f"monumentnr {mon['nummer']}")
             if mon.get("functie"):
                 extra.append(f"oorspronkelijk {mon['functie'].lower()}")
+            if mon.get("bron"):
+                extra.append(f"bron: {mon['bron']}")
+            if mon.get("tegenspraak"):
+                extra.append(f"let op: {mon['tegenspraak']}")
             staart = f" ({', '.join(extra)})" if extra else ""
             r.append(f"- **{w['adres']}** ({buurt}) . {w['status']}{staart}")
         r.append("")
@@ -8530,13 +8583,14 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                  "vergunningplicht voor ingrepen aan het monument, wat verbouwen en "
                  "splitsen trager en duurder maakt. Daartegenover staan eigen subsidie- "
                  "en financieringsroutes voor onderhoud en restauratie. "
-                 "Bron: Rijksdienst voor het Cultureel Erfgoed._")
+                 "Bron per pand hierboven: de Rijksdienst voor het Cultureel "
+                 "Erfgoed, het erfgoedregister van de gemeente, of beide._")
         r.append("")
     elif monumenten:
-        r.append("_Geen rijksmonumenten in deze lijst. Let op: gemeentelijke monumenten en "
-                 "panden binnen een beschermd stadsgezicht staan hier niet bij, want die "
-                 "zitten niet in het landelijke register. "
-                 "Bron: Rijksdienst voor het Cultureel Erfgoed._")
+        r.append("_Geen rijksmonumenten in deze lijst, volgens de Rijksdienst "
+                 "voor het Cultureel Erfgoed en het erfgoedregister van de "
+                 "gemeente. Gemeentelijke monumenten en stadsbeelden staan per "
+                 "pand in het dossier._")
         r.append("")
 
     return "\n".join(r)
@@ -8960,6 +9014,39 @@ def proef():
         _g["bag_eenheden_in_pand"], _g["BAG_API_KEY"] = _oud_api, _oud_key
         _ververst.clear()
         _ververst.update(_oud_teller)
+
+    # RIJKSMONUMENT UIT TWEE BRONNEN (18 oktober). Drie gevallen met de
+    # vorm van echte: alleen in het register, in beide, en de tegenspraak
+    # van Hoogstraat 3 (RCE rijksmonument 523055, register gemeentelijk).
+    import gezicht as _gzp
+    _oud_b = _gzp.bescherming
+    _antw = {
+        "R": {"register": [{"BESCHERMINGS_OMS": "Rijksmonument",
+                            "TITEL": "Arnold van Akenplein 10-8",
+                            "RIJKSOBJECTCODE": "31122"}]},
+        "G": {"register": [{"BESCHERMINGS_OMS": "Gemeentelijk monument",
+                            "TITEL": "Hoogstraat 3-5"}]},
+        "N": {"register": None}}
+    try:
+        _gzp.bescherming = lambda pid: _antw.get(pid)
+        _w = monument_uit_register({"pand": "R"})
+        if (_w.get("monument") or {}).get("bron") != "erfgoedregister gemeente" \
+                or "31122" not in (_w["monument"].get("nummer") or ""):
+            afw.append(f"een rijksmonument alleen in het register wordt niet "
+                       f"overgenomen: {_w.get('monument')}")
+        _w = monument_uit_register({"pand": "R", "monument": {"bron": "RCE"}})
+        if _w["monument"]["bron"] != "RCE en erfgoedregister gemeente":
+            afw.append("twee bronnen die het eens zijn, worden niet beide "
+                       "genoemd")
+        _w = monument_uit_register({"pand": "G", "monument": {"bron": "RCE"}})
+        if "gemeentelijk monument" not in (_w["monument"].get("tegenspraak")
+                                           or ""):
+            afw.append("de tegenspraak van Hoogstraat 3 wordt niet genoemd")
+        _w = monument_uit_register({"pand": "N"})
+        if _w.get("monument"):
+            afw.append("zonder register wordt toch een monument ingevuld")
+    finally:
+        _gzp.bescherming = _oud_b
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
