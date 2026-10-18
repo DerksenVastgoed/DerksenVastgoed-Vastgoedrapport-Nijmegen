@@ -230,6 +230,53 @@ STADSBEELD_BRON = ("Voorbeschermingsregels stadsbeeld Wederopbouwcentrum, "
 _cache = {}
 
 
+# HET ERFGOEDREGISTER VAN DE GEMEENTE. Gevonden op 18 oktober 2026 via de
+# KaartViewer (kaartviewer.py, monumenten.py --wfs): extern_Monumenten op de
+# GeoServer van de gemeente, met 2.781 objecten (rijksmonumenten, gemeentelijke
+# monumenten, stadsbeeldobjecten, panden in procedure, aandachtspanden) en 10
+# beschermde gebieden (8 gemeentelijke stadsbeelden, 2 rijksgezichten). In RD.
+REGISTER = "monumenten_his_mon_monument.geojson"
+REGISTER_GEBIEDEN = "monumenten_his_mon_beschermde_geb.geojson"
+REGISTER_BRON = ("erfgoedregister gemeente Nijmegen, GeoServer "
+                 "extern_Monumenten")
+
+
+def _register(pad):
+    """[(eigenschappen, polygoon, omhullende)] uit een GeoJSON in RD, en de
+    datum van bijwerken. (None, None) als het bestand er niet is: dat is
+    niet nagekeken, geen leeg register."""
+    try:
+        with open(pad, encoding="utf-8") as f:
+            d = json.load(f)
+    except (OSError, ValueError):
+        return None, None
+    uit, datum = [], None
+    for ft in d.get("features") or []:
+        g = ft.get("geometry") or {}
+        props = ft.get("properties") or {}
+        datum = datum or props.get("DD_BIJGEWERKT")
+        if g.get("type") == "Polygon":
+            polys = [g]
+        elif g.get("type") == "MultiPolygon":
+            polys = [{"type": "Polygon", "coordinates": c}
+                     for c in g.get("coordinates") or []]
+        else:
+            continue
+        for poly in polys:
+            ring = (poly["coordinates"] or [[]])[0]
+            if not ring:
+                continue
+            xs = [p[0] for p in ring]
+            ys = [p[1] for p in ring]
+            uit.append((props, poly, (min(xs), min(ys), max(xs), max(ys))))
+    return uit, datum
+
+
+def _raak(register, x, y):
+    return [props for props, poly, (a, b, c, d) in register
+            if a <= x <= c and b <= y <= d and in_vlak(x, y, poly)]
+
+
 def _laad():
     if "geladen" in _cache:
         return _cache
@@ -241,6 +288,8 @@ def _laad():
             _cache["gezichten"] = json.load(f).get("gezichten")
     except (OSError, ValueError):
         _cache["gezichten"] = None
+    _cache["register"], _cache["register_datum"] = _register(REGISTER)
+    _cache["gem_gebieden"], _ = _register(REGISTER_GEBIEDEN)
     _cache["gebied"] = stadsbeeld.vlakken(stadsbeeld.WERKINGSGEBIED)
     _cache["objecten"] = stadsbeeld.vlakken(stadsbeeld.OBJECTEN)
     _cache["geladen"] = True
@@ -265,16 +314,87 @@ def bescherming(pand_id):
     if c["gezichten"] is not None:
         rijks = [g.get("naam") or g.get("id") for g in c["gezichten"]
                  if in_vlak(pt["lon"], pt["lat"], g.get("geometry"))]
+    x, y = wgs84_naar_rd(pt["lat"], pt["lon"])
+    register = (None if c.get("register") is None
+                else _raak(c["register"], x, y))
+    gem_stadsbeeld = None
+    if c.get("gem_gebieden") is not None:
+        gem_stadsbeeld = any(
+            (p.get("SOORT") or "").startswith("gembeschermd")
+            for p in _raak(c["gem_gebieden"], x, y))
     stadsbeeld = None
     if c["gebied"] is not None and c["objecten"] is not None:
-        x, y = wgs84_naar_rd(pt["lat"], pt["lon"])
         if any(in_vlak(x, y, v) for v in c["objecten"]):
             stadsbeeld = "object"
         elif any(in_vlak(x, y, v) for v in c["gebied"]):
             stadsbeeld = "gebied"
         else:
             stadsbeeld = ""
-    return {"rijks": rijks, "stadsbeeld": stadsbeeld}
+    return {"rijks": rijks, "stadsbeeld": stadsbeeld, "register": register,
+            "gem_stadsbeeld": gem_stadsbeeld}
+
+
+# Wat een vermelding in het register betekent. Alleen voor het rijks- en het
+# gemeentelijk monument is de regel hier nagelezen: Erfgoedverordening
+# Nijmegen (CVDR731607) art. 14 voor het gemeentelijk monument. Voor een
+# stadsbeeldobject staan de regels in het aanwijzingsbesluit van dat
+# stadsbeeld, en die zijn niet per stadsbeeld nagelezen, dus zegt de tekst
+# dat ook.
+BETEKENIS = {
+    "Rijksmonument": "elke wijziging, ook binnen, vraagt een omgevingsvergunning "
+                     "voor een rijksmonumentenactiviteit",
+    "Gemeentelijk monument": "slopen, verstoren, verplaatsen of in enig "
+                             "opzicht wijzigen is vergunningplichtig; normaal "
+                             "onderhoud zonder wijziging van detaillering, "
+                             "vormgeving, materiaal of kleur en inpandige "
+                             "wijzigingen zonder monumentale waarde niet "
+                             "(Erfgoedverordening Nijmegen art. 14)",
+    "Stadsbeeldobject": "wijzigingen aan de buitenkant zijn vergunningplichtig; "
+                        "welke precies, staat in het aanwijzingsbesluit van "
+                        "het stadsbeeld en is hier niet nagelezen",
+    "In procedure": "voorbescherming: tijdens de procedure gelden de regels "
+                    "al",
+    "Aandachtspand": "door de gemeente als waardevol aangemerkt, maar niet "
+                     "beschermd",
+}
+
+
+def _registerregels(b, datum):
+    if b.get("register") is None:
+        return [("erfgoedregister gemeente", "niet nagekeken", REGISTER_BRON)]
+    uit, gezien = [], set()
+    for p in b["register"]:
+        soort = p.get("BESCHERMINGS_OMS") or "onbekende vermelding"
+        sleutel = (soort, p.get("TITEL"))
+        if sleutel in gezien:
+            continue
+        gezien.add(sleutel)
+        status = p.get("STATUS_OMS") or "status niet ingevuld in het register"
+        wat = ", ".join(x for x in (p.get("TITEL"), p.get("OBJECTNAAM"))
+                        if x and x.strip().lower() != "zonder titel")
+        tekst = (f"{soort} ({status}"
+                 + (f", sinds {p['STATUS_DATUM']}" if p.get("STATUS_DATUM")
+                    else "") + ")"
+                 + (f": {wat}" if wat else "")
+                 + (f", in {p['GEZICHTNAAM']}" if p.get("GEZICHTNAAM")
+                    else ""))
+        if BETEKENIS.get(soort):
+            tekst += f". {BETEKENIS[soort][0].upper()}{BETEKENIS[soort][1:]}"
+        uit.append(("erfgoedregister gemeente", tekst,
+                    f"{REGISTER_BRON}, bijgewerkt {datum}"))
+    if not uit:
+        uit.append(("erfgoedregister gemeente",
+                    "geen object in het register op dit punt"
+                    + ("; het pand ligt wel in een gemeentelijk beschermd "
+                       "stadsbeeld" if b.get("gem_stadsbeeld") else ""),
+                    f"{REGISTER_BRON}, bijgewerkt {datum}"))
+    elif b.get("gem_stadsbeeld") and not any(
+            p.get("BESCHERMINGS_OMS") == "Stadsbeeldobject"
+            for p in b["register"]):
+        uit.append(("erfgoedregister gemeente",
+                    "ligt in een gemeentelijk beschermd stadsbeeld",
+                    f"{REGISTER_BRON}, bijgewerkt {datum}"))
+    return uit
 
 
 # De dubbelbestemming die bij een rijksgezicht hoort. AFGELEID, niet uit de
@@ -307,8 +427,8 @@ def dossierregels(pand_id):
                        f"de overlap per buurt, niet uit de planregels)"
                        if dub else ""), BRON))
     else:
-        uit.append(("rijksbeschermd gezicht", "geen op dit punt. "
-                    "Gemeentelijke monumenten zijn niet nagekeken", BRON))
+        uit.append(("rijksbeschermd gezicht", "geen op dit punt", BRON))
+    uit += _registerregels(b, _laad().get("register_datum"))
     if b["stadsbeeld"] == "object":
         uit.append(("gemeentelijk voorbeschermd stadsbeeld",
                     f"dit is een voorbeschermd stadsbeeldobject in het "
@@ -408,6 +528,35 @@ def proef():
     finally:
         _cache.clear()
         _cache.update(_oud)
+    # HET ERFGOEDREGISTER: drie toestanden, en een echt geval.
+    t_niet = _registerregels({"register": None}, None)[0][1]
+    t_geen = _registerregels({"register": []}, "2026-10-15")[0][1]
+    t_beeld = _registerregels({"register": [], "gem_stadsbeeld": True},
+                              "2026-10-15")[0][1]
+    t_mon = _registerregels({"register": [{
+        "BESCHERMINGS_OMS": "Gemeentelijk monument", "STATUS_OMS": "Beschermd",
+        "TITEL": "Begijnenstraat 20", "STATUS_DATUM": "1988-02-10"}]},
+        "2026-10-15")[0][1]
+    if len({t_niet, t_geen, t_beeld, t_mon}) != 4 or t_niet != "niet nagekeken":
+        afw.append("het register maakt geen onderscheid tussen niet "
+                   "nagekeken, niets, alleen een stadsbeeld en een monument")
+    if "art. 14" not in t_mon:
+        afw.append("bij een gemeentelijk monument staat de regel er niet bij")
+    _cache.clear()
+    c = _laad()
+    if c.get("register"):
+        import bestemming
+        raak = [pid for pid, pt in bestemming.punten_per_pand().items()
+                if (pt.get("adres") or "") == "Begijnenstraat 9"]
+        if not raak:
+            afw.append("Begijnenstraat 9 staat niet meer in de voorraad; de "
+                       "proef op het register meet dan niets")
+        elif not any(p.get("BESCHERMINGS_OMS") ==
+                            "Gemeentelijk monument"
+                            for p in bescherming(raak[0])["register"] or []):
+            afw.append("Begijnenstraat 9 (11-9), gemeentelijk monument, "
+                       "wordt niet gevonden in het register")
+    _cache.clear()
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef gezicht: {len(afw)} afwijkingen", file=sys.stderr)

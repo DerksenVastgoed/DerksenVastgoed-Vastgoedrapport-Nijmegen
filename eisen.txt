@@ -1399,3 +1399,19 @@ waarom: 18 oktober. Per buurt bleek de oude tekst niet te kloppen:
   de omrekening wordt beproefd op het nulpunt van RD en op Plein 1944.
 proef: gezicht:niet nagekeken, geen en wel krijgen geen eigen tekst
 soort: brief
+
+---
+eis: Het dossier noemt per pand wat het erfgoedregister van de gemeente over
+  dat pand zegt (monument, stadsbeeldobject, in procedure, aandachtspand) en
+  onderscheidt niet nagekeken, niets in het register, en alleen een
+  stadsbeeld.
+waarom: 18 oktober. Tot dan zei het dossier bij elk pand "gemeentelijke
+  monumenten zijn niet nagekeken". Het register bleek te vinden via de
+  KaartViewer van de gemeente (extern_Monumenten): 2.781 objecten, bijgewerkt
+  op 15 oktober. In de ring: 481 panden op een gemeentelijk monument, 119 op
+  een rijksmonument, 1.621 op een stadsbeeldobject, 80 in procedure en 2.513
+  in een gemeentelijk beschermd stadsbeeld. De regel bij een gemeentelijk
+  monument komt uit de Erfgoedverordening, art. 14; die bij een
+  stadsbeeldobject is niet per stadsbeeld nagelezen en staat er zo.
+proef: gezicht:wordt niet gevonden in het register
+soort: brief

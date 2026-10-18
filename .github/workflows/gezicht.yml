@@ -10,6 +10,11 @@ name: Beschermde gezichten
 
 on:
   workflow_dispatch:
+  # Wekelijks, want het erfgoedregister van de gemeente wordt bijgewerkt
+  # (DD_BIJGEWERKT stond op 18 oktober op 15 oktober) en een monument dat
+  # erbij komt hoort in het dossier te staan.
+  schedule:
+    - cron: "17 3 * * 1"
 
 concurrency:
   group: gezicht
