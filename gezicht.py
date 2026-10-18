@@ -32,6 +32,7 @@ import argparse
 import collections
 import datetime as dt
 import json
+import re
 import sys
 import time
 import urllib.parse
@@ -332,6 +333,53 @@ def bescherming(pand_id):
             stadsbeeld = ""
     return {"rijks": rijks, "stadsbeeld": stadsbeeld, "register": register,
             "gem_stadsbeeld": gem_stadsbeeld}
+
+
+def monument_aanvullen(mon, pand_id):
+    """
+    Of een pand een rijksmonument is, uit het RCE-bestand (mon, per adres,
+    of None) en het erfgoedregister (per geometrie). Geeft het bijgewerkte
+    dict of None.
+
+    RIJKSMONUMENT UIT TWEE BRONNEN, EEN UITKOMST. 18 oktober 2026: het
+    RCE-bestand van rijksmonumenten.py bleek 76 van de 261 rijksmonumenten
+    van Nijmegen te kennen (de RCE-punten via PDOK, zie monumenten.py --rce),
+    het register 195. Alle 42 RCE-adressen die niet op adres in het register
+    stonden, stonden er onder hetzelfde nummer in. Andersom noemt het RCE
+    drie panden een rijksmonument die het register nog als gemeentelijk
+    monument of stadsbeeldobject kent (Hoogstraat 3, St. Jorisstraat 35,
+    Waldeck Pyrmontsingel 9). Dus: rijksmonument als een van de twee het
+    zegt, met de bron erbij, en een tegenspraak wordt genoemd in plaats van
+    opgelost. Stond tot de tweede lezer erbij kwam in marktprijzen_bag.py.
+    """
+    mon = dict(mon, bron=mon.get("bron") or "RCE") if mon else None
+    try:
+        bs = bescherming(pand_id)
+    except Exception:
+        bs = None
+    if not bs or bs.get("register") is None:
+        return mon
+    rijks = [p for p in bs["register"]
+             if p.get("BESCHERMINGS_OMS") == "Rijksmonument"]
+    if rijks and not mon:
+        p = rijks[0]
+        code = (re.findall(r"\d{4,6}", str(p.get("RIJKSOBJECTCODE") or ""))
+                or [None])[0]
+        return {"adres": p.get("TITEL"), "functie": p.get("OBJECTNAAM") or "",
+                "nummer": (f"https://monumentenregister.cultureelerfgoed.nl/"
+                           f"monumenten/{code}" if code else ""),
+                "bron": "erfgoedregister gemeente"}
+    if mon and rijks:
+        mon["bron"] = "RCE en erfgoedregister gemeente"
+    elif mon and not rijks:
+        ander = sorted({p.get("BESCHERMINGS_OMS") for p in bs["register"]
+                        if p.get("BESCHERMINGS_OMS")})
+        mon["tegenspraak"] = (
+            "het erfgoedregister van de gemeente noemt dit "
+            + (", ".join(a.lower() for a in ander) if ander
+               else "geen monument")
+            + "; het RCE een rijksmonument")
+    return mon
 
 
 # Wat een vermelding in het register betekent. Alleen voor het rijks- en het

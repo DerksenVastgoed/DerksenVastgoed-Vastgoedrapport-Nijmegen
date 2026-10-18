@@ -343,13 +343,9 @@ def _mon_sleutel(straat, huisnr):
 
 
 def lees_monumenten():
-    if not os.path.exists(MONUMENTEN_PAD):
-        return {}
-    try:
-        with open(MONUMENTEN_PAD, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
+    """Rijksmonumenten per adres; een lezer, in rijksmonumenten.py."""
+    import rijksmonumenten as _rm
+    return _rm.lees(MONUMENTEN_PAD)
 
 
 def _ep_veld(rec, namen):
@@ -467,6 +463,7 @@ def _bag_feiten(straat, huisnr, letter):
             bouwjaar = bouwjaar[0]
         return {"oppervlakte": a.get("oppervlakte"), "bouwjaar": bouwjaar,
                 "vbo": a.get("adresseerbaarObjectIdentificatie", ""),
+                "pand": (a.get("pandIdentificaties") or [None])[0],
                 "postcode": a.get("postcode", "")}
     except Exception as e:
         print(f"  BAG-fout {straat} {huisnr}: {e}", file=sys.stderr)
@@ -818,6 +815,24 @@ def verrijk_met_bag(items: list):
                             or "appartementen" in titel_l)
                     if meer:
                         it["feiten"]["label_alleen_dit_adres"] = True
+        # Het erfgoedregister erbij, op het pand; zie
+        # gezicht.monument_aanvullen(). Een tegenspraak met het RCE wordt
+        # genoemd, niet opgelost.
+        try:
+            import gezicht as _gz
+            _rce = None
+            if it["feiten"].get("rijksmonument"):
+                _rce = {"nummer": it["feiten"].get("monumentnr"), "bron": "RCE"}
+            _mon = _gz.monument_aanvullen(_rce, feiten.get("pand"))
+            if _mon:
+                it["feiten"]["rijksmonument"] = True
+                if _mon.get("nummer"):
+                    it["feiten"]["monumentnr"] = _mon["nummer"]
+                it["feiten"]["monumentbron"] = _mon.get("bron")
+                if _mon.get("tegenspraak"):
+                    it["feiten"]["monument_tegenspraak"] = _mon["tegenspraak"]
+        except Exception:
+            pass
         if feiten.get("oppervlakte"):
             it["feiten"]["oppervlakte_m2"] = feiten["oppervlakte"]
         if feiten.get("bouwjaar"):

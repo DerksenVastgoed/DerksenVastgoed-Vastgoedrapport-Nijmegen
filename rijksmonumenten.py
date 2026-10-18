@@ -47,6 +47,19 @@ VELD_FUNCTIE = ["oorspronkelijkeFunctie", "functie", "oorspronkelijkeFunctieLabe
 VELD_AARD = ["monumentaard", "aard", "monumentaardLabel", "type"]
 
 
+def lees(pad=UIT_PAD):
+    """Het bestand per adres, of {} als het er niet is.
+
+    EEN LEZER. Tot 18 oktober 2026 stond deze functie twee keer in de repo,
+    als lees_monumenten() in marktprijzen_bag.py en in
+    bekendmakingen_nijmegen.py, elk met een eigen kopie van het pad."""
+    try:
+        with open(pad, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
 def _pak(rij, namen):
     for naam in namen:
         waarde = rij.get(naam)

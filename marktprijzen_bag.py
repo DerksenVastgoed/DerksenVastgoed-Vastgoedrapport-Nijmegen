@@ -65,14 +65,9 @@ MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
 
 
 def lees_monumenten():
-    """Rijksmonumenten per adres, opgehaald door rijksmonumenten.py."""
-    if not os.path.exists(MONUMENTEN_PAD):
-        return {}
-    try:
-        with open(MONUMENTEN_PAD, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
+    """Rijksmonumenten per adres; een lezer, in rijksmonumenten.py."""
+    import rijksmonumenten as _rm
+    return _rm.lees(MONUMENTEN_PAD)
 
 
 def lees_archief():
@@ -8055,35 +8050,13 @@ def lees_haltes_bestand():
 
 
 def monument_uit_register(w):
-    """Vul w["monument"] aan met het erfgoedregister van de gemeente; zie de
-    toelichting in render() bij RIJKSMONUMENT UIT TWEE BRONNEN."""
-    try:
-        import gezicht as _gz
-        _bs = _gz.bescherming(w.get("pand_id") or w.get("pand"))
-    except Exception:
-        _bs = None
-    if not _bs or _bs.get("register") is None:
-        return w
-    rijks = [p for p in _bs["register"]
-             if p.get("BESCHERMINGS_OMS") == "Rijksmonument"]
-    if rijks and not w.get("monument"):
-        p = rijks[0]
-        code = p.get("RIJKSOBJECTCODE")
-        w["monument"] = {
-            "adres": p.get("TITEL"), "functie": p.get("OBJECTNAAM") or "",
-            "nummer": (f"https://monumentenregister.cultureelerfgoed.nl/"
-                       f"monumenten/{code}" if code else ""),
-            "bron": "erfgoedregister gemeente"}
-    elif w.get("monument") and rijks:
-        w["monument"]["bron"] = "RCE en erfgoedregister gemeente"
-    elif w.get("monument") and not rijks:
-        ander = sorted({p.get("BESCHERMINGS_OMS") for p in _bs["register"]
-                        if p.get("BESCHERMINGS_OMS")})
-        w["monument"]["tegenspraak"] = (
-            "het erfgoedregister van de gemeente noemt dit "
-            + (", ".join(a.lower() for a in ander) if ander
-               else "geen monument")
-            + "; het RCE een rijksmonument")
+    """Vul w["monument"] aan uit het erfgoedregister; zie
+    gezicht.monument_aanvullen()."""
+    import gezicht as _gz
+    mon = _gz.monument_aanvullen(w.get("monument"),
+                                 w.get("pand_id") or w.get("pand"))
+    if mon:
+        w["monument"] = mon
     return w
 
 
@@ -8131,7 +8104,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
             if monumenten:
                 mon = monumenten.get(k, [])
                 if mon:
-                    w["monument"] = dict(mon[0], bron="RCE")
+                    w["monument"] = mon[0]
     # RIJKSMONUMENT UIT TWEE BRONNEN, EEN UITKOMST. 18 oktober 2026: het
     # RCE-bestand (rijksmonumenten.py, 174 adressen) bleek onvolledig naast
     # het erfgoedregister van de gemeente (569 rijksmonument-adressen). Alle
