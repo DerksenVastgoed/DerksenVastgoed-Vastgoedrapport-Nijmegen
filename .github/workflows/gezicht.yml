@@ -44,12 +44,13 @@ jobs:
         run: |
           python3 stadsbeeld.py --proef
           python3 stadsbeeld.py --omgevingsplan
+          python3 stadsbeeld.py --monumenten
 
       - name: Terugcommitten
         run: |
           git config user.name "vastgoedmonitor-bot"
           git config user.email "bot@users.noreply.github.com"
-          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml; do
+          for f in gezichten.json gezicht_verslag.md stadsbeeld_verslag.md stadsbeeld_*.gml stadsbeeld_*.json omgevingsplan_gio.json omgevingsplan_gio_verslag.md omgevingsplan_gio_*.gml monumenten_verslag.md; do
             [ -f "$f" ] && git add "$f"
           done
           if git diff --cached --quiet; then
