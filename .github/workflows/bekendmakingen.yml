@@ -436,22 +436,12 @@ jobs:
             python -c "import datetime as dt, json; json.dump({'datum': dt.date.today().isoformat(), 'bronnen': {}, 'opmerking': 'de mailstap is vastgelopen; zie het logboek van die stap'}, open('mail_status.json', 'w'), ensure_ascii=False, indent=1)"
           fi
 
-      - name: Rijksmonumenten ophalen (alleen als het bestand ontbreekt)
-        run: |
-          # Deze stap duurt ongeveer drie kwartier, want de RCE levert linked data
-          # die pagina voor pagina doorlopen moet worden. Het register verandert
-          # nauwelijks, dus we halen het alleen op als het bestand er niet is.
-          # Wil je handmatig verversen: verwijder rijksmonumenten_nijmegen.json.
-          GROOTTE=0
-          if [ -f rijksmonumenten_nijmegen.json ]; then
-            GROOTTE=$(wc -c < rijksmonumenten_nijmegen.json)
-          fi
-          if [ "$GROOTTE" -lt 200 ]; then
-            echo "Monumentenbestand ontbreekt of is leeg ($GROOTTE bytes), ophalen"
-            python rijksmonumenten.py || { echo "Monumenten-stap overgeslagen"; echo "Monumenten" >> "$GITHUB_WORKSPACE/overgeslagen.txt"; }
-          else
-            echo "Monumentenbestand aanwezig ($GROOTTE bytes), overslaan"
-          fi
+      # DE STAP "RIJKSMONUMENTEN OPHALEN" IS WEG (18 oktober 2026). Hij duurde
+      # drie kwartier en leverde 76 van de 261 rijksmonumenten op, per adres,
+      # met beelden en gedenktekens aan het dichtstbijzijnde adres gekoppeld.
+      # De monumentstatus komt nu uit gezicht.monument_aanvullen(): de
+      # RCE-punten via PDOK in de BAG-pandomtrek, en het erfgoedregister van de
+      # gemeente (beide in gezicht.yml).
 
       - name: OV-haltes ophalen (alleen als het bestand ontbreekt)
         continue-on-error: true

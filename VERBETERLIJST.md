@@ -8118,14 +8118,13 @@ nagezocht, en dat is de enige route naar meer.
   (bruggen, beelden, terreinen). Het RCE-bestand per adres
   (rijksmonumenten.py) telt niet meer mee: het koppelde het Spoorwegmonument
   aan Hoogstraat 3 en het beeld van Petrus Canisius aan St. Jorisstraat 35.
-- **De stap "Rijksmonumenten ophalen" in bekendmakingen.yml (45 minuten) en
-  rijksmonumenten.py kunnen weg**, zodra niets meer lees_monumenten() nodig
-  heeft voor iets anders dan de melding "geen rijksmonumenten in deze lijst".
-- **Archeologische rijksmonumenten tellen als rijksmonument van het pand.**
-  Flavus 43 ligt op een terrein dat de RCE als rijksmonument kent, en krijgt
-  daardoor de vlag, ook in de huurpunten. Het RCE-punt draagt een
-  siteprotectionclassification ("Cultural; Archaeological"), maar die is nog
-  niet bewaard en niet getoetst.
+- GEDAAN 18 oktober: **de stap "Rijksmonumenten ophalen" (45 minuten) is uit
+  bekendmakingen.yml**, en niets leest rijksmonumenten_nijmegen.json nog voor
+  de monumentstatus. rijksmonumenten.py en het bestand blijven alleen staan
+  omdat de proef van pandsleutel.py hun sleutelfunctie toetst; weghalen kan
+  als die proef dat niet meer nodig heeft.
+- GEDAAN 18 oktober: **archeologische rijksmonumenten** (8 van de 261) maken
+  het gebouw geen rijksmonument meer; ze staan apart in het dossier.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij

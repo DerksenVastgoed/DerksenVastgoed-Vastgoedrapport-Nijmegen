@@ -352,9 +352,18 @@ def _rce_per_pand():
     uit = {}
     for n, v in nummers.items():
         for p in v.get("panden") or []:
-            uit.setdefault(p, []).append((n, v.get("naam")))
+            uit.setdefault(p, []).append(
+                (n, v.get("naam"), "archaeological" in (v.get("klasse") or "")))
     _cache["rce_per_pand"] = uit
     return uit
+
+
+def archeologisch_rijksmonument(pand_id):
+    """De archeologische rijksmonumenten waarvan het RCE-punt in dit pand
+    ligt, als [(nummer, naam)]."""
+    return [(n, naam) for n, naam, *arch in
+            ((_rce_per_pand() or {}).get(str(pand_id or "")) or [])
+            if arch and arch[0]]
 
 
 def monument_aanvullen(pand_id):
@@ -378,7 +387,14 @@ def monument_aanvullen(pand_id):
     twee monumenten die op een adres staan maar geen gebouw zijn. Die panden
     telden daardoor als rijksmonument in de huurpunten.
     """
-    rce = (_rce_per_pand() or {}).get(str(pand_id or "")) or []
+    alle = (_rce_per_pand() or {}).get(str(pand_id or "")) or []
+    # ARCHEOLOGIE IS HET TERREIN, NIET HET GEBOUW. Van de 261 RCE-punten zijn
+    # er 8 een archeologisch rijksmonument (klasse "cultural; archaeological",
+    # aanduiding b673c8c1), de andere 253 een gebouwd monument. Flavus 43 lag
+    # op zo'n terrein en kreeg daardoor de vlag van een rijksmonument, ook in
+    # de huurpunten. Een archeologisch rijksmonument geldt voor wie graaft en
+    # niet voor de gevel, dus het telt hier niet en staat apart in het dossier.
+    rce = [(n, naam) for n, naam, *arch in alle if not (arch and arch[0])]
     try:
         bs = bescherming(pand_id)
     except Exception:
@@ -509,6 +525,13 @@ def dossierregels(pand_id):
     else:
         uit.append(("rijksbeschermd gezicht", "geen op dit punt", BRON))
     uit += _registerregels(b, _laad().get("register_datum"))
+    for n, naam in archeologisch_rijksmonument(pand_id):
+        uit.append(("archeologisch rijksmonument",
+                    f"het pand ligt op archeologisch rijksmonument {n}"
+                    + (f" ({naam})" if naam else "")
+                    + ": graven en bouwen in de bodem vraagt een vergunning; "
+                      "het gebouw zelf is daardoor geen rijksmonument",
+                    "RCE via PDOK, punt in de pandomtrek van de BAG"))
     if b["stadsbeeld"] == "object":
         uit.append(("gemeentelijk voorbeschermd stadsbeeld",
                     f"dit is een voorbeschermd stadsbeeldobject in het "
@@ -637,6 +660,24 @@ def proef():
             afw.append("Begijnenstraat 9 (11-9), gemeentelijk monument, "
                        "wordt niet gevonden in het register")
     _cache.clear()
+    # Een archeologisch rijksmonument maakt het gebouw geen rijksmonument
+    # (Flavus 43, RCE 397576, 18 oktober).
+    _cache.update({"rce_per_pand": {"F": [("397576", None, True)],
+                                    "G": [("31114", None, False)]}})
+    _oud_b = globals()["bescherming"]
+    try:
+        globals()["bescherming"] = lambda pid: {"register": []}
+        if monument_aanvullen("F") is not None:
+            afw.append("een archeologisch rijksmonument geeft het gebouw de "
+                       "vlag van een rijksmonument")
+        if archeologisch_rijksmonument("F") != [("397576", None)]:
+            afw.append("het archeologisch rijksmonument wordt niet apart "
+                       "genoemd")
+        if monument_aanvullen("G") is None:
+            afw.append("een gebouwd RCE-rijksmonument wordt niet meer gezien")
+    finally:
+        globals()["bescherming"] = _oud_b
+        _cache.clear()
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef gezicht: {len(afw)} afwijkingen", file=sys.stderr)
