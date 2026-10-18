@@ -206,6 +206,30 @@ VOORBEHOUD = ("de bron is niet volledig, niet juridisch bindend en mist het "
 _cache = {}
 
 
+# WAAR DE DRIE CULTUURHISTORIE-NAMEN BIJ HOREN. AFGELEID, niet uit de
+# planregels (die waren niet automatisch op te halen), maar per pand gemeten
+# tegen de gezichten op 17 en 18 oktober 2026:
+# - "Cultuurhistorie 1": 813 van de 815 panden liggen in het rijksgezicht
+#   Nijmegen (1980), de oude binnenstad.
+# - "Cultuurhistorie 2": 1.811 van de 1.811 liggen in het rijksgezicht
+#   19de-eeuwse Stadsuitleg (2013).
+# - "Cultuurhistorie" zonder nummer: 134 van de 134 liggen in een
+#   gemeentelijk beschermd stadsbeeld en in geen rijksgezicht; 130 daarvan op
+#   een object van Stadsbeeld Waterkwartier. Dat was de open vraag over Biezen.
+# Omgekeerd hebben 616 panden in een gemeentelijk stadsbeeld buiten de
+# rijksgezichten geen enkele cultuurhistorische dubbelbestemming: die
+# stadsbeelden staan niet in het bestemmingsplan, alleen in het
+# erfgoedregister (gezicht.py).
+HERKOMST = {
+    "Waarde - Cultuurhistorie 1": "hoort bij het rijksgezicht Nijmegen, "
+                                  "afgeleid uit de ligging",
+    "Waarde - Cultuurhistorie 2": "hoort bij het rijksgezicht 19de-eeuwse "
+                                  "Stadsuitleg, afgeleid uit de ligging",
+    "Waarde - Cultuurhistorie": "hoort bij het gemeentelijk Stadsbeeld "
+                                "Waterkwartier, afgeleid uit de ligging",
+}
+
+
 def dossierregels(pand_id, pad=UIT_PAD):
     """
     Wat het dossier van een pand over de dubbelbestemming zegt, als
@@ -234,8 +258,11 @@ def dossierregels(pand_id, pad=UIT_PAD):
     cult = [n for n in dubbel if "cultuurhistorie" in n.lower()]
     arch = [n for n in dubbel if "archeologie" in n.lower()]
     if cult:
+        herkomst = [HERKOMST[c] for c in cult if c in HERKOMST]
         uit.append(("cultuurhistorische dubbelbestemming",
-                    f"{', '.join(cult)}. Bouwen kan dan een afwijking van "
+                    f"{', '.join(cult)}"
+                    + (f" ({'; '.join(herkomst)})" if herkomst else "")
+                    + ". Bouwen kan dan een afwijking van "
                     f"het plan vergen, met advies van de Adviescommissie "
                     f"Omgevingskwaliteit; bij Groesbeekseweg 118A was dat "
                     f"nodig en duurde de procedure 213 dagen. Dit is een "
@@ -294,6 +321,9 @@ def proef():
         if [o for o, _t, _b in r1] != ["cultuurhistorische dubbelbestemming",
                                        "bij uitbreiden of graven"]:
             afw.append(f"cultuurhistorie met archeologie: {r1}")
+        if "afgeleid" not in r1[0][1]:
+            afw.append("de herkomst van de dubbelbestemming staat er niet bij, "
+                       "of niet als afgeleid")
         if "Regels op de kaart" not in r1[0][1]:
             afw.append("het voorbehoud van de bron staat er niet bij")
         r2 = dossierregels("P2", pad)
