@@ -8105,18 +8105,14 @@ nagezocht, en dat is de enige route naar meer.
   nijmegen.nl maar via de KaartViewer: extern_Monumenten op de GeoServer van
   de gemeente, 2.781 objecten en 10 beschermde gebieden (8 gemeentelijke
   stadsbeelden). Zie gezicht.py en monumenten.py.
-- **Rijksmonument per pand komt nu uit twee bronnen.** rijksmonumenten.py
-  (RCE, per adres, 174 adressen) en het erfgoedregister van de gemeente
-  (per geometrie). Beide alleen op rijksmonumenten vergeleken, dus het
-  verschil is niet rijks tegen gemeentelijk. Gemeten 18 oktober, na het
-  uitsplitsen van reeksen als "Begijnenstraat 21-23" in losse huisnummers:
-  129 van de 174 RCE-adressen staan in het register als rijksmonument, 3 als
-  iets anders (2 gemeentelijk monument, 1 stadsbeeldobject), 42 niet. Het
-  register kent 569 rijksmonument-adressen, waarvan 129 in het RCE-bestand.
-  Het RCE-bestand is dus de onvolledige van de twee. Een eerste vergelijking
-  zonder uitsplitsen gaf 47 overeenkomsten; dat was notatie. Te doen: het
-  register het dossier laten voeden en het RCE-bestand als controle, en de
-  42 en de 3 nakijken.
+- GEDAAN 18 oktober: **rijksmonument per pand uit twee bronnen samen.** De
+  42 RCE-adressen buiten het register stonden er onder hetzelfde nummer in
+  (aflopende reeksen). Drie tegenspraken, waar het register achterloopt op
+  het RCE, staan in het dossier als tegenspraak. Zie monument_uit_register().
+- **bekendmakingen_nijmegen.py heeft een eigen lees_monumenten()** naast die
+  in marktprijzen_bag.py. Twee implementaties van dezelfde afspraak.
+- **rijksmonumenten.py haalt maar 174 adressen op.** Uitzoeken waarom; het
+  register kent er 569.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij
