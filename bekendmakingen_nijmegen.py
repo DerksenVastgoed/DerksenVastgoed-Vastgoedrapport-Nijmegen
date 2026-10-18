@@ -777,14 +777,7 @@ def verrijk_met_bag(items: list):
         if not adres:
             continue
 
-        # Monumentenstatus is een lokale opzoeking en kost niets
-        if monumenten:
-            mon = monumenten.get(_mon_sleutel(adres[0], adres[1]))
-            if mon:
-                it["feiten"]["rijksmonument"] = True
-                nummer = mon[0].get("nummer")
-                if nummer:
-                    it["feiten"]["monumentnr"] = nummer
+        # De monumentstatus komt na de BAG, op het pand; zie hieronder.
 
         feiten = _bag_feiten(*adres)
         time.sleep(1.1)  # BAG fair use
@@ -820,10 +813,7 @@ def verrijk_met_bag(items: list):
         # genoemd, niet opgelost.
         try:
             import gezicht as _gz
-            _rce = None
-            if it["feiten"].get("rijksmonument"):
-                _rce = {"nummer": it["feiten"].get("monumentnr"), "bron": "RCE"}
-            _mon = _gz.monument_aanvullen(_rce, feiten.get("pand"))
+            _mon = _gz.monument_aanvullen(feiten.get("pand"))
             if _mon:
                 it["feiten"]["rijksmonument"] = True
                 if _mon.get("nummer"):

@@ -335,50 +335,82 @@ def bescherming(pand_id):
             "gem_stadsbeeld": gem_stadsbeeld}
 
 
-def monument_aanvullen(mon, pand_id):
-    """
-    Of een pand een rijksmonument is, uit het RCE-bestand (mon, per adres,
-    of None) en het erfgoedregister (per geometrie). Geeft het bijgewerkte
-    dict of None.
+RCE_PANDEN = "rijksmonumenten_rce_panden.json"
 
-    RIJKSMONUMENT UIT TWEE BRONNEN, EEN UITKOMST. 18 oktober 2026: het
-    RCE-bestand van rijksmonumenten.py bleek 76 van de 261 rijksmonumenten
-    van Nijmegen te kennen (de RCE-punten via PDOK, zie monumenten.py --rce),
-    het register 195. Alle 42 RCE-adressen die niet op adres in het register
-    stonden, stonden er onder hetzelfde nummer in. Andersom noemt het RCE
-    drie panden een rijksmonument die het register nog als gemeentelijk
-    monument of stadsbeeldobject kent (Hoogstraat 3, St. Jorisstraat 35,
-    Waldeck Pyrmontsingel 9). Dus: rijksmonument als een van de twee het
-    zegt, met de bron erbij, en een tegenspraak wordt genoemd in plaats van
-    opgelost. Stond tot de tweede lezer erbij kwam in marktprijzen_bag.py.
+
+def _rce_per_pand():
+    """pand-id -> [(nummer, naam)] uit de koppeling RCE-punt naar BAG-pand
+    (monumenten.py --rce-panden), of None als die er niet is."""
+    if "rce_per_pand" in _cache:
+        return _cache["rce_per_pand"]
+    try:
+        with open(RCE_PANDEN, encoding="utf-8") as f:
+            nummers = json.load(f).get("nummers") or {}
+    except (OSError, ValueError):
+        _cache["rce_per_pand"] = None
+        return None
+    uit = {}
+    for n, v in nummers.items():
+        for p in v.get("panden") or []:
+            uit.setdefault(p, []).append((n, v.get("naam")))
+    _cache["rce_per_pand"] = uit
+    return uit
+
+
+def monument_aanvullen(pand_id):
     """
-    mon = dict(mon, bron=mon.get("bron") or "RCE") if mon else None
+    Of een pand een rijksmonument is, uit de RCE en het erfgoedregister. Geeft
+    een dict (adres, functie, nummer, bron, eventueel tegenspraak) of None.
+
+    RIJKSMONUMENT UIT TWEE BRONNEN, EEN UITKOMST. 18 oktober 2026.
+    - De RCE: de 261 rijksmonumenten van Nijmegen als punt (PDOK), per punt
+      gekoppeld aan het BAG-pand waarvan de omtrek het punt bevat
+      (monumenten.py --rce-panden). Getoetst tegen het register: van de 90
+      gevallen waarin beide een pand noemen, 86 hetzelfde pand.
+    - Het erfgoedregister van de gemeente, per geometrie (195 van de 261).
+    Rijksmonument als een van de twee het zegt, met de bron erbij; een
+    tegenspraak wordt genoemd in plaats van opgelost.
+
+    NIET MEER HET RCE-BESTAND PER ADRES. Dat (rijksmonumenten.py) kende 76 van
+    de 261, en koppelde op adres. Twee van de drie tegenspraken uit #166
+    bleken daar vandaan te komen: Hoogstraat 3 kreeg het Spoorwegmonument
+    (523055) en St. Jorisstraat 35 het beeld van Petrus Canisius (523056),
+    twee monumenten die op een adres staan maar geen gebouw zijn. Die panden
+    telden daardoor als rijksmonument in de huurpunten.
+    """
+    rce = (_rce_per_pand() or {}).get(str(pand_id or "")) or []
     try:
         bs = bescherming(pand_id)
     except Exception:
         bs = None
-    if not bs or bs.get("register") is None:
-        return mon
-    rijks = [p for p in bs["register"]
-             if p.get("BESCHERMINGS_OMS") == "Rijksmonument"]
-    if rijks and not mon:
+    reg = None if not bs else bs.get("register")
+    rijks = [p for p in (reg or []) if p.get("BESCHERMINGS_OMS") ==
+             "Rijksmonument"]
+    if not rce and not rijks:
+        return None
+    if rijks:
         p = rijks[0]
         code = (re.findall(r"\d{4,6}", str(p.get("RIJKSOBJECTCODE") or ""))
                 or [None])[0]
-        return {"adres": p.get("TITEL"), "functie": p.get("OBJECTNAAM") or "",
-                "nummer": (f"https://monumentenregister.cultureelerfgoed.nl/"
-                           f"monumenten/{code}" if code else ""),
-                "bron": "erfgoedregister gemeente"}
-    if mon and rijks:
+        mon = {"adres": p.get("TITEL"), "functie": p.get("OBJECTNAAM") or "",
+               "nummer": code, "bron": "erfgoedregister gemeente"}
+    else:
+        mon = {"adres": None, "functie": rce[0][1] or "", "nummer": rce[0][0],
+               "bron": "RCE"}
+    if rce and rijks:
         mon["bron"] = "RCE en erfgoedregister gemeente"
-    elif mon and not rijks:
-        ander = sorted({p.get("BESCHERMINGS_OMS") for p in bs["register"]
+    elif rce and reg:
+        ander = sorted({p.get("BESCHERMINGS_OMS") for p in reg
                         if p.get("BESCHERMINGS_OMS")})
         mon["tegenspraak"] = (
             "het erfgoedregister van de gemeente noemt dit "
-            + (", ".join(a.lower() for a in ander) if ander
-               else "geen monument")
-            + "; het RCE een rijksmonument")
+            + ", ".join(a.lower() for a in ander)
+            + "; de RCE een rijksmonument")
+    if mon.get("nummer"):
+        mon["nummer"] = (f"https://monumentenregister.cultureelerfgoed.nl/"
+                         f"monumenten/{mon['nummer']}")
+    if rce and not rijks:
+        mon["bron"] += " (punt in de pandomtrek van de BAG)"
     return mon
 
 
