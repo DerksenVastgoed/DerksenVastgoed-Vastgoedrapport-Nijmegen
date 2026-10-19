@@ -463,6 +463,45 @@ def panden_in_vak(minx, miny, maxx, maxy, r):
             if (f.get("properties") or {}).get("identificatie")]
 
 
+VBO_VELDEN = {}
+
+
+def vbo_in_pand(pid, pand_geom, r):
+    """[{vbo, adres, x, y}] van de verblijfsobjecten in dit pand, uit de BAG
+    WFS in RD, of None als de BAG geen antwoord gaf. Gezocht in de omhullende
+    van het pand en gefilterd op het pand-id."""
+    a, b, c, d = _omhullende(pand_geom)
+    url = BAG_WFS + "?" + urllib.parse.urlencode({
+        "service": "WFS", "version": "2.0.0", "request": "GetFeature",
+        "typeName": "bag:verblijfsobject", "outputFormat": "application/json",
+        "srsName": "urn:ogc:def:crs:EPSG::28992", "count": "1000",
+        "bbox": f"{a},{b},{c},{d},urn:ogc:def:crs:EPSG::28992"})
+    _e, _s, inhoud = stadsbeeld.haal(url, r)
+    if inhoud is None:
+        return None
+    try:
+        feats = json.loads(inhoud.decode("utf-8")).get("features") or []
+    except ValueError:
+        return None
+    uit = []
+    for f in feats:
+        pr = f.get("properties") or {}
+        if not VBO_VELDEN and pr:
+            VBO_VELDEN.update({k: type(v).__name__ for k, v in pr.items()})
+        if pid not in str(pr.get("pandidentificatie") or ""):
+            continue
+        g = f.get("geometry") or {}
+        if g.get("type") != "Point":
+            continue
+        x, y = g["coordinates"][:2]
+        adres = " ".join(str(pr.get(k) or "") for k in
+                         ("openbare_ruimte", "huisnummer", "huisletter",
+                          "toevoeging")).strip()
+        uit.append({"vbo": str(pr.get("identificatie")),
+                    "adres": " ".join(adres.split()), "x": x, "y": y})
+    return uit
+
+
 def _omhullende(geom):
     pts = [pt for poly in (geom["coordinates"] if geom["type"] ==
                            "MultiPolygon" else [geom["coordinates"]])
@@ -503,7 +542,8 @@ def koppel_register_panden():
         feats = []
     rijks = [f for f in feats if (f.get("properties") or {})
              .get("BESCHERMINGS_OMS") in SOORTEN_OMTREK and f.get("geometry")]
-    uit, fout = {}, 0
+    uit, fout, vbo_fout = {}, 0, 0
+    from gezicht import in_vlak as gezicht_in_vlak
     for f in rijks:
         p, geom = f["properties"], f["geometry"]
         panden = panden_in_vak(*_omhullende(geom), r if fout < 3 else [])
@@ -524,6 +564,20 @@ def koppel_register_panden():
             # pand-id hier niet terug.
             rij.append({"pand": pid, "punten": n_p, "in_vlak": n_b,
                         "aandeel_pand": round(n_b / n_p, 3) if n_p else 0.0})
+            # DEELS IN HET VLAK: PER WONING. Ligt een pand maar voor een deel
+            # in het vlak, dan beslist waar de woning ligt. De BAG geeft per
+            # verblijfsobject een punt in RD; dat punt tegen hetzelfde vlak,
+            # zonder omrekening uit WGS84.
+            a_p = rij[-1]["aandeel_pand"]
+            if 0.01 <= a_p < 0.99:
+                vbo = vbo_in_pand(pid, pg, r if vbo_fout < 3 else [])
+                time.sleep(0.2)
+                if vbo is None:
+                    vbo_fout += 1
+                else:
+                    rij[-1]["vbo"] = [
+                        dict(v, in_vlak=gezicht_in_vlak(v["x"], v["y"], geom))
+                        for v in vbo]
         # SLEUTEL IS ID, NIET OBJECTID. 19 oktober 2026: OBJECTID is in het
         # register niet uniek (2.781 objecten, 2.757 OBJECTID's; bij de rijks-
         # en gemeentelijke monumenten 5 dubbel). Onder OBJECTID 3085 staan
@@ -542,6 +596,13 @@ def koppel_register_panden():
              + f"), {fout} zonder antwoord van de BAG")
     alle = [x["aandeel_pand"] for v in uit.values() for x in v["panden"]]
     r.append(f"- {len(alle)} paren vlak-pand met overlap")
+    met_vbo = [x for v in uit.values() for x in v["panden"] if "vbo" in x]
+    n_vbo = sum(len(x["vbo"]) for x in met_vbo)
+    r.append(f"- {len(met_vbo)} paren deels in het vlak (0,01 tot 0,99) met "
+             f"de verblijfsobjecten erbij: {n_vbo} verblijfsobjecten, waarvan "
+             f"{sum(1 for x in met_vbo for v in x['vbo'] if v['in_vlak'])} in "
+             f"het vlak; {vbo_fout} keer geen antwoord van de BAG")
+    r.append(f"- velden van bag:verblijfsobject: {VBO_VELDEN}")
     r.append("")
     r.append("## Verdeling van aandeel_pand (deel van het pand in het vlak)")
     grenzen = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 1.0001]
@@ -645,6 +706,34 @@ def proef():
             nummer_uit_citatie("kennis.cultureelerfgoed.nl/Gezicht/1439"):
         afw.append("het rijksmonumentnummer uit de citatie wordt verkeerd "
                    "gelezen")
+    # De verblijfsobjecten van een pand: alleen die met dit pand-id, met
+    # het punt in RD zoals de BAG het geeft.
+    _oud_haal = stadsbeeld.haal
+    try:
+        nep = {"features": [
+            {"properties": {"identificatie": "V1", "pandidentificatie":
+                            "P1", "openbare_ruimte": "Molenstraat",
+                            "huisnummer": 55},
+             "geometry": {"type": "Point", "coordinates": [1.0, 2.0]}},
+            {"properties": {"identificatie": "V2", "pandidentificatie": "P2"},
+             "geometry": {"type": "Point", "coordinates": [3.0, 4.0]}}]}
+        stadsbeeld.haal = lambda url, r: (None, 200,
+                                          json.dumps(nep).encode("utf-8"))
+        v = vbo_in_pand("P1", {"type": "Polygon", "coordinates": [[[0, 0],
+                                                                    [5, 5]]]},
+                        [])
+        if v != [{"vbo": "V1", "adres": "Molenstraat 55", "x": 1.0,
+                  "y": 2.0}]:
+            afw.append(f"de verblijfsobjecten van een pand worden verkeerd "
+                       f"gelezen: {v}")
+        stadsbeeld.haal = lambda url, r: (None, None, None)
+        if vbo_in_pand("P1", {"type": "Polygon", "coordinates": [[[0, 0],
+                                                                  [5, 5]]]},
+                       []) is not None:
+            afw.append("geen antwoord van de BAG leest als een pand zonder "
+                       "verblijfsobjecten")
+    finally:
+        stadsbeeld.haal = _oud_haal
     # Het aandeel: een pand van 10 bij 10 m waarvan het vlak de linkerhelft
     # dekt, geeft de helft; een vlak ernaast geeft niets.
     _pand = {"type": "Polygon", "coordinates": [[[0, 0], [10, 0], [10, 10],
