@@ -516,9 +516,14 @@ def koppel_register_panden():
             if not pg or pg.get("type") not in ("Polygon", "MultiPolygon"):
                 continue
             n_p, n_b = aandeel(pg, geom)
-            if n_b:
-                rij.append({"pand": pid, "punten": n_p, "in_vlak": n_b,
-                            "aandeel_pand": round(n_b / n_p, 3)})
+            # OOK NUL BEWAREN. Tot 19 oktober bleef een pand zonder overlap
+            # weg, en dan was "niet in de meting" niet te onderscheiden van
+            # "gemeten, nul". gezicht.py las afwezig als niet gemeten, en dat
+            # klopte dus niet. Nu staat elk pand dat de BAG bij het vlak
+            # teruggeeft erin, ook met 0; afwezig betekent: de BAG gaf dit
+            # pand-id hier niet terug.
+            rij.append({"pand": pid, "punten": n_p, "in_vlak": n_b,
+                        "aandeel_pand": round(n_b / n_p, 3) if n_p else 0.0})
         uit[str(p.get("OBJECTID"))] = {
             "soort": p.get("BESCHERMINGS_OMS"),
             "titel": p.get("TITEL"), "naam": p.get("OBJECTNAAM"),
@@ -567,6 +572,29 @@ def koppel_register_panden():
             if 0.05 <= x["aandeel_pand"] < 0.9:
                 r.append(f"- {v['titel']} ({','.join(v['nummers'])}): pand "
                          f"{x['pand']}, {x['aandeel_pand']}")
+    # PAND-ID'S DIE DE BAG NIET TERUGGEEFT. Voor elk pand van de voorraad
+    # waarvan het pandpunt in een gemeten vlak ligt, maar dat bij dat vlak
+    # niet terugkwam: welk pand de BAG op dat punt wel kent.
+    import gezicht
+    punten = gezicht._laad().get("punten") or {}
+    gemeten = {o: {x["pand"] for x in v["panden"]} for o, v in uit.items()}
+    vlak_van = {str(f["properties"].get("OBJECTID")): f["geometry"]
+                for f in rijks}
+    r.append("")
+    r.append("## Voorraadpanden met het pandpunt in een vlak, die de BAG bij "
+             "dat vlak niet teruggaf")
+    vreemd = 0
+    for pid, pt in punten.items():
+        x, y = gezicht.wgs84_naar_rd(pt["lat"], pt["lon"])
+        for o, geom in vlak_van.items():
+            if o in gemeten and pid not in gemeten[o] and \
+                    gezicht.in_vlak(x, y, geom):
+                vreemd += 1
+                bag = panden_bij_punt(x, y, [], d=0.1)
+                time.sleep(0.2)
+                r.append(f"- {pt['adres']}: voorraad {pid}, vlak "
+                         f"{uit[o]['titel']}; BAG op het punt: {bag}")
+    r.append(f"- {vreemd} gevallen")
     with open(UIT_REG_PANDEN, "w", encoding="utf-8") as f:
         json.dump({"bron": "erfgoedregister gemeente (rijks- en gemeentelijke "
                            "monumentvlakken) "
