@@ -8154,9 +8154,8 @@ nagezocht, en dat is de enige route naar meer.
 - **Gemeentelijk monument: 28 panden deels in een vlak** (0,05 tot 0,5). Het
   dossier noemt het aandeel, de opslag is niet meegerekend. Per woning (het
   verblijfsobjectpunt in plaats van het pand) zou dit beslissen.
-- **puntendoel.py kent geen monument.** Het programma van eisen rekent de
-  maximumhuur rechtstreeks uit WWS_TABEL, zonder opslag en met de
-  minpunten voor het label. Bij een monument te laag.
+- GEDAAN 19 oktober: **puntendoel.py rekent met de soort monument** (geen
+  minpunten, opslag op de maximumhuur; --monument op de opdrachtregel).
 - **Contracten van voor 1 juli 2024** (art. 8a lid 2: 50 punten zelfstandig,
   10 onzelfstandig in plaats van 35%) rekent het model niet; het rekent
   altijd met een nieuw contract.

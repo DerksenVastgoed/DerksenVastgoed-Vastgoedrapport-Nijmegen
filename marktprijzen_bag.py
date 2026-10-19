@@ -6238,7 +6238,8 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
             w.get("woz"), dict) else w.get("woz")
         if opp and _woz_voor_doel:
             _pr = _programma(opp, int(_woz_voor_doel),
-                             (w.get("energielabel") or {}).get("label"))
+                             (w.get("energielabel") or {}).get("label"),
+                             monument=monument_soort_w(w))
             if _pr.get("tekort") and _pr.get("gekozen"):
                 _eisen = "; ".join(f"{n} (+{p})" for n, p in _pr["gekozen"])
                 _slot = ("daarmee is de grens gehaald" if _pr.get("haalbaar")

@@ -1494,3 +1494,14 @@ waarom: 19 oktober. Art. 8a lid 3 vraagt een aangewezen monument en lid 5
 proef: gezicht:het gezicht telt niet alleen voor 1965; gezicht:een monument in procedure
 soort: gegevens
 
+---
+eis: Het programma van eisen (puntendoel.py) rekent met de soort monument:
+  geen minpunten voor het label bij rijks- en gemeentelijke monumenten, en
+  de maximumhuur met de opslag van art. 8a. Het doel van 187 punten blijft.
+waarom: 19 oktober. Na #173 rekende alleen het programma nog zonder
+  monument: bij 60 m2, WOZ 200.000 en label G stond een rijksmonument op 85
+  punten en €534,70 in plaats van 100 punten en €860,85, en de labelstap
+  leek meer op te leveren dan hij doet.
+proef: puntendoel:een rijksmonument met label G houdt de minpunten; puntendoel:de maximumhuur in het programma mist de opslag
+soort: gegevens
+
