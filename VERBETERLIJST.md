@@ -8138,6 +8138,15 @@ nagezocht, en dat is de enige route naar meer.
 - GEDAAN 19 oktober: **monumentenopslag naar art. 8a** (wwso.py): 35%
   rijks, 15% gemeentelijk, 5% gezicht voor 1965, op zelfstandig en
   onzelfstandig. Daarvoor kende het model alleen 35% bij kamers.
+  GEMETEN in de brief zelf (marktprijzen_bag.py offline gedraaid op de code
+  van voor en na #173, zelfde gegevens, 19 oktober): van de 12 dossiers
+  veranderden er 5, de dagbrief en de bijlage niet. St. Annastraat 7
+  (gemeentelijk monument, 6 eenheden): huur €4.197 -> €4.826 per maand,
+  gedekte koopsom €855.912 -> €984.304. Vier panden in het rijksgezicht
+  met bouwjaar voor 1965 (Achter de Bank 4, van Goorstraat 34, St.
+  Canisiussingel 6 en 8): huur +5%, gedekte koopsom €11.000 tot €19.000
+  hoger. Geen rijksmonument onder de 12 dossiers, dus de 35% voor
+  zelfstandige woningen is in deze brief niet zichtbaar geworden.
 - **Vier panden in de voorraad met een pand-id dat de BAG bij het vlak niet
   teruggeeft** (Molenstraat 55: voorraad ...3577, BAG ...4125; Berg en
   Dalseweg 200; van Berchenstraat 31 en 33). Daar beslist nog het pandpunt.
