@@ -1430,7 +1430,22 @@ waarom: 18 oktober. Het RCE-bestand (174 adressen) bleek onvolledig naast
   Pyrmontsingel 9). De vlag telt mee in de huurpunten (wwso.py:
   energiepunten en de monumentenopslag), dus een gemist rijksmonument is
   een verkeerde huur.
-proef: marktprijzen_bag:de tegenspraak van Waldeck Pyrmontsingel wordt niet
+proef: marktprijzen_bag:een tegenspraak tussen RCE en register wordt niet
+soort: gegevens
+
+---
+eis: Kent het erfgoedregister een rijksmonumentnummer, dan zegt het
+  register welk pand het is; het RCE-punt telt alleen voor nummers die het
+  register niet heeft.
+waarom: 19 oktober. De RCE geeft een punt, het register een vlak. Van de 8
+  panden die alleen via het RCE-punt rijksmonument waren, droegen 7 een
+  nummer dat het register op een ander pand legt: het transformatorhuisje
+  Waldeck Pyrmontsingel 1A (522985) op nummer 7 en 13, De Tempelier
+  Molenstraat 93-97 (523036) op 99B. Vier daarvan stonden als tegenspraak in
+  het dossier en alle zeven telden als rijksmonument in de huurpunten. De
+  tegenspraak "Waldeck Pyrmontsingel 9" uit de eis hierboven was dus een
+  verkeerde koppeling.
+proef: marktprijzen_bag:Waldeck Pyrmontsingel 7 krijgt het rijksmonument
 soort: gegevens
 
 ---

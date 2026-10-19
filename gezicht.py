@@ -358,6 +358,18 @@ def _rce_per_pand():
     return uit
 
 
+def _register_nummers():
+    """Alle rijksmonumentnummers die het erfgoedregister ergens als vlak
+    heeft, ongeacht in welk pand."""
+    if "register_nummers" not in _cache:
+        _cache["register_nummers"] = {
+            n for t in (_laad().get("register") or [])
+            for n in re.findall(r"\d{4,6}",
+                                str((t[0] if isinstance(t, tuple) else t)
+                                    .get("RIJKSOBJECTCODE") or ""))}
+    return _cache["register_nummers"]
+
+
 def archeologisch_rijksmonument(pand_id):
     """De archeologische rijksmonumenten waarvan het RCE-punt in dit pand
     ligt, als [(nummer, naam)]."""
@@ -395,6 +407,21 @@ def monument_aanvullen(pand_id):
     # de huurpunten. Een archeologisch rijksmonument geldt voor wie graaft en
     # niet voor de gevel, dus het telt hier niet en staat apart in het dossier.
     rce = [(n, naam) for n, naam, *arch in alle if not (arch and arch[0])]
+    # HET VLAK GAAT VOOR HET PUNT. 19 oktober 2026. De RCE geeft een punt, het
+    # register een vlak. Van de 8 panden die alleen via het RCE-punt
+    # rijksmonument waren, droegen 7 een nummer dat het register zelf op een
+    # ander pand legt: het transformatorhuisje Waldeck Pyrmontsingel 1A
+    # (522985) kwam op nummer 7 en 13 terecht, De Tempelier Molenstraat 93-97
+    # (523036) op 99B, Grote Markt 19 (31130) op St. Stevenskerkhof 1B. Vier
+    # daarvan waren de tegenspraken in het dossier, en alle zeven telden als
+    # rijksmonument in de huurpunten. Kent het register het nummer, dan zegt
+    # het register welk pand het is; het RCE-punt telt alleen voor nummers
+    # die het register niet heeft.
+    # Voor de bron telt het punt wel: ligt het in een pand dat het register
+    # ook rijksmonument noemt, dan zeggen beide bronnen het.
+    rce_punt = rce
+    bekend = _register_nummers()
+    rce = [(n, naam) for n, naam in rce if n not in bekend]
     try:
         bs = bescherming(pand_id)
     except Exception:
@@ -413,7 +440,7 @@ def monument_aanvullen(pand_id):
     else:
         mon = {"adres": None, "functie": rce[0][1] or "", "nummer": rce[0][0],
                "bron": "RCE"}
-    if rce and rijks:
+    if rce_punt and rijks:
         mon["bron"] = "RCE en erfgoedregister gemeente"
     elif rce and reg:
         ander = sorted({p.get("BESCHERMINGS_OMS") for p in reg
@@ -663,7 +690,9 @@ def proef():
     # Een archeologisch rijksmonument maakt het gebouw geen rijksmonument
     # (Flavus 43, RCE 397576, 18 oktober).
     _cache.update({"rce_per_pand": {"F": [("397576", None, True)],
-                                    "G": [("31114", None, False)]}})
+                                    "G": [("31114", None, False)],
+                                    "W": [("522985", None, False)]},
+                   "register_nummers": {"522985"}})
     _oud_b = globals()["bescherming"]
     try:
         globals()["bescherming"] = lambda pid: {"register": []}
@@ -675,6 +704,11 @@ def proef():
                        "genoemd")
         if monument_aanvullen("G") is None:
             afw.append("een gebouwd RCE-rijksmonument wordt niet meer gezien")
+        # Het transformatorhuisje Waldeck Pyrmontsingel 1A (522985) staat in
+        # het register op een eigen vlak; het RCE-punt viel in nummer 7 en 13.
+        if monument_aanvullen("W") is not None:
+            afw.append("een RCE-punt maakt een pand rijksmonument terwijl het "
+                       "register dat nummer op een ander pand legt")
     finally:
         globals()["bescherming"] = _oud_b
         _cache.clear()
