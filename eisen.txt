@@ -1469,3 +1469,28 @@ waarom: 19 oktober. Het pandpunt van St. Anthoniusplaats 16 viel buiten het
   0,215 en 0,453. Zie gezicht._register_per_pand.
 proef: gezicht:een buurpand dat de rand van een monumentvlak raakt
 soort: gegevens
+
+---
+eis: De maximale huur krijgt de opslag van art. 8a Besluit huurprijzen
+  woonruimte naar de soort monument: rijksmonument 35%, gemeentelijk
+  monument 15%, rijksbeschermd gezicht met bouwjaar voor 1965 5%, voor
+  zelfstandige en onzelfstandige woonruimte. Geen minpunten voor label E,
+  F en G bij rijks- en gemeentelijke monumenten, wel bij een gezicht.
+waarom: 19 oktober. Het model kende alleen "monument ja/nee": de 35% alleen
+  bij kamers en nergens bij zelfstandige woningen, en de 15% en 5% helemaal
+  niet. Bij een gemeentelijk monument telden de minpunten voor het label
+  ook mee. Dat is een te laag wettelijk maximum, in het nadeel van de
+  verhuurder.
+proef: wwso:een kamer in een gemeentelijk monument krijgt geen 15%
+soort: gegevens
+
+---
+eis: Een gezicht geeft alleen opslag bij een bekend bouwjaar voor 1965; een
+  onbekend bouwjaar geeft geen opslag. "In procedure" en stadsbeeldobject
+  zijn geen gemeentelijk monument.
+waarom: 19 oktober. Art. 8a lid 3 vraagt een aangewezen monument en lid 5
+  een bouwjaar voor 1965. Het model neemt bij twijfel het lagere maximum
+  in plaats van een opslag te beweren die het niet kan onderbouwen.
+proef: gezicht:het gezicht telt niet alleen voor 1965; gezicht:een monument in procedure
+soort: gegevens
+

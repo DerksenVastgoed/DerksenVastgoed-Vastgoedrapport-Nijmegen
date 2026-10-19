@@ -1951,10 +1951,10 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
                     ep_k = w.get("energielabel") or {}
                     r_k = wws_punten(unit, w["prijs"] / kandidaat,
                                      label=ep_k.get("label"),
-                                     monument=bool(w.get("monument")),
+                                     monument=monument_soort_w(w),
                                      heeft_buiten=False)
                     if r_k["gereguleerd"]:
-                        mx = wws_max_huur(r_k["punten"])
+                        mx = wws_max_huur(r_k["punten"], monument_soort_w(w))
                         if mx:
                             maand_k = min(maand_k, mx * kandidaat)
                 except Exception:
@@ -1989,13 +1989,13 @@ def splitsscenario(w, huur_bk, huur_k, buurt, per_buurt_prijzen=None):
         ep = w.get("energielabel") or {}
         try:
             r = wws_punten(unit_m2, unit_waarde, label=ep.get("label"),
-                           monument=bool(w.get("monument")), heeft_buiten=False)
+                           monument=monument_soort_w(w), heeft_buiten=False)
             punten, segment = r["punten"], r["segment"]
             if r["gereguleerd"] and wws_max_huur:
                 # Onder 187 punten geldt een wettelijk maximum per eenheid. De
                 # markthuur mag dan niet gevraagd worden, dus we rekenen met
                 # het maximum. Dat is het bedrag waarop je een bod baseert.
-                maximum = wws_max_huur(punten)
+                maximum = wws_max_huur(punten, monument_soort_w(w))
                 if maximum:
                     maand_wettelijk = maximum * aantal
                     if maand_wettelijk < maand:
@@ -2332,7 +2332,7 @@ def wws_indicatie(w):
                     f"kamerverhuur, met het puntenstelsel voor onzelfstandige "
                     f"woonruimte per kamer")}
     label = (w.get("energielabel") or {}).get("label")
-    uit = wws_punten(opp, woz, label=label, monument=bool(w.get("monument")))
+    uit = wws_punten(opp, woz, label=label, monument=monument_soort_w(w))
     punten = uit.get("punten")
     if punten is None:
         return None
@@ -2371,7 +2371,7 @@ def wws_indicatie(w):
     sprong = None
     if punten < 187 and label:
         for doel in ("B", "A", "A+", "A++"):
-            uit_d = wws_punten(opp, woz, label=doel, monument=bool(w.get("monument")))
+            uit_d = wws_punten(opp, woz, label=doel, monument=monument_soort_w(w))
             p_d = uit_d.get("punten")
             if p_d and p_d >= 187:
                 sprong = {"label": doel, "punten": p_d,
@@ -2379,7 +2379,7 @@ def wws_indicatie(w):
                 break
         if not sprong:
             beste = wws_punten(opp, woz, label="A++",
-                               monument=bool(w.get("monument"))).get("punten")
+                               monument=monument_soort_w(w)).get("punten")
             if beste and beste > punten:
                 sprong = {"label": "A++", "punten": beste,
                           "winst": beste - punten, "haalt_niet": True}
@@ -2977,10 +2977,10 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
         try:
             ep = w.get("energielabel") or {}
             r = wws_punten(opp, w["woz"], label=ep.get("label"),
-                           monument=bool(w.get("monument")))
+                           monument=monument_soort_w(w))
             punten_w = r["punten"]
             if r["gereguleerd"]:
-                maximum = wws_max_huur(punten_w)
+                maximum = wws_max_huur(punten_w, monument_soort_w(w))
                 if maximum and maximum < maand_w:
                     maand_w = maximum
                     huur_w = maximum / opp
@@ -3039,7 +3039,7 @@ def kies_scenario(w, huur_bk, huur_k, buurt, mediaan_m2=None,
             _band = wwso_bandbreedte(
                 verhuurbaar / kamers_schatting,
                 label=(w.get("energielabel") or {}).get("label"),
-                bouwjaar=w.get("bouwjaar"), monument=bool(w.get("monument")),
+                bouwjaar=w.get("bouwjaar"), monument=monument_soort_w(w),
                 eenheden=kamers_schatting)
             if _band and _band.get("laag"):
                 _max_karig = _band["laag"] * kamers_schatting
@@ -4468,7 +4468,7 @@ def kamerhuur_binnen_wwso(w):
         return w.get("prijs")
     ep = w.get("energielabel") or {}
     band = wwso_bandbreedte(opp, label=ep.get("label"), bouwjaar=w.get("bouwjaar"),
-                            monument=bool(w.get("monument")))
+                            monument=monument_soort_w(w))
     if not band:
         return w.get("prijs")
     return min(w["prijs"], band["hoog"])
@@ -5020,7 +5020,7 @@ def wwso_toets(huur_aanbod):
         ep = w.get("energielabel") or {}
         band = wwso_bandbreedte(opp, label=ep.get("label"),
                                 bouwjaar=w.get("bouwjaar"),
-                                monument=bool(w.get("monument")))
+                                monument=monument_soort_w(w))
         if not band:
             continue
         inclusief = (w.get("bron") or "").endswith("incl")
@@ -6044,7 +6044,8 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
               + " Zoek hem op als het pand dicht bij de grens ligt",
               "eigen berekening met de CBS-prijsindex, geijkt op eigen WOZ-invoer")
         label_nu = (w.get("energielabel") or {}).get("label")
-        drempel = woz_voor_vrije_sector(w["oppervlakte"], label_nu)
+        drempel = woz_voor_vrije_sector(w["oppervlakte"], label_nu,
+                                         monument=monument_soort_w(w))
         if drempel:
             f("WOZ onbekend, en dat bepaalt alles",
               f"boven een WOZ van ongeveer €{eu(drempel)} komt dit pand op 187 "
@@ -6190,10 +6191,10 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                             _ep2 = w.get("energielabel") or {}
                             _r2 = wws_punten(opp / _n, w["prijs"] / _n,
                                              label=_ep2.get("label"),
-                                             monument=bool(w.get("monument")),
+                                             monument=monument_soort_w(w),
                                              heeft_buiten=False)
                             if _r2["gereguleerd"]:
-                                _mx2 = wws_max_huur(_r2["punten"])
+                                _mx2 = wws_max_huur(_r2["punten"], monument_soort_w(w))
                                 if _mx2:
                                     _huur_na = _mx2 * _n
                         except Exception:
@@ -6286,9 +6287,23 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
             f("energielabel", lab, "EP-Online")
     if w.get("monument"):
         _m = w["monument"]
-        f("monument", "rijksmonument"
+        f("monument", "rijksmonument; maximale huur +35% (art. 8a lid 1 "
+          "Besluit huurprijzen woonruimte), geen minpunten voor het label"
           + (f"; let op: {_m['tegenspraak']}" if _m.get("tegenspraak") else ""),
           _m.get("bron") or "Rijksdienst voor het Cultureel Erfgoed")
+    elif w.get("monument_soort") == "gemeentelijk":
+        f("monument", "gemeentelijk monument; maximale huur +15% (art. 8a "
+          "lid 3), geen minpunten voor het label",
+          "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak")
+    elif w.get("monument_soort") == "gezicht":
+        f("monument", f"geen monument, wel rijksbeschermd stadsgezicht en "
+          f"bouwjaar {w.get('bouwjaar')}; maximale huur +5% (art. 8a lid 5)",
+          "RCE (PDOK) en BAG")
+    if w.get("monument_deels") is not None:
+        f("deels monument", f"{w['monument_deels']:.2f} van het pand ligt in "
+          f"een gemeentelijk monumentvlak. Of de woning in dat deel ligt, "
+          f"weten we niet; de opslag van 15% is niet meegerekend. Nakijken",
+          "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak")
     if w.get("ov_halte"):
         h = w["ov_halte"]
         f("OV", f"{h['naam']} op {h['meters']} m lopen", "OpenStreetMap en OSRM")
@@ -8043,15 +8058,34 @@ def lees_haltes_bestand():
 
 
 def monument_uit_register(w):
-    """Vul w["monument"] aan uit het erfgoedregister; zie
-    gezicht.monument_aanvullen()."""
+    """Vul w["monument"] (rijksmonument) en w["monument_soort"] aan uit het
+    erfgoedregister; zie gezicht.monument_aanvullen() en
+    gezicht.monument_soort(). De soort bepaalt de opslag op de maximale huur
+    (wwso.MONUMENT_OPSLAG, art. 8a Besluit huurprijzen woonruimte)."""
     import gezicht as _gz
-    mon = _gz.monument_aanvullen(w.get("pand_id") or w.get("pand"))
+    pid = w.get("pand_id") or w.get("pand")
+    mon = _gz.monument_aanvullen(pid)
     if mon:
         w["monument"] = mon
     else:
         w.pop("monument", None)
+    soort = _gz.monument_soort(pid, w.get("bouwjaar"), rijks=bool(mon))
+    if soort:
+        w["monument_soort"] = soort
+    else:
+        w.pop("monument_soort", None)
+    w.pop("monument_deels", None)
+    if not soort or soort == "gezicht":
+        a = _gz.gemeentelijk_aandeel(pid)
+        if a is not None and _gz.GEM_TWIJFEL <= a < _gz.GEM_DREMPEL:
+            w["monument_deels"] = a
     return w
+
+
+def monument_soort_w(w):
+    """De soort voor het puntenstelsel: monument_soort als die gezet is, en
+    anders rijks als w["monument"] er staat (zoals het altijd was)."""
+    return w.get("monument_soort") or ("rijks" if w.get("monument") else None)
 
 
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
@@ -8104,9 +8138,12 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     # "Arnold van Akenplein 10-8"). Andersom noemt het RCE drie panden een
     # rijksmonument die het register nog als gemeentelijk monument of
     # stadsbeeldobject kent (Hoogstraat 3, St. Jorisstraat 35, Waldeck
-    # Pyrmontsingel 9, RCE-nummers uit de 52xxxx-reeks): daar loopt het
-    # register achter. Dus: rijksmonument als een van de twee het zegt, met
-    # de bron erbij, en een tegenspraak wordt genoemd in plaats van opgelost.
+    # Pyrmontsingel 9). Alle drie bleken later een verkeerde koppeling van
+    # onze kant (#167, #170), niet een register dat achterloopt. Nu: het
+    # registervlak per pandomtrek, en het RCE-punt alleen voor nummers die
+    # het register niet kent; zie gezicht.monument_aanvullen.
+    # Sinds 19 oktober ook de soort (rijks, gemeentelijk, gezicht) voor de
+    # huuropslag van art. 8a; zie wwso.MONUMENT_OPSLAG.
     for w in woningen:
         monument_uit_register(w)
 
@@ -9009,7 +9046,7 @@ def proef():
         # Deze gevallen toetsen de bronnen, niet de pandomtrek; die heeft
         # zijn eigen proef in gezicht.py.
         _oud_pp = _gzp._register_per_pand
-        _gzp._register_per_pand = lambda: None
+        _gzp._register_per_pand = lambda *a: None
         _w = monument_uit_register({"pand": "R"})
         if (_w.get("monument") or {}).get("bron") != "erfgoedregister gemeente" \
                 or not (_w["monument"].get("nummer") or "").endswith("/31122"):

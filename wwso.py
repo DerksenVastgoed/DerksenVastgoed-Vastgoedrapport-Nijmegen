@@ -47,15 +47,48 @@ def maximale_huur(punten):
     return TABEL_0_100[100] + 150 * STAP_BOVEN_100 + (p - 250) * STAP_BOVEN_100
 
 
+# MONUMENTEN. Besluit huurprijzen woonruimte art. 8a (versie 1 januari 2026),
+# voor zelfstandige en onzelfstandige woonruimte:
+#   lid 1: rijksmonument, huurcontract na de Wet betaalbare huur: +35%;
+#   lid 3: gemeentelijk (of provinciaal) monument, aangewezen: +15%;
+#   lid 5: rijksbeschermd stads- of dorpsgezicht, gebouwd voor 1965, geen
+#          monument: +5%;
+#   lid 6: het segment (de grens van 7:247 BW) gaat over de grens VOOR de
+#          opslag, dus de punten en het segment veranderen niet.
+# Geen minpunten voor energielabel E, F en G bij rijks-, gemeentelijke en
+# provinciale monumenten (rubriek 4; leaflet monumentenverhuur van het
+# ministerie, augustus 2024); bij een gezicht niet.
+# TOT 19 OKTOBER 2026 kende dit model alleen "monument ja/nee": de 35% alleen
+# bij kamers, nergens bij zelfstandige woningen, en geen 15% of 5%. Contracten
+# van voor 1 juli 2024 (lid 2: 50 of 10 punten) rekent het model niet.
+MONUMENT_OPSLAG = {"rijks": 1.35, "gemeentelijk": 1.15, "gezicht": 1.05}
+GEEN_MINPUNTEN = {"rijks", "gemeentelijk"}
+
+
+def monument_soort(monument):
+    """"rijks", "gemeentelijk", "gezicht" of None. True (en een dict met de
+    gegevens van een rijksmonument) betekent rijks, zoals het altijd was."""
+    if monument in MONUMENT_OPSLAG:
+        return monument
+    if monument is True or isinstance(monument, dict) and monument:
+        return "rijks"
+    return None
+
+
+def monument_opslag(monument):
+    return MONUMENT_OPSLAG.get(monument_soort(monument), 1.0)
+
+
 def energiepunten_per_m2(label=None, bouwjaar=None, monument=False):
-    """Rubriek 4. Monumenten krijgen geen minpunten bij label E, F of G."""
+    """Rubriek 4. Rijks- en gemeentelijke monumenten krijgen geen minpunten
+    bij label E, F of G; een pand in een beschermd gezicht wel."""
     if label and label.upper() in LABEL_PUNTEN:
         p = LABEL_PUNTEN[label.upper()]
     elif bouwjaar:
         p = next(v for j, v in BOUWJAAR_PUNTEN if bouwjaar >= j)
     else:
         p = -0.15
-    if monument and p < 0:
+    if monument_soort(monument) in GEEN_MINPUNTEN and p < 0:
         return 0.0
     return p
 
@@ -154,7 +187,7 @@ def wwso_bandbreedte(kamer_m2, label=None, bouwjaar=None, monument=False,
         totaal = r["totaal"] - r["rubriek11"] + woz_punten
         uit[naam] = {"punten": round(totaal), "huur": maximale_huur(totaal)}
 
-    opslag = 1.35 if monument else 1.0
+    opslag = monument_opslag(monument)
     return {"laag": uit["karig"]["huur"] * opslag,
             "hoog": uit["ruim"]["huur"] * opslag,
             "punten_laag": uit["karig"]["punten"],
@@ -207,7 +240,7 @@ def wws_punten(opp_m2, woz, label=None, monument=False, aanrecht_m=2.0,
 
     # Energielabel
     label_p = LABEL_PUNTEN_ZELFSTANDIG.get((label or "").upper(), 0)
-    if monument and label_p < 0:
+    if monument_soort(monument) in GEEN_MINPUNTEN and label_p < 0:
         label_p = 0
     punten += label_p
 
@@ -479,11 +512,45 @@ WWS_TABEL = {
 }
 
 
-def wws_max_huur(punten):
-    """Maximale kale huurprijs bij een puntenaantal, zelfstandige woning."""
+def wws_max_huur(punten, monument=None):
+    """Maximale kale huurprijs bij een puntenaantal, zelfstandige woning, met
+    de monumentenopslag van art. 8a."""
     p = max(40, int(round(punten)))
     if p in WWS_TABEL:
-        return WWS_TABEL[p]
+        return round(WWS_TABEL[p] * monument_opslag(monument), 2)
     # Boven 250 punten kent de tabel geen grens meer; de woning is dan
     # sowieso vrije sector en er geldt geen wettelijk maximum.
     return None
+
+
+def proef():
+    """De monumentenregels van art. 8a, op de tabel zelf nagerekend."""
+    import sys
+    afw = []
+    basis = WWS_TABEL[150]
+    for soort, f in (("rijks", 1.35), ("gemeentelijk", 1.15),
+                     ("gezicht", 1.05), (None, 1.0)):
+        if wws_max_huur(150, soort) != round(basis * f, 2):
+            afw.append(f"de opslag voor {soort} is niet {f}: "
+                       f"{wws_max_huur(150, soort)}")
+    if wws_max_huur(150, True) != round(basis * 1.35, 2):
+        afw.append("monument=True leest niet meer als rijksmonument")
+    # Geen minpunten bij label G voor rijks en gemeentelijk, wel bij gezicht.
+    g = {s: wws_punten(80, 300000, label="G", monument=s)["punten"]
+         for s in ("rijks", "gemeentelijk", "gezicht", None)}
+    if not (g["rijks"] == g["gemeentelijk"] > g["gezicht"] == g[None]):
+        afw.append(f"minpunten voor label G kloppen niet per soort: {g}")
+    k = {s: wwso_bandbreedte(15, label="G", monument=s)["laag"]
+         for s in ("gemeentelijk", None)}
+    if not k["gemeentelijk"] > k[None] * 1.15 - 0.01:
+        afw.append(f"een kamer in een gemeentelijk monument krijgt geen 15% "
+                   f"en geen vrijstelling van minpunten: {k}")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef wwso: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(proef() if "--proef" in sys.argv else 0)

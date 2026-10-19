@@ -8135,6 +8135,22 @@ nagezocht, en dat is de enige route naar meer.
   weer rijksmonument (0,913 in het vlak); geen pand verloor de vlag. Ring
   121. Voor de andere categorieen (gemeentelijk monument, stadsbeeldobject)
   toetst het dossier nog met het pandpunt.
+- GEDAAN 19 oktober: **monumentenopslag naar art. 8a** (wwso.py): 35%
+  rijks, 15% gemeentelijk, 5% gezicht voor 1965, op zelfstandig en
+  onzelfstandig. Daarvoor kende het model alleen 35% bij kamers.
+- **Vier panden in de voorraad met een pand-id dat de BAG bij het vlak niet
+  teruggeeft** (Molenstraat 55: voorraad ...3577, BAG ...4125; Berg en
+  Dalseweg 200; van Berchenstraat 31 en 33). Daar beslist nog het pandpunt.
+  Nakijken of die id's verouderd zijn.
+- **Gemeentelijk monument: 28 panden deels in een vlak** (0,05 tot 0,5). Het
+  dossier noemt het aandeel, de opslag is niet meegerekend. Per woning (het
+  verblijfsobjectpunt in plaats van het pand) zou dit beslissen.
+- **puntendoel.py kent geen monument.** Het programma van eisen rekent de
+  maximumhuur rechtstreeks uit WWS_TABEL, zonder opslag en met de
+  minpunten voor het label. Bij een monument te laag.
+- **Contracten van voor 1 juli 2024** (art. 8a lid 2: 50 punten zelfstandig,
+  10 onzelfstandig in plaats van 35%) rekent het model niet; het rekent
+  altijd met een nieuw contract.
 - **monumenten.nl** (Restauratiefonds) toont per nummer de adressen uit het
   rijksmonumentenregister, bv. 31169: St. Anthoniusplaats 16 en 15. Het is
   een kopie van de RCE; als we adressen per nummer willen, dan bij de bron.
