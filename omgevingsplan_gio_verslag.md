@@ -41,7 +41,6 @@ Regeling: `https://lokaleregelgeving.overheid.nl/CVDR696550`
 
 ## Erfgoed, met geometrie
 
-- NIET OPGEHAALD https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-8608/1/gml/dc-2026-8608.gml: robots.txt van https://repository.officiele-overheidspublicaties.nl niet te lezen: <urlopen error [Errno 101] Network is unreachable>
+- FOUT https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-8608/1/gml/dc-2026-8608.gml: URLError <urlopen error [Errno 101] Network is unreachable>
 - Archeologisch Rijksmonument: geen GML gevonden
-- NIET OPGEHAALD https://repository.officiele-overheidspublicaties.nl/Datacollecties/2025/dc-2025-15782/1/gml/dc-2025-15782.gml: robots.txt van https://repository.officiele-overheidspublicaties.nl niet te lezen: <urlopen error [Errno 101] Network is unreachable>
-- Waardengebied cultureel erfgoed - molenbiotoop: geen GML gevonden
+- Waardengebied cultureel erfgoed - molenbiotoop: 2 vlakken, bewaard als omgevingsplan_gio_01.gml

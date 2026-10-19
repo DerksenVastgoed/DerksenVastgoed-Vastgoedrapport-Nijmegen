@@ -138,7 +138,9 @@
    "naam": "Waardengebied cultureel erfgoed - molenbiotoop",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/74553638bbc6462996e9f5cd8fea6bd6/nld@2025-10-08;18215983",
    "pagina": "https://zoek.officielebekendmakingen.nl/dc-2025-15782/1/html",
-   "gml": null
+   "gml": "https://repository.officiele-overheidspublicaties.nl/Datacollecties/2025/dc-2025-15782/1/gml/dc-2025-15782.gml",
+   "bestand": "omgevingsplan_gio_01.gml",
+   "vlakken": 2
   }
  ]
 }

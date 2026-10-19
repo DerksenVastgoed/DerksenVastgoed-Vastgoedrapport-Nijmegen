@@ -1,10 +1,11 @@
 # Regels over stadsbeelden
 
-Elk artikel waarin stadsbeeld voorkomt, met de volledige tekst. Bron per regeling hieronder.
+Elk artikel waarin stadsbeeld of verbodsbepaling voorkomt, met de volledige tekst. Bron per regeling hieronder.
 
 ## Erfgoedverordening Nijmegen
 
-- `https://lokaleregelgeving.overheid.nl/CVDR731607`, 72 artikelen gelezen, 13 over stadsbeelden
+- het woord stadsbeeld staat 57 keer in de hele tekst
+- `https://lokaleregelgeving.overheid.nl/CVDR731607`, 72 artikelen gelezen, 15 over stadsbeelden
 
 ### Artikel 16. Omgevingsvergunning identiteitsbepalende objecten
 
@@ -17,6 +18,10 @@ Elk artikel waarin stadsbeeld voorkomt, met de volledige tekst. Bron per regelin
 ### Artikel 18. Wijziging, intrekking en vervallen van de aanwijzing als gemeentelijk
 
 beschermd stadsbeeld met stadsbeeldobjecten (stads- of dorpsgezicht)
+
+### Artikel 19. Verbodsbepaling en aanvraag omgevingsvergunning
+
+§ 7. Handhaving en toezicht
 
 ### Artikel 1. Definities
 
@@ -245,7 +250,34 @@ bescherming niet komt te vervallen. De gemeentelijke bescherming met stadsbeeldo
 reikt namelijk verder dan de rijks bescherming. Om deze reden kunnen beide beschermingen
 naast elkaar bestaan.
 
+### Artikel 19. Verbodsbepaling en aanvraag vergunning
+
+
+
 ## Omgevingsplan Nijmegen
 
-- `https://lokaleregelgeving.overheid.nl/CVDR696550`, 1324 artikelen gelezen, 0 over stadsbeelden
+- het woord stadsbeeld staat 0 keer in de hele tekst
+- `https://lokaleregelgeving.overheid.nl/CVDR696550`, 1324 artikelen gelezen, 1 over stadsbeelden
+
+### Artikel 22.279 Omgevingsplanactiviteit: beoordelingsregel omgevingsvergunning slopen van een bouwwerk
+
+In artikel 22.279 is een beoordelingsregel opgenomen voor in het tijdelijke deel van dit omgevingsplan
+opgenomen verbodsbepalingen om zonder omgevingsvergunning een sloopactiviteit te verrichten.
+Onder «sloopactiviteit» moet op grond van de bijlage bij de Omgevingswet «het slopen
+van een bouwwerk» worden verstaan. Deze begripsbepaling is op grond van artikel 1.1 van dit omgevingsplan ook van toepassing op hoofdstuk 22 van dit plan. De vergunningenstelsels voor de hier bedoelde sloopactiviteiten konden
+op grond van artikel 3.3, aanhef en onder b, van de voormalige Wet ruimtelijke ordening
+in onder meer bestemmingsplannen, beheersverordeningen en andere ruimtelijke regelingen
+zijn opgenomen. In het nieuwe stelsel zijn deze regelingen onderdeel geworden van
+het tijdelijke deel van het omgevingsplan. De beoordelingsregel voor deze in ruimtelijke
+regelingen opgenomen sloopvergunningenstelsels was opgenomen in artikel 2.16 van de
+voormalige Wet algemene bepalingen omgevingsrecht. Ter vervanging van deze bepaling
+is in artikel 22.279 in een gelijkluidende beoordelingsregel voorzien. In de nieuwe redactie is er echter
+rekening mee gehouden dat naast deze (vanuit artikel 2.16 van de Wet algemene bepalingen
+omgevingsrecht overgehevelde) beoordelingsregel ook nog andere specifieke beoordelingsregels
+kunnen zijn gesteld in de vergunningenstelsels voor sloopactiviteiten in het tijdelijke
+deel van het omgevingsplan. In de jurisprudentie is de mogelijkheid om in bijvoorbeeld
+een bestemmingsplan ook nog specifieke beoordelingsregels voor het slopen te stellen
+bevestigd (verwezen wordt naar ABRvS 12 maart 2014, ECLI:NL:RVS:2014:898, TBR 2014/61).
+Als dergelijke beoordelingsregels zijn gesteld, blijven deze onverminderd van toepassing
+en werkt de beoordelingsregel in artikel 22.279 hierop aanvullend.
 
