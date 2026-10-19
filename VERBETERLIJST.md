@@ -8147,10 +8147,12 @@ nagezocht, en dat is de enige route naar meer.
   Canisiussingel 6 en 8): huur +5%, gedekte koopsom €11.000 tot €19.000
   hoger. Geen rijksmonument onder de 12 dossiers, dus de 35% voor
   zelfstandige woningen is in deze brief niet zichtbaar geworden.
-- **Vier panden in de voorraad met een pand-id dat de BAG bij het vlak niet
-  teruggeeft** (Molenstraat 55: voorraad ...3577, BAG ...4125; Berg en
-  Dalseweg 200; van Berchenstraat 31 en 33). Daar beslist nog het pandpunt.
-  Nakijken of die id's verouderd zijn.
+- GEDAAN 19 oktober: **de vier "onbekende" pand-id's** bleken twee fouten
+  van onze kant, geen verouderde id's. Molenstraat 55 en Berg en Dalseweg
+  200: de woning ligt in twee panden, het monument op het tweede; nu telt
+  elk pand van de woning. van Berchenstraat 31 en 33: OBJECTID 3085 staat
+  twee keer in het register, het vlak van 31-35 werd overschreven; nu
+  gesleuteld op ID (0,985 en 0,997 in het vlak).
 - **Gemeentelijk monument: 28 panden deels in een vlak** (0,05 tot 0,5). Het
   dossier noemt het aandeel, de opslag is niet meegerekend. Per woning (het
   verblijfsobjectpunt in plaats van het pand) zou dit beslissen.

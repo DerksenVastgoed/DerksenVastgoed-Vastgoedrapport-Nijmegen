@@ -1505,3 +1505,24 @@ waarom: 19 oktober. Na #173 rekende alleen het programma nog zonder
 proef: puntendoel:een rijksmonument met label G houdt de minpunten; puntendoel:de maximumhuur in het programma mist de opslag
 soort: gegevens
 
+---
+eis: De meting per pandomtrek is gesleuteld op het ID van het register, niet
+  op OBJECTID, en bewaart ook panden met overlap 0; afwezig betekent dat de
+  BAG dat pand bij het vlak niet teruggaf.
+waarom: 19 oktober. OBJECTID is niet uniek (2.781 objecten, 2.757
+  OBJECTID's). Onder 3085 stonden "van Berchenstraat 31-35, Parkweg 1" en
+  "Parkweg 1, van Berchenstraat 35"; de tweede overschreef de eerste en
+  nummer 31 en 33 vielen weg. En een pand zonder overlap werd niet bewaard,
+  zodat "niet gemeten" en "gemeten, nul" hetzelfde leken.
+proef: gezicht:ID is niet meer uniek in het erfgoedregister
+soort: gegevens
+
+---
+eis: Of een woning in een monument ligt, telt over alle BAG-panden van het
+  verblijfsobject; het sterkste wint, en het dossier zegt via welk pand.
+waarom: 19 oktober. Bij Molenstraat 55 en Berg en Dalseweg 200 ligt de
+  woning in twee panden en het monumentvlak op het tweede (1,0 en 0,806).
+  Met alleen het eerste pand was de woning geen monument.
+proef: marktprijzen_bag:een woning in twee panden mist het monument
+soort: gegevens
+

@@ -3,21 +3,21 @@
 Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten van het pand dat in het registervlak valt.
 
 - 796 vlakken (206 rijksmonument, 590 gemeentelijk monument), 0 zonder antwoord van de BAG
-- 1237 paren vlak-pand met overlap
+- 5955 paren vlak-pand met overlap
 
 ## Verdeling van aandeel_pand (deel van het pand in het vlak)
-- 0.00 tot 0.01: 57
+- 0.00 tot 0.01: 4770
 - 0.01 tot 0.05: 42
 - 0.05 tot 0.10: 22
-- 0.10 tot 0.25: 24
+- 0.10 tot 0.25: 25
 - 0.25 tot 0.50: 54
 - 0.50 tot 0.75: 79
 - 0.75 tot 0.90: 103
-- 0.90 tot 0.99: 225
-- 0.99 tot 1.00 (incl.): 631
+- 0.90 tot 0.99: 226
+- 0.99 tot 1.00 (incl.): 634
 
-## Som per pand, rijksmonument (288 panden)
-- 0.00 tot 0.05: 12
+## Som per pand, rijksmonument (2353 panden)
+- 0.00 tot 0.05: 2077
 - 0.05 tot 0.1: 4
 - 0.10 tot 0.15: 1
 - 0.15 tot 0.2: 2
@@ -35,15 +35,15 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.95 tot 1.0: 69
 - 1.00 tot meer: 147
 
-## Som per pand, gemeentelijk monument (862 panden)
-- 0.00 tot 0.05: 35
+## Som per pand, gemeentelijk monument (2555 panden)
+- 0.00 tot 0.05: 1726
 - 0.05 tot 0.1: 7
 - 0.10 tot 0.15: 3
-- 0.15 tot 0.2: 6
+- 0.15 tot 0.2: 5
 - 0.20 tot 0.25: 1
 - 0.25 tot 0.3: 5
 - 0.30 tot 0.35: 3
-- 0.35 tot 0.4: 8
+- 0.35 tot 0.4: 9
 - 0.40 tot 0.45: 6
 - 0.45 tot 0.5: 9
 - 0.50 tot 0.55: 9
@@ -55,11 +55,11 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.80 tot 0.85: 29
 - 0.85 tot 0.9: 32
 - 0.90 tot 0.95: 73
-- 0.95 tot 1.0: 174
+- 0.95 tot 1.0: 176
 - 1.00 tot meer: 394
 
 ## St. Anthoniusplaats 15-16 (31169)
-- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913}]
+- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833}, {'pand': '0268100000045385', 'punten': 309, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000045404', 'punten': 341, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045405', 'punten': 676, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913}, {'pand': '0268100000106007', 'punten': 297, 'in_vlak': 0, 'aandeel_pand': 0.0}]
 
 ## Paren tussen 0,05 en 0,9 (de twijfelzone)
 - St. Annastraat 244 (523018): pand 0268100000013956, 0.653
@@ -186,7 +186,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Kannenmarkt 10-16 (31139): pand 0268100000009676, 0.076
 - Hoogstraat 3-5 (): pand 0268100000047163, 0.838
 - Houtstraat 10-12A2, Houthof 51-53 (): pand 0268100000005577, 0.17
-- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
+- Zonder titel (): pand 0268100000038096, 0.182
 - Parkweg 100-98L (523071): pand 0268100000037828, 0.739
 - Kelfkensbos 57 (): pand 0268100000045509, 0.415
 - Molenstraat 39 (): pand 0268100000002998, 0.4
@@ -267,6 +267,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Dorpsstraat 112 (31205): pand 0268100000045592, 0.828
 - Hertogstraat 11 (): pand 0268100000002843, 0.645
 - Parkdwarsstraat 11-9, Doddendaal 11-9, Achter Valburg 2-4 (): pand 0268100000111661, 0.895
+- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
 - Eversweg 4 (522921): pand 0268100000058095, 0.673
 - Zonder titel (522982): pand 0268100000069018, 0.863
 - Zonder titel (522982): pand 0268100000069019, 0.167
@@ -344,3 +345,6 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Rembrandtstraat 1-9 (): pand 0268100000101335, 0.832
 - Achter de Wiemelpoort 2, Broerstraat 70, Plein 1944 151-151A9 (): pand 0268100000029115, 0.696
 - St. Annastraat 41 (): pand 0268100000029954, 0.089
+
+## Voorraadpanden met het pandpunt in een vlak, die de BAG bij dat vlak niet teruggaf
+- 0 gevallen

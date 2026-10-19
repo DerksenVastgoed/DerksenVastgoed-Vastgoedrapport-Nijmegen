@@ -8065,21 +8065,40 @@ def monument_uit_register(w):
     (wwso.MONUMENT_OPSLAG, art. 8a Besluit huurprijzen woonruimte)."""
     import gezicht as _gz
     pid = w.get("pand_id") or w.get("pand")
-    mon = _gz.monument_aanvullen(pid)
+    # ALLE PANDEN VAN DE WONING. 19 oktober 2026. Een verblijfsobject kan in
+    # meer dan een BAG-pand liggen; "pand" is het eerste. Bij Molenstraat 55
+    # (panden ...3577 en ...4125) en Berg en Dalseweg 200 (...0743 en
+    # ...1732) ligt het monumentvlak op het TWEEDE pand, voor 1,0 en 0,806.
+    # De woning maakt dan deel uit van het monument (art. 8a: "bestaat uit of
+    # deel uitmaakt van"), dus telt elk pand van de woning, het sterkste wint.
+    panden = list(dict.fromkeys([p for p in [pid] + list(w.get("panden")
+                                                         or []) if p]))
+    mon, soort, deels = None, None, None
+    rang = {"rijks": 3, "gemeentelijk": 2, "gezicht": 1, None: 0}
+    for p in panden or [pid]:
+        m = _gz.monument_aanvullen(p)
+        if m and not mon:
+            mon = dict(m)
+            if p != pid:
+                mon["bron"] = (mon.get("bron") or "") + \
+                    f" (via pand {p}, het tweede pand van deze woning)"
+        s_p = _gz.monument_soort(p, w.get("bouwjaar"), rijks=bool(m))
+        if rang[s_p] > rang[soort]:
+            soort = s_p
+        a = _gz.gemeentelijk_aandeel(p)
+        if a is not None and _gz.GEM_TWIJFEL <= a < _gz.GEM_DREMPEL:
+            deels = max(deels or 0, a)
     if mon:
         w["monument"] = mon
     else:
         w.pop("monument", None)
-    soort = _gz.monument_soort(pid, w.get("bouwjaar"), rijks=bool(mon))
     if soort:
         w["monument_soort"] = soort
     else:
         w.pop("monument_soort", None)
     w.pop("monument_deels", None)
-    if not soort or soort == "gezicht":
-        a = _gz.gemeentelijk_aandeel(pid)
-        if a is not None and _gz.GEM_TWIJFEL <= a < _gz.GEM_DREMPEL:
-            w["monument_deels"] = a
+    if deels is not None and soort in (None, "gezicht"):
+        w["monument_deels"] = deels
     return w
 
 
@@ -9065,6 +9084,24 @@ def proef():
         if _w.get("monument"):
             afw.append("Waldeck Pyrmontsingel 7 krijgt het rijksmonument dat "
                        "het register op 1A legt")
+        # Een woning in twee panden, het monument op het tweede (Molenstraat
+        # 55: ...3577 en ...4125).
+        _oud_ma, _oud_ms, _oud_ga = (_gzp.monument_aanvullen,
+                                     _gzp.monument_soort,
+                                     _gzp.gemeentelijk_aandeel)
+        try:
+            _gzp.monument_aanvullen = lambda p: None
+            _gzp.monument_soort = lambda p, bj=None, rijks=None: (
+                "gemeentelijk" if p == "TWEEDE" else None)
+            _gzp.gemeentelijk_aandeel = lambda p: 1.0 if p == "TWEEDE" else 0.0
+            _w = monument_uit_register({"pand": "EERSTE",
+                                        "panden": ["EERSTE", "TWEEDE"]})
+            if _w.get("monument_soort") != "gemeentelijk":
+                afw.append("een woning in twee panden mist het monument op "
+                           "het tweede pand")
+        finally:
+            _gzp.monument_aanvullen, _gzp.monument_soort, \
+                _gzp.gemeentelijk_aandeel = _oud_ma, _oud_ms, _oud_ga
         _w = monument_uit_register({"pand": "N", "monument": {"oud": 1}})
         if _w.get("monument"):
             afw.append("een pand dat geen van beide bronnen een rijksmonument "

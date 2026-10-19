@@ -363,7 +363,7 @@ OVERLAP_DREMPEL = 0.3
 
 
 def _register_per_pand(soort="Rijksmonument"):
-    """pand-id -> [(OBJECTID, aandeel_pand)] voor de vlakken van deze soort
+    """pand-id -> [(ID, aandeel_pand)] voor de vlakken van deze soort
     in het register, of None als de meting er niet is.
 
     WAAROM. 19 oktober 2026. Met een punt per pand viel St. Anthoniusplaats 16
@@ -388,8 +388,14 @@ def _register_per_pand(soort="Rijksmonument"):
         return _cache[sleutel]
     try:
         with open(REGISTER_PANDEN, encoding="utf-8") as f:
-            objecten = json.load(f).get("objecten") or {}
+            inhoud = json.load(f)
+        objecten = inhoud.get("objecten") or {}
     except (OSError, ValueError):
+        _cache[sleutel] = None
+        return None
+    # Een meting op OBJECTID (voor 19 oktober) is niet te koppelen: die
+    # sleutel is niet uniek. Dan niet gemeten, en beslist het pandpunt.
+    if inhoud.get("sleutel") != "ID":
         _cache[sleutel] = None
         return None
     # Voor 19 oktober stonden er alleen rijksmonumenten in, zonder "soort".
@@ -447,7 +453,7 @@ def gemeentelijk_monument(pand_id):
         objs = per_pand.get(str(pand_id or "")) or []
         if sum(a for _o, a in objs) < GEM_DREMPEL:
             return []
-        op_id = {str(t[0].get("OBJECTID")): t[0]
+        op_id = {str(t[0].get("ID")): t[0]
                  for t in (_laad().get("register") or [])}
         return [op_id[o] for o, _a in sorted(objs, key=lambda t: -t[1])
                 if o in op_id]
@@ -565,7 +571,7 @@ def monument_aanvullen(pand_id):
     if per_pand is not None and str(pand_id or "") in per_pand:
         objs = per_pand.get(str(pand_id or "")) or []
         if sum(a for _o, a in objs) >= OVERLAP_DREMPEL:
-            op_id = {str(t[0].get("OBJECTID")): t[0]
+            op_id = {str(t[0].get("ID")): t[0]
                      for t in (_laad().get("register") or [])}
             rijks = [op_id[o] for o, _a in sorted(objs, key=lambda t: -t[1])
                      if o in op_id]
@@ -854,7 +860,7 @@ def proef():
         _cache["register_per_pand"] = {
             "RAND": [("1", 0.006)],
             "VIER": [("1", 0.218), ("2", 0.22), ("3", 0.237)]}
-        _cache["register"] = [({"OBJECTID": i, "BESCHERMINGS_OMS":
+        _cache["register"] = [({"ID": i, "BESCHERMINGS_OMS":
                                 "Rijksmonument", "RIJKSOBJECTCODE": "31124",
                                 "TITEL": "x"}, None, (0, 0, 0, 0))
                               for i in (1, 2, 3, 4)]
@@ -876,6 +882,18 @@ def proef():
     finally:
         globals()["bescherming"] = _oud_b
         _cache.clear()
+    # De sleutel van het register: ID is uniek per object, OBJECTID niet
+    # (3085 dubbel). Getoetst op de objecten in het bestand zelf; _laad
+    # splitst een object in zijn delen, en die delen hun ID.
+    try:
+        with open(REGISTER, encoding="utf-8") as f:
+            ids = [(x.get("properties") or {}).get("ID")
+                   for x in json.load(f).get("features") or []]
+        if len(ids) != len(set(ids)):
+            afw.append("ID is niet meer uniek in het erfgoedregister; de "
+                       "meting per pandomtrek koppelt dan verkeerd")
+    except (OSError, ValueError):
+        pass
     # DE SOORT VOOR DE HUUROPSLAG (art. 8a). Een gezicht telt alleen bij een
     # bouwjaar voor 1965, en een onbekend bouwjaar geeft geen opslag; een
     # gemeentelijk monument gaat voor een gezicht; "in procedure" telt niet.
@@ -911,7 +929,7 @@ def proef():
         # Een pand dat niet in de meting staat, is niet gemeten: dan het
         # pandpunt (Molenstraat 55). Een buurpand met 0,01 telt niet.
         globals()["bescherming"] = lambda pid: {"register": [
-            {"BESCHERMINGS_OMS": "Gemeentelijk monument", "OBJECTID": 7}]}
+            {"BESCHERMINGS_OMS": "Gemeentelijk monument", "ID": 7}]}
         _cache["register_per_pand:Gemeentelijk monument"] = {
             "RANDJE": [("7", 0.01)], "ANDER": [("7", 1.0)]}
         if not gemeentelijk_monument("ONBEKEND"):
