@@ -437,7 +437,10 @@ def koppel_rce_panden():
 # overal). aandeel_pand = punten in beide / punten in het pand. Bij 0,5 m is
 # dat op een pand van 50 m2 een raster van 200 punten. Een drempel staat hier
 # bewust nog niet: die volgt uit de verdeling in het verslag.
-UIT_REG_PANDEN = "rijksmonumenten_register_panden.json"
+# Rijks- en gemeentelijke monumenten: beide geven een huuropslag (Besluit
+# huurprijzen woonruimte art. 8a: 35% en 15%), dus beide per pandomtrek.
+SOORTEN_OMTREK = ("Rijksmonument", "Gemeentelijk monument")
+UIT_REG_PANDEN = "monumenten_register_panden.json"
 STAP = 0.5
 
 
@@ -488,7 +491,7 @@ def aandeel(pand, vlak, stap=STAP):
 
 def koppel_register_panden():
     import time
-    r = ["# Rijksmonumenten uit het register: pandomtrek tegen vlak", "",
+    r = ["# Monumenten uit het register: pandomtrek tegen vlak", "",
          f"Raster van {STAP} m binnen elke BAG-pandomtrek; aandeel = deel van "
          "de rasterpunten van het pand dat in het registervlak valt.", ""]
     try:
@@ -499,7 +502,7 @@ def koppel_register_panden():
         r.append("- geen register; eerst --wfs")
         feats = []
     rijks = [f for f in feats if (f.get("properties") or {})
-             .get("BESCHERMINGS_OMS") == "Rijksmonument" and f.get("geometry")]
+             .get("BESCHERMINGS_OMS") in SOORTEN_OMTREK and f.get("geometry")]
     uit, fout = {}, 0
     for f in rijks:
         p, geom = f["properties"], f["geometry"]
@@ -517,12 +520,15 @@ def koppel_register_panden():
                 rij.append({"pand": pid, "punten": n_p, "in_vlak": n_b,
                             "aandeel_pand": round(n_b / n_p, 3)})
         uit[str(p.get("OBJECTID"))] = {
+            "soort": p.get("BESCHERMINGS_OMS"),
             "titel": p.get("TITEL"), "naam": p.get("OBJECTNAAM"),
             "nummers": re.findall(r"\d{4,6}", str(p.get("RIJKSOBJECTCODE")
                                                    or "")),
             "panden": rij}
-    r.append(f"- {len(rijks)} rijksmonumentvlakken, {fout} zonder antwoord "
-             f"van de BAG")
+    r.append(f"- {len(rijks)} vlakken ("
+             + ", ".join(f"{sum(1 for f in rijks if f['properties'].get('BESCHERMINGS_OMS') == s)} {s.lower()}"
+                         for s in SOORTEN_OMTREK)
+             + f"), {fout} zonder antwoord van de BAG")
     alle = [x["aandeel_pand"] for v in uit.values() for x in v["panden"]]
     r.append(f"- {len(alle)} paren vlak-pand met overlap")
     r.append("")
@@ -535,6 +541,21 @@ def koppel_register_panden():
                  f": {n}")
         onder = g
     r.append("")
+    # De drempel gaat per pand over de som van alle vlakken van een soort;
+    # dit is de verdeling waaruit hij volgt.
+    for soort in SOORTEN_OMTREK:
+        som = {}
+        for v in uit.values():
+            if v["soort"] == soort:
+                for x in v["panden"]:
+                    som[x["pand"]] = som.get(x["pand"], 0) + x["aandeel_pand"]
+        r.append(f"## Som per pand, {soort.lower()} ({len(som)} panden)")
+        stappen = [i / 20 for i in range(21)] + [99]
+        for a, b in zip(stappen, stappen[1:]):
+            n = sum(1 for x in som.values() if a <= x < b)
+            if n:
+                r.append(f"- {a:.2f} tot {b if b < 99 else 'meer'}: {n}")
+        r.append("")
     r.append("## St. Anthoniusplaats 15-16 (31169)")
     for k, v in uit.items():
         if "31169" in v["nummers"]:
@@ -547,11 +568,12 @@ def koppel_register_panden():
                 r.append(f"- {v['titel']} ({','.join(v['nummers'])}): pand "
                          f"{x['pand']}, {x['aandeel_pand']}")
     with open(UIT_REG_PANDEN, "w", encoding="utf-8") as f:
-        json.dump({"bron": "erfgoedregister gemeente (rijksmonumentvlakken) "
+        json.dump({"bron": "erfgoedregister gemeente (rijks- en gemeentelijke "
+                           "monumentvlakken) "
                            "tegen BAG-pandomtrek (PDOK BAG WFS), raster "
                            f"{STAP} m", "objecten": uit},
                   f, ensure_ascii=False, indent=1)
-    with open("rijksmonumenten_register_panden_verslag.md", "w",
+    with open("monumenten_register_panden_verslag.md", "w",
               encoding="utf-8") as f:
         f.write("\n".join(r) + "\n")
     print("\n".join(r))
