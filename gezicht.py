@@ -358,13 +358,13 @@ def _rce_per_pand():
     return uit
 
 
-REGISTER_PANDEN = "rijksmonumenten_register_panden.json"
+REGISTER_PANDEN = "monumenten_register_panden.json"
 OVERLAP_DREMPEL = 0.3
 
 
-def _register_per_pand():
-    """pand-id -> [(OBJECTID, aandeel_pand)] voor de rijksmonumentvlakken van
-    het register, of None als de meting er niet is.
+def _register_per_pand(soort="Rijksmonument"):
+    """pand-id -> [(OBJECTID, aandeel_pand)] voor de vlakken van deze soort
+    in het register, of None als de meting er niet is.
 
     WAAROM. 19 oktober 2026. Met een punt per pand viel St. Anthoniusplaats 16
     buiten het vlak van 31169 ("St. Anthoniusplaats 15-16"), terwijl het
@@ -382,20 +382,109 @@ def _register_per_pand():
     het gat. Wat eronder valt, is een buurpand dat een rand van het vlak
     raakt, of een groot pand met een klein monument erin (Burchtstraat 20,
     0,11; Professor Cornelissenstraat 2, de poortjes, 0,012)."""
-    if "register_per_pand" in _cache:
-        return _cache["register_per_pand"]
+    sleutel = "register_per_pand" + ("" if soort == "Rijksmonument"
+                                     else ":" + soort)
+    if sleutel in _cache:
+        return _cache[sleutel]
     try:
         with open(REGISTER_PANDEN, encoding="utf-8") as f:
             objecten = json.load(f).get("objecten") or {}
     except (OSError, ValueError):
-        _cache["register_per_pand"] = None
+        _cache[sleutel] = None
+        return None
+    # Voor 19 oktober stonden er alleen rijksmonumenten in, zonder "soort".
+    if soort != "Rijksmonument" and not any(
+            v.get("soort") == soort for v in objecten.values()):
+        _cache[sleutel] = None
         return None
     uit = {}
     for o, v in objecten.items():
+        if (v.get("soort") or "Rijksmonument") != soort:
+            continue
         for x in v.get("panden") or []:
             uit.setdefault(x["pand"], []).append((o, x["aandeel_pand"]))
-    _cache["register_per_pand"] = uit
+    _cache[sleutel] = uit
     return uit
+
+
+# GEEN GAT BIJ GEMEENTELIJKE MONUMENTEN. 19 oktober 2026, 590 vlakken en 862
+# panden. Bij de rijksmonumenten lag er een gat in de verdeling (geen pand
+# tussen 0,215 en 0,453); hier niet: tussen 0,1 en 0,5 liggen 58 panden, en
+# daaronder staan panden waarvan het adres in de titel van het register staat
+# (Postweg 54, 0,257; Begijnenstraat 36, 0,29) naast panden met een ander
+# adres (Karrengas 70 bij Molenstraat 66, 0,483). Een drempel daarin zou
+# gekozen zijn, niet gemeten. Dus: vanaf de helft van het pand telt het als
+# gemeentelijk monument (dan ligt het grootste deel erin), en tussen GEM_TWIJFEL
+# en de helft noemt het dossier het aandeel zonder opslag te rekenen. Onder
+# 0,05 lagen bij de rijksmonumenten alleen buurpanden die een rand raken.
+GEM_DREMPEL = 0.5
+GEM_TWIJFEL = 0.05
+
+
+def gemeentelijk_aandeel(pand_id):
+    """De som van aandeel_pand over de gemeentelijke monumentvlakken, of None
+    als die niet gemeten is."""
+    per_pand = _register_per_pand("Gemeentelijk monument")
+    if per_pand is None or str(pand_id or "") not in per_pand:
+        return None
+    return round(sum(a for _o, a in per_pand[str(pand_id or "")]), 3)
+
+
+def gemeentelijk_monument(pand_id):
+    """De vermeldingen "Gemeentelijk monument" uit het register die bij dit
+    pand horen: per pandomtrek als die gemeten is, anders per pandpunt.
+    "In procedure" (voorbescherming) telt niet: art. 8a lid 3 vraagt een
+    aangewezen monument."""
+    per_pand = _register_per_pand("Gemeentelijk monument")
+    # ONBEKEND PAND IS NIET GEMETEN. Bij Molenstraat 55, Berg en Dalseweg 200
+    # en van Berchenstraat 31 en 33 ligt het pandpunt in het vlak, maar
+    # gaf de BAG voor dat vlak een ander pand-id terug dan de voorraad heeft
+    # (Molenstraat 55: voorraad ...3577, BAG ...4125 voor 1,0). Een pand dat
+    # in de meting niet voorkomt is niet gemeten, niet "nul"; dan beslist het
+    # pandpunt, zoals voorheen. Een buurpand dat een rand raakt staat wel in
+    # de meting, met zijn kleine aandeel.
+    if per_pand is not None and str(pand_id or "") in per_pand:
+        objs = per_pand.get(str(pand_id or "")) or []
+        if sum(a for _o, a in objs) < GEM_DREMPEL:
+            return []
+        op_id = {str(t[0].get("OBJECTID")): t[0]
+                 for t in (_laad().get("register") or [])}
+        return [op_id[o] for o, _a in sorted(objs, key=lambda t: -t[1])
+                if o in op_id]
+    try:
+        reg = (bescherming(pand_id) or {}).get("register") or []
+    except Exception:
+        return []
+    return [p for p in reg if p.get("BESCHERMINGS_OMS") ==
+            "Gemeentelijk monument"]
+
+
+def monument_soort(pand_id, bouwjaar=None, rijks=None):
+    """De soort voor de huuropslag van art. 8a Besluit huurprijzen
+    woonruimte: "rijks", "gemeentelijk", "gezicht" of None.
+
+    rijks: de uitkomst van monument_aanvullen, als de aanroeper die al heeft.
+    "gezicht" vraagt een rijksbeschermd stadsgezicht EN een bouwjaar voor
+    1965 (lid 5). Is het bouwjaar onbekend, dan geen opslag: het model neemt
+    dan het lagere maximum, en zegt niet dat het pand ervoor in aanmerking
+    komt zonder het te weten."""
+    if rijks is None:
+        rijks = bool(monument_aanvullen(pand_id))
+    if rijks:
+        return "rijks"
+    if gemeentelijk_monument(pand_id):
+        return "gemeentelijk"
+    try:
+        bs = bescherming(pand_id) or {}
+    except Exception:
+        bs = {}
+    try:
+        oud = bouwjaar is not None and int(bouwjaar) < 1965
+    except (TypeError, ValueError):
+        oud = False
+    if bs.get("rijks") and oud:
+        return "gezicht"
+    return None
 
 
 def _register_nummers():
@@ -473,7 +562,7 @@ def monument_aanvullen(pand_id):
     # registervlak gemeten (monumenten.py --register-panden), dan beslist die.
     # Zie _register_per_pand voor de drempel en waar hij vandaan komt.
     per_pand = _register_per_pand()
-    if per_pand is not None:
+    if per_pand is not None and str(pand_id or "") in per_pand:
         objs = per_pand.get(str(pand_id or "")) or []
         if sum(a for _o, a in objs) >= OVERLAP_DREMPEL:
             op_id = {str(t[0].get("OBJECTID")): t[0]
@@ -784,6 +873,53 @@ def proef():
         if monument_aanvullen("W") is not None:
             afw.append("een RCE-punt maakt een pand rijksmonument terwijl het "
                        "register dat nummer op een ander pand legt")
+    finally:
+        globals()["bescherming"] = _oud_b
+        _cache.clear()
+    # DE SOORT VOOR DE HUUROPSLAG (art. 8a). Een gezicht telt alleen bij een
+    # bouwjaar voor 1965, en een onbekend bouwjaar geeft geen opslag; een
+    # gemeentelijk monument gaat voor een gezicht; "in procedure" telt niet.
+    _oud_b, _oud_g = globals()["bescherming"], globals()["gemeentelijk_monument"]
+    try:
+        globals()["bescherming"] = lambda pid: {"rijks": ["Nijmegen"],
+                                                "register": []}
+        globals()["gemeentelijk_monument"] = lambda pid: []
+        z = [monument_soort("X", bj, rijks=False) for bj in (1930, 1965, None)]
+        if z != ["gezicht", None, None]:
+            afw.append(f"het gezicht telt niet alleen voor 1965: {z}")
+        globals()["gemeentelijk_monument"] = lambda pid: [{"x": 1}]
+        if monument_soort("X", 1930, rijks=False) != "gemeentelijk":
+            afw.append("een gemeentelijk monument in een gezicht krijgt de "
+                       "opslag van het gezicht")
+        if monument_soort("X", 1930, rijks=True) != "rijks":
+            afw.append("een rijksmonument krijgt niet de opslag van een "
+                       "rijksmonument")
+    finally:
+        globals()["bescherming"] = _oud_b
+        globals()["gemeentelijk_monument"] = _oud_g
+    _cache.clear()
+    _cache.update({"register_per_pand:Gemeentelijk monument": None,
+                   "geladen": True, "register": [], "punten": {}})
+    _oud_b = globals()["bescherming"]
+    try:
+        globals()["bescherming"] = lambda pid: {"register": [
+            {"BESCHERMINGS_OMS": "In procedure"},
+            {"BESCHERMINGS_OMS": "Stadsbeeldobject"}]}
+        if gemeentelijk_monument("P"):
+            afw.append("een monument in procedure of een stadsbeeldobject "
+                       "telt als gemeentelijk monument")
+        # Een pand dat niet in de meting staat, is niet gemeten: dan het
+        # pandpunt (Molenstraat 55). Een buurpand met 0,01 telt niet.
+        globals()["bescherming"] = lambda pid: {"register": [
+            {"BESCHERMINGS_OMS": "Gemeentelijk monument", "OBJECTID": 7}]}
+        _cache["register_per_pand:Gemeentelijk monument"] = {
+            "RANDJE": [("7", 0.01)], "ANDER": [("7", 1.0)]}
+        if not gemeentelijk_monument("ONBEKEND"):
+            afw.append("een pand dat de meting niet kent, telt als gemeten "
+                       "en niet in het vlak")
+        if gemeentelijk_monument("RANDJE"):
+            afw.append("een buurpand dat de rand van een gemeentelijk "
+                       "monument raakt, telt als monument")
     finally:
         globals()["bescherming"] = _oud_b
         _cache.clear()
