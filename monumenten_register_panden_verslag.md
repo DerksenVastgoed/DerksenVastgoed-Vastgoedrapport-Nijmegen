@@ -3,10 +3,10 @@
 Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten van het pand dat in het registervlak valt.
 
 - 796 vlakken (206 rijksmonument, 590 gemeentelijk monument), 0 zonder antwoord van de BAG
-- 1237 paren vlak-pand met overlap
+- 5942 paren vlak-pand met overlap
 
 ## Verdeling van aandeel_pand (deel van het pand in het vlak)
-- 0.00 tot 0.01: 57
+- 0.00 tot 0.01: 4762
 - 0.01 tot 0.05: 42
 - 0.05 tot 0.10: 22
 - 0.10 tot 0.25: 24
@@ -16,8 +16,8 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.90 tot 0.99: 225
 - 0.99 tot 1.00 (incl.): 631
 
-## Som per pand, rijksmonument (288 panden)
-- 0.00 tot 0.05: 12
+## Som per pand, rijksmonument (2353 panden)
+- 0.00 tot 0.05: 2077
 - 0.05 tot 0.1: 4
 - 0.10 tot 0.15: 1
 - 0.15 tot 0.2: 2
@@ -35,8 +35,8 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.95 tot 1.0: 69
 - 1.00 tot meer: 147
 
-## Som per pand, gemeentelijk monument (862 panden)
-- 0.00 tot 0.05: 35
+## Som per pand, gemeentelijk monument (2554 panden)
+- 0.00 tot 0.05: 1727
 - 0.05 tot 0.1: 7
 - 0.10 tot 0.15: 3
 - 0.15 tot 0.2: 6
@@ -59,7 +59,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 1.00 tot meer: 394
 
 ## St. Anthoniusplaats 15-16 (31169)
-- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913}]
+- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833}, {'pand': '0268100000045385', 'punten': 309, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000045404', 'punten': 341, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045405', 'punten': 676, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913}, {'pand': '0268100000106007', 'punten': 297, 'in_vlak': 0, 'aandeel_pand': 0.0}]
 
 ## Paren tussen 0,05 en 0,9 (de twijfelzone)
 - St. Annastraat 244 (523018): pand 0268100000013956, 0.653
@@ -344,3 +344,6 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Rembrandtstraat 1-9 (): pand 0268100000101335, 0.832
 - Achter de Wiemelpoort 2, Broerstraat 70, Plein 1944 151-151A9 (): pand 0268100000029115, 0.696
 - St. Annastraat 41 (): pand 0268100000029954, 0.089
+
+## Voorraadpanden met het pandpunt in een vlak, die de BAG bij dat vlak niet teruggaf
+- 0 gevallen
