@@ -132,9 +132,7 @@
    "naam": "Archeologisch Rijksmonument",
    "join": "https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2025/44849203ac17444184629d0565a44394/nld@2026-03-12;15473785",
    "pagina": "https://zoek.officielebekendmakingen.nl/dc-2026-8608/1/html",
-   "gml": "https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-8608/1/gml/dc-2026-8608.gml",
-   "bestand": "omgevingsplan_gio_00.gml",
-   "vlakken": 10
+   "gml": null
   },
   {
    "naam": "Waardengebied cultureel erfgoed - molenbiotoop",

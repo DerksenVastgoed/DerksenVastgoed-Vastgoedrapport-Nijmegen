@@ -691,12 +691,20 @@ def monument_aanvullen(pand_id):
     return mon
 
 
-# Wat een vermelding in het register betekent. Alleen voor het rijks- en het
-# gemeentelijk monument is de regel hier nagelezen: Erfgoedverordening
-# Nijmegen (CVDR731607) art. 14 voor het gemeentelijk monument. Voor een
-# stadsbeeldobject staan de regels in het aanwijzingsbesluit van dat
-# stadsbeeld, en die zijn niet per stadsbeeld nagelezen, dus zegt de tekst
-# dat ook.
+# Wat een vermelding in het register betekent. Nagelezen in de
+# Erfgoedverordening Nijmegen (CVDR731607): art. 14 voor het gemeentelijk
+# monument, art. 19 voor een stadsbeeldobject (19 oktober 2026, de tekst
+# staat in stadsbeeld_regels.md, stadsbeeld.py --regels).
+# STADSBEELDOBJECT: NIET ALLEEN DE BUITENKANT. Tot 19 oktober stond hier
+# "wijzigingen aan de buitenkant zijn vergunningplichtig". Art. 19 lid 1
+# verbiedt zonder vergunning stadsbeeldobjecten "in enig opzicht te
+# wijzigen", en lid 2 zondert alleen normaal onderhoud uit; een uitzondering
+# voor inpandige wijzigingen, zoals art. 14 die bij het gemeentelijk
+# monument wel kent, staat er niet. De toelichting bij art. 18 zegt zelf dat
+# de gemeentelijke bescherming "verder reikt dan de rijks bescherming". Het
+# aanwijzingsbesluit per stadsbeeld kan dit nog invullen; dat is niet
+# nagelezen. Het omgevingsplan (CVDR696550) noemt het woord stadsbeeld
+# nergens: 0 keer in 1.324 artikelen.
 BETEKENIS = {
     "Rijksmonument": "elke wijziging, ook binnen, vraagt een omgevingsvergunning "
                      "voor een rijksmonumentenactiviteit",
@@ -706,9 +714,15 @@ BETEKENIS = {
                              "vormgeving, materiaal of kleur en inpandige "
                              "wijzigingen zonder monumentale waarde niet "
                              "(Erfgoedverordening Nijmegen art. 14)",
-    "Stadsbeeldobject": "wijzigingen aan de buitenkant zijn vergunningplichtig; "
-                        "welke precies, staat in het aanwijzingsbesluit van "
-                        "het stadsbeeld en is hier niet nagelezen",
+    "Stadsbeeldobject": "afbreken, verstoren, verplaatsen of in enig opzicht "
+                        "wijzigen is vergunningplichtig, ook de erfafscheiding "
+                        "en erfinrichting; alleen normaal onderhoud zonder "
+                        "wijziging van detaillering, profilering, vormgeving, "
+                        "materiaal en kleur niet. Een uitzondering voor "
+                        "inpandige wijzigingen kent dit artikel niet "
+                        "(Erfgoedverordening Nijmegen art. 19); het "
+                        "aanwijzingsbesluit van het stadsbeeld is niet "
+                        "nagelezen",
     "In procedure": "voorbescherming: tijdens de procedure gelden de regels "
                     "al",
     "Aandachtspand": "door de gemeente als waardevol aangemerkt, maar niet "
@@ -906,6 +920,12 @@ def proef():
                    "nagekeken, niets, alleen een stadsbeeld en een monument")
     if "art. 14" not in t_mon:
         afw.append("bij een gemeentelijk monument staat de regel er niet bij")
+    t_sb = _registerregels({"register": [{
+        "BESCHERMINGS_OMS": "Stadsbeeldobject", "STATUS_OMS": "Beschermd",
+        "TITEL": "van Welderenstraat 100"}]}, "2026-10-15")[0][1]
+    if "art. 19" not in t_sb or "buitenkant" in t_sb:
+        afw.append("bij een stadsbeeldobject staat niet de regel van art. 19, "
+                   "of nog alleen de buitenkant")
     _cache.clear()
     c = _laad()
     if c.get("register"):

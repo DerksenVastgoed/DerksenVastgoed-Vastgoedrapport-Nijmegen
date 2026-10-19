@@ -1412,8 +1412,11 @@ waarom: 18 oktober. Tot dan zei het dossier bij elk pand "gemeentelijke
   een rijksmonument, 1.621 op een stadsbeeldobject, 80 in procedure en 2.513
   in een gemeentelijk beschermd stadsbeeld. De regel bij een gemeentelijk
   monument komt uit de Erfgoedverordening, art. 14; die bij een
-  stadsbeeldobject is niet per stadsbeeld nagelezen en staat er zo.
-proef: gezicht:wordt niet gevonden in het register
+  stadsbeeldobject uit art. 19 (19 oktober nagelezen: "in enig opzicht
+  wijzigen", zonder uitzondering voor inpandige wijzigingen; tot dan stond
+  er "de buitenkant"). Het aanwijzingsbesluit per stadsbeeld is niet
+  nagelezen en dat staat erbij.
+proef: gezicht:wordt niet gevonden in het register; gezicht:bij een stadsbeeldobject staat niet de regel van art. 19
 soort: brief
 
 ---

@@ -8156,6 +8156,16 @@ nagezocht, en dat is de enige route naar meer.
 - GEDAAN 19 oktober: **de 28 deels-panden per woning.** Van de 145 woningen
   in de voorraad: 70 binnen (opslag), 63 buiten, 12 nakijken (punt en
   titel oneens). De verblijfsobjecten komen mee in de wekelijkse meting.
+- GEDAAN 19 oktober: **de regel bij een stadsbeeldobject nagelezen**:
+  Erfgoedverordening art. 19, "in enig opzicht wijzigen", geen uitzondering
+  voor inpandige wijzigingen. Tekst in stadsbeeld_regels.md.
+- **Telt een stadsbeeldobject als "gemeentelijk monument" voor de 15% van
+  art. 8a lid 3?** De verordening rekent stadsbeeldobjecten tot het
+  overkoepelende "gemeentelijk beschermd monument" (toelichting art. 1),
+  maar art. 8a spreekt van een door B&W aangewezen gemeentelijk monument, en
+  een stadsbeeldobject wijst de raad aan (art. 17). Niet uitgezocht; het
+  model rekent geen opslag. Raakt 1.621 panden in de ring.
+- **De aanwijzingsbesluiten per stadsbeeld** zijn niet nagelezen.
 - **De 12 woningen op nakijken** (Stockumstraat 10, Karrengas 44B tot 54A,
   Oranjesingel 42A-10 tot 12, St. Annastraat 53A-1 en 2) beslist alleen het
   aanwijzingsbesluit.
