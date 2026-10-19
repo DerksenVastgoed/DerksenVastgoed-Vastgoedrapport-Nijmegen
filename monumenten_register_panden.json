@@ -1,7 +1,8 @@
 {
+ "sleutel": "ID",
  "bron": "erfgoedregister gemeente (rijks- en gemeentelijke monumentvlakken) tegen BAG-pandomtrek (PDOK BAG WFS), raster 0.5 m",
  "objecten": {
-  "522": {
+  "35": {
    "soort": "Rijksmonument",
    "titel": "Groesbeekseweg 351-351A9",
    "naam": "klooster en pensionaat Mariënbosch",
@@ -23,7 +24,7 @@
     }
    ]
   },
-  "638": {
+  "36": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 20",
    "naam": "voormalig Gereformeerde kerk",
@@ -61,7 +62,7 @@
     }
    ]
   },
-  "2881": {
+  "37": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 3, Eiermarkt 1",
    "naam": "warenhuis",
@@ -87,7 +88,7 @@
     }
    ]
   },
-  "2879": {
+  "38": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 5-7, Eiermarkt 2-3",
    "naam": "Apotheek",
@@ -119,7 +120,7 @@
     }
    ]
   },
-  "1505": {
+  "39": {
    "soort": "Rijksmonument",
    "titel": "St. Annastraat 244",
    "naam": "praktijkwoning",
@@ -147,7 +148,7 @@
     }
    ]
   },
-  "1421": {
+  "40": {
    "soort": "Rijksmonument",
    "titel": "St. Annastraat 283",
    "naam": "villa",
@@ -163,7 +164,7 @@
     }
    ]
   },
-  "1508": {
+  "41": {
    "soort": "Rijksmonument",
    "titel": "St. Annastraat 338B",
    "naam": "bloemisterij",
@@ -179,7 +180,7 @@
     }
    ]
   },
-  "2221": {
+  "42": {
    "soort": "Rijksmonument",
    "titel": "Hunnerpark 5",
    "naam": "Voetbrug naar Belvédère",
@@ -188,7 +189,7 @@
    ],
    "panden": []
   },
-  "739": {
+  "43": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 2-4",
    "naam": "winkel-/woonhuis",
@@ -220,7 +221,7 @@
     }
    ]
   },
-  "740": {
+  "44": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 10-8",
    "naam": "winkel-/woonhuis",
@@ -240,7 +241,7 @@
     }
    ]
   },
-  "864": {
+  "45": {
    "soort": "Rijksmonument",
    "titel": "Kelfkensbos 60",
    "naam": "Belvédère",
@@ -256,7 +257,7 @@
     }
    ]
   },
-  "2537": {
+  "46": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkpad 6",
    "naam": "woonhuis",
@@ -276,7 +277,7 @@
     }
    ]
   },
-  "2538": {
+  "47": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkpad 22",
    "naam": "villa",
@@ -290,7 +291,7 @@
     }
    ]
   },
-  "246": {
+  "48": {
    "soort": "Gemeentelijk monument",
    "titel": "Dennenstraat 97",
    "naam": "klooster Rosastichting",
@@ -532,7 +533,7 @@
     }
    ]
   },
-  "2554": {
+  "49": {
    "soort": "Gemeentelijk monument",
    "titel": "Dennenstraat 106-108",
    "naam": "parochiehuis",
@@ -570,7 +571,7 @@
     }
    ]
   },
-  "411": {
+  "50": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 15",
    "naam": "woonhuis",
@@ -602,7 +603,7 @@
     }
    ]
   },
-  "2880": {
+  "52": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkegasje 7-7B, Burchtstraat 18",
    "naam": "winkel-/woonhuis",
@@ -628,7 +629,7 @@
     }
    ]
   },
-  "1511": {
+  "53": {
    "soort": "Rijksmonument",
    "titel": "Dorpsstraat 112",
    "naam": "kerktoren",
@@ -644,7 +645,7 @@
     }
    ]
   },
-  "2889": {
+  "54": {
    "soort": "Gemeentelijk monument",
    "titel": "Dr. de Blécourtstraat 38",
    "naam": "villa",
@@ -658,7 +659,7 @@
     }
    ]
   },
-  "1512": {
+  "55": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 2-4",
    "naam": "Latijnse School",
@@ -716,7 +717,7 @@
     }
    ]
   },
-  "1513": {
+  "56": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 5-6",
    "naam": "woonhuis",
@@ -744,7 +745,7 @@
     }
    ]
   },
-  "1514": {
+  "57": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 7, Stikke Hezelstraat 24",
    "naam": "woonhuis",
@@ -778,7 +779,7 @@
     }
    ]
   },
-  "1516": {
+  "58": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 44, Achter de Smidstraat 9",
    "naam": "kanunnikenhuis",
@@ -806,7 +807,7 @@
     }
    ]
   },
-  "406": {
+  "1": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 5-5C",
    "naam": "woonhuis",
@@ -838,7 +839,7 @@
     }
    ]
   },
-  "557": {
+  "2": {
    "soort": "Rijksmonument",
    "titel": "Grote Markt 23",
    "naam": "winkel-/woonhuis",
@@ -866,7 +867,7 @@
     }
    ]
   },
-  "558": {
+  "3": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 56, Grote Markt 24",
    "naam": "winkel-/woonhuis",
@@ -900,7 +901,7 @@
     }
    ]
   },
-  "559": {
+  "4": {
    "soort": "Rijksmonument",
    "titel": "Grote Markt 25-25C",
    "naam": "winkel-/woonhuis",
@@ -928,7 +929,7 @@
     }
    ]
   },
-  "639": {
+  "5": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 34-36",
    "naam": "woonhuis met werkplaats",
@@ -954,7 +955,7 @@
     }
    ]
   },
-  "640": {
+  "6": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 38-44",
    "naam": "woonhuis met werkplaats",
@@ -986,45 +987,33 @@
     }
    ]
   },
-  "642": {
+  "7": {
    "soort": "Gemeentelijk monument",
-   "titel": "Lange Brouwerstraat 2, Begijnenstraat 46-48",
-   "naam": "Begijnenstraat 46-48",
+   "titel": "Begijnenstraat 46, Lange Brouwerstraat 4-8",
+   "naam": "woonhuis met bedrijfsruimte",
    "nummers": [],
    "panden": [
     {
      "pand": "0268100000006999",
      "punten": 248,
-     "in_vlak": 0,
-     "aandeel_pand": 0.0
+     "in_vlak": 248,
+     "aandeel_pand": 1.0
     },
     {
-     "pand": "0268100000007002",
-     "punten": 298,
-     "in_vlak": 0,
-     "aandeel_pand": 0.0
-    },
-    {
-     "pand": "0268100000012107",
-     "punten": 185,
-     "in_vlak": 0,
-     "aandeel_pand": 0.0
-    },
-    {
-     "pand": "0268100000023791",
-     "punten": 912,
+     "pand": "0268100000009283",
+     "punten": 469,
      "in_vlak": 0,
      "aandeel_pand": 0.0
     },
     {
      "pand": "0268100000006997",
      "punten": 799,
-     "in_vlak": 799,
-     "aandeel_pand": 1.0
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
     }
    ]
   },
-  "614": {
+  "8": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 73",
    "naam": "winkel-/woonhuis",
@@ -1056,7 +1045,7 @@
     }
    ]
   },
-  "617": {
+  "9": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 75, Hoogstraat 11-9",
    "naam": "winkel-/woonhuis",
@@ -1106,7 +1095,7 @@
     }
    ]
   },
-  "618": {
+  "10": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 77",
    "naam": "winkel-/woonhuis",
@@ -1126,7 +1115,7 @@
     }
    ]
   },
-  "407": {
+  "11": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 7",
    "naam": "woonhuis",
@@ -1164,7 +1153,7 @@
     }
    ]
   },
-  "424": {
+  "12": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 8",
    "naam": "woonhuis",
@@ -1208,7 +1197,7 @@
     }
    ]
   },
-  "560": {
+  "13": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "waag",
@@ -1242,7 +1231,7 @@
     }
    ]
   },
-  "561": {
+  "14": {
    "soort": "Gemeentelijk monument",
    "titel": "Grote Markt 32-32A, Moordkuil 1-3",
    "naam": "café en woonhuis",
@@ -1280,7 +1269,7 @@
     }
    ]
   },
-  "691": {
+  "15": {
    "soort": "Gemeentelijk monument",
    "titel": "Burghardt van den Berghstraat 4",
    "naam": "woonhuis",
@@ -1306,7 +1295,7 @@
     }
    ]
   },
-  "409": {
+  "16": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 11",
    "naam": "woonhuis",
@@ -1344,7 +1333,7 @@
     }
    ]
   },
-  "11578": {
+  "2733": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Priemstraat 57",
@@ -1378,7 +1367,7 @@
     }
    ]
   },
-  "574": {
+  "18": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 13",
    "naam": "winkel-/woonhuis",
@@ -1404,7 +1393,7 @@
     }
    ]
   },
-  "575": {
+  "19": {
    "soort": "Gemeentelijk monument",
    "titel": "Vosstraat 2-4, Grotestraat 97",
    "naam": "woonhuis met bedrijfsruimte",
@@ -1424,7 +1413,7 @@
     }
    ]
   },
-  "662": {
+  "20": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 58-62",
    "naam": "herenhuizen met hekwerken",
@@ -1464,7 +1453,7 @@
     }
    ]
   },
-  "96": {
+  "21": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 64",
    "naam": "herenhuis",
@@ -1496,7 +1485,7 @@
     }
    ]
   },
-  "665": {
+  "22": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 66",
    "naam": "woonhuis",
@@ -1522,7 +1511,7 @@
     }
    ]
   },
-  "648": {
+  "23": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 79-81B",
    "naam": "Canisiuscollege",
@@ -1580,7 +1569,7 @@
     }
    ]
   },
-  "692": {
+  "24": {
    "soort": "Gemeentelijk monument",
    "titel": "Burghardt van den Berghstraat 6",
    "naam": "woonhuis",
@@ -1606,7 +1595,7 @@
     }
    ]
   },
-  "698": {
+  "25": {
    "soort": "Rijksmonument",
    "titel": "Koolemans Beynenstraat 1, Daalseweg 262",
    "naam": "Badhuis",
@@ -1640,7 +1629,7 @@
     }
    ]
   },
-  "244": {
+  "26": {
    "soort": "Gemeentelijk monument",
    "titel": "Daniëlsweg 42",
    "naam": "kerk, Maria ten Hemelopneming",
@@ -1660,7 +1649,7 @@
     }
    ]
   },
-  "410": {
+  "27": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 13",
    "naam": "woonhuis",
@@ -1692,7 +1681,7 @@
     }
    ]
   },
-  "428": {
+  "28": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 14-16",
    "naam": "woonhuis",
@@ -1736,7 +1725,7 @@
     }
    ]
   },
-  "562": {
+  "29": {
    "soort": "Gemeentelijk monument",
    "titel": "Grote Markt 34",
    "naam": "winkel-/woonhuis",
@@ -1768,7 +1757,7 @@
     }
    ]
   },
-  "563": {
+  "30": {
    "soort": "Gemeentelijk monument",
    "titel": "Moordkuil 4-6, Grote Markt 35",
    "naam": "winkel-/woonhuis",
@@ -1806,7 +1795,7 @@
     }
    ]
   },
-  "666": {
+  "31": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 84",
    "naam": "villa",
@@ -1826,7 +1815,7 @@
     }
    ]
   },
-  "649": {
+  "32": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 125",
    "naam": "villa Sonnewyck",
@@ -1846,7 +1835,7 @@
     }
    ]
   },
-  "670": {
+  "33": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 146-148",
    "naam": "dubbele villa",
@@ -1868,7 +1857,7 @@
     }
    ]
   },
-  "219": {
+  "34": {
    "soort": "Gemeentelijk monument",
    "titel": "de Ruyterstraat 61, Cortenaerpad 10-8",
    "naam": "klooster JMJ",
@@ -1894,7 +1883,7 @@
     }
    ]
   },
-  "743": {
+  "82": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 15-15A",
    "naam": "winkel-/woonhuis",
@@ -1926,7 +1915,7 @@
     }
    ]
   },
-  "249": {
+  "83": {
    "soort": "Rijksmonument",
    "titel": "Dennenstraat 125",
    "naam": "St. Anthonius Abt",
@@ -1960,7 +1949,7 @@
     }
    ]
   },
-  "2534": {
+  "84": {
    "soort": "Gemeentelijk monument",
    "titel": "Dikkeboomweg 12",
    "naam": "woonhuis",
@@ -1980,7 +1969,7 @@
     }
    ]
   },
-  "2535": {
+  "85": {
    "soort": "Gemeentelijk monument",
    "titel": "Dikkeboomweg 14",
    "naam": "woonhuis",
@@ -2012,7 +2001,7 @@
     }
    ]
   },
-  "412": {
+  "86": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 17",
    "naam": "woonhuis",
@@ -2050,7 +2039,7 @@
     }
    ]
   },
-  "429": {
+  "87": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 18",
    "naam": "woonhuis",
@@ -2094,7 +2083,7 @@
     }
    ]
   },
-  "585": {
+  "88": {
    "soort": "Gemeentelijk monument",
    "titel": "Gulden Wagengas 7-9",
    "naam": "woonhuis",
@@ -2126,7 +2115,7 @@
     }
    ]
   },
-  "2533": {
+  "89": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 152",
    "naam": "woonhuis",
@@ -2140,7 +2129,7 @@
     }
    ]
   },
-  "255": {
+  "90": {
    "soort": "Gemeentelijk monument",
    "titel": "Dommer van Poldersveldtweg 1, Berg en Dalseweg 172",
    "naam": "villa Westhof",
@@ -2160,7 +2149,7 @@
     }
    ]
   },
-  "702": {
+  "91": {
    "soort": "Gemeentelijk monument",
    "titel": "Dommer van Poldersveldtweg 110",
    "naam": "transformatorhuisje",
@@ -2174,7 +2163,7 @@
     }
    ]
   },
-  "2344": {
+  "92": {
    "soort": "Gemeentelijk monument",
    "titel": "Dorpsstraat 92",
    "naam": "boerderij Spijkerburg",
@@ -2188,7 +2177,7 @@
     }
    ]
   },
-  "415": {
+  "93": {
    "soort": "Gemeentelijk monument",
    "titel": "Stijn Buysstraat 1, Graafseweg 23-25",
    "naam": "woonhuis",
@@ -2220,7 +2209,7 @@
     }
    ]
   },
-  "438": {
+  "94": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 56-56C",
    "naam": "woonhuis",
@@ -2252,7 +2241,7 @@
     }
    ]
   },
-  "39": {
+  "95": {
    "soort": "Rijksmonument",
    "titel": "Achter de Hoofdwacht 1, St. Stevenskerkhof 54",
    "naam": "Winkel- /woonhuis",
@@ -2286,7 +2275,7 @@
     }
    ]
   },
-  "629": {
+  "96": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 11-9",
    "naam": "woonhuis",
@@ -2330,7 +2319,7 @@
     }
    ]
   },
-  "893": {
+  "97": {
    "soort": "Rijksmonument",
    "titel": "Kerkpad 30",
    "naam": "pastorie De Olde Wehme",
@@ -2346,7 +2335,7 @@
     }
    ]
   },
-  "894": {
+  "98": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkpad 51",
    "naam": "landhuis Rivo Torto",
@@ -2366,7 +2355,7 @@
     }
    ]
   },
-  "952": {
+  "99": {
    "soort": "Gemeentelijk monument",
    "titel": "Hessenberg 37, Lange Hezelstraat 23",
    "naam": "winkel-/woonhuis",
@@ -2386,7 +2375,7 @@
     }
    ]
   },
-  "985": {
+  "100": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 24",
    "naam": "winkel-/woonhuis",
@@ -2418,7 +2407,7 @@
     }
    ]
   },
-  "294": {
+  "101": {
    "soort": "Rijksmonument",
    "titel": "Franseplaats 3",
    "naam": "Commanderie van St. Jan",
@@ -2440,7 +2429,7 @@
     }
    ]
   },
-  "1355": {
+  "102": {
    "soort": "Rijksmonument",
    "titel": "St. Annastraat 55A, Fransestraat 83",
    "naam": "herenhuis met hekwerk",
@@ -2462,7 +2451,7 @@
     }
    ]
   },
-  "362": {
+  "103": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 4-8, Ganzenheuvel 1",
    "naam": "winkel-/woonhuis",
@@ -2484,7 +2473,7 @@
     }
    ]
   },
-  "586": {
+  "104": {
    "soort": "Gemeentelijk monument",
    "titel": "Gerard Noodtstraat 135-141",
    "naam": "garage met bovenwoningen",
@@ -2528,7 +2517,7 @@
     }
    ]
   },
-  "389": {
+  "105": {
    "soort": "Rijksmonument",
    "titel": "Glashuis 4",
    "naam": "Sint Jacobskapel",
@@ -2544,7 +2533,7 @@
     }
    ]
   },
-  "405": {
+  "106": {
    "soort": "Rijksmonument",
    "titel": "Graafseweg 3",
    "naam": "herenhuis met hekwerk",
@@ -2578,7 +2567,7 @@
     }
    ]
   },
-  "547": {
+  "107": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 404",
    "naam": "landhuis",
@@ -2604,7 +2593,7 @@
     }
    ]
   },
-  "651": {
+  "108": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 207-209",
    "naam": "klooster, kapel en school",
@@ -2696,7 +2685,7 @@
     }
    ]
   },
-  "40": {
+  "109": {
    "soort": "Rijksmonument",
    "titel": "Achter de Hoofdwacht 3, St. Stevenskerkhof 53",
    "naam": "De Blaauwe Hand",
@@ -2718,7 +2707,7 @@
     }
    ]
   },
-  "363": {
+  "110": {
    "soort": "Rijksmonument",
    "titel": "Ganzenheuvel 3",
    "naam": "winkel-/woonhuis",
@@ -2740,7 +2729,7 @@
     }
    ]
   },
-  "455": {
+  "111": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeeksedwarsweg 11-9",
    "naam": "woonhuis",
@@ -2754,7 +2743,7 @@
     }
    ]
   },
-  "471": {
+  "112": {
    "soort": "Rijksmonument",
    "titel": "Sloetstraat 5, Nijhoffstraat 6, Groesbeekseweg 1-5",
    "naam": "vijf herenhuizen met hekwerken",
@@ -2824,7 +2813,7 @@
     }
    ]
   },
-  "497": {
+  "113": {
    "soort": "Rijksmonument",
    "titel": "Groesbeekseweg 14-24, Pontanusstraat 2",
    "naam": "zeven herenhuizen",
@@ -2900,7 +2889,7 @@
     }
    ]
   },
-  "545": {
+  "114": {
    "soort": "Rijksmonument",
    "titel": "Groesbeekseweg 88-90",
    "naam": "dubbel herenhuis",
@@ -2928,7 +2917,7 @@
     }
    ]
   },
-  "2539": {
+  "116": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 5",
    "naam": "Villa De Beuken",
@@ -2942,7 +2931,7 @@
     }
    ]
   },
-  "2540": {
+  "117": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 12-14",
    "naam": "woonhuis",
@@ -2968,7 +2957,7 @@
     }
    ]
   },
-  "2541": {
+  "118": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 20",
    "naam": "Villa Nieuw Heeswijk",
@@ -2982,7 +2971,7 @@
     }
    ]
   },
-  "895": {
+  "119": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 58",
    "naam": "landhuis",
@@ -3002,7 +2991,7 @@
     }
    ]
   },
-  "2542": {
+  "120": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 65-69",
    "naam": "St. Jozefklooster",
@@ -3472,7 +3461,7 @@
     }
    ]
   },
-  "653": {
+  "121": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 253-255",
    "naam": "dubbel herenhuis met hekwerken",
@@ -3506,7 +3495,7 @@
     }
    ]
   },
-  "2339": {
+  "122": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 418-420",
    "naam": "Boerderij, smederij",
@@ -3532,7 +3521,7 @@
     }
    ]
   },
-  "675": {
+  "123": {
    "soort": "Rijksmonument",
    "titel": "Bisschop Hamerstraat 21",
    "naam": "Beeld Bisschop Hamer",
@@ -3541,7 +3530,7 @@
    ],
    "panden": []
   },
-  "252": {
+  "124": {
    "soort": "Gemeentelijk monument",
    "titel": "Dobbelmannweg 1-1R",
    "naam": "klooster en noviciaat",
@@ -3573,7 +3562,7 @@
     }
    ]
   },
-  "253": {
+  "125": {
    "soort": "Gemeentelijk monument",
    "titel": "Dobbelmannweg 5",
    "naam": "meisjespensionaat",
@@ -3587,7 +3576,7 @@
     }
    ]
   },
-  "38": {
+  "126": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Achter de Hoofdwacht 4",
@@ -3627,7 +3616,7 @@
     }
    ]
   },
-  "682": {
+  "127": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 158-160",
    "naam": "landhuis",
@@ -3653,7 +3642,7 @@
     }
    ]
   },
-  "2531": {
+  "128": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 168-170",
    "naam": "Rusthuis Sancta Maria",
@@ -3847,7 +3836,7 @@
     }
    ]
   },
-  "2341": {
+  "129": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 187-191",
    "naam": "boerderij",
@@ -3861,7 +3850,7 @@
     }
    ]
   },
-  "259": {
+  "130": {
    "soort": "Gemeentelijk monument",
    "titel": "Dorpsstraat 116",
    "naam": "pastorie",
@@ -3875,7 +3864,7 @@
     }
    ]
   },
-  "2536": {
+  "131": {
    "soort": "Gemeentelijk monument",
    "titel": "Dorpsstraat 282-284",
    "naam": "woonhuis",
@@ -3895,7 +3884,7 @@
     }
    ]
   },
-  "257": {
+  "132": {
    "soort": "Gemeentelijk monument",
    "titel": "Dorpsstraat 104",
    "naam": "brandspuithuisje",
@@ -3915,7 +3904,7 @@
     }
    ]
   },
-  "569": {
+  "60": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 3-5",
    "naam": "woonhuis met bedrijfsruimte",
@@ -3941,7 +3930,7 @@
     }
    ]
   },
-  "672": {
+  "61": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 200, Achter de Keizerskroon 12",
    "naam": "cafe De Keizerskroon",
@@ -3973,7 +3962,7 @@
     }
    ]
   },
-  "650": {
+  "62": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 203",
    "naam": "mozaieken in Sint Stephanuskerk",
@@ -3999,7 +3988,7 @@
     }
    ]
   },
-  "247": {
+  "63": {
    "soort": "Gemeentelijk monument",
    "titel": "Dennenstraat 109-111",
    "naam": "woonhuis",
@@ -4031,7 +4020,7 @@
     }
    ]
   },
-  "248": {
+  "64": {
    "soort": "Gemeentelijk monument",
    "titel": "Dennenstraat 121",
    "naam": "pastorie en begraafplaats",
@@ -4291,7 +4280,7 @@
     }
    ]
   },
-  "274": {
+  "65": {
    "soort": "Gemeentelijk monument",
    "titel": "Driehuizerweg 321-329",
    "naam": "woonhuis De Drie Huizen",
@@ -4311,7 +4300,7 @@
     }
    ]
   },
-  "2438": {
+  "66": {
    "soort": "Gemeentelijk monument",
    "titel": "Einsteinstraat 122, Heiweg 285",
    "naam": "Pauluskerk",
@@ -4325,7 +4314,7 @@
     }
    ]
   },
-  "290": {
+  "67": {
    "soort": "Rijksmonument",
    "titel": "Elzenstraat 2",
    "naam": "school, Montessori en Fröbelschool",
@@ -4341,7 +4330,7 @@
     }
    ]
   },
-  "449": {
+  "68": {
    "soort": "Rijksmonument",
    "titel": "Graafseweg 232-232A",
    "naam": "Villa De Wolfskuyl",
@@ -4357,7 +4346,7 @@
     }
    ]
   },
-  "2434": {
+  "69": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 276",
    "naam": "Boskapel",
@@ -4377,7 +4366,7 @@
     }
    ]
   },
-  "421": {
+  "70": {
    "soort": "Rijksmonument",
    "titel": "Graafseweg 419",
    "naam": "begraafplaatsaula",
@@ -4393,7 +4382,7 @@
     }
    ]
   },
-  "630": {
+  "71": {
    "soort": "Rijksmonument",
    "titel": "Begijnenstraat 21-23",
    "naam": "woonhuis",
@@ -4421,7 +4410,7 @@
     }
    ]
   },
-  "33": {
+  "72": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 57, Stockumstraat 10",
    "naam": "winkel-/woonhuis",
@@ -4453,7 +4442,7 @@
     }
    ]
   },
-  "604": {
+  "73": {
    "soort": "Gemeentelijk monument",
    "titel": "Stockumstraat 12-14, Burchtstraat 59",
    "naam": "winkel-/woonhuis",
@@ -4497,7 +4486,7 @@
     }
    ]
   },
-  "454": {
+  "74": {
    "soort": "Rijksmonument",
    "titel": "Groenestraat 210",
    "naam": "Agnes Reiniera Fröbelschool",
@@ -4513,7 +4502,7 @@
     }
    ]
   },
-  "626": {
+  "75": {
    "soort": "Gemeentelijk monument",
    "titel": "Beekmansdalseweg 7",
    "naam": "villa",
@@ -4527,7 +4516,7 @@
     }
    ]
   },
-  "1590": {
+  "76": {
    "soort": "Rijksmonument",
    "titel": "Burchtstraat 20",
    "naam": "Stadhuis",
@@ -4555,7 +4544,7 @@
     }
    ]
   },
-  "592": {
+  "77": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 47",
    "naam": "winkel-/woonhuis",
@@ -4593,7 +4582,7 @@
     }
    ]
   },
-  "850": {
+  "78": {
    "soort": "Rijksmonument",
    "titel": "Ottengas 15, St. Anthoniusplaats 9",
    "naam": "Cellenbroederenhuis",
@@ -4633,7 +4622,7 @@
     }
    ]
   },
-  "853": {
+  "79": {
    "soort": "Rijksmonument",
    "titel": "St. Anthoniusplaats 15-16, Duivengas 1-9",
    "naam": "woonhuis met trapgevels",
@@ -4685,7 +4674,7 @@
     }
    ]
   },
-  "737": {
+  "80": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 11A-11C",
    "naam": "winkel-/woonhuis",
@@ -4717,7 +4706,7 @@
     }
    ]
   },
-  "738": {
+  "81": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 13-13A",
    "naam": "winkel-/woonhuis",
@@ -4749,7 +4738,7 @@
     }
    ]
   },
-  "676": {
+  "158": {
    "soort": "Rijksmonument",
    "titel": "Bosweg 160",
    "naam": "kinderherstellingsoord Villandry",
@@ -4765,7 +4754,7 @@
     }
    ]
   },
-  "678": {
+  "159": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Havenstraat 7, Jonckerhof 1-6",
    "naam": "voormalige matrassenfabriek",
@@ -4797,7 +4786,7 @@
     }
    ]
   },
-  "680": {
+  "160": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 70",
    "naam": "landhuis Diemerkamp",
@@ -4811,7 +4800,7 @@
     }
    ]
   },
-  "254": {
+  "161": {
    "soort": "Gemeentelijk monument",
    "titel": "Dominicanenstraat 6",
    "naam": "klooster",
@@ -4837,7 +4826,7 @@
     }
    ]
   },
-  "414": {
+  "162": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 21",
    "naam": "woonhuis",
@@ -4875,7 +4864,7 @@
     }
    ]
   },
-  "431": {
+  "163": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 22, van Oldenbarneveltstraat 2",
    "naam": "woonhuis",
@@ -4913,7 +4902,7 @@
     }
    ]
   },
-  "570": {
+  "164": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 7",
    "naam": "woonhuis met bedrijfsruimte",
@@ -4945,7 +4934,7 @@
     }
    ]
   },
-  "572": {
+  "165": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 9",
    "naam": "woonhuis met bedrijfsruimte",
@@ -4977,7 +4966,7 @@
     }
    ]
   },
-  "573": {
+  "166": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 11",
    "naam": "woonhuis met bedrijfsruimte",
@@ -5003,7 +4992,7 @@
     }
    ]
   },
-  "681": {
+  "167": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 90-92",
    "naam": "landhuis",
@@ -5023,7 +5012,7 @@
     }
    ]
   },
-  "2340": {
+  "168": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 100",
    "naam": "woonhuis met schuur en hekwerken",
@@ -5043,7 +5032,7 @@
     }
    ]
   },
-  "2514": {
+  "169": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 114",
    "naam": "boerderij",
@@ -5057,7 +5046,7 @@
     }
    ]
   },
-  "2532": {
+  "170": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 148",
    "naam": "woonhuis",
@@ -5077,7 +5066,7 @@
     }
    ]
   },
-  "2878": {
+  "185": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 1, Grotestraat 2, Mr. Hermanstraat 1, Gapershof 3",
    "naam": "winkelpand H&M",
@@ -5103,7 +5092,7 @@
     }
    ]
   },
-  "643": {
+  "186": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 23, Mr. Franckenstraat 88-90",
    "naam": "woonhuis",
@@ -5123,7 +5112,7 @@
     }
    ]
   },
-  "644": {
+  "187": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 25",
    "naam": "woonhuis",
@@ -5149,7 +5138,7 @@
     }
    ]
   },
-  "621": {
+  "188": {
    "soort": "Gemeentelijk monument",
    "titel": "Hoogstraat 1, Burchtstraat 81",
    "naam": "winkel-/woonhuis",
@@ -5175,7 +5164,7 @@
     }
    ]
   },
-  "568": {
+  "189": {
    "soort": "Gemeentelijk monument",
    "titel": "Grotestraat 1, Grote Markt 41-42",
    "naam": "winkel-/woonhuis",
@@ -5201,7 +5190,7 @@
     }
    ]
   },
-  "1176": {
+  "190": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 27",
    "naam": "woonhuis",
@@ -5233,7 +5222,7 @@
     }
    ]
   },
-  "646": {
+  "191": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 33",
    "naam": "café Trianon",
@@ -5261,7 +5250,7 @@
     }
    ]
   },
-  "631": {
+  "192": {
    "soort": "Rijksmonument",
    "titel": "Begijnenstraat 25-29",
    "naam": "Protestants-Kinderen weeshuis",
@@ -5343,7 +5332,7 @@
     }
    ]
   },
-  "633": {
+  "193": {
    "soort": "Rijksmonument",
    "titel": "Oude Koningstraat 26-30, Begijnenstraat 33-35",
    "naam": "winkel-/woonhuis",
@@ -5389,7 +5378,7 @@
     }
    ]
   },
-  "606": {
+  "194": {
    "soort": "Gemeentelijk monument",
    "titel": "Stockumstraat 17, Burchtstraat 61",
    "naam": "winkel-/woonhuis",
@@ -5421,7 +5410,7 @@
     }
    ]
   },
-  "408": {
+  "195": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 9",
    "naam": "woonhuis",
@@ -5453,7 +5442,7 @@
     }
    ]
   },
-  "425": {
+  "196": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 10-12",
    "naam": "woonhuis",
@@ -5491,7 +5480,7 @@
     }
    ]
   },
-  "567": {
+  "197": {
    "soort": "Gemeentelijk monument",
    "titel": "Grote Markt 38-40",
    "naam": "hotel",
@@ -5535,7 +5524,7 @@
     }
    ]
   },
-  "659": {
+  "198": {
    "soort": "Gemeentelijk monument",
    "titel": "Berg en Dalseweg 52",
    "naam": "woonhuis",
@@ -5567,7 +5556,7 @@
     }
    ]
   },
-  "660": {
+  "199": {
    "soort": "Rijksmonument",
    "titel": "Berg en Dalseweg 54-56",
    "naam": "dubbel herenhuis met hekwerk",
@@ -5601,7 +5590,7 @@
     }
    ]
   },
-  "690": {
+  "200": {
    "soort": "Gemeentelijk monument",
    "titel": "Burghardt van den Berghstraat 2",
    "naam": "woonhuis",
@@ -5627,7 +5616,7 @@
     }
    ]
   },
-  "685": {
+  "201": {
    "soort": "Rijksmonument",
    "titel": "Burghardt van den Berghstraat 3",
    "naam": "woonhuis met hekwerk",
@@ -5655,7 +5644,7 @@
     }
    ]
   },
-  "608": {
+  "202": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 63-63A6",
    "naam": "winkel-/woonhuis",
@@ -5681,7 +5670,7 @@
     }
    ]
   },
-  "611": {
+  "203": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 69-71C, Hoogstraat 17",
    "naam": "woonhuis",
@@ -5707,7 +5696,7 @@
     }
    ]
   },
-  "422": {
+  "204": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 4-6C",
    "naam": "woonhuis",
@@ -5733,7 +5722,7 @@
     }
    ]
   },
-  "901": {
+  "205": {
    "soort": "Rijksmonument",
    "titel": "Korte Bredestraat 37, Schependomlaan 85",
    "naam": "kerktoren",
@@ -5749,7 +5738,7 @@
     }
    ]
   },
-  "607": {
+  "206": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 39",
    "naam": "winkel-/woonhuis",
@@ -5787,7 +5776,7 @@
     }
    ]
   },
-  "2782": {
+  "207": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 40",
    "naam": "bouwhistorie",
@@ -5819,14 +5808,14 @@
     }
    ]
   },
-  "906": {
+  "208": {
    "soort": "Gemeentelijk monument",
    "titel": "Krayenhofflaan 7",
    "naam": "grafsteen generaal Krayenhoff",
    "nummers": [],
    "panden": []
   },
-  "913": {
+  "209": {
    "soort": "Rijksmonument",
    "titel": "Kronenburgersingel 209, Vredestraat 2",
    "naam": "twee herenhuizen",
@@ -5854,7 +5843,7 @@
     }
    ]
   },
-  "993": {
+  "210": {
    "soort": "Gemeentelijk monument",
    "titel": "Papengas 1-3D, Lange Hezelstraat 46",
    "naam": "winkel-/woonhuis",
@@ -5886,7 +5875,7 @@
     }
    ]
   },
-  "2786": {
+  "211": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 49-49A",
    "naam": "bouwhistorie",
@@ -5930,7 +5919,7 @@
     }
    ]
   },
-  "957": {
+  "212": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 53-55",
    "naam": "winkel-/woonhuis",
@@ -5962,7 +5951,7 @@
     }
    ]
   },
-  "1520": {
+  "213": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 63",
    "naam": "Sint Stevenskerk, toren",
@@ -6044,7 +6033,7 @@
     }
    ]
   },
-  "1547": {
+  "214": {
    "soort": "Rijksmonument",
    "titel": "Sophiaweg 4",
    "naam": "villa De Westerhelling",
@@ -6060,7 +6049,7 @@
     }
    ]
   },
-  "783": {
+  "215": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 22",
    "naam": "woonhuis",
@@ -6086,7 +6075,7 @@
     }
    ]
   },
-  "2086": {
+  "216": {
    "soort": "Rijksmonument",
    "titel": "Voorstadslaan 57",
    "naam": "Prima Villa",
@@ -6108,7 +6097,7 @@
     }
    ]
   },
-  "367": {
+  "171": {
    "soort": "Rijksmonument",
    "titel": "Geert Grooteplein Noord 9",
    "naam": "Villa Heyendaal",
@@ -6124,7 +6113,7 @@
     }
    ]
   },
-  "384": {
+  "172": {
    "soort": "Rijksmonument",
    "titel": "Gerard Noodtstraat 121",
    "naam": "synagoge",
@@ -6152,7 +6141,7 @@
     }
    ]
   },
-  "520": {
+  "173": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 227, Postweg 2",
    "naam": "café Groenewoud",
@@ -6166,7 +6155,7 @@
     }
    ]
   },
-  "546": {
+  "174": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 230A",
    "naam": "villa",
@@ -6186,7 +6175,7 @@
     }
    ]
   },
-  "2543": {
+  "175": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 80",
    "naam": "Villa Maria",
@@ -6200,7 +6189,7 @@
     }
    ]
   },
-  "2544": {
+  "176": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 84",
    "naam": "Villa Eikenhof",
@@ -6220,7 +6209,7 @@
     }
    ]
   },
-  "2545": {
+  "177": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 90",
    "naam": "Villa",
@@ -6240,7 +6229,7 @@
     }
    ]
   },
-  "612": {
+  "178": {
    "soort": "Gemeentelijk monument",
    "titel": "Hessenberg 35C, Lange Hezelstraat 27",
    "naam": "Lange Hezelstraat 27",
@@ -6266,7 +6255,7 @@
     }
    ]
   },
-  "987": {
+  "179": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 28-30",
    "naam": "winkel-/woonhuizen",
@@ -6294,7 +6283,7 @@
     }
    ]
   },
-  "988": {
+  "180": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 32",
    "naam": "winkel-/woonhuis",
@@ -6358,7 +6347,7 @@
     }
    ]
   },
-  "552": {
+  "181": {
    "soort": "Rijksmonument",
    "titel": "Grote Markt 19, St. Stevenskerkhof 1A",
    "naam": "winkel-/woonhuis",
@@ -6392,7 +6381,7 @@
     }
    ]
   },
-  "553": {
+  "182": {
    "soort": "Rijksmonument",
    "titel": "Grote Markt 20",
    "naam": "winkel-/woonhuis",
@@ -6420,7 +6409,7 @@
     }
    ]
   },
-  "554": {
+  "183": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 1, Grote Markt 21",
    "naam": "winkel-/woonhuis",
@@ -6448,7 +6437,7 @@
     }
    ]
   },
-  "556": {
+  "184": {
    "soort": "Rijksmonument",
    "titel": "Kerkboog 2, Grote Markt 22",
    "naam": "winkel-/woonhuis",
@@ -6476,7 +6465,7 @@
     }
    ]
   },
-  "636": {
+  "133": {
    "soort": "Rijksmonument",
    "titel": "Begijnenstraat 16-16A",
    "naam": "woonhuis met inrijpoort",
@@ -6522,7 +6511,7 @@
     }
    ]
   },
-  "637": {
+  "134": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 18",
    "naam": "woonhuis",
@@ -6566,7 +6555,7 @@
     }
    ]
   },
-  "596": {
+  "135": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 49",
    "naam": "winkel-/woonhuis",
@@ -6604,7 +6593,7 @@
     }
    ]
   },
-  "598": {
+  "136": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 51",
    "naam": "woonhuis met cafe",
@@ -6642,7 +6631,7 @@
     }
    ]
   },
-  "600": {
+  "137": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 55",
    "naam": "winkel-/woonhuis",
@@ -6668,7 +6657,7 @@
     }
    ]
   },
-  "364": {
+  "138": {
    "soort": "Rijksmonument",
    "titel": "Ganzenheuvel 13-7",
    "naam": "winkel-/woonhuizen",
@@ -6684,7 +6673,7 @@
     }
    ]
   },
-  "849": {
+  "139": {
    "soort": "Rijksmonument",
    "titel": "St. Anthoniusplaats 1",
    "naam": "woonhuis",
@@ -6718,7 +6707,7 @@
     }
    ]
   },
-  "413": {
+  "140": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 19",
    "naam": "woonhuis",
@@ -6750,7 +6739,7 @@
     }
    ]
   },
-  "430": {
+  "141": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 20",
    "naam": "woonhuis",
@@ -6794,7 +6783,7 @@
     }
    ]
   },
-  "564": {
+  "142": {
    "soort": "Gemeentelijk monument",
    "titel": "Grote Markt 36, Moordkuil 7",
    "naam": "winkel-/woonhuis",
@@ -6856,7 +6845,7 @@
     }
    ]
   },
-  "566": {
+  "143": {
    "soort": "Gemeentelijk monument",
    "titel": "Grote Markt 37",
    "naam": "winkel-/woonhuis",
@@ -6906,7 +6895,7 @@
     }
    ]
   },
-  "439": {
+  "144": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 58",
    "naam": "woonhuis",
@@ -6932,7 +6921,7 @@
     }
    ]
   },
-  "448": {
+  "145": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 90",
    "naam": "woonhuis",
@@ -6958,7 +6947,7 @@
     }
    ]
   },
-  "60": {
+  "146": {
    "soort": "Gemeentelijk monument",
    "titel": "Arksteestraat 2, Oranjesingel 2B",
    "naam": "villa",
@@ -6972,7 +6961,7 @@
     }
    ]
   },
-  "625": {
+  "147": {
    "soort": "Gemeentelijk monument",
    "titel": "Beekmansdalseweg 1",
    "naam": "villa",
@@ -6986,7 +6975,7 @@
     }
    ]
   },
-  "679": {
+  "148": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 201, Korte Bredestraat 62",
    "naam": "landhuis Beaulieu",
@@ -7006,7 +6995,7 @@
     }
    ]
   },
-  "2342": {
+  "149": {
    "soort": "Gemeentelijk monument",
    "titel": "Bredestraat 206-208",
    "naam": "boerderij",
@@ -7038,7 +7027,7 @@
     }
    ]
   },
-  "2343": {
+  "150": {
    "soort": "Gemeentelijk monument",
    "titel": "Broekstraat 115",
    "naam": "boerderij",
@@ -7052,7 +7041,7 @@
     }
    ]
   },
-  "365": {
+  "151": {
    "soort": "Rijksmonument",
    "titel": "Ganzenheuvel 11-9",
    "naam": "winkel-/woonhuizen",
@@ -7074,7 +7063,7 @@
     }
    ]
   },
-  "366": {
+  "152": {
    "soort": "Gemeentelijk monument",
    "titel": "Ganzenheuvel 73, Priemstraat 1",
    "naam": "winkel-/woonhuis",
@@ -7100,7 +7089,7 @@
     }
    ]
   },
-  "548": {
+  "153": {
    "soort": "Rijksmonument",
    "titel": "Groesbeekseweg 424",
    "naam": "villa Oud-Mariënboom",
@@ -7116,7 +7105,7 @@
     }
    ]
   },
-  "549": {
+  "154": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 428-428E",
    "naam": "Huize Mariënboom",
@@ -7136,7 +7125,7 @@
     }
    ]
   },
-  "2515": {
+  "155": {
    "soort": "Rijksmonument",
    "titel": "Korte Bredestraat 37, Schependomlaan 85",
    "naam": "Petruskerk",
@@ -7158,7 +7147,7 @@
     }
    ]
   },
-  "1289": {
+  "156": {
    "soort": "Rijksmonument",
    "titel": "Scherpenkampweg 58",
    "naam": "Bethelkerk",
@@ -7174,7 +7163,7 @@
     }
    ]
   },
-  "1364": {
+  "157": {
    "soort": "Rijksmonument",
    "titel": "St. Annastraat 73",
    "naam": "woonhuis met hek",
@@ -7202,7 +7191,7 @@
     }
    ]
   },
-  "11674": {
+  "2741": {
    "soort": "Rijksmonument",
    "titel": "Prins Hendrikstraat 2",
    "naam": "Prins Hendrikstraat 2",
@@ -7248,7 +7237,7 @@
     }
    ]
   },
-  "789": {
+  "245": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 34",
    "naam": "woonhuis",
@@ -7268,7 +7257,7 @@
     }
    ]
   },
-  "790": {
+  "246": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 36",
    "naam": "woonhuis",
@@ -7294,7 +7283,7 @@
     }
    ]
   },
-  "791": {
+  "247": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 38",
    "naam": "woonhuis",
@@ -7320,7 +7309,7 @@
     }
    ]
   },
-  "939": {
+  "248": {
    "soort": "Gemeentelijk monument",
    "titel": "Lage Markt 46",
    "naam": "woonhuis met bedrijfsruimte",
@@ -7340,7 +7329,7 @@
     }
    ]
   },
-  "926": {
+  "249": {
    "soort": "Rijksmonument",
    "titel": "Waalkade 9, Lage Markt 47-47C",
    "naam": "woonhuis",
@@ -7362,7 +7351,7 @@
     }
    ]
   },
-  "2246": {
+  "250": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 47D",
    "naam": "Maarten Schonckpoort",
@@ -7378,7 +7367,7 @@
     }
    ]
   },
-  "1077": {
+  "251": {
    "soort": "Rijksmonument",
    "titel": "Neerbosscheweg 620",
    "naam": "villa Het Slotje van de Baron",
@@ -7394,7 +7383,7 @@
     }
    ]
   },
-  "1101": {
+  "252": {
    "soort": "Rijksmonument",
    "titel": "Nonnenstraat 19-21",
    "naam": "Synagoge",
@@ -7434,7 +7423,7 @@
     }
    ]
   },
-  "58": {
+  "253": {
    "soort": "Rijksmonument",
    "titel": "Arksteestraat 1, Oranjesingel 2A",
    "naam": "villa met hekwerk",
@@ -7456,7 +7445,7 @@
     }
    ]
   },
-  "1131": {
+  "254": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 2",
    "naam": "herenhuis met hekwerk",
@@ -7472,7 +7461,7 @@
     }
    ]
   },
-  "1110": {
+  "255": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 17-17A",
    "naam": "herenhuis met hekwerk",
@@ -7494,7 +7483,7 @@
     }
    ]
   },
-  "1140": {
+  "256": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 14",
    "naam": "herenhuis met hekwerk",
@@ -7522,7 +7511,7 @@
     }
    ]
   },
-  "486": {
+  "257": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 29, Guyotstraat 11",
    "naam": "kweekschool onderwijzeressen",
@@ -7566,7 +7555,7 @@
     }
    ]
   },
-  "595": {
+  "258": {
    "soort": "Gemeentelijk monument",
    "titel": "Hatertseweg 3",
    "naam": "koetshuis",
@@ -7580,7 +7569,7 @@
     }
    ]
   },
-  "792": {
+  "259": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 40",
    "naam": "woonhuis",
@@ -7600,7 +7589,7 @@
     }
    ]
   },
-  "793": {
+  "260": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 42",
    "naam": "woonhuis",
@@ -7620,7 +7609,7 @@
     }
    ]
   },
-  "940": {
+  "261": {
    "soort": "Gemeentelijk monument",
    "titel": "Lage Markt 48",
    "naam": "winkel-/woonhuis",
@@ -7646,7 +7635,7 @@
     }
    ]
   },
-  "941": {
+  "262": {
    "soort": "Gemeentelijk monument",
    "titel": "Lage Markt 50-56, Nonnenplaats 13",
    "naam": "woonhuis",
@@ -7666,7 +7655,7 @@
     }
    ]
   },
-  "942": {
+  "263": {
    "soort": "Gemeentelijk monument",
    "titel": "Lage Markt 58, Nonnenplaats 14-22",
    "naam": "winkel-/woonhuis",
@@ -7692,7 +7681,7 @@
     }
    ]
   },
-  "1142": {
+  "264": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 24",
    "naam": "herenhuis",
@@ -7720,7 +7709,7 @@
     }
    ]
   },
-  "2156": {
+  "266": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 53-55",
    "naam": "villa Vahali Adjectum",
@@ -7740,7 +7729,7 @@
     }
    ]
   },
-  "1197": {
+  "270": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 50-52",
    "naam": "woonhuis",
@@ -7766,7 +7755,7 @@
     }
    ]
   },
-  "1203": {
+  "274": {
    "soort": "Rijksmonument",
    "titel": "Parkweg 120-124",
    "naam": "drie herenhuizen",
@@ -7824,7 +7813,7 @@
     }
    ]
   },
-  "578": {
+  "275": {
    "soort": "Gemeentelijk monument",
    "titel": "Derde Walstraat 122, Hertogstraat 125-127",
    "naam": "winkel-/woonhuis",
@@ -7850,7 +7839,7 @@
     }
    ]
   },
-  "579": {
+  "276": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 133",
    "naam": "woonhuis",
@@ -7876,7 +7865,7 @@
     }
    ]
   },
-  "843": {
+  "277": {
    "soort": "Gemeentelijk monument",
    "titel": "Karrengas 3",
    "naam": "stadsboerderij",
@@ -7908,7 +7897,7 @@
     }
    ]
   },
-  "2833": {
+  "278": {
    "soort": "Gemeentelijk monument",
    "titel": "Karrengas 16",
    "naam": "bouwhistorie",
@@ -7988,7 +7977,7 @@
     }
    ]
   },
-  "635": {
+  "279": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 14-16A, Begijnenstraat 12-6B",
    "naam": "winkel-/woonhuis",
@@ -8052,7 +8041,7 @@
     }
    ]
   },
-  "950": {
+  "280": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 17",
    "naam": "winkel-/woonhuis",
@@ -8092,7 +8081,7 @@
     }
    ]
   },
-  "951": {
+  "281": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 19",
    "naam": "winkel-/woonhuis",
@@ -8136,7 +8125,7 @@
     }
    ]
   },
-  "1187": {
+  "288": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkdwarsstraat 1",
    "naam": "woonhuis",
@@ -8162,7 +8151,7 @@
     }
    ]
   },
-  "1541": {
+  "289": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 10-10C",
    "naam": "woonhuis met bedrijfsruimte",
@@ -8194,7 +8183,7 @@
     }
    ]
   },
-  "2260": {
+  "290": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 53",
    "naam": "winkel-/woonhuis",
@@ -8244,7 +8233,7 @@
     }
    ]
   },
-  "845": {
+  "292": {
    "soort": "Rijksmonument",
    "titel": "Keizer Karelplein 2D",
    "naam": "De Vereeniging",
@@ -8272,7 +8261,7 @@
     }
    ]
   },
-  "945": {
+  "293": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Brouwerstraat 4-8",
    "naam": "woonhuis",
@@ -8298,7 +8287,7 @@
     }
    ]
   },
-  "946": {
+  "294": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Brouwerstraat 12-14",
    "naam": "woonhuis",
@@ -8330,7 +8319,7 @@
     }
    ]
   },
-  "1246": {
+  "295": {
    "soort": "Rijksmonument",
    "titel": "Priemstraat 19",
    "naam": "woonhuis",
@@ -8358,7 +8347,7 @@
     }
    ]
   },
-  "1247": {
+  "296": {
    "soort": "Rijksmonument",
    "titel": "Priemstraat 21",
    "naam": "woonhuis",
@@ -8386,7 +8375,7 @@
     }
    ]
   },
-  "1248": {
+  "297": {
    "soort": "Rijksmonument",
    "titel": "Priemstraat 53-55",
    "naam": "woonhuis",
@@ -8414,7 +8403,7 @@
     }
    ]
   },
-  "2089": {
+  "217": {
    "soort": "Rijksmonument",
    "titel": "Vossenhof 40",
    "naam": "Huis Hatert",
@@ -8430,7 +8419,7 @@
     }
    ]
   },
-  "785": {
+  "218": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 26",
    "naam": "woonhuis",
@@ -8450,7 +8439,7 @@
     }
    ]
   },
-  "786": {
+  "219": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 28",
    "naam": "woonhuis",
@@ -8476,7 +8465,7 @@
     }
    ]
   },
-  "918": {
+  "220": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 221",
    "naam": "woonhuis",
@@ -8502,7 +8491,7 @@
     }
    ]
   },
-  "920": {
+  "221": {
    "soort": "Rijksmonument",
    "titel": "Kronenburgersingel 223-225",
    "naam": "twee herenhuizen met tuinhek",
@@ -8536,7 +8525,7 @@
     }
    ]
   },
-  "921": {
+  "222": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 227, Stieltjesstraat 32",
    "naam": "woonhuis",
@@ -8562,7 +8551,7 @@
     }
    ]
   },
-  "2175": {
+  "223": {
    "soort": "Rijksmonument",
    "titel": "Zaligestraat 6",
    "naam": "Lent, Zaligestraat",
@@ -8608,7 +8597,7 @@
     }
    ]
   },
-  "1013": {
+  "224": {
    "soort": "Rijksmonument",
    "titel": "Looimolenweg 17",
    "naam": "De Witte Molen",
@@ -8624,7 +8613,7 @@
     }
    ]
   },
-  "383": {
+  "225": {
    "soort": "Rijksmonument",
    "titel": "General James Gavinweg 1",
    "naam": "Waalbrug",
@@ -8676,7 +8665,7 @@
     }
    ]
   },
-  "2100": {
+  "226": {
    "soort": "Rijksmonument",
    "titel": "Waldeck Pyrmontsingel 1A",
    "naam": "Transformatorhuisje",
@@ -8692,7 +8681,7 @@
     }
    ]
   },
-  "2111": {
+  "227": {
    "soort": "Rijksmonument",
    "titel": "Waldeck Pyrmontsingel 77-79A",
    "naam": "Vrijmetselaarsloge Sint Lodewijk",
@@ -8720,7 +8709,7 @@
     }
    ]
   },
-  "2127": {
+  "228": {
    "soort": "Rijksmonument",
    "titel": "Wilhelminasingel 24-28",
    "naam": "drie herenhuizen met tuinhek",
@@ -8772,7 +8761,7 @@
     }
    ]
   },
-  "2134": {
+  "229": {
    "soort": "Rijksmonument",
    "titel": "Wilhelminasingel 40-42",
    "naam": "herenhuizen met hekwerk",
@@ -8806,7 +8795,7 @@
     }
    ]
   },
-  "787": {
+  "230": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 30",
    "naam": "woonhuis",
@@ -8832,7 +8821,7 @@
     }
    ]
   },
-  "788": {
+  "231": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 32",
    "naam": "woonhuis",
@@ -8852,7 +8841,7 @@
     }
    ]
   },
-  "922": {
+  "232": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 229",
    "naam": "woonhuis",
@@ -8878,7 +8867,7 @@
     }
    ]
   },
-  "2259": {
+  "233": {
    "soort": "Gemeentelijk monument",
    "titel": "Kroonstraat 114",
    "naam": "Titus Brandsma Kapel",
@@ -8898,7 +8887,7 @@
     }
    ]
   },
-  "2440": {
+  "234": {
    "soort": "Gemeentelijk monument",
    "titel": "Kwakkenbergweg 62-62B",
    "naam": "villa Heideheuvel",
@@ -8912,7 +8901,7 @@
     }
    ]
   },
-  "937": {
+  "235": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 18-36, Priemstraat 63",
    "naam": "Patriciershuis",
@@ -8940,7 +8929,7 @@
     }
    ]
   },
-  "938": {
+  "236": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 38-44A, Priemstraat 65",
    "naam": "woonhuis",
@@ -8968,7 +8957,7 @@
     }
    ]
   },
-  "1014": {
+  "237": {
    "soort": "Rijksmonument",
    "titel": "Ten Hoetstraat 2, Mariaplein 6",
    "naam": "winkel-/woonhuis De Gruyter",
@@ -8990,7 +8979,7 @@
     }
    ]
   },
-  "1017": {
+  "238": {
    "soort": "Rijksmonument",
    "titel": "Mariënburg 26",
    "naam": "Mariënburgkapel",
@@ -9006,7 +8995,7 @@
     }
    ]
   },
-  "1018": {
+  "239": {
    "soort": "Rijksmonument",
    "titel": "Arsenaalpoort 1-8",
    "naam": "Arsenaal",
@@ -9040,7 +9029,7 @@
     }
    ]
   },
-  "1025": {
+  "240": {
    "soort": "Rijksmonument",
    "titel": "Molenstraat 93-97",
    "naam": "café De Tempelier met woningen",
@@ -9062,7 +9051,7 @@
     }
    ]
   },
-  "1066": {
+  "241": {
    "soort": "Rijksmonument",
    "titel": "Muldersweg 16-16A",
    "naam": "benzinestation met garage en woonhuis",
@@ -9078,7 +9067,7 @@
     }
    ]
   },
-  "1549": {
+  "243": {
    "soort": "Rijksmonument",
    "titel": "Staringstraat 9",
    "naam": "herenhuis met hek en prieel",
@@ -9100,7 +9089,7 @@
     }
    ]
   },
-  "1560": {
+  "244": {
    "soort": "Rijksmonument",
    "titel": "Vleeshouwerstraat 73, Steenstraat 2-22",
    "naam": "Brouwershuis",
@@ -9122,7 +9111,7 @@
     }
    ]
   },
-  "1125": {
+  "320": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 67",
    "naam": "herenhuis met hekwerk",
@@ -9150,7 +9139,7 @@
     }
    ]
   },
-  "1158": {
+  "321": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 68",
    "naam": "herenhuis met hekwerk",
@@ -9178,7 +9167,7 @@
     }
    ]
   },
-  "1159": {
+  "322": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 70",
    "naam": "herenhuis",
@@ -9206,7 +9195,7 @@
     }
    ]
   },
-  "597": {
+  "323": {
    "soort": "Rijksmonument",
    "titel": "Hatertseweg 10-14",
    "naam": "St. Annamolen",
@@ -9234,7 +9223,7 @@
     }
    ]
   },
-  "1138": {
+  "330": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 14",
    "naam": "woonhuis",
@@ -9260,7 +9249,7 @@
     }
    ]
   },
-  "795": {
+  "342": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 46",
    "naam": "woonhuis",
@@ -9286,7 +9275,7 @@
     }
    ]
   },
-  "930": {
+  "343": {
    "soort": "Rijksmonument",
    "titel": "Waalkade 11, Lage Markt 59",
    "naam": "woonhuis",
@@ -9314,7 +9303,7 @@
     }
    ]
   },
-  "1115": {
+  "344": {
    "soort": "Rijksmonument",
    "titel": "Prins Bernhardstraat 1",
    "naam": "herenhuis met hekwerk",
@@ -9336,7 +9325,7 @@
     }
    ]
   },
-  "605": {
+  "345": {
    "soort": "Gemeentelijk monument",
    "titel": "Hessenberg 1, Pijkestraat 2A-6C",
    "naam": "Bank van Lening",
@@ -9398,7 +9387,7 @@
     }
    ]
   },
-  "2225": {
+  "347": {
    "soort": "Rijksmonument",
    "titel": "Oostkanaaldijk 382",
    "naam": "Schutsluis + verkeersbrug",
@@ -9510,7 +9499,7 @@
     }
    ]
   },
-  "2027": {
+  "349": {
    "soort": "Gemeentelijk monument",
    "titel": "van Welderenstraat 100-102A",
    "naam": "garagebedrijf met woonhuis",
@@ -9536,14 +9525,14 @@
     }
    ]
   },
-  "2353": {
+  "353": {
    "soort": "Gemeentelijk monument",
    "titel": "Vossenpelssestraat 39-43",
    "naam": "tuinmuren",
    "nummers": [],
    "panden": []
   },
-  "551": {
+  "354": {
    "soort": "Gemeentelijk monument",
    "titel": "Groesbeekseweg 142-150C",
    "naam": "Groesbeekseweg 146",
@@ -9785,7 +9774,7 @@
     }
    ]
   },
-  "943": {
+  "355": {
    "soort": "Gemeentelijk monument",
    "titel": "Lage Markt 60",
    "naam": "woonhuis",
@@ -9817,7 +9806,7 @@
     }
    ]
   },
-  "931": {
+  "356": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 61-65",
    "naam": "woonhuis",
@@ -9845,7 +9834,7 @@
     }
    ]
   },
-  "1164": {
+  "357": {
    "soort": "Rijksmonument",
    "titel": "Ottengas 29-31",
    "naam": "woonhuis",
@@ -9885,7 +9874,7 @@
     }
    ]
   },
-  "1540": {
+  "362": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 8",
    "naam": "hotel",
@@ -9911,7 +9900,7 @@
     }
    ]
   },
-  "963": {
+  "367": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 71",
    "naam": "winkel-/woonhuis",
@@ -9949,7 +9938,7 @@
     }
    ]
   },
-  "1172": {
+  "368": {
    "soort": "Rijksmonument",
    "titel": "Oude Haven 86-88",
    "naam": "dubbel herenhuis",
@@ -9977,7 +9966,7 @@
     }
    ]
   },
-  "1174": {
+  "369": {
    "soort": "Rijksmonument",
    "titel": "Oude Haven 102",
    "naam": "woonhuis",
@@ -10005,7 +9994,7 @@
     }
    ]
   },
-  "1175": {
+  "370": {
    "soort": "Rijksmonument",
    "titel": "Oude Haven 104-108A",
    "naam": "woonhuis",
@@ -10033,7 +10022,7 @@
     }
    ]
   },
-  "571": {
+  "371": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 29",
    "naam": "woonhuis",
@@ -10065,7 +10054,7 @@
     }
    ]
   },
-  "1146": {
+  "334": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 30-32E",
    "naam": "woonhuis",
@@ -10103,7 +10092,7 @@
     }
    ]
   },
-  "2525": {
+  "338": {
    "soort": "Gemeentelijk monument",
    "titel": "Beverweg 1-9, Hatertseweg 270-292, Slotemaker de Bruïneweg 141-151, Vossenlaan 285-311, Oude Molenweg 244-250",
    "naam": "Maycretewoningen",
@@ -11209,14 +11198,14 @@
     }
    ]
   },
-  "2229": {
+  "339": {
    "soort": "Gemeentelijk monument",
    "titel": "Havenweg 9",
    "naam": "Havenkraan",
    "nummers": [],
    "panden": []
   },
-  "565": {
+  "340": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 27",
    "naam": "winkel-/woonhuis",
@@ -11242,7 +11231,7 @@
     }
    ]
   },
-  "794": {
+  "341": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 44",
    "naam": "woonhuis",
@@ -11274,23 +11263,16 @@
     }
    ]
   },
-  "1268": {
+  "298": {
    "soort": "Rijksmonument",
    "titel": "Professor Cornelissenstraat 2",
    "naam": "Oud-Burgeren gasthuis poortjes",
    "nummers": [
     "31198"
    ],
-   "panden": [
-    {
-     "pand": "0268100000006182",
-     "punten": 4304,
-     "in_vlak": 53,
-     "aandeel_pand": 0.012
-    }
-   ]
+   "panden": []
   },
-  "855": {
+  "299": {
    "soort": "Rijksmonument",
    "titel": "Ridderstraat 13",
    "naam": "woonhuis",
@@ -11330,7 +11312,7 @@
     }
    ]
   },
-  "1285": {
+  "300": {
    "soort": "Rijksmonument",
    "titel": "Schependomlaan 23-25",
    "naam": "dubbele villa Jannetje en Johanna",
@@ -11352,7 +11334,7 @@
     }
    ]
   },
-  "12016": {
+  "2754": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 31",
@@ -11372,7 +11354,7 @@
     }
    ]
   },
-  "12017": {
+  "2755": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 49",
@@ -11386,7 +11368,7 @@
     }
    ]
   },
-  "12018": {
+  "2756": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 51",
@@ -11400,7 +11382,7 @@
     }
    ]
   },
-  "577": {
+  "305": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 82-84, Gulden Wagengas 1-5",
    "naam": "winkel-/woonhuis",
@@ -11498,7 +11480,7 @@
     }
    ]
   },
-  "1143": {
+  "313": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 26",
    "naam": "herenhuis met hekwerk",
@@ -11526,7 +11508,7 @@
     }
    ]
   },
-  "1144": {
+  "314": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 28",
    "naam": "herenhuis met hekwerk",
@@ -11554,7 +11536,7 @@
     }
    ]
   },
-  "1150": {
+  "315": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 40",
    "naam": "herenhuis met hekwerk",
@@ -11582,7 +11564,7 @@
     }
    ]
   },
-  "1113": {
+  "316": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 43",
    "naam": "herenhuis met hekwerk",
@@ -11610,7 +11592,7 @@
     }
    ]
   },
-  "1117": {
+  "317": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 51",
    "naam": "herenhuis met hekwerk",
@@ -11638,7 +11620,7 @@
     }
    ]
   },
-  "1152": {
+  "318": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 56, van Schevichavenstraat 7",
    "naam": "Kantongerecht",
@@ -11660,7 +11642,7 @@
     }
    ]
   },
-  "1124": {
+  "319": {
    "soort": "Rijksmonument",
    "titel": "Oranjesingel 65",
    "naam": "herenhuis met hekwerk",
@@ -11688,7 +11670,7 @@
     }
    ]
   },
-  "1428": {
+  "399": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 16",
    "naam": "woonhuis",
@@ -11714,7 +11696,7 @@
     }
    ]
   },
-  "2150": {
+  "412": {
    "soort": "Gemeentelijk monument",
    "titel": "Laauwikstraat 40-42",
    "naam": "boerderij",
@@ -11758,7 +11740,7 @@
     }
    ]
   },
-  "842": {
+  "413": {
    "soort": "Rijksmonument",
    "titel": "Kannenmarkt 10-16",
    "naam": "winkel-/woonhuis",
@@ -11786,7 +11768,7 @@
     }
    ]
   },
-  "932": {
+  "414": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 67, Waalkade 13",
    "naam": "woonhuis",
@@ -11814,7 +11796,7 @@
     }
    ]
   },
-  "933": {
+  "415": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 71-73",
    "naam": "woonhuis",
@@ -11842,7 +11824,7 @@
     }
    ]
   },
-  "934": {
+  "416": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 75-77",
    "naam": "woonhuis",
@@ -11870,7 +11852,7 @@
     }
    ]
   },
-  "729": {
+  "417": {
    "soort": "Rijksmonument",
    "titel": "Hoogstraat 2",
    "naam": "Spoorwegmonument",
@@ -11879,7 +11861,7 @@
    ],
    "panden": []
   },
-  "308": {
+  "418": {
    "soort": "Gemeentelijk monument",
    "titel": "Hoogstraat 3-5",
    "naam": "woonhuis",
@@ -11911,7 +11893,7 @@
     }
    ]
   },
-  "730": {
+  "419": {
    "soort": "Rijksmonument",
    "titel": "Houtlaan 4",
    "naam": "Collegium Berchmanianum",
@@ -11927,7 +11909,7 @@
     }
    ]
   },
-  "2882": {
+  "420": {
    "soort": "Gemeentelijk monument",
    "titel": "Houtstraat 10-12A2, Houthof 51-53",
    "naam": "Centrum bioscoop",
@@ -11947,7 +11929,7 @@
     }
    ]
   },
-  "2883": {
+  "421": {
    "soort": "Gemeentelijk monument",
    "titel": "Achter de Carmel 2, Houtstraat 35, Titus Brandsmastraat 1-3",
    "naam": "winkel-/woonhuis",
@@ -11979,7 +11961,7 @@
     }
    ]
   },
-  "732": {
+  "422": {
    "soort": "Rijksmonument",
    "titel": "Hunnerpark 1",
    "naam": "Beeld Petrus Canisius",
@@ -11988,7 +11970,7 @@
    ],
    "panden": []
   },
-  "2839": {
+  "424": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Koningstraat 22",
    "naam": "bouwhistorie",
@@ -12014,7 +11996,7 @@
     }
    ]
   },
-  "1162": {
+  "426": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "muur met steunberen",
@@ -12216,9 +12198,9 @@
     }
    ]
   },
-  "2170": {
+  "427": {
    "soort": "Gemeentelijk monument",
-   "titel": "Lentse Schoolstraat 11-92",
+   "titel": "Zonder titel",
    "naam": "klooster",
    "nummers": [],
    "panden": [
@@ -12230,7 +12212,7 @@
     }
    ]
   },
-  "967": {
+  "435": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 91",
    "naam": "winkel-/woonhuis",
@@ -12268,7 +12250,7 @@
     }
    ]
   },
-  "935": {
+  "437": {
    "soort": "Rijksmonument",
    "titel": "Lage Markt 79",
    "naam": "woonhuis",
@@ -12296,7 +12278,7 @@
     }
    ]
   },
-  "1202": {
+  "439": {
    "soort": "Rijksmonument",
    "titel": "Parkweg 100-98L",
    "naam": "woonhuis, Belgisch consulaat",
@@ -12336,7 +12318,7 @@
     }
    ]
   },
-  "306": {
+  "440": {
    "soort": "Gemeentelijk monument",
    "titel": "Kelfkensbos 57",
    "naam": "poortwachtershuisje",
@@ -12350,7 +12332,7 @@
     }
    ]
   },
-  "1022": {
+  "456": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 39",
    "naam": "pastorie St. Canisiuskerk",
@@ -12376,7 +12358,7 @@
     }
    ]
   },
-  "846": {
+  "372": {
    "soort": "Rijksmonument",
    "titel": "Keizer Karelplein 19, van Trieststraat 14",
    "naam": "Sint Jozefkerk",
@@ -12398,7 +12380,7 @@
     }
    ]
   },
-  "2257": {
+  "373": {
    "soort": "Rijksmonument",
    "titel": "Keizer Karelplein 32H, Nassausingel 1, van Schaeck Mathonsingel 2-2A",
    "naam": "Stadsschouwburg",
@@ -12426,7 +12408,7 @@
     }
    ]
   },
-  "982": {
+  "374": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 10",
    "naam": "winkel-/woonhuis",
@@ -12466,7 +12448,7 @@
     }
    ]
   },
-  "2773": {
+  "375": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 11, Jodenberg 1",
    "naam": "bouwhistorie",
@@ -12504,7 +12486,7 @@
     }
    ]
   },
-  "983": {
+  "376": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 12",
    "naam": "winkel-/woonhuis",
@@ -12556,7 +12538,7 @@
     }
    ]
   },
-  "55": {
+  "379": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 10",
    "naam": "Huize Bethlehem",
@@ -12594,7 +12576,7 @@
     }
    ]
   },
-  "1089": {
+  "381": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 68-74",
    "naam": "woonhuis",
@@ -12626,7 +12608,7 @@
     }
    ]
   },
-  "2803": {
+  "387": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgergas 9, Lange Hezelstraat 89",
    "naam": "bouwhistorie",
@@ -12664,7 +12646,7 @@
     }
    ]
   },
-  "576": {
+  "389": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 123, Derde Walstraat 118-120",
    "naam": "winkel-/woonhuis",
@@ -12708,7 +12690,7 @@
     }
    ]
   },
-  "815": {
+  "390": {
    "soort": "Gemeentelijk monument",
    "titel": "Jodenberg 15",
    "naam": "woonhuis",
@@ -12740,7 +12722,7 @@
     }
    ]
   },
-  "840": {
+  "391": {
    "soort": "Rijksmonument",
    "titel": "Achter de Hoofdwacht 6-8, Kannenmarkt 2",
    "naam": "woonhuis",
@@ -12774,7 +12756,7 @@
     }
    ]
   },
-  "841": {
+  "392": {
    "soort": "Rijksmonument",
    "titel": "Kannenmarkt 6-8",
    "naam": "winkel-/woonhuis",
@@ -12820,7 +12802,7 @@
     }
    ]
   },
-  "948": {
+  "393": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 13",
    "naam": "winkel-/woonhuis",
@@ -12852,7 +12834,7 @@
     }
    ]
   },
-  "1255": {
+  "394": {
    "soort": "Rijksmonument",
    "titel": "Prins Bernhardstraat 2-8",
    "naam": "vier herenhuizen met hekwerk",
@@ -12904,7 +12886,7 @@
     }
    ]
   },
-  "694": {
+  "395": {
    "soort": "Rijksmonument",
    "titel": "Bijleveldsingel 17, Prins Hendrikstraat 7",
    "naam": "school",
@@ -12926,7 +12908,7 @@
     }
    ]
   },
-  "777": {
+  "396": {
    "soort": "Rijksmonument",
    "titel": "Prins Hendrikstraat 79, Jacob Canisstraat 110-112",
    "naam": "Kerkorgel",
@@ -12948,7 +12930,7 @@
     }
    ]
   },
-  "616": {
+  "397": {
    "soort": "Gemeentelijk monument",
    "titel": "Heyendaalseweg 239",
    "naam": "verenigingsgebouw Roomsch Leven",
@@ -12962,7 +12944,7 @@
     }
    ]
   },
-  "686": {
+  "481": {
    "soort": "Rijksmonument",
    "titel": "Burghardt van den Berghstraat 17-19, van Dulckenstraat 49-49A",
    "naam": "woonhuizen",
@@ -12996,7 +12978,7 @@
     }
    ]
   },
-  "1978": {
+  "482": {
    "soort": "Rijksmonument",
    "titel": "van Welderenstraat 75",
    "naam": "woonhuis met werkplaats",
@@ -13024,7 +13006,7 @@
     }
    ]
   },
-  "749": {
+  "483": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 33-35",
    "naam": "winkel-/woonhuis",
@@ -13050,7 +13032,7 @@
     }
    ]
   },
-  "765": {
+  "484": {
    "soort": "Rijksmonument",
    "titel": "Industrieweg 100",
    "naam": "transformatorhuis",
@@ -13066,7 +13048,7 @@
     }
    ]
   },
-  "781": {
+  "485": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 18",
    "naam": "woonhuis",
@@ -13086,7 +13068,7 @@
     }
    ]
   },
-  "782": {
+  "486": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 20",
    "naam": "woonhuis",
@@ -13112,7 +13094,7 @@
     }
    ]
   },
-  "914": {
+  "487": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 211",
    "naam": "woonhuis",
@@ -13138,7 +13120,7 @@
     }
    ]
   },
-  "916": {
+  "488": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 215",
    "naam": "woonhuis",
@@ -13164,7 +13146,7 @@
     }
    ]
   },
-  "917": {
+  "489": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 217-219C",
    "naam": "woonhuis",
@@ -13196,7 +13178,7 @@
     }
    ]
   },
-  "2219": {
+  "490": {
    "soort": "Rijksmonument",
    "titel": "Hertog Eduardplein 2",
    "naam": "transformatorhuisje",
@@ -13212,7 +13194,7 @@
     }
    ]
   },
-  "2168": {
+  "491": {
    "soort": "Rijksmonument",
    "titel": "Pastoor van Laakstraat 30",
    "naam": "Lent, hervormde kerk",
@@ -13228,7 +13210,7 @@
     }
    ]
   },
-  "2042": {
+  "492": {
    "soort": "Rijksmonument",
    "titel": "Verlengde Groenestraat 75",
    "naam": "Bisschop Hamerhuis, klooster",
@@ -13244,7 +13226,7 @@
     }
    ]
   },
-  "1517": {
+  "493": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 45, Achter de Smidstraat 7",
    "naam": "kanunnikenhuis",
@@ -13272,7 +13254,7 @@
     }
    ]
   },
-  "903": {
+  "502": {
    "soort": "Gemeentelijk monument",
    "titel": "Korte Brouwerstraat 1",
    "naam": "woonhuis",
@@ -13322,7 +13304,7 @@
     }
    ]
   },
-  "905": {
+  "503": {
    "soort": "Gemeentelijk monument",
    "titel": "Korte Brouwerstraat 9",
    "naam": "woonhuis",
@@ -13342,7 +13324,7 @@
     }
    ]
   },
-  "915": {
+  "504": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 213-213A",
    "naam": "woonhuis",
@@ -13368,7 +13350,7 @@
     }
    ]
   },
-  "2141": {
+  "505": {
    "soort": "Rijksmonument",
    "titel": "Bemmelsedijk 4",
    "naam": "Lent, Wijnfort",
@@ -13384,7 +13366,7 @@
     }
    ]
   },
-  "856": {
+  "507": {
    "soort": "Rijksmonument",
    "titel": "Voerweg 1",
    "naam": "Stadsmuur met Torens",
@@ -13400,7 +13382,7 @@
     }
    ]
   },
-  "2981": {
+  "2742": {
    "soort": "Gemeentelijk monument",
    "titel": "Jodenberg 6",
    "naam": "Jodenberg 6",
@@ -13414,7 +13396,7 @@
     }
    ]
   },
-  "295": {
+  "508": {
    "soort": "Rijksmonument",
    "titel": "Voerweg 8",
    "naam": "Voetgangersbrug Voerweg",
@@ -13423,7 +13405,7 @@
    ],
    "panden": []
   },
-  "2083": {
+  "509": {
    "soort": "Rijksmonument",
    "titel": "Vondelstraat 69",
    "naam": "herenhuis met tuinhek",
@@ -13463,7 +13445,7 @@
     }
    ]
   },
-  "2232": {
+  "518": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariënburg 67",
    "naam": "bankgebouw",
@@ -13495,7 +13477,7 @@
     }
    ]
   },
-  "924": {
+  "522": {
    "soort": "Rijksmonument",
    "titel": "Arnold van Akenplein 10-8, Gebroeders Van Limburgplein 1-7",
    "naam": "weeshuis",
@@ -13523,7 +13505,7 @@
     }
    ]
   },
-  "48": {
+  "494": {
    "soort": "Rijksmonument",
    "titel": "Achter de Smidstraat 3-5, St. Stevenskerkhof 47",
    "naam": "kanunnikenhuis",
@@ -13564,7 +13546,7 @@
     }
    ]
   },
-  "1519": {
+  "495": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 61-64",
    "naam": "Sint Stevenskerk, kerk",
@@ -13646,7 +13628,7 @@
     }
    ]
   },
-  "746": {
+  "496": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 27",
    "naam": "winkel-/woonhuis",
@@ -13684,7 +13666,7 @@
     }
    ]
   },
-  "747": {
+  "497": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 29-29A",
    "naam": "winkel-/woonhuis",
@@ -13716,7 +13698,7 @@
     }
    ]
   },
-  "748": {
+  "498": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 31",
    "naam": "woonhuis",
@@ -13748,7 +13730,7 @@
     }
    ]
   },
-  "898": {
+  "499": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 127",
    "naam": "landhuis",
@@ -13762,7 +13744,7 @@
     }
    ]
   },
-  "900": {
+  "500": {
    "soort": "Gemeentelijk monument",
    "titel": "Korte Bredestraat 34",
    "naam": "landhuis Mariënhof",
@@ -13782,7 +13764,7 @@
     }
    ]
   },
-  "2243": {
+  "501": {
    "soort": "Gemeentelijk monument",
    "titel": "Jacob Canisstraat 110-112, Prins Hendrikstraat 79",
    "naam": "kerk",
@@ -13808,7 +13790,7 @@
     }
    ]
   },
-  "744": {
+  "459": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 17-19",
    "naam": "woonhuis met bedrijfsruimte",
@@ -13846,7 +13828,7 @@
     }
    ]
   },
-  "745": {
+  "460": {
    "soort": "Gemeentelijk monument",
    "titel": "In de Betouwstraat 21-25",
    "naam": "woonhuis",
@@ -13890,7 +13872,7 @@
     }
    ]
   },
-  "896": {
+  "461": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 94",
    "naam": "landhuis Padua",
@@ -13904,7 +13886,7 @@
     }
    ]
   },
-  "955": {
+  "462": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 41A",
    "naam": "winkel-/woonhuis",
@@ -13950,7 +13932,7 @@
     }
    ]
   },
-  "992": {
+  "463": {
    "soort": "Rijksmonument",
    "titel": "Papengas 2, Lange Hezelstraat 42-44A",
    "naam": "café/woonhuis",
@@ -14002,7 +13984,7 @@
     }
    ]
   },
-  "2784": {
+  "464": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 43-43A",
    "naam": "bouwhistorie",
@@ -14040,7 +14022,7 @@
     }
    ]
   },
-  "2785": {
+  "465": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 45-47",
    "naam": "bouwhistorie",
@@ -14072,7 +14054,7 @@
     }
    ]
   },
-  "1559": {
+  "466": {
    "soort": "Rijksmonument",
    "titel": "Steenstraat 15-19, Waalkade 65",
    "naam": "woonhuis",
@@ -14100,7 +14082,7 @@
     }
    ]
   },
-  "981": {
+  "467": {
    "soort": "Rijksmonument",
    "titel": "Lange Hezelstraat 141",
    "naam": "Spoorwegviaduct",
@@ -14109,7 +14091,7 @@
    ],
    "panden": []
   },
-  "2092": {
+  "468": {
    "soort": "Rijksmonument",
    "titel": "Waalkade 70-79",
    "naam": "woonhuis",
@@ -14161,7 +14143,7 @@
     }
    ]
   },
-  "2093": {
+  "469": {
    "soort": "Rijksmonument",
    "titel": "Waalkade 80-83",
    "naam": "woonhuis",
@@ -14189,7 +14171,7 @@
     }
    ]
   },
-  "2094": {
+  "470": {
    "soort": "Rijksmonument",
    "titel": "Waalkade 84",
    "naam": "Stratemakerstoren",
@@ -14223,7 +14205,7 @@
     }
    ]
   },
-  "784": {
+  "471": {
    "soort": "Gemeentelijk monument",
    "titel": "Jan van Galenstraat 24",
    "naam": "woonhuis",
@@ -14243,7 +14225,7 @@
     }
    ]
   },
-  "2262": {
+  "472": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 95",
    "naam": "woonhuis",
@@ -14263,7 +14245,7 @@
     }
    ]
   },
-  "897": {
+  "473": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 115",
    "naam": "boerderij",
@@ -14283,7 +14265,7 @@
     }
    ]
   },
-  "989": {
+  "474": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 34-36A",
    "naam": "winkel-/woonhuis",
@@ -14327,7 +14309,7 @@
     }
    ]
   },
-  "2781": {
+  "475": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 37-37A",
    "naam": "bouwhistorie",
@@ -14353,7 +14335,7 @@
     }
    ]
   },
-  "990": {
+  "476": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 38-38C",
    "naam": "winkel-/woonhuis",
@@ -14409,7 +14391,7 @@
     }
    ]
   },
-  "1561": {
+  "477": {
    "soort": "Rijksmonument",
    "titel": "Steenstraat 26-28",
    "naam": "Besiendershuis",
@@ -14425,7 +14407,7 @@
     }
    ]
   },
-  "1646": {
+  "478": {
    "soort": "Rijksmonument",
    "titel": "Straalmanstraat 30",
    "naam": "herenhuis met hekwerken",
@@ -14459,7 +14441,7 @@
     }
    ]
   },
-  "1709": {
+  "479": {
    "soort": "Rijksmonument",
    "titel": "Ubbergseweg 5, Dijkgraaf van Wijckweg 4",
    "naam": "Hollandsch-Duitsch gemaal",
@@ -14481,7 +14463,7 @@
     }
    ]
   },
-  "1711": {
+  "480": {
    "soort": "Rijksmonument",
    "titel": "Ubbergseweg 170",
    "naam": "villa De Varenhof",
@@ -14497,7 +14479,7 @@
     }
    ]
   },
-  "1574": {
+  "576": {
    "soort": "Gemeentelijk monument",
    "titel": "Stieltjesstraat 30",
    "naam": "woonhuis",
@@ -14523,7 +14505,7 @@
     }
    ]
   },
-  "1434": {
+  "582": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 28-28A",
    "naam": "woonhuis",
@@ -14549,7 +14531,7 @@
     }
    ]
   },
-  "1105": {
+  "592": {
    "soort": "Gemeentelijk monument",
    "titel": "Ooyse Sluispad 2",
    "naam": "bedrijfspand",
@@ -14563,7 +14545,7 @@
     }
    ]
   },
-  "1342": {
+  "598": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 31",
    "naam": "woonhuis",
@@ -14589,7 +14571,7 @@
     }
    ]
   },
-  "2346": {
+  "602": {
    "soort": "Gemeentelijk monument",
    "titel": "Ooysedijk 67-69",
    "naam": "boerderij",
@@ -14621,7 +14603,7 @@
     }
    ]
   },
-  "1626": {
+  "616": {
    "soort": "Gemeentelijk monument",
    "titel": "Stikke Hezelstraat 2-4",
    "naam": "winkel-/woonhuis",
@@ -14653,7 +14635,7 @@
     }
    ]
   },
-  "2552": {
+  "619": {
    "soort": "Gemeentelijk monument",
    "titel": "Voorstadslaan 351",
    "naam": "Villa",
@@ -14667,7 +14649,7 @@
     }
    ]
   },
-  "1344": {
+  "620": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 35",
    "naam": "woonhuis",
@@ -14693,7 +14675,7 @@
     }
    ]
   },
-  "622": {
+  "629": {
    "soort": "Gemeentelijk monument",
    "titel": "van der Brugghenstraat 1-3, St. Canisiussingel 36A-36B",
    "naam": "herenhuis",
@@ -14719,7 +14701,7 @@
     }
    ]
   },
-  "1345": {
+  "630": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 37-37A",
    "naam": "woonhuis",
@@ -14745,7 +14727,7 @@
     }
    ]
   },
-  "2617": {
+  "535": {
    "soort": "Gemeentelijk monument",
    "titel": "Stikke Hezelstraat 18",
    "naam": "winkel-/woonhuis",
@@ -14765,7 +14747,7 @@
     }
    ]
   },
-  "2547": {
+  "536": {
    "soort": "Gemeentelijk monument",
    "titel": "Schependomlaan 46",
    "naam": "Villa",
@@ -14779,7 +14761,7 @@
     }
    ]
   },
-  "2202": {
+  "538": {
    "soort": "Rijksmonument",
    "titel": "Postweg 62",
    "naam": "Israëlische begraafplaats, aanleg",
@@ -14801,7 +14783,7 @@
     }
    ]
   },
-  "2146": {
+  "539": {
    "soort": "Gemeentelijk monument",
    "titel": "Griftdijk Zuid 121",
    "naam": "woonhuis",
@@ -14815,7 +14797,7 @@
     }
    ]
   },
-  "1136": {
+  "548": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 10",
    "naam": "herenhuis",
@@ -14841,7 +14823,7 @@
     }
    ]
   },
-  "2354": {
+  "552": {
    "soort": "Gemeentelijk monument",
    "titel": "Zwanenveld 3202",
    "naam": "boerderij",
@@ -14855,7 +14837,7 @@
     }
    ]
   },
-  "1036": {
+  "662": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 106-108A, Karrengas 40",
    "naam": "bankgebouw",
@@ -14941,7 +14923,7 @@
     }
    ]
   },
-  "1134": {
+  "668": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 6-6A",
    "naam": "villa",
@@ -14967,7 +14949,45 @@
     }
    ]
   },
-  "1080": {
+  "671": {
+   "soort": "Gemeentelijk monument",
+   "titel": "Lange Brouwerstraat 2, Begijnenstraat 46-48",
+   "naam": "Begijnenstraat 46-48",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000006999",
+     "punten": 248,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000007002",
+     "punten": 298,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000012107",
+     "punten": 185,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000023791",
+     "punten": 912,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000006997",
+     "punten": 799,
+     "in_vlak": 799,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "672": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 14",
    "naam": "woonhuis",
@@ -14999,7 +15019,7 @@
     }
    ]
   },
-  "1685": {
+  "692": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariënburg 71-74, van Broeckhuysenstraat 16-24, Tweede Walstraat 1-3",
    "naam": "winkelgebouw met woningen",
@@ -15037,7 +15057,7 @@
     }
    ]
   },
-  "53": {
+  "700": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 7-8",
    "naam": "woonhuis",
@@ -15081,7 +15101,7 @@
     }
    ]
   },
-  "958": {
+  "679": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 57-57A",
    "naam": "winkel-/woonhuis",
@@ -15107,7 +15127,7 @@
     }
    ]
   },
-  "1539": {
+  "639": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 6-6E",
    "naam": "hotel",
@@ -15133,7 +15153,7 @@
     }
    ]
   },
-  "2729": {
+  "650": {
    "soort": "Gemeentelijk monument",
    "titel": "Geert Grooteplein Zuid 10",
    "naam": "Verpleeggebouw A",
@@ -15147,7 +15167,7 @@
     }
    ]
   },
-  "1244": {
+  "651": {
    "soort": "Gemeentelijk monument",
    "titel": "Priemstraat 3-5",
    "naam": "woonhuis met bedrijfsruimte",
@@ -15179,7 +15199,7 @@
     }
    ]
   },
-  "1245": {
+  "654": {
    "soort": "Gemeentelijk monument",
    "titel": "Priemstraat 11-13",
    "naam": "woonhuis met bedrijfsruimte",
@@ -15205,7 +15225,7 @@
     }
    ]
   },
-  "1558": {
+  "656": {
    "soort": "Gemeentelijk monument",
    "titel": "Steenstraat 3",
    "naam": "woonhuis met bedrijfsruimte",
@@ -15237,7 +15257,7 @@
     }
    ]
   },
-  "2852": {
+  "756": {
    "soort": "Gemeentelijk monument",
    "titel": "Duivengas 11, St. Anthoniusplaats 12-14",
    "naam": "bouwhistorie",
@@ -15287,7 +15307,7 @@
     }
    ]
   },
-  "1507": {
+  "759": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 282",
    "naam": "villa Violenhof",
@@ -15301,7 +15321,7 @@
     }
    ]
   },
-  "1081": {
+  "760": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 16-22",
    "naam": "woonhuis",
@@ -15333,7 +15353,23 @@
     }
    ]
   },
-  "52": {
+  "804": {
+   "soort": "Rijksmonument",
+   "titel": "Professor Cornelissenstraat 2",
+   "naam": "Oud-Burgeren gasthuis poortjes",
+   "nummers": [
+    "31198"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006182",
+     "punten": 4304,
+     "in_vlak": 53,
+     "aandeel_pand": 0.012
+    }
+   ]
+  },
+  "816": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 5-5A",
    "naam": "woonhuis annex werkplaats",
@@ -15371,7 +15407,7 @@
     }
    ]
   },
-  "2853": {
+  "715": {
    "soort": "Gemeentelijk monument",
    "titel": "Stikke Hezelstraat 26, St. Stevenskerkhof 8",
    "naam": "bouwhistorie",
@@ -15397,7 +15433,7 @@
     }
    ]
   },
-  "695": {
+  "716": {
    "soort": "Gemeentelijk monument",
    "titel": "Timorstraat 5-5A, Celebesstraat 12",
    "naam": "school",
@@ -15417,7 +15453,7 @@
     }
    ]
   },
-  "979": {
+  "745": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 133-135",
    "naam": "winkel-/woonhuis",
@@ -15449,7 +15485,7 @@
     }
    ]
   },
-  "2549": {
+  "748": {
    "soort": "Gemeentelijk monument",
    "titel": "Schependomlaan 118",
    "naam": "Villa",
@@ -15469,7 +15505,7 @@
     }
    ]
   },
-  "1108": {
+  "752": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 7",
    "naam": "woonhuis",
@@ -15501,7 +15537,7 @@
     }
    ]
   },
-  "1137": {
+  "852": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 12-12A",
    "naam": "woonhuis",
@@ -15527,7 +15563,7 @@
     }
    ]
   },
-  "1333": {
+  "853": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 11",
    "naam": "woonhuis",
@@ -15553,7 +15589,7 @@
     }
    ]
   },
-  "1198": {
+  "856": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 54-56",
    "naam": "Parkweg 54-56",
@@ -15579,7 +15615,7 @@
     }
    ]
   },
-  "1151": {
+  "877": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 42-42A9",
    "naam": "woonhuis",
@@ -15605,7 +15641,7 @@
     }
    ]
   },
-  "1329": {
+  "878": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 3",
    "naam": "woonhuis",
@@ -15631,7 +15667,7 @@
     }
    ]
   },
-  "2171": {
+  "879": {
    "soort": "Gemeentelijk monument",
    "titel": "Steltsestraat 24",
    "naam": "boerderij",
@@ -15645,7 +15681,7 @@
     }
    ]
   },
-  "1196": {
+  "885": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 46-48",
    "naam": "woonhuis",
@@ -15671,7 +15707,7 @@
     }
    ]
   },
-  "1185": {
+  "895": {
    "soort": "Gemeentelijk monument",
    "titel": "Pater Eijmardweg 15-19",
    "naam": "Tarcisiusschool",
@@ -15685,7 +15721,7 @@
     }
    ]
   },
-  "966": {
+  "907": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 85",
    "naam": "winkel-/woonhuis",
@@ -15711,7 +15747,7 @@
     }
    ]
   },
-  "974": {
+  "914": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 113-115",
    "naam": "winkel-/woonhuis",
@@ -15737,7 +15773,7 @@
     }
    ]
   },
-  "1170": {
+  "915": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Haven 62-64",
    "naam": "woonhuis",
@@ -15763,7 +15799,7 @@
     }
    ]
   },
-  "1191": {
+  "857": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 30",
    "naam": "woonhuis",
@@ -15789,7 +15825,7 @@
     }
    ]
   },
-  "1436": {
+  "864": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 32-32A",
    "naam": "woonhuis",
@@ -15815,7 +15851,7 @@
     }
    ]
   },
-  "1083": {
+  "866": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 28-30",
    "naam": "woonhuis",
@@ -15841,7 +15877,7 @@
     }
    ]
   },
-  "1069": {
+  "867": {
    "soort": "Gemeentelijk monument",
    "titel": "Pater Rubbenspad 2",
    "naam": "koetshuis",
@@ -15873,7 +15909,7 @@
     }
    ]
   },
-  "1506": {
+  "869": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 256",
    "naam": "villa",
@@ -15887,7 +15923,7 @@
     }
    ]
   },
-  "1284": {
+  "829": {
    "soort": "Gemeentelijk monument",
    "titel": "René Descartesdreef 21",
    "naam": "landhuis Oud Heyendaal en Beukenlaan",
@@ -15955,7 +15991,7 @@
     }
    ]
   },
-  "1026": {
+  "830": {
    "soort": "Gemeentelijk monument",
    "titel": "Tweede Walstraat 128, Molenstraat 91A-99B",
    "naam": "hotel-restaurant",
@@ -16005,7 +16041,7 @@
     }
    ]
   },
-  "1352": {
+  "833": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 53",
    "naam": "woonhuis",
@@ -16031,7 +16067,7 @@
     }
    ]
   },
-  "1000": {
+  "840": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 70-70C",
    "naam": "winkel-/woonhuis",
@@ -16069,7 +16105,7 @@
     }
    ]
   },
-  "1085": {
+  "841": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 36-38A",
    "naam": "woonhuis",
@@ -16095,7 +16131,7 @@
     }
    ]
   },
-  "2799": {
+  "956": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 83-83B",
    "naam": "bouwhistorie",
@@ -16133,7 +16169,7 @@
     }
    ]
   },
-  "1335": {
+  "958": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 15",
    "naam": "woonhuis",
@@ -16153,7 +16189,7 @@
     }
    ]
   },
-  "2174": {
+  "983": {
    "soort": "Gemeentelijk monument",
    "titel": "Griftdijk Noord 41",
    "naam": "Woenderskamp 8",
@@ -16167,7 +16203,7 @@
     }
    ]
   },
-  "1712": {
+  "990": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseweg 176",
    "naam": "boerderij",
@@ -16181,7 +16217,7 @@
     }
    ]
   },
-  "2349": {
+  "1007": {
    "soort": "Gemeentelijk monument",
    "titel": "Tooropstraat 116-118",
    "naam": "dubbelboerderij",
@@ -16213,7 +16249,7 @@
     }
    ]
   },
-  "1168": {
+  "1010": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Haven 56-60A",
    "naam": "woonhuis/pakhuis",
@@ -16251,7 +16287,7 @@
     }
    ]
   },
-  "947": {
+  "1013": {
    "soort": "Gemeentelijk monument",
    "titel": "Jodenberg 2-4, Lange Hezelstraat 13",
    "naam": "winkel-/woonhuis",
@@ -16271,7 +16307,7 @@
     }
    ]
   },
-  "1571": {
+  "917": {
    "soort": "Gemeentelijk monument",
    "titel": "Stieltjesstraat 16-20",
    "naam": "woonhuis met bedrijfsruimte",
@@ -16303,7 +16339,7 @@
     }
    ]
   },
-  "1024": {
+  "920": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 55",
    "naam": "winkel-/woonhuis",
@@ -16383,7 +16419,7 @@
     }
    ]
   },
-  "1139": {
+  "934": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 14",
    "naam": "woonhuis",
@@ -16403,7 +16439,7 @@
     }
    ]
   },
-  "1033": {
+  "935": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 76-78, Karrengas 58-62",
    "naam": "winkel-/woonhuis",
@@ -16507,7 +16543,7 @@
     }
    ]
   },
-  "2437": {
+  "936": {
    "soort": "Gemeentelijk monument",
    "titel": "Steenbokstraat 86, Egelstraat 4",
    "naam": "Maranathakerk",
@@ -16545,7 +16581,7 @@
     }
    ]
   },
-  "2433": {
+  "941": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 35-37",
    "naam": "Petrus Canisiuskerk",
@@ -16601,7 +16637,7 @@
     }
    ]
   },
-  "1102": {
+  "942": {
    "soort": "Gemeentelijk monument",
    "titel": "Obrechtstraat 1A",
    "naam": "transformatorhuisje",
@@ -16621,7 +16657,7 @@
     }
    ]
   },
-  "2348": {
+  "947": {
    "soort": "Gemeentelijk monument",
    "titel": "Smitjesland 4",
    "naam": "boerderij",
@@ -16635,7 +16671,7 @@
     }
    ]
   },
-  "1249": {
+  "950": {
    "soort": "Gemeentelijk monument",
    "titel": "Priemstraat 40-50",
    "naam": "woonhuis",
@@ -16655,7 +16691,7 @@
     }
    ]
   },
-  "2830": {
+  "1048": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 120",
    "naam": "bouwhistorie",
@@ -16705,7 +16741,7 @@
     }
    ]
   },
-  "2234": {
+  "1051": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariënburg 92-96",
    "naam": "kantoor",
@@ -16725,7 +16761,7 @@
     }
    ]
   },
-  "2091": {
+  "1052": {
    "soort": "Gemeentelijk monument",
    "titel": "Waalkade 5",
    "naam": "woonhuis",
@@ -16751,7 +16787,7 @@
     }
    ]
   },
-  "1422": {
+  "1054": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 4",
    "naam": "woonhuis",
@@ -16777,7 +16813,7 @@
     }
    ]
   },
-  "2164": {
+  "1057": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 74-76",
    "naam": "woonhuis",
@@ -16797,7 +16833,7 @@
     }
    ]
   },
-  "978": {
+  "1058": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 129-131",
    "naam": "winkel-/woonhuis",
@@ -16829,7 +16865,7 @@
     }
    ]
   },
-  "1339": {
+  "1075": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 25",
    "naam": "woonhuis",
@@ -16849,7 +16885,7 @@
     }
    ]
   },
-  "613": {
+  "2729": {
    "soort": "Rijksmonument",
    "titel": "Heyendaalseweg 121-133C",
    "naam": "Religie",
@@ -17243,7 +17279,7 @@
     }
    ]
   },
-  "11518": {
+  "2730": {
    "soort": "Rijksmonument",
    "titel": "Limoslaan 21",
    "naam": "Limoscomplex",
@@ -17257,7 +17293,7 @@
     }
    ]
   },
-  "1240": {
+  "1081": {
    "soort": "Gemeentelijk monument",
    "titel": "Postweg 50",
    "naam": "landgoed Gelders Hof",
@@ -17271,7 +17307,7 @@
     }
    ]
   },
-  "2546": {
+  "1087": {
    "soort": "Gemeentelijk monument",
    "titel": "Schependomlaan 36",
    "naam": "Villa",
@@ -17285,7 +17321,7 @@
     }
    ]
   },
-  "1435": {
+  "1091": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 30",
    "naam": "woonhuis",
@@ -17311,7 +17347,7 @@
     }
    ]
   },
-  "1340": {
+  "1093": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 27",
    "naam": "woonhuis",
@@ -17337,7 +17373,7 @@
     }
    ]
   },
-  "959": {
+  "1097": {
    "soort": "Gemeentelijk monument",
    "titel": "Hessenberg 3-5A, Lange Hezelstraat 59",
    "naam": "winkel-/woonhuis",
@@ -17363,7 +17399,7 @@
     }
    ]
   },
-  "2435": {
+  "1098": {
    "soort": "Gemeentelijk monument",
    "titel": "Waldeck Pyrmontsingel 67-69",
    "naam": "Doopsgezinde kerk",
@@ -17377,7 +17413,7 @@
     }
    ]
   },
-  "844": {
+  "1100": {
    "soort": "Gemeentelijk monument",
    "titel": "Karrengas 28, Molenstraat 122",
    "naam": "winkel-/woonhuis",
@@ -17451,7 +17487,7 @@
     }
    ]
   },
-  "1331": {
+  "1060": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 7",
    "naam": "woonhuis",
@@ -17477,7 +17513,7 @@
     }
    ]
   },
-  "1037": {
+  "1065": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 124",
    "naam": "winkel-/woonhuis",
@@ -17527,7 +17563,7 @@
     }
    ]
   },
-  "1873": {
+  "1068": {
    "soort": "Gemeentelijk monument",
    "titel": "van Broeckhuysenstraat 55, van Schevichavenstraat 1-5L",
    "naam": "Postkantoor",
@@ -17547,7 +17583,7 @@
     }
    ]
   },
-  "2162": {
+  "1022": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 48",
    "naam": "openluchtstation PGEM",
@@ -17567,7 +17603,7 @@
     }
    ]
   },
-  "2249": {
+  "1023": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 14",
    "naam": "woonhuis",
@@ -17587,7 +17623,7 @@
     }
    ]
   },
-  "2555": {
+  "1031": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 116-118",
    "naam": "winkel-/woonhuis",
@@ -17649,7 +17685,7 @@
     }
    ]
   },
-  "1441": {
+  "1037": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 42-42A",
    "naam": "woonhuis",
@@ -17675,7 +17711,7 @@
     }
    ]
   },
-  "1431": {
+  "1038": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 22",
    "naam": "woonhuis",
@@ -17701,7 +17737,7 @@
     }
    ]
   },
-  "2137": {
+  "1039": {
    "soort": "Gemeentelijk monument",
    "titel": "Wolfskuilseweg 31",
    "naam": "woonhuis met bedrijfsruimte",
@@ -17721,7 +17757,7 @@
     }
    ]
   },
-  "975": {
+  "1042": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 117-119",
    "naam": "woonhuis",
@@ -17747,7 +17783,7 @@
     }
    ]
   },
-  "1440": {
+  "1153": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 40",
    "naam": "woonhuis",
@@ -17773,7 +17809,7 @@
     }
    ]
   },
-  "1084": {
+  "1155": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 32-34",
    "naam": "woonhuis",
@@ -17805,7 +17841,7 @@
     }
    ]
   },
-  "1078": {
+  "1157": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 10-8",
    "naam": "woonhuis met bedrijfsruimte",
@@ -17837,7 +17873,7 @@
     }
    ]
   },
-  "1065": {
+  "1180": {
    "soort": "Gemeentelijk monument",
    "titel": "Muchterstraat 55-59",
    "naam": "woonhuis",
@@ -17863,7 +17899,7 @@
     }
    ]
   },
-  "1348": {
+  "1181": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 43-43A",
    "naam": "woonhuis",
@@ -17889,7 +17925,7 @@
     }
    ]
   },
-  "1336": {
+  "1183": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 17",
    "naam": "woonhuis",
@@ -17909,7 +17945,7 @@
     }
    ]
   },
-  "1192": {
+  "1191": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 32-34",
    "naam": "woonhuis",
@@ -17935,7 +17971,7 @@
     }
    ]
   },
-  "973": {
+  "1192": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 111",
    "naam": "woonhuis",
@@ -17955,7 +17991,7 @@
     }
    ]
   },
-  "1424": {
+  "1196": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 8",
    "naam": "woonhuis",
@@ -17981,7 +18017,7 @@
     }
    ]
   },
-  "1337": {
+  "1201": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 19",
    "naam": "woonhuis",
@@ -18007,7 +18043,7 @@
     }
    ]
   },
-  "1351": {
+  "1205": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 51",
    "naam": "woonhuis",
@@ -18033,7 +18069,7 @@
     }
    ]
   },
-  "1542": {
+  "1208": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 12-12A",
    "naam": "woonhuis met bedrijfsruimte",
@@ -18065,7 +18101,7 @@
     }
    ]
   },
-  "2551": {
+  "1110": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Agnetenweg 53-55",
    "naam": "boerderij",
@@ -18079,7 +18115,7 @@
     }
    ]
   },
-  "1199": {
+  "1121": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 58-60",
    "naam": "woonhuis",
@@ -18105,7 +18141,7 @@
     }
    ]
   },
-  "2819": {
+  "1122": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 79-81",
    "naam": "bouwhistorie",
@@ -18179,7 +18215,7 @@
     }
    ]
   },
-  "1501": {
+  "1123": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 170",
    "naam": "woonhuis",
@@ -18205,7 +18241,7 @@
     }
    ]
   },
-  "1071": {
+  "1125": {
    "soort": "Gemeentelijk monument",
    "titel": "Nassausingel 2",
    "naam": "villa",
@@ -18219,7 +18255,7 @@
     }
    ]
   },
-  "1707": {
+  "1129": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseweg 3",
    "naam": "dienstwoning bij gemaal",
@@ -18233,7 +18269,7 @@
     }
    ]
   },
-  "54": {
+  "1245": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 4",
    "naam": "woonhuis",
@@ -18271,7 +18307,7 @@
     }
    ]
   },
-  "1145": {
+  "1246": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 30-32E",
    "naam": "woonhuis",
@@ -18303,7 +18339,7 @@
     }
    ]
   },
-  "2834": {
+  "1261": {
    "soort": "Gemeentelijk monument",
    "titel": "Karrengas 10, Molenstraat 132-134",
    "naam": "bouwhistorie",
@@ -18365,7 +18401,7 @@
     }
    ]
   },
-  "1499": {
+  "1265": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 166",
    "naam": "woonhuis",
@@ -18385,7 +18421,7 @@
     }
    ]
   },
-  "1572": {
+  "1271": {
    "soort": "Gemeentelijk monument",
    "titel": "Stieltjesstraat 22-24",
    "naam": "woonhuis",
@@ -18405,7 +18441,7 @@
     }
    ]
   },
-  "1655": {
+  "1292": {
    "soort": "Gemeentelijk monument",
    "titel": "Tweede Oude Heselaan 522",
    "naam": "landhuis",
@@ -18419,7 +18455,7 @@
     }
    ]
   },
-  "970": {
+  "1296": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 95",
    "naam": "winkel-/woonhuis",
@@ -18445,7 +18481,7 @@
     }
    ]
   },
-  "2267": {
+  "1248": {
    "soort": "Gemeentelijk monument",
    "titel": "Louiseweg 12",
    "naam": "villa Het Heidehuis",
@@ -18471,7 +18507,7 @@
     }
    ]
   },
-  "2136": {
+  "1254": {
    "soort": "Gemeentelijk monument",
    "titel": "Winkelsteegseweg 99",
    "naam": "villa De Winkelsteeg",
@@ -18485,7 +18521,7 @@
     }
    ]
   },
-  "1454": {
+  "1213": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 70",
    "naam": "woonhuis",
@@ -18511,7 +18547,7 @@
     }
    ]
   },
-  "2553": {
+  "1215": {
    "soort": "Gemeentelijk monument",
    "titel": "Zwanenstraat 54, de Geerkamp 1615",
    "naam": "boerderij",
@@ -18537,7 +18573,7 @@
     }
    ]
   },
-  "1070": {
+  "1219": {
    "soort": "Gemeentelijk monument",
    "titel": "Museum Kamstraat 50",
    "naam": "woonhuis",
@@ -18581,7 +18617,7 @@
     }
    ]
   },
-  "1079": {
+  "1233": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 12",
    "naam": "woonhuis",
@@ -18607,7 +18643,7 @@
     }
    ]
   },
-  "1073": {
+  "1361": {
    "soort": "Gemeentelijk monument",
    "titel": "Nassausingel 6, Smetiusstraat 2",
    "naam": "woonhuis met bedrijfsruimte",
@@ -18639,7 +18675,7 @@
     }
    ]
   },
-  "2258": {
+  "1365": {
    "soort": "Gemeentelijk monument",
    "titel": "Barbarossastraat 101-97",
    "naam": "kantoor",
@@ -18665,7 +18701,7 @@
     }
    ]
   },
-  "2550": {
+  "1370": {
    "soort": "Gemeentelijk monument",
    "titel": "Schependomlaan 108",
    "naam": "Villa",
@@ -18697,7 +18733,7 @@
     }
    ]
   },
-  "12035": {
+  "2763": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 33",
@@ -18711,7 +18747,7 @@
     }
    ]
   },
-  "12036": {
+  "2764": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 45",
@@ -18725,7 +18761,7 @@
     }
    ]
   },
-  "474": {
+  "1377": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 1-1E",
    "naam": "woonhuis",
@@ -18751,7 +18787,7 @@
     }
    ]
   },
-  "1330": {
+  "1298": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 5",
    "naam": "woonhuis",
@@ -18777,7 +18813,7 @@
     }
    ]
   },
-  "1149": {
+  "1308": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 38",
    "naam": "woonhuis",
@@ -18803,7 +18839,7 @@
     }
    ]
   },
-  "1147": {
+  "1310": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 34",
    "naam": "woonhuis",
@@ -18841,7 +18877,7 @@
     }
    ]
   },
-  "1169": {
+  "1319": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Haven 54, Observantenstraat 20",
    "naam": "woonhuis",
@@ -18861,7 +18897,7 @@
     }
    ]
   },
-  "2085": {
+  "1324": {
    "soort": "Gemeentelijk monument",
    "titel": "Voorstadslaan 47-49D",
    "naam": "dubbele villa",
@@ -18881,7 +18917,7 @@
     }
    ]
   },
-  "2869": {
+  "1331": {
    "soort": "Gemeentelijk monument",
    "titel": "Ziekerstraat 83",
    "naam": "bouwhistorie",
@@ -18913,7 +18949,7 @@
     }
    ]
   },
-  "1287": {
+  "2250": {
    "soort": "Gemeentelijk monument",
    "titel": "Scherpenkampweg 59",
    "naam": "weesinrichting Kinderdorp Neerbosch",
@@ -18933,7 +18969,7 @@
     }
    ]
   },
-  "1035": {
+  "2251": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 96",
    "naam": "winkel-/woonhuis",
@@ -18983,7 +19019,7 @@
     }
    ]
   },
-  "634": {
+  "2289": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 10-8A",
    "naam": "Begijnenstraat 8-10",
@@ -19027,7 +19063,7 @@
     }
    ]
   },
-  "1091": {
+  "2491": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 88-94",
    "naam": "woonhuis",
@@ -19059,7 +19095,7 @@
     }
    ]
   },
-  "3170": {
+  "2662": {
    "soort": "Gemeentelijk monument",
    "titel": "Winselingseweg 12",
    "naam": "NYMA-watertoren",
@@ -19073,14 +19109,14 @@
     }
    ]
   },
-  "899": {
+  "2667": {
    "soort": "Gemeentelijk monument",
    "titel": "Kerkstraat 2",
    "naam": "Stenen bank",
    "nummers": [],
    "panden": []
   },
-  "735": {
+  "2670": {
    "soort": "Rijksmonument",
    "titel": "Nassausingel 9",
    "naam": "Vier Jaargetijden",
@@ -19102,7 +19138,7 @@
     }
    ]
   },
-  "2755": {
+  "2304": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 13",
    "naam": "Hertogstraat 13-17",
@@ -19128,7 +19164,7 @@
     }
    ]
   },
-  "3242": {
+  "2503": {
    "soort": "Gemeentelijk monument",
    "titel": "Stationsplein 1-6Q",
    "naam": "Stationsplein 1-6",
@@ -19196,7 +19232,7 @@
     }
    ]
   },
-  "3035": {
+  "2677": {
    "soort": "Gemeentelijk monument",
    "titel": "Scherpenkampweg 54-56",
    "naam": "Scherpenkampweg 54-56",
@@ -19216,7 +19252,7 @@
     }
    ]
   },
-  "3230": {
+  "2312": {
    "soort": "Gemeentelijk monument",
    "titel": "Scherpenkampweg 75",
    "naam": "Scherpenkampweg 76",
@@ -19236,7 +19272,7 @@
     }
    ]
   },
-  "3168": {
+  "2315": {
    "soort": "Gemeentelijk monument",
    "titel": "van Schaeck Mathonsingel 101-131, Stationsplein 26",
    "naam": "Stationsplein 26",
@@ -19256,7 +19292,7 @@
     }
    ]
   },
-  "2884": {
+  "2516": {
    "soort": "Gemeentelijk monument",
    "titel": "Gruitberg 31, Pauwelstraat 2-6",
    "naam": "winkel-/woonhuis",
@@ -19288,7 +19324,7 @@
     }
    ]
   },
-  "2087": {
+  "2519": {
    "soort": "Gemeentelijk monument",
    "titel": "Voorstadslaan 313",
    "naam": "woonhuis",
@@ -19314,7 +19350,7 @@
     }
    ]
   },
-  "1193": {
+  "2521": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 36",
    "naam": "woonhuis",
@@ -19340,7 +19376,7 @@
     }
    ]
   },
-  "11144": {
+  "2682": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Goffert",
@@ -24718,7 +24754,7 @@
     }
    ]
   },
-  "3029": {
+  "2684": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 96U, Pijkestraat 1",
    "naam": "Pijkestraat 1",
@@ -24756,7 +24792,7 @@
     }
    ]
   },
-  "3036": {
+  "2326": {
    "soort": "Gemeentelijk monument",
    "titel": "Scherpenkampweg 82-86",
    "naam": "Scherpenkampweg 82-84-86",
@@ -24770,7 +24806,7 @@
     }
    ]
   },
-  "258": {
+  "2331": {
    "soort": "Rijksmonument",
    "titel": "Dorpsstraat 112",
    "naam": "kerk",
@@ -24786,7 +24822,7 @@
     }
    ]
   },
-  "3218": {
+  "2526": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 11",
    "naam": "Hertogstraat 11",
@@ -24812,7 +24848,7 @@
     }
    ]
   },
-  "2513": {
+  "2527": {
    "soort": "Gemeentelijk monument",
    "titel": "Piersonstraat 33",
    "naam": "Piersonmannetje",
@@ -24826,7 +24862,7 @@
     }
    ]
   },
-  "995": {
+  "2534": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 54, Glashuis 1A-1B",
    "naam": "winkel-/woonhuis",
@@ -24870,7 +24906,7 @@
     }
    ]
   },
-  "3125": {
+  "2697": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkdwarsstraat 11-9, Doddendaal 11-9, Achter Valburg 2-4",
    "naam": "Doddendaal 5-35, Parkdwarsstraat 9-53 ",
@@ -25082,7 +25118,7 @@
     }
    ]
   },
-  "2992": {
+  "2698": {
    "soort": "Gemeentelijk monument",
    "titel": "Pijkestraat 8, Lange Hezelstraat 63",
    "naam": "Lange Hezelstraat 63",
@@ -25102,7 +25138,21 @@
     }
    ]
   },
-  "2790": {
+  "2351": {
+   "soort": "Gemeentelijk monument",
+   "titel": "Lentse Schoolstraat 11-92",
+   "naam": "klooster",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000038096",
+     "punten": 11926,
+     "in_vlak": 2170,
+     "aandeel_pand": 0.182
+    }
+   ]
+  },
+  "2546": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 64-64A",
    "naam": "bouwhistorie",
@@ -25128,7 +25178,7 @@
     }
    ]
   },
-  "11131": {
+  "2701": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Limoskazerne-complex",
@@ -29092,7 +29142,7 @@
     }
    ]
   },
-  "11132": {
+  "2702": {
    "soort": "Rijksmonument",
    "titel": "Eversweg 4",
    "naam": "Complex Berg en Eik",
@@ -29120,7 +29170,7 @@
     }
    ]
   },
-  "11133": {
+  "2703": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Landgoed Brakkenstein",
@@ -29520,7 +29570,7 @@
     }
    ]
   },
-  "11128": {
+  "2704": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Religie",
@@ -29588,7 +29638,7 @@
     }
    ]
   },
-  "521": {
+  "2565": {
    "soort": "Gemeentelijk monument",
    "titel": "Villandry 50-60",
    "naam": "villa Villandry",
@@ -29602,7 +29652,7 @@
     }
    ]
   },
-  "11129": {
+  "2705": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Complex Neboklooster",
@@ -29648,7 +29698,7 @@
     }
    ]
   },
-  "733": {
+  "2710": {
    "soort": "Rijksmonument",
    "titel": "Hunnerpark 2",
    "naam": "Stadsmuur",
@@ -29657,7 +29707,7 @@
    ],
    "panden": []
   },
-  "623": {
+  "2366": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 46",
    "naam": "kanunnikenhuis",
@@ -29679,7 +29729,7 @@
     }
    ]
   },
-  "57": {
+  "2369": {
    "soort": "Gemeentelijk monument",
    "titel": "Ridderstraat 1-3",
    "naam": "winkel-/woonhuis",
@@ -29705,7 +29755,7 @@
     }
    ]
   },
-  "11135": {
+  "2719": {
    "soort": "Rijksmonument",
    "titel": "Daalseweg 110",
    "naam": "Begraafplaats Altrade",
@@ -29949,7 +29999,7 @@
     }
    ]
   },
-  "11136": {
+  "2720": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Maria Geboortekerk",
@@ -30017,7 +30067,7 @@
     }
    ]
   },
-  "11137": {
+  "2721": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Complex Museum Kam",
@@ -30051,7 +30101,7 @@
     }
    ]
   },
-  "11138": {
+  "2722": {
    "soort": "Rijksmonument",
    "titel": "Sterreschansweg 77",
    "naam": "Sterreschansweg 77",
@@ -30077,7 +30127,7 @@
     }
    ]
   },
-  "2812": {
+  "2380": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 65, Vlaamsegas 23",
    "naam": "bouwhistorie",
@@ -30127,7 +30177,7 @@
     }
    ]
   },
-  "1132": {
+  "2381": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 2C",
    "naam": "Kerk van Nazarener",
@@ -30153,7 +30203,7 @@
     }
    ]
   },
-  "390": {
+  "2382": {
    "soort": "Gemeentelijk monument",
    "titel": "Glashuis 1-1A, Lange Hezelstraat 58",
    "naam": "winkel-/woonhuis",
@@ -30185,7 +30235,7 @@
     }
    ]
   },
-  "1714": {
+  "2383": {
    "soort": "Rijksmonument",
    "titel": "Voerweg 1",
    "naam": "Valkhof",
@@ -30201,7 +30251,7 @@
     }
    ]
   },
-  "3028": {
+  "2387": {
    "soort": "Gemeentelijk monument",
    "titel": "Piersonstraat 95-95A",
    "naam": "Piersonstraat 95-95a",
@@ -30233,7 +30283,7 @@
     }
    ]
   },
-  "2737": {
+  "2586": {
    "soort": "Gemeentelijk monument",
    "titel": "Bloemerstraat 11-13",
    "naam": "Bloemerstraat 11-13",
@@ -30289,7 +30339,7 @@
     }
    ]
   },
-  "627": {
+  "2588": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 1, Lange Hezelstraat 22",
    "naam": "winkel-/woonhuis",
@@ -30315,7 +30365,7 @@
     }
    ]
   },
-  "1288": {
+  "2591": {
    "soort": "Gemeentelijk monument",
    "titel": "Scherpenkampweg 61-67",
    "naam": "weesinrichting Kinderdorp Neerbosch",
@@ -30359,7 +30409,7 @@
     }
    ]
   },
-  "11130": {
+  "2723": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Kronenburgerpark",
@@ -31435,7 +31485,7 @@
     }
    ]
   },
-  "2227": {
+  "2728": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Kazernecomplex Limos",
@@ -31449,7 +31499,7 @@
     }
    ]
   },
-  "377": {
+  "2727": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Kazernecomplex Limos",
@@ -31547,7 +31597,7 @@
     }
    ]
   },
-  "1548": {
+  "2736": {
    "soort": "Rijksmonument",
    "titel": "Spoorbrugkade 3-3A",
    "naam": "Landhoofd Spoorbrug",
@@ -31569,7 +31619,7 @@
     }
    ]
   },
-  "2166": {
+  "2738": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Lent, brugkazematten",
@@ -31609,7 +31659,7 @@
     }
    ]
   },
-  "3096": {
+  "2390": {
    "soort": "Gemeentelijk monument",
    "titel": "Derde van Hezewijkstraat 6, Villanovastraat 2-6",
    "naam": "Villanovastraat 2-6, Derde van Hezewijkstraat 6",
@@ -31635,7 +31685,7 @@
     }
    ]
   },
-  "2807": {
+  "2401": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 96A",
    "naam": "bouwhistorie",
@@ -31661,7 +31711,7 @@
     }
    ]
   },
-  "2351": {
+  "2599": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Tuinmuren",
@@ -31753,14 +31803,14 @@
     }
    ]
   },
-  "12065": {
+  "2765": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Weezenkerkhof Neerbosch",
    "nummers": [],
    "panden": []
   },
-  "2518": {
+  "2607": {
    "soort": "Gemeentelijk monument",
    "titel": "Valkenburgseweg 1",
    "naam": "boerderij",
@@ -31780,7 +31830,7 @@
     }
    ]
   },
-  "373": {
+  "2734": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenveldlaan 43",
    "naam": "Kazernecomplex Limos",
@@ -31800,7 +31850,7 @@
     }
    ]
   },
-  "2966": {
+  "2378": {
    "soort": "Gemeentelijk monument",
    "titel": "Hatertseweg 111-113",
    "naam": "Hatertseweg 111-113",
@@ -31868,7 +31918,7 @@
     }
    ]
   },
-  "2250": {
+  "2402": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 2",
    "naam": "woonhuis",
@@ -31888,7 +31938,7 @@
     }
    ]
   },
-  "3086": {
+  "2271": {
    "soort": "Gemeentelijk monument",
    "titel": "van Broeckhuysenstraat 44-50, Tweede Walstraat 19-23",
    "naam": "Van Broeckhuysenstraat 44-50 e.a.",
@@ -31938,7 +31988,7 @@
     }
    ]
   },
-  "2796": {
+  "2412": {
    "soort": "Gemeentelijk monument",
    "titel": "Glashuis 12, Lange Hezelstraat 74-76",
    "naam": "Lange Hezelstraat 74-76 en Glashuis 12",
@@ -31976,7 +32026,7 @@
     }
    ]
   },
-  "965": {
+  "2608": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 79-81",
    "naam": "winkel-/woonhuis",
@@ -32008,7 +32058,7 @@
     }
    ]
   },
-  "980": {
+  "2618": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Marktstraat 80, Lange Hezelstraat 137-139",
    "naam": "winkel-/woonhuis",
@@ -32034,7 +32084,7 @@
     }
    ]
   },
-  "12019": {
+  "2757": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 53",
@@ -32048,7 +32098,7 @@
     }
    ]
   },
-  "1651": {
+  "2418": {
    "soort": "Gemeentelijk monument",
    "titel": "Tweede Oude Heselaan 167-171",
    "naam": "Bethel kerk",
@@ -32074,7 +32124,7 @@
     }
    ]
   },
-  "2806": {
+  "2420": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 94-96",
    "naam": "bouwhistorie",
@@ -32100,7 +32150,7 @@
     }
    ]
   },
-  "41": {
+  "2422": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 47, Achter de Smidstraat 3-5",
    "naam": "kanunnikenhuis",
@@ -32122,7 +32172,7 @@
     }
    ]
   },
-  "2151": {
+  "2423": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 9",
    "naam": "woonhuis",
@@ -32142,7 +32192,7 @@
     }
    ]
   },
-  "628": {
+  "2622": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 5",
    "naam": "woonhuis met bedrijfsruimte",
@@ -32174,7 +32224,7 @@
     }
    ]
   },
-  "12020": {
+  "2758": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 68",
@@ -32188,7 +32238,7 @@
     }
    ]
   },
-  "12021": {
+  "2759": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 70",
@@ -32202,7 +32252,7 @@
     }
    ]
   },
-  "12022": {
+  "2760": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 76",
@@ -32216,7 +32266,7 @@
     }
    ]
   },
-  "12023": {
+  "2761": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 69",
@@ -32236,7 +32286,7 @@
     }
    ]
   },
-  "12024": {
+  "2762": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 71",
@@ -32250,7 +32300,7 @@
     }
    ]
   },
-  "734": {
+  "2642": {
    "soort": "Rijksmonument",
    "titel": "Hunnerpark 6",
    "naam": "St Geertruidenkapel",
@@ -32259,7 +32309,7 @@
    ],
    "panden": []
   },
-  "1007": {
+  "2447": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 2-6, Lange Hezelstraat 102-108",
    "naam": "winkel-/woonhuis",
@@ -32291,7 +32341,7 @@
     }
    ]
   },
-  "2149": {
+  "2450": {
    "soort": "Gemeentelijk monument",
    "titel": "Laauwikstraat 47-47C",
    "naam": "boerderij",
@@ -32305,7 +32355,7 @@
     }
    ]
   },
-  "2548": {
+  "2451": {
    "soort": "Gemeentelijk monument",
    "titel": "Schependomlaan 53",
    "naam": "woonhuis",
@@ -32319,7 +32369,7 @@
     }
    ]
   },
-  "1206": {
+  "2456": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 126",
    "naam": "woonhuis",
@@ -32351,7 +32401,7 @@
     }
    ]
   },
-  "11139": {
+  "2650": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "H Antonius van Padua/ St. Annakerk",
@@ -32389,7 +32439,7 @@
     }
    ]
   },
-  "11140": {
+  "2651": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Complex Kronenburgersingel 231",
@@ -32411,7 +32461,7 @@
     }
    ]
   },
-  "11142": {
+  "2653": {
    "soort": "Rijksmonument",
    "titel": "Pastoor van Laakstraat 42",
    "naam": "Complex OLV Geboorteparochie",
@@ -32439,7 +32489,7 @@
     }
    ]
   },
-  "11143": {
+  "2654": {
    "soort": "Rijksmonument",
    "titel": "Waaldijk 49",
    "naam": "Landgoed Oosterhout complex",
@@ -37639,7 +37689,7 @@
     }
    ]
   },
-  "2973": {
+  "2468": {
    "soort": "Gemeentelijk monument",
    "titel": "Hessenberg 13-15B",
    "naam": "Hessenberg 13-15",
@@ -37683,14 +37733,14 @@
     }
    ]
   },
-  "220": {
+  "2224": {
    "soort": "Gemeentelijk monument",
    "titel": "Kelfkensbos 57A",
    "naam": "Stadspomp",
    "nummers": [],
    "panden": []
   },
-  "2933": {
+  "2264": {
    "soort": "Gemeentelijk monument",
    "titel": "Dr. Jan Berendsstraat 69",
    "naam": "Dr. Jan Berendsstraat 69",
@@ -37704,7 +37754,7 @@
     }
    ]
   },
-  "3153": {
+  "2272": {
    "soort": "Gemeentelijk monument",
    "titel": "Klein Mariënburg 22-24",
    "naam": "Klein Mariënburg 22-24",
@@ -37718,7 +37768,7 @@
     }
    ]
   },
-  "986": {
+  "2477": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 26-26A",
    "naam": "winkel-/woonhuis",
@@ -37744,7 +37794,7 @@
     }
    ]
   },
-  "3267": {
+  "2233": {
    "soort": "Gemeentelijk monument",
    "titel": "Postweg 60",
    "naam": "Postweg bij 60 (graven)",
@@ -37794,21 +37844,21 @@
     }
    ]
   },
-  "3205": {
+  "2238": {
    "soort": "Gemeentelijk monument",
    "titel": "Dorpsstraat 112",
    "naam": "Dorpsstraat bij 112 (begraafplaats)",
    "nummers": [],
    "panden": []
   },
-  "2334": {
+  "2239": {
    "soort": "Gemeentelijk monument",
    "titel": "Graafseweg 59A",
    "naam": "fabrieksschoorsteen",
    "nummers": [],
    "panden": []
   },
-  "3253": {
+  "2284": {
    "soort": "Gemeentelijk monument",
    "titel": "van Dulckenstraat 18-20",
    "naam": "Van Dulckenstraat 18-20",
@@ -37840,7 +37890,7 @@
     }
    ]
   },
-  "1034": {
+  "1832": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 94",
    "naam": "winkel-/woonhuis",
@@ -37902,7 +37952,7 @@
     }
    ]
   },
-  "2244": {
+  "2049": {
    "soort": "Gemeentelijk monument",
    "titel": "Nederheidseweg 198",
    "naam": "Boerderij Spijkerhof",
@@ -37916,7 +37966,7 @@
     }
    ]
   },
-  "1425": {
+  "1435": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 10",
    "naam": "woonhuis",
@@ -37954,14 +38004,14 @@
     }
    ]
   },
-  "1074": {
+  "1632": {
    "soort": "Gemeentelijk monument",
    "titel": "Nassausingel 11",
    "naam": "Quackmonument",
    "nummers": [],
    "panden": []
   },
-  "450": {
+  "1637": {
    "soort": "Gemeentelijk monument",
    "titel": "Griftdijk Zuid 119",
    "naam": "villa",
@@ -37987,7 +38037,7 @@
     }
    ]
   },
-  "2124": {
+  "1845": {
    "soort": "Gemeentelijk monument",
    "titel": "Wilhelminasingel 18-22",
    "naam": "woonhuis",
@@ -38031,7 +38081,7 @@
     }
    ]
   },
-  "1243": {
+  "1847": {
    "soort": "Gemeentelijk monument",
    "titel": "Postweg 60A",
    "naam": "transformatorhuisje",
@@ -38045,7 +38095,7 @@
     }
    ]
   },
-  "731": {
+  "2057": {
    "soort": "Rijksmonument",
    "titel": "Hunnerpark 4",
    "naam": "C.A.P. Ivens Bank",
@@ -38054,7 +38104,7 @@
    ],
    "panden": []
   },
-  "2797": {
+  "2065": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 75A",
    "naam": "Lange Hezelstraat 75",
@@ -38098,7 +38148,7 @@
     }
    ]
   },
-  "2826": {
+  "1442": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 102-104B",
    "naam": "bouwhistorie",
@@ -38136,7 +38186,7 @@
     }
    ]
   },
-  "1453": {
+  "1444": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 68",
    "naam": "woonhuis",
@@ -38156,7 +38206,7 @@
     }
    ]
   },
-  "1349": {
+  "1445": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 45-45A",
    "naam": "woonhuis",
@@ -38182,7 +38232,7 @@
     }
    ]
   },
-  "1107": {
+  "1448": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 5",
    "naam": "woonhuis",
@@ -38208,7 +38258,7 @@
     }
    ]
   },
-  "1538": {
+  "1453": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 4-4F",
    "naam": "hotel",
@@ -38234,7 +38284,7 @@
     }
    ]
   },
-  "1652": {
+  "1642": {
    "soort": "Gemeentelijk monument",
    "titel": "Tweede Oude Heselaan 173-173A",
    "naam": "school",
@@ -38248,7 +38298,7 @@
     }
    ]
   },
-  "1875": {
+  "1643": {
    "soort": "Gemeentelijk monument",
    "titel": "van Schevichavenstraat 12, Oranjesingel 44",
    "naam": "Rijkskweekschool voor onderwijzers",
@@ -38274,7 +38324,7 @@
     }
    ]
   },
-  "972": {
+  "1646": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 105-107, Parkweg 128",
    "naam": "woonhuis met bedrijfsruimte",
@@ -38306,7 +38356,7 @@
     }
    ]
   },
-  "997": {
+  "1648": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 58A-62",
    "naam": "woonhuis/cafe",
@@ -38350,7 +38400,7 @@
     }
    ]
   },
-  "1543": {
+  "1649": {
    "soort": "Gemeentelijk monument",
    "titel": "Smetiusstraat 14-16A",
    "naam": "woonhuis met bedrijfsruimte",
@@ -38376,7 +38426,7 @@
     }
    ]
   },
-  "1200": {
+  "1862": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 62",
    "naam": "woonhuis",
@@ -38402,7 +38452,7 @@
     }
    ]
   },
-  "70": {
+  "2084": {
    "soort": "Gemeentelijk monument",
    "titel": "Begijnenstraat 19",
    "naam": "Begijnenstraat 19",
@@ -38428,7 +38478,7 @@
     }
    ]
   },
-  "1737": {
+  "1459": {
    "soort": "Gemeentelijk monument",
    "titel": "van Broeckhuysenstraat 12-14",
    "naam": "horeca/woonhuis",
@@ -38454,7 +38504,7 @@
     }
    ]
   },
-  "1082": {
+  "1460": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 24-26",
    "naam": "woonhuis",
@@ -38480,7 +38530,7 @@
     }
    ]
   },
-  "555": {
+  "1651": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 58",
    "naam": "Kerkboog",
@@ -38502,7 +38552,7 @@
     }
    ]
   },
-  "1708": {
+  "1652": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseweg 162-166",
    "naam": "boerderij",
@@ -38522,7 +38572,7 @@
     }
    ]
   },
-  "2143": {
+  "1653": {
    "soort": "Gemeentelijk monument",
    "titel": "Griftdijk Zuid 89-91",
    "naam": "woonhuis",
@@ -38554,7 +38604,7 @@
     }
    ]
   },
-  "1029": {
+  "1658": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 60A-62",
    "naam": "winkel-/woonhuis",
@@ -38604,7 +38654,7 @@
     }
    ]
   },
-  "2117": {
+  "1661": {
    "soort": "Gemeentelijk monument",
    "titel": "Wilhelminasingel 2-2C",
    "naam": "woonhuis",
@@ -38630,7 +38680,7 @@
     }
    ]
   },
-  "2517": {
+  "2093": {
    "soort": "Gemeentelijk monument",
    "titel": "Thermionpark  1-9",
    "naam": "Thermionpark 1-22",
@@ -38722,7 +38772,7 @@
     }
    ]
   },
-  "1653": {
+  "1467": {
    "soort": "Gemeentelijk monument",
    "titel": "Tweede Oude Heselaan 179-181",
    "naam": "woonhuis",
@@ -38742,7 +38792,7 @@
     }
    ]
   },
-  "2885": {
+  "1469": {
    "soort": "Gemeentelijk monument",
    "titel": "Plein 1944 28",
    "naam": "Carolus bioscoop",
@@ -38780,7 +38830,7 @@
     }
    ]
   },
-  "56": {
+  "1471": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Jorisstraat 35",
    "naam": "wachthuisje (kiosk)",
@@ -38794,7 +38844,7 @@
     }
    ]
   },
-  "1426": {
+  "1677": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 12",
    "naam": "woonhuis",
@@ -38820,7 +38870,7 @@
     }
    ]
   },
-  "1438": {
+  "1884": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 36",
    "naam": "woonhuis",
@@ -38846,7 +38896,7 @@
     }
    ]
   },
-  "1241": {
+  "1886": {
    "soort": "Gemeentelijk monument",
    "titel": "Postweg 52-54",
    "naam": "koetshuis",
@@ -38866,7 +38916,7 @@
     }
    ]
   },
-  "1076": {
+  "2115": {
    "soort": "Rijksmonument",
    "titel": "Nederheidseweg 198",
    "naam": "spijker bij boerderij",
@@ -38882,7 +38932,7 @@
     }
    ]
   },
-  "620": {
+  "2116": {
    "soort": "Gemeentelijk monument",
    "titel": "Burchtstraat 79-79D",
    "naam": "passage met bovenwoningen",
@@ -38908,7 +38958,7 @@
     }
    ]
   },
-  "1242": {
+  "2117": {
    "soort": "Gemeentelijk monument",
    "titel": "Postweg 60",
    "naam": "poortgebouw begraafplaats Rustoord",
@@ -38928,33 +38978,39 @@
     }
    ]
   },
-  "3085": {
+  "2120": {
    "soort": "Gemeentelijk monument",
-   "titel": "Parkweg 1, van Berchenstraat 35",
+   "titel": "van Berchenstraat 31-35, Parkweg 1",
    "naam": "Van Berchenstraat 31-35",
    "nummers": [],
    "panden": [
     {
      "pand": "0268100000007135",
      "punten": 445,
-     "in_vlak": 445,
-     "aandeel_pand": 1.0
+     "in_vlak": 444,
+     "aandeel_pand": 0.998
     },
     {
      "pand": "0268100000039813",
      "punten": 292,
-     "in_vlak": 0,
-     "aandeel_pand": 0.0
+     "in_vlak": 291,
+     "aandeel_pand": 0.997
     },
     {
      "pand": "0268100000039814",
      "punten": 327,
+     "in_vlak": 322,
+     "aandeel_pand": 0.985
+    },
+    {
+     "pand": "0268100000039816",
+     "punten": 681,
      "in_vlak": 0,
      "aandeel_pand": 0.0
     }
    ]
   },
-  "1607": {
+  "2125": {
    "soort": "Gemeentelijk monument",
    "titel": "Stijn Buysstraat 42",
    "naam": "woonhuis",
@@ -38980,7 +39036,7 @@
     }
    ]
   },
-  "1133": {
+  "1483": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 4",
    "naam": "villa",
@@ -39006,7 +39062,7 @@
     }
    ]
   },
-  "969": {
+  "1484": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 93",
    "naam": "winkel-/woonhuis",
@@ -39032,7 +39088,7 @@
     }
    ]
   },
-  "2251": {
+  "1487": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 48, Achter de Hoofdwacht 7",
    "naam": "kanunnikenhuis",
@@ -39054,7 +39110,7 @@
     }
    ]
   },
-  "1338": {
+  "1688": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 21-23",
    "naam": "woonhuis",
@@ -39080,7 +39136,7 @@
     }
    ]
   },
-  "1148": {
+  "1892": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 36-36E",
    "naam": "woonhuis",
@@ -39112,7 +39168,7 @@
     }
    ]
   },
-  "2155": {
+  "1894": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 31",
    "naam": "tramhuisje",
@@ -39126,7 +39182,7 @@
     }
    ]
   },
-  "2163": {
+  "1898": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 50-54",
    "naam": "woonhuis",
@@ -39170,7 +39226,7 @@
     }
    ]
   },
-  "1032": {
+  "1900": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 74-78A",
    "naam": "winkel-/woonhuis",
@@ -39220,7 +39276,7 @@
     }
    ]
   },
-  "1334": {
+  "1493": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 13",
    "naam": "woonhuis",
@@ -39246,7 +39302,7 @@
     }
    ]
   },
-  "1088": {
+  "1690": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 60-66",
    "naam": "woonhuis",
@@ -39278,7 +39334,7 @@
     }
    ]
   },
-  "1427": {
+  "1691": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 14",
    "naam": "woonhuis",
@@ -39310,7 +39366,7 @@
     }
    ]
   },
-  "1008": {
+  "1694": {
    "soort": "Gemeentelijk monument",
    "titel": "Lankforst 5101",
    "naam": "orangerie Dukenburg",
@@ -39324,7 +39380,7 @@
     }
    ]
   },
-  "2172": {
+  "1696": {
    "soort": "Gemeentelijk monument",
    "titel": "Lentse Tuinstraat 2-4",
    "naam": "school",
@@ -39350,7 +39406,7 @@
     }
    ]
   },
-  "2142": {
+  "1697": {
    "soort": "Gemeentelijk monument",
    "titel": "Bekkersland 10",
    "naam": "boerderij Bekkersland",
@@ -39364,7 +39420,7 @@
     }
    ]
   },
-  "602": {
+  "1908": {
    "soort": "Gemeentelijk monument",
    "titel": "Hendrikhof 11, Molenstraat 44-46",
    "naam": "winkel-/woonhuis",
@@ -39396,7 +39452,7 @@
     }
    ]
   },
-  "2801": {
+  "1913": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 87, Kronenburgergas 10-8",
    "naam": "bouwhistorie",
@@ -39411,8 +39467,8 @@
     {
      "pand": "0268100000036996",
      "punten": 303,
-     "in_vlak": 303,
-     "aandeel_pand": 1.0
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
     },
     {
      "pand": "0268100000036997",
@@ -39434,7 +39490,7 @@
     }
    ]
   },
-  "2840": {
+  "1916": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Koningstraat 24",
    "naam": "bouwhistorie",
@@ -39460,7 +39516,7 @@
     }
    ]
   },
-  "3224": {
+  "2177": {
    "soort": "Gemeentelijk monument",
    "titel": "Kronenburgersingel 269",
    "naam": "Kronenburgersingel 269; Nieuwe Marktstraat 52, 60",
@@ -39492,7 +39548,7 @@
     }
    ]
   },
-  "1171": {
+  "1500": {
    "soort": "Gemeentelijk monument",
    "titel": "Papengas 30, Oude Haven 76-80",
    "naam": "winkel-/woonhuis",
@@ -39518,7 +39574,7 @@
     }
    ]
   },
-  "1500": {
+  "1502": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 168",
    "naam": "woonhuis",
@@ -39544,7 +39600,7 @@
     }
    ]
   },
-  "1028": {
+  "1505": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 103-107, van Welderenstraat 134-138",
    "naam": "winkel-/woonhuis",
@@ -39588,7 +39644,7 @@
     }
    ]
   },
-  "684": {
+  "1716": {
    "soort": "Gemeentelijk monument",
    "titel": "Broerdijk 193, Postweg 80",
    "naam": "koetshuis",
@@ -39608,7 +39664,7 @@
     }
    ]
   },
-  "1437": {
+  "1919": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 34-34A",
    "naam": "woonhuis",
@@ -39634,7 +39690,7 @@
     }
    ]
   },
-  "1343": {
+  "1926": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 33",
    "naam": "woonhuis",
@@ -39660,14 +39716,14 @@
     }
    ]
   },
-  "1021": {
+  "1928": {
    "soort": "Gemeentelijk monument",
    "titel": "Luciaweg 40",
    "naam": "transformatorhuisje",
    "nummers": [],
    "panden": []
   },
-  "269": {
+  "1929": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariaplein 1-5, Dr. Claas Noorduijnstraat 15-19",
    "naam": "woonhuizen",
@@ -39699,7 +39755,7 @@
     }
    ]
   },
-  "3095": {
+  "2130": {
    "soort": "Gemeentelijk monument",
    "titel": "Vermeerstraat 7",
    "naam": "Vermeerstraat 7",
@@ -39725,7 +39781,7 @@
     }
    ]
   },
-  "1706": {
+  "1721": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseveldweg 70A1-70A9",
    "naam": "Angelaschool",
@@ -39805,7 +39861,7 @@
     }
    ]
   },
-  "1430": {
+  "1723": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 20-20C",
    "naam": "woonhuis",
@@ -39825,7 +39881,7 @@
     }
    ]
   },
-  "2831": {
+  "1728": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 126-126A, Karrengas 22",
    "naam": "bouwhistorie",
@@ -39899,7 +39955,7 @@
     }
    ]
   },
-  "1201": {
+  "1939": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 64",
    "naam": "woonhuis",
@@ -39931,7 +39987,7 @@
     }
    ]
   },
-  "977": {
+  "1524": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 125-127",
    "naam": "winkel-/woonhuis",
@@ -39957,7 +40013,7 @@
     }
    ]
   },
-  "2849": {
+  "1525": {
    "soort": "Gemeentelijk monument",
    "titel": "Pijkestraat 49-51",
    "naam": "bouwhistorie",
@@ -39995,7 +40051,7 @@
     }
    ]
   },
-  "1023": {
+  "1535": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 54, Karrengas 78-78B",
    "naam": "winkel-/woonhuis",
@@ -40039,7 +40095,7 @@
     }
    ]
   },
-  "1628": {
+  "1730": {
    "soort": "Gemeentelijk monument",
    "titel": "Stikke Hezelstraat 12",
    "naam": "winkel-/woonhuis",
@@ -40065,7 +40121,7 @@
     }
    ]
   },
-  "580": {
+  "1737": {
    "soort": "Gemeentelijk monument",
    "titel": "Gulden Wagengas 2-8, Lange Hezelstraat 78-80",
    "naam": "winkel-/woonhuis",
@@ -40109,7 +40165,7 @@
     }
    ]
   },
-  "1006": {
+  "1949": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 100-98",
    "naam": "winkel-/woonhuis",
@@ -40135,7 +40191,7 @@
     }
    ]
   },
-  "1109": {
+  "1952": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 9",
    "naam": "woonhuis",
@@ -40161,7 +40217,7 @@
     }
    ]
   },
-  "1030": {
+  "2192": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 66",
    "naam": "winkel-/woonhuis",
@@ -40223,7 +40279,7 @@
     }
    ]
   },
-  "2886": {
+  "2196": {
    "soort": "Gemeentelijk monument",
    "titel": "Doddendaal 10-8, Plein 1944 51-73, Titus Brandsmastraat 10-8, Houtstraat 1-9",
    "naam": "woon-/winkelcomplex",
@@ -40279,7 +40335,7 @@
     }
    ]
   },
-  "292": {
+  "1540": {
    "soort": "Rijksmonument",
    "titel": "Eversweg 2",
    "naam": "villa met bijgebouwen",
@@ -40301,7 +40357,7 @@
     }
    ]
   },
-  "1504": {
+  "1739": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 198-198E, Gorterplaats 21-29",
    "naam": "Splendor Gloeilampenfabriek",
@@ -40333,7 +40389,7 @@
     }
    ]
   },
-  "2144": {
+  "1743": {
    "soort": "Gemeentelijk monument",
    "titel": "Griftdijk Zuid 101",
    "naam": "boerderij",
@@ -40347,7 +40403,7 @@
     }
    ]
   },
-  "1704": {
+  "1748": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseveldweg 97",
    "naam": "Theresiaschool",
@@ -40367,7 +40423,7 @@
     }
    ]
   },
-  "1981": {
+  "1956": {
    "soort": "Gemeentelijk monument",
    "titel": "van Welderenstraat 85-87",
    "naam": "herenhuis",
@@ -40411,7 +40467,7 @@
     }
    ]
   },
-  "2088": {
+  "1959": {
    "soort": "Gemeentelijk monument",
    "titel": "Voorstadslaan 238",
    "naam": "villa",
@@ -40437,7 +40493,7 @@
     }
    ]
   },
-  "1090": {
+  "1962": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 76-86",
    "naam": "woonhuis",
@@ -40469,7 +40525,7 @@
     }
    ]
   },
-  "1135": {
+  "1963": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 8",
    "naam": "herenhuis",
@@ -40495,7 +40551,7 @@
     }
    ]
   },
-  "2804": {
+  "2317": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 90-90B",
    "naam": "Lange Hezelstraat 90-90a-90b",
@@ -40533,7 +40589,7 @@
     }
    ]
   },
-  "12015": {
+  "2753": {
    "soort": "Gemeentelijk monument",
    "titel": "Zonder titel",
    "naam": "Scherpenkampweg 29",
@@ -40553,7 +40609,7 @@
     }
    ]
   },
-  "925": {
+  "2153": {
    "soort": "Rijksmonument",
    "titel": "Postweg 62-62A, Kwakkenbergweg 1",
    "naam": "Israëlische begraafplaats, aula",
@@ -40581,7 +40637,7 @@
     }
    ]
   },
-  "1433": {
+  "1548": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 26-26A",
    "naam": "woonhuis",
@@ -40607,7 +40663,7 @@
     }
    ]
   },
-  "2352": {
+  "1555": {
    "soort": "Gemeentelijk monument",
    "titel": "Vossenpelssestraat 23",
    "naam": "boerderij met kassen en tuinhek",
@@ -40621,7 +40677,7 @@
     }
    ]
   },
-  "1432": {
+  "1556": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 24",
    "naam": "woonhuis",
@@ -40647,7 +40703,7 @@
     }
    ]
   },
-  "1346": {
+  "1560": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 39",
    "naam": "woonhuis",
@@ -40673,7 +40729,7 @@
     }
    ]
   },
-  "2167": {
+  "1755": {
    "soort": "Gemeentelijk monument",
    "titel": "Floralaan 10A-10B, Pastoor van Laakstraat 28",
    "naam": "pastorie",
@@ -40687,7 +40743,7 @@
     }
    ]
   },
-  "1423": {
+  "1758": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 6",
    "naam": "woonhuis",
@@ -40713,7 +40769,7 @@
     }
    ]
   },
-  "1995": {
+  "1973": {
    "soort": "Gemeentelijk monument",
    "titel": "van Welderenstraat 123A-125D",
    "naam": "woonhuis",
@@ -40745,7 +40801,45 @@
     }
    ]
   },
-  "1573": {
+  "1976": {
+   "soort": "Gemeentelijk monument",
+   "titel": "Lange Hezelstraat 87, Kronenburgergas 10-8",
+   "naam": "bouwhistorie",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000036994",
+     "punten": 384,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000036996",
+     "punten": 303,
+     "in_vlak": 303,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000036997",
+     "punten": 404,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000037001",
+     "punten": 129,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000036893",
+     "punten": 1429,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    }
+   ]
+  },
+  "1565": {
    "soort": "Gemeentelijk monument",
    "titel": "Stieltjesstraat 26-28",
    "naam": "woonhuis",
@@ -40771,7 +40865,7 @@
     }
    ]
   },
-  "2350": {
+  "1569": {
    "soort": "Gemeentelijk monument",
    "titel": "Tooropstraat 136-138",
    "naam": "dubbelboerderij",
@@ -40797,7 +40891,7 @@
     }
    ]
   },
-  "2432": {
+  "1765": {
    "soort": "Gemeentelijk monument",
    "titel": "Professor Molkenboerstraat 5-7",
    "naam": "Dominicuskerk",
@@ -40817,7 +40911,7 @@
     }
    ]
   },
-  "2233": {
+  "1767": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariënburg 68-70",
    "naam": "bankgebouw",
@@ -40849,7 +40943,7 @@
     }
    ]
   },
-  "1086": {
+  "1769": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 40-40A",
    "naam": "woonhuis",
@@ -40887,7 +40981,7 @@
     }
    ]
   },
-  "256": {
+  "2731": {
    "soort": "Rijksmonument",
    "titel": "Zonder titel",
    "naam": "Dommer van Poldersveldtweg 112",
@@ -40915,7 +41009,7 @@
     }
    ]
   },
-  "3294": {
+  "1985": {
    "soort": "Gemeentelijk monument",
    "titel": "Achter de Carmel 1, Doddendaal 100-98",
    "naam": "Doddendaal 20-124, Achter de Carmel 1",
@@ -40959,7 +41053,7 @@
     }
    ]
   },
-  "3219": {
+  "1986": {
    "soort": "Gemeentelijk monument",
    "titel": "Hertogstraat 23-25A",
    "naam": "Hertogstraat 23-25",
@@ -40991,7 +41085,7 @@
     }
    ]
   },
-  "2993": {
+  "1989": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 101-99",
    "naam": "Lange Hezelstraat 97-103",
@@ -41035,7 +41129,7 @@
     }
    ]
   },
-  "2152": {
+  "1991": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 13-15",
    "naam": "woonhuis",
@@ -41061,14 +41155,14 @@
     }
    ]
   },
-  "2178": {
+  "2100": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 94",
    "naam": "grenssteen",
    "nummers": [],
    "panden": []
   },
-  "2775": {
+  "2110": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 18",
    "naam": "Lange Hezelstraat 18",
@@ -41100,7 +41194,33 @@
     }
    ]
   },
-  "198": {
+  "2111": {
+   "soort": "Gemeentelijk monument",
+   "titel": "Parkweg 1, van Berchenstraat 35",
+   "naam": "Van Berchenstraat 31-35",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000007135",
+     "punten": 445,
+     "in_vlak": 445,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000039813",
+     "punten": 292,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    },
+    {
+     "pand": "0268100000039814",
+     "punten": 327,
+     "in_vlak": 0,
+     "aandeel_pand": 0.0
+    }
+   ]
+  },
+  "1578": {
    "soort": "Gemeentelijk monument",
    "titel": "Ridderstraat 15",
    "naam": "woonhuis",
@@ -41132,7 +41252,7 @@
     }
    ]
   },
-  "1705": {
+  "1584": {
    "soort": "Gemeentelijk monument",
    "titel": "Ubbergseveldweg 117-119P",
    "naam": "school De Klokkenberg",
@@ -41152,7 +41272,7 @@
     }
    ]
   },
-  "1031": {
+  "1585": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 72",
    "naam": "winkel-/woonhuis",
@@ -41232,7 +41352,7 @@
     }
    ]
   },
-  "2824": {
+  "1778": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 89-91",
    "naam": "bouwhistorie",
@@ -41264,7 +41384,7 @@
     }
    ]
   },
-  "2820": {
+  "1780": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 82, Karrengas 56-56A7",
    "naam": "bouwhistorie",
@@ -41380,7 +41500,7 @@
     }
    ]
   },
-  "2347": {
+  "1784": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 440",
    "naam": "boerderij",
@@ -41394,7 +41514,7 @@
     }
    ]
   },
-  "1104": {
+  "1998": {
    "soort": "Gemeentelijk monument",
    "titel": "Ooysedijk 9",
    "naam": "bedrijfspand",
@@ -41408,7 +41528,7 @@
     }
    ]
   },
-  "1518": {
+  "2002": {
    "soort": "Rijksmonument",
    "titel": "St. Stevenskerkhof 46",
    "naam": "kanunnikenhuis",
@@ -41436,7 +41556,7 @@
     }
    ]
   },
-  "1020": {
+  "1390": {
    "soort": "Gemeentelijk monument",
    "titel": "Looimolenweg 19",
    "naam": "dienstwoning",
@@ -41450,7 +41570,7 @@
     }
    ]
   },
-  "1194": {
+  "1391": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 38-40",
    "naam": "woonhuis",
@@ -41476,7 +41596,7 @@
     }
    ]
   },
-  "2154": {
+  "1392": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 29",
    "naam": "dijkschuur",
@@ -41490,7 +41610,7 @@
     }
    ]
   },
-  "2165": {
+  "1393": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 78",
    "naam": "villa",
@@ -41504,7 +41624,7 @@
     }
    ]
   },
-  "2436": {
+  "1395": {
    "soort": "Gemeentelijk monument",
    "titel": "Professor Regoutstraat 23, Professor Cornelissenstraat 306",
    "naam": "Remonstrantse kerk",
@@ -41518,7 +41638,7 @@
     }
    ]
   },
-  "2822": {
+  "1595": {
    "soort": "Gemeentelijk monument",
    "titel": "Molenstraat 84",
    "naam": "bouwhistorie",
@@ -41550,7 +41670,7 @@
     }
    ]
   },
-  "2888": {
+  "1602": {
    "soort": "Gemeentelijk monument",
    "titel": "Koningshofje 4, Broerstraat 59-61, Ziekerstraat 1-3",
    "naam": "warenhuis Voss",
@@ -41594,7 +41714,7 @@
     }
    ]
   },
-  "1341": {
+  "1792": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 29",
    "naam": "woonhuis",
@@ -41620,7 +41740,7 @@
     }
    ]
   },
-  "1570": {
+  "1404": {
    "soort": "Gemeentelijk monument",
    "titel": "Stieltjesstraat 12-14",
    "naam": "woonhuis",
@@ -41646,7 +41766,7 @@
     }
    ]
   },
-  "1874": {
+  "1406": {
    "soort": "Gemeentelijk monument",
    "titel": "van Schevichavenstraat 10",
    "naam": "Rijkskweekschool voor onderwijzers, conciergewoning",
@@ -41660,7 +41780,7 @@
     }
    ]
   },
-  "1332": {
+  "1409": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 9",
    "naam": "woonhuis",
@@ -41686,7 +41806,7 @@
     }
    ]
   },
-  "1260": {
+  "1604": {
    "soort": "Gemeentelijk monument",
    "titel": "Prins Bernhardstraat 16",
    "naam": "begraafplaats Stenenkruis",
@@ -41724,7 +41844,7 @@
     }
    ]
   },
-  "1087": {
+  "1607": {
    "soort": "Gemeentelijk monument",
    "titel": "Nieuwe Markt 50-58",
    "naam": "woonhuis",
@@ -41762,7 +41882,7 @@
     }
    ]
   },
-  "1106": {
+  "1613": {
    "soort": "Gemeentelijk monument",
    "titel": "Oranjesingel 3",
    "naam": "woonhuis",
@@ -41782,7 +41902,7 @@
     }
    ]
   },
-  "2148": {
+  "1800": {
    "soort": "Gemeentelijk monument",
    "titel": "Keimate 5",
    "naam": "boerderij",
@@ -41796,7 +41916,7 @@
     }
    ]
   },
-  "2254": {
+  "1802": {
    "soort": "Gemeentelijk monument",
    "titel": "Pater Eijmardweg 11-13F",
    "naam": "klooster",
@@ -41810,7 +41930,7 @@
     }
    ]
   },
-  "2158": {
+  "1805": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 18",
    "naam": "dijkwoning",
@@ -41824,7 +41944,7 @@
     }
    ]
   },
-  "192": {
+  "2032": {
    "soort": "Gemeentelijk monument",
    "titel": "Ridderstraat 5-7",
    "naam": "woonhuis annex werkplaats",
@@ -41850,7 +41970,7 @@
     }
    ]
   },
-  "46": {
+  "2038": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Anthoniusplaats 3",
    "naam": "woonhuis",
@@ -41882,7 +42002,7 @@
     }
    ]
   },
-  "2153": {
+  "1414": {
    "soort": "Gemeentelijk monument",
    "titel": "Oosterhoutsedijk 21",
    "naam": "herberg",
@@ -41896,7 +42016,7 @@
     }
    ]
   },
-  "1283": {
+  "1416": {
    "soort": "Gemeentelijk monument",
    "titel": "Rembrandtstraat 1-9",
    "naam": "woonhuizen",
@@ -42174,7 +42294,7 @@
     }
    ]
   },
-  "1165": {
+  "1417": {
    "soort": "Gemeentelijk monument",
    "titel": "Oude Haven 2-4",
    "naam": "woonhuis",
@@ -42194,7 +42314,7 @@
     }
    ]
   },
-  "2887": {
+  "1424": {
    "soort": "Gemeentelijk monument",
    "titel": "Achter de Wiemelpoort 2, Broerstraat 70, Plein 1944 151-151A9",
    "naam": "Van der Werff-gebouw",
@@ -42238,7 +42358,7 @@
     }
    ]
   },
-  "1019": {
+  "1618": {
    "soort": "Gemeentelijk monument",
    "titel": "Mariënburg 59-66B, Achter de Bank 1-53",
    "naam": "bankgebouw (Cinemarienburg)",
@@ -42258,7 +42378,7 @@
     }
    ]
   },
-  "1347": {
+  "1623": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 41",
    "naam": "woonhuis",
@@ -42284,7 +42404,7 @@
     }
    ]
   },
-  "1195": {
+  "1624": {
    "soort": "Gemeentelijk monument",
    "titel": "Parkweg 42-44",
    "naam": "woonhuis",
@@ -42310,7 +42430,7 @@
     }
    ]
   },
-  "1439": {
+  "1815": {
    "soort": "Gemeentelijk monument",
    "titel": "St. Annastraat 38",
    "naam": "woonhuis",
@@ -42336,7 +42456,7 @@
     }
    ]
   },
-  "976": {
+  "1817": {
    "soort": "Gemeentelijk monument",
    "titel": "Lange Hezelstraat 121-123",
    "naam": "woonhuis",

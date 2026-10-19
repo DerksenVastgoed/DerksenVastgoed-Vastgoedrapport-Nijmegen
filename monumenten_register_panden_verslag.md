@@ -3,18 +3,18 @@
 Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten van het pand dat in het registervlak valt.
 
 - 796 vlakken (206 rijksmonument, 590 gemeentelijk monument), 0 zonder antwoord van de BAG
-- 5942 paren vlak-pand met overlap
+- 5955 paren vlak-pand met overlap
 
 ## Verdeling van aandeel_pand (deel van het pand in het vlak)
-- 0.00 tot 0.01: 4762
+- 0.00 tot 0.01: 4770
 - 0.01 tot 0.05: 42
 - 0.05 tot 0.10: 22
-- 0.10 tot 0.25: 24
+- 0.10 tot 0.25: 25
 - 0.25 tot 0.50: 54
 - 0.50 tot 0.75: 79
 - 0.75 tot 0.90: 103
-- 0.90 tot 0.99: 225
-- 0.99 tot 1.00 (incl.): 631
+- 0.90 tot 0.99: 226
+- 0.99 tot 1.00 (incl.): 634
 
 ## Som per pand, rijksmonument (2353 panden)
 - 0.00 tot 0.05: 2077
@@ -35,15 +35,15 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.95 tot 1.0: 69
 - 1.00 tot meer: 147
 
-## Som per pand, gemeentelijk monument (2554 panden)
-- 0.00 tot 0.05: 1727
+## Som per pand, gemeentelijk monument (2555 panden)
+- 0.00 tot 0.05: 1726
 - 0.05 tot 0.1: 7
 - 0.10 tot 0.15: 3
-- 0.15 tot 0.2: 6
+- 0.15 tot 0.2: 5
 - 0.20 tot 0.25: 1
 - 0.25 tot 0.3: 5
 - 0.30 tot 0.35: 3
-- 0.35 tot 0.4: 8
+- 0.35 tot 0.4: 9
 - 0.40 tot 0.45: 6
 - 0.45 tot 0.5: 9
 - 0.50 tot 0.55: 9
@@ -55,7 +55,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 0.80 tot 0.85: 29
 - 0.85 tot 0.9: 32
 - 0.90 tot 0.95: 73
-- 0.95 tot 1.0: 174
+- 0.95 tot 1.0: 176
 - 1.00 tot meer: 394
 
 ## St. Anthoniusplaats 15-16 (31169)
@@ -186,7 +186,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Kannenmarkt 10-16 (31139): pand 0268100000009676, 0.076
 - Hoogstraat 3-5 (): pand 0268100000047163, 0.838
 - Houtstraat 10-12A2, Houthof 51-53 (): pand 0268100000005577, 0.17
-- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
+- Zonder titel (): pand 0268100000038096, 0.182
 - Parkweg 100-98L (523071): pand 0268100000037828, 0.739
 - Kelfkensbos 57 (): pand 0268100000045509, 0.415
 - Molenstraat 39 (): pand 0268100000002998, 0.4
@@ -267,6 +267,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Dorpsstraat 112 (31205): pand 0268100000045592, 0.828
 - Hertogstraat 11 (): pand 0268100000002843, 0.645
 - Parkdwarsstraat 11-9, Doddendaal 11-9, Achter Valburg 2-4 (): pand 0268100000111661, 0.895
+- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
 - Eversweg 4 (522921): pand 0268100000058095, 0.673
 - Zonder titel (522982): pand 0268100000069018, 0.863
 - Zonder titel (522982): pand 0268100000069019, 0.167
