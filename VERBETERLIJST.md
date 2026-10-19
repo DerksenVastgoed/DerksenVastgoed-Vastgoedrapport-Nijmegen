@@ -8130,11 +8130,14 @@ nagezocht, en dat is de enige route naar meer.
   dat het register op een buurpand legt (Waldeck Pyrmontsingel 7 en 13,
   Molenstraat 99B, St. Stevenskerkhof 1B, St. Anthoniusplaats 16 en 17,
   Professor Cornelissenstraat 2). Ring 127 -> 120, tegenspraken 4 -> 0.
-- **St. Anthoniusplaats 16 verloor daarbij waarschijnlijk ten onrechte de
-  vlag.** Het register noemt "St. Anthoniusplaats 15-16" (31169),
-  maar het vlak bevat alleen het pandpunt van 15. Dat is de beperking van
-  een punt per pand: met de pandomtrek uit de BAG tegen het registervlak
-  (overlap in plaats van punt-in-vlak) zou 16 wel raken.
+- GEDAAN 19 oktober: **pandomtrek tegen registervlak** voor rijksmonumenten
+  (monumenten.py --register-panden, wekelijks). St. Anthoniusplaats 16 is
+  weer rijksmonument (0,913 in het vlak); geen pand verloor de vlag. Ring
+  121. Voor de andere categorieen (gemeentelijk monument, stadsbeeldobject)
+  toetst het dossier nog met het pandpunt.
+- **monumenten.nl** (Restauratiefonds) toont per nummer de adressen uit het
+  rijksmonumentenregister, bv. 31169: St. Anthoniusplaats 16 en 15. Het is
+  een kopie van de RCE; als we adressen per nummer willen, dan bij de bron.
 - **Opendata.nijmegen.nl** is nooit getest op toegang zonder token.
 - **Labels in de pandgeschiedenis staan nog per adrestekst.** Het veld
   labels is {adres: letter}. Binnen een pand is een adres niet uniek: bij

@@ -1457,3 +1457,15 @@ waarom: 18 oktober. Van de 261 RCE-punten zijn er 8 archeologisch (klasse
   kreeg daardoor de vlag van rijksmonument, die meetelt in de huurpunten.
 proef: gezicht:een archeologisch rijksmonument geeft het gebouw de
 soort: gegevens
+
+---
+eis: Of een pand in het rijksmonumentvlak van het register ligt, beslist de
+  BAG-pandomtrek en niet het pandpunt: de som van het deel van het pand dat
+  in rijksmonumentvlakken ligt, moet minstens 0,3 zijn.
+waarom: 19 oktober. Het pandpunt van St. Anthoniusplaats 16 viel buiten het
+  vlak van 31169 ("15-16"); het rijksmonumentenregister noemt 15 en 16. Met
+  de omtrek gemeten ligt pand 16 voor 0,913 in het vlak, buurpand 17 voor
+  0,006. De drempel 0,3 ligt in het gat van de meting: geen pand tussen
+  0,215 en 0,453. Zie gezicht._register_per_pand.
+proef: gezicht:een buurpand dat de rand van een monumentvlak raakt
+soort: gegevens

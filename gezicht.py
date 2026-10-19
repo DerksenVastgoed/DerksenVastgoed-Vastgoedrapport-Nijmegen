@@ -358,6 +358,46 @@ def _rce_per_pand():
     return uit
 
 
+REGISTER_PANDEN = "rijksmonumenten_register_panden.json"
+OVERLAP_DREMPEL = 0.3
+
+
+def _register_per_pand():
+    """pand-id -> [(OBJECTID, aandeel_pand)] voor de rijksmonumentvlakken van
+    het register, of None als de meting er niet is.
+
+    WAAROM. 19 oktober 2026. Met een punt per pand viel St. Anthoniusplaats 16
+    buiten het vlak van 31169 ("St. Anthoniusplaats 15-16"), terwijl het
+    rijksmonumentenregister (via monumenten.nl, op Marks aanwijzing) 15 en 16
+    als adressen noemt. Gemeten tegen de pandomtrek: pand 16 ligt voor 0,913
+    in het vlak, pand 17 voor 0,006.
+
+    DE DREMPEL, UIT DE METING. Per pand de som van aandeel_pand over alle
+    rijksmonumentvlakken (een pand kan meer monumenten dragen: Ganzenheuvel 5
+    ligt in vier vlakken van elk 0,22 tot 0,32). Van de 288 panden: 23 onder
+    0,3, waarvan de hoogste 0,215 (Oostkanaaldijk 382, een groot pand waar
+    het vlak een hoek van beslaat); geen enkel pand tussen 0,215 en 0,453; de
+    laagste daarboven zijn Sterreschansweg 77 (0,453) en Lage Markt 47B
+    (0,48), beide het pand uit de titel van het register. De drempel staat in
+    het gat. Wat eronder valt, is een buurpand dat een rand van het vlak
+    raakt, of een groot pand met een klein monument erin (Burchtstraat 20,
+    0,11; Professor Cornelissenstraat 2, de poortjes, 0,012)."""
+    if "register_per_pand" in _cache:
+        return _cache["register_per_pand"]
+    try:
+        with open(REGISTER_PANDEN, encoding="utf-8") as f:
+            objecten = json.load(f).get("objecten") or {}
+    except (OSError, ValueError):
+        _cache["register_per_pand"] = None
+        return None
+    uit = {}
+    for o, v in objecten.items():
+        for x in v.get("panden") or []:
+            uit.setdefault(x["pand"], []).append((o, x["aandeel_pand"]))
+    _cache["register_per_pand"] = uit
+    return uit
+
+
 def _register_nummers():
     """Alle rijksmonumentnummers die het erfgoedregister ergens als vlak
     heeft, ongeacht in welk pand."""
@@ -429,6 +469,19 @@ def monument_aanvullen(pand_id):
     reg = None if not bs else bs.get("register")
     rijks = [p for p in (reg or []) if p.get("BESCHERMINGS_OMS") ==
              "Rijksmonument"]
+    # DE PANDOMTREK GAAT VOOR HET PANDPUNT. Is de overlap van BAG-pand en
+    # registervlak gemeten (monumenten.py --register-panden), dan beslist die.
+    # Zie _register_per_pand voor de drempel en waar hij vandaan komt.
+    per_pand = _register_per_pand()
+    if per_pand is not None:
+        objs = per_pand.get(str(pand_id or "")) or []
+        if sum(a for _o, a in objs) >= OVERLAP_DREMPEL:
+            op_id = {str(t[0].get("OBJECTID")): t[0]
+                     for t in (_laad().get("register") or [])}
+            rijks = [op_id[o] for o, _a in sorted(objs, key=lambda t: -t[1])
+                     if o in op_id]
+        else:
+            rijks = []
     if not rce and not rijks:
         return None
     if rijks:
@@ -704,6 +757,28 @@ def proef():
                        "genoemd")
         if monument_aanvullen("G") is None:
             afw.append("een gebouwd RCE-rijksmonument wordt niet meer gezien")
+        # De pandomtrek: een buurpand dat een rand raakt telt niet (St.
+        # Anthoniusplaats 17, 0,006). Een pand dat in meer vlakken ligt,
+        # telt met de som: Ganzenheuvel 5 ligt in vier vlakken (0,218, 0,22,
+        # 0,237 en 0,319); hier de drie laagste, die elk onder de drempel
+        # blijven en samen erboven.
+        _cache["register_per_pand"] = {
+            "RAND": [("1", 0.006)],
+            "VIER": [("1", 0.218), ("2", 0.22), ("3", 0.237)]}
+        _cache["register"] = [({"OBJECTID": i, "BESCHERMINGS_OMS":
+                                "Rijksmonument", "RIJKSOBJECTCODE": "31124",
+                                "TITEL": "x"}, None, (0, 0, 0, 0))
+                              for i in (1, 2, 3, 4)]
+        _cache["geladen"] = True
+        globals()["bescherming"] = lambda pid: {"register": [
+            {"BESCHERMINGS_OMS": "Rijksmonument"}]}
+        if monument_aanvullen("RAND") is not None:
+            afw.append("een buurpand dat de rand van een monumentvlak raakt, "
+                       "wordt rijksmonument")
+        if monument_aanvullen("VIER") is None:
+            afw.append("een pand dat over meer monumentvlakken samen in het "
+                       "register ligt, wordt geen rijksmonument")
+        globals()["bescherming"] = lambda pid: {"register": []}
         # Het transformatorhuisje Waldeck Pyrmontsingel 1A (522985) staat in
         # het register op een eigen vlak; het RCE-punt viel in nummer 7 en 13.
         if monument_aanvullen("W") is not None:
