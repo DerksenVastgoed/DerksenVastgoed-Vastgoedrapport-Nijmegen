@@ -8992,10 +8992,20 @@ def proef():
         "G": [{"BESCHERMINGS_OMS": "Stadsbeeldobject",
                "TITEL": "Waldeck Pyrmontsingel 7-9"}],
         "N": []}
-    _rce = {"B": [("31114", None)], "G": [("522985", None)]}
+    # G: een nummer dat het register niet kent (de tegenspraak blijft dan
+    # staan). W: het transformatorhuisje Waldeck Pyrmontsingel 1A (522985),
+    # dat het register op een eigen vlak heeft; het RCE-punt viel in nummer 7
+    # en 13, en tot 19 oktober gold dat hier als tegenspraak. Het was een
+    # verkeerde koppeling, zie gezicht.monument_aanvullen.
+    _reg["W"] = [{"BESCHERMINGS_OMS": "Stadsbeeldobject",
+                  "TITEL": "Waldeck Pyrmontsingel 7-9"}]
+    _rce = {"B": [("31114", None)], "G": [("900001", None)],
+            "W": [("522985", None)]}
+    _oud_n = _gzp._register_nummers
     try:
         _gzp.bescherming = lambda pid: {"register": _reg.get(pid)}
         _gzp._rce_per_pand = lambda: _rce
+        _gzp._register_nummers = lambda: {"31122", "31114", "522985"}
         _w = monument_uit_register({"pand": "R"})
         if (_w.get("monument") or {}).get("bron") != "erfgoedregister gemeente" \
                 or not (_w["monument"].get("nummer") or "").endswith("/31122"):
@@ -9007,14 +9017,19 @@ def proef():
                        "genoemd")
         _w = monument_uit_register({"pand": "G"})
         if "stadsbeeldobject" not in (_w["monument"].get("tegenspraak") or ""):
-            afw.append("de tegenspraak van Waldeck Pyrmontsingel wordt niet "
+            afw.append("een tegenspraak tussen RCE en register wordt niet "
                        "genoemd")
+        _w = monument_uit_register({"pand": "W"})
+        if _w.get("monument"):
+            afw.append("Waldeck Pyrmontsingel 7 krijgt het rijksmonument dat "
+                       "het register op 1A legt")
         _w = monument_uit_register({"pand": "N", "monument": {"oud": 1}})
         if _w.get("monument"):
             afw.append("een pand dat geen van beide bronnen een rijksmonument "
                        "noemt, houdt toch de vlag")
     finally:
         _gzp.bescherming, _gzp._rce_per_pand = _oud_b, _oud_r
+        _gzp._register_nummers = _oud_n
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
