@@ -8153,9 +8153,12 @@ nagezocht, en dat is de enige route naar meer.
   elk pand van de woning. van Berchenstraat 31 en 33: OBJECTID 3085 staat
   twee keer in het register, het vlak van 31-35 werd overschreven; nu
   gesleuteld op ID (0,985 en 0,997 in het vlak).
-- **Gemeentelijk monument: 28 panden deels in een vlak** (0,05 tot 0,5). Het
-  dossier noemt het aandeel, de opslag is niet meegerekend. Per woning (het
-  verblijfsobjectpunt in plaats van het pand) zou dit beslissen.
+- GEDAAN 19 oktober: **de 28 deels-panden per woning.** Van de 145 woningen
+  in de voorraad: 70 binnen (opslag), 63 buiten, 12 nakijken (punt en
+  titel oneens). De verblijfsobjecten komen mee in de wekelijkse meting.
+- **De 12 woningen op nakijken** (Stockumstraat 10, Karrengas 44B tot 54A,
+  Oranjesingel 42A-10 tot 12, St. Annastraat 53A-1 en 2) beslist alleen het
+  aanwijzingsbesluit.
 - GEDAAN 19 oktober: **puntendoel.py rekent met de soort monument** (geen
   minpunten, opslag op de maximumhuur; --monument op de opdrachtregel).
 - **Contracten van voor 1 juli 2024** (art. 8a lid 2: 50 punten zelfstandig,

@@ -1526,3 +1526,16 @@ waarom: 19 oktober. Bij Molenstraat 55 en Berg en Dalseweg 200 ligt de
 proef: marktprijzen_bag:een woning in twee panden mist het monument
 soort: gegevens
 
+---
+eis: Ligt een pand maar deels in een gemeentelijk monumentvlak, dan beslist
+  de woning: opslag als het BAG-punt van het verblijfsobject in het vlak
+  ligt EN de titel van het register het adres noemt; geen opslag als beide
+  nee zeggen; zijn ze het oneens, dan "nakijken" zonder opslag.
+waarom: 19 oktober. Bij de 28 deels-panden in de ring (176
+  verblijfsobjecten) waren punt en titel het 157 keer eens en 19 keer
+  oneens (Stockumstraat 10: genoemd, punt erbuiten; Karrengas 44B tot 54A:
+  punt in het vlak van "Molenstraat 94", niet genoemd). Geen van beide is
+  de aanwijzing zelf.
+proef: gezicht:punt en titel worden verkeerd samengenomen; gezicht:leest; marktprijzen_bag:een woning waarover punt en titel het oneens zijn
+soort: gegevens
+
