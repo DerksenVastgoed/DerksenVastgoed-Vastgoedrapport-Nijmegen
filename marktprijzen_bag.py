@@ -9006,6 +9006,10 @@ def proef():
         _gzp.bescherming = lambda pid: {"register": _reg.get(pid)}
         _gzp._rce_per_pand = lambda: _rce
         _gzp._register_nummers = lambda: {"31122", "31114", "522985"}
+        # Deze gevallen toetsen de bronnen, niet de pandomtrek; die heeft
+        # zijn eigen proef in gezicht.py.
+        _oud_pp = _gzp._register_per_pand
+        _gzp._register_per_pand = lambda: None
         _w = monument_uit_register({"pand": "R"})
         if (_w.get("monument") or {}).get("bron") != "erfgoedregister gemeente" \
                 or not (_w["monument"].get("nummer") or "").endswith("/31122"):
@@ -9030,6 +9034,7 @@ def proef():
     finally:
         _gzp.bescherming, _gzp._rce_per_pand = _oud_b, _oud_r
         _gzp._register_nummers = _oud_n
+        _gzp._register_per_pand = _oud_pp
 
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)

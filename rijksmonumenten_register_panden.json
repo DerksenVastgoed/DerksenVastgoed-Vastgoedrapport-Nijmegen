@@ -1,0 +1,3711 @@
+{
+ "bron": "erfgoedregister gemeente (rijksmonumentvlakken) tegen BAG-pandomtrek (PDOK BAG WFS), raster 0.5 m",
+ "objecten": {
+  "522": {
+   "titel": "Groesbeekseweg 351-351A9",
+   "naam": "klooster en pensionaat Mariënbosch",
+   "nummers": [
+    "523008"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005060",
+     "punten": 8210,
+     "in_vlak": 8210,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1505": {
+   "titel": "St. Annastraat 244",
+   "naam": "praktijkwoning",
+   "nummers": [
+    "523018"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000013956",
+     "punten": 1415,
+     "in_vlak": 924,
+     "aandeel_pand": 0.653
+    }
+   ]
+  },
+  "1421": {
+   "titel": "St. Annastraat 283",
+   "naam": "villa",
+   "nummers": [
+    "523019"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000042696",
+     "punten": 807,
+     "in_vlak": 801,
+     "aandeel_pand": 0.993
+    }
+   ]
+  },
+  "1508": {
+   "titel": "St. Annastraat 338B",
+   "naam": "bloemisterij",
+   "nummers": [
+    "523005"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000044831",
+     "punten": 521,
+     "in_vlak": 361,
+     "aandeel_pand": 0.693
+    }
+   ]
+  },
+  "2221": {
+   "titel": "Hunnerpark 5",
+   "naam": "Voetbrug naar Belvédère",
+   "nummers": [
+    "523059"
+   ],
+   "panden": []
+  },
+  "864": {
+   "titel": "Kelfkensbos 60",
+   "naam": "Belvédère",
+   "nummers": [
+    "31140"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000017355",
+     "punten": 478,
+     "in_vlak": 230,
+     "aandeel_pand": 0.481
+    }
+   ]
+  },
+  "1511": {
+   "titel": "Dorpsstraat 112",
+   "naam": "kerktoren",
+   "nummers": [
+    "31206"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045592",
+     "punten": 1090,
+     "in_vlak": 148,
+     "aandeel_pand": 0.136
+    }
+   ]
+  },
+  "1512": {
+   "titel": "St. Stevenskerkhof 2-4",
+   "naam": "Latijnse School",
+   "nummers": [
+    "31170"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009934",
+     "punten": 732,
+     "in_vlak": 732,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1513": {
+   "titel": "St. Stevenskerkhof 5-6",
+   "naam": "woonhuis",
+   "nummers": [
+    "31171"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009572",
+     "punten": 394,
+     "in_vlak": 225,
+     "aandeel_pand": 0.571
+    }
+   ]
+  },
+  "1514": {
+   "titel": "St. Stevenskerkhof 7, Stikke Hezelstraat 24",
+   "naam": "woonhuis",
+   "nummers": [
+    "31172"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009569",
+     "punten": 309,
+     "in_vlak": 309,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1516": {
+   "titel": "St. Stevenskerkhof 44, Achter de Smidstraat 9",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31173"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009784",
+     "punten": 363,
+     "in_vlak": 363,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "557": {
+   "titel": "Grote Markt 23",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31134"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009941",
+     "punten": 162,
+     "in_vlak": 162,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "558": {
+   "titel": "St. Stevenskerkhof 56, Grote Markt 24",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31135"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009940",
+     "punten": 143,
+     "in_vlak": 143,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "559": {
+   "titel": "Grote Markt 25-25C",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31136"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009944",
+     "punten": 135,
+     "in_vlak": 135,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "560": {
+   "titel": "Zonder titel",
+   "naam": "waag",
+   "nummers": [
+    "31137"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009674",
+     "punten": 341,
+     "in_vlak": 1,
+     "aandeel_pand": 0.003
+    },
+    {
+     "pand": "0268100000009676",
+     "punten": 1439,
+     "in_vlak": 1323,
+     "aandeel_pand": 0.919
+    },
+    {
+     "pand": "0268100000104623",
+     "punten": 196,
+     "in_vlak": 4,
+     "aandeel_pand": 0.02
+    }
+   ]
+  },
+  "11578": {
+   "titel": "Zonder titel",
+   "naam": "Priemstraat 57",
+   "nummers": [
+    "31164"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006995",
+     "punten": 338,
+     "in_vlak": 3,
+     "aandeel_pand": 0.009
+    },
+    {
+     "pand": "0268100000006998",
+     "punten": 462,
+     "in_vlak": 458,
+     "aandeel_pand": 0.991
+    },
+    {
+     "pand": "0268100000007000",
+     "punten": 425,
+     "in_vlak": 1,
+     "aandeel_pand": 0.002
+    }
+   ]
+  },
+  "662": {
+   "titel": "Berg en Dalseweg 58-62",
+   "naam": "herenhuizen met hekwerken",
+   "nummers": [
+    "522986"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000001012",
+     "punten": 337,
+     "in_vlak": 335,
+     "aandeel_pand": 0.994
+    },
+    {
+     "pand": "0268100000001011",
+     "punten": 306,
+     "in_vlak": 293,
+     "aandeel_pand": 0.958
+    },
+    {
+     "pand": "0268100000000738",
+     "punten": 360,
+     "in_vlak": 350,
+     "aandeel_pand": 0.972
+    }
+   ]
+  },
+  "648": {
+   "titel": "Berg en Dalseweg 79-81B",
+   "naam": "Canisiuscollege",
+   "nummers": [
+    "46805"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000020569",
+     "punten": 8568,
+     "in_vlak": 8035,
+     "aandeel_pand": 0.938
+    }
+   ]
+  },
+  "698": {
+   "titel": "Koolemans Beynenstraat 1, Daalseweg 262",
+   "naam": "Badhuis",
+   "nummers": [
+    "523050"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000024365",
+     "punten": 2027,
+     "in_vlak": 2007,
+     "aandeel_pand": 0.99
+    },
+    {
+     "pand": "0268100000100083",
+     "punten": 20,
+     "in_vlak": 1,
+     "aandeel_pand": 0.05
+    }
+   ]
+  },
+  "670": {
+   "titel": "Berg en Dalseweg 146-148",
+   "naam": "dubbele villa",
+   "nummers": [
+    "523025"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000001270",
+     "punten": 599,
+     "in_vlak": 574,
+     "aandeel_pand": 0.958
+    },
+    {
+     "pand": "0268100000005618",
+     "punten": 719,
+     "in_vlak": 719,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "249": {
+   "titel": "Dennenstraat 125",
+   "naam": "St. Anthonius Abt",
+   "nummers": [
+    "31204"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006251",
+     "punten": 5770,
+     "in_vlak": 4096,
+     "aandeel_pand": 0.71
+    }
+   ]
+  },
+  "39": {
+   "titel": "Achter de Hoofdwacht 1, St. Stevenskerkhof 54",
+   "naam": "Winkel- /woonhuis",
+   "nummers": [
+    "31114"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009943",
+     "punten": 162,
+     "in_vlak": 162,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "893": {
+   "titel": "Kerkpad 30",
+   "naam": "pastorie De Olde Wehme",
+   "nummers": [
+    "523028"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000024970",
+     "punten": 732,
+     "in_vlak": 732,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "294": {
+   "titel": "Franseplaats 3",
+   "naam": "Commanderie van St. Jan",
+   "nummers": [
+    "31123"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045518",
+     "punten": 2463,
+     "in_vlak": 2411,
+     "aandeel_pand": 0.979
+    }
+   ]
+  },
+  "1355": {
+   "titel": "St. Annastraat 55A, Fransestraat 83",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523020"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000027537",
+     "punten": 564,
+     "in_vlak": 563,
+     "aandeel_pand": 0.998
+    }
+   ]
+  },
+  "362": {
+   "titel": "Lange Hezelstraat 4-8, Ganzenheuvel 1",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31124"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010767",
+     "punten": 1525,
+     "in_vlak": 486,
+     "aandeel_pand": 0.319
+    }
+   ]
+  },
+  "389": {
+   "titel": "Glashuis 4",
+   "naam": "Sint Jacobskapel",
+   "nummers": [
+    "31128"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009723",
+     "punten": 262,
+     "in_vlak": 262,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "405": {
+   "titel": "Graafseweg 3",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523007"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000021145",
+     "punten": 459,
+     "in_vlak": 4,
+     "aandeel_pand": 0.009
+    },
+    {
+     "pand": "0268100000021602",
+     "punten": 422,
+     "in_vlak": 421,
+     "aandeel_pand": 0.998
+    }
+   ]
+  },
+  "40": {
+   "titel": "Achter de Hoofdwacht 3, St. Stevenskerkhof 53",
+   "naam": "De Blaauwe Hand",
+   "nummers": [
+    "31115"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009942",
+     "punten": 185,
+     "in_vlak": 185,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "363": {
+   "titel": "Ganzenheuvel 3",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31125"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010766",
+     "punten": 822,
+     "in_vlak": 4,
+     "aandeel_pand": 0.005
+    },
+    {
+     "pand": "0268100000010767",
+     "punten": 1525,
+     "in_vlak": 335,
+     "aandeel_pand": 0.22
+    }
+   ]
+  },
+  "471": {
+   "titel": "Sloetstraat 5, Nijhoffstraat 6, Groesbeekseweg 1-5",
+   "naam": "vijf herenhuizen met hekwerken",
+   "nummers": [
+    "523029"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002439",
+     "punten": 537,
+     "in_vlak": 537,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002440",
+     "punten": 873,
+     "in_vlak": 833,
+     "aandeel_pand": 0.954
+    },
+    {
+     "pand": "0268100000002441",
+     "punten": 474,
+     "in_vlak": 474,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002442",
+     "punten": 428,
+     "in_vlak": 428,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002443",
+     "punten": 430,
+     "in_vlak": 430,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "497": {
+   "titel": "Groesbeekseweg 14-24, Pontanusstraat 2",
+   "naam": "zeven herenhuizen",
+   "nummers": [
+    "523032"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000030172",
+     "punten": 407,
+     "in_vlak": 407,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000030637",
+     "punten": 437,
+     "in_vlak": 406,
+     "aandeel_pand": 0.929
+    },
+    {
+     "pand": "0268100000030173",
+     "punten": 409,
+     "in_vlak": 377,
+     "aandeel_pand": 0.922
+    },
+    {
+     "pand": "0268100000030174",
+     "punten": 412,
+     "in_vlak": 384,
+     "aandeel_pand": 0.932
+    },
+    {
+     "pand": "0268100000030175",
+     "punten": 437,
+     "in_vlak": 401,
+     "aandeel_pand": 0.918
+    },
+    {
+     "pand": "0268100000030176",
+     "punten": 430,
+     "in_vlak": 400,
+     "aandeel_pand": 0.93
+    },
+    {
+     "pand": "0268100000030170",
+     "punten": 416,
+     "in_vlak": 388,
+     "aandeel_pand": 0.933
+    }
+   ]
+  },
+  "545": {
+   "titel": "Groesbeekseweg 88-90",
+   "naam": "dubbel herenhuis",
+   "nummers": [
+    "523051"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000031096",
+     "punten": 852,
+     "in_vlak": 852,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "653": {
+   "titel": "Berg en Dalseweg 253-255",
+   "naam": "dubbel herenhuis met hekwerken",
+   "nummers": [
+    "523010"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000000075",
+     "punten": 451,
+     "in_vlak": 451,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000000076",
+     "punten": 533,
+     "in_vlak": 533,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "675": {
+   "titel": "Bisschop Hamerstraat 21",
+   "naam": "Beeld Bisschop Hamer",
+   "nummers": [
+    "523066"
+   ],
+   "panden": []
+  },
+  "38": {
+   "titel": "Zonder titel",
+   "naam": "Achter de Hoofdwacht 4",
+   "nummers": [
+    "31116"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010664",
+     "punten": 209,
+     "in_vlak": 3,
+     "aandeel_pand": 0.014
+    },
+    {
+     "pand": "0268100000104622",
+     "punten": 184,
+     "in_vlak": 169,
+     "aandeel_pand": 0.918
+    },
+    {
+     "pand": "0268100000104623",
+     "punten": 196,
+     "in_vlak": 186,
+     "aandeel_pand": 0.949
+    }
+   ]
+  },
+  "290": {
+   "titel": "Elzenstraat 2",
+   "naam": "school, Montessori en Fröbelschool",
+   "nummers": [
+    "523049"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004032",
+     "punten": 1719,
+     "in_vlak": 1687,
+     "aandeel_pand": 0.981
+    }
+   ]
+  },
+  "449": {
+   "titel": "Graafseweg 232-232A",
+   "naam": "Villa De Wolfskuyl",
+   "nummers": [
+    "523054"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000014789",
+     "punten": 1093,
+     "in_vlak": 1093,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "421": {
+   "titel": "Graafseweg 419",
+   "naam": "begraafplaatsaula",
+   "nummers": [
+    "523030"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000029942",
+     "punten": 465,
+     "in_vlak": 465,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "630": {
+   "titel": "Begijnenstraat 21-23",
+   "naam": "woonhuis",
+   "nummers": [
+    "31117"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011007",
+     "punten": 275,
+     "in_vlak": 275,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "454": {
+   "titel": "Groenestraat 210",
+   "naam": "Agnes Reiniera Fröbelschool",
+   "nummers": [
+    "522994"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000013572",
+     "punten": 3398,
+     "in_vlak": 1751,
+     "aandeel_pand": 0.515
+    }
+   ]
+  },
+  "1590": {
+   "titel": "Burchtstraat 20",
+   "naam": "Stadhuis",
+   "nummers": [
+    "31121"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002957",
+     "punten": 27579,
+     "in_vlak": 3038,
+     "aandeel_pand": 0.11
+    }
+   ]
+  },
+  "850": {
+   "titel": "Ottengas 15, St. Anthoniusplaats 9",
+   "naam": "Cellenbroederenhuis",
+   "nummers": [
+    "31168"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000047309",
+     "punten": 327,
+     "in_vlak": 327,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000110663",
+     "punten": 27,
+     "in_vlak": 27,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "853": {
+   "titel": "St. Anthoniusplaats 15-16, Duivengas 1-9",
+   "naam": "woonhuis met trapgevels",
+   "nummers": [
+    "31169"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045384",
+     "punten": 568,
+     "in_vlak": 473,
+     "aandeel_pand": 0.833
+    },
+    {
+     "pand": "0268100000045386",
+     "punten": 704,
+     "in_vlak": 4,
+     "aandeel_pand": 0.006
+    },
+    {
+     "pand": "0268100000047325",
+     "punten": 241,
+     "in_vlak": 220,
+     "aandeel_pand": 0.913
+    }
+   ]
+  },
+  "676": {
+   "titel": "Bosweg 160",
+   "naam": "kinderherstellingsoord Villandry",
+   "nummers": [
+    "522997"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006031",
+     "punten": 2159,
+     "in_vlak": 2087,
+     "aandeel_pand": 0.967
+    }
+   ]
+  },
+  "646": {
+   "titel": "Berg en Dalseweg 33",
+   "naam": "café Trianon",
+   "nummers": [
+    "522989"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000020796",
+     "punten": 477,
+     "in_vlak": 1,
+     "aandeel_pand": 0.002
+    },
+    {
+     "pand": "0268100000020265",
+     "punten": 1360,
+     "in_vlak": 755,
+     "aandeel_pand": 0.555
+    }
+   ]
+  },
+  "631": {
+   "titel": "Begijnenstraat 25-29",
+   "naam": "Protestants-Kinderen weeshuis",
+   "nummers": [
+    "31118"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011008",
+     "punten": 205,
+     "in_vlak": 205,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000106834",
+     "punten": 1403,
+     "in_vlak": 1392,
+     "aandeel_pand": 0.992
+    },
+    {
+     "pand": "0268100000106835",
+     "punten": 187,
+     "in_vlak": 187,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "633": {
+   "titel": "Oude Koningstraat 26-30, Begijnenstraat 33-35",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31119"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000012105",
+     "punten": 915,
+     "in_vlak": 915,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "660": {
+   "titel": "Berg en Dalseweg 54-56",
+   "naam": "dubbel herenhuis met hekwerk",
+   "nummers": [
+    "522987"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000001013",
+     "punten": 289,
+     "in_vlak": 284,
+     "aandeel_pand": 0.983
+    },
+    {
+     "pand": "0268100000001014",
+     "punten": 428,
+     "in_vlak": 424,
+     "aandeel_pand": 0.991
+    },
+    {
+     "pand": "0268100000001015",
+     "punten": 820,
+     "in_vlak": 5,
+     "aandeel_pand": 0.006
+    }
+   ]
+  },
+  "685": {
+   "titel": "Burghardt van den Berghstraat 3",
+   "naam": "woonhuis met hekwerk",
+   "nummers": [
+    "522993"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000021130",
+     "punten": 229,
+     "in_vlak": 229,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "901": {
+   "titel": "Korte Bredestraat 37, Schependomlaan 85",
+   "naam": "kerktoren",
+   "nummers": [
+    "31203"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000024302",
+     "punten": 1727,
+     "in_vlak": 116,
+     "aandeel_pand": 0.067
+    }
+   ]
+  },
+  "913": {
+   "titel": "Kronenburgersingel 209, Vredestraat 2",
+   "naam": "twee herenhuizen",
+   "nummers": [
+    "523061"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000040244",
+     "punten": 380,
+     "in_vlak": 332,
+     "aandeel_pand": 0.874
+    },
+    {
+     "pand": "0268100000040967",
+     "punten": 411,
+     "in_vlak": 411,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1520": {
+   "titel": "St. Stevenskerkhof 63",
+   "naam": "Sint Stevenskerk, toren",
+   "nummers": [
+    "31182"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009359",
+     "punten": 11911,
+     "in_vlak": 11911,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1547": {
+   "titel": "Sophiaweg 4",
+   "naam": "villa De Westerhelling",
+   "nummers": [
+    "523040"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000003628",
+     "punten": 1319,
+     "in_vlak": 1319,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2086": {
+   "titel": "Voorstadslaan 57",
+   "naam": "Prima Villa",
+   "nummers": [
+    "523043"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000021437",
+     "punten": 743,
+     "in_vlak": 671,
+     "aandeel_pand": 0.903
+    }
+   ]
+  },
+  "367": {
+   "titel": "Geert Grooteplein Noord 9",
+   "naam": "Villa Heyendaal",
+   "nummers": [
+    "523004"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000046668",
+     "punten": 2644,
+     "in_vlak": 2644,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "384": {
+   "titel": "Gerard Noodtstraat 121",
+   "naam": "synagoge",
+   "nummers": [
+    "523060"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000092669",
+     "punten": 1235,
+     "in_vlak": 1173,
+     "aandeel_pand": 0.95
+    },
+    {
+     "pand": "0268100000025950",
+     "punten": 5878,
+     "in_vlak": 1,
+     "aandeel_pand": 0.0
+    }
+   ]
+  },
+  "987": {
+   "titel": "Lange Hezelstraat 28-30",
+   "naam": "winkel-/woonhuizen",
+   "nummers": [
+    "31153"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010995",
+     "punten": 372,
+     "in_vlak": 23,
+     "aandeel_pand": 0.062
+    },
+    {
+     "pand": "0268100000010997",
+     "punten": 343,
+     "in_vlak": 268,
+     "aandeel_pand": 0.781
+    }
+   ]
+  },
+  "988": {
+   "titel": "Lange Hezelstraat 32",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31154"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010986",
+     "punten": 797,
+     "in_vlak": 637,
+     "aandeel_pand": 0.799
+    }
+   ]
+  },
+  "552": {
+   "titel": "Grote Markt 19, St. Stevenskerkhof 1A",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31130"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009677",
+     "punten": 147,
+     "in_vlak": 147,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "553": {
+   "titel": "Grote Markt 20",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31131"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009678",
+     "punten": 165,
+     "in_vlak": 165,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "554": {
+   "titel": "St. Stevenskerkhof 1, Grote Markt 21",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31132"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000100479",
+     "punten": 179,
+     "in_vlak": 179,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "556": {
+   "titel": "Kerkboog 2, Grote Markt 22",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31133"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009679",
+     "punten": 526,
+     "in_vlak": 239,
+     "aandeel_pand": 0.454
+    }
+   ]
+  },
+  "636": {
+   "titel": "Begijnenstraat 16-16A",
+   "naam": "woonhuis met inrijpoort",
+   "nummers": [
+    "31120"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009455",
+     "punten": 277,
+     "in_vlak": 277,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000005724",
+     "punten": 346,
+     "in_vlak": 11,
+     "aandeel_pand": 0.032
+    }
+   ]
+  },
+  "364": {
+   "titel": "Ganzenheuvel 13-7",
+   "naam": "winkel-/woonhuizen",
+   "nummers": [
+    "31126"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010767",
+     "punten": 1525,
+     "in_vlak": 333,
+     "aandeel_pand": 0.218
+    }
+   ]
+  },
+  "849": {
+   "titel": "St. Anthoniusplaats 1",
+   "naam": "woonhuis",
+   "nummers": [
+    "31167"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000047324",
+     "punten": 668,
+     "in_vlak": 668,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "365": {
+   "titel": "Ganzenheuvel 11-9",
+   "naam": "winkel-/woonhuizen",
+   "nummers": [
+    "31127"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010767",
+     "punten": 1525,
+     "in_vlak": 361,
+     "aandeel_pand": 0.237
+    }
+   ]
+  },
+  "548": {
+   "titel": "Groesbeekseweg 424",
+   "naam": "villa Oud-Mariënboom",
+   "nummers": [
+    "522990"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000017527",
+     "punten": 1402,
+     "in_vlak": 850,
+     "aandeel_pand": 0.606
+    }
+   ]
+  },
+  "2515": {
+   "titel": "Korte Bredestraat 37, Schependomlaan 85",
+   "naam": "Petruskerk",
+   "nummers": [
+    "31202"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000024302",
+     "punten": 1727,
+     "in_vlak": 1411,
+     "aandeel_pand": 0.817
+    }
+   ]
+  },
+  "1289": {
+   "titel": "Scherpenkampweg 58",
+   "naam": "Bethelkerk",
+   "nummers": [
+    "523039"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000029358",
+     "punten": 2142,
+     "in_vlak": 2127,
+     "aandeel_pand": 0.993
+    }
+   ]
+  },
+  "1364": {
+   "titel": "St. Annastraat 73",
+   "naam": "woonhuis met hek",
+   "nummers": [
+    "523044"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000027546",
+     "punten": 370,
+     "in_vlak": 369,
+     "aandeel_pand": 0.997
+    }
+   ]
+  },
+  "11674": {
+   "titel": "Prins Hendrikstraat 2",
+   "naam": "Prins Hendrikstraat 2",
+   "nummers": [
+    "522976"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002678",
+     "punten": 864,
+     "in_vlak": 859,
+     "aandeel_pand": 0.994
+    },
+    {
+     "pand": "0268100000059885",
+     "punten": 110,
+     "in_vlak": 107,
+     "aandeel_pand": 0.973
+    }
+   ]
+  },
+  "926": {
+   "titel": "Waalkade 9, Lage Markt 47-47C",
+   "naam": "woonhuis",
+   "nummers": [
+    "31141"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008133",
+     "punten": 1604,
+     "in_vlak": 651,
+     "aandeel_pand": 0.406
+    }
+   ]
+  },
+  "2246": {
+   "titel": "Lage Markt 47D",
+   "naam": "Maarten Schonckpoort",
+   "nummers": [
+    "31194"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008133",
+     "punten": 1604,
+     "in_vlak": 118,
+     "aandeel_pand": 0.074
+    }
+   ]
+  },
+  "1077": {
+   "titel": "Neerbosscheweg 620",
+   "naam": "villa Het Slotje van de Baron",
+   "nummers": [
+    "523037"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006250",
+     "punten": 1336,
+     "in_vlak": 1336,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1101": {
+   "titel": "Nonnenstraat 19-21",
+   "naam": "Synagoge",
+   "nummers": [
+    "31157"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045529",
+     "punten": 318,
+     "in_vlak": 316,
+     "aandeel_pand": 0.994
+    },
+    {
+     "pand": "0268100000045637",
+     "punten": 606,
+     "in_vlak": 606,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "58": {
+   "titel": "Arksteestraat 1, Oranjesingel 2A",
+   "naam": "villa met hekwerk",
+   "nummers": [
+    "523009"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004860",
+     "punten": 1064,
+     "in_vlak": 1053,
+     "aandeel_pand": 0.99
+    }
+   ]
+  },
+  "1131": {
+   "titel": "Oranjesingel 2",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "522995"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004859",
+     "punten": 1455,
+     "in_vlak": 1455,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1110": {
+   "titel": "Oranjesingel 17-17A",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523001"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004367",
+     "punten": 713,
+     "in_vlak": 564,
+     "aandeel_pand": 0.791
+    }
+   ]
+  },
+  "1140": {
+   "titel": "Oranjesingel 14",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523011"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005333",
+     "punten": 752,
+     "in_vlak": 602,
+     "aandeel_pand": 0.801
+    }
+   ]
+  },
+  "1142": {
+   "titel": "Oranjesingel 24",
+   "naam": "herenhuis",
+   "nummers": [
+    "523012"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005334",
+     "punten": 510,
+     "in_vlak": 501,
+     "aandeel_pand": 0.982
+    }
+   ]
+  },
+  "1203": {
+   "titel": "Parkweg 120-124",
+   "naam": "drie herenhuizen",
+   "nummers": [
+    "523053"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000028196",
+     "punten": 354,
+     "in_vlak": 321,
+     "aandeel_pand": 0.907
+    },
+    {
+     "pand": "0268100000036998",
+     "punten": 431,
+     "in_vlak": 431,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000036897",
+     "punten": 402,
+     "in_vlak": 299,
+     "aandeel_pand": 0.744
+    }
+   ]
+  },
+  "635": {
+   "titel": "Lange Hezelstraat 14-16A, Begijnenstraat 12-6B",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31151"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010987",
+     "punten": 1155,
+     "in_vlak": 1155,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000010763",
+     "punten": 1215,
+     "in_vlak": 1202,
+     "aandeel_pand": 0.989
+    }
+   ]
+  },
+  "950": {
+   "titel": "Lange Hezelstraat 17",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31152"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006657",
+     "punten": 376,
+     "in_vlak": 371,
+     "aandeel_pand": 0.987
+    }
+   ]
+  },
+  "845": {
+   "titel": "Keizer Karelplein 2D",
+   "naam": "De Vereeniging",
+   "nummers": [
+    "523000"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002994",
+     "punten": 13981,
+     "in_vlak": 12520,
+     "aandeel_pand": 0.896
+    }
+   ]
+  },
+  "1246": {
+   "titel": "Priemstraat 19",
+   "naam": "woonhuis",
+   "nummers": [
+    "31162"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000012108",
+     "punten": 203,
+     "in_vlak": 203,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1247": {
+   "titel": "Priemstraat 21",
+   "naam": "woonhuis",
+   "nummers": [
+    "31163"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009289",
+     "punten": 215,
+     "in_vlak": 215,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1248": {
+   "titel": "Priemstraat 53-55",
+   "naam": "woonhuis",
+   "nummers": [
+    "31165"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007000",
+     "punten": 425,
+     "in_vlak": 248,
+     "aandeel_pand": 0.584
+    }
+   ]
+  },
+  "2089": {
+   "titel": "Vossenhof 40",
+   "naam": "Huis Hatert",
+   "nummers": [
+    "31201"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000042700",
+     "punten": 894,
+     "in_vlak": 894,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "920": {
+   "titel": "Kronenburgersingel 223-225",
+   "naam": "twee herenhuizen met tuinhek",
+   "nummers": [
+    "523062"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000041200",
+     "punten": 536,
+     "in_vlak": 436,
+     "aandeel_pand": 0.813
+    },
+    {
+     "pand": "0268100000040245",
+     "punten": 519,
+     "in_vlak": 426,
+     "aandeel_pand": 0.821
+    }
+   ]
+  },
+  "2175": {
+   "titel": "Zaligestraat 6",
+   "naam": "Lent, Zaligestraat",
+   "nummers": [
+    "14955"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000028585",
+     "punten": 1048,
+     "in_vlak": 1048,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000071890",
+     "punten": 1858,
+     "in_vlak": 1858,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000102880",
+     "punten": 194,
+     "in_vlak": 194,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000102881",
+     "punten": 102,
+     "in_vlak": 102,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1013": {
+   "titel": "Looimolenweg 17",
+   "naam": "De Witte Molen",
+   "nummers": [
+    "31207"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000012999",
+     "punten": 324,
+     "in_vlak": 324,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "383": {
+   "titel": "General James Gavinweg 1",
+   "naam": "Waalbrug",
+   "nummers": [
+    "523067"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000091058",
+     "punten": 16488,
+     "in_vlak": 588,
+     "aandeel_pand": 0.036
+    }
+   ]
+  },
+  "2100": {
+   "titel": "Waldeck Pyrmontsingel 1A",
+   "naam": "Transformatorhuisje",
+   "nummers": [
+    "522985"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000102188",
+     "punten": 101,
+     "in_vlak": 101,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2111": {
+   "titel": "Waldeck Pyrmontsingel 77-79A",
+   "naam": "Vrijmetselaarsloge Sint Lodewijk",
+   "nummers": [
+    "523048"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002798",
+     "punten": 1446,
+     "in_vlak": 1443,
+     "aandeel_pand": 0.998
+    }
+   ]
+  },
+  "2127": {
+   "titel": "Wilhelminasingel 24-28",
+   "naam": "drie herenhuizen met tuinhek",
+   "nummers": [
+    "523068"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002466",
+     "punten": 450,
+     "in_vlak": 450,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002467",
+     "punten": 454,
+     "in_vlak": 454,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002628",
+     "punten": 400,
+     "in_vlak": 1,
+     "aandeel_pand": 0.003
+    },
+    {
+     "pand": "0268100000002629",
+     "punten": 474,
+     "in_vlak": 474,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2134": {
+   "titel": "Wilhelminasingel 40-42",
+   "naam": "herenhuizen met hekwerk",
+   "nummers": [
+    "523069"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002623",
+     "punten": 591,
+     "in_vlak": 591,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000002624",
+     "punten": 588,
+     "in_vlak": 588,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "937": {
+   "titel": "Lage Markt 18-36, Priemstraat 63",
+   "naam": "Patriciershuis",
+   "nummers": [
+    "31147"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006994",
+     "punten": 426,
+     "in_vlak": 426,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "938": {
+   "titel": "Lage Markt 38-44A, Priemstraat 65",
+   "naam": "woonhuis",
+   "nummers": [
+    "31148"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006994",
+     "punten": 426,
+     "in_vlak": 3,
+     "aandeel_pand": 0.007
+    },
+    {
+     "pand": "0268100000006995",
+     "punten": 338,
+     "in_vlak": 335,
+     "aandeel_pand": 0.991
+    }
+   ]
+  },
+  "1014": {
+   "titel": "Ten Hoetstraat 2, Mariaplein 6",
+   "naam": "winkel-/woonhuis De Gruyter",
+   "nummers": [
+    "523052"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000021252",
+     "punten": 275,
+     "in_vlak": 275,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1017": {
+   "titel": "Mariënburg 26",
+   "naam": "Mariënburgkapel",
+   "nummers": [
+    "31158"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002938",
+     "punten": 1462,
+     "in_vlak": 1462,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1018": {
+   "titel": "Arsenaalpoort 1-8",
+   "naam": "Arsenaal",
+   "nummers": [
+    "31156"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002935",
+     "punten": 2381,
+     "in_vlak": 2381,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1025": {
+   "titel": "Molenstraat 93-97",
+   "naam": "café De Tempelier met woningen",
+   "nummers": [
+    "523036"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000003308",
+     "punten": 406,
+     "in_vlak": 395,
+     "aandeel_pand": 0.973
+    },
+    {
+     "pand": "0268100000002973",
+     "punten": 1888,
+     "in_vlak": 2,
+     "aandeel_pand": 0.001
+    }
+   ]
+  },
+  "1066": {
+   "titel": "Muldersweg 16-16A",
+   "naam": "benzinestation met garage en woonhuis",
+   "nummers": [
+    "386790"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007323",
+     "punten": 939,
+     "in_vlak": 578,
+     "aandeel_pand": 0.616
+    }
+   ]
+  },
+  "1549": {
+   "titel": "Staringstraat 9",
+   "naam": "herenhuis met hek en prieel",
+   "nummers": [
+    "523045"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002672",
+     "punten": 1176,
+     "in_vlak": 1176,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1560": {
+   "titel": "Vleeshouwerstraat 73, Steenstraat 2-22",
+   "naam": "Brouwershuis",
+   "nummers": [
+    "31184"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007016",
+     "punten": 680,
+     "in_vlak": 680,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1125": {
+   "titel": "Oranjesingel 67",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523003"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002753",
+     "punten": 446,
+     "in_vlak": 446,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1158": {
+   "titel": "Oranjesingel 68",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "522996"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002667",
+     "punten": 472,
+     "in_vlak": 472,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1159": {
+   "titel": "Oranjesingel 70",
+   "naam": "herenhuis",
+   "nummers": [
+    "523015"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002669",
+     "punten": 542,
+     "in_vlak": 542,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "597": {
+   "titel": "Hatertseweg 10-14",
+   "naam": "St. Annamolen",
+   "nummers": [
+    "31199"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011214",
+     "punten": 459,
+     "in_vlak": 396,
+     "aandeel_pand": 0.863
+    },
+    {
+     "pand": "0268100000083382",
+     "punten": 1855,
+     "in_vlak": 1851,
+     "aandeel_pand": 0.998
+    }
+   ]
+  },
+  "930": {
+   "titel": "Waalkade 11, Lage Markt 59",
+   "naam": "woonhuis",
+   "nummers": [
+    "530427"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008042",
+     "punten": 278,
+     "in_vlak": 278,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1115": {
+   "titel": "Prins Bernhardstraat 1",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523023"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002683",
+     "punten": 1132,
+     "in_vlak": 945,
+     "aandeel_pand": 0.835
+    }
+   ]
+  },
+  "2225": {
+   "titel": "Oostkanaaldijk 382",
+   "naam": "Schutsluis + verkeersbrug",
+   "nummers": [
+    "523034"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000020438",
+     "punten": 427,
+     "in_vlak": 92,
+     "aandeel_pand": 0.215
+    }
+   ]
+  },
+  "931": {
+   "titel": "Lage Markt 61-65",
+   "naam": "woonhuis",
+   "nummers": [
+    "31142"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008043",
+     "punten": 428,
+     "in_vlak": 428,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1164": {
+   "titel": "Ottengas 29-31",
+   "naam": "woonhuis",
+   "nummers": [
+    "31159"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000047301",
+     "punten": 140,
+     "in_vlak": 140,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000047303",
+     "punten": 133,
+     "in_vlak": 133,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1172": {
+   "titel": "Oude Haven 86-88",
+   "naam": "dubbel herenhuis",
+   "nummers": [
+    "523022"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008136",
+     "punten": 339,
+     "in_vlak": 339,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000008142",
+     "punten": 571,
+     "in_vlak": 571,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1174": {
+   "titel": "Oude Haven 102",
+   "naam": "woonhuis",
+   "nummers": [
+    "31160"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006171",
+     "punten": 441,
+     "in_vlak": 429,
+     "aandeel_pand": 0.973
+    }
+   ]
+  },
+  "1175": {
+   "titel": "Oude Haven 104-108A",
+   "naam": "woonhuis",
+   "nummers": [
+    "31161"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007005",
+     "punten": 550,
+     "in_vlak": 550,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1268": {
+   "titel": "Professor Cornelissenstraat 2",
+   "naam": "Oud-Burgeren gasthuis poortjes",
+   "nummers": [
+    "31198"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006182",
+     "punten": 4304,
+     "in_vlak": 53,
+     "aandeel_pand": 0.012
+    }
+   ]
+  },
+  "855": {
+   "titel": "Ridderstraat 13",
+   "naam": "woonhuis",
+   "nummers": [
+    "31166"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045384",
+     "punten": 568,
+     "in_vlak": 22,
+     "aandeel_pand": 0.039
+    },
+    {
+     "pand": "0268100000045385",
+     "punten": 309,
+     "in_vlak": 308,
+     "aandeel_pand": 0.997
+    },
+    {
+     "pand": "0268100000045386",
+     "punten": 704,
+     "in_vlak": 36,
+     "aandeel_pand": 0.051
+    },
+    {
+     "pand": "0268100000106007",
+     "punten": 297,
+     "in_vlak": 9,
+     "aandeel_pand": 0.03
+    }
+   ]
+  },
+  "1285": {
+   "titel": "Schependomlaan 23-25",
+   "naam": "dubbele villa Jannetje en Johanna",
+   "nummers": [
+    "523065"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000023957",
+     "punten": 492,
+     "in_vlak": 490,
+     "aandeel_pand": 0.996
+    },
+    {
+     "pand": "0268100000023865",
+     "punten": 449,
+     "in_vlak": 449,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1143": {
+   "titel": "Oranjesingel 26",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523013"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005076",
+     "punten": 546,
+     "in_vlak": 537,
+     "aandeel_pand": 0.984
+    }
+   ]
+  },
+  "1144": {
+   "titel": "Oranjesingel 28",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523014"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005077",
+     "punten": 485,
+     "in_vlak": 485,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1150": {
+   "titel": "Oranjesingel 40",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523016"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000005115",
+     "punten": 831,
+     "in_vlak": 792,
+     "aandeel_pand": 0.953
+    }
+   ]
+  },
+  "1113": {
+   "titel": "Oranjesingel 43",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523021"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004653",
+     "punten": 824,
+     "in_vlak": 813,
+     "aandeel_pand": 0.987
+    }
+   ]
+  },
+  "1117": {
+   "titel": "Oranjesingel 51",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523024"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002709",
+     "punten": 516,
+     "in_vlak": 516,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1152": {
+   "titel": "Oranjesingel 56, van Schevichavenstraat 7",
+   "naam": "Kantongerecht",
+   "nummers": [
+    "522988"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000003013",
+     "punten": 1406,
+     "in_vlak": 1403,
+     "aandeel_pand": 0.998
+    }
+   ]
+  },
+  "1124": {
+   "titel": "Oranjesingel 65",
+   "naam": "herenhuis met hekwerk",
+   "nummers": [
+    "523002"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007042",
+     "punten": 891,
+     "in_vlak": 891,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "842": {
+   "titel": "Kannenmarkt 10-16",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31139"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009674",
+     "punten": 341,
+     "in_vlak": 341,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000009676",
+     "punten": 1439,
+     "in_vlak": 109,
+     "aandeel_pand": 0.076
+    }
+   ]
+  },
+  "932": {
+   "titel": "Lage Markt 67, Waalkade 13",
+   "naam": "woonhuis",
+   "nummers": [
+    "31143"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008044",
+     "punten": 233,
+     "in_vlak": 233,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "933": {
+   "titel": "Lage Markt 71-73",
+   "naam": "woonhuis",
+   "nummers": [
+    "31144"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008045",
+     "punten": 595,
+     "in_vlak": 595,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "934": {
+   "titel": "Lage Markt 75-77",
+   "naam": "woonhuis",
+   "nummers": [
+    "31145"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008504",
+     "punten": 380,
+     "in_vlak": 380,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "729": {
+   "titel": "Hoogstraat 2",
+   "naam": "Spoorwegmonument",
+   "nummers": [
+    "523055"
+   ],
+   "panden": []
+  },
+  "730": {
+   "titel": "Houtlaan 4",
+   "naam": "Collegium Berchmanianum",
+   "nummers": [
+    "523017"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000003190",
+     "punten": 9571,
+     "in_vlak": 9304,
+     "aandeel_pand": 0.972
+    }
+   ]
+  },
+  "732": {
+   "titel": "Hunnerpark 1",
+   "naam": "Beeld Petrus Canisius",
+   "nummers": [
+    "523056"
+   ],
+   "panden": []
+  },
+  "1162": {
+   "titel": "Zonder titel",
+   "naam": "muur met steunberen",
+   "nummers": [
+    "31197"
+   ],
+   "panden": []
+  },
+  "935": {
+   "titel": "Lage Markt 79",
+   "naam": "woonhuis",
+   "nummers": [
+    "31146"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000008125",
+     "punten": 309,
+     "in_vlak": 309,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1202": {
+   "titel": "Parkweg 100-98L",
+   "naam": "woonhuis, Belgisch consulaat",
+   "nummers": [
+    "523071"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000037828",
+     "punten": 1362,
+     "in_vlak": 1006,
+     "aandeel_pand": 0.739
+    }
+   ]
+  },
+  "846": {
+   "titel": "Keizer Karelplein 19, van Trieststraat 14",
+   "naam": "Sint Jozefkerk",
+   "nummers": [
+    "522992"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000019937",
+     "punten": 5154,
+     "in_vlak": 5154,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2257": {
+   "titel": "Keizer Karelplein 32H, Nassausingel 1, van Schaeck Mathonsingel 2-2A",
+   "naam": "Stadsschouwburg",
+   "nummers": [
+    "532210"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007008",
+     "punten": 13492,
+     "in_vlak": 13269,
+     "aandeel_pand": 0.983
+    }
+   ]
+  },
+  "982": {
+   "titel": "Lange Hezelstraat 10",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31149"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010766",
+     "punten": 822,
+     "in_vlak": 814,
+     "aandeel_pand": 0.99
+    }
+   ]
+  },
+  "983": {
+   "titel": "Lange Hezelstraat 12",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "31150"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010303",
+     "punten": 523,
+     "in_vlak": 523,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "840": {
+   "titel": "Achter de Hoofdwacht 6-8, Kannenmarkt 2",
+   "naam": "woonhuis",
+   "nummers": [
+    "31138"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010664",
+     "punten": 209,
+     "in_vlak": 205,
+     "aandeel_pand": 0.981
+    },
+    {
+     "pand": "0268100000104622",
+     "punten": 184,
+     "in_vlak": 1,
+     "aandeel_pand": 0.005
+    }
+   ]
+  },
+  "841": {
+   "titel": "Kannenmarkt 6-8",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "522991"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009675",
+     "punten": 266,
+     "in_vlak": 266,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000104622",
+     "punten": 184,
+     "in_vlak": 13,
+     "aandeel_pand": 0.071
+    },
+    {
+     "pand": "0268100000104623",
+     "punten": 196,
+     "in_vlak": 6,
+     "aandeel_pand": 0.031
+    }
+   ]
+  },
+  "1255": {
+   "titel": "Prins Bernhardstraat 2-8",
+   "naam": "vier herenhuizen met hekwerk",
+   "nummers": [
+    "523026"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004855",
+     "punten": 424,
+     "in_vlak": 424,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000004651",
+     "punten": 466,
+     "in_vlak": 462,
+     "aandeel_pand": 0.991
+    },
+    {
+     "pand": "0268100000004652",
+     "punten": 480,
+     "in_vlak": 473,
+     "aandeel_pand": 0.985
+    },
+    {
+     "pand": "0268100000004654",
+     "punten": 448,
+     "in_vlak": 435,
+     "aandeel_pand": 0.971
+    }
+   ]
+  },
+  "694": {
+   "titel": "Bijleveldsingel 17, Prins Hendrikstraat 7",
+   "naam": "school",
+   "nummers": [
+    "523038"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000002093",
+     "punten": 3555,
+     "in_vlak": 3372,
+     "aandeel_pand": 0.949
+    }
+   ]
+  },
+  "777": {
+   "titel": "Prins Hendrikstraat 79, Jacob Canisstraat 110-112",
+   "naam": "Kerkorgel",
+   "nummers": [
+    "476729"
+   ],
+   "panden": []
+  },
+  "686": {
+   "titel": "Burghardt van den Berghstraat 17-19, van Dulckenstraat 49-49A",
+   "naam": "woonhuizen",
+   "nummers": [
+    "522998"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000021154",
+     "punten": 151,
+     "in_vlak": 150,
+     "aandeel_pand": 0.993
+    },
+    {
+     "pand": "0268100000021155",
+     "punten": 378,
+     "in_vlak": 371,
+     "aandeel_pand": 0.981
+    }
+   ]
+  },
+  "1978": {
+   "titel": "van Welderenstraat 75",
+   "naam": "woonhuis met werkplaats",
+   "nummers": [
+    "522999"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004407",
+     "punten": 518,
+     "in_vlak": 518,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "765": {
+   "titel": "Industrieweg 100",
+   "naam": "transformatorhuis",
+   "nummers": [
+    "523033"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000102202",
+     "punten": 204,
+     "in_vlak": 204,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2219": {
+   "titel": "Hertog Eduardplein 2",
+   "naam": "transformatorhuisje",
+   "nummers": [
+    "523027"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000088252",
+     "punten": 144,
+     "in_vlak": 144,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2168": {
+   "titel": "Pastoor van Laakstraat 30",
+   "naam": "Lent, hervormde kerk",
+   "nummers": [
+    "523035"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000033503",
+     "punten": 925,
+     "in_vlak": 849,
+     "aandeel_pand": 0.918
+    }
+   ]
+  },
+  "2042": {
+   "titel": "Verlengde Groenestraat 75",
+   "naam": "Bisschop Hamerhuis, klooster",
+   "nummers": [
+    "523031"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000042782",
+     "punten": 4959,
+     "in_vlak": 4944,
+     "aandeel_pand": 0.997
+    }
+   ]
+  },
+  "1517": {
+   "titel": "St. Stevenskerkhof 45, Achter de Smidstraat 7",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31174"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009786",
+     "punten": 170,
+     "in_vlak": 170,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2141": {
+   "titel": "Bemmelsedijk 4",
+   "naam": "Lent, Wijnfort",
+   "nummers": [
+    "14952"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000031493",
+     "punten": 9864,
+     "in_vlak": 9864,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "856": {
+   "titel": "Voerweg 1",
+   "naam": "Stadsmuur met Torens",
+   "nummers": [
+    "31193"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045513",
+     "punten": 618,
+     "in_vlak": 30,
+     "aandeel_pand": 0.049
+    }
+   ]
+  },
+  "295": {
+   "titel": "Voerweg 8",
+   "naam": "Voetgangersbrug Voerweg",
+   "nummers": [
+    "523070"
+   ],
+   "panden": []
+  },
+  "2083": {
+   "titel": "Vondelstraat 69",
+   "naam": "herenhuis met tuinhek",
+   "nummers": [
+    "523047"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000020019",
+     "punten": 403,
+     "in_vlak": 402,
+     "aandeel_pand": 0.998
+    },
+    {
+     "pand": "0268100000020564",
+     "punten": 284,
+     "in_vlak": 1,
+     "aandeel_pand": 0.004
+    }
+   ]
+  },
+  "924": {
+   "titel": "Arnold van Akenplein 10-8, Gebroeders Van Limburgplein 1-7",
+   "naam": "weeshuis",
+   "nummers": [
+    "31122"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011470",
+     "punten": 2582,
+     "in_vlak": 2431,
+     "aandeel_pand": 0.942
+    }
+   ]
+  },
+  "48": {
+   "titel": "Achter de Smidstraat 3-5, St. Stevenskerkhof 47",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31177",
+    "31178"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011003",
+     "punten": 47,
+     "in_vlak": 47,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000106079",
+     "punten": 107,
+     "in_vlak": 107,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1519": {
+   "titel": "St. Stevenskerkhof 61-64",
+   "naam": "Sint Stevenskerk, kerk",
+   "nummers": [
+    "31181"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009359",
+     "punten": 11911,
+     "in_vlak": 11566,
+     "aandeel_pand": 0.971
+    }
+   ]
+  },
+  "955": {
+   "titel": "Lange Hezelstraat 41A",
+   "naam": "winkel-/woonhuis",
+   "nummers": [
+    "523063"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000037128",
+     "punten": 507,
+     "in_vlak": 373,
+     "aandeel_pand": 0.736
+    }
+   ]
+  },
+  "992": {
+   "titel": "Papengas 2, Lange Hezelstraat 42-44A",
+   "naam": "café/woonhuis",
+   "nummers": [
+    "31155"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009777",
+     "punten": 768,
+     "in_vlak": 768,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1559": {
+   "titel": "Steenstraat 15-19, Waalkade 65",
+   "naam": "woonhuis",
+   "nummers": [
+    "31183"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006560",
+     "punten": 684,
+     "in_vlak": 684,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "981": {
+   "titel": "Lange Hezelstraat 141",
+   "naam": "Spoorwegviaduct",
+   "nummers": [
+    "523064"
+   ],
+   "panden": []
+  },
+  "2092": {
+   "titel": "Waalkade 70-79",
+   "naam": "woonhuis",
+   "nummers": [
+    "31186"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006189",
+     "punten": 1293,
+     "in_vlak": 1293,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "2093": {
+   "titel": "Waalkade 80-83",
+   "naam": "woonhuis",
+   "nummers": [
+    "31187"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000049293",
+     "punten": 990,
+     "in_vlak": 642,
+     "aandeel_pand": 0.648
+    }
+   ]
+  },
+  "2094": {
+   "titel": "Waalkade 84",
+   "naam": "Stratemakerstoren",
+   "nummers": [
+    "31188"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000089144",
+     "punten": 4295,
+     "in_vlak": 745,
+     "aandeel_pand": 0.173
+    },
+    {
+     "pand": "0268100000049313",
+     "punten": 1487,
+     "in_vlak": 99,
+     "aandeel_pand": 0.067
+    },
+    {
+     "pand": "0268100000049293",
+     "punten": 990,
+     "in_vlak": 10,
+     "aandeel_pand": 0.01
+    }
+   ]
+  },
+  "1561": {
+   "titel": "Steenstraat 26-28",
+   "naam": "Besiendershuis",
+   "nummers": [
+    "31185"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006557",
+     "punten": 318,
+     "in_vlak": 318,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1646": {
+   "titel": "Straalmanstraat 30",
+   "naam": "herenhuis met hekwerken",
+   "nummers": [
+    "523046"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000020045",
+     "punten": 488,
+     "in_vlak": 488,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1709": {
+   "titel": "Ubbergseweg 5, Dijkgraaf van Wijckweg 4",
+   "naam": "Hollandsch-Duitsch gemaal",
+   "nummers": [
+    "523041"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007086",
+     "punten": 924,
+     "in_vlak": 916,
+     "aandeel_pand": 0.991
+    }
+   ]
+  },
+  "1711": {
+   "titel": "Ubbergseweg 170",
+   "naam": "villa De Varenhof",
+   "nummers": [
+    "523042"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000019587",
+     "punten": 1161,
+     "in_vlak": 844,
+     "aandeel_pand": 0.727
+    }
+   ]
+  },
+  "2202": {
+   "titel": "Postweg 62",
+   "naam": "Israëlische begraafplaats, aanleg",
+   "nummers": [
+    "522935"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006032",
+     "punten": 456,
+     "in_vlak": 13,
+     "aandeel_pand": 0.029
+    }
+   ]
+  },
+  "613": {
+   "titel": "Heyendaalseweg 121-133C",
+   "naam": "Religie",
+   "nummers": [
+    "508798"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000100165",
+     "punten": 246,
+     "in_vlak": 246,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000018834",
+     "punten": 16805,
+     "in_vlak": 16805,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "11518": {
+   "titel": "Limoslaan 21",
+   "naam": "Limoscomplex",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000024389",
+     "punten": 3043,
+     "in_vlak": 3020,
+     "aandeel_pand": 0.992
+    }
+   ]
+  },
+  "735": {
+   "titel": "Nassausingel 9",
+   "naam": "Vier Jaargetijden",
+   "nummers": [
+    "523057"
+   ],
+   "panden": []
+  },
+  "258": {
+   "titel": "Dorpsstraat 112",
+   "naam": "kerk",
+   "nummers": [
+    "31205"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045592",
+     "punten": 1090,
+     "in_vlak": 903,
+     "aandeel_pand": 0.828
+    }
+   ]
+  },
+  "11131": {
+   "titel": "Zonder titel",
+   "naam": "Limoskazerne-complex",
+   "nummers": [
+    "522961"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000026095",
+     "punten": 15160,
+     "in_vlak": 14969,
+     "aandeel_pand": 0.987
+    },
+    {
+     "pand": "0268100000025778",
+     "punten": 14547,
+     "in_vlak": 14520,
+     "aandeel_pand": 0.998
+    },
+    {
+     "pand": "0268100000048023",
+     "punten": 1053,
+     "in_vlak": 1043,
+     "aandeel_pand": 0.991
+    },
+    {
+     "pand": "0268100000083570",
+     "punten": 19078,
+     "in_vlak": 201,
+     "aandeel_pand": 0.011
+    },
+    {
+     "pand": "0268100000100080",
+     "punten": 21,
+     "in_vlak": 21,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000100081",
+     "punten": 21,
+     "in_vlak": 21,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000027004",
+     "punten": 1832,
+     "in_vlak": 1708,
+     "aandeel_pand": 0.932
+    }
+   ]
+  },
+  "11132": {
+   "titel": "Eversweg 4",
+   "naam": "Complex Berg en Eik",
+   "nummers": [
+    "522921"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006848",
+     "punten": 1147,
+     "in_vlak": 1145,
+     "aandeel_pand": 0.998
+    },
+    {
+     "pand": "0268100000006860",
+     "punten": 374,
+     "in_vlak": 370,
+     "aandeel_pand": 0.989
+    },
+    {
+     "pand": "0268100000058095",
+     "punten": 98,
+     "in_vlak": 66,
+     "aandeel_pand": 0.673
+    }
+   ]
+  },
+  "11133": {
+   "titel": "Zonder titel",
+   "naam": "Landgoed Brakkenstein",
+   "nummers": [
+    "522926"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009862",
+     "punten": 583,
+     "in_vlak": 583,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000010313",
+     "punten": 373,
+     "in_vlak": 370,
+     "aandeel_pand": 0.992
+    },
+    {
+     "pand": "0268100000020216",
+     "punten": 611,
+     "in_vlak": 611,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000020217",
+     "punten": 272,
+     "in_vlak": 272,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000020299",
+     "punten": 638,
+     "in_vlak": 638,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000048433",
+     "punten": 1494,
+     "in_vlak": 1494,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000061040",
+     "punten": 27,
+     "in_vlak": 27,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000108270",
+     "punten": 34,
+     "in_vlak": 34,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000101918",
+     "punten": 103,
+     "in_vlak": 103,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "11129": {
+   "titel": "Zonder titel",
+   "naam": "Complex Neboklooster",
+   "nummers": [
+    "522982"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000004214",
+     "punten": 16827,
+     "in_vlak": 15800,
+     "aandeel_pand": 0.939
+    },
+    {
+     "pand": "0268100000069018",
+     "punten": 277,
+     "in_vlak": 239,
+     "aandeel_pand": 0.863
+    },
+    {
+     "pand": "0268100000069019",
+     "punten": 472,
+     "in_vlak": 79,
+     "aandeel_pand": 0.167
+    }
+   ]
+  },
+  "733": {
+   "titel": "Hunnerpark 2",
+   "naam": "Stadsmuur",
+   "nummers": [
+    "31196"
+   ],
+   "panden": []
+  },
+  "623": {
+   "titel": "St. Stevenskerkhof 46",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31176"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011000",
+     "punten": 325,
+     "in_vlak": 204,
+     "aandeel_pand": 0.628
+    }
+   ]
+  },
+  "11135": {
+   "titel": "Daalseweg 110",
+   "naam": "Begraafplaats Altrade",
+   "nummers": [
+    "522937"
+   ],
+   "panden": []
+  },
+  "11136": {
+   "titel": "Zonder titel",
+   "naam": "Maria Geboortekerk",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000002755",
+     "punten": 7326,
+     "in_vlak": 7266,
+     "aandeel_pand": 0.992
+    }
+   ]
+  },
+  "11137": {
+   "titel": "Zonder titel",
+   "naam": "Complex Museum Kam",
+   "nummers": [
+    "522949"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000018561",
+     "punten": 299,
+     "in_vlak": 267,
+     "aandeel_pand": 0.893
+    },
+    {
+     "pand": "0268100000018653",
+     "punten": 3125,
+     "in_vlak": 2777,
+     "aandeel_pand": 0.889
+    }
+   ]
+  },
+  "11138": {
+   "titel": "Sterreschansweg 77",
+   "naam": "Sterreschansweg 77",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000031196",
+     "punten": 3985,
+     "in_vlak": 1807,
+     "aandeel_pand": 0.453
+    }
+   ]
+  },
+  "1714": {
+   "titel": "Voerweg 1",
+   "naam": "Valkhof",
+   "nummers": [
+    "31192"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000045513",
+     "punten": 618,
+     "in_vlak": 588,
+     "aandeel_pand": 0.951
+    }
+   ]
+  },
+  "11130": {
+   "titel": "Zonder titel",
+   "naam": "Kronenburgerpark",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000005620",
+     "punten": 716,
+     "in_vlak": 716,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000006208",
+     "punten": 512,
+     "in_vlak": 512,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000058769",
+     "punten": 99,
+     "in_vlak": 99,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000076000",
+     "punten": 83,
+     "in_vlak": 83,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000106799",
+     "punten": 102,
+     "in_vlak": 102,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000028569",
+     "punten": 416,
+     "in_vlak": 416,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "1548": {
+   "titel": "Spoorbrugkade 3-3A",
+   "naam": "Landhoofd Spoorbrug",
+   "nummers": [
+    "333577"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000007895",
+     "punten": 197,
+     "in_vlak": 178,
+     "aandeel_pand": 0.904
+    },
+    {
+     "pand": "0268100000007461",
+     "punten": 228,
+     "in_vlak": 226,
+     "aandeel_pand": 0.991
+    }
+   ]
+  },
+  "2166": {
+   "titel": "Zonder titel",
+   "naam": "Lent, brugkazematten",
+   "nummers": [
+    "418950"
+   ],
+   "panden": []
+  },
+  "41": {
+   "titel": "St. Stevenskerkhof 47, Achter de Smidstraat 3-5",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31179"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011004",
+     "punten": 400,
+     "in_vlak": 60,
+     "aandeel_pand": 0.15
+    }
+   ]
+  },
+  "734": {
+   "titel": "Hunnerpark 6",
+   "naam": "St Geertruidenkapel",
+   "nummers": [
+    "31195"
+   ],
+   "panden": []
+  },
+  "11139": {
+   "titel": "Zonder titel",
+   "naam": "H Antonius van Padua/ St. Annakerk",
+   "nummers": [],
+   "panden": [
+    {
+     "pand": "0268100000013467",
+     "punten": 6415,
+     "in_vlak": 6380,
+     "aandeel_pand": 0.995
+    },
+    {
+     "pand": "0268100000013468",
+     "punten": 1591,
+     "in_vlak": 1589,
+     "aandeel_pand": 0.999
+    }
+   ]
+  },
+  "11140": {
+   "titel": "Zonder titel",
+   "naam": "Complex Kronenburgersingel 231",
+   "nummers": [
+    "522971"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000040128",
+     "punten": 545,
+     "in_vlak": 532,
+     "aandeel_pand": 0.976
+    }
+   ]
+  },
+  "11142": {
+   "titel": "Pastoor van Laakstraat 42",
+   "naam": "Complex OLV Geboorteparochie",
+   "nummers": [
+    "522953"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000036618",
+     "punten": 4314,
+     "in_vlak": 3507,
+     "aandeel_pand": 0.813
+    },
+    {
+     "pand": "0268100000102681",
+     "punten": 58,
+     "in_vlak": 58,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "11143": {
+   "titel": "Waaldijk 49",
+   "naam": "Landgoed Oosterhout complex",
+   "nummers": [
+    "520307"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000015020",
+     "punten": 2050,
+     "in_vlak": 2050,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000012012",
+     "punten": 1218,
+     "in_vlak": 1218,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000012465",
+     "punten": 1436,
+     "in_vlak": 1436,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000015205",
+     "punten": 570,
+     "in_vlak": 570,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000015206",
+     "punten": 2482,
+     "in_vlak": 2482,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000015207",
+     "punten": 1608,
+     "in_vlak": 1608,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000017358",
+     "punten": 599,
+     "in_vlak": 599,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000050040",
+     "punten": 22,
+     "in_vlak": 22,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000050041",
+     "punten": 723,
+     "in_vlak": 723,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000050042",
+     "punten": 626,
+     "in_vlak": 626,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000050043",
+     "punten": 93,
+     "in_vlak": 93,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000050045",
+     "punten": 282,
+     "in_vlak": 282,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000058586",
+     "punten": 217,
+     "in_vlak": 157,
+     "aandeel_pand": 0.724
+    },
+    {
+     "pand": "0268100000086181",
+     "punten": 78,
+     "in_vlak": 78,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087124",
+     "punten": 260,
+     "in_vlak": 260,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087125",
+     "punten": 98,
+     "in_vlak": 98,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087126",
+     "punten": 350,
+     "in_vlak": 350,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087127",
+     "punten": 379,
+     "in_vlak": 379,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087128",
+     "punten": 370,
+     "in_vlak": 370,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087129",
+     "punten": 466,
+     "in_vlak": 466,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087130",
+     "punten": 474,
+     "in_vlak": 474,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000087131",
+     "punten": 776,
+     "in_vlak": 776,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000103143",
+     "punten": 20,
+     "in_vlak": 20,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000103144",
+     "punten": 16,
+     "in_vlak": 16,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "731": {
+   "titel": "Hunnerpark 4",
+   "naam": "C.A.P. Ivens Bank",
+   "nummers": [
+    "523058"
+   ],
+   "panden": []
+  },
+  "555": {
+   "titel": "St. Stevenskerkhof 58",
+   "naam": "Kerkboog",
+   "nummers": [
+    "31129"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000009679",
+     "punten": 526,
+     "in_vlak": 287,
+     "aandeel_pand": 0.546
+    }
+   ]
+  },
+  "1076": {
+   "titel": "Nederheidseweg 198",
+   "naam": "spijker bij boerderij",
+   "nummers": [
+    "31208"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000068235",
+     "punten": 160,
+     "in_vlak": 159,
+     "aandeel_pand": 0.994
+    }
+   ]
+  },
+  "2251": {
+   "titel": "St. Stevenskerkhof 48, Achter de Hoofdwacht 7",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31180"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000011004",
+     "punten": 400,
+     "in_vlak": 339,
+     "aandeel_pand": 0.848
+    }
+   ]
+  },
+  "292": {
+   "titel": "Eversweg 2",
+   "naam": "villa met bijgebouwen",
+   "nummers": [
+    "523006"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006847",
+     "punten": 818,
+     "in_vlak": 804,
+     "aandeel_pand": 0.983
+    },
+    {
+     "pand": "0268100000058096",
+     "punten": 109,
+     "in_vlak": 109,
+     "aandeel_pand": 1.0
+    }
+   ]
+  },
+  "925": {
+   "titel": "Postweg 62-62A, Kwakkenbergweg 1",
+   "naam": "Israëlische begraafplaats, aula",
+   "nummers": [
+    "522936"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000006032",
+     "punten": 456,
+     "in_vlak": 443,
+     "aandeel_pand": 0.971
+    },
+    {
+     "pand": "0268100000006033",
+     "punten": 359,
+     "in_vlak": 302,
+     "aandeel_pand": 0.841
+    }
+   ]
+  },
+  "256": {
+   "titel": "Zonder titel",
+   "naam": "Dommer van Poldersveldtweg 112",
+   "nummers": [
+    "522968"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000024485",
+     "punten": 2767,
+     "in_vlak": 2692,
+     "aandeel_pand": 0.973
+    }
+   ]
+  },
+  "1518": {
+   "titel": "St. Stevenskerkhof 46",
+   "naam": "kanunnikenhuis",
+   "nummers": [
+    "31175"
+   ],
+   "panden": [
+    {
+     "pand": "0268100000010998",
+     "punten": 72,
+     "in_vlak": 72,
+     "aandeel_pand": 1.0
+    },
+    {
+     "pand": "0268100000011000",
+     "punten": 325,
+     "in_vlak": 119,
+     "aandeel_pand": 0.366
+    }
+   ]
+  }
+ }
+}

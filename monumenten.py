@@ -425,6 +425,139 @@ def koppel_rce_panden():
     return 0
 
 
+# DE PANDOMTREK TEGEN HET REGISTERVLAK. 19 oktober 2026. Tot nu toe toetst
+# het dossier een pand met een punt: valt het pandpunt in het vlak van het
+# register, dan hoort het erbij. Bij St. Anthoniusplaats 15-16 (31169) valt
+# alleen het punt van 15 erin, terwijl het register beide nummers noemt. Hier
+# wordt per rijksmonumentvlak elk BAG-pand opgehaald dat de omhullende raakt,
+# en gemeten welk deel van het pand in het vlak ligt.
+#
+# HOE GEMETEN. Geen geometriebibliotheek: een raster van punten op STAP meter
+# binnen de pandomtrek, en per punt gezicht.in_vlak (dezelfde toets als
+# overal). aandeel_pand = punten in beide / punten in het pand. Bij 0,5 m is
+# dat op een pand van 50 m2 een raster van 200 punten. Een drempel staat hier
+# bewust nog niet: die volgt uit de verdeling in het verslag.
+UIT_REG_PANDEN = "rijksmonumenten_register_panden.json"
+STAP = 0.5
+
+
+def panden_in_vak(minx, miny, maxx, maxy, r):
+    """[(pand-id, geometrie)] van elk BAG-pand dat het vak raakt, of None."""
+    url = BAG_WFS + "?" + urllib.parse.urlencode({
+        "service": "WFS", "version": "2.0.0", "request": "GetFeature",
+        "typeName": "bag:pand", "outputFormat": "application/json",
+        "srsName": "urn:ogc:def:crs:EPSG::28992", "count": "1000",
+        "bbox": f"{minx},{miny},{maxx},{maxy},urn:ogc:def:crs:EPSG::28992"})
+    _e, _s, inhoud = stadsbeeld.haal(url, r)
+    if inhoud is None:
+        return None
+    try:
+        d = json.loads(inhoud.decode("utf-8"))
+    except ValueError:
+        return None
+    return [(str(f["properties"]["identificatie"]), f.get("geometry"))
+            for f in d.get("features") or []
+            if (f.get("properties") or {}).get("identificatie")]
+
+
+def _omhullende(geom):
+    pts = [pt for poly in (geom["coordinates"] if geom["type"] ==
+                           "MultiPolygon" else [geom["coordinates"]])
+           for ring in poly for pt in ring]
+    xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def aandeel(pand, vlak, stap=STAP):
+    """(rasterpunten in het pand, waarvan in het vlak) op stap meter."""
+    import gezicht
+    a, b, c, d = _omhullende(pand)
+    in_pand = in_beide = 0
+    y = b + stap / 2
+    while y < d:
+        x = a + stap / 2
+        while x < c:
+            if gezicht.in_vlak(x, y, pand):
+                in_pand += 1
+                if gezicht.in_vlak(x, y, vlak):
+                    in_beide += 1
+            x += stap
+        y += stap
+    return in_pand, in_beide
+
+
+def koppel_register_panden():
+    import time
+    r = ["# Rijksmonumenten uit het register: pandomtrek tegen vlak", "",
+         f"Raster van {STAP} m binnen elke BAG-pandomtrek; aandeel = deel van "
+         "de rasterpunten van het pand dat in het registervlak valt.", ""]
+    try:
+        with open("monumenten_his_mon_monument.geojson",
+                  encoding="utf-8") as f:
+            feats = json.load(f).get("features") or []
+    except (OSError, ValueError):
+        r.append("- geen register; eerst --wfs")
+        feats = []
+    rijks = [f for f in feats if (f.get("properties") or {})
+             .get("BESCHERMINGS_OMS") == "Rijksmonument" and f.get("geometry")]
+    uit, fout = {}, 0
+    for f in rijks:
+        p, geom = f["properties"], f["geometry"]
+        panden = panden_in_vak(*_omhullende(geom), r if fout < 3 else [])
+        time.sleep(0.2)
+        if panden is None:
+            fout += 1
+            continue
+        rij = []
+        for pid, pg in panden:
+            if not pg or pg.get("type") not in ("Polygon", "MultiPolygon"):
+                continue
+            n_p, n_b = aandeel(pg, geom)
+            if n_b:
+                rij.append({"pand": pid, "punten": n_p, "in_vlak": n_b,
+                            "aandeel_pand": round(n_b / n_p, 3)})
+        uit[str(p.get("OBJECTID"))] = {
+            "titel": p.get("TITEL"), "naam": p.get("OBJECTNAAM"),
+            "nummers": re.findall(r"\d{4,6}", str(p.get("RIJKSOBJECTCODE")
+                                                   or "")),
+            "panden": rij}
+    r.append(f"- {len(rijks)} rijksmonumentvlakken, {fout} zonder antwoord "
+             f"van de BAG")
+    alle = [x["aandeel_pand"] for v in uit.values() for x in v["panden"]]
+    r.append(f"- {len(alle)} paren vlak-pand met overlap")
+    r.append("")
+    r.append("## Verdeling van aandeel_pand (deel van het pand in het vlak)")
+    grenzen = [0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 1.0001]
+    onder = 0
+    for g in grenzen:
+        n = sum(1 for a in alle if onder <= a < g)
+        r.append(f"- {onder:.2f} tot {min(g, 1):.2f}{' (incl.)' if g > 1 else ''}"
+                 f": {n}")
+        onder = g
+    r.append("")
+    r.append("## St. Anthoniusplaats 15-16 (31169)")
+    for k, v in uit.items():
+        if "31169" in v["nummers"]:
+            r.append(f"- {v['titel']}: {v['panden']}")
+    r.append("")
+    r.append("## Paren tussen 0,05 en 0,9 (de twijfelzone)")
+    for k, v in uit.items():
+        for x in v["panden"]:
+            if 0.05 <= x["aandeel_pand"] < 0.9:
+                r.append(f"- {v['titel']} ({','.join(v['nummers'])}): pand "
+                         f"{x['pand']}, {x['aandeel_pand']}")
+    with open(UIT_REG_PANDEN, "w", encoding="utf-8") as f:
+        json.dump({"bron": "erfgoedregister gemeente (rijksmonumentvlakken) "
+                           "tegen BAG-pandomtrek (PDOK BAG WFS), raster "
+                           f"{STAP} m", "objecten": uit},
+                  f, ensure_ascii=False, indent=1)
+    with open("rijksmonumenten_register_panden_verslag.md", "w",
+              encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r))
+    return 0
+
+
 def proef():
     afw = []
     sru = ("<sru:searchRetrieveResponse><sru:numberOfRecords>2"
@@ -455,6 +588,19 @@ def proef():
             nummer_uit_citatie("kennis.cultureelerfgoed.nl/Gezicht/1439"):
         afw.append("het rijksmonumentnummer uit de citatie wordt verkeerd "
                    "gelezen")
+    # Het aandeel: een pand van 10 bij 10 m waarvan het vlak de linkerhelft
+    # dekt, geeft de helft; een vlak ernaast geeft niets.
+    _pand = {"type": "Polygon", "coordinates": [[[0, 0], [10, 0], [10, 10],
+                                                 [0, 10], [0, 0]]]}
+    _half = {"type": "MultiPolygon", "coordinates": [[[[-5, -5], [5, -5],
+                                                       [5, 15], [-5, 15],
+                                                       [-5, -5]]]]}
+    _naast = {"type": "Polygon", "coordinates": [[[20, 0], [30, 0], [30, 10],
+                                                  [20, 10], [20, 0]]]}
+    n_p, n_b = aandeel(_pand, _half)
+    if n_p != 400 or n_b != 200 or aandeel(_pand, _naast)[1] != 0:
+        afw.append(f"het aandeel van een pand in een vlak wordt verkeerd "
+                   f"gemeten: {n_p}, {n_b}")
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef monumenten: {len(afw)} afwijkingen", file=sys.stderr)
@@ -468,7 +614,10 @@ def main():
     ap.add_argument("--wfs", action="store_true")
     ap.add_argument("--rce", action="store_true")
     ap.add_argument("--rce-panden", action="store_true")
+    ap.add_argument("--register-panden", action="store_true")
     a = ap.parse_args()
+    if a.register_panden:
+        return koppel_register_panden()
     if a.rce_panden:
         return koppel_rce_panden()
     if a.rce:
