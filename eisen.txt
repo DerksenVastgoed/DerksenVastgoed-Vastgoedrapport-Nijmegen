@@ -1432,3 +1432,13 @@ waarom: 18 oktober. Het RCE-bestand (174 adressen) bleek onvolledig naast
   een verkeerde huur.
 proef: marktprijzen_bag:de tegenspraak van Waldeck Pyrmontsingel wordt niet
 soort: gegevens
+
+---
+eis: Een archeologisch rijksmonument maakt het gebouw erop geen
+  rijksmonument; het staat apart in het dossier, bij graven en bouwen in de
+  bodem.
+waarom: 18 oktober. Van de 261 RCE-punten zijn er 8 archeologisch (klasse
+  "cultural; archaeological"). Flavus 43 lag op zo'n terrein (RCE 397576) en
+  kreeg daardoor de vlag van rijksmonument, die meetelt in de huurpunten.
+proef: gezicht:een archeologisch rijksmonument geeft het gebouw de
+soort: gegevens

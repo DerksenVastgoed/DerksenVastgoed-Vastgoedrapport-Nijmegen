@@ -330,7 +330,6 @@ def classificeer(item: dict):
 
 EP_API_KEY = os.environ.get("EP_API_KEY", "")
 EP_BASE = "https://public.ep-online.nl/api/v5/PandEnergielabel"
-MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
 
 
 def _mon_sleutel(straat, huisnr):
@@ -340,12 +339,6 @@ def _mon_sleutel(straat, huisnr):
     bedoelden en op drie punten uiteenliepen. De functie blijft staan omdat
     de aanroepers hem gebruiken, maar hij rekent niet meer zelf."""
     return _psl.sleutel(straat, huisnr)
-
-
-def lees_monumenten():
-    """Rijksmonumenten per adres; een lezer, in rijksmonumenten.py."""
-    import rijksmonumenten as _rm
-    return _rm.lees(MONUMENTEN_PAD)
 
 
 def _ep_veld(rec, namen):
@@ -769,7 +762,6 @@ def verrijk_met_bag(items: list):
     if not BAG_API_KEY:
         print("Geen BAG_API_KEY: bekendmakingen zonder oppervlakte-feiten", file=sys.stderr)
         return
-    monumenten = lees_monumenten()
     raak = 0
     for it in items:
         it["feiten"] = {}

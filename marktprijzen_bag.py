@@ -61,13 +61,6 @@ PDOK_FREE = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
 PDOK_HEADERS = {"User-Agent": "NijmegenVastgoedMonitor/1.0"}
 
 ARCHIEF_PAD = "bekendmakingen_archief.json"
-MONUMENTEN_PAD = "rijksmonumenten_nijmegen.json"
-
-
-def lees_monumenten():
-    """Rijksmonumenten per adres; een lezer, in rijksmonumenten.py."""
-    import rijksmonumenten as _rm
-    return _rm.lees(MONUMENTEN_PAD)
 
 
 def lees_archief():
@@ -8090,8 +8083,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
 
     # Bekendmakingen-signalen en monumentenstatus per pand opzoeken
     archief = lees_archief()
-    monumenten = lees_monumenten()
-    if archief or monumenten:
+    if archief:
         for w in woningen:
             varianten = split_huisnummer(w["adres"])
             if not varianten:
@@ -8558,7 +8550,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
                  "Bron per pand hierboven: de Rijksdienst voor het Cultureel "
                  "Erfgoed, het erfgoedregister van de gemeente, of beide._")
         r.append("")
-    elif monumenten:
+    else:
         r.append("_Geen rijksmonumenten in deze lijst, volgens de Rijksdienst "
                  "voor het Cultureel Erfgoed en het erfgoedregister van de "
                  "gemeente. Gemeentelijke monumenten en stadsbeelden staan per "

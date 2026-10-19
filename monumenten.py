@@ -260,7 +260,9 @@ def verken_rce():
                 continue
             c = (f.get("geometry") or {}).get("coordinates") or [None, None]
             punten.append({"nummer": nummer_uit_citatie(p.get("ci_citation")),
-                           "naam": p.get("text"), "lon": c[0], "lat": c[1]})
+                           "naam": p.get("text"), "lon": c[0], "lat": c[1],
+                           "klasse": p.get("siteprotectionclassification"),
+                           "aanduiding": p.get("designation")})
         url = next((l.get("href") for l in d.get("links") or []
                     if l.get("rel") == "next"), None)
         time.sleep(0.2)
@@ -375,7 +377,9 @@ def koppel_rce_panden():
             continue
         if not p:
             leeg += 1
-        uit[x["nummer"]] = {"naam": x.get("naam"), "panden": p}
+        uit[x["nummer"]] = {"naam": x.get("naam"), "panden": p,
+                            "klasse": x.get("klasse"),
+                            "aanduiding": x.get("aanduiding")}
     r.append(f"- {len(uit)} nummers gevraagd, {fout} zonder antwoord, "
              f"{leeg} met een punt buiten elk pand")
     # De toets: het register noemt per object een rijksmonumentnummer en ligt
