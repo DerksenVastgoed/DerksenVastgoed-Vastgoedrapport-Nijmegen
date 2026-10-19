@@ -697428,9 +697428,9 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 108,
+   "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
-   "adressen_onveranderd": 24281,
+   "adressen_onveranderd": 24389,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 132987,
    "datum": "2026-10-19",
@@ -697463,7 +697463,7 @@
    "ronde_objecten": 164656,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 216.4,
+   "ronde_seconden": 286.3,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -697527,7 +697527,7 @@
     "Verbouwing pand": 447
    },
    "ronde_af": true,
-   "seconden": 349.9,
+   "seconden": 447.8,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
