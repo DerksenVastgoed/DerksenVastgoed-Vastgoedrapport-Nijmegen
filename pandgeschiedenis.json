@@ -79854,6 +79854,21 @@
    "0268100000027435"
   ]
  },
+ "bloemerstraat": {
+  "adres": "Bloemerstraat",
+  "bag_gezien": "2026-10-19",
+  "bag_zonder_id": "2026-10-19",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-18",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.275 per maand, 68 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-19"
+ },
  "bloemerstraat107": {
   "adres": "Bloemerstraat 107",
   "gebeurtenissen": [
@@ -98439,6 +98454,12 @@
     "datum": "2026-10-08",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €800 per maand, 35 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-18",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €600 per maand, 15 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -102224,6 +102245,12 @@
     "datum": "2026-10-14",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €695 per maand, 14 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-18",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €692 per maand, 60 m2"
    }
   ],
   "pand_id": null
@@ -149541,6 +149568,12 @@
    {
     "bron": "pararius",
     "datum": "2026-10-17",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.850 per maand, 78 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-18",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.850 per maand, 78 m2"
    }

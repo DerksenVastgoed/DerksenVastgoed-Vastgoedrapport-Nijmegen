@@ -1106,3 +1106,9 @@ Meijhorst | Nijmegen | 885 | te huur | 2026-10-17 | huislijn | 91 | 6538GP
 Heidevenstraat | Nijmegen | 1300 | te huur kamer | 2026-10-17 | kamernet-incl | 60 | 
 St. Stevenskerkhof | Nijmegen | 1850 | te huur gemeubileerd | 2026-10-17 | pararius | 78 | 6511VZ
 Grotestraat | Nijmegen | 2450 | te huur kamer | 2026-10-17 | kamernet | 80 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 19-10-2026
+St. Stevenskerkhof | Nijmegen | 1850 | te huur | 2026-10-18 | huislijn | 78 | 6511VZ
+Groesbeeksedwarsweg | Nijmegen | 692 | te huur | 2026-10-18 | huislijn | 60 | 6521DT
+Bloemerstraat | Nijmegen | 1275 | te huur | 2026-10-18 | kamernet-incl | 68 | 
+Graafseweg | Nijmegen | 600 | te huur kamer | 2026-10-18 | kamernet-incl | 15 | 

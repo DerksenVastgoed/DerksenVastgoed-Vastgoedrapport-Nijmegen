@@ -1,40 +1,14 @@
 {
- "datum": "2026-10-18",
+ "datum": "2026-10-19",
  "bronnen": {
-  "regulier": {
-   "mails": 2,
-   "objecten": 3,
-   "overgeslagen": 2,
-   "redenen": [
-    "Eerste Oude Heselaan (geen prijs gevonden)",
-    "St. Stevenskerkhof 11 (geen prijs gevonden)"
-   ]
-  },
-  "huislijn": {
-   "mails": 3,
-   "objecten": 21,
-   "overgeslagen": 0,
-   "redenen": []
-  },
   "kamernet": {
    "mails": 11,
-   "objecten": 9,
-   "overgeslagen": 2,
+   "objecten": 8,
+   "overgeslagen": 3,
    "redenen": [
     "Achterstraat, Randwijk: buiten Nijmegen",
-    "Aalburgstraat, Arnhem: buiten Nijmegen"
-   ]
-  },
-  "pararius": {
-   "mails": 3,
-   "objecten": 7,
-   "overgeslagen": 5,
-   "redenen": [
-    "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "Broekstraat (gemeubileerd, apart bewaard)",
-    "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "Kronenburgersingel (gemeubileerd, apart bewaard)",
-    "St. Stevenskerkhof (gemeubileerd, apart bewaard)"
+    "Aalburgstraat, Arnhem: buiten Nijmegen",
+    "Homberg, Wijchen: buiten Nijmegen"
    ]
   },
   "vendr": {
@@ -44,21 +18,46 @@
    "redenen": [
     "Sumatralaan 32 (Apeldoorn)"
    ]
+  },
+  "huislijn": {
+   "mails": 3,
+   "objecten": 15,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "pararius": {
+   "mails": 2,
+   "objecten": 2,
+   "overgeslagen": 2,
+   "redenen": [
+    "Kronenburgersingel (gemeubileerd, apart bewaard)",
+    "St. Stevenskerkhof (gemeubileerd, apart bewaard)"
+   ]
+  },
+  "regulier": {
+   "mails": 1,
+   "objecten": 1,
+   "overgeslagen": 2,
+   "redenen": [
+    "Eerste Oude Heselaan (geen prijs gevonden)",
+    "St. Stevenskerkhof 11 (geen prijs gevonden)"
+   ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 32,
-  "andere_status": 1,
+  "zelfde_status": 22,
+  "andere_status": 2,
   "voorbeelden": [
-   "Grotestraat -> te huur kamer"
+   "St. Stevenskerkhof -> te huur",
+   "Graafseweg -> te huur kamer"
   ]
  },
  "berichten_per_afzender": {
-  "funda.nl": 2,
+  "funda.nl": 1,
   "funda.com": 0,
-  "pararius.nl": 3,
+  "pararius.nl": 2,
   "pararius.com": 0,
   "kamernet.nl": 11,
   "vendr.nl": 1,
@@ -68,6 +67,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 15-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 15-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 16-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 16-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

@@ -253,5 +253,15 @@
   "opp": 91,
   "kamers": 3,
   "postcode": "6538GP"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4439388/st-stevenskerkhof-nijmegen": {
+  "opp": 78,
+  "kamers": 3,
+  "postcode": "6511VZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4439246/groesbeeksedwarsweg-nijmegen": {
+  "opp": 60,
+  "kamers": 3,
+  "postcode": "6521DT"
  }
 }

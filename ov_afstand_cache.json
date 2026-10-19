@@ -1351,6 +1351,14 @@
   "omweg": 2.55,
   "soort": "bus"
  },
+ "51.84465,5.85978": {
+  "geschat": false,
+  "hemelsbreed": 95,
+  "meters": 321,
+  "naam": "Smetiusstraat",
+  "omweg": 3.38,
+  "soort": "bus"
+ },
  "51.84470,5.86660": {
   "geschat": false,
   "hemelsbreed": 143,
