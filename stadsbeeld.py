@@ -377,6 +377,80 @@ def verken_monumenten():
     return 0
 
 
+# DE REGELS VOOR EEN GEMEENTELIJK STADSBEELD. 19 oktober 2026. Het dossier
+# zei bij een stadsbeeldobject "welke wijzigingen precies vergunningplichtig
+# zijn, staat in het aanwijzingsbesluit en is hier niet nagelezen". Deze stap
+# leest de twee regelingen waar die regels kunnen staan, de
+# Erfgoedverordening en het omgevingsplan, en schrijft elk artikel op waarin
+# stadsbeeld voorkomt, met de volledige tekst. Wet- en regelgeving valt niet
+# onder het auteursrecht (Auteurswet art. 11), dus de tekst mag in de repo.
+REGELINGEN = {"Erfgoedverordening Nijmegen":
+              "https://lokaleregelgeving.overheid.nl/CVDR731607",
+              "Omgevingsplan Nijmegen": OMGEVINGSPLAN}
+REGELS_VERSLAG = "stadsbeeld_regels.md"
+REGELWOORDEN = ("stadsbeeld",)
+
+
+def tekst_uit_html(html):
+    """Platte tekst met een regel per blok, zonder scripts en stijlen."""
+    import html as _html
+    t = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", html or "")
+    t = re.sub(r"(?i)<br\s*/?>|</(p|div|h\d|li|tr|td|th|dt|dd)>", "\n", t)
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = _html.unescape(t)
+    regels = [" ".join(x.split()) for x in t.split("\n")]
+    return "\n".join(x for x in regels if x)
+
+
+def artikelen(tekst):
+    """[(kop, tekst)] per artikel: een regel die met "Artikel" begint, opent
+    een artikel; alles tot de volgende zulke regel hoort erbij."""
+    uit, kop, buf = [], None, []
+    for regel in tekst.split("\n"):
+        if re.match(r"Artikel\s+[\dIVXLC][\w.:]*\b", regel):
+            if kop:
+                uit.append((kop, "\n".join(buf)))
+            kop, buf = regel, []
+        elif kop:
+            buf.append(regel)
+    if kop:
+        uit.append((kop, "\n".join(buf)))
+    return uit
+
+
+def lees_regels():
+    r = ["# Regels over stadsbeelden", "",
+         "Elk artikel waarin " + " of ".join(REGELWOORDEN) + " voorkomt, "
+         "met de volledige tekst. Bron per regeling hieronder.", ""]
+    for naam, url in REGELINGEN.items():
+        r.append(f"## {naam}")
+        r.append("")
+        eind, _s, inhoud = haal(url, r)
+        if inhoud is None:
+            r.append("- NIET GELEZEN")
+            r.append("")
+            continue
+        tekst = tekst_uit_html(inhoud.decode("utf-8", errors="replace"))
+        alle = artikelen(tekst)
+        raak = [(k, t) for k, t in alle
+                if any(w in (k + t).lower() for w in REGELWOORDEN)]
+        r.append(f"- `{eind}`, {len(alle)} artikelen gelezen, {len(raak)} "
+                 f"over stadsbeelden")
+        if not alle:
+            r.append("- GEEN ARTIKELEN HERKEND: de indeling van de pagina is "
+                     "anders dan aangenomen; dit is geen nul")
+        r.append("")
+        for k, t in raak[:60]:
+            r.append(f"### {k}")
+            r.append("")
+            r.append(t[:6000])
+            r.append("")
+    with open(REGELS_VERSLAG, "w", encoding="utf-8") as f:
+        f.write("\n".join(r) + "\n")
+    print("\n".join(r[:40]))
+    return 0
+
+
 def proef():
     afw = []
     html = ('<tr><td>Gemeentelijk monument</td><td><a href="https://'
@@ -409,6 +483,15 @@ def proef():
             ("extern_Erfgoed:gemeentelijke_monumenten",
              "Gemeentelijke monumenten")]:
         afw.append("de lagen uit GetCapabilities worden niet gelezen")
+    # Artikelen uit een regeling: kop tot de volgende kop.
+    t = tekst_uit_html("<h3>Hoofdstuk 3</h3><h4>Artikel 14 Verboden</h4>"
+                       "<p>1. Het is verboden een beschermd stadsbeeld te "
+                       "ontsieren.</p><h4>Artikel 15 Vergunning</h4><p>Ander"
+                       "</p><script>Artikel 99</script>")
+    a = artikelen(t)
+    if [k for k, _ in a] != ["Artikel 14 Verboden", "Artikel 15 Vergunning"] \
+            or "stadsbeeld" not in a[0][1] or "Artikel 99" in t:
+        afw.append(f"de artikelen worden verkeerd gesplitst: {a}")
     for a in afw:
         print("AFWIJKING: " + a, file=sys.stderr)
     print(f"Proef stadsbeeld: {len(afw)} afwijkingen", file=sys.stderr)
@@ -421,9 +504,12 @@ def main():
     ap.add_argument("--omgevingsplan", action="store_true")
     ap.add_argument("--proef", action="store_true")
     ap.add_argument("--monumenten", action="store_true")
+    ap.add_argument("--regels", action="store_true")
     a = ap.parse_args()
     if a.proef:
         return proef()
+    if a.regels:
+        return lees_regels()
     if a.monumenten:
         return verken_monumenten()
     if a.omgevingsplan:
