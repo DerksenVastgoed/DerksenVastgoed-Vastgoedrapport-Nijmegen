@@ -6297,7 +6297,11 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("monument", "gemeentelijk monument; maximale huur +15% (art. 8a "
           "lid 3), geen minpunten voor het label"
           + (f"; het pand ligt voor {_mw[1]:.2f} in het vlak, de woning in "
-             f"het monumentdeel" if _mw and _mw[0] == "binnen" else ""),
+             f"het monumentdeel" if _mw and _mw[0] == "binnen" else "")
+          + ". Voorbehoud: art. 8a noemt een monument dat burgemeester en "
+            "wethouders hebben aangewezen; in Nijmegen wijst de gemeenteraad "
+            "aan (Erfgoedverordening art. 5). Of de 15% dan geldt, is niet "
+            "uitgezocht",
           "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak"
           + (" en het verblijfsobjectpunt" if _mw else ""))
     elif w.get("monument_soort") == "gezicht":

@@ -61,6 +61,12 @@ def maximale_huur(punten):
 # TOT 19 OKTOBER 2026 kende dit model alleen "monument ja/nee": de 35% alleen
 # bij kamers, nergens bij zelfstandige woningen, en geen 15% of 5%. Contracten
 # van voor 1 juli 2024 (lid 2: 50 of 10 punten) rekent het model niet.
+# VOORBEHOUD BIJ DE 15%. Lid 3 luidt letterlijk "een door het college van
+# burgemeester en wethouders aangewezen gemeentelijk monument" (Stb. 2024,
+# 194), en het beleidsboek van de Huurcommissie (juli 2025, par. 2.8.2)
+# herhaalt dat. In Nijmegen wijst de GEMEENTERAAD aan (Erfgoedverordening
+# art. 5 lid 1). Of een raadsaanwijzing onder lid 3 valt, is niet
+# uitgezocht (19 oktober 2026); het dossier zegt het erbij.
 MONUMENT_OPSLAG = {"rijks": 1.35, "gemeentelijk": 1.15, "gezicht": 1.05}
 GEEN_MINPUNTEN = {"rijks", "gemeentelijk"}
 
