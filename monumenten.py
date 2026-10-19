@@ -578,17 +578,17 @@ def koppel_register_panden():
     import gezicht
     punten = gezicht._laad().get("punten") or {}
     gemeten = {o: {x["pand"] for x in v["panden"]} for o, v in uit.items()}
-    vlak_van = {str(f["properties"].get("OBJECTID")): f["geometry"]
-                for f in rijks}
+    vlak_van = {str(f["properties"].get("OBJECTID")):
+                (f["geometry"], _omhullende(f["geometry"])) for f in rijks}
     r.append("")
     r.append("## Voorraadpanden met het pandpunt in een vlak, die de BAG bij "
              "dat vlak niet teruggaf")
     vreemd = 0
     for pid, pt in punten.items():
         x, y = gezicht.wgs84_naar_rd(pt["lat"], pt["lon"])
-        for o, geom in vlak_van.items():
-            if o in gemeten and pid not in gemeten[o] and \
-                    gezicht.in_vlak(x, y, geom):
+        for o, (geom, (a, b, c, d)) in vlak_van.items():
+            if a <= x <= c and b <= y <= d and o in gemeten and \
+                    pid not in gemeten[o] and gezicht.in_vlak(x, y, geom):
                 vreemd += 1
                 bag = panden_bij_punt(x, y, [], d=0.1)
                 time.sleep(0.2)
