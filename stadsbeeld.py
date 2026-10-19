@@ -388,7 +388,9 @@ REGELINGEN = {"Erfgoedverordening Nijmegen":
               "https://lokaleregelgeving.overheid.nl/CVDR731607",
               "Omgevingsplan Nijmegen": OMGEVINGSPLAN}
 REGELS_VERSLAG = "stadsbeeld_regels.md"
-REGELWOORDEN = ("stadsbeeld",)
+# "verbodsbepaling" erbij om art. 14 (gemeentelijk monument) naast art. 19
+# (stadsbeeldobject) te kunnen leggen.
+REGELWOORDEN = ("stadsbeeld", "verbodsbepaling")
 
 
 def tekst_uit_html(html):
@@ -434,6 +436,10 @@ def lees_regels():
         alle = artikelen(tekst)
         raak = [(k, t) for k, t in alle
                 if any(w in (k + t).lower() for w in REGELWOORDEN)]
+        # Waar komt het woord buiten de artikelen voor? Nul artikelen is
+        # anders dan nul vermeldingen.
+        r.append(f"- het woord stadsbeeld staat {tekst.lower().count('stadsbeeld')} "
+                 f"keer in de hele tekst")
         r.append(f"- `{eind}`, {len(alle)} artikelen gelezen, {len(raak)} "
                  f"over stadsbeelden")
         if not alle:
