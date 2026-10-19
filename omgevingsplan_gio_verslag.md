@@ -2,7 +2,7 @@
 
 Regeling: `https://lokaleregelgeving.overheid.nl/CVDR696550`
 
-- eindadres `https://lokaleregelgeving.overheid.nl/CVDR696550`, 3698311 bytes, 31 informatieobjecten met een JOIN-identificatie
+- eindadres `https://lokaleregelgeving.overheid.nl/CVDR696550`, 3698292 bytes, 31 informatieobjecten met een JOIN-identificatie
 - waarvan 2 met een naam die op erfgoed wijst
 
 ## Alle namen
@@ -41,5 +41,7 @@ Regeling: `https://lokaleregelgeving.overheid.nl/CVDR696550`
 
 ## Erfgoed, met geometrie
 
-- Archeologisch Rijksmonument: 10 vlakken, bewaard als omgevingsplan_gio_00.gml
-- Waardengebied cultureel erfgoed - molenbiotoop: 2 vlakken, bewaard als omgevingsplan_gio_01.gml
+- NIET OPGEHAALD https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-8608/1/gml/dc-2026-8608.gml: robots.txt van https://repository.officiele-overheidspublicaties.nl niet te lezen: <urlopen error [Errno 101] Network is unreachable>
+- Archeologisch Rijksmonument: geen GML gevonden
+- NIET OPGEHAALD https://repository.officiele-overheidspublicaties.nl/Datacollecties/2025/dc-2025-15782/1/gml/dc-2025-15782.gml: robots.txt van https://repository.officiele-overheidspublicaties.nl niet te lezen: <urlopen error [Errno 101] Network is unreachable>
+- Waardengebied cultureel erfgoed - molenbiotoop: geen GML gevonden
