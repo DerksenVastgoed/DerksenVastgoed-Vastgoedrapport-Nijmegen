@@ -6293,13 +6293,22 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           + (f"; let op: {_m['tegenspraak']}" if _m.get("tegenspraak") else ""),
           _m.get("bron") or "Rijksdienst voor het Cultureel Erfgoed")
     elif w.get("monument_soort") == "gemeentelijk":
+        _mw = w.get("monument_woning")
         f("monument", "gemeentelijk monument; maximale huur +15% (art. 8a "
-          "lid 3), geen minpunten voor het label",
-          "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak")
+          "lid 3), geen minpunten voor het label"
+          + (f"; het pand ligt voor {_mw[1]:.2f} in het vlak, de woning in "
+             f"het monumentdeel" if _mw and _mw[0] == "binnen" else ""),
+          "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak"
+          + (" en het verblijfsobjectpunt" if _mw else ""))
     elif w.get("monument_soort") == "gezicht":
         f("monument", f"geen monument, wel rijksbeschermd stadsgezicht en "
           f"bouwjaar {w.get('bouwjaar')}; maximale huur +5% (art. 8a lid 5)",
           "RCE (PDOK) en BAG")
+    if (w.get("monument_woning") or ("",))[0] == "buiten":
+        f("monument", f"geen monument: het pand ligt voor "
+          f"{w['monument_woning'][1]:.2f} in een gemeentelijk monumentvlak, "
+          f"maar het punt van deze woning ligt erbuiten; geen opslag",
+          "erfgoedregister gemeente, BAG-verblijfsobjectpunt tegen het vlak")
     if w.get("monument_deels") is not None:
         f("deels monument", f"{w['monument_deels']:.2f} van het pand ligt in "
           f"een gemeentelijk monumentvlak. Of de woning in dat deel ligt, "
@@ -8097,8 +8106,19 @@ def monument_uit_register(w):
     else:
         w.pop("monument_soort", None)
     w.pop("monument_deels", None)
+    w.pop("monument_woning", None)
     if deels is not None and soort in (None, "gezicht"):
-        w["monument_deels"] = deels
+        # PER WONING, ALS HET GEMETEN IS. Ligt het pand maar deels in het
+        # vlak, dan beslist het punt van het verblijfsobject (BAG, in RD).
+        binnen = _gz.vbo_in_gemeentelijk_monument(
+            w.get("adresseerbaarObjectIdentificatie"))
+        if binnen == "binnen":
+            w["monument_soort"] = "gemeentelijk"
+            w["monument_woning"] = ("binnen", deels)
+        elif binnen == "buiten":
+            w["monument_woning"] = ("buiten", deels)
+        else:
+            w["monument_deels"] = deels
     return w
 
 
@@ -9102,6 +9122,38 @@ def proef():
         finally:
             _gzp.monument_aanvullen, _gzp.monument_soort, \
                 _gzp.gemeentelijk_aandeel = _oud_ma, _oud_ms, _oud_ga
+        # Deels in het vlak: de woning beslist. Binnen geeft de opslag,
+        # buiten niet, niet gemeten blijft "nakijken".
+        _oud_ma, _oud_ms, _oud_ga, _oud_vb = (
+            _gzp.monument_aanvullen, _gzp.monument_soort,
+            _gzp.gemeentelijk_aandeel, _gzp.vbo_in_gemeentelijk_monument)
+        try:
+            _gzp.monument_aanvullen = lambda p: None
+            _gzp.monument_soort = lambda p, bj=None, rijks=None: None
+            _gzp.gemeentelijk_aandeel = lambda p: 0.39
+            _gzp.vbo_in_gemeentelijk_monument = lambda v: {
+                "IN": "binnen", "UIT": "buiten", "TWIJFEL": "twijfel"}.get(v)
+            _uit = {v: monument_uit_register(
+                {"pand": "D", "adresseerbaarObjectIdentificatie": v})
+                for v in ("IN", "UIT", "ONBEKEND", "TWIJFEL")}
+            if _uit["IN"].get("monument_soort") != "gemeentelijk":
+                afw.append("een woning die in het monumentdeel van een pand "
+                           "ligt, krijgt de opslag niet")
+            if _uit["UIT"].get("monument_soort") or \
+                    _uit["UIT"].get("monument_deels") is not None:
+                afw.append("een woning buiten het monumentdeel krijgt de "
+                           "opslag of blijft op nakijken staan")
+            if _uit["TWIJFEL"].get("monument_soort") or \
+                    _uit["TWIJFEL"].get("monument_deels") != 0.39:
+                afw.append("een woning waarover punt en titel het oneens zijn, "
+                           "krijgt de opslag of verdwijnt van nakijken")
+            if _uit["ONBEKEND"].get("monument_deels") != 0.39:
+                afw.append("een niet gemeten woning in een deels-pand staat "
+                           "niet meer op nakijken")
+        finally:
+            (_gzp.monument_aanvullen, _gzp.monument_soort,
+             _gzp.gemeentelijk_aandeel, _gzp.vbo_in_gemeentelijk_monument) = (
+                _oud_ma, _oud_ms, _oud_ga, _oud_vb)
         _w = monument_uit_register({"pand": "N", "monument": {"oud": 1}})
         if _w.get("monument"):
             afw.append("een pand dat geen van beide bronnen een rijksmonument "

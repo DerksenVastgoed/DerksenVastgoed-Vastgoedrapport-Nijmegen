@@ -4,6 +4,8 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 
 - 796 vlakken (206 rijksmonument, 590 gemeentelijk monument), 0 zonder antwoord van de BAG
 - 5955 paren vlak-pand met overlap
+- 551 paren deels in het vlak (0,01 tot 0,99) met de verblijfsobjecten erbij: 2102 verblijfsobjecten, waarvan 1524 in het vlak; 0 keer geen antwoord van de BAG
+- velden van bag:verblijfsobject: {'identificatie': 'str', 'rdf_seealso': 'str', 'oppervlakte': 'int', 'status': 'str', 'gebruiksdoel': 'str', 'openbare_ruimte': 'str', 'huisnummer': 'int', 'huisletter': 'str', 'toevoeging': 'str', 'postcode': 'str', 'woonplaats': 'str', 'bouwjaar': 'int', 'pandidentificatie': 'str', 'pandstatus': 'str'}
 
 ## Verdeling van aandeel_pand (deel van het pand in het vlak)
 - 0.00 tot 0.01: 4770
@@ -59,7 +61,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - 1.00 tot meer: 394
 
 ## St. Anthoniusplaats 15-16 (31169)
-- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833}, {'pand': '0268100000045385', 'punten': 309, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000045404', 'punten': 341, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045405', 'punten': 676, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913}, {'pand': '0268100000106007', 'punten': 297, 'in_vlak': 0, 'aandeel_pand': 0.0}]
+- St. Anthoniusplaats 15-16, Duivengas 1-9: [{'pand': '0268100000045384', 'punten': 568, 'in_vlak': 473, 'aandeel_pand': 0.833, 'vbo': [{'vbo': '0268010000043091', 'adres': 'Duivengas 5', 'x': 188100.23, 'y': 428901.917, 'in_vlak': True}, {'vbo': '0268010000043092', 'adres': 'Duivengas 7', 'x': 188100.23, 'y': 428901.917, 'in_vlak': True}, {'vbo': '0268010000044186', 'adres': 'Duivengas 1', 'x': 188100.23, 'y': 428901.917, 'in_vlak': True}, {'vbo': '0268010000052745', 'adres': 'Duivengas 9', 'x': 188100.23, 'y': 428901.917, 'in_vlak': True}, {'vbo': '0268010000082399', 'adres': 'Duivengas 3', 'x': 188100.23, 'y': 428901.917, 'in_vlak': True}]}, {'pand': '0268100000045385', 'punten': 309, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045386', 'punten': 704, 'in_vlak': 4, 'aandeel_pand': 0.006}, {'pand': '0268100000045404', 'punten': 341, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000045405', 'punten': 676, 'in_vlak': 0, 'aandeel_pand': 0.0}, {'pand': '0268100000047325', 'punten': 241, 'in_vlak': 220, 'aandeel_pand': 0.913, 'vbo': [{'vbo': '0268010000023637', 'adres': 'St. Anthoniusplaats 15', 'x': 188089.951, 'y': 428912.366, 'in_vlak': True}, {'vbo': '0268010000023638', 'adres': 'St. Anthoniusplaats 16', 'x': 188088.561, 'y': 428910.046, 'in_vlak': True}]}, {'pand': '0268100000106007', 'punten': 297, 'in_vlak': 0, 'aandeel_pand': 0.0}]
 
 ## Paren tussen 0,05 en 0,9 (de twijfelzone)
 - St. Annastraat 244 (523018): pand 0268100000013956, 0.653
