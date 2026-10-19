@@ -436,6 +436,92 @@ def gemeentelijk_aandeel(pand_id):
     return round(sum(a for _o, a in per_pand[str(pand_id or "")]), 3)
 
 
+def _huisnummer(tekst):
+    """(nummer, letter, toevoeging) uit "12A2", "12 A 3" of "15"; toevoeging
+    als getal waar dat kan, zodat 12A3 na 12A2 komt."""
+    m = re.match(r"\s*(\d+)\s*([A-Za-z]?)\s*(\d*)\s*$", tekst or "")
+    if not m:
+        return None
+    return (int(m.group(1)), m.group(2).upper(),
+            int(m.group(3)) if m.group(3) else -1)
+
+
+def titel_noemt(titel, adres):
+    """Noemt de titel van het register dit adres? "Houtstraat 10-12A2,
+    Houthof 51-53" noemt Houtstraat 12A1 wel en 12A3 niet; een reeks mag
+    aflopen ("10-8"). Een straat zonder naam in een deel van de titel hoort
+    bij de straat ervoor. Leest alleen een titel; geen bron voor de
+    aanwijzing zelf."""
+    m = re.match(r"(.*?)\s+(\d.*)$", (adres or "").strip())
+    if not m:
+        return False
+    straat, nr = m.group(1).lower(), _huisnummer(m.group(2))
+    if not nr:
+        return False
+    vorige = None
+    for deel in (titel or "").split(","):
+        t = re.match(r"\s*(.*?)\s*(\d+\s*[A-Za-z]?\s*\d*)"
+                     r"(?:\s*-\s*(\d+\s*[A-Za-z]?\s*\d*))?\s*$", deel)
+        if not t:
+            continue
+        naam = t.group(1).strip().lower() or vorige
+        vorige = naam
+        a = _huisnummer(t.group(2))
+        b = _huisnummer(t.group(3)) if t.group(3) else a
+        if not (a and b) or naam != straat:
+            continue
+        lo, hi = min(a, b), max(a, b)
+        # Een eindpunt zonder letter staat voor het hele nummer.
+        if hi[1] == "" and hi[2] == -1:
+            hi = (hi[0], "~", 10 ** 6)
+        if lo <= nr <= hi:
+            return True
+    return False
+
+
+def vbo_in_gemeentelijk_monument(vbo_id):
+    """Ligt deze woning in het monumentdeel van een pand dat maar deels in
+    een gemeentelijk monumentvlak ligt? "binnen", "buiten", "twijfel" of
+    None (niet gemeten).
+
+    TWEE BRONNEN, EN ALLEEN SAMEN EEN UITKOMST. 19 oktober 2026, de 28
+    deels-panden in de ring, 176 verblijfsobjecten. Het punt van het
+    verblijfsobject (BAG, in RD) tegen het vlak, en of de titel van het
+    register het adres noemt: 157 keer eens, 19 keer oneens. Oneens is
+    bijvoorbeeld Stockumstraat 10 (de titel noemt het, het punt ligt buiten
+    het vlak) en Karrengas 44B tot 54A (punt in het vlak van "Molenstraat
+    94", de titel noemt alleen dat adres). Geen van beide is de aanwijzing
+    zelf; zijn ze het oneens, dan "twijfel" en geen opslag."""
+    if "vbo_gem" not in _cache:
+        kaart = None
+        try:
+            with open(REGISTER_PANDEN, encoding="utf-8") as f:
+                inhoud = json.load(f)
+            if inhoud.get("sleutel") == "ID":
+                kaart = {}
+                for v in (inhoud.get("objecten") or {}).values():
+                    if v.get("soort") != "Gemeentelijk monument":
+                        continue
+                    for x in v.get("panden") or []:
+                        for b in x.get("vbo") or []:
+                            oordeel = (bool(b.get("in_vlak")),
+                                       titel_noemt(v.get("titel"),
+                                                   b.get("adres")))
+                            kaart.setdefault(b["vbo"], []).append(oordeel)
+        except (OSError, ValueError):
+            kaart = None
+        _cache["vbo_gem"] = kaart
+    kaart = _cache["vbo_gem"]
+    if not kaart or not vbo_id or str(vbo_id) not in kaart:
+        return None
+    oordelen = kaart[str(vbo_id)]
+    if any(a and b for a, b in oordelen):
+        return "binnen"
+    if all(not a and not b for a, b in oordelen):
+        return "buiten"
+    return "twijfel"
+
+
 def gemeentelijk_monument(pand_id):
     """De vermeldingen "Gemeentelijk monument" uit het register die bij dit
     pand horen: per pandomtrek als die gemeten is, anders per pandpunt.
@@ -894,6 +980,28 @@ def proef():
                        "meting per pandomtrek koppelt dan verkeerd")
     except (OSError, ValueError):
         pass
+    # De titel van het register leest reeksen met letters en toevoegingen
+    # (Houtstraat 10-12A2), aflopende reeksen en de straat van het deel ervoor.
+    for titel, adres, ja in (
+            ("Houtstraat 10-12A2, Houthof 51-53", "Houtstraat 12 A 1", True),
+            ("Houtstraat 10-12A2, Houthof 51-53", "Houtstraat 12 A 3", False),
+            ("Houtstraat 10-12A2, Houthof 51-53", "Houthof 52", True),
+            ("In de Betouwstraat 15-15A", "In de Betouwstraat 15 B", False),
+            ("In de Betouwstraat 10-8", "In de Betouwstraat 9", True),
+            ("Burchtstraat 57, Stockumstraat 10", "Stockumstraat 10", True),
+            ("St. Annastraat 53", "St. Annastraat 53 A 1", True),
+            ("Molenstraat 94", "Karrengas 44 B", False)):
+        if titel_noemt(titel, adres) != ja:
+            afw.append(f"de titel '{titel}' leest {adres} verkeerd")
+    # Punt en titel samen: eens geeft een uitkomst, oneens twijfel.
+    _cache["vbo_gem"] = {"JJ": [(True, True)], "NN": [(False, False)],
+                         "JN": [(True, False)], "NJ": [(False, True)]}
+    z = {k: vbo_in_gemeentelijk_monument(k) for k in ("JJ", "NN", "JN", "NJ",
+                                                       "XX")}
+    if z != {"JJ": "binnen", "NN": "buiten", "JN": "twijfel",
+             "NJ": "twijfel", "XX": None}:
+        afw.append(f"punt en titel worden verkeerd samengenomen: {z}")
+    _cache.clear()
     # DE SOORT VOOR DE HUUROPSLAG (art. 8a). Een gezicht telt alleen bij een
     # bouwjaar voor 1965, en een onbekend bouwjaar geeft geen opslag; een
     # gemeentelijk monument gaat voor een gezicht; "in procedure" telt niet.
