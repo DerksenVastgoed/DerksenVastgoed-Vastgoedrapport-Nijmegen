@@ -8159,6 +8159,13 @@ nagezocht, en dat is de enige route naar meer.
 - GEDAAN 19 oktober: **de regel bij een stadsbeeldobject nagelezen**:
   Erfgoedverordening art. 19, "in enig opzicht wijzigen", geen uitzondering
   voor inpandige wijzigingen. Tekst in stadsbeeld_regels.md.
+- **Geldt de 15% van art. 8a lid 3 voor een Nijmeegs gemeentelijk monument?**
+  Lid 3 noemt letterlijk een "door het college van burgemeester en
+  wethouders aangewezen gemeentelijk monument" (Stb. 2024, 194; beleidsboek
+  Huurcommissie juli 2025 par. 2.8.2, met passief beleid: de partijen moeten
+  de aanwijzing aantonen). In Nijmegen wijst de gemeenteraad aan
+  (Erfgoedverordening art. 5 lid 1). Het model rekent de 15% nu wel, met
+  een voorbehoud in het dossier. Raakt 465 panden in de ring.
 - **Telt een stadsbeeldobject als "gemeentelijk monument" voor de 15% van
   art. 8a lid 3?** De verordening rekent stadsbeeldobjecten tot het
   overkoepelende "gemeentelijk beschermd monument" (toelichting art. 1),
