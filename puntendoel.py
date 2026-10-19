@@ -28,7 +28,7 @@ import argparse
 import sys
 
 try:
-    from wwso import wws_punten, WWS_TABEL
+    from wwso import wws_punten, wws_max_huur, monument_soort
 except ImportError:
     print("wwso.py niet gevonden", file=sys.stderr)
     raise
@@ -49,21 +49,30 @@ MAATREGELEN = [
 LABELSTAPPEN = ["G", "F", "E", "D", "C", "B", "A", "A+", "A++"]
 
 
-def basis(opp, woz, label):
+# MONUMENT. 19 oktober 2026. Dit programma kende geen monument: het nam de
+# minpunten voor label E, F en G altijd mee en rekende de maximumhuur kaal uit
+# de tabel. Bij een rijks- of gemeentelijk monument telt een slecht label nul
+# punten in plaats van min (dus levert een labelstap minder op), en de
+# maximumhuur krijgt de opslag van art. 8a (35%, 15%, of 5% bij een gezicht).
+# Het doel van 187 punten verandert niet: het segment gaat over de grens
+# zonder opslag (art. 8a lid 6). Zie wwso.MONUMENT_OPSLAG.
+
+
+def basis(opp, woz, label, monument=None):
     """De telling zoals het model hem nu maakt: zonder de onbekende rubrieken."""
     return wws_punten(opp, woz, label=label, sanitair_punten=7, buiten_m2=0,
-                      overige_m2=0, aanrecht_m=2.0)
+                      overige_m2=0, aanrecht_m=2.0, monument=monument)
 
 
-def hefbomen(opp, woz, label):
+def hefbomen(opp, woz, label, monument=None):
     """Wat elke maatregel werkelijk oplevert, gemeten in plaats van aangenomen."""
-    nul = basis(opp, woz, label)["punten"]
+    nul = basis(opp, woz, label, monument)["punten"]
     uit = []
     for naam, kenmerk in MAATREGELEN:
         argumenten = dict(sanitair_punten=7, buiten_m2=0, overige_m2=0,
                           aanrecht_m=2.0)
         argumenten.update(kenmerk)
-        r = wws_punten(opp, woz, label=label, **argumenten)
+        r = wws_punten(opp, woz, label=label, monument=monument, **argumenten)
         winst = r["punten"] - nul
         if winst > 0:
             uit.append((naam, winst))
@@ -72,7 +81,8 @@ def hefbomen(opp, woz, label):
         i = LABELSTAPPEN.index(label.upper())
         for doel in LABELSTAPPEN[i + 1:i + 4]:
             r = wws_punten(opp, woz, label=doel, sanitair_punten=7,
-                           buiten_m2=0, overige_m2=0, aanrecht_m=2.0)
+                           buiten_m2=0, overige_m2=0, aanrecht_m=2.0,
+                           monument=monument)
             winst = r["punten"] - nul
             if winst > 0:
                 uit.append((f"energielabel naar {doel}", winst))
@@ -80,9 +90,9 @@ def hefbomen(opp, woz, label):
     return nul, uit
 
 
-def programma(opp, woz, label, doel=187):
+def programma(opp, woz, label, doel=187, monument=None):
     """Welke maatregelen samen het doel halen, de goedkoopste eerst in punten."""
-    nul, lijst = hefbomen(opp, woz, label)
+    nul, lijst = hefbomen(opp, woz, label, monument)
     tekort = doel - nul
     r = {"nu": nul, "doel": doel, "tekort": max(0, tekort), "hefbomen": lijst}
     if tekort <= 0:
@@ -135,7 +145,8 @@ def _is_gebouwgebonden(naam):
     return any(w in naam.lower() for w in GEBOUWGEBONDEN)
 
 
-def programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
+def programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187,
+                        monument=None):
     """
     Het programma van eisen voor een pand dat in meerdere eenheden gaat.
 
@@ -152,7 +163,7 @@ def programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
         return None
     opp_eenheid = opp_totaal / aantal
     woz_eenheid = int(woz_totaal / aantal)
-    r = programma(opp_eenheid, woz_eenheid, label, doel)
+    r = programma(opp_eenheid, woz_eenheid, label, doel, monument)
     r["opp_per_eenheid"] = round(opp_eenheid, 1)
     r["woz_per_eenheid"] = woz_eenheid
     r["aantal"] = aantal
@@ -163,8 +174,10 @@ def programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
     return r
 
 
-def tekst_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
-    r = programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel)
+def tekst_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187,
+                    monument=None):
+    r = programma_gesplitst(opp_totaal, aantal, woz_totaal, label, doel,
+                            monument)
     if not r:
         return "Onvoldoende gegevens."
     uit = [f"## Programma van eisen bij {aantal} eenheden", "",
@@ -211,8 +224,8 @@ def tekst_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
         # Is de vrije sector onbereikbaar, dan is het doel niet 187 punten maar
         # een zo hoog mogelijk wettelijk maximum. Elk punt is dan geld, en dat
         # is het getal waarop je de verbouwing afweegt.
-        nu_huur = WWS_TABEL.get(int(r["nu"]))
-        na_huur = WWS_TABEL.get(int(totaal_na))
+        nu_huur = wws_max_huur(r["nu"], monument)
+        na_huur = wws_max_huur(totaal_na, monument)
         if nu_huur and na_huur:
             winst_mnd = (na_huur - nu_huur) * aantal
             uit.append(f"**Dan is 187 punten het verkeerde doel.** Het gaat om "
@@ -225,8 +238,8 @@ def tekst_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187):
     return "\n".join(uit)
 
 
-def tekst(opp, woz, label, doel=187):
-    r = programma(opp, woz, label, doel)
+def tekst(opp, woz, label, doel=187, monument=None):
+    r = programma(opp, woz, label, doel, monument)
     uit = [f"## Programma van eisen voor {doel} punten", "",
            f"_Woning van {opp} m2, WOZ €{woz:,}".replace(",", ".")
            + f", label {label or 'onbekend'}._", ""]
@@ -259,27 +272,69 @@ def tekst(opp, woz, label, doel=187):
     for naam, winst in r["hefbomen"]:
         uit.append(f"- {naam}: +{winst}")
     uit.append("")
-    maximum = WWS_TABEL.get(int(r["nu"]))
+    maximum = wws_max_huur(r["nu"], monument)
+    volgend = wws_max_huur(r["nu"] + 1, monument)
     if maximum:
         uit.append(f"_Bij {r['nu']} punten is de wettelijke maximumhuur "
-                   f"€{maximum:.2f} per maand. Elk punt scheelt ongeveer €7._")
+                   f"€{maximum:.2f} per maand"
+                   + (f" (met de monumentenopslag van {monument})"
+                      if monument_soort(monument) else "")
+                   + (f". Een punt meer is €{volgend - maximum:.2f}._"
+                      if volgend else "._"))
     return "\n".join(uit)
+
+
+def proef():
+    """Het programma met en zonder monument, op de regels van wwso."""
+    afw = []
+    # Label G: zonder monument telt G negatief, bij een rijksmonument nul. De
+    # telling staat dan hoger en de stap naar label D levert minder op.
+    zonder = programma(60, 200000, "G")
+    rijks = programma(60, 200000, "G", monument="rijks")
+    if not rijks["nu"] > zonder["nu"]:
+        afw.append(f"een rijksmonument met label G houdt de minpunten: "
+                   f"{rijks['nu']} tegen {zonder['nu']}")
+    stap = lambda r: dict(r["hefbomen"]).get("energielabel naar D", 0)
+    if not stap(rijks) < stap(zonder):
+        afw.append("de labelstap levert bij een monument evenveel op als "
+                   "zonder, terwijl de minpunten al wegvallen")
+    if programma(60, 200000, "G", monument="gezicht")["nu"] != zonder["nu"]:
+        afw.append("een gezicht krijgt de vrijstelling van minpunten")
+    # De maximumhuur in de tekst met de opslag.
+    t = tekst(60, 200000, "G", monument="gemeentelijk")
+    m = wws_max_huur(programma(60, 200000, "G", monument="gemeentelijk")["nu"],
+                     "gemeentelijk")
+    if f"€{m:.2f}" not in t:
+        afw.append("de maximumhuur in het programma mist de opslag van 15%")
+    if monument_soort(True) != "rijks":
+        afw.append("monument=True leest niet als rijks")
+    for a in afw:
+        print("AFWIJKING: " + a, file=sys.stderr)
+    print(f"Proef puntendoel: {len(afw)} afwijkingen", file=sys.stderr)
+    return 1 if afw else 0
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--opp", type=float, required=True)
-    ap.add_argument("--woz", type=int, required=True)
+    ap.add_argument("--opp", type=float)
+    ap.add_argument("--woz", type=int)
     ap.add_argument("--label", default=None)
     ap.add_argument("--doel", type=int, default=187)
     ap.add_argument("--eenheden", type=int, default=0,
                     help="splits het pand in dit aantal eenheden")
+    ap.add_argument("--monument", choices=["rijks", "gemeentelijk", "gezicht"],
+                    default=None, help="gezicht: alleen bij bouwjaar voor 1965")
+    ap.add_argument("--proef", action="store_true")
     args = ap.parse_args()
+    if args.proef:
+        return proef()
+    if not (args.opp and args.woz):
+        ap.error("--opp en --woz zijn nodig")
     if args.eenheden > 1:
         print(tekst_gesplitst(args.opp, args.eenheden, args.woz, args.label,
-                              args.doel))
+                              args.doel, args.monument))
     else:
-        print(tekst(args.opp, args.woz, args.label, args.doel))
+        print(tekst(args.opp, args.woz, args.label, args.doel, args.monument))
     return 0
 
 
