@@ -1670,7 +1670,7 @@ eis: De ochtendmail gaat alleen naar Mark. Pa krijgt de brief via
 waarom: 20 oktober, Mark: pa moet de brief krijgen nadat hij is nagekeken.
   Tot dan ging hij om vijf uur naar beiden en keek de nakijkronde hem om 06:46
   na, als pa de fouten al gelezen had.
-proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
+proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een test van kopie_pa.yml kan pa mailen; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
 soort: brief
 
 ---

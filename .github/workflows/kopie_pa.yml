@@ -22,6 +22,11 @@ on:
         description: 'JSON-lijst van {"zin": ..., "waarom": ...} uit de nakijkronde. Leeg: de brief gaat zoals hij is.'
         required: false
         default: ""
+      alleen_naar_mij:
+        description: "Test: naar Mark in plaats van pa, zonder pa_kopie.json te raken of iets terug te committen."
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -50,7 +55,19 @@ jobs:
 
       - name: Mag de brief naar pa
         id: mag
-        run: python kopie_pa.py --mag --datum "$DATUM"
+        run: |
+          # EEN TEST GAAT NAAR MARK. Een gewone testrun van de briefrun zet
+          # niets in pa_kopie.json, dus zonder deze tak was de hele weg naar pa
+          # alleen te proberen door pa een mail te sturen. De test slaat de
+          # toets over, mailt Mark en schrijft niets terug.
+          if [ "${{ github.event.inputs.alleen_naar_mij }}" = "true" ]; then
+            echo "TEST=1" >> "$GITHUB_ENV"
+            echo "mag=ja" >> "$GITHUB_OUTPUT"
+            echo "Test: de brief gaat naar Mark."
+          else
+            echo "TEST=0" >> "$GITHUB_ENV"
+            python kopie_pa.py --mag --datum "$DATUM"
+          fi
 
       # Met correcties: het verhaal herschrijven en de mail opnieuw samenstellen.
       # Mislukt dat, dan gaat er NU niets naar pa: de eerste versie bevat de
@@ -85,7 +102,8 @@ jobs:
       - name: Mail naar pa
         id: mail
         if: >-
-          steps.mag.outputs.mag == 'ja'
+          env.TEST != '1'
+          && steps.mag.outputs.mag == 'ja'
           && (github.event.inputs.correcties == '' || steps.herstel.outputs.gelukt == 'ja')
           && hashFiles(format('digests/{0}-mail.html', env.DATUM)) != ''
         uses: dawidd6/action-send-mail@v3
@@ -100,8 +118,28 @@ jobs:
           subject: ${{ format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
+      # Twee aparte stappen en geen "test && MAIL_TO || MAIL_TO_VERHAAL": een
+      # lege string telt in een expressie als onwaar, en dan ging de test naar
+      # pa. Dat gebeurde in de briefrun al eens.
+      - name: Testmail naar Mark
+        if: >-
+          env.TEST == '1'
+          && (github.event.inputs.correcties == '' || steps.herstel.outputs.gelukt == 'ja')
+          && hashFiles(format('digests/{0}-mail.html', env.DATUM)) != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO }}
+          subject: ${{ format('TESTRUN kopie voor pa, {0}', env.DATUM) }}
+          html_body: file://digests/${{ env.DATUM }}-mail.html
+
       - name: Vastleggen en terugcommitten
-        if: steps.mail.outcome == 'success'
+        if: steps.mail.outcome == 'success' && env.TEST != '1'
         run: |
           if [ "${GECORRIGEERD:-0}" = "1" ]; then
             python kopie_pa.py --verstuurd --datum "$DATUM" --gecorrigeerd
