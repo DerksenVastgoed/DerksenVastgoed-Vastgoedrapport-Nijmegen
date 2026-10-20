@@ -27,6 +27,7 @@ nog groeit, kan een verschuiving in de labelverdeling net zo goed onze eigen
 voortgang zijn als een verandering in de markt.
 """
 import argparse
+from getal import euro, getal
 import datetime as dt
 import json
 import statistics as st
@@ -225,9 +226,9 @@ def tekst(p):
             regel += f"; over het jaar {jaar['mediane_opp']} m2"
         r.append(regel + ".")
     if nu["mediane_ppm2"]:
-        regel = f"Mediane vraagprijs €{nu['mediane_ppm2']:,} per m2".replace(",", ".")
+        regel = f"Mediane vraagprijs {euro(nu['mediane_ppm2'])} per m2"
         if vorige and vorige["mediane_ppm2"]:
-            regel += f", was €{vorige['mediane_ppm2']:,}".replace(",", ".")
+            regel += f", was {euro(vorige['mediane_ppm2'])}"
         r.append(regel + ".")
     if nu["labels"]:
         delen = ", ".join(f"{n}: {a}" for n, a in nu["labels"].items())

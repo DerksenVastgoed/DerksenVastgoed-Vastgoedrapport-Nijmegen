@@ -8279,3 +8279,31 @@ beschermd stadsgezicht per buurt. Uitzoeken of de dubbelbestemmingen per
 perceel op te halen zijn uit een bron die geautomatiseerd ophalen toestaat
 (niet jeleefomgeving.nl), en hoeveel ringpanden eronder vallen, voordat er
 een regel in de dossiers komt.
+
+## Waar de richtprijs op rust: gevoeligheid gemeten (20 oktober 2026)
+
+De dagbrief offline gedraaid op de gegevens van 20 oktober (12 dossiers),
+met elk getal 10% lager en 10% hoger, de rest gelijk. Gemeten op de
+"richtprijs als koopsom" in de dossiers.
+
+| getal | waarde | grootste verschuiving | dossiers geraakt |
+|---|---|---|---|
+| VERHUURBAAR_AANDEEL (kamers) | 0,79, van een pand van 439 m2 | €78.000 | 2 |
+| VERHUURBAAR_SPLITSING | 0,90, aanname | €87.000 | 1 |
+| OPEX kamers | 25% | €25.000 | 2 |
+| OPEX splitsen | 22% | €24.000 | 1 |
+| OPEX woning | 20% | €6.400 | 9 |
+| HUUR_HALFWEG | 10 | €1.900 | 1 |
+| verbouwing (verhuurklaar, verduurzaming, btw), aanloop | | €0 | 0 |
+
+- De verbouwingsbedragen raken de dagbrief helemaal niet: richtprijs()
+  trekt de verbouwing niet af. Alleen de zondagscase en de biedlijst
+  (render_bieden) doen dat. De bron bij de richtprijs zei wel "met aannames
+  voor verbouwing"; dat is sinds 20 oktober rechtgezet.
+- Mark, 20 oktober: niet uitgaan van onze eigen ervaringscijfers, die zijn
+  nog niet betrouwbaar genoeg. Dus een openbare bron of een eigen meting.
+- **Verhuurbaar aandeel meten in plaats van aannemen**: per pand de som van
+  de gebruiksoppervlakte van de verblijfsobjecten (BAG) tegen het bruto
+  vloeroppervlak (3D BAG: footprint maal lagen). Dat is een meting op de
+  eigen voorraad, en het raakt de twee grootste posten hierboven.
+- **Exploitatiekosten**: een openbare bron zoeken.

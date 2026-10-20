@@ -19,6 +19,7 @@ omgevingsplan vragen onderzoek dat wij niet kunnen doen.
 """
 
 import re
+from getal import euro, getal
 
 
 import pandsleutel as _psl
@@ -559,8 +560,7 @@ def toets_splitsing(w, aantal_units=None):
                     f"woning kamerverhuur: dan mogen er niet meer dan "
                     f"{MAX_NAAST_ELKAAR} naast, boven of onder elkaar liggen, "
                     f"en wordt omzetting altijd geweigerd bij een WOZ per woning "
-                    f"van €{WOZ_ONDERGRENS:,}".replace(",", ".")
-                    + " of minder"))
+                    f"van {euro(WOZ_ONDERGRENS)} of minder"))
 
     uit.append(("omgevingsplan", ONBEKEND,
                 "of het omgevingsplan op dit perceel het aantal woningen of de "
