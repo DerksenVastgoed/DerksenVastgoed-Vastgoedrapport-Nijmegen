@@ -8317,3 +8317,17 @@ met elk getal 10% lager en 10% hoger, de rest gelijk. Gemeten op de
 - **Hoeveel denkt de brief?** Het logboek meldt nu de denktokens per run.
   Na een week nakijken of effort medium de brief niet slechter maakt, en of
   de tweede poging ooit nodig is.
+
+## Bekendmakingen (20 oktober 2026)
+
+- GEDAAN: de buurt bij elke bekendmaking (bekendmakingen_nijmegen.buurt_van).
+- **Drie titels in de ring zonder te lezen adres** ("op de locatie
+  Groesbeeksedwarsweg 91-93-...", "Groenestraat 46 te Nijmegen", "aan de
+  Wolfskuilseweg 1A in Nijmegen"): _adres_uit_titel leest die vorm niet, dus
+  geen buurt en geen BAG-feiten.
+- **Groenestraat 46 staat twee keer anders**: "Sloopmelding ..., aan
+  Groenestraat 46, 6531HR" valt buiten de ring (postcode), "Melding ... op de
+  locatie Groenestraat 46 te Nijmegen" erbinnen (straatnaam zonder postcode).
+  Hetzelfde pand, twee uitkomsten.
+- **De tekst van een besluit lezen**: we kennen alleen de titel, dus niet of
+  een besluit een verlening of een weigering is.

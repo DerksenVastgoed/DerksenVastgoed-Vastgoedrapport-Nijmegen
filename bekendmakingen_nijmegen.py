@@ -1024,13 +1024,56 @@ def verrijk(items: list):
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
 
 
+_ADRES_BUURT = None
+
+
+def buurt_van(it: dict, adressen=None, per_buurt=None):
+    """De ringbuurt van een bekendmaking: eerst het adres in de voorraad,
+    anders de zescijferige postcode als die in precies een buurt ligt. Ligt
+    de postcode in twee buurten, dan beide met "of", want 28 postcodes liggen
+    over een buurtgrens. Leeg als het niet te bepalen is.
+
+    WAAROM. 20 oktober 2026 schreef de brief "Hatertseweg 320 in Galgenveld";
+    het ligt in St. Anna. Na de feitencontrole schreef hij "in welke buurt dit
+    ligt staat niet in mijn gegevens": de voorraad kende de buurt, maar die
+    ging niet mee met de bekendmaking."""
+    global _ADRES_BUURT
+    if adressen is None:
+        if _ADRES_BUURT is None:
+            try:
+                import feitencontrole
+                _ADRES_BUURT = feitencontrole.adres_buurt()
+            except Exception:
+                _ADRES_BUURT = {}
+        adressen = _ADRES_BUURT
+    straat, nr = it.get("straat"), it.get("huisnummer")
+    if straat and nr and adressen.get(f"{straat} {nr}"):
+        return adressen[f"{straat} {nr}"]
+    if per_buurt is None:
+        try:
+            with open("buurtinventaris.json", encoding="utf-8") as f:
+                per_buurt = json.load(f).get("postcodes_per_buurt") or {}
+        except (OSError, ValueError):
+            per_buurt = {}
+    for d, l in re.findall(r"\b(\d{4})\s?([A-Z]{2})\b", it.get("titel", "")):
+        raak = sorted(b for b, pcs in per_buurt.items()
+                      if d + l in {p.replace(" ", "").upper() for p in pcs})
+        if raak:
+            return " of ".join(raak)
+    return ""
+
+
 def _regel(it: dict) -> str:
     link = f"([bron]({it['url']}))" if it["url"] else ""
     regel = f"- **{it['datum']}** . {it['titel']} {link}"
 
-    feiten = it.get("feiten") or {}
+    feiten = dict(it.get("feiten") or {})
+    if it.get("buurt"):
+        feiten["buurt"] = it["buurt"]
     if feiten:
         delen = []
+        if feiten.get("buurt"):
+            delen.append(f"buurt {feiten['buurt']}")
         if feiten.get("oppervlakte_m2"):
             # Hetzelfde voorbehoud als bij het label, en om dezelfde reden.
             # Gaat de bekendmaking over een pand met meerdere woningen, dan is
@@ -1114,6 +1157,23 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
 def proef():
     """De ringfilter op vaste titels, zonder netwerk."""
     afw = []
+    # De buurt bij een bekendmaking: adres eerst, dan de postcode, en een
+    # postcode op de grens geeft beide (Hatertseweg 320, 20 oktober).
+    _pb = {"St. Anna": ["6533GP"], "Stadscentrum": ["6511AA"],
+           "Benedenstad": ["6511AA"]}
+    if buurt_van({"titel": "aan Hatertseweg 320, 6533GP Nijmegen",
+                  "straat": "Hatertseweg", "huisnummer": "320"},
+                 adressen={"Hatertseweg 320": "St. Anna"}, per_buurt={}) \
+            != "St. Anna":
+        afw.append("de buurt komt niet uit het adres in de voorraad")
+    if buurt_van({"titel": "aan X 1, 6533GP Nijmegen"}, adressen={},
+                 per_buurt=_pb) != "St. Anna" or \
+            buurt_van({"titel": "aan Y 2, 6511AA Nijmegen"}, adressen={},
+                      per_buurt=_pb) != "Benedenstad of Stadscentrum":
+        afw.append("de buurt uit de postcode wordt verkeerd bepaald")
+    if "buurt St. Anna" not in _regel({"datum": "2026-10-20", "titel": "x",
+                                      "url": "", "buurt": "St. Anna"}):
+        afw.append("de buurt staat niet bij de bekendmaking")
     # Beleid zonder adres; de Assumburgstraat (20 oktober) is geen beleid.
     bw = ["omzettingsvergunning", "beleidsregels"]
     if is_beleid({"titel": "Aanvraag omzettingsvergunning voor "
@@ -1229,6 +1289,8 @@ def main():
     reeds = {(it["titel"], it["datum"]) for it in kern + overige}
     beleid = [it for it in beleid if (it["titel"], it["datum"]) not in reeds]
 
+    for _it in kern + overige:
+        _it["buurt"] = buurt_van(_it)
     verrijk_met_bag(kern + overige)  # harde feiten uit de BAG, gemeten niet geschat
     verrijk_met_vergunning(kern + overige)
     # Wanneer dit pand voor het laatst van eigenaar wisselde, uit onze eigen
