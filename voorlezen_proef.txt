@@ -1,0 +1,21 @@
+== monsters
+[0;93m2026-10-20 17:40:33.035593373 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+nl_BE-nathalie-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_BE-nathalie-x_low: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_BE-rdh-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_BE-rdh-x_low: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-alex-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-mls-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-mls_5809-low: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-mls_7432-low: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-pim-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+nl_NL-ronnie-medium: MISLUKT FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+== hele verhaal
+[0;93m2026-10-20 17:41:05.115622695 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+LET OP: voorlezen mislukt: FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+Command exited with non-zero status 1
+monsters/:
+total 20
+drwxr-xr-x 2 runner runner  4096 Oct 20 17:41 .
+drwxr-xr-x 8 runner runner 12288 Oct 20 17:40 ..
+-rw-r--r-- 1 runner runner   926 Oct 20 17:41 LEESMIJ.txt
