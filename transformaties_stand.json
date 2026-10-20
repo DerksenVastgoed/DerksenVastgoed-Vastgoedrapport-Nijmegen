@@ -3,14 +3,14 @@
  "droog": false,
  "ronde": {
   "al_gemeld": 138,
-  "gebeurtenissen": 0,
+  "gebeurtenissen": 1,
   "gegroeid": 0,
   "opgeruimd": 0,
   "overgeslagen": 0,
-  "panden_bekend": 0,
+  "panden_bekend": 1,
   "panden_nieuw": 0,
-  "projecten": 138,
+  "projecten": 139,
   "sleutel_bezet": 0,
-  "woningen": 763
+  "woningen": 765
  }
 }

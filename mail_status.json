@@ -17,8 +17,8 @@
    "redenen": []
   },
   "kamernet": {
-   "mails": 9,
-   "objecten": 8,
+   "mails": 14,
+   "objecten": 13,
    "overgeslagen": 1,
    "redenen": [
     "Homberg, Wijchen: buiten Nijmegen"
@@ -39,19 +39,16 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 24,
-  "andere_status": 2,
-  "voorbeelden": [
-   "Berg en Dalseweg -> te huur gemeubileerd",
-   "Berg en Dalseweg -> te huur gemeubileerd"
-  ]
+  "zelfde_status": 29,
+  "andere_status": 0,
+  "voorbeelden": []
  },
  "berichten_per_afzender": {
   "funda.nl": 2,
   "funda.com": 0,
   "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 9,
+  "kamernet.nl": 14,
   "vendr.nl": 0,
   "huislijn.nl": 4,
   "huisly.nl": 0,

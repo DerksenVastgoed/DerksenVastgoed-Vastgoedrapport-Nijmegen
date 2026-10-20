@@ -567,6 +567,14 @@
   "omweg": 3.42,
   "soort": "bus"
  },
+ "51.83634,5.87026": {
+  "geschat": false,
+  "hemelsbreed": 92,
+  "meters": 268,
+  "naam": "Archipelstraat",
+  "omweg": 2.91,
+  "soort": "bus"
+ },
  "51.83635,5.86491": {
   "geschat": false,
   "hemelsbreed": 302,
@@ -725,6 +733,14 @@
   "meters": 100,
   "naam": "Mesdagstraat",
   "omweg": 1.09,
+  "soort": "bus"
+ },
+ "51.83870,5.84639": {
+  "geschat": false,
+  "hemelsbreed": 259,
+  "meters": 408,
+  "naam": "Rozenstraat",
+  "omweg": 1.58,
   "soort": "bus"
  },
  "51.83870,5.85856": {
@@ -1717,6 +1733,14 @@
   "meters": 367,
   "naam": "Waalkade",
   "omweg": 1.41,
+  "soort": "bus"
+ },
+ "51.84833,5.84893": {
+  "geschat": false,
+  "hemelsbreed": 186,
+  "meters": 261,
+  "naam": "Havenweg",
+  "omweg": 1.4,
   "soort": "bus"
  },
  "51.84843,5.85838": {

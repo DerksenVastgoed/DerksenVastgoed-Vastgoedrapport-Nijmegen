@@ -19,14 +19,14 @@ _14 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren.
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-485736.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor het aanpassen van de voorgevel van een winkelpand , aan Ziekerstraat 75, 6511LG Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">103 m²</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanpassing van een voorgevel is een esthetische ingreep zonder effect op functie of woningvoorraad.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanpassing van een voorgevel bij een winkelpand is een esthetische ingreep zonder functionele of marktrelevante gevolgen.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-19 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-485736.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-486891.html" style="color:#12242c;text-decoration:none">Besluit voor het intern verbouwen van een winkel, aan Broerstraat 16, 6511KN Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">819 m² . label B (2020)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van een winkel wijzigt de winkelfunctie niet en heeft geen directe marktimpact.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van een winkel wijzigt de winkelfunctie niet en heeft geen directe woningmarktimpact.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-19 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-486891.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -45,7 +45,7 @@ _9 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-489125.html" style="color:#12242c;text-decoration:none">Besluit voor het intern verbouwen van de huisartsenpraktijk, aan Professor Cornelissenstraat 2, 6524PJ Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">1561 m² . label D (2021)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van een huisartsenpraktijk raakt de bestaande zorgfunctie en wijzigt niets aan het woningaanbod.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Interne verbouwing van een huisartsenpraktijk raakt de bestaande maatschappelijke functie, geen signaal voor woningmarktstrategie.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-20 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-489125.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -84,7 +84,7 @@ _5 panden onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. 
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-485967.html" style="color:#12242c;text-decoration:none">Besluit voor het splitsen van de woning in zes zelfstandige appartementen, aan Graafseweg 18, 6512CB Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">374 m² op dit adres, niet van het hele pand . label D (2018) (alleen van dit adres bekend)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Besluit bevestigt dat splitsing naar zes zelfstandige appartementen op deze locatie planologisch is toegestaan.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Besluit bevestigt dat splitsing naar zes zelfstandige appartementen hier planologisch is toegestaan, wat het pand uit de eengezinsvoorraad haalt.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-19 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-485967.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -114,7 +114,7 @@ _1 pand onder de WOZ-grens niet getoond: die mag je na aankoop niet verhuren. Ze
 <div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
 <div style="margin-bottom:6px"><span style="display:inline-block;background:#7B5EA7;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">splitsen</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://zoek.officielebekendmakingen.nl/gmb-2026-488587.html" style="color:#12242c;text-decoration:none">Aanvraag omgevingsvergunning voor realiseren van meerdere zelfstandige woonruimtes (woongebouw), aan Hatertseweg 320, 6533GP Nijmegen</a></span></div>
 <div style="font-size:12px;color:#12242c;background:#eef2f4;display:inline-block;padding:3px 8px;border-radius:4px;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace">184 m² . label C (2020)</div>
-<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor meerdere zelfstandige woonruimtes is nog geen besluit en kan alsnog worden geweigerd.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Aanvraag voor meerdere zelfstandige woonruimtes is nog geen besluit, kan alsnog worden geweigerd door de gemeente.</div>
 <div style="font-size:11px;color:#7a8a92;margin-top:8px">2026-10-20 . <a href="https://zoek.officielebekendmakingen.nl/gmb-2026-488587.html" style="color:#4a7a72;text-decoration:none">bron</a></div>
 </div>
 
@@ -145,6 +145,6 @@ _Dagen in aanbod telt vanaf de eerste keer dat dit pand in de attendering versch
 
 ### Achtergrond
 
-Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 26%: 22.788 woningen, 3.097 winkels en kantoren en 48.965 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 43% van de 21.530 Nijmeegse studenten woont in de ring, waar 19% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 941 panden, waarvan er 109 nu in aanbod zijn. Bijgewerkt 20 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
+Nijmegen telt 86.404 woningen en 187.030 inwoners. De ring rond het Keizer Karelplein is daarvan 26%: 22.788 woningen, 3.097 winkels en kantoren en 48.965 inwoners. Studenten wegen er zwaarder dan in de rest van de stad: 43% van de 21.530 Nijmeegse studenten woont in de ring, waar 19% van de inwoners student is tegen 12% stadsbreed (CBS telt studenten op hun woonadres). De brief volgt 944 panden, waarvan er 109 nu in aanbod zijn. Bijgewerkt 20 oktober 2026. [Bekijk de eigendomskaart](https://derksenvastgoed.github.io/DerksenVastgoed-Vastgoedrapport-Nijmegen/kaart-eigendom-ring.html).
 
 _Referentietabellen, rendement en de beleggingslijst staan in de uitgebreide brief van zondag._

@@ -76016,10 +76016,20 @@
     "datum": "2026-10-20",
     "soort": "bekendmaking",
     "tekst": "Besluit voor het verbouwen van een kamerverhuurpand naar twee zelfstandige woningen, aan Ahornstraat 3, 6523JE Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-20",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1949, dat zelf al in gebruik is, mediaan 76 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-20 in de registratie staat"
    }
   ],
   "pand_id": "0268100000000571",
+  "transformatie_gemeld": 2,
   "vbo": "0268010000001132",
+  "vbo_gevormd": [
+   "0268010000115288"
+  ],
   "vbo_panden": [
    "0268100000000571"
   ]
@@ -79661,6 +79671,21 @@
   "vbo_panden": [
    "0268100000020976"
   ]
+ },
+ "biezenstraat": {
+  "adres": "Biezenstraat",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €620 per maand, 15 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "biezenstraat110": {
   "adres": "Biezenstraat 110",
@@ -87974,6 +87999,21 @@
   "vbo_panden": [
    "0268100000014293"
   ]
+ },
+ "coehoornstraat": {
+  "adres": "Coehoornstraat",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-gemeubileerd",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.600 per maand, 70 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "coehoornstraat29": {
   "adres": "Coehoornstraat 29",
@@ -133206,6 +133246,21 @@
   "vbo_panden": [
    "0268100000019009"
   ]
+ },
+ "nieuwenonnendaalseweg": {
+  "adres": "Nieuwe Nonnendaalseweg",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €614 per maand, 16 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "nieuwenonnendaalseweg107": {
   "adres": "Nieuwe Nonnendaalseweg 107",

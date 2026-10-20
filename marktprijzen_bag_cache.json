@@ -78207,7 +78207,8 @@
     ],
     "postcode": "6511GL",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:Hatertseweg 320|Nijmegen": {
     "postcode": "6533GP",
@@ -78220,5 +78221,23 @@
     "buurtnaam": "Galgenveld",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-56af22b6fa6e1e075b601e7a8e9cd7b3"
+  },
+  "Coehoornstraat|Nijmegen": {
+    "oppervlakte": 70,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Biezenstraat|Nijmegen": {
+    "oppervlakte": 15,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Nieuwe Nonnendaalseweg|Nijmegen": {
+    "oppervlakte": 16,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
