@@ -26,19 +26,7 @@ jobs:
           { echo "== monsters"; python voorlezen.py --monsters monsters --verhaal digests/2026-10-20-verhaal.md 2>&1
             echo "== hele verhaal"; /usr/bin/time -v python voorlezen.py --datum 2026-10-20 2>&1 | grep -v "^\s" ;
             ls -la digests/*.mp3 monsters/; } | tee voorlezen_proef.txt || true
-      - name: Mail alleen naar Mark
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          from: Vastgoed in Nijmegen
-          to: ${{ secrets.MAIL_TO }}
-          subject: TESTRUN voorleesstemmen
-          body: "Proef voor de voorleesknop. Elk fragment is een Nederlandse stem van Piper; de hele brief van 20 oktober is in de standaardstem (nl_NL-mls-medium). Welke stem wil je?"
-          attachments: monsters/*.mp3,digests/*.mp3
+      # De mail ging in de eerste run al naar Mark; deze run meet alleen.
       - name: Metingen terugzetten op de tak
         if: always()
         run: |
@@ -46,4 +34,4 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           cp monsters/LEESMIJ.txt voorlezen_stemmen.txt 2>/dev/null || true
           git add voorlezen_proef.txt voorlezen_stemmen.txt
-          git commit -m "Voorlezen proef: metingen" && git push
+          git commit -m "Voorlezen proef: metingen" && git pull --rebase origin "${GITHUB_REF_NAME}" && git push
