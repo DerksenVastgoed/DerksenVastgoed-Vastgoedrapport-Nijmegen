@@ -130,8 +130,21 @@ def vraag(model, system, berichten, max_tokens, effort="medium",
         if met_effort:
             inspanning = LAGER.get(inspanning or "high", "low")
     if label:
-        print(antwoord.regel(label) if not antwoord.fout
-              else f"{label}: mislukt, {antwoord.fout}", file=sys.stderr)
+        regel = (antwoord.regel(label) if not antwoord.fout
+                 else f"{label}: mislukt, {antwoord.fout}")
+        print(regel, file=sys.stderr)
+        # OOK IN DE REPO. Het joblogboek is van buiten de runner niet te
+        # lezen; diagnose/ wordt teruggecommit. Zo is na een week te zien
+        # hoeveel de brief denkt en of de tweede poging nodig was.
+        try:
+            if os.path.isdir("diagnose"):
+                import datetime as _dt
+                with open(os.path.join("diagnose", "taalmodel.txt"), "a",
+                          encoding="utf-8") as f:
+                    f.write(f"{_dt.date.today().isoformat()} {model} "
+                            f"{regel}\n")
+        except OSError:
+            pass
     return antwoord
 
 
