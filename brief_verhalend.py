@@ -1566,7 +1566,14 @@ def schrijf_brief(bronnen):
     try:
         import feitencontrole as _fc
         _adressen, _buurten = _fc.adres_buurt(), list(RING_BUURTEN)
-        controle_voor = _fc.bevindingen(tekst, prompt, _adressen, _buurten,
+        # De gegevens van de controle zijn wat de schrijver kreeg: de prompt
+        # EN de mechanismen uit het profiel. Zonder die laatste markeerde de
+        # controle op 20 oktober "vier jaar" en "vrij van huur" bij de
+        # opkoopbescherming als niet in de gegevens, en schrapte de
+        # herstelronde ze uit een zin die klopte.
+        import bronnen as _br2
+        _gegevens = prompt + "\n\n" + _br2.mechanismen()
+        controle_voor = _fc.bevindingen(tekst, _gegevens, _adressen, _buurten,
                                         model=MODEL)
         for zin, waarom, toets in controle_voor:
             if toets == "niet gedaan":
@@ -1618,8 +1625,10 @@ def schrijf_brief(bronnen):
         import feitencontrole as _fc
         _na = []
         if tekst:
+            import bronnen as _br3
             _na = [(g, "staat niet in de gegevens", "getal")
-                   for g in _fc.ongedekt(tekst, prompt)]
+                   for g in _fc.ongedekt(tekst, prompt + "\n\n"
+                                         + _br3.mechanismen())]
             _na += [(z, w, "buurt") for z, w in
                     _fc.buurtfouten(tekst, _fc.adres_buurt(),
                                     list(RING_BUURTEN))]
