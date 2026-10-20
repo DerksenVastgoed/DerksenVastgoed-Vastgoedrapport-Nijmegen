@@ -1,5 +1,51 @@
 {
  "datum": "2026-10-20",
- "voor_herstel": [],
+ "voor_herstel": [
+  [
+   "Twee besluiten van de gemeente vandaag, en ze raken precies waar wij in zitten.",
+   "De kernsignalen bevatten één besluit (Graafseweg 18, gepubliceerd 2026-10-19, dus niet vandaag) en één aanvraag (Hatertseweg 320, 2026-10-20). Dat zijn geen twee besluiten.",
+   "model"
+  ],
+  [
+   "Het grootste: de Graafseweg 18 heeft zijn vergunning binnen.",
+   "Bekend is alleen de titel 'Besluit voor het splitsen van de woning in zes zelfstandige appartementen' (2026-10-19). Of het besluit een verlening is, staat niet in de gegevens. De regel 'Besluit verleent splitsing' is een duiding en geen inhoud van het besluit.",
+   "model"
+  ],
+  [
+   "Dat is geen nieuw verhaal, ik schreef je daar al over toen de aanvraag liep, maar nu is hij dus verleend.",
+   "Graafseweg 18 is eerder gemeld op 17 oktober, dus een vervolg is terecht. Dat het besluit een verlening is, staat niet in de gegevens: alleen de titel van het besluit is bekend.",
+   "model"
+  ],
+  [
+   "De BAG had de zes eenheden trouwens al op 17 oktober staan als gevormd: 55, 374, 55, 35, 29 en 60 vierkante meter naast de bestaande 50 m2-woning, precies het aantal uit de vergunning.",
+   "De zes gevormde objecten zijn 55, 55, 35, 29, 60 en 50 m2. De woning in gebruik is die van 374 m2 ('374 m² op dit adres'). De brief verwisselt 374 en 50. De gevormde objecten staan er al sinds 2026-10-15; op 2026-10-17 telt de BAG 7 woningen. Zes is wel gelijk aan het aantal in het besluit.",
+   "model"
+  ],
+  [
+   "Het tweede besluit zit in onze buurt van vandaag, Galgenveld: aan de Hatertseweg 320 is een aanvraag binnengekomen voor een woongebouw met meerdere zelfstandige woonruimtes, 184 m2, label C.",
+   "De buurt van de dag is Biezen, niet Galgenveld. In welke buurt Hatertseweg 320 ligt, staat niet in de gegevens. Het is een aanvraag en geen besluit. Wel juist: aanvraag van 2026-10-20 voor meerdere zelfstandige woonruimtes (woongebouw), 184 m², label C (2020).",
+   "model"
+  ],
+  [
+   "In de bekendmakingen zien we in 2025 twee aanvragen en in 2026 alweer vier, waarvan er één ging over een pand dat kort na een verkoop werd aangevraagd voor een ingreep.",
+   "2025: 2 aanvragen en 2026: 4 aanvragen klopt. De gegevens zeggen alleen: '1 keer werd er in Biezen na een verkoop een ingreep aangevraagd op hetzelfde adres'. Dat dit een van de vier aanvragen van 2026 is en dat het 'kort' na de verkoop was, staat er niet.",
+   "model"
+  ],
+  [
+   "Voor ons is dat relevant genoeg om te onthouden wat die regel precies doet: hij verbiedt niet het kopen of splitsen van een woning, hij verbiedt het VERHUREN ervan binnen vier jaar na aankoop, als de WOZ op het moment van aankoop niet boven €396.000 lag en de woning vrij van huur was.",
+   "De gegevens noemen alleen de WOZ-grens van €396.000 (artikel 19) en dat panden onder die grens na aankoop niet verhuurd mogen worden. Een termijn van vier jaar, het moment van aankoop als peildatum en de voorwaarde 'vrij van huur' staan er niet in.",
+   "model"
+  ],
+  [
+   "Of het zover komt, moet nog blijken, maar het is de moeite waard dit te volgen: het raakt precies het soort pand waar in Biezen, Stadscentrum en Benedenstad de meeste WOZ-waarden onder die grens liggen.",
+   "Alleen buurtgemiddelden zijn bekend: Biezen €358.000, Stadscentrum €356.000, Benedenstad €334.000, alle onder €396.000. De gegevens zeggen uitdrukkelijk dat dit een buurtgemiddelde is. Welk deel van de panden onder de grens ligt ('de meeste'), staat er niet. Bottendaal en St. Anna (€394.000) liggen gemiddeld ook onder de grens.",
+   "model"
+  ],
+  [
+   "Als alle buurten tegelijk zo hard stijgen, is dat geen markt die in vier weken verdubbelt, maar een steekproef die van samenstelling verandert: er komen andere panden in onze meting.",
+   "De gegevens noemen +111% op jaarbasis, niet een verdubbeling in vier weken. Het gaat om 5 van de 6 buurten met een reeks, niet om alle buurten. De verklaring dat de samenstelling van de steekproef verandert, klopt wel.",
+   "model"
+  ]
+ ],
  "na_herstel": []
 }

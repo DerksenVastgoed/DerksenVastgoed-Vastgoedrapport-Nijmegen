@@ -78226,18 +78226,21 @@
     "oppervlakte": 70,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Biezenstraat|Nijmegen": {
     "oppervlakte": 15,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Nieuwe Nonnendaalseweg|Nijmegen": {
     "oppervlakte": 16,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   }
 }
