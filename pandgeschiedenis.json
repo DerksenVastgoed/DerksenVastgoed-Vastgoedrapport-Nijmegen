@@ -75706,9 +75706,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43",
+    "datum": "2024-01-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €300.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43",
     "datum": "2024-02-14",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €300.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-achter-de-oude-gracht-17/43",
+    "datum": "2024-02-14",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €300.000 (eerdere advertentie)"
    },
    {
     "bron": "aanbod",
@@ -78017,10 +78029,22 @@
     "tekst": "verkocht. vraagprijs €350.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://marjanvanheerde.nl/woningen/beijensstraat-18/",
+    "datum": "2024-12-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €350.000 (eerdere advertentie)"
+   },
+   {
     "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-beijensstraat-18/17223256/",
     "datum": "2026-09-08",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €419.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-beijensstraat-18/17223256/",
+    "datum": "2026-09-08",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €419.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -78169,6 +78193,12 @@
     "datum": "2023-11-29",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €295.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://hestia.nl/object/beijensstraat-4-2/",
+    "datum": "2023-11-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €295.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -78373,6 +78403,12 @@
     "datum": "2026-06-22",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €575.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-beijensstraat-80/44400022/",
+    "datum": "2026-06-22",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €575.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -79511,10 +79547,22 @@
     "tekst": "te koop aangeboden. vraagprijs €349.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2014-01-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €349.000 (eerdere advertentie)"
+   },
+   {
     "bron": "model: http://huisx.nl/koop/2959827/biesmanstraat-3/nijmegen",
     "datum": "2014-09-02",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €349.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: http://huisx.nl/koop/2959827/biesmanstraat-3/nijmegen",
+    "datum": "2014-09-02",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €349.000 (eerdere advertentie)"
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6512ka/biesmanstraat/3",
@@ -79533,6 +79581,12 @@
     "datum": "2026-03-13",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €650.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.miljoenhuizen.nl/nijmegen/6512ka/biesmanstraat/3",
+    "datum": "2026-03-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €650.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -80654,9 +80708,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22",
+    "datum": "2026-05-18",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €365.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22",
     "datum": "2026-06-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €365.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ej/bloemerstraat/22",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €365.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -81224,6 +81290,12 @@
     "tekst": "te koop aangeboden. vraagprijs €275.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://buurtje.nl/en/studio/boomvalkstraat-18-nijmegen/",
+    "datum": "2026-08-10",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €275.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -81425,10 +81497,22 @@
     "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/zoeken/koop/?selected_area=6542 (Funda postcode 6542 overzicht) + htt",
+    "datum": "2025-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €500.000 (zekerheid laag)"
+   },
+   {
     "bron": "model: https://marjanvanheerde.nl/verkoop/ (pagina ca. 230 dagen oud, woning vermeld als 'Verkoch",
     "datum": "2026-01-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €500.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://marjanvanheerde.nl/verkoop/ (pagina ca. 230 dagen oud, woning vermeld als 'Verkoch",
+    "datum": "2026-01-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €500.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -83904,6 +83988,12 @@
     "tekst": "te koop aangeboden. vraagprijs €200.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-burghardt-van-den-berghstraat-175-a/",
+    "datum": "2026-07-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €200.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -85897,6 +85987,12 @@
     "datum": "2026-10-02",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €295.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/zoeken/koop/?selected_area=%5B%22nijmegen%22%5D",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €295.000 (zekerheid midden)"
    }
   ],
   "pand_id": "0268100000027927",
@@ -88977,9 +89073,21 @@
    },
    {
     "bron": "model: https://drimble.nl/adres/nijmegen/6521GN/daalseweg-56a.html",
+    "datum": "2019-03-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €315.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521GN/daalseweg-56a.html",
     "datum": "2019-10-23",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €315.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521GN/daalseweg-56a.html",
+    "datum": "2019-10-23",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €315.000 (eerdere advertentie)"
    },
    {
     "bron": "aanbod",
@@ -89314,6 +89422,12 @@
     "datum": "2026-01-06",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €475.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://delistraat71.nl/en",
+    "datum": "2026-01-06",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €475.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -90264,6 +90378,12 @@
     "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511dd/doddendaal/117",
+    "datum": "2026-07-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €500.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "in onderhandeling",
@@ -90789,6 +90909,12 @@
     "tekst": "te koop aangeboden. vraagprijs €595.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://hermsenmakelaarsnijmegen.nl/woningaanbod/koop/nijmegen/dokstraat/425",
+    "datum": "2026-05-30",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €595.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-11",
     "soort": "te koop",
@@ -91087,6 +91213,12 @@
     "datum": "2026-10-02",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €595.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://hermsenmakelaarsnijmegen.nl/woningaanbod/koop/nijmegen/dokstraat/425",
+    "datum": "2026-10-02",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €595.000 (zekerheid laag)"
    }
   ],
   "pand_id": "0268100000088468",
@@ -91980,6 +92112,12 @@
     "datum": "2025-08-26",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €360.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.pararius.nl/appartement-te-koop/nijmegen/8d9107ae/dominicanenstraat",
+    "datum": "2025-08-26",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €360.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -94201,9 +94339,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-07-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €265.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
     "datum": "2026-09-03",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €265.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541pd/eerste-oude-heselaan/172",
+    "datum": "2026-09-03",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €265.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -94814,6 +94964,12 @@
     "datum": "2025-04-22",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €325.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://kadastralekaart.com/adres/nijmegen-eilbrachtstraat-6/0268200000006970 en https://w",
+    "datum": "2025-04-22",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €325.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -95921,9 +96077,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €535.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
     "datum": "2026-02-18",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €535.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-evertsenstraat-42/43222259/",
+    "datum": "2026-02-18",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €535.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -96789,6 +96957,12 @@
     "tekst": "te koop aangeboden. vraagprijs €1.025.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6524jd/fransestraat/50 (vermelding 'Fransestraat 38 te koop,",
+    "datum": "2026-08-05",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €1.025.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "in onderhandeling",
@@ -97207,9 +97381,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-05-07",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €375.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
     "datum": "2026-07-03",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €375.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511wd/ganzenheuvel/18",
+    "datum": "2026-07-03",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €375.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -97583,10 +97769,22 @@
     "tekst": "te koop aangeboden. vraagprijs €217.500 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-gerard-noodtstraat-129-a7/43323785/",
+    "datum": "2025-04-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €217.500 (zekerheid laag)"
+   },
+   {
     "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=%5B%22nijmegen%2Fstraat-gerard-noodtstraat%",
     "datum": "2025-09-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €217.500 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=%5B%22nijmegen%2Fstraat-gerard-noodtstraat%",
+    "datum": "2025-09-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €217.500 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -99376,9 +99574,21 @@
    },
    {
     "bron": "model: https://www.houwenmakelaars.nl/woning/graafsedwarsstraat-65/",
+    "datum": "2022-01-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €339.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.houwenmakelaars.nl/woning/graafsedwarsstraat-65/",
     "datum": "2022-09-21",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €339.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.houwenmakelaars.nl/woning/graafsedwarsstraat-65/",
+    "datum": "2022-09-21",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €339.000 (eerdere advertentie)"
    },
    {
     "bron": "model: https://drimble.nl/postcode/6512ER/",
@@ -99387,10 +99597,22 @@
     "tekst": "te koop aangeboden. vraagprijs €525.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://drimble.nl/postcode/6512ER/",
+    "datum": "2026-02-24",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €525.000 (zekerheid hoog)"
+   },
+   {
     "bron": "model: https://huispedia.nl/nijmegen/graafsedwarsstraat",
     "datum": "2026-06-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €525.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/graafsedwarsstraat",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €525.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -102430,9 +102652,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €610.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
     "datum": "2026-05-27",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €610.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-graafseweg-76/43339621/",
+    "datum": "2026-05-27",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €610.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -103445,9 +103679,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-groesbeeksedwarsweg-153/431",
+    "datum": "2025-10-18",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €615.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-groesbeeksedwarsweg-153/431",
     "datum": "2025-11-03",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €615.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-groesbeeksedwarsweg-153/431",
+    "datum": "2025-11-03",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €615.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -103654,6 +103900,12 @@
     "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6521dc/groesbeeksedwarsweg/99",
+    "datum": "2026-09-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €495.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "in onderhandeling",
@@ -103829,6 +104081,12 @@
     "tekst": "te koop aangeboden. vraagprijs €950.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-118/44400843/",
+    "datum": "2026-06-22",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €950.000 (zekerheid hoog)"
+   },
+   {
     "bron": "Funda, verkoopdatum op de advertentie, gezien door Mark op 14-10-2026",
     "datum": "2026-09-21",
     "soort": "verkocht",
@@ -103959,9 +104217,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-146/44491812/",
+    "datum": "2026-06-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €900.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-146/44491812/",
     "datum": "2026-06-19",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €900.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-groesbeekseweg-146/44491812/",
+    "datum": "2026-06-19",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €900.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -104805,6 +105075,12 @@
     "tekst": "te koop aangeboden. vraagprijs €995.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=nijmegen%2Fstraat-groesbeekseweg",
+    "datum": "2026-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €995.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -104921,6 +105197,12 @@
     "datum": "2026-01-01",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €1.150.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=nijmegen%2Fstraat-groesbeekseweg",
+    "datum": "2026-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €1.150.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -108539,6 +108821,12 @@
     "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sb/hertogstraat/32",
+    "datum": "2026-06-06",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €365.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -108924,10 +109212,22 @@
     "tekst": "te koop aangeboden. vraagprijs €600.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.rebogroep.nl/nl/aanbod/am11871-heselaan-90-6541-mh-nijmegen",
+    "datum": "2026-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €600.000 (zekerheid laag)"
+   },
+   {
     "bron": "model: https://huispedia.nl/nijmegen/heselaan",
     "datum": "2026-04-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €600.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/heselaan",
+    "datum": "2026-04-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €600.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -111028,9 +111328,21 @@
    },
    {
     "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
+    "datum": "2019-04-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €197.500 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
     "datum": "2019-06-11",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €197.500 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
+    "datum": "2019-06-11",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €197.500 (eerdere advertentie)"
    },
    {
     "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
@@ -111040,9 +111352,21 @@
    },
    {
     "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
+    "datum": "2021-10-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €285.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
     "datum": "2021-11-07",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €285.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6521HK/jacob-canisstraat-79.html",
+    "datum": "2021-11-07",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €285.000 (eerdere advertentie)"
    },
    {
     "bron": "aanbod",
@@ -111245,9 +111569,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listin",
+    "datum": "2025-08-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €219.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listin",
     "datum": "2026-03-23",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €219.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6512ej/jan-de-wittstraat/6 en https://www.pararius.nl/listin",
+    "datum": "2026-03-23",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €219.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -111376,9 +111712,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-03-11",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €595.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
     "datum": "2026-04-12",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €595.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-jan-luykenstraat-2/43363590/",
+    "datum": "2026-04-12",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €595.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -115112,9 +115460,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/433308",
+    "datum": "2026-05-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €450.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/433308",
     "datum": "2026-06-05",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €450.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-keizer-karelplein-27/433308",
+    "datum": "2026-06-05",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €450.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -116775,6 +117135,12 @@
     "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6541ps/krayenhofflaan/281",
+    "datum": "2026-07-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €365.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -117615,6 +117981,12 @@
     "datum": "2026-08-13",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €309.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.checkdithuis.nl/nijmegen/kronenburgersingel/",
+    "datum": "2026-08-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €309.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -118971,9 +119343,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-kronenburgersingel-291/4324",
+    "datum": "2026-02-21",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €335.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-kronenburgersingel-291/4324",
     "datum": "2026-03-11",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €335.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-kronenburgersingel-291/4324",
+    "datum": "2026-03-11",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €335.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -120488,6 +120872,12 @@
     "tekst": "te koop aangeboden. vraagprijs €450.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-lage-markt-21/44464826/",
+    "datum": "2026-05-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €450.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "in onderhandeling",
@@ -120791,9 +121181,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6511vk/lage-markt/47-b",
+    "datum": "2025-09-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €390.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511vk/lage-markt/47-b",
     "datum": "2026-03-23",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €390.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511vk/lage-markt/47-b",
+    "datum": "2026-03-23",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €390.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -123849,9 +124251,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
+    "datum": "2025-01-24",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €575.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
     "datum": "2025-03-12",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €575.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-marienburg-20/43887427/",
+    "datum": "2025-03-12",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €575.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -124290,6 +124704,12 @@
     "datum": "2026-05-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €375.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ps/marienburg/82-d (vermelding: 'Mariënburg 82-A Verkoch",
+    "datum": "2026-05-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €375.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -128626,10 +129046,22 @@
     "tekst": "te koop aangeboden. vraagprijs €469.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://www.checkdithuis.nl/nijmegen/molukkenstraat/",
+    "datum": "2026-07-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €469.000 (zekerheid hoog)"
+   },
+   {
     "bron": "model: https://huispedia.nl/nijmegen/6524nb/molukkenstraat/14",
     "datum": "2026-09-04",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €469.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6524nb/molukkenstraat/14",
+    "datum": "2026-09-04",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €469.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -128667,9 +129099,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-molukkenstraat-152/44452787",
+    "datum": "2026-05-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €385.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-molukkenstraat-152/44452787",
     "datum": "2026-06-16",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €385.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-molukkenstraat-152/44452787",
+    "datum": "2026-06-16",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €385.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -132560,6 +133004,12 @@
     "tekst": "te koop aangeboden. vraagprijs €425.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-nieuwe-marktstraat-6/44429797/",
+    "datum": "2026-07-08",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €425.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -133437,6 +133887,12 @@
     "datum": "2026-07-17",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €425.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://buurtje.nl/en/apartment/nina-simonestraat-124-nijmegen/",
+    "datum": "2026-07-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €425.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -135439,6 +135895,12 @@
     "tekst": "te koop aangeboden. vraagprijs €675.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-oude-nonnendaalseweg-194/44468346/",
+    "datum": "2026-05-22",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €675.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -135778,9 +136240,21 @@
    },
    {
     "bron": "model: https://drimble.nl/adres/nijmegen/6542JZ/palmstraat-40.html",
+    "datum": "2025-10-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €485.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6542JZ/palmstraat-40.html",
     "datum": "2025-11-04",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €485.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6542JZ/palmstraat-40.html",
+    "datum": "2025-11-04",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €485.000 (zekerheid hoog)"
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/",
@@ -135790,9 +136264,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/",
+    "datum": "2026-05-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €535.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/",
     "datum": "2026-05-22",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €535.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/huis-palmstraat-40/43330440/",
+    "datum": "2026-05-22",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €535.000 (eerdere advertentie)"
    },
    {
     "bron": "aanbod",
@@ -137084,6 +137570,12 @@
     "tekst": "te koop aangeboden. vraagprijs €425.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-plein-1944-129/17216502/",
+    "datum": "2026-09-03",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €425.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "in onderhandeling",
@@ -137128,6 +137620,12 @@
     "tekst": "verkocht. vraagprijs €629.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/verkocht/plein-1944-nijmegen",
+    "datum": "2026-07-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €629.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -137167,9 +137665,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-132-a/43325456/",
+    "datum": "2026-04-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €400.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-132-a/43325456/",
     "datum": "2026-05-11",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €400.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-132-a/43325456/",
+    "datum": "2026-05-11",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €400.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -137850,9 +138360,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-86-b/44490576/",
+    "datum": "2026-06-16",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €495.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-86-b/44490576/",
     "datum": "2026-08-14",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €495.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-plein-1944-86-b/44490576/",
+    "datum": "2026-08-14",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €495.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -138137,6 +138659,12 @@
     "datum": "2026-09-15",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €539.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-pontanusstraat-19/44507093/",
+    "datum": "2026-09-15",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €539.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -138897,10 +139425,28 @@
     "tekst": "verkocht. vraagprijs €299.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://drimble.nl/postcode/6521AX",
+    "datum": "2022-02-15",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €299.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://drimble.nl/postcode/6521AX",
+    "datum": "2022-02-15",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €299.000 (eerdere advertentie)"
+   },
+   {
     "bron": "model: https://hestia.nl/object/prins-hendrikstraat-65/",
     "datum": "2026-04-09",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €400.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://hestia.nl/object/prins-hendrikstraat-65/",
+    "datum": "2026-04-09",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €400.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -140856,15 +141402,33 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6511ds/regulierstraat/92",
+    "datum": "2026-06-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €345.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ds/regulierstraat/92",
     "datum": "2026-08-31",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €345.000 (zekerheid midden)"
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6511ds/regulierstraat/92",
+    "datum": "2026-08-31",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €345.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ds/regulierstraat/92",
     "datum": "2026-09-08",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €345.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6511ds/regulierstraat/92",
+    "datum": "2026-09-08",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €345.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -141001,9 +141565,21 @@
    },
    {
     "bron": "model: https://www.corpowonen.nl/object/66164/ridderspoor-12-nijmegen",
+    "datum": "2026-07-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €335.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.corpowonen.nl/object/66164/ridderspoor-12-nijmegen",
     "datum": "2026-08-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €335.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.corpowonen.nl/object/66164/ridderspoor-12-nijmegen",
+    "datum": "2026-08-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €335.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -141229,6 +141805,12 @@
     "tekst": "verkocht. vraagprijs €190.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://walterliving.com/report/ridderspoor-51-nijmegen",
+    "datum": "2019-01-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €190.000 (eerdere advertentie)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -141271,9 +141853,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ridderstraat-32/44423113/",
+    "datum": "2026-07-10",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €299.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ridderstraat-32/44423113/",
     "datum": "2026-07-29",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €299.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ridderstraat-32/44423113/",
+    "datum": "2026-07-29",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €299.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -141636,6 +142230,12 @@
     "datum": "2026-07-10",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €300.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.pararius.nl/koopwoningen/nijmegen/appartement",
+    "datum": "2026-07-10",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €300.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -142264,9 +142864,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6531ae/ruusbroecstraat/7",
+    "datum": "2025-10-07",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6531ae/ruusbroecstraat/7",
     "datum": "2025-11-13",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €550.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6531ae/ruusbroecstraat/7",
+    "datum": "2025-11-13",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €550.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -142311,6 +142923,12 @@
     "datum": "2026-07-01",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €925.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-de-ruyterstraat-135/44437393/",
+    "datum": "2026-07-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €925.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -144169,6 +144787,12 @@
     "tekst": "onder bod, vraagprijs €550.000, 89 m2"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6511sg/scholenhof/8",
+    "datum": "2026-09-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
     "bron": "EP-Online",
     "datum": "2026-10-01",
     "soort": "energielabel",
@@ -145685,9 +146309,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
+    "datum": "2024-06-08",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €189.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
     "datum": "2024-07-08",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €189.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-smetiusstraat-4-d/43529212/",
+    "datum": "2024-07-08",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €189.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -145969,9 +146605,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6531bm/spieghelstraat/3",
+    "datum": "2026-05-21",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €615.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6531bm/spieghelstraat/3",
     "datum": "2026-06-16",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €615.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6531bm/spieghelstraat/3",
+    "datum": "2026-06-16",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €615.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -147434,9 +148082,21 @@
    },
    {
     "bron": "model: https://www.verbeek-makelaars.nl/aanbod/woningaanbod/nijmegen/koop/huis-8909447-St.-Annast",
+    "datum": "2025-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €165.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.verbeek-makelaars.nl/aanbod/woningaanbod/nijmegen/koop/huis-8909447-St.-Annast",
     "datum": "2025-06-27",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €165.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.verbeek-makelaars.nl/aanbod/woningaanbod/nijmegen/koop/huis-8909447-St.-Annast",
+    "datum": "2025-06-27",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €165.000 (eerdere advertentie)"
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30",
@@ -147446,9 +148106,21 @@
    },
    {
     "bron": "model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30",
+    "datum": "2026-08-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €189.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30",
     "datum": "2026-09-27",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €189.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6524gd/st-annastraat/30",
+    "datum": "2026-09-27",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €189.000 (eerdere advertentie)"
    },
    {
     "bron": "aanbod",
@@ -150138,6 +150810,18 @@
     "tekst": "verkocht. vraagprijs €350.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €350.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/st-jorisstraat-48-nijmegen/",
+    "datum": "2026-04-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €350.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -150440,6 +151124,12 @@
     "datum": "2026-10-02",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €375.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/zoeken/koop/?selected_area=%5B%22nijmegen%22%5D (actief in zoekresult",
+    "datum": "2026-10-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €375.000 (zekerheid midden)"
    }
   ],
   "pand_id": "0268100000025584",
@@ -150648,6 +151338,12 @@
     "datum": "2016-05-25",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €360.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://drimble.nl/adres/nijmegen/6512HM/st-stephanusstraat-13.html",
+    "datum": "2016-05-25",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €360.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -151770,6 +152466,12 @@
     "tekst": "verkocht. vraagprijs €347.500 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6524bl/sweersstraat/21 (vergelijkingstransactie vermeld als ",
+    "datum": "2024-12-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €347.500 (eerdere advertentie)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -152372,10 +153074,22 @@
     "tekst": "te koop aangeboden. vraagprijs €375.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.funda.nl/zoeken/koop?selected_area=nijmegen%2Fnije-veld",
+    "datum": "2026-01-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €375.000 (zekerheid laag)"
+   },
+   {
     "bron": "model: https://huispedia.nl/nijmegen/thijmstraat",
     "datum": "2026-06-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €375.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/thijmstraat",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €375.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -153309,6 +154023,12 @@
     "tekst": "verkocht. vraagprijs €285.000 (zekerheid midden)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6531ac/tollensstraat/143-b",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €285.000 (zekerheid midden)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -153350,6 +154070,18 @@
     "tekst": "verkocht. vraagprijs €319.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://drimble.nl/postcode/6531AC/",
+    "datum": "2025-07-26",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €319.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://www.kolmeijernijmegen.nl/aanbod/tollensstraat-147b/",
+    "datum": "2025-07-26",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €319.000 (eerdere advertentie)"
+   },
+   {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tollensstraat-147-b/4334428",
     "datum": "2026-05-13",
     "soort": "te koop",
@@ -153357,9 +154089,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tollensstraat-147-b/4334428",
+    "datum": "2026-05-13",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €350.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tollensstraat-147-b/4334428",
     "datum": "2026-06-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €350.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tollensstraat-147-b/4334428",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €350.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -154681,9 +155425,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-04-24",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €480.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
     "datum": "2026-05-11",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €480.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/huis-tulpstraat-12/43320109/",
+    "datum": "2026-05-11",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €480.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -154960,6 +155716,12 @@
     "datum": "2026-08-26",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €500.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6542vj/tweede-oude-heselaan/368",
+    "datum": "2026-08-26",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €500.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -156030,9 +156792,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tweede-walstraat-49-a/44476",
+    "datum": "2026-05-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €345.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tweede-walstraat-49-a/44476",
     "datum": "2026-07-06",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €345.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-tweede-walstraat-49-a/44476",
+    "datum": "2026-07-06",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €345.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -156417,9 +157191,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-05",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
     "datum": "2026-03-21",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/en/detail/koop/nijmegen/appartement-van-berchenstraat-27-a/89722103/",
+    "datum": "2026-03-21",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €395.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -158528,9 +159314,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15",
+    "datum": "2026-05-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €565.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15",
     "datum": "2026-05-19",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €565.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-oldenbarneveltstraat-15",
+    "datum": "2026-05-19",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €565.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -158779,6 +159577,12 @@
     "datum": "2026-08-21",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €235.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-van-oldenbarneveltstraat-61-b/172973",
+    "datum": "2026-08-21",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €235.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -159418,9 +160222,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-schevichavenstraat-3-r/",
+    "datum": "2026-06-17",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-schevichavenstraat-3-r/",
     "datum": "2026-07-06",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €395.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-van-schevichavenstraat-3-r/",
+    "datum": "2026-07-06",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €395.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -165542,6 +166358,12 @@
     "tekst": "te koop aangeboden. vraagprijs €375.000 (zekerheid laag)"
    },
    {
+    "bron": "model: https://www.youtube.com/watch?v=wlsdJ5eyRqE (video geplaatst '128 days ago' per 2026-10-03",
+    "datum": "2026-05-28",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €375.000 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -166184,6 +167006,12 @@
     "datum": "2026-02-20",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid midden)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-veemarkt-3/43243012/",
+    "datum": "2026-02-20",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €365.000 (zekerheid midden)"
    },
    {
     "bron": "aanbod",
@@ -167526,15 +168354,33 @@
    },
    {
     "bron": "model: https://walterliving.com/report/vondelstraat-48-a-nijmegen",
+    "datum": "2018-10-25",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €237.500 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://walterliving.com/report/vondelstraat-48-a-nijmegen",
     "datum": "2018-11-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €237.500 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://walterliving.com/report/vondelstraat-48-a-nijmegen",
+    "datum": "2018-11-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €237.500 (eerdere advertentie)"
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-vondelstraat-48-a/44419771/",
     "datum": "2026-07-01",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €398.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-vondelstraat-48-a/44419771/",
+    "datum": "2026-07-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €398.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -167591,6 +168437,12 @@
     "datum": "2026-07-02",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-vondelstraat-63/44414294/",
+    "datum": "2026-07-02",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €495.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -167662,9 +168514,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-06",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
     "datum": "2026-03-26",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €550.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-vondelstraat-75-b/89722755/",
+    "datum": "2026-03-26",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €550.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -168073,6 +168937,12 @@
     "datum": "2026-05-07",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €599.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.checkdithuis.nl/nijmegen/voorstadslaan/",
+    "datum": "2026-05-07",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €599.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -171144,6 +172014,12 @@
     "tekst": "te koop aangeboden. vraagprijs €675.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://www.pararius.nl/appartement-te-koop/nijmegen/71136843/waalkade",
+    "datum": "2026-01-19",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €675.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -173226,6 +174102,12 @@
     "tekst": "te koop aangeboden. vraagprijs €495.000 (zekerheid hoog)"
    },
    {
+    "bron": "model: https://drimble.nl/postcode/6531DL/",
+    "datum": "2026-04-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €495.000 (zekerheid hoog)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-28",
     "soort": "verkocht",
@@ -174454,9 +175336,21 @@
    },
    {
     "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ziekerstraat-10/44476866/",
+    "datum": "2026-05-29",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €398.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ziekerstraat-10/44476866/",
     "datum": "2026-06-15",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €398.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/verkocht/nijmegen/appartement-ziekerstraat-10/44476866/",
+    "datum": "2026-06-15",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €398.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",
@@ -174797,6 +175691,18 @@
     "datum": "2026-06-01",
     "soort": "verkocht",
     "tekst": "verkocht. vraagprijs €319.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/ziekerstraat-26-nijmegen/",
+    "datum": "2026-06-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €319.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.hansjanssen.nl/wonen/object/ziekerstraat-26-nijmegen/",
+    "datum": "2026-06-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €319.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -175473,6 +176379,18 @@
     "tekst": "verkocht. vraagprijs €349.500 (zekerheid laag)"
    },
    {
+    "bron": "model: https://huispedia.nl/nijmegen/6541la/scholeksterstraat/39 (vermelding 'te koop in de buurt",
+    "datum": "2026-08-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €349.500 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://huispedia.nl/nijmegen/6541nv/zwaluwstraat/175 (status: 'Niet beschikbaar')",
+    "datum": "2026-08-01",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €349.500 (zekerheid laag)"
+   },
+   {
     "bron": "aanbod",
     "datum": "2026-09-13",
     "soort": "te koop",
@@ -175547,10 +176465,28 @@
     "tekst": "verkocht. vraagprijs €225.000 (eerdere advertentie)"
    },
    {
+    "bron": "model: https://hansjanssennijmegen.nl/woningen/koop/nijmegen/zwaluwstraat-36/",
+    "datum": "2020-08-15",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €225.000 (eerdere advertentie)"
+   },
+   {
+    "bron": "model: https://hansjanssennijmegen.nl/woningen/koop/nijmegen/zwaluwstraat-36/",
+    "datum": "2020-08-15",
+    "soort": "verkocht",
+    "tekst": "verkocht, vraagprijs €225.000 (eerdere advertentie)"
+   },
+   {
     "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-zwaluwstraat-36/43337979/",
     "datum": "2026-05-01",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €365.000 (zekerheid laag)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-zwaluwstraat-36/43337979/",
+    "datum": "2026-05-01",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €365.000 (zekerheid laag)"
    },
    {
     "bron": "aanbod",
@@ -175613,6 +176549,12 @@
     "datum": "2026-08-14",
     "soort": "te koop",
     "tekst": "te koop aangeboden. vraagprijs €315.000 (zekerheid hoog)"
+   },
+   {
+    "bron": "model: https://www.funda.nl/detail/koop/nijmegen/appartement-zwaluwstraat-54/17281905/ en https:/",
+    "datum": "2026-08-14",
+    "soort": "te koop",
+    "tekst": "te koop aangeboden, vraagprijs €315.000 (zekerheid hoog)"
    },
    {
     "bron": "aanbod",

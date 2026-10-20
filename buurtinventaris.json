@@ -75,10 +75,10 @@
   },
   "Stadscentrum": {
    "adressen": 7357,
-   "adressen_buiten_de_gemeente": 4618,
+   "adressen_buiten_de_gemeente": 4615,
    "adressen_doorgebladerd": 7357,
    "adressen_gemeld": 7357,
-   "adressen_zonder_gemeentefilter": 11975,
+   "adressen_zonder_gemeentefilter": 11972,
    "postcodes": 337,
    "tweede_ronde_per_straat": 0,
    "volledig": true
@@ -1649,10 +1649,10 @@
  },
  "totaal": {
   "adressen": 29232,
-  "adressen_al_nagekeken": 7517,
+  "adressen_al_nagekeken": 7588,
   "buurten_gevraagd": 8,
   "buurten_volledig": 8,
-  "panden_al_nagekeken": 1640,
+  "panden_al_nagekeken": 1648,
   "postcodes": 1517,
   "postcodes_per_viercijferig": {
    "6511": 361,
