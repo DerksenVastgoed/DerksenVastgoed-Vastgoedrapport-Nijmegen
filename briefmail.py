@@ -120,7 +120,7 @@ def wat_er_mist(datum, modus, map="digests", bewaren=True):
     return {"gemeten": False, "vorige": "", "kwijt": []}
 
 
-def samenstellen(verhaal, werk, weggevallen=(), voet=""):
+def samenstellen(verhaal, werk, weggevallen=(), voet="", luister=""):
     """De html van de mail, uit de stukken die er werkelijk zijn."""
     import markdown
 
@@ -128,6 +128,8 @@ def samenstellen(verhaal, werk, weggevallen=(), voet=""):
     if voet:
         delen.append(voet)
     if verhaal:
+        if luister:
+            delen.append(luister)
         delen.append(markdown.markdown(verhaal, extensions=["extra"]))
         if weggevallen:
             delen.append('<p class="inleiding">Niet in deze brief: '
@@ -210,7 +212,17 @@ def bouwen(datum, modus, map="digests"):
         meld(f"LET OP: de briefvoet ontbreekt in de mail: {e}")
         naar_omgeving("GEEN_VOET", "1")
 
-    html = samenstellen(verhaal, stuk["inhoud"], weggevallen, voet)
+    # De knop om het verhaal te laten voorlezen (voorlezen.py). Alleen als er
+    # een MP3 bij precies deze tekst is; anders geen knop.
+    luister = ""
+    try:
+        import voorlezen
+        luister = voorlezen.knop(datum, verhaal, map)
+    except Exception as e:
+        meld(f"LET OP: de voorleesknop ontbreekt: {e}")
+    if verhaal.strip() and not luister:
+        meld("Geen voorleesknop: geen MP3 bij dit verhaal, of de repo is prive.")
+    html = samenstellen(verhaal, stuk["inhoud"], weggevallen, voet, luister)
     if not html:
         meld("Geen verhaal en geen bijlage: er is geen mail samengesteld.")
         return 1

@@ -151,6 +151,14 @@ def herstel(datum, correcties, vraag=None):
         with open(pad, "w", encoding="utf-8") as f:
             f.write(eerste)
         return False
+    # De voorleesknop hoort bij de nieuwe tekst: een nieuwe MP3 (de naam volgt
+    # de tekst, zie voorlezen.py). Mislukt dat, dan geen knop, wel een brief.
+    try:
+        import voorlezen
+        voorlezen.maak(datum)
+    except Exception as e:
+        print(f"LET OP: voorlezen na het herschrijven mislukt: {e}",
+              file=sys.stderr)
     import briefmail
     modus = lees().get("modus") or "dagelijks"
     return briefmail.bouwen(datum, modus) == 0
