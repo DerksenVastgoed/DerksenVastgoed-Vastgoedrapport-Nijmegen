@@ -1146,6 +1146,30 @@ ACHTERGROND = [
 ]
 
 
+def uitleg(naam):
+    """De tekst van een achtergrondstuk uit ACHTERGROND, of "". Een plek voor
+    hoe een regel werkt; een taalmodel krijgt deze tekst in plaats van zijn
+    eigen idee ervan."""
+    for n, tekst in ACHTERGROND:
+        if n == naam:
+            return tekst
+    return ""
+
+
+# MECHANISMEN DIE EEN TAALMODEL VERKEERD OM HEEFT. 20 oktober 2026: bij een
+# artikel over het inperken van de opkoopbescherming schreef de duiding
+# "verruimt de mogelijkheden om aangekochte panden te splitsen of uit te
+# ponden", en de brief nam dat over. De opkoopbescherming verbiedt verhuren,
+# niet verkopen of splitsen. Elk model dat over vastgoednieuws schrijft krijgt
+# deze regels mee, met de tekst uit ACHTERGROND als bron.
+def mechanismen():
+    return ("HOE DEZE REGELS WERKEN. Gebruik dit en niet je eigen idee ervan.\n"
+            "- Opkoopbescherming: " + uitleg("Opkoopbescherming") + " Ze "
+            "verbiedt dus VERHUREN na aankoop. Verkopen, uitponden en splitsen "
+            "zelf vallen er niet onder. Minder opkoopbescherming betekent: "
+            "meer goedkope woningen die je na aankoop mag verhuren.")
+
+
 def achtergrond_van_de_dag(nieuwstekst=""):
     """
     Het achtergrondstuk dat aansluit bij het nieuws van vandaag.

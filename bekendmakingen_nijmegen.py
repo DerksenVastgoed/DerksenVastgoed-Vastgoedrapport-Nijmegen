@@ -313,6 +313,44 @@ def in_ring(item: dict, pc6=None) -> bool:
 AFLOOP = ["buiten behandeling", "intrekking", "geweigerd", "afgewezen"]
 
 
+def is_beleid(item: dict, woorden) -> bool:
+    """Een beleidsstuk: een beleidswoord in de titel, en GEEN postcode.
+
+    WAAROM GEEN POSTCODE. 20 oktober 2026 stond "Aanvraag omzettingsvergunning
+    voor Kamerverhuurvergunning aanvragen, aan Assumburgstraat 2, 6535PL" in de
+    brief onder "Gemeentelijk beleid dat ons raakt": het woord
+    "omzettingsvergunning" staat op de beleidslijst. Het is een losse aanvraag
+    in Hatert, buiten de ring. Een stuk met een postcode gaat over een pand en
+    loopt dus door de ringfilter, zoals elk ander pand. Gemeten op alle
+    beleidsblokken in de digests: van de twee verschillende titels had alleen
+    de Assumburgstraat een postcode."""
+    hooi = (item["titel"] + " " + item.get("type", "")).lower()
+    if not any(w in hooi for w in woorden):
+        return False
+    return not re.search(r"\b\d{4}\s?[a-z]{2}\b", hooi)
+
+
+# ALLEEN EEN BEDRIJFSPAND. 20 oktober 2026 noemde de brief de voorgevel van
+# een winkelpand in de Ziekerstraat, om er meteen bij te zeggen dat het niets
+# met de woningmarkt te maken heeft. Zo'n stuk blijft in de bijlage staan,
+# onder een eigen kop, maar gaat niet naar de schrijver van het verhaal. Kantoor
+# staat er bewust niet in: een kantoor is het klassieke object voor
+# transformatie. Gemeten op alle overige bekendmakingen in de digests: 4 van
+# de 46 titels vallen hieronder (Ziekerstraat 75, Broerstraat 16, Grote Markt
+# 36, Wolfskuilseweg 257).
+BEDRIJFSWOORDEN = ("winkel", "horeca", "bedrijfspand", "bedrijfsruimte",
+                   "restaurant", "café", "supermarkt")
+WOONWOORDEN = ("woning", "woon", "appartement", "kamer", "splits", "transform",
+               "studio", "bewoning", "huisvest")
+NIET_WOON_KOP = "## Alleen bedrijfspanden, niet in het verhaal"
+
+
+def alleen_bedrijfspand(item: dict) -> bool:
+    hooi = (item["titel"] + " " + item.get("type", "")).lower()
+    return any(w in hooi for w in BEDRIJFSWOORDEN) and \
+        not any(w in hooi for w in WOONWOORDEN)
+
+
 def classificeer(item: dict):
     hooi = (item["titel"] + " " + item["type"]).lower()
     if any(w in hooi for w in KERN):
@@ -1055,11 +1093,20 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
     else:
         r.append("Geen kernsignalen in deze periode.")
     r.append("")
-    if overige:
-        r.append(f"## Overige relevante bekendmakingen ({len(overige)})")
+    woon = [it for it in overige if not alleen_bedrijfspand(it)]
+    bedrijf = [it for it in overige if alleen_bedrijfspand(it)]
+    if woon:
+        r.append(f"## Overige relevante bekendmakingen ({len(woon)})")
         r.append("_Verbouw, renovatie, sloop, verduurzaming e.d._")
         r.append("")
-        for it in sorted(overige, key=lambda x: x["datum"], reverse=True):
+        for it in sorted(woon, key=lambda x: x["datum"], reverse=True):
+            r.append(_regel(it))
+        r.append("")
+    # Altijd als laatste blok: brief_verhalend.py knipt vanaf deze kop af.
+    if bedrijf:
+        r.append(f"{NIET_WOON_KOP} ({len(bedrijf)})")
+        r.append("")
+        for it in sorted(bedrijf, key=lambda x: x["datum"], reverse=True):
             r.append(_regel(it))
     return "\n".join(r)
 
@@ -1067,6 +1114,26 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
 def proef():
     """De ringfilter op vaste titels, zonder netwerk."""
     afw = []
+    # Beleid zonder adres; de Assumburgstraat (20 oktober) is geen beleid.
+    bw = ["omzettingsvergunning", "beleidsregels"]
+    if is_beleid({"titel": "Aanvraag omzettingsvergunning voor "
+                           "Kamerverhuurvergunning aanvragen , aan "
+                           "Assumburgstraat 2, 6535PL Nijmegen", "type": ""}, bw):
+        afw.append("een losse aanvraag met een postcode telt als beleid")
+    if not is_beleid({"titel": "Beleidsregels Woonruimte op de eerste "
+                               "bouwlaag toevoegen binnenstad", "type": ""}, bw):
+        afw.append("een beleidsregel zonder adres telt niet meer als beleid")
+    # Alleen een bedrijfspand: de winkelgevel wel, een kantoor en een winkel
+    # met woningen erboven niet.
+    for titel, ja in (
+            ("Aanvraag omgevingsvergunning voor het aanpassen van de voorgevel "
+             "van een winkelpand , aan Ziekerstraat 75, 6511LG Nijmegen", True),
+            ("Sloopmelding kantoorpand, aan Bedrijfsweg 9, 6541DC Nijmegen",
+             False),
+            ("Aanvraag voor het splitsen van een winkel met bovenwoning, aan "
+             "X 1, 6511AA Nijmegen", False)):
+        if alleen_bedrijfspand({"titel": titel, "type": ""}) != ja:
+            afw.append(f"alleen-bedrijfspand verkeerd voor: {titel[:50]}")
     binnen = {"titel": "Splitsen naar zes woonruimtes, aan Hatertseweg 338, "
                        "6533GP Nijmegen", "type": ""}
     buiten = {"titel": "Melding brandveilig gebruik, aan Ambachtsweg 2, "
@@ -1141,11 +1208,7 @@ def main():
         "leefbaarheidstoets", "woonruimteverdeling", "splitsingsbeleid",
         "verhuurdersvergunning", "goed verhuurderschap",
     ]
-    beleid = []
-    for it in items:
-        hooi = (it["titel"] + " " + it.get("type", "")).lower()
-        if any(w in hooi for w in BELEIDSWOORDEN):
-            beleid.append(it)
+    beleid = [it for it in items if is_beleid(it, BELEIDSWOORDEN)]
 
     if not args.alles:
         items = [it for it in items if in_ring(it)]

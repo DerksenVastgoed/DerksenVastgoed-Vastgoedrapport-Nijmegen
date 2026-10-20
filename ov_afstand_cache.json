@@ -1327,6 +1327,14 @@
   "omweg": 0.62,
   "soort": "bus"
  },
+ "51.84432,5.86079": {
+  "geschat": false,
+  "hemelsbreed": 212,
+  "meters": 378,
+  "naam": "Plein 1944",
+  "omweg": 1.78,
+  "soort": "bus"
+ },
  "51.84432,5.87471": {
   "geschat": false,
   "hemelsbreed": 107,

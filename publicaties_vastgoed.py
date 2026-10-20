@@ -396,7 +396,8 @@ def verrijk(items):
               "Geen tekst eromheen.")
     try:
         import taalmodel
-        _a = taalmodel.vraag(MODEL, PROFIEL,
+        import bronnen as _br
+        _a = taalmodel.vraag(MODEL, PROFIEL + "\n\n" + _br.mechanismen(),
                              [{"role": "user", "content": prompt}], 8000,
                              effort="low", timeout=90, label="Publicaties",
                              sleutel=ANTHROPIC_API_KEY)

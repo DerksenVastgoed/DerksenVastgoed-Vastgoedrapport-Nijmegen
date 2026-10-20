@@ -1580,6 +1580,30 @@ def schrijf_brief(bronnen):
     return tekst
 
 
+def zonder_bedrijfspanden(tekst):
+    """Alles vanaf de kop "Alleen bedrijfspanden" eruit, ook in de
+    weekeditie waar meer digests achter elkaar staan. Zie NIET_WOON_KOP in
+    bekendmakingen_nijmegen.py: die stukken staan in de bijlage maar horen
+    niet in het verhaal (de winkelgevel in de Ziekerstraat, 20 oktober)."""
+    try:
+        from bekendmakingen_nijmegen import NIET_WOON_KOP
+    except Exception:
+        return tekst
+    kop = NIET_WOON_KOP.lstrip("# ").strip()
+    uit, weg = [], False
+    for regel in (tekst or "").split("\n"):
+        schoon = regel.lstrip("# ").strip()
+        if schoon.startswith(kop):
+            weg = True
+            continue
+        if weg and (regel.startswith("# ") or regel.startswith("## ")
+                    or schoon.startswith("Bekendmakingen ring")):
+            weg = False
+        if not weg:
+            uit.append(regel)
+    return "\n".join(uit)
+
+
 def _vraag(berichten, woorden):
     """
     Een aanroep naar het model, via taalmodel.vraag (een implementatie).
@@ -1592,7 +1616,9 @@ def _vraag(berichten, woorden):
     denktokens staat in het logboek.
     """
     import taalmodel
-    a = taalmodel.vraag(MODEL, PROFIEL, berichten, BRIEF_RUIMTE,
+    import bronnen as _br
+    a = taalmodel.vraag(MODEL, PROFIEL + "\n\n" + _br.mechanismen(),
+                        berichten, BRIEF_RUIMTE,
                         effort=BRIEF_EFFORT, timeout=(30, 600),
                         label="Brief geschreven", herhaal_netwerk=3)
     if a.fout:
@@ -1662,6 +1688,23 @@ def proef():
     echte brieven, met de uitkomst die ze hadden moeten geven.
     """
     fouten = []
+    # Het mechanisme van de opkoopbescherming gaat mee, uit bronnen.py
+    # (20 oktober: "minder opkoopbescherming verruimt het uitponden").
+    import bronnen as _br
+    if not _br.uitleg("Opkoopbescherming") or \
+            "verbiedt dus VERHUREN" not in _br.mechanismen():
+        fouten.append("het mechanisme van de opkoopbescherming ontbreekt in "
+                      "wat het taalmodel meekrijgt")
+    # De bedrijfspanden blijven buiten het verhaal, het blok erna niet.
+    _d = ("# Bekendmakingen ring\n## Kernsignalen (1)\n- Graafseweg 18\n"
+          "## Alleen bedrijfspanden, niet in het verhaal (1)\n"
+          "- Ziekerstraat 75 voorgevel winkelpand\n"
+          "# Bekendmakingen ring\n## Kernsignalen (1)\n- Hatertseweg 338\n")
+    _z = zonder_bedrijfspanden(_d)
+    if "Ziekerstraat" in _z or "Graafseweg" not in _z or \
+            "Hatertseweg" not in _z:
+        fouten.append(f"de bedrijfspanden gaan toch naar de schrijver, of er "
+                      f"verdwijnt meer: {_z!r}")
     gevallen = [
         # (tekst, is afgekapt, waarom dit geval erin staat)
         ("Hier staat een hele zin die netjes eindigt.\n\nGroet,\nMark",
@@ -1843,6 +1886,7 @@ def main():
     _dossiers = strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)
     _besluiten = (week_terug("bekendmakingen", d) if _weekelijks()
                   else strip_opmaak(lees(f"digests/{d}-bekendmakingen.md")))
+    _besluiten = zonder_bedrijfspanden(_besluiten)
 
     bronnen = [
         ("WAT PA AL HEEFT GELEZEN", _al),

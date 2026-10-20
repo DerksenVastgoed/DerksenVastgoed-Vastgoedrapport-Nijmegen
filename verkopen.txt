@@ -1123,3 +1123,8 @@ Bijleveldsingel 36 | Nijmegen | 1100000 | te koop | 2026-10-20 | funda-mail | 19
 Pastoor Zegersstraat | Nijmegen | 1675 | te huur | 2026-10-20 | huislijn | 136 | 6542VS
 Berg En Dalseweg | Nijmegen | 1304 | te huur | 2026-10-20 | huislijn | 36 | 6522BC
 Berg En Dalseweg | Nijmegen | 1307 | te huur | 2026-10-20 | huislijn | 35 | 6522BC
+
+# Automatisch toegevoegd uit Funda-attendering op 20-10-2026
+Berg en Dalseweg | Nijmegen | 1307 | te huur gemeubileerd | 2026-10-20 | pararius | 35 | 6522BC
+Berg en Dalseweg | Nijmegen | 1304 | te huur gemeubileerd | 2026-10-20 | pararius | 36 | 6522BC
+Piersonstraat | Nijmegen | 1104 | te huur gemeubileerd | 2026-10-20 | pararius | 56 | 6511GL
