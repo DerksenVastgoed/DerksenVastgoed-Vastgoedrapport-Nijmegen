@@ -78468,7 +78468,7 @@
   ]
  },
  "bergendalseweg": {
-  "adres": "Berg en Dalseweg",
+  "adres": "Berg En Dalseweg",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -78502,6 +78502,18 @@
     "datum": "2026-10-13",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €1.761 per maand, 51 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.304 per maand, 36 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.307 per maand, 35 m2"
    }
   ],
   "pand_id": null
@@ -136540,6 +136552,21 @@
   "vbo_panden": [
    "0268100000020396"
   ]
+ },
+ "pastoorzegersstraat": {
+  "adres": "Pastoor Zegersstraat",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.675 per maand, 136 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "pastoorzegersstraat77": {
   "adres": "Pastoor Zegersstraat 77",

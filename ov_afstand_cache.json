@@ -951,6 +951,14 @@
   "omweg": 1.64,
   "soort": "bus"
  },
+ "51.84037,5.84437": {
+  "geschat": false,
+  "hemelsbreed": 257,
+  "meters": 326,
+  "naam": "2e Oude Heselaan",
+  "omweg": 1.27,
+  "soort": "bus"
+ },
  "51.84039,5.85724": {
   "geschat": false,
   "hemelsbreed": 344,

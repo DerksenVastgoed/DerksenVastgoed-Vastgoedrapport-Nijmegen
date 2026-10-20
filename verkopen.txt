@@ -1118,3 +1118,8 @@ Nonnenstraat | Nijmegen | 880 | te huur | 2026-10-19 | huislijn | 130 | 6511VN
 van Oldenbarneveltstraat | Nijmegen | 1010 | te huur kamer | 2026-10-19 | kamernet-incl | 37 | 
 Coehoornstraat 33 | Nijmegen | 489000 | te koop | 2026-10-20 | funda-mail | 103 | 6521CB
 Bijleveldsingel 36 | Nijmegen | 1100000 | te koop | 2026-10-20 | funda-mail | 195 | 6524AD
+
+# Automatisch toegevoegd uit Funda-attendering op 20-10-2026
+Pastoor Zegersstraat | Nijmegen | 1675 | te huur | 2026-10-20 | huislijn | 136 | 6542VS
+Berg En Dalseweg | Nijmegen | 1304 | te huur | 2026-10-20 | huislijn | 36 | 6522BC
+Berg En Dalseweg | Nijmegen | 1307 | te huur | 2026-10-20 | huislijn | 35 | 6522BC

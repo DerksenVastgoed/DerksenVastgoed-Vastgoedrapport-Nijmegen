@@ -1,0 +1,4 @@
+2026-10-20 claude-sonnet-5 Beleidssamenvatting: 128 tokens, waarvan 0 denken, 39 woorden, stop end_turn
+2026-10-20 claude-sonnet-5 Duiding: 322 tokens, waarvan 0 denken, 91 woorden, stop end_turn
+2026-10-20 claude-sonnet-5 Publicaties: 1636 tokens, waarvan 7 denken, 305 woorden, stop end_turn
+2026-10-20 claude-sonnet-5 Brief geschreven: 1524 tokens, waarvan 0 denken, 545 woorden, stop end_turn

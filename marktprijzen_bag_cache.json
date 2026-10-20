@@ -78189,5 +78189,14 @@
     "buurtnaam": "Stadscentrum",
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-aa2d480c1085569b73351b4110b1abf3"
+  },
+  "Pastoor Zegersstraat|Nijmegen": {
+    "oppervlakte": 136,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542VS",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }
