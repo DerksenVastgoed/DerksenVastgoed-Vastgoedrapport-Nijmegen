@@ -1608,3 +1608,24 @@ waarom: 20 oktober ging de mail met alleen de tabellen als gewone brief naar
 proef: briefmail:een brief zonder verhaal gaat als gewone brief naar
 soort: brief
 
+---
+eis: Een bekendmaking met een postcode is geen beleid; een stuk dat alleen
+  over een bedrijfspand gaat (winkel, horeca) staat in de bijlage maar gaat
+  niet naar de schrijver van het verhaal.
+waarom: 20 oktober. "Aanvraag omzettingsvergunning ... Assumburgstraat 2,
+  6535PL" (Hatert, buiten de ring) stond onder "Gemeentelijk beleid dat ons
+  raakt" omdat "omzettingsvergunning" op de beleidslijst staat. De voorgevel
+  van een winkelpand in de Ziekerstraat kwam in het verhaal met de zin "niets
+  met de woningmarkt te maken".
+proef: bekendmakingen_nijmegen:een losse aanvraag met een postcode telt als beleid; brief_verhalend:de bedrijfspanden gaan toch naar de schrijver
+soort: brief
+
+---
+eis: Elk taalmodel dat over vastgoednieuws schrijft krijgt het mechanisme van
+  de opkoopbescherming mee uit bronnen.py (mechanismen).
+waarom: 20 oktober. De duiding bij een artikel over het inperken ervan
+  schreef "verruimt de mogelijkheden om te splitsen of uit te ponden", en de
+  brief nam dat over. De opkoopbescherming verbiedt verhuren na aankoop.
+proef: brief_verhalend:het mechanisme van de opkoopbescherming ontbreekt
+soort: brief
+
