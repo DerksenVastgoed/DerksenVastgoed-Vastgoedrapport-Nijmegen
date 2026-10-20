@@ -8307,3 +8307,13 @@ met elk getal 10% lager en 10% hoger, de rest gelijk. Gemeten op de
   vloeroppervlak (3D BAG: footprint maal lagen). Dat is een meting op de
   eigen voorraad, en het raakt de twee grootste posten hierboven.
 - **Exploitatiekosten**: een openbare bron zoeken.
+
+## Taalmodel (20 oktober 2026)
+
+- GEDAAN: alle aanroepen naar Sonnet 5 via taalmodel.vraag (brief 32000
+  ruimte en effort medium; de JSON-taken 8000 en effort low).
+- **verkoopdatum_model.py** roept nog zelf aan, met claude-sonnet-4-6 en 600
+  tokens. Overzetten naar taalmodel.vraag zodat er een implementatie is.
+- **Hoeveel denkt de brief?** Het logboek meldt nu de denktokens per run.
+  Na een week nakijken of effort medium de brief niet slechter maakt, en of
+  de tweede poging ooit nodig is.

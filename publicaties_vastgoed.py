@@ -395,19 +395,15 @@ def verrijk(items):
               '"samenvatting": "<1 zin>", "duiding": "<1 zin>"}. '
               "Geen tekst eromheen.")
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": ANTHROPIC_API_KEY,
-                     "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 4000, "system": PROFIEL,
-                  "messages": [{"role": "user", "content": prompt}]},
-            timeout=90,
-        )
-        resp.raise_for_status()
-        body = resp.json()
-        tekst = "".join(b.get("text", "") for b in body.get("content", []))
-        if body.get("stop_reason") == "max_tokens":
+        import taalmodel
+        _a = taalmodel.vraag(MODEL, PROFIEL,
+                             [{"role": "user", "content": prompt}], 8000,
+                             effort="low", timeout=90, label="Publicaties",
+                             sleutel=ANTHROPIC_API_KEY)
+        if _a.fout:
+            raise RuntimeError(_a.fout)
+        tekst = _a.tekst
+        if _a.stop == "max_tokens":
             print("LET OP: antwoord afgekapt op max_tokens", file=sys.stderr)
         tekst = tekst.strip()
         if tekst.startswith("```"):

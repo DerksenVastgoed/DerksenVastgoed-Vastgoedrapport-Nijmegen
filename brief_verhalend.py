@@ -1582,51 +1582,38 @@ def schrijf_brief(bronnen):
 
 def _vraag(berichten, woorden):
     """
-    Een aanroep naar het model, met drie pogingen.
+    Een aanroep naar het model, via taalmodel.vraag (een implementatie).
 
-    Een lange brief schrijven duurt; twee minuten was te krap. Drie pogingen
-    met ruime wachttijd, want dit is de enige stap die de brief oplevert.
+    20 OKTOBER 2026: "Brief geschreven: 16000 tokens, 0 woorden". Sonnet 5
+    denkt standaard en de denktokens tellen mee in max_tokens; het denken at
+    de ruimte op en er kwam geen tekst, dus ging de brief zonder verhaal uit.
+    Nu: effort "medium", 32000 tokens ruimte, en komt er toch niets, dan
+    herhaalt taalmodel met de dubbele ruimte en effort "low". Het aantal
+    denktokens staat in het logboek.
     """
-    resp = None
-    for poging in range(1, 4):
-        try:
-            resp = requests.post(
-                "https://api.anthropic.com/v1/messages",
-                headers={"x-api-key": ANTHROPIC_API_KEY,
-                         "anthropic-version": "2023-06-01",
-                         "content-type": "application/json"},
-                json={"model": MODEL, "max_tokens": 16000, "system": PROFIEL,
-                      "messages": berichten},
-                timeout=(30, 600))
-            resp.raise_for_status()
-            break
-        except Exception as e:
-            if poging == 3:
-                print(f"Brief schrijven mislukt na 3 pogingen: {e}", file=sys.stderr)
-                return ""
-            print(f"  poging {poging} mislukt ({e}), opnieuw", file=sys.stderr)
-            time.sleep(poging * 10)
-    try:
-        body = resp.json()
-        tekst = "".join(b.get("text", "")
-                        for b in body.get("content", [])).strip()
-        reden = body.get("stop_reason")
-        if reden == "max_tokens":
-            print("LET OP: de brief is afgekapt omdat de limiet is bereikt. "
-                  "Verhoog max_tokens in dit bestand.", file=sys.stderr)
-        gebruikt = (body.get("usage") or {}).get("output_tokens")
-        n_woorden = len(tekst.split())
-        if gebruikt:
-            print(f"Brief geschreven: {gebruikt} tokens, {n_woorden} woorden "
-                  f"(ruimte was {woorden})", file=sys.stderr)
-        if n_woorden > woorden * 1.2:
-            print(f"LET OP: de brief is {n_woorden - woorden} woorden langer dan "
-                  f"de ruimte. Scherp de sturing aan als dit vaker gebeurt.",
-                  file=sys.stderr)
-        return tekst
-    except Exception as e:
-        print(f"Antwoord verwerken mislukt: {e}", file=sys.stderr)
+    import taalmodel
+    a = taalmodel.vraag(MODEL, PROFIEL, berichten, BRIEF_RUIMTE,
+                        effort=BRIEF_EFFORT, timeout=(30, 600),
+                        label="Brief geschreven", herhaal_netwerk=3)
+    if a.fout:
+        print(f"Brief schrijven mislukt: {a.fout}", file=sys.stderr)
         return ""
+    if a.stop == "max_tokens":
+        print("LET OP: de brief is afgekapt omdat de limiet is bereikt, ook "
+              "na de tweede poging met meer ruimte en minder denken.",
+              file=sys.stderr)
+    n_woorden = len(a.tekst.split())
+    print(f"(ruimte was {woorden} woorden)", file=sys.stderr)
+    if n_woorden > woorden * 1.2:
+        print(f"LET OP: de brief is {n_woorden - woorden} woorden langer dan "
+              f"de ruimte. Scherp de sturing aan als dit vaker gebeurt.",
+              file=sys.stderr)
+    return a.tekst
+
+
+# Hoeveel ruimte en hoeveel denken voor de brief; zie _vraag.
+BRIEF_RUIMTE = 32000
+BRIEF_EFFORT = "medium"
 
 
 EINDTEKENS = (".", "!", "?", '"', ")", ":", "…")
