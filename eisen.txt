@@ -1555,3 +1555,16 @@ waarom: 20 oktober, Marks keuze. Art. 8a lid 3 noemt een door burgemeester
 proef: marktprijzen_bag:de 15% voor een gemeentelijk monument telt mee in het
 soort: gegevens
 
+---
+eis: De huur per m2 rust alleen op metingen: de referentie waarmee een
+  buurtmeting wordt gewogen is de stadsmediaan van dezelfde grootteklasse
+  uit ons eigen huuraanbod. Is er geen meting in de klasse, dan het
+  gepubliceerde landelijke cijfer met het label aanname.
+waarom: 20 oktober. HUUR_M2_MND was een aanname per buurt (17 tot 20, en 18
+  voor elke andere buurt) waar elke meting naartoe woog. St. Annastraat 7:
+  een meting van €14/m2 over 12 panden werd €16/m2 door de aanname €18,
+  richtprijs €965.305 in plaats van €861.121. Burg. Hustinxstraat 46: €17
+  werd €19, richtprijs €390.962 in plaats van €318.709.
+proef: marktprijzen_bag:de huurreferentie is niet de stadsmediaan; marktprijzen_bag:zonder referentie wordt de meting toch verschoven; marktprijzen_bag:huur per buurt valt verkeerd terug
+soort: gegevens
+

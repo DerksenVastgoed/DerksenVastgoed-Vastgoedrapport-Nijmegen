@@ -8241,7 +8241,15 @@ over de hele oppervlakte is geteld.
 ## Na het uitbreiden van de ring met Hunnerberg en St. Anna (15 oktober 2026)
 
 Met de hand na te lopen, want hier is niets gemeten:
-- HUUR_M2_MND in marktprijzen_bag heeft geen waarde voor de twee nieuwe
+- GEDAAN 20 oktober: **HUUR_M2_MND is weg**, ook voor de oude buurten: het
+  waren aannames waar elke meting naartoe woog. De referentie is de
+  stadsmediaan van dezelfde grootteklasse (huur_referentie); de buurt telt
+  vanaf MIN_HUUR_PER_BUURT advertenties (huur_per_buurt, een implementatie
+  voor yieldtabel en zondagscase). Zonder meting in de klasse: het
+  landelijke cijfer, als aanname.
+- **De yieldtabel en "Referentie: prijspeil per buurt" zijn dode code**: ze
+  staan in render() na de laatste return en worden nooit getoond.
+- (oud) HUUR_M2_MND in marktprijzen_bag had geen waarde voor de twee nieuwe
   buurten. De yieldtabel toont ze daarom met streepjes, en één route valt
   terug op 18 euro per m2 met het label "aanname". Die 18 is geen meting van
   deze buurten; vervangen zodra er huuraanbod uit die buurten is.
