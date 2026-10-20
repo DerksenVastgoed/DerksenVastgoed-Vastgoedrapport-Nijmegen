@@ -9222,6 +9222,28 @@ def proef():
                 "gemeentelijk", "rijks", "gezicht"):
             afw.append("de 15% voor een gemeentelijk monument telt mee in het "
                        "bod, of de meeropbrengst is niet meer te berekenen")
+        # De huurreferentie is een meting: de stadsmediaan van dezelfde
+        # grootteklasse. Geen referentie, dan blijft de meting staan; geen
+        # meting in de buurt, dan de stad; niets, dan het landelijke cijfer
+        # als aanname (Galgenveld, 20 oktober: €14/m2 werd €16/m2 door een
+        # aanname van €18).
+        _hk = {("woning", "groot"): [14.0] * 12, "woning": [16.0] * 40}
+        if huur_referentie(_hk, "woning", "groot") != (
+                14.0, "stadsmediaan groot, 12 advertenties"):
+            afw.append("de huurreferentie is niet de stadsmediaan van de klasse")
+        if huur_referentie(_hk, "woning", "klein") is not None:
+            afw.append("een klasse zonder metingen krijgt toch een referentie")
+        if _binnen_band(14.0, None, "x", "woning", 12) != (14.0, "x"):
+            afw.append("zonder referentie wordt de meting toch verschoven")
+        if round(_binnen_band(20.0, (14.0, "r"), "x", "woning", 10)[0], 2) \
+                != round(min(14.0 * HUUR_BAND[1], 0.5 * 20 + 0.5 * 14), 2):
+            afw.append("de weging met de referentie klopt niet")
+        _hb = {("woning", "Hunnerberg"): [20.0] * 4}
+        _w1 = huur_per_buurt("Hunnerberg", _hb, _hk, kort=True)
+        _w2 = huur_per_buurt("Hunnerberg", {}, {}, kort=True)
+        if _w1 != (16.0, "stad (N=40)") or _w2 != (LANDELIJK_HUUR_M2,
+                                                    "aanname"):
+            afw.append(f"huur per buurt valt verkeerd terug: {_w1}, {_w2}")
         _w = monument_uit_register({"pand": "N", "monument": {"oud": 1}})
         if _w.get("monument"):
             afw.append("een pand dat geen van beide bronnen een rijksmonument "
