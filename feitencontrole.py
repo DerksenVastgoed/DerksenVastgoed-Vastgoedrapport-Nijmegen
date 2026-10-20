@@ -116,27 +116,45 @@ def buurtfouten(brief, adressen, buurten):
     return los
 
 
+# DE EERSTE OPZET VOND NIETS. Testrun 20 oktober: het tweede model kreeg "noem
+# de zinnen die niet kloppen" en antwoordde met 4 tokens: "[]". In die brief
+# stond "de oude woning van 374 m2 plus zes nieuwe eenheden van 55 tot 60 m2"
+# (374 is het hele adres; de zes zijn 29 tot 60 m2, en ze zijn gevormd, niet
+# in gebruik) en "het besluit is definitief" (we kennen alleen de titel).
+# Daarom nu: ELKE bewering langs, met een oordeel per bewering, zodat een leeg
+# antwoord niet meer kan betekenen dat er niet gekeken is; een sterker model;
+# en effort high.
+CONTROLE_MODEL = "claude-opus-5-5"
 CONTROLE_PROFIEL = (
     "Je controleert een brief tegen de gegevens waaruit hij is geschreven. "
-    "Je schrijft niets nieuws. Noem alleen zinnen die iets beweren wat NIET "
-    "in de gegevens staat, of wat er anders staat: een verkeerd getal, een "
-    "getal bij het verkeerde ding, een telling die niet klopt, een adres in "
-    "de verkeerde buurt, een besluit dat als verleend wordt gebracht terwijl "
-    "alleen de titel bekend is, een eigen conclusie die als feit staat. Een "
-    "mening of een afweging is geen fout. Antwoord met ALLEEN een JSON-array "
-    'van {"zin": "<de zin letterlijk>", "waarom": "<wat de gegevens zeggen>"}. '
-    "Is er niets, antwoord dan []. Nederlands.")
+    "Je schrijft niets nieuws.\n"
+    "Loop ELKE bewering in de brief langs die een getal, oppervlak, bedrag, "
+    "percentage, datum, adres, buurt, aantal, besluit of oorzaak noemt. Zoek "
+    "per bewering in de gegevens waar het staat, en geef een oordeel:\n"
+    '- "klopt": het staat zo in de gegevens;\n'
+    '- "klopt niet": de gegevens zeggen iets anders, of het getal hoort bij '
+    "iets anders (bijvoorbeeld de oppervlakte van een heel adres die als die "
+    "van een woning wordt gebracht), of een telling klopt niet;\n"
+    '- "niet in de gegevens": het staat er niet, ook niet afgeleid. Een '
+    "besluit dat als verleend of definitief wordt gebracht terwijl alleen de "
+    "titel bekend is, valt hieronder; een gevormd object dat als woning in "
+    "gebruik wordt gebracht ook; een oorzaak die als feit staat ook.\n"
+    "Een mening of afweging is geen bewering. Antwoord met ALLEEN een "
+    'JSON-array, een object per bewering: {"zin": "<de zin letterlijk>", '
+    '"oordeel": "klopt" | "klopt niet" | "niet in de gegevens", "waarom": '
+    '"<wat de gegevens zeggen, met het getal>"}. Nederlands.')
 
 
-def model_controle(brief, gegevens, model, vraag=None):
-    """[(zin, waarom)] van een tweede taalmodel, of None als dat mislukte."""
+def model_controle(brief, gegevens, model=None, vraag=None):
+    """[(zin, waarom)] van wat niet klopt, of None als de controle mislukte
+    of geen enkele bewering beoordeelde."""
     if vraag is None:
         import taalmodel
         vraag = taalmodel.vraag
-    a = vraag(model, CONTROLE_PROFIEL,
+    a = vraag(model or CONTROLE_MODEL, CONTROLE_PROFIEL,
               [{"role": "user", "content":
                 f"GEGEVENS:\n\n{gegevens}\n\nBRIEF:\n\n{brief}"}],
-              8000, effort="medium", timeout=(30, 300), label="Controle")
+              16000, effort="high", timeout=(30, 600), label="Controle")
     if getattr(a, "fout", None) or not getattr(a, "tekst", ""):
         return None
     tekst = a.tekst.strip()
@@ -148,8 +166,14 @@ def model_controle(brief, gegevens, model, vraag=None):
         rijen = json.loads(tekst.strip())
     except ValueError:
         return None
+    rijen = [r for r in rijen if isinstance(r, dict) and r.get("zin")]
+    if not rijen:
+        # Een brief zonder een enkele bewering bestaat niet; dan is er niet
+        # gekeken, en dat is iets anders dan "alles klopt".
+        return None
     return [(str(r.get("zin", "")).strip(), str(r.get("waarom", "")).strip())
-            for r in rijen if isinstance(r, dict) and r.get("zin")]
+            for r in rijen
+            if str(r.get("oordeel", "")).strip().lower() != "klopt"]
 
 
 def bevindingen(brief, gegevens, adressen, buurten, model=None, vraag=None):
@@ -163,7 +187,7 @@ def bevindingen(brief, gegevens, adressen, buurten, model=None, vraag=None):
         uit.append((zin[:300], f"'{g}' staat niet in de gegevens", "getal"))
     uit += [(z, w, "buurt") for z, w in buurtfouten(brief, adressen, buurten)]
     if model:
-        m = model_controle(brief, gegevens, model, vraag)
+        m = model_controle(brief, gegevens, None, vraag)
         if m is None:
             uit.append(("", "de controle door het tweede taalmodel mislukte",
                         "niet gedaan"))
@@ -210,9 +234,14 @@ def proef():
         def __init__(self, tekst="", fout=None):
             self.tekst, self.fout = tekst, fout
     m = model_controle("x", "y", "m", vraag=lambda *a, **k: A(
-        '[{"zin": "zes van de zeven", "waarom": "vijf"}]'))
+        '[{"zin": "zes van de zeven", "oordeel": "klopt niet", "waarom": '
+        '"vijf"}, {"zin": "1,8 personen", "oordeel": "klopt", "waarom": ""}]'))
     if m != [("zes van de zeven", "vijf")]:
         afw.append(f"het antwoord van de controle wordt verkeerd gelezen: {m}")
+    # "[]" is niet gekeken, niet "alles klopt" (testrun 20 oktober).
+    if model_controle("x", "y", "m", vraag=lambda *a, **k: A("[]")) \
+            is not None:
+        afw.append("een leeg antwoord van de controle leest als 'alles klopt'")
     if model_controle("x", "y", "m", vraag=lambda *a, **k: A(fout="500")) \
             is not None:
         afw.append("een mislukte controle leest als 'niets gevonden'")
