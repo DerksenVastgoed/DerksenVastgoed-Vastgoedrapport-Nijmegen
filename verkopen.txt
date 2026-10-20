@@ -1128,3 +1128,8 @@ Berg En Dalseweg | Nijmegen | 1307 | te huur | 2026-10-20 | huislijn | 35 | 6522
 Berg en Dalseweg | Nijmegen | 1307 | te huur gemeubileerd | 2026-10-20 | pararius | 35 | 6522BC
 Berg en Dalseweg | Nijmegen | 1304 | te huur gemeubileerd | 2026-10-20 | pararius | 36 | 6522BC
 Piersonstraat | Nijmegen | 1104 | te huur gemeubileerd | 2026-10-20 | pararius | 56 | 6511GL
+
+# Automatisch toegevoegd uit Funda-attendering op 20-10-2026
+Coehoornstraat | Nijmegen | 1600 | te huur | 2026-10-20 | kamernet-gemeubileerd | 70 | 
+Biezenstraat | Nijmegen | 620 | te huur kamer | 2026-10-20 | kamernet | 15 | 
+Nieuwe Nonnendaalseweg | Nijmegen | 614 | te huur kamer | 2026-10-20 | kamernet-incl | 16 | 

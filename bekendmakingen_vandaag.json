@@ -4,7 +4,7 @@
   "titel": "Besluit voor het splitsen van de woning in zes zelfstandige appartementen, aan Graafseweg 18, 6512CB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-485967.html",
   "strategie": "splitsen",
-  "duiding": "Besluit bevestigt dat splitsing naar zes zelfstandige appartementen op deze locatie planologisch is toegestaan.",
+  "duiding": "Besluit verleent splitsing naar zes zelfstandige eenheden, wat de kleine voorraad in dit segment direct vergroot.",
   "feiten": {
    "energielabel": "D (2018)",
    "label_alleen_dit_adres": true,
@@ -19,7 +19,7 @@
   "titel": "Aanvraag omgevingsvergunning voor realiseren van meerdere zelfstandige woonruimtes (woongebouw), aan Hatertseweg 320, 6533GP Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-488587.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor meerdere zelfstandige woonruimtes is nog geen besluit en kan alsnog worden geweigerd.",
+  "duiding": "Aanvraag voor meerdere zelfstandige woonruimtes is nog geen besluit, vergunning kan nog worden geweigerd.",
   "feiten": {
    "energielabel": "C (2020)",
    "oppervlakte_m2": 184
@@ -33,7 +33,7 @@
   "titel": "Besluit voor het intern verbouwen van de huisartsenpraktijk, aan Professor Cornelissenstraat 2, 6524PJ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-489125.html",
   "strategie": "geen",
-  "duiding": "Interne verbouwing van een huisartsenpraktijk raakt de bestaande zorgfunctie en wijzigt niets aan het woningaanbod.",
+  "duiding": "Interne verbouwing van een huisartsenpraktijk raakt alleen de bestaande maatschappelijke functie, geen effect op woningaanbod.",
   "feiten": {
    "energielabel": "D (2021)",
    "oppervlakte_m2": 1561
@@ -47,7 +47,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de voorgevel van een winkelpand , aan Ziekerstraat 75, 6511LG Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-485736.html",
   "strategie": "geen",
-  "duiding": "Aanpassing van een voorgevel is een esthetische ingreep zonder effect op functie of woningvoorraad.",
+  "duiding": "Aanpassing van een winkelgevel is een esthetische ingreep zonder gevolg voor functie of aanbod.",
   "feiten": {
    "oppervlakte_m2": 103
   },
@@ -60,7 +60,7 @@
   "titel": "Besluit voor het intern verbouwen van een winkel, aan Broerstraat 16, 6511KN Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-486891.html",
   "strategie": "geen",
-  "duiding": "Interne verbouwing van een winkel wijzigt de winkelfunctie niet en heeft geen directe marktimpact.",
+  "duiding": "Interne verbouwing van een winkel wijzigt de functie niet en heeft geen marktbreed effect.",
   "feiten": {
    "energielabel": "B (2020)",
    "oppervlakte_m2": 819
