@@ -2291,6 +2291,37 @@ def controle_verkooptijd():
             "schatting: de werkelijke tijd is korter of gelijk", "")
 
 
+def controle_feiten():
+    """Wat de feitencontrole na de herstelronde nog vond (feitencontrole.py).
+
+    Een LET OP en geen FOUT: hoe vaak de toetsen afgaan bij een goede brief,
+    is pas na een paar weken te zien. De bevindingen staan er letterlijk bij,
+    zodat Mark ze in de brief kan opzoeken."""
+    try:
+        with open("controle_brief.json", encoding="utf-8") as f:
+            c = json.load(f)
+    except (OSError, ValueError):
+        return (LET_OP, "geen controle_brief.json: de feitencontrole is niet "
+                        "gedraaid", "Kijk of brief_verhalend.py tot het einde "
+                                    "kwam.")
+    if c.get("datum") != dt.date.today().isoformat():
+        return (LET_OP, f"de laatste feitencontrole is van {c.get('datum')}, "
+                        f"niet van vandaag", "")
+    voor, na = c.get("voor_herstel") or [], c.get("na_herstel") or []
+    niet = [x for x in voor if len(x) > 2 and x[2] == "niet gedaan"]
+    tekst = (f"voor de herstelronde {len(voor) - len(niet)} bevinding(en), "
+             f"erna {len(na)}"
+             + ("; de controle door het tweede taalmodel is niet gedaan"
+                if niet else ""))
+    if na:
+        return (LET_OP, tekst + ": " + " | ".join(
+            f"{x[0][:80]} ({x[1][:80]})" for x in na[:5]),
+                "Deze punten staan nog in de verstuurde brief.")
+    if niet:
+        return (LET_OP, tekst, "")
+    return (OK, tekst, "")
+
+
 def controle_briefvoet():
     """
     Staat er in de verstuurde mail dat de brief machinewerk is?
@@ -3616,6 +3647,7 @@ CONTROLES = [
     ("Doorlooptijden", controle_doorlooptijden),
     ("Voorraad van de ring", controle_voorraad),
     ("Voet onder de brief", controle_briefvoet),
+    ("Feitencontrole van het verhaal", controle_feiten),
     ("Duiding bij beleidsstukken", controle_beleidsduiding),
     ("Beleid haalt de mail", controle_beleid_in_mail),
     ("Plintobjecten geteld", controle_plintregel),

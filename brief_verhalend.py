@@ -1535,6 +1535,26 @@ def schrijf_brief(bronnen):
         problemen.append(f"Deze zin beschrijft de opbouw van de brief: \"{zin}\". "
                          f"Haal dat deel weg; je vader leest een brief, geen "
                          f"verantwoording.")
+    # DE FEITENCONTROLE. 20 oktober: "3 december" stond nergens in de
+    # gegevens, Hatertseweg 320 lag niet in Galgenveld. Zie feitencontrole.py.
+    # De gegevens zijn precies wat de schrijver kreeg: de prompt.
+    controle_voor = []
+    try:
+        import feitencontrole as _fc
+        _adressen, _buurten = _fc.adres_buurt(), list(RING_BUURTEN)
+        controle_voor = _fc.bevindingen(tekst, prompt, _adressen, _buurten,
+                                        model=MODEL)
+        for zin, waarom, toets in controle_voor:
+            if toets == "niet gedaan":
+                continue
+            problemen.append(f"Dit klopt niet met de gegevens: \"{zin}\". "
+                             f"{waarom}. Neem het over zoals het in de gegevens "
+                             f"staat, of haal het weg.")
+        print(f"Feitencontrole: {len(controle_voor)} bevinding(en)",
+              file=sys.stderr)
+    except Exception as e:
+        print(f"Feitencontrole niet gedaan: {str(e)[:120]}", file=sys.stderr)
+        controle_voor = [("", f"niet gedaan: {str(e)[:120]}", "niet gedaan")]
     if problemen:
         print(f"Herstelronde voor {len(problemen)} punt(en)", file=sys.stderr)
         correctie = ("\n\n".join(problemen)
@@ -1567,6 +1587,20 @@ def schrijf_brief(bronnen):
         else:
             print("  herstel lukte niet; de eerste versie blijft staan",
                   file=sys.stderr)
+    # Wat er na de herstelronde nog staat: de toetsen zonder taalmodel, want
+    # die zijn reproduceerbaar. Het bestand komt in het gezondheidsrapport.
+    try:
+        import feitencontrole as _fc
+        _na = []
+        if tekst:
+            _na = [(g, "staat niet in de gegevens", "getal")
+                   for g in _fc.ongedekt(tekst, prompt)]
+            _na += [(z, w, "buurt") for z, w in
+                    _fc.buurtfouten(tekst, _fc.adres_buurt(),
+                                    list(RING_BUURTEN))]
+        _fc.bewaar(dt.date.today().isoformat(), controle_voor, _na)
+    except Exception as e:
+        print(f"Feitencontrole niet bewaard: {str(e)[:120]}", file=sys.stderr)
     if tekst and lijkt_afgekapt(tekst):
         staart = tekst.rstrip()[-60:]
         print(f"LET OP: de brief eindigt midden in een zin: '...{staart}'. "
