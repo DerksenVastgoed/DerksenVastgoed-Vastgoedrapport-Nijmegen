@@ -6231,9 +6231,9 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                               + f" over voor verbouwing en de rest, dus "
                               + f"€{round(_ruimte / _n):,}".replace(",", ".")
                               + " per eenheid"
-                              + (f". Geldt de 15% voor een gemeentelijk "
-                                 f"monument wel, dan is de huur "
-                                 f"€{round(_huur_na_voluit):,}".replace(",", ".")
+                              + (". Geldt de 15% voor een gemeentelijk "
+                                 "monument wel, dan is de huur €"
+                                 + eu(round(_huur_na_voluit))
                                  + " per maand; niet meegerekend, zie monument"
                                  if _huur_na_voluit else ""),
                               "eigen doorrekening, huur via het puntenstelsel "
