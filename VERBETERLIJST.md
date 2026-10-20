@@ -8346,3 +8346,16 @@ met elk getal 10% lager en 10% hoger, de rest gelijk. Gemeten op de
   week.
 - **Zondag**: de weekeditie duurt langer. Is hij om 08:52 nog niet nagekeken,
   dan gaat hij ongezien.
+
+## Voorlezen (20 oktober 2026)
+
+- GEDAAN: een knop "Beluister de brief" bovenaan de mail, naar een MP3 van
+  het verhaal op Pages (voorlezen.py, Piper).
+- **De stem kiezen**: Mark kreeg fragmenten van elke Nederlandse stem. De
+  keuze in STEM zetten.
+- **Na een week**: klikt pa erop? Zo niet, de stap eruit; hij kost elke run
+  tijd. Een natuurlijker stem (een betaalde dienst) pas als hij het gebruikt.
+- **Uitspraak**: afkortingen als WOZ, BAG en WWS worden gespeld. Luisteren of
+  er woorden zijn die anders moeten, en die dan in voorlezen.tekst().
+- **Opslag**: elke MP3 blijft in de git-geschiedenis, ook na het opruimen uit
+  de werkmap (14 dagen).
