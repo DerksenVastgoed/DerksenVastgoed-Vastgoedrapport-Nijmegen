@@ -1,0 +1,130 @@
+# De brief naar pa, na de nakijkronde. Zie kopie_pa.py voor het waarom.
+#
+# Gestart door de nakijkronde (met of zonder correcties) en, als vangnet, om
+# 08:52 door een geplande taak zonder correcties. pa_kopie.json beslist of er
+# iets gaat: alleen een brief van vandaag, geen halve update, nog niet
+# verstuurd. Dus twee starts op een dag sturen nooit twee mails.
+
+name: Kopie naar pa
+
+concurrency:
+  group: vastgoedbrief
+  cancel-in-progress: false
+
+on:
+  workflow_dispatch:
+    inputs:
+      datum:
+        description: "De briefdatum (UTC). Leeg is vandaag."
+        required: false
+        default: ""
+      correcties:
+        description: 'JSON-lijst van {"zin": ..., "waarom": ...} uit de nakijkronde. Leeg: de brief gaat zoals hij is.'
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  kopie:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@v4
+
+      - name: Python klaarzetten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencies installeren
+        run: pip install -r requirements.txt
+
+      - name: Datum
+        run: |
+          D="${{ github.event.inputs.datum }}"
+          [ -z "$D" ] && D=$(date -u +%F)
+          echo "DATUM=$D" >> "$GITHUB_ENV"
+
+      - name: Mag de brief naar pa
+        id: mag
+        run: python kopie_pa.py --mag --datum "$DATUM"
+
+      # Met correcties: het verhaal herschrijven en de mail opnieuw samenstellen.
+      # Mislukt dat, dan gaat er NU niets naar pa: de eerste versie bevat de
+      # fouten die de nakijkronde vond. Het vangnet om 08:52 stuurt hem dan
+      # alsnog zoals hij was, en Mark ziet in het bericht van de nakijkronde
+      # wat erin stond.
+      - name: Verbeteringen verwerken
+        id: herstel
+        if: steps.mag.outputs.mag == 'ja' && github.event.inputs.correcties != ''
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
+          CORRECTIES: ${{ github.event.inputs.correcties }}
+        run: |
+          if python kopie_pa.py --herstel --datum "$DATUM" --correcties "$CORRECTIES"; then
+            echo "gelukt=ja" >> "$GITHUB_OUTPUT"
+            echo "GECORRIGEERD=1" >> "$GITHUB_ENV"
+          else
+            echo "gelukt=nee" >> "$GITHUB_OUTPUT"
+            echo "LET OP: het herschrijven is mislukt; er gaat nu niets naar pa."
+          fi
+
+      - name: Mail naar pa
+        id: mail
+        if: >-
+          steps.mag.outputs.mag == 'ja'
+          && (github.event.inputs.correcties == '' || steps.herstel.outputs.gelukt == 'ja')
+          && hashFiles(format('digests/{0}-mail.html', env.DATUM)) != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Vastgoed in Nijmegen
+          to: ${{ secrets.MAIL_TO_VERHAAL }}
+          subject: ${{ format('Vastgoed in Nijmegen, {0}', env.DATUM) }}
+          html_body: file://digests/${{ env.DATUM }}-mail.html
+
+      - name: Vastleggen en terugcommitten
+        if: steps.mail.outcome == 'success'
+        run: |
+          if [ "${GECORRIGEERD:-0}" = "1" ]; then
+            python kopie_pa.py --verstuurd --datum "$DATUM" --gecorrigeerd
+          else
+            python kopie_pa.py --verstuurd --datum "$DATUM"
+          fi
+          git config user.name "vastgoedmonitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add pa_kopie.json controle_brief.json digests/${DATUM}-* 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Niets gewijzigd"
+            exit 0
+          fi
+          git commit -m "Kopie naar pa $DATUM"
+          # EEN GEGEVENSCOMMIT RAAKT NOOIT BRONCODE; dezelfde toets als in
+          # bekendmakingen.yml, voor elke push opnieuw (na een rebase ook).
+          geen_broncode() {
+            local raakt
+            raakt=$(git diff --name-only HEAD~1 HEAD -- '*.py' '*.yml' 2>/dev/null || true)
+            if [ -n "$raakt" ]; then
+              echo "GESTOPT: deze commit raakt broncode: $raakt"
+              return 1
+            fi
+            return 0
+          }
+          for poging in 1 2 3; do
+            geen_broncode || exit 1
+            if git push; then
+              echo "Teruggecommit gelukt"
+              exit 0
+            fi
+            git pull --rebase origin "${GITHUB_REF_NAME}" || { git rebase --abort; exit 1; }
+            sleep 5
+          done
+          exit 1

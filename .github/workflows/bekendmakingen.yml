@@ -254,7 +254,11 @@ jobs:
           else
             echo "TESTRUN=0" >> "$GITHUB_ENV"
             echo "GEHEUGEN_ALLEEN_LEZEN=0" >> "$GITHUB_ENV"
-            echo "CC_VERHAAL=${{ secrets.MAIL_TO_VERHAAL }}" >> "$GITHUB_ENV"
+            # PA KRIJGT DE BRIEF NA HET NAKIJKEN. 20 oktober 2026, Mark: deze
+            # run mailt alleen hem. De kopie naar pa gaat via kopie_pa.yml,
+            # na de nakijkronde (NAKIJKEN.md), eventueel met de verbeteringen
+            # erin. Zie kopie_pa.py; pa_kopie.json zegt of hij mag.
+            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
           fi
           if [ -n "${VERHAAL_ADRES}" ]; then
             echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
@@ -1101,8 +1105,18 @@ jobs:
           # uit; een halve upload bestaat in deze opzet niet. Wat wel een halve
           # brief oplevert, een ontbrekende voet of een weggevallen onderdeel,
           # staat hierboven en haalt de kopie er nog steeds af.
-          echo "De brief is compleet; hij gaat naar beiden."
+          echo "De brief is compleet; pa krijgt hem na het nakijken (kopie_pa.yml)."
           echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
+
+      # Wat de nakijkronde en kopie_pa.yml moeten weten: mag deze brief naar
+      # pa (geen testrun, geen halve update), en in welke modus. Een testrun
+      # laat de stand van de echte brief staan.
+      - name: Kopie voor pa klaarzetten
+        continue-on-error: true
+        run: |
+          python kopie_pa.py --klaarzetten --datum "$DATUM" --modus "$MODUS" \
+            --testrun "${TESTRUN:-0}" --halve "${HALVE_UPDATE:-0}" \
+            --reden "${ONVOLLEDIG:-}"
 
       - name: Digests + gegevensbestanden terugcommitten
         run: |
@@ -1152,6 +1166,7 @@ jobs:
             verteld.json
             briefstand.json
             controle_brief.json
+            pa_kopie.json
             bestandsomvang.json
             aanbod_reeks.json
             aanbodprofiel.json
@@ -1291,9 +1306,8 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          # Alleen bij een handmatige run kan de kopie worden weggelaten. Een
-          # geplande ochtendrun gaat altijd naar beiden, wat er ook in het
-          # formulier van een eerdere handmatige run stond.
+          # Sinds 20 oktober altijd leeg: deze mail gaat alleen naar Mark. Pa
+          # krijgt de brief na de nakijkronde via kopie_pa.yml.
           cc: ${{ env.CC_VERHAAL }}
           subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
