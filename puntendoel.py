@@ -25,6 +25,7 @@ het stelsel zoals wwso.py dat implementeert. Verandert dat stelsel, dan
 verandert deze uitkomst mee.
 """
 import argparse
+from getal import euro, getal
 import sys
 
 try:
@@ -230,19 +231,19 @@ def tekst_gesplitst(opp_totaal, aantal, woz_totaal, label, doel=187,
             winst_mnd = (na_huur - nu_huur) * aantal
             uit.append(f"**Dan is 187 punten het verkeerde doel.** Het gaat om "
                        f"een zo hoog mogelijk wettelijk maximum. Per eenheid "
-                       f"gaat de maximumhuur van €{nu_huur:.2f} naar "
-                       f"€{na_huur:.2f}, dus over {aantal} eenheden "
-                       f"€{winst_mnd:,.0f} per maand meer".replace(",", ".")
-                       + f" of €{winst_mnd * 12:,.0f} per jaar.".replace(",", ".")
-                       + " Daar weeg je de verbouwing tegen af.")
+                       f"gaat de maximumhuur van {euro(nu_huur, 2)} naar "
+                       f"{euro(na_huur, 2)}, dus over {aantal} eenheden "
+                       f"{euro(winst_mnd)} per maand meer of "
+                       f"{euro(winst_mnd * 12)} per jaar. Daar weeg je de "
+                       f"verbouwing tegen af.")
     return "\n".join(uit)
 
 
 def tekst(opp, woz, label, doel=187, monument=None):
     r = programma(opp, woz, label, doel, monument)
     uit = [f"## Programma van eisen voor {doel} punten", "",
-           f"_Woning van {opp} m2, WOZ €{woz:,}".replace(",", ".")
-           + f", label {label or 'onbekend'}._", ""]
+           f"_Woning van {opp} m2, WOZ {euro(woz)}, label "
+           f"{label or 'onbekend'}._", ""]
     if not r["tekort"]:
         uit.append(r["conclusie"])
         return "\n".join(uit)
@@ -276,10 +277,10 @@ def tekst(opp, woz, label, doel=187, monument=None):
     volgend = wws_max_huur(r["nu"] + 1, monument)
     if maximum:
         uit.append(f"_Bij {r['nu']} punten is de wettelijke maximumhuur "
-                   f"€{maximum:.2f} per maand"
+                   f"{euro(maximum, 2)} per maand"
                    + (f" (met de monumentenopslag van {monument})"
                       if monument_soort(monument) else "")
-                   + (f". Een punt meer is €{volgend - maximum:.2f}._"
+                   + (f". Een punt meer is {euro(volgend - maximum, 2)}._"
                       if volgend else "._"))
     return "\n".join(uit)
 
@@ -304,7 +305,7 @@ def proef():
     t = tekst(60, 200000, "G", monument="gemeentelijk")
     m = wws_max_huur(programma(60, 200000, "G", monument="gemeentelijk")["nu"],
                      "gemeentelijk")
-    if f"€{m:.2f}" not in t:
+    if euro(m, 2) not in t:
         afw.append("de maximumhuur in het programma mist de opslag van 15%")
     if monument_soort(True) != "rijks":
         afw.append("monument=True leest niet als rijks")

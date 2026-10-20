@@ -1568,3 +1568,23 @@ waarom: 20 oktober. HUUR_M2_MND was een aanname per buurt (17 tot 20, en 18
 proef: marktprijzen_bag:de huurreferentie is niet de stadsmediaan; marktprijzen_bag:zonder referentie wordt de meting toch verschoven; marktprijzen_bag:huur per buurt valt verkeerd terug
 soort: gegevens
 
+---
+eis: Getallen in een zin gaan via getal.py (euro, getal); nooit
+  .replace(",", ".") op een tekst waar zelf een komma in staat.
+waarom: 20 oktober. Op acht plekken ving die vervanging ook de komma's van de
+  zin en de decimale punt. In de brief: "gemeten premie 1.425 voor die
+  klasse. dus €7.746/m2 ... €5.436/m2. samen €1.223.827".
+proef: getal:geeft; eisen:komma_vervanging ziet de vorm uit de brief niet
+soort: brief
+
+---
+eis: De bron bij de richtprijs zegt wat erin zit: de exploitatiekosten wel,
+  de verbouwing en de kosten koper niet.
+waarom: 20 oktober. Er stond "met aannames voor exploitatie en verbouwing",
+  terwijl richtprijs() de verbouwing niet aftrekt. Gemeten met de
+  verbouwingsbedragen 10% hoger en lager: geen enkele richtprijs in de
+  dagbrief veranderde.
+proef: -
+let op: tekst; geen proef, de bron staat op een plek
+soort: brief
+

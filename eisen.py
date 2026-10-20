@@ -19,6 +19,7 @@ verschil tussen wat we willen en wat gecontroleerd wordt, hoort zichtbaar te
 zijn in plaats van impliciet.
 """
 import argparse
+import glob
 import os
 import re
 import subprocess
@@ -442,6 +443,46 @@ def pijp_zonder_vangnet(paden=None):
                               f"door een pijp zonder 'set -o pipefail'. De "
                               f"exitcode is dan die van het laatste commando "
                               f"en een fout ervoor verdwijnt.")
+    return fouten
+
+
+def komma_vervanging(paden=None):
+    """
+    Een tekst met een komma erin, waarop .replace(",", ".") wordt gedaan.
+
+    WAAROM. 20 oktober 2026: op acht plekken gaf f"... €{x:,} ...".replace(
+    ",", ".") een punt waar de zin een komma had, en een duizendtalpunt waar
+    een decimaal stond. In de brief: "gemeten premie 1.425 voor die klasse.
+    dus €7.746/m2". Getallen gaan via getal.py; deze toets vindt de oude vorm
+    terug, alleen waar de letterlijke tekst zelf een komma bevat.
+    """
+    import ast as _ast
+    fouten = []
+    for pad in paden or sorted(glob.glob("*.py")):
+        try:
+            boom = _ast.parse(open(pad, encoding="utf-8").read())
+        except (OSError, SyntaxError) as e:
+            fouten.append(f"{pad} niet te ontleden: {str(e)[:60]}")
+            continue
+        for n in _ast.walk(boom):
+            if not (isinstance(n, _ast.Call)
+                    and isinstance(n.func, _ast.Attribute)
+                    and n.func.attr == "replace" and len(n.args) == 2
+                    and all(isinstance(a, _ast.Constant) for a in n.args)
+                    and [a.value for a in n.args] == [",", "."]):
+                continue
+            v = n.func.value
+            if isinstance(v, _ast.JoinedStr):
+                tekst = "".join(x.value for x in v.values
+                                if isinstance(x, _ast.Constant))
+            elif isinstance(v, _ast.Constant) and isinstance(v.value, str):
+                tekst = v.value
+            else:
+                continue
+            if "," in tekst:
+                fouten.append(f"{pad}:{n.lineno}: .replace(',', '.') op een "
+                              f"tekst met een komma ({tekst[:40]!r}); gebruik "
+                              f"getal.euro of getal.getal")
     return fouten
 
 
@@ -932,6 +973,21 @@ def proef(snel=False):
     # stille_proef(): twee keer op 14 oktober meldde een proef een aantal
     # zonder te zeggen wat er mis was.
     fouten.extend(stille_proef())
+
+    # Geen komma's in een zin wegvervangen; zie komma_vervanging(). En de
+    # toets moet de vorm zien die op 20 oktober in de brief stond.
+    fouten.extend(komma_vervanging())
+    import tempfile as _tf4
+    with _tf4.TemporaryDirectory() as _m4:
+        _k = os.path.join(_m4, "k.py")
+        with open(_k, "w", encoding="utf-8") as _f4:
+            _f4.write('x = 1\ny = (f"premie {x} voor die klasse, dus "\n'
+                      '     f"€{x:,}".replace(",", "."))\n'
+                      'z = f"€{x:,}".replace(",", ".")\n')
+        _gevonden = komma_vervanging([_k])
+        if len(_gevonden) != 1:
+            fouten.append(f"komma_vervanging ziet de vorm uit de brief niet, "
+                          f"of meldt ook de goede vorm: {_gevonden}")
 
     # EN DIE TOETS MOET DE ECHTE VORM ZIEN. Nagemeten op voorraad_bag.py zoals
     # het op main stond vóór PR 101: precies een treffer, de meldlus op regel

@@ -14,6 +14,7 @@ Vereist env: BAG_API_KEY (gratis via kadaster.nl)
 """
 
 import argparse
+from getal import euro, getal
 import datetime as dt
 import json
 import os
@@ -6202,13 +6203,11 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                 if _marge > 0:
                     f("uitponden",
                       f"opdelen in {_n} eenheden van {round(opp / _n)} m2 en "
-                      f"verkopen: gemeten premie {_pr} voor die klasse, dus "
-                      f"€{round(_med * _pr):,}".replace(",", ".")
-                      + f"/m2 tegen de buurtmediaan van "
-                      + f"€{round(_med):,}".replace(",", ".")
-                      + f"/m2, samen €{round(_waarde):,}".replace(",", ".")
-                      + f". Na aankoop en kosten koper blijft "
-                      + f"€{round(_marge):,}".replace(",", ".")
+                      f"verkopen: gemeten premie {getal(_pr, 3)} voor die "
+                      f"klasse, dus {euro(_med * _pr)}/m2 tegen de "
+                      f"buurtmediaan van {euro(_med)}/m2, samen "
+                      f"{euro(_waarde)}. Na aankoop en kosten koper blijft "
+                      f"{euro(_marge)}"
                       + " over VOOR verbouwing, splitsingsakte, VvE en "
                       + "belasting. Bij verkoop gelden het puntenstelsel en de "
                       + "opkoopbescherming niet, bij verhuur wel",
@@ -6398,7 +6397,13 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
         f("doorrekening", f"{sc['naam']}, huur €{eu(sc['maand'])} per maand"
           f"{_per_kamer} ({sc.get('bron', '')}), richtprijs €{eu(plafond)} als "
           f"koopsom{waarom}",
-          "eigen doorrekening met aannames voor exploitatie en verbouwing")
+          # WAT ER NIET IN ZIT. Tot 20 oktober stond hier "met aannames voor
+          # exploitatie en verbouwing", maar richtprijs() trekt de verbouwing
+          # en de kosten koper er niet af (zie de docstring daar). Gemeten: de
+          # verbouwingsbedragen 10% hoger of lager veranderden geen enkele
+          # richtprijs in de dagbrief.
+          "eigen doorrekening met een aanname voor de exploitatiekosten; "
+          "verbouwing en kosten koper zitten er niet in en gaan er nog af")
         # Geen alternatief tonen voor een route die hierboven al is afgevallen.
         # Bij de Zwaluwstraat en de Krayenhofflaan stond splitsen zowel als
         # afgevallen route als als alternatief in hetzelfde dossier, en dat is

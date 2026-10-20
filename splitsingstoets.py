@@ -35,6 +35,7 @@ Formaat van het invoerbestand, een regel per ruimte:
   appartement 1 | woonkamer     | verblijfsruimte  | 20.9
 """
 import argparse
+from getal import euro
 import datetime as dt
 import sys
 
@@ -339,7 +340,7 @@ def voorbereiding(adres, aantal_nu, aantal_na, gereguleerd=True):
     r.append(f"_Uit het verleende dossier van de Biezenstraat 110: aanvraag 3 "
              f"december 2025, vergunning 29 september 2026, dus ongeveer "
              f"{BIEZENSTRAAT_DAGEN} dagen, met leges van "
-             f"€{BIEZENSTRAAT_LEGES:,.2f}".replace(",", ".") + " en "
+             f"{euro(BIEZENSTRAAT_LEGES, 2)} en "
              "eenentwintig bijlagen. Reken op groenmaatregelen als voorschrift "
              "en op zes weken bezwaartermijn waarin beginnen op eigen risico "
              "is._")

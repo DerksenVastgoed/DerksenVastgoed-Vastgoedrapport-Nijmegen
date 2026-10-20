@@ -24,6 +24,7 @@ Gebruik:
 """
 
 import argparse
+from getal import euro, getal
 import datetime as dt
 import json
 import os
@@ -1381,7 +1382,7 @@ def uit_model(geschiedenis, pad="verkoopdatums_model.json"):
             if not g.get("datum"):
                 continue
             prijs = g.get("vraagprijs")
-            bedrag = f", vraagprijs €{prijs:,}".replace(",", ".") if prijs else ""
+            bedrag = f", vraagprijs {euro(prijs)}" if prijs else ""
             merken = []
             if g.get("eerdere_advertentie"):
                 merken.append("eerdere advertentie")
