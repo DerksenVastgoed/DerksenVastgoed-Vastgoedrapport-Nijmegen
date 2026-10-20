@@ -1650,3 +1650,15 @@ waarom: 20 oktober: de winkelgevel ("niets met woningmarkt te maken") en de
 proef: brief_verhalend:zinnen die iets noemen om te zeggen dat het er niet
 soort: brief
 
+---
+eis: Elke bekendmaking in de ring krijgt zijn buurt mee: uit het adres in de
+  voorraad, anders uit de zescijferige postcode (bij een postcode op de grens
+  beide buurten met "of").
+waarom: 20 oktober. "Hatertseweg 320 in Galgenveld" (St. Anna); na de
+  feitencontrole "in welke buurt dit ligt staat niet in mijn gegevens",
+  terwijl de voorraad het wist. Op de 79 titels in de digests: 43 via het
+  adres, 13 via de postcode, 3 op een grens; de 20 zonder buurt liggen op 3
+  na buiten de ring.
+proef: bekendmakingen_nijmegen:de buurt komt niet uit het adres; bekendmakingen_nijmegen:de buurt staat niet bij de bekendmaking
+soort: brief
+
