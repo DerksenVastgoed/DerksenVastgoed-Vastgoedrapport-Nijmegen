@@ -1597,7 +1597,7 @@ waarom: 20 oktober. "Brief geschreven: 16000 tokens, 0 woorden": Sonnet 5
   denkt standaard en de denktokens tellen mee in max_tokens. Het denken at
   de ruimte op en de brief ging zonder verhaal uit. Dezelfde aanroep stond
   op zes plekken in vier bestanden.
-proef: taalmodel:een antwoord met alleen denken wordt niet opnieuw gevraagd; taalmodel:het aantal denktokens wordt niet gemeld
+proef: taalmodel:een antwoord met alleen denken wordt niet opnieuw; taalmodel:het aantal denktokens wordt niet gemeld
 soort: brief
 
 ---
@@ -1605,6 +1605,6 @@ eis: Een brief zonder verhaal is een halve update: de kopie naar pa gaat
   eraf en het onderwerp zegt het.
 waarom: 20 oktober ging de mail met alleen de tabellen als gewone brief naar
   beiden, en het gezondheidsrapport zei "er is een oude brief verstuurd".
-proef: briefmail:een brief zonder verhaal gaat als gewone brief naar beiden
+proef: briefmail:een brief zonder verhaal gaat als gewone brief naar
 soort: brief
 
