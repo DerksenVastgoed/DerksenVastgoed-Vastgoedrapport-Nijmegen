@@ -262331,7 +262331,7 @@
   },
   "0268010000038304": {
    "adres": "Witsenburgselaan 18",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-20",
    "buurten": [
     "Galgenveld"
    ],
@@ -262340,7 +262340,7 @@
    ],
    "herkomst": "focusbuurt",
    "label_gezien": "2026-10-13",
-   "oppervlakte": 206,
+   "oppervlakte": 246,
    "pand": "0268100000027125",
    "pand_bouwjaar": 1934,
    "pand_status": "Pand in gebruik",
@@ -262355,7 +262355,7 @@
     51.832139
    ],
    "sleutel": "witsenburgselaan18",
-   "status": "Verblijfsobject in gebruik",
+   "status": "Verbouwing verblijfsobject",
    "vbo": "0268010000038304"
   },
   "0268010000038305": {
@@ -697584,27 +697584,27 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
-   "adressen_nieuw": 6,
-   "adressen_onveranderd": 24389,
+   "adressen_bijgewerkt": 1,
+   "adressen_nieuw": 0,
+   "adressen_onveranderd": 24394,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 132979,
    "datum": "2026-10-20",
    "fouten": 0,
    "historie_overgeslagen": 2573,
    "laatste_fout": "",
-   "met_punt": 29104,
+   "met_punt": 29106,
    "niet_woningen_bewaard": 2371,
    "niet_woonfunctie": 2368,
-   "nog_gevormd": 2421,
+   "nog_gevormd": 2423,
    "objecten_in_meer_panden": 118,
-   "objecten_met_pand": 29104,
-   "om_een_signaal": 765,
+   "objecten_met_pand": 29106,
+   "om_een_signaal": 767,
    "opgeleverd": 0,
    "opgeleverde_adressen": [],
    "opnieuw_gezien": 0,
-   "pijplijn_bewaard": 2341,
-   "pijplijn_gezien": 2341,
+   "pijplijn_bewaard": 2343,
+   "pijplijn_gezien": 2343,
    "postcodes_buiten_nijmegen": 0,
    "postcodes_gedaan": 1515,
    "postcodes_leeg": 2,
@@ -697616,20 +697616,20 @@
    "postcodes_nijmegen": 1517,
    "postcodes_totaal": 1517,
    "punt_behouden": 0,
-   "ronde_objecten": 164656,
+   "ronde_objecten": 164658,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 269.6,
+   "ronde_seconden": 378.4,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
    "statussen": {
     "Niet gerealiseerd verblijfsobject": 448,
-    "Verblijfsobject gevormd": 2421,
-    "Verblijfsobject in gebruik": 26358,
+    "Verblijfsobject gevormd": 2423,
+    "Verblijfsobject in gebruik": 26357,
     "Verblijfsobject in gebruik (niet ingemeten)": 6,
     "Verblijfsobject ingetrokken": 2125,
-    "Verbouwing verblijfsobject": 319
+    "Verbouwing verblijfsobject": 320
    },
    "terug_in_de_pijplijn": 0,
    "van_soort_gewisseld": 0,
@@ -697641,16 +697641,16 @@
   },
   "bijgewerkt": "2026-10-20",
   "labels": {
-   "aanroepen_per_minuut": 32.8,
+   "aanroepen_per_minuut": 0.0,
    "datum": "2026-10-20",
    "fouten": 0,
-   "geen_label_bekend": 2,
-   "gevraagd": 6,
+   "geen_label_bekend": 0,
+   "gevraagd": 0,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
    "laatste_fout": "",
-   "label_gevonden": 4,
+   "label_gevonden": 0,
    "label_prive": 0,
    "labels_methode_2014": 6178,
    "labels_nta8800": 10749,
@@ -697660,30 +697660,30 @@
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 11.0
+   "seconden": 0.0
   },
   "panden": {
    "datum": "2026-10-20",
    "fout": "",
-   "met_bouwjaar": 187239,
-   "met_status": 187239,
-   "objecten": 188111,
-   "omzettingen": 187239,
+   "met_bouwjaar": 187240,
+   "met_status": 187240,
+   "objecten": 188112,
+   "omzettingen": 187240,
    "paginas": 195,
    "pandstatussen": {
     "Bouw gestart": 717,
     "Bouwvergunning verleend": 1294,
     "Niet gerealiseerd pand": 1076,
     "Pand buiten gebruik": 5,
-    "Pand gesloopt": 16160,
-    "Pand in gebruik": 166633,
-    "Pand in gebruik (niet ingemeten)": 136,
+    "Pand gesloopt": 16169,
+    "Pand in gebruik": 166623,
+    "Pand in gebruik (niet ingemeten)": 135,
     "Pand ten onrechte opgevoerd": 672,
-    "Sloopvergunning verleend": 99,
+    "Sloopvergunning verleend": 102,
     "Verbouwing pand": 447
    },
    "ronde_af": true,
-   "seconden": 347.8,
+   "seconden": 499.1,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
@@ -816920,6 +816920,50 @@
    "status": "Verblijfsobject gevormd",
    "vbo": "0268010000115286",
    "vlak_soort": "vergunningenzone"
+  },
+  "0268010000115288": {
+   "adres": "Ahornstraat 3",
+   "bag_gezien": "2026-10-20",
+   "buurten": [],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "bekendmaking",
+   "oppervlakte": 85,
+   "pand": "0268100000000571",
+   "pand_bouwjaar": 1949,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Rest bebouwde kom",
+   "postcode": "6523JE",
+   "punt": [
+    5.889701,
+    51.83396
+   ],
+   "sleutel": "ahornstraat3",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115288"
+  },
+  "0268010000115289": {
+   "adres": "Ahornstraat 3A",
+   "bag_gezien": "2026-10-20",
+   "buurten": [],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "bekendmaking",
+   "oppervlakte": 66,
+   "pand": "0268100000000571",
+   "pand_bouwjaar": 1949,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Rest bebouwde kom",
+   "postcode": "6523JE",
+   "punt": [
+    5.889752,
+    51.83395
+   ],
+   "sleutel": "ahornstraat3a",
+   "status": "Verblijfsobject gevormd",
+   "vbo": "0268010000115289"
   }
  },
  "postcodes": {
