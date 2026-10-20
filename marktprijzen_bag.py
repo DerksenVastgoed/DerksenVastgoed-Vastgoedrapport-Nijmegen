@@ -1825,12 +1825,14 @@ OVERDRACHTSBELASTING_PCT = 8.0   # tarief beleggingsvastgoed; controleer jaarlij
 BIJKOMENDE_KOSTEN_PCT = 2.0       # notaris, makelaar, taxatie, advies
 AANKOOPKOSTEN_PCT = OVERDRACHTSBELASTING_PCT + BIJKOMENDE_KOSTEN_PCT
 
-# Aanname voor de huur per m2 per maand, per buurt. Vervalt zodra er gemeten
-# huuraanbiedingen binnenkomen; in de brief staat per buurt welke bron geldt.
-HUUR_M2_MND = {
-    "Stadscentrum": 20, "Benedenstad": 20, "Bottendaal": 18,
-    "Galgenveld": 18, "Altrade": 17, "Biezen": 18,
-}
+# HUUR_M2_MND IS WEG. 20 oktober 2026. Hier stond een aanname per buurt
+# (Stadscentrum 20, Bottendaal 18, Altrade 17 ...), en een terugval op 18 voor
+# elke andere buurt. Die getallen waren nooit gemeten, en toch woog elke
+# gemeten huur er naar toe (_binnen_band): bij Galgenveld werd een meting van
+# €14/m2 over 12 panden €16/m2 omdat de aanname €18 was. De referentie is nu
+# de stadsmediaan van dezelfde grootteklasse, gemeten op ons eigen
+# huuraanbod; zie huur_referentie(). Hunnerberg en St. Anna hadden geen
+# aanname en stonden daarom met streepjes in de yieldtabel.
 # Een landelijk ijkpunt om onze eigen meting tegen te houden. Pararius en
 # Huurwoningen.nl meldden voor het derde kwartaal van 2026 een gemiddelde van
 # €20,92 per m2 in de vrije sector, oftewel €1.914 per maand voor een doorsnee
@@ -3320,28 +3322,43 @@ MIN_HUUR_PER_BUURT = 5
 HUUR_BAND = (0.7, 1.4)   # buitenste grens, ook bij veel waarnemingen
 
 
-def _binnen_band(hm2, buurt, bron, klasse="woning", n=0):
+MIN_HUUR_REFERENTIE = 5   # zoveel advertenties in de stad voor een referentie
+
+
+def huur_referentie(huur_k, klasse="woning", band=None):
+    """(euro per m2, bron) als referentie: de mediaan van ons huuraanbod in de
+    hele stad, in dezelfde grootteklasse als die er genoeg heeft, of None.
+    Een meting, geen aanname; zie HUUR_M2_MND IS WEG hierboven."""
+    if band and band != "onbekend":
+        reeks = (huur_k or {}).get((klasse, band), [])
+        if len(reeks) >= MIN_HUUR_REFERENTIE:
+            return (st.median(reeks),
+                    f"stadsmediaan {band}, {len(reeks)} advertenties")
+    return None
+
+
+def _binnen_band(hm2, ref, bron, klasse="woning", n=0):
     """
-    De gemeten huur gewogen met de referentie voor die buurt.
+    De gemeten huur in de buurt gewogen met de referentie (de stadsmediaan
+    van dezelfde grootteklasse, huur_referentie).
 
     Het gewicht van de meting is n / (n + 10): bij drie waarnemingen telt de
     meting voor bijna een kwart, bij tien voor de helft, bij dertig voor
     driekwart. Daarbuiten geldt nog een harde band, zodat ook een grote reeks
-    de referentie niet onbeperkt kan overrulen.
+    de referentie niet onbeperkt kan overrulen. Zonder referentie blijft de
+    meting staan.
     """
-    if klasse != "woning":
+    if klasse != "woning" or not ref or not hm2:
         return hm2, bron
-    ref = HUUR_M2_MND.get(buurt)
-    if not ref or not hm2:
-        return hm2, bron
+    waarde, ref_bron = ref
     gewicht = n / (n + HUUR_HALFWEG) if n else 0.0
-    gewogen = gewicht * hm2 + (1 - gewicht) * ref
-    gewogen = max(ref * HUUR_BAND[0], min(ref * HUUR_BAND[1], gewogen))
+    gewogen = gewicht * hm2 + (1 - gewicht) * waarde
+    gewogen = max(waarde * HUUR_BAND[0], min(waarde * HUUR_BAND[1], gewogen))
     if abs(gewogen - hm2) < 0.5:
         return hm2, bron
-    return gewogen, (f"{bron}: meting €{hm2:.0f}/m2 gewogen met de referentie "
-                     f"€{ref}/m2 voor {buurt} tot €{gewogen:.0f}/m2, want "
-                     f"{n} waarnemingen")
+    return gewogen, (f"{bron}: meting €{hm2:.0f}/m2 gewogen met de "
+                     f"{ref_bron} (€{waarde:.0f}/m2) tot €{gewogen:.0f}/m2, "
+                     f"want {n} waarnemingen")
 
 
 # De WOZ van een belastingjaar is de marktwaarde op 1 januari van het jaar
@@ -3669,6 +3686,27 @@ def grootte_van_reeks(_reeks, huur_k, klasse):
     return f"{grootste} ({deel:.0f}% van de waarnemingen)"
 
 
+def huur_per_buurt(buurt, huur_bk, huur_k, kort=False):
+    """(euro per m2, bron) voor een buurt zonder pandgrootte, voor de
+    yieldtabel en de weekbrief: de buurtmediaan vanaf MIN_HUUR_PER_BUURT
+    advertenties, anders de stadsmediaan, anders het landelijke cijfer als
+    aanname. Een implementatie; voorheen stond dit twee keer, met een drempel
+    van 3 in plaats van MIN_HUUR_PER_BUURT en met HUUR_M2_MND als laatste."""
+    reeks = huur_bk.get(("woning", buurt), [])
+    if len(reeks) >= MIN_HUUR_PER_BUURT:
+        return st.median(reeks), (f"gemeten (N={len(reeks)})" if kort else
+                                  f"gemeten op {len(reeks)} huuraanbiedingen "
+                                  f"in {buurt}")
+    stad = huur_k.get("woning", [])
+    if len(stad) >= MIN_HUUR_REFERENTIE:
+        return st.median(stad), (f"stad (N={len(stad)})" if kort else
+                                 f"gemeten op {len(stad)} huuraanbiedingen "
+                                 f"stadsbreed, {len(reeks)} in {buurt}")
+    return LANDELIJK_HUUR_M2, ("aanname" if kort else
+                               f"AANNAME: landelijk gemiddelde vrije sector "
+                               f"{LANDELIJK_HUUR_PEILDATUM}")
+
+
 def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning",
                     segment=None):
     """
@@ -3704,7 +3742,8 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning",
         factor_bron = f", geschaald naar {buurt} ({factor:.2f}x)"
 
     if len(band_reeks) >= 3:
-        return _binnen_band(st.median(band_reeks) * factor, buurt,
+        return _binnen_band(st.median(band_reeks) * factor,
+                            huur_referentie(huur_k, klasse, band),
                             f"gemeten, {len(band_reeks)} panden {band}{factor_bron}",
                             klasse, len(band_reeks))
 
@@ -3717,18 +3756,21 @@ def huur_voor_buurt(buurt, huur_bk, huur_k, opp=None, klasse="woning",
     # 60 m2 doortrekken naar 116 m2 is geen meting maar extrapolatie: kleine
     # woningen brengen per m2 veel meer op. Dan liever eerlijk de referentie,
     # die als aanname wordt gemarkeerd en dus geen koopsignaal oplevert.
+    # GEEN METING IN DE KLASSE: HET LANDELIJKE CIJFER, ALS AANNAME. Tot 20
+    # oktober stond hier de buurtaanname uit HUUR_M2_MND (of 18). Nu het
+    # gepubliceerde landelijke gemiddelde voor nieuwe verhuringen in de vrije
+    # sector (LANDELIJK_HUUR_M2, een woning van ongeveer 91 m2). Dat is wel
+    # ergens gemeten, maar niet hier en niet in deze klasse, dus het blijft
+    # "aanname" en levert geen koopsignaal op.
     maten = grootte_van_reeks(stad_reeks, huur_k, klasse)
     beschikbaar = len(buurt_reeks) + len(stad_reeks)
-    if beschikbaar >= 3:
-        ref = HUUR_M2_MND.get(buurt)
-        if ref:
-            return ref, (f"aanname: {beschikbaar} metingen beschikbaar, maar "
-                         f"geen enkele in de klasse {band}"
-                         + (f" (wel {maten})" if maten else "")
-                         + "; doortrekken over grootteklassen heen zou de huur "
-                           "overschatten")
-
-    return HUUR_M2_MND.get(buurt, 18), "aanname"
+    return LANDELIJK_HUUR_M2, (
+        f"aanname: geen meting in de klasse {band}"
+        + (f" ({beschikbaar} metingen in andere klassen"
+           + (f", vooral {maten}" if maten else "") + ")"
+           if beschikbaar else "")
+        + f"; landelijk gemiddelde vrije sector {LANDELIJK_HUUR_PEILDATUM}, "
+          f"€{LANDELIJK_HUUR_M2}/m2")
 
 
 
@@ -5168,16 +5210,7 @@ def render_investeringscases(kandidaten, cbs, per_buurt, huur_bk, huur_k,
         # aanloopperiode, zodat de twee elkaar niet tegenspreken.
         reno_uit = renovatiekosten(opp, w.get("energielabel"), uitsplitsen=True)
         reno = reno_uit["totaal"]
-        reeks = huur_bk.get(("woning", buurt), [])
-        bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen in {buurt}"
-        if len(reeks) < 3:
-            reeks = huur_k.get("woning", [])
-            bron_huur = f"gemeten op {len(reeks)} huuraanbiedingen stadsbreed"
-        if len(reeks) < 3:
-            huur_m2 = HUUR_M2_MND.get(buurt, 18)
-            bron_huur = "AANNAME, er is nog geen huurdata verzameld"
-        else:
-            huur_m2 = st.median(reeks)
+        huur_m2, bron_huur = huur_per_buurt(buurt, huur_bk, huur_k)
         jaarhuur = huur_m2 * 12 * opp
         # Het scenario bepaalt de exploitatiekosten: kamerverhuur kost meer aan
         # onderhoud, mutaties en beheer dan verhuur aan een huishouden.
@@ -8450,7 +8483,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
     r.append("|---|---:|---:|---|---:|---:|")
     for buurt in FOCUS_BUURTEN:
         rijen = per_buurt.get(buurt, [])
-        if not rijen or buurt not in HUUR_M2_MND:
+        if not rijen:
             r.append(f"| {buurt} | — | — | — | — | — |")
             continue
         if len(rijen) < 10:
@@ -8459,17 +8492,7 @@ def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
         prijzen = sorted(p for p, _ in rijen)
         med_m2 = st.median(prijzen)
 
-        # Eerst de eigen buurt, dan stadsbreed, dan pas de aanname
-        reeks = huur_bk.get(("woning", buurt), [])
-        bron = f"gemeten (N={len(reeks)})"
-        if len(reeks) < 3:
-            reeks = huur_k.get("woning", [])
-            bron = f"stad (N={len(reeks)})"
-        if len(reeks) < 3:
-            huur_m2 = HUUR_M2_MND[buurt]
-            bron = "aanname"
-        else:
-            huur_m2 = st.median(reeks)
+        huur_m2, bron = huur_per_buurt(buurt, huur_bk, huur_k, kort=True)
 
         huur_m2_jaar = huur_m2 * 12
         bruto_yield = huur_m2_jaar / med_m2 * 100
