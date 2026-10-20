@@ -21,18 +21,18 @@
    "premie": 1.0
   },
   "100-130 m2": {
-   "aantal": 85,
-   "verhouding": 0.9,
-   "premie": 0.965
+   "aantal": 86,
+   "verhouding": 0.901,
+   "premie": 0.966
   },
   "130 m2 en groter": {
-   "aantal": 77,
-   "verhouding": 0.862,
+   "aantal": 78,
+   "verhouding": 0.863,
    "premie": 0.925
   }
  },
  "buurten_met_ijkpunt": 11,
- "waarnemingen": 596,
+ "waarnemingen": 598,
  "ijkklasse": "80-100 m2",
  "basis_gemeten": true
 }

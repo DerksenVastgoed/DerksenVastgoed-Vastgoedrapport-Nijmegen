@@ -5,7 +5,7 @@
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 430,
+   "dagen": 431,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
@@ -23,7 +23,9 @@
    ],
    "in_gebruik": 1,
    "datum": "2026-10-17",
-   "aanvraag": "2026-04-13"
+   "aanvraag": "2026-04-13",
+   "besluit": "2026-10-19",
+   "vergund_aantal": 6
   },
   {
    "adres": "St. Annastraat 275",
@@ -34,7 +36,8 @@
    ],
    "in_gebruik": 1,
    "datum": "2026-10-17",
-   "aanvraag": "2026-01-29"
+   "aanvraag": "2026-01-29",
+   "besluit": "2026-10-19"
   },
   {
    "adres": "Hatertseweg 338",

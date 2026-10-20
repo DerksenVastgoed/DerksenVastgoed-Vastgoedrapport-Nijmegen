@@ -10,7 +10,7 @@
   "Bekendmakingen-archief": "OK",
   "Beleid haalt de mail": "OK",
   "Bouwkostenindex": "OK",
-  "Brief opnieuw geschreven": "OK",
+  "Brief opnieuw geschreven": "FOUT",
   "Brieven verstuurd": "OK",
   "Bronnen die niets opleveren": "LET OP",
   "Buurtcijfers CBS": "OK",
@@ -68,5 +68,5 @@
   "Woningen in bestaande panden": "OK",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-19"
+ "datum": "2026-10-20"
 }

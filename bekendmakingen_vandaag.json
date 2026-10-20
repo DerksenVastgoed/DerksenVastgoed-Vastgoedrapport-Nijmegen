@@ -1,1 +1,44 @@
-[]
+[
+ {
+  "datum": "2026-10-19",
+  "titel": "Besluit voor het splitsen van de woning in zes zelfstandige appartementen, aan Graafseweg 18, 6512CB Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-485967.html",
+  "strategie": "splitsen",
+  "duiding": "Besluit maakt zes zelfstandige appartementen uit één pand mogelijk, wat de voorraad kleine zelfstandige units op deze locatie vergroot.",
+  "feiten": {
+   "energielabel": "D (2018)",
+   "label_alleen_dit_adres": true,
+   "oppervlakte_m2": 374
+  },
+  "straat": "Graafseweg",
+  "huisnummer": "18",
+  "kern": true
+ },
+ {
+  "datum": "2026-10-19",
+  "titel": "Aanvraag omgevingsvergunning voor het aanpassen van de voorgevel van een winkelpand , aan Ziekerstraat 75, 6511LG Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-485736.html",
+  "strategie": "geen",
+  "duiding": "Betreft enkel een aanvraag voor gevelaanpassing van een winkelpand, zonder aangegeven functiewijziging.",
+  "feiten": {
+   "oppervlakte_m2": 103
+  },
+  "straat": "Ziekerstraat",
+  "huisnummer": "75",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-19",
+  "titel": "Besluit voor het intern verbouwen van een winkel, aan Broerstraat 16, 6511KN Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-486891.html",
+  "strategie": "geen",
+  "duiding": "Interne verbouwing van een winkel zonder functiewijziging heeft geen direct effect op de woningmarkt.",
+  "feiten": {
+   "energielabel": "B (2020)",
+   "oppervlakte_m2": 819
+  },
+  "straat": "Broerstraat",
+  "huisnummer": "16",
+  "kern": false
+ }
+]

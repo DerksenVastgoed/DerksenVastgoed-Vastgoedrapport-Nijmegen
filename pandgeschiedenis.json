@@ -1777,7 +1777,7 @@
      103
     ]
    ],
-   "bag_gezien": "2026-10-18",
+   "bag_gezien": "2026-10-20",
    "bag_woningen": [
     [
      "Coehoornstraat 31",
@@ -8828,6 +8828,21 @@
     "Banjostraat 13": "C"
    }
   },
+  "0268100000003262": {
+   "bag_eenheden": [
+    [
+     "Harpstraat 10",
+     112
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Harpstraat 10",
+     112
+    ]
+   ]
+  },
   "0268100000003304": {
    "bag_eenheden": [
     [
@@ -12041,6 +12056,21 @@
     "van Welderenstraat 63": "C",
     "van Welderenstraat 65": "A++"
    }
+  },
+  "0268100000004475": {
+   "bag_eenheden": [
+    [
+     "Bijleveldsingel 36",
+     222
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Bijleveldsingel 36",
+     222
+    ]
+   ]
   },
   "0268100000004477": {
    "bag_eenheden": [
@@ -18073,6 +18103,182 @@
    ],
    "labels": {
     "Glimwormstraat 8": "B"
+   }
+  },
+  "0268100000007820": {
+   "bag_eenheden": [
+    [
+     "Gorterplaats 1",
+     288
+    ],
+    [
+     "Gorterplaats 10",
+     237
+    ],
+    [
+     "Gorterplaats 11",
+     1455
+    ],
+    [
+     "Gorterplaats 12",
+     1455
+    ],
+    [
+     "Gorterplaats 13",
+     1455
+    ],
+    [
+     "Gorterplaats 14",
+     1455
+    ],
+    [
+     "Gorterplaats 15",
+     569
+    ],
+    [
+     "Gorterplaats 16",
+     569
+    ],
+    [
+     "Gorterplaats 17",
+     120
+    ],
+    [
+     "Gorterplaats 18",
+     569
+    ],
+    [
+     "Gorterplaats 19",
+     203
+    ],
+    [
+     "Gorterplaats 2",
+     281
+    ],
+    [
+     "Gorterplaats 20",
+     232
+    ],
+    [
+     "Gorterplaats 21",
+     188
+    ],
+    [
+     "Gorterplaats 22",
+     90
+    ],
+    [
+     "Gorterplaats 23",
+     70
+    ],
+    [
+     "Gorterplaats 24",
+     67
+    ],
+    [
+     "Gorterplaats 25",
+     474
+    ],
+    [
+     "Gorterplaats 26",
+     44
+    ],
+    [
+     "Gorterplaats 27",
+     48
+    ],
+    [
+     "Gorterplaats 28",
+     90
+    ],
+    [
+     "Gorterplaats 29",
+     96
+    ],
+    [
+     "Gorterplaats 3",
+     109
+    ],
+    [
+     "Gorterplaats 30",
+     197
+    ],
+    [
+     "Gorterplaats 31",
+     84
+    ],
+    [
+     "Gorterplaats 32",
+     474
+    ],
+    [
+     "Gorterplaats 33",
+     369
+    ],
+    [
+     "Gorterplaats 34",
+     207
+    ],
+    [
+     "Gorterplaats 35",
+     171
+    ],
+    [
+     "Gorterplaats 36",
+     179
+    ],
+    [
+     "Gorterplaats 6",
+     316
+    ],
+    [
+     "Gorterplaats 7",
+     217
+    ],
+    [
+     "Gorterplaats 8",
+     248
+    ],
+    [
+     "Gorterplaats 9",
+     81
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "labels": {
+    "Gorterplaats 1": "A",
+    "Gorterplaats 10": "A",
+    "Gorterplaats 11": "A",
+    "Gorterplaats 12": "A",
+    "Gorterplaats 13": "A",
+    "Gorterplaats 14": "A",
+    "Gorterplaats 15": "A",
+    "Gorterplaats 16": "A",
+    "Gorterplaats 17": "A",
+    "Gorterplaats 18": "A",
+    "Gorterplaats 19": "A",
+    "Gorterplaats 2": "A",
+    "Gorterplaats 20": "A",
+    "Gorterplaats 21": "A",
+    "Gorterplaats 22": "A",
+    "Gorterplaats 23": "A",
+    "Gorterplaats 24": "A",
+    "Gorterplaats 25": "A",
+    "Gorterplaats 26": "A",
+    "Gorterplaats 27": "A",
+    "Gorterplaats 28": "A",
+    "Gorterplaats 29": "A",
+    "Gorterplaats 3": "A",
+    "Gorterplaats 30": "A",
+    "Gorterplaats 31": "A",
+    "Gorterplaats 32": "A",
+    "Gorterplaats 33": "A",
+    "Gorterplaats 34": "A",
+    "Gorterplaats 35": "A",
+    "Gorterplaats 6": "A",
+    "Gorterplaats 7": "A",
+    "Gorterplaats 8": "A",
+    "Gorterplaats 9": "A"
    }
   },
   "0268100000007869": {
@@ -37468,6 +37674,49 @@
     "Pastoor Nevestraat 10": "E"
    }
   },
+  "0268100000020410": {
+   "bag_eenheden": [
+    [
+     "Dommer van Poldersveldtweg 55",
+     119
+    ],
+    [
+     "Dommer van Poldersveldtweg 57",
+     118
+    ],
+    [
+     "Dommer van Poldersveldtweg 59",
+     149
+    ],
+    [
+     "Dommer van Poldersveldtweg 59A",
+     99
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Dommer van Poldersveldtweg 55",
+     119
+    ],
+    [
+     "Dommer van Poldersveldtweg 57",
+     118
+    ],
+    [
+     "Dommer van Poldersveldtweg 59",
+     149
+    ],
+    [
+     "Dommer van Poldersveldtweg 59A",
+     99
+    ]
+   ],
+   "labels": {
+    "Dommer van Poldersveldtweg 57": "C",
+    "Dommer van Poldersveldtweg 59A": "C"
+   }
+  },
   "0268100000020419": {
    "bag_eenheden": [
     [
@@ -42536,6 +42785,24 @@
     "Holtermanstraat 4": "A"
    }
   },
+  "0268100000021609": {
+   "bag_eenheden": [
+    [
+     "Tolhuis 6102",
+     239
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Tolhuis 6102",
+     239
+    ]
+   ],
+   "labels": {
+    "Tolhuis 6102": "B"
+   }
+  },
   "0268100000021620": {
    "bag_eenheden": [
     [
@@ -45992,6 +46259,248 @@
    ],
    "labels": {
     "Bredestraat 190": "C"
+   }
+  },
+  "0268100000024138": {
+   "bag_eenheden": [
+    [
+     "Bredestraat 168",
+     972
+    ],
+    [
+     "Bredestraat 170",
+     1787
+    ],
+    [
+     "Bredestraat 170A-1",
+     66
+    ],
+    [
+     "Bredestraat 170A-10",
+     72
+    ],
+    [
+     "Bredestraat 170A-11",
+     72
+    ],
+    [
+     "Bredestraat 170A-12",
+     36
+    ],
+    [
+     "Bredestraat 170A-13",
+     51
+    ],
+    [
+     "Bredestraat 170A-14",
+     53
+    ],
+    [
+     "Bredestraat 170A-15",
+     30
+    ],
+    [
+     "Bredestraat 170A-16",
+     37
+    ],
+    [
+     "Bredestraat 170A-17",
+     39
+    ],
+    [
+     "Bredestraat 170A-18",
+     30
+    ],
+    [
+     "Bredestraat 170A-19",
+     32
+    ],
+    [
+     "Bredestraat 170A-2",
+     60
+    ],
+    [
+     "Bredestraat 170A-20",
+     35
+    ],
+    [
+     "Bredestraat 170A-21",
+     30
+    ],
+    [
+     "Bredestraat 170A-22",
+     30
+    ],
+    [
+     "Bredestraat 170A-23",
+     34
+    ],
+    [
+     "Bredestraat 170A-24",
+     29
+    ],
+    [
+     "Bredestraat 170A-3",
+     72
+    ],
+    [
+     "Bredestraat 170A-4",
+     72
+    ],
+    [
+     "Bredestraat 170A-5",
+     36
+    ],
+    [
+     "Bredestraat 170A-6",
+     51
+    ],
+    [
+     "Bredestraat 170A-7",
+     53
+    ],
+    [
+     "Bredestraat 170A-8",
+     66
+    ],
+    [
+     "Bredestraat 170A-9",
+     59
+    ],
+    [
+     "Bredestraat 174",
+     678
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Bredestraat 168",
+     972
+    ],
+    [
+     "Bredestraat 170A-1",
+     66
+    ],
+    [
+     "Bredestraat 170A-10",
+     72
+    ],
+    [
+     "Bredestraat 170A-11",
+     72
+    ],
+    [
+     "Bredestraat 170A-12",
+     36
+    ],
+    [
+     "Bredestraat 170A-13",
+     51
+    ],
+    [
+     "Bredestraat 170A-14",
+     53
+    ],
+    [
+     "Bredestraat 170A-15",
+     30
+    ],
+    [
+     "Bredestraat 170A-16",
+     37
+    ],
+    [
+     "Bredestraat 170A-17",
+     39
+    ],
+    [
+     "Bredestraat 170A-18",
+     30
+    ],
+    [
+     "Bredestraat 170A-19",
+     32
+    ],
+    [
+     "Bredestraat 170A-2",
+     60
+    ],
+    [
+     "Bredestraat 170A-20",
+     35
+    ],
+    [
+     "Bredestraat 170A-21",
+     30
+    ],
+    [
+     "Bredestraat 170A-22",
+     30
+    ],
+    [
+     "Bredestraat 170A-23",
+     34
+    ],
+    [
+     "Bredestraat 170A-24",
+     29
+    ],
+    [
+     "Bredestraat 170A-3",
+     72
+    ],
+    [
+     "Bredestraat 170A-4",
+     72
+    ],
+    [
+     "Bredestraat 170A-5",
+     36
+    ],
+    [
+     "Bredestraat 170A-6",
+     51
+    ],
+    [
+     "Bredestraat 170A-7",
+     53
+    ],
+    [
+     "Bredestraat 170A-8",
+     66
+    ],
+    [
+     "Bredestraat 170A-9",
+     59
+    ]
+   ],
+   "labels": {
+    "Bredestraat 168": "A++",
+    "Bredestraat 170A-1": "A++",
+    "Bredestraat 170A-10": "A++",
+    "Bredestraat 170A-11": "A+",
+    "Bredestraat 170A-12": "A",
+    "Bredestraat 170A-13": "A+",
+    "Bredestraat 170A-14": "A+",
+    "Bredestraat 170A-15": "A",
+    "Bredestraat 170A-16": "A",
+    "Bredestraat 170A-17": "A",
+    "Bredestraat 170A-18": "A",
+    "Bredestraat 170A-19": "A",
+    "Bredestraat 170A-2": "A+",
+    "Bredestraat 170A-20": "B",
+    "Bredestraat 170A-21": "A",
+    "Bredestraat 170A-22": "A",
+    "Bredestraat 170A-23": "A",
+    "Bredestraat 170A-24": "A",
+    "Bredestraat 170A-3": "A+",
+    "Bredestraat 170A-4": "A+",
+    "Bredestraat 170A-5": "A",
+    "Bredestraat 170A-6": "A++",
+    "Bredestraat 170A-7": "A++",
+    "Bredestraat 170A-8": "A+",
+    "Bredestraat 170A-9": "A+"
    }
   },
   "0268100000024140": {
@@ -49642,6 +50151,24 @@
    "labels": {
     "Koninginnelaan 48": "A+",
     "Koninginnelaan 48A": "A"
+   }
+  },
+  "0268100000026474": {
+   "bag_eenheden": [
+    [
+     "Kanunnik van Osstraat 41",
+     143
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "bag_woningen": [
+    [
+     "Kanunnik van Osstraat 41",
+     143
+    ]
+   ],
+   "labels": {
+    "Kanunnik van Osstraat 41": "C"
    }
   },
   "0268100000026485": {
@@ -55954,6 +56481,23 @@
     "Pontanusstraat 6E": "A++",
     "Pontanusstraat 6F": "A++",
     "Pontanusstraat 6G": "A++"
+   }
+  },
+  "0268100000029913": {
+   "bag_eenheden": [
+    [
+     "Broerstraat 16",
+     819
+    ],
+    [
+     "Scheidemakershof 35",
+     819
+    ]
+   ],
+   "bag_gezien": "2026-10-20",
+   "labels": {
+    "Broerstraat 16": "B",
+    "Scheidemakershof 35": "B"
    }
   },
   "0268100000029915": {
@@ -75407,7 +75951,9 @@
   ],
   "pand_id": "0268100000035050",
   "vbo": "0268010000040332",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000035050"
+  ]
  },
  "adagiostraat63": {
   "adres": "Adagiostraat 63",
@@ -75613,7 +76159,9 @@
   ],
   "pand_id": "0268100000035340",
   "vbo": "0268010000064037",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000035340"
+  ]
  },
  "aldenhof7014": {
   "adres": "Aldenhof 7014",
@@ -75634,7 +76182,9 @@
   "pand_id": "0268100000036205",
   "vbo": "0268010000000288",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000036205"
+  ]
  },
  "ambachtsweg2": {
   "adres": "Ambachtsweg 2",
@@ -75968,6 +76518,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Assumburgstraat 2 is nu E"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen , aan Assumburgstraat 2, 6535PL Nijmegen"
    }
   ],
   "pand_id": "0268100000006202",
@@ -79491,6 +80047,22 @@
    "0268100000004853"
   ]
  },
+ "bijleveldsingel36": {
+  "adres": "Bijleveldsingel 36",
+  "gebeurtenissen": [
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-20",
+    "soort": "te koop",
+    "tekst": "te koop voor €1.100.000, 195 m2"
+   }
+  ],
+  "pand_id": "0268100000004475",
+  "vbo": "0268010000002616",
+  "vbo_panden": [
+   "0268100000004475"
+  ]
+ },
  "bijleveldsingel49": {
   "adres": "Bijleveldsingel 49",
   "gebeurtenissen": [
@@ -80971,6 +81543,173 @@
    "0268100000026275"
   ]
  },
+ "bredestraat174": {
+  "adres": "Bredestraat 174",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-1 is A++, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-10 is A++, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-11 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-12 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-13 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-14 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-15 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-16 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-17 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-18 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-19 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-2 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-20 is B, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-21 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-22 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-23 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-24 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-3 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-4 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-5 is A, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-6 is A++, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-7 is A++, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-8 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-08-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 170A-9 is A+, geregistreerd 2022-08-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-02-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Bredestraat 168 is A++, geregistreerd 2024-02-12"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Melding het slopen van de aanbouw aan de voorzijde van de kapel t.b.v. nieuwe aanbouw, aan Bredestraat 174, 6543ZZ Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000024138",
+  "vbo": "0268010000095894",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000024138"
+  ]
+ },
  "bredestraat190": {
   "adres": "Bredestraat 190",
   "gebeurtenissen": [
@@ -81167,6 +81906,34 @@
   "vbo": "0268010000008033",
   "vbo_panden": [
    "0268100000000809"
+  ]
+ },
+ "broerstraat16": {
+  "adres": "Broerstraat 16",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-03-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Broerstraat 16 is B, geregistreerd 2020-03-13"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-03-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Scheidemakershof 35 is B, geregistreerd 2020-03-13"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het intern verbouwen van een winkel, aan Broerstraat 16, 6511KN Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000029913",
+  "vbo": "0268010000001726",
+  "vbo_panden": [
+   "0268100000029913"
   ]
  },
  "broerstraat3234": {
@@ -87144,6 +87911,34 @@
    "0268100000001666"
   ]
  },
+ "coehoornstraat33": {
+  "adres": "Coehoornstraat 33",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Coehoornstraat 31 is D, geregistreerd 2020-12-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Coehoornstraat 33 is D, geregistreerd 2020-12-30"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-20",
+    "soort": "te koop",
+    "tekst": "te koop voor €489.000, 103 m2"
+   }
+  ],
+  "pand_id": "0268100000001666",
+  "vbo": "0268010000010736",
+  "vbo_panden": [
+   "0268100000001666"
+  ]
+ },
  "coehoornstraat34": {
   "adres": "Coehoornstraat 34",
   "gebeurtenissen": [
@@ -91643,6 +92438,35 @@
    "0268100000024695"
   ]
  },
+ "dommervanpoldersveldtweg59": {
+  "adres": "Dommer van Poldersveldtweg 59",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 57 is C, geregistreerd 2019-03-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-06-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dommer van Poldersveldtweg 59A is C, geregistreerd 2026-06-15"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het splitsen van appartementen, aan Dommer van Poldersveldtweg 59, 6523CV Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000020410",
+  "vbo": "0268010000009799",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000020410"
+  ]
+ },
  "drakensteinstraat9": {
   "adres": "Drakensteinstraat 9",
   "gebeurtenissen": [
@@ -91878,7 +92702,9 @@
   "pand_id": "0268100000083579",
   "vbo": "0268010000086002",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000083579"
+  ]
  },
  "drjanberendsstraat15": {
   "adres": "Dr. Jan Berendsstraat 15",
@@ -97887,7 +98713,9 @@
   "pand_id": "0268100000035469",
   "vbo": "0268010000067667",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000035469"
+  ]
  },
  "gildekamp6006": {
   "adres": "de Gildekamp 6006",
@@ -98203,12 +99031,234 @@
    "0268100000001915"
   ]
  },
+ "gorterplaats2": {
+  "adres": "Gorterplaats 2",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 1 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 10 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 11 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 12 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 13 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 14 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 15 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 16 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 17 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 18 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 19 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 2 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 20 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 21 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 22 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 23 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 24 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 25 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 26 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 27 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 28 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 29 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 3 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 30 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 31 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 32 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 33 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 34 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 35 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 6 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 7 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 8 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Gorterplaats 9 is A, geregistreerd 2025-09-01"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Buiten behandelingstelling  het verbouwen van de splendorfabriek, aan Gorterplaats 2, 6531HZ Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000007820",
+  "vbo": "0268010000065018",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000007820"
+  ]
+ },
  "gorterplaats2stannastraat198": {
   "adres": "Gorterplaats 2/St. Annastraat 198",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
-  "gebeurtenissen": [],
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Buiten behandelingstelling  het verbouwen van de splendorfabriek, aan Gorterplaats 2, 6531HZ Nijmegen"
+   }
+  ],
   "pand_id": null
  },
  "goselingstraat27": {
@@ -98693,6 +99743,12 @@
     "datum": "2026-10-17",
     "soort": "bag",
     "tekst": "de BAG telt nu 7 woningen in dit pand, was 1: 55, 374, 55, 35, 29, 60, 50 m2"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het splitsen van de woning in zes zelfstandige appartementen, aan Graafseweg 18, 6512CB Nijmegen"
    }
   ],
   "pand_id": "0268100000021138",
@@ -104456,6 +105512,23 @@
   ],
   "pand_id": null
  },
+ "harpstraat10": {
+  "adres": "Harpstraat 10",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het realiseren van twee dakkapellen aan Harpstraat 10, 6544XS Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000003262",
+  "vbo": "0268010000013837",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000003262"
+  ]
+ },
  "hatertseveldweg": {
   "adres": "Hatertseveldweg",
   "bag_gezien": "2026-10-03",
@@ -104577,6 +105650,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Hatertseveldweg 263 is nu A++++"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor omzetten kamerverhuur naar drie zelfstandige huurappartementen (woongebouw), aan Hatertseveldweg 263, 6532XR Nijmegen"
    }
   ],
   "pand_id": "0268100000084954",
@@ -105546,7 +106625,9 @@
   "pand_id": "0268100000035242",
   "vbo": "0268010000042905",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000035242"
+  ]
  },
  "heeskesacker2004": {
   "adres": "Heeskesacker 2004",
@@ -105573,7 +106654,9 @@
   "pand_id": "0268100000030929",
   "vbo": "0268010000045350",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030929"
+  ]
  },
  "heeskesacker2034": {
   "adres": "Heeskesacker 2034",
@@ -105594,7 +106677,9 @@
   "pand_id": "0268100000031516",
   "vbo": "0268010000043607",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000031516"
+  ]
  },
  "heeskesacker2042": {
   "adres": "Heeskesacker 2042",
@@ -105609,7 +106694,9 @@
   "pand_id": "0268100000008529",
   "vbo": "0268010000043611",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000008529"
+  ]
  },
  "hegdambroek": {
   "adres": "Hegdambroek",
@@ -105645,7 +106732,9 @@
   "pand_id": "0268100000033363",
   "vbo": "0268010000043991",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033363"
+  ]
  },
  "hegdambroek1727": {
   "adres": "Hegdambroek 1727",
@@ -105666,7 +106755,9 @@
   "pand_id": "0268100000032698",
   "vbo": "0268010000039896",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000032698"
+  ]
  },
  "hegdambroek2438": {
   "adres": "Hegdambroek 2438",
@@ -105693,7 +106784,9 @@
   "pand_id": "0268100000030366",
   "vbo": "0268010000043320",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030366"
+  ]
  },
  "hegdambroek2511": {
   "adres": "Hegdambroek 2511",
@@ -105714,7 +106807,9 @@
   "pand_id": "0268100000033845",
   "vbo": "0268010000044119",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033845"
+  ]
  },
  "heidebloemstraat": {
   "adres": "Heidebloemstraat",
@@ -108207,7 +109302,9 @@
   "pand_id": "0268100000005649",
   "vbo": "0268010000059400",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000005649"
+  ]
  },
  "hobbemastraat25": {
   "adres": "Hobbemastraat 25",
@@ -108443,7 +109540,9 @@
   ],
   "pand_id": "0268100000005177",
   "vbo": "0268010000055933",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000005177"
+  ]
  },
  "horstacker2044": {
   "adres": "Horstacker 2044",
@@ -108464,7 +109563,9 @@
   "pand_id": "0268100000009636",
   "vbo": "0268010000057806",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000009636"
+  ]
  },
  "horstacker2325": {
   "adres": "Horstacker 2325",
@@ -108491,7 +109592,9 @@
   "pand_id": "0268100000033185",
   "vbo": "0268010000080203",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033185"
+  ]
  },
  "houthof4": {
   "adres": "Houthof 4",
@@ -112820,6 +113923,29 @@
    "0268100000046921"
   ]
  },
+ "kanunnikvanosstraat41": {
+  "adres": "Kanunnik van Osstraat 41",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-02-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Kanunnik van Osstraat 41 is C, geregistreerd 2025-02-19"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakkapel, aan Kanunnik van Osstraat 41, 6525TV Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000026474",
+  "vbo": "0268010000046363",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000026474"
+  ]
+ },
  "kanunnikvanosstraat53": {
   "adres": "Kanunnik van Osstraat 53",
   "gebeurtenissen": [
@@ -114260,7 +115386,9 @@
   "pand_id": "0268100000022413",
   "vbo": "0268010000068143",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000022413"
+  ]
  },
  "kerkenbos1024": {
   "adres": "Kerkenbos 1024",
@@ -114280,7 +115408,9 @@
   ],
   "pand_id": "0268100000041536",
   "vbo": "0268010000084926",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000041536"
+  ]
  },
  "kerkstraat65": {
   "adres": "Kerkstraat 65",
@@ -114650,7 +115780,9 @@
   "pand_id": "0268100000033408",
   "vbo": "0268010000005528",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033408"
+  ]
  },
  "kluijskamp1281": {
   "adres": "De Kluijskamp 1281",
@@ -120669,7 +121801,9 @@
   ],
   "pand_id": "0268100000034341",
   "vbo": "0268010000044314",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000034341"
+  ]
  },
  "lierstraat2": {
   "adres": "Lierstraat 2",
@@ -121248,7 +122382,9 @@
   "pand_id": "0268100000036281",
   "vbo": "0268010000057476",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000036281"
+  ]
  },
  "malvert2321": {
   "adres": "Malvert 2321",
@@ -121287,7 +122423,9 @@
   "pand_id": "0268100000035924",
   "vbo": "0268010000110590",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000035924"
+  ]
  },
  "malvert3343": {
   "adres": "Malvert 3343",
@@ -124576,7 +125714,9 @@
   ],
   "pand_id": "0268100000089357",
   "vbo": "0268010000096455",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000089357"
+  ]
  },
  "meijhorst5214": {
   "adres": "Meijhorst 5214",
@@ -124603,7 +125743,9 @@
   "pand_id": "0268100000041904",
   "vbo": "0268010000060088",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000041904"
+  ]
  },
  "meijhorst5248": {
   "adres": "Meijhorst 5248",
@@ -124623,7 +125765,9 @@
   ],
   "pand_id": "0268100000043107",
   "vbo": "0268010000046828",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000043107"
+  ]
  },
  "meijhorst5413": {
   "adres": "Meijhorst 5413",
@@ -124666,7 +125810,9 @@
   ],
   "pand_id": "0268100000102611",
   "vbo": "0268010000102677",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000102611"
+  ]
  },
  "meijhorst9204": {
   "adres": "Meijhorst 9204",
@@ -124699,7 +125845,9 @@
   "pand_id": "0268100000037287",
   "vbo": "0268010000106375",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000037287"
+  ]
  },
  "meijhorst9233": {
   "adres": "Meijhorst 9233",
@@ -131928,7 +133076,9 @@
   "pand_id": "0268100000017589",
   "vbo": "0268010000075534",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000017589"
+  ]
  },
  "nieuwstraat16": {
   "adres": "Nieuwstraat 16",
@@ -133427,6 +134577,21 @@
   "vbo_panden": [
    "0268100000047503"
   ]
+ },
+ "nonnenstraat": {
+  "adres": "Nonnenstraat",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-19",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €880 per maand, 130 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "ochuismanstraat": {
   "adres": "O.C. Huismanstraat",
@@ -142698,7 +143863,9 @@
   "pand_id": "0268100000029246",
   "vbo": "0268010000033092",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000029246"
+  ]
  },
  "scholeksterstraat27": {
   "adres": "Scholeksterstraat 27",
@@ -145001,7 +146168,9 @@
   ],
   "pand_id": "0268100000036266",
   "vbo": "0268010000095915",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000036266"
+  ]
  },
  "stagnetenweg57": {
   "adres": "St. Agnetenweg 57",
@@ -146170,6 +147339,12 @@
     "datum": "2026-10-17",
     "soort": "bag",
     "tekst": "de BAG telt nu 3 woningen in dit pand, was 1: 182, 333, 204 m2"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het verbouwen van een woning naar een woongebouw met twee appartementen, aan St. Annastraat 275, 6525GS Nijmegen"
    }
   ],
   "pand_id": "0268100000020737",
@@ -151878,7 +153053,9 @@
   "pand_id": "0268100000030220",
   "vbo": "0268010000110445",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030220"
+  ]
  },
  "tolhuis2403": {
   "adres": "Tolhuis 2403",
@@ -151911,7 +153088,9 @@
   "pand_id": "0268100000030691",
   "vbo": "0268010000028871",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030691"
+  ]
  },
  "tolhuis2604": {
   "adres": "Tolhuis 2604",
@@ -151938,7 +153117,9 @@
   "pand_id": "0268100000034350",
   "vbo": "0268010000042931",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000034350"
+  ]
  },
  "tolhuis3305": {
   "adres": "Tolhuis 3305",
@@ -152016,7 +153197,32 @@
   ],
   "pand_id": "0268100000032880",
   "vbo": "0268010000031189",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000032880"
+  ]
+ },
+ "tolhuis6102": {
+  "adres": "Tolhuis 6102",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2026-06-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tolhuis 6102 is B, geregistreerd 2026-06-05"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het intern verbouwen van een pand, aan Tolhuis 6102, 6537TH Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000021609",
+  "vbo": "0268010000034305",
+  "vbo_gevraagd": "2026-10-20",
+  "vbo_panden": [
+   "0268100000021609"
+  ]
  },
  "tolhuis7630": {
   "adres": "Tolhuis 7630",
@@ -152060,7 +153266,9 @@
   ],
   "pand_id": "0268100000033806",
   "vbo": "0268010000033568",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033806"
+  ]
  },
  "tollensstraat141b": {
   "adres": "Tollensstraat 141-B",
@@ -153698,6 +154906,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Tweede Oude Heselaan 209 is nu D"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-19",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het intern verbouwen ten behoeve van kamerverhuur (6 kamers), aan Tweede Oude Heselaan 209, 6542VG Nijmegen"
    }
   ],
   "pand_id": "0268100000048942",
@@ -157293,6 +158507,12 @@
     "datum": "2026-10-05",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €1.001 per maand, 22 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-19",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.010 per maand, 37 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -167316,7 +168536,9 @@
   ],
   "pand_id": "0268100000030668",
   "vbo": "0268010000058974",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030668"
+  ]
  },
  "voorstenkamp1181": {
   "adres": "de Voorstenkamp 1181",
@@ -167343,7 +168565,9 @@
   "pand_id": "0268100000033153",
   "vbo": "0268010000004350",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033153"
+  ]
  },
  "vossendijk": {
   "adres": "Vossendijk",
@@ -170586,7 +171810,9 @@
   "pand_id": "0268100000031545",
   "vbo": "0268010000073639",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000031545"
+  ]
  },
  "wedesteinbroek1545": {
   "adres": "Wedesteinbroek 1545",
@@ -170663,7 +171889,9 @@
   "pand_id": "0268100000009079",
   "vbo": "0268010000059069",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000009079"
+  ]
  },
  "weezenhof3250": {
   "adres": "Weezenhof 3250",
@@ -170684,7 +171912,9 @@
   "pand_id": "0268100000041020",
   "vbo": "0268010000036078",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000041020"
+  ]
  },
  "weezenhof3736": {
   "adres": "Weezenhof 3736",
@@ -170991,7 +172221,9 @@
   "pand_id": "0268100000037629",
   "vbo": "0268010000042211",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000037629"
+  ]
  },
  "weteringweg50": {
   "adres": "Weteringweg 50",
@@ -171011,7 +172243,9 @@
   ],
   "pand_id": "0268100000034095",
   "vbo": "0268010000039756",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000034095"
+  ]
  },
  "weurtseweg107": {
   "adres": "Weurtseweg 107",
@@ -171684,7 +172918,9 @@
   ],
   "pand_id": "0268100000033160",
   "vbo": "0268010000042291",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033160"
+  ]
  },
  "wilhelminasingel1": {
   "adres": "Wilhelminasingel 1",
@@ -173203,7 +174439,9 @@
   "pand_id": "0268100000033603",
   "vbo": "0268010000055225",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000033603"
+  ]
  },
  "ziekerstraat10": {
   "adres": "Ziekerstraat 10",
@@ -174524,7 +175762,9 @@
   "pand_id": "0268100000041266",
   "vbo": "0268010000108252",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000041266"
+  ]
  },
  "zwanenveld2708": {
   "adres": "Zwanenveld 2708",
@@ -174574,7 +175814,9 @@
   "pand_id": "0268100000043340",
   "vbo": "0268010000110120",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000043340"
+  ]
  },
  "zwanenveld3021": {
   "adres": "Zwanenveld 3021",
@@ -174601,7 +175843,9 @@
   "pand_id": "0268100000032389",
   "vbo": "0268010000109835",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000032389"
+  ]
  },
  "zwanenveld3109": {
   "adres": "Zwanenveld 3109",
@@ -174692,7 +175936,9 @@
   "pand_id": "0268100000039890",
   "vbo": "0268010000042527",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000039890"
+  ]
  },
  "zwanenveld7318": {
   "adres": "Zwanenveld 7318",
@@ -174898,6 +176144,8 @@
   ],
   "pand_id": "0268100000089557",
   "vbo": "0268010000095678",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000089557"
+  ]
  }
 }

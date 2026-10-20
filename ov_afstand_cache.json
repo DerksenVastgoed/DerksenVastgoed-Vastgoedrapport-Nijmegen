@@ -631,6 +631,14 @@
   "omweg": 1.16,
   "soort": "bus"
  },
+ "51.83746,5.86950": {
+  "geschat": false,
+  "hemelsbreed": 217,
+  "meters": 232,
+  "naam": "Archipelstraat",
+  "omweg": 1.07,
+  "soort": "bus"
+ },
  "51.83758,5.86713": {
   "geschat": false,
   "hemelsbreed": 242,
@@ -1007,6 +1015,14 @@
   "omweg": 3.16,
   "soort": "bus"
  },
+ "51.84167,5.86581": {
+  "geschat": false,
+  "hemelsbreed": 285,
+  "meters": 308,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.08,
+  "soort": "bus"
+ },
  "51.84211,5.88182": {
   "geschat": false,
   "hemelsbreed": 408,
@@ -1205,6 +1221,14 @@
   "meters": 304,
   "naam": "Hertogplein",
   "omweg": 1.44,
+  "soort": "bus"
+ },
+ "51.84372,5.86528": {
+  "geschat": false,
+  "hemelsbreed": 206,
+  "meters": 304,
+  "naam": "Hertogplein",
+  "omweg": 1.48,
   "soort": "bus"
  },
  "51.84389,5.85869": {
@@ -1717,6 +1741,14 @@
   "meters": 363,
   "naam": "Waalkade",
   "omweg": 1.4,
+  "soort": "bus"
+ },
+ "51.84897,5.86314": {
+  "geschat": false,
+  "hemelsbreed": 139,
+  "meters": 340,
+  "naam": "Waalkade",
+  "omweg": 2.45,
   "soort": "bus"
  },
  "51.84903,5.84542": {

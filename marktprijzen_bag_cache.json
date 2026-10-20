@@ -48983,7 +48983,8 @@
       "geldig_tot": "2035-08-20",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kaaisjouwerskade 236|Nijmegen": {
     "oppervlakte": 120,
@@ -49375,7 +49376,8 @@
       "geldig_tot": "2035-08-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Ganzenheuvel 73|Nijmegen": {
     "oppervlakte": 130,
@@ -49419,7 +49421,8 @@
       "geldig_tot": "2035-08-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Dokstraat 79|Nijmegen": {
     "oppervlakte": 64,
@@ -49811,7 +49814,8 @@
       "geldig_tot": "2027-10-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molenstraat 43-U|Nijmegen": {
     "oppervlakte": 46,
@@ -50091,7 +50095,8 @@
       "geldig_tot": "2035-07-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 47-J|Nijmegen": {
     "oppervlakte": 98,
@@ -50293,7 +50298,8 @@
       }
     ],
     "oppervlakte_bag": 100,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Houthof 47-B|Nijmegen": {
     "oppervlakte": 70,
@@ -50445,7 +50451,8 @@
       "geldig_tot": "2030-06-04",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor van Weliestraat 26|Nijmegen": {
     "oppervlakte": 150,
@@ -50845,7 +50852,8 @@
       "geldig_tot": "2035-11-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Nieuwe Markt 12|Nijmegen": {
     "oppervlakte": 209,
@@ -50867,7 +50875,8 @@
       "geldig_tot": "2030-12-31",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Fagelstraat 12|Nijmegen": {
     "oppervlakte": 117,
@@ -50907,7 +50916,8 @@
       "geldig_tot": "2035-12-29",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgersingel 71|Nijmegen": {
     "oppervlakte": 65,
@@ -51315,7 +51325,8 @@
       "geldig_tot": "2036-01-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Koningstraat 32|Nijmegen": {
     "oppervlakte": 44,
@@ -51365,7 +51376,8 @@
       }
     ],
     "oppervlakte_bag": 45,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 225|Nijmegen": {
     "oppervlakte": 64,
@@ -51789,7 +51801,8 @@
       "geldig_tot": "2034-09-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 135|Nijmegen": {
     "oppervlakte": 64,
@@ -52205,7 +52218,8 @@
       "geldig_tot": "2034-09-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Eerste Oude Heselaan 156|Nijmegen": {
     "oppervlakte": 35,
@@ -52349,7 +52363,8 @@
       "geldig_tot": "2032-01-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 253|Nijmegen": {
     "oppervlakte": 64,
@@ -52773,7 +52788,8 @@
       "geldig_tot": "2034-09-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Pijkestraat 17|Nijmegen": {
     "oppervlakte": 84,
@@ -52813,7 +52829,8 @@
       "geldig_tot": "2035-07-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Ridderspoor 40|Nijmegen": {
     "oppervlakte": 64,
@@ -52885,7 +52902,8 @@
       "geldig_tot": "2035-06-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Schoolstraat 29|Nijmegen": {
     "oppervlakte": 121,
@@ -52925,7 +52943,8 @@
       "geldig_tot": "2035-06-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Nispenstraat 240|Nijmegen": {
     "oppervlakte": 85,
@@ -52947,7 +52966,8 @@
       "geldig_tot": "2035-06-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 33-A16|Nijmegen": {
     "oppervlakte": 24,
@@ -53347,7 +53367,8 @@
       "geldig_tot": "2036-03-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Daalsehof 11-A|Nijmegen": {
     "oppervlakte": 46,
@@ -53411,7 +53432,8 @@
       "geldig_tot": "2035-08-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 165|Nijmegen": {
     "oppervlakte": 64,
@@ -53827,7 +53849,8 @@
       "geldig_tot": "2034-09-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 293|Nijmegen": {
     "oppervlakte": 60,
@@ -54251,7 +54274,8 @@
       "geldig_tot": "2034-10-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 275|Nijmegen": {
     "oppervlakte": 64,
@@ -54675,7 +54699,8 @@
       "geldig_tot": "2034-10-02",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 73|Nijmegen": {
     "oppervlakte": 65,
@@ -55091,7 +55116,8 @@
       "geldig_tot": "2034-10-02",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 33-A10|Nijmegen": {
     "oppervlakte": 19,
@@ -55491,7 +55517,8 @@
       "geldig_tot": "2036-03-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van den Havestraat 83|Nijmegen": {
     "oppervlakte": 100,
@@ -55531,7 +55558,8 @@
       "geldig_tot": "2036-07-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Augustijnenstraat 51|Nijmegen": {
     "oppervlakte": 60,
@@ -55675,7 +55703,8 @@
       "geldig_tot": "2036-03-03",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Evertsenstraat 19|Nijmegen": {
     "oppervlakte": 115,
@@ -55715,7 +55744,8 @@
       "geldig_tot": "2034-04-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Gerard Noodtstraat 28|Nijmegen": {
     "oppervlakte": 97,
@@ -55779,7 +55809,8 @@
       "geldig_tot": "2029-02-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Bronsgeeststraat 53|Nijmegen": {
     "oppervlakte": 59,
@@ -55828,7 +55859,8 @@
       "geldig_tot": "2028-10-24",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor van der Veldenstraat 32|Nijmegen": {
     "oppervlakte": 73,
@@ -55900,7 +55932,8 @@
       "geldig_tot": "2035-10-22",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Ridderspoor 128|Nijmegen": {
     "oppervlakte": 64,
@@ -55980,7 +56013,8 @@
       "geldig_tot": "2030-08-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Bloemenburgerhof 16|Nijmegen": {
     "oppervlakte": 63,
@@ -56052,7 +56086,8 @@
       "geldig_tot": "2030-09-14",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jan de Wittstraat 61|Nijmegen": {
     "oppervlakte": 115,
@@ -56108,7 +56143,8 @@
       "geldig_tot": "2028-10-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Heutszstraat 6|Nijmegen": {
     "oppervlakte": 83,
@@ -56148,7 +56184,8 @@
       "geldig_tot": "2036-01-29",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van den Havestraat 91|Nijmegen": {
     "oppervlakte": 97,
@@ -56188,7 +56225,8 @@
       "geldig_tot": "2035-11-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 163-B|Nijmegen": {
     "oppervlakte": 55,
@@ -56228,7 +56266,8 @@
       "geldig_tot": "2032-09-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Bijleveldsingel 105|Nijmegen": {
     "oppervlakte": 73,
@@ -56564,7 +56603,8 @@
       "geldig_tot": "2035-11-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 22|Nijmegen": {
     "oppervlakte": 303,
@@ -56586,7 +56626,8 @@
       "geldig_tot": "2036-02-05",
       "gebouwklasse": "Utiliteitsbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 93-B|Nijmegen": {
     "oppervlakte": 62,
@@ -56647,7 +56688,8 @@
       "geldig_tot": "2036-04-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 93-A|Nijmegen": {
     "oppervlakte": 48,
@@ -56708,7 +56750,8 @@
       "geldig_tot": "2036-04-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Voorstadslaan 4-B|Nijmegen": {
     "oppervlakte": 141,
@@ -56748,7 +56791,8 @@
       "geldig_tot": "2036-02-24",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Scheidemakershof 39-B|Nijmegen": {
     "oppervlakte": 41,
@@ -56820,7 +56864,8 @@
       "geldig_tot": "2036-01-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molenstraat 98-A2|Nijmegen": {
     "oppervlakte": 54,
@@ -56842,7 +56887,8 @@
       "geldig_tot": "2035-02-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Vondelstraat 73|Nijmegen": {
     "oppervlakte": 74,
@@ -56890,7 +56936,8 @@
       "geldig_tot": "2028-11-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Burchtstraat 70|Nijmegen": {
     "oppervlakte": 145,
@@ -57194,7 +57241,8 @@
       "geldig_tot": "2026-10-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Hertogstraat 37|Nijmegen": {
     "oppervlakte": 139,
@@ -57258,7 +57306,8 @@
       "geldig_tot": "2036-01-22",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeeksedwarsweg 260|Nijmegen": {
     "oppervlakte": 173,
@@ -57281,7 +57330,8 @@
       "geldig_tot": "2036-01-02",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 37-A|Nijmegen": {
     "oppervlakte": 35,
@@ -57353,7 +57403,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 35-A|Nijmegen": {
     "oppervlakte": 34,
@@ -57441,7 +57492,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Welderenstraat 38-A|Nijmegen": {
     "oppervlakte": 53,
@@ -57481,7 +57533,8 @@
       "geldig_tot": "2027-01-05",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Nieuwe Markt 94|Nijmegen": {
     "oppervlakte": 73,
@@ -57523,7 +57576,8 @@
       "geldig_tot": "2036-06-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 43-A|Nijmegen": {
     "oppervlakte": 47,
@@ -57595,7 +57649,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 35|Nijmegen": {
     "oppervlakte": 33,
@@ -57683,7 +57738,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 47|Nijmegen": {
     "oppervlakte": 33,
@@ -57771,7 +57827,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 45|Nijmegen": {
     "oppervlakte": 23,
@@ -57860,7 +57917,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sumatraplein 46|Nijmegen": {
     "oppervlakte": 48,
@@ -58124,7 +58182,8 @@
       "geldig_tot": "2026-10-04",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Burg. Hustinxstraat 236|Nijmegen": {
     "oppervlakte": 64,
@@ -58548,7 +58607,8 @@
       "geldig_tot": "2036-05-07",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Berchenstraat 10-C|Nijmegen": {
     "oppervlakte": 31,
@@ -58605,7 +58665,8 @@
       "geldig_tot": "2036-04-30",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Karrengas 48-C|Nijmegen": {
     "oppervlakte": 32,
@@ -58789,7 +58850,8 @@
       "geldig_tot": "2036-03-06",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgerplaats 34|Nijmegen": {
     "oppervlakte": 66,
@@ -59173,7 +59235,8 @@
       "geldig_tot": "2027-05-05",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Welderenstraat 129|Nijmegen": {
     "oppervlakte": 34,
@@ -59245,7 +59308,8 @@
       "geldig_tot": "2030-05-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Karrengas 52|Nijmegen": {
     "oppervlakte": 64,
@@ -59293,7 +59357,8 @@
       "geldig_tot": "2036-02-03",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Ridderstraat 68|Nijmegen": {
     "oppervlakte": 61,
@@ -59581,7 +59646,8 @@
       "geldig_tot": "2032-12-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "de Ruyterstraat 3-L|Nijmegen": {
     "oppervlakte": 39,
@@ -59725,7 +59791,8 @@
       "geldig_tot": "2035-08-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Evertsenstraat 22|Nijmegen": {
     "oppervlakte": 121,
@@ -59773,7 +59840,8 @@
       "geldig_tot": "2036-02-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Oude Nonnendaalseweg 188|Nijmegen": {
     "oppervlakte": 107,
@@ -59795,7 +59863,8 @@
       "geldig_tot": "2036-01-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waalkade 42|Nijmegen": {
     "oppervlakte": 161,
@@ -60043,7 +60112,8 @@
       "geldig_tot": "2035-05-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Thijmstraat 17-E|Nijmegen": {
     "oppervlakte": 64,
@@ -60427,7 +60497,8 @@
       "geldig_tot": "2035-04-03",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Derde Walstraat 1|Nijmegen": {
     "oppervlakte": 43,
@@ -60515,7 +60586,8 @@
       "geldig_tot": "2034-08-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Berchenstraat 20|Nijmegen": {
     "oppervlakte": 71,
@@ -60549,7 +60621,8 @@
       }
     ],
     "oppervlakte_bag": 75,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Fagelstraat 40|Nijmegen": {
     "oppervlakte": 107,
@@ -60589,7 +60662,8 @@
       "geldig_tot": "2035-06-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Zwaluwstraat 147|Nijmegen": {
     "oppervlakte": 86,
@@ -60611,7 +60685,8 @@
       "geldig_tot": "2035-10-30",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Heutszstraat 41|Nijmegen": {
     "oppervlakte": 96,
@@ -60659,7 +60734,8 @@
       "geldig_tot": "2035-11-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Schaeck Mathonsingel 47|Nijmegen": {
     "oppervlakte": 99,
@@ -60731,7 +60807,8 @@
       "geldig_tot": "2032-03-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgerplaats 22|Nijmegen": {
     "oppervlakte": 65,
@@ -61115,7 +61192,8 @@
       "geldig_tot": "2027-05-05",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Coehoornstraat 36|Nijmegen": {
     "oppervlakte": 164,
@@ -61137,7 +61215,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Staringstraat 21-B|Nijmegen": {
     "oppervlakte": 50,
@@ -61209,7 +61288,8 @@
       "geldig_tot": "2034-02-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Nieuwe Markt 4-A|Nijmegen": {
     "oppervlakte": 64,
@@ -61273,7 +61353,8 @@
       "geldig_tot": "2027-11-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 23-A|Nijmegen": {
     "oppervlakte": 49,
@@ -61361,7 +61442,8 @@
       "geldig_tot": "2035-12-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Koninginnelaan 103|Nijmegen": {
     "oppervlakte": 102,
@@ -61403,7 +61485,8 @@
       "geldig_tot": "2030-12-31",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 175|Nijmegen": {
     "oppervlakte": 60,
@@ -61819,7 +61902,8 @@
       "geldig_tot": "2034-10-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 193|Nijmegen": {
     "oppervlakte": 64,
@@ -62243,7 +62327,8 @@
       "geldig_tot": "2034-09-11",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor Hoogveldstraat 32|Nijmegen": {
     "oppervlakte": 74,
@@ -62315,7 +62400,8 @@
       "geldig_tot": "2035-10-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 33-W|Nijmegen": {
     "oppervlakte": 35,
@@ -62715,7 +62801,8 @@
       "geldig_tot": "2030-12-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 157|Nijmegen": {
     "oppervlakte": 65,
@@ -63131,7 +63218,8 @@
       "geldig_tot": "2034-10-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgersingel 297|Nijmegen": {
     "oppervlakte": 57,
@@ -63379,7 +63467,8 @@
       "geldig_tot": "2032-08-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Hertogstraat 28|Nijmegen": {
     "oppervlakte": 79,
@@ -63515,7 +63604,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Canisiussingel 19|Nijmegen": {
     "oppervlakte": 97,
@@ -63611,7 +63701,8 @@
       "geldig_tot": "2035-02-07",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waalbandijk 247|Nijmegen": {
     "oppervlakte": 50,
@@ -64035,7 +64126,8 @@
       "geldig_tot": "2032-11-11",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Plein 1944 133-A|Nijmegen": {
     "oppervlakte": 60,
@@ -64443,7 +64535,8 @@
       "geldig_tot": "2035-09-05",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sumatraplein 80|Nijmegen": {
     "oppervlakte": 48,
@@ -64707,7 +64800,8 @@
       "geldig_tot": "2035-09-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgersingel 287|Nijmegen": {
     "oppervlakte": 58,
@@ -64955,7 +65049,8 @@
       "geldig_tot": "2032-08-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 21-C|Nijmegen": {
     "oppervlakte": 55,
@@ -65043,7 +65138,8 @@
       "geldig_tot": "2035-12-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 177|Nijmegen": {
     "oppervlakte": 61,
@@ -65459,7 +65555,8 @@
       "geldig_tot": "2034-10-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 63|Nijmegen": {
     "oppervlakte": 350,
@@ -65481,7 +65578,8 @@
       "geldig_tot": "2034-11-19",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jacob Canisstraat 26|Nijmegen": {
     "oppervlakte": 114,
@@ -65529,7 +65627,8 @@
       "geldig_tot": "2034-06-07",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Krayenhofflaan 307|Nijmegen": {
     "oppervlakte": 113,
@@ -65569,7 +65668,8 @@
       "geldig_tot": "2035-08-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molenstraat 43-R|Nijmegen": {
     "oppervlakte": 34,
@@ -65849,7 +65949,8 @@
       "geldig_tot": "2035-08-19",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 159|Nijmegen": {
     "oppervlakte": 65,
@@ -66265,7 +66366,8 @@
       "geldig_tot": "2034-09-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sperwerstraat 46|Nijmegen": {
     "oppervlakte": 78,
@@ -66347,7 +66449,8 @@
       }
     ],
     "oppervlakte_bag": 79,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Kronenburgersingel 47|Nijmegen": {
     "oppervlakte": 65,
@@ -66755,7 +66858,8 @@
       "geldig_tot": "2035-07-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "In de Betouwstraat 5-B|Nijmegen": {
     "oppervlakte": 60,
@@ -66835,7 +66939,8 @@
       "geldig_tot": "2035-06-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Ridderstraat 88|Nijmegen": {
     "oppervlakte": 62,
@@ -67123,7 +67228,8 @@
       "geldig_tot": "2032-12-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "de Ruyterstraat 207|Nijmegen": {
     "oppervlakte": 125,
@@ -67163,7 +67269,8 @@
       "geldig_tot": "2035-05-06",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "de Ruyterstraat 205|Nijmegen": {
     "oppervlakte": 54,
@@ -67204,7 +67311,8 @@
       "geldig_tot": "2032-09-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Koninginnelaan 225|Nijmegen": {
     "oppervlakte": 143,
@@ -67239,7 +67347,8 @@
     ],
     "oppervlakte_bag": 66,
     "opp_verschil": true,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Tweede Walstraat 49|Nijmegen": {
     "oppervlakte": 45,
@@ -67312,7 +67421,8 @@
       "geldig_tot": "2036-06-09",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Schoolstraat 40|Nijmegen": {
     "oppervlakte": 74,
@@ -67352,7 +67462,8 @@
       "geldig_tot": "2035-12-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor van der Heijdenstraat 15|Nijmegen": {
     "oppervlakte": 74,
@@ -67440,7 +67551,8 @@
       "geldig_tot": "2032-02-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 21|Nijmegen": {
     "oppervlakte": 44,
@@ -67528,7 +67640,8 @@
       "geldig_tot": "2035-12-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Evertsenstraat 48|Nijmegen": {
     "oppervlakte": 33,
@@ -67593,7 +67706,8 @@
       "geldig_tot": "2035-09-15",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Goorstraat 81|Nijmegen": {
     "oppervlakte": 102,
@@ -67633,7 +67747,8 @@
       "geldig_tot": "2034-08-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waalbandijk 125|Nijmegen": {
     "oppervlakte": 118,
@@ -67897,7 +68012,8 @@
       "geldig_tot": "2028-07-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Lange Hezelstraat 100|Nijmegen": {
     "oppervlakte": 45,
@@ -67938,7 +68054,8 @@
       "geldig_tot": "2034-05-14",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Voorstadslaan 44|Nijmegen": {
     "oppervlakte": 101,
@@ -68010,7 +68127,8 @@
       "geldig_tot": "2035-12-02",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 21-A|Nijmegen": {
     "oppervlakte": 53,
@@ -68098,7 +68216,8 @@
       "geldig_tot": "2035-12-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Fuutstraat 1|Nijmegen": {
     "oppervlakte": 71,
@@ -68139,7 +68258,8 @@
       "geldig_tot": "2033-03-24",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Burchtstraat 79-B|Nijmegen": {
     "oppervlakte": 45,
@@ -68197,7 +68317,8 @@
       }
     ],
     "oppervlakte_bag": 46,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Roukensstraat 12|Nijmegen": {
     "oppervlakte": 98,
@@ -68237,7 +68358,8 @@
       "geldig_tot": "2030-12-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Fransestraat 13|Nijmegen": {
     "oppervlakte": 106,
@@ -68319,7 +68441,8 @@
       "geldig_tot": "2034-11-14",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Houtstraat 25|Nijmegen": {
     "oppervlakte": 65,
@@ -68433,7 +68556,8 @@
       }
     ],
     "oppervlakte_bag": 66,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "van Somerenstraat 40|Nijmegen": {
     "oppervlakte": 47,
@@ -68473,7 +68597,8 @@
       "geldig_tot": "2035-10-16",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Eerste Oude Heselaan 140-A|Nijmegen": {
     "oppervlakte": 81,
@@ -68617,7 +68742,8 @@
       "geldig_tot": "2032-01-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Veemarkt 81|Nijmegen": {
     "oppervlakte": 72,
@@ -69033,7 +69159,8 @@
       "geldig_tot": "2034-10-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Slichtenhorststraat 51|Nijmegen": {
     "oppervlakte": 26,
@@ -69074,7 +69201,8 @@
       "geldig_tot": "2036-02-24",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Beijensstraat 1|Nijmegen": {
     "oppervlakte": 103,
@@ -69114,7 +69242,8 @@
       "geldig_tot": "2035-05-06",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Burghardt van den Berghstraat 153|Nijmegen": {
     "oppervlakte": 65,
@@ -69162,7 +69291,8 @@
       "geldig_tot": "2033-05-11",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waalkade 81|Nijmegen": {
     "oppervlakte": 128,
@@ -69204,7 +69334,8 @@
       }
     ],
     "oppervlakte_bag": 133,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Wilhelminasingel 18|Nijmegen": {
     "oppervlakte": 333,
@@ -69226,7 +69357,8 @@
       "geldig_tot": "2036-06-15",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat 100|Nijmegen": {
     "oppervlakte": 82,
@@ -69314,7 +69446,8 @@
       "geldig_tot": "2036-04-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Semmelinkstraat 2|Nijmegen": {
     "oppervlakte": 64,
@@ -69387,7 +69520,8 @@
       "geldig_tot": "2035-10-24",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Nieuwe Markt 72|Nijmegen": {
     "oppervlakte": 78,
@@ -69427,7 +69561,8 @@
       "geldig_tot": "2031-05-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 33-A22|Nijmegen": {
     "oppervlakte": 24,
@@ -69827,7 +69962,8 @@
       "geldig_tot": "2036-03-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Plein 1944 53|Nijmegen": {
     "oppervlakte": 65,
@@ -70043,7 +70179,8 @@
       "geldig_tot": "2036-02-13",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Gerard Noodtstraat 141|Nijmegen": {
     "oppervlakte": 101,
@@ -70077,7 +70214,8 @@
       }
     ],
     "oppervlakte_bag": 101,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor van der Veldenstraat 36|Nijmegen": {
     "oppervlakte": 85,
@@ -70149,7 +70287,8 @@
       "geldig_tot": "2035-10-27",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jacob Canisstraat 36-A|Nijmegen": {
     "oppervlakte": 27,
@@ -70213,7 +70352,8 @@
       "geldig_tot": "2034-04-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Groesbeekseweg 21-B|Nijmegen": {
     "oppervlakte": 37,
@@ -70301,7 +70441,8 @@
       "geldig_tot": "2035-12-12",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Gerard Noodtstraat 139|Nijmegen": {
     "oppervlakte": 99,
@@ -70335,7 +70476,8 @@
       }
     ],
     "oppervlakte_bag": 110,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Delistraat 73|Nijmegen": {
     "oppervlakte": 107,
@@ -70375,7 +70517,8 @@
       "geldig_tot": "2035-09-11",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Nieuwe Nonnendaalseweg 43|Nijmegen": {
     "oppervlakte": 54,
@@ -70415,7 +70558,8 @@
       "geldig_tot": "2035-08-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat 7-A18|Nijmegen": {
     "oppervlakte": 52,
@@ -70815,7 +70959,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat 7-A9|Nijmegen": {
     "oppervlakte": 50,
@@ -71215,7 +71360,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Annastraat 21-A|Nijmegen": {
     "oppervlakte": 12,
@@ -71256,7 +71402,8 @@
       "geldig_tot": "2036-09-02",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Fagelstraat 86|Nijmegen": {
     "oppervlakte": 78,
@@ -71312,7 +71459,8 @@
       "geldig_tot": "2035-07-19",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Hendrikhof 8|Nijmegen": {
     "oppervlakte": 122,
@@ -71328,7 +71476,8 @@
     "wijknaam": "Nijmegen-Centrum",
     "nummeraanduiding": "adr-71c2baed1ada4dc15eb6f1da0322102c",
     "oppervlakte_bag": 133,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Anthoniusplaats 2|Nijmegen": {
     "oppervlakte": 60,
@@ -71368,7 +71517,8 @@
       "geldig_tot": "2035-09-08",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Marialaan 4|Nijmegen": {
     "oppervlakte": 100,
@@ -71413,7 +71563,8 @@
     ],
     "oppervlakte_bag": 133,
     "opp_verschil": true,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat 7-A5|Nijmegen": {
     "oppervlakte": 29,
@@ -71813,7 +71964,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat 7-A7|Nijmegen": {
     "oppervlakte": 34,
@@ -72213,7 +72365,8 @@
       "geldig_tot": "2035-09-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Molukkenstraat parkeerplaats|Nijmegen": {
     "oppervlakte": 40,
@@ -72296,7 +72449,8 @@
       "geldig_tot": "2034-05-17",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Pontanusstraat 5-B|Nijmegen": {
     "oppervlakte": 39,
@@ -72344,7 +72498,8 @@
       "geldig_tot": "2027-11-04",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Weezenhof|Nijmegen": {
     "oppervlakte": 22,
@@ -72443,7 +72598,8 @@
       "geldig_tot": "2036-08-31",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Winselingseweg|Nijmegen": {
     "oppervlakte": 94,
@@ -72839,7 +72995,8 @@
       "geldig_tot": "2033-12-20",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Beijensstraat 68|Nijmegen": {
     "oppervlakte": 90,
@@ -72879,7 +73036,8 @@
       "geldig_tot": "2031-05-20",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Roukensstraat|Nijmegen": {
     "oppervlakte": 38,
@@ -73171,7 +73329,8 @@
       "geldig_tot": "2036-09-23",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Castellastraat 16|Nijmegen": {
     "oppervlakte": 49,
@@ -73403,7 +73562,8 @@
       "geldig_tot": "2032-07-26",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "bm:Van Haapsstraat 13|Nijmegen": {
     "postcode": "6525CA",
@@ -73516,7 +73676,8 @@
       "geldig_tot": "2029-06-18",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "van Goorstraat 34|Nijmegen": {
     "oppervlakte": 102,
@@ -73566,7 +73727,8 @@
       "geldig_tot": "2030-11-01",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "bm:Peter Scheersstraat 8|Nijmegen": {
     "postcode": "6525DE",
@@ -73795,7 +73957,8 @@
       "geldig_tot": "2030-12-15",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sumatraplein 86|Nijmegen": {
     "oppervlakte": 72,
@@ -74059,7 +74222,8 @@
       "geldig_tot": "2036-09-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sumatraplein 36|Nijmegen": {
     "oppervlakte": 51,
@@ -74323,7 +74487,8 @@
       "geldig_tot": "2026-12-28",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jan de Wittstraat 4|Nijmegen": {
     "oppervlakte": 79,
@@ -74346,7 +74511,8 @@
       "geldig_tot": "2036-06-30",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Tulpstraat 10|Nijmegen": {
     "oppervlakte": 75,
@@ -74369,7 +74535,8 @@
       "geldig_tot": "2036-08-31",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jonckerhof|Nijmegen": {
     "oppervlakte": 16,
@@ -74476,7 +74643,8 @@
       "geldig_tot": "2036-07-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Annastraat 7|Nijmegen": {
     "oppervlakte": 330,
@@ -74498,7 +74666,8 @@
       "geldig_tot": "2035-09-22",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Delistraat 45|Nijmegen": {
     "oppervlakte": 61,
@@ -74538,7 +74707,8 @@
       "geldig_tot": "2030-12-14",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "IJsvogelpassage|Nijmegen": {
     "oppervlakte": 115,
@@ -74653,7 +74823,8 @@
       "geldig_tot": "2027-03-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "bm:Daalseweg 96|Nijmegen": {
     "postcode": "6521GP",
@@ -74737,7 +74908,8 @@
       "geldig_tot": "2030-12-21",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waterstraat|Nijmegen": {
     "oppervlakte": 11,
@@ -74814,7 +74986,8 @@
       "geldig_tot": "2036-09-30",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Hofdijkstraat 9|Nijmegen": {
     "oppervlakte": 119,
@@ -74835,7 +75008,8 @@
       "geldig_tot": "2032-05-25",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Jacobslaan|Nijmegen": {
     "oppervlakte": 11,
@@ -75103,7 +75277,8 @@
       "geldig_tot": "2030-12-22",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Canisiussingel 6|Nijmegen": {
     "oppervlakte": 90,
@@ -75303,7 +75478,8 @@
       "geldig_tot": "2034-08-19",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "St. Canisiussingel 8|Nijmegen": {
     "oppervlakte": 89,
@@ -75503,7 +75679,8 @@
       "geldig_tot": "2034-08-19",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "De Voorstenkamp|Nijmegen": {
     "oppervlakte": 83,
@@ -75570,7 +75747,8 @@
     "nummeraanduiding": "adr-97a901ff29c638c77c67062b8b348b03",
     "oppervlakte_bag": 111,
     "opp_verschil": true,
-    "energielabel": null
+    "energielabel": null,
+    "eenheden_gezien": "2026-10-20"
   },
   "Koninginnelaan 215|Nijmegen": {
     "oppervlakte": 54,
@@ -75610,7 +75788,8 @@
       "geldig_tot": "2027-06-03",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Jan de Wittstraat 23|Nijmegen": {
     "oppervlakte": 104,
@@ -75651,7 +75830,8 @@
       "geldig_tot": "2035-03-10",
       "gebouwklasse": "Woningbouw",
       "prive": false
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Evertsenstraat|Nijmegen": {
     "oppervlakte": 100,
@@ -75793,7 +75973,8 @@
       ],
       "verbruik": 209.62,
       "bouwjaar": 1961
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Graafseweg 33-A21|Nijmegen": {
     "oppervlakte": 24,
@@ -76205,7 +76386,8 @@
       ],
       "verbruik": 136.82,
       "bouwjaar": 1888
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Burg. Hustinxstraat 172|Nijmegen": {
     "oppervlakte": 51,
@@ -76639,7 +76821,8 @@
       "panden": [],
       "verbruik": 70923.52,
       "bouwjaar": 1980
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Berg En Dalseweg|Nijmegen": {
     "oppervlakte": 51,
@@ -77002,7 +77185,8 @@
       ],
       "verbruik": 119.29,
       "bouwjaar": 2001
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Professor Hoogveldstraat 9|Nijmegen": {
     "oppervlakte": 74,
@@ -77100,7 +77284,8 @@
       "panden": [],
       "verbruik": 99856.97,
       "bouwjaar": 1955
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Waalbandijk 219|Nijmegen": {
     "oppervlakte": 50,
@@ -77536,7 +77721,8 @@
       ],
       "verbruik": 97.51,
       "bouwjaar": 2020
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Sophiaweg|Nijmegen": {
     "oppervlakte": 27,
@@ -77657,7 +77843,8 @@
       ],
       "verbruik": 187.61,
       "bouwjaar": 1882
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "Dokstraat|Nijmegen": {
     "oppervlakte": 60,
@@ -77840,7 +78027,8 @@
       "panden": [],
       "verbruik": 61724.84,
       "bouwjaar": 1955
-    }
+    },
+    "eenheden_gezien": "2026-10-20"
   },
   "bm:van den Havestraat 103|Nijmegen": {
     "postcode": "6521JR",
@@ -77879,6 +78067,126 @@
     "oppervlakte": 68,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
+  },
+  "Nonnenstraat|Nijmegen": {
+    "oppervlakte": 130,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511VN",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Coehoornstraat 33|Nijmegen": {
+    "oppervlakte": 103,
+    "bouwjaar": "1906",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CB",
+    "adresseerbaarObjectIdentificatie": "0268010000010736",
+    "pand": "0268100000001666",
+    "panden": [
+      "0268100000001666"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-b8e0960aa94391f4dfbd8adde0bf037a",
+    "eenheden_in_pand": [
+      {
+        "adres": "Coehoornstraat 31",
+        "oppervlakte": 112,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Coehoornstraat 33",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-20",
+    "oppervlakte_bag": 103,
+    "energielabel": {
+      "label": "D",
+      "prive": false,
+      "registratiedatum": "2020-12-30",
+      "opnamedatum": "2020-12-30",
+      "geldig_tot": "2030-12-30",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Tussenvloer",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000010736",
+      "panden": [],
+      "verbruik": 64145.25,
+      "bouwjaar": 1930
+    }
+  },
+  "Bijleveldsingel 36|Nijmegen": {
+    "oppervlakte": 195,
+    "bouwjaar": "1926",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6524AD",
+    "adresseerbaarObjectIdentificatie": "0268010000002616",
+    "pand": "0268100000004475",
+    "panden": [
+      "0268100000004475"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-2be0dec72052477b9507c5285589e85c",
+    "eenheden_gezien": "2026-10-20",
+    "oppervlakte_bag": 222,
+    "energielabel": {
+      "label": "E",
+      "prive": false,
+      "registratiedatum": "2026-10-16",
+      "opnamedatum": "2026-10-07",
+      "geldig_tot": "2036-10-07",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning tussen",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000002616",
+      "panden": [
+        "0268100000004475"
+      ],
+      "verbruik": 289.76,
+      "bouwjaar": 1926
+    }
+  },
+  "bm:Graafseweg 18|Nijmegen": {
+    "postcode": "6512BP",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-ba26ee610394116e3427490ceb5c0a47"
+  },
+  "bm:Ziekerstraat 75|Nijmegen": {
+    "postcode": "6511LG",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-33e434d20c9cfefe25601d67d92cada8"
+  },
+  "bm:Broerstraat 16|Nijmegen": {
+    "postcode": "6511KN",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-aa2d480c1085569b73351b4110b1abf3"
   }
 }

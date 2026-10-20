@@ -118,9 +118,10 @@ van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog
 van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 | 407.000 | 2026
 
-# Nog in te vullen (6): vul het bedrag tussen de eerste twee streepjes
+# Nog in te vullen (7): vul het bedrag tussen de eerste twee streepjes
 Burchtstraat 68 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Burg. Hustinxstraat 172 |  | 2026   # prijsklasse 300k tot 450k
+Coehoornstraat 33 |  | 2026
 Pluvierstraat 3 |  | 2026
 Professor Hoogveldstraat 9 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
 Waalbandijk 219 |  | 2026   # prijsklasse 300k tot 450k
@@ -135,3 +136,6 @@ St. Annastraat 165-E | geen | 2026   # prijsklasse 300k tot 450k; straat nog zon
 Ziekerstraat 5 | geen | 2026   # prijsklasse 450k tot 600k
 van Welderenstraat 5 | geen | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
+
+# Werklijst (1): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
+Bijleveldsingel 36 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 195 m2, buiten het middengebied
