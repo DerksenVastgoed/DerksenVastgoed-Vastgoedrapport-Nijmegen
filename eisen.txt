@@ -1670,5 +1670,26 @@ eis: De ochtendmail gaat alleen naar Mark. Pa krijgt de brief via
 waarom: 20 oktober, Mark: pa moet de brief krijgen nadat hij is nagekeken.
   Tot dan ging hij om vijf uur naar beiden en keek de nakijkronde hem om 06:46
   na, als pa de fouten al gelezen had.
-proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
+proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een test van kopie_pa.yml kan pa mailen; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
+soort: brief
+
+---
+eis: De voorleesknop wijst alleen naar een MP3 van precies de tekst in de
+  mail, en verschijnt niet als de repo prive is.
+waarom: 20 oktober, Mark: een knop om de brief te laten voorlezen. Na een
+  herschrijving voor pa (kopie_pa.py) is het verhaal anders dan om vijf uur;
+  een knop met de oude stem zou voorlezen wat er niet meer staat. Bij een
+  prive repo geeft Pages een 404, en een knop die niet speelt leert de lezer
+  hem over te slaan.
+proef: voorlezen:de knop wijst niet naar de MP3; voorlezen:een prive repo krijgt toch; voorlezen:een herschreven verhaal krijgt de knop
+soort: brief
+
+---
+eis: Wat voorgelezen wordt is wat er staat, in woorden zoals wij ze zeggen:
+  bedragen met "euro" achter het getal, m2 als vierkante meter, "St." als
+  Sint, links als hun tekst.
+waarom: 20 oktober, gemeten met de fonemen van espeak op het verhaal van die
+  dag: "€358.000" werd "euro driehonderdachtenvijftigduizend", "374 m2"
+  "em twee", "St. Anna" "es tee Anna".
+proef: voorlezen:de voor te lezen tekst klopt niet
 soort: brief

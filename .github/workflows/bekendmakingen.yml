@@ -902,6 +902,29 @@ jobs:
             fi
           done
 
+      # De stem van Piper staat in de cache, zodat hij niet elke ochtend van
+      # huggingface komt. De sleutel volgt voorlezen.py: een andere STEM daar
+      # geeft een nieuwe cache.
+      - name: Voorleesstem uit de cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/piper-stemmen
+          key: piper-${{ hashFiles('voorlezen.py') }}
+          restore-keys: piper-
+
+      # Het verhaal als MP3, voor de knop bovenaan de mail (voorlezen.py).
+      # Mislukt dit, dan komt er geen knop en gaat de brief gewoon.
+      - name: Verhaal voorlezen
+        continue-on-error: true
+        run: |
+          if [ ! -s "digests/${DATUM}-verhaal.md" ]; then
+            echo "Geen verhaal, niets voor te lezen"
+            exit 0
+          fi
+          pip install -q piper-tts lameenc
+          python voorlezen.py --datum "$DATUM" \
+            || echo "voorlezen" >> "$GITHUB_WORKSPACE/overgeslagen.txt"
+
       - name: Brief en bijlage samenvoegen tot een HTML
         continue-on-error: true
         run: |

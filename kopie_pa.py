@@ -151,6 +151,14 @@ def herstel(datum, correcties, vraag=None):
         with open(pad, "w", encoding="utf-8") as f:
             f.write(eerste)
         return False
+    # De voorleesknop hoort bij de nieuwe tekst: een nieuwe MP3 (de naam volgt
+    # de tekst, zie voorlezen.py). Mislukt dat, dan geen knop, wel een brief.
+    try:
+        import voorlezen
+        voorlezen.maak(datum)
+    except Exception as e:
+        print(f"LET OP: voorlezen na het herschrijven mislukt: {e}",
+              file=sys.stderr)
     import briefmail
     modus = lees().get("modus") or "dagelijks"
     return briefmail.bouwen(datum, modus) == 0
@@ -180,9 +188,28 @@ def ontvangers_pa(map_=".github/workflows"):
     return fout
 
 
+def test_naar_pa(pad=".github/workflows/kopie_pa.yml"):
+    """Stappen in kopie_pa.yml die pa mailen zonder 'env.TEST != '1'' in hun
+    voorwaarde. Leeg is goed: een test (alleen_naar_mij) bereikt pa nooit."""
+    import yaml
+    with open(pad, encoding="utf-8") as f:
+        wf = yaml.safe_load(f)
+    fout = []
+    for job in wf["jobs"].values():
+        for st in job["steps"]:
+            naar = str((st.get("with") or {}).get("to", ""))
+            if "MAIL_TO_VERHAAL" in naar and "env.TEST != '1'" not in str(st.get("if", "")):
+                fout.append(st.get("name", "?"))
+            if "MAIL_TO_VERHAAL" in naar and "MAIL_TO " in naar + " ":
+                fout.append(st.get("name", "?") + " (twee ontvangers in een expressie)")
+    return fout
+
+
 def proef():
     import tempfile
     afw = []
+    for r in test_naar_pa():
+        afw.append(f"een test van kopie_pa.yml kan pa mailen: {r}")
     for r in ontvangers_pa():
         afw.append(f"pa kan buiten kopie_pa.yml een mail krijgen: {r}")
     with tempfile.TemporaryDirectory() as m:
