@@ -37,10 +37,8 @@ import hashlib
 import json
 import os
 import re
-import subprocess
 import sys
 import tempfile
-import wave
 
 STEM = "nl_NL-mls-medium"
 SPREKER = None          # bij een stem met meer sprekers: welke; None is de eerste
@@ -116,26 +114,32 @@ def stem_laden(stem=STEM):
 
 
 def spreek(alineas, uit, stem=STEM, spreker=SPREKER):
-    """De alinea's naar een MP3. Geeft de duur in seconden."""
+    """De alinea's naar een MP3. Geeft de duur in seconden.
+
+    MP3 via lameenc (een wheel met LAME erin) en niet via ffmpeg: ffmpeg staat
+    niet op ubuntu-latest. De eerste proef op 20 oktober liep daarop vast, bij
+    alle tien stemmen, nadat de stemmen wel waren opgehaald."""
+    import lameenc
     from piper import SynthesisConfig
     v = stem_laden(stem)
     cfg = SynthesisConfig(speaker_id=spreker)
-    with tempfile.TemporaryDirectory() as m:
-        wav = os.path.join(m, "uit.wav")
-        with wave.open(wav, "wb") as w:
-            w.setnchannels(1)
-            w.setsampwidth(2)
-            w.setframerate(v.config.sample_rate)
-            stil = b"\0\0" * int(v.config.sample_rate * STILTE_ALINEA)
-            for a in alineas:
-                for stuk in v.synthesize(a, syn_config=cfg):
-                    w.writeframes(stuk.audio_int16_bytes)
-                w.writeframes(stil)
-        with wave.open(wav, "rb") as w:
-            duur = w.getnframes() / w.getframerate()
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", wav,
-                        "-ac", "1", "-b:a", f"{KBPS}k", uit], check=True)
-    return duur
+    rate = v.config.sample_rate
+    pcm = bytearray()
+    stil = b"\0\0" * int(rate * STILTE_ALINEA)
+    for a in alineas:
+        for stuk in v.synthesize(a, syn_config=cfg):
+            pcm += stuk.audio_int16_bytes
+        pcm += stil
+    enc = lameenc.Encoder()
+    enc.set_bit_rate(KBPS)
+    enc.set_in_sample_rate(rate)
+    enc.set_channels(1)
+    enc.set_quality(2)
+    data = enc.encode(bytes(pcm)) + enc.flush()
+    with open(uit + ".deel", "wb") as f:
+        f.write(data)
+    os.replace(uit + ".deel", uit)
+    return len(pcm) / 2 / rate
 
 
 def opruimen(datum, map_="digests", dagen=BEWAAR_DAGEN):

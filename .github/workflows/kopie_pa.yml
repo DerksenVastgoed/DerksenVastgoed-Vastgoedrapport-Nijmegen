@@ -73,7 +73,7 @@ jobs:
           BRIEF_AANHEF: ${{ secrets.BRIEF_AANHEF }}
           CORRECTIES: ${{ github.event.inputs.correcties }}
         run: |
-          pip install -q piper-tts || echo "Piper niet te installeren; geen voorleesknop"
+          pip install -q piper-tts lameenc || echo "Piper niet te installeren; geen voorleesknop"
           if python kopie_pa.py --herstel --datum "$DATUM" --correcties "$CORRECTIES"; then
             echo "gelukt=ja" >> "$GITHUB_OUTPUT"
             echo "GECORRIGEERD=1" >> "$GITHUB_ENV"

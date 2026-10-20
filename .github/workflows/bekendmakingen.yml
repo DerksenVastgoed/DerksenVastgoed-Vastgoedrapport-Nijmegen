@@ -921,7 +921,7 @@ jobs:
             echo "Geen verhaal, niets voor te lezen"
             exit 0
           fi
-          pip install -q piper-tts
+          pip install -q piper-tts lameenc
           python voorlezen.py --datum "$DATUM" \
             || echo "voorlezen" >> "$GITHUB_WORKSPACE/overgeslagen.txt"
 
