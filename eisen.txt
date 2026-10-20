@@ -1552,6 +1552,6 @@ waarom: 20 oktober, Marks keuze. Art. 8a lid 3 noemt een door burgemeester
   (Erfgoedverordening art. 5). Een bod hoort niet te steunen op een opslag
   waarvan niet vaststaat dat hij geldt. St. Annastraat 7: €4.197 in plaats
   van €4.826 per maand, gedekte koopsom €855.912 in plaats van €984.304.
-proef: marktprijzen_bag:de 15% voor een gemeentelijk monument telt mee in het bod
+proef: marktprijzen_bag:de 15% voor een gemeentelijk monument telt mee in het
 soort: gegevens
 
