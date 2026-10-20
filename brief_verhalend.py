@@ -1388,6 +1388,26 @@ def opbouwzinnen(tekst):
     return [z.strip() for z in zinnen if _OPBOUW.search(z)]
 
 
+# NIETS MELDEN OM TE ZEGGEN DAT HET NIETS IS. 20 oktober 2026: "een
+# gevelaanpassing van een winkelpand. Niets met woningmarkt te maken, dus daar
+# ga ik niet verder op in", en twee keer "de rente: niets veranderd ... geen
+# reden om daar vandaag bij stil te staan". Gemeten op alle verhalen van 1 tot
+# en met 20 oktober: deze vorm stond alleen in de twee brieven van 20
+# oktober. Een bredere vorm ("niets met ... te maken") trof ook "De twee hebben
+# verder niets met elkaar te maken" (13 oktober), en dat is een zinnige
+# verduidelijking; die vorm staat er daarom niet in.
+_ONBELANG = re.compile(
+    r"\b(geen nieuws|niets veranderd|niets met (de )?woningmarkt te maken|"
+    r"ga ik niet (verder )?op in|geen reden om (daar|er|hier)\b[^.!?]*stil te "
+    r"staan|verder geen aandacht|niet de moeite)\b", re.I)
+
+
+def onbelangzinnen(tekst):
+    """Zinnen die iets noemen om te zeggen dat het er niet toe doet."""
+    zinnen = re.split(r"(?<=[.!?])\s+", tekst or "")
+    return [z.strip() for z in zinnen if _ONBELANG.search(z)]
+
+
 def veiligheidszinnen(tekst):
     """Zinnen die fietsendiefstal of vernieling als plus of min voor verhuur brengen."""
     # Ook de zin ervoor bekijken: "Vernieling is hier laag. Voor verhuur is dat
@@ -1535,6 +1555,10 @@ def schrijf_brief(bronnen):
         problemen.append(f"Deze zin beschrijft de opbouw van de brief: \"{zin}\". "
                          f"Haal dat deel weg; je vader leest een brief, geen "
                          f"verantwoording.")
+    for zin in onbelangzinnen(tekst):
+        problemen.append(f"Deze zin noemt iets om te zeggen dat het er niet toe "
+                         f"doet: \"{zin}\". Laat dat onderwerp helemaal weg, ook "
+                         f"de zinnen eromheen die er alleen voor staan.")
     # DE FEITENCONTROLE. 20 oktober: "3 december" stond nergens in de
     # gegevens, Hatertseweg 320 lag niet in Galgenveld. Zie feitencontrole.py.
     # De gegevens zijn precies wat de schrijver kreeg: de prompt.
@@ -1576,6 +1600,7 @@ def schrijf_brief(bronnen):
         if (herschreven and not kort
                 and not opent_met_afwezigheid(eerste_zin(herschreven))
                 and not opbouwzinnen(herschreven)
+                and not onbelangzinnen(herschreven)
                 and not veiligheidszinnen(herschreven)
                 and not verbandzinnen(herschreven)):
             print("  hersteld", file=sys.stderr)
@@ -1722,6 +1747,14 @@ def proef():
     echte brieven, met de uitkomst die ze hadden moeten geven.
     """
     fouten = []
+    # Niets melden om te zeggen dat het niets is (20 oktober), maar een
+    # zinnige verduidelijking blijft staan (13 oktober).
+    if len(onbelangzinnen("Tot slot de rente: niets veranderd. Niets met "
+                          "woningmarkt te maken, dus daar ga ik niet verder "
+                          "op in.")) != 2 or onbelangzinnen(
+            "De twee hebben verder niets met elkaar te maken."):
+        fouten.append("zinnen die iets noemen om te zeggen dat het er niet "
+                      "toe doet, worden niet of te ruim gevonden")
     # Het mechanisme van de opkoopbescherming gaat mee, uit bronnen.py
     # (20 oktober: "minder opkoopbescherming verruimt het uitponden").
     import bronnen as _br

@@ -154,8 +154,13 @@ def model_controle(brief, gegevens, model, vraag=None):
 
 def bevindingen(brief, gegevens, adressen, buurten, model=None, vraag=None):
     """Alle bevindingen als [(zin of getal, waarom, toets)]."""
-    uit = [(g, "dit getal of deze datum staat niet in de gegevens", "getal")
-           for g in ongedekt(brief, gegevens)]
+    zinnen = re.split(r"(?<=[.!?])\s+", re.sub(r"\]\([^)]*\)", "]",
+                                                brief or ""))
+    uit = []
+    for g in ongedekt(brief, gegevens):
+        # De hele zin, zodat de schrijver weet waar het staat.
+        zin = next((z.strip() for z in zinnen if g in z), g)
+        uit.append((zin[:300], f"'{g}' staat niet in de gegevens", "getal"))
     uit += [(z, w, "buurt") for z, w in buurtfouten(brief, adressen, buurten)]
     if model:
         m = model_controle(brief, gegevens, model, vraag)

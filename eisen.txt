@@ -1629,3 +1629,24 @@ waarom: 20 oktober. De duiding bij een artikel over het inperken ervan
 proef: brief_verhalend:het mechanisme van de opkoopbescherming ontbreekt
 soort: brief
 
+---
+eis: Na het schrijven wordt het verhaal nagelopen tegen de gegevens die de
+  schrijver kreeg: elk getal met eenheid en elke datum moet erin staan, een
+  adres moet in de genoemde buurt liggen, en een tweede taalmodel noemt
+  zinnen die er niet mee kloppen. De bevindingen gaan in de herstelronde; wat
+  overblijft staat in controle_brief.json en in het gezondheidsrapport.
+waarom: 20 oktober. "De gemeente besluit naar verwachting op 3 december"
+  stond nergens in de gegevens; "Hatertseweg 320 in Galgenveld" (St. Anna) en
+  "Graafseweg 18 in Galgenveld" (Bottendaal) ook niet. Gemeten op de
+  verhalen van 10 tot en met 20 oktober: de getal- en buurttoets vonden
+  alleen deze drie, en alle drie waren fout.
+proef: feitencontrole:de getallen en datums worden verkeerd getoetst; feitencontrole:een adres in de verkeerde buurt; feitencontrole:een mislukte controle leest als
+soort: brief
+
+---
+eis: Het verhaal noemt niets om te zeggen dat het er niet toe doet.
+waarom: 20 oktober: de winkelgevel ("niets met woningmarkt te maken") en de
+  rente ("geen reden om daar vandaag bij stil te staan").
+proef: brief_verhalend:zinnen die iets noemen om te zeggen dat het er niet
+soort: brief
+
