@@ -4980,17 +4980,14 @@ def schrijf_memos(feitenblokken):
               '{"i": <index>, "memo": "<twee tot drie alinea\'s, alinea\'s gescheiden '
               'door \\n\\n>"}. Geen tekst eromheen.')
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": ANTHROPIC_API_KEY,
-                     "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MEMO_MODEL, "max_tokens": 4000, "system": MEMO_PROFIEL,
-                  "messages": [{"role": "user", "content": prompt}]},
-            timeout=120)
-        resp.raise_for_status()
-        body = resp.json()
-        tekst = "".join(b.get("text", "") for b in body.get("content", [])).strip()
+        import taalmodel
+        _a = taalmodel.vraag(MEMO_MODEL, MEMO_PROFIEL,
+                             [{"role": "user", "content": prompt}], 8000,
+                             effort="low", timeout=120, label="Memo's",
+                             sleutel=ANTHROPIC_API_KEY)
+        if _a.fout:
+            raise RuntimeError(_a.fout)
+        tekst = _a.tekst
         if tekst.startswith("```"):
             tekst = tekst.split("```")[1]
             if tekst.startswith("json"):

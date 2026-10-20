@@ -1737,10 +1737,17 @@ def controle_briefherhaling():
         staart = stand.get("logstaart")
         bewijs = (f"de brief van {stand['datum']} is niet opnieuw geschreven: "
                   f"{stand.get('reden') or 'onbekende reden'}")
+        # TWEE GEVALLEN, TWEE ZINNEN. Op 20 oktober stond hier "Er is een
+        # oude brief verstuurd" terwijl er GEEN verhaal was: de mail ging met
+        # alleen de tabellen uit. Een oude brief gaat alleen uit als het
+        # schrijven mislukt en er van een eerdere run nog een verhaal staat.
+        geen = "geen brief gemaakt" in (stand.get("reden") or "")
+        gevolg = ("Er ging geen verhaal mee, alleen de cijfers; sinds 20 "
+                  "oktober zonder kopie naar pa." if geen else
+                  "Er is een oude brief verstuurd of klaargezet.")
         if staart:
             return (FOUT, bewijs + f"; laatste regels van die stap: {staart}",
-                    "Er is een oude brief verstuurd of klaargezet. De reden "
-                    "staat hierboven.")
+                    gevolg + " De reden staat hierboven.")
         return (FOUT, bewijs,
                 "Er is een oude brief verstuurd of klaargezet, en de stand "
                 "bewaart geen logstaart. Dat betekent dat deze run nog met de "

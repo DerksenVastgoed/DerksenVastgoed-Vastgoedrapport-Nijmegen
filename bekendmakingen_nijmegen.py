@@ -598,16 +598,15 @@ def vat_beleid_samen(items):
               '\n\nAntwoord met ALLEEN een JSON-array, per stuk '
               '{"i": <index>, "samenvatting": "<twee tot drie zinnen>"}.')
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": ANTHROPIC_API_KEY,
-                     "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 3000, "system": BELEID_PROFIEL,
-                  "messages": [{"role": "user", "content": prompt}]},
-            timeout=120)
-        resp.raise_for_status()
-        tekst = "".join(b.get("text", "") for b in resp.json().get("content", [])).strip()
+        import taalmodel
+        _a = taalmodel.vraag(MODEL, BELEID_PROFIEL,
+                             [{"role": "user", "content": prompt}], 8000,
+                             effort="low", timeout=120,
+                             label="Beleidssamenvatting",
+                             sleutel=ANTHROPIC_API_KEY)
+        if _a.fout:
+            raise RuntimeError(_a.fout)
+        tekst = _a.tekst
         if tekst.startswith("```"):
             tekst = tekst.split("```")[1]
             if tekst.startswith("json"):
@@ -967,18 +966,15 @@ def verrijk(items: list):
               '{"i": <index>, "strategie": "<label>", "duiding": "<een zin>"}. '
               "Geen tekst eromheen.")
     try:
-        resp = requests.post(
-            "https://api.anthropic.com/v1/messages",
-            headers={"x-api-key": ANTHROPIC_API_KEY,
-                     "anthropic-version": "2023-06-01",
-                     "content-type": "application/json"},
-            json={"model": MODEL, "max_tokens": 4000, "system": PROFIEL,
-                  "messages": [{"role": "user", "content": prompt}]},
-            timeout=90)
-        resp.raise_for_status()
-        body = resp.json()
-        tekst = "".join(b.get("text", "") for b in body.get("content", []))
-        if body.get("stop_reason") == "max_tokens":
+        import taalmodel
+        _a = taalmodel.vraag(MODEL, PROFIEL,
+                             [{"role": "user", "content": prompt}], 8000,
+                             effort="low", timeout=90, label="Duiding",
+                             sleutel=ANTHROPIC_API_KEY)
+        if _a.fout:
+            raise RuntimeError(_a.fout)
+        tekst = _a.tekst
+        if _a.stop == "max_tokens":
             print("LET OP: antwoord afgekapt op max_tokens", file=sys.stderr)
         annotaties = _parse_annotaties(tekst, len(items))
         print(f"Duiding gelukt voor {len(annotaties)}/{len(items)} items", file=sys.stderr)

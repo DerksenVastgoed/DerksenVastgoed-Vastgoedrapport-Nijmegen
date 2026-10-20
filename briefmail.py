@@ -173,6 +173,15 @@ def bouwen(datum, modus, map="digests"):
         # De volgende stap haalt hierop de kopie naar pa eraf. Een brief
         # waaruit een heel onderdeel is weggevallen is een halve update.
         naar_omgeving("ONVOLLEDIG", stuk["ontbreekt"])
+    # GEEN VERHAAL IS EEN HALVE UPDATE. 20 oktober 2026: het schrijven
+    # leverde 0 woorden op (zie taalmodel.py), en de mail ging met alleen de
+    # tabellen naar beiden, als gewone brief. Het verhaal is voor pa het
+    # belangrijkste deel; zonder verhaal gaat de kopie eraf en zegt het
+    # onderwerp waarom.
+    if not verhaal.strip():
+        meld("LET OP: er is geen verhaal voor vandaag. De kopie naar pa gaat "
+             "eraf.")
+        naar_omgeving("ONVOLLEDIG", "het verhaal")
     stand = wat_er_mist(datum, modus, map)
     if stand["gemeten"]:
         meld(f"Vergeleken met {stand['vorige']} ({modus}): "
@@ -216,6 +225,29 @@ def bouwen(datum, modus, map="digests"):
 def proef():
     fouten = []
     import tempfile
+
+    # DE FOUT VAN 20 OKTOBER. Geen verhaal, wel een bijlage: de mail mag er
+    # komen, maar als halve update, zonder kopie naar pa.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as m:
+        omg = os.path.join(m, "env")
+        open(omg, "w").close()
+        oud = os.environ.get("GITHUB_ENV")
+        os.environ["GITHUB_ENV"] = omg
+        try:
+            with open(os.path.join(m, "2026-10-20-bijlage.md"), "w",
+                      encoding="utf-8") as f:
+                f.write("# Bijlage\n\nDe cijfers.\n")
+            bouwen("2026-10-20", "dagelijks", m)
+            vlaggen = open(omg, encoding="utf-8").read()
+        finally:
+            if oud is None:
+                os.environ.pop("GITHUB_ENV", None)
+            else:
+                os.environ["GITHUB_ENV"] = oud
+        if "ONVOLLEDIG=het verhaal" not in vlaggen:
+            fouten.append("een brief zonder verhaal gaat als gewone brief naar "
+                          "beiden")
 
     def schrijf(m, naam, tekst="inhoud\n"):
         with open(os.path.join(m, naam), "w", encoding="utf-8") as f:
