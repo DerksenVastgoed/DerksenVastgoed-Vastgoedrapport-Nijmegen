@@ -46,6 +46,15 @@
  ],
  "ahornstraat3": [
   {
+   "datum": "2026-10-20",
+   "soorten": [
+    "kamerverhuur",
+    "verbouwing"
+   ],
+   "titel": "Besluit voor het verbouwen van een kamerverhuurpand naar twee zelfstandige woningen, aan Ahornstraat 3, 6523JE Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-489202/1/html/gmb-2026-489202.html"
+  },
+  {
    "datum": "2026-07-23",
    "soorten": [
     "kamerverhuur"
@@ -8099,6 +8108,14 @@
   }
  ],
  "profcornelissenstraat2": [
+  {
+   "datum": "2026-10-20",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Besluit voor het intern verbouwen van de huisartsenpraktijk, aan Professor Cornelissenstraat 2, 6524PJ Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-489125/1/html/gmb-2026-489125.html"
+  },
   {
    "datum": "2026-04-09",
    "soorten": [

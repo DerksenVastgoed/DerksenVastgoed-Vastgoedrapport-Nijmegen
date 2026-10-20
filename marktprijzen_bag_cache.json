@@ -78197,6 +78197,28 @@
     ],
     "postcode": "6542VS",
     "buurtnaam": "",
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Piersonstraat|Nijmegen": {
+    "oppervlakte": 56,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511GL",
+    "buurtnaam": "",
     "wijknaam": ""
+  },
+  "bm:Hatertseweg 320|Nijmegen": {
+    "postcode": "6533GP",
+    "buurtnaam": "St. Anna",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-2102f3ea1a3f1f835c49cd61d2574421"
+  },
+  "bm:Professor Cornelissenstraat 2|Nijmegen": {
+    "postcode": "6524PJ",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-56af22b6fa6e1e075b601e7a8e9cd7b3"
   }
 }

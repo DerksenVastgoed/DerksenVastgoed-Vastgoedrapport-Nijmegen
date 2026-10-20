@@ -76010,6 +76010,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Ahornstraat 3 is nu C"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-20",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het verbouwen van een kamerverhuurpand naar twee zelfstandige woningen, aan Ahornstraat 3, 6523JE Nijmegen"
    }
   ],
   "pand_id": "0268100000000571",
@@ -78468,7 +78474,7 @@
   ]
  },
  "bergendalseweg": {
-  "adres": "Berg En Dalseweg",
+  "adres": "Berg en Dalseweg",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -136976,6 +136982,21 @@
   "vbo_panden": [
    "0268100000019654"
   ]
+ },
+ "piersonstraat": {
+  "adres": "Piersonstraat",
+  "bag_gezien": "2026-10-20",
+  "bag_zonder_id": "2026-10-20",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-20",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.104 per maand, 56 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-20"
  },
  "piersonstraat75": {
   "adres": "Piersonstraat 75",
