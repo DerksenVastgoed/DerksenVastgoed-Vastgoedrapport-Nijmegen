@@ -8164,8 +8164,10 @@ nagezocht, en dat is de enige route naar meer.
   wethouders aangewezen gemeentelijk monument" (Stb. 2024, 194; beleidsboek
   Huurcommissie juli 2025 par. 2.8.2, met passief beleid: de partijen moeten
   de aanwijzing aantonen). In Nijmegen wijst de gemeenteraad aan
-  (Erfgoedverordening art. 5 lid 1). Het model rekent de 15% nu wel, met
-  een voorbehoud in het dossier. Raakt 465 panden in de ring.
+  (Erfgoedverordening art. 5 lid 1). Sinds 20 oktober rekent het bod zonder
+  de 15% (GEMEENTELIJK_TELT_MEE = False in marktprijzen_bag.py), met het
+  bedrag mét als meeropbrengst. Vraag aan gemeente of Huurcommissie: telt
+  een raadsaanwijzing? Zo ja, de vlag op True. Raakt 465 panden in de ring.
 - **Telt een stadsbeeldobject als "gemeentelijk monument" voor de 15% van
   art. 8a lid 3?** De verordening rekent stadsbeeldobjecten tot het
   overkoepelende "gemeentelijk beschermd monument" (toelichting art. 1),

@@ -6185,20 +6185,27 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                     # draagt de huur van diezelfde eenheden de financiering.
                     # De huurroute is vrijwel altijd bindend, want het
                     # puntenstelsel begrenst de huur en de verkoop niet.
-                    _huur_na = None
-                    if wws_punten and wws_max_huur:
+                    def _huur_bij(_soort):
                         try:
                             _ep2 = w.get("energielabel") or {}
                             _r2 = wws_punten(opp / _n, w["prijs"] / _n,
                                              label=_ep2.get("label"),
-                                             monument=monument_soort_w(w),
+                                             monument=_soort,
                                              heeft_buiten=False)
                             if _r2["gereguleerd"]:
-                                _mx2 = wws_max_huur(_r2["punten"], monument_soort_w(w))
+                                _mx2 = wws_max_huur(_r2["punten"], _soort)
                                 if _mx2:
-                                    _huur_na = _mx2 * _n
+                                    return _mx2 * _n
                         except Exception:
-                            _huur_na = None
+                            return None
+                        return None
+                    _huur_na = _huur_na_voluit = None
+                    if wws_punten and wws_max_huur:
+                        _huur_na = _huur_bij(monument_soort_w(w))
+                        if monument_soort_w(w, voluit=True) != \
+                                monument_soort_w(w):
+                            _huur_na_voluit = _huur_bij(
+                                monument_soort_w(w, voluit=True))
                     if _huur_na:
                         _plafond_huur = richtprijs(opp, _huur_na / opp,
                                                    opex_voor("splitsen"),
@@ -6223,7 +6230,12 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
                               + f" laat dan €{round(_ruimte):,}".replace(",", ".")
                               + f" over voor verbouwing en de rest, dus "
                               + f"€{round(_ruimte / _n):,}".replace(",", ".")
-                              + " per eenheid",
+                              + " per eenheid"
+                              + (". Geldt de 15% voor een gemeentelijk "
+                                 "monument wel, dan is de huur €"
+                                 + eu(round(_huur_na_voluit))
+                                 + " per maand; niet meegerekend, zie monument"
+                                 if _huur_na_voluit else ""),
                               "eigen doorrekening, huur via het puntenstelsel "
                               "en verkoop via de gemeten groottepremie")
     except Exception:
@@ -6294,14 +6306,16 @@ def pand_dossier(w, buurt, afw, cbs, archief, register):
           _m.get("bron") or "Rijksdienst voor het Cultureel Erfgoed")
     elif w.get("monument_soort") == "gemeentelijk":
         _mw = w.get("monument_woning")
-        f("monument", "gemeentelijk monument; maximale huur +15% (art. 8a "
-          "lid 3), geen minpunten voor het label"
+        f("monument", "gemeentelijk monument; volgens art. 8a lid 3 "
+          "maximale huur +15% en geen minpunten voor het label"
           + (f"; het pand ligt voor {_mw[1]:.2f} in het vlak, de woning in "
              f"het monumentdeel" if _mw and _mw[0] == "binnen" else "")
-          + ". Voorbehoud: art. 8a noemt een monument dat burgemeester en "
-            "wethouders hebben aangewezen; in Nijmegen wijst de gemeenteraad "
-            "aan (Erfgoedverordening art. 5). Of de 15% dan geldt, is niet "
-            "uitgezocht",
+          + ". NIET MEEGEREKEND: art. 8a noemt een monument dat burgemeester "
+            "en wethouders hebben aangewezen; in Nijmegen wijst de "
+            "gemeenteraad aan (Erfgoedverordening art. 5). Zolang niet "
+            "vaststaat dat de opslag dan geldt, rekent het bod zonder de 15% "
+            "en met de minpunten voor het label; het bedrag mét staat erbij "
+            "als mogelijke meeropbrengst",
           "erfgoedregister gemeente, BAG-pandomtrek tegen het vlak"
           + (" en het verblijfsobjectpunt" if _mw else ""))
     elif w.get("monument_soort") == "gezicht":
@@ -8126,10 +8140,26 @@ def monument_uit_register(w):
     return w
 
 
-def monument_soort_w(w):
+# DE BEREKENING ZONDER DE 15%. 20 oktober 2026, Marks keuze. Art. 8a lid 3
+# noemt een door burgemeester en wethouders aangewezen gemeentelijk
+# monument; in Nijmegen wijst de gemeenteraad aan (Erfgoedverordening art. 5).
+# Zolang niet vaststaat dat de opslag dan geldt, rekent het bod er niet op:
+# geen 15%, en ook de vrijstelling van minpunten voor het label niet, want
+# rubriek 4 verwijst naar dezelfde monumenten van art. 8a. Het bedrag mét
+# staat in het dossier als mogelijke meeropbrengst. Zet dit op True als de
+# gemeente of de Huurcommissie bevestigt dat een raadsaanwijzing telt.
+GEMEENTELIJK_TELT_MEE = False
+
+
+def monument_soort_w(w, voluit=False):
     """De soort voor het puntenstelsel: monument_soort als die gezet is, en
-    anders rijks als w["monument"] er staat (zoals het altijd was)."""
-    return w.get("monument_soort") or ("rijks" if w.get("monument") else None)
+    anders rijks als w["monument"] er staat (zoals het altijd was). Een
+    gemeentelijk monument telt alleen mee met voluit=True of
+    GEMEENTELIJK_TELT_MEE."""
+    soort = w.get("monument_soort") or ("rijks" if w.get("monument") else None)
+    if soort == "gemeentelijk" and not (voluit or GEMEENTELIJK_TELT_MEE):
+        return None
+    return soort
 
 
 def render(woningen, modus="weekelijks", bm_per_buurt=None, bm_overig=None):
@@ -9158,6 +9188,17 @@ def proef():
             (_gzp.monument_aanvullen, _gzp.monument_soort,
              _gzp.gemeentelijk_aandeel, _gzp.vbo_in_gemeentelijk_monument) = (
                 _oud_ma, _oud_ms, _oud_ga, _oud_vb)
+        # De 15% voor een gemeentelijk monument telt niet mee in het bod,
+        # wel als meeropbrengst (voluit); rijks en gezicht tellen gewoon.
+        if (monument_soort_w({"monument_soort": "gemeentelijk"}),
+                monument_soort_w({"monument_soort": "gemeentelijk"},
+                                 voluit=True),
+                monument_soort_w({"monument_soort": "rijks"}),
+                monument_soort_w({"monument_soort": "gezicht"})) != (
+                None if not GEMEENTELIJK_TELT_MEE else "gemeentelijk",
+                "gemeentelijk", "rijks", "gezicht"):
+            afw.append("de 15% voor een gemeentelijk monument telt mee in het "
+                       "bod, of de meeropbrengst is niet meer te berekenen")
         _w = monument_uit_register({"pand": "N", "monument": {"oud": 1}})
         if _w.get("monument"):
             afw.append("een pand dat geen van beide bronnen een rijksmonument "

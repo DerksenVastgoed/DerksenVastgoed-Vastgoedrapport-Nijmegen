@@ -1542,3 +1542,16 @@ waarom: 19 oktober. Bij de 28 deels-panden in de ring (176
 proef: gezicht:punt en titel worden verkeerd samengenomen; gezicht:leest; marktprijzen_bag:een woning waarover punt en titel het oneens zijn
 soort: gegevens
 
+---
+eis: Het bod rekent zonder de 15% en zonder de vrijstelling van minpunten
+  voor een gemeentelijk monument, zolang niet vaststaat dat een aanwijzing
+  door de gemeenteraad onder art. 8a lid 3 valt; het bedrag mét staat in
+  het dossier als mogelijke meeropbrengst.
+waarom: 20 oktober, Marks keuze. Art. 8a lid 3 noemt een door burgemeester
+  en wethouders aangewezen monument; in Nijmegen wijst de raad aan
+  (Erfgoedverordening art. 5). Een bod hoort niet te steunen op een opslag
+  waarvan niet vaststaat dat hij geldt. St. Annastraat 7: €4.197 in plaats
+  van €4.826 per maand, gedekte koopsom €855.912 in plaats van €984.304.
+proef: marktprijzen_bag:de 15% voor een gemeentelijk monument telt mee in het
+soort: gegevens
+
