@@ -1662,3 +1662,13 @@ waarom: 20 oktober. "Hatertseweg 320 in Galgenveld" (St. Anna); na de
 proef: bekendmakingen_nijmegen:de buurt komt niet uit het adres; bekendmakingen_nijmegen:de buurt staat niet bij de bekendmaking
 soort: brief
 
+
+---
+eis: De ochtendmail gaat alleen naar Mark. Pa krijgt de brief via
+  kopie_pa.yml na de nakijkronde, hooguit een keer per dag, nooit bij een
+  testrun of een halve update; een mislukte herschrijving stuurt niets.
+waarom: 20 oktober, Mark: pa moet de brief krijgen nadat hij is nagekeken.
+  Tot dan ging hij om vijf uur naar beiden en keek de nakijkronde hem om 06:46
+  na, als pa de fouten al gelezen had.
+proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
+soort: brief

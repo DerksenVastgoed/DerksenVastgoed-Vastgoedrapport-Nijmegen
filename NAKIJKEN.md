@@ -17,8 +17,9 @@ oplossing bij de bron, als pull request.
 
 - **Je merget niets.** Je opent een pull request; Mark accepteert ze een voor
   een.
-- **Je start geen workflow** en verstuurt geen mail. Een testrun van de brief
-  doe je niet; meet offline (zie stap 5).
+- **Je start geen workflow** en verstuurt geen mail, met een uitzondering:
+  `kopie_pa.yml` aan het eind (stap 6). Een testrun van de brief doe je niet;
+  meet offline (zie stap 5).
 - **Repo-zichtbaarheid en secrets** zijn van Mark. Niet aanraken.
 - **Geen inhoud uit de mailbox** in een issue of pull request.
 - Lees `CLAUDE.md` en volg de werkwijze daarin: meten in plaats van schatten,
@@ -78,8 +79,25 @@ oplossing bij de bron, als pull request.
    geen pull request. Zet de bevindingen in `VERBETERLIJST.md` onder "Nakijken"
    alleen als ze een terugkerend patroon zijn, en dan in een pull request.
 
-6. **Meld Mark** in drie tot vijf zinnen, in het Nederlands, zonder
+6. **Laat de brief naar pa gaan.** Sinds 20 oktober krijgt pa de brief pas na
+   deze ronde (zie `kopie_pa.py`). Start `kopie_pa.yml` op main:
+   - Stond er niets fout in het verhaal: zonder correcties.
+     `gh api -X POST repos/DerksenVastgoed/DerksenVastgoed-Vastgoedrapport-Nijmegen/actions/workflows/kopie_pa.yml/dispatches -f ref=main -f "inputs[datum]=<datum>"`
+   - Stonden er fouten in: met de zinnen letterlijk zoals ze in het verhaal
+     staan, en wat de gegevens zeggen. Het verhaal wordt dan met alleen die
+     correcties herschreven en de verbeterde brief gaat naar pa.
+     `-f 'inputs[correcties]=[{"zin": "...", "waarom": "..."}]'`
+   - Alleen fouten die je met de gegevens kunt aanwijzen. Twijfel is geen
+     correctie: noem hem in je bericht aan Mark.
+   - Zegt `pa_kopie.json` dat het een halve update was of dat hij al
+     verstuurd is, dan start je niets; de workflow zou het ook weigeren.
+   - Kijk na een paar minuten of de run gelukt is en of `pa_kopie.json` op main
+     `verstuurd` heeft. Zo niet, meld het; om 08:52 gaat de brief zoals hij
+     was alsnog.
+
+7. **Meld Mark** in drie tot vijf zinnen, in het Nederlands, zonder
    gedachtestreepjes: hoeveel beweringen je nakeek, welke fouten erin stonden,
-   welke de feitencontrole miste, en welke pull request je opende (met link).
+   welke de feitencontrole miste, of de brief met of zonder correcties naar pa
+   ging, en welke pull request je opende (met link).
    Stond er niets fout, zeg dat in een zin. Verzin niets: wat je niet kon
    nagaan, noem je zo.

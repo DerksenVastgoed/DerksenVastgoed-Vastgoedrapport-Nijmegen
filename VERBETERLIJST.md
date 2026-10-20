@@ -8331,3 +8331,18 @@ met elk getal 10% lager en 10% hoger, de rest gelijk. Gemeten op de
   Hetzelfde pand, twee uitkomsten.
 - **De tekst van een besluit lezen**: we kennen alleen de titel, dus niet of
   een besluit een verlening of een weigering is.
+
+## De brief naar pa na het nakijken (20 oktober 2026)
+
+- GEDAAN: de briefrun mailt alleen Mark; pa krijgt de brief via
+  kopie_pa.yml, gestart door de nakijkronde (met of zonder correcties) of om
+  08:52 door het vangnet. pa_kopie.json houdt bij of hij mag en of hij al weg
+  is.
+- **Na een week meten**: hoe vaak de nakijkronde correcties stuurde, hoe vaak
+  het vangnet de brief verstuurde, en hoe laat pa hem gemiddeld kreeg.
+- **Het herschrijven krijgt de correcties als gegeven**, niet als bewezen. Een
+  correctie van de nakijkronde die zelf fout is, komt zo in pa's brief. De
+  eerste versie staat in digests/<datum>-verhaal-eerste.md; vergelijken na een
+  week.
+- **Zondag**: de weekeditie duurt langer. Is hij om 08:52 nog niet nagekeken,
+  dan gaat hij ongezien.
