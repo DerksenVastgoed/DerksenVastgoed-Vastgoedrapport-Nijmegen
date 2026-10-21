@@ -134,8 +134,8 @@
   },
   "graafseweg18": {
    "eerst": "2026-10-17",
-   "laatst": "2026-10-17",
-   "keer": 1,
+   "laatst": "2026-10-21",
+   "keer": 2,
    "omschrijving": "Graafseweg 18"
   },
   "stannastraat275": {
@@ -155,6 +155,18 @@
    "laatst": "2026-10-18",
    "keer": 1,
    "omschrijving": "Vondelstraat 26"
+  },
+  "hatertseweg320": {
+   "eerst": "2026-10-21",
+   "laatst": "2026-10-21",
+   "keer": 1,
+   "omschrijving": "Hatertseweg 320"
+  },
+  "krayenhofflaan104": {
+   "eerst": "2026-10-21",
+   "laatst": "2026-10-21",
+   "keer": 1,
+   "omschrijving": "Krayenhofflaan 104"
   }
  }
 }

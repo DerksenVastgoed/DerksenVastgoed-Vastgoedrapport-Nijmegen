@@ -78242,5 +78242,490 @@
       "woonfunctie"
     ],
     "energielabel": null
+  },
+  "Marialaan 62|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "1933",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541RM",
+    "adresseerbaarObjectIdentificatie": "0268010000076530",
+    "pand": "0268100000018764",
+    "panden": [
+      "0268100000018764"
+    ],
+    "splitsing_geregistreerd": null,
+    "eenheden_in_pand": [
+      {
+        "adres": "Marialaan 60",
+        "oppervlakte": 98,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Marialaan 62",
+        "oppervlakte": 117,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-21",
+    "oppervlakte_bag": 117,
+    "energielabel": {
+      "label": "A",
+      "prive": false,
+      "registratiedatum": "2026-10-19",
+      "opnamedatum": "2026-10-19",
+      "geldig_tot": "2036-10-19",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning tussen",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000076530",
+      "panden": [
+        "0268100000018764"
+      ],
+      "verbruik": 149.48,
+      "bouwjaar": 1933
+    }
+  },
+  "Veemarkt 171|Nijmegen": {
+    "oppervlakte": 68,
+    "bouwjaar": "1987",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ZD",
+    "adresseerbaarObjectIdentificatie": "0268010000053960",
+    "pand": "0268100000005410",
+    "panden": [
+      "0268100000005410"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-5309ae573ad7d14a5a6581a3973da37f",
+    "eenheden_in_pand": [
+      {
+        "adres": "Veemarkt 3",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 5",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 7",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 9",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 11",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 13",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 15",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 17",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 19",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 21",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 23",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 25",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 27",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 29",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 31",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 33",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 35",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 37",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 39",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 41",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 43",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 45",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 47",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 49",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 51",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 53",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 55",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 57",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 59",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 61",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 63",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 65",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 67",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 69",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 71",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 73",
+        "oppervlakte": 65,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 75",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 77",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 79",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 81",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 83",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 85",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 87",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 89",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 91",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 93",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 95",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 97",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 99",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-21",
+    "oppervlakte_bag": 79,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2024-11-27",
+      "opnamedatum": "2024-10-01",
+      "geldig_tot": "2034-10-01",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Hoekdak",
+      "methode": "NTA 8800:2024 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000053960",
+      "panden": [
+        "0268100000005410"
+      ],
+      "verbruik": 184.11,
+      "bouwjaar": 1987
+    }
   }
 }

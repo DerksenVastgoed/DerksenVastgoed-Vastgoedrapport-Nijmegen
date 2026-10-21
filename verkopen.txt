@@ -1133,3 +1133,8 @@ Piersonstraat | Nijmegen | 1104 | te huur gemeubileerd | 2026-10-20 | pararius |
 Coehoornstraat | Nijmegen | 1600 | te huur | 2026-10-20 | kamernet-gemeubileerd | 70 | 
 Biezenstraat | Nijmegen | 620 | te huur kamer | 2026-10-20 | kamernet | 15 | 
 Nieuwe Nonnendaalseweg | Nijmegen | 614 | te huur kamer | 2026-10-20 | kamernet-incl | 16 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 21-10-2026
+Krayenhofflaan 104 | Nijmegen | 525000 | te koop | 2026-10-21 | funda-mail | 135 | 6541PW
+Marialaan 62 | Nijmegen | 525000 | te koop | 2026-10-21 | funda-mail | 96 | 6541RM
+Veemarkt 171 | Nijmegen | 350000 | te koop | 2026-10-21 | funda-mail | 68 | 6511ZD

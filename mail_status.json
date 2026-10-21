@@ -1,35 +1,32 @@
 {
- "datum": "2026-10-20",
+ "datum": "2026-10-21",
  "bronnen": {
-  "regulier": {
-   "mails": 2,
-   "objecten": 3,
-   "overgeslagen": 2,
-   "redenen": [
-    "Eerste Oude Heselaan (geen prijs gevonden)",
-    "St. Stevenskerkhof 11 (geen prijs gevonden)"
-   ]
-  },
   "huislijn": {
-   "mails": 4,
-   "objecten": 12,
+   "mails": 3,
+   "objecten": 6,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 14,
-   "objecten": 13,
-   "overgeslagen": 1,
+   "mails": 12,
+   "objecten": 10,
+   "overgeslagen": 2,
    "redenen": [
-    "Homberg, Wijchen: buiten Nijmegen"
+    "Homberg, Wijchen: buiten Nijmegen",
+    "Nieuweweg, Wijchen: buiten Nijmegen"
    ]
   },
-  "pararius": {
+  "regulier": {
    "mails": 2,
-   "objecten": 4,
-   "overgeslagen": 4,
+   "objecten": 5,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "pararius": {
+   "mails": 1,
+   "objecten": 3,
+   "overgeslagen": 3,
    "redenen": [
-    "St. Stevenskerkhof (gemeubileerd, apart bewaard)",
     "Berg en Dalseweg (gemeubileerd, apart bewaard)",
     "Berg en Dalseweg (gemeubileerd, apart bewaard)",
     "Piersonstraat (gemeubileerd, apart bewaard)"
@@ -39,23 +36,23 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 32,
+  "zelfde_status": 21,
   "andere_status": 0,
   "voorbeelden": []
  },
  "berichten_per_afzender": {
   "funda.nl": 2,
   "funda.com": 0,
-  "pararius.nl": 2,
+  "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 14,
+  "kamernet.nl": 12,
   "vendr.nl": 0,
-  "huislijn.nl": 4,
+  "huislijn.nl": 3,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 17-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 17-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 18-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 18-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

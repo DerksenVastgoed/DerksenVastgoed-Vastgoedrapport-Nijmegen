@@ -14045,7 +14045,7 @@
      70
     ]
    ],
-   "bag_gezien": "2026-10-18",
+   "bag_gezien": "2026-10-21",
    "bag_woningen": [
     [
      "Veemarkt 11",
@@ -34562,7 +34562,7 @@
      117
     ]
    ],
-   "bag_gezien": "2026-10-18",
+   "bag_gezien": "2026-10-21",
    "bag_woningen": [
     [
      "Marialaan 60",
@@ -117007,6 +117007,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Krayenhofflaan 104 is nu F"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-21",
+    "soort": "prijswijziging",
+    "tekst": "prijs verlaagd van €575.000 naar €525.000"
    }
   ],
   "pand_id": "0268100000021318",
@@ -123885,6 +123891,34 @@
   ],
   "pand_id": "0268100000018764",
   "vbo": "0268010000021587",
+  "vbo_panden": [
+   "0268100000018764"
+  ]
+ },
+ "marialaan62": {
+  "adres": "Marialaan 62",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-08-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marialaan 62 is D, geregistreerd 2020-08-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-02-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Marialaan 60 is A+, geregistreerd 2026-02-11"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-21",
+    "soort": "te koop",
+    "tekst": "te koop voor €525.000, 96 m2"
+   }
+  ],
+  "pand_id": "0268100000018764",
+  "vbo": "0268010000076530",
   "vbo_panden": [
    "0268100000018764"
   ]
@@ -164235,6 +164269,322 @@
   ],
   "pand_id": "0268100000005410",
   "vbo": "0268010000052197",
+  "vbo_panden": [
+   "0268100000005410"
+  ]
+ },
+ "veemarkt171": {
+  "adres": "Veemarkt 171",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 11 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 13 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 15 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 17 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 19 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 23 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 25 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 27 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 29 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 3 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 31 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 33 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 35 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 37 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 39 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 41 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 43 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 45 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 47 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 49 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 5 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 51 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 53 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 55 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 57 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 59 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 61 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 63 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 65 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 67 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 69 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 7 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 71 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 73 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 75 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 77 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 79 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 81 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 83 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 85 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 87 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 89 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 9 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 91 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 93 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 95 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 97 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 99 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-01-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 1 is C, geregistreerd 2025-01-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-08-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 21 is A, geregistreerd 2025-08-14"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-21",
+    "soort": "te koop",
+    "tekst": "te koop voor €350.000, 68 m2"
+   }
+  ],
+  "pand_id": "0268100000005410",
+  "vbo": "0268010000053960",
   "vbo_panden": [
    "0268100000005410"
   ]

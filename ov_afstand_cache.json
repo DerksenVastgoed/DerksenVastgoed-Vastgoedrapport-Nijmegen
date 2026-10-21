@@ -1303,6 +1303,14 @@
   "omweg": 1.02,
   "soort": "bus"
  },
+ "51.84402,5.84679": {
+  "geschat": false,
+  "hemelsbreed": 219,
+  "meters": 224,
+  "naam": "Zwaluwstraat",
+  "omweg": 1.02,
+  "soort": "bus"
+ },
  "51.84410,5.84883": {
   "geschat": false,
   "hemelsbreed": 312,
@@ -1813,6 +1821,14 @@
   "meters": 742,
   "naam": "Waalkade",
   "omweg": 5.26,
+  "soort": "bus"
+ },
+ "51.84950,5.85599": {
+  "geschat": false,
+  "hemelsbreed": 137,
+  "meters": 174,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.27,
   "soort": "bus"
  },
  "51.84955,5.85881": {
