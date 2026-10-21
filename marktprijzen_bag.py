@@ -1196,6 +1196,17 @@ def samenstellingseffect(historie, buurten=None, terug=4):
     erbij komen of afgaan. Dat voorbehoud per buurt is niet genoeg: het patroon
     over de buurten heen is het bewijs, en dat ziet niemand als je de buurten
     los leest. Daarom staat het hier als eigen melding.
+
+    DE SPREIDING EN DE MEDIAAN GAAN OVER DE BUURTEN DIE MEEGAAN. Op 21 oktober
+    stond hier "5 van de 6 buurten ... gaan dezelfde kant op, omhoog, van
+    -2,5% tot +9,7%, mediaan 5,9%". Vijf buurten stonden op +3,8% tot +9,7%;
+    de -2,5% was Benedenstad, de zesde, die de andere kant op ging. Laag, hoog
+    en mediaan werden over alle zes berekend (de mediaan over absolute
+    waarden, dus de daling telde als stijging) en achter "dezelfde kant op"
+    gezet. De brief maakte er "allemaal omhoog, van -2,5% tot +9,7%" van, en
+    de feitencontrole liet het staan: elk getal stond in de gegevens. Nu gaan
+    laag, hoog en mediaan over de buurten in de gemeenschappelijke richting,
+    en staat de uitzondering er bij naam en met haar eigen cijfer achter.
     """
     weken = sorted(w for w in (historie or {}) if not w.startswith("_"))
     if len(weken) <= terug:
@@ -1214,13 +1225,16 @@ def samenstellingseffect(historie, buurten=None, terug=4):
     eenzelfde = max(omhoog, omlaag)
     if eenzelfde < len(pcts) - 1:
         return ""          # geen eenduidige richting: dan zegt dit niets
-    mediaan = st.median([abs(v) for v in pcts.values()])
+    richting = "omhoog" if omhoog >= omlaag else "omlaag"
+    mee = {b: v for b, v in pcts.items()
+           if (v > 0 if richting == "omhoog" else v < 0)}
+    tegen = {b: v for b, v in pcts.items() if b not in mee}
+    mediaan = st.median([abs(v) for v in mee.values()])
     if mediaan < 3:
         return ""          # klein genoeg om gewoon ruis te kunnen zijn
-    richting = "omhoog" if omhoog >= omlaag else "omlaag"
     per_jaar = ((1 + mediaan / 100) ** (52 / (terug * 1.0)) - 1) * 100
-    laag = min(pcts.values())
-    hoog = max(pcts.values())
+    laag = min(mee.values())
+    hoog = max(mee.values())
     # Komma als decimaalteken, zoals overal elders in de brief
     kom = lambda x, teken="+": f"{x:{teken}.1f}".replace(".", ",")
     # DE BUURTEN ZONDER REEKS BIJ NAAM. Op 15 oktober kwamen Hunnerberg en St.
@@ -1235,7 +1249,10 @@ def samenstellingseffect(historie, buurten=None, terug=4):
         f"**LET OP, DIT IS GEEN MARKTBEWEGING.** {eenzelfde} van de "
         f"{waarover} gaan dezelfde kant op, "
         f"{richting}, van {kom(laag)}% tot {kom(hoog)}%, mediaan "
-        f"{kom(mediaan, '')}%. Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
+        f"{kom(mediaan, '')}%"
+        + (f"; {' en '.join(f'{b} ({kom(v)}%)' for b, v in tegen.items())} "
+           f"{'gaat' if len(tegen) == 1 else 'gaan'} niet mee" if tegen else "")
+        + f". Dat is op jaarbasis {per_jaar:+.0f}% en dat doet "
         f"geen woningmarkt. Als alle buurten tegelijk evenveel bewegen, "
         f"verandert niet de markt maar onze steekproef: er komen andere panden "
         f"in de meting. Gebruik deze cijfers dus niet als bewijs dat de markt "
@@ -8979,6 +8996,22 @@ def proef():
     _t = samenstellingseffect(_h, buurten=["A", "B", "C", "D", "E"])
     if "E nog zonder" not in _t:
         afw.append(f"een ringbuurt zonder reeks valt stil uit de telling: {_t[:120]}")
+
+    # Het echte geval van 21 oktober (prijstrend.json, week 39 tegen week 43):
+    # vijf buurten omhoog, Benedenstad omlaag. De spreiding achter "dezelfde
+    # kant op" mag alleen de buurten bevatten die meegaan. De getallen zijn
+    # echt; de namen niet, want echte buurtnamen in een rij ziet ring.py
+    # terecht als een tweede ring. Buurt B is Benedenstad.
+    _oud_w = {"Buurt A": 4853, "Buurt B": 5472, "Buurt C": 5083,
+              "Buurt D": 4781, "Buurt E": 4783, "Buurt F": 5257}
+    _nu_w = {"Buurt A": 5123, "Buurt B": 5337, "Buurt C": 5417,
+             "Buurt D": 5247, "Buurt E": 5082, "Buurt F": 5455}
+    _h = {"2026-W39": _oud_w, "2026-W40": {}, "2026-W41": {}, "2026-W42": {},
+          "2026-W43": _nu_w}
+    _t = samenstellingseffect(_h, buurten=sorted(_nu_w))
+    if "-2,5%" in _t.split(";")[0] or "Buurt B (-2,5%)" not in _t:
+        afw.append(f"een buurt die de andere kant op gaat staat in de "
+                   f"spreiding van dezelfde kant op: {_t[:160]}")
 
     # Huur zonder huisnummer krijgt een buurt uit de postcode, en uit de
     # straat alleen als die in één buurt ligt; op vaste gegevens.

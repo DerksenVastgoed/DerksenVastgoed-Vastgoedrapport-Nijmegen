@@ -1693,3 +1693,16 @@ waarom: 20 oktober, gemeten met de fonemen van espeak op het verhaal van die
   "em twee", "St. Anna" "es tee Anna".
 proef: voorlezen:de voor te lezen tekst klopt niet
 soort: brief
+
+---
+eis: De waarschuwing over het samenstellingseffect geeft spreiding en mediaan
+  alleen over de buurten die dezelfde kant op gaan; een buurt die niet meegaat
+  staat er apart bij, met naam en eigen cijfer.
+waarom: 21 oktober. "5 van de 6 buurten ... gaan dezelfde kant op, omhoog,
+  van -2,5% tot +9,7%": de -2,5% was Benedenstad, de zesde, die daalde. De
+  brief schreef "allemaal omhoog, van -2,5% tot +9,7%" en de feitencontrole
+  liet het staan, want elk getal stond in de gegevens. Gemeten op
+  prijstrend.json, week 39 tegen week 43: de vijf stijgers lopen van +3,8% tot
+  +9,7%, mediaan 6,3% (was 5,9% met de daling als stijging meegeteld).
+proef: marktprijzen_bag:een buurt die de andere kant op gaat staat in de
+soort: brief
