@@ -47,6 +47,20 @@ proef: splitsing_voltooid:het blok noemt de grondslag
 soort: brief
 
 ---
+eis: De nieuwswaarde, die bepaalt hoeveel ruimte de brief krijgt en of hij
+  met de actualiteit opent, telt alleen wat vandaag nieuw is: geen
+  bekendmaking waarvan het adres al in een brief stond, geen "besluit voor"
+  uit een pandgeschiedenis of dossier, geen kop "Kernsignalen" zonder nieuwe
+  bekendmaking eronder.
+waarom: 22 oktober. 15 punten gaf "er is vandaag veel te melden ... open met
+  het belangrijkste besluit"; 12 daarvan kwamen van Hatertseweg 320 (al op 20
+  en 21 oktober gemeld) en van besluiten uit pandgeschiedenissen. De brief
+  opende voor de derde keer met die aanvraag als "het belangrijkste van
+  vandaag". Wat nieuw was, gaf 3 punten.
+proef: brief_verhalend:de nieuwswaarde telt wat al gemeld is; brief_verhalend:de nieuwswaarde telt een nieuwe aanvraag niet
+soort: brief
+
+---
 eis: Elk pand in de brief is bij zijn eerste vermelding klikbaar naar het
   straatbeeld op het punt van dat pand; een bestaande link blijft staan.
 waarom: 17 oktober, Mark: als er een adres in de brief staat, wil hij met één

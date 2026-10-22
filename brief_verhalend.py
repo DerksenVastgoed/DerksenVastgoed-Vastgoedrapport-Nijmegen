@@ -591,17 +591,69 @@ def wist_je_dat(cbs, verg, misdrijven=None):
 MAX_WOORDEN = 800
 
 
-def nieuwswaarde(bronnen):
+# Een bekendmaking als regel in de digest: "- 2026-10-20 . Aanvraag ...", met
+# of zonder vet om de datum. Regels uit een pandgeschiedenis ("-> 2026-06
+# Besluit voor") of een dossier ("- 2026-10-19: besluit voor") zijn het niet.
+_BEKENDMAKINGREGEL = re.compile(r"^- (?:\*\*)?\d{4}-\d{2}-\d{2}(?:\*\*)? \. ")
+
+
+def _zonder_al_gemeld(tekst, al_gemeld):
+    """De brontekst zonder de bekendmakingen waarvan het adres al in een
+    eerdere brief stond, met hun regels eronder (buurt, duiding)."""
+    if not al_gemeld:
+        return tekst
+    import verteld
+    uit, overslaan = [], False
+    for regel in tekst.split("\n"):
+        if _BEKENDMAKINGREGEL.match(regel):
+            overslaan = any(s in al_gemeld for s in verteld.adressen_uit(regel))
+        elif not regel.strip() or regel.startswith(("#", "- ")):
+            overslaan = False
+        if not overslaan:
+            uit.append(regel)
+    return "\n".join(uit)
+
+
+def nieuwswaarde(bronnen, al_gemeld=None):
     """
     Hoeveel valt er vandaag te melden?
 
     Bepaalt of de actualiteit de brief vult of dat er ruimte is voor een
     verdieping. Niet elke dag heeft nieuws, maar er is altijd wel een onderwerp
     dat uitleg verdient; de vraag is alleen hoeveel ruimte dat krijgt.
+
+    Telt alleen wat vandaag nieuw is. `al_gemeld` zijn de sleutels uit
+    verteld.py van wat al in een brief stond; leeg gelaten leest hij ze zelf.
+
+    WAAROM. 22 oktober 2026 kreeg de brief 15 punten en dus de sturing "er is
+    vandaag veel te melden ... open met het belangrijkste besluit". Gemeten op
+    de invoer van die dag: 5 punten kwamen van Hatertseweg 320 (kernsignaal en
+    [splitsen]), een aanvraag van 20 oktober die al op 20 en 21 oktober in de
+    brief had gestaan, en 7 punten van "besluit voor" in pandgeschiedenissen
+    en dossiers (St. Annastraat 102 uit juni, Bronsgeeststraat 11 van 14
+    oktober), geen enkele een bekendmaking uit het venster. Wat echt nieuw
+    was (2 nieuwe of gewijzigde panden, 1 besluit over een huisartsenpraktijk)
+    gaf 3 punten: "weinig actualiteit", 600 woorden. De brief opende voor de derde keer met Hatertseweg 320 als
+    "het belangrijkste van vandaag" en bracht de prijsverlaging van
+    Krayenhofflaan 104 van 21 oktober opnieuw. De waarschuwing "AL GEMELD"
+    stond er wel bij, maar de sturing zei het tegendeel.
     """
-    tekst = " ".join(t for _naam, t in bronnen if t).lower()
+    if al_gemeld is None:
+        try:
+            import verteld
+            al_gemeld = set(verteld.eerder())
+        except Exception:
+            al_gemeld = set()
+    tekst = " ".join(_zonder_al_gemeld(t, al_gemeld)
+                     for _naam, t in bronnen if t)
+    regels = [r for r in tekst.split("\n") if _BEKENDMAKINGREGEL.match(r)]
+    kern = re.findall(r"^## Kernsignalen \(\d+\)\n(.*?)(?=^#|\Z)", tekst,
+                      re.S | re.M)
+    tekst = tekst.lower()
     punten = 0
-    punten += tekst.count("kernsignalen") and 2 or 0
+    # Een kop "Kernsignalen" zonder een nieuwe bekendmaking eronder is geen nieuws.
+    punten += 2 if any(_BEKENDMAKINGREGEL.match(r)
+                       for k in kern for r in k.split("\n")) else 0
     punten += 3 * tekst.count("[splitsen]")
     punten += 2 * tekst.count("[kamerverhuur]")
     punten += 2 * tekst.count("prijs verlaagd")
@@ -613,7 +665,10 @@ def nieuwswaarde(bronnen):
     # tegen de instructie over gemeentelijk beleid in. Drie punten per stuk,
     # evenveel als een splitsing.
     punten += 3 * tekst.count("wat de publicatie zelf zegt")
-    punten += tekst.count("besluit voor")
+    # Alleen besluiten die als bekendmaking binnenkwamen, niet de besluiten in
+    # een pandgeschiedenis of dossier.
+    punten += sum(1 for r in regels
+                  if _BEKENDMAKINGREGEL.sub("", r).lower().startswith("besluit voor"))
     punten += tekst.count("lezen]")          # ruwweg het aantal artikelen
     return punten
 
@@ -1771,6 +1826,36 @@ def proef():
             "verbiedt dus VERHUREN" not in _br.mechanismen():
         fouten.append("het mechanisme van de opkoopbescherming ontbreekt in "
                       "wat het taalmodel meekrijgt")
+    # De nieuwswaarde telt alleen wat vandaag nieuw is (22 oktober: 15
+    # punten, waarvan 12 voor een al tweemaal gemelde aanvraag en voor
+    # besluiten uit pandgeschiedenissen). Regels uit de invoer van die dag.
+    import verteld as _vt
+    _bek = ("# Bekendmakingen ring Keizer Karelplein - 22-10-2026\n"
+            "## Kernsignalen (1)\n"
+            "- 2026-10-20 . Aanvraag omgevingsvergunning voor realiseren van "
+            "meerdere zelfstandige woonruimtes (woongebouw), aan Hatertseweg "
+            "320, 6533GP Nijmegen ([bron](https://x))\n"
+            "`buurt St. Anna . 184 m² . label C (2020)`\n"
+            "[splitsen] Aanvraag voor meerdere zelfstandige woonruimtes.\n"
+            "## Overige relevante bekendmakingen (2)\n"
+            "- 2026-10-20 . Besluit voor het intern verbouwen van de "
+            "huisartsenpraktijk, aan Professor Cornelissenstraat 2, 6524PJ "
+            "Nijmegen ([bron](https://x))\n")
+    _aanbod = ("112 panden in beeld, 2 nieuw of gewijzigd.\n"
+               "- eerder in deze straat: St. Annastraat 102: 2026-02 Aanvraag "
+               "-> 2026-06 Besluit voor een woongebouw: het splitsen van een "
+               "woning naar 3 woning (bron: geschiedenis per pand)\n"
+               "- 2026-10-19: besluit voor het splitsen van de woning in zes "
+               "zelfstandige appartementen\n")
+    _bron = [("Aanbod", _aanbod), ("Gemeentelijke besluiten", _bek)]
+    _hat = set(_vt.adressen_uit("Hatertseweg 320"))
+    if nieuwswaarde(_bron, _hat) != 3:
+        fouten.append(f"de nieuwswaarde telt wat al gemeld is of besluiten uit "
+                      f"een pandgeschiedenis: {nieuwswaarde(_bron, _hat)} "
+                      f"punten in plaats van 3")
+    if nieuwswaarde(_bron, set()) != 8:
+        fouten.append(f"de nieuwswaarde telt een nieuwe aanvraag niet: "
+                      f"{nieuwswaarde(_bron, set())} punten in plaats van 8")
     # De bedrijfspanden blijven buiten het verhaal, het blok erna niet.
     _d = ("# Bekendmakingen ring\n## Kernsignalen (1)\n- Graafseweg 18\n"
           "## Alleen bedrijfspanden, niet in het verhaal (1)\n"
