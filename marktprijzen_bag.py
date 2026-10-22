@@ -4337,6 +4337,39 @@ def prijswijziging_recent(w, dagen=1):
     return sinds is not None and sinds <= dagen
 
 
+def prijswijziging_al_gemeld(w, eerder=None):
+    """
+    Stond dit pand al in een brief op of na de dag van zijn laatste
+    prijswijziging? Dan is die wijziging voor pa geen nieuws meer.
+
+    `eerder` is wat verteld.eerder() geeft; leeg gelaten leest hij het zelf.
+    Geen datum of geen geheugen betekent nee: dan noemen we hem liever een
+    keer te veel dan dat een echte verlaging wegvalt.
+
+    WAAROM. 22 oktober 2026 opende het aanbodblok met "Grootste verlaging van
+    vandaag of gisteren: Krayenhofflaan 104 ging €50.000 omlaag naar
+    €525.000". Die verlaging was van 21 oktober en stond in de brief van 21
+    oktober. "Vandaag of gisteren" is een venster van twee dagen, dus elke
+    verlaging kwam twee brieven achter elkaar als beweging van de dag, en de
+    brief bracht hem op 22 oktober opnieuw. Erger: Delistraat 45 ging die dag
+    ook €50.000 omlaag (naar €450.000), nog nooit gemeld, en viel bij het
+    gelijke bedrag achter de oude verlaging weg; de schrijver zag hem niet.
+    """
+    sleutel = "".join(c for c in (w.get("adres") or "").lower() if c.isalnum())
+    op = prijswijziging_datums().get(sleutel)
+    if not op:
+        return False
+    try:
+        import verteld
+        if eerder is None:
+            eerder = verteld.eerder()
+        rij = eerder.get(verteld.sleutel_adres(w.get("adres") or "")) or {}
+    except Exception:
+        rij = {}
+    laatst = rij.get("laatst") or ""
+    return bool(laatst) and laatst >= op[:10]
+
+
 def render_prijswijzigingen(woningen):
     """Panden waarvan de vraagprijs is veranderd sinds we ze voor het eerst zagen."""
     r = []
@@ -8004,8 +8037,15 @@ def render_samenvatting(woningen, kandidaten, bm_per_buurt=None, kort=True,
     # bij het blok met de pandfeiten: twee plekken die hetzelfde maken en van
     # elkaar afwijken.
     recent_gewijzigd = [w for w in gewijzigd if prijswijziging_recent(w)]
-    if recent_gewijzigd:
-        w = sorted(recent_gewijzigd,
+    # Een verlaging van gisteren die gisteren al in de brief stond, is geen
+    # beweging van de dag meer (Krayenhofflaan 104, 22 oktober).
+    nog_niet_gemeld = [w for w in recent_gewijzigd
+                       if not prijswijziging_al_gemeld(w)]
+    if recent_gewijzigd and not nog_niet_gemeld:
+        zinnen.append("De prijswijzigingen van vandaag of gisteren stonden al "
+                      "in een eerdere brief.")
+    elif nog_niet_gemeld:
+        w = sorted(nog_niet_gemeld,
                    key=lambda x: (x["prijs"] - x["prijs_eerst"]))[0]
         verschil = w["prijs"] - w["prijs_eerst"]
         if verschil < 0:
@@ -8893,6 +8933,29 @@ def proef():
     oktober en zonder een enkele aanroep.
     """
     afw = []
+    # Een verlaging van gisteren die gisteren al in de brief stond, is geen
+    # "grootste verlaging van vandaag of gisteren" meer (Krayenhofflaan 104,
+    # 22 oktober). Een verlaging die nog niet gemeld is, blijft staan.
+    import verteld as _vt
+    _gister = (dt.date.today() - dt.timedelta(days=1)).isoformat()
+    _eergister = (dt.date.today() - dt.timedelta(days=2)).isoformat()
+    _bewaard_pw, _bewaard_eerder = dict(_PW_DATUMS), _vt.eerder
+    _PW_DATUMS.update(geladen=True, map={"krayenhofflaan104": _gister})
+    _kr = {"adres": "Krayenhofflaan 104", "prijs": 525000,
+           "prijs_eerst": 575000}
+    try:
+        for _laatst, _moet in ((_gister, False), (_eergister, True)):
+            _vt.eerder = lambda *a, **k: {"krayenhofflaan104":
+                                          {"laatst": _laatst}}
+            _tekst = " ".join(render_samenvatting([_kr], [], gezien_vooraf={}))
+            if ("Grootste verlaging" in _tekst) != _moet:
+                afw.append("de grootste verlaging noemt een al gemelde verlaging"
+                           f", of laat een nieuwe weg (laatst gemeld "
+                           f"{_laatst}): {_tekst!r}")
+    finally:
+        _PW_DATUMS.clear()
+        _PW_DATUMS.update(_bewaard_pw)
+        _vt.eerder = _bewaard_eerder
     per_vbo = {
         "0268010000099920": {"adres": "Delistraat 20", "label": "B",
                              "label_datum": "2026-10-09",
