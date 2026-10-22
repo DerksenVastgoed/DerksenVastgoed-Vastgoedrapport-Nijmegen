@@ -1138,3 +1138,12 @@ Nieuwe Nonnendaalseweg | Nijmegen | 614 | te huur kamer | 2026-10-20 | kamernet-
 Krayenhofflaan 104 | Nijmegen | 525000 | te koop | 2026-10-21 | funda-mail | 135 | 6541PW
 Marialaan 62 | Nijmegen | 525000 | te koop | 2026-10-21 | funda-mail | 96 | 6541RM
 Veemarkt 171 | Nijmegen | 350000 | te koop | 2026-10-21 | funda-mail | 68 | 6511ZD
+
+# Automatisch toegevoegd uit Funda-attendering op 22-10-2026
+Piersonstraat | Nijmegen | 1104 | te huur | 2026-10-21 | huislijn | 56 | 6511GL
+Hatertseveldweg | Nijmegen | 1500 | te huur kamer | 2026-10-21 | kamernet-incl | 60 | 
+Smetiusstraat | Nijmegen | 753 | te huur kamer | 2026-10-21 | kamernet-incl | 33 | 
+Zwanenveld | Nijmegen | 375 | te huur kamer | 2026-10-21 | kamernet | 95 | 
+St. Stevenskerkhof | Nijmegen | 695 | te huur kamer | 2026-10-21 | kamernet-incl | 18 | 
+Burghardt van den Berghstraat 60 | Nijmegen | 360000 | te koop | 2026-10-22 | funda-mail | 58 | 6512DP
+Delistraat 45 | Nijmegen | 450000 | te koop | 2026-10-22 | funda-mail | 61 | 6524KN

@@ -84291,6 +84291,12 @@
     "datum": "2026-10-13",
     "soort": "transformatie",
     "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1895, dat zelf al in gebruik is, mediaan 50 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-13 in de registratie staat"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-22",
+    "soort": "te koop",
+    "tekst": "te koop voor €360.000, 58 m2"
    }
   ],
   "pand_id": "0268100000020376",
@@ -89442,6 +89448,12 @@
     "datum": "2026-10-03",
     "soort": "te koop",
     "tekst": "te koop voor €500.000, 61 m2"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-22",
+    "soort": "prijswijziging",
+    "tekst": "prijs verlaagd van €500.000 naar €450.000"
    }
   ],
   "pand_id": "0268100000024241",
@@ -105898,6 +105910,12 @@
     "datum": "2026-10-16",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €1.750 per maand, 60 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-21",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.500 per maand, 60 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -137082,6 +137100,12 @@
     "datum": "2026-10-20",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.104 per maand, 56 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-21",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.104 per maand, 56 m2"
    }
   ],
   "pand_id": null,
@@ -146295,6 +146319,12 @@
     "datum": "2026-10-14",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €745 per maand, 33 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-21",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €753 per maand, 33 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null,
@@ -151584,6 +151614,12 @@
     "datum": "2026-10-18",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.850 per maand, 78 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-21",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €695 per maand, 18 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null,
@@ -177073,6 +177109,21 @@
   "vbo_panden": [
    "0268100000019432"
   ]
+ },
+ "zwanenveld": {
+  "adres": "Zwanenveld",
+  "bag_gezien": "2026-10-22",
+  "bag_zonder_id": "2026-10-22",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-21",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €375 per maand, 95 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-22"
  },
  "zwanenveld1601": {
   "adres": "Zwanenveld 1601",

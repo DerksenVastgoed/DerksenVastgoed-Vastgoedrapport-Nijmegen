@@ -167,6 +167,14 @@
   "omweg": 2.7,
   "soort": "bus"
  },
+ "51.82245,5.80602": {
+  "geschat": false,
+  "hemelsbreed": 245,
+  "meters": 1019,
+  "naam": "Zwanenveld 12e str.",
+  "omweg": 4.16,
+  "soort": "bus"
+ },
  "51.82249,5.79321": {
   "geschat": false,
   "hemelsbreed": 177,
@@ -845,6 +853,14 @@
   "meters": 866,
   "naam": "Fransestraat",
   "omweg": 2.3,
+  "soort": "bus"
+ },
+ "51.83949,5.85691": {
+  "geschat": false,
+  "hemelsbreed": 399,
+  "meters": 502,
+  "naam": "Centraal Station",
+  "omweg": 1.26,
   "soort": "bus"
  },
  "51.83950,5.87058": {

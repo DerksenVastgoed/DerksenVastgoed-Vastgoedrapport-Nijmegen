@@ -54,19 +54,12 @@
   "index": 156.6,
   "maand_pct": -0.1,
   "jaar_pct": 3.3,
-  "kolom": "PrijsindexVerkoopprijzen_1"
+  "kolom": "_waarde"
  },
- "regio": {
-  "naam": "Gelderland (PV)",
-  "periode": "2026-K2",
-  "index": 164.4,
-  "kwartaal_pct": 1.1,
-  "jaar_pct": 5.6,
-  "kolom": "PrijsindexVerkoopprijzen_1"
- },
- "ingang": "opendata.cbs.nl",
+ "regio": null,
+ "ingang": "datasets.cbs.nl",
  "vergelijking": {
   "maanden": 0
  },
- "opgehaald": "2026-10-21"
+ "opgehaald": "2026-10-22"
 }

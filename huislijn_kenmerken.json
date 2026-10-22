@@ -283,5 +283,25 @@
   "opp": 35,
   "kamers": 2,
   "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440195/berg-en-dalseweg-nijmegen": {
+  "opp": 36,
+  "kamers": 2,
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440199/berg-en-dalseweg-nijmegen": {
+  "opp": 35,
+  "kamers": 2,
+  "postcode": "6522BC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440124/piersonstraat-nijmegen": {
+  "opp": 56,
+  "kamers": 2,
+  "postcode": "6511GL"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440487/simone-de-beauvoirstraat-nijmegen": {
+  "opp": 118,
+  "kamers": 4,
+  "postcode": "6515XH"
  }
 }

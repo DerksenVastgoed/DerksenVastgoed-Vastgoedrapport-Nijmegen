@@ -163,5 +163,15 @@
   "te_koop": 84,
   "uitpond": 0,
   "uitpond_adressen": []
+ },
+ "2026-10-22": {
+  "nieuw_te_huur": 0,
+  "nieuw_te_koop": 2,
+  "te_huur": 120,
+  "te_koop": 85,
+  "uitpond": 1,
+  "uitpond_adressen": [
+   "Delistraat 45"
+  ]
  }
 }

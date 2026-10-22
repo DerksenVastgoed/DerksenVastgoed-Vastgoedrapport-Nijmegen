@@ -1,24 +1,24 @@
 {
- "datum": "2026-10-21",
+ "datum": "2026-10-22",
  "bronnen": {
   "huislijn": {
    "mails": 3,
-   "objecten": 6,
+   "objecten": 8,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 12,
-   "objecten": 10,
+   "mails": 14,
+   "objecten": 12,
    "overgeslagen": 2,
    "redenen": [
-    "Homberg, Wijchen: buiten Nijmegen",
-    "Nieuweweg, Wijchen: buiten Nijmegen"
+    "Nieuweweg, Wijchen: buiten Nijmegen",
+    "Ranonkelstraat, Arnhem: buiten Nijmegen"
    ]
   },
   "regulier": {
-   "mails": 2,
-   "objecten": 5,
+   "mails": 3,
+   "objecten": 7,
    "overgeslagen": 0,
    "redenen": []
   },
@@ -36,16 +36,18 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 21,
-  "andere_status": 0,
-  "voorbeelden": []
+  "zelfde_status": 23,
+  "andere_status": 1,
+  "voorbeelden": [
+   "Piersonstraat -> te huur"
+  ]
  },
  "berichten_per_afzender": {
-  "funda.nl": 2,
+  "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 12,
+  "kamernet.nl": 14,
   "vendr.nl": 0,
   "huislijn.nl": 3,
   "huisly.nl": 0,
@@ -53,6 +55,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 18-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 18-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 19-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 19-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

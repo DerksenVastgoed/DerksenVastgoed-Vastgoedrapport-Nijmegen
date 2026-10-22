@@ -78727,5 +78727,109 @@
       "verbruik": 184.11,
       "bouwjaar": 1987
     }
+  },
+  "Zwanenveld|Nijmegen": {
+    "oppervlakte": 95,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Burghardt van den Berghstraat 60|Nijmegen": {
+    "oppervlakte": 58,
+    "bouwjaar": "1895",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512DP",
+    "adresseerbaarObjectIdentificatie": "0268010000056461",
+    "pand": "0268100000020376",
+    "panden": [
+      "0268100000020376"
+    ],
+    "splitsing_geregistreerd": [
+      {
+        "adres": "Burghardt van den Berghstraat 60",
+        "oppervlakte": 53
+      }
+    ],
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-bc058f53f23712506be597991bf54af3",
+    "eenheden_in_pand": [
+      {
+        "adres": "Burghardt van den Berghstraat 60",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 60",
+        "oppervlakte": 53,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 60A",
+        "oppervlakte": 46,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 62",
+        "oppervlakte": 137,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 62A",
+        "oppervlakte": 137,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-22",
+    "oppervlakte_bag": 146,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2026-07-30",
+      "opnamedatum": "2026-05-01",
+      "geldig_tot": "2036-05-01",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000056461",
+      "panden": [
+        "0268100000020376"
+      ],
+      "verbruik": 164.21,
+      "bouwjaar": 1895
+    }
+  },
+  "bm:Molenstraat 44|Nijmegen": {
+    "postcode": "6511HE",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-59a0fdd473624b00c8f124bbea236aa5"
+  },
+  "bm:Huygensweg 27|Nijmegen": {
+    "postcode": "6522HK",
+    "buurtnaam": "Hunnerberg",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-40f473a03ab279c1f8f0036c4a3fe37e"
   }
 }

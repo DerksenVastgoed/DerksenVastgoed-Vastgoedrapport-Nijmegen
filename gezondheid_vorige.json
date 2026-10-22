@@ -45,7 +45,7 @@
   "Omvang van de gegevensbestanden": "OK",
   "Opnieuw aangeboden": "OK",
   "Oude verlaging in de brief": "OK",
-  "Overgeslagen stappen": "OK",
+  "Overgeslagen stappen": "FOUT",
   "Plintobjecten geteld": "LET OP",
   "Profiel nieuw aanbod": "OK",
   "Regelgevingsmonitor": "OK",
@@ -67,7 +67,7 @@
   "WOZ-bestand": "OK",
   "WOZ-schatting": "LET OP",
   "Woningen in bestaande panden": "OK",
-  "Woningprijsindex CBS": "OK"
+  "Woningprijsindex CBS": "LET OP"
  },
- "datum": "2026-10-21"
+ "datum": "2026-10-22"
 }
