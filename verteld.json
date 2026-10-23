@@ -167,6 +167,42 @@
    "laatst": "2026-10-22",
    "keer": 2,
    "omschrijving": "Krayenhofflaan 104"
+  },
+  "pontanusstraat42": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "Pontanusstraat 42"
+  },
+  "goorstraat87": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "Goorstraat 87"
+  },
+  "biesmanstraat1": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "Biesmanstraat 1"
+  },
+  "delistraat45": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "Delistraat 45"
+  },
+  "stjosephhof14": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "St. Josephhof 14"
+  },
+  "molenstraat44": {
+   "eerst": "2026-10-23",
+   "laatst": "2026-10-23",
+   "keer": 1,
+   "omschrijving": "Molenstraat 44"
   }
  }
 }

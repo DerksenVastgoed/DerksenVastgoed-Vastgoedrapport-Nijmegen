@@ -1,24 +1,15 @@
 {
- "datum": "2026-10-22",
+ "datum": "2026-10-23",
  "bronnen": {
-  "huislijn": {
-   "mails": 3,
-   "objecten": 8,
+  "regulier": {
+   "mails": 4,
+   "objecten": 10,
    "overgeslagen": 0,
    "redenen": []
   },
-  "kamernet": {
-   "mails": 14,
-   "objecten": 12,
-   "overgeslagen": 2,
-   "redenen": [
-    "Nieuweweg, Wijchen: buiten Nijmegen",
-    "Ranonkelstraat, Arnhem: buiten Nijmegen"
-   ]
-  },
-  "regulier": {
+  "huislijn": {
    "mails": 3,
-   "objecten": 7,
+   "objecten": 14,
    "overgeslagen": 0,
    "redenen": []
   },
@@ -31,23 +22,30 @@
     "Berg en Dalseweg (gemeubileerd, apart bewaard)",
     "Piersonstraat (gemeubileerd, apart bewaard)"
    ]
+  },
+  "kamernet": {
+   "mails": 16,
+   "objecten": 14,
+   "overgeslagen": 2,
+   "redenen": [
+    "Nieuweweg, Wijchen: buiten Nijmegen",
+    "Ranonkelstraat, Arnhem: buiten Nijmegen"
+   ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 23,
-  "andere_status": 1,
-  "voorbeelden": [
-   "Piersonstraat -> te huur"
-  ]
+  "zelfde_status": 29,
+  "andere_status": 0,
+  "voorbeelden": []
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 4,
   "funda.com": 0,
   "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 14,
+  "kamernet.nl": 16,
   "vendr.nl": 0,
   "huislijn.nl": 3,
   "huisly.nl": 0,
@@ -55,6 +53,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 19-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 19-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 20-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 20-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

@@ -78732,7 +78732,8 @@
     "oppervlakte": 95,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Burghardt van den Berghstraat 60|Nijmegen": {
     "oppervlakte": 58,
@@ -78831,5 +78832,993 @@
     "buurtnaam": "Hunnerberg",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-40f473a03ab279c1f8f0036c4a3fe37e"
+  },
+  "Heinrich Bollstraat|Nijmegen": {
+    "oppervlakte": 136,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6515ZM",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Koolemans Beynenstraat|Nijmegen": {
+    "oppervlakte": 19,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521EZ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Heemraadstraat|Nijmegen": {
+    "oppervlakte": 61,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6525TH",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Spieghelhof|Nijmegen": {
+    "oppervlakte": 72,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6531BZ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Kaaisjouwerskade|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Bredestraat|Nijmegen": {
+    "oppervlakte": 18,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "Biesmanstraat 1|Nijmegen": {
+    "oppervlakte": 129,
+    "bouwjaar": "2008",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512KA",
+    "adresseerbaarObjectIdentificatie": "0268010000062792",
+    "pand": "0268100000028320",
+    "panden": [
+      "0268100000028320"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-fa18748b2defb3e1351f9673dfa43dd7",
+    "eenheden_gezien": "2026-10-23",
+    "oppervlakte_bag": 136,
+    "energielabel": {
+      "label": "A",
+      "prive": false,
+      "registratiedatum": "2026-07-24",
+      "opnamedatum": "2026-06-22",
+      "geldig_tot": "2036-06-22",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning hoek",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000062792",
+      "panden": [
+        "0268100000028320"
+      ],
+      "verbruik": 118.28,
+      "bouwjaar": 2008
+    }
+  },
+  "Veemarkt 297|Nijmegen": {
+    "oppervlakte": 68,
+    "bouwjaar": "1987",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ZJ",
+    "adresseerbaarObjectIdentificatie": "0268010000053958",
+    "pand": "0268100000005409",
+    "panden": [
+      "0268100000005409"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-ed23fd1ea55351332582ae04789fd63f",
+    "eenheden_in_pand": [
+      {
+        "adres": "Veemarkt 189",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 191",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 193",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 195",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 197",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 199",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 201",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 203",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 205",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 207",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 209",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 211",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 213",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 215",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 217",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 219",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 221",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 223",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 225",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 227",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 229",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 231",
+        "oppervlakte": 103,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 233",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 235",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 237",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 239",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 241",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 243",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 245",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 247",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 249",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 251",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 253",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 255",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 257",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 259",
+        "oppervlakte": 65,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 261",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 263",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 265",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 267",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 269",
+        "oppervlakte": 79,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 271",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 273",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 275",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 277",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 279",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 281",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 283",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 285",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Veemarkt 287",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-23",
+    "oppervlakte_bag": 79,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2024-11-27",
+      "opnamedatum": "2024-10-01",
+      "geldig_tot": "2034-10-01",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussendak",
+      "methode": "NTA 8800:2024 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000053958",
+      "panden": [
+        "0268100000005409"
+      ],
+      "verbruik": 181.65,
+      "bouwjaar": 1987
+    }
+  },
+  "Waalbandijk 233|Nijmegen": {
+    "oppervlakte": 50,
+    "bouwjaar": "2022",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541AA",
+    "adresseerbaarObjectIdentificatie": "0268010000103268",
+    "pand": "0268100000104562",
+    "panden": [
+      "0268100000104562"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-ce3f7d0f68c8cae2c851b944d7df0662",
+    "eenheden_in_pand": [
+      {
+        "adres": "Waalbandijk 211",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 213",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 215",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 217",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 219",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 221",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 223",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 225",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 227",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 229",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 231",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 233",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 235",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 237",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 239",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 241",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 243",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 245",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 247",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 249",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 251",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 253",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 255",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 257",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 259",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 261",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 263",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 265",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 267",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 269",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 271",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 273",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 275",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 277",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 279",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 281",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 283",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 285",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 287",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 289",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 291",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 293",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 295",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 297",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 299",
+        "oppervlakte": 50,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 301",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 303",
+        "oppervlakte": 67,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 305",
+        "oppervlakte": 69,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 307",
+        "oppervlakte": 64,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalbandijk 309",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-23",
+    "oppervlakte_bag": 50,
+    "energielabel": {
+      "label": "A++",
+      "prive": false,
+      "registratiedatum": "2023-04-08",
+      "opnamedatum": "2022-11-11",
+      "geldig_tot": "2032-11-11",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "NTA 8800:2022 (detailopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000103268",
+      "panden": [
+        "0268100000104562"
+      ],
+      "verbruik": 80.7,
+      "bouwjaar": 2020
+    }
+  },
+  "bm:Pontanusstraat 42|Nijmegen": {
+    "postcode": "6524HG",
+    "buurtnaam": "Galgenveld",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-81c3024e915a026d58c109b3549f3f54"
+  },
+  "bm:van Goorstraat 87|Nijmegen": {
+    "postcode": "6512EC",
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-97f48e0ca283e421cf1100fc06351f90"
+  },
+  "bm:St. Josephhof 14|Nijmegen": {
+    "postcode": "6511SH",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-4b5b9630533097b762c7fc6f0cdb5410"
+  },
+  "bm:Hatertseweg 264|Nijmegen": {
+    "postcode": "6533AX",
+    "buurtnaam": "St. Anna",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-44967b8eb49bc52e02a5da28d4f32a03"
   }
 }

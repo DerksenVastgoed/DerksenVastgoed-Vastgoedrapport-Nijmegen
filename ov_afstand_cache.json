@@ -103,6 +103,14 @@
   "omweg": 3.24,
   "soort": "bus"
  },
+ "51.81219,5.86051": {
+  "geschat": false,
+  "hemelsbreed": 143,
+  "meters": 178,
+  "naam": "Kanunnik Mijllinckstraat",
+  "omweg": 1.24,
+  "soort": "bus"
+ },
  "51.81321,5.84239": {
   "geschat": false,
   "hemelsbreed": 339,
@@ -471,6 +479,14 @@
   "omweg": 1.07,
   "soort": "bus"
  },
+ "51.83475,5.85172": {
+  "geschat": false,
+  "hemelsbreed": 312,
+  "meters": 415,
+  "naam": "Tollensstraat",
+  "omweg": 1.33,
+  "soort": "bus"
+ },
  "51.83478,5.86273": {
   "geschat": false,
   "hemelsbreed": 453,
@@ -623,6 +639,14 @@
   "omweg": 1.03,
   "soort": "bus"
  },
+ "51.83689,5.87593": {
+  "geschat": false,
+  "hemelsbreed": 60,
+  "meters": 53,
+  "naam": "Badhuis",
+  "omweg": 0.88,
+  "soort": "bus"
+ },
  "51.83695,5.82690": {
   "geschat": false,
   "hemelsbreed": 218,
@@ -693,6 +717,14 @@
   "meters": 182,
   "naam": "Fransestraat",
   "omweg": 0.99,
+  "soort": "bus"
+ },
+ "51.83799,5.85490": {
+  "geschat": false,
+  "hemelsbreed": 251,
+  "meters": 371,
+  "naam": "Spoorkuil",
+  "omweg": 1.48,
   "soort": "bus"
  },
  "51.83806,5.85853": {
@@ -1061,6 +1093,14 @@
   "meters": 308,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.08,
+  "soort": "bus"
+ },
+ "51.84186,5.82657": {
+  "geschat": false,
+  "hemelsbreed": 721,
+  "meters": 966,
+  "naam": "Vuurdoornstraat",
+  "omweg": 1.34,
   "soort": "bus"
  },
  "51.84211,5.88182": {
@@ -1879,6 +1919,14 @@
   "omweg": 1.29,
   "soort": "bus"
  },
+ "51.84974,5.85417": {
+  "geschat": false,
+  "hemelsbreed": 237,
+  "meters": 280,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.18,
+  "soort": "bus"
+ },
  "51.84975,5.85779": {
   "geschat": false,
   "hemelsbreed": 168,
@@ -1917,6 +1965,14 @@
   "meters": 354,
   "naam": "Joris Ivensplein",
   "omweg": 1.44,
+  "soort": "bus"
+ },
+ "51.85028,5.84999": {
+  "geschat": false,
+  "hemelsbreed": 119,
+  "meters": 243,
+  "naam": "Havenweg",
+  "omweg": 2.04,
   "soort": "bus"
  },
  "51.85063,5.85527": {
@@ -2005,6 +2061,14 @@
   "meters": 1134,
   "naam": "Terracottastraat",
   "omweg": 17.72,
+  "soort": "bus"
+ },
+ "51.87985,5.85163": {
+  "geschat": false,
+  "hemelsbreed": 172,
+  "meters": 1343,
+  "naam": "Terracottastraat",
+  "omweg": 7.81,
   "soort": "bus"
  },
  "51.88062,5.83680": {

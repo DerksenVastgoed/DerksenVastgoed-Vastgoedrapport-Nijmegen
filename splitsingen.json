@@ -5,11 +5,37 @@
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 433,
+   "dagen": 434,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
  "aangekondigd_nog_niet_in_gebruik": [
+  {
+   "adres": "Pontanusstraat 42",
+   "gevormd": 2,
+   "gevormd_maten": [
+    72,
+    80
+   ],
+   "in_gebruik": 3,
+   "datum": "2026-10-22",
+   "aanvraag": "2026-01-20",
+   "besluit": "2026-10-22",
+   "vergund_aantal": 2
+  },
+  {
+   "adres": "van Goorstraat 87",
+   "gevormd": 2,
+   "gevormd_maten": [
+    95,
+    120
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-10-22",
+   "aanvraag": "2026-10-22",
+   "besluit": "2026-07-28",
+   "vergund_aantal": 2
+  },
   {
    "adres": "Graafseweg 18",
    "gevormd": 6,
@@ -69,19 +95,6 @@
    "vergund_aantal": 2
   },
   {
-   "adres": "van Goorstraat 87",
-   "gevormd": 2,
-   "gevormd_maten": [
-    95,
-    120
-   ],
-   "in_gebruik": 1,
-   "datum": "2026-07-28",
-   "aanvraag": "2026-01-20",
-   "besluit": "2026-07-28",
-   "vergund_aantal": 2
-  },
-  {
    "adres": "St. Annastraat 102",
    "gevormd": 3,
    "gevormd_maten": [
@@ -131,19 +144,6 @@
    "datum": "2026-05-26",
    "aanvraag": "2025-12-23",
    "besluit": "2026-05-26",
-   "vergund_aantal": 2
-  },
-  {
-   "adres": "Pontanusstraat 42",
-   "gevormd": 2,
-   "gevormd_maten": [
-    72,
-    80
-   ],
-   "in_gebruik": 3,
-   "datum": "2026-05-18",
-   "aanvraag": "2026-01-20",
-   "besluit": "2026-05-18",
    "vergund_aantal": 2
   },
   {

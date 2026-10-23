@@ -1,38 +1,53 @@
 [
  {
-  "datum": "2026-10-20",
-  "titel": "Aanvraag omgevingsvergunning voor realiseren van meerdere zelfstandige woonruimtes (woongebouw), aan Hatertseweg 320, 6533GP Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-488587.html",
+  "datum": "2026-10-22",
+  "titel": "Besluit voor splitsen van woning in 2 zelfstandige appartementen (Pontanusstraat 42 en 42A), aan Pontanusstraat 42, 6524HG Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494180.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag voor meerdere zelfstandige woonruimtes in pand van 184 m2 toont potentie voor opdeling, maar is nog geen vergunning.",
+  "duiding": "Besluit bevestigt dat splitsing naar 2 zelfstandige appartementen hier is toegestaan, wat de waarde per vierkante meter verhoogt.",
   "feiten": {
-   "energielabel": "C (2020)",
-   "oppervlakte_m2": 184
+   "energielabel": "C (2026)",
+   "label_alleen_dit_adres": true,
+   "oppervlakte_m2": 72
   },
-  "straat": "Hatertseweg",
-  "huisnummer": "320",
+  "straat": "Pontanusstraat",
+  "huisnummer": "42",
   "kern": true
  },
  {
-  "datum": "2026-10-20",
-  "titel": "Besluit voor het intern verbouwen van de huisartsenpraktijk, aan Professor Cornelissenstraat 2, 6524PJ Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-489125.html",
+  "datum": "2026-10-22",
+  "titel": "Sloopmelding verwijderen pannendak huisnummer 91-101 t.b.v. renovatie, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494337.html",
   "strategie": "geen",
-  "duiding": "Interne verbouwing van een huisartsenpraktijk raakt de bestaande functie niet en heeft geen directe marktwerking.",
+  "duiding": "Sloopmelding voor het pannendak is een bouwtechnische stap bij renovatie, zonder directe marktimpact.",
   "feiten": {
-   "energielabel": "D (2021)",
-   "oppervlakte_m2": 1561
+   "oppervlakte_m2": 139
   },
-  "straat": "Professor Cornelissenstraat",
-  "huisnummer": "2",
-  "kern": false
+  "straat": "Groesbeeksedwarsweg",
+  "huisnummer": "95",
+  "kern": true
+ },
+ {
+  "datum": "2026-10-22",
+  "titel": "Aanvraag omgevingsvergunning voor het bouwkundig splitsen van een woning naar 2 zelfstandige woningen, aan van Goorstraat 87, 6512EC Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494331.html",
+  "strategie": "splitsen",
+  "duiding": "Aanvraag voor splitsen naar 2 woningen is nog niet besloten, maar toont interesse in verdichting van een groot pand.",
+  "feiten": {
+   "energielabel": "E (2020)",
+   "label_alleen_dit_adres": true,
+   "oppervlakte_m2": 276
+  },
+  "straat": "van Goorstraat",
+  "huisnummer": "87",
+  "kern": true
  },
  {
   "datum": "2026-10-21",
   "titel": "Aanvraag omgevingsvergunning voor het wijzigen van de winkelpui in de voorgevel bij een gemeentelijk monument, aan Molenstraat 44, 6511HE Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491180.html",
-  "strategie": "geen",
-  "duiding": "Wijziging van een winkelpui bij een gemeentelijk monument is esthetisch van aard en beïnvloedt de woningmarkt niet.",
+  "strategie": "transformatie",
+  "duiding": "Wijziging van de winkelpui bij een gemeentelijk monument vraagt extra vergunningstraject, wat herbestemming van de plint vertraagt.",
   "feiten": {
    "energielabel": "A (2025)",
    "oppervlakte_m2": 224
@@ -42,17 +57,45 @@
   "kern": false
  },
  {
+  "datum": "2026-10-22",
+  "titel": "Besluit voor het aanvragen van een vergunning voor het tijdelijk verhuren van de woning, aan St. Josephhof 14, 6511SH Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494821.html",
+  "strategie": "buy-and-hold",
+  "duiding": "Besluit om tijdelijke verhuur aan te vragen wijst op overbrugging richting verkoop of verbouwing op termijn.",
+  "feiten": {
+   "energielabel": "C (2026)",
+   "oppervlakte_m2": 29
+  },
+  "straat": "St. Josephhof",
+  "huisnummer": "14",
+  "kern": false
+ },
+ {
   "datum": "2026-10-21",
   "titel": "Melding bouwmelding Wkb voor het herbouwen van een woning op de bestaande fundering, aan Huygensweg 27, 6522HK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-492295.html",
-  "strategie": "uitponden",
-  "duiding": "Herbouw op bestaande fundering van 177 m2 kan de woning vernieuwen en zo de verkoopwaarde bij uitponden verhogen.",
+  "strategie": "geen",
+  "duiding": "Bouwmelding voor herbouw op bestaande fundering is een technische melding zonder verandering in gebruiksfunctie.",
   "feiten": {
    "energielabel": "C (2020)",
    "oppervlakte_m2": 177
   },
   "straat": "Huygensweg",
   "huisnummer": "27",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-22",
+  "titel": "Aanvraag omgevingsvergunning voor het verwijderen van een draagmuur in een woning, aan Hatertseweg 264, 6533AX Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494432.html",
+  "strategie": "geen",
+  "duiding": "Verwijderen van een draagmuur is een interne verbouwing zonder gevolgen voor splitsing of verhuurmogelijkheden.",
+  "feiten": {
+   "energielabel": "A (2026)",
+   "oppervlakte_m2": 116
+  },
+  "straat": "Hatertseweg",
+  "huisnummer": "264",
   "kern": false
  }
 ]

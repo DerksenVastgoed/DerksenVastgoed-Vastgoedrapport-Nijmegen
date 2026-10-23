@@ -1916,6 +1916,32 @@
     "Groesbeeksedwarsweg 99": "B"
    }
   },
+  "0268100000001760": {
+   "bag_eenheden": [
+    [
+     "Groesbeeksedwarsweg 95",
+     139
+    ],
+    [
+     "Groesbeeksedwarsweg 97",
+     117
+    ]
+   ],
+   "bag_gezien": "2026-10-23",
+   "bag_woningen": [
+    [
+     "Groesbeeksedwarsweg 95",
+     139
+    ],
+    [
+     "Groesbeeksedwarsweg 97",
+     117
+    ]
+   ],
+   "labels": {
+    "Groesbeeksedwarsweg 97": "G"
+   }
+  },
   "0268100000001776": {
    "bag_eenheden": [
     [
@@ -13586,7 +13612,7 @@
      70
     ]
    ],
-   "bag_gezien": "2026-10-18",
+   "bag_gezien": "2026-10-23",
    "bag_woningen": [
     [
      "Veemarkt 189",
@@ -48785,6 +48811,24 @@
     ]
    ]
   },
+  "0268100000025570": {
+   "bag_eenheden": [
+    [
+     "Geulstraat 32",
+     92
+    ]
+   ],
+   "bag_gezien": "2026-10-23",
+   "bag_woningen": [
+    [
+     "Geulstraat 32",
+     92
+    ]
+   ],
+   "labels": {
+    "Geulstraat 32": "C"
+   }
+  },
   "0268100000025584": {
    "bag_eenheden": [
     [
@@ -53294,6 +53338,24 @@
     "Biesmanstraat 3": "A"
    }
   },
+  "0268100000028320": {
+   "bag_eenheden": [
+    [
+     "Biesmanstraat 1",
+     136
+    ]
+   ],
+   "bag_gezien": "2026-10-23",
+   "bag_woningen": [
+    [
+     "Biesmanstraat 1",
+     136
+    ]
+   ],
+   "labels": {
+    "Biesmanstraat 1": "A"
+   }
+  },
   "0268100000028333": {
    "bag_eenheden": [
     [
@@ -53712,6 +53774,25 @@
     "Ligusterstraat 45": "A",
     "Ligusterstraat 47": "C"
    }
+  },
+  "0268100000028478": {
+   "bag_eenheden": [
+    [
+     "Molenweg 105",
+     390
+    ],
+    [
+     "Molenweg 105A",
+     82
+    ]
+   ],
+   "bag_gezien": "2026-10-23",
+   "bag_woningen": [
+    [
+     "Molenweg 105A",
+     82
+    ]
+   ]
   },
   "0268100000028488": {
    "bag_eenheden": [
@@ -74824,7 +74905,7 @@
      68
     ]
    ],
-   "bag_gezien": "2026-10-18",
+   "bag_gezien": "2026-10-23",
    "bag_woningen": [
     [
      "Waalbandijk 211",
@@ -79565,6 +79646,28 @@
    "0268100000042523"
   ]
  },
+ "biesmanstraat1": {
+  "adres": "Biesmanstraat 1",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Biesmanstraat 1 is A, geregistreerd 2026-07-24"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-23",
+    "soort": "te koop",
+    "tekst": "te koop voor €695.000, 129 m2"
+   }
+  ],
+  "pand_id": "0268100000028320",
+  "vbo": "0268010000062792",
+  "vbo_panden": [
+   "0268100000028320"
+  ]
+ },
  "biesmanstraat3": {
   "adres": "Biesmanstraat 3",
   "gebeurtenissen": [
@@ -81634,6 +81737,21 @@
   "vbo_panden": [
    "0268100000046799"
   ]
+ },
+ "bredestraat": {
+  "adres": "Bredestraat",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-gemeubileerd-incl",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €450 per maand, 18 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
  },
  "bredestraat16": {
   "adres": "Bredestraat 16",
@@ -98962,6 +99080,29 @@
   ],
   "pand_id": null
  },
+ "geulstraat32": {
+  "adres": "Geulstraat 32",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Geulstraat 32 is C, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw (nokverhoging), aan Geulstraat 32, 6542RX Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000025570",
+  "vbo": "0268010000009977",
+  "vbo_gevraagd": "2026-10-23",
+  "vbo_panden": [
+   "0268100000025570"
+  ]
+ },
  "gildekamp1105": {
   "adres": "de Gildekamp 1105",
   "gebeurtenissen": [
@@ -103960,6 +104101,28 @@
    "0268100000029994"
   ]
  },
+ "groesbeeksedwarsweg95": {
+  "adres": "Groesbeeksedwarsweg 95",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-02-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Groesbeeksedwarsweg 97 is G, geregistreerd 2025-02-16"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Sloopmelding verwijderen pannendak huisnummer 91-101 t.b.v. renovatie, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000001760",
+  "vbo": "0268010000055759",
+  "vbo_panden": [
+   "0268100000001760"
+  ]
+ },
  "groesbeeksedwarsweg99": {
   "adres": "Groesbeeksedwarsweg 99",
   "gebeurtenissen": [
@@ -106431,6 +106594,12 @@
     "datum": "2025-03-19",
     "soort": "bekendmaking",
     "tekst": "Toestemming voor het aanvragen van een vergunning voor tijdelijke verhuur woning, aan Hatertseweg 598, 6535ZX Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag vergunning voor verlenging tijdelijke verhuur woonruimte, aan Hatertseweg 598, 6535ZX Nijmegen"
    }
   ],
   "pand_id": "0268100000042066",
@@ -106922,6 +107091,21 @@
   "vbo_panden": [
    "0268100000023391"
   ]
+ },
+ "heemraadstraat": {
+  "adres": "Heemraadstraat",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.600 per maand, 61 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
  },
  "heemraadstraat6": {
   "adres": "Heemraadstraat 6",
@@ -108088,6 +108272,21 @@
   "vbo_panden": [
    "0268100000014039"
   ]
+ },
+ "heinrichbollstraat": {
+  "adres": "Heinrich Bollstraat",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.540 per maand, 136 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
  },
  "heiweg189": {
   "adres": "Heiweg 189",
@@ -113033,6 +113232,21 @@
    "0268100000017572"
   ]
  },
+ "kaaisjouwerskade": {
+  "adres": "Kaaisjouwerskade",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.635 per maand"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
+ },
  "kaaisjouwerskade236": {
   "adres": "Kaaisjouwerskade 236",
   "gebeurtenissen": [
@@ -116714,6 +116928,21 @@
   "vbo_panden": [
    "0268100000029229"
   ]
+ },
+ "koolemansbeynenstraat": {
+  "adres": "Koolemans Beynenstraat",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €699 per maand, 19 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
  },
  "koolemansbeynenstraat146": {
   "adres": "Koolemans Beynenstraat 146",
@@ -126291,6 +126520,12 @@
     "datum": "2026-10-08",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor Interne verbouwing met constructieve wijzigingen in het gebouw., aan Meijhorst 5248, 6537HN Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor Interne verbouwing met constructieve wijzigingen in het gebouw., aan Meijhorst 5248, 6537HN Nijmegen"
    }
   ],
   "pand_id": "0268100000043107",
@@ -127985,6 +128220,23 @@
   "vbo": "0268010000075362",
   "vbo_panden": [
    "0268100000002973"
+  ]
+ },
+ "molenweg105": {
+  "adres": "Molenweg 105",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Besluit (met BOPA) voor het renoveren en uitbreiden van de woning , aan Molenweg 105B, 6543VA Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000028478",
+  "vbo": "0268010000049881",
+  "vbo_gevraagd": "2026-10-23",
+  "vbo_panden": [
+   "0268100000028478"
   ]
  },
  "molenweg107": {
@@ -135281,6 +135533,12 @@
     "datum": "2026-09-28",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.700 per maand, 50 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €919 per maand, 35 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -139048,6 +139306,12 @@
     "datum": "2026-10-14",
     "soort": "transformatie",
     "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1908, dat zelf al in gebruik is, mediaan 76 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor splitsen van woning in 2 zelfstandige appartementen (Pontanusstraat 42 en 42A), aan Pontanusstraat 42, 6524HG Nijmegen"
    }
   ],
   "pand_id": "0268100000029587",
@@ -146754,6 +147018,21 @@
   "vbo_panden": [
    "0268100000018976"
   ]
+ },
+ "spieghelhof": {
+  "adres": "Spieghelhof",
+  "bag_gezien": "2026-10-23",
+  "bag_zonder_id": "2026-10-23",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €710 per maand, 72 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-23"
  },
  "spieghelstraat3": {
   "adres": "Spieghelstraat 3",
@@ -158475,6 +158754,12 @@
     "datum": "2026-10-14",
     "soort": "transformatie",
     "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1909, dat zelf al in gebruik is, mediaan 108 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-22",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het bouwkundig splitsen van een woning naar 2 zelfstandige woningen, aan van Goorstraat 87, 6512EC Nijmegen"
    }
   ],
   "pand_id": "0268100000021163",
@@ -167487,6 +167772,322 @@
    "0268100000005409"
   ]
  },
+ "veemarkt297": {
+  "adres": "Veemarkt 297",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-05-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 267 is A, geregistreerd 2021-05-31"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 191 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 193 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 195 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 197 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 199 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 201 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 203 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 205 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 207 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 209 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 211 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 213 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 215 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 217 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 221 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 223 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 225 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 227 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 229 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 231 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 233 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 235 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 237 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 239 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 241 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 243 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 245 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 247 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 249 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 251 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 253 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 255 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 257 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 259 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 261 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 265 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 269 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 271 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 273 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 275 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 277 is A, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 279 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 281 is B, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 283 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 285 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 287 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-08-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 219 is A, geregistreerd 2025-08-07"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-08-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 263 is A, geregistreerd 2025-08-14"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-03-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Veemarkt 189 is C, geregistreerd 2026-03-26"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-23",
+    "soort": "te koop",
+    "tekst": "te koop voor €365.000, 68 m2"
+   }
+  ],
+  "pand_id": "0268100000005409",
+  "vbo": "0268010000053958",
+  "vbo_panden": [
+   "0268100000005409"
+  ]
+ },
  "veemarkt3": {
   "adres": "Veemarkt 3",
   "gebeurtenissen": [
@@ -171120,6 +171721,322 @@
    "0268100000104562"
   ]
  },
+ "waalbandijk233": {
+  "adres": "Waalbandijk 233",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 301 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 303 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 305 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 307 is A++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 309 is A+++, geregistreerd 2023-02-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 211 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 215 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 217 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 219 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 221 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 223 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 225 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 227 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 229 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 231 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 233 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 235 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 237 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 239 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 241 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 243 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 245 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 247 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 249 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 251 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 253 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 255 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 257 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 259 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 261 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 263 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 265 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 267 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 269 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 271 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 273 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 275 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 277 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 279 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 281 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 283 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 285 is A++, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 287 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 289 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 291 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 293 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 295 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 297 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 299 is A+, geregistreerd 2023-04-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalbandijk 213 is A+, geregistreerd 2024-11-29"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-23",
+    "soort": "te koop",
+    "tekst": "te koop voor €325.000, 50 m2"
+   }
+  ],
+  "pand_id": "0268100000104562",
+  "vbo": "0268010000103268",
+  "vbo_panden": [
+   "0268100000104562"
+  ]
+ },
  "waalbandijk247": {
   "adres": "Waalbandijk 247",
   "gebeurtenissen": [
@@ -173225,6 +174142,12 @@
     "datum": "2026-10-05",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €870 per maand, 97 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €490 per maand, 9 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -175193,6 +176116,12 @@
     "datum": "2026-09-05",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.700 per maand, 94 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-22",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €720 per maand, 80 m2"
    }
   ],
   "pand_id": null

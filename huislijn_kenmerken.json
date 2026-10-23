@@ -303,5 +303,38 @@
   "opp": 118,
   "kamers": 4,
   "postcode": "6515XH"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440693/graafseweg-nijmegen": {
+  "opp": 80,
+  "kamers": 3,
+  "postcode": "6512BR"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440586/heinrich-bollstraat-nijmegen": {
+  "opp": 136,
+  "kamers": 4,
+  "postcode": "6515ZM"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440577/koolemans-beynenstraat-nijmegen": {
+  "opp": 19,
+  "kamers": 1,
+  "postcode": "6521EZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440617/winselingseweg-nijmegen": {
+  "opp": 80,
+  "kamers": 3,
+  "postcode": "6541AK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440695/heemraadstraat-nijmegen": {
+  "opp": 61,
+  "kamers": 3,
+  "postcode": "6525TH"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440774/spieghelhof-nijmegen": {
+  "opp": 72,
+  "kamers": 2,
+  "postcode": "6531BZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440628/kaaisjouwerskade-nijmegen": {
+  "postcode": "6821ET"
  }
 }
