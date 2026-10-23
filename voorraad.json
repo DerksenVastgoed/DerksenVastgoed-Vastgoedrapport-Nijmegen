@@ -53846,7 +53846,7 @@
   },
   "0268010000008537": {
    "adres": "Eerste Oude Heselaan 316",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -53859,7 +53859,7 @@
    "label_datum": "2025-05-07",
    "label_gezien": "2026-10-12",
    "label_nta8800": true,
-   "oppervlakte": 67,
+   "oppervlakte": 63,
    "pand": "0268100000048359",
    "pand_bouwjaar": 1903,
    "pand_status": "Pand in gebruik",
@@ -55838,7 +55838,7 @@
   },
   "0268010000008775": {
    "adres": "Eerste Oude Heselaan 112",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -55851,7 +55851,7 @@
    "label_datum": "2020-12-31",
    "label_gezien": "2026-10-12",
    "label_nta8800": false,
-   "oppervlakte": 147,
+   "oppervlakte": 140,
    "pand": "0268100000011250",
    "pand_bouwjaar": 1929,
    "pand_status": "Pand in gebruik",
@@ -55868,7 +55868,7 @@
   },
   "0268010000008776": {
    "adres": "Eerste Oude Heselaan 114",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -55881,7 +55881,7 @@
    "label_datum": "2020-12-28",
    "label_gezien": "2026-10-12",
    "label_nta8800": false,
-   "oppervlakte": 153,
+   "oppervlakte": 134,
    "pand": "0268100000011250",
    "pand_bouwjaar": 1929,
    "pand_status": "Pand in gebruik",
@@ -64923,7 +64923,7 @@
   },
   "0268010000010371": {
    "adres": "Graafseweg 225",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -64933,7 +64933,7 @@
    "label_datum": "2020-12-04",
    "label_gezien": "2026-10-14",
    "label_nta8800": false,
-   "oppervlakte": 174,
+   "oppervlakte": 139,
    "pand": "0268100000011336",
    "pand_bouwjaar": 1913,
    "pand_status": "Pand in gebruik",
@@ -77809,7 +77809,7 @@
   },
   "0268010000012303": {
    "adres": "Henry Dunantstraat 12",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -77819,7 +77819,7 @@
    "label_datum": "2022-02-21",
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
-   "oppervlakte": 114,
+   "oppervlakte": 123,
    "pand": "0268100000024615",
    "pand_bouwjaar": 1968,
    "pand_status": "Pand in gebruik",
@@ -91976,7 +91976,7 @@
   },
   "0268010000014612": {
    "adres": "Krayenhofflaan 321",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -91989,7 +91989,7 @@
    "label_datum": "2017-03-10",
    "label_gezien": "2026-10-12",
    "label_nta8800": false,
-   "oppervlakte": 117,
+   "oppervlakte": 112,
    "pand": "0268100000048363",
    "pand_bouwjaar": 1903,
    "pand_status": "Pand in gebruik",
@@ -110515,7 +110515,7 @@
   },
   "0268010000017586": {
    "adres": "Mariënburg 74",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -110528,7 +110528,7 @@
    "label_datum": "2026-09-04",
    "label_gezien": "2026-10-12",
    "label_nta8800": true,
-   "oppervlakte": 374,
+   "oppervlakte": 271,
    "pand": "0268100000002891",
    "pand_bouwjaar": 1908,
    "pand_status": "Pand in gebruik",
@@ -112388,7 +112388,7 @@
   },
   "0268010000017929": {
    "adres": "Koninginnelaan 225",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -112396,7 +112396,7 @@
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-14",
-   "oppervlakte": 66,
+   "oppervlakte": 72,
    "pand": "0268100000047806",
    "pand_bouwjaar": 1916,
    "pand_status": "Pand in gebruik",
@@ -124780,7 +124780,7 @@
   },
   "0268010000020556": {
    "adres": "Palmstraat 23",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -124790,7 +124790,7 @@
    "label_datum": "2019-01-02",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 133,
+   "oppervlakte": 139,
    "pand": "0268100000015592",
    "pand_bouwjaar": 1980,
    "pand_status": "Pand in gebruik",
@@ -125049,7 +125049,7 @@
   },
   "0268010000020879": {
    "adres": "Nieuwe Nonnendaalseweg 57A",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -125057,7 +125057,7 @@
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-14",
-   "oppervlakte": 141,
+   "oppervlakte": 142,
    "pand": "0268100000015951",
    "pand_bouwjaar": 1938,
    "pand_status": "Pand in gebruik",
@@ -125074,7 +125074,7 @@
   },
   "0268010000020884": {
    "adres": "Nieuwe Nonnendaalseweg 63A",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -125085,7 +125085,7 @@
    "label_datum": "2025-07-13",
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
-   "oppervlakte": 118,
+   "oppervlakte": 120,
    "pand": "0268100000026417",
    "pand_bouwjaar": 1938,
    "pand_status": "Pand in gebruik",
@@ -141243,7 +141243,7 @@
   },
   "0268010000023434": {
    "adres": "Perzikstraat 2",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -141253,7 +141253,7 @@
    "label_datum": "2020-10-27",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 168,
+   "oppervlakte": 169,
    "pand": "0268100000025839",
    "pand_bouwjaar": 1978,
    "pand_status": "Pand in gebruik",
@@ -173058,7 +173058,7 @@
   },
   "0268010000026835": {
    "adres": "Oude Nonnendaalseweg 224",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -173066,7 +173066,7 @@
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
-   "oppervlakte": 82,
+   "oppervlakte": 101,
    "pand": "0268100000006649",
    "pand_bouwjaar": 1933,
    "pand_status": "Pand in gebruik",
@@ -188489,7 +188489,7 @@
   },
   "0268010000028729": {
    "adres": "St. Annastraat 344",
-   "bag_gezien": "2026-10-15",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Q",
    "buurten": [
     "St. Anna"
@@ -188502,7 +188502,7 @@
    "label_datum": "2018-05-17",
    "label_gezien": "2026-10-15",
    "label_nta8800": false,
-   "oppervlakte": 223,
+   "oppervlakte": 301,
    "pand": "0268100000043751",
    "pand_bouwjaar": 1972,
    "pand_status": "Pand in gebruik",
@@ -208970,7 +208970,7 @@
   },
   "0268010000031128": {
    "adres": "van Broeckhuysenstraat 24",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -208983,7 +208983,7 @@
    "label_datum": "2026-07-24",
    "label_gezien": "2026-10-13",
    "label_nta8800": true,
-   "oppervlakte": 307,
+   "oppervlakte": 213,
    "pand": "0268100000002889",
    "pand_bouwjaar": 1908,
    "pand_status": "Pand in gebruik",
@@ -211504,7 +211504,7 @@
   },
   "0268010000031459": {
    "adres": "Tweede Oude Heselaan 209",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -211515,7 +211515,7 @@
    "label_datum": "2026-07-22",
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
-   "oppervlakte": 311,
+   "oppervlakte": 158,
    "pand": "0268100000048942",
    "pand_bouwjaar": 1934,
    "pand_status": "Pand in gebruik",
@@ -263407,7 +263407,7 @@
   },
   "0268010000038959": {
    "adres": "Wolfskuilseweg 83",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -263417,7 +263417,7 @@
    "label_datum": "2026-04-02",
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
-   "oppervlakte": 174,
+   "oppervlakte": 177,
    "pand": "0268100000028260",
    "pand_bouwjaar": 1891,
    "pand_status": "Pand in gebruik",
@@ -271749,7 +271749,7 @@
   },
   "0268010000041259": {
    "adres": "Wulpstraat 5",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -271760,7 +271760,7 @@
    "label_datum": "2020-12-14",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 96,
+   "oppervlakte": 98,
    "pand": "0268100000048864",
    "pand_bouwjaar": 1949,
    "pand_status": "Pand in gebruik",
@@ -275441,7 +275441,7 @@
   },
   "0268010000042180": {
    "adres": "Zonnebloemstraat 2",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -275451,7 +275451,7 @@
    "label_datum": "2017-10-31",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 151,
+   "oppervlakte": 154,
    "pand": "0268100000030985",
    "pand_bouwjaar": 1948,
    "pand_status": "Pand in gebruik",
@@ -290107,7 +290107,7 @@
   },
   "0268010000046026": {
    "adres": "Hertogstraat 33A",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -290120,7 +290120,7 @@
    "label_datum": "2020-06-25",
    "label_gezien": "2026-10-12",
    "label_nta8800": false,
-   "oppervlakte": 82,
+   "oppervlakte": 58,
    "pand": "0268100000002856",
    "pand_bouwjaar": 1880,
    "pand_status": "Pand in gebruik",
@@ -306205,7 +306205,7 @@
   },
   "0268010000048414": {
    "adres": "Hatertseweg 21",
-   "bag_gezien": "2026-10-15",
+   "bag_gezien": "2026-10-23",
    "buurten": [
     "St. Anna"
    ],
@@ -306214,7 +306214,7 @@
    ],
    "herkomst": "focusbuurt",
    "label_gezien": "2026-10-15",
-   "oppervlakte": 123,
+   "oppervlakte": 122,
    "pand": "0268100000044826",
    "pand_bouwjaar": 1957,
    "pand_status": "Pand in gebruik",
@@ -342457,7 +342457,7 @@
   },
   "0268010000053701": {
    "adres": "Henry Dunantstraat 68",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -342467,7 +342467,7 @@
    "label_datum": "2026-04-22",
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
-   "oppervlakte": 161,
+   "oppervlakte": 168,
    "pand": "0268100000025604",
    "pand_bouwjaar": 1968,
    "pand_status": "Pand in gebruik",
@@ -358974,7 +358974,7 @@
   },
   "0268010000055825": {
    "adres": "van Welderenstraat 121C",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -358987,7 +358987,7 @@
    "label_datum": "2021-02-06",
    "label_gezien": "2026-10-13",
    "label_nta8800": true,
-   "oppervlakte": 94,
+   "oppervlakte": 90,
    "pand": "0268100000048815",
    "pand_bouwjaar": 1886,
    "pand_status": "Pand in gebruik",
@@ -366110,7 +366110,7 @@
   },
   "0268010000056671": {
    "adres": "Eerste Oude Heselaan 314",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -366123,7 +366123,7 @@
    "label_datum": "2021-08-25",
    "label_gezien": "2026-10-12",
    "label_nta8800": true,
-   "oppervlakte": 71,
+   "oppervlakte": 86,
    "pand": "0268100000048358",
    "pand_bouwjaar": 1903,
    "pand_status": "Pand in gebruik",
@@ -370414,7 +370414,7 @@
   },
   "0268010000057245": {
    "adres": "Tweede Oude Heselaan 219",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Y",
    "buurten": [],
    "doelen": [
@@ -370425,7 +370425,7 @@
    "label_datum": "2024-12-22",
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
-   "oppervlakte": 232,
+   "oppervlakte": 196,
    "pand": "0268100000049655",
    "pand_bouwjaar": 1934,
    "pand_status": "Pand in gebruik",
@@ -386296,7 +386296,7 @@
   },
   "0268010000060928": {
    "adres": "van Welderenstraat 121A",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -386306,7 +386306,7 @@
    ],
    "herkomst": "focusbuurt",
    "label_gezien": "2026-10-13",
-   "oppervlakte": 79,
+   "oppervlakte": 101,
    "pand": "0268100000048815",
    "pand_bouwjaar": 1886,
    "pand_status": "Pand in gebruik",
@@ -386323,7 +386323,7 @@
   },
   "0268010000060929": {
    "adres": "van Welderenstraat 121B",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "Centrum",
    "buurten": [
     "Stadscentrum"
@@ -386336,7 +386336,7 @@
    "label_datum": "2018-02-02",
    "label_gezien": "2026-10-13",
    "label_nta8800": false,
-   "oppervlakte": 82,
+   "oppervlakte": 84,
    "pand": "0268100000048815",
    "pand_bouwjaar": 1886,
    "pand_status": "Pand in gebruik",
@@ -423609,7 +423609,7 @@
   },
   "0268010000068125": {
    "adres": "Parkdwarsstraat 26",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "buurten": [
     "Stadscentrum"
    ],
@@ -423618,7 +423618,7 @@
    ],
    "herkomst": "focusbuurt",
    "label_gezien": "2026-10-12",
-   "oppervlakte": 109,
+   "oppervlakte": 94,
    "pand": "0268100000036854",
    "pand_bouwjaar": 1912,
    "pand_status": "Pand in gebruik",
@@ -488066,7 +488066,7 @@
   },
   "0268010000079434": {
    "adres": "Eerste Oude Heselaan 110",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "R",
    "buurten": [
     "Biezen"
@@ -488076,7 +488076,7 @@
    ],
    "herkomst": "focusbuurt",
    "label_gezien": "2026-10-12",
-   "oppervlakte": 725,
+   "oppervlakte": 166,
    "pand": "0268100000011250",
    "pand_bouwjaar": 1929,
    "pand_status": "Pand in gebruik",
@@ -501336,14 +501336,14 @@
   },
   "0268010000081144": {
    "adres": "Molenweg 79",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-23",
    "buurten": [],
    "doelen": [
     "woonfunctie"
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
-   "oppervlakte": 110,
+   "oppervlakte": 117,
    "pand": "0268100000029818",
    "pand_bouwjaar": 1938,
    "pand_status": "Pand in gebruik",
@@ -697659,11 +697659,11 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
-   "adressen_nieuw": 3,
-   "adressen_onveranderd": 24395,
+   "adressen_bijgewerkt": 30,
+   "adressen_nieuw": 0,
+   "adressen_onveranderd": 24368,
    "adressen_verwijderd": 0,
-   "buiten_de_ring": 133239,
+   "buiten_de_ring": 133250,
    "datum": "2026-10-23",
    "fouten": 0,
    "historie_overgeslagen": 2573,
@@ -697691,10 +697691,10 @@
    "postcodes_nijmegen": 1517,
    "postcodes_totaal": 1517,
    "punt_behouden": 0,
-   "ronde_objecten": 164923,
+   "ronde_objecten": 164934,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 295.0,
+   "ronde_seconden": 290.4,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -697716,16 +697716,16 @@
   },
   "bijgewerkt": "2026-10-23",
   "labels": {
-   "aanroepen_per_minuut": 34.5,
+   "aanroepen_per_minuut": 0.0,
    "datum": "2026-10-23",
    "fouten": 0,
-   "geen_label_bekend": 1,
-   "gevraagd": 3,
+   "geen_label_bekend": 0,
+   "gevraagd": 0,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
    "laatste_fout": "",
-   "label_gevonden": 2,
+   "label_gevonden": 0,
    "label_prive": 0,
    "labels_methode_2014": 6179,
    "labels_nta8800": 10750,
@@ -697735,30 +697735,30 @@
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 5.2
+   "seconden": 0.0
   },
   "panden": {
    "datum": "2026-10-23",
    "fout": "",
-   "met_bouwjaar": 187249,
-   "met_status": 187249,
-   "objecten": 188121,
-   "omzettingen": 187249,
+   "met_bouwjaar": 187254,
+   "met_status": 187254,
+   "objecten": 188126,
+   "omzettingen": 187254,
    "paginas": 195,
    "pandstatussen": {
-    "Bouw gestart": 710,
-    "Bouwvergunning verleend": 1296,
+    "Bouw gestart": 709,
+    "Bouwvergunning verleend": 1297,
     "Niet gerealiseerd pand": 1076,
     "Pand buiten gebruik": 5,
-    "Pand gesloopt": 16225,
-    "Pand in gebruik": 166634,
-    "Pand in gebruik (niet ingemeten)": 81,
+    "Pand gesloopt": 16263,
+    "Pand in gebruik": 166639,
+    "Pand in gebruik (niet ingemeten)": 45,
     "Pand ten onrechte opgevoerd": 673,
-    "Sloopvergunning verleend": 105,
-    "Verbouwing pand": 444
+    "Sloopvergunning verleend": 104,
+    "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 385.0,
+   "seconden": 380.7,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
@@ -816542,7 +816542,7 @@
   },
   "0268010000115219": {
    "adres": "Heydenrijckstraat 40",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "2e ring oost",
    "buurten": [
     "Altrade"
@@ -816551,7 +816551,7 @@
     "woonfunctie"
    ],
    "herkomst": "focusbuurt",
-   "oppervlakte": 50,
+   "oppervlakte": 52,
    "pand": "0268100000001158",
    "pand_bouwjaar": 1953,
    "pand_status": "Pand in gebruik",
@@ -816568,7 +816568,7 @@
   },
   "0268010000115220": {
    "adres": "Heydenrijckstraat 40A",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-23",
    "betaald_parkeervlak": "2e ring oost",
    "buurten": [
     "Altrade"
@@ -816577,7 +816577,7 @@
     "woonfunctie"
    ],
    "herkomst": "focusbuurt",
-   "oppervlakte": 43,
+   "oppervlakte": 52,
    "pand": "0268100000001158",
    "pand_bouwjaar": 1953,
    "pand_status": "Pand in gebruik",
