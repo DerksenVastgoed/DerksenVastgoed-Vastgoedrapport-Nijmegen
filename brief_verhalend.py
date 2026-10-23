@@ -1727,6 +1727,47 @@ def zonder_bedrijfspanden(tekst):
     return "\n".join(uit)
 
 
+_KAARTJE = '<div style="border-left:3px solid #E0A458'
+_KAARTTITEL = re.compile(r'<span style="font-weight:700;[^"]*">(.*?)</span>',
+                         re.S)
+
+
+def zonder_bedrijfskaartjes(tekst):
+    """De bekendmakingskaartjes in het aanbodblok zonder de stukken die
+    alleen over een bedrijfspand gaan.
+
+    23 oktober 2026. "Aanvraag omgevingsvergunning voor het wijzigen van de
+    winkelpui in de voorgevel bij een gemeentelijk monument, aan Molenstraat
+    44" stond in de bekendmakingen netjes onder "Alleen bedrijfspanden, niet
+    in het verhaal", en zonder_bedrijfspanden() hield het daar weg. Maar
+    marktprijzen_bag.py zet dezelfde bekendmaking als kaartje onder zijn buurt
+    in het aanbodblok, met het label "transformatie", en dat blok ging
+    ongefilterd naar de schrijver. Het verhaal gaf er een halve alinea aan
+    ("wat herbestemming van de plint vertraagt") en noemde de winkelpui
+    verderop als voorbeeld van "renovatie en transformatie van bestaand
+    vastgoed". Dezelfde eis als op 20 oktober, langs een tweede weg omzeild.
+
+    De toets is alleen_bedrijfspand() uit bekendmakingen_nijmegen.py, op de
+    titel van het kaartje en NIET op het label: "transformatie" bevat
+    "transform", dat een woonwoord is, en dan zou het label het stuk weer
+    binnenlaten. Het kaartje blijft in de bijlage; alleen de schrijver ziet
+    het niet. Werkt op de ruwe digest, voor strip_opmaak(), want daarna is
+    een kaartje niet meer van zijn label te scheiden."""
+    try:
+        from bekendmakingen_nijmegen import alleen_bedrijfspand
+    except Exception:
+        return tekst
+    uit = []
+    for stuk in (tekst or "").split("\n\n"):
+        if stuk.lstrip().startswith(_KAARTJE):
+            m = _KAARTTITEL.search(stuk)
+            titel = re.sub(r"<[^>]+>", "", m.group(1)) if m else ""
+            if titel and alleen_bedrijfspand({"titel": titel, "type": ""}):
+                continue
+        uit.append(stuk)
+    return "\n\n".join(uit)
+
+
 def _vraag(berichten, woorden):
     """
     Een aanroep naar het model, via taalmodel.vraag (een implementatie).
@@ -1866,6 +1907,39 @@ def proef():
             "Hatertseweg" not in _z:
         fouten.append(f"de bedrijfspanden gaan toch naar de schrijver, of er "
                       f"verdwijnt meer: {_z!r}")
+    # Dezelfde eis langs het aanbodblok (Molenstraat 44, 23 oktober). De
+    # kaartjes komen uit de echte renderer, zodat een andere opmaak daar deze
+    # proef laat vuren in plaats van het filter stil uit te zetten.
+    try:
+        from marktprijzen_bag import bekendmakingregels
+        _kaart = [
+            {"titel": "Aanvraag omgevingsvergunning voor het wijzigen van de "
+                      "winkelpui in de voorgevel bij een gemeentelijk "
+                      "monument, aan Molenstraat 44, 6511HE Nijmegen",
+             "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-491180"
+                    ".html", "datum": "2026-10-21",
+             "strategie": "transformatie",
+             "feiten": {"oppervlakte_m2": 224, "energielabel": "A"}},
+            {"titel": "Besluit voor het aanvragen van een vergunning voor het "
+                      "tijdelijk verhuren van de woning, aan St. Josephhof "
+                      "14, 6511SH Nijmegen", "url": "", "datum": "2026-10-22",
+             "strategie": "buy-and-hold", "feiten": {}},
+            {"titel": "Aanvraag voor het splitsen van een winkel met "
+                      "bovenwoning, aan X 1, 6511AA Nijmegen", "url": "",
+             "datum": "2026-10-22", "strategie": "splitsen", "feiten": {}}]
+        _raw = ("**Stadscentrum**\n_mediaan_\n\n"
+                + "\n".join(bekendmakingregels(_kaart)) + "\nGalgenveld\n")
+        _zk = zonder_bedrijfskaartjes(_raw)
+        if "Molenstraat 44" in _zk:
+            fouten.append("een bedrijfspand gaat via het aanbodblok toch naar "
+                          "de schrijver (Molenstraat 44, 23 oktober)")
+        if "St. Josephhof 14" not in _zk or "bovenwoning" not in _zk or \
+                "Stadscentrum" not in _zk or "Galgenveld" not in _zk:
+            fouten.append(f"het filter op het aanbodblok haalt meer weg dan "
+                          f"het bedrijfspand: {strip_opmaak(_zk)!r}")
+    except ImportError as e:
+        fouten.append(f"een bedrijfspand gaat via het aanbodblok toch naar "
+                      f"de schrijver: renderer niet te laden ({e})")
     gevallen = [
         # (tekst, is afgekapt, waarom dit geval erin staat)
         ("Hier staat een hele zin die netjes eindigt.\n\nGroet,\nMark",
@@ -2042,7 +2116,8 @@ def main():
               if re.search(r"bouwlaag|plint|begane grond", _beleid, re.I)
               else "")
 
-    _aanbod = strip_opmaak(lees(f"digests/{d}-marktprijzen.md"))
+    _aanbod = strip_opmaak(zonder_bedrijfskaartjes(
+        lees(f"digests/{d}-marktprijzen.md")))
     _samenstelling = samenstelling_voor_schrijver()
     _dossiers = strip_opmaak(lees(f"digests/{d}-dossiers.md"), 9000)
     _besluiten = (week_terug("bekendmakingen", d) if _weekelijks()

@@ -1635,6 +1635,22 @@ proef: bekendmakingen_nijmegen:een losse aanvraag met een postcode telt als bele
 soort: brief
 
 ---
+eis: Een bekendmaking die alleen over een bedrijfspand gaat, komt langs geen
+  enkel blok bij de schrijver, ook niet als kaartje onder een buurt in het
+  aanbodblok; in de bijlage blijft ze staan.
+waarom: 23 oktober. De winkelpui van Molenstraat 44 stond in de
+  bekendmakingen onder "Alleen bedrijfspanden, niet in het verhaal", maar
+  marktprijzen_bag.py zette hem als kaartje met het label "transformatie" in
+  het aanbodblok, en dat ging ongefilterd naar de schrijver. Het verhaal gaf
+  er een halve alinea aan en noemde hem als voorbeeld van transformatie. Op
+  alle 54 marktprijzen-digests vallen 9 van de 106 kaartjes onder het filter,
+  alleen de vier bekende bedrijfspanden (Ziekerstraat 75, Broerstraat 16,
+  Grote Markt 36, Molenstraat 44). De toets gaat op de titel en niet op het
+  label, want "transformatie" telt als woonwoord.
+proef: brief_verhalend:een bedrijfspand gaat via het aanbodblok toch naar; brief_verhalend:het filter op het aanbodblok haalt meer weg
+soort: brief
+
+---
 eis: Elk taalmodel dat over vastgoednieuws schrijft krijgt het mechanisme van
   de opkoopbescherming mee uit bronnen.py (mechanismen).
 waarom: 20 oktober. De duiding bij een artikel over het inperken ervan
