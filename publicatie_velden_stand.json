@@ -1,13 +1,13 @@
 {
- "vastgelegd": 1290,
- "met_zaaknummer": 431,
+ "vastgelegd": 1298,
+ "met_zaaknummer": 439,
  "uitkomsten": {
-  "geen uitspraak": 711,
+  "geen uitspraak": 715,
   "onbekend": 493,
-  "verleend": 86
+  "verleend": 90
  },
- "nu_ter_inzage": 47,
- "datum": "2026-10-20",
+ "nu_ter_inzage": 51,
+ "datum": "2026-10-23",
  "doorlooptijden": [
   {
    "zaaknummer": "Z2026-00004767",
@@ -26,6 +26,12 @@
    "dagen": 26,
    "uitkomst": "",
    "dagen_tov_verwacht": -30
+  },
+  {
+   "zaaknummer": "Z2026-00005393",
+   "dagen": 35,
+   "uitkomst": "verleend",
+   "dagen_tov_verwacht": -21
   },
   {
    "zaaknummer": "Z2026-00003176",
@@ -206,6 +212,12 @@
    "dagen": 206,
    "uitkomst": "verleend",
    "dagen_tov_verwacht": 150
+  },
+  {
+   "zaaknummer": "Z2026-00000134",
+   "dagen": 275,
+   "uitkomst": "verleend",
+   "dagen_tov_verwacht": 219
   },
   {
    "zaaknummer": "Z2025-00009140",
