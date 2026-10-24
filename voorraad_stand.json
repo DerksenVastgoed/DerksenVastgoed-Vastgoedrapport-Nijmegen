@@ -1,13 +1,13 @@
 {
- "datum": "2026-10-23",
+ "datum": "2026-10-24",
  "ronde": {
   "bag": {
-   "adressen_bijgewerkt": 30,
+   "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
-   "adressen_onveranderd": 24368,
+   "adressen_onveranderd": 24398,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 133250,
-   "datum": "2026-10-23",
+   "datum": "2026-10-24",
    "fouten": 0,
    "historie_overgeslagen": 2573,
    "laatste_fout": "",
@@ -37,7 +37,7 @@
    "ronde_objecten": 164934,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 290.4,
+   "ronde_seconden": 218.1,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -57,10 +57,10 @@
    "zonder_punt": 0,
    "zonder_vbo": 0
   },
-  "bijgewerkt": "2026-10-23",
+  "bijgewerkt": "2026-10-24",
   "labels": {
    "aanroepen_per_minuut": 0.0,
-   "datum": "2026-10-23",
+   "datum": "2026-10-24",
    "fouten": 0,
    "geen_label_bekend": 0,
    "gevraagd": 0,
@@ -81,7 +81,7 @@
    "seconden": 0.0
   },
   "panden": {
-   "datum": "2026-10-23",
+   "datum": "2026-10-24",
    "fout": "",
    "met_bouwjaar": 187254,
    "met_status": 187254,
@@ -101,7 +101,7 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 380.7,
+   "seconden": 302.7,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
