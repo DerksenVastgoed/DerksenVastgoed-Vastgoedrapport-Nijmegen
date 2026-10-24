@@ -41,6 +41,8 @@ oplossing bij de bron, als pull request.
 
 3. **Bouw de gegevens op die de schrijver kreeg:**
    `python3 brief_invoer.py --datum <datum> > /tmp/invoer.txt`.
+   Het script neemt de modus (dag- of weekbrief) uit `pa_kopie.json` en meldt
+   welke het gebruikt; vindt het die niet, dan zegt het dat. Lees die regel.
    Lees daarnaast `controle_brief.json`: wat vond de feitencontrole voor en na
    de herstelronde?
 

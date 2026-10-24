@@ -100,6 +100,19 @@ proef: brief_verhalend:week_terug: de nieuwste dag valt af als de week; brief_ve
 soort: brief
 
 ---
+eis: brief_invoer.py bouwt de gegevens op in de modus waarin de brief van die
+  dag is geschreven, uit pa_kopie.json en zijn geschiedenis; een MODUS die de
+  aanroeper zet gaat voor, en een onbekende modus wordt gemeld en niet stil
+  als dagbrief aangenomen.
+waarom: 24 oktober. De nakijkronde bouwde voor de weekeditie de dagprompt
+  op. Daarin stonden de rente-berichten en Waterstraat 139 wel, dus leek het
+  of de schrijver ze had gekregen en had laten liggen. Pas met
+  MODUS=weekelijks met de hand ervoor bleek dat week_terug() ze had
+  afgekapt.
+proef: brief_invoer:de modus van
+soort: brief
+
+---
 eis: Een getal wordt nooit vergeleken met een getal op een andere grondslag.
 waarom: 11 oktober. De vergunning noemde 6 zelfstandige woonruimtes, de BAG
   telde 7 adresseerbare objecten, en dat verschil van 1 werd het hoofdthema
