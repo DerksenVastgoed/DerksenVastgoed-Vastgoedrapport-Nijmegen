@@ -1161,3 +1161,9 @@ Weezenhof | Nijmegen | 490 | te huur kamer | 2026-10-22 | kamernet-incl | 9 |
 Biesmanstraat 1 | Nijmegen | 695000 | te koop | 2026-10-23 | funda-mail | 129 | 6512KA
 Veemarkt 297 | Nijmegen | 365000 | te koop | 2026-10-23 | funda-mail | 68 | 6511ZJ
 Waalbandijk 233 | Nijmegen | 325000 | te koop | 2026-10-23 | funda-mail | 50 | 6541AA
+
+# Automatisch toegevoegd uit Funda-attendering op 24-10-2026
+Zwanenveld 4066 | Nijmegen | 375 | te huur kamer | 2026-10-23 | rentola | 95 | 6538XP
+Waalkade | Nijmegen | 2000 | te huur | 2026-10-23 | pararius | 105 | 6511XP
+Hatertseweg | Nijmegen | 895 | te huur | 2026-10-23 | kamernet-incl | 17 | 
+Weidestraat | Nijmegen | 270 | te huur kamer | 2026-10-23 | kamernet | 7 | 

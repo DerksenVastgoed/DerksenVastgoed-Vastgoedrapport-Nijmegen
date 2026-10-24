@@ -1,58 +1,60 @@
 {
- "datum": "2026-10-23",
+ "datum": "2026-10-24",
  "bronnen": {
   "regulier": {
-   "mails": 4,
-   "objecten": 10,
+   "mails": 3,
+   "objecten": 8,
    "overgeslagen": 0,
    "redenen": []
   },
   "huislijn": {
-   "mails": 3,
-   "objecten": 14,
+   "mails": 2,
+   "objecten": 11,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "kamernet": {
+   "mails": 13,
+   "objecten": 11,
+   "overgeslagen": 2,
+   "redenen": [
+    "Ranonkelstraat, Arnhem: buiten Nijmegen",
+    "Kwartelstraat, Wijchen: buiten Nijmegen"
+   ]
+  },
+  "rentola": {
+   "mails": 1,
+   "objecten": 1,
    "overgeslagen": 0,
    "redenen": []
   },
   "pararius": {
    "mails": 1,
-   "objecten": 3,
-   "overgeslagen": 3,
-   "redenen": [
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)",
-    "Piersonstraat (gemeubileerd, apart bewaard)"
-   ]
-  },
-  "kamernet": {
-   "mails": 16,
-   "objecten": 14,
-   "overgeslagen": 2,
-   "redenen": [
-    "Nieuweweg, Wijchen: buiten Nijmegen",
-    "Ranonkelstraat, Arnhem: buiten Nijmegen"
-   ]
+   "objecten": 1,
+   "overgeslagen": 0,
+   "redenen": []
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 29,
+  "zelfde_status": 28,
   "andere_status": 0,
   "voorbeelden": []
  },
  "berichten_per_afzender": {
-  "funda.nl": 4,
+  "funda.nl": 3,
   "funda.com": 0,
   "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 16,
+  "kamernet.nl": 13,
   "vendr.nl": 0,
-  "huislijn.nl": 3,
+  "huislijn.nl": 2,
   "huisly.nl": 0,
   "123wonen.nl": 0,
-  "rentola.nl": 0
+  "rentola.nl": 1
  },
  "mailbox": {
-  "mislukt": "(SINCE 20-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 20-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 21-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 21-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

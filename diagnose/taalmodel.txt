@@ -36,3 +36,10 @@
 2026-10-23 claude-sonnet-5 Brief geschreven: 5667 tokens, waarvan 3578 denken, 745 woorden, stop end_turn
 2026-10-23 claude-opus-5-5 Controle: 11559 tokens, waarvan 7019 denken, 1409 woorden, stop end_turn
 2026-10-23 claude-sonnet-5 Brief geschreven: 2024 tokens, waarvan 0 denken, 725 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Beleidssamenvatting: 505 tokens, waarvan 0 denken, 142 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Duiding: 775 tokens, waarvan 9 denken, 159 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Publicaties: 1800 tokens, waarvan 11 denken, 317 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Memo's: 687 tokens, waarvan 16 denken, 218 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Brief geschreven: 3515 tokens, waarvan 2272 denken, 442 woorden, stop end_turn
+2026-10-24 claude-opus-5-5 Controle: 6273 tokens, waarvan 3093 denken, 1021 woorden, stop end_turn
+2026-10-24 claude-sonnet-5 Brief geschreven: 1155 tokens, waarvan 0 denken, 405 woorden, stop end_turn

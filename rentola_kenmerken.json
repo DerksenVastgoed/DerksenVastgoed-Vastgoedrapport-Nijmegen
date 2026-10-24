@@ -24,5 +24,15 @@
   "postcode": "6525SG",
   "buurt": "Brakkenstein",
   "prijs_per_m2_rentola": 32
+ },
+ "https://email.rentola.nl/e/c/eyJlbWFpbF9pZCI6ImRnU1RqZ2dCQVBxZU5mbWVOUUdoWjFodVNfNHlDTzQ4bS1HUF9MUT0iLCJocmVmIjoiaHR0cHM6Ly9yZW50b2xhLm5sL2xpc3RpbmdzL3RlLWh1dXItd29vbnJ1aW10ZS12b29yLXN0dWRlbnQtcDFmYWQ4Mz91dG1fY2FtcGFpZ249ZW1haWxfY2FtcGFpZ25fbm90aWZpY2F0aW9uc192MVx1MDAyNnV0bV9jb250ZW50PW1zZzFfZW1haWxfbm90aWZpY2F0aW9uX25sX3ZhcmlhbnRfYVx1MDAyNnV0bV9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fc291cmNlPWN1c3RvbWVyLmlvIiwiaW50ZXJuYWwiOiI5MzhlMDgxZDg5MTJmYTllMzUiLCJsaW5rX2lkIjozOTl9/e1498d4f05f7c529abd9578f422ca75604be32cd3765c3d3e2b7da2869941f78": {
+  "adres": "Zwanenveld 4066",
+  "postcode": "6538XP",
+  "prijs_per_m2_rentola": 4
+ },
+ "https://rentola.nl/listings/te-huur-woonruimte-voor-student-p1fad83": {
+  "adres": "Zwanenveld 4066",
+  "postcode": "6538XP",
+  "prijs_per_m2_rentola": 4
  }
 }

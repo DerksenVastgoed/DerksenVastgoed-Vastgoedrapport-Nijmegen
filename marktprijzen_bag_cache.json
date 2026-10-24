@@ -78840,7 +78840,8 @@
     ],
     "postcode": "6515ZM",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Koolemans Beynenstraat|Nijmegen": {
     "oppervlakte": 19,
@@ -78849,7 +78850,8 @@
     ],
     "postcode": "6521EZ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Heemraadstraat|Nijmegen": {
     "oppervlakte": 61,
@@ -78858,7 +78860,8 @@
     ],
     "postcode": "6525TH",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Spieghelhof|Nijmegen": {
     "oppervlakte": 72,
@@ -78867,7 +78870,8 @@
     ],
     "postcode": "6531BZ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Kaaisjouwerskade|Nijmegen": {
     "gefaald": true,
@@ -78877,7 +78881,8 @@
     "oppervlakte": 18,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "Biesmanstraat 1|Nijmegen": {
     "oppervlakte": 129,
@@ -79820,5 +79825,48 @@
     "buurtnaam": "St. Anna",
     "wijknaam": "Nijmegen-Midden",
     "nummeraanduiding": "adr-44967b8eb49bc52e02a5da28d4f32a03"
+  },
+  "Zwanenveld 4066|Nijmegen": {
+    "oppervlakte": 95,
+    "bouwjaar": "1974",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6538XP",
+    "adresseerbaarObjectIdentificatie": "0268010000037417",
+    "pand": "0268100000041319",
+    "panden": [
+      "0268100000041319"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Zwanenveld",
+    "wijknaam": "Dukenburg",
+    "nummeraanduiding": "adr-54973e5bb4a2a13433e26c3eef43c9a9",
+    "eenheden_gezien": "2026-10-24",
+    "oppervlakte_bag": 96
+  },
+  "Weidestraat|Nijmegen": {
+    "oppervlakte": 7,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
+  },
+  "bm:Waterstraat 139|Nijmegen": {
+    "postcode": "6541TE",
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-ff9ec6e704fd676ef1dbc8af03e6b368"
+  },
+  "bm:Laan van Oost-Indië 315|Nijmegen": {
+    "postcode": "6541GX",
+    "buurtnaam": "Haven- en industrieterrein",
+    "wijknaam": "Nijmegen-Nieuw-West",
+    "nummeraanduiding": "adr-89ed09b2016f062b2ba84af405c7936e"
+  },
+  "bm:Koningshofje 1|Nijmegen": {
+    "postcode": "6511LC",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-f8302d589fa1674c52c1e2020a8174f1"
   }
 }

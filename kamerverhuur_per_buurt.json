@@ -3,7 +3,7 @@
   "2023": 13,
   "2024": 1,
   "2025": 102,
-  "2026": 90
+  "2026": 92
  },
  "per_buurt": {
   "'t Acker": {
@@ -67,10 +67,10 @@
    "totaal": 72
   },
   "Goffert": {
-   "alleen_melding_of_besluit": 6,
+   "alleen_melding_of_besluit": 7,
    "alleen_vergunning": 2,
    "beide": 0,
-   "totaal": 8
+   "totaal": 9
   },
   "Groenewoud": {
    "alleen_melding_of_besluit": 2,
@@ -200,8 +200,8 @@
   },
   "St. Anna": {
    "alleen_melding_of_besluit": 7,
-   "alleen_vergunning": 58,
-   "beide": 0,
+   "alleen_vergunning": 57,
+   "beide": 1,
    "totaal": 65
   },
   "Stadscentrum": {

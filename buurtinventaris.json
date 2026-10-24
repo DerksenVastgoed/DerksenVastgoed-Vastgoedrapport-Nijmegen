@@ -1,7 +1,7 @@
 {
  "bron": "PDOK locatieserver v3_1, filter op buurtnaam én gemeentenaam:Nijmegen",
  "let_op": "adressen is het aantal adresseerbare objecten en niet het aantal woningen: winkels, kantoren en garageboxen hebben ook een adres. Het onderscheid komt uit het gebruiksdoel in de BAG, en dat zit niet in deze dienst.",
- "opgehaald": "2026-10-23",
+ "opgehaald": "2026-10-24",
  "per_buurt": {
   "Altrade": {
    "adressen": 3452,
@@ -1649,10 +1649,10 @@
  },
  "totaal": {
   "adressen": 29233,
-  "adressen_al_nagekeken": 7588,
+  "adressen_al_nagekeken": 7594,
   "buurten_gevraagd": 8,
   "buurten_volledig": 8,
-  "panden_al_nagekeken": 1648,
+  "panden_al_nagekeken": 1652,
   "postcodes": 1517,
   "postcodes_per_viercijferig": {
    "6511": 361,

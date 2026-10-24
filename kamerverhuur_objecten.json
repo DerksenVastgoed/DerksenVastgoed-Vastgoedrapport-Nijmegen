@@ -4164,6 +4164,11 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "St. Anna",
@@ -11735,6 +11740,18 @@
   ],
   "buurt": "'t Broek",
   "straat": "Wedesteinbroek"
+ },
+ "wegdoorjonkerbos100": {
+  "adres": "Weg door Jonkerbos 100",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Goffert",
+  "straat": "Weg door Jonkerbos"
  },
  "wegdoorjonkerbos27": {
   "adres": "Weg door Jonkerbos 27",

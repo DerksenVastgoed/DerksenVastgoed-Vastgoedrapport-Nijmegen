@@ -151,6 +151,14 @@
   "omweg": 3.78,
   "soort": "bus"
  },
+ "51.81895,5.85151": {
+  "geschat": false,
+  "hemelsbreed": 98,
+  "meters": 157,
+  "naam": "Van Peltlaan",
+  "omweg": 1.6,
+  "soort": "bus"
+ },
  "51.82032,5.85017": {
   "geschat": false,
   "hemelsbreed": 191,
@@ -190,6 +198,14 @@
   "naam": "Nijmegen Dukenburg",
   "omweg": 4.08,
   "soort": "station"
+ },
+ "51.82277,5.80286": {
+  "geschat": false,
+  "hemelsbreed": 307,
+  "meters": 549,
+  "naam": "Zwanenveld 12e str.",
+  "omweg": 1.79,
+  "soort": "bus"
  },
  "51.82318,5.77570": {
   "geschat": false,
