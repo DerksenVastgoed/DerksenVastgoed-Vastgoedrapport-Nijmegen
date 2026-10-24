@@ -61,6 +61,18 @@ proef: brief_verhalend:de nieuwswaarde telt wat al gemeld is; brief_verhalend:de
 soort: brief
 
 ---
+eis: De "grootste verlaging van vandaag of gisteren" in de samenvatting van
+  het aanbod slaat een verlaging over als het pand op of na de dag van die
+  verlaging al in een brief stond; de grootste nog niet gemelde verlaging
+  komt ervoor in de plaats.
+waarom: 22 oktober. De regel noemde Krayenhofflaan 104 (-€50.000, 21
+  oktober, al in de brief van 21 oktober) en de brief bracht hem opnieuw.
+  Delistraat 45 ging die dag ook €50.000 omlaag, nog nooit gemeld, en bleef
+  door het gelijke bedrag achter de oude verlaging verborgen.
+proef: marktprijzen_bag:de grootste verlaging noemt een al gemelde verlaging
+soort: brief
+
+---
 eis: Elk pand in de brief is bij zijn eerste vermelding klikbaar naar het
   straatbeeld op het punt van dat pand; een bestaande link blijft staan.
 waarom: 17 oktober, Mark: als er een adres in de brief staat, wil hij met één
