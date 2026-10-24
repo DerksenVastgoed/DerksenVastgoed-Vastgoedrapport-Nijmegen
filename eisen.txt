@@ -86,6 +86,20 @@ proef: brief_verhalend:straatbeeld: een tweede vermelding kreeg ook een link
 soort: brief
 
 ---
+eis: Past de week niet in wat de weekbrief van een soort digest meekrijgt,
+  dan valt de oudste dag af en niet de nieuwste; de dagen staan van oud naar
+  nieuw.
+waarom: 24 oktober. week_terug zette de dagen van oud naar nieuw en kapte het
+  geheel af op 6000 tekens. Het nieuws hield op bij "Vastgoedartike" op 23
+  oktober; de zes berichten van 24 oktober over de hypotheekrente (naar een
+  jaarrecord) en de besluiten van 23 en 24 oktober, met de aanvraag voor
+  studentenkamers aan Waterstraat 139, kwamen niet bij de schrijver. Het
+  verhaal schreef dat er over de rente niets te melden was. De oude dagen
+  stonden al in de dagbrieven; de nieuwste nog nergens.
+proef: brief_verhalend:week_terug: de nieuwste dag valt af als de week; brief_verhalend:week_terug: de besluiten van 23 oktober ontbreken
+soort: brief
+
+---
 eis: Een getal wordt nooit vergeleken met een getal op een andere grondslag.
 waarom: 11 oktober. De vergunning noemde 6 zelfstandige woonruimtes, de BAG
   telde 7 adresseerbare objecten, en dat verschil van 1 werd het hoofdthema
