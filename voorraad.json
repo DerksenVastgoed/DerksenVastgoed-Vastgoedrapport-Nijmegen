@@ -7574,7 +7574,7 @@
   },
   "0268010000001231": {
    "adres": "Adagiostraat 63",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -7584,7 +7584,7 @@
    "label_datum": "2017-12-14",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 102,
+   "oppervlakte": 105,
    "pand": "0268100000004819",
    "pand_bouwjaar": 1965,
    "pand_status": "Pand in gebruik",
@@ -59464,7 +59464,7 @@
   },
   "0268010000009573": {
    "adres": "Engelenstraat 18",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -59474,7 +59474,7 @@
    "label_datum": "2018-02-09",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 156,
+   "oppervlakte": 158,
    "pand": "0268100000016577",
    "pand_bouwjaar": 1950,
    "pand_status": "Pand in gebruik",
@@ -79844,6 +79844,32 @@
    "status": "Verblijfsobject in gebruik",
    "vbo": "0268010000012805"
   },
+  "0268010000012828": {
+   "adres": "Hatertseweg 745",
+   "bag_gezien": "2026-10-24",
+   "buurten": [],
+   "doelen": [
+    "woonfunctie"
+   ],
+   "herkomst": "bekendmaking",
+   "label": "C",
+   "label_datum": "2024-09-09",
+   "label_gezien": "2026-10-24",
+   "label_nta8800": true,
+   "oppervlakte": 134,
+   "pand": "0268100000046310",
+   "pand_bouwjaar": 1935,
+   "pand_status": "Pand in gebruik",
+   "parkeerzone": "Rest bebouwde kom",
+   "postcode": "6535ZR",
+   "punt": [
+    5.828533,
+    51.809725
+   ],
+   "sleutel": "hatertseweg745",
+   "status": "Verblijfsobject in gebruik",
+   "vbo": "0268010000012828"
+  },
   "0268010000012902": {
    "adres": "Hendrik Hoogersstraat 4",
    "bag_gezien": "2026-10-14",
@@ -96969,7 +96995,7 @@
   },
   "0268010000015245": {
    "adres": "Kaaplandstraat 58",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -96979,7 +97005,7 @@
    "label_datum": "2018-02-13",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 127,
+   "oppervlakte": 122,
    "pand": "0268100000029053",
    "pand_bouwjaar": 1938,
    "pand_status": "Pand in gebruik",
@@ -170272,14 +170298,14 @@
   },
   "0268010000026533": {
    "adres": "Lierstraat 33",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
-   "oppervlakte": 132,
+   "oppervlakte": 133,
    "pand": "0268100000005146",
    "pand_bouwjaar": 1965,
    "pand_status": "Pand in gebruik",
@@ -304409,14 +304435,14 @@
   },
   "0268010000048163": {
    "adres": "Csardasstraat 46",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
    ],
    "herkomst": "bekendmaking",
    "label_gezien": "2026-10-16",
-   "oppervlakte": 114,
+   "oppervlakte": 121,
    "pand": "0268100000022411",
    "pand_bouwjaar": 1967,
    "pand_status": "Pand in gebruik",
@@ -337832,7 +337858,7 @@
   },
   "0268010000053145": {
    "adres": "Graafseweg 244",
-   "bag_gezien": "2026-10-14",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -337842,7 +337868,7 @@
    "label_datum": "2021-09-20",
    "label_gezien": "2026-10-14",
    "label_nta8800": true,
-   "oppervlakte": 179,
+   "oppervlakte": 118,
    "pand": "0268100000019404",
    "pand_bouwjaar": 1936,
    "pand_status": "Pand in gebruik",
@@ -379792,7 +379818,7 @@
   },
   "0268010000059596": {
    "adres": "Menuetstraat 2",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -379802,7 +379828,7 @@
    "label_datum": "2019-04-17",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 128,
+   "oppervlakte": 125,
    "pand": "0268100000047220",
    "pand_bouwjaar": 1967,
    "pand_status": "Pand in gebruik",
@@ -477317,7 +477343,7 @@
   },
   "0268010000077928": {
    "adres": "Maanstraat 67",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -477327,7 +477353,7 @@
    "label_datum": "2020-07-27",
    "label_gezien": "2026-10-16",
    "label_nta8800": false,
-   "oppervlakte": 145,
+   "oppervlakte": 142,
    "pand": "0268100000028766",
    "pand_bouwjaar": 1962,
    "pand_status": "Pand in gebruik",
@@ -482493,7 +482519,7 @@
   },
   "0268010000078663": {
    "adres": "Venusstraat 53",
-   "bag_gezien": "2026-10-16",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "woonfunctie"
@@ -482503,7 +482529,7 @@
    "label_datum": "2021-10-25",
    "label_gezien": "2026-10-16",
    "label_nta8800": true,
-   "oppervlakte": 145,
+   "oppervlakte": 144,
    "pand": "0268100000026926",
    "pand_bouwjaar": 1962,
    "pand_status": "Pand in gebruik",
@@ -697659,22 +697685,22 @@
  },
  "laatste_ronde": {
   "bag": {
-   "adressen_bijgewerkt": 0,
-   "adressen_nieuw": 0,
-   "adressen_onveranderd": 24398,
+   "adressen_bijgewerkt": 9,
+   "adressen_nieuw": 1,
+   "adressen_onveranderd": 24389,
    "adressen_verwijderd": 0,
-   "buiten_de_ring": 133250,
+   "buiten_de_ring": 133249,
    "datum": "2026-10-24",
    "fouten": 0,
    "historie_overgeslagen": 2573,
    "laatste_fout": "",
-   "met_punt": 29111,
+   "met_punt": 29112,
    "niet_woningen_bewaard": 2372,
    "niet_woonfunctie": 2369,
    "nog_gevormd": 2424,
    "objecten_in_meer_panden": 118,
-   "objecten_met_pand": 29111,
-   "om_een_signaal": 771,
+   "objecten_met_pand": 29112,
+   "om_een_signaal": 772,
    "opgeleverd": 0,
    "opgeleverde_adressen": [],
    "opnieuw_gezien": 0,
@@ -697694,21 +697720,21 @@
    "ronde_objecten": 164934,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 218.1,
+   "ronde_seconden": 268.5,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
    "statussen": {
     "Niet gerealiseerd verblijfsobject": 448,
     "Verblijfsobject gevormd": 2424,
-    "Verblijfsobject in gebruik": 26364,
+    "Verblijfsobject in gebruik": 26365,
     "Verblijfsobject in gebruik (niet ingemeten)": 1,
     "Verblijfsobject ingetrokken": 2125,
     "Verbouwing verblijfsobject": 322
    },
    "terug_in_de_pijplijn": 0,
    "van_soort_gewisseld": 0,
-   "woningen_gezien": 24398,
+   "woningen_gezien": 24399,
    "zonder_adres": 0,
    "zonder_pandsleutel": 0,
    "zonder_punt": 0,
@@ -697716,26 +697742,26 @@
   },
   "bijgewerkt": "2026-10-24",
   "labels": {
-   "aanroepen_per_minuut": 0.0,
+   "aanroepen_per_minuut": 38.3,
    "datum": "2026-10-24",
    "fouten": 0,
    "geen_label_bekend": 0,
-   "gevraagd": 0,
+   "gevraagd": 1,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
    "laatste_fout": "",
-   "label_gevonden": 0,
+   "label_gevonden": 1,
    "label_prive": 0,
    "labels_methode_2014": 6179,
-   "labels_nta8800": 10750,
+   "labels_nta8800": 10751,
    "labels_zonder_methode": 0,
    "methode_blijft_onbekend": 0,
    "methode_ingehaald": 0,
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 0.0
+   "seconden": 1.6
   },
   "panden": {
    "datum": "2026-10-24",
@@ -697747,10 +697773,10 @@
    "paginas": 195,
    "pandstatussen": {
     "Bouw gestart": 709,
-    "Bouwvergunning verleend": 1297,
+    "Bouwvergunning verleend": 1296,
     "Niet gerealiseerd pand": 1076,
     "Pand buiten gebruik": 5,
-    "Pand gesloopt": 16263,
+    "Pand gesloopt": 16264,
     "Pand in gebruik": 166639,
     "Pand in gebruik (niet ingemeten)": 45,
     "Pand ten onrechte opgevoerd": 673,
@@ -697758,7 +697784,7 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 302.7,
+   "seconden": 399.2,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
@@ -697776,10 +697802,10 @@
    ]
   },
   "stand": {
-   "met_label": 16929,
-   "met_oppervlakte": 24427,
+   "met_label": 16930,
+   "met_oppervlakte": 24428,
    "postcodes_gedaan": 1515,
-   "woningen": 24427
+   "woningen": 24428
   }
  },
  "niet_woningen": {
@@ -723688,13 +723714,13 @@
   },
   "0268010000049881": {
    "adres": "Molenweg 105",
-   "bag_gezien": "2026-10-23",
+   "bag_gezien": "2026-10-24",
    "buurten": [],
    "doelen": [
     "kantoorfunctie"
    ],
    "herkomst": "bekendmaking",
-   "oppervlakte": 390,
+   "oppervlakte": 71,
    "pand": "0268100000028478",
    "pand_bouwjaar": 1933,
    "pand_status": "Pand in gebruik",
