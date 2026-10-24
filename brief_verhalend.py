@@ -1173,15 +1173,36 @@ def week_terug(soort, datum, dagen=7, maxlen=6000):
     De zondagsbrief gaat over de week, maar kreeg alleen de digest van die dag.
     Dan moet het model zich de week herinneren, en dat kan het niet: het ziet
     alleen wat er in de opdracht staat.
+
+    PAST HET NIET, DAN VALT DE OUDSTE DAG AF, NIET DE NIEUWSTE. Tot 24 oktober
+    2026 stonden de dagen van oud naar nieuw en werd het geheel op maxlen
+    afgekapt, dus viel juist het nieuwste weg. De weekbrief van die dag kreeg
+    bij het nieuws 18 tot en met 22 oktober en van 23 oktober alleen
+    "Vastgoedartike"; 24 oktober (zes berichten over de hypotheekrente die
+    naar een jaarrecord steeg) ontbrak helemaal, en bij de besluiten hield het
+    op bij 22 oktober, zodat de aanvraag voor studentenkamers aan Waterstraat
+    139 (23 oktober) pa in geen enkele brief bereikte. Het verhaal schreef
+    "De rente ... staat al sinds 2 september stil, dus daar is niets te
+    melden." De oude dagen stonden al in de dagbrieven; wat van gisteren en
+    vandaag is, heeft pa nog niet gelezen. Daarom wordt van nieuw naar oud
+    gevuld en blijft de volgorde in de opdracht van oud naar nieuw.
     """
     eind = dt.date.fromisoformat(datum)
-    stukken = []
-    for i in range(dagen - 1, -1, -1):
+    stukken, lengte = [], 0
+    for i in range(dagen):
         d = (eind - dt.timedelta(days=i)).isoformat()
         tekst = zonder_leegmeldingen(strip_opmaak(lees(f"digests/{d}-{soort}.md"), 2000))
-        if tekst.strip():
-            stukken.append(f"[{d}]\n{tekst}")
-    return "\n\n".join(stukken)[:maxlen]
+        if not tekst.strip():
+            continue
+        stuk = f"[{d}]\n{tekst}"
+        extra = len(stuk) + (2 if stukken else 0)
+        if lengte + extra > maxlen:
+            if not stukken:
+                stukken.append(stuk[:maxlen])
+            break
+        stukken.append(stuk)
+        lengte += extra
+    return "\n\n".join(reversed(stukken))
 
 
 # Afkortingen die in titels van bekendmakingen voluit staan en in de brief
@@ -1988,6 +2009,28 @@ def proef():
         fouten.append("straatbeeld: een tweede vermelding kreeg ook een link")
     if "Onbekendestraat 4 niet" not in _u:
         fouten.append("straatbeeld: een onbekend adres is aangetast")
+
+    # De weekbrief van 24 oktober 2026 miste de nieuwste dagen (zie
+    # week_terug). Op de echte digests van die week: vandaag moet erin, en
+    # vooraan blijft de volgorde van oud naar nieuw.
+    if not os.path.exists("digests/2026-10-24-publicaties.md"):
+        fouten.append("week_terug: de digests van 24 oktober 2026 ontbreken, "
+                      "de proef op het echte geval kan niet draaien")
+    else:
+        _w = week_terug("publicaties", "2026-10-24")
+        _b = week_terug("bekendmakingen", "2026-10-24")
+        if "[2026-10-24]" not in _w or "jaarrecord" not in _w:
+            fouten.append("week_terug: de nieuwste dag valt af als de week "
+                          "niet past (hypotheekrente 24 oktober ontbreekt)")
+        if "Waterstraat 139" not in _b:
+            fouten.append("week_terug: de besluiten van 23 oktober ontbreken "
+                          "in de weekbrief (Waterstraat 139)")
+        if len(_w) > 6000 or len(_b) > 6000:
+            fouten.append("week_terug: de week is langer dan maxlen")
+        _d = re.findall(r"^\[(\d{4}-\d{2}-\d{2})\]$", _w, re.M)
+        if _d != sorted(_d):
+            fouten.append(f"week_terug: de dagen staan niet van oud naar "
+                          f"nieuw: {_d}")
 
     print(f"Proef brief_verhalend: {len(fouten)} fouten", file=sys.stderr)
     for f in fouten:
