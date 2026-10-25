@@ -1,53 +1,10 @@
 [
  {
-  "datum": "2026-10-22",
-  "titel": "Besluit voor splitsen van woning in 2 zelfstandige appartementen (Pontanusstraat 42 en 42A), aan Pontanusstraat 42, 6524HG Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494180.html",
-  "strategie": "splitsen",
-  "duiding": "Besluit bevestigt dat splitsen naar twee zelfstandige units op dit adres is toegestaan, haalt kleine voorraad uit de markt.",
-  "feiten": {
-   "energielabel": "C (2026)",
-   "label_alleen_dit_adres": true,
-   "oppervlakte_m2": 72
-  },
-  "straat": "Pontanusstraat",
-  "huisnummer": "42",
-  "kern": true
- },
- {
-  "datum": "2026-10-22",
-  "titel": "Sloopmelding verwijderen pannendak huisnummer 91-101 t.b.v. renovatie, aan Groesbeeksedwarsweg 95, 6521DC Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494337.html",
-  "strategie": "geen",
-  "duiding": "Sloopmelding voor dakvervanging bij renovatie is een bouwtechnische stap zonder directe marktrelevantie.",
-  "feiten": {
-   "oppervlakte_m2": 139
-  },
-  "straat": "Groesbeeksedwarsweg",
-  "huisnummer": "95",
-  "kern": true
- },
- {
-  "datum": "2026-10-22",
-  "titel": "Aanvraag omgevingsvergunning voor het bouwkundig splitsen van een woning naar 2 zelfstandige woningen, aan van Goorstraat 87, 6512EC Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494331.html",
-  "strategie": "splitsen",
-  "duiding": "Aanvraag voor splitsen naar twee woningen is nog geen besluit, label E kan de haalbaarheid na splitsing beperken.",
-  "feiten": {
-   "energielabel": "E (2020)",
-   "label_alleen_dit_adres": true,
-   "oppervlakte_m2": 276
-  },
-  "straat": "van Goorstraat",
-  "huisnummer": "87",
-  "kern": true
- },
- {
   "datum": "2026-10-23",
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een woonhuis tot studentenkamers, aan Waterstraat 139, 6541TE Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-495990.html",
   "strategie": "kamerverhuur",
-  "duiding": "Aanvraag voor verbouw tot studentenkamers is nog niet vergund, bij toewijzing ontstaat precedent voor kamerverhuur in dit type pand.",
+  "duiding": "Aanvraag voor omzetting naar studentenkamers bij label C toont dat verkamering hier planologisch wordt onderzocht, nog geen besluit.",
   "feiten": {
    "energielabel": "C (2024)",
    "oppervlakte_m2": 118
@@ -57,25 +14,11 @@
   "kern": false
  },
  {
-  "datum": "2026-10-22",
-  "titel": "Besluit voor het aanvragen van een vergunning voor het tijdelijk verhuren van de woning, aan St. Josephhof 14, 6511SH Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494821.html",
-  "strategie": "buy-and-hold",
-  "duiding": "Besluit om vergunning tijdelijke verhuur aan te vragen wijst op overbrugging, pand komt mogelijk later op de koopmarkt.",
-  "feiten": {
-   "energielabel": "C (2026)",
-   "oppervlakte_m2": 29
-  },
-  "straat": "St. Josephhof",
-  "huisnummer": "14",
-  "kern": false
- },
- {
   "datum": "2026-10-23",
   "titel": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Laan van Oost-Indië 315, 6541GX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-495916.html",
   "strategie": "buy-and-hold",
-  "duiding": "Aanvraag tijdelijke verhuur is nog niet verleend, maar duidt op voorgenomen overbrugging voorafgaand aan verkoop of verbouwing.",
+  "duiding": "Aanvraag tijdelijke verhuur wijst op overbrugging, het pand van 297 m2 komt mogelijk later op de markt.",
   "feiten": {
    "energielabel": "A (2017)",
    "oppervlakte_m2": 297
@@ -85,25 +28,11 @@
   "kern": false
  },
  {
-  "datum": "2026-10-22",
-  "titel": "Aanvraag omgevingsvergunning voor het verwijderen van een draagmuur in een woning, aan Hatertseweg 264, 6533AX Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-494432.html",
-  "strategie": "geen",
-  "duiding": "Verwijderen van een draagmuur is een interne bouwkundige ingreep zonder marktbrede betekenis.",
-  "feiten": {
-   "energielabel": "A (2026)",
-   "oppervlakte_m2": 116
-  },
-  "straat": "Hatertseweg",
-  "huisnummer": "264",
-  "kern": false
- },
- {
   "datum": "2026-10-23",
   "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van een pand, aan Koningshofje 1, 6511LC Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-496523.html",
   "strategie": "geen",
-  "duiding": "Interne verbouwing zonder functiewijziging heeft geen directe betekenis voor het marktaanbod.",
+  "duiding": "Interne verbouwing van 370 m2 raakt de indeling maar zegt zonder functiewijziging niets over marktaanbod.",
   "feiten": {
    "oppervlakte_m2": 370
   },

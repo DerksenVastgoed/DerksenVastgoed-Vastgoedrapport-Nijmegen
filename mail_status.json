@@ -1,24 +1,25 @@
 {
- "datum": "2026-10-24",
+ "datum": "2026-10-25",
  "bronnen": {
   "regulier": {
    "mails": 3,
-   "objecten": 8,
-   "overgeslagen": 0,
-   "redenen": []
+   "objecten": 7,
+   "overgeslagen": 1,
+   "redenen": [
+    "Molenstraat 58 (geen prijs gevonden)"
+   ]
   },
   "huislijn": {
-   "mails": 2,
-   "objecten": 11,
+   "mails": 1,
+   "objecten": 7,
    "overgeslagen": 0,
    "redenen": []
   },
   "kamernet": {
-   "mails": 13,
-   "objecten": 11,
-   "overgeslagen": 2,
+   "mails": 9,
+   "objecten": 8,
+   "overgeslagen": 1,
    "redenen": [
-    "Ranonkelstraat, Arnhem: buiten Nijmegen",
     "Kwartelstraat, Wijchen: buiten Nijmegen"
    ]
   },
@@ -38,7 +39,7 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 28,
+  "zelfde_status": 21,
   "andere_status": 0,
   "voorbeelden": []
  },
@@ -47,14 +48,14 @@
   "funda.com": 0,
   "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 13,
+  "kamernet.nl": 9,
   "vendr.nl": 0,
-  "huislijn.nl": 2,
+  "huislijn.nl": 1,
   "huisly.nl": 0,
   "123wonen.nl": 0,
   "rentola.nl": 1
  },
  "mailbox": {
-  "mislukt": "(SINCE 21-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 21-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 22-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 22-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

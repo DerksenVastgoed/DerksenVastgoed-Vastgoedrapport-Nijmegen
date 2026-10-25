@@ -1,0 +1,38 @@
+
+## Publicaties
+_Vastgoedartikelen laatste 24u, met marktduiding. 25-10-2026._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPZVQ3dzlJQUg2REctak5EcFQ2V0NPdXI4cmlBZXRhSkoySDRqRmZ2TWh5dks0X0tFVnRseXp6dFFTbU44T1pfLTRHWFNqV1F6NndNRnhPTlI2a25xYjhYUFNvTjZGeGtmLU9qSjVSNGR1cFhWbkQ0WHE4ZnlBaTJTbHVtWl9zMmNQalZsNllTWGc3Y1ZfUlJETTRoVERibnB1Q19hcVhsLU9ZOHoxX29IOUc1V3Qxb2ZWNkNhdmotMGI?oc=5" style="color:#12242c;text-decoration:none">Deze huishoudens raken hun hypotheekrenteaftrek kwijt bij een scheiding - HomeFinance.nl</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Huishoudens kunnen bij een scheiding hun hypotheekrenteaftrek verliezen.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Bij vermogensoverdracht binnen een belegging na scheiding kan het fiscale voordeel op financiering wegvallen, wat het nettorendement raakt.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Rente vastgoed . <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPZVQ3dzlJQUg2REctak5EcFQ2V0NPdXI4cmlBZXRhSkoySDRqRmZ2TWh5dks0X0tFVnRseXp6dFFTbU44T1pfLTRHWFNqV1F6NndNRnhPTlI2a25xYjhYUFNvTjZGeGtmLU9qSjVSNGR1cFhWbkQ0WHE4ZnlBaTJTbHVtWl9zMmNQalZsNllTWGc3Y1ZfUlJETTRoVERibnB1Q19hcVhsLU9ZOHoxX29IOUc1V3Qxb2ZWNkNhdmotMGI?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#2E6DA4;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">transformatie</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/van-bedrijventerrein-naar-woonwijk-de-transformatiekansen-van-bedrijfsvastgoed/" style="color:#12242c;text-decoration:none">Van bedrijventerrein naar woonwijk: De transformatiekansen van bedrijfsvastgoed</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Verouderde bedrijventerreinen bieden kansen voor transformatie naar woningbouw.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Transformatie van bedrijfsvastgoed naar wonen kan nieuwe aanbodkansen creëren voor ontwikkelaars actief aan de randen van de binnenring.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/van-bedrijventerrein-naar-woonwijk-de-transformatiekansen-van-bedrijfsvastgoed/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://www.propertynl.com/nieuws/Top-beleggers-2026-Verhoudingen-in-vastgoedmarkt-verschuiven/035a9aef-7bd9-414c-9fae-ebff7309034a" style="color:#12242c;text-decoration:none">Top beleggers 2026: Verhoudingen in vastgoedmarkt verschuiven</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Private beleggers winnen terrein terwijl institutioneel kapitaal vaker via fondsen investeert.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Meer private kapitaalinstroom kan concurrentie om kleinere objecten in de binnenring vergroten en prijzen opdrijven.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">PropertyNL . <a href="https://www.propertynl.com/nieuws/Top-beleggers-2026-Verhoudingen-in-vastgoedmarkt-verschuiven/035a9aef-7bd9-414c-9fae-ebff7309034a" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#4a7a72;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">buy-and-hold</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTG9LU3Q0MjU0azZLVGxTX1pqdG42dEtyUkdhMk5pRkZaWTRxTWNFZ1FrV0xtV1BhZDVocElLLWZCclBDQXZDbmJHVHBzLWkzazY0dkhsZGdaNmpHeFNVOHVaN3kxbVdhdksxck5sRkJyUkdNRi12RXJXdVZGRWZNSzRZdGJHYjF5N2lCZ05rZjg3ZmdtWDBTWHVHTUw3SzNfYmRObVhRS3JlUTVuYVE5S1JQdnZTOFZyNzlIZVJZc3pKWHE4dEZubjJfTkJZejJlUW5kemR3?oc=5" style="color:#12242c;text-decoration:none">Hoe praat ik mee over beslissingen van de verhuurder van mijn woning? - Rijksoverheid.nl</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Rijksoverheid legt uit hoe huurders kunnen meepraten over beslissingen van hun verhuurder.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Meer huurdersinspraak kan beheerprocessen voor verhuurders vertragen en vraagt om zorgvuldiger communicatie bij renovaties.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Rijksoverheid wonen . <a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTG9LU3Q0MjU0azZLVGxTX1pqdG42dEtyUkdhMk5pRkZaWTRxTWNFZ1FrV0xtV1BhZDVocElLLWZCclBDQXZDbmJHVHBzLWkzazY0dkhsZGdaNmpHeFNVOHVaN3kxbVdhdksxck5sRkJyUkdNRi12RXJXdVZGRWZNSzRZdGJHYjF5N2lCZ05rZjg3ZmdtWDBTWHVHTUw3SzNfYmRObVhRS3JlUTVuYVE5S1JQdnZTOFZyNzlIZVJZc3pKWHE4dEZubjJfTkJZejJlUW5kemR3?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#2E6DA4;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">transformatie</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxORnhqRU4wRkZ5dk4tWlR6NXRwNDZUZUFVdjkwVVgxaU93NWV1YUk4WjhTU2pzMk1ZSTNwX29VUTloRmsyTjFDNmp0Zk9sd2dROXJXaGo4YjJNc0JXYUpWUDllOEx6WlhNSmstUnJjeTRXM25VN1QwZDZ2Um5sanI0cnVjcG9ROFM0UkxyNlp4X0tPNGVwRE54R2JsV05QR2xpbVZCLUVES05mZ2FtQ01zcFhfWE1iZS1xQ21Lc3V4VVZ0QnQ3dHhIM0Npcw?oc=5" style="color:#12242c;text-decoration:none">Vastgoedbedrijf haakt af bij oude V&D en Molenpoort, maar houdt vast aan casino-deal - De Gelderlander</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Een vastgoedbedrijf trekt zich terug uit de herontwikkeling van de oude V&D en Molenpoort in Nijmegen, maar behoudt de casino-deal.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Vertraging in grote binnenstedelijke transformatieprojecten kan de beschikbaarheid van herontwikkelingslocaties in het centrum beperken.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Regionale pers Nijmegen . <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxORnhqRU4wRkZ5dk4tWlR6NXRwNDZUZUFVdjkwVVgxaU93NWV1YUk4WjhTU2pzMk1ZSTNwX29VUTloRmsyTjFDNmp0Zk9sd2dROXJXaGo4YjJNc0JXYUpWUDllOEx6WlhNSmstUnJjeTRXM25VN1QwZDZ2Um5sanI0cnVjcG9ROFM0UkxyNlp4X0tPNGVwRE54R2JsV05QR2xpbVZCLUVES05mZ2FtQ01zcFhfWE1iZS1xQ21Lc3V4VVZ0QnQ3dHhIM0Npcw?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>

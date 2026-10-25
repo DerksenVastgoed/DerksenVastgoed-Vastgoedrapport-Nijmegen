@@ -1167,3 +1167,8 @@ Zwanenveld 4066 | Nijmegen | 375 | te huur kamer | 2026-10-23 | rentola | 95 | 6
 Waalkade | Nijmegen | 2000 | te huur | 2026-10-23 | pararius | 105 | 6511XP
 Hatertseweg | Nijmegen | 895 | te huur | 2026-10-23 | kamernet-incl | 17 | 
 Weidestraat | Nijmegen | 270 | te huur kamer | 2026-10-23 | kamernet | 7 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 25-10-2026
+Burg. Hustinxstraat 100 | Nijmegen | 300000 | te koop | 2026-10-24 | funda-mail | 50 | 6512AG
+Graafseweg 94 | Nijmegen | 325000 | te koop | 2026-10-24 | funda-mail | 45 | 6512CH
+Muntweg | Nijmegen | 855 | te huur kamer | 2026-10-24 | kamernet-incl | 24 | 
