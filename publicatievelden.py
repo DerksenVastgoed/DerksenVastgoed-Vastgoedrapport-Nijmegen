@@ -357,6 +357,42 @@ def proef():
                                                  "2026-10-29")[g]["keer"], 3)
     check("geen mislukkingen", meldregels({}), "Mislukt: geen.")
 
+    # 6. DE TELLING WORDT OOK NA EEN RODE RONDE TERUGGESCHREVEN.
+    # 25 oktober 2026, run 40230114073: de ronde eindigde op GESTOPT, de
+    # workflow sloeg nameten en terugcommitten over, en de telling hierboven
+    # bleef daardoor altijd op 1. Dan gaat de drempel nooit over en meldt
+    # het gezondheidsrapport niets. Deze controle leest de workflow zelf.
+    # Zonder yaml: deze workflow installeert geen pakketten, en een proef die
+    # op een ontbrekende import omvalt houdt de hele ronde tegen.
+    try:
+        with open(os.path.join(".github", "workflows", "publicatievelden.yml"),
+                  encoding="utf-8") as f:
+            blokken = f.read().split("\n      - name: ")[1:]
+        stappen = {}
+        for b in blokken:
+            naam, _, rest = b.partition("\n")
+            st = {}
+            for regel in rest.split("\n"):
+                for sleutel in ("id", "if"):
+                    if regel.startswith(f"        {sleutel}: "):
+                        st[sleutel] = regel.split(": ", 1)[1].strip()
+            stappen[naam.strip()] = st
+    except Exception as e:
+        stappen = None
+        fouten.append(f"workflow niet te lezen: {type(e).__name__}")
+    if stappen is not None:
+        oph = stappen.get("De velden ophalen") or {}
+        nam = stappen.get("Nameten of er werkelijk iets is bijgekomen") or {}
+        com = stappen.get("De velden terugcommitten") or {}
+        check("nameten loopt ook na een mislukte ophaalstap",
+              oph.get("id") == "ophalen"
+              and "steps.ophalen.outcome == 'failure'" in str(nam.get("if")),
+              True)
+        check("terugcommitten hangt aan het nameten",
+              nam.get("id") == "nameten"
+              and "steps.nameten.outcome == 'success'" in str(com.get("if")),
+              True)
+
     # 4. EEN ONTBREKEND BESTAND IS LEEG EN GEEN FOUT.
     check("bestand ontbreekt", lees("bestaat-echt-niet.json"), {})
 
