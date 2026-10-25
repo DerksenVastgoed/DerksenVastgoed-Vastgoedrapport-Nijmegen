@@ -1823,3 +1823,18 @@ waarom: 25 oktober 2026. Sinds die dag staat de veldenronde niet meer rood om
   komt uit publicatievelden.py, zodat er één implementatie van is.
 proef: gezondheid:een publicatie die blijft mislukken; gezondheid:onder de drempel gaat de melding af; gezondheid:zonder stand lijkt alles in orde
 soort: werking
+
+---
+eis: De veldenronde schrijft haar stand ook terug als de ophaalstap rood
+  eindigt; alleen een mislukt nameten of een mislukte proef houdt het
+  terugschrijven tegen.
+waarom: 25 oktober 2026, run 40230114073, de eerste ronde na de telling per
+  publicatie: "Mislukt: gmb-2023-26729, HTTPError 404, 1 ronde achter elkaar",
+  daarna GESTOPT, en de workflow sloeg nameten en terugcommitten over. De
+  telling stond dus alleen op de runner en begon elke ronde opnieuw bij 1;
+  de drempel van drie rondes ging nooit over en het gezondheidsrapport
+  meldde niets. De proef leest de workflow zonder yaml, want deze workflow
+  installeert geen pakketten en een proef die op een import omvalt houdt de
+  hele ronde tegen.
+proef: publicatievelden:nameten loopt ook na een mislukte ophaalstap; publicatievelden:terugcommitten hangt aan het nameten
+soort: werking

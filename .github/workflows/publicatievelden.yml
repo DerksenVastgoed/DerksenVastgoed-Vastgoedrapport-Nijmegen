@@ -60,6 +60,7 @@ jobs:
           python publicatievelden.py --proef
 
       - name: De velden ophalen
+        id: ophalen
         run: |
           # PIPEFAIL, ANDERS IS DE EXITCODE DIE VAN tee.
           #
@@ -75,6 +76,16 @@ jobs:
             2>&1 | tee "$RUNNER_TEMP/ronde.log"
 
       - name: Nameten of er werkelijk iets is bijgekomen
+        id: nameten
+        # OOK NA EEN RODE RONDE. 25 oktober 2026: publicatievelden.py
+        # telt per publicatie hoeveel rondes achter elkaar ze mislukt, in
+        # publicatie_velden_stand.json. Maar een ronde die op GESTOPT eindigt
+        # sloeg deze stap over, dus die telling werd nooit teruggeschreven en
+        # bleef op 1 (gmb-2023-26729, run 40230114073). Na een mislukte
+        # ophaalstap lopen nameten en terugschrijven dus gewoon door; de
+        # meldstap gaat af omdat de ophaalstap rood staat. Na een mislukte
+        # proef (dan is de ophaalstap overgeslagen) niet.
+        if: ${{ !cancelled() && (steps.ophalen.outcome == 'success' || steps.ophalen.outcome == 'failure') }}
         # EEN STAP DIE GROEN STAAT EN NIETS DEED, IS HET PROBLEEM ZELF.
         # De eerste echte ronde meldde gelukt en committeerde niets, en toen
         # was er geen aanknopingspunt: het joblogboek is van buiten niet te
@@ -99,6 +110,16 @@ jobs:
           EOF
 
       - name: De velden terugcommitten
+        # OOK NA EEN RODE RONDE. 25 oktober 2026: publicatievelden.py
+        # telt per publicatie hoeveel rondes achter elkaar ze mislukt, in
+        # publicatie_velden_stand.json. Maar een ronde die op GESTOPT eindigt
+        # sloeg deze stap over, dus die telling werd nooit teruggeschreven en
+        # bleef op 1 (gmb-2023-26729, run 40230114073). Na een mislukte
+        # ophaalstap lopen nameten en terugschrijven dus gewoon door; de
+        # meldstap gaat af omdat de ophaalstap rood staat. Na een mislukte
+        # proef (dan is de ophaalstap overgeslagen) niet.
+        # En alleen als het nameten de bestanden goed vond.
+        if: ${{ !cancelled() && steps.nameten.outcome == 'success' }}
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
