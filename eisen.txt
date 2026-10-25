@@ -1791,3 +1791,21 @@ waarom: 25 oktober. Van Goorstraat 87: aanvraag 20 januari (drie woningen),
   besluit; het blok verandert op precies die ene regel.
 proef: splitsing_voltooid:een aanvraag na het besluit hoort er niet bij; splitsing_voltooid:het blok zegt dat het besluit geen antwoord is
 soort: brief
+
+---
+eis: De veldenronde noemt per mislukte publicatie het nummer, het soort fout
+  en hoeveel rondes achter elkaar die fout terugkomt. Mislukt alles wat te
+  doen was met een fout die er al drie rondes of langer staat, dan is dat
+  geen storing van vandaag en staat de ronde niet rood; een nieuwe
+  mislukking of een andere fout is dat wel.
+waarom: 19 tot en met 25 oktober 2026, vier issues "Veldenronde mislukt",
+  elk met "0 van 1 nog te doen, 1 mislukt". Nagerekend op main: die ene was
+  steeds gmb-2023-26729, Ligusterstraat 115, 20 januari 2023. Het issue zei
+  niet welke en niet waarom, en de ronde stond rood om één publicatie die
+  nooit lukt. Een melding die elke dag om hetzelfde afgaat leert de lezer het
+  issue over te slaan. Nagespeeld op publicatie_velden.json van 25 oktober
+  met een gesimuleerde 404: ronde 1 en 2 rood, vanaf ronde 3 groen met de
+  regel "BLIJFT MISLUKKEN" in het logboek. De echte fout is niet bekend; die
+  staat na deze wijziging in het eerstvolgende issue.
+proef: publicatievelden:de regel noemt nummer, fout en aantal; publicatievelden:andere fout is weer een storing; publicatievelden:een nieuwe erbij is een storing
+soort: werking
