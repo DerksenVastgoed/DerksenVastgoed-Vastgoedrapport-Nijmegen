@@ -3600,6 +3600,49 @@ def controle_geheugen():
     return (OK, bewijs, "")
 
 
+def controle_veldenronde(pad="publicatie_velden_stand.json"):
+    """
+    Publicaties die de veldenronde keer op keer niet kan ophalen.
+
+    WAAROM HIER. Sinds 25 oktober 2026 (publicatievelden.mislukkingen) staat
+    de veldenronde niet meer rood als alles wat mislukt, al DREMPEL rondes met
+    dezelfde fout mislukt; dat was gmb-2023-26729, vier issues in een week om
+    één publicatie. Maar een ronde die niet stopt maakt geen issue, dus vanaf
+    de derde ronde stond zo'n publicatie alleen nog in het logboek en in de
+    stand. Niet opgelost en nergens gemeld is dezelfde stilte als nul gezien.
+    Dus meldt dit rapport haar, zolang ze er staat.
+
+    De drempel komt uit publicatievelden.py en staat hier niet nog een keer.
+    """
+    from publicatievelden import DREMPEL
+    d = _json(pad)
+    if d is None:
+        return (LET_OP, f"{pad} ontbreekt of is onleesbaar; niet na te gaan "
+                "welke publicaties mislukken", "")
+    if "mislukt" not in d:
+        return (OK, "nog niet gemeten: de stand komt van voor de telling per "
+                "publicatie", "")
+    m = d.get("mislukt") or {}
+    if not m:
+        return (OK, f"geen publicatie die mislukt (stand van "
+                f"{d.get('datum', '?')})", "")
+    hard = sorted((g for g, v in m.items() if v.get("keer", 0) >= DREMPEL),
+                  key=lambda g: (-m[g]["keer"], g))
+    if not hard:
+        return (OK, f"{len(m)} mislukt, korter dan {DREMPEL} rondes; de "
+                f"veldenronde meldt die zelf in een issue", "")
+    lijst = "; ".join(f"{g} ({m[g].get('fout')}, {m[g]['keer']} rondes sinds "
+                      f"{m[g].get('sinds')})" for g in hard[:5])
+    return (LET_OP, f"{len(hard)} "
+            f"{'publicatie mislukt' if len(hard) == 1 else 'publicaties mislukken'}"
+            f" al {DREMPEL} rondes of langer met dezelfde fout: {lijst}"
+            + (" en meer" if len(hard) > 5 else ""),
+            "De veldenronde staat hierom niet meer rood, maar het is niet "
+            "opgelost. Kijk of de publicatie nog bestaat (bij een 404 of 410 "
+            "is ze vermoedelijk weg) en beslis dan of ze uit het archief "
+            "moet.")
+
+
 def controle_commit():
     """Werd er de vorige keer iets teruggeschreven?"""
     leeftijd = _leeftijd_dagen("brief_gezien.json")
@@ -3678,6 +3721,7 @@ CONTROLES = [
     ("Misdrijfcijfers", controle_misdrijven),
     ("OV-haltes", controle_ov),
     ("Bekendmakingen-archief", controle_archief),
+    ("Veldenronde", controle_veldenronde),
     ("Regelgevingsmonitor", controle_regelgeving),
     ("Geheugen en trend", controle_geheugen),
     ("Terugschrijven", controle_commit),
@@ -3970,6 +4014,36 @@ def proef():
         if controle_overgeslagen(_p)[0] != OK:
             fouten.append("een leeg bestand met overgeslagen stappen wordt "
                           "toch als mislukking gelezen")
+
+    # DE VELDENRONDE: WAT BLIJFT MISLUKKEN, WORDT HIER GEMELD (25 oktober).
+    with _tf.TemporaryDirectory() as _m:
+        _p = _os.path.join(_m, "stand.json")
+        _g = "gmb-2023-26729"
+
+        def _stand_met(mislukt):
+            with open(_p, "w", encoding="utf-8") as _f:
+                json.dump({"datum": "2026-10-28", "mislukt": mislukt}, _f)
+            return controle_veldenronde(_p)
+
+        _st, _tk, _ = _stand_met({_g: {"fout": "HTTPError 404", "keer": 3,
+                                       "sinds": "2026-10-26"}})
+        if _st != LET_OP or _g not in _tk or "HTTPError 404" not in _tk:
+            fouten.append(f"veldenronde: een publicatie die blijft mislukken "
+                          f"wordt niet gemeld: {_st} {_tk!r}")
+        if _stand_met({_g: {"fout": "HTTPError 404", "keer": 2,
+                            "sinds": "2026-10-27"}})[0] != OK:
+            fouten.append("veldenronde: onder de drempel gaat de melding af, "
+                          "terwijl de ronde dat zelf al in een issue meldt")
+        if _stand_met({})[0] != OK:
+            fouten.append("veldenronde: niets mislukt en toch een melding")
+        with open(_p, "w", encoding="utf-8") as _f:
+            json.dump({"datum": "2026-10-25"}, _f)
+        _st, _tk, _ = controle_veldenronde(_p)
+        if _st != OK or "nog niet gemeten" not in _tk:
+            fouten.append(f"veldenronde: een stand zonder telling heet niet "
+                          f"'nog niet gemeten': {_st} {_tk!r}")
+        if controle_veldenronde(_os.path.join(_m, "weg.json"))[0] != LET_OP:
+            fouten.append("veldenronde: zonder stand lijkt alles in orde")
 
     # DE DEKKING VAN ONZE SIGNALEN, OP DRIE PANDEN. Een pand met een
     # bekendmaking dat in de voorraad staat, een dat er niet staat, en een
