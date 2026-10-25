@@ -1775,3 +1775,19 @@ waarom: 21 oktober. "5 van de 6 buurten ... gaan dezelfde kant op, omhoog,
   +9,7%, mediaan 6,3% (was 5,9% met de daling als stijging meegeteld).
 proef: marktprijzen_bag:een buurt die de andere kant op gaat staat in de
 soort: brief
+
+---
+eis: Een aanvraag die na het laatste besluit op een pand is gepubliceerd,
+  staat in het splitsingenblok apart, met erbij dat dat besluit er geen
+  antwoord op is. De aanvraag bij een besluit is de laatste ervoor.
+waarom: 25 oktober. Van Goorstraat 87: aanvraag 20 januari (drie woningen),
+  besluit 28 juli (twee), nieuwe aanvraag 22 oktober (twee). Het blok zette
+  de laatste aanvraag naast het laatste besluit en schreef alleen "Besluit
+  van 2026-07-28 voor 2". De feitencontrole las dat als het besluit op de
+  aanvraag van 22 oktober en liet de schrijver het herstellen tot "de
+  aanvraag die ik eerder noemde is dus inmiddels gehonoreerd": een besluit
+  van drie maanden voor de aanvraag. Gemeten op pandgeschiedenis.json van 25
+  oktober: 1 van de 58 aangekondigde panden heeft een aanvraag na het
+  besluit; het blok verandert op precies die ene regel.
+proef: splitsing_voltooid:een aanvraag na het besluit hoort er niet bij; splitsing_voltooid:het blok zegt dat het besluit geen antwoord is
+soort: brief

@@ -217,7 +217,27 @@ def zoek(geschiedenis):
                    # het liet zien, en anders de laatste bekendmaking.
                    "datum": (groei[-1][0] if groei else
                              max(g["datum"] for g in besluiten + aanvragen))}
-            if aanvragen:
+            # EEN AANVRAAG NA HET BESLUIT HOORT ER NIET BIJ. 25 oktober 2026,
+            # van Goorstraat 87: aanvraag 20 januari (drie woningen), besluit
+            # 28 juli (twee), en op 22 oktober een nieuwe aanvraag (twee).
+            # Hier stond de laatste aanvraag naast het laatste besluit, en de
+            # regel zei alleen "Besluit van 2026-07-28 voor 2". De
+            # feitencontrole las dat als het besluit op de aanvraag van 22
+            # oktober, en de brief aan pa schreef dat die aanvraag "inmiddels
+            # gehonoreerd" was: een besluit van drie maanden voor de aanvraag.
+            # Dus: de aanvraag bij het besluit is de laatste ervoor, en een
+            # latere staat er apart bij, met erbij dat het besluit er niet bij
+            # hoort. Gemeten op 25 oktober: 1 van de 58 aangekondigde panden.
+            if besluiten:
+                voor = [a for a in aanvragen
+                        if a["datum"] <= besluiten[-1]["datum"]]
+                na = [a for a in aanvragen
+                      if a["datum"] > besluiten[-1]["datum"]]
+                if voor:
+                    rij["aanvraag"] = voor[-1]["datum"]
+                if na:
+                    rij["aanvraag_na_besluit"] = na[-1]["datum"]
+            elif aanvragen:
                 rij["aanvraag"] = aanvragen[-1]["datum"]
             if besluiten:
                 rij["besluit"] = besluiten[-1]["datum"]
@@ -452,6 +472,13 @@ def tekst(uit, vandaag=None):
                                  f" gevormd dan vergund, om na te kijken")
                     else:
                         deel += ", evenveel als er gevormd zijn"
+                if rij.get("aanvraag_na_besluit"):
+                    # Zie zoek(): van Goorstraat 87, 25 oktober 2026.
+                    deel += (f". Na dat besluit kwam op "
+                             f"{rij['aanvraag_na_besluit']} een nieuwe "
+                             f"aanvraag; daarop is nog geen besluit bekend, "
+                             f"en het besluit van {rij['besluit']} is er dus "
+                             f"geen antwoord op")
             elif rij.get("aanvraag"):
                 deel += (f". Aanvraag van {rij['aanvraag']} bekend, besluit "
                          f"niet in ons archief")
@@ -780,6 +807,38 @@ def proef():
     check("echte splitsing na de overgang blijft gerealiseerd",
           (len(uit["gerealiseerd"]), uit["aangekondigd_nog_niet_in_gebruik"]),
           (1, []))
+
+    # 7. EEN AANVRAAG NA HET BESLUIT (25 oktober). Echte teksten van van
+    #    Goorstraat 87 uit pandgeschiedenis.json. De brief schreef dat de
+    #    aanvraag van 22 oktober "inmiddels gehonoreerd" was, met het besluit
+    #    van 28 juli als bewijs.
+    goor = [
+        {"datum": "2026-01-20", "soort": "bekendmaking",
+         "tekst": "Aanvraag omgevingsvergunning voor het bouwkundig splitsen "
+                  "van een woning naar drie zelfstandige woningen, aan van "
+                  "Goorstraat 87, 6512EC Nijmegen"},
+        {"datum": "2026-07-28", "soort": "bekendmaking",
+         "tekst": "Besluit voor het bouwkundig splitsen van een woning naar "
+                  "twee zelfstandige woningen, aan van Goorstraat 87, 6512EC "
+                  "Nijmegen"},
+        {"datum": "2026-10-22", "soort": "bekendmaking",
+         "tekst": "Aanvraag omgevingsvergunning voor het bouwkundig splitsen "
+                  "van een woning naar 2 zelfstandige woningen, aan van "
+                  "Goorstraat 87, 6512EC Nijmegen"}]
+    uit = zoek({"v": _pand("van Goorstraat 87", "P5", goor, 1, [95, 120])})
+    aan = uit["aangekondigd_nog_niet_in_gebruik"]
+    check("een aanvraag na het besluit hoort er niet bij",
+          [(r.get("aanvraag"), r.get("besluit"), r.get("aanvraag_na_besluit"))
+           for r in aan], [("2026-01-20", "2026-07-28", "2026-10-22")])
+    blok = tekst(uit, dt.date(2026, 10, 25))
+    check("het blok zegt dat het besluit geen antwoord is op de latere "
+          "aanvraag", "Na dat besluit kwam op 2026-10-22 een nieuwe aanvraag"
+          in blok and "is er dus geen antwoord op" in blok, True)
+    # Zonder latere aanvraag blijft de regel zoals hij was.
+    uit = zoek({"v": _pand("van Goorstraat 87", "P5", goor[:2], 1,
+                           [95, 120])})
+    check("zonder latere aanvraag geen extra zin",
+          "Na dat besluit" in tekst(uit, dt.date(2026, 10, 25)), False)
 
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
