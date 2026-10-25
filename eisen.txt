@@ -1809,3 +1809,17 @@ waarom: 19 tot en met 25 oktober 2026, vier issues "Veldenronde mislukt",
   staat na deze wijziging in het eerstvolgende issue.
 proef: publicatievelden:de regel noemt nummer, fout en aantal; publicatievelden:andere fout is weer een storing; publicatievelden:een nieuwe erbij is een storing
 soort: werking
+
+---
+eis: Het gezondheidsrapport meldt elke publicatie die de veldenronde al
+  drie rondes of langer met dezelfde fout niet kan ophalen, met nummer, fout
+  en sinds wanneer, zolang ze er staat. Een stand zonder telling heet "nog
+  niet gemeten", en geen stand is geen "in orde".
+waarom: 25 oktober 2026. Sinds die dag staat de veldenronde niet meer rood om
+  een publicatie die blijft mislukken (zie de eis over de veldenronde), en
+  een ronde die niet stopt maakt geen issue. Zonder deze controle stond zo'n
+  publicatie vanaf de derde ronde alleen nog in het logboek en in
+  publicatie_velden_stand.json: niet opgelost en nergens gemeld. De drempel
+  komt uit publicatievelden.py, zodat er één implementatie van is.
+proef: gezondheid:een publicatie die blijft mislukken; gezondheid:onder de drempel gaat de melding af; gezondheid:zonder stand lijkt alles in orde
+soort: werking
