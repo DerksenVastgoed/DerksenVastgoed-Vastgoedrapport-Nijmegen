@@ -132,15 +132,53 @@ def doorlooptijden(velden):
     return sorted(uit, key=lambda r: r["dagen"])
 
 
-def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4):
+# Na hoeveel rondes achter elkaar met dezelfde fout een publicatie "blijft
+# mislukken" heet. Zie mislukkingen().
+DREMPEL = 3
+
+
+def mislukkingen(vorige, deze_ronde, gelukt, vandaag):
+    """
+    Per publicatie die mislukt: met welke fout, en hoeveel rondes achter
+    elkaar met diezelfde fout.
+
+    WAAROM. Van 19 tot en met 25 oktober 2026 kwamen er vier issues
+    "Veldenronde mislukt", allemaal met "0 van 1 nog te doen, 1 mislukt". Die
+    ene was elke keer gmb-2023-26729 (Ligusterstraat 115, 20 januari 2023).
+    De ronde gaf alleen het aantal, niet de fout, dus uit het issue was niet
+    te zien waarom; en omdat het stoppen op nul opgehaald terecht een storing
+    meldt, stond de ronde rood om één publicatie die nooit lukt. Een melding
+    die elke dag om hetzelfde afgaat leert de lezer het issue over te slaan.
+
+    Dus: de fout per publicatie wordt bewaard (alleen het soort en de code,
+    zie bijlagen.haal), en hoe vaak die achter elkaar terugkomt. Een andere
+    fout begint opnieuw bij 1, want dat is niet hetzelfde probleem. Wat lukt
+    of niet meer te doen is, valt eruit.
+    """
+    uit = {}
+    for gmb, fout in deze_ronde.items():
+        oud = vorige.get(gmb) or {}
+        keer = oud.get("keer", 0) + 1 if oud.get("fout") == fout else 1
+        uit[gmb] = {"fout": fout, "keer": keer, "laatst": vandaag,
+                    "sinds": oud.get("sinds", vandaag) if keer > 1 else vandaag}
+    # Niet geprobeerd deze ronde (tijdbudget op): de oude stand blijft staan.
+    for gmb, oud in vorige.items():
+        if gmb not in uit and gmb not in gelukt:
+            uit[gmb] = oud
+    return uit
+
+
+def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4, stand_pad=STAND):
     """Een ronde: ophalen wat nog niet bekend is, binnen een tijdbudget."""
     bekend = lees(pad)
+    vorige = lees(stand_pad).get("mislukt") or {}
     rijen = bijlagen.uit_archief(soorten=None)
     todo = nog_te_doen(rijen, bekend)
     if maximaal:
         todo = todo[:maximaal]
     einde = time.time() + minuten * 60
     gedaan = mislukt = 0
+    fouten, gelukt = {}, set()
     for r in todo:
         if time.time() > einde:
             print(f"Tijdbudget op na {gedaan} publicaties; "
@@ -151,7 +189,9 @@ def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4):
         broncode, fout = bijlagen.haal(url)
         if fout:
             mislukt += 1
+            fouten[r["gmb"]] = fout
             continue
+        gelukt.add(r["gmb"])
         import re as _re
         kaal = _re.sub(r"\s+", " ", _re.sub(r"<[^>]+>", " ", broncode))
         v = besluit.velden_uit(kaal)
@@ -162,14 +202,52 @@ def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4):
         bekend[r["gmb"]] = v
         gedaan += 1
         time.sleep(tempo)
-    return bekend, gedaan, mislukt, len(todo)
+    m = mislukkingen(vorige, fouten, gelukt, dt.date.today().isoformat())
+    # Wat niet meer te doen is (inmiddels bekend), hoort er niet meer in.
+    m = {g: v for g, v in m.items() if g not in bekend}
+    return bekend, gedaan, mislukt, len(todo), m
 
 
-def bewaar(velden, pad=PAD, stand_pad=STAND):
+def meldregels(m):
+    """
+    De mislukkingen voor het logboek, en dus voor de staart in het issue.
+
+    Alleen het publicatienummer, het soort fout en de code: dat is openbare
+    informatie en de url staat er niet in.
+    """
+    if not m:
+        return "Mislukt: geen."
+    r = []
+    for g in sorted(m, key=lambda g: (-m[g]["keer"], g)):
+        v = m[g]
+        r.append(f"Mislukt: {g}, {v['fout']}, {v['keer']} "
+                 f"{'ronde' if v['keer'] == 1 else 'rondes'} achter elkaar "
+                 f"sinds {v['sinds']}"
+                 + (" (BLIJFT MISLUKKEN)" if v["keer"] >= DREMPEL else ""))
+    return "\n".join(r)
+
+
+def alleen_hardnekkig(totaal, mislukt, m, vandaag):
+    """
+    Of alles wat deze ronde te doen was, mislukte met een fout die er al
+    DREMPEL rondes of langer staat.
+
+    Dan is nul opgehaald geen storing maar steeds dezelfde, en dan staat de
+    ronde niet rood: de regel erover staat in het logboek en in
+    publicatie_velden_stand.json onder "mislukt". Zodra er één andere
+    publicatie mislukt, of de fout verandert, telt het weer als storing.
+    """
+    vandaag_mislukt = [g for g, v in m.items() if v.get("laatst") == vandaag]
+    return (totaal > 0 and mislukt == totaal
+            and all(m[g]["keer"] >= DREMPEL for g in vandaag_mislukt))
+
+
+def bewaar(velden, pad=PAD, stand_pad=STAND, mislukt=None):
     with open(pad, "w", encoding="utf-8") as f:
         json.dump(velden, f, ensure_ascii=False, indent=1, sort_keys=True)
     s = stand_van(velden)
     s["doorlooptijden"] = doorlooptijden(velden)[:400]
+    s["mislukt"] = mislukt or {}
     with open(stand_pad, "w", encoding="utf-8") as f:
         json.dump(s, f, ensure_ascii=False, indent=1)
     return s
@@ -245,6 +323,40 @@ def proef():
     check("zonder zaaknummer", doorlooptijden(
         {"x": {"ontvangen": "2026-01-01", "besluitdatum": "2026-02-01"}}), [])
 
+    # 5. EEN PUBLICATIE DIE BLIJFT MISLUKKEN IS GEEN STORING VAN VANDAAG.
+    # 19 tot en met 25 oktober 2026: vier issues om gmb-2023-26729, elke
+    # keer "0 van 1, 1 mislukt", zonder te zeggen welke of waarom.
+    g = "gmb-2023-26729"
+    m = {}
+    for i, dag in enumerate(("2026-10-26", "2026-10-27", "2026-10-28")):
+        m = mislukkingen(m, {g: "HTTPError 404"}, set(), dag)
+        check(f"ronde {i + 1} telt", m[g]["keer"], i + 1)
+        check(f"ronde {i + 1} storing of niet",
+              alleen_hardnekkig(1, 1, m, dag), i + 1 >= DREMPEL)
+    check("sinds de eerste keer", m[g]["sinds"], "2026-10-26")
+    check("de regel noemt nummer, fout en aantal",
+          meldregels(m), "Mislukt: gmb-2023-26729, HTTPError 404, 3 rondes "
+          "achter elkaar sinds 2026-10-26 (BLIJFT MISLUKKEN)")
+    # Een andere fout is een ander probleem en begint opnieuw.
+    m2 = mislukkingen(m, {g: "URLError"}, set(), "2026-10-29")
+    check("andere fout begint opnieuw", m2[g]["keer"], 1)
+    check("andere fout is weer een storing",
+          alleen_hardnekkig(1, 1, m2, "2026-10-29"), False)
+    # Faalt er naast de hardnekkige ook een nieuwe, dan is het een storing.
+    m3 = mislukkingen(m, {g: "HTTPError 404", "gmb-2026-9": "URLError"},
+                      set(), "2026-10-29")
+    check("een nieuwe erbij is een storing",
+          alleen_hardnekkig(2, 2, m3, "2026-10-29"), False)
+    # Lukt er een niet en is er meer te doen dan wat mislukte (tijdbudget),
+    # dan beslist de oude regel.
+    check("niet alles geprobeerd is geen vrijbrief",
+          alleen_hardnekkig(2, 1, m, "2026-10-28"), False)
+    # Wat lukt valt eruit; wat niet geprobeerd is blijft staan.
+    check("gelukt valt eruit", mislukkingen(m, {}, {g}, "2026-10-29"), {})
+    check("niet geprobeerd blijft", mislukkingen(m, {}, set(),
+                                                 "2026-10-29")[g]["keer"], 3)
+    check("geen mislukkingen", meldregels({}), "Mislukt: geen.")
+
     # 4. EEN ONTBREKEND BESTAND IS LEEG EN GEEN FOUT.
     check("bestand ontbreekt", lees("bestaat-echt-niet.json"), {})
 
@@ -262,11 +374,12 @@ def main():
     args = ap.parse_args()
     if args.proef:
         return proef()
-    velden, gedaan, mislukt, totaal = ronde(minuten=args.minuten,
-                                            maximaal=args.max)
-    s = bewaar(velden)
+    velden, gedaan, mislukt, totaal, m = ronde(minuten=args.minuten,
+                                               maximaal=args.max)
+    s = bewaar(velden, mislukt=m)
     print(f"Opgehaald: {gedaan} van {totaal} nog te doen, {mislukt} mislukt.",
           file=sys.stderr)
+    print(meldregels(m), file=sys.stderr)
     print(f"Vastgelegd: {s['vastgelegd']} publicaties, "
           f"{s['met_zaaknummer']} met zaaknummer, "
           f"{s['nu_ter_inzage']} nu ter inzage.", file=sys.stderr)
@@ -284,11 +397,17 @@ def main():
     # is van buiten niet te lezen, en de meldstap gaat alleen af bij een
     # mislukking. Een ronde die niets ophaalt terwijl er 479 publicaties
     # wachten, hoort rood te staan, zodat de reden in het issue komt.
-    if totaal and not gedaan:
+    if totaal and not gedaan and not alleen_hardnekkig(
+            totaal, mislukt, m, dt.date.today().isoformat()):
         print(f"GESTOPT: geen enkele van de {totaal} publicaties is "
               f"opgehaald, {mislukt} mislukt. Dat is geen lege uitkomst maar "
               f"een storing.", file=sys.stderr)
         return 1
+    if totaal and not gedaan:
+        print(f"Niet gestopt: de {mislukt} die mislukten, mislukken al "
+              f"{DREMPEL} rondes of langer met dezelfde fout (zie hierboven). "
+              f"Dat is geen storing van vandaag, maar het is ook niet "
+              f"opgelost.", file=sys.stderr)
     return 0
 
 
