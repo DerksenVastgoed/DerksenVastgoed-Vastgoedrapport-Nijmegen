@@ -1118,20 +1118,38 @@ def zet_aanhef(brief, aanhef):
     for i, regel in enumerate(regels):
         if not regel.strip():
             continue
-        kaal = regel.strip()
-        eerste = kaal.rstrip(",.!").lower()
-        # Een lege of bijna lege eerste regel is een mislukte aanhef: het model
-        # kreeg een lege aanhef aangeleverd en zette alleen de komma neer.
-        if len(eerste) <= 1:
-            regels[i] = f"{aanhef},"
-            return "\n".join(regels)
-        kort = len(eerste.split()) <= 4
-        if kort and any(eerste.startswith(w) for w in AANHEF_WOORDEN):
+        if is_aanhef(regel):
             regels[i] = f"{aanhef},"
             return "\n".join(regels)
         # Geen aanhef gevonden: we zetten hem er alsnog voor
         return f"{aanhef},\n\n" + brief
     return brief
+
+
+def is_aanhef(regel):
+    """
+    Is deze regel een aanhef? De enige plek waar dat wordt beslist.
+
+    Gebruikt door zet_aanhef (die hem vervangt) en eerste_zin (die hem
+    overslaat om de opening te toetsen).
+
+    WAAROM EEN IMPLEMENTATIE. Tot 26 oktober 2026 had eerste_zin een eigen
+    lijst, ^(beste|lieve|hoi), uit de tijd dat de brief met "Beste pa" begon.
+    Sinds 29 september is de aanhef "Goedemorgen pa" (_aanhef_naar_dagdeel),
+    en vanaf dan gaf eerste_zin de aanhef terug als eerste zin. De toets op
+    een opening over wat er niet is, keek dus vier weken naar "Goedemorgen
+    pa," en stond altijd op groen: 28 van de 44 verhalen in digests/. Op 26
+    oktober opende de brief met "Vandaag weinig beweging op straat, dus ik
+    pak Galgenveld erbij", terwijl de sturing zei "meld niet dat het stil
+    was", en er kwam geen herstelronde voor.
+    """
+    eerste = regel.strip().rstrip(",.!").lower()
+    # Een lege of bijna lege eerste regel is een mislukte aanhef: het model
+    # kreeg een lege aanhef aangeleverd en zette alleen de komma neer.
+    if len(eerste) <= 1:
+        return True
+    kort = len(eerste.split()) <= 4
+    return kort and any(eerste.startswith(w) for w in AANHEF_WOORDEN)
 
 
 def lees(pad):
@@ -1422,10 +1440,11 @@ def strip_opmaak(tekst, maxlen=14000):
 def eerste_zin(tekst):
     """De eerste zin na de aanhef."""
     regels = [r.strip() for r in tekst.split("\n") if r.strip()]
-    # Aanhef en kop overslaan
-    inhoud = [r for r in regels
-              if not r.startswith("#") and not re.match(r"^(beste|lieve|hoi)\b",
-                                                         r, re.I)]
+    # Kop en aanhef overslaan; wat een aanhef is, beslist is_aanhef (zie daar
+    # waarom dit geen eigen lijst meer heeft).
+    inhoud = [r for r in regels if not r.startswith("#")]
+    if inhoud and is_aanhef(inhoud[0]):
+        inhoud = inhoud[1:]
     if not inhoud:
         return ""
     alinea = inhoud[0]
@@ -1873,6 +1892,22 @@ def proef():
     echte brieven, met de uitkomst die ze hadden moeten geven.
     """
     fouten = []
+    # De opening wordt getoetst na de aanhef die de brief werkelijk heeft
+    # (26 oktober: "Goedemorgen pa," gold als eerste zin, en "Vandaag weinig
+    # beweging op straat" kwam erdoor). Het begin van het echte verhaal.
+    _begin = ("# Vastgoed in Nijmegen, 26 oktober 2026\n\nGoedemorgen pa,\n\n"
+              "Vandaag weinig beweging op straat, dus ik pak Galgenveld erbij, "
+              "want daar zitten een paar dingen die het waard zijn om naast "
+              "elkaar te leggen.\n\nOm te beginnen de cijfers: 2.749 woningen.")
+    if not opent_met_afwezigheid(eerste_zin(_begin)):
+        fouten.append(f"de opening na de aanhef wordt niet getoetst: "
+                      f"eerste_zin geeft {eerste_zin(_begin)!r}")
+    for _a in ("Beste pa,", "Goedenavond pa,", ","):
+        if eerste_zin(f"{_a}\n\nEr is weinig nieuws.") != "Er is weinig nieuws.":
+            fouten.append(f"de aanhef {_a!r} wordt niet overgeslagen")
+    if eerste_zin("Pa kent de Stieltjesstraat al jaren goed.\n\nVerder.") != \
+            "Pa kent de Stieltjesstraat al jaren goed.":
+        fouten.append("een eerste alinea zonder aanhef wordt overgeslagen")
     # Niets melden om te zeggen dat het niets is (20 oktober), maar een
     # zinnige verduidelijking blijft staan (13 oktober).
     if len(onbelangzinnen("Tot slot de rente: niets veranderd. Niets met "
