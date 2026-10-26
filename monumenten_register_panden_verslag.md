@@ -79,11 +79,6 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Koolemans Beynenstraat 1, Daalseweg 262 (523050): pand 0268100000100083, 0.05
 - Daniëlsweg 42 (): pand 0268100000021665, 0.66
 - Berg en Dalseweg 84 (): pand 0268100000001244, 0.769
-- In de Betouwstraat 15-15A (): pand 0268100000017539, 0.539
-- Dennenstraat 125 (31204): pand 0268100000006251, 0.71
-- Dikkeboomweg 14 (): pand 0268100000104167, 0.197
-- Graafseweg 17 (): pand 0268100000021143, 0.839
-- Dorpsstraat 92 (): pand 0268100000046817, 0.871
 - Lange Hezelstraat 24 (): pand 0268100000010996, 0.72
 - Lange Hezelstraat 4-8, Ganzenheuvel 1 (31124): pand 0268100000010767, 0.319
 - Berg en Dalseweg 207-209 (): pand 0268100000020895, 0.482
@@ -102,12 +97,20 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - St. Anthoniusplaats 15-16, Duivengas 1-9 (31169): pand 0268100000045384, 0.833
 - In de Betouwstraat 11A-11C (): pand 0268100000017540, 0.065
 - In de Betouwstraat 13-13A (): pand 0268100000017540, 0.437
+- In de Betouwstraat 15-15A (): pand 0268100000017539, 0.539
+- Dennenstraat 125 (31204): pand 0268100000006251, 0.71
+- Dikkeboomweg 14 (): pand 0268100000104167, 0.197
+- Graafseweg 17 (): pand 0268100000021143, 0.839
+- Dorpsstraat 92 (): pand 0268100000046817, 0.871
+- Broekstraat 115 (): pand 0268100000035270, 0.529
+- Ganzenheuvel 11-9 (31127): pand 0268100000010767, 0.237
+- Groesbeekseweg 424 (522990): pand 0268100000017527, 0.606
+- Groesbeekseweg 428-428E (): pand 0268100000017528, 0.861
+- Korte Bredestraat 37, Schependomlaan 85 (31202): pand 0268100000024302, 0.817
 - Grotestraat 7 (): pand 0268100000047047, 0.611
 - Grotestraat 9 (): pand 0268100000047048, 0.464
 - Grotestraat 11 (): pand 0268100000047154, 0.736
 - Bredestraat 100 (): pand 0268100000021860, 0.697
-- Berg en Dalseweg 23, Mr. Franckenstraat 88-90 (): pand 0268100000021491, 0.66
-- Berg en Dalseweg 33 (522989): pand 0268100000020265, 0.555
 - Grote Markt 38-40 (): pand 0268100000047047, 0.387
 - Burchtstraat 69-71C, Hoogstraat 17 (): pand 0268100000047164, 0.386
 - Graafseweg 4-6C (): pand 0268100000021134, 0.628
@@ -123,24 +126,13 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Lange Hezelstraat 28-30 (31153): pand 0268100000010997, 0.781
 - Lange Hezelstraat 32 (31154): pand 0268100000010986, 0.799
 - Kerkboog 2, Grote Markt 22 (31133): pand 0268100000009679, 0.454
+- Berg en Dalseweg 23, Mr. Franckenstraat 88-90 (): pand 0268100000021491, 0.66
+- Berg en Dalseweg 33 (522989): pand 0268100000020265, 0.555
 - Begijnenstraat 18 (): pand 0268100000005723, 0.072
 - Ganzenheuvel 13-7 (31126): pand 0268100000010767, 0.218
 - Graafseweg 19 (): pand 0268100000021141, 0.84
 - Grote Markt 36, Moordkuil 7 (): pand 0268100000047048, 0.503
 - Grote Markt 36, Moordkuil 7 (): pand 0268100000047154, 0.264
-- Broekstraat 115 (): pand 0268100000035270, 0.529
-- Ganzenheuvel 11-9 (31127): pand 0268100000010767, 0.237
-- Groesbeekseweg 424 (522990): pand 0268100000017527, 0.606
-- Groesbeekseweg 428-428E (): pand 0268100000017528, 0.861
-- Korte Bredestraat 37, Schependomlaan 85 (31202): pand 0268100000024302, 0.817
-- Jan van Galenstraat 34 (): pand 0268100000011619, 0.052
-- Jan van Galenstraat 34 (): pand 0268100000011620, 0.852
-- Jan van Galenstraat 36 (): pand 0268100000011619, 0.617
-- Jan van Galenstraat 36 (): pand 0268100000011707, 0.071
-- Jan van Galenstraat 38 (): pand 0268100000011707, 0.845
-- Lage Markt 46 (): pand 0268100000006909, 0.392
-- Waalkade 9, Lage Markt 47-47C (31141): pand 0268100000008133, 0.406
-- Lage Markt 47D (31194): pand 0268100000008133, 0.074
 - Oranjesingel 17-17A (523001): pand 0268100000004367, 0.791
 - Oranjesingel 14 (523011): pand 0268100000005333, 0.801
 - Groesbeekseweg 29, Guyotstraat 11 (): pand 0268100000002572, 0.729
@@ -159,10 +151,15 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Kronenburgersingel 223-225 (523062): pand 0268100000041200, 0.813
 - Kronenburgersingel 223-225 (523062): pand 0268100000040245, 0.821
 - Muldersweg 16-16A (386790): pand 0268100000007323, 0.616
+- Jan van Galenstraat 34 (): pand 0268100000011619, 0.052
+- Jan van Galenstraat 34 (): pand 0268100000011620, 0.852
+- Jan van Galenstraat 36 (): pand 0268100000011619, 0.617
+- Jan van Galenstraat 36 (): pand 0268100000011707, 0.071
+- Jan van Galenstraat 38 (): pand 0268100000011707, 0.845
+- Lage Markt 46 (): pand 0268100000006909, 0.392
+- Waalkade 9, Lage Markt 47-47C (31141): pand 0268100000008133, 0.406
+- Lage Markt 47D (31194): pand 0268100000008133, 0.074
 - Hatertseweg 10-14 (31199): pand 0268100000011214, 0.863
-- Prins Bernhardstraat 1 (523023): pand 0268100000002683, 0.835
-- Oostkanaaldijk 382 (523034): pand 0268100000020438, 0.215
-- van Welderenstraat 100-102A (): pand 0268100000004310, 0.549
 - Groesbeekseweg 142-150C (): pand 0268100000006808, 0.81
 - Groesbeekseweg 142-150C (): pand 0268100000025086, 0.198
 - Groesbeekseweg 142-150C (): pand 0268100000092425, 0.086
@@ -182,9 +179,11 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Beverweg 1-9, Hatertseweg 270-292, Slotemaker de Bruïneweg 141-151, Vossenlaan 285-311, Oude Molenweg 244-250 (): pand 0268100000042764, 0.736
 - Beverweg 1-9, Hatertseweg 270-292, Slotemaker de Bruïneweg 141-151, Vossenlaan 285-311, Oude Molenweg 244-250 (): pand 0268100000017439, 0.68
 - Hertogstraat 27 (): pand 0268100000002855, 0.543
+- Prins Bernhardstraat 1 (523023): pand 0268100000002683, 0.835
+- Oostkanaaldijk 382 (523034): pand 0268100000020438, 0.215
+- van Welderenstraat 100-102A (): pand 0268100000004310, 0.549
 - Ridderstraat 13 (31166): pand 0268100000045386, 0.051
 - Zonder titel (): pand 0268100000027570, 0.667
-- St. Annastraat 16 (): pand 0268100000020905, 0.876
 - Kannenmarkt 10-16 (31139): pand 0268100000009676, 0.076
 - Hoogstraat 3-5 (): pand 0268100000047163, 0.838
 - Houtstraat 10-12A2, Houthof 51-53 (): pand 0268100000005577, 0.17
@@ -196,16 +195,7 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Kannenmarkt 6-8 (522991): pand 0268100000104622, 0.071
 - Lange Hezelstraat 13 (): pand 0268100000036833, 0.483
 - Heyendaalseweg 239 (): pand 0268100000021990, 0.479
-- In de Betouwstraat 33-35 (): pand 0268100000017545, 0.656
-- Korte Brouwerstraat 1 (): pand 0268100000102091, 0.778
-- Korte Brouwerstraat 1 (): pand 0268100000102094, 0.857
-- Jodenberg 6 (): pand 0268100000036833, 0.111
-- In de Betouwstraat 27 (): pand 0268100000017536, 0.791
-- In de Betouwstraat 29-29A (): pand 0268100000017546, 0.389
-- In de Betouwstraat 17-19 (): pand 0268100000017538, 0.484
-- Lange Hezelstraat 41A (523063): pand 0268100000037128, 0.736
-- Lange Hezelstraat 43-43A (): pand 0268100000037128, 0.266
-- Waalkade 80-83 (31187): pand 0268100000049293, 0.648
+- St. Annastraat 16 (): pand 0268100000020905, 0.876
 - Waalkade 84 (31188): pand 0268100000089144, 0.173
 - Waalkade 84 (31188): pand 0268100000049313, 0.067
 - Jan van Galenstraat 24 (): pand 0268100000010137, 0.763
@@ -213,27 +203,36 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Lange Hezelstraat 34-36A (): pand 0268100000010985, 0.896
 - Lange Hezelstraat 38-38C (): pand 0268100000010982, 0.818
 - Ubbergseweg 170 (523042): pand 0268100000019587, 0.727
-- St. Annastraat 28-28A (): pand 0268100000018484, 0.846
+- In de Betouwstraat 33-35 (): pand 0268100000017545, 0.656
+- In de Betouwstraat 27 (): pand 0268100000017536, 0.791
+- In de Betouwstraat 29-29A (): pand 0268100000017546, 0.389
+- Korte Brouwerstraat 1 (): pand 0268100000102091, 0.778
+- Korte Brouwerstraat 1 (): pand 0268100000102094, 0.857
+- Jodenberg 6 (): pand 0268100000036833, 0.111
+- In de Betouwstraat 17-19 (): pand 0268100000017538, 0.484
+- Lange Hezelstraat 41A (523063): pand 0268100000037128, 0.736
+- Lange Hezelstraat 43-43A (): pand 0268100000037128, 0.266
+- Waalkade 80-83 (31187): pand 0268100000049293, 0.648
 - Ooysedijk 67-69 (): pand 0268100000111566, 0.644
 - St. Annastraat 35 (): pand 0268100000029595, 0.793
 - St. Annastraat 37-37A (): pand 0268100000029594, 0.886
 - Stikke Hezelstraat 18 (): pand 0268100000009572, 0.429
 - Schependomlaan 46 (): pand 0268100000024071, 0.891
+- St. Annastraat 28-28A (): pand 0268100000018484, 0.846
+- Priemstraat 11-13 (): pand 0268100000012112, 0.838
 - Lange Hezelstraat 57-57A (): pand 0268100000035387, 0.246
 - Geert Grooteplein Zuid 10 (): pand 0268100000013015, 0.057
-- Priemstraat 11-13 (): pand 0268100000012112, 0.838
+- Schependomlaan 118 (): pand 0268100000024206, 0.792
 - Duivengas 11, St. Anthoniusplaats 12-14 (): pand 0268100000047325, 0.05
 - Nieuwe Markt 16-22 (): pand 0268100000047512, 0.851
-- Schependomlaan 118 (): pand 0268100000024206, 0.792
-- Oranjesingel 12-12A (): pand 0268100000005335, 0.826
-- St. Annastraat 11 (): pand 0268100000030272, 0.867
-- Oranjesingel 42-42A9 (): pand 0268100000017532, 0.477
-- Pater Eijmardweg 15-19 (): pand 0268100000023465, 0.321
-- Lange Hezelstraat 113-115 (): pand 0268100000039037, 0.637
 - St. Annastraat 53 (): pand 0268100000027531, 0.878
 - St. Annastraat 53 (): pand 0268100000029957, 0.119
 - Lange Hezelstraat 70-70C (): pand 0268100000009955, 0.539
-- Lange Hezelstraat 83-83B (): pand 0268100000036893, 0.572
+- Oranjesingel 12-12A (): pand 0268100000005335, 0.826
+- St. Annastraat 11 (): pand 0268100000030272, 0.867
+- Pater Eijmardweg 15-19 (): pand 0268100000023465, 0.321
+- Lange Hezelstraat 113-115 (): pand 0268100000039037, 0.637
+- Oranjesingel 42-42A9 (): pand 0268100000017532, 0.477
 - Griftdijk Noord 41 (): pand 0268100000087058, 0.808
 - Tooropstraat 116-118 (): pand 0268100000024958, 0.738
 - Tooropstraat 116-118 (): pand 0268100000024870, 0.674
@@ -242,6 +241,9 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Stieltjesstraat 16-20 (): pand 0268100000040731, 0.747
 - Oranjesingel 14 (): pand 0268100000005336, 0.583
 - Smitjesland 4 (): pand 0268100000037355, 0.394
+- Lange Hezelstraat 83-83B (): pand 0268100000036893, 0.572
+- St. Annastraat 42-42A (): pand 0268100000021374, 0.334
+- Wolfskuilseweg 31 (): pand 0268100000017650, 0.515
 - Mariënburg 92-96 (): pand 0268100000002939, 0.449
 - Waalkade 5 (): pand 0268100000108579, 0.75
 - Lange Hezelstraat 129-131 (): pand 0268100000040242, 0.863
@@ -250,46 +252,57 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Karrengas 28, Molenstraat 122 (): pand 0268100000002999, 0.745
 - van Broeckhuysenstraat 55, van Schevichavenstraat 1-5L (): pand 0268100000011392, 0.391
 - Oranjesingel 14 (): pand 0268100000005336, 0.41
-- St. Annastraat 42-42A (): pand 0268100000021374, 0.334
-- Wolfskuilseweg 31 (): pand 0268100000017650, 0.515
 - St. Annastraat 43-43A (): pand 0268100000029591, 0.079
 - St. Annastraat 51 (): pand 0268100000027531, 0.104
 - St. Annastraat 170 (): pand 0268100000010505, 0.387
+- Tweede Oude Heselaan 522 (): pand 0268100000026141, 0.659
 - Karrengas 10, Molenstraat 132-134 (): pand 0268100000003877, 0.658
 - Stieltjesstraat 22-24 (): pand 0268100000040731, 0.253
-- Tweede Oude Heselaan 522 (): pand 0268100000026141, 0.659
 - Barbarossastraat 101-97 (): pand 0268100000016526, 0.701
 - Zonder titel (): pand 0268100000027565, 0.888
 - Oranjesingel 38 (): pand 0268100000005116, 0.813
 - Oude Haven 54, Observantenstraat 20 (): pand 0268100000008139, 0.443
 - Voorstadslaan 47-49D (): pand 0268100000048159, 0.707
 - Ziekerstraat 83 (): pand 0268100000002911, 0.703
-- Hertogstraat 13 (): pand 0268100000002841, 0.702
-- Scherpenkampweg 54-56 (): pand 0268100000030135, 0.685
-- Dorpsstraat 112 (31205): pand 0268100000045592, 0.828
-- Hertogstraat 11 (): pand 0268100000002843, 0.645
-- Parkdwarsstraat 11-9, Doddendaal 11-9, Achter Valburg 2-4 (): pand 0268100000111661, 0.895
-- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
-- Eversweg 4 (522921): pand 0268100000058095, 0.673
-- Zonder titel (522982): pand 0268100000069018, 0.863
-- Zonder titel (522982): pand 0268100000069019, 0.167
-- St. Stevenskerkhof 46 (31176): pand 0268100000011000, 0.628
-- Zonder titel (522949): pand 0268100000018561, 0.893
-- Zonder titel (522949): pand 0268100000018653, 0.889
-- Sterreschansweg 77 (): pand 0268100000031196, 0.453
-- Bloemerstraat 11-13 (): pand 0268100000035507, 0.091
-- Bloemerstraat 11-13 (): pand 0268100000026490, 0.208
-- Begijnenstraat 1, Lange Hezelstraat 22 (): pand 0268100000009950, 0.574
 - St. Anthoniusplaats 2 (): pand 0268100000047302, 0.44
 - Glashuis 12, Lange Hezelstraat 74-76 (): pand 0268100000009956, 0.735
+- Begijnenstraat 5 (): pand 0268100000009950, 0.412
 - St. Stevenskerkhof 47, Achter de Smidstraat 3-5 (31179): pand 0268100000011004, 0.15
 - Oosterhoutsedijk 9 (): pand 0268100000032211, 0.126
-- Begijnenstraat 5 (): pand 0268100000009950, 0.412
 - Pastoor van Laakstraat 42 (522953): pand 0268100000036618, 0.813
 - Waaldijk 49 (520307): pand 0268100000058586, 0.724
 - Hessenberg 13-15B (): pand 0268100000037232, 0.882
+- Scherpenkampweg 54-56 (): pand 0268100000030135, 0.685
 - Klein Mariënburg 22-24 (): pand 0268100000048931, 0.777
 - Lange Hezelstraat 26-26A (): pand 0268100000010995, 0.661
+- Parkdwarsstraat 11-9, Doddendaal 11-9, Achter Valburg 2-4 (): pand 0268100000111661, 0.895
+- Eversweg 4 (522921): pand 0268100000058095, 0.673
+- Hertogstraat 13 (): pand 0268100000002841, 0.702
+- Zonder titel (522982): pand 0268100000069018, 0.863
+- Zonder titel (522982): pand 0268100000069019, 0.167
+- Hertogstraat 11 (): pand 0268100000002843, 0.645
+- Zonder titel (522949): pand 0268100000018561, 0.893
+- Zonder titel (522949): pand 0268100000018653, 0.889
+- Sterreschansweg 77 (): pand 0268100000031196, 0.453
+- Dorpsstraat 112 (31205): pand 0268100000045592, 0.828
+- Lentse Schoolstraat 11-92 (): pand 0268100000038096, 0.182
+- St. Stevenskerkhof 46 (31176): pand 0268100000011000, 0.628
+- Bloemerstraat 11-13 (): pand 0268100000035507, 0.091
+- Bloemerstraat 11-13 (): pand 0268100000026490, 0.208
+- Begijnenstraat 1, Lange Hezelstraat 22 (): pand 0268100000009950, 0.574
+- Ridderstraat 15 (): pand 0268100000106007, 0.859
+- Oosterhoutsedijk 13-15 (): pand 0268100000032211, 0.88
+- Looimolenweg 19 (): pand 0268100000012796, 0.486
+- St. Annastraat 29 (): pand 0268100000029598, 0.899
+- Ooysedijk 9 (): pand 0268100000007085, 0.153
+- St. Stevenskerkhof 46 (31175): pand 0268100000011000, 0.366
+- St. Annastraat 9 (): pand 0268100000030271, 0.866
+- Keimate 5 (): pand 0268100000033814, 0.771
+- Rembrandtstraat 1-9 (): pand 0268100000101334, 0.517
+- Rembrandtstraat 1-9 (): pand 0268100000101335, 0.832
+- Achter de Wiemelpoort 2, Broerstraat 70, Plein 1944 151-151A9 (): pand 0268100000029115, 0.696
+- St. Annastraat 41 (): pand 0268100000029954, 0.089
+- St. Anthoniusplaats 3 (): pand 0268100000047302, 0.477
 - Molenstraat 94 (): pand 0268100000004139, 0.285
 - Molenstraat 102-104B (): pand 0268100000003304, 0.064
 - St. Annastraat 45-45A (): pand 0268100000029590, 0.053
@@ -303,50 +316,37 @@ Raster van 0.5 m binnen elke BAG-pandomtrek; aandeel = deel van de rasterpunten 
 - Griftdijk Zuid 89-91 (): pand 0268100000015026, 0.807
 - Tweede Oude Heselaan 179-181 (): pand 0268100000029649, 0.793
 - Plein 1944 28 (): pand 0268100000021658, 0.607
+- St. Stevenskerkhof 48, Achter de Hoofdwacht 7 (31180): pand 0268100000011004, 0.848
 - Postweg 52-54 (): pand 0268100000027835, 0.817
 - Postweg 52-54 (): pand 0268100000027837, 0.257
-- Burchtstraat 79-79D (): pand 0268100000047160, 0.113
-- Postweg 60 (): pand 0268100000005659, 0.538
-- Postweg 60 (): pand 0268100000007075, 0.317
-- St. Stevenskerkhof 48, Achter de Hoofdwacht 7 (31180): pand 0268100000011004, 0.848
-- Oosterhoutsedijk 31 (): pand 0268100000007272, 0.663
-- Molenstraat 74-78A (): pand 0268100000004131, 0.891
 - Lankforst 5101 (): pand 0268100000038512, 0.668
 - Lentse Tuinstraat 2-4 (): pand 0268100000033493, 0.619
 - Lentse Tuinstraat 2-4 (): pand 0268100000033494, 0.855
-- Kronenburgersingel 269 (): pand 0268100000039036, 0.643
+- Oosterhoutsedijk 31 (): pand 0268100000007272, 0.663
+- Molenstraat 74-78A (): pand 0268100000004131, 0.891
+- Burchtstraat 79-79D (): pand 0268100000047160, 0.113
+- Postweg 60 (): pand 0268100000005659, 0.538
+- Postweg 60 (): pand 0268100000007075, 0.317
 - Molenstraat 103-107, van Welderenstraat 134-138 (): pand 0268100000005348, 0.816
 - Molenstraat 103-107, van Welderenstraat 134-138 (): pand 0268100000005236, 0.681
 - Broerdijk 193, Postweg 80 (): pand 0268100000006028, 0.863
 - Ubbergseveldweg 70A1-70A9 (): pand 0268100000109561, 0.106
 - Molenstraat 126-126A, Karrengas 22 (): pand 0268100000003000, 0.168
 - Molenstraat 126-126A, Karrengas 22 (): pand 0268100000003001, 0.293
+- Zonder titel (): pand 0268100000030130, 0.821
+- Postweg 62-62A, Kwakkenbergweg 1 (522936): pand 0268100000006033, 0.841
 - Lange Hezelstraat 125-127 (): pand 0268100000040243, 0.691
 - Gulden Wagengas 2-8, Lange Hezelstraat 78-80 (): pand 0268100000005874, 0.797
 - Gulden Wagengas 2-8, Lange Hezelstraat 78-80 (): pand 0268100000005873, 0.356
-- Molenstraat 66 (): pand 0268100000004134, 0.483
 - St. Annastraat 198-198E, Gorterplaats 21-29 (): pand 0268100000007820, 0.484
 - Ubbergseveldweg 97 (): pand 0268100000019679, 0.377
-- Oranjesingel 8 (): pand 0268100000005339, 0.62
-- Zonder titel (): pand 0268100000030130, 0.821
-- Postweg 62-62A, Kwakkenbergweg 1 (522936): pand 0268100000006033, 0.841
+- Kronenburgersingel 269 (): pand 0268100000039036, 0.643
 - St. Annastraat 39 (): pand 0268100000029593, 0.057
-- van Welderenstraat 123A-125D (): pand 0268100000048809, 0.387
+- Oranjesingel 8 (): pand 0268100000005339, 0.62
 - Tooropstraat 136-138 (): pand 0268100000003031, 0.838
 - Professor Molkenboerstraat 5-7 (): pand 0268100000024932, 0.849
-- Oosterhoutsedijk 13-15 (): pand 0268100000032211, 0.88
-- Ridderstraat 15 (): pand 0268100000106007, 0.859
-- Ooysedijk 9 (): pand 0268100000007085, 0.153
-- St. Stevenskerkhof 46 (31175): pand 0268100000011000, 0.366
-- Looimolenweg 19 (): pand 0268100000012796, 0.486
-- St. Annastraat 29 (): pand 0268100000029598, 0.899
-- St. Annastraat 9 (): pand 0268100000030271, 0.866
-- Keimate 5 (): pand 0268100000033814, 0.771
-- St. Anthoniusplaats 3 (): pand 0268100000047302, 0.477
-- Rembrandtstraat 1-9 (): pand 0268100000101334, 0.517
-- Rembrandtstraat 1-9 (): pand 0268100000101335, 0.832
-- Achter de Wiemelpoort 2, Broerstraat 70, Plein 1944 151-151A9 (): pand 0268100000029115, 0.696
-- St. Annastraat 41 (): pand 0268100000029954, 0.089
+- van Welderenstraat 123A-125D (): pand 0268100000048809, 0.387
+- Molenstraat 66 (): pand 0268100000004134, 0.483
 
 ## Voorraadpanden met het pandpunt in een vlak, die de BAG bij dat vlak niet teruggaf
 - 0 gevallen

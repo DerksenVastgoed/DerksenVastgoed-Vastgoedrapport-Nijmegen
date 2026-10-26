@@ -3,7 +3,7 @@
 ## werkingsgebied
 JOIN: `https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2026/e2b2210e98944ca387229c231879c6d4/nld@2026-09-03;09225018`
 - eindadres na doorverwijzing: `https://zoek.officielebekendmakingen.nl/dc-2026-27213/1/html`
-- type: text/html; charset=utf-8, 17620 bytes
+- type: text/html; charset=utf-8, 17625 bytes
 - links naar mogelijke geometrie: ['https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-27213/1/gml/dc-2026-27213.gml']
 - begin van het antwoord: `
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ JOIN: `https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2026
 ## stadsbeeldobject
 JOIN: `https://identifier.officielebekendmakingen.nl/join/id/regdata/gm0268/2026/7b82e3db52154524910d9bf933a7213f/nld@2026-09-03;09225018`
 - eindadres na doorverwijzing: `https://zoek.officielebekendmakingen.nl/dc-2026-27212/1/html`
-- type: text/html; charset=utf-8, 17572 bytes
+- type: text/html; charset=utf-8, 17577 bytes
 - links naar mogelijke geometrie: ['https://repository.officiele-overheidspublicaties.nl/Datacollecties/2026/dc-2026-27212/1/gml/dc-2026-27212.gml']
 - begin van het antwoord: `
 <!DOCTYPE html>
