@@ -20,8 +20,8 @@
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-18",
-   "keer": 5,
+   "laatst": "2026-10-26",
+   "keer": 6,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
@@ -68,8 +68,8 @@
   },
   "stannastraat7": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-17",
-   "keer": 2,
+   "laatst": "2026-10-26",
+   "keer": 3,
    "omschrijving": "St. Annastraat 7"
   },
   "graafseweg47": {
@@ -146,8 +146,8 @@
   },
   "stannastraat1": {
    "eerst": "2026-10-17",
-   "laatst": "2026-10-17",
-   "keer": 1,
+   "laatst": "2026-10-26",
+   "keer": 2,
    "omschrijving": "St. Annastraat 1"
   },
   "vondelstraat26": {
@@ -203,6 +203,18 @@
    "laatst": "2026-10-23",
    "keer": 1,
    "omschrijving": "Molenstraat 44"
+  },
+  "galgenveld2": {
+   "eerst": "2026-10-26",
+   "laatst": "2026-10-26",
+   "keer": 1,
+   "omschrijving": "Galgenveld 2"
+  },
+  "stannastraat9": {
+   "eerst": "2026-10-26",
+   "laatst": "2026-10-26",
+   "keer": 1,
+   "omschrijving": "St. Annastraat 9"
   }
  }
 }

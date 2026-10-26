@@ -5,7 +5,7 @@
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 436,
+   "dagen": 437,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
@@ -32,7 +32,8 @@
    ],
    "in_gebruik": 1,
    "datum": "2026-10-22",
-   "aanvraag": "2026-10-22",
+   "aanvraag": "2026-01-20",
+   "aanvraag_na_besluit": "2026-10-22",
    "besluit": "2026-07-28",
    "vergund_aantal": 2
   },

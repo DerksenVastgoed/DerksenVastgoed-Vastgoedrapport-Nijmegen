@@ -1,26 +1,12 @@
 {
- "datum": "2026-10-25",
+ "datum": "2026-10-26",
  "bronnen": {
   "regulier": {
-   "mails": 3,
-   "objecten": 7,
+   "mails": 2,
+   "objecten": 5,
    "overgeslagen": 1,
    "redenen": [
     "Molenstraat 58 (geen prijs gevonden)"
-   ]
-  },
-  "huislijn": {
-   "mails": 1,
-   "objecten": 7,
-   "overgeslagen": 0,
-   "redenen": []
-  },
-  "kamernet": {
-   "mails": 9,
-   "objecten": 8,
-   "overgeslagen": 1,
-   "redenen": [
-    "Kwartelstraat, Wijchen: buiten Nijmegen"
    ]
   },
   "rentola": {
@@ -34,21 +20,38 @@
    "objecten": 1,
    "overgeslagen": 0,
    "redenen": []
+  },
+  "kamernet": {
+   "mails": 6,
+   "objecten": 4,
+   "overgeslagen": 2,
+   "redenen": [
+    "Kwartelstraat, Wijchen: buiten Nijmegen",
+    "Homberg, Wijchen: buiten Nijmegen"
+   ]
+  },
+  "huislijn": {
+   "mails": 1,
+   "objecten": 6,
+   "overgeslagen": 0,
+   "redenen": []
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 21,
-  "andere_status": 0,
-  "voorbeelden": []
+  "zelfde_status": 10,
+  "andere_status": 1,
+  "voorbeelden": [
+   "Waterstraat -> te huur"
+  ]
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 2,
   "funda.com": 0,
   "pararius.nl": 1,
   "pararius.com": 0,
-  "kamernet.nl": 9,
+  "kamernet.nl": 6,
   "vendr.nl": 0,
   "huislijn.nl": 1,
   "huisly.nl": 0,
@@ -56,6 +59,6 @@
   "rentola.nl": 1
  },
  "mailbox": {
-  "mislukt": "(SINCE 22-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 22-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 23-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 23-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

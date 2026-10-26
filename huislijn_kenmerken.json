@@ -336,5 +336,35 @@
  },
  "https://www.huislijn.nl/huurwoning/nederland/gelderland/4440628/kaaisjouwerskade-nijmegen": {
   "postcode": "6821ET"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442096/waterstraat-nijmegen": {
+  "opp": 65,
+  "kamers": 3,
+  "postcode": "6541TE"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442396/bergkristalstraat-nijmegen": {
+  "opp": 56,
+  "kamers": 3,
+  "postcode": "6534WH"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4441917/hulststraat-nijmegen": {
+  "opp": 86,
+  "kamers": 3,
+  "postcode": "6543RZ"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442395/domela-nieuwenhuisstraat-nijmegen": {
+  "opp": 59,
+  "kamers": 2,
+  "postcode": "6535TX"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442390/hommelstraat-nijmegen": {
+  "opp": 68,
+  "kamers": 4,
+  "postcode": "6533SE"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442394/marialaan-nijmegen": {
+  "opp": 89,
+  "kamers": 3,
+  "postcode": "6541RA"
  }
 }

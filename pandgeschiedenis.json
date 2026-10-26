@@ -79664,6 +79664,21 @@
    "0268100000020569"
   ]
  },
+ "bergkristalstraat": {
+  "adres": "Bergkristalstraat",
+  "bag_gezien": "2026-10-26",
+  "bag_zonder_id": "2026-10-26",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €865 per maand, 56 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-26"
+ },
  "beurtvaartweg1": {
   "adres": "Beurtvaartweg 1",
   "gebeurtenissen": [
@@ -92204,6 +92219,21 @@
   "vbo_panden": [
    "0268100000088468"
   ]
+ },
+ "domelanieuwenhuisstraat": {
+  "adres": "Domela Nieuwenhuisstraat",
+  "bag_gezien": "2026-10-26",
+  "bag_zonder_id": "2026-10-26",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €810 per maand, 59 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-26"
  },
  "dominicanenstraat": {
   "adres": "Dominicanenstraat",
@@ -110423,6 +110453,21 @@
    "0268100000018477"
   ]
  },
+ "hommelstraat": {
+  "adres": "Hommelstraat",
+  "bag_gezien": "2026-10-26",
+  "bag_zonder_id": "2026-10-26",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €945 per maand, 68 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-26"
+ },
  "horstacker1433": {
   "adres": "Horstacker 1433",
   "bag_pogingen": 1,
@@ -111166,6 +111211,21 @@
   "vbo_panden": [
    "0268100000019717"
   ]
+ },
+ "hulststraat": {
+  "adres": "Hulststraat",
+  "bag_gezien": "2026-10-26",
+  "bag_zonder_id": "2026-10-26",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €713 per maand, 86 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-26"
  },
  "hulststraat10": {
   "adres": "Hulststraat 10",
@@ -112067,6 +112127,12 @@
     "datum": "2026-10-06",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €750 per maand, 13 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €655 per maand, 7 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -124024,6 +124090,21 @@
   "vbo_panden": [
    "0268100000044649"
   ]
+ },
+ "marialaan": {
+  "adres": "Marialaan",
+  "bag_gezien": "2026-10-26",
+  "bag_zonder_id": "2026-10-26",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €977 per maand, 89 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-26"
  },
  "marialaan106": {
   "adres": "Marialaan 106",
@@ -174674,6 +174755,12 @@
     "datum": "2026-10-07",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €650 per maand, 11 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-25",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €650 per maand, 65 m2"
    }
   ],
   "pand_id": null
