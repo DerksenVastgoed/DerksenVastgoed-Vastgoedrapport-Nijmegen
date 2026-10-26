@@ -7,7 +7,7 @@
   "verleend": 90
  },
  "nu_ter_inzage": 54,
- "datum": "2026-10-24",
+ "datum": "2026-10-26",
  "doorlooptijden": [
   {
    "zaaknummer": "Z2026-00004767",
@@ -237,5 +237,13 @@
    "uitkomst": "verleend",
    "dagen_tov_verwacht": 287
   }
- ]
+ ],
+ "mislukt": {
+  "gmb-2023-26729": {
+   "fout": "HTTPError 404",
+   "keer": 1,
+   "laatst": "2026-10-26",
+   "sinds": "2026-10-26"
+  }
+ }
 }
