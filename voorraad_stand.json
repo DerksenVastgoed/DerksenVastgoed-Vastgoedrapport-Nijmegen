@@ -1,13 +1,13 @@
 {
- "datum": "2026-10-24",
+ "datum": "2026-10-26",
  "ronde": {
   "bag": {
-   "adressen_bijgewerkt": 9,
-   "adressen_nieuw": 1,
-   "adressen_onveranderd": 24389,
+   "adressen_bijgewerkt": 0,
+   "adressen_nieuw": 0,
+   "adressen_onveranderd": 24399,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 133249,
-   "datum": "2026-10-24",
+   "datum": "2026-10-26",
    "fouten": 0,
    "historie_overgeslagen": 2573,
    "laatste_fout": "",
@@ -37,7 +37,7 @@
    "ronde_objecten": 164934,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 268.5,
+   "ronde_seconden": 246.5,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -57,18 +57,18 @@
    "zonder_punt": 0,
    "zonder_vbo": 0
   },
-  "bijgewerkt": "2026-10-24",
+  "bijgewerkt": "2026-10-26",
   "labels": {
-   "aanroepen_per_minuut": 38.3,
-   "datum": "2026-10-24",
+   "aanroepen_per_minuut": 0.0,
+   "datum": "2026-10-26",
    "fouten": 0,
    "geen_label_bekend": 0,
-   "gevraagd": 1,
+   "gevraagd": 0,
    "herhaald_geen_label": 0,
    "herhaald_label_gevonden": 0,
    "herhaald_nog_te_vragen": 0,
    "laatste_fout": "",
-   "label_gevonden": 1,
+   "label_gevonden": 0,
    "label_prive": 0,
    "labels_methode_2014": 6179,
    "labels_nta8800": 10751,
@@ -78,10 +78,10 @@
    "methode_nog_in_te_halen": 0,
    "nog_nooit_gevraagd": 0,
    "opnieuw_aan_de_beurt": 0,
-   "seconden": 1.6
+   "seconden": 0.0
   },
   "panden": {
-   "datum": "2026-10-24",
+   "datum": "2026-10-26",
    "fout": "",
    "met_bouwjaar": 187254,
    "met_status": 187254,
@@ -101,7 +101,7 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 399.2,
+   "seconden": 434.4,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
