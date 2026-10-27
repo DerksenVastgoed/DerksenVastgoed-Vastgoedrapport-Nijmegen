@@ -1,13 +1,13 @@
 {
- "vastgelegd": 1303,
- "met_zaaknummer": 444,
+ "vastgelegd": 1311,
+ "met_zaaknummer": 451,
  "uitkomsten": {
-  "geen uitspraak": 720,
+  "geen uitspraak": 727,
   "onbekend": 493,
-  "verleend": 90
+  "verleend": 91
  },
  "nu_ter_inzage": 54,
- "datum": "2026-10-26",
+ "datum": "2026-10-27",
  "doorlooptijden": [
   {
    "zaaknummer": "Z2026-00004767",
@@ -238,12 +238,5 @@
    "dagen_tov_verwacht": 287
   }
  ],
- "mislukt": {
-  "gmb-2023-26729": {
-   "fout": "HTTPError 404",
-   "keer": 1,
-   "laatst": "2026-10-26",
-   "sinds": "2026-10-26"
-  }
- }
+ "mislukt": {}
 }
