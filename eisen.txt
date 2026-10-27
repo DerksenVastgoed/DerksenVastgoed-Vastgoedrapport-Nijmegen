@@ -1852,3 +1852,18 @@ waarom: 25 oktober 2026, run 40230114073: gmb-2023-26729 (Ligusterstraat
   ronde het zelf nagaan en in de foutregel zeggen wat elke vorm gaf.
 proef: publicatievelden:zonder html de zoekpagina; publicatievelden:metadata telt niet als tekst
 soort: gegevens
+
+---
+eis: De toets op een opening over wat er niet is, kijkt naar de eerste zin na
+  de aanhef die de brief werkelijk heeft; wat een aanhef is, staat op een
+  plek (is_aanhef) en geldt ook voor zet_aanhef.
+waarom: 26 oktober. De brief opende met "Vandaag weinig beweging op straat,
+  dus ik pak Galgenveld erbij", terwijl de sturing zei "meld niet dat het
+  stil was", en er kwam geen herstelronde voor. eerste_zin sloeg alleen
+  "Beste", "Lieve" en "Hoi" over; sinds 29 september is de aanhef
+  "Goedemorgen pa" en gaf eerste_zin die aanhef terug als eerste zin. Over de
+  44 verhalen in digests/ vond de oude toets 1 opening over afwezigheid
+  (17 september), de nieuwe 3 (11 en 17 september, 26 oktober); bij geen
+  enkel verhaal geeft eerste_zin nog een aanhef terug.
+proef: brief_verhalend:de opening na de aanhef wordt niet getoetst
+soort: brief
