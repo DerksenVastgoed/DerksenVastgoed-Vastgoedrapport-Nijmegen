@@ -168,6 +168,38 @@ def mislukkingen(vorige, deze_ronde, gelukt, vandaag):
     return uit
 
 
+def haal_tekst(gmb):
+    """
+    De tekst van een publicatie, met welke vorm hem gaf; of de fouten.
+
+    Geeft (broncode, fout, vorm). Eerst de html in de repository, zoals
+    altijd. Lukt die niet, dan de zoekpagina, die dezelfde tekst toont. Lukt
+    ook die niet, dan nog alleen de metadata, en die alleen om te weten of de
+    publicatie er nog is: metadata is geen tekst, en de velden eruit lezen zou
+    een lege publicatie als "vastgelegd" tellen. Dat is "niet gelezen" met het
+    woord van "niets gevonden".
+
+    WAAROM. 25 oktober 2026, run 40230114073: gmb-2023-26729 (Ligusterstraat
+    115, aanvraag kamerverhuur- en onttrekkingsvergunning, 20 januari 2023)
+    gaf een 404 op de html. Ons archief kent haar via de metadata, en de
+    andere twee vormen werden nooit geprobeerd. Vanaf hier is geen van de
+    drie te bereiken, dus de ronde moet het zelf nagaan en zeggen.
+    """
+    vormen = dict(bijlagen.kandidaten(gmb))
+    html = vormen.get("html van de publicatie")
+    zoek = vormen.get("zoekpagina")
+    meta = vormen.get("metadata van de publicatie")
+    broncode, f_html = bijlagen.haal(html)
+    if not f_html:
+        return broncode, "", "html"
+    broncode, f_zoek = bijlagen.haal(zoek)
+    if not f_zoek:
+        return broncode, "", "zoekpagina"
+    _m, f_meta = bijlagen.haal(meta)
+    return None, (f"html {f_html}; zoekpagina {f_zoek}; metadata "
+                  + (f_meta or "bestaat")), ""
+
+
 def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4, stand_pad=STAND):
     """Een ronde: ophalen wat nog niet bekend is, binnen een tijdbudget."""
     bekend = lees(pad)
@@ -185,8 +217,7 @@ def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4, stand_pad=STAND):
                   f"{len(todo) - gedaan - mislukt} blijven liggen.",
                   file=sys.stderr)
             break
-        _naam, url = bijlagen.kandidaten(r["gmb"])[0]
-        broncode, fout = bijlagen.haal(url)
+        broncode, fout, vorm = haal_tekst(r["gmb"])
         if fout:
             mislukt += 1
             fouten[r["gmb"]] = fout
@@ -196,6 +227,8 @@ def ronde(minuten=10, maximaal=0, pad=PAD, tempo=0.4, stand_pad=STAND):
         kaal = _re.sub(r"\s+", " ", _re.sub(r"<[^>]+>", " ", broncode))
         v = besluit.velden_uit(kaal)
         v["einde"] = besluit.einde_reactietermijn(broncode)
+        if vorm != "html":
+            v["vorm"] = vorm
         v["pand"] = r.get("pand", "")
         v["datum"] = r.get("datum", "")
         v["gezien"] = dt.date.today().isoformat()
@@ -392,6 +425,38 @@ def proef():
               nam.get("id") == "nameten"
               and "steps.nameten.outcome == 'success'" in str(com.get("if")),
               True)
+
+    # 7. ANDERE VORMEN ALS DE HTML ONTBREEKT (gmb-2023-26729, 25 oktober).
+    echt_haal = bijlagen.haal
+    try:
+        g = "gmb-2023-26729"
+        v = dict(bijlagen.kandidaten(g))
+        gevraagd = []
+
+        def nep(antwoorden):
+            def haal(url, binair=False):
+                gevraagd.append(url)
+                return antwoorden.get(url, (None, "HTTPError 404"))
+            return haal
+
+        bijlagen.haal = nep({v["html van de publicatie"]: ("<p>tekst</p>", "")})
+        check("html eerst en alleen html",
+              (haal_tekst(g), len(gevraagd)), (("<p>tekst</p>", "", "html"), 1))
+        gevraagd.clear()
+        bijlagen.haal = nep({v["zoekpagina"]: ("<p>zoek</p>", "")})
+        check("zonder html de zoekpagina",
+              haal_tekst(g), ("<p>zoek</p>", "", "zoekpagina"))
+        gevraagd.clear()
+        bijlagen.haal = nep({v["metadata van de publicatie"]: ("<xml/>", "")})
+        check("metadata telt niet als tekst",
+              haal_tekst(g), (None, "html HTTPError 404; zoekpagina "
+                              "HTTPError 404; metadata bestaat", ""))
+        bijlagen.haal = nep({})
+        check("alles weg",
+              haal_tekst(g)[1], "html HTTPError 404; zoekpagina HTTPError "
+              "404; metadata HTTPError 404")
+    finally:
+        bijlagen.haal = echt_haal
 
     # 4. EEN ONTBREKEND BESTAND IS LEEG EN GEEN FOUT.
     check("bestand ontbreekt", lees("bestaat-echt-niet.json"), {})
