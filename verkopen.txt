@@ -1181,3 +1181,9 @@ Domela Nieuwenhuisstraat | Nijmegen | 810 | te huur | 2026-10-25 | huislijn | 59
 Hommelstraat | Nijmegen | 945 | te huur | 2026-10-25 | huislijn | 68 | 6533SE
 Marialaan | Nijmegen | 977 | te huur | 2026-10-25 | huislijn | 89 | 6541RA
 Jan de Wittstraat | Nijmegen | 655 | te huur kamer | 2026-10-25 | kamernet-incl | 7 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 27-10-2026
+Ten Katestraat | Nijmegen | 789 | te huur | 2026-10-26 | huislijn | 108 | 6531EH
+Bolerostraat | Nijmegen | 1000 | te huur kamer | 2026-10-26 | kamernet-incl | 30 | 
+Malvert | Nijmegen | 475 | te huur kamer | 2026-10-26 | kamernet-incl | 11 | 
+Winkelsteegseweg | Nijmegen | 835 | te huur | 2026-10-26 | kamernet-incl | 28 | 

@@ -1,19 +1,49 @@
 {
- "datum": "2026-10-26",
+ "datum": "2026-10-27",
  "voor_herstel": [
   [
-   "De prijs per m2 staat op de 2e plek van de 7 buurten die we volgen, en de mediaan in ons aanbod ligt op €5.081/m2, deze maand onveranderd (+0,0% in vier weken op 105 waarnemingen).",
-   "De mediaan van €5.081/m² op 105 waarnemingen en +0,0% in vier weken kloppen. Maar de gegevens zeggen 'de 2e van 7 van laag naar hoog in prijs per m2'. Galgenveld is dus de op een na goedkoopste per m². '2e plek' zonder richting leest als de op een na duurste.",
+   "In Altrade zijn dit jaar al vijf aanvragen gedaan om te splitsen of te verkameren, tegen drie vorig jaar en maar één in 2023.",
+   "2026: 5 aanvragen en 2025: 3 aanvragen kloppen. Voor 2023 staat er '1 verleend'. Dat is een besluit en geen telling van aanvragen, dus het getal hoort bij iets anders.",
    "model"
   ],
   [
-   "Nieuw is dat ik in het dossier zag dat de kamerroute hier vermoedelijk niet beschikbaar is.",
-   "Dat de kamerroute vermoedelijk niet beschikbaar is, staat wel in het dossier. Nergens staat dat dit een nieuw feit van vandaag is. Het dossier is als al gemeld gemarkeerd (17 oktober) en er is geen gebeurtenis met een datum van na die melding.",
+   "Het tempo loopt wel duidelijk op.",
+   "De gegevens geven alleen gepubliceerde tellingen (2023: 1 verleend; 2025: 3; 2026: 5). Ze waarschuwen dat die alleen zien wat gepubliceerd is. Een oplopend tempo wordt niet vastgesteld.",
    "model"
   ],
   [
-   "Bij St. Annastraat 7 lijkt die dicht; het blijft dus een verkoop- of zelfstandige-splitsingszaak.",
-   "Dat de kamerroute vermoedelijk dicht is, staat in het dossier. Dat splitsen in zelfstandige woningen of verkoop hier wel openstaat, staat er niet: er is geen regel 'open routes' voor St. Annastraat 7 en geen uitpond- of splitsingstoets voor dit pand.",
+   "Panden onder de grens heb je in Altrade dus ook, alleen zie je ze niet automatisch terug in dit gemiddelde.",
+   "Er staat alleen een gemiddelde van €436.000. Hoeveel panden in Altrade onder €396.000 liggen, staat nergens.",
+   "model"
+  ],
+  [
+   "Het is een ondergrens: boven de WOZ-grens is geen vergunning nodig en meldingen worden pas sinds kort gepubliceerd, dus het werkelijke aantal ligt hoger.",
+   "Ondergrens en reden kloppen letterlijk. De gegevens zeggen niet dat het werkelijke aantal hoger ligt, alleen dat 103 een ondergrens is.",
+   "model"
+  ],
+  [
+   "Met 47% koopwoningen en maar 14% corporatiebezit is er in Altrade relatief veel particulier bezit dat voor zo'n route in aanmerking komt, en de oplopende aanvragen passen bij dat beeld.",
+   "47% koop en 14% woningcorporatie kloppen. Dat dit 'relatief veel' is: Altrade staat qua koopaandeel 4e van 8, na Hunnerberg 65%, St. Anna 56% en Galgenveld 55%. Dat dit bezit 'in aanmerking komt' en het verband met de aanvragen staan niet in de gegevens.",
+   "model"
+  ],
+  [
+   "Beide vergroten vooral het comfort en bij het laatste mogelijk het energielabel, maar geen van beide raakt splitsen of verkameren.",
+   "Over onderkelderen zeggen de gegevens: 'vergroot het bruikbaar oppervlak van het pand, relevant voor waardecreatie bij verbouwing', niet comfort. Comfort staat nergens. Het label klopt ('kan bij nieuwe opname het energielabel verbeteren'). Dat ze splitsen niet raken klopt: kernsignalen (0).",
+   "model"
+  ],
+  [
+   "Diverse media meldden vandaag een lichte daling van de hypotheekrente, maar dat gaat over de rente voor de eigen woning, niet over onze verhuurtarieven, en in onze meting beweegt er niets.",
+   "Drie artikelen (Van Bruggen, Wonen360, Vastgoedjournaal) melden een lichte daling, en de eigen meting is ongewijzigd. Dat het om de rente voor de eigen woning gaat, staat er niet. De duiding koppelt het juist aan herfinanciering in dit segment.",
+   "model"
+  ],
+  [
+   "Mijn conclusie: Altrade is een buurt waar het aantal splitsingsaanvragen duidelijk aantrekt, met voldoende particulier bezit om dat te dragen.",
+   "Er zijn alleen gepubliceerde tellingen (2025: 3, 2026: 5), met de waarschuwing dat die weinig bewijzen. Dat er 'voldoende particulier bezit om dat te dragen' is, staat nergens.",
+   "model"
+  ],
+  [
+   "Geen enkel pand daar is vandaag concreet in beeld, maar het is een buurt om de bekendmakingen de komende maanden extra te volgen.",
+   "Het aangeleverde aanbod toont alleen Stadscentrum en Galgenveld en is afgekapt. Of er in Altrade aanbod is, blijkt niet uit de gegevens.",
    "model"
   ]
  ],

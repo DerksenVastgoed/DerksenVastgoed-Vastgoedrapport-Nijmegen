@@ -9406,6 +9406,18 @@
   "buurt": "Bottendaal",
   "straat": "Stijn Buysstraat"
  },
+ "stikkehezelstraat1": {
+  "adres": "Stikke Hezelstraat 1",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Stadscentrum",
+  "straat": "Stikke Hezelstraat"
+ },
  "stjacobslaan179": {
   "adres": "St. Jacobslaan 179",
   "bronnen": [
@@ -10024,6 +10036,18 @@
   ],
   "buurt": "Hatert",
   "straat": "Topaasstraat"
+ },
+ "transistorweg4": {
+  "adres": "Transistorweg 4",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Goffert",
+  "straat": "Transistorweg"
  },
  "treubstraat148": {
   "adres": "Treubstraat 148",
