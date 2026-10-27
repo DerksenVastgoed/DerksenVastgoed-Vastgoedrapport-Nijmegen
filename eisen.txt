@@ -1840,6 +1840,20 @@ proef: publicatievelden:nameten loopt ook na een mislukte ophaalstap; publicatie
 soort: werking
 
 ---
+eis: Geeft de html van een publicatie een fout, dan probeert de veldenronde
+  de zoekpagina, en lukt ook die niet, dan alleen de metadata om te weten of
+  de publicatie er nog is. Metadata telt nooit als gelezen tekst; de vorm
+  waaruit gelezen is staat bij de publicatie als het niet de html was.
+waarom: 25 oktober 2026, run 40230114073: gmb-2023-26729 (Ligusterstraat
+  115, 20 januari 2023) gaf een 404 op de html, en de ronde probeerde alleen
+  die ene vorm, terwijl ons archief de publicatie via de metadata kent. Vanaf
+  de werkomgeving van Claude is geen van de drie vormen te bereiken
+  (repository.overheid.nl weigert, de zoekpagina geeft een fout), dus moet de
+  ronde het zelf nagaan en in de foutregel zeggen wat elke vorm gaf.
+proef: publicatievelden:zonder html de zoekpagina; publicatievelden:metadata telt niet als tekst
+soort: gegevens
+
+---
 eis: De toets op een opening over wat er niet is, kijkt naar de eerste zin na
   de aanhef die de brief werkelijk heeft; wat een aanhef is, staat op een
   plek (is_aanhef) en geldt ook voor zet_aanhef.

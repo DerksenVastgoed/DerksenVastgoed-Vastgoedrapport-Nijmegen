@@ -367,6 +367,14 @@
   "omweg": 1.18,
   "soort": "bus"
  },
+ "51.83122,5.81189": {
+  "geschat": false,
+  "hemelsbreed": 103,
+  "meters": 150,
+  "naam": "Polkastraat",
+  "omweg": 1.46,
+  "soort": "bus"
+ },
  "51.83134,5.84321": {
   "geschat": false,
   "hemelsbreed": 80,
@@ -573,6 +581,14 @@
   "meters": 361,
   "naam": "Tollensstraat",
   "omweg": 1.34,
+  "soort": "bus"
+ },
+ "51.83538,5.84843": {
+  "geschat": false,
+  "hemelsbreed": 234,
+  "meters": 298,
+  "naam": "Tollensstraat",
+  "omweg": 1.27,
   "soort": "bus"
  },
  "51.83543,5.86458": {

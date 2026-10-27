@@ -8803,6 +8803,24 @@
     "van Broeckhuysenstraat 42": "C"
    }
   },
+  "0268100000003141": {
+   "bag_eenheden": [
+    [
+     "Weezenhof 6824",
+     131
+    ]
+   ],
+   "bag_gezien": "2026-10-27",
+   "bag_woningen": [
+    [
+     "Weezenhof 6824",
+     131
+    ]
+   ],
+   "labels": {
+    "Weezenhof 6824": "A"
+   }
+  },
   "0268100000003216": {
    "bag_eenheden": [
     [
@@ -20129,6 +20147,28 @@
     "Lankforst 1166": "E",
     "Lankforst 1168": "D",
     "Lankforst 1170": "G"
+   }
+  },
+  "0268100000008411": {
+   "bag_eenheden": [
+    [
+     "Diamantstraat 37",
+     122
+    ],
+    [
+     "Diamantstraat 39",
+     76
+    ]
+   ],
+   "bag_gezien": "2026-10-27",
+   "bag_woningen": [
+    [
+     "Diamantstraat 37",
+     122
+    ]
+   ],
+   "labels": {
+    "Diamantstraat 37": "E"
    }
   },
   "0268100000008507": {
@@ -38642,6 +38682,24 @@
     ]
    ]
   },
+  "0268100000020586": {
+   "bag_eenheden": [
+    [
+     "Mr. Franckenstraat 5",
+     196
+    ]
+   ],
+   "bag_gezien": "2026-10-27",
+   "bag_woningen": [
+    [
+     "Mr. Franckenstraat 5",
+     196
+    ]
+   ],
+   "labels": {
+    "Mr. Franckenstraat 5": "A"
+   }
+  },
   "0268100000020593": {
    "bag_eenheden": [
     [
@@ -40656,7 +40714,7 @@
      325
     ]
    ],
-   "bag_gezien": "2026-10-25",
+   "bag_gezien": "2026-10-27",
    "bag_woningen": [
     [
      "Augustijnenstraat 49",
@@ -49133,7 +49191,7 @@
      444
     ]
    ],
-   "bag_gezien": "2026-10-25",
+   "bag_gezien": "2026-10-27",
    "bag_woningen": [
     [
      "St. Annastraat 267",
@@ -65293,6 +65351,168 @@
     "Heyendaalseweg 252": "A"
    }
   },
+  "0268100000045456": {
+   "bag_eenheden": [
+    [
+     "Hatertseweg 665",
+     1540
+    ],
+    [
+     "Hatertseweg 667",
+     81
+    ],
+    [
+     "Hatertseweg 669",
+     89
+    ],
+    [
+     "Hatertseweg 671",
+     84
+    ],
+    [
+     "Hatertseweg 673",
+     81
+    ],
+    [
+     "Hatertseweg 675",
+     81
+    ],
+    [
+     "Hatertseweg 677",
+     84
+    ],
+    [
+     "Hatertseweg 679",
+     89
+    ],
+    [
+     "Hatertseweg 681",
+     81
+    ],
+    [
+     "Hatertseweg 683",
+     81
+    ],
+    [
+     "Hatertseweg 685",
+     87
+    ],
+    [
+     "Hatertseweg 687",
+     89
+    ],
+    [
+     "Hatertseweg 689",
+     81
+    ],
+    [
+     "Hatertseweg 691",
+     81
+    ],
+    [
+     "Hatertseweg 693",
+     84
+    ],
+    [
+     "Hatertseweg 695",
+     89
+    ],
+    [
+     "Hatertseweg 697",
+     81
+    ],
+    [
+     "Hatertseweg 699",
+     81
+    ]
+   ],
+   "bag_gezien": "2026-10-27",
+   "bag_woningen": [
+    [
+     "Hatertseweg 667",
+     81
+    ],
+    [
+     "Hatertseweg 669",
+     89
+    ],
+    [
+     "Hatertseweg 671",
+     84
+    ],
+    [
+     "Hatertseweg 673",
+     81
+    ],
+    [
+     "Hatertseweg 675",
+     81
+    ],
+    [
+     "Hatertseweg 677",
+     84
+    ],
+    [
+     "Hatertseweg 679",
+     89
+    ],
+    [
+     "Hatertseweg 681",
+     81
+    ],
+    [
+     "Hatertseweg 683",
+     81
+    ],
+    [
+     "Hatertseweg 685",
+     87
+    ],
+    [
+     "Hatertseweg 687",
+     89
+    ],
+    [
+     "Hatertseweg 689",
+     81
+    ],
+    [
+     "Hatertseweg 691",
+     81
+    ],
+    [
+     "Hatertseweg 693",
+     84
+    ],
+    [
+     "Hatertseweg 695",
+     89
+    ],
+    [
+     "Hatertseweg 697",
+     81
+    ],
+    [
+     "Hatertseweg 699",
+     81
+    ]
+   ],
+   "labels": {
+    "Hatertseweg 665": "A+",
+    "Hatertseweg 669": "A",
+    "Hatertseweg 671": "B",
+    "Hatertseweg 673": "B",
+    "Hatertseweg 675": "B",
+    "Hatertseweg 677": "A",
+    "Hatertseweg 681": "A+",
+    "Hatertseweg 683": "A",
+    "Hatertseweg 685": "A",
+    "Hatertseweg 691": "B",
+    "Hatertseweg 693": "A",
+    "Hatertseweg 697": "A",
+    "Hatertseweg 699": "B"
+   }
+  },
   "0268100000045509": {
    "bag_eenheden": [
     [
@@ -75439,6 +75659,21 @@
     "Begijnenstraat 29": "G"
    }
   },
+  "0268100000108314": {
+   "bag_eenheden": [
+    [
+     "Transistorweg 4",
+     2516
+    ]
+   ],
+   "bag_gevormd": [
+    [
+     "Transistorweg 4",
+     2516
+    ]
+   ],
+   "bag_gezien": "2026-10-27"
+  },
   "0268100000108332": {
    "bag_eenheden": [
     [
@@ -81504,6 +81739,21 @@
   "vbo_panden": [
    "0268100000007748"
   ]
+ },
+ "bolerostraat": {
+  "adres": "Bolerostraat",
+  "bag_gezien": "2026-10-27",
+  "bag_zonder_id": "2026-10-27",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-26",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.000 per maand, 30 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-27"
  },
  "bolerostraat5": {
   "adres": "Bolerostraat 5",
@@ -90240,6 +90490,29 @@
   "vbo": "0268010000006607",
   "vbo_panden": [
    "0268100000028058"
+  ]
+ },
+ "diamantstraat37": {
+  "adres": "Diamantstraat 37",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Diamantstraat 37 is E, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor plaatsen dakkapellen aan voor- en achterzijde woning, aan Diamantstraat 37, 6534WV Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000008411",
+  "vbo": "0268010000058501",
+  "vbo_gevraagd": "2026-10-27",
+  "vbo_panden": [
+   "0268100000008411"
   ]
  },
  "dikkeboomweg28": {
@@ -107036,6 +107309,101 @@
    "0268100000046735"
   ]
  },
+ "hatertseweg691": {
+  "adres": "Hatertseweg 691",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2016-12-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 699 is B, geregistreerd 2016-12-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2017-07-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 673 is B, geregistreerd 2017-07-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2017-09-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 671 is B, geregistreerd 2017-09-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2018-01-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 675 is B, geregistreerd 2018-01-01"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-08-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 691 is B, geregistreerd 2019-08-30"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-07-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 693 is A, geregistreerd 2022-07-29"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2022-11-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 665 is A+, geregistreerd 2022-11-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2024-02-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 669 is A, geregistreerd 2024-02-19"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 697 is A, geregistreerd 2025-04-02"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 685 is A, geregistreerd 2025-06-09"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-06-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 683 is A, geregistreerd 2025-06-23"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-09-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 677 is A, geregistreerd 2025-09-08"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2026-05-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Hatertseweg 681 is A+, geregistreerd 2026-05-19"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag vergunning tijdelijke verhuur voor vergunning aanvragen verhuren woonruimte, aan Hatertseweg 691, 6535ZR Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000045456",
+  "vbo": "0268010000065751",
+  "vbo_gevraagd": "2026-10-27",
+  "vbo_panden": [
+   "0268100000045456"
+  ]
+ },
  "hatertseweg721": {
   "adres": "Hatertseweg 721",
   "bag_pogingen": 1,
@@ -123548,6 +123916,12 @@
     "datum": "2026-10-13",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €250 per maand, 9 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-26",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €475 per maand, 11 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null,
@@ -132920,6 +133294,28 @@
   "vbo": "0268010000022849",
   "vbo_panden": [
    "0268100000018587"
+  ]
+ },
+ "mrfranckenstraat5": {
+  "adres": "Mr. Franckenstraat 5",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 5 is A, geregistreerd 2020-12-19"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Sloopmelding onder kelderen en verbouwen kelder, aan Mr. Franckenstraat 5, 6522AA Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000020586",
+  "vbo": "0268010000022228",
+  "vbo_panden": [
+   "0268100000020586"
   ]
  },
  "mrfranckenstraat6": {
@@ -149020,6 +149416,35 @@
    "0268100000041870"
   ]
  },
+ "stannastraat267": {
+  "adres": "St. Annastraat 267",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 267 is E, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 269 is B, geregistreerd 2025-05-12"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag toestemming gelijkwaardige maatregel voor woongebouw: wijzigingen van brandcompartiment kamerverhuurpand, aan St. Annastraat 267, 6525GS Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000025643",
+  "vbo": "0268010000053260",
+  "vbo_gevraagd": "2026-10-27",
+  "vbo_panden": [
+   "0268100000025643"
+  ]
+ },
  "stannastraat267269": {
   "adres": "St. Annastraat 267 269",
   "gebeurtenissen": [
@@ -149034,6 +149459,12 @@
     "datum": "2025-05-12",
     "soort": "energielabel",
     "tekst": "energielabel van St. Annastraat 269 is B, geregistreerd 2025-05-12"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag toestemming gelijkwaardige maatregel voor woongebouw: wijzigingen van brandcompartiment kamerverhuurpand, aan St. Annastraat 267, 6525GS Nijmegen"
    }
   ],
   "pand_id": "0268100000025643",
@@ -150737,6 +151168,118 @@
   "vbo": "0268010000033501",
   "vbo_panden": [
    "0268100000021384"
+  ]
+ },
+ "stikkehezelstraat1": {
+  "adres": "Stikke Hezelstraat 1",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-06-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 61 is D, geregistreerd 2017-06-03"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-12-06",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 69 is D, geregistreerd 2017-12-06"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2018-12-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Stikke Hezelstraat 1 is E, geregistreerd 2018-12-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2018-12-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Stikke Hezelstraat 3 is G, geregistreerd 2018-12-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 45 is A, geregistreerd 2019-03-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Houthof 18 is A, geregistreerd 2019-03-28"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Stikke Hezelstraat 1A is C, geregistreerd 2019-03-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 63 is F, geregistreerd 2020-12-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 53 is D, geregistreerd 2020-12-30"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-09-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 65 is G, geregistreerd 2021-09-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 59 is D, geregistreerd 2024-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-04-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Houthof 17 is A++, geregistreerd 2024-04-15"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-04-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Houthof 19 is A++, geregistreerd 2024-04-15"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-04-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Houthof 19A is A+, geregistreerd 2024-04-15"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-06-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 57 is C, geregistreerd 2025-06-19"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-03-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Augustijnenstraat 51 is C, geregistreerd 2026-03-04"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (5 kamers per adres), aan Stikke Hezelstraat 1, 6511JV Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000020999",
+  "vbo": "0268010000066087",
+  "vbo_panden": [
+   "0268100000020999"
   ]
  },
  "stikkehezelstraat53": {
@@ -153811,6 +154354,21 @@
   "pand_id": null,
   "vbo_gevraagd": "2026-10-24"
  },
+ "tenkatestraat": {
+  "adres": "Ten Katestraat",
+  "bag_gezien": "2026-10-27",
+  "bag_zonder_id": "2026-10-27",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-26",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €789 per maand, 108 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-27"
+ },
  "thijmstraat1": {
   "adres": "Thijmstraat 1",
   "gebeurtenissen": [
@@ -155677,6 +156235,23 @@
   "vbo_gevraagd": "2026-10-15",
   "vbo_panden": [
    "0268100000042493"
+  ]
+ },
+ "transistorweg4": {
+  "adres": "Transistorweg 4",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik kantoor-, laboratorium en bijeenkomstruimte, aan Transistorweg 4, 6534AT Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000108314",
+  "vbo": "0268010000107540",
+  "vbo_gevraagd": "2026-10-27",
+  "vbo_panden": [
+   "0268100000108314"
   ]
  },
  "treubstraat": {
@@ -175093,6 +175668,29 @@
    "0268100000078195"
   ]
  },
+ "weezenhof6824": {
+  "adres": "Weezenhof 6824",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-02-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Weezenhof 6824 is A, geregistreerd 2025-02-27"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het realiseren van een woningsplitsing , aan Weezenhof 6824, 6536BM Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000003141",
+  "vbo": "0268010000033936",
+  "vbo_gevraagd": "2026-10-27",
+  "vbo_panden": [
+   "0268100000003141"
+  ]
+ },
  "weezenhof8248": {
   "adres": "Weezenhof 8248",
   "gebeurtenissen": [
@@ -176806,6 +177404,12 @@
     "datum": "2026-10-16",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €754 per maand, 13 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-26",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €835 per maand, 28 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null,

@@ -1,1 +1,30 @@
-[]
+[
+ {
+  "datum": "2026-10-26",
+  "titel": "Sloopmelding onder kelderen en verbouwen kelder, aan Mr. Franckenstraat 5, 6522AA Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497948.html",
+  "strategie": "verduurzaming",
+  "duiding": "Onderkelderen vergroot het bruikbaar oppervlak van het pand, relevant voor waardecreatie bij verbouwing.",
+  "feiten": {
+   "energielabel": "A (2020)",
+   "oppervlakte_m2": 196
+  },
+  "straat": "Mr. Franckenstraat",
+  "huisnummer": "5",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-26",
+  "titel": "Besluit voor het vervangen van de kozijnen en ramen, aan van Berchenstraat 10, 6511BC Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497784.html",
+  "strategie": "verduurzaming",
+  "duiding": "Vervanging van kozijnen en ramen is vergunbaar en kan bij nieuwe opname het energielabel verbeteren.",
+  "feiten": {
+   "energielabel": "C (2026)",
+   "oppervlakte_m2": 62
+  },
+  "straat": "van Berchenstraat",
+  "huisnummer": "10",
+  "kern": false
+ }
+]

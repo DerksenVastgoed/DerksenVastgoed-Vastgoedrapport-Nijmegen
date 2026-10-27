@@ -62,14 +62,14 @@
   },
   "stieltjesstraat10": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-25",
-   "keer": 4,
+   "laatst": "2026-10-27",
+   "keer": 5,
    "omschrijving": "Stieltjesstraat 10"
   },
   "stannastraat7": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-26",
-   "keer": 3,
+   "laatst": "2026-10-27",
+   "keer": 4,
    "omschrijving": "St. Annastraat 7"
   },
   "graafseweg47": {
@@ -215,6 +215,18 @@
    "laatst": "2026-10-26",
    "keer": 1,
    "omschrijving": "St. Annastraat 9"
+  },
+  "mrfranckenstraat5": {
+   "eerst": "2026-10-27",
+   "laatst": "2026-10-27",
+   "keer": 1,
+   "omschrijving": "Mr. Franckenstraat 5"
+  },
+  "berchenstraat10": {
+   "eerst": "2026-10-27",
+   "laatst": "2026-10-27",
+   "keer": 1,
+   "omschrijving": "Berchenstraat 10"
   }
  }
 }
