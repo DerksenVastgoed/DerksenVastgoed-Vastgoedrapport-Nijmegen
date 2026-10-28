@@ -2,9 +2,9 @@
  "datum": "2026-10-28",
  "ronde": {
   "bag": {
-   "adressen_bijgewerkt": 1,
+   "adressen_bijgewerkt": 0,
    "adressen_nieuw": 0,
-   "adressen_onveranderd": 24402,
+   "adressen_onveranderd": 24403,
    "adressen_verwijderd": 0,
    "buiten_de_ring": 133241,
    "datum": "2026-10-28",
@@ -37,7 +37,7 @@
    "ronde_objecten": 164939,
    "ronde_paginas": 171,
    "ronde_ronde_af": true,
-   "ronde_seconden": 252.7,
+   "ronde_seconden": 305.6,
    "ronde_tegels": 16,
    "ronde_tegels_gedeeld": 0,
    "ronde_tegels_over": 0,
@@ -101,7 +101,7 @@
     "Verbouwing pand": 443
    },
    "ronde_af": true,
-   "seconden": 349.7,
+   "seconden": 379.6,
    "tegels": 16,
    "tegels_gedeeld": 0,
    "tegels_over": 0,
