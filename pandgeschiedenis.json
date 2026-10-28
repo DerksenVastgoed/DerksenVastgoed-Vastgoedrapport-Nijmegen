@@ -51526,6 +51526,55 @@
     "St. Annastraat 75": "D"
    }
   },
+  "0268100000027551": {
+   "bag_eenheden": [
+    [
+     "Fransestraat 75",
+     173
+    ],
+    [
+     "Fransestraat 77",
+     61
+    ],
+    [
+     "Fransestraat 77C",
+     73
+    ],
+    [
+     "Fransestraat 77D",
+     57
+    ],
+    [
+     "Fransestraat 77E",
+     60
+    ]
+   ],
+   "bag_gezien": "2026-10-28",
+   "bag_woningen": [
+    [
+     "Fransestraat 77",
+     61
+    ],
+    [
+     "Fransestraat 77C",
+     73
+    ],
+    [
+     "Fransestraat 77D",
+     57
+    ],
+    [
+     "Fransestraat 77E",
+     60
+    ]
+   ],
+   "labels": {
+    "Fransestraat 77": "B",
+    "Fransestraat 77C": "A",
+    "Fransestraat 77D": "B",
+    "Fransestraat 77E": "B"
+   }
+  },
   "0268100000027574": {
    "bag_eenheden": [
     [
@@ -69957,6 +70006,24 @@
     "Heyendaalseweg 165": "A+"
    }
   },
+  "0268100000055600": {
+   "bag_eenheden": [
+    [
+     "St. Annastraat 267A",
+     40
+    ]
+   ],
+   "bag_gevormd": [
+    [
+     "St. Annastraat 267A",
+     40
+    ]
+   ],
+   "bag_gezien": "2026-10-28",
+   "labels": {
+    "St. Annastraat 267A": "A"
+   }
+  },
   "0268100000065798": {
    "bag_eenheden": [
     [
@@ -76612,6 +76679,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Aldenhof 5001 is nu C"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-27",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor wijzigen eengezinswoning naar kamerverhuurpand met 6 kamers, aan Aldenhof 5001, 6537EA Nijmegen"
    }
   ],
   "pand_id": "0268100000035340",
@@ -78977,6 +79050,12 @@
     "datum": "2026-10-20",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.307 per maand, 35 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-27",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €428 per maand, 13 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -97406,6 +97485,21 @@
    "0268100000002330"
   ]
  },
+ "fortkrayenhoff": {
+  "adres": "Fort Krayenhoff",
+  "bag_gezien": "2026-10-28",
+  "bag_zonder_id": "2026-10-28",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.350 per maand, 95 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-28"
+ },
  "fortstraat10": {
   "adres": "Fortstraat 10",
   "gebeurtenissen": [
@@ -97756,6 +97850,46 @@
   "vbo": "0268010000060793",
   "vbo_panden": [
    "0268100000031099"
+  ]
+ },
+ "fransestraat77": {
+  "adres": "Fransestraat 77",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 77 is B, geregistreerd 2023-07-10"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 77C is A, geregistreerd 2023-07-10"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 77D is B, geregistreerd 2023-07-10"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fransestraat 77E is B, geregistreerd 2023-07-10"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-27",
+    "soort": "te koop",
+    "tekst": "te koop voor €360.000, 55 m2"
+   }
+  ],
+  "pand_id": "0268100000027551",
+  "vbo": "0268010000089008",
+  "vbo_panden": [
+   "0268100000027551"
   ]
  },
  "franshalsstraat35": {
@@ -120235,6 +120369,12 @@
     "datum": "2025-11-27",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omgevingsvergunning voor Het opsplitsen woning 2 stud.kamers, 4 app. en 3 praktijkruimten (legalisering)., aan Kronenburgersingel 213, 6511AR Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-27",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor Het opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten (legalisering), aan Kronenburgersingel 213, 6511AR Nijmegen"
    }
   ],
   "pand_id": "0268100000040969",
@@ -122417,6 +122557,21 @@
   "pand_id": null,
   "vbo_gevraagd": "2026-10-24"
  },
+ "langehezelstraat": {
+  "adres": "Lange Hezelstraat",
+  "bag_gezien": "2026-10-28",
+  "bag_zonder_id": "2026-10-28",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-27",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €595 per maand, 22 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-28"
+ },
  "langehezelstraat100": {
   "adres": "Lange Hezelstraat 100",
   "gebeurtenissen": [
@@ -123692,6 +123847,21 @@
   "vbo_panden": [
    "0268100000005884"
   ]
+ },
+ "lingestraat": {
+  "adres": "Lingestraat",
+  "bag_gezien": "2026-10-28",
+  "bag_zonder_id": "2026-10-28",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €673 per maand, 70 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-28"
  },
  "loevesteinstraat61": {
   "adres": "Loevesteinstraat 61",
@@ -136495,6 +136665,12 @@
     "datum": "2026-10-22",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €919 per maand, 35 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-27",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €2.450 per maand, 55 m2"
    }
   ],
   "pand_id": null
@@ -138199,6 +138375,12 @@
     "datum": "2026-10-13",
     "soort": "bekendmaking",
     "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (5 kamers), aan Paukenstraat 105, 6544TW Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-27",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het wijzigen van een bestaande vergunning voor kamerverhuur van 4 naar 5 kamers, aan Paukenstraat 105, 6544TW Nijmegen"
    }
   ],
   "pand_id": "0268100000004764",
@@ -149440,6 +149622,9 @@
   ],
   "pand_id": "0268100000025643",
   "vbo": "0268010000053260",
+  "vbo_gevormd": [
+   "0268010000108446"
+  ],
   "vbo_gevraagd": "2026-10-27",
   "vbo_panden": [
    "0268100000025643"
@@ -149472,6 +149657,35 @@
   "vbo_gevraagd": "2026-10-15",
   "vbo_panden": [
    "0268100000025643"
+  ]
+ },
+ "stannastraat267a": {
+  "adres": "St. Annastraat 267A",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Annastraat 267A is A, geregistreerd 2025-05-12"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-26",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag toestemming gelijkwaardige maatregel voor woongebouw: wijzigingen van brandcompartiment kamerverhuurpand, aan St. Annastraat 267, 6525GS Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-28",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1888, dat zelf al in gebruik is, mediaan 40 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-28 in de registratie staat"
+   }
+  ],
+  "pand_id": "0268100000055600",
+  "transformatie_gemeld": 1,
+  "vbo": "0268010000108447",
+  "vbo_panden": [
+   "0268100000055600"
   ]
  },
  "stannastraat273": {
@@ -162610,6 +162824,12 @@
     "datum": "2026-10-14",
     "soort": "transformatie",
     "tekst": "in de BAG staan 2 woningen als gevormd in dit pand uit 1904, dat zelf al in gebruik is, mediaan 30 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-14 in de registratie staat"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-27",
+    "soort": "te koop",
+    "tekst": "te koop voor €239.000, 34 m2"
    }
   ],
   "pand_id": "0268100000001661",

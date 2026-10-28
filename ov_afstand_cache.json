@@ -799,6 +799,14 @@
   "omweg": 1.35,
   "soort": "bus"
  },
+ "51.83806,5.86083": {
+  "geschat": false,
+  "hemelsbreed": 278,
+  "meters": 364,
+  "naam": "Fransestraat",
+  "omweg": 1.31,
+  "soort": "bus"
+ },
  "51.83815,5.84661": {
   "geschat": false,
   "hemelsbreed": 212,
@@ -877,6 +885,14 @@
   "meters": 362,
   "naam": "Spoorkuil",
   "omweg": 1.08,
+  "soort": "bus"
+ },
+ "51.83888,5.86963": {
+  "geschat": false,
+  "hemelsbreed": 362,
+  "meters": 716,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.98,
   "soort": "bus"
  },
  "51.83895,5.86167": {
@@ -1887,6 +1903,14 @@
   "omweg": 1.4,
   "soort": "bus"
  },
+ "51.84834,5.85814": {
+  "geschat": false,
+  "hemelsbreed": 91,
+  "meters": 574,
+  "naam": "Joris Ivensplein",
+  "omweg": 6.31,
+  "soort": "bus"
+ },
  "51.84843,5.85838": {
   "geschat": false,
   "hemelsbreed": 108,
@@ -1901,6 +1925,14 @@
   "meters": 398,
   "naam": "Havenweg",
   "omweg": 2.25,
+  "soort": "bus"
+ },
+ "51.84880,5.83992": {
+  "geschat": false,
+  "hemelsbreed": 196,
+  "meters": 352,
+  "naam": "Biezenstraat",
+  "omweg": 1.8,
   "soort": "bus"
  },
  "51.84884,5.85798": {
@@ -2109,6 +2141,14 @@
   "meters": 161,
   "naam": "Ferry Portierstraat",
   "omweg": 1.49,
+  "soort": "bus"
+ },
+ "51.85422,5.84378": {
+  "geschat": false,
+  "hemelsbreed": 232,
+  "meters": 231,
+  "naam": "Ferry Portierstraat",
+  "omweg": 1.0,
   "soort": "bus"
  },
  "51.85426,5.82724": {

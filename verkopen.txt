@@ -1187,3 +1187,12 @@ Ten Katestraat | Nijmegen | 789 | te huur | 2026-10-26 | huislijn | 108 | 6531EH
 Bolerostraat | Nijmegen | 1000 | te huur kamer | 2026-10-26 | kamernet-incl | 30 | 
 Malvert | Nijmegen | 475 | te huur kamer | 2026-10-26 | kamernet-incl | 11 | 
 Winkelsteegseweg | Nijmegen | 835 | te huur | 2026-10-26 | kamernet-incl | 28 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 28-10-2026
+van Somerenstraat 2 | Nijmegen | 239000 | te koop | 2026-10-27 | funda-mail | 34 | 6521BR
+Fransestraat 77 | Nijmegen | 360000 | te koop | 2026-10-27 | funda-mail | 55 | 6524HX
+Oranjesingel | Nijmegen | 2450 | te huur | 2026-10-27 | huislijn | 55 | 6511NL
+Lingestraat | Nijmegen | 673 | te huur | 2026-10-27 | huislijn | 70 | 6541WG
+Fort Krayenhoff | Nijmegen | 2350 | te huur gemeubileerd | 2026-10-27 | pararius | 95 | 6541GE
+Lange Hezelstraat | Nijmegen | 595 | te huur kamer | 2026-10-27 | kamernet-incl | 22 | 
+Berg en Dalseweg | Nijmegen | 428 | te huur kamer | 2026-10-27 | kamernet-incl | 13 | 

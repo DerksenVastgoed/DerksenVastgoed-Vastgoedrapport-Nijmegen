@@ -371,5 +371,15 @@
   "opp": 108,
   "kamers": 5,
   "postcode": "6531EH"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442748/oranjesingel-nijmegen": {
+  "opp": 55,
+  "kamers": 2,
+  "postcode": "6511NL"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4442809/lingestraat-nijmegen": {
+  "opp": 70,
+  "kamers": 3,
+  "postcode": "6541WG"
  }
 }
