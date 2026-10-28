@@ -112,7 +112,7 @@ NAUWKEURIG OVER DE JURIDISCHE STATUS. Even belangrijk.
 - Een MELDING (bijvoorbeeld brandveilig gebruik) is GEEN vergunning. Schrijf nooit "vergund" of "vergunbaar" bij een melding. Een melding betekent dat de eigenaar het gebruik heeft aangemeld.
 - MAAR: een melding brandveilig gebruik is verplicht vanaf vijf kamers en staat LOS van de omzettingsvergunning. Concludeer er dus NOOIT uit dat het pand zonder vergunning of zonder toestemming draait. Kijk bij de feiten naar het veld "vergunning": ligt er al een, noem die dan. Staat er dat hij niet gevonden is, schrijf dan dat de vergunning ouder kan zijn dan de gemeentelijke lijst of niet vereist is omdat de WOZ boven de grens ligt. Dat is iets anders dan "niet vergund".
 - Een AANVRAAG is nog geen besluit. Die kan geweigerd worden. Schrijf niet alsof het rond is.
-- Alleen bij een BESLUIT of VERLEENDE vergunning mag je zeggen dat iets is toegestaan.
+- Alleen bij een VERLEENDE vergunning mag je zeggen dat iets is toegestaan, bevestigd of haalbaar gebleken. Een titel "Besluit voor ..." zegt niet of het besluit verleend of geweigerd is. Kijk daarvoor naar het feit "uitkomst": staat daar verleend, dan mag het; staat daar "niet bekend", schrijf dan niet dat het besluit iets bevestigt, toestaat of haalbaar maakt.
 - Neem het woord uit de titel over: staat er "melding", schrijf dan melding. Staat er "aanvraag", schrijf dan aanvraag.
 
 Goede duiding gaat over het MECHANISME, niet over verzonnen bedragen:
@@ -963,13 +963,54 @@ def verkoop_bij_items(items, verkopen):
     return items
 
 
-def verrijk(items: list):
-    """Zet bij elk item een strategie-label en duiding via de Anthropic-API."""
-    for it in items:
-        it["strategie"] = ""
-        it["gevolg"] = ""
-    if not ANTHROPIC_API_KEY or not items:
-        return
+# DE UITKOMST VAN EEN BESLUIT, ALS FEIT BIJ DE DUIDING.
+#
+# 28 oktober 2026, Kronenburgersingel 213. De titel was "Besluit voor Het
+# opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten
+# (legalisering)". De duiding maakte daarvan: "bevestigt dat deze verdichting
+# op 361 m2 planologisch haalbaar is". Of het besluit verleend was, stond
+# nergens: de veldenronde had deze publicatie nog niet gelezen. De schrijver
+# nam het over ("legaal gemaakt", "haalbaar gebleken", "de gemeente staat
+# grote splitsingen toe") en de feitencontrole moest drie van de acht zinnen
+# terugdraaien. De oorzaak stond in PROFIEL: "Alleen bij een BESLUIT of
+# VERLEENDE vergunning mag je zeggen dat iets is toegestaan." Daar stond een
+# besluit gelijk aan een toestemming, terwijl de feitencontrole juist zegt
+# dat van een besluit alleen de titel bekend is. Twee afspraken over
+# hetzelfde, en ze spraken elkaar tegen.
+#
+# Gemeten op publicatie_velden.json die dag: van 109 besluiten waarvan de
+# tekst gelezen is, zei de tekst bij 90 "verleend", bij 1 iets anders en bij
+# 18 niets wat besluit.py herkent. Een besluit is dus meestal verleend, maar
+# "meestal" is geen feit over dit ene pand. Daarom krijgt de duiding nu de
+# uitkomst als feit mee: verleend als de veldenronde dat las, anders "niet
+# bekend". Een aanvraag krijgt niets; daar zegt PROFIEL al dat het geen
+# besluit is.
+UITKOMST_ONBEKEND = ("niet bekend: van dit besluit is alleen de titel bekend, "
+                     "niet of het verleend of geweigerd is")
+
+
+def _velden():
+    try:
+        import publicatievelden
+        return publicatievelden.lees()
+    except Exception:  # noqa
+        return {}
+
+
+def uitkomst_feit(it: dict, velden: dict):
+    """Wat we weten over de afloop van een besluit, of None voor iets anders."""
+    titel = (it.get("titel") or "").strip().lower()
+    if not titel.startswith("besluit"):
+        return None
+    m = re.search(r"gmb-\d{4}-\d+", it.get("url") or "")
+    rij = (velden or {}).get(m.group(0)) if m else None
+    if rij and rij.get("uitkomst") == "verleend":
+        return "verleend (uit de tekst van de publicatie)"
+    return UITKOMST_ONBEKEND
+
+
+def feitenlijst(items: list, velden: dict) -> str:
+    """De genummerde lijst met titels en feiten die de duiding krijgt."""
     regels = []
     for i, it in enumerate(items):
         feiten = dict(it.get("feiten") or {})
@@ -984,6 +1025,9 @@ def verrijk(items: list):
         # De inhoud van een beleidsstuk is geen getal maar een lopende tekst, en
         # die hoort niet in de komma-lijst met feiten te verdwijnen.
         inhoud = feiten.pop("inhoud", "")
+        _uit = uitkomst_feit(it, velden)
+        if _uit:
+            feiten["uitkomst"] = _uit
         if feiten:
             feitentekst = ", ".join(f"{k}={v}" for k, v in feiten.items())
             regels.append(f"{i}. {it['titel']}\n   BEKENDE FEITEN: {feitentekst}")
@@ -993,7 +1037,17 @@ def verrijk(items: list):
             # Platslaan: de lijst werkt op regels die met "0. ", "1. " beginnen,
             # en een harde regelovergang in de samenvatting breekt die opbouw.
             regels[-1] += "\n   INHOUD VAN HET STUK: " + " ".join(inhoud.split())
-    lijst = "\n".join(regels)
+    return "\n".join(regels)
+
+
+def verrijk(items: list):
+    """Zet bij elk item een strategie-label en duiding via de Anthropic-API."""
+    for it in items:
+        it["strategie"] = ""
+        it["gevolg"] = ""
+    if not ANTHROPIC_API_KEY or not items:
+        return
+    lijst = feitenlijst(items, _velden())
     prompt = (f"Bekendmakingen:\n{lijst}\n\n"
               "Gebruik uitsluitend de getallen onder BEKENDE FEITEN. Staat daar 'geen', "
               "noem dan geen enkel cijfer in je duiding.\n\n"
@@ -1194,6 +1248,36 @@ def proef():
              "X 1, 6511AA Nijmegen", False)):
         if alleen_bedrijfspand({"titel": titel, "type": ""}) != ja:
             afw.append(f"alleen-bedrijfspand verkeerd voor: {titel[:50]}")
+    # De uitkomst van een besluit (Kronenburgersingel 213, 28 oktober): een
+    # titel "Besluit voor" is geen toestemming, en de duiding hoort dat te
+    # weten. Voorstadslaan 70 is een besluit dat de veldenronde als verleend
+    # las; die regel staat zo in publicatie_velden.json.
+    _kron = {"titel": "Besluit voor Het opsplitsen woning een stud.kamer, 4 "
+                      "app. en 3 praktijkruimten (legalisering), aan "
+                      "Kronenburgersingel 213, 6511AR Nijmegen",
+             "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-499623.html",
+             "feiten": {"oppervlakte_m2": 361}}
+    _voorstad = {"titel": "Besluit voor Splitsen van de woning, aan "
+                          "Voorstadslaan 70, 6541ST Nijmegen",
+                 "url": "https://zoek.officielebekendmakingen.nl/gmb-2025-184652.html"}
+    _vl = {"gmb-2025-184652": {"uitkomst": "verleend"}}
+    _lijst = feitenlijst([_kron, _voorstad], _vl)
+    if "uitkomst=" + UITKOMST_ONBEKEND not in _lijst:
+        afw.append("een besluit zonder bekende uitkomst gaat naar de duiding "
+                   "zonder dat erbij staat dat de uitkomst niet bekend is")
+    if "uitkomst=verleend" not in _lijst:
+        afw.append("een besluit dat de veldenronde als verleend las, gaat "
+                   "niet als verleend naar de duiding")
+    if uitkomst_feit({"titel": "Aanvraag omgevingsvergunning voor het "
+                               "splitsen, aan X 1"}, _vl) is not None:
+        afw.append("een aanvraag krijgt een uitkomst mee")
+    _echt = _velden()
+    if "gmb-2025-184652" in _echt and uitkomst_feit(_voorstad, _echt) \
+            == UITKOMST_ONBEKEND:
+        afw.append("Voorstadslaan 70 staat in publicatie_velden.json als "
+                   "verleend, maar gaat als onbekend naar de duiding")
+    if "Alleen bij een BESLUIT of VERLEENDE" in PROFIEL:
+        afw.append("de duiding mag een besluit weer als toestemming lezen")
     binnen = {"titel": "Splitsen naar zes woonruimtes, aan Hatertseweg 338, "
                        "6533GP Nijmegen", "type": ""}
     buiten = {"titel": "Melding brandveilig gebruik, aan Ambachtsweg 2, "

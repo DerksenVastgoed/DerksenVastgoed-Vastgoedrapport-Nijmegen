@@ -1867,3 +1867,21 @@ waarom: 26 oktober. De brief opende met "Vandaag weinig beweging op straat,
   enkel verhaal geeft eerste_zin nog een aanhef terug.
 proef: brief_verhalend:de opening na de aanhef wordt niet getoetst
 soort: brief
+
+---
+eis: De duiding bij een bekendmaking zegt alleen dat een besluit iets
+  toestaat, bevestigt of haalbaar maakt als de uitkomst verleend bekend is;
+  een titel "Besluit voor" is geen toestemming, en bij elk besluit krijgt de
+  duiding de uitkomst als feit mee (verleend, of niet bekend).
+waarom: 28 oktober 2026, Kronenburgersingel 213. Van het besluit was alleen
+  de titel bekend, maar de duiding zei "bevestigt dat deze verdichting op 361
+  m2 planologisch haalbaar is". De schrijver nam dat over en de feitencontrole
+  draaide drie van de acht zinnen terug. Het profiel van de duiding zei
+  "Alleen bij een BESLUIT of VERLEENDE vergunning mag je zeggen dat iets is
+  toegestaan", terwijl de feitencontrole zegt dat van een besluit alleen de
+  titel bekend is. Op publicatie_velden.json die dag: 109 besluiten gelezen,
+  90 verleend, 1 anders, 18 zonder herkende uitkomst.
+proef: bekendmakingen_nijmegen:een besluit zonder bekende uitkomst gaat naar de duiding; bekendmakingen_nijmegen:de duiding mag een besluit weer als toestemming lezen
+soort: gegevens
+let op: Dit handhaaft wat de duiding te zien krijgt, niet wat het taalmodel
+  ervan maakt. Of de duiding de regel volgt, is offline niet te meten.
