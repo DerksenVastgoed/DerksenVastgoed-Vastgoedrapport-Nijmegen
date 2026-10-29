@@ -183,6 +183,14 @@
   "omweg": 1.6,
   "soort": "bus"
  },
+ "51.81972,5.84770": {
+  "geschat": false,
+  "hemelsbreed": 187,
+  "meters": 272,
+  "naam": "Beemdstraat",
+  "omweg": 1.45,
+  "soort": "bus"
+ },
  "51.82032,5.85017": {
   "geschat": false,
   "hemelsbreed": 191,
@@ -703,6 +711,14 @@
   "omweg": 1.03,
   "soort": "bus"
  },
+ "51.83688,5.85399": {
+  "geschat": false,
+  "hemelsbreed": 116,
+  "meters": 104,
+  "naam": "Spoorkuil",
+  "omweg": 0.9,
+  "soort": "bus"
+ },
  "51.83689,5.87593": {
   "geschat": false,
   "hemelsbreed": 60,
@@ -805,6 +821,14 @@
   "meters": 364,
   "naam": "Fransestraat",
   "omweg": 1.31,
+  "soort": "bus"
+ },
+ "51.83815,5.84604": {
+  "geschat": false,
+  "hemelsbreed": 194,
+  "meters": 423,
+  "naam": "Rozenstraat",
+  "omweg": 2.18,
   "soort": "bus"
  },
  "51.83815,5.84661": {
@@ -931,6 +955,22 @@
   "geschat": false,
   "hemelsbreed": 440,
   "meters": 504,
+  "naam": "Centraal Station",
+  "omweg": 1.15,
+  "soort": "bus"
+ },
+ "51.83922,5.84350": {
+  "geschat": false,
+  "hemelsbreed": 317,
+  "meters": 404,
+  "naam": "Rozenstraat",
+  "omweg": 1.27,
+  "soort": "bus"
+ },
+ "51.83922,5.85766": {
+  "geschat": false,
+  "hemelsbreed": 454,
+  "meters": 522,
   "naam": "Centraal Station",
   "omweg": 1.15,
   "soort": "bus"
@@ -1157,6 +1197,14 @@
   "meters": 267,
   "naam": "Fuchsiastraat",
   "omweg": 1.34,
+  "soort": "bus"
+ },
+ "51.84100,5.85910": {
+  "geschat": false,
+  "hemelsbreed": 343,
+  "meters": 1067,
+  "naam": "Smetiusstraat",
+  "omweg": 3.11,
   "soort": "bus"
  },
  "51.84113,5.87317": {
@@ -1527,6 +1575,14 @@
   "omweg": 10.79,
   "soort": "bus"
  },
+ "51.84441,5.86179": {
+  "geschat": false,
+  "hemelsbreed": 206,
+  "meters": 246,
+  "naam": "Plein 1944",
+  "omweg": 1.19,
+  "soort": "bus"
+ },
  "51.84446,5.87289": {
   "geschat": false,
   "hemelsbreed": 37,
@@ -1879,12 +1935,28 @@
   "omweg": 1.33,
   "soort": "bus"
  },
+ "51.84787,5.86704": {
+  "geschat": false,
+  "hemelsbreed": 202,
+  "meters": 216,
+  "naam": "Voerweg",
+  "omweg": 1.07,
+  "soort": "bus"
+ },
  "51.84788,5.84653": {
   "geschat": false,
   "hemelsbreed": 291,
   "meters": 546,
   "naam": "Biezenstraat",
   "omweg": 1.88,
+  "soort": "bus"
+ },
+ "51.84792,5.86104": {
+  "geschat": false,
+  "hemelsbreed": 295,
+  "meters": 1004,
+  "naam": "Joris Ivensplein",
+  "omweg": 3.4,
   "soort": "bus"
  },
  "51.84825,5.86179": {
@@ -2055,6 +2127,14 @@
   "omweg": 0.99,
   "soort": "bus"
  },
+ "51.84990,5.85615": {
+  "geschat": false,
+  "hemelsbreed": 176,
+  "meters": 228,
+  "naam": "Joris Ivensplein",
+  "omweg": 1.3,
+  "soort": "bus"
+ },
  "51.85016,5.85637": {
   "geschat": false,
   "hemelsbreed": 201,
@@ -2189,6 +2269,14 @@
   "meters": 1343,
   "naam": "Terracottastraat",
   "omweg": 7.81,
+  "soort": "bus"
+ },
+ "51.88021,5.85340": {
+  "geschat": false,
+  "hemelsbreed": 297,
+  "meters": 1348,
+  "naam": "Terracottastraat",
+  "omweg": 4.54,
   "soort": "bus"
  },
  "51.88062,5.83680": {

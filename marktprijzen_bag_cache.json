@@ -78274,7 +78274,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-21",
+    "eenheden_gezien": "2026-10-29",
     "oppervlakte_bag": 117,
     "energielabel": {
       "label": "A",
@@ -78706,7 +78706,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-21",
+    "eenheden_gezien": "2026-10-29",
     "oppervlakte_bag": 79,
     "energielabel": {
       "label": "B",
@@ -80609,7 +80609,8 @@
     ],
     "postcode": "6541WG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Fort Krayenhoff|Nijmegen": {
     "oppervlakte": 95,
@@ -80618,7 +80619,8 @@
     ],
     "postcode": "6541GE",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:Kronenburgersingel 213|Nijmegen": {
     "postcode": "6511AR",
@@ -80631,5 +80633,773 @@
     "buurtnaam": "Bottendaal",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-5122d2c4fc5a5d12d21c6448c7384ae7"
+  },
+  "Piet Heinstraat 47|Nijmegen": {
+    "oppervlakte": 83,
+    "bouwjaar": "1901",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512GS",
+    "adresseerbaarObjectIdentificatie": "0268010000025047",
+    "pand": "0268100000014200",
+    "panden": [
+      "0268100000014200"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-d142b67c8813c8a697d06c1bbd6ae63b",
+    "eenheden_gezien": "2026-10-29",
+    "oppervlakte_bag": 105,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "C",
+      "prive": false,
+      "registratiedatum": "2026-09-25",
+      "opnamedatum": "2026-09-25",
+      "geldig_tot": "2036-09-25",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning tussen",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000025047",
+      "panden": [
+        "0268100000014200"
+      ],
+      "verbruik": 233.06,
+      "bouwjaar": 1901
+    }
+  },
+  "Burg. Hustinxstraat 206|Nijmegen": {
+    "oppervlakte": 64,
+    "bouwjaar": "1980",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512AC",
+    "adresseerbaarObjectIdentificatie": "0268010000081969",
+    "pand": "0268100000027927",
+    "panden": [
+      "0268100000027927"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-258038a867013b913563b089f8095317",
+    "eenheden_in_pand": [
+      {
+        "adres": "Burg. Hustinxstraat 100",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 102",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 104",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 106",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 108",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 110",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 112",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 114",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 116",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 118",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 120",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 122",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 124",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 126",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 128",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 130",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 132",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 134",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 136",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 138",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 140",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 142",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 144",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 146",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 148",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 150",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 152",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 154",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 156",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 158",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 160",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 162",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 164",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 166",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 168",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 170",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 172",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 174",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 176",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 178",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 180",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 182",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 184",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 186",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 188",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 190",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 192",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 194",
+        "oppervlakte": 63,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 196",
+        "oppervlakte": 56,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burg. Hustinxstraat 198",
+        "oppervlakte": 61,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-29",
+    "oppervlakte_bag": 63,
+    "energielabel": {
+      "label": "D",
+      "prive": false,
+      "registratiedatum": "2017-12-14",
+      "opnamedatum": "2017-12-14",
+      "geldig_tot": "2027-12-14",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000081969",
+      "panden": [],
+      "verbruik": 65575.96,
+      "bouwjaar": 1979
+    }
+  },
+  "Burghardt van den Berghstraat 45|Nijmegen": {
+    "oppervlakte": 73,
+    "bouwjaar": "1895",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6512DD",
+    "adresseerbaarObjectIdentificatie": "0268010000104464",
+    "pand": "0268100000019828",
+    "panden": [
+      "0268100000019828"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Bottendaal",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-579d6e7face02bc6efb52dfc9ed6093b",
+    "eenheden_in_pand": [
+      {
+        "adres": "Burghardt van den Berghstraat 45",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 45A",
+        "oppervlakte": 70,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Burghardt van den Berghstraat 47",
+        "oppervlakte": 148,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-29",
+    "oppervlakte_bag": 70,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2023-12-18",
+      "opnamedatum": "2023-11-28",
+      "geldig_tot": "2033-11-28",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "NTA 8800:2023 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000104464",
+      "panden": [
+        "0268100000019828"
+      ],
+      "verbruik": 164.16,
+      "bouwjaar": 1895
+    }
+  },
+  "Ganzenheuvel 13|Nijmegen": {
+    "oppervlakte": 44,
+    "bouwjaar": "1879",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511WD",
+    "adresseerbaarObjectIdentificatie": "0268010000069941",
+    "pand": "0268100000010767",
+    "panden": [
+      "0268100000010767"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-7054833b399ddab91eb64797aeb591fc",
+    "eenheden_in_pand": [
+      {
+        "adres": "Ganzenheuvel 5",
+        "oppervlakte": 119,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 7",
+        "oppervlakte": 139,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 9",
+        "oppervlakte": 133,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verbouwing verblijfsobject"
+      },
+      {
+        "adres": "Ganzenheuvel 11",
+        "oppervlakte": 77,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ganzenheuvel 13",
+        "oppervlakte": 39,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lange Hezelstraat 6",
+        "oppervlakte": 172,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lange Hezelstraat 8",
+        "oppervlakte": 107,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lange Hezelstraat 8",
+        "oppervlakte": 38,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Lange Hezelstraat 8A",
+        "oppervlakte": 47,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      },
+      {
+        "adres": "Lange Hezelstraat 8B",
+        "oppervlakte": 32,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject gevormd"
+      }
+    ],
+    "eenheden_gezien": "2026-10-29",
+    "oppervlakte_bag": 39
+  },
+  "Hofstraat|Nijmegen": {
+    "oppervlakte": 100,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6533XC",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Molenstraat|Nijmegen": {
+    "oppervlakte": 60,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511HG",
+    "buurtnaam": "",
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Ridderstraat|Nijmegen": {
+    "oppervlakte": 65,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511TM",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Keizer Karelplein|Nijmegen": {
+    "oppervlakte": 94,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ND",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Veemarkt|Nijmegen": {
+    "oppervlakte": 65,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511ZD",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Palmstraat 36|Nijmegen": {
+    "oppervlakte": 115,
+    "bouwjaar": "1981",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542JZ",
+    "adresseerbaarObjectIdentificatie": "0268010000020563",
+    "pand": "0268100000015473",
+    "panden": [
+      "0268100000015473"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Wolfskuil",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-c2ffe36b792bc6930820f061d22fe36e",
+    "eenheden_gezien": "2026-10-29",
+    "oppervlakte_bag": 118,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2024-03-12",
+      "opnamedatum": "2024-02-26",
+      "geldig_tot": "2034-02-26",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning tussen",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2023 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000020563",
+      "panden": [
+        "0268100000015473"
+      ],
+      "verbruik": 167.23,
+      "bouwjaar": 1981
+    }
+  },
+  "Gabriel Garcia Marquezstraat|Nijmegen": {
+    "oppervlakte": 128,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6515ZK",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Zonnebloemstraat|Nijmegen": {
+    "oppervlakte": 83,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6542NG",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "bm:Ruisdaelstraat 27|Nijmegen": {
+    "postcode": "6521LB",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-933c172db1bd75cf890aaba5f1653773"
+  },
+  "bm:Mesdagstraat 45|Nijmegen": {
+    "postcode": "6521MN",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-803fe73843754a739acf84b5bdf447a3"
+  },
+  "bm:Kelfkensbos 60|Nijmegen": {
+    "postcode": "6511TB",
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-705d7780e4ad56c50340dc872e2a093f"
+  },
+  "bm:Antiloopstraat 30|Nijmegen": {
+    "postcode": "6531TP",
+    "buurtnaam": "St. Anna",
+    "wijknaam": "Nijmegen-Midden",
+    "nummeraanduiding": "adr-8a34dfe1a5fec00f36bf802b50eb13ee"
   }
 }

@@ -30269,6 +30269,24 @@
     "Dobbelmannweg 21": "C"
    }
   },
+  "0268100000014200": {
+   "bag_eenheden": [
+    [
+     "Piet Heinstraat 47",
+     105
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Piet Heinstraat 47",
+     105
+    ]
+   ],
+   "labels": {
+    "Piet Heinstraat 47": "C"
+   }
+  },
   "0268100000014265": {
    "bag_eenheden": [
     [
@@ -30686,6 +30704,24 @@
    ],
    "labels": {
     "Tulpstraat 12": "C"
+   }
+  },
+  "0268100000015473": {
+   "bag_eenheden": [
+    [
+     "Palmstraat 36",
+     118
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Palmstraat 36",
+     118
+    ]
+   ],
+   "labels": {
+    "Palmstraat 36": "B"
    }
   },
   "0268100000015475": {
@@ -32761,6 +32797,24 @@
    ],
    "labels": {
     "Van Haapsstraat 36": "D"
+   }
+  },
+  "0268100000017833": {
+   "bag_eenheden": [
+    [
+     "Van Cranenborchstraat 31",
+     111
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Van Cranenborchstraat 31",
+     111
+    ]
+   ],
+   "labels": {
+    "Van Cranenborchstraat 31": "D"
    }
   },
   "0268100000017887": {
@@ -36074,6 +36128,41 @@
    ],
    "labels": {
     "Pater Brugmanstraat 47": "G"
+   }
+  },
+  "0268100000019828": {
+   "bag_eenheden": [
+    [
+     "Burghardt van den Berghstraat 45",
+     70
+    ],
+    [
+     "Burghardt van den Berghstraat 45A",
+     70
+    ],
+    [
+     "Burghardt van den Berghstraat 47",
+     148
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Burghardt van den Berghstraat 45",
+     70
+    ],
+    [
+     "Burghardt van den Berghstraat 45A",
+     70
+    ],
+    [
+     "Burghardt van den Berghstraat 47",
+     148
+    ]
+   ],
+   "labels": {
+    "Burghardt van den Berghstraat 45": "B",
+    "Burghardt van den Berghstraat 45A": "B"
    }
   },
   "0268100000019830": {
@@ -46835,6 +46924,24 @@
     "Delistraat 43": "C"
    }
   },
+  "0268100000024245": {
+   "bag_eenheden": [
+    [
+     "Delistraat 27",
+     209
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Delistraat 27",
+     209
+    ]
+   ],
+   "labels": {
+    "Delistraat 27": "C"
+   }
+  },
   "0268100000024259": {
    "bag_eenheden": [
     [
@@ -52550,7 +52657,7 @@
      61
     ]
    ],
-   "bag_gezien": "2026-10-25",
+   "bag_gezien": "2026-10-29",
    "bag_woningen": [
     [
      "Burg. Hustinxstraat 100",
@@ -58584,6 +58691,24 @@
    ],
    "labels": {
     "Dobbelmannweg 29": "F"
+   }
+  },
+  "0268100000033032": {
+   "bag_eenheden": [
+    [
+     "Horstacker 2028",
+     113
+    ]
+   ],
+   "bag_gezien": "2026-10-29",
+   "bag_woningen": [
+    [
+     "Horstacker 2028",
+     113
+    ]
+   ],
+   "labels": {
+    "Horstacker 2028": "B"
    }
   },
   "0268100000033153": {
@@ -84346,6 +84471,12 @@
     "datum": "2026-10-12",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €556 per maand, 101 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €545 per maand, 17 m2"
    }
   ],
   "pand_id": null,
@@ -84813,6 +84944,34 @@
   "vbo": "0268010000004917",
   "vbo_panden": [
    "0268100000019830"
+  ]
+ },
+ "burghardtvandenberghstraat45": {
+  "adres": "Burghardt van den Berghstraat 45",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burghardt van den Berghstraat 45 is B, geregistreerd 2023-12-18"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-12-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burghardt van den Berghstraat 45A is B, geregistreerd 2023-12-18"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-28",
+    "soort": "te koop",
+    "tekst": "te koop voor €395.000, 73 m2"
+   }
+  ],
+  "pand_id": "0268100000019828",
+  "vbo": "0268010000104464",
+  "vbo_panden": [
+   "0268100000019828"
   ]
  },
  "burghardtvandenberghstraat48": {
@@ -85928,6 +86087,190 @@
   ],
   "pand_id": "0268100000027927",
   "vbo": "0268010000005155",
+  "vbo_panden": [
+   "0268100000027927"
+  ]
+ },
+ "burghustinxstraat206": {
+  "adres": "Burg. Hustinxstraat 206",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2016-11-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 150 is D, geregistreerd 2016-11-11"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-02-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 160 is E, geregistreerd 2017-02-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-06-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 158 is D, geregistreerd 2017-06-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-07-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 118 is C, geregistreerd 2018-07-26"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-10-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 112 is C, geregistreerd 2018-10-05"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-02-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 134 is C, geregistreerd 2019-02-14"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-04-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 100 is C, geregistreerd 2019-04-07"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-07-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 172 is E, geregistreerd 2019-07-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-07-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 176 is F, geregistreerd 2019-07-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-08-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 110 is C, geregistreerd 2019-08-15"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-09-06",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 128 is E, geregistreerd 2019-09-06"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-11-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 180 is D, geregistreerd 2019-11-01"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-12-20",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 166 is D, geregistreerd 2019-12-20"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-08-10",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 140 is C, geregistreerd 2020-08-10"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 152 is C, geregistreerd 2020-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 170 is C, geregistreerd 2020-11-30"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 178 is E, geregistreerd 2020-12-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 182 is E, geregistreerd 2020-12-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 190 is D, geregistreerd 2020-12-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 192 is E, geregistreerd 2020-12-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 186 is C, geregistreerd 2020-12-29"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-08-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 156 is C, geregistreerd 2021-08-05"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-10-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 132 is D, geregistreerd 2023-10-03"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 136 is C, geregistreerd 2024-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-03-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 194 is F, geregistreerd 2025-03-11"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-07-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 114 is D, geregistreerd 2025-07-30"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-10-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 124 is C, geregistreerd 2025-10-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-03-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Burg. Hustinxstraat 184 is A, geregistreerd 2026-03-04"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-28",
+    "soort": "te koop",
+    "tekst": "te koop voor €345.000, 64 m2"
+   }
+  ],
+  "pand_id": "0268100000027927",
+  "vbo": "0268010000081969",
   "vbo_panden": [
    "0268100000027927"
   ]
@@ -89974,6 +90317,28 @@
   "vbo": "0268010000048847",
   "vbo_panden": [
    "0268100000025308"
+  ]
+ },
+ "delistraat27": {
+  "adres": "Delistraat 27",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-02-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Delistraat 27 is C, geregistreerd 2025-02-07"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-28",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een nieuwe dakkapel, aan Delistraat 27, 6524KM Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000024245",
+  "vbo": "0268010000003950",
+  "vbo_panden": [
+   "0268100000024245"
   ]
  },
  "delistraat3": {
@@ -98014,6 +98379,21 @@
    "0268100000047485"
   ]
  },
+ "gabrielgarciamarquezstraat": {
+  "adres": "Gabriel Garcia Marquezstraat",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-29",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.735 per maand, 128 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
+ },
  "galvanistraat22": {
   "adres": "Galvanistraat 22",
   "gebeurtenissen": [
@@ -98122,6 +98502,12 @@
     "datum": "2026-10-16",
     "soort": "transformatie",
     "tekst": "in de BAG staan 3 woningen als gevormd in dit pand uit 1879, dat zelf al in gebruik is, mediaan 38 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-16 in de registratie staat"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-28",
+    "soort": "te koop",
+    "tekst": "te koop voor €250.000, 44 m2"
    }
   ],
   "pand_id": "0268100000010767",
@@ -110845,6 +111231,21 @@
    "0268100000084171"
   ]
  },
+ "hofstraat": {
+  "adres": "Hofstraat",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €500 per maand, 100 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
+ },
  "holtermanstraat2": {
   "adres": "Holtermanstraat 2",
   "bag_pogingen": 1,
@@ -110991,6 +111392,29 @@
   "vbo": "0268010000055933",
   "vbo_panden": [
    "0268100000005177"
+  ]
+ },
+ "horstacker2028": {
+  "adres": "Horstacker 2028",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2019-10-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Horstacker 2028 is B, geregistreerd 2019-10-14"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-28",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van 3 dakkapellen, aan Horstacker 2028, 6546GC Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000033032",
+  "vbo": "0268010000040610",
+  "vbo_gevraagd": "2026-10-29",
+  "vbo_panden": [
+   "0268100000033032"
   ]
  },
  "horstacker2044": {
@@ -116443,6 +116867,21 @@
    "0268100000032908"
   ]
  },
+ "keizerkarelplein": {
+  "adres": "Keizer Karelplein",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €988 per maand, 94 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
+ },
  "keizerkarelplein22": {
   "adres": "Keizer Karelplein 22",
   "gebeurtenissen": [
@@ -120375,10 +120814,20 @@
     "datum": "2026-10-27",
     "soort": "bekendmaking",
     "tekst": "Besluit voor Het opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten (legalisering), aan Kronenburgersingel 213, 6511AR Nijmegen"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-29",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 5 woningen als gevormd in dit pand uit 1894, dat zelf al in gebruik is, mediaan 37 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-29 in de registratie staat"
    }
   ],
   "pand_id": "0268100000040969",
+  "transformatie_gemeld": 5,
   "vbo": "0268010000017766",
+  "vbo_gevormd": [
+   "0268010000115561"
+  ],
   "vbo_panden": [
    "0268100000040969"
   ]
@@ -124092,6 +124541,12 @@
     "datum": "2026-10-26",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €475 per maand, 11 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €275 per maand, 9 m2"
    }
   ],
   "pand_id": null,
@@ -127888,6 +128343,27 @@
   ],
   "pand_id": null,
   "vbo_gevraagd": "2026-10-24"
+ },
+ "molenstraat": {
+  "adres": "Molenstraat",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.895 per maand, 60 m2"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.995 per maand, 65 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
  },
  "molenstraat103": {
   "adres": "Molenstraat 103",
@@ -137780,6 +138256,29 @@
    "0268100000088125"
   ]
  },
+ "palmstraat36": {
+  "adres": "Palmstraat 36",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-03-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Palmstraat 36 is B, geregistreerd 2024-03-12"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-29",
+    "soort": "te koop",
+    "tekst": "te koop voor €525.000, 115 m2"
+   }
+  ],
+  "pand_id": "0268100000015473",
+  "vbo": "0268010000020563",
+  "vbo_gevraagd": "2026-10-29",
+  "vbo_panden": [
+   "0268100000015473"
+  ]
+ },
  "palmstraat40": {
   "adres": "Palmstraat 40",
   "gebeurtenissen": [
@@ -138637,6 +139136,28 @@
   "vbo": "0268010000111664",
   "vbo_panden": [
    "0268100000017369"
+  ]
+ },
+ "pietheinstraat47": {
+  "adres": "Piet Heinstraat 47",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-09-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Piet Heinstraat 47 is C, geregistreerd 2026-09-25"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-28",
+    "soort": "te koop",
+    "tekst": "te koop voor €495.000, 83 m2"
+   }
+  ],
+  "pand_id": "0268100000014200",
+  "vbo": "0268010000025047",
+  "vbo_panden": [
+   "0268100000014200"
   ]
  },
  "pietheinstraat54": {
@@ -143490,6 +144011,21 @@
   "vbo_panden": [
    "0268100000012895"
   ]
+ },
+ "ridderstraat": {
+  "adres": "Ridderstraat",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.253 per maand, 65 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
  },
  "ridderstraat32": {
   "adres": "Ridderstraat 32",
@@ -159421,6 +159957,29 @@
    "0268100000002832"
   ]
  },
+ "vancranenborchstraat31": {
+  "adres": "Van Cranenborchstraat 31",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-02-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Van Cranenborchstraat 31 is D, geregistreerd 2022-02-21"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-28",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het realiseren van een dakopbouw op de woning, aan Van Cranenborchstraat 31, 6525BM Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000017833",
+  "vbo": "0268010000059850",
+  "vbo_gevraagd": "2026-10-29",
+  "vbo_panden": [
+   "0268100000017833"
+  ]
+ },
  "vandenboenhoffstraat11": {
   "adres": "Van den Boenhoffstraat 11",
   "gebeurtenissen": [
@@ -164533,6 +165092,21 @@
   "vbo_panden": [
    "0268100000029705"
   ]
+ },
+ "veemarkt": {
+  "adres": "Veemarkt",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-10-28",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.159 per maand, 65 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
  },
  "veemarkt115": {
   "adres": "Veemarkt 115",
@@ -171936,7 +172510,7 @@
   ]
  },
  "voorstenkamp": {
-  "adres": "de Voorstenkamp",
+  "adres": "De Voorstenkamp",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -171958,6 +172532,12 @@
     "datum": "2026-10-14",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.080 per maand, 30 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-29",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €498 per maand, 30 m2"
    }
   ],
   "pand_id": null
@@ -179371,6 +179951,21 @@
   "vbo_panden": [
    "0268100000005323"
   ]
+ },
+ "zonnebloemstraat": {
+  "adres": "Zonnebloemstraat",
+  "bag_gezien": "2026-10-29",
+  "bag_zonder_id": "2026-10-29",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-10-29",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €568 per maand, 83 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-10-29"
  },
  "zonnebloemstraat2": {
   "adres": "Zonnebloemstraat 2",

@@ -1196,3 +1196,21 @@ Lingestraat | Nijmegen | 673 | te huur | 2026-10-27 | huislijn | 70 | 6541WG
 Fort Krayenhoff | Nijmegen | 2350 | te huur gemeubileerd | 2026-10-27 | pararius | 95 | 6541GE
 Lange Hezelstraat | Nijmegen | 595 | te huur kamer | 2026-10-27 | kamernet-incl | 22 | 
 Berg en Dalseweg | Nijmegen | 428 | te huur kamer | 2026-10-27 | kamernet-incl | 13 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 29-10-2026
+Piet Heinstraat 47 | Nijmegen | 495000 | te koop | 2026-10-28 | funda-mail | 83 | 6512GS
+Burg. Hustinxstraat 206 | Nijmegen | 345000 | te koop | 2026-10-28 | funda-mail | 64 | 6512AC
+Burghardt van den Berghstraat 45 | Nijmegen | 395000 | te koop | 2026-10-28 | funda-mail | 73 | 6512DD
+Ganzenheuvel 13 | Nijmegen | 250000 | te koop | 2026-10-28 | funda-mail | 44 | 6511WD
+Hofstraat | Nijmegen | 500 | te huur | 2026-10-28 | huislijn | 100 | 6533XC
+Molenstraat | Nijmegen | 1895 | te huur | 2026-10-28 | huislijn | 60 | 6511HG
+Molenstraat | Nijmegen | 1995 | te huur | 2026-10-28 | huislijn | 65 | 6511HG
+Burghardt van den Berghstraat | Nijmegen | 545 | te huur | 2026-10-28 | pararius | 17 | 6512DE
+Ridderstraat | Nijmegen | 1253 | te huur gemeubileerd | 2026-10-28 | pararius | 65 | 6511TM
+Keizer Karelplein | Nijmegen | 988 | te huur | 2026-10-28 | pararius | 94 | 6511ND
+Veemarkt | Nijmegen | 1159 | te huur | 2026-10-28 | pararius | 65 | 6511ZD
+Malvert | Nijmegen | 275 | te huur kamer | 2026-10-28 | kamernet | 9 | 
+Palmstraat 36 | Nijmegen | 525000 | te koop | 2026-10-29 | funda-mail | 115 | 6542JZ
+Gabriel Garcia Marquezstraat | Nijmegen | 1735 | te huur | 2026-10-29 | huislijn | 128 | 6515ZK
+Zonnebloemstraat | Nijmegen | 568 | te huur | 2026-10-29 | huislijn | 83 | 6542NG
+De Voorstenkamp | Nijmegen | 498 | te huur | 2026-10-29 | huislijn | 30 | 6545GJ

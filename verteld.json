@@ -230,9 +230,15 @@
   },
   "kronenburgersingel213": {
    "eerst": "2026-10-28",
-   "laatst": "2026-10-28",
-   "keer": 1,
+   "laatst": "2026-10-29",
+   "keer": 2,
    "omschrijving": "Kronenburgersingel 213"
+  },
+  "pietheinstraat47": {
+   "eerst": "2026-10-29",
+   "laatst": "2026-10-29",
+   "keer": 1,
+   "omschrijving": "Piet Heinstraat 47"
   }
  }
 }

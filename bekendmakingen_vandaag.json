@@ -4,40 +4,55 @@
   "titel": "Besluit voor Het opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten (legalisering), aan Kronenburgersingel 213, 6511AR Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-499623.html",
   "strategie": "splitsen",
-  "duiding": "Legalisering van bestaande opsplitsing in meerdere units en praktijkruimten bevestigt dat deze verdichting op 361 m2 planologisch haalbaar is.",
-  "feiten": {
-   "oppervlakte_m2": 361
-  },
+  "duiding": "Legalisering van opsplitsing in stud.kamer, appartementen en praktijkruimten bevestigt dat functiemenging hier planologisch haalbaar is.",
+  "feiten": {},
   "straat": "Kronenburgersingel",
   "huisnummer": "213",
   "kern": true
  },
  {
-  "datum": "2026-10-26",
-  "titel": "Sloopmelding onder kelderen en verbouwen kelder, aan Mr. Franckenstraat 5, 6522AA Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497948.html",
-  "strategie": "geen",
-  "duiding": "Kelderverbouwing is een bouwkundige ingreep zonder direct effect op woningaanbod of verhuurstrategie.",
+  "datum": "2026-10-28",
+  "titel": "Besluit voor het renoveren van een woning, aan Ruisdaelstraat 27, 6521LB Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-503004.html",
+  "strategie": "verduurzaming",
+  "duiding": "Renovatie van een pand met label E uit 2018 biedt kans op labelverbetering zodra een nieuwe opname volgt.",
   "feiten": {
-   "energielabel": "A (2020)",
-   "oppervlakte_m2": 196
+   "energielabel": "E (2018)",
+   "oppervlakte_m2": 214
   },
-  "straat": "Mr. Franckenstraat",
-  "huisnummer": "5",
+  "straat": "Ruisdaelstraat",
+  "huisnummer": "27",
   "kern": false
  },
  {
-  "datum": "2026-10-26",
-  "titel": "Besluit voor het vervangen van de kozijnen en ramen, aan van Berchenstraat 10, 6511BC Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-497784.html",
-  "strategie": "verduurzaming",
-  "duiding": "Vervanging van kozijnen en ramen verbetert de energieprestatie van het pand van 62 m2 richting een beter label.",
+  "datum": "2026-10-28",
+  "titel": "Besluit voor  het realiseren van een uitbouw aan de achterzijde van de woning, aan Mesdagstraat 45, 6521MN Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-501453.html",
+  "strategie": "geen",
+  "duiding": "Uitbouw aan de achterzijde is een fysieke uitbreiding zonder directe relevantie voor waardecreatie-strategieën.",
   "feiten": {
-   "energielabel": "C (2026)",
-   "oppervlakte_m2": 62
+   "energielabel": "C (2024)",
+   "oppervlakte_m2": 199
   },
-  "straat": "van Berchenstraat",
-  "huisnummer": "10",
+  "straat": "Mesdagstraat",
+  "huisnummer": "45",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-28",
+  "titel": "Aanvraag omgevingsvergunning voor het uitvoeren van verduurzamingsmaatregelen en restaureren van een rijksmonument, aan Kelfkensbos 60, 6511TB Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-502667.html",
+  "strategie": "verduurzaming",
+  "duiding": "Aanvraag voor verduurzaming van een rijksmonument met label G toont dat labelverbetering ook bij monumentenstatus vergunbaar kan zijn, al duurt het proces door de monumentenstatus langer.",
+  "feiten": {
+   "energielabel": "G (2019)",
+   "rijksmonument": true,
+   "monumentnr": "https://monumentenregister.cultureelerfgoed.nl/monumenten/31140",
+   "monumentbron": "RCE en erfgoedregister gemeente",
+   "oppervlakte_m2": 216
+  },
+  "straat": "Kelfkensbos",
+  "huisnummer": "60",
   "kern": false
  },
  {
@@ -45,13 +60,27 @@
   "titel": "Aanvraag omgevingsvergunning voor het vervangen van de ramen en kozijnen, aan Schoolstraat 31, 6512JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-500183.html",
   "strategie": "verduurzaming",
-  "duiding": "Aanvraag voor nieuwe ramen en kozijnen kan het huidige label D verbeteren, besluit is nog niet genomen.",
+  "duiding": "Vervanging van ramen en kozijnen kan het energielabel verbeteren zodra een nieuwe opname plaatsvindt.",
   "feiten": {
    "energielabel": "D (2026)",
    "oppervlakte_m2": 83
   },
   "straat": "Schoolstraat",
   "huisnummer": "31",
+  "kern": false
+ },
+ {
+  "datum": "2026-10-28",
+  "titel": "Besluit voor het wijzigen van de constructie van de woning, aan Antiloopstraat 30, 6531TP Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-503255.html",
+  "strategie": "geen",
+  "duiding": "Constructiewijziging betreft een bouwtechnische aanpassing zonder direct waardecreatiemechanisme voor investeerders.",
+  "feiten": {
+   "energielabel": "D (2025)",
+   "oppervlakte_m2": 127
+  },
+  "straat": "Antiloopstraat",
+  "huisnummer": "30",
   "kern": false
  }
 ]

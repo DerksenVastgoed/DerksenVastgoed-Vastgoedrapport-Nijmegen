@@ -129,22 +129,22 @@
  },
  "2026-W44": {
   "Altrade": 5128,
-  "Benedenstad": 5346,
+  "Benedenstad": 5357,
   "Biezen": 5422,
-  "Bottendaal": 5283,
+  "Bottendaal": 5336,
   "Galgenveld": 5084,
   "Hunnerberg": 4524,
-  "Stadscentrum": 5457,
-  "_datum": "2026-10-28",
+  "Stadscentrum": 5455,
+  "_datum": "2026-10-29",
   "_n": {
    "Altrade": 99,
-   "Benedenstad": 55,
+   "Benedenstad": 56,
    "Biezen": 98,
-   "Bottendaal": 84,
+   "Bottendaal": 86,
    "Galgenveld": 106,
    "Hunnerberg": 14,
-   "Stadscentrum": 226
+   "Stadscentrum": 227
   },
-  "_nijmegen": 5238
+  "_nijmegen": 5242
  }
 }

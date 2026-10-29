@@ -381,5 +381,45 @@
   "opp": 70,
   "kamers": 3,
   "postcode": "6541WG"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443187/hofstraat-nijmegen": {
+  "opp": 100,
+  "kamers": 3,
+  "postcode": "6533XC"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443144/molenstraat-nijmegen": {
+  "opp": 60,
+  "kamers": 5,
+  "postcode": "6511HG"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443447/molenstraat-nijmegen": {
+  "opp": 65,
+  "kamers": 6,
+  "postcode": "6511HG"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443748/veemarkt-nijmegen": {
+  "opp": 65,
+  "kamers": 2,
+  "postcode": "6511ZD"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443747/keizer-karelplein-nijmegen": {
+  "opp": 94,
+  "kamers": 3,
+  "postcode": "6511ND"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443703/gabriel-garcia-marquezstraat-nijmegen": {
+  "opp": 128,
+  "kamers": 4,
+  "postcode": "6515ZK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443697/zonnebloemstraat-nijmegen": {
+  "opp": 83,
+  "kamers": 4,
+  "postcode": "6542NG"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4443667/de-voorstenkamp-nijmegen": {
+  "opp": 30,
+  "kamers": 1,
+  "postcode": "6545GJ"
  }
 }
