@@ -1214,3 +1214,12 @@ Palmstraat 36 | Nijmegen | 525000 | te koop | 2026-10-29 | funda-mail | 115 | 65
 Gabriel Garcia Marquezstraat | Nijmegen | 1735 | te huur | 2026-10-29 | huislijn | 128 | 6515ZK
 Zonnebloemstraat | Nijmegen | 568 | te huur | 2026-10-29 | huislijn | 83 | 6542NG
 De Voorstenkamp | Nijmegen | 498 | te huur | 2026-10-29 | huislijn | 30 | 6545GJ
+
+# Automatisch toegevoegd uit Funda-attendering op 30-10-2026
+Lange Brouwerstraat | Nijmegen | 3150 | te huur gemeubileerd | 2026-10-29 | pararius | 150 | 6511WH
+Meijhorst | Nijmegen | 780 | te huur kamer | 2026-10-29 | kamernet-incl | 70 | 
+Voorstadslaan | Nijmegen | 1800 | te huur | 2026-10-29 | kamernet | 59 | 
+Nieuwe Markt 50 | Nijmegen | 375000 | te koop | 2026-10-30 | funda-mail | 54 | 6511XL
+Ruisdaelstraat 6 | Nijmegen | 650000 | te koop | 2026-10-30 | funda-mail | 96 | 6521LD
+Bloemerstraat 107 | Nijmegen | 320000 | te koop | 2026-10-30 | funda-mail | 63 | 6511EG
+Lage Markt 11 | Nijmegen | 398000 | te koop | 2026-10-30 | funda-mail | 71 | 6511VK

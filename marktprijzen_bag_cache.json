@@ -78798,7 +78798,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-22",
+    "eenheden_gezien": "2026-10-30",
     "oppervlakte_bag": 146,
     "opp_verschil": true,
     "energielabel": {
@@ -81274,7 +81274,8 @@
       }
     ],
     "eenheden_gezien": "2026-10-29",
-    "oppervlakte_bag": 39
+    "oppervlakte_bag": 39,
+    "energielabel": null
   },
   "Hofstraat|Nijmegen": {
     "oppervlakte": 100,
@@ -81283,7 +81284,8 @@
     ],
     "postcode": "6533XC",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Molenstraat|Nijmegen": {
     "oppervlakte": 60,
@@ -81302,7 +81304,8 @@
     ],
     "postcode": "6511TM",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Keizer Karelplein|Nijmegen": {
     "oppervlakte": 94,
@@ -81311,7 +81314,8 @@
     ],
     "postcode": "6511ND",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Veemarkt|Nijmegen": {
     "oppervlakte": 65,
@@ -81320,7 +81324,8 @@
     ],
     "postcode": "6511ZD",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Palmstraat 36|Nijmegen": {
     "oppervlakte": 115,
@@ -81367,7 +81372,8 @@
     ],
     "postcode": "6515ZK",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Zonnebloemstraat|Nijmegen": {
     "oppervlakte": 83,
@@ -81376,7 +81382,8 @@
     ],
     "postcode": "6542NG",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "bm:Ruisdaelstraat 27|Nijmegen": {
     "postcode": "6521LB",
@@ -81401,5 +81408,308 @@
     "buurtnaam": "St. Anna",
     "wijknaam": "Nijmegen-Midden",
     "nummeraanduiding": "adr-8a34dfe1a5fec00f36bf802b50eb13ee"
+  },
+  "Nieuwe Markt 50|Nijmegen": {
+    "oppervlakte": 54,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511XL",
+    "adresseerbaarObjectIdentificatie": "0268010000055387",
+    "pand": "0268100000008970",
+    "panden": [
+      "0268100000008970"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-8760493e4ea5bb3f2022d4fa10a4cadb",
+    "eenheden_in_pand": [
+      {
+        "adres": "Nieuwe Markt 50",
+        "oppervlakte": 55,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nieuwe Markt 52",
+        "oppervlakte": 171,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-30",
+    "oppervlakte_bag": 55,
+    "energielabel": {
+      "label": "E",
+      "prive": false,
+      "registratiedatum": "2026-10-16",
+      "opnamedatum": "2026-10-14",
+      "geldig_tot": "2036-10-14",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Hoekvloer",
+      "methode": "NTA 8800:2025 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000055387",
+      "panden": [
+        "0268100000008970"
+      ],
+      "verbruik": 307.86,
+      "bouwjaar": 1886
+    }
+  },
+  "Ruisdaelstraat 6|Nijmegen": {
+    "oppervlakte": 96,
+    "bouwjaar": "1925",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521LD",
+    "adresseerbaarObjectIdentificatie": "0268010000072039",
+    "pand": "0268100000001520",
+    "panden": [
+      "0268100000001520"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-90620c243af2493ce61de80f3000775d",
+    "eenheden_in_pand": [
+      {
+        "adres": "Ruisdaelstraat 4",
+        "oppervlakte": 120,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Ruisdaelstraat 6",
+        "oppervlakte": 137,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-30",
+    "oppervlakte_bag": 137,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "C",
+      "prive": false,
+      "registratiedatum": "2020-12-23",
+      "opnamedatum": "2020-12-23",
+      "geldig_tot": "2030-12-23",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Tussenvloer",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000072039",
+      "panden": [],
+      "verbruik": 50051.42,
+      "bouwjaar": 1930
+    }
+  },
+  "Lage Markt 11|Nijmegen": {
+    "oppervlakte": 71,
+    "bouwjaar": "1989",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511VK",
+    "adresseerbaarObjectIdentificatie": "0268010000079884",
+    "pand": "0268100000008132",
+    "panden": [
+      "0268100000008132"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Benedenstad",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-b47035fcc061ae4eb6b64ba2bf9ce1dc",
+    "eenheden_in_pand": [
+      {
+        "adres": "Lage Markt 7",
+        "oppervlakte": 74,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 9",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 11",
+        "oppervlakte": 75,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 13",
+        "oppervlakte": 77,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 15",
+        "oppervlakte": 78,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 17",
+        "oppervlakte": 72,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 19",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 21",
+        "oppervlakte": 75,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 23",
+        "oppervlakte": 77,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 25",
+        "oppervlakte": 78,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 27",
+        "oppervlakte": 74,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 29",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 31",
+        "oppervlakte": 75,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 33",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 35",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 37",
+        "oppervlakte": 91,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 39",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Lage Markt 41",
+        "oppervlakte": 73,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Waalkade 5",
+        "oppervlakte": 373,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-30",
+    "oppervlakte_bag": 75,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2026-03-13",
+      "opnamedatum": "2026-03-10",
+      "geldig_tot": "2036-03-10",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Appartement",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "NTA 8800:2024 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000079884",
+      "panden": [
+        "0268100000008132"
+      ],
+      "verbruik": 180.81,
+      "bouwjaar": 1989
+    }
   }
 }

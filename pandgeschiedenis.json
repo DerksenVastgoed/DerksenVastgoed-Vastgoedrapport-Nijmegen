@@ -1295,6 +1295,33 @@
     "van Nispenstraat 236": "C"
    }
   },
+  "0268100000001520": {
+   "bag_eenheden": [
+    [
+     "Ruisdaelstraat 4",
+     120
+    ],
+    [
+     "Ruisdaelstraat 6",
+     137
+    ]
+   ],
+   "bag_gezien": "2026-10-30",
+   "bag_woningen": [
+    [
+     "Ruisdaelstraat 4",
+     120
+    ],
+    [
+     "Ruisdaelstraat 6",
+     137
+    ]
+   ],
+   "labels": {
+    "Ruisdaelstraat 4": "D",
+    "Ruisdaelstraat 6": "C"
+   }
+  },
   "0268100000001543": {
    "bag_eenheden": [
     [
@@ -18018,6 +18045,18 @@
     ]
    ]
   },
+  "0268100000007202": {
+   "bag_eenheden": [
+    [
+     "Factorijweg 14",
+     1521
+    ]
+   ],
+   "bag_gezien": "2026-10-30",
+   "labels": {
+    "Factorijweg 14": "A++"
+   }
+  },
   "0268100000007225": {
    "bag_eenheden": [
     [
@@ -19552,7 +19591,7 @@
      373
     ]
    ],
-   "bag_gezien": "2026-10-25",
+   "bag_gezien": "2026-10-30",
    "bag_woningen": [
     [
      "Lage Markt 11",
@@ -20459,6 +20498,32 @@
     "Jonckerhof 4": "A",
     "Jonckerhof 4A": "A",
     "Jonckerhof 5": "G"
+   }
+  },
+  "0268100000008970": {
+   "bag_eenheden": [
+    [
+     "Nieuwe Markt 50",
+     55
+    ],
+    [
+     "Nieuwe Markt 52",
+     171
+    ]
+   ],
+   "bag_gezien": "2026-10-30",
+   "bag_woningen": [
+    [
+     "Nieuwe Markt 50",
+     55
+    ],
+    [
+     "Nieuwe Markt 52",
+     171
+    ]
+   ],
+   "labels": {
+    "Nieuwe Markt 52": "E"
    }
   },
   "0268100000008977": {
@@ -76837,9 +76902,7 @@
   "pand_id": "0268100000036205",
   "vbo": "0268010000000288",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000036205"
-  ]
+  "vbo_panden": []
  },
  "ambachtsweg2": {
   "adres": "Ambachtsweg 2",
@@ -81254,6 +81317,12 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van Bloemerstraat 107A is nu E"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-30",
+    "soort": "prijswijziging",
+    "tekst": "prijs verlaagd van €336.500 naar €320.000"
    }
   ],
   "pand_id": "0268100000030000",
@@ -97381,6 +97450,29 @@
   "vbo": "0268010000010386",
   "vbo_panden": [
    "0268100000010199"
+  ]
+ },
+ "factorijweg14": {
+  "adres": "Factorijweg 14",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2025-04-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Factorijweg 14 is A++, geregistreerd 2025-04-03"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-10-29",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen en uitbreiden van een bedrijfsverzamelgebouw, aan Factorijweg 14, 6541DN Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000007202",
+  "vbo": "0268010000066019",
+  "vbo_gevraagd": "2026-10-30",
+  "vbo_panden": [
+   "0268100000007202"
   ]
  },
  "fagelstraat12": {
@@ -117377,9 +117469,7 @@
   "pand_id": "0268100000022413",
   "vbo": "0268010000068143",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000022413"
-  ]
+  "vbo_panden": []
  },
  "kerkenbos1024": {
   "adres": "Kerkenbos 1024",
@@ -122561,6 +122651,154 @@
    "0268100000012372"
   ]
  },
+ "lagemarkt11": {
+  "adres": "Lage Markt 11",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2016-10-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 9 is G, geregistreerd 2016-10-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-03-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 35 is D, geregistreerd 2018-03-09"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-05-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 39 is C, geregistreerd 2018-05-07"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5C is C, geregistreerd 2019-03-05"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5A is C, geregistreerd 2019-03-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5B is C, geregistreerd 2019-03-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5D is D, geregistreerd 2019-03-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5E is C, geregistreerd 2019-03-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2019-03-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 5F is C, geregistreerd 2019-03-21"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-06-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 41 is C, geregistreerd 2020-06-11"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 17 is D, geregistreerd 2020-12-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 27 is D, geregistreerd 2020-12-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 29 is D, geregistreerd 2020-12-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 7 is D, geregistreerd 2020-12-13"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-15",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 19 is D, geregistreerd 2020-12-15"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-03-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 15 is C, geregistreerd 2021-03-19"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2022-01-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 33 is C, geregistreerd 2022-01-14"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-10-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 23 is C, geregistreerd 2023-10-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-06-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 37 is C, geregistreerd 2025-06-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Waalkade 5 is C, geregistreerd 2025-09-17"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-02-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 21 is B, geregistreerd 2026-02-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-03-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Lage Markt 11 is B, geregistreerd 2026-03-13"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-30",
+    "soort": "te koop",
+    "tekst": "te koop voor €398.000, 71 m2"
+   }
+  ],
+  "pand_id": "0268100000008132",
+  "vbo": "0268010000079884",
+  "vbo_panden": [
+   "0268100000008132"
+  ]
+ },
  "lagemarkt1b": {
   "adres": "Lage Markt 1-B",
   "gebeurtenissen": [
@@ -122999,6 +123237,12 @@
    {
     "bron": "huislijn",
     "datum": "2026-10-15",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €3.150 per maand, 150 m2"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-10-29",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €3.150 per maand, 150 m2"
    }
@@ -127654,6 +127898,12 @@
     "datum": "2026-10-17",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €885 per maand, 91 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-10-29",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €780 per maand, 70 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -134839,6 +135089,28 @@
   "vbo": "0268010000021107",
   "vbo_panden": [
    "0268100000010299"
+  ]
+ },
+ "nieuwemarkt50": {
+  "adres": "Nieuwe Markt 50",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-06-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nieuwe Markt 52 is E, geregistreerd 2021-06-21"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-30",
+    "soort": "te koop",
+    "tekst": "te koop voor €375.000, 54 m2"
+   }
+  ],
+  "pand_id": "0268100000008970",
+  "vbo": "0268010000055387",
+  "vbo_panden": [
+   "0268100000008970"
   ]
  },
  "nieuwemarkt72": {
@@ -144913,6 +145185,34 @@
   "vbo": "0268010000100114",
   "vbo_panden": [
    "0268100000002283"
+  ]
+ },
+ "ruisdaelstraat6": {
+  "adres": "Ruisdaelstraat 6",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-02-14",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ruisdaelstraat 4 is D, geregistreerd 2017-02-14"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ruisdaelstraat 6 is C, geregistreerd 2020-12-23"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-10-30",
+    "soort": "te koop",
+    "tekst": "te koop voor €650.000, 96 m2"
+   }
+  ],
+  "pand_id": "0268100000001520",
+  "vbo": "0268010000072039",
+  "vbo_panden": [
+   "0268100000001520"
   ]
  },
  "ruisdaelstraat67": {
@@ -160631,10 +160931,20 @@
     "datum": "2026-10-01",
     "soort": "energielabel",
     "tekst": "energielabel van van Dulckenstraat 47 is nu B"
+   },
+   {
+    "bron": "BAG",
+    "datum": "2026-10-30",
+    "soort": "transformatie",
+    "tekst": "in de BAG staan 1 woning als gevormd in dit pand uit 1897, dat zelf al in gebruik is, mediaan 170 m2. Dat is bestaande voorraad waarin woningen worden toegevoegd. De BAG kent geen opleverdatum, dus dit is wat er op 2026-10-30 in de registratie staat"
    }
   ],
   "pand_id": "0268100000021159",
-  "vbo": "0268010000101872",
+  "transformatie_gemeld": 1,
+  "vbo": "0268010000031879",
+  "vbo_gevormd": [
+   "0268010000101872"
+  ],
   "vbo_panden": [
    "0268100000021159"
   ]
@@ -171792,6 +172102,12 @@
     "datum": "2026-10-01",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €475 per maand, 40 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-10-29",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.800 per maand, 59 m2"
    }
   ],
   "pand_id": null
@@ -177404,9 +177720,7 @@
   ],
   "pand_id": "0268100000033160",
   "vbo": "0268010000042291",
-  "vbo_panden": [
-   "0268100000033160"
-  ]
+  "vbo_panden": []
  },
  "wilhelminasingel1": {
   "adres": "Wilhelminasingel 1",
@@ -180468,9 +180782,7 @@
   "pand_id": "0268100000032389",
   "vbo": "0268010000109835",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000032389"
-  ]
+  "vbo_panden": []
  },
  "zwanenveld3109": {
   "adres": "Zwanenveld 3109",

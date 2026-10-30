@@ -1159,6 +1159,14 @@
   "omweg": 1.58,
   "soort": "bus"
  },
+ "51.84042,5.87477": {
+  "geschat": false,
+  "hemelsbreed": 148,
+  "meters": 260,
+  "naam": "Hugo de Grootstraat",
+  "omweg": 1.76,
+  "soort": "bus"
+ },
  "51.84044,5.87855": {
   "geschat": false,
   "hemelsbreed": 137,
@@ -2053,6 +2061,14 @@
   "meters": 357,
   "naam": "Waalkade",
   "omweg": 1.35,
+  "soort": "bus"
+ },
+ "51.84920,5.85759": {
+  "geschat": false,
+  "hemelsbreed": 107,
+  "meters": 495,
+  "naam": "Joris Ivensplein",
+  "omweg": 4.63,
   "soort": "bus"
  },
  "51.84929,5.86657": {

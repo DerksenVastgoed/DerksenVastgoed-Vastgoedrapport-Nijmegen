@@ -1,53 +1,56 @@
 {
- "datum": "2026-10-29",
+ "datum": "2026-10-30",
  "bronnen": {
+  "regulier": {
+   "mails": 4,
+   "objecten": 11,
+   "overgeslagen": 2,
+   "redenen": [
+    "Keizer Karelplein 4 (geen prijs gevonden)",
+    "Veemarkt 105 (geen prijs gevonden)"
+   ]
+  },
   "huislijn": {
    "mails": 4,
    "objecten": 11,
    "overgeslagen": 0,
    "redenen": []
   },
-  "kamernet": {
-   "mails": 11,
-   "objecten": 8,
+  "pararius": {
+   "mails": 3,
+   "objecten": 6,
    "overgeslagen": 3,
    "redenen": [
-    "Lobeliastraat, Arnhem: buiten Nijmegen",
-    "Dorpsstraat, Groesbeek: buiten Nijmegen",
-    "Aalburgstraat, Arnhem: buiten Nijmegen"
+    "Fort Krayenhoff (gemeubileerd, apart bewaard)",
+    "Ridderstraat (gemeubileerd, apart bewaard)",
+    "Lange Brouwerstraat (gemeubileerd, apart bewaard)"
    ]
   },
-  "regulier": {
-   "mails": 3,
+  "kamernet": {
+   "mails": 9,
    "objecten": 7,
-   "overgeslagen": 1,
-   "redenen": [
-    "Keizer Karelplein 4 (geen prijs gevonden)"
-   ]
-  },
-  "pararius": {
-   "mails": 2,
-   "objecten": 5,
    "overgeslagen": 2,
    "redenen": [
-    "Fort Krayenhoff (gemeubileerd, apart bewaard)",
-    "Ridderstraat (gemeubileerd, apart bewaard)"
+    "Aalburgstraat, Arnhem: buiten Nijmegen",
+    "De Hoge Hofstraat, Oosterhout-Overbetuwe: buiten Nijmegen"
    ]
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 15,
-  "andere_status": 0,
-  "voorbeelden": []
+  "zelfde_status": 28,
+  "andere_status": 1,
+  "voorbeelden": [
+   "Lange Brouwerstraat -> te huur gemeubileerd"
+  ]
  },
  "berichten_per_afzender": {
-  "funda.nl": 3,
+  "funda.nl": 4,
   "funda.com": 0,
-  "pararius.nl": 2,
+  "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 11,
+  "kamernet.nl": 9,
   "vendr.nl": 0,
   "huislijn.nl": 4,
   "huisly.nl": 0,
@@ -55,6 +58,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 26-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 26-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 27-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 27-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

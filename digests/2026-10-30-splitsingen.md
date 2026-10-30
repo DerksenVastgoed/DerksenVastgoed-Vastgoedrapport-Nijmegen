@@ -1,0 +1,1 @@
+_Ook met gevormde objecten, bij een gebeurtenis van langer dan 7 dagen geleden: Pontanusstraat 42 (2); van Goorstraat 87 (2); Ahornstraat 3 (2); Graafseweg 18 (6); St. Annastraat 275 (2); Hatertseweg 338 (6); Biezenstraat 110 (2); St. Annastraat 102 (3); de Savornin Lohmanstraat 20 (3); Daalseweg 171 (2); Groesbeeksedwarsweg 135 (2); Oude Ubbergseweg 47 (2) en 46 meer._
