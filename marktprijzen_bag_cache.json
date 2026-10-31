@@ -78900,7 +78900,7 @@
     "buurtnaam": "Bottendaal",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-fa18748b2defb3e1351f9673dfa43dd7",
-    "eenheden_gezien": "2026-10-23",
+    "eenheden_gezien": "2026-10-31",
     "oppervlakte_bag": 136,
     "energielabel": {
       "label": "A",
@@ -79340,7 +79340,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-23",
+    "eenheden_gezien": "2026-10-31",
     "oppervlakte_bag": 79,
     "energielabel": {
       "label": "B",
@@ -79780,7 +79780,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-23",
+    "eenheden_gezien": "2026-10-31",
     "oppervlakte_bag": 50,
     "energielabel": {
       "label": "A++",
@@ -81711,5 +81711,419 @@
       "verbruik": 180.81,
       "bouwjaar": 1989
     }
+  },
+  "Nina Simonestraat 142|Nijmegen": {
+    "oppervlakte": 75,
+    "bouwjaar": "2005",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6541ED",
+    "adresseerbaarObjectIdentificatie": "0268010000062153",
+    "pand": "0268100000010925",
+    "panden": [
+      "0268100000010925"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Biezen",
+    "wijknaam": "Nijmegen-Oud-West",
+    "nummeraanduiding": "adr-508e093627015a90bfb23ce7425a4419",
+    "eenheden_in_pand": [
+      {
+        "adres": "Nina Simonestraat 26",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 28",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 30",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 32",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 34",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 36",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 38",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 40",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 42",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 44",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 46",
+        "oppervlakte": 142,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 48",
+        "oppervlakte": 78,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 50",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 52",
+        "oppervlakte": 83,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 54",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 56",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 58",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 60",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 62",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 64",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 66",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 68",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 70",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 72",
+        "oppervlakte": 88,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 74",
+        "oppervlakte": 68,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 76",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 78",
+        "oppervlakte": 76,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 96",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 98",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Nina Simonestraat 100",
+        "oppervlakte": 146,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-31",
+    "oppervlakte_bag": 76,
+    "energielabel": {
+      "label": "B",
+      "prive": false,
+      "registratiedatum": "2020-04-06",
+      "opnamedatum": "2020-04-06",
+      "geldig_tot": "2030-04-06",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Flatwoning (overig)",
+      "gebouwsubtype": "Tussenmidden",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000062153",
+      "panden": [],
+      "verbruik": 45229.92,
+      "bouwjaar": 2003
+    }
+  },
+  "Arksteestraat 14|Nijmegen": {
+    "oppervlakte": 92,
+    "bouwjaar": "1886",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511MZ",
+    "adresseerbaarObjectIdentificatie": "0268010000002010",
+    "pand": "0268100000020307",
+    "panden": [
+      "0268100000020307"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-f3d38bc4d4d6e6e18603c1a99f51286a",
+    "eenheden_in_pand": [
+      {
+        "adres": "Arksteestraat 14",
+        "oppervlakte": 94,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "van Welderenstraat 109",
+        "oppervlakte": 138,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-31",
+    "oppervlakte_bag": 94,
+    "energielabel": {
+      "label": "G",
+      "prive": false,
+      "registratiedatum": "2017-02-22",
+      "opnamedatum": "2017-02-22",
+      "geldig_tot": "2027-02-22",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Maisonnette",
+      "gebouwsubtype": "Hoekdak",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000002010",
+      "panden": [],
+      "verbruik": 142564.94,
+      "bouwjaar": 1930
+    }
+  },
+  "Klein Mariënburg 8|Nijmegen": {
+    "oppervlakte": 95,
+    "bouwjaar": "1958",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511PL",
+    "adresseerbaarObjectIdentificatie": "0268010000111370",
+    "pand": "0268100000021673",
+    "panden": [
+      "0268100000021673"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Stadscentrum",
+    "wijknaam": "Nijmegen-Centrum",
+    "nummeraanduiding": "adr-82ea5ddd42439e591317c3414ae7a65c",
+    "eenheden_in_pand": [
+      {
+        "adres": "Hertogstraat 84A",
+        "oppervlakte": 127,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Klein Mariënburg 2",
+        "oppervlakte": 167,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Klein Mariënburg 8",
+        "oppervlakte": 90,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-10-31",
+    "oppervlakte_bag": 90,
+    "energielabel": {
+      "label": "C",
+      "prive": false,
+      "registratiedatum": "2025-10-06",
+      "opnamedatum": "2025-09-29",
+      "geldig_tot": "2035-09-29",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Rijwoning tussen",
+      "gebouwsubtype": "",
+      "methode": "NTA 8800:2024 (basisopname woningbouw)",
+      "nta8800": true,
+      "referentiegebouw": false,
+      "vbo": "0268010000111370",
+      "panden": [
+        "0268100000021673"
+      ],
+      "verbruik": 214.31,
+      "bouwjaar": 1958
+    }
+  },
+  "Ligusterstraat|Nijmegen": {
+    "oppervlakte": 50,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6543SZ",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Van Hogendorpstraat|Nijmegen": {
+    "oppervlakte": 103,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6535MA",
+    "buurtnaam": "",
+    "wijknaam": ""
   }
 }

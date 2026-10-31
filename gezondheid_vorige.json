@@ -62,7 +62,7 @@
   "Versies": "OK",
   "Voet onder de brief": "OK",
   "Voltooide splitsingen": "OK",
-  "Voorraad van de ring": "OK",
+  "Voorraad van de ring": "FOUT",
   "VvE-bijdragen": "OK",
   "WOZ zonder pand": "OK",
   "WOZ-bestand": "OK",
@@ -70,5 +70,5 @@
   "Woningen in bestaande panden": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-10-30"
+ "datum": "2026-10-31"
 }

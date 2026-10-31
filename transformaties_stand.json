@@ -1,16 +1,16 @@
 {
- "datum": "2026-10-30",
+ "datum": "2026-10-31",
  "droog": false,
  "ronde": {
-  "al_gemeld": 141,
-  "gebeurtenissen": 1,
+  "al_gemeld": 99,
+  "gebeurtenissen": 0,
   "gegroeid": 0,
   "opgeruimd": 0,
   "overgeslagen": 0,
-  "panden_bekend": 1,
+  "panden_bekend": 0,
   "panden_nieuw": 0,
-  "projecten": 143,
+  "projecten": 100,
   "sleutel_bezet": 1,
-  "woningen": 773
+  "woningen": 623
  }
 }

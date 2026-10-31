@@ -1,61 +1,17 @@
 [
  {
-  "datum": "2026-10-28",
-  "titel": "Besluit voor het renoveren van een woning, aan Ruisdaelstraat 27, 6521LB Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-503004.html",
-  "strategie": "verduurzaming",
-  "duiding": "Renovatie bij een pand met label E uit 2018 biedt kans op labelsprong zodra een nieuwe opname volgt.",
-  "feiten": {
-   "energielabel": "E (2018)",
-   "oppervlakte_m2": 214
-  },
-  "straat": "Ruisdaelstraat",
-  "huisnummer": "27",
-  "kern": false
- },
- {
-  "datum": "2026-10-28",
-  "titel": "Besluit voor  het realiseren van een uitbouw aan de achterzijde van de woning, aan Mesdagstraat 45, 6521MN Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-501453.html",
-  "strategie": "geen",
-  "duiding": "Een achteruitbouw bij een al modern label C pand is vooral woonruimtewinst, geen marktverschuivend signaal.",
-  "feiten": {
-   "energielabel": "C (2024)",
-   "oppervlakte_m2": 199
-  },
-  "straat": "Mesdagstraat",
-  "huisnummer": "45",
-  "kern": false
- },
- {
-  "datum": "2026-10-28",
-  "titel": "Aanvraag omgevingsvergunning voor het uitvoeren van verduurzamingsmaatregelen en restaureren van een rijksmonument, aan Kelfkensbos 60, 6511TB Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-502667.html",
-  "strategie": "verduurzaming",
-  "duiding": "Verduurzaming van een rijksmonument met label G toont dat labelverbetering vergunbaar is, al maakt de monumentenstatus ingrepen trager en duurder.",
-  "feiten": {
-   "energielabel": "G (2019)",
-   "rijksmonument": true,
-   "monumentnr": "https://monumentenregister.cultureelerfgoed.nl/monumenten/31140",
-   "monumentbron": "RCE en erfgoedregister gemeente",
-   "oppervlakte_m2": 216
-  },
-  "straat": "Kelfkensbos",
-  "huisnummer": "60",
-  "kern": false
- },
- {
-  "datum": "2026-10-28",
-  "titel": "Besluit voor het wijzigen van de constructie van de woning, aan Antiloopstraat 30, 6531TP Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-503255.html",
-  "strategie": "geen",
-  "duiding": "Constructiewijziging bij een recent label D pand is een bouwkundige aanpassing zonder direct beleggingsmechanisme.",
+  "datum": "2026-10-30",
+  "titel": "Besluit voor het verbouwen van een beneden-en bovenwoning naar 3 appartementen, aan Fagelstraat 46, 6524CG Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-508193.html",
+  "strategie": "splitsen",
+  "duiding": "Verleende vergunning bevestigt dat splitsen van deze beneden-bovenwoning naar drie appartementen hier planologisch haalbaar is.",
   "feiten": {
    "energielabel": "D (2025)",
-   "oppervlakte_m2": 127
+   "label_alleen_dit_adres": true,
+   "oppervlakte_m2": 79
   },
-  "straat": "Antiloopstraat",
-  "huisnummer": "30",
-  "kern": false
+  "straat": "Fagelstraat",
+  "huisnummer": "46",
+  "kern": true
  }
 ]

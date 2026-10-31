@@ -118,7 +118,8 @@ van Welderenstraat 7a | 499.000 | 2026   # prijsklasse 450k tot 600k; straat nog
 van Welderenstraat 89a | 589.000 | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
 van den Havestraat 10 | 407.000 | 2026
 
-# Nog in te vullen (22): vul het bedrag tussen de eerste twee streepjes
+# Nog in te vullen (26): vul het bedrag tussen de eerste twee streepjes
+Arksteestraat 14 |  | 2026
 Biesmanstraat 1 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
 Bijleveldsingel 36 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 195 m2, buiten het middengebied
 Burchtstraat 68 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
@@ -132,9 +133,12 @@ Ganzenheuvel 13 |  | 2026   # prijsklasse onder 300k; Benedenstad heeft nog maar
 Graafseweg 94 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ; 45 m2, buiten het middengebied
 Lage Markt 11 |  | 2026
 Marialaan 62 |  | 2026   # prijsklasse 450k tot 600k
+Nina Simonestraat 142 |  | 2026
 Palmstraat 36 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; Wolfskuil heeft nog maar 6 eigen WOZ-waarden
+Piet Heinstraat 47 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
 Pluvierstraat 3 |  | 2026
 Professor Hoogveldstraat 9 |  | 2026   # prijsklasse 300k tot 450k; straat nog zonder eigen WOZ
+Ruisdaelstraat 6 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ
 Veemarkt 171 |  | 2026   # prijsklasse 300k tot 450k; Benedenstad heeft nog maar 7 eigen WOZ-waarden
 Veemarkt 297 |  | 2026   # prijsklasse 300k tot 450k; Benedenstad heeft nog maar 7 eigen WOZ-waarden
 Waalbandijk 219 |  | 2026   # prijsklasse 300k tot 450k
@@ -151,7 +155,3 @@ St. Annastraat 165-E | geen | 2026   # prijsklasse 300k tot 450k; straat nog zon
 Ziekerstraat 5 | geen | 2026   # prijsklasse 450k tot 600k
 van Welderenstraat 5 | geen | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ; 235 m2, buiten het middengebied
 van Welderenstraat 89 | geen | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ; 182 m2, buiten het middengebied
-
-# Werklijst (2): deze panden verbeteren de eigen WOZ-schatting het meest. Niet meer grensgevallen, maar juist prijsklassen en straten waar we nog niets van weten.
-Piet Heinstraat 47 |  | 2026   # prijsklasse 450k tot 600k; straat nog zonder eigen WOZ
-Ruisdaelstraat 6 |  | 2026   # prijsklasse boven 600k; straat nog zonder eigen WOZ

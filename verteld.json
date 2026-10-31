@@ -62,8 +62,8 @@
   },
   "stieltjesstraat10": {
    "eerst": "2026-10-12",
-   "laatst": "2026-10-27",
-   "keer": 5,
+   "laatst": "2026-10-31",
+   "keer": 6,
    "omschrijving": "Stieltjesstraat 10"
   },
   "stannastraat7": {
@@ -230,8 +230,8 @@
   },
   "kronenburgersingel213": {
    "eerst": "2026-10-28",
-   "laatst": "2026-10-29",
-   "keer": 2,
+   "laatst": "2026-10-31",
+   "keer": 3,
    "omschrijving": "Kronenburgersingel 213"
   },
   "pietheinstraat47": {
@@ -263,6 +263,12 @@
    "laatst": "2026-10-30",
    "keer": 1,
    "omschrijving": "Bloemerstraat 107"
+  },
+  "fagelstraat46": {
+   "eerst": "2026-10-31",
+   "laatst": "2026-10-31",
+   "keer": 1,
+   "omschrijving": "Fagelstraat 46"
   }
  }
 }

@@ -95,6 +95,14 @@
   "omweg": 8.6,
   "soort": "bus"
  },
+ "51.80932,5.82764": {
+  "geschat": false,
+  "hemelsbreed": 41,
+  "meters": 33,
+  "naam": "Treubstraat",
+  "omweg": 0.8,
+  "soort": "bus"
+ },
  "51.80970,5.82687": {
   "geschat": false,
   "hemelsbreed": 107,
@@ -719,6 +727,14 @@
   "omweg": 0.9,
   "soort": "bus"
  },
+ "51.83689,5.83386": {
+  "geschat": false,
+  "hemelsbreed": 109,
+  "meters": 133,
+  "naam": "Vuurdoornstraat",
+  "omweg": 1.22,
+  "soort": "bus"
+ },
  "51.83689,5.87593": {
   "geschat": false,
   "hemelsbreed": 60,
@@ -1311,6 +1327,14 @@
   "omweg": 4.16,
   "soort": "bus"
  },
+ "51.84278,5.86225": {
+  "geschat": false,
+  "hemelsbreed": 281,
+  "meters": 444,
+  "naam": "Smetiusstraat",
+  "omweg": 1.58,
+  "soort": "bus"
+ },
  "51.84289,5.85446": {
   "geschat": false,
   "hemelsbreed": 68,
@@ -1669,6 +1693,14 @@
   "meters": 294,
   "naam": "Hertogplein",
   "omweg": 0.98,
+  "soort": "bus"
+ },
+ "51.84489,5.86809": {
+  "geschat": false,
+  "hemelsbreed": 109,
+  "meters": 114,
+  "naam": "Hertogplein",
+  "omweg": 1.05,
   "soort": "bus"
  },
  "51.84491,5.86893": {
@@ -2109,6 +2141,14 @@
   "meters": 216,
   "naam": "Waalkade",
   "omweg": 1.4,
+  "soort": "bus"
+ },
+ "51.84965,5.85030": {
+  "geschat": false,
+  "hemelsbreed": 115,
+  "meters": 126,
+  "naam": "Havenweg",
+  "omweg": 1.1,
   "soort": "bus"
  },
  "51.84966,5.85446": {

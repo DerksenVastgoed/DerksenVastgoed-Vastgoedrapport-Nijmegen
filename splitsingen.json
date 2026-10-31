@@ -1,15 +1,52 @@
 {
  "gerealiseerd": [],
- "zonder_bekende_vergunning": [],
+ "zonder_bekende_vergunning": [
+  {
+   "adres": "van Dulckenstraat 47",
+   "datum": "2026-10-31",
+   "van": 0,
+   "naar": 2,
+   "aanvraag": null
+  }
+ ],
  "vergund_maar_niets_gebeurd": [
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 441,
+   "dagen": 442,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
  "aangekondigd_nog_niet_in_gebruik": [
+  {
+   "adres": "Fagelstraat 46",
+   "gevormd": 2,
+   "gevormd_maten": [
+    67,
+    62
+   ],
+   "in_gebruik": 2,
+   "datum": "2026-10-30",
+   "besluit": "2026-10-30",
+   "vergund_aantal": 3,
+   "wijkt_af": -1
+  },
+  {
+   "adres": "Kronenburgersingel 213",
+   "gevormd": 6,
+   "gevormd_maten": [
+    106,
+    79,
+    41,
+    37,
+    36,
+    33
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-10-27",
+   "aanvraag": "2025-11-27",
+   "besluit": "2026-10-27"
+  },
   {
    "adres": "Pontanusstraat 42",
    "gevormd": 2,

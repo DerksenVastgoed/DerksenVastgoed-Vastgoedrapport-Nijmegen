@@ -1,7 +1,7 @@
 {
  "bron": "PDOK locatieserver v3_1, filter op buurtnaam én gemeentenaam:Nijmegen",
  "let_op": "adressen is het aantal adresseerbare objecten en niet het aantal woningen: winkels, kantoren en garageboxen hebben ook een adres. Het onderscheid komt uit het gebruiksdoel in de BAG, en dat zit niet in deze dienst.",
- "opgehaald": "2026-10-28",
+ "opgehaald": "2026-10-31",
  "per_buurt": {
   "Altrade": {
    "adressen": 3452,
@@ -34,11 +34,11 @@
    "volledig": true
   },
   "Bottendaal": {
-   "adressen": 2574,
+   "adressen": 2576,
    "adressen_buiten_de_gemeente": 0,
-   "adressen_doorgebladerd": 2574,
-   "adressen_gemeld": 2574,
-   "adressen_zonder_gemeentefilter": 2574,
+   "adressen_doorgebladerd": 2576,
+   "adressen_gemeld": 2576,
+   "adressen_zonder_gemeentefilter": 2576,
    "postcodes": 133,
    "tweede_ronde_per_straat": 0,
    "volledig": true
@@ -1648,11 +1648,11 @@
   ]
  },
  "totaal": {
-  "adressen": 29238,
-  "adressen_al_nagekeken": 7626,
+  "adressen": 29240,
+  "adressen_al_nagekeken": 7645,
   "buurten_gevraagd": 8,
   "buurten_volledig": 8,
-  "panden_al_nagekeken": 1661,
+  "panden_al_nagekeken": 1672,
   "postcodes": 1517,
   "postcodes_per_viercijferig": {
    "6511": 361,

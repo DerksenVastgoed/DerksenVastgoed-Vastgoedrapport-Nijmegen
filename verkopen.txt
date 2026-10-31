@@ -1223,3 +1223,13 @@ Nieuwe Markt 50 | Nijmegen | 375000 | te koop | 2026-10-30 | funda-mail | 54 | 6
 Ruisdaelstraat 6 | Nijmegen | 650000 | te koop | 2026-10-30 | funda-mail | 96 | 6521LD
 Bloemerstraat 107 | Nijmegen | 320000 | te koop | 2026-10-30 | funda-mail | 63 | 6511EG
 Lage Markt 11 | Nijmegen | 398000 | te koop | 2026-10-30 | funda-mail | 71 | 6511VK
+
+# Automatisch toegevoegd uit Funda-attendering op 31-10-2026
+Roukensstraat | Nijmegen | 2150 | te huur | 2026-10-30 | pararius | 100 | 6521BP
+Berg en Dalseweg | Nijmegen | 1849 | te huur gemeubileerd | 2026-10-30 | pararius | 56 | 6522BC
+Nina Simonestraat 142 | Nijmegen | 415000 | te koop | 2026-10-31 | funda-mail | 75 | 6541ED
+Arksteestraat 14 | Nijmegen | 399000 | te koop | 2026-10-31 | funda-mail | 92 | 6511MZ
+Klein Mariënburg 8 | Nijmegen | 375000 | te koop | 2026-10-31 | funda-mail | 95 | 6511PL
+Ligusterstraat | Nijmegen | 861 | te huur | 2026-10-31 | huislijn | 50 | 6543SZ
+Berg En Dalseweg | Nijmegen | 1849 | te huur | 2026-10-31 | huislijn | 56 | 6522BC
+Van Hogendorpstraat | Nijmegen | 1011 | te huur | 2026-10-31 | huislijn | 103 | 6535MA

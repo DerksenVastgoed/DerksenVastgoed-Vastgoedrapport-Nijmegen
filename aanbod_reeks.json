@@ -237,5 +237,13 @@
   "te_koop": 100,
   "uitpond": 0,
   "uitpond_adressen": []
+ },
+ "2026-10-31": {
+  "nieuw_te_huur": 3,
+  "nieuw_te_koop": 3,
+  "te_huur": 147,
+  "te_koop": 103,
+  "uitpond": 0,
+  "uitpond_adressen": []
  }
 }
