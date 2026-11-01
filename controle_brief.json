@@ -1,49 +1,29 @@
 {
- "datum": "2026-10-31",
+ "datum": "2026-11-01",
  "voor_herstel": [
   [
-   "Vandaag een nieuw besluit in het Stadscentrum, en daarmee meteen een vervolg op de Kronenburgersingel 213 die ik je eerder al meldde.",
-   "Het besluit voor Kronenburgersingel 213 is van 2026-10-27, staat in de bekendmakingen van 29-10 en is al gemeld op 28 en 29 oktober (2 brieven). Er is vandaag geen nieuw feit bij, dus het is geen vervolg. Het enige nieuwe besluit in de lijst van 31-10 is Fagelstraat 46 (2026-10-30), en dat ligt in Altrade, niet in het Stadscentrum.",
+   "Dat verschil tussen vergund (vier appartementen plus kamer en praktijkruimtes) en wat de BAG als gevormd telt, is geen tegenspraak maar het normale beeld vlak na zo'n besluit: de gemeente legt de nieuwe eenheden stuksgewijs vast, en dat loopt nog niet synchroon.",
+   "Van het besluit is alleen de titel bekend, dus 'vergund' staat er niet. De verklaring dat de gemeente stuksgewijs vastlegt en dat dit het normale beeld is, wordt als feit gebracht. De gegevens zeggen juist dat 'dat dat in Nijmegen altijd zo gaat, is niet nagekeken'.",
    "model"
   ],
   [
-   "De splitsing daar, zes zelfstandige eenheden naast de bestaande woning, is nu dus definitief vergund (besluit van 27 oktober).",
-   "De datum 27 oktober klopt. De titel luidt 'Het opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten (legalisering)'. Dat zijn 8 eenheden: 1 studentenkamer (niet zelfstandig), 4 appartementen en 3 praktijkruimten (geen woningen). Het zijn dus geen zes zelfstandige eenheden. Ook 'definitief vergund' staat er niet: alleen de titel 'Besluit voor' is bekend.",
+   "Elders in de ring, in Altrade, kreeg de Fagelstraat 46 op 30 oktober een vergunning voor een vergelijkbare ingreep: een beneden- en bovenwoning naar drie appartementen.",
+   "Altrade, 2026-10-30 en 'beneden-en bovenwoning naar 3 appartementen' kloppen. Er staat echter alleen 'Besluit voor ...'; dat de vergunning verleend is, is niet bekend. Daarnaast is het adres al gemeld op 31 oktober en wordt het hier niet als vervolg gebracht.",
    "model"
   ],
   [
-   "Dat is precies wat vergund is, dus hier klopt vergunning en registratie met elkaar.",
-   "Het besluit noemt 1 studentenkamer, 4 appartementen en 3 praktijkruimten, samen 8 eenheden. De BAG telt 6 gevormde objecten. Die aantallen komen niet overeen.",
+   "Ook hier loopt de BAG nog achter: twee objecten gevormd (67 en 62 m2) naast twee woningen die er al staan, dus één minder dan de drie die zijn vergund.",
+   "De getallen kloppen: 2 objecten gevormd (67 en 62 m2) naast 2 woningen in gebruik, 1 minder dan het besluit voor 3. Maar 'de BAG loopt achter' wordt als oorzaak gebracht. De gegevens noemen het verschil 'om na te kijken' en geven geen verklaring.",
    "model"
   ],
   [
-   "Elders ging dat deze week mis: bij de Fagelstraat 46 in Altrade is een vergunning verleend voor drie appartementen, maar de BAG telt er pas twee gevormd.",
-   "Deze delen kloppen: besluit van 2026-10-30, buurt Altrade, 'verbouwen van een beneden-en bovenwoning naar 3 appartementen', en 2 objecten gevormd (67, 62 m2). Dat de vergunning verleend is, staat er niet: alleen de titel 'Besluit voor' is bekend. Dat het 'misging' staat er ook niet; de gegevens zeggen alleen 'om na te kijken'.",
+   "Deze twee zaken samen laten precies zien hoe de route in de praktijk werkt: eerst de aanvraag, soms een jaar wachten, dan het besluit, en pas daarna, met vertraging en in stappen, de registratie in de BAG.",
+   "Voor Fagelstraat 46 staat geen aanvraag in de gegevens. Bij Kronenburgersingel 213 lagen er 11 maanden tussen aanvraag (2025-11-27) en besluit (2026-10-27), en volgde de BAG-registratie al 2 dagen later. 'Met vertraging en in stappen' als vaste werkwijze staat nergens.",
    "model"
   ],
   [
-   "Van de acht ringbuurten heeft het Stadscentrum het hoogste aandeel bekende kamerverhuurpanden, 4,3% van de woningen, en ook het hoogste aantal aanvragen tot splitsen en verkameren dit jaar: negen, tegen negen vorig jaar.",
-   "Het hoogste aandeel (4,3%) klopt, net als 9 aanvragen in 2026 en 9 in 2025. Maar St. Anna telt in 2026 10 aanvragen, dus het Stadscentrum heeft niet het hoogste aantal dit jaar.",
-   "model"
-  ],
-  [
-   "Dat is geen toeval bij een buurt met 93% appartementen en een gemiddelde WOZ van €356.000, ruim onder de grens van €396.000 voor de omzettingsvergunning.",
-   "93% appartement, gemiddelde WOZ €356.000 en grens €396.000 kloppen. Dat het aantal kamerverhuurpanden en aanvragen door deze kenmerken komt, wordt als oorzaak gebracht maar staat niet in de gegevens.",
-   "model"
-  ],
-  [
-   "De keerzijde van al die kleine eenheden en eenpersoonshuishoudens (79%) zie je ook terug in de veiligheidscijfers: het Stadscentrum heeft de hoogste fietsendiefstal en vernieling van alle acht buurten.",
-   "79% eenpersoonshuishoudens klopt, net als de hoogste fietsendiefstal (85,5 per 1000) en vernieling (13,9 per 1000) van de 8 buurten. Dat die cijfers een gevolg zijn van kleine eenheden en eenpersoonshuishoudens is een oorzaak die niet in de gegevens staat.",
-   "model"
-  ],
-  [
-   "Dat zegt vooral iets over wie er rondloopt, niet over de bewoners zelf; woninginbraak, de maat die wél over bewoners gaat, zit met 1,2 per 1000 inwoners juist in de middenmoot.",
-   "De gegevens zeggen 'bij fietsendiefstal en vernieling telt OOK mee wie er alleen komt'. Bewoners tellen dus wel mee; 'niet over de bewoners zelf' gaat verder dan de gegevens. Woninginbraak 1,2 per 1000 klopt; dat is de 3e van 8 van laag naar hoog.",
-   "model"
-  ],
-  [
-   "Voor ons, met de panden in de BV, raakt dat regime niet direct, maar het zegt iets over het aanbod dat de komende jaren op de markt komt: meer particulieren die verkopen in plaats van verhuren.",
-   "Nergens staat dat de panden in een BV zitten. De verwachting dat meer particulieren gaan verkopen staat ook niet als feit in de gegevens.",
+   "Dat spoort met wat wij in de Stieltjesstraat 10-casus al zagen: het verschil tussen verhuurd en vrij van huurder loopt daar op tot €1.185 per m2.",
+   "De €1.185/m² is het verschil tussen twee medianen (€4.094/m² verhuurd tegen €5.280/m² vrij van huurder) in dezelfde buurten, gerekend op 4 beleggingen en 335 verkopen. Het is geen cijfer van Stieltjesstraat 10 zelf en ook geen maximum ('tot').",
    "model"
   ]
  ],

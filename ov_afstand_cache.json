@@ -767,6 +767,14 @@
   "omweg": 1.16,
   "soort": "bus"
  },
+ "51.83733,5.84994": {
+  "geschat": false,
+  "hemelsbreed": 9,
+  "meters": 57,
+  "naam": "Tollensstraat",
+  "omweg": 6.33,
+  "soort": "bus"
+ },
  "51.83746,5.86950": {
   "geschat": false,
   "hemelsbreed": 217,
@@ -1277,6 +1285,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.84221,5.86807": {
+  "geschat": false,
+  "hemelsbreed": 125,
+  "meters": 141,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.13,
   "soort": "bus"
  },
  "51.84239,5.87202": {

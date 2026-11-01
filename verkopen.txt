@@ -1233,3 +1233,7 @@ Klein Mariënburg 8 | Nijmegen | 375000 | te koop | 2026-10-31 | funda-mail | 95
 Ligusterstraat | Nijmegen | 861 | te huur | 2026-10-31 | huislijn | 50 | 6543SZ
 Berg En Dalseweg | Nijmegen | 1849 | te huur | 2026-10-31 | huislijn | 56 | 6522BC
 Van Hogendorpstraat | Nijmegen | 1011 | te huur | 2026-10-31 | huislijn | 103 | 6535MA
+
+# Automatisch toegevoegd uit Funda-attendering op 01-11-2026
+Willemsweg | Nijmegen | 520 | te huur | 2026-10-31 | pararius | 18 | 6531DB
+Bijleveldsingel | Nijmegen | 719 | te huur kamer | 2026-10-31 | kamernet | 22 | 

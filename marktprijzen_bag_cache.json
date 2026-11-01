@@ -79842,7 +79842,7 @@
     "buurtnaam": "Zwanenveld",
     "wijknaam": "Dukenburg",
     "nummeraanduiding": "adr-54973e5bb4a2a13433e26c3eef43c9a9",
-    "eenheden_gezien": "2026-10-24",
+    "eenheden_gezien": "2026-11-01",
     "oppervlakte_bag": 96,
     "energielabel": null
   },
@@ -82115,7 +82115,8 @@
     ],
     "postcode": "6543SZ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Van Hogendorpstraat|Nijmegen": {
     "oppervlakte": 103,
@@ -82124,6 +82125,13 @@
     ],
     "postcode": "6535MA",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
+  },
+  "Bijleveldsingel|Nijmegen": {
+    "oppervlakte": 22,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ]
   }
 }
