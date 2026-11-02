@@ -1,0 +1,33 @@
+Rente bijgesteld van 5.75% naar 5.5% op basis van de gemeten stand
+Ingelezen: 1056 regels
+Cache-entries: 1039
+  FAIL parse: Waaijenstein
+  FAIL parse: Graadt van Roggenstraat
+  FAIL parse: Wedesteinbroek
+  FAIL parse: Kaaisjouwerskade
+Verrijkt met oppervlakte: 1052/1056 (nieuw opgehaald: 5)
+Eenheden per pand ververst: 2, zonder antwoord 0, nog te oud in de cache 0 (plafond 200 per ronde)
+Samengevoegd: 34 herhaalde waarnemingen, 1022 panden over
+Loopafstand tot een halte bepaald voor 364 panden
+woz.txt: 26 regels staan al open, geen nieuwe werklijst toegevoegd
+woz.txt: 114 ingevuld, 26 open, 8 zonder WOZ, 1 gevonden via de letterroute
+Huuraanbod: 11 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 67 advertenties inclusief vaste lasten niet in de richtprijs; 51 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 52 postcode buiten de ring, 49 postcode, 5 straat niet in de ring, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 1 lange straat, loopt buiten de ring door
+Huuraanbod: 8 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 51 advertenties inclusief vaste lasten niet in de richtprijs; 36 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 52 postcode buiten de ring, 51 postcode, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 1 lange straat, loopt buiten de ring door, 1 straat niet in de ring
+Traceback (most recent call last):
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 9361, in <module>
+    sys.exit(main() or 0)
+             ^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8914, in main
+    md = render(woningen, modus=args.modus,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8431, in render
+    + render_looptijd(woningen)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 4501, in render_looptijd
+    for dagen, w in sorted(lang, reverse=True)[:8]:
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'

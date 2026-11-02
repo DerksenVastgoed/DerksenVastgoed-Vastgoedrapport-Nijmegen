@@ -80289,7 +80289,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-25",
+    "eenheden_gezien": "2026-11-02",
     "oppervlakte_bag": 56,
     "energielabel": {
       "label": "C",
@@ -80343,7 +80343,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-25",
+    "eenheden_gezien": "2026-11-02",
     "oppervlakte_bag": 48,
     "energielabel": {
       "label": "B",
@@ -82130,6 +82130,13 @@
   },
   "Bijleveldsingel|Nijmegen": {
     "oppervlakte": 22,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "energielabel": null
+  },
+  "Citroenvlinderstraat|Nijmegen": {
+    "oppervlakte": 15,
     "gebruiksdoelen": [
       "woonfunctie"
     ]

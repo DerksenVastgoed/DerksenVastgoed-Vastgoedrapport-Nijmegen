@@ -1237,3 +1237,6 @@ Van Hogendorpstraat | Nijmegen | 1011 | te huur | 2026-10-31 | huislijn | 103 | 
 # Automatisch toegevoegd uit Funda-attendering op 01-11-2026
 Willemsweg | Nijmegen | 520 | te huur | 2026-10-31 | pararius | 18 | 6531DB
 Bijleveldsingel | Nijmegen | 719 | te huur kamer | 2026-10-31 | kamernet | 22 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 02-11-2026
+Citroenvlinderstraat | Nijmegen | 620 | te huur | 2026-11-01 | kamernet-incl | 15 | 

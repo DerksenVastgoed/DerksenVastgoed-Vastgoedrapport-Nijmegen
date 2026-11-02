@@ -1,0 +1,31 @@
+
+## Publicaties
+_Vastgoedartikelen laatste 24u, met marktduiding. 02-11-2026._
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX0hMWmlqTjI4MGFxNUNKemR2ckNmOW5lUlR1ZWpXZmoxczIzTHJzNjJQZmFwWGxTbnFjNlNIWFBJMXZId0gtV2NacktjMVgyc0JVeG9EM3c4cW16NGQ3bHA4bmlxdDdwdnprdVNLaHlFS1l0RE5CM1YtQVMyNUhGNlZvaHRxRFF2Q0JxeGQzT3BsdzE5RUViekZZT2Zhb2dmc0J6MGV4Mlk3S1BuZUJJWXRR?oc=5" style="color:#12242c;text-decoration:none">Het is nu erop of eronder voor box 3: dit staat beleggers de komende weken te wachten - Vastgoed Insider</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De besluitvorming over box 3 nadert een beslissend moment.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Onduidelijkheid over box 3 maakt netto rendementsberekeningen voor verhuurders in dit segment voorlopig onzeker.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Box 3 vastgoed . <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX0hMWmlqTjI4MGFxNUNKemR2ckNmOW5lUlR1ZWpXZmoxczIzTHJzNjJQZmFwWGxTbnFjNlNIWFBJMXZId0gtV2NacktjMVgyc0JVeG9EM3c4cW16NGQ3bHA4bmlxdDdwdnprdVNLaHlFS1l0RE5CM1YtQVMyNUhGNlZvaHRxRFF2Q0JxeGQzT3BsdzE5RUViekZZT2Zhb2dmc0J6MGV4Mlk3S1BuZUJJWXRR?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#6B6B6B;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">fiscaal</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxNQ09EaDIzUnV2TGFUWFNDM0NXblZVODN3MlQ3Q2U2enhOaTZsc1ZZQThyRmp0TzJCeGJ1aVJuUGdFY2FSNzVVSmYwM3VYU3dPT3M0bjFLaGYwSFdoR19ZQmpqbDZRazQ1dVJtTkxadVNDTUY1WC0zZGdYSGU0ckl4QTh1UHlFMnFuVFI1OWQwRXhiWU5LSzF5bFU0djI1UHVPaWtkRDRtdEJEMW9jR1dnZ0lPd3M4dEtBSkpmQlM1Sks?oc=5" style="color:#12242c;text-decoration:none">Vastgoedbijtelling van 3,35 procent kan beleggers met leegstand of een vakantiewoning hard raken - Vastgoed Insider</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Een vastgoedbijtelling van 3,35 procent kan beleggers met leegstand of een vakantiewoning fors raken.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Leegstand tussen mutaties bij uitponden of renovatie kan door deze bijtelling extra fiscaal nadelig uitpakken.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Box 3 vastgoed . <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxNQ09EaDIzUnV2TGFUWFNDM0NXblZVODN3MlQ3Q2U2enhOaTZsc1ZZQThyRmp0TzJCeGJ1aVJuUGdFY2FSNzVVSmYwM3VYU3dPT3M0bjFLaGYwSFdoR19ZQmpqbDZRazQ1dVJtTkxadVNDTUY1WC0zZGdYSGU0ckl4QTh1UHlFMnFuVFI1OWQwRXhiWU5LSzF5bFU0djI1UHVPaWtkRDRtdEJEMW9jR1dnZ0lPd3M4dEtBSkpmQlM1Sks?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#8A5A44;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">financiering</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQODhKTFo5c0l3ZkVyRDJEck9XTVl0c2VJZHNCbWxjQ1djSFpxVnlNTEJUWW5QTFdqUjVuMnVPRkk4MVhXempwazNTUmFvVlE2MlhvYXdiaHFtWkpnaHQxX283a3RzcDlVdHYzU2R1am54RktQUkFOUVpjYkx4ekt0czAxakJyR2hiX0ZaMUo0d2FoUQ?oc=5" style="color:#12242c;text-decoration:none">Rust op de rentemarkt: stilte voor de storm? - Van Bruggen</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">De rentemarkt is rustig, maar dat kan de stilte voor de storm zijn.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Bij herfinanciering van de hypotheek op dit segment blijft renterisico een aandachtspunt voor de cashflow.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Rente vastgoed . <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQODhKTFo5c0l3ZkVyRDJEck9XTVl0c2VJZHNCbWxjQ1djSFpxVnlNTEJUWW5QTFdqUjVuMnVPRkk4MVhXempwazNTUmFvVlE2MlhvYXdiaHFtWkpnaHQxX283a3RzcDlVdHYzU2R1am54RktQUkFOUVpjYkx4ekt0czAxakJyR2hiX0ZaMUo0d2FoUQ?oc=5" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>
+
+<div style="border-left:3px solid #E0A458;background:#f7f9fa;border-radius:0 6px 6px 0;padding:12px 14px;margin:0 0 12px 0">
+<div style="margin-bottom:6px"><span style="display:inline-block;background:#2E6DA4;color:#fff;font-size:11px;font-weight:700;letter-spacing:.3px;padding:2px 8px;border-radius:10px;margin-right:8px;vertical-align:middle">transformatie</span> <span style="font-weight:700;font-size:14px;line-height:1.35"><a href="https://vastgoedinsider.nl/bouwleges-sinds-omgevingswet-in-veertien-gemeenten-verdubbeld/" style="color:#12242c;text-decoration:none">Bouwleges sinds Omgevingswet in veertien gemeenten verdubbeld – In deze gemeenten stegen de leges met ruim 200%</a></span></div>
+<div style="font-size:13px;color:#1a2830;margin-bottom:4px">Bouwleges zijn sinds de Omgevingswet in veertien gemeenten meer dan verdubbeld.</div>
+<div style="font-size:13px;color:#4a5b63;font-style:italic">Hogere leges verhogen de kosten van vergunningstrajecten bij splitsen of functieverandering en drukken het rendement op waardecreatie.</div>
+<div style="font-size:11px;color:#7a8a92;margin-top:8px">Vastgoed Insider . <a href="https://vastgoedinsider.nl/bouwleges-sinds-omgevingswet-in-veertien-gemeenten-verdubbeld/" style="color:#4a7a72;text-decoration:none">lezen</a></div>
+</div>

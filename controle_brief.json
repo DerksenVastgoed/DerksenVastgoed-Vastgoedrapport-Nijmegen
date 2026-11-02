@@ -1,29 +1,34 @@
 {
- "datum": "2026-11-01",
+ "datum": "2026-11-02",
  "voor_herstel": [
   [
-   "Dat verschil tussen vergund (vier appartementen plus kamer en praktijkruimtes) en wat de BAG als gevormd telt, is geen tegenspraak maar het normale beeld vlak na zo'n besluit: de gemeente legt de nieuwe eenheden stuksgewijs vast, en dat loopt nog niet synchroon.",
-   "Van het besluit is alleen de titel bekend, dus 'vergund' staat er niet. De verklaring dat de gemeente stuksgewijs vastlegt en dat dit het normale beeld is, wordt als feit gebracht. De gegevens zeggen juist dat 'dat dat in Nijmegen altijd zo gaat, is niet nagekeken'.",
+   "Een pand kan er met gemak boven of onder zitten, en alleen de WOZ van dat ene pand bepaalt of er een omzettingsvergunning nodig is om naar kamers te gaan, of dat de opkoopbescherming geldt na aankoop.",
+   "Dat de WOZ van het pand zelf telt en niet het buurtgemiddelde, staat in de gegevens. Maar voor de opkoopbescherming is de WOZ niet het enige criterium. Het gaat om de WOZ op de datum van levering, de woning moet vrij van huur zijn of korter dan zes maanden verhuurd, en nieuwbouw en woningen van gemeente of corporatie vallen erbuiten.",
    "model"
   ],
   [
-   "Elders in de ring, in Altrade, kreeg de Fagelstraat 46 op 30 oktober een vergunning voor een vergelijkbare ingreep: een beneden- en bovenwoning naar drie appartementen.",
-   "Altrade, 2026-10-30 en 'beneden-en bovenwoning naar 3 appartementen' kloppen. Er staat echter alleen 'Besluit voor ...'; dat de vergunning verleend is, is niet bekend. Daarnaast is het adres al gemeld op 31 oktober en wordt het hier niet als vervolg gebracht.",
+   "Op veiligheid is Bottendaal relatief rustig voor een huurder om in te wonen.",
+   "Woninginbraak 2,2 per 1000 is de 7e van 8 van laag naar hoog, dus op een na hoogst. Vernieling 5,2 is de 5e van 8 en fietsendiefstal 12,2 de 4e van 8. Dat beeld is niet 'relatief rustig'. De brief spreekt zichzelf in de volgende zin ook tegen.",
    "model"
   ],
   [
-   "Ook hier loopt de BAG nog achter: twee objecten gevormd (67 en 62 m2) naast twee woningen die er al staan, dus één minder dan de drie die zijn vergund.",
-   "De getallen kloppen: 2 objecten gevormd (67 en 62 m2) naast 2 woningen in gebruik, 1 minder dan het besluit voor 3. Maar 'de BAG loopt achter' wordt als oorzaak gebracht. De gegevens noemen het verschil 'om na te kijken' en geven geen verklaring.",
+   "Dat is opvallend naast een laag cijfer voor vernieling (5,2 per 1000, de 5e) en fietsendiefstal (12,2 per 1000, de 4e), waar ook meetelt wie er van buiten de buurt komt.",
+   "De getallen en rangen kloppen: vernieling 5,2 (5e van 8) en fietsendiefstal 12,2 (4e van 8). Maar dat zijn middenposities en geen lage cijfers. Vernieling zit zelfs boven de helft.",
    "model"
   ],
   [
-   "Deze twee zaken samen laten precies zien hoe de route in de praktijk werkt: eerst de aanvraag, soms een jaar wachten, dan het besluit, en pas daarna, met vertraging en in stappen, de registratie in de BAG.",
-   "Voor Fagelstraat 46 staat geen aanvraag in de gegevens. Bij Kronenburgersingel 213 lagen er 11 maanden tussen aanvraag (2025-11-27) en besluit (2026-10-27), en volgde de BAG-registratie al 2 dagen later. 'Met vertraging en in stappen' als vaste werkwijze staat nergens.",
+   "Het mediaan vermogen per huishouden is met €6.000 laag, de 2e van de 8 buurten, terwijl het gemiddeld inkomen in de middenmoot zit.",
+   "Vermogen klopt: mediaan €6.000, de 2e van 8 van laag naar hoog. Het inkomen zit niet in de middenmoot: €32.000 per inwoner, de 3e van 8 van laag naar hoog, dus in de onderste helft.",
    "model"
   ],
   [
-   "Dat spoort met wat wij in de Stieltjesstraat 10-casus al zagen: het verschil tussen verhuurd en vrij van huurder loopt daar op tot €1.185 per m2.",
-   "De €1.185/m² is het verschil tussen twee medianen (€4.094/m² verhuurd tegen €5.280/m² vrij van huurder) in dezelfde buurten, gerekend op 4 beleggingen en 335 verkopen. Het is geen cijfer van Stieltjesstraat 10 zelf en ook geen maximum ('tot').",
+   "Verder nog twee lopende zaken ter info, zonder nieuw feit vandaag: bij de Kronenburgersingel 213 en de Fagelstraat 46 liepen vorige week al besluiten over het opdelen van de panden; daar is sindsdien niets bijgekomen.",
+   "Er waren besluiten op 2026-10-27 (Kronenburgersingel 213) en 2026-10-30 (Fagelstraat 46). Daarna kwam er wel iets bij. Bij Kronenburgersingel 213 telt de BAG op 2026-10-31 nog 1 woning (was 2) en 6 gevormde objecten (106, 79, 41, 37, 36, 33 m2). Bij Fagelstraat 46 zijn 2 objecten gevormd tegen 3 in het besluit, 'om na te kijken'.",
+   "model"
+  ],
+  [
+   "Kortom: Bottendaal is geen buurt met veel splitsingsdynamiek in de bekendmakingen, maar wel een buurt waar de WOZ van losse panden precies rond de kritieke grens hangt.",
+   "Alleen het buurtgemiddelde van €394.000 ligt vlak onder €396.000. De gegevens noemen geen WOZ van losse panden en zeggen uitdrukkelijk dat het een buurtgemiddelde is. Het deel over weinig splitsingen (3 in 2025, 1 in 2026) klopt wel.",
    "model"
   ]
  ],

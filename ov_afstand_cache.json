@@ -151,6 +151,14 @@
   "omweg": 1.32,
   "soort": "bus"
  },
+ "51.81496,5.85014": {
+  "geschat": false,
+  "hemelsbreed": 132,
+  "meters": 341,
+  "naam": "Heidebloemstraat",
+  "omweg": 2.58,
+  "soort": "bus"
+ },
  "51.81574,5.84696": {
   "geschat": false,
   "hemelsbreed": 109,
@@ -717,6 +725,14 @@
   "meters": 191,
   "naam": "Badhuis",
   "omweg": 1.03,
+  "soort": "bus"
+ },
+ "51.83686,5.83388": {
+  "geschat": false,
+  "hemelsbreed": 109,
+  "meters": 135,
+  "naam": "Vuurdoornstraat",
+  "omweg": 1.24,
   "soort": "bus"
  },
  "51.83688,5.85399": {

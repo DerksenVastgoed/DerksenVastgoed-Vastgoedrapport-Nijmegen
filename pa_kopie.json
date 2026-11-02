@@ -1,8 +1,8 @@
 {
- "datum": "2026-11-01",
- "modus": "weekelijks",
- "mag_naar_pa": true,
- "reden": "",
+ "datum": "2026-11-02",
+ "modus": "dagelijks",
+ "mag_naar_pa": false,
+ "reden": "bijlage",
  "verstuurd": null,
  "gecorrigeerd": null
 }

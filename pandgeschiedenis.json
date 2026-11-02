@@ -89183,6 +89183,21 @@
    "0268100000047895"
   ]
  },
+ "citroenvlinderstraat": {
+  "adres": "Citroenvlinderstraat",
+  "bag_gezien": "2026-11-02",
+  "bag_zonder_id": "2026-11-02",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-01",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €620 per maand, 15 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-02"
+ },
  "citroenvlinderstraat27": {
   "adres": "Citroenvlinderstraat 27",
   "gebeurtenissen": [

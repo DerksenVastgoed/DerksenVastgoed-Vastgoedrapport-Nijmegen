@@ -45,7 +45,7 @@
   "Omvang van de gegevensbestanden": "OK",
   "Opnieuw aangeboden": "OK",
   "Oude verlaging in de brief": "OK",
-  "Overgeslagen stappen": "OK",
+  "Overgeslagen stappen": "FOUT",
   "Plintobjecten geteld": "LET OP",
   "Profiel nieuw aanbod": "OK",
   "Regelgevingsmonitor": "OK",
@@ -58,7 +58,7 @@
   "Verkoopdatums": "OK",
   "Verkooptijd bovengrens": "OK",
   "Verkopen": "LET OP",
-  "Veroudering aanbod": "OK",
+  "Veroudering aanbod": "LET OP",
   "Versies": "OK",
   "Voet onder de brief": "OK",
   "Voltooide splitsingen": "OK",
@@ -70,5 +70,5 @@
   "Woningen in bestaande panden": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-11-01"
+ "datum": "2026-11-02"
 }
