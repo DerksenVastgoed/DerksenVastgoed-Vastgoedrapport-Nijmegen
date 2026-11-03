@@ -162,6 +162,11 @@
   "adres": "Assumburgstraat 2",
   "bronnen": [
    {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   },
+   {
     "bron": "besluit",
     "jaar": "2026",
     "soort": "besluit kamerverhuur"
@@ -2233,6 +2238,11 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Stadscentrum",
@@ -2548,6 +2558,11 @@
     "bron": "vergunning",
     "jaar": "2018",
     "soort": "onttrekking"
+   },
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Bottendaal",
@@ -5078,6 +5093,18 @@
   "buurt": "Bottendaal",
   "straat": "Jan van Galenstraat"
  },
+ "janvangoyenstraat1": {
+  "adres": "Jan van Goyenstraat 1",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Hunnerberg",
+  "straat": "Jan van Goyenstraat"
+ },
  "janvangoyenstraat46": {
   "adres": "Jan van Goyenstraat 46",
   "bronnen": [
@@ -5123,6 +5150,18 @@
   ],
   "buurt": "Hunnerberg",
   "straat": "Jan van Goyenstraat"
+ },
+ "janvangoyenstraat50museumkamstraat49": {
+  "adres": "Jan van Goyenstraat 50 & Museum Kamstraat 49",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Hunnerberg",
+  "straat": "Jan van Goyenstraat 50 & Museum Kamstraat"
  },
  "janwillempasstraat133": {
   "adres": "Jan Willem Passtraat 133",

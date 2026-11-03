@@ -1287,6 +1287,14 @@
   "omweg": 1.34,
   "soort": "bus"
  },
+ "51.84193,5.84024": {
+  "geschat": false,
+  "hemelsbreed": 37,
+  "meters": 41,
+  "naam": "Fuchsiastraat",
+  "omweg": 1.11,
+  "soort": "bus"
+ },
  "51.84211,5.88182": {
   "geschat": false,
   "hemelsbreed": 408,
@@ -1333,6 +1341,14 @@
   "meters": 153,
   "naam": "Prins Hendrikstraat",
   "omweg": 1.55,
+  "soort": "bus"
+ },
+ "51.84244,5.87157": {
+  "geschat": false,
+  "hemelsbreed": 121,
+  "meters": 183,
+  "naam": "Prins Hendrikstraat",
+  "omweg": 1.51,
   "soort": "bus"
  },
  "51.84255,5.86721": {
@@ -1957,6 +1973,14 @@
   "meters": 192,
   "naam": "Voerweg",
   "omweg": 1.28,
+  "soort": "bus"
+ },
+ "51.84706,5.86804": {
+  "geschat": false,
+  "hemelsbreed": 101,
+  "meters": 110,
+  "naam": "Voerweg",
+  "omweg": 1.09,
   "soort": "bus"
  },
  "51.84744,5.86218": {

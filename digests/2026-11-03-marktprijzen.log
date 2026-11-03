@@ -1,0 +1,36 @@
+Rente bijgesteld van 5.75% naar 5.5% op basis van de gemeten stand
+Ingelezen: 1062 regels
+Cache-entries: 1040
+  FAIL parse: Waaijenstein
+  FAIL parse: Graadt van Roggenstraat
+  FAIL parse: Wedesteinbroek
+  FAIL parse: Kaaisjouwerskade
+  Jacob Canisstraat 35: het pand bevat 3 zelfstandige woningen volgens de BAG (Jacob Canisstraat 33, Jacob Canisstraat 35, Jacob Canisstraat 37)
+  Mr. Franckenstraat 2: het pand bevat 17 zelfstandige woningen volgens de BAG (Mr. Franckenstraat 2, Mr. Franckenstraat 4, Mr. Franckenstraat 6, Mr. Franckenstraat 8)
+  Ridderstraat 38: het pand bevat 33 zelfstandige woningen volgens de BAG (Ridderstraat 24, Ridderstraat 26, Ridderstraat 28, Ridderstraat 30)
+Verrijkt met oppervlakte: 1058/1062 (nieuw opgehaald: 8)
+Eenheden per pand ververst: 200, zonder antwoord 0, nog te oud in de cache 0 (plafond 200 per ronde)
+Samengevoegd: 34 herhaalde waarnemingen, 1028 panden over
+Loopafstand tot een halte bepaald voor 370 panden
+woz.txt: 27 regels staan al open, geen nieuwe werklijst toegevoegd
+woz.txt: 114 ingevuld, 27 open, 8 zonder WOZ, 1 gevonden via de letterroute, 1 nieuw
+Huuraanbod: 11 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 69 advertenties inclusief vaste lasten niet in de richtprijs; 53 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 53 postcode buiten de ring, 49 postcode, 5 straat niet in de ring, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 1 lange straat, loopt buiten de ring door
+Huuraanbod: 8 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 53 advertenties inclusief vaste lasten niet in de richtprijs; 38 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 53 postcode buiten de ring, 51 postcode, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 1 lange straat, loopt buiten de ring door, 1 straat niet in de ring
+Traceback (most recent call last):
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 9361, in <module>
+    sys.exit(main() or 0)
+             ^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8914, in main
+    md = render(woningen, modus=args.modus,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8431, in render
+    + render_looptijd(woningen)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 4501, in render_looptijd
+    for dagen, w in sorted(lang, reverse=True)[:8]:
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'

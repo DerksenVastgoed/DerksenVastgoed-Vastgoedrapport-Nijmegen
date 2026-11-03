@@ -3257,6 +3257,41 @@
     "Jacob Canisstraat 51": "A"
    }
   },
+  "0268100000002100": {
+   "bag_eenheden": [
+    [
+     "Jacob Canisstraat 33",
+     229
+    ],
+    [
+     "Jacob Canisstraat 35",
+     111
+    ],
+    [
+     "Jacob Canisstraat 37",
+     110
+    ]
+   ],
+   "bag_gezien": "2026-11-03",
+   "bag_woningen": [
+    [
+     "Jacob Canisstraat 33",
+     229
+    ],
+    [
+     "Jacob Canisstraat 35",
+     111
+    ],
+    [
+     "Jacob Canisstraat 37",
+     110
+    ]
+   ],
+   "labels": {
+    "Jacob Canisstraat 33": "A",
+    "Jacob Canisstraat 35": "D"
+   }
+  },
   "0268100000002110": {
    "bag_eenheden": [
     [
@@ -24005,6 +24040,24 @@
     "Piet Heinstraat 67": "C"
    }
   },
+  "0268100000010564": {
+   "bag_eenheden": [
+    [
+     "St. Stephanusstraat 120",
+     108
+    ]
+   ],
+   "bag_gezien": "2026-11-03",
+   "bag_woningen": [
+    [
+     "St. Stephanusstraat 120",
+     108
+    ]
+   ],
+   "labels": {
+    "St. Stephanusstraat 120": "G"
+   }
+  },
   "0268100000010583": {
    "bag_eenheden": [
     [
@@ -39886,7 +39939,7 @@
      25
     ]
    ],
-   "bag_gezien": "2026-11-01",
+   "bag_gezien": "2026-11-03",
    "bag_woningen": [
     [
      "Mr. Franckenstraat 10",
@@ -65568,7 +65621,7 @@
      64
     ]
    ],
-   "bag_gezien": "2026-11-01",
+   "bag_gezien": "2026-11-03",
    "bag_woningen": [
     [
      "Ridderstraat 24",
@@ -77489,6 +77542,12 @@
     "datum": "2026-10-19",
     "soort": "bekendmaking",
     "tekst": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen , aan Assumburgstraat 2, 6535PL Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-02",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (6 kamers), aan Assumburgstraat 2, 6535PL Nijmegen"
    }
   ],
   "pand_id": "0268100000006202",
@@ -96434,6 +96493,12 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van van Welderenstraat 74 is nu E"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-02",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (6 kamers), aan Eilbrachtstraat 2, 6511LX Nijmegen"
    }
   ],
   "pand_id": "0268100000003939",
@@ -97744,6 +97809,12 @@
     "datum": "2026-09-30",
     "soort": "energielabel",
     "tekst": "energielabel van Evertsenstraat 7 is nu C"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-02",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (6 kamers), aan Evertsenstraat 7, 6512JK Nijmegen"
    }
   ],
   "pand_id": "0268100000010197",
@@ -101464,6 +101535,12 @@
     "datum": "2026-10-18",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €600 per maand, 15 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-02",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €687 per maand, 15 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -113293,6 +113370,34 @@
    "0268100000002086"
   ]
  },
+ "jacobcanisstraat35": {
+  "adres": "Jacob Canisstraat 35",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jacob Canisstraat 35 is D, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Jacob Canisstraat 33 is A, geregistreerd 2023-07-08"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €400.000, 98 m2"
+   }
+  ],
+  "pand_id": "0268100000002100",
+  "vbo": "0268010000013936",
+  "vbo_panden": [
+   "0268100000002100"
+  ]
+ },
  "jacobcanisstraat36": {
   "adres": "Jacob Canisstraat 36",
   "bag_pogingen": 1,
@@ -113914,6 +114019,21 @@
    "0268100000010212"
   ]
  },
+ "janvangoyenstraat1": {
+  "adres": "Jan van Goyenstraat 1",
+  "bag_gezien": "2026-11-03",
+  "bag_zonder_id": "2026-11-03",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-02",
+    "soort": "bekendmaking",
+    "tekst": "Melding melding brandveilig gebruik, aan Jan van Goyenstraat 1, 6522ES Nijmegen"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-03"
+ },
  "janvangoyenstraat46": {
   "adres": "Jan van Goyenstraat 46",
   "bag_pogingen": 1,
@@ -114010,6 +114130,14 @@
   "vbo_panden": [
    "0268100000019915"
   ]
+ },
+ "janvangoyenstraat50museumkamstraat49": {
+  "adres": "Jan van Goyenstraat 50 & Museum Kamstraat 49",
+  "bag_gezien": "2026-11-03",
+  "bag_zonder_id": "2026-11-03",
+  "gebeurtenissen": [],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-03"
  },
  "janvangoyenstraat6en8": {
   "adres": "Jan van Goyenstraat 6 en 8",
@@ -130604,6 +130732,21 @@
    "0268100000002973"
   ]
  },
+ "molenweg": {
+  "adres": "Molenweg",
+  "bag_gezien": "2026-11-03",
+  "bag_zonder_id": "2026-11-03",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-11-02",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €995 per maand, 63 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-03"
+ },
  "molenweg105": {
   "adres": "Molenweg 105",
   "gebeurtenissen": [
@@ -134192,6 +134335,12 @@
     "datum": "2026-09-23",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.420 per maand, 35 m2"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-02",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €752 per maand, 19 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -134338,6 +134487,106 @@
   "vbo": "0268010000022567",
   "vbo_panden": [
    "0268100000021255"
+  ]
+ },
+ "mrfranckenstraat2": {
+  "adres": "Mr. Franckenstraat 2",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-10-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 28 is E, geregistreerd 2017-10-26"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-02-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 16 is G, geregistreerd 2019-02-25"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-10-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 12 is G, geregistreerd 2019-10-17"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-08-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 22 is D, geregistreerd 2020-08-18"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-10-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 2 is D, geregistreerd 2020-10-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 14 is E, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 18 is D, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 26 is D, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 30 is D, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 4 is D, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 6 is D, geregistreerd 2020-11-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 10 is D, geregistreerd 2020-11-26"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-11-26",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 8 is D, geregistreerd 2020-11-26"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2022-08-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Mr. Franckenstraat 24 is D, geregistreerd 2022-08-07"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €375.000, 93 m2"
+   }
+  ],
+  "pand_id": "0268100000020697",
+  "vbo": "0268010000022226",
+  "vbo_panden": [
+   "0268100000020697"
   ]
  },
  "mrfranckenstraat20": {
@@ -145138,6 +145387,184 @@
    "0268100000045408"
   ]
  },
+ "ridderstraat38": {
+  "adres": "Ridderstraat 38",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-03-02",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 80 is C, geregistreerd 2017-03-02"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-11-05",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 50 is C, geregistreerd 2019-11-05"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-12",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 52 is C, geregistreerd 2020-12-12"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 66 is C, geregistreerd 2020-12-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 86 is C, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-11-08",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 64 is B, geregistreerd 2021-11-08"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2022-03-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 44 is A, geregistreerd 2022-03-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 24 is C, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 34 is C, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 60 is B, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 68 is B, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 72 is C, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-02-28",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 88 is C, geregistreerd 2023-02-28"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-03-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 40 is B, geregistreerd 2023-03-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-03-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 46 is B, geregistreerd 2023-03-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-03-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 82 is C, geregistreerd 2023-03-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-07-06",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 36 is C, geregistreerd 2023-07-06"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-12-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 84 is C, geregistreerd 2023-12-04"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-02-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 38 is A, geregistreerd 2024-02-21"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-08-22",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 78 is C, geregistreerd 2024-08-22"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-07-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 28 is A, geregistreerd 2025-07-21"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-04-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 26 is B, geregistreerd 2026-04-09"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 32 is B, geregistreerd 2026-07-03"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 48 is B, geregistreerd 2026-07-24"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 54 is A, geregistreerd 2026-07-24"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 58 is A, geregistreerd 2026-07-24"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-07-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Ridderstraat 70 is A, geregistreerd 2026-07-24"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-03",
+    "soort": "te koop",
+    "tekst": "te koop voor €325.000, 60 m2"
+   }
+  ],
+  "pand_id": "0268100000045408",
+  "vbo": "0268010000024151",
+  "vbo_panden": [
+   "0268100000045408"
+  ]
+ },
  "ridderstraat68": {
   "adres": "Ridderstraat 68",
   "gebeurtenissen": [
@@ -154676,6 +155103,28 @@
   "vbo": "0268010000032288",
   "vbo_panden": [
    "0268100000009738"
+  ]
+ },
+ "ststephanusstraat120": {
+  "adres": "St. Stephanusstraat 120",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-09-17",
+    "soort": "energielabel",
+    "tekst": "energielabel van St. Stephanusstraat 120 is G, geregistreerd 2020-09-17"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-02",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het plaatsen van een dakopbouw op de aanbouw en een kozijn in de zijgevel, aan St. Stephanusstraat 120, 6512HX Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000010564",
+  "vbo": "0268010000058109",
+  "vbo_panden": [
+   "0268100000010564"
   ]
  },
  "ststephanusstraat122": {

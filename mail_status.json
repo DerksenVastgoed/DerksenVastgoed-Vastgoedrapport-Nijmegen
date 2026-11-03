@@ -1,12 +1,12 @@
 {
- "datum": "2026-11-02",
+ "datum": "2026-11-03",
  "bronnen": {
   "regulier": {
    "mails": 2,
-   "objecten": 7,
+   "objecten": 6,
    "overgeslagen": 1,
    "redenen": [
-    "Veemarkt 105 (geen prijs gevonden)"
+    "Schoolstraat 11 (geen prijs gevonden)"
    ]
   },
   "huislijn": {
@@ -15,22 +15,20 @@
    "overgeslagen": 0,
    "redenen": []
   },
-  "kamernet": {
-   "mails": 7,
-   "objecten": 4,
-   "overgeslagen": 3,
-   "redenen": [
-    "Lobeliastraat, Arnhem: buiten Nijmegen",
-    "Kerkstraat, Mook: buiten Nijmegen",
-    "Vicarie, Heteren: buiten Nijmegen"
-   ]
-  },
   "pararius": {
    "mails": 2,
-   "objecten": 3,
-   "overgeslagen": 1,
+   "objecten": 2,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "kamernet": {
+   "mails": 8,
+   "objecten": 5,
+   "overgeslagen": 3,
    "redenen": [
-    "Berg en Dalseweg (gemeubileerd, apart bewaard)"
+    "Kerkstraat, Mook: buiten Nijmegen",
+    "Vicarie, Heteren: buiten Nijmegen",
+    "Homberg, Wijchen: buiten Nijmegen"
    ]
   },
   "vendr": {
@@ -45,7 +43,7 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 19,
+  "zelfde_status": 13,
   "andere_status": 0,
   "voorbeelden": []
  },
@@ -54,7 +52,7 @@
   "funda.com": 0,
   "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 7,
+  "kamernet.nl": 8,
   "vendr.nl": 1,
   "huislijn.nl": 2,
   "huisly.nl": 0,
@@ -62,6 +60,6 @@
   "rentola.nl": 0
  },
  "mailbox": {
-  "mislukt": "(SINCE 30-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 30-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 31-Oct-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 31-Oct-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

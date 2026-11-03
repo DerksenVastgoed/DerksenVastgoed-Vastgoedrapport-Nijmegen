@@ -1240,3 +1240,11 @@ Bijleveldsingel | Nijmegen | 719 | te huur kamer | 2026-10-31 | kamernet | 22 |
 
 # Automatisch toegevoegd uit Funda-attendering op 02-11-2026
 Citroenvlinderstraat | Nijmegen | 620 | te huur | 2026-11-01 | kamernet-incl | 15 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 03-11-2026
+Mr. Franckenstraat | Nijmegen | 752 | te huur kamer | 2026-11-02 | kamernet-incl | 19 | 
+Molenweg | Nijmegen | 995 | te huur | 2026-11-02 | pararius | 63 | 6543VC
+Graafseweg | Nijmegen | 687 | te huur kamer | 2026-11-02 | kamernet-incl | 15 | 
+Jacob Canisstraat 35 | Nijmegen | 400000 | te koop | 2026-11-03 | funda-mail | 98 | 6521HJ
+Mr. Franckenstraat 2 | Nijmegen | 375000 | te koop | 2026-11-03 | funda-mail | 93 | 6522AD
+Ridderstraat 38 | Nijmegen | 325000 | te koop | 2026-11-03 | funda-mail | 60 | 6511TM
