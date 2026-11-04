@@ -161,6 +161,62 @@ OVERIGE REGELS:
 - Maximaal 30 woorden per zin. Nederlands."""
 
 
+# HYPOTHEEKRENTE IN HET NIEUWS IS DE RENTE VOOR DE EIGEN WONING.
+#
+# 27 oktober 2026. Drie berichten meldden een lichte daling van de
+# hypotheekrente (Van Bruggen, Wonen360, Vastgoedjournaal). De duiding maakte
+# er "verbetert de cashflow op panden met herfinanciering tegen de huidige
+# 5,75%-achtige tarieven" en "verbetert de nul-cashflow-positie in dit
+# segment" van. Die 5,75% en die nul-cashflow staan in geen van de berichten:
+# ze komen uit het referentiepand in PROFIEL hierboven. Onze eigen meting van
+# de verhuurhypotheek stond die dag al sinds 2 september stil. De schrijver
+# schreef eerst "dat gaat over de rente voor de eigen woning", de
+# feitencontrole hield de duiding voor het gegeven en keurde die zin af, en in
+# de brief aan pa stond daarna dat de daling de cashflow in dit segment
+# verbetert.
+#
+# NAGEMETEN OP DE DIGESTS. Van 31 augustus tot en met 27 oktober noemen 32
+# verschillende berichten de hypotheekrente (de renteaftrek niet meegeteld).
+# Geen van de 32 noemt een verhuur- of beleggingshypotheek; het zijn
+# huizenkopers, starters, maandlasten, provinciegemiddelden. Bij 24 van de 32
+# vertaalde de duiding de rente naar onze financiering (financieringslasten,
+# cashflow, kapitaalkosten, herfinanciering), twee keer met de "€1M
+# hypotheek" uit het referentiepand; die 24 vervangt duiding_hypotheekrente,
+# en over alle 151 berichten in de digests verder geen enkele. De 8 die
+# blijven, gaan over kopers en de exit-waarde (daarlangs raakt de rente voor
+# de eigen woning dit segment wel), over nieuwbouw, of noemen de rente alleen
+# ter vergelijking (de VvE-bijdrage van 15 oktober). Gemeten op titel plus
+# samenvatting uit de digest, want de beschrijving uit de feed bewaren we
+# niet; in de run krijgt de functie titel plus beschrijving.
+#
+# Een regel in de prompt zou hetzelfde vragen aan hetzelfde model dat de fout
+# 24 keer maakte; daarom staat het hier in code.
+HYPOTHEEKRENTE = re.compile(r"hypotheekrente(?!aftrek)", re.I)
+VERHUURHYPOTHEEK = re.compile(r"verhuur|belegg|buy.to.let", re.I)
+EIGEN_FINANCIERING = re.compile(
+    r"financier|cashflow|kapitaalkosten|rentelast|vreemd vermogen|"
+    r"€\s?1\s?M|5,75", re.I)
+KOPERS = re.compile(r"koper|koopsom|biedprij|exit", re.I)
+DUIDING_EIGEN_WONING = (
+    "Het bericht noemt geen verhuur- of beleggingshypotheek, dus het gaat "
+    "vermoedelijk over de rente voor de eigen woning. Die raakt dit segment "
+    "via wat kopers kunnen betalen, niet via onze financiering; de "
+    "verhuurhypotheek meten we zelf.")
+
+
+def duiding_hypotheekrente(titel, beschrijving, duiding):
+    """De duiding, of DUIDING_EIGEN_WONING als de duiding nieuws over de
+    hypotheekrente voor de eigen woning vertaalt naar onze financiering. Zie
+    het commentaar bij HYPOTHEEKRENTE."""
+    bron = f"{titel} {beschrijving}"
+    if (duiding and HYPOTHEEKRENTE.search(bron)
+            and not VERHUURHYPOTHEEK.search(bron)
+            and EIGEN_FINANCIERING.search(duiding)
+            and not KOPERS.search(duiding)):
+        return DUIDING_EIGEN_WONING
+    return duiding
+
+
 def haal_feed(bron):
     """
     Haalt een feed op. Google News knijpt af bij te veel verzoeken achter elkaar,
@@ -436,7 +492,9 @@ def verrijk(items):
                 continue
             items[i]["strategie"] = str(rij.get("strategie", "")).strip().lower()
             items[i]["samenvatting"] = str(rij.get("samenvatting", "")).strip()
-            items[i]["gevolg"] = str(rij.get("duiding", rij.get("gevolg", ""))).strip()
+            items[i]["gevolg"] = duiding_hypotheekrente(
+                items[i].get("titel", ""), items[i].get("beschrijving", ""),
+                str(rij.get("duiding", rij.get("gevolg", ""))).strip())
     except Exception as e:
         print(f"Duiding overgeslagen: {e}", file=sys.stderr)
 
@@ -590,5 +648,80 @@ def main():
     schrijf_gezien(gezien)
 
 
+def proef():
+    """Op de echte berichten van 27 oktober 2026 en de randgevallen uit de
+    digests; zie het commentaar bij HYPOTHEEKRENTE."""
+    fouten = []
+    van_bruggen = ("Hypotheekrente daalt toch weer licht - Van Bruggen",
+                   "De hypotheekrente daalde opnieuw licht.",
+                   "Lagere financieringskosten verbeteren de cashflow op "
+                   "panden met herfinanciering tegen de huidige "
+                   "5,75%-achtige tarieven.")
+    if duiding_hypotheekrente(*van_bruggen) != DUIDING_EIGEN_WONING:
+        fouten.append("hypotheekrente: duiding van 27 oktober blijft staan")
+    wonen360 = ("Hypotheekrente daalt licht na eerdere stijging - Wonen360",
+                "De hypotheekrente daalde licht na een eerdere stijging.",
+                "Een dalende rente verlaagt de drempel voor herfinanciering "
+                "en verbetert de nul-cashflow-positie in dit segment.")
+    if duiding_hypotheekrente(*wonen360) != DUIDING_EIGEN_WONING:
+        fouten.append("hypotheekrente: de nul-cashflow-duiding van Wonen360 "
+                      "blijft staan")
+    # 26 oktober: over kopers en de exit-waarde, en dat klopt.
+    kopers = ("Hogere hypotheekrente raakt starters en remt woningmarkt",
+              "Hogere hypotheekrente raakt starters en remt de woningmarkt.",
+              "Hogere financieringskosten drukken de maximale koopsom van "
+              "kopers en daarmee de exit-waarde bij verkoop.")
+    if duiding_hypotheekrente(*kopers) != kopers[2]:
+        fouten.append("hypotheekrente: duiding over kopers vervangen")
+    # 15 oktober: de rente alleen ter vergelijking.
+    vve = ("Deze vve-bijdrage stijgt harder dan de hypotheekrente",
+           "De VvE-bijdrage stijgt harder dan de hypotheekrente.",
+           "Hogere VvE-lasten drukken het nettorendement van gesplitste "
+           "appartementsrechten extra naast de rentekosten.")
+    if duiding_hypotheekrente(*vve) != vve[2]:
+        fouten.append("hypotheekrente: een bericht dat de rente alleen ter "
+                      "vergelijking noemt is vervangen")
+    verhuur = ("Hypotheekrente voor verhuurders daalt", "De rente op een "
+               "verhuurhypotheek daalde.", "Lagere financieringskosten "
+               "verbeteren de cashflow bij herfinanciering.")
+    if duiding_hypotheekrente(*verhuur) != verhuur[2]:
+        fouten.append("hypotheekrente: een bericht over de verhuurhypotheek "
+                      "is vervangen")
+    aftrek = ("Hypotheekrenteaftrek na 2031", "Onduidelijkheid over de "
+              "hypotheekrenteaftrek.", "Fiscale onzekerheid drukt de "
+              "cashflow.")
+    if duiding_hypotheekrente(*aftrek) != aftrek[2]:
+        fouten.append("hypotheekrente: een bericht over de renteaftrek is "
+                      "vervangen")
+    # En verrijk past hem ook toe: een functie die niemand aanroept, beschermt
+    # de brief niet. Het taalmodel wordt nagebootst met het antwoord van 27
+    # oktober.
+    import types
+    import taalmodel
+    global ANTHROPIC_API_KEY
+    oud_vraag, oude_sleutel = taalmodel.vraag, ANTHROPIC_API_KEY
+    antwoord = json.dumps([{"i": 0, "relevant": True,
+                            "strategie": "financiering",
+                            "samenvatting": van_bruggen[1],
+                            "duiding": van_bruggen[2]}])
+    taalmodel.vraag = lambda *a, **k: types.SimpleNamespace(
+        fout=None, tekst=antwoord, stop="end_turn")
+    ANTHROPIC_API_KEY = "proef"
+    try:
+        items = [{"bron": "Rente vastgoed", "titel": van_bruggen[0],
+                  "beschrijving": van_bruggen[1]}]
+        verrijk(items)
+    finally:
+        taalmodel.vraag, ANTHROPIC_API_KEY = oud_vraag, oude_sleutel
+    if items[0].get("gevolg") != DUIDING_EIGEN_WONING:
+        fouten.append("hypotheekrente: verrijk laat de duiding staan")
+    for f in fouten:
+        print(f"FOUT {f}", file=sys.stderr)
+    print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
+    return 1 if fouten else 0
+
+
 if __name__ == "__main__":
-    main()
+    if "--proef" in sys.argv:
+        sys.exit(proef())
+    sys.exit(main())

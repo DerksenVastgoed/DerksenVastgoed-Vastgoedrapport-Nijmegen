@@ -1867,3 +1867,24 @@ waarom: 26 oktober. De brief opende met "Vandaag weinig beweging op straat,
   enkel verhaal geeft eerste_zin nog een aanhef terug.
 proef: brief_verhalend:de opening na de aanhef wordt niet getoetst
 soort: brief
+
+---
+eis: Een nieuwsbericht over de hypotheekrente dat geen verhuur- of
+  beleggingshypotheek noemt, krijgt geen duiding die het naar onze
+  financiering vertaalt (cashflow, financieringslasten, herfinanciering);
+  zo'n duiding wordt vervangen door een vaste zin dat het vermoedelijk om de
+  eigen woning gaat. Duidingen over kopers en de exit-waarde blijven staan.
+waarom: 27 oktober 2026. Drie berichten over een lichte daling van de
+  hypotheekrente kregen als duiding "verbetert de cashflow op panden met
+  herfinanciering tegen de huidige 5,75%-achtige tarieven" en "verbetert de
+  nul-cashflow-positie in dit segment"; die 5,75% en die nul-cashflow komen
+  uit het referentiepand in de prompt, niet uit de berichten. Onze eigen
+  meting van de verhuurhypotheek stond sinds 2 september stil. De schrijver
+  schreef dat het om de eigen woning ging, de feitencontrole keurde dat af op
+  grond van de duiding, en de brief aan pa zei daarna dat de daling de
+  cashflow in dit segment verbetert. Over de digests van 31 augustus tot 27
+  oktober: 32 berichten over de hypotheekrente, geen enkele over een
+  verhuurhypotheek, 24 duidingen naar onze financiering (die worden nu
+  vervangen), 8 die blijven, en verder geen enkel van de 151 berichten geraakt.
+proef: publicaties_vastgoed:duiding van 27 oktober blijft staan; publicaties_vastgoed:duiding over kopers vervangen; publicaties_vastgoed:verrijk laat de duiding staan
+soort: gegevens
