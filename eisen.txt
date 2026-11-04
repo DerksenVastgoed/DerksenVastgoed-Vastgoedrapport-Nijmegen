@@ -1751,13 +1751,13 @@ soort: brief
 
 
 ---
-eis: De ochtendmail gaat alleen naar Mark. Pa krijgt de brief via
-  kopie_pa.yml na de nakijkronde, hooguit een keer per dag, nooit bij een
-  testrun of een halve update; een mislukte herschrijving stuurt niets.
-waarom: 20 oktober, Mark: pa moet de brief krijgen nadat hij is nagekeken.
-  Tot dan ging hij om vijf uur naar beiden en keek de nakijkronde hem om 06:46
-  na, als pa de fouten al gelezen had.
-proef: kopie_pa:pa kan buiten kopie_pa.yml een mail; kopie_pa:een test van kopie_pa.yml kan pa mailen; kopie_pa:een testrun zet de echte brief op; kopie_pa:een al verstuurde brief mag nog; kopie_pa:een halve update mag naar pa; kopie_pa:de links blijven in de romp
+eis: De brief gaat alleen naar Mark. Geen workflow gebruikt MAIL_TO_VERHAAL
+  of CC_VERHAAL, en kopie_pa.yml bestaat niet meer.
+waarom: 4 november 2026, Mark: er hoeft niets meer naar pa. Van 20 oktober
+  tot 4 november kreeg pa de brief via kopie_pa.yml na de nakijkronde, en
+  daarvoor als cc van de ochtendmail. Beide wegen zijn weg; de wacht houdt ze
+  weg, ook als iemand een oude stap terugzet.
+proef: kopie_pa:pa kan nog een mail krijgen; kopie_pa:de wacht op mail naar pa ziet niet alles; kopie_pa:een testrun overschrijft de modus; kopie_pa:een halve update wordt niet vastgelegd
 soort: brief
 
 ---

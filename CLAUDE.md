@@ -60,8 +60,9 @@ moet worden, en die fout is hier vier keer gemaakt.
   niet om en maakt geen tokens aan.
 - **Een samenvatting uit de mailbox in een openbaar issue bevat nooit
   afzender, onderwerp, link of inhoud.** Alleen aantallen en vormen.
-- **De brief gaat naar pa.** Bij een halve update gaat de kopie eraf; zie de
-  eis daarover. Een testrun gaat alleen naar Mark.
+- **De brief gaat alleen naar Mark.** Sinds 4 november 2026 gaat er geen
+  kopie meer naar pa; zet die niet terug. `kopie_pa.py --proef` is rood als
+  een workflow `MAIL_TO_VERHAAL` of `CC_VERHAAL` weer gebruikt.
 
 ## Hoe Mark werkt
 
