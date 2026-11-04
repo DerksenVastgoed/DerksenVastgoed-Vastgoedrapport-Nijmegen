@@ -3310,6 +3310,24 @@
     "Groesbeeksedwarsweg 260": "C"
    }
   },
+  "0268100000002113": {
+   "bag_eenheden": [
+    [
+     "Beijensstraat 78",
+     99
+    ]
+   ],
+   "bag_gezien": "2026-11-04",
+   "bag_woningen": [
+    [
+     "Beijensstraat 78",
+     99
+    ]
+   ],
+   "labels": {
+    "Beijensstraat 78": "F"
+   }
+  },
   "0268100000002114": {
    "bag_eenheden": [
     [
@@ -5506,6 +5524,24 @@
    ],
    "labels": {
     "Oranjesingel 59": "C"
+   }
+  },
+  "0268100000002690": {
+   "bag_eenheden": [
+    [
+     "Staringstraat 7",
+     283
+    ]
+   ],
+   "bag_gezien": "2026-11-04",
+   "bag_woningen": [
+    [
+     "Staringstraat 7",
+     283
+    ]
+   ],
+   "labels": {
+    "Staringstraat 7": "G"
    }
   },
   "0268100000002694": {
@@ -79425,6 +79461,28 @@
    "0268100000002138"
   ]
  },
+ "beijensstraat78": {
+  "adres": "Beijensstraat 78",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2016-12-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Beijensstraat 78 is F, geregistreerd 2016-12-19"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-04",
+    "soort": "te koop",
+    "tekst": "te koop voor €595.000, 93 m2"
+   }
+  ],
+  "pand_id": "0268100000002113",
+  "vbo": "0268010000000512",
+  "vbo_panden": [
+   "0268100000002113"
+  ]
+ },
  "beijensstraat80": {
   "adres": "Beijensstraat 80",
   "gebeurtenissen": [
@@ -79498,7 +79556,7 @@
   ]
  },
  "bergendalseweg": {
-  "adres": "Berg En Dalseweg",
+  "adres": "Berg en Dalseweg",
   "bag_gezien": "2026-10-03",
   "bag_pogingen": 3,
   "bag_zonder_id": "2026-10-03",
@@ -79562,6 +79620,18 @@
     "datum": "2026-10-31",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €1.849 per maand, 56 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €595 per maand, 20 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €600 per maand, 20 m2"
    }
   ],
   "pand_id": null
@@ -94171,6 +94241,21 @@
   "vbo_panden": [
    "0268100000020410"
   ]
+ },
+ "doorwerthstraat": {
+  "adres": "Doorwerthstraat",
+  "bag_gezien": "2026-11-04",
+  "bag_zonder_id": "2026-11-04",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.025 per maand, 36 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-04"
  },
  "drakensteinstraat9": {
   "adres": "Drakensteinstraat 9",
@@ -111503,6 +111588,12 @@
     "datum": "2026-10-09",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €450 per maand, 14 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €495 per maand, 16 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -129214,6 +129305,21 @@
   "vbo_panden": [
    "0268100000049125"
   ]
+ },
+ "mesdagstraat": {
+  "adres": "Mesdagstraat",
+  "bag_gezien": "2026-11-04",
+  "bag_zonder_id": "2026-11-04",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.200 per maand, 54 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-04"
  },
  "mesdagstraat70": {
   "adres": "Mesdagstraat 70",
@@ -152463,6 +152569,28 @@
    "0268100000002524"
   ]
  },
+ "staringstraat7": {
+  "adres": "Staringstraat 7",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2016-11-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Staringstraat 7 is G, geregistreerd 2016-11-01"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-04",
+    "soort": "te koop",
+    "tekst": "te koop voor €185.000, 24 m2"
+   }
+  ],
+  "pand_id": "0268100000002690",
+  "vbo": "0268010000052765",
+  "vbo_panden": [
+   "0268100000002690"
+  ]
+ },
  "stcanisiussingel19": {
   "adres": "St. Canisiussingel 19",
   "gebeurtenissen": [
@@ -155067,6 +155195,21 @@
   "vbo_panden": [
    "0268100000045388"
   ]
+ },
+ "straalmanstraat": {
+  "adres": "Straalmanstraat",
+  "bag_gezien": "2026-11-04",
+  "bag_zonder_id": "2026-11-04",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-03",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €700 per maand, 13 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-04"
  },
  "ststephanusstraat": {
   "adres": "St. Stephanusstraat",

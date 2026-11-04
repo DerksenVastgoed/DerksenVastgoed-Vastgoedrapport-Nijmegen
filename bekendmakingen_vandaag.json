@@ -4,7 +4,7 @@
   "titel": "Melding brandveilig gebruik 1 pand 2 woningen voor kamergewijze verhuur, aan Jan van Goyenstraat 50 & Museum Kamstraat 49, 6522EX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-509172.html",
   "strategie": "kamerverhuur",
-  "duiding": "Melding brandveilig gebruik voor twee kamerwoningen bevestigt lopende verkamering, los van de omzettingsvergunning zelf.",
+  "duiding": "Melding brandveilig gebruik voor twee woningen bevestigt actieve kamergewijze verhuur op deze locatie, los van de omzettingsvergunning.",
   "feiten": {},
   "straat": "",
   "huisnummer": "",
@@ -15,13 +15,27 @@
   "titel": "Aanvraag omgevingsvergunning voor het plaatsen van een dakopbouw op de aanbouw en een kozijn in de zijgevel, aan St. Stephanusstraat 120, 6512HX Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-509010.html",
   "strategie": "verduurzaming",
-  "duiding": "Dakopbouw vergroot het pand met label G uit 2020, wat ruimte biedt om bij de verbouwing ook het label te verbeteren.",
+  "duiding": "Dakopbouw vergroot het bruikbaar oppervlak op een pand met label G, wat bij renovatie ruimte biedt voor labelverbetering.",
   "feiten": {
    "energielabel": "G (2020)",
    "oppervlakte_m2": 108
   },
   "straat": "St. Stephanusstraat",
   "huisnummer": "120",
+  "kern": false
+ },
+ {
+  "datum": "2026-11-03",
+  "titel": "Melding diverse sloopwerkzaamheden aan de woning, aan Sumatraplein 24, 6524KH Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-511849.html",
+  "strategie": "transformatie",
+  "duiding": "Sloopmelding op een pand van 217 m2 met label E wijst op voorbereiding voor herontwikkeling of functiewijziging.",
+  "feiten": {
+   "energielabel": "E (2026)",
+   "oppervlakte_m2": 217
+  },
+  "straat": "Sumatraplein",
+  "huisnummer": "24",
   "kern": false
  }
 ]

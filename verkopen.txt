@@ -1248,3 +1248,13 @@ Graafseweg | Nijmegen | 687 | te huur kamer | 2026-11-02 | kamernet-incl | 15 |
 Jacob Canisstraat 35 | Nijmegen | 400000 | te koop | 2026-11-03 | funda-mail | 98 | 6521HJ
 Mr. Franckenstraat 2 | Nijmegen | 375000 | te koop | 2026-11-03 | funda-mail | 93 | 6522AD
 Ridderstraat 38 | Nijmegen | 325000 | te koop | 2026-11-03 | funda-mail | 60 | 6511TM
+
+# Automatisch toegevoegd uit Funda-attendering op 04-11-2026
+Heyendaalseweg | Nijmegen | 495 | te huur kamer | 2026-11-03 | kamernet-incl | 16 | 
+Straalmanstraat | Nijmegen | 700 | te huur kamer | 2026-11-03 | kamernet-incl | 13 | 
+Mesdagstraat | Nijmegen | 1200 | te huur kamer | 2026-11-03 | kamernet-incl | 54 | 
+Berg en Dalseweg | Nijmegen | 595 | te huur kamer | 2026-11-03 | kamernet | 20 | 
+Berg en Dalseweg | Nijmegen | 600 | te huur kamer | 2026-11-03 | kamernet | 20 | 
+Doorwerthstraat | Nijmegen | 1025 | te huur | 2026-11-03 | kamernet-incl | 36 | 
+Beijensstraat 78 | Nijmegen | 595000 | te koop | 2026-11-04 | funda-mail | 93 | 6521ED
+Staringstraat 7 | Nijmegen | 185000 | te koop | 2026-11-04 | funda-mail | 24 | 6511PC

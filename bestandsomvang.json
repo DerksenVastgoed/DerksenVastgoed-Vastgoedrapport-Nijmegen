@@ -1,11 +1,11 @@
 {
- "datum": "2026-11-03",
+ "datum": "2026-11-04",
  "bestanden": {
   "woz.txt": 149,
-  "verkopen.txt": 1062,
-  "pandgeschiedenis.json": 182414,
+  "verkopen.txt": 1070,
+  "pandgeschiedenis.json": 182557,
   "bekendmakingen_archief.json": 12256,
   "kamervergunningen.json": 7246,
-  "verteld.json": 280
+  "verteld.json": 292
  }
 }

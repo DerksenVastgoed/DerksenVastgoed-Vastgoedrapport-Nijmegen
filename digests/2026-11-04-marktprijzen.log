@@ -1,0 +1,34 @@
+Rente bijgesteld van 5.75% naar 5.5% op basis van de gemeten stand
+Ingelezen: 1070 regels
+Cache-entries: 1045
+  FAIL parse: Waaijenstein
+  FAIL parse: Graadt van Roggenstraat
+  FAIL parse: Wedesteinbroek
+  FAIL parse: Kaaisjouwerskade
+  Oppervlakte wijkt af bij Staringstraat 7: advertentie 24 m², BAG 283 m². We rekenen met de advertentie.
+Verrijkt met oppervlakte: 1066/1070 (nieuw opgehaald: 9)
+Eenheden per pand ververst: 200, zonder antwoord 0, nog te oud in de cache 0 (plafond 200 per ronde)
+Samengevoegd: 34 herhaalde waarnemingen, 1036 panden over
+Loopafstand tot een halte bepaald voor 378 panden
+woz.txt: 27 regels staan al open, geen nieuwe werklijst toegevoegd
+woz.txt: 114 ingevuld, 27 open, 8 zonder WOZ, 1 gevonden via de letterroute
+Huuraanbod: 12 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 73 advertenties inclusief vaste lasten niet in de richtprijs; 56 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 53 postcode buiten de ring, 49 postcode, 5 straat niet in de ring, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 2 lange straat, loopt buiten de ring door
+Huuraanbod: 9 waarschijnlijke dubbelingen samengevoegd (zelfde straat, huur binnen 2%, binnen 21 dagen)
+Huur: 56 advertenties inclusief vaste lasten niet in de richtprijs; 40 kamers apart bewaard
+Huur zonder buurt uit de BAG, zelf gekoppeld: 53 postcode buiten de ring, 51 postcode, 3 straat (afgeleid), 3 postcode in twee buurten, 2 straat in meer buurten, 2 lange straat, loopt buiten de ring door, 1 straat niet in de ring
+Traceback (most recent call last):
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 9361, in <module>
+    sys.exit(main() or 0)
+             ^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8914, in main
+    md = render(woningen, modus=args.modus,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 8431, in render
+    + render_looptijd(woningen)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/DerksenVastgoed-Vastgoedrapport-Nijmegen/DerksenVastgoed-Vastgoedrapport-Nijmegen/marktprijzen_bag.py", line 4501, in render_looptijd
+    for dagen, w in sorted(lang, reverse=True)[:8]:
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'dict' and 'dict'

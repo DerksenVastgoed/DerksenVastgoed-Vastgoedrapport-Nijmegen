@@ -20,8 +20,8 @@
   },
   "bronsgeeststraat11": {
    "eerst": "2026-10-09",
-   "laatst": "2026-10-26",
-   "keer": 6,
+   "laatst": "2026-11-04",
+   "keer": 7,
    "omschrijving": "Bronsgeeststraat 11"
   },
   "groesbeekseweg162": {
@@ -275,6 +275,18 @@
    "laatst": "2026-11-03",
    "keer": 1,
    "omschrijving": "St. Annastraat 456"
+  },
+  "janvangoyenstraat50": {
+   "eerst": "2026-11-04",
+   "laatst": "2026-11-04",
+   "keer": 1,
+   "omschrijving": "Jan van Goyenstraat 50"
+  },
+  "museumkamstraat49": {
+   "eerst": "2026-11-04",
+   "laatst": "2026-11-04",
+   "keer": 1,
+   "omschrijving": "Museum Kamstraat 49"
   }
  }
 }

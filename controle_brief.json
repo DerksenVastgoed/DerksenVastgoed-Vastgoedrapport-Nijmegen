@@ -1,14 +1,49 @@
 {
- "datum": "2026-11-03",
+ "datum": "2026-11-04",
  "voor_herstel": [
   [
-   "Daar is het beeld een beetje tegenstrijdig: de gemiddelde WOZ ligt met €553.000 ruim boven de grens van €396.000, dus voor de meeste panden daar speelt de omzettingsvergunning niet.",
-   "De bedragen kloppen: de gemiddelde WOZ in Galgenveld is €553.000, boven de grens van €396.000. De gegevens zeggen er nadrukkelijk bij dat dit een buurtgemiddelde is, en dat het van de WOZ van het pand zelf afhangt of het onder de omzettingsvergunning valt. Uit een gemiddelde volgt niet wat voor 'de meeste panden' geldt.",
+   "Ik duik vandaag in Altrade, want daar zit een opvallend verschil tussen wat de gemeente registreert en wat er in de praten over splitsen gebeurt.",
+   "De gegevens noemen voor Altrade geen verschil tussen registratie en praktijk. Er staan alleen tellingen van gepubliceerde bekendmakingen (2023: 1 verleend; 2025: 3 aanvragen; 2026: 5 aanvragen) en de kanttekening dat deze tellingen alleen zien wat gepubliceerd is.",
    "model"
   ],
   [
-   "Verder weinig nieuws vandaag: de marktrente voor een verhuurhypotheek staat al sinds 2 september stil, en landelijk blijft de krimp van de particuliere huurmarkt het gesprek van de dag, met het bekende gevolg dat wie blijft verhuren iets meer prijszettingsmacht krijgt.",
-   "De rente en de krimp kloppen: het scherpste markttarief is ongewijzigd sinds 2 september (5,10% / 5,50% / 5,75%), en meerdere berichten (CBS, bnr.nl, PropertyNL) melden verdere krimp van de particuliere huurmarkt. Het 'bekende gevolg' van meer prijszettingsmacht staat als feit in de brief. In de gegevens is het alleen een duiding bij de berichten, meestal voorzichtig gesteld ('kan huurprijzen opdrijven').",
+   "Die ene aanvraag die is afgeketst is interessant om te onthouden: buiten behandeling betekent dat de aanvraag onvolledig was, geen inhoudelijke weigering.",
+   "De gegevens zeggen alleen '1 buiten behandeling of ingetrokken'. Wat buiten behandeling betekent, of de aanvraag onvolledig was en of het geen weigering was, staat er niet in.",
+   "model"
+  ],
+  [
+   "De aanvrager kan het dus gewoon opnieuw proberen.",
+   "Over het opnieuw indienen van deze aanvraag staat niets in de gegevens.",
+   "model"
+  ],
+  [
+   "Een intrekking is weer iets anders: dat is een eigen keuze van de aanvrager om te stoppen.",
+   "De gegevens leggen niet uit wat een intrekking is of wie daartoe besluit.",
+   "model"
+  ],
+  [
+   "Vernieling en fietsendiefstal liggen in de middenmoot.",
+   "Vernieling staat op 3,8 per 1000 inwoners, de 4e van 8; dat is middenmoot. Fietsendiefstal staat op 17,5 per 1000 inwoners, de 6e van 8 van laag naar hoog, dus aan de hoge kant (derde hoogste) en niet in de middenmoot.",
+   "model"
+  ],
+  [
+   "Wat verder bij Altrade past: Bronsgeeststraat 11, dat ik je eerder al noemde, hoort bij deze buurt.",
+   "Dat het eerder genoemd is, klopt: laatst gemeld op 26 oktober, in totaal 6 brieven. Bij Bronsgeeststraat 11 staat in de gegevens echter geen buurt; dat het bij Altrade hoort, staat er niet.",
+   "model"
+  ],
+  [
+   "Maar het past in het beeld van vandaag: een koper die een plan heeft en dat via de band van de gemeente laat vastleggen.",
+   "De gegevens zeggen: 'Een aanwijzing dat de koper iets met het pand doet, geen bewijs ... een bekendmaking kan ook van de vorige eigenaar zijn.' Dat de koper het besluit liet vastleggen, staat er niet.",
+   "model"
+  ],
+  [
+   "Wel noem ik kort de kamerverhuurmelding in Hunnerberg, aan de Jan van Goyenstraat 50 en Museum Kamstraat 49: één pand, twee woningen, nu bevestigd als actieve kamergewijze verhuur naast de eerdere omzettingsvergunning.",
+   "De melding brandveilig gebruik (2026-11-02, 1 pand 2 woningen, buurt Hunnerberg) klopt. Een eerdere omzettingsvergunning voor dit adres staat niet in de gegevens; daar staat 'los van de omzettingsvergunning'.",
+   "model"
+  ],
+  [
+   "Vijf aanvragen in een jaar tijd in een buurt die nog niet bekendstond om verkameren, is het bijhouden waard.",
+   "De 5 aanvragen in 2026 kloppen, maar dat is een telling van splitsen én verkameren samen. Altrade heeft al 103 bekende kamerverhuurpanden (3,4% van de woningen, de 5e van 8, nagenoeg gelijk aan Bottendaal), dus 'nog niet bekend om verkameren' strookt niet met de gegevens.",
    "model"
   ]
  ],

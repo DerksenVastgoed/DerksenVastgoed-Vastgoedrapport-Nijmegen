@@ -7,6 +7,14 @@
   "omweg": 1.37,
   "soort": "bus"
  },
+ "51.80069,5.82560": {
+  "geschat": false,
+  "hemelsbreed": 82,
+  "meters": 93,
+  "naam": "Hatert-Delsenhof",
+  "omweg": 1.13,
+  "soort": "bus"
+ },
  "51.80294,5.82728": {
   "geschat": false,
   "hemelsbreed": 265,
@@ -967,6 +975,14 @@
   "omweg": 1.86,
   "soort": "bus"
  },
+ "51.83899,5.87941": {
+  "geschat": false,
+  "hemelsbreed": 53,
+  "meters": 80,
+  "naam": "Mesdagstraat",
+  "omweg": 1.51,
+  "soort": "bus"
+ },
  "51.83900,5.86235": {
   "geschat": false,
   "hemelsbreed": 108,
@@ -1093,6 +1109,14 @@
   "meters": 149,
   "naam": "Fransestraat",
   "omweg": 2.13,
+  "soort": "bus"
+ },
+ "51.83974,5.87151": {
+  "geschat": false,
+  "hemelsbreed": 126,
+  "meters": 186,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.48,
   "soort": "bus"
  },
  "51.83978,5.86004": {
@@ -1527,6 +1551,14 @@
   "omweg": 1.48,
   "soort": "bus"
  },
+ "51.84372,5.86769": {
+  "geschat": false,
+  "hemelsbreed": 46,
+  "meters": 151,
+  "naam": "Hertogplein",
+  "omweg": 3.28,
+  "soort": "bus"
+ },
  "51.84389,5.85869": {
   "geschat": false,
   "hemelsbreed": 22,
@@ -1645,6 +1677,14 @@
   "meters": 161,
   "naam": "Hertogplein",
   "omweg": 2.78,
+  "soort": "bus"
+ },
+ "51.84439,5.87285": {
+  "geschat": false,
+  "hemelsbreed": 42,
+  "meters": 138,
+  "naam": "Meester Franckenstraat",
+  "omweg": 3.29,
   "soort": "bus"
  },
  "51.84440,5.85490": {
