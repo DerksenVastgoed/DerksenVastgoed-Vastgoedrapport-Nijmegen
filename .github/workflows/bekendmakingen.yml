@@ -220,7 +220,6 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BAG_API_KEY: ${{ secrets.BAG_API_KEY }}
           EP_API_KEY: ${{ secrets.EP_API_KEY }}
-          VERHAAL_ADRES: ${{ secrets.MAIL_TO_VERHAAL }}
         run: |
           mkdir -p digests
           DATUM=$(date +%F)
@@ -246,25 +245,14 @@ jobs:
             # marktprijzenstap, waardoor de briefstap dacht dat het geen testrun
             # was en het logboek toch bijwerkte.
             echo "GEHEUGEN_ALLEEN_LEZEN=1" >> "$GITHUB_ENV"
-            # Bij een testrun gaat de brief alleen naar Mark. Dit hier bepalen
-            # en niet in de mailstap zelf: in een GitHub-expressie telt een lege
-            # string als onwaar, waardoor "voorwaarde && '' || secret" altijd
-            # het secret oplevert. Daardoor kreeg zijn vader toch een brief.
-            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
           else
             echo "TESTRUN=0" >> "$GITHUB_ENV"
             echo "GEHEUGEN_ALLEEN_LEZEN=0" >> "$GITHUB_ENV"
-            # PA KRIJGT DE BRIEF NA HET NAKIJKEN. 20 oktober 2026, Mark: deze
-            # run mailt alleen hem. De kopie naar pa gaat via kopie_pa.yml,
-            # na de nakijkronde (NAKIJKEN.md), eventueel met de verbeteringen
-            # erin. Zie kopie_pa.py; pa_kopie.json zegt of hij mag.
-            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
           fi
-          if [ -n "${VERHAAL_ADRES}" ]; then
-            echo "HEEFT_VERHAAL=1" >> "$GITHUB_ENV"
-          else
-            echo "HEEFT_VERHAAL=0" >> "$GITHUB_ENV"
-          fi
+          # DE BRIEF GAAT ALLEEN NAAR MARK. 4 november 2026, Mark: er gaat geen
+          # kopie meer naar pa. De kopie (cc in deze mail, later kopie_pa.yml)
+          # is weggehaald; kopie_pa.py --proef is rood zodra een workflow
+          # MAIL_TO_VERHAAL of CC_VERHAAL weer gebruikt.
           echo "Modus: $MODUS"
           # Eerst de ringfilter op vaste titels: kost geen seconde en geen
           # aanroep, en is rood als de filter weer op vier cijfers terugvalt.
@@ -1088,21 +1076,19 @@ jobs:
       # vader een brief uit die halve set zou krijgen. Dat hoort niet van
       # oplettendheid af te hangen.
       #
-      # Wat deze stap doet: de kopie naar pa eraf halen en in het onderwerp
-      # zetten dat de code niet klopt. Mark krijgt de brief dus wel, met de
-      # reden erbij. De brief helemaal tegenhouden doen we niet: een brief die
-      # niet aankomt is het probleem waar we twee dagen aan hebben besteed.
-      - name: Geen kopie naar pa bij een halve update
+      # Wat deze stap doet: in het onderwerp zetten dat de brief onvolledig
+      # is. Tot 4 november haalde hij ook de kopie naar pa eraf. Mark krijgt
+      # de brief dus wel, met de reden erbij. De brief helemaal tegenhouden
+      # doen we niet: een brief die niet aankomt is het probleem waar we twee
+      # dagen aan hebben besteed.
+      - name: Halve update herkennen
         continue-on-error: true
         run: |
-          # Zonder de voet gaat de brief niet naar pa. Die voet is er juist voor
-          # hem: hij leest een brief in de eerste persoon en moet weten dat de
-          # tekst machinewerk is. Ontbreekt hij, dan is de enige ontvanger voor
-          # wie het uitmaakt ook de enige die hem niet mag krijgen.
+          # Een brief zonder de voet telt als halve update. De voet zegt dat de
+          # tekst machinewerk is; tot 4 november ging de brief zonder voet
+          # daarom niet naar pa.
           if [ "${GEEN_VOET:-0}" = "1" ]; then
             echo "LET OP: de voet onder de brief kon niet worden toegevoegd."
-            echo "De kopie naar pa gaat er daarom af."
-            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
             echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
             exit 0
           fi
@@ -1115,8 +1101,6 @@ jobs:
           # heeft.
           if [ -n "${ONVOLLEDIG:-}" ]; then
             echo "LET OP: ${ONVOLLEDIG} ontbreekt in de brief van vandaag."
-            echo "De kopie naar pa gaat er daarom af."
-            echo "CC_VERHAAL=" >> "$GITHUB_ENV"
             echo "HALVE_UPDATE=1" >> "$GITHUB_ENV"
             exit 0
           fi
@@ -1128,13 +1112,14 @@ jobs:
           # uit; een halve upload bestaat in deze opzet niet. Wat wel een halve
           # brief oplevert, een ontbrekende voet of een weggevallen onderdeel,
           # staat hierboven en haalt de kopie er nog steeds af.
-          echo "De brief is compleet; pa krijgt hem na het nakijken (kopie_pa.yml)."
+          echo "De brief is compleet."
           echo "HALVE_UPDATE=0" >> "$GITHUB_ENV"
 
-      # Wat de nakijkronde en kopie_pa.yml moeten weten: mag deze brief naar
-      # pa (geen testrun, geen halve update), en in welke modus. Een testrun
-      # laat de stand van de echte brief staan.
-      - name: Kopie voor pa klaarzetten
+      # In welke modus deze brief is geschreven en of het een halve update was.
+      # brief_invoer.py leest de modus hieruit terug (ook uit de geschiedenis
+      # van pa_kopie.json). Een testrun laat de stand van de echte brief staan.
+      # De naam stamt uit de tijd dat dit bestand ook de kopie naar pa regelde.
+      - name: Modus van de brief vastleggen
         continue-on-error: true
         run: |
           python kopie_pa.py --klaarzetten --datum "$DATUM" --modus "$MODUS" \
@@ -1329,9 +1314,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           from: Vastgoed in Nijmegen
           to: ${{ secrets.MAIL_TO }}
-          # Sinds 20 oktober altijd leeg: deze mail gaat alleen naar Mark. Pa
-          # krijgt de brief na de nakijkronde via kopie_pa.yml.
-          cc: ${{ env.CC_VERHAAL }}
           subject: ${{ env.TESTRUN == '1' && format('TESTRUN {0}', env.DATUM) || (env.HALVE_UPDATE == '1' && format('ALLEEN VOOR JOU, halve update, {0}', env.DATUM) || format('Vastgoed in Nijmegen, {0}', env.DATUM)) }}
           html_body: file://digests/${{ env.DATUM }}-mail.html
 
@@ -1353,7 +1335,6 @@ jobs:
       # Komt er geen brief uit, dan werd er tot nu toe niets verstuurd en ook
       # niets gemeld: de stilte zag eruit als "geen nieuws". Op 8 oktober viel
       # de ochtendbrief daardoor weg en bleef dat tot half twaalf onopgemerkt.
-      # Dit bericht gaat alleen naar Mark, niet naar pa.
       - name: Melden dat er geen brief is
         # Alleen bij de laatste poging van de dag, anders meldt de eerste
         # poging al dat er geen brief is terwijl de tweede hem nog gaat maken.
@@ -1374,4 +1355,4 @@ jobs:
             Kijk in het logboek van deze run welke stap rood werd:
             ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-            Er is dus geen brief verstuurd, ook niet naar pa.
+            Er is dus geen brief verstuurd.
