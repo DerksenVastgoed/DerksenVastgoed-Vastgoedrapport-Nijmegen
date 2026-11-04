@@ -1906,3 +1906,18 @@ waarom: 27 oktober 2026. Drie berichten over een lichte daling van de
   vervangen), 8 die blijven, en verder geen enkel van de 151 berichten geraakt.
 proef: publicaties_vastgoed:duiding van 27 oktober blijft staan; publicaties_vastgoed:duiding over kopers vervangen; publicaties_vastgoed:verrijk laat de duiding staan
 soort: gegevens
+
+---
+eis: Regionaal woningnieuws over Nijmegen komt binnen: de regionale feed zoekt
+  ook op ad.nl en op "huizen", "woningen", "huur" en "verkocht", en een
+  bericht dat Nijmegen noemt gaat voor landelijke berichten naar het
+  taalmodel.
+waarom: 4 november 2026, Mark: "Van de huizen in Nijmegen werd 93 procent
+  binnen drie maanden verkocht" (AD) stond in geen enkele digest. ad.nl stond
+  niet in de feeds en de regionale zoekopdracht eiste het woord "woning". Wie
+  het wel haalde, liep nog het risico achter de landelijke feeds te vallen:
+  alleen de eerste 15 kandidaten gaan naar het taalmodel, in de volgorde van
+  FEEDS, en de regionale feeds staan achteraan. Over 69 digests kwamen 7
+  berichten uit de regionale feed.
+proef: publicaties_vastgoed:een Nijmeegs bericht valt achter; publicaties_vastgoed:zoekopdracht mist; publicaties_vastgoed:het AD-bericht valt door het trefwoordfilter; publicaties_vastgoed:de volgorde van de feeds blijft niet staan
+soort: gegevens
