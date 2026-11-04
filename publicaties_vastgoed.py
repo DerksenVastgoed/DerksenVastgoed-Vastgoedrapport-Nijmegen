@@ -87,8 +87,15 @@ FEEDS = [
     ("Politie Nijmegen", _gnews("site:politie.nl Nijmegen")),
     ("Nijmegen incidenten", _gnews("Nijmegen brand OR woningsluiting OR "
                                    "drugspand OR hennepkwekerij OR overlast")),
-    ("Regionale pers Nijmegen", _gnews("site:gelderlander.nl OR "
-                                       "site:omroepgelderland.nl Nijmegen woning")),
+    # 4 november 2026: "Van de huizen in Nijmegen werd 93 procent binnen drie
+    # maanden verkocht" (AD, via LinkedIn bij Mark) kwam nooit binnen. ad.nl
+    # stond er niet in, en de zoekopdracht eiste het woord "woning", terwijl
+    # deze titel "huizen" zegt. Google leest dit als (site OR site OR site)
+    # EN Nijmegen EN (woning OR woningen OR ...).
+    ("Regionale pers Nijmegen", _gnews(
+        "site:gelderlander.nl OR site:omroepgelderland.nl OR site:ad.nl "
+        "Nijmegen woning OR woningen OR huizen OR huis OR huur OR verkocht "
+        "OR makelaar OR huizenmarkt")),
     ("Energielabel en NTA 8800", _gnews("NTA 8800 OR energielabel wijziging "
                                         "verhuur")),
     ("Nijmeegse makelaars", _gnews("site:vangestel.nl OR site:hendriks.nl "
@@ -591,6 +598,19 @@ def render(items):
     return "\n".join(r)
 
 
+def voorrang_nijmegen(items):
+    """Berichten die Nijmegen noemen vooraan, verder de volgorde van de feeds.
+
+    WAAROM. Alleen de eerste MAX_ITEMS_LLM kandidaten gaan naar het taalmodel,
+    en de rest wordt wel als gezien gemarkeerd. De kandidaten staan in de
+    volgorde van FEEDS, en de regionale feeds staan achteraan. Een dag met
+    vijftien landelijke berichten liet een Nijmeegs bericht dus voorgoed
+    vallen. De brief opent met de stad (brief_verhalend.PROFIEL: "eerst de
+    stad, dan de markt"), dus de stad krijgt hier ook voorrang."""
+    return sorted(items, key=lambda it: "nijmegen" not in
+                  f"{it.get('titel', '')} {it.get('beschrijving', '')}".lower())
+
+
 def _titel_sleutel(titel):
     """Normaliseert een titel voor dedup: zelfde artikel via verschillende feeds."""
     t = titel.lower()
@@ -631,7 +651,7 @@ def main():
         uniek.append(it)
     print(f"Na dedup (url + titel): {len(uniek)}", file=sys.stderr)
 
-    kandidaten = uniek[:MAX_ITEMS_LLM]
+    kandidaten = voorrang_nijmegen(uniek)[:MAX_ITEMS_LLM]
     verrijk(kandidaten)
 
     tonen = [it for it in kandidaten
@@ -715,6 +735,28 @@ def proef():
         taalmodel.vraag, ANTHROPIC_API_KEY = oud_vraag, oude_sleutel
     if items[0].get("gevolg") != DUIDING_EIGEN_WONING:
         fouten.append("hypotheekrente: verrijk laat de duiding staan")
+    # 4 november: het AD-bericht van die dag, achter vijftien landelijke
+    # titels uit de publicaties van 3 en 4 november.
+    ad = {"bron": "Regionale pers Nijmegen", "beschrijving": "",
+          "titel": "Van de huizen in Nijmegen werd 93 procent binnen drie "
+                   "maanden verkocht - AD.nl"}
+    if not relevant_trefwoord(ad):
+        fouten.append("regionale pers: het AD-bericht valt door het trefwoordfilter")
+    landelijk = [{"bron": "Particuliere verhuur", "beschrijving": "",
+                  "titel": f"Weer minder particuliere huurwoningen in 2025 ({i})"}
+                 for i in range(MAX_ITEMS_LLM)]
+    gekozen = voorrang_nijmegen(landelijk + [ad])[:MAX_ITEMS_LLM]
+    if ad not in gekozen:
+        fouten.append("regionale pers: een Nijmeegs bericht valt achter "
+                      "landelijke berichten buiten de selectie")
+    if [it["titel"] for it in voorrang_nijmegen(landelijk)] != \
+            [it["titel"] for it in landelijk]:
+        fouten.append("regionale pers: de volgorde van de feeds blijft niet staan")
+    from urllib.parse import unquote
+    regio = unquote(dict(FEEDS)["Regionale pers Nijmegen"])
+    for nodig in ("site:ad.nl", "huizen", "site:gelderlander.nl"):
+        if nodig not in regio:
+            fouten.append(f"regionale pers: zoekopdracht mist {nodig}")
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
     print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
