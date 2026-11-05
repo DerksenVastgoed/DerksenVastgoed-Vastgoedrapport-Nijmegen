@@ -63,6 +63,16 @@ NIET_ONS = (
     "hondenbelasting", "toeristenbelasting", "reclamebelasting",
     "jeugdhulp", "participatiewet", "bijstand", "schuldhulp", "inburgering",
     "alcohol", "coffeeshop", "prostitutie", "speelautomaten",
+    # 5 november 2026. "Aanwijzingsbesluit tijdelijk cameratoezicht
+    # Watertorstraat 2026" stond in het verhaal onder het beleid dat ons
+    # raakt, met de zin "zonder directe regels voor verhuur". De titel plaatste
+    # het stuk niet, dus ging het naar de tweede trap, en daar promoveerde de
+    # samenvatting het; die noemde volgens het verhaal een explosie en een
+    # woningsluiting, en "woning" heeft een open staart. Op 4 november stond
+    # hetzelfde stuk nog in de staartregel. Cameratoezicht is openbare orde:
+    # het hoort al op de titel weg, zodat de tekst het niet meer kan
+    # promoveren. Het blijft zichtbaar in de staartregel.
+    "cameratoezicht",
 )
 
 
@@ -274,6 +284,17 @@ VALKUILEN = (
 )
 
 
+# Titels die al in de eerste trap weg moeten. "Uitkomst False" is hier niet
+# genoeg: een stuk dat de titel niet plaatst (NIET_GEPLAATST) komt ook False
+# uit, maar gaat daarna met zijn samenvatting naar de tweede trap, en daar kan
+# elk woord met "woning" erin het alsnog in de brief zetten. De proef eist dus
+# een reden van de weglijst. Zonder die eis bleef hij groen op het geval van 5
+# november, want dat stuk kwam in trap 1 ook al False uit.
+WEG_OP_TITEL = (
+    "Aanwijzingsbesluit tijdelijk cameratoezicht Watertorstraat 2026",
+)
+
+
 def proef():
     """Loopt de bewaarde titels en de bekende valkuilen langs."""
     fout = 0
@@ -307,7 +328,17 @@ def proef():
             print(f"AFWIJKING (weglijst): '{titel[:50]}' gaf {uit} ({reden})")
     print(f"{len(VALKUILEN) + 2} bekende valkuilen: {vk} afwijkend")
 
-    return fout + vk
+    wt = 0
+    for titel in WEG_OP_TITEL:
+        uit, reden = relevantie(titel)
+        if uit or reden == NIET_GEPLAATST:
+            wt += 1
+            print(f"AFWIJKING: '{titel[:60]}' "
+                  f"kan via de tekst alsnog in de brief ({uit}, {reden})")
+    print(f"{len(WEG_OP_TITEL)} titels die op de titel weg moeten: "
+          f"{wt} afwijkend")
+
+    return fout + vk + wt
 
 
 
