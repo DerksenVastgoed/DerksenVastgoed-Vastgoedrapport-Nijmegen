@@ -1906,6 +1906,18 @@
   "buurt": "Altrade",
   "straat": "Dominicanenstraat"
  },
+ "dominicanenstraat135": {
+  "adres": "Dominicanenstraat 135",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
+   }
+  ],
+  "buurt": "Altrade",
+  "straat": "Dominicanenstraat"
+ },
  "dominicanenstraat143": {
   "adres": "Dominicanenstraat 143",
   "bronnen": [
@@ -9934,6 +9946,18 @@
     "bron": "besluit",
     "jaar": "2026",
     "soort": "besluit kamerverhuur"
+   }
+  ],
+  "buurt": "Tolhuis",
+  "straat": "Tolhuis"
+ },
+ "tolhuis7327": {
+  "adres": "Tolhuis 7327",
+  "bronnen": [
+   {
+    "bron": "melding",
+    "jaar": "2026",
+    "soort": "melding brandveilig gebruik"
    }
   ],
   "buurt": "Tolhuis",

@@ -327,6 +327,14 @@
   "omweg": 0.03,
   "soort": "bus"
  },
+ "51.82957,5.87648": {
+  "geschat": false,
+  "hemelsbreed": 195,
+  "meters": 262,
+  "naam": "Groenewoudseweg",
+  "omweg": 1.34,
+  "soort": "bus"
+ },
  "51.82960,5.89275": {
   "geschat": false,
   "hemelsbreed": 92,
@@ -351,12 +359,28 @@
   "omweg": 1.46,
   "soort": "bus"
  },
+ "51.82983,5.87650": {
+  "geschat": false,
+  "hemelsbreed": 181,
+  "meters": 250,
+  "naam": "Groenewoudseweg",
+  "omweg": 1.38,
+  "soort": "bus"
+ },
  "51.82985,5.86795": {
   "geschat": false,
   "hemelsbreed": 322,
   "meters": 461,
   "naam": "Station Heyendaal",
   "omweg": 1.43,
+  "soort": "bus"
+ },
+ "51.82990,5.82984": {
+  "geschat": false,
+  "hemelsbreed": 154,
+  "meters": 286,
+  "naam": "Dennenstraat",
+  "omweg": 1.86,
   "soort": "bus"
  },
  "51.83018,5.78620": {
@@ -2021,6 +2045,14 @@
   "meters": 110,
   "naam": "Voerweg",
   "omweg": 1.09,
+  "soort": "bus"
+ },
+ "51.84715,5.85781": {
+  "geschat": false,
+  "hemelsbreed": 170,
+  "meters": 169,
+  "naam": "Joris Ivensplein",
+  "omweg": 0.99,
   "soort": "bus"
  },
  "51.84744,5.86218": {

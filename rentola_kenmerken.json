@@ -34,5 +34,17 @@
   "adres": "Zwanenveld 4066",
   "postcode": "6538XP",
   "prijs_per_m2_rentola": 4
+ },
+ "https://email.rentola.nl/e/c/eyJlbWFpbF9pZCI6ImRnU1RqZ2dCQVBxZU5mbWVOUUdocHNsZ3JKTlZXOXM2NXVxU19HTT0iLCJocmVmIjoiaHR0cHM6Ly9yZW50b2xhLm5sL2xpc3RpbmdzL3RlLWh1dXItcnVpbWUta2FtZXItaW4tbmlqbWVnZW4tb29zdC1wZTk4MjhkP3V0bV9jYW1wYWlnbj1lbWFpbF9jYW1wYWlnbl9ub3RpZmljYXRpb25zX3YxXHUwMDI2dXRtX2NvbnRlbnQ9bXNnMV9lbWFpbF9ub3RpZmljYXRpb25fbmxfbm9uZV9jb250cm9sXHUwMDI2dXRtX21lZGl1bT1lbWFpbFx1MDAyNnV0bV9zb3VyY2U9Y3VzdG9tZXIuaW8iLCJpbnRlcm5hbCI6IjkzOGUwODFkODkxMmZhOWUzNSIsImxpbmtfaWQiOjM5OX0/746d69a6b0665048eaa386010e1c0b8f134069c514d86925344ffe1c691d0a11": {
+  "adres": "Herman Oolbekkinkstraat 10",
+  "postcode": "6523RB",
+  "buurt": "Kwakkenberg",
+  "prijs_per_m2_rentola": 29
+ },
+ "https://rentola.nl/listings/te-huur-ruime-kamer-in-nijmegen-oost-pe9828d": {
+  "adres": "Herman Oolbekkinkstraat 10",
+  "postcode": "6523RB",
+  "buurt": "Kwakkenberg",
+  "prijs_per_m2_rentola": 29
  }
 }

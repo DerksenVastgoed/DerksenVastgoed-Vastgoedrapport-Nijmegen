@@ -1258,3 +1258,13 @@ Berg en Dalseweg | Nijmegen | 600 | te huur kamer | 2026-11-03 | kamernet | 20 |
 Doorwerthstraat | Nijmegen | 1025 | te huur | 2026-11-03 | kamernet-incl | 36 | 
 Beijensstraat 78 | Nijmegen | 595000 | te koop | 2026-11-04 | funda-mail | 93 | 6521ED
 Staringstraat 7 | Nijmegen | 185000 | te koop | 2026-11-04 | funda-mail | 24 | 6511PC
+
+# Automatisch toegevoegd uit Funda-attendering op 05-11-2026
+Malvert | Nijmegen | 375 | te huur kamer | 2026-11-04 | kamernet-gemeubileerd-incl | 12 | 
+Herman Oolbekkinkstraat | Nijmegen | 575 | te huur kamer | 2026-11-04 | kamernet-incl | 20 | 
+Parkweg | Nijmegen | 961 | te huur | 2026-11-04 | pararius | 28 | 6511BK
+van Welderenstraat | Nijmegen | 886 | te huur kamer | 2026-11-04 | kamernet-incl | 25 | 
+Engelenstraat | Nijmegen | 630 | te huur kamer | 2026-11-04 | kamernet-incl | 13 | 
+Willemsweg | Nijmegen | 335 | te huur kamer | 2026-11-04 | kamernet | 10 | 
+Herman Oolbekkinkstraat 10 | Nijmegen | 575 | te huur kamer | 2026-11-04 | rentola | 20 | 6523RB
+van Welderenstraat | Nijmegen | 799 | te huur kamer | 2026-11-04 | kamernet-incl | 14 | 

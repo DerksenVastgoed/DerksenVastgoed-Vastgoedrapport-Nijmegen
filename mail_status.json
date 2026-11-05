@@ -1,15 +1,6 @@
 {
- "datum": "2026-11-04",
+ "datum": "2026-11-05",
  "bronnen": {
-  "kamernet": {
-   "mails": 11,
-   "objecten": 9,
-   "overgeslagen": 2,
-   "redenen": [
-    "Vicarie, Heteren: buiten Nijmegen",
-    "Homberg, Wijchen: buiten Nijmegen"
-   ]
-  },
   "vendr": {
    "mails": 1,
    "objecten": 0,
@@ -18,9 +9,17 @@
     "niets herkend in: Nieuwe projecten op Vendr"
    ]
   },
+  "kamernet": {
+   "mails": 15,
+   "objecten": 14,
+   "overgeslagen": 1,
+   "redenen": [
+    "Homberg, Wijchen: buiten Nijmegen"
+   ]
+  },
   "pararius": {
-   "mails": 1,
-   "objecten": 1,
+   "mails": 2,
+   "objecten": 2,
    "overgeslagen": 0,
    "redenen": []
   },
@@ -37,28 +36,34 @@
    "objecten": 1,
    "overgeslagen": 0,
    "redenen": []
+  },
+  "rentola": {
+   "mails": 1,
+   "objecten": 1,
+   "overgeslagen": 0,
+   "redenen": []
   }
  },
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 8,
+  "zelfde_status": 15,
   "andere_status": 0,
   "voorbeelden": []
  },
  "berichten_per_afzender": {
   "funda.nl": 2,
   "funda.com": 0,
-  "pararius.nl": 1,
+  "pararius.nl": 2,
   "pararius.com": 0,
-  "kamernet.nl": 11,
+  "kamernet.nl": 15,
   "vendr.nl": 1,
   "huislijn.nl": 1,
   "huisly.nl": 0,
   "123wonen.nl": 0,
-  "rentola.nl": 0
+  "rentola.nl": 1
  },
  "mailbox": {
-  "mislukt": "(SINCE 01-Nov-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 01-Nov-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 02-Nov-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 02-Nov-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

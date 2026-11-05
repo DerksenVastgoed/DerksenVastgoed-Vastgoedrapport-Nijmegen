@@ -1295,6 +1295,32 @@
     "van Nispenstraat 236": "C"
    }
   },
+  "0268100000001511": {
+   "bag_eenheden": [
+    [
+     "Dominicanenstraat 135",
+     265
+    ],
+    [
+     "Dominicanenstraat 137",
+     55
+    ]
+   ],
+   "bag_gezien": "2026-11-05",
+   "bag_woningen": [
+    [
+     "Dominicanenstraat 135",
+     265
+    ],
+    [
+     "Dominicanenstraat 137",
+     55
+    ]
+   ],
+   "labels": {
+    "Dominicanenstraat 137": "G"
+   }
+  },
   "0268100000001520": {
    "bag_eenheden": [
     [
@@ -16893,6 +16919,21 @@
    "labels": {
     "Lange Hezelstraat 19": "G"
    }
+  },
+  "0268100000006717": {
+   "bag_eenheden": [
+    [
+     "Herman Oolbekkinkstraat 10",
+     115
+    ]
+   ],
+   "bag_gezien": "2026-11-05",
+   "bag_woningen": [
+    [
+     "Herman Oolbekkinkstraat 10",
+     115
+    ]
+   ]
   },
   "0268100000006719": {
    "bag_eenheden": [
@@ -49699,6 +49740,24 @@
     "Groenewoudseweg 20": "C"
    }
   },
+  "0268100000025809": {
+   "bag_eenheden": [
+    [
+     "Heyendaalseweg 103",
+     189
+    ]
+   ],
+   "bag_gezien": "2026-11-05",
+   "bag_woningen": [
+    [
+     "Heyendaalseweg 103",
+     189
+    ]
+   ],
+   "labels": {
+    "Heyendaalseweg 103": "F"
+   }
+  },
   "0268100000025818": {
    "bag_eenheden": [
     [
@@ -51595,6 +51654,21 @@
     "Koninginnelaan 103": "B",
     "Koninginnelaan 105": "E"
    }
+  },
+  "0268100000027393": {
+   "bag_eenheden": [
+    [
+     "Brakkensteinweg 26",
+     125
+    ]
+   ],
+   "bag_gezien": "2026-11-05",
+   "bag_woningen": [
+    [
+     "Brakkensteinweg 26",
+     125
+    ]
+   ]
   },
   "0268100000027399": {
    "bag_eenheden": [
@@ -59392,6 +59466,24 @@
    ],
    "labels": {
     "de Kluijskamp 1401": "C"
+   }
+  },
+  "0268100000034764": {
+   "bag_eenheden": [
+    [
+     "Tolhuis 7327",
+     188
+    ]
+   ],
+   "bag_gezien": "2026-11-05",
+   "bag_woningen": [
+    [
+     "Tolhuis 7327",
+     188
+    ]
+   ],
+   "labels": {
+    "Tolhuis 7327": "C"
    }
   },
   "0268100000034937": {
@@ -77130,9 +77222,7 @@
   "pand_id": "0268100000007059",
   "vbo": "0268010000044184",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000007059"
-  ]
+  "vbo_panden": []
  },
  "aldenhof": {
   "adres": "Aldenhof",
@@ -80076,9 +80166,7 @@
   "pand_id": "0268100000005194",
   "vbo": "0268010000000437",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000005194"
-  ]
+  "vbo_panden": []
  },
  "bergendalseweg5": {
   "adres": "Berg en Dalseweg 5",
@@ -82795,6 +82883,23 @@
   "vbo_gevraagd": "2026-10-17",
   "vbo_panden": [
    "0268100000091048"
+  ]
+ },
+ "brakkensteinweg26": {
+  "adres": "Brakkensteinweg 26",
+  "gebeurtenissen": [
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-04",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het verbouwen en uitbreiden van de woning, aan Brakkensteinweg 26, 6525RP Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000027393",
+  "vbo": "0268010000057361",
+  "vbo_gevraagd": "2026-11-05",
+  "vbo_panden": [
+   "0268100000027393"
   ]
  },
  "brakkensteinweg52": {
@@ -88842,9 +88947,7 @@
   ],
   "pand_id": "0268100000048887",
   "vbo": "0268010000005037",
-  "vbo_panden": [
-   "0268100000048887"
-  ]
+  "vbo_panden": []
  },
  "buurmansweg47": {
   "adres": "Buurmansweg 47",
@@ -88870,9 +88973,7 @@
   ],
   "pand_id": "0268100000049790",
   "vbo": "0268010000066582",
-  "vbo_panden": [
-   "0268100000049790"
-  ]
+  "vbo_panden": []
  },
  "cargadoorweg11": {
   "adres": "Cargadoorweg 11",
@@ -93525,6 +93626,28 @@
    "0268100000001543"
   ]
  },
+ "dominicanenstraat135": {
+  "adres": "Dominicanenstraat 135",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2016-12-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Dominicanenstraat 137 is G, geregistreerd 2016-12-19"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (9 kamers), aan Dominicanenstraat 135, 6521KB Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000001511",
+  "vbo": "0268010000012223",
+  "vbo_panden": [
+   "0268100000001511"
+  ]
+ },
  "dominicanenstraat143": {
   "adres": "Dominicanenstraat 143",
   "gebeurtenissen": [
@@ -94359,9 +94482,7 @@
   ],
   "pand_id": "0268100000020299",
   "vbo": "0268010000009271",
-  "vbo_panden": [
-   "0268100000020299"
-  ]
+  "vbo_panden": []
  },
  "driehuizerweg312": {
   "adres": "Driehuizerweg 312",
@@ -94417,9 +94538,7 @@
   "pand_id": "0268100000048426",
   "vbo": "0268010000008603",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000048426"
-  ]
+  "vbo_panden": []
  },
  "driehuizerweg320": {
   "adres": "Driehuizerweg 320",
@@ -94446,9 +94565,7 @@
   "pand_id": "0268100000048425",
   "vbo": "0268010000008604",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000048425"
-  ]
+  "vbo_panden": []
  },
  "driekoningenweg3": {
   "adres": "Driekoningenweg 3",
@@ -94469,9 +94586,7 @@
   "pand_id": "0268100000007225",
   "vbo": "0268010000005856",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000007225"
-  ]
+  "vbo_panden": []
  },
  "drieskensacker1509": {
   "adres": "Drieskensacker 1509",
@@ -97469,6 +97584,21 @@
    "0268100000017939"
   ]
  },
+ "engelenstraat": {
+  "adres": "Engelenstraat",
+  "bag_gezien": "2026-11-05",
+  "bag_zonder_id": "2026-11-05",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €630 per maand, 13 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-05"
+ },
  "engelenstraat18": {
   "adres": "Engelenstraat 18",
   "gebeurtenissen": [
@@ -98987,9 +99117,7 @@
   "pand_id": "0268100000014961",
   "vbo": "0268010000063699",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000014961"
-  ]
+  "vbo_panden": []
  },
  "fuutstraat1": {
   "adres": "Fuutstraat 1",
@@ -104910,9 +105038,7 @@
   "pand_id": "0268100000017981",
   "vbo": "0268010000009940",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000017981"
-  ]
+  "vbo_panden": []
  },
  "griegstraat9": {
   "adres": "Griegstraat 9",
@@ -104962,9 +105088,7 @@
   ],
   "pand_id": "0268100000007312",
   "vbo": "0268010000082305",
-  "vbo_panden": [
-   "0268100000007312"
-  ]
+  "vbo_panden": []
  },
  "griftdijk47": {
   "adres": "Griftdijk 47",
@@ -105469,9 +105593,7 @@
   ],
   "pand_id": "0268100000025719",
   "vbo": "0268010000008339",
-  "vbo_panden": [
-   "0268100000025719"
-  ]
+  "vbo_panden": []
  },
  "groenewoudseweg334": {
   "adres": "Groenewoudseweg 334",
@@ -105508,9 +105630,7 @@
   ],
   "pand_id": "0268100000024838",
   "vbo": "0268010000007621",
-  "vbo_panden": [
-   "0268100000024838"
-  ]
+  "vbo_panden": []
  },
  "groesbeeksedwarsweg": {
   "adres": "Groesbeeksedwarsweg",
@@ -106398,9 +106518,7 @@
   ],
   "pand_id": "0268100000025917",
   "vbo": "0268010000074789",
-  "vbo_panden": [
-   "0268100000025917"
-  ]
+  "vbo_panden": []
  },
  "groesbeekseweg21": {
   "adres": "Groesbeekseweg 21",
@@ -106794,9 +106912,7 @@
   ],
   "pand_id": "0268100000106134",
   "vbo": "0268010000105953",
-  "vbo_panden": [
-   "0268100000106134"
-  ]
+  "vbo_panden": []
  },
  "groesbeekseweg319": {
   "adres": "Groesbeekseweg 319",
@@ -106836,9 +106952,7 @@
   ],
   "pand_id": "0268100000106135",
   "vbo": "0268010000105955",
-  "vbo_panden": [
-   "0268100000106135"
-  ]
+  "vbo_panden": []
  },
  "groesbeekseweg350": {
   "adres": "Groesbeekseweg 350",
@@ -106871,9 +106985,7 @@
   "pand_id": "0268100000012126",
   "vbo": "0268010000014030",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000012126"
-  ]
+  "vbo_panden": []
  },
  "groesbeekseweg38": {
   "adres": "Groesbeekseweg 38",
@@ -110664,6 +110776,38 @@
    "0268100000025604"
   ]
  },
+ "hermanoolbekkinkstraat": {
+  "adres": "Herman Oolbekkinkstraat",
+  "bag_gezien": "2026-11-05",
+  "bag_zonder_id": "2026-11-05",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €575 per maand, 20 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-05"
+ },
+ "hermanoolbekkinkstraat10": {
+  "adres": "Herman Oolbekkinkstraat 10",
+  "gebeurtenissen": [
+   {
+    "bron": "rentola",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €575 per maand, 20 m2"
+   }
+  ],
+  "pand_id": "0268100000006717",
+  "vbo": "0268010000056842",
+  "vbo_gevraagd": "2026-11-05",
+  "vbo_panden": [
+   "0268100000006717"
+  ]
+ },
  "hermanoolbekkinkstraat6": {
   "adres": "Herman Oolbekkinkstraat 6",
   "bag_pogingen": 1,
@@ -111598,6 +111742,27 @@
   ],
   "pand_id": null
  },
+ "heyendaalseweg103": {
+  "adres": "Heyendaalseweg 103",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2024-08-07",
+    "soort": "energielabel",
+    "tekst": "energielabel van Heyendaalseweg 103 is F, geregistreerd 2024-08-07"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-04",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het verbouwen, uitbreiden en verduurzamen van de woning, aan Heyendaalseweg 103, 6524SK Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000025809",
+  "vbo": "0268010000006938",
+  "vbo_gevraagd": "2026-11-05",
+  "vbo_panden": []
+ },
  "heyendaalseweg117": {
   "adres": "Heyendaalseweg 117",
   "bag_pogingen": 1,
@@ -111648,10 +111813,7 @@
   ],
   "pand_id": "0268100000020096",
   "vbo": "0268010000049298",
-  "vbo_panden": [
-   "0268100000020096",
-   "0268100000054621"
-  ]
+  "vbo_panden": []
  },
  "heyendaalseweg203": {
   "adres": "Heyendaalseweg 203",
@@ -111719,9 +111881,7 @@
   "pand_id": "0268100000048287",
   "vbo": "0268010000110451",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000048287"
-  ]
+  "vbo_panden": []
  },
  "heyendaalseweg227": {
   "adres": "Heyendaalseweg 227",
@@ -111748,9 +111908,7 @@
   ],
   "pand_id": "0268100000049555",
   "vbo": "0268010000013773",
-  "vbo_panden": [
-   "0268100000049555"
-  ]
+  "vbo_panden": []
  },
  "heyendaalseweg252": {
   "adres": "Heyendaalseweg 252",
@@ -116669,9 +116827,7 @@
   ],
   "pand_id": "0268100000046921",
   "vbo": "0268010000012734",
-  "vbo_panden": [
-   "0268100000046921"
-  ]
+  "vbo_panden": []
  },
  "kanunnikvanosstraat41": {
   "adres": "Kanunnik van Osstraat 41",
@@ -116692,9 +116848,7 @@
   "pand_id": "0268100000026474",
   "vbo": "0268010000046363",
   "vbo_gevraagd": "2026-10-20",
-  "vbo_panden": [
-   "0268100000026474"
-  ]
+  "vbo_panden": []
  },
  "kanunnikvanosstraat53": {
   "adres": "Kanunnik van Osstraat 53",
@@ -116720,9 +116874,7 @@
   ],
   "pand_id": "0268100000046654",
   "vbo": "0268010000043587",
-  "vbo_panden": [
-   "0268100000046654"
-  ]
+  "vbo_panden": []
  },
  "kanunnikvenboetstraat13": {
   "adres": "Kanunnik Venboetstraat 13",
@@ -116749,9 +116901,7 @@
   "pand_id": "0268100000048340",
   "vbo": "0268010000012788",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000048340"
-  ]
+  "vbo_panden": []
  },
  "kapittelweg33": {
   "adres": "de Kapittelweg 33",
@@ -123254,9 +123404,7 @@
   "pand_id": "0268100000088816",
   "vbo": "0268010000094805",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000088816"
-  ]
+  "vbo_panden": []
  },
  "kwakkenbergweg27": {
   "adres": "Kwakkenbergweg 27",
@@ -123302,9 +123450,7 @@
   ],
   "pand_id": "0268100000005563",
   "vbo": "0268010000102310",
-  "vbo_panden": [
-   "0268100000005563"
-  ]
+  "vbo_panden": []
  },
  "laanvanoostindie": {
   "adres": "Laan van Oost-Indie",
@@ -124939,9 +125085,7 @@
    "0268010000110599"
   ],
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000020282"
-  ]
+  "vbo_panden": []
  },
  "leuvensbroek3404": {
   "adres": "Leuvensbroek 3404",
@@ -125586,6 +125730,12 @@
     "datum": "2026-10-28",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €275 per maand, 9 m2"
+   },
+   {
+    "bron": "kamernet-gemeubileerd-incl",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €375 per maand, 12 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null,
@@ -137057,9 +137207,7 @@
   ],
   "pand_id": "0268100000030431",
   "vbo": "0268010000083851",
-  "vbo_panden": [
-   "0268100000030431"
-  ]
+  "vbo_panden": []
  },
  "nijmeegsebaan65": {
   "adres": "Nijmeegsebaan 65",
@@ -137094,9 +137242,7 @@
   ],
   "pand_id": "0268100000004223",
   "vbo": "0268010000021496",
-  "vbo_panden": [
-   "0268100000004223"
-  ]
+  "vbo_panden": []
  },
  "ninasimonestraat124": {
   "adres": "Nina Simonestraat 124",
@@ -139739,6 +139885,21 @@
    "0268100000009298"
   ]
  },
+ "parkweg": {
+  "adres": "Parkweg",
+  "bag_gezien": "2026-11-05",
+  "bag_zonder_id": "2026-11-05",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €961 per maand, 28 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-05"
+ },
  "parkweg110": {
   "adres": "Parkweg 110",
   "gebeurtenissen": [
@@ -140060,9 +140221,7 @@
   "pand_id": "0268100000049525",
   "vbo": "0268010000026112",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000049525"
-  ]
+  "vbo_panden": []
  },
  "patrijsstraat22": {
   "adres": "Patrijsstraat 22",
@@ -140287,9 +140446,7 @@
   ],
   "pand_id": "0268100000019654",
   "vbo": "0268010000023447",
-  "vbo_panden": [
-   "0268100000019654"
-  ]
+  "vbo_panden": []
  },
  "piersonstraat": {
   "adres": "Piersonstraat",
@@ -142658,9 +142815,7 @@
   "pand_id": "0268100000016199",
   "vbo": "0268010000083449",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000016199"
-  ]
+  "vbo_panden": []
  },
  "prinsbernhardstraat43": {
   "adres": "Prins Bernhardstraat 43",
@@ -143384,9 +143539,7 @@
   ],
   "pand_id": "0268100000024840",
   "vbo": "0268010000055701",
-  "vbo_panden": [
-   "0268100000024840"
-  ]
+  "vbo_panden": []
  },
  "profregoutstraat1a1": {
   "adres": "Professor Regoutstraat 1A-1",
@@ -147086,9 +147239,7 @@
   "pand_id": "0268100000022490",
   "vbo": "0268010000031413",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000022490"
-  ]
+  "vbo_panden": []
  },
  "scheidingsweg8": {
   "adres": "Scheidingsweg 8",
@@ -147115,9 +147266,7 @@
   "pand_id": "0268100000022489",
   "vbo": "0268010000031414",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000022489"
-  ]
+  "vbo_panden": []
  },
  "schependomlaan108": {
   "adres": "Schependomlaan 108",
@@ -149647,9 +149796,7 @@
   "pand_id": "0268100000015113",
   "vbo": "0268010000062803",
   "vbo_gevraagd": "2026-10-31",
-  "vbo_panden": [
-   "0268100000015113"
-  ]
+  "vbo_panden": []
  },
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
@@ -152903,9 +153050,7 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000050187",
-  "vbo_panden": [
-   "0268100000025584"
-  ]
+  "vbo_panden": []
  },
  "stcanisiussingel8": {
   "adres": "St. Canisiussingel 8",
@@ -152919,9 +153064,7 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000031359",
-  "vbo_panden": [
-   "0268100000025584"
-  ]
+  "vbo_panden": []
  },
  "stenenkruisstraat3": {
   "adres": "Stenenkruisstraat 3",
@@ -154893,9 +155036,7 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000049230",
-  "vbo_panden": [
-   "0268100000025584"
-  ]
+  "vbo_panden": []
  },
  "stjorisstraat54": {
   "adres": "St. Jorisstraat 54",
@@ -155059,9 +155200,7 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000030483",
-  "vbo_panden": [
-   "0268100000025584"
-  ]
+  "vbo_panden": []
  },
  "stjosephhof1": {
   "adres": "St. Josephhof 1",
@@ -155770,9 +155909,7 @@
   "pand_id": "0268100000026234",
   "transformatie_gemeld": 1,
   "vbo": "0268010000085076",
-  "vbo_panden": [
-   "0268100000026234"
-  ]
+  "vbo_panden": []
  },
  "stthomashof5g": {
   "adres": "St. Thomashof 5-G",
@@ -155804,9 +155941,7 @@
   ],
   "pand_id": "0268100000002849",
   "vbo": "0268010000082694",
-  "vbo_panden": [
-   "0268100000002849"
-  ]
+  "vbo_panden": []
  },
  "sumatraplein36": {
   "adres": "Sumatraplein 36",
@@ -157940,6 +158075,29 @@
    "0268100000021609"
   ]
  },
+ "tolhuis7327": {
+  "adres": "Tolhuis 7327",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2022-11-03",
+    "soort": "energielabel",
+    "tekst": "energielabel van Tolhuis 7327 is C, geregistreerd 2022-11-03"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-04",
+    "soort": "bekendmaking",
+    "tekst": "Melding brandveilig gebruik voor kamergewijze verhuur (10 kamers), aan Tolhuis 7327, 6537RN Nijmegen"
+   }
+  ],
+  "pand_id": "0268100000034764",
+  "vbo": "0268010000031912",
+  "vbo_gevraagd": "2026-11-05",
+  "vbo_panden": [
+   "0268100000034764"
+  ]
+ },
  "tolhuis7630": {
   "adres": "Tolhuis 7630",
   "gebeurtenissen": [
@@ -159529,9 +159687,7 @@
   "pand_id": "0268100000005450",
   "vbo": "0268010000030423",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000005450"
-  ]
+  "vbo_panden": []
  },
  "tweedeoudeheselaan": {
   "adres": "Tweede Oude Heselaan",
@@ -161571,9 +161727,7 @@
   "pand_id": "0268100000017833",
   "vbo": "0268010000059850",
   "vbo_gevraagd": "2026-10-29",
-  "vbo_panden": [
-   "0268100000017833"
-  ]
+  "vbo_panden": []
  },
  "vandenboenhoffstraat11": {
   "adres": "Van den Boenhoffstraat 11",
@@ -161594,9 +161748,7 @@
   "pand_id": "0268100000029631",
   "vbo": "0268010000032874",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000029631"
-  ]
+  "vbo_panden": []
  },
  "vandenboenhoffstraat19": {
   "adres": "Van den Boenhoffstraat 19",
@@ -161623,9 +161775,7 @@
   "pand_id": "0268100000031985",
   "vbo": "0268010000032876",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000031985"
-  ]
+  "vbo_panden": []
  },
  "vandenhavestraat10": {
   "adres": "van den Havestraat 10",
@@ -162508,9 +162658,7 @@
   ],
   "pand_id": "0268100000017619",
   "vbo": "0268010000029011",
-  "vbo_panden": [
-   "0268100000017619"
-  ]
+  "vbo_panden": []
  },
  "vanhaapsstraat38": {
   "adres": "Van Haapsstraat 38",
@@ -162543,9 +162691,7 @@
   "pand_id": "0268100000019023",
   "vbo": "0268010000029176",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000019023"
-  ]
+  "vbo_panden": []
  },
  "vanhaapsstraat54": {
   "adres": "Van Haapsstraat 54",
@@ -165470,6 +165616,18 @@
     "datum": "2026-10-03",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €670 per maand, 25 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €886 per maand, 25 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €799 per maand, 14 m2 (inclusief servicekosten)"
    }
   ],
   "pand_id": null
@@ -179380,9 +179538,7 @@
   "pand_id": "0268100000012128",
   "vbo": "0268010000038727",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000012128"
-  ]
+  "vbo_panden": []
  },
  "willemsweg": {
   "adres": "Willemsweg",
@@ -179394,6 +179550,12 @@
     "datum": "2026-10-31",
     "soort": "verhuur",
     "tekst": "te huur aangeboden voor €520 per maand, 18 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-04",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €335 per maand, 10 m2"
    }
   ],
   "pand_id": null,
@@ -179922,9 +180084,7 @@
   "pand_id": "0268100000104883",
   "vbo": "0268010000103802",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000104883"
-  ]
+  "vbo_panden": []
  },
  "winkelsteegseweg": {
   "adres": "Winkelsteegseweg",

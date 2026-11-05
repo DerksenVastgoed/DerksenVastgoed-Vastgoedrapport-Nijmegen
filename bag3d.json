@@ -148399,9 +148399,49 @@
    "b3_kwaliteitsindicator": true,
    "identificatie": "NL.IMBAG.Pand.0268100000015113",
    "opgehaald": "2026-10-31"
+  },
+  "0268100000027393": {
+   "b3_opp_buitenmuur": 130.0,
+   "b3_opp_dak_plat": 0.0,
+   "b3_opp_dak_schuin": 74.79,
+   "b3_opp_grond": 62.39,
+   "b3_bouwlagen": 3,
+   "b3_h_nok": 34.24333572387695,
+   "b3_h_maaiveld": 26.08099937438965,
+   "b3_dak_type": "slanted",
+   "b3_volume_lod13": 377.2395935058594,
+   "b3_kwaliteitsindicator": true,
+   "identificatie": "NL.IMBAG.Pand.0268100000027393",
+   "opgehaald": "2026-11-05"
+  },
+  "0268100000006717": {
+   "b3_opp_buitenmuur": 60.86,
+   "b3_opp_dak_plat": 31.89,
+   "b3_opp_dak_schuin": 46.49,
+   "b3_opp_grond": 57.73,
+   "b3_bouwlagen": 3,
+   "b3_h_maaiveld": 42.183998107910156,
+   "b3_dak_type": "slanted",
+   "b3_volume_lod13": 442.99200439453125,
+   "b3_kwaliteitsindicator": true,
+   "identificatie": "NL.IMBAG.Pand.0268100000006717",
+   "opgehaald": "2026-11-05"
+  },
+  "0268100000034764": {
+   "b3_opp_buitenmuur": 81.88,
+   "b3_opp_dak_plat": 53.59,
+   "b3_opp_dak_schuin": 0.0,
+   "b3_opp_grond": 68.62,
+   "b3_bouwlagen": 2,
+   "b3_h_maaiveld": 8.062999725341797,
+   "b3_dak_type": "multiple horizontal",
+   "b3_volume_lod13": 386.63861083984375,
+   "b3_kwaliteitsindicator": true,
+   "identificatie": "NL.IMBAG.Pand.0268100000034764",
+   "opgehaald": "2026-11-05"
   }
  },
- "bijgewerkt": "2026-11-04",
+ "bijgewerkt": "2026-11-05",
  "bron": "3D BAG, TU Delft en 3DGI, op basis van de BAG en het AHN; CC BY 4.0",
  "mislukt": {
   "0268100000106134": 1,
