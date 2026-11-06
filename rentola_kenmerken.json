@@ -46,5 +46,15 @@
   "postcode": "6523RB",
   "buurt": "Kwakkenberg",
   "prijs_per_m2_rentola": 29
+ },
+ "https://email.rentola.nl/e/c/eyJlbWFpbF9pZCI6ImRnU1RqZ2dCQVBxZU5mbWVOUUdocXVLY0lDLUJMeFBMb202bXRTZz0iLCJocmVmIjoiaHR0cHM6Ly9yZW50b2xhLm5sL2xpc3RpbmdzL2thbWVyLWluLW1hbHZlcnQtcDk4NzllMD91dG1fY2FtcGFpZ249ZW1haWxfY2FtcGFpZ25fbm90aWZpY2F0aW9uc192MVx1MDAyNnV0bV9jb250ZW50PW1zZzFfZW1haWxfbm90aWZpY2F0aW9uX25sX25vbmVfdGVzdFx1MDAyNnV0bV9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fc291cmNlPWN1c3RvbWVyLmlvIiwiaW50ZXJuYWwiOiI5MzhlMDgxZDg5MTJmYTllMzUiLCJsaW5rX2lkIjozOTl9/595a3b04ca94fdb9758800ca4d37cb46eb00a07d9fe70acfabbf39e639abe158": {
+  "adres": "Malvert 1210",
+  "postcode": "6538AX",
+  "prijs_per_m2_rentola": 31
+ },
+ "https://rentola.nl/listings/kamer-in-malvert-p9879e0": {
+  "adres": "Malvert 1210",
+  "postcode": "6538AX",
+  "prijs_per_m2_rentola": 31
  }
 }

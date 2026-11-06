@@ -455,6 +455,14 @@
  ],
  "bergendalseweg40": [
   {
+   "datum": "2026-11-05",
+   "soorten": [
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van het pand, aan Berg en Dalseweg 40, 6521JJ Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-517228/1/html/gmb-2026-517228.html"
+  },
+  {
    "datum": "2025-05-19",
    "soorten": [
     "brandveilig gebruik"
@@ -681,6 +689,14 @@
   }
  ],
  "bisschophamerstraat7": [
+  {
+   "datum": "2026-11-05",
+   "soorten": [
+    "splitsing"
+   ],
+   "titel": "Besluit voor het realiseren van 4 zelfstandige wooneenheden in de bestaande bovenwoning, aan Bisschop Hamerstraat 7, 6511NA Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-517097/1/html/gmb-2026-517097.html"
+  },
   {
    "datum": "2026-05-27",
    "soorten": [
@@ -7549,6 +7565,14 @@
  ],
  "nijmeegsebaan65": [
   {
+   "datum": "2026-11-05",
+   "soorten": [
+    "tijdelijke verhuur"
+   ],
+   "titel": "Intrekking verzoek voor tijdelijk verhuren woonruimte, aan Nijmeegsebaan 65C en 65E, 6525DX Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-517675/1/html/gmb-2026-517675.html"
+  },
+  {
    "datum": "2026-08-13",
    "soorten": [
     "tijdelijke verhuur"
@@ -8227,6 +8251,17 @@
    ],
    "titel": "Aanvraag omzettingsvergunning voor Kamerverhuurvergunning aanvragen, aan Plein 1944 64 6511 JE Nijmegen",
    "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-76826/1/html/gmb-2026-76826.html"
+  }
+ ],
+ "plein19447": [
+  {
+   "datum": "2026-11-05",
+   "soorten": [
+    "kamerverhuur",
+    "verbouwing"
+   ],
+   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een kamerverhuurpand naar 9 appartementen aan Plein 1944 7, 6511JB Nijmegen",
+   "url": "https://repository.overheid.nl/frbr/officielepublicaties/gmb/2026/gmb-2026-517578/1/html/gmb-2026-517578.html"
   }
  ],
  "plutostraat24": [

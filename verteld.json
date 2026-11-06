@@ -230,8 +230,8 @@
   },
   "kronenburgersingel213": {
    "eerst": "2026-10-28",
-   "laatst": "2026-11-02",
-   "keer": 5,
+   "laatst": "2026-11-06",
+   "keer": 6,
    "omschrijving": "Kronenburgersingel 213"
   },
   "pietheinstraat47": {
@@ -299,6 +299,18 @@
    "laatst": "2026-11-05",
    "keer": 1,
    "omschrijving": "Sumatraplein 24"
+  },
+  "plein1944": {
+   "eerst": "2026-11-06",
+   "laatst": "2026-11-06",
+   "keer": 1,
+   "omschrijving": "Plein 1944"
+  },
+  "bergendalseweg40": {
+   "eerst": "2026-11-06",
+   "laatst": "2026-11-06",
+   "keer": 1,
+   "omschrijving": "Berg en Dalseweg 40"
   }
  }
 }

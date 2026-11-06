@@ -1268,3 +1268,17 @@ Engelenstraat | Nijmegen | 630 | te huur kamer | 2026-11-04 | kamernet-incl | 13
 Willemsweg | Nijmegen | 335 | te huur kamer | 2026-11-04 | kamernet | 10 | 
 Herman Oolbekkinkstraat 10 | Nijmegen | 575 | te huur kamer | 2026-11-04 | rentola | 20 | 6523RB
 van Welderenstraat | Nijmegen | 799 | te huur kamer | 2026-11-04 | kamernet-incl | 14 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 06-11-2026
+Nina Simonestraat 74 | Nijmegen | 375000 | te koop | 2026-11-05 | funda-mail | 70 | 6541EB
+Oude Nonnendaalseweg | Nijmegen | 1606 | te huur | 2026-11-05 | huislijn | 121 | 6542WS
+Kraanstraat | Nijmegen | 1560 | te huur | 2026-11-05 | huislijn | 72 | 6541EJ
+Coehoornstraat 22 | Nijmegen | 0 | bieden | 2026-11-05 | vendr |  | 6521CE
+Malvert 1210 | Nijmegen | 375 | te huur kamer | 2026-11-05 | rentola | 12 | 6538AX
+van Welderenstraat | Nijmegen | 1450 | te huur gemeubileerd | 2026-11-05 | pararius | 55 | 6511MH
+Hertogstraat | Nijmegen | 1250 | te huur gemeubileerd | 2026-11-05 | pararius | 31 | 6511RX
+van Welderenstraat | Nijmegen | 1450 | te huur kamer | 2026-11-05 | kamernet | 55 | 
+Hertogstraat | Nijmegen | 1250 | te huur kamer | 2026-11-05 | kamernet | 31 | 
+Daalseweg | Nijmegen | 575 | te huur kamer | 2026-11-05 | kamernet-incl | 17 | 
+van Dulckenstraat | Nijmegen | 1310 | te huur | 2026-11-05 | kamernet | 61 | 
+van Oldenbarneveltstraat | Nijmegen | 1150 | te huur kamer | 2026-11-05 | kamernet | 80 | 

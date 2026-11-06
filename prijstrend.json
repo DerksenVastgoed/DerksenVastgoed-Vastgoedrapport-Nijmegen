@@ -150,21 +150,21 @@
  "2026-W45": {
   "Altrade": 5128,
   "Benedenstad": 5385,
-  "Biezen": 5428,
+  "Biezen": 5422,
   "Bottendaal": 5336,
   "Galgenveld": 5084,
   "Hunnerberg": 4331,
   "Stadscentrum": 5436,
-  "_datum": "2026-11-05",
+  "_datum": "2026-11-06",
   "_n": {
    "Altrade": 102,
    "Benedenstad": 59,
-   "Biezen": 99,
+   "Biezen": 100,
    "Bottendaal": 86,
    "Galgenveld": 106,
    "Hunnerberg": 15,
    "Stadscentrum": 230
   },
-  "_nijmegen": 5242
+  "_nijmegen": 5244
  }
 }

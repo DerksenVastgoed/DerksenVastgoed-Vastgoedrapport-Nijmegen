@@ -13427,6 +13427,29 @@
     ]
    ]
   },
+  "0268100000005299": {
+   "bag_eenheden": [
+    [
+     "Coehoornstraat 22",
+     867
+    ],
+    [
+     "Fagelstraat 25",
+     100
+    ]
+   ],
+   "bag_gezien": "2026-11-06",
+   "bag_woningen": [
+    [
+     "Fagelstraat 25",
+     100
+    ]
+   ],
+   "labels": {
+    "Coehoornstraat 22": "E",
+    "Fagelstraat 25": "E"
+   }
+  },
   "0268100000005323": {
    "bag_eenheden": [
     [
@@ -24469,7 +24492,7 @@
      146
     ]
    ],
-   "bag_gezien": "2026-11-01",
+   "bag_gezien": "2026-11-06",
    "bag_woningen": [
     [
      "Nina Simonestraat 100",
@@ -56885,6 +56908,37 @@
     ]
    ]
   },
+  "0268100000029890": {
+   "bag_eenheden": [
+    [
+     "Plein 1944 7",
+     158
+    ],
+    [
+     "Plein 1944 8",
+     348
+    ],
+    [
+     "Plein 1944 9",
+     115
+    ]
+   ],
+   "bag_gezien": "2026-11-06",
+   "bag_woningen": [
+    [
+     "Plein 1944 7",
+     158
+    ],
+    [
+     "Plein 1944 9",
+     115
+    ]
+   ],
+   "labels": {
+    "Plein 1944 7": "A",
+    "Plein 1944 9": "A"
+   }
+  },
   "0268100000029894": {
    "bag_eenheden": [
     [
@@ -60665,6 +60719,24 @@
    ],
    "labels": {
     "Smetiusstraat 11": "C"
+   }
+  },
+  "0268100000037216": {
+   "bag_eenheden": [
+    [
+     "Malvert 1210",
+     118
+    ]
+   ],
+   "bag_gezien": "2026-11-06",
+   "bag_woningen": [
+    [
+     "Malvert 1210",
+     118
+    ]
+   ],
+   "labels": {
+    "Malvert 1210": "C"
    }
   },
   "0268100000037287": {
@@ -77222,7 +77294,9 @@
   "pand_id": "0268100000007059",
   "vbo": "0268010000044184",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000007059"
+  ]
  },
  "aldenhof": {
   "adres": "Aldenhof",
@@ -80095,6 +80169,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Berg en Dalseweg 40 is nu D"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-05",
+    "soort": "bekendmaking",
+    "tekst": "Aanvraag omgevingsvergunning voor het intern verbouwen van het pand, aan Berg en Dalseweg 40, 6521JJ Nijmegen"
    }
   ],
   "pand_id": "0268100000002755",
@@ -80166,7 +80246,9 @@
   "pand_id": "0268100000005194",
   "vbo": "0268010000000437",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000005194"
+  ]
  },
  "bergendalseweg5": {
   "adres": "Berg en Dalseweg 5",
@@ -81663,6 +81745,12 @@
     "datum": "2026-10-03",
     "soort": "energielabel",
     "tekst": "energielabel van Bisschop Hamerstraat 9 is nu E"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-05",
+    "soort": "bekendmaking",
+    "tekst": "Besluit voor het realiseren van 4 zelfstandige wooneenheden in de bestaande bovenwoning, aan Bisschop Hamerstraat 7, 6511NA Nijmegen"
    }
   ],
   "pand_id": "0268100000048819",
@@ -88947,7 +89035,9 @@
   ],
   "pand_id": "0268100000048887",
   "vbo": "0268010000005037",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000048887"
+  ]
  },
  "buurmansweg47": {
   "adres": "Buurmansweg 47",
@@ -88973,7 +89063,9 @@
   ],
   "pand_id": "0268100000049790",
   "vbo": "0268010000066582",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000049790"
+  ]
  },
  "cargadoorweg11": {
   "adres": "Cargadoorweg 11",
@@ -89603,6 +89695,28 @@
   "pand_id": null,
   "vbo_gevraagd": "2026-10-31"
  },
+ "coehoornstraat22": {
+  "adres": "Coehoornstraat 22",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2023-01-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Coehoornstraat 22 is E, geregistreerd 2023-01-09"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-01-09",
+    "soort": "energielabel",
+    "tekst": "energielabel van Fagelstraat 25 is E, geregistreerd 2023-01-09"
+   }
+  ],
+  "pand_id": "0268100000005299",
+  "vbo": "0268010000010727",
+  "vbo_panden": [
+   "0268100000005299"
+  ]
+ },
  "coehoornstraat29": {
   "adres": "Coehoornstraat 29",
   "gebeurtenissen": [
@@ -90203,6 +90317,21 @@
   "vbo_panden": [
    "0268100000030142"
   ]
+ },
+ "daalseweg": {
+  "adres": "Daalseweg",
+  "bag_gezien": "2026-11-06",
+  "bag_zonder_id": "2026-11-06",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet-incl",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €575 per maand, 17 m2 (inclusief servicekosten)"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-06"
  },
  "daalseweg105": {
   "adres": "Daalseweg 105",
@@ -91697,9 +91826,7 @@
   "pand_id": "0268100000049779",
   "vbo": "0268010000057086",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000049779"
-  ]
+  "vbo_panden": []
  },
  "dingostraat55": {
   "adres": "Dingostraat 55",
@@ -94482,7 +94609,9 @@
   ],
   "pand_id": "0268100000020299",
   "vbo": "0268010000009271",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000020299"
+  ]
  },
  "driehuizerweg312": {
   "adres": "Driehuizerweg 312",
@@ -94538,7 +94667,9 @@
   "pand_id": "0268100000048426",
   "vbo": "0268010000008603",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000048426"
+  ]
  },
  "driehuizerweg320": {
   "adres": "Driehuizerweg 320",
@@ -94565,7 +94696,9 @@
   "pand_id": "0268100000048425",
   "vbo": "0268010000008604",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000048425"
+  ]
  },
  "driekoningenweg3": {
   "adres": "Driekoningenweg 3",
@@ -94586,7 +94719,9 @@
   "pand_id": "0268100000007225",
   "vbo": "0268010000005856",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000007225"
+  ]
  },
  "drieskensacker1509": {
   "adres": "Drieskensacker 1509",
@@ -99094,9 +99229,7 @@
   "pand_id": "0268100000106691",
   "vbo": "0268010000106261",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": [
-   "0268100000106691"
-  ]
+  "vbo_panden": []
  },
  "fruitlaan62": {
   "adres": "Fruitlaan 62",
@@ -99117,7 +99250,9 @@
   "pand_id": "0268100000014961",
   "vbo": "0268010000063699",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000014961"
+  ]
  },
  "fuutstraat1": {
   "adres": "Fuutstraat 1",
@@ -105038,7 +105173,9 @@
   "pand_id": "0268100000017981",
   "vbo": "0268010000009940",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000017981"
+  ]
  },
  "griegstraat9": {
   "adres": "Griegstraat 9",
@@ -105088,7 +105225,9 @@
   ],
   "pand_id": "0268100000007312",
   "vbo": "0268010000082305",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000007312"
+  ]
  },
  "griftdijk47": {
   "adres": "Griftdijk 47",
@@ -105593,7 +105732,9 @@
   ],
   "pand_id": "0268100000025719",
   "vbo": "0268010000008339",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025719"
+  ]
  },
  "groenewoudseweg334": {
   "adres": "Groenewoudseweg 334",
@@ -105630,7 +105771,9 @@
   ],
   "pand_id": "0268100000024838",
   "vbo": "0268010000007621",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000024838"
+  ]
  },
  "groesbeeksedwarsweg": {
   "adres": "Groesbeeksedwarsweg",
@@ -106518,7 +106661,9 @@
   ],
   "pand_id": "0268100000025917",
   "vbo": "0268010000074789",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025917"
+  ]
  },
  "groesbeekseweg21": {
   "adres": "Groesbeekseweg 21",
@@ -106912,7 +107057,9 @@
   ],
   "pand_id": "0268100000106134",
   "vbo": "0268010000105953",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000106134"
+  ]
  },
  "groesbeekseweg319": {
   "adres": "Groesbeekseweg 319",
@@ -106952,7 +107099,9 @@
   ],
   "pand_id": "0268100000106135",
   "vbo": "0268010000105955",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000106135"
+  ]
  },
  "groesbeekseweg350": {
   "adres": "Groesbeekseweg 350",
@@ -106985,7 +107134,9 @@
   "pand_id": "0268100000012126",
   "vbo": "0268010000014030",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000012126"
+  ]
  },
  "groesbeekseweg38": {
   "adres": "Groesbeekseweg 38",
@@ -110920,6 +111071,27 @@
   "pand_id": null,
   "vbo_gevraagd": "2026-10-24"
  },
+ "hertogstraat": {
+  "adres": "Hertogstraat",
+  "bag_gezien": "2026-11-06",
+  "bag_zonder_id": "2026-11-06",
+  "gebeurtenissen": [
+   {
+    "bron": "pararius",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.250 per maand, 31 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.250 per maand, 31 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-06"
+ },
  "hertogstraat120": {
   "adres": "Hertogstraat 120",
   "bag_pogingen": 1,
@@ -111761,7 +111933,9 @@
   "pand_id": "0268100000025809",
   "vbo": "0268010000006938",
   "vbo_gevraagd": "2026-11-05",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025809"
+  ]
  },
  "heyendaalseweg117": {
   "adres": "Heyendaalseweg 117",
@@ -111813,7 +111987,10 @@
   ],
   "pand_id": "0268100000020096",
   "vbo": "0268010000049298",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000020096",
+   "0268100000054621"
+  ]
  },
  "heyendaalseweg203": {
   "adres": "Heyendaalseweg 203",
@@ -111881,7 +112058,9 @@
   "pand_id": "0268100000048287",
   "vbo": "0268010000110451",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000048287"
+  ]
  },
  "heyendaalseweg227": {
   "adres": "Heyendaalseweg 227",
@@ -111908,7 +112087,9 @@
   ],
   "pand_id": "0268100000049555",
   "vbo": "0268010000013773",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000049555"
+  ]
  },
  "heyendaalseweg252": {
   "adres": "Heyendaalseweg 252",
@@ -116827,7 +117008,9 @@
   ],
   "pand_id": "0268100000046921",
   "vbo": "0268010000012734",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000046921"
+  ]
  },
  "kanunnikvanosstraat41": {
   "adres": "Kanunnik van Osstraat 41",
@@ -116848,7 +117031,9 @@
   "pand_id": "0268100000026474",
   "vbo": "0268010000046363",
   "vbo_gevraagd": "2026-10-20",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000026474"
+  ]
  },
  "kanunnikvanosstraat53": {
   "adres": "Kanunnik van Osstraat 53",
@@ -116874,7 +117059,9 @@
   ],
   "pand_id": "0268100000046654",
   "vbo": "0268010000043587",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000046654"
+  ]
  },
  "kanunnikvenboetstraat13": {
   "adres": "Kanunnik Venboetstraat 13",
@@ -116901,7 +117088,9 @@
   "pand_id": "0268100000048340",
   "vbo": "0268010000012788",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000048340"
+  ]
  },
  "kapittelweg33": {
   "adres": "de Kapittelweg 33",
@@ -119605,6 +119794,21 @@
   "vbo_panden": [
    "0268100000024675"
   ]
+ },
+ "kraanstraat": {
+  "adres": "Kraanstraat",
+  "bag_gezien": "2026-11-06",
+  "bag_zonder_id": "2026-11-06",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.560 per maand, 72 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-06"
  },
  "krayenhofflaan": {
   "adres": "Krayenhofflaan",
@@ -123404,7 +123608,9 @@
   "pand_id": "0268100000088816",
   "vbo": "0268010000094805",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000088816"
+  ]
  },
  "kwakkenbergweg27": {
   "adres": "Kwakkenbergweg 27",
@@ -123450,7 +123656,9 @@
   ],
   "pand_id": "0268100000005563",
   "vbo": "0268010000102310",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000005563"
+  ]
  },
  "laanvanoostindie": {
   "adres": "Laan van Oost-Indie",
@@ -125085,7 +125293,9 @@
    "0268010000110599"
   ],
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000020282"
+  ]
  },
  "leuvensbroek3404": {
   "adres": "Leuvensbroek 3404",
@@ -125762,6 +125972,29 @@
   "vbo_gevraagd": "2026-10-15",
   "vbo_panden": [
    "0268100000036281"
+  ]
+ },
+ "malvert1210": {
+  "adres": "Malvert 1210",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-13",
+    "soort": "energielabel",
+    "tekst": "energielabel van Malvert 1210 is C, geregistreerd 2020-11-13"
+   },
+   {
+    "bron": "rentola",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €375 per maand, 12 m2"
+   }
+  ],
+  "pand_id": "0268100000037216",
+  "vbo": "0268010000070589",
+  "vbo_gevraagd": "2026-11-06",
+  "vbo_panden": [
+   "0268100000037216"
   ]
  },
  "malvert2321": {
@@ -137207,7 +137440,9 @@
   ],
   "pand_id": "0268100000030431",
   "vbo": "0268010000083851",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000030431"
+  ]
  },
  "nijmeegsebaan65": {
   "adres": "Nijmeegsebaan 65",
@@ -137220,6 +137455,12 @@
     "datum": "2026-08-13",
     "soort": "bekendmaking",
     "tekst": "Aanvraag vergunning tijdelijke verhuur voor Vergunning aanvragen tijdelijk verhuren woonruimte, aan Nijmeegsebaan 65C en 65E, 6525DX Nijmegen"
+   },
+   {
+    "bron": "officiele bekendmakingen",
+    "datum": "2026-11-05",
+    "soort": "bekendmaking",
+    "tekst": "Intrekking verzoek voor tijdelijk verhuren woonruimte, aan Nijmeegsebaan 65C en 65E, 6525DX Nijmegen"
    }
   ],
   "pand_id": null
@@ -137242,7 +137483,9 @@
   ],
   "pand_id": "0268100000004223",
   "vbo": "0268010000021496",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000004223"
+  ]
  },
  "ninasimonestraat124": {
   "adres": "Nina Simonestraat 124",
@@ -138162,6 +138405,226 @@
   ],
   "pand_id": "0268100000010925",
   "vbo": "0268010000062056",
+  "vbo_panden": [
+   "0268100000010925"
+  ]
+ },
+ "ninasimonestraat74": {
+  "adres": "Nina Simonestraat 74",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2017-02-16",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 98 is A, geregistreerd 2017-02-16"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-02-25",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 62 is A, geregistreerd 2018-02-25"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2018-12-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 52 is B, geregistreerd 2018-12-04"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-06-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 64 is A, geregistreerd 2020-06-30"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-09-22",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 26 is A, geregistreerd 2020-09-22"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-09-22",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 44 is A, geregistreerd 2020-09-22"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-09-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 32 is A, geregistreerd 2020-09-24"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-10-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 34 is A, geregistreerd 2020-10-23"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2020-11-11",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 80 is A, geregistreerd 2020-11-11"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-01",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 30 is A, geregistreerd 2020-12-01"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-30",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 76 is A, geregistreerd 2020-12-30"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2020-12-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 42 is A, geregistreerd 2020-12-31"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-08-19",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 40 is A+, geregistreerd 2021-08-19"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2021-11-29",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 28 is A+, geregistreerd 2021-11-29"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2023-04-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 66 is A+, geregistreerd 2023-04-18"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2024-07-23",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 68 is A, geregistreerd 2024-07-23"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 10 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 12 is A+++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 14 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 16 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 18 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 2 is A+, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 20 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 22 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 4 is A+, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 8 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 84 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 86 is A, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 92 is A++, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-05-21",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 94 is A+, geregistreerd 2025-05-21"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2025-06-04",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 78 is A, geregistreerd 2025-06-04"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-08-18",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 24 is B, geregistreerd 2025-08-18"
+   },
+   {
+    "bron": "EP-Online",
+    "datum": "2025-10-24",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 90 is B, geregistreerd 2025-10-24"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2026-03-31",
+    "soort": "energielabel",
+    "tekst": "energielabel van Nina Simonestraat 50 is A, geregistreerd 2026-03-31"
+   },
+   {
+    "bron": "aanbod",
+    "datum": "2026-11-05",
+    "soort": "te koop",
+    "tekst": "te koop voor €375.000, 70 m2"
+   }
+  ],
+  "pand_id": "0268100000010925",
+  "vbo": "0268010000060937",
   "vbo_panden": [
    "0268100000010925"
   ]
@@ -139268,6 +139731,21 @@
    "0268100000013684"
   ]
  },
+ "oudenonnendaalseweg": {
+  "adres": "Oude Nonnendaalseweg",
+  "bag_gezien": "2026-11-06",
+  "bag_zonder_id": "2026-11-06",
+  "gebeurtenissen": [
+   {
+    "bron": "huislijn",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.606 per maand, 121 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-06"
+ },
  "oudenonnendaalseweg188": {
   "adres": "Oude Nonnendaalseweg 188",
   "gebeurtenissen": [
@@ -140221,7 +140699,9 @@
   "pand_id": "0268100000049525",
   "vbo": "0268010000026112",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000049525"
+  ]
  },
  "patrijsstraat22": {
   "adres": "Patrijsstraat 22",
@@ -140446,7 +140926,9 @@
   ],
   "pand_id": "0268100000019654",
   "vbo": "0268010000023447",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000019654"
+  ]
  },
  "piersonstraat": {
   "adres": "Piersonstraat",
@@ -141735,6 +142217,28 @@
    "0268100000020654"
   ]
  },
+ "plein19447": {
+  "adres": "Plein 1944 7",
+  "gebeurtenissen": [
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 7 is A, geregistreerd 2019-11-27"
+   },
+   {
+    "bron": "EP-Online, via de voorraad",
+    "datum": "2019-11-27",
+    "soort": "energielabel",
+    "tekst": "energielabel van Plein 1944 9 is A, geregistreerd 2019-11-27"
+   }
+  ],
+  "pand_id": "0268100000029890",
+  "vbo": "0268010000055132",
+  "vbo_panden": [
+   "0268100000029890"
+  ]
+ },
  "plein194486b": {
   "adres": "Plein 1944 86-B",
   "gebeurtenissen": [
@@ -142815,7 +143319,9 @@
   "pand_id": "0268100000016199",
   "vbo": "0268010000083449",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000016199"
+  ]
  },
  "prinsbernhardstraat43": {
   "adres": "Prins Bernhardstraat 43",
@@ -143539,7 +144045,9 @@
   ],
   "pand_id": "0268100000024840",
   "vbo": "0268010000055701",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000024840"
+  ]
  },
  "profregoutstraat1a1": {
   "adres": "Professor Regoutstraat 1A-1",
@@ -147239,7 +147747,9 @@
   "pand_id": "0268100000022490",
   "vbo": "0268010000031413",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000022490"
+  ]
  },
  "scheidingsweg8": {
   "adres": "Scheidingsweg 8",
@@ -147266,7 +147776,9 @@
   "pand_id": "0268100000022489",
   "vbo": "0268010000031414",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000022489"
+  ]
  },
  "schependomlaan108": {
   "adres": "Schependomlaan 108",
@@ -149796,7 +150308,9 @@
   "pand_id": "0268100000015113",
   "vbo": "0268010000062803",
   "vbo_gevraagd": "2026-10-31",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000015113"
+  ]
  },
  "slotemakerdebruineweg10": {
   "adres": "Slotemaker de Bruineweg 10",
@@ -153050,7 +153564,9 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000050187",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025584"
+  ]
  },
  "stcanisiussingel8": {
   "adres": "St. Canisiussingel 8",
@@ -153064,7 +153580,9 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000031359",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025584"
+  ]
  },
  "stenenkruisstraat3": {
   "adres": "Stenenkruisstraat 3",
@@ -155036,7 +155554,9 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000049230",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025584"
+  ]
  },
  "stjorisstraat54": {
   "adres": "St. Jorisstraat 54",
@@ -155200,7 +155720,9 @@
   ],
   "pand_id": "0268100000025584",
   "vbo": "0268010000030483",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000025584"
+  ]
  },
  "stjosephhof1": {
   "adres": "St. Josephhof 1",
@@ -155909,7 +156431,9 @@
   "pand_id": "0268100000026234",
   "transformatie_gemeld": 1,
   "vbo": "0268010000085076",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000026234"
+  ]
  },
  "stthomashof5g": {
   "adres": "St. Thomashof 5-G",
@@ -155941,7 +156465,9 @@
   ],
   "pand_id": "0268100000002849",
   "vbo": "0268010000082694",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000002849"
+  ]
  },
  "sumatraplein36": {
   "adres": "Sumatraplein 36",
@@ -159687,7 +160213,9 @@
   "pand_id": "0268100000005450",
   "vbo": "0268010000030423",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000005450"
+  ]
  },
  "tweedeoudeheselaan": {
   "adres": "Tweede Oude Heselaan",
@@ -161727,7 +162255,9 @@
   "pand_id": "0268100000017833",
   "vbo": "0268010000059850",
   "vbo_gevraagd": "2026-10-29",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000017833"
+  ]
  },
  "vandenboenhoffstraat11": {
   "adres": "Van den Boenhoffstraat 11",
@@ -161748,7 +162278,9 @@
   "pand_id": "0268100000029631",
   "vbo": "0268010000032874",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000029631"
+  ]
  },
  "vandenboenhoffstraat19": {
   "adres": "Van den Boenhoffstraat 19",
@@ -161775,7 +162307,9 @@
   "pand_id": "0268100000031985",
   "vbo": "0268010000032876",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000031985"
+  ]
  },
  "vandenhavestraat10": {
   "adres": "van den Havestraat 10",
@@ -162246,6 +162780,21 @@
   ],
   "pand_id": null
  },
+ "vandulckenstraat": {
+  "adres": "van Dulckenstraat",
+  "bag_gezien": "2026-11-06",
+  "bag_zonder_id": "2026-11-06",
+  "gebeurtenissen": [
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.310 per maand, 61 m2"
+   }
+  ],
+  "pand_id": null,
+  "vbo_gevraagd": "2026-11-06"
+ },
  "vandulckenstraat10": {
   "adres": "van Dulckenstraat 10",
   "gebeurtenissen": [
@@ -162658,7 +163207,9 @@
   ],
   "pand_id": "0268100000017619",
   "vbo": "0268010000029011",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000017619"
+  ]
  },
  "vanhaapsstraat38": {
   "adres": "Van Haapsstraat 38",
@@ -162691,7 +163242,9 @@
   "pand_id": "0268100000019023",
   "vbo": "0268010000029176",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000019023"
+  ]
  },
  "vanhaapsstraat54": {
   "adres": "Van Haapsstraat 54",
@@ -163621,6 +164174,12 @@
     "datum": "2026-10-19",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €1.010 per maand, 37 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.150 per maand, 80 m2"
    }
   ],
   "pand_id": null
@@ -165628,6 +166187,18 @@
     "datum": "2026-11-04",
     "soort": "verhuur",
     "tekst": "kamer te huur voor €799 per maand, 14 m2 (inclusief servicekosten)"
+   },
+   {
+    "bron": "pararius",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "te huur aangeboden voor €1.450 per maand, 55 m2"
+   },
+   {
+    "bron": "kamernet",
+    "datum": "2026-11-05",
+    "soort": "verhuur",
+    "tekst": "kamer te huur voor €1.450 per maand, 55 m2"
    }
   ],
   "pand_id": null
@@ -179538,7 +180109,9 @@
   "pand_id": "0268100000012128",
   "vbo": "0268010000038727",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000012128"
+  ]
  },
  "willemsweg": {
   "adres": "Willemsweg",
@@ -180084,7 +180657,9 @@
   "pand_id": "0268100000104883",
   "vbo": "0268010000103802",
   "vbo_gevraagd": "2026-10-15",
-  "vbo_panden": []
+  "vbo_panden": [
+   "0268100000104883"
+  ]
  },
  "winkelsteegseweg": {
   "adres": "Winkelsteegseweg",
