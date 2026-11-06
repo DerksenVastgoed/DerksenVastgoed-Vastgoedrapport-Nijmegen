@@ -1755,7 +1755,42 @@ def recent(geschiedenis, dagen=7):
     return uit
 
 
-def render(geschiedenis, dagen=7):
+def al_verteld_op(pand, verteld_rijen):
+    """De laatste briefdatum over dit pand, of "" als het nooit in een brief stond.
+
+    verteld_rijen is de "onderwerpen"-tabel uit verteld.json. Er wordt op het
+    adres van het pand gezocht, met dezelfde sleutel als verteld.py gebruikt.
+    """
+    if not verteld_rijen:
+        return ""
+    try:
+        from pandsleutel import sleutel
+        sl = sleutel(pand.get("adres") or "")
+    except Exception:
+        return ""
+    return (verteld_rijen.get(sl) or {}).get("laatst") or ""
+
+
+def render(geschiedenis, dagen=7, verteld_rijen=None):
+    """Het blok "Wat er met eerdere panden gebeurde" voor de briefschrijver.
+
+    6 november 2026. De brief zei bij Kronenburgersingel 213: "de BAG telt
+    sinds 31 oktober nog maar 1 woning in gebruik ... Dat is nieuw in ons
+    dossier." Diezelfde BAG-wijziging stond al in de brieven van 1 en 2
+    november; dit was de zesde brief over het adres. De schrijver nam het
+    woord over uit dit blok: elke gebeurtenis van de laatste zeven dagen
+    kreeg de markering "nieuw in ons dossier", ook als ze al in een brief
+    aan pa had gestaan. De feitencontrole las dezelfde markering en noemde
+    de wijziging van 31 oktober "het enige nieuwe feit in het dossier".
+
+    Nu krijgt een gebeurtenis die gedateerd is op of voor de laatste brief
+    over dit adres (verteld.json) die markering niet meer, maar de regel
+    "gedateerd op of voor de brief van <datum> over dit adres". Dat is
+    afgeleid uit twee datums, niet uit wat er in die brief stond, en zo
+    staat het er ook. Een bekendmaking die wij pas na die brief vastlegden
+    maar die eerder gedateerd is, verliest zo ook de markering; dat is niet
+    gemeten, want gebeurtenissen dragen geen datum van vastleggen.
+    """
     paren = recent(geschiedenis, dagen)
     if not paren:
         return []
@@ -1775,13 +1810,24 @@ def render(geschiedenis, dagen=7):
         r.append(f"## {pand['adres']}")
         labels = [g for g in pand["gebeurtenissen"] if g["soort"] == "energielabel"]
         rest = [g for g in pand["gebeurtenissen"] if g["soort"] != "energielabel"]
+        verteld_op = al_verteld_op(pand, verteld_rijen)
         for g in rest:
-            # "NIEUW IN ONS DOSSIER" EN NIET "NIEUW". Deze markering betekent
-            # dat de gebeurtenis in deze ronde is vastgelegd, niet dat ze
-            # vandaag is gebeurd. Als "**nieuw**" las de briefschrijver het als
-            # nieuws van vandaag, en opende de brief van 13 oktober met vijf
-            # verkopen die al drie tot zes weken oud waren.
-            merk = " **nieuw in ons dossier**" if g in vers else ""
+            # "NIEUW IN ONS DOSSIER" EN NIET "NIEUW". Als "**nieuw**" las de
+            # briefschrijver het als nieuws van vandaag, en opende de brief
+            # van 13 oktober met vijf verkopen die al drie tot zes weken oud
+            # waren. De markering hangt aan de datum van de gebeurtenis (de
+            # laatste `dagen` dagen), niet aan de dag van vastleggen.
+            #
+            # AL VERTELD IS NIET NIEUW. Op 6 november heette een
+            # BAG-wijziging van 31 oktober "nieuw in ons dossier" terwijl ze
+            # al in twee brieven had gestaan; zie de docstring.
+            if g in vers and verteld_op and g["datum"] <= verteld_op:
+                merk = (f" (gedateerd op of voor de brief van {verteld_op} "
+                        f"over dit adres)")
+            elif g in vers:
+                merk = " **nieuw in ons dossier**"
+            else:
+                merk = ""
             r.append(f"- {g['datum']}: {g['tekst']} ({g['bron']}){merk}")
         # Labels samenvatten in plaats van uitschrijven. Een flat met
         # honderdtwintig woningen leverde honderdtwintig regels op en maakte
@@ -2351,6 +2397,49 @@ def proef():
     check("een object-id uit de voorraad wordt niet overschreven",
           _c.get("vbo"), "0268010000000001")
 
+    # AL VERTELD IS NIET NIEUW IN ONS DOSSIER. Het echte pand van 6 november
+    # 2026: Kronenburgersingel 213, met de gebeurtenissen zoals ze toen in
+    # pandgeschiedenis.json stonden, en de stand van verteld.json voor die
+    # brief (laatst 2 november). Het venster is zo gekozen dat 27 oktober er
+    # vandaag nog in valt, zodat de proef niet na een week groen wordt omdat
+    # er niets meer te markeren valt.
+    _kron = {"kronenburgersingel213": {"adres": "Kronenburgersingel 213",
+             "gebeurtenissen": [
+        {"bron": "officiele bekendmakingen", "datum": "2025-11-27",
+         "soort": "bekendmaking", "tekst": "Aanvraag omgevingsvergunning voor "
+         "Het opsplitsen woning 2 stud.kamers, 4 app. en 3 praktijkruimten "
+         "(legalisering)., aan Kronenburgersingel 213, 6511AR Nijmegen"},
+        {"bron": "officiele bekendmakingen", "datum": "2026-10-27",
+         "soort": "bekendmaking", "tekst": "Besluit voor Het opsplitsen woning "
+         "een stud.kamer, 4 app. en 3 praktijkruimten (legalisering), aan "
+         "Kronenburgersingel 213, 6511AR Nijmegen"},
+        {"bron": "BAG", "datum": "2026-10-29", "soort": "transformatie",
+         "tekst": "in de BAG staan 5 woningen als gevormd in dit pand"},
+        {"bron": "Basisregistratie Adressen en Gebouwen", "datum": "2026-10-31",
+         "soort": "bag", "tekst": "de BAG telt nu 1 woningen in dit pand, was "
+         "2: 361 m2; daarnaast 6 objecten met status gevormd"}]}}
+    _venster = (dt.date.today() - dt.date(2026, 10, 27)).days
+    _r = [x for x in render(_kron, dagen=_venster, verteld_rijen={
+        "kronenburgersingel213": {"laatst": "2026-11-02"}})
+        if x.startswith("- 2026-10-31")]
+    check("al verteld heet niet nieuw in ons dossier",
+          (len(_r), any("nieuw in ons dossier" in x for x in _r),
+           any("voor de brief van 2026-11-02" in x for x in _r)),
+          (1, False, True))
+    # De tegenkant, ook echt: na de brief van 29 oktober was de wijziging van
+    # 31 oktober wel nieuw, en het besluit van 27 oktober niet. (De regel van
+    # 29 oktober is een transformatie en valt buiten recent(); die krijgt
+    # nooit een markering.)
+    _r = render(_kron, dagen=_venster, verteld_rijen={
+        "kronenburgersingel213": {"laatst": "2026-10-29"}})
+    check("wat na de laatste brief kwam blijft nieuw in ons dossier",
+          ([("nieuw in ons dossier" in x) for x in _r
+            if x.startswith("- 2026-10-31") or x.startswith("- 2026-10-27")]),
+          [False, True])
+    _r = render(_kron, dagen=_venster)
+    check("zonder verteld.json blijft de oude markering",
+          sum("nieuw in ons dossier" in x for x in _r), 2)
+
     for f in fouten:
         print(f"FOUT {f}", file=sys.stderr)
     print(f"Proef: {len(fouten)} fouten", file=sys.stderr)
@@ -2439,7 +2528,14 @@ def main():
           f"{n_b} BAG-wijzigingen, {n_l} labels erbij of gewijzigd",
           file=sys.stderr)
     if args.uit:
-        regels = render(geschiedenis)
+        # verteld.json is op dit moment nog de stand van de vorige brief: de
+        # brief van vandaag markeert pas na het versturen.
+        try:
+            import verteld as _vt
+            _rijen = _vt.lees().get("onderwerpen") or {}
+        except Exception:
+            _rijen = {}
+        regels = render(geschiedenis, verteld_rijen=_rijen)
         if regels:
             os.makedirs(os.path.dirname(args.uit) or ".", exist_ok=True)
             with open(args.uit, "w", encoding="utf-8") as f:
