@@ -1921,3 +1921,15 @@ waarom: 4 november 2026, Mark: "Van de huizen in Nijmegen werd 93 procent
   berichten uit de regionale feed.
 proef: publicaties_vastgoed:een Nijmeegs bericht valt achter; publicaties_vastgoed:zoekopdracht mist; publicaties_vastgoed:het AD-bericht valt door het trefwoordfilter; publicaties_vastgoed:de volgorde van de feeds blijft niet staan
 soort: gegevens
+
+---
+eis: Een beleidsstuk dat over openbare orde gaat (cameratoezicht) valt al op
+  de titel buiten het beleid dat ons raakt, zodat zijn samenvatting het niet
+  via de tweede trap alsnog naar de schrijver kan brengen.
+waarom: 5 november 2026. "Aanwijzingsbesluit tijdelijk cameratoezicht
+  Watertorstraat 2026" stond in het verhaal als lokaal beleidsstuk, met de
+  zin "zonder directe regels voor verhuur". De titel plaatste het niet, de
+  samenvatting promoveerde het (het open woord "woning"). Op 4 november stond
+  hetzelfde stuk nog als "buiten ons onderwerp" in de bijlage.
+proef: beleidsrelevantie:kan via de tekst alsnog in de brief
+soort: brief
