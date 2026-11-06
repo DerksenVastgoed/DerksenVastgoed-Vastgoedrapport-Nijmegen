@@ -1933,3 +1933,22 @@ waarom: 5 november 2026. "Aanwijzingsbesluit tijdelijk cameratoezicht
   hetzelfde stuk nog als "buiten ons onderwerp" in de bijlage.
 proef: beleidsrelevantie:kan via de tekst alsnog in de brief
 soort: brief
+
+---
+eis: Een gebeurtenis die gedateerd is op of voor de laatste brief over dat
+  adres heet in het pandenblok niet "nieuw in ons dossier"; daar staat dan
+  "gedateerd op of voor de brief van <datum> over dit adres".
+waarom: 6 november 2026. De brief zei bij Kronenburgersingel 213 dat de
+  BAG sinds 31 oktober nog 1 woning in gebruik telt naast 6 gevormde
+  objecten, en: "Dat is nieuw in ons dossier." Die wijziging stond al in de
+  brieven van 1 en 2 november; het was de zesde brief over het adres. De
+  markering hing alleen aan de datum (de laatste zeven dagen) en wist niet
+  wat er al verteld was. De feitencontrole las dezelfde markering en noemde
+  de wijziging "het enige nieuwe feit in het dossier". Nagemeten over de
+  geschiedenisdigests van 20 oktober tot 6 november met de stand van
+  verteld.json van voor elke brief: 31 van de 154 markeringen vielen op of
+  voor de laatste brief over dat adres, waarvan Kronenburgersingel 213 elke
+  dag van 1 tot en met 6 november. Op het pandenblok van 6 november
+  verandert precies die ene regel.
+proef: pandgeschiedenis:al verteld heet niet nieuw in ons dossier; pandgeschiedenis:wat na de laatste brief kwam blijft nieuw in ons dossier; pandgeschiedenis:zonder verteld.json blijft de oude markering
+soort: gegevens
