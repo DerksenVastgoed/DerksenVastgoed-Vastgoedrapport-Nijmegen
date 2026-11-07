@@ -1117,13 +1117,32 @@ def buurt_van(it: dict, adressen=None, per_buurt=None):
     return ""
 
 
-def _regel(it: dict) -> str:
+def _regel(it: dict, velden: dict = None) -> str:
+    """
+    Een bekendmaking als regel in de digest, met de feiten erbij.
+
+    DE UITKOMST STAAT IN DE REGEL, NIET ALLEEN IN DE DUIDING. Op 7 november
+    2026 schreef de brief over Bisschop Hamerstraat 7 "of de vergunning is
+    verleend of geweigerd, staat er niet bij", terwijl publicatie_velden.json
+    sinds 6 november 13:02 UTC zei: verleend, besloten op 3 november, bezwaar
+    tot 15 december. Die uitkomst ging alleen naar de duiding (feitenlijst()),
+    en de duiding schreef "Verleende vergunning". De schrijver en de
+    feitencontrole lezen de regel, niet de feitenlijst. De schrijver nam
+    "verleend" over uit de duiding; de feitencontrole keurde het af op grond
+    van de editie van 6 november ("uitkomst van het besluit is niet bekend",
+    van voor de veldenronde) en de herstelronde maakte er "onbekend" van. Een
+    juist feit werd zo uit de brief gecontroleerd. Nu staat de uitkomst als
+    feit in de regel, uit dezelfde uitkomst_feit() als bij de duiding.
+    """
     link = f"([bron]({it['url']}))" if it["url"] else ""
     regel = f"- **{it['datum']}** . {it['titel']} {link}"
 
     feiten = dict(it.get("feiten") or {})
     if it.get("buurt"):
         feiten["buurt"] = it["buurt"]
+    _uit = uitkomst_feit(it, _velden() if velden is None else velden)
+    if _uit:
+        feiten["uitkomst"] = _uit
     if feiten:
         delen = []
         if feiten.get("buurt"):
@@ -1148,6 +1167,8 @@ def _regel(it: dict) -> str:
             if feiten.get("label_alleen_dit_adres"):
                 deel += " (alleen van dit adres bekend)"
             delen.append(deel)
+        if feiten.get("uitkomst"):
+            delen.append(f"uitkomst {feiten['uitkomst']}")
         if feiten.get("rijksmonument"):
             nr = feiten.get("monumentnr")
             delen.append(f"rijksmonument{f' {nr}' if nr else ''}")
@@ -1181,12 +1202,13 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
     if trend:
         r.extend(render_trend())
 
+    velden = _velden()
     r.append(f"## Kernsignalen ({len(kern)})")
     r.append("_Splitsen, samenvoegen, omzetten, transformatie, kamerverhuur, nieuwbouw._")
     r.append("")
     if kern:
         for it in sorted(kern, key=lambda x: x["datum"], reverse=True):
-            r.append(_regel(it))
+            r.append(_regel(it, velden))
     else:
         r.append("Geen kernsignalen in deze periode.")
     r.append("")
@@ -1197,14 +1219,14 @@ def render_digest(kern: list, overige: list, vanaf: str, trend: bool = False) ->
         r.append("_Verbouw, renovatie, sloop, verduurzaming e.d._")
         r.append("")
         for it in sorted(woon, key=lambda x: x["datum"], reverse=True):
-            r.append(_regel(it))
+            r.append(_regel(it, velden))
         r.append("")
     # Altijd als laatste blok: brief_verhalend.py knipt vanaf deze kop af.
     if bedrijf:
         r.append(f"{NIET_WOON_KOP} ({len(bedrijf)})")
         r.append("")
         for it in sorted(bedrijf, key=lambda x: x["datum"], reverse=True):
-            r.append(_regel(it))
+            r.append(_regel(it, velden))
     return "\n".join(r)
 
 
@@ -1276,6 +1298,31 @@ def proef():
             == UITKOMST_ONBEKEND:
         afw.append("Voorstadslaan 70 staat in publicatie_velden.json als "
                    "verleend, maar gaat als onbekend naar de duiding")
+    # De uitkomst in de regel die de schrijver en de feitencontrole lezen
+    # (Bisschop Hamerstraat 7, 7 november 2026; zie _regel()).
+    _ham = {"datum": "2026-11-05",
+            "titel": "Besluit voor het realiseren van 4 zelfstandige "
+                     "wooneenheden in de bestaande bovenwoning, aan Bisschop "
+                     "Hamerstraat 7, 6511NA Nijmegen",
+            "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517097.html",
+            "feiten": {"energielabel": "G (2025)"}}
+    if "uitkomst verleend" not in _regel(
+            _ham, {"gmb-2026-517097": {"uitkomst": "verleend"}}):
+        afw.append("een besluit dat de veldenronde als verleend las, staat "
+                   "niet als verleend in de regel voor de schrijver")
+    if "uitkomst niet bekend" not in _regel(_ham, {}):
+        afw.append("een besluit zonder bekende uitkomst staat in de regel "
+                   "zonder dat erbij staat dat de uitkomst niet bekend is")
+    if "uitkomst" in _regel({"datum": "2026-11-05", "url": "",
+                             "titel": "Aanvraag omgevingsvergunning voor het "
+                                      "verbouwen van een kamerverhuurpand "
+                                      "naar 9 appartementen aan Plein 1944 7"},
+                            {}):
+        afw.append("een aanvraag krijgt een uitkomst in de regel")
+    if "gmb-2026-517097" in _echt and "uitkomst verleend" not in _regel(
+            _ham, _echt):
+        afw.append("Bisschop Hamerstraat 7 staat in publicatie_velden.json "
+                   "als verleend, maar niet zo in de regel voor de schrijver")
     if "Alleen bij een BESLUIT of VERLEENDE" in PROFIEL:
         afw.append("de duiding mag een besluit weer als toestemming lezen")
     binnen = {"titel": "Splitsen naar zes woonruimtes, aan Hatertseweg 338, "
