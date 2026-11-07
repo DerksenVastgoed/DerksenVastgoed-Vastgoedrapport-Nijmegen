@@ -1,16 +1,16 @@
 {
- "datum": "2026-11-06",
+ "datum": "2026-11-07",
  "droog": false,
  "ronde": {
-  "al_gemeld": 143,
+  "al_gemeld": 138,
   "gebeurtenissen": 0,
   "gegroeid": 0,
   "opgeruimd": 0,
   "overgeslagen": 0,
   "panden_bekend": 0,
   "panden_nieuw": 0,
-  "projecten": 144,
+  "projecten": 139,
   "sleutel_bezet": 1,
-  "woningen": 777
+  "woningen": 769
  }
 }

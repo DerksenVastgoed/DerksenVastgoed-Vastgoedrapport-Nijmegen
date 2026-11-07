@@ -1,39 +1,42 @@
 {
- "datum": "2026-11-06",
+ "datum": "2026-11-07",
  "bronnen": {
   "regulier": {
    "mails": 3,
-   "objecten": 6,
-   "overgeslagen": 2,
+   "objecten": 5,
+   "overgeslagen": 1,
    "redenen": [
-    "Schoolstraat 11 (geen prijs gevonden)",
     "St. Stevenskerkhof 11 (geen prijs gevonden)"
    ]
   },
-  "huislijn": {
-   "mails": 2,
-   "objecten": 5,
-   "overgeslagen": 0,
-   "redenen": []
-  },
   "kamernet": {
-   "mails": 18,
-   "objecten": 18,
-   "overgeslagen": 0,
-   "redenen": []
+   "mails": 14,
+   "objecten": 13,
+   "overgeslagen": 1,
+   "redenen": [
+    "Homberg, Wijchen: buiten Nijmegen"
+   ]
   },
   "pararius": {
-   "mails": 2,
-   "objecten": 3,
-   "overgeslagen": 2,
+   "mails": 3,
+   "objecten": 7,
+   "overgeslagen": 4,
    "redenen": [
+    "van Welderenstraat (gemeubileerd, apart bewaard)",
+    "Hertogstraat (gemeubileerd, apart bewaard)",
     "van Welderenstraat (gemeubileerd, apart bewaard)",
     "Hertogstraat (gemeubileerd, apart bewaard)"
    ]
   },
   "rentola": {
+   "mails": 3,
+   "objecten": 3,
+   "overgeslagen": 0,
+   "redenen": []
+  },
+  "huislijn": {
    "mails": 2,
-   "objecten": 2,
+   "objecten": 6,
    "overgeslagen": 0,
    "redenen": []
   },
@@ -47,26 +50,27 @@
  "opmerking": "",
  "kandidaten": {},
  "ontdubbeld": {
-  "zelfde_status": 23,
-  "andere_status": 2,
+  "zelfde_status": 27,
+  "andere_status": 3,
   "voorbeelden": [
-   "van Welderenstraat -> te huur kamer",
-   "Hertogstraat -> te huur kamer"
+   "Hertogstraat -> te huur",
+   "Van Welderenstraat -> te huur",
+   "Jacob Canisstraat -> te huur"
   ]
  },
  "berichten_per_afzender": {
   "funda.nl": 3,
   "funda.com": 0,
-  "pararius.nl": 2,
+  "pararius.nl": 3,
   "pararius.com": 0,
-  "kamernet.nl": 18,
+  "kamernet.nl": 14,
   "vendr.nl": 1,
   "huislijn.nl": 2,
   "huisly.nl": 0,
   "123wonen.nl": 0,
-  "rentola.nl": 2
+  "rentola.nl": 3
  },
  "mailbox": {
-  "mislukt": "(SINCE 03-Nov-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 03-Nov-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
+  "mislukt": "(SINCE 04-Nov-2026): error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED; SINCE 04-Nov-2026: error: command SEARCH illegal in state LOGOUT, only allowed in states SELECTED"
  }
 }

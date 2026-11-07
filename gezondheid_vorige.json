@@ -20,7 +20,7 @@
   "Duiding bij beleidsstukken": "OK",
   "Eigen bouwkosten": "OK",
   "Eisen aan de brief": "OK",
-  "Feitencontrole van het verhaal": "OK",
+  "Feitencontrole van het verhaal": "LET OP",
   "Geheugen en trend": "OK",
   "Geheugen verstuurde brieven": "OK",
   "Gemeubileerd": "OK",
@@ -45,7 +45,7 @@
   "Omvang van de gegevensbestanden": "OK",
   "Opnieuw aangeboden": "OK",
   "Oude verlaging in de brief": "OK",
-  "Overgeslagen stappen": "FOUT",
+  "Overgeslagen stappen": "OK",
   "Plintobjecten geteld": "LET OP",
   "Profiel nieuw aanbod": "OK",
   "Regelgevingsmonitor": "OK",
@@ -70,5 +70,5 @@
   "Woningen in bestaande panden": "LET OP",
   "Woningprijsindex CBS": "OK"
  },
- "datum": "2026-11-06"
+ "datum": "2026-11-07"
 }

@@ -1,36 +1,37 @@
 {
- "datum": "2026-11-06",
+ "datum": "2026-11-07",
  "voor_herstel": [
   [
-   "Het is nog een aanvraag, dus er is niets toegezegd, maar het past in een beeld dat ik al langer zie in die buurt: het Stadscentrum heeft met 4,3% het hoogste aandeel bekende kamerverhuurpanden van de acht buurten, en de officiële tellingen laten zien dat het aantal aanvragen daar oploopt, van twee verleningen in 2023 naar negen aanvragen in zowel 2025 als 2026.",
-   "De losse cijfers kloppen: 4,3% is het hoogste van de 8 buurten, en de tellingen zijn 2023: 2 verleend, 2024: 1 verleend, 2025: 9 aanvragen, 2026: 9 aanvragen. Maar het getal van 2023 telt verleningen, geen aanvragen. Van 2025 naar 2026 blijft het aantal gelijk op 9. Een oplopend aantal aanvragen is dus niet aangetoond. Daarbij zien de tellingen alleen wat gepubliceerd is.",
+   "Deze week kwam er een besluit binnen dat verder gaat dan de aanvraag die er meestal eerst is: op 5 november is de vergunning verleend voor vier zelfstandige wooneenheden in de bestaande bovenwoning aan Bisschop Hamerstraat 7, in Stadscentrum.",
+   "Datum (2026-11-05), adres, buurt Stadscentrum en de 4 zelfstandige wooneenheden kloppen. Maar de gegevens noemen alleen de titel 'Besluit voor het realiseren van 4 zelfstandige wooneenheden'. De editie van 6 november zegt uitdrukkelijk 'uitkomst van het besluit is niet bekend'. Dat de vergunning is verleend, staat er niet.",
    "model"
   ],
   [
-   "Hunnerberg is met 65% koopwoningen en een gemiddelde WOZ van €614.000 verreweg de duurste en meest honkvaste buurt van de acht",
-   "65% koop en een gemiddelde WOZ van €614.000 kloppen, en dat is de hoogste WOZ en het hoogste koopaandeel van de 8. 'Honkvast' staat niet in de gegevens: er is niets bekend over verhuizen of woonduur. Hunnerberg heeft bovendien de laagste prijs per m2 van de 7, dus 'duurste' geldt alleen voor de WOZ.",
+   "Dit is een pand van 41 m2 met energielabel G, dus een kleine, slecht geïsoleerde bovenwoning die nu in vier stukken wordt geknipt.",
+   "De 41 m² hoort bij het adres in de bekendmaking, niet bij het hele pand. De vier gevormde objecten zijn samen 41+21+52+43 = 157 m2, naast nog 1 woning in gebruik. Label G (2025) klopt. Dat het pand 'nu in vier stukken wordt geknipt' staat niet vast, want de uitkomst van het besluit is niet bekend.",
    "model"
   ],
   [
-   "Met een gemiddelde WOZ ruim boven de grens van €396.000 speelt de opkoopbescherming in Hunnerberg bij de meeste panden niet; dat maakt zulke panden voor een koper die wil splitsen of verkameren aantrekkelijker dan in een buurt waar die grens nog wel drukt.",
-   "€614.000 ligt boven de grens van €396.000. Maar dit is een buurtgemiddelde, en of een pand onder de regel valt hangt af van de WOZ van dat pand zelf. Of het om 'de meeste panden' gaat, staat niet in de gegevens. Verder verbiedt de opkoopbescherming alleen verhuren na aankoop; splitsen valt er zelf niet onder. Voor een koper die wil splitsen maakt die grens dus niets uit.",
+   "Opvallend is verder het mediane vermogen per huishouden van €126.000, het op een na hoogste van de ring, terwijl het gemiddeld inkomen juist in de onderste helft zit.",
+   "Mediaan vermogen €126.000, de 7e van 8 van laag naar hoog: dat deel klopt. Het gemiddeld inkomen per inwoner (€36.000) is echter de 6e van 8 van laag naar hoog. Dat is de bovenste helft, niet de onderste.",
    "model"
   ],
   [
-   "Bij Kronenburgersingel 213, dat ik je al eerder meldde, is nu het besluit binnen op de aanvraag",
-   "Het besluit is van 2026-10-27, dus van vóór de laatste melding aan pa op 2 november. Dat was de vijfde brief over dit adres sinds 28 oktober. Het enige nieuwe feit in het dossier is de BAG-wijziging van 2026-10-31.",
+   "Dat wijst op veel gevestigde eigenaren met weinig doorstroming, en dat kan verklaren waarom er relatief veel aanvragen zijn: bestaand bezit dat nu wordt verbouwd in plaats van verkocht.",
+   "De gegevens noemen 56% koop en de aantallen aanvragen. Over doorstroming, gevestigde eigenaren of de oorzaak van de aanvragen zeggen ze niets. De uitleg wordt als feit gebracht.",
    "model"
   ],
   [
-   "splitsen naar een studentenkamer, vier appartementen en drie praktijkruimtes is vergund, als legalisering van wat er kennelijk al stond.",
-   "Bekend is alleen de titel: 'Besluit voor Het opsplitsen woning een stud.kamer, 4 app. en 3 praktijkruimten (legalisering)'. Of het besluit is verleend, staat niet in de gegevens. De oorspronkelijke aanvraag noemde 2 studentenkamers.",
-   "model"
-  ],
-  [
-   "het vergunde aantal was zeven, dus er zit nog een object in de pijplijn om in de gaten te houden.",
-   "Het besluit noemt 1 studentenkamer, 4 appartementen en 3 praktijkruimten. Dat zijn er 8, geen 7. Bovendien is niet bekend dat het besluit is verleend. De conclusie over één object in de pijplijn rust daarom op een verkeerde telling.",
+   "Kortom: één bevestigde splitsing in Stadscentrum, een huurplafond voor 2027 om in de gaten te houden, en in St. Anna een buurt waar het aantal aanvragen duidelijk oploopt.",
+   "Bisschop Hamerstraat 7 is niet bevestigd: van het besluit is alleen de titel bekend, en de status 'gevormd' is volgens de gegevens 'geen bewijs dat hij is gebeurd'. De maximale huurprijzen 2027 en de stijging in St. Anna (6 aanvragen in 2025 naar 10 in 2026) kloppen wel.",
    "model"
   ]
  ],
- "na_herstel": []
+ "na_herstel": [
+  [
+   "157 m2",
+   "staat niet in de gegevens",
+   "getal"
+  ]
+ ]
 }

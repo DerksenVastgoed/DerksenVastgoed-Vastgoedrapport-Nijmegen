@@ -56,5 +56,17 @@
   "adres": "Malvert 1210",
   "postcode": "6538AX",
   "prijs_per_m2_rentola": 31
+ },
+ "https://email.rentola.nl/e/c/eyJlbWFpbF9pZCI6ImRnU1RqZ2dCQVBxZU5mbWVOUUdoc0FvQUN2NW5NMXFySi1lVWM4cz0iLCJocmVmIjoiaHR0cHM6Ly9yZW50b2xhLm5sL2xpc3RpbmdzL2thbWVyLWdyb2VzYmVla3NlZHdhcnN3ZWctdGUtaHV1ci1pbi1uaWptZWdlbi1uZWRlcndvb24tcDkxYWJkYz91dG1fY2FtcGFpZ249ZW1haWxfY2FtcGFpZ25fbm90aWZpY2F0aW9uc192MVx1MDAyNnV0bV9jb250ZW50PW1zZzFfZW1haWxfbm90aWZpY2F0aW9uX25sX25vbmVfdGVzdFx1MDAyNnV0bV9tZWRpdW09ZW1haWxcdTAwMjZ1dG1fc291cmNlPWN1c3RvbWVyLmlvIiwiaW50ZXJuYWwiOiI5MzhlMDgxZDg5MTJmYTllMzUiLCJsaW5rX2lkIjozOTksInBvc2l0aW9uIjoyfQ/a8348a4270f74c0876df5a4b5aedba4695d86a6f20c854b0b1b9b6b441c896d0": {
+  "adres": "Groesbeeksedwarsweg 185",
+  "postcode": "6521DG",
+  "buurt": "Altrade",
+  "prijs_per_m2_rentola": 32
+ },
+ "https://rentola.nl/listings/kamer-groesbeeksedwarsweg-te-huur-in-nijmegen-nederwoon-p91abdc": {
+  "adres": "Groesbeeksedwarsweg 185",
+  "postcode": "6521DG",
+  "buurt": "Altrade",
+  "prijs_per_m2_rentola": 32
  }
 }

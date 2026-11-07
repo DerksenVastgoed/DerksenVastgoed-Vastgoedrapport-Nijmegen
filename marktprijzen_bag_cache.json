@@ -78798,7 +78798,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-30",
+    "eenheden_gezien": "2026-11-07",
     "oppervlakte_bag": 146,
     "opp_verschil": true,
     "energielabel": {
@@ -81443,7 +81443,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-30",
+    "eenheden_gezien": "2026-11-07",
     "oppervlakte_bag": 55,
     "energielabel": {
       "label": "E",
@@ -81499,7 +81499,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-30",
+    "eenheden_gezien": "2026-11-07",
     "oppervlakte_bag": 137,
     "opp_verschil": true,
     "energielabel": {
@@ -81690,7 +81690,7 @@
         "status": "Verblijfsobject in gebruik"
       }
     ],
-    "eenheden_gezien": "2026-10-30",
+    "eenheden_gezien": "2026-11-07",
     "oppervlakte_bag": 75,
     "energielabel": {
       "label": "B",
@@ -83124,7 +83124,8 @@
     ],
     "postcode": "6542WS",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Kraanstraat|Nijmegen": {
     "oppervlakte": 72,
@@ -83133,7 +83134,8 @@
     ],
     "postcode": "6541EJ",
     "buurtnaam": "",
-    "wijknaam": ""
+    "wijknaam": "",
+    "energielabel": null
   },
   "Coehoornstraat 22|Nijmegen": {
     "oppervlakte": 867,
@@ -83223,13 +83225,15 @@
     "oppervlakte": 17,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "van Dulckenstraat|Nijmegen": {
     "oppervlakte": 61,
     "gebruiksdoelen": [
       "woonfunctie"
-    ]
+    ],
+    "energielabel": null
   },
   "bm:Bisschop Hamerstraat 7|Nijmegen": {
     "postcode": "6511NA",
@@ -83266,5 +83270,115 @@
     "buurtnaam": "Hunnerberg",
     "wijknaam": "Nijmegen-Oost",
     "nummeraanduiding": "adr-5767e7c57dfea30b3b801e23df3c166a"
+  },
+  "Coehoornstraat 37|Nijmegen": {
+    "oppervlakte": 112,
+    "bouwjaar": "1907",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521CB",
+    "adresseerbaarObjectIdentificatie": "0268010000054868",
+    "pand": "0268100000001667",
+    "panden": [
+      "0268100000001667"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-1ab8b92b3ce0f47775f71b43a4419229",
+    "eenheden_in_pand": [
+      {
+        "adres": "Coehoornstraat 35",
+        "oppervlakte": 118,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      },
+      {
+        "adres": "Coehoornstraat 37",
+        "oppervlakte": 121,
+        "gebruiksdoelen": [
+          "woonfunctie"
+        ],
+        "status": "Verblijfsobject in gebruik"
+      }
+    ],
+    "eenheden_gezien": "2026-11-07",
+    "oppervlakte_bag": 121,
+    "energielabel": {
+      "label": "D",
+      "prive": false,
+      "registratiedatum": "2018-10-02",
+      "opnamedatum": "2018-10-02",
+      "geldig_tot": "2028-10-02",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Maisonnette",
+      "gebouwsubtype": "Tussendak",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000054868",
+      "panden": [],
+      "verbruik": 94280.86,
+      "bouwjaar": 1930
+    }
+  },
+  "Gerard Noodtstraat|Nijmegen": {
+    "gefaald": true,
+    "reden": "parse"
+  },
+  "Van Welderenstraat|Nijmegen": {
+    "oppervlakte": 55,
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6511MH",
+    "buurtnaam": "",
+    "wijknaam": ""
+  },
+  "Groesbeeksedwarsweg 185|Nijmegen": {
+    "oppervlakte": 13,
+    "bouwjaar": "1946",
+    "gebruiksdoelen": [
+      "woonfunctie"
+    ],
+    "postcode": "6521DG",
+    "adresseerbaarObjectIdentificatie": "0268010000048494",
+    "pand": "0268100000002421",
+    "panden": [
+      "0268100000002421"
+    ],
+    "splitsing_geregistreerd": null,
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-8b57a5427a82be2a990bf28d02e929d7",
+    "eenheden_gezien": "2026-11-07",
+    "oppervlakte_bag": 81,
+    "opp_verschil": true,
+    "energielabel": {
+      "label": "E",
+      "prive": false,
+      "registratiedatum": "2020-12-31",
+      "opnamedatum": "2020-12-31",
+      "geldig_tot": "2030-12-31",
+      "gebouwklasse": "Woningbouw",
+      "gebouwtype": "Twee-onder-een-kap / rijwoning hoek",
+      "gebouwsubtype": "Rijwoning",
+      "methode": "Rekenmethodiek Definitief Energielabel, versie 1.2, 16 september 2014",
+      "nta8800": false,
+      "referentiegebouw": false,
+      "vbo": "0268010000048494",
+      "panden": [],
+      "verbruik": 126580.27,
+      "bouwjaar": 1955
+    }
+  },
+  "bm:Daalseweg 171|Nijmegen": {
+    "postcode": "6521GH",
+    "buurtnaam": "Altrade",
+    "wijknaam": "Nijmegen-Oost",
+    "nummeraanduiding": "adr-7730c374991394da1f3fb436e45e74d3"
   }
 }

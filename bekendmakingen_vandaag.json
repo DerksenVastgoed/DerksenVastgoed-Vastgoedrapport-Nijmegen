@@ -4,7 +4,7 @@
   "titel": "Besluit voor het realiseren van 4 zelfstandige wooneenheden in de bestaande bovenwoning, aan Bisschop Hamerstraat 7, 6511NA Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517097.html",
   "strategie": "splitsen",
-  "duiding": "Omzetting naar 4 zelfstandige units zou de kleine woningvoorraad vergroten, maar uitkomst van het besluit is niet bekend.",
+  "duiding": "Verleende vergunning voor 4 zelfstandige units uit één bovenwoning bevestigt dat kadastrale splitsing hier planologisch haalbaar is.",
   "feiten": {
    "energielabel": "G (2025)",
    "oppervlakte_m2": 41
@@ -18,7 +18,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het verbouwen van een kamerverhuurpand naar 9 appartementen aan Plein 1944 7, 6511JB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517578.html",
   "strategie": "splitsen",
-  "duiding": "Aanvraag om kamerverhuurpand om te zetten naar 9 zelfstandige appartementen is nog in behandeling, geen garantie op toewijzing.",
+  "duiding": "Aanvraag om een kamerverhuurpand om te zetten naar 9 appartementen is nog niet besloten, maar toont intentie tot waardecreatie via splitsen.",
   "feiten": {
    "energielabel": "A (2019)",
    "label_alleen_dit_adres": true,
@@ -33,7 +33,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het renoveren van een pand aan Stijn Buysstraat 23, 6512CK Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517548.html",
   "strategie": "verduurzaming",
-  "duiding": "Renovatieaanvraag bij label E kan bij uitvoering de energieprestatie verbeteren, mits nieuwe opname volgt.",
+  "duiding": "Renovatieaanvraag bij label E biedt kans op labelverbetering bij mutatie, relevant voor de WWS-puntentelling.",
   "feiten": {
    "energielabel": "E (2026)",
    "oppervlakte_m2": 220
@@ -47,7 +47,7 @@
   "titel": "Besluit voor het isoleren van de zijgevel van de woning, aan Sweersstraat 14, 6524BM Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-515497.html",
   "strategie": "verduurzaming",
-  "duiding": "Isolatie van de zijgevel kan het label verbeteren, maar of het besluit is verleend is niet bekend.",
+  "duiding": "Of isolatie van de zijgevel is toegestaan is nog onbekend, dus dit bevestigt nog geen vergunbaarheid van labelverbetering.",
   "feiten": {
    "energielabel": "E (2017)",
    "oppervlakte_m2": 83
@@ -57,17 +57,16 @@
   "kern": false
  },
  {
-  "datum": "2026-11-04",
-  "titel": "Besluit voor het verbouwen, uitbreiden en verduurzamen van de woning, aan Heyendaalseweg 103, 6524SK Nijmegen",
-  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-513622.html",
-  "strategie": "verduurzaming",
-  "duiding": "Verleende vergunning bevestigt dat verbouw, uitbreiding en verduurzaming op deze locatie haalbaar zijn gebleken.",
+  "datum": "2026-11-06",
+  "titel": "Aanvraag omgevingsvergunning voor het doorbreken van dragende wanden in bestaande uitbouw, aan Daalseweg 171A, 6521GH Nijmegen",
+  "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517994.html",
+  "strategie": "geen",
+  "duiding": "Constructieve aanpassing in een bestaande uitbouw heeft geen effect op aanbod, huurregime of waardecreatiepotentieel.",
   "feiten": {
-   "energielabel": "F (2024)",
-   "oppervlakte_m2": 189
+   "oppervlakte_m2": 68
   },
-  "straat": "Heyendaalseweg",
-  "huisnummer": "103",
+  "straat": "Daalseweg",
+  "huisnummer": "171",
   "kern": false
  },
  {
@@ -75,7 +74,7 @@
   "titel": "Aanvraag omgevingsvergunning voor het legaliseren van de reeds geplaatste kunststof kozijnen aan Dominicanenstraat 103, 6521KB Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517519.html",
   "strategie": "geen",
-  "duiding": "Legalisatie van reeds geplaatste kozijnen is een administratieve correctie zonder marktimpact.",
+  "duiding": "Legalisatie van reeds geplaatste kozijnen is een administratieve correctie zonder marktrelevantie.",
   "feiten": {
    "energielabel": "D (2025)",
    "oppervlakte_m2": 92
@@ -88,8 +87,8 @@
   "datum": "2026-11-05",
   "titel": "Aanvraag omgevingsvergunning voor het intern verbouwen van het pand, aan Berg en Dalseweg 40, 6521JJ Nijmegen",
   "url": "https://zoek.officielebekendmakingen.nl/gmb-2026-517228.html",
-  "strategie": "splitsen",
-  "duiding": "Interne verbouwing van een rijksmonument vraagt extra vergunningstrajecten, wat herontwikkeling trager en duurder maakt.",
+  "strategie": "transformatie",
+  "duiding": "Interne verbouwing van een rijksmonument vereist vergunning, wat herontwikkeling van dit grote pand trager en duurder maakt.",
   "feiten": {
    "energielabel": "D (2024)",
    "rijksmonument": true,

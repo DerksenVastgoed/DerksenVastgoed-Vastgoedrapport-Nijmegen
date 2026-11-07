@@ -476,5 +476,15 @@
   "opp": 28,
   "kamers": 2,
   "postcode": "6511BK"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4447411/hertogstraat-nijmegen": {
+  "opp": 31,
+  "kamers": 2,
+  "postcode": "6511RX"
+ },
+ "https://www.huislijn.nl/huurwoning/nederland/gelderland/4447415/van-welderenstraat-nijmegen": {
+  "opp": 55,
+  "kamers": 2,
+  "postcode": "6511MH"
  }
 }

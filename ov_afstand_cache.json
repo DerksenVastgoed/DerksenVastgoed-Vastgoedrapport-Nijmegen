@@ -831,12 +831,28 @@
   "omweg": 6.33,
   "soort": "bus"
  },
+ "51.83736,5.87216": {
+  "geschat": false,
+  "hemelsbreed": 267,
+  "meters": 404,
+  "naam": "Dominicanenstraat",
+  "omweg": 1.51,
+  "soort": "bus"
+ },
  "51.83740,5.86888": {
   "geschat": false,
   "hemelsbreed": 221,
   "meters": 228,
   "naam": "Archipelstraat",
   "omweg": 1.03,
+  "soort": "bus"
+ },
+ "51.83741,5.86950": {
+  "geschat": false,
+  "hemelsbreed": 211,
+  "meters": 226,
+  "naam": "Archipelstraat",
+  "omweg": 1.07,
   "soort": "bus"
  },
  "51.83746,5.86950": {
@@ -1781,6 +1797,14 @@
   "meters": 195,
   "naam": "Smetiusstraat",
   "omweg": 3.0,
+  "soort": "bus"
+ },
+ "51.84451,5.87008": {
+  "geschat": false,
+  "hemelsbreed": 88,
+  "meters": 102,
+  "naam": "Hertogplein",
+  "omweg": 1.16,
   "soort": "bus"
  },
  "51.84456,5.84511": {

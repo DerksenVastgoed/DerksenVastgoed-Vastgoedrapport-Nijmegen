@@ -1282,3 +1282,13 @@ Hertogstraat | Nijmegen | 1250 | te huur kamer | 2026-11-05 | kamernet | 31 |
 Daalseweg | Nijmegen | 575 | te huur kamer | 2026-11-05 | kamernet-incl | 17 | 
 van Dulckenstraat | Nijmegen | 1310 | te huur | 2026-11-05 | kamernet | 61 | 
 van Oldenbarneveltstraat | Nijmegen | 1150 | te huur kamer | 2026-11-05 | kamernet | 80 | 
+
+# Automatisch toegevoegd uit Funda-attendering op 07-11-2026
+Coehoornstraat 37 | Nijmegen | 565000 | te koop | 2026-11-06 | funda-mail | 112 | 6521CB
+Gerard Noodtstraat | Nijmegen | 19500 | te koop | 2026-11-06 | funda-mail |  | 6511ST
+Hertogstraat | Nijmegen | 1250 | te huur | 2026-11-06 | huislijn | 31 | 6511RX
+Van Welderenstraat | Nijmegen | 1450 | te huur | 2026-11-06 | huislijn | 55 | 6511MH
+Groesbeeksedwarsweg 185 | Nijmegen | 417 | te huur kamer | 2026-11-06 | rentola | 13 | 6521DG
+Jacob Canisstraat | Nijmegen | 610 | te huur | 2026-11-06 | pararius | 18 | 6521HW
+Groesbeeksedwarsweg | Nijmegen | 622 | te huur | 2026-11-06 | pararius | 13 | 6521DG
+Symfoniestraat | Nijmegen | 775 | te huur kamer | 2026-11-06 | kamernet-incl | 20 | 

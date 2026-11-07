@@ -13,11 +13,25 @@
   {
    "adres": "Voorstadslaan 213",
    "besluit": "2025-08-15",
-   "dagen": 448,
+   "dagen": 449,
    "tekst": "Besluit voor het splitsen van een bovenwoning , aan Voorstadslaan 213, 6541SN Nijmegen"
   }
  ],
  "aangekondigd_nog_niet_in_gebruik": [
+  {
+   "adres": "Bisschop Hamerstraat 7",
+   "gevormd": 4,
+   "gevormd_maten": [
+    41,
+    21,
+    52,
+    43
+   ],
+   "in_gebruik": 1,
+   "datum": "2026-11-05",
+   "aanvraag": "2026-05-27",
+   "besluit": "2026-11-05"
+  },
   {
    "adres": "Fagelstraat 46",
    "gevormd": 2,
