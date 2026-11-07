@@ -1933,3 +1933,24 @@ waarom: 5 november 2026. "Aanwijzingsbesluit tijdelijk cameratoezicht
   hetzelfde stuk nog als "buiten ons onderwerp" in de bijlage.
 proef: beleidsrelevantie:kan via de tekst alsnog in de brief
 soort: brief
+
+---
+eis: De uitkomst van een besluit staat ook in de regel van de digest die de
+  schrijver en de feitencontrole lezen (verleend als de veldenronde dat las,
+  anders niet bekend), uit dezelfde uitkomst_feit() als bij de duiding. Een
+  aanvraag krijgt geen uitkomst.
+waarom: 7 november 2026, Bisschop Hamerstraat 7. publicatie_velden.json zei
+  sinds 6 november 13:02 UTC "verleend", besloten op 3 november. Die uitkomst
+  ging alleen naar de duiding, en die schreef "Verleende vergunning". De
+  schrijver nam dat over; de feitencontrole keurde het af op de editie van 6
+  november ("uitkomst niet bekend", van voor de veldenronde) en de
+  herstelronde maakte er "of de vergunning is verleend of geweigerd, staat
+  er niet bij" van. Een juist feit werd uit de brief gecontroleerd. Van de 29
+  besluiten in de digests van oktober en november krijgen er met de huidige
+  velden 13 "verleend" in de regel.
+proef: bekendmakingen_nijmegen:niet als verleend in de regel voor de schrijver; bekendmakingen_nijmegen:een aanvraag krijgt een uitkomst in de regel; bekendmakingen_nijmegen:maar niet zo in de regel voor de schrijver
+soort: gegevens
+let op: De editie van de dag zelf kent de uitkomst vaak nog niet, want de
+  veldenronde draait na de briefrun. In een weekbrief staan dan een oudere
+  regel "niet bekend" en een nieuwere "verleend" naast elkaar; welke de
+  schrijver en de feitencontrole volgen, is offline niet te meten.
